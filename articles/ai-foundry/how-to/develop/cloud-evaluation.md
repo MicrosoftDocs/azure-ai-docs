@@ -916,7 +916,7 @@ Your evaluation job might remain in the **Running** state for an extended period
 
 ::: moniker range="foundry"
 
-- [Complete working samples](https://github.com/Azure/azure-sdk-for-python/tree/evaluation_samples_graders/sdk/ai/azure-ai-projects/samples/evaluation/agentic_evaluators)
+- [Complete working samples](https://github.com/Azure/azure-sdk-for-python/tree/main)
 - [Evaluate your AI agents continuously](../continuous-evaluation-agents.md)
 - [See evaluation results in the Foundry portal](../../how-to/evaluate-results.md)
 - [Get started with Foundry](../../quickstarts/get-started-code.md)

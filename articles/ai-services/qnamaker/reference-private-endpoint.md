@@ -7,7 +7,7 @@ ms.author: lajanuar
 author: laujan
 ms.subservice: azure-ai-qna-maker
 ms.topic: reference
-ms.date: 06/12/2025
+ms.date: 12/15/2025
 ---
 
 # Private Endpoints
@@ -51,5 +51,5 @@ This will establish a private endpoint connection between Text Analytics service
 
 
 ## Support details
- * We don't support changes to Azure AI Search service once you enable private access to your Text Analytics service. If you change the Azure AI Search service via 'Features' tab after you have enabled private access, the Text Analytics service will become unusable.
+ * We don't support changes to Azure AI Search service once you enable private access to your Text Analytics service. If you change the Azure AI Search service via 'Features' tab after you enabled private access, the Text Analytics service will become unusable.
  * After establishing Private Endpoint Connection, if you switch Azure AI Search Service Networking to 'Public', you won't be able to use the Text Analytics service. Azure Search Service Networking needs to be 'Private' for the Private Endpoint Connection to work

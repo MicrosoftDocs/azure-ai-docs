@@ -2,7 +2,7 @@
 title: "Quickstart: QnA Maker client library for .NET"
 description: This quickstart shows how to get started with the QnA Maker client library for .NET. Follow these steps to install the package and try out the example code for basic tasks.  QnA Maker enables you to power a question-and-answer service from your semi-structured content like FAQ documents, URLs, and product manuals.
 ms.topic: include
-ms.date: 06/12/2025
+ms.date: 12/15/2025
 ---
 
 Use the QnA Maker client library for .NET to:
@@ -28,7 +28,7 @@ Use the QnA Maker client library for .NET to:
 * Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 * The [Visual Studio IDE](https://visualstudio.microsoft.com/vs/) or current version of [.NET Core](https://dotnet.microsoft.com/download/dotnet-core).
 * Once you have your Azure subscription, create a [QnA Maker resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesQnAMaker) in the Azure portal to get your authoring key and resource name. After it deploys, select **Go to resource**.
-    * You will need the key and resource name from the resource you create to connect your application to the QnA Maker API. Paste your key and resource name into the code below later in the quickstart.
+    * You need the key and resource name from the resource you create to connect your application to the QnA Maker API. Paste your key and resource name into the code below later in the quickstart.
     * You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 
 ## Setting up

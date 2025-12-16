@@ -640,6 +640,11 @@
             "source_path_from_root": "/articles/search/tutorial-csharp-create-mvc-app.md",
             "redirect_url": "/azure/search/tutorial-csharp-overview",
             "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/search/search-get-started-rag.md",
+            "redirect_url": "https://github.com/Azure-Samples/azure-search-classic-rag/tree/main/quickstarts",
+            "redirect_document_id": false
         }
     ]
   }

@@ -7,10 +7,11 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 12/09/2025
+ms.date: 12/15/2025
 author: alvinashcraft
 ms.author: aashcraft
-ms.custom: azure-ai-agents
+ms.custom: azure-ai-agents, dev-focus
+ai-usage: ai-assisted
 zone_pivot_groups: selection-ai-search-tool
 ---
 
@@ -22,23 +23,36 @@ zone_pivot_groups: selection-ai-search-tool
 
 The [Azure AI Search](/azure/search/search-what-is-azure-search) tool in Microsoft Foundry Agent Service connects an agent to a new or existing search index. Use this tool to retrieve and summarize your indexed documents, grounding the agent's responses in your proprietary content.
 
+## Usage support
+
+| Microsoft Foundry support  | Python SDK |	C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
+|---------|---------|---------|---------|---------|---------|---------|---------|
+| ✔️  | ✔️ | ✔️ | ✔️ | - |  ✔️ | ✔️ | ✔️ | 
+
 ## Prerequisites
 
-+ The latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
-
-+ An [Azure AI Search index configured for vector search](../../../../../search/search-get-started-portal-import-vectors.md). The index must include:
-
-    + One or more `Edm.String` (text) fields attributed as searchable and retrievable.
-
-    + One or more `Collection(Edm.Single)` (vector) fields attributed as searchable.
+- The latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for installation details.
+- An Azure subscription and Microsoft Foundry project with:
+  - Project endpoint URL
+  - Model deployment name
+  - Authentication credentials (DefaultAzureCredential or API key)
+- An [Azure AI Search index configured for vector search](../../../../../search/search-get-started-portal-import-vectors.md) with:
+  - One or more `Edm.String` (text) fields attributed as searchable and retrievable
+  - One or more `Collection(Edm.Single)` (vector) fields attributed as searchable
+- A connection between your Foundry project and Azure AI Search service (see [Setup](#setup) section)
+- For keyless authentication, the following Azure role-based access control (RBAC) roles assigned to your project's managed identity:
+  - **Search Index Data Contributor** - Allows reading and writing to search indexes
+  - **Search Service Contributor** - Allows managing search service resources
 
 ## Code example
 
 > [!NOTE]
 > - You need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
-> - Your connection ID should be in the format of `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`
+> - Your connection ID should be in the format of `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`.
 
 :::zone pivot="python"
+## Use agents with Azure AI Search tool
+
 ```python
 import os
 from dotenv import load_dotenv
@@ -125,6 +139,10 @@ with project_client:
     project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
     print("Agent deleted")
 ```
+
+### Expected outcome
+
+The agent queries the search index and returns a response with inline citations. Console output shows the agent ID, streaming delta updates as the response generates, URL citations with start and end indices, and the final complete response text. The agent is then successfully deleted.
 :::zone-end
 
 :::zone pivot="csharp"
@@ -202,6 +220,10 @@ Console.WriteLine($"{response.GetOutputText()}{GetFormattedAnnotation(response)}
 // Finally, delete all the resources you created in this sample.
 projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
 ```
+
+### Expected outcome
+
+The agent queries the specified index for information about the sleeping bag. The response includes the temperature rating and a formatted citation with the document title and URL. The response status is `Completed`, and the agent version is successfully deleted.
 
 ## Use agents with Azure AI Search tool for streaming scenarios
 
@@ -297,9 +319,15 @@ Console.WriteLine($"{text}{annotation}");
 // Finally, delete all the resources that were created in this sample.
 projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
 ```
+
+### Expected outcome
+
+The streaming response displays the agent's response creation, text deltas as they stream in real-time, and a formatted citation when complete. The final output includes the sleeping bag temperature rating with document reference. The agent version is deleted after the query completes.
 :::zone-end
 
 :::zone pivot="rest"
+## Use agents with Azure AI Search tool
+
 The following example shows how to use the Azure AI Search tool with the REST API to query an index. The example uses cURL, but you can use any HTTP client.
 
 ```bash
@@ -328,6 +356,135 @@ curl --request POST \
 ]
 }'
 ```
+
+### Expected outcome
+
+The API returns a JSON response containing the agent's answer about mental health services from the Premera index. The response includes citations and references to the indexed documents used to generate the answer.
+:::zone-end
+
+:::zone pivot="typescript"
+## Use agents with Azure AI Search tool
+
+This sample demonstrates how to create an AI agent with Azure AI Search capabilities using the `AzureAISearchAgentTool` and synchronous Azure AI Projects client. The agent can search indexed content and provide responses with citations from search results.
+
+```typescript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+import * as readline from "readline";
+import "dotenv/config";
+
+// Load environment variables
+const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
+const deploymentName = process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
+const aiSearchConnectionId =
+  process.env["AZURE_AI_SEARCH_CONNECTION_ID"] || "<ai search project connection id>";
+const aiSearchIndexName = process.env["AI_SEARCH_INDEX_NAME"] || "<ai search index name>";
+
+export async function main(): Promise<void> {
+  const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
+  const openAIClient = await project.getOpenAIClient();
+
+  console.log("Creating agent with Azure AI Search tool...");
+
+  // Define Azure AI Search tool that searches indexed content
+  const agent = await project.agents.createVersion("MyAISearchAgent", {
+    kind: "prompt",
+    model: deploymentName,
+    instructions:
+      "You are a helpful assistant. You must always provide citations for answers using the tool and render them as: `[message_idx:search_idx†source]`.",
+    tools: [
+      {
+        type: "azure_ai_search",
+        azure_ai_search: {
+          indexes: [
+            {
+              project_connection_id: aiSearchConnectionId,
+              index_name: aiSearchIndexName,
+              query_type: "simple",
+            },
+          ],
+        },
+      },
+    ],
+  });
+  console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
+
+  // Prompt user for input
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+
+  const userInput = await new Promise<string>((resolve) => {
+    rl.question(
+      "Enter your question for the AI Search agent available in the index (e.g., 'Tell me about the mental health services available from Premera'): \n",
+      (answer) => {
+        rl.close();
+        resolve(answer);
+      },
+    );
+  });
+
+  console.log("\nSending request to AI Search agent with streaming...");
+  const streamResponse = await openAIClient.responses.create(
+    {
+      input: userInput,
+      stream: true,
+    },
+    {
+      body: {
+        agent: { name: agent.name, type: "agent_reference" },
+        tool_choice: "required",
+      },
+    },
+  );
+
+  // Process the streaming response
+  for await (const event of streamResponse) {
+    if (event.type === "response.created") {
+      console.log(`Follow-up response created with ID: ${event.response.id}`);
+    } else if (event.type === "response.output_text.delta") {
+      process.stdout.write(event.delta);
+    } else if (event.type === "response.output_text.done") {
+      console.log("\n\nFollow-up response done!");
+    } else if (event.type === "response.output_item.done") {
+      if (event.item.type === "message") {
+        const item = event.item;
+        if (item.content && item.content.length > 0) {
+          const lastContent = item.content[item.content.length - 1];
+          if (lastContent.type === "output_text" && lastContent.annotations) {
+            for (const annotation of lastContent.annotations) {
+              if (annotation.type === "url_citation") {
+                console.log(
+                  `URL Citation: ${annotation.url}, Start index: ${annotation.start_index}, End index: ${annotation.end_index}`,
+                );
+              }
+            }
+          }
+        }
+      }
+    } else if (event.type === "response.completed") {
+      console.log("\nFollow-up completed!");
+    }
+  }
+
+  // Clean up resources by deleting the agent version
+  // This prevents accumulation of unused resources in your project
+  console.log("\nCleaning up resources...");
+  await project.agents.deleteVersion(agent.name, agent.version);
+  console.log("Agent deleted");
+
+  console.log("\nAzure AI Search agent sample completed!");
+}
+
+main().catch((err) => {
+  console.error("The sample encountered an error:", err);
+});
+```
+
+### Expected outcome
+
+The application creates an agent with Azure AI Search capabilities, prompts for user input, queries the search index, and streams the response with real-time delta updates. Console output includes the agent ID, streaming text deltas, URL citations with indices, and confirmation of successful agent deletion. The agent provides answers grounded in the indexed content with proper citations.
 :::zone-end
 
 ## Limitations
@@ -344,7 +501,9 @@ curl --request POST \
 
 In this section, you create a connection between the Microsoft Foundry project that contains your agent and the Azure AI Search service that contains your index.
 
-If you already connected your project to your search service, skip this section. 
+If you already connected your project to your search service, skip this section.
+
+To create the connection, you need your search service endpoint and authentication method. The following steps guide you through gathering these details.
 
 ### Get search service connection details
 

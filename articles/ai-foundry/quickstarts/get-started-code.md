@@ -122,6 +122,9 @@ Follow along below or get the code:
 1. Set these environment variables to use in your scripts:
 
     :::code language="plaintext" source="~/foundry-samples-main/samples-classic/typescript/quickstart/.env.template":::
+1. Start your code with these imports:
+    
+    :::code language="typescript" source="~/foundry-samples-main/samples-classic/typescript/quickstart/src/quickstart.ts" id="imports":::
 
 Follow along below or get the code:
 > [!div class="nextstepaction"]

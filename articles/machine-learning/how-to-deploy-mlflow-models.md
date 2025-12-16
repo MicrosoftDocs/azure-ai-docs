@@ -10,7 +10,7 @@ ms.author: scottpolly
 ms.reviewer: cacrest
 ms.date: 10/20/2025
 ms.topic: concept-article
-ms.custom: deploy, mlflow, devplatv2, no-code-deployment, cliv2, update-code, FY25Q1-Linter
+ms.custom: deploy, mlflow, devplatv2, no-code-deployment, cliv2, update-code2, FY25Q1-Linter
 ms.devlang: azurecli
 #Customer intent: As a data scientist, I want to understand the options and guidelines for deploying MLflow models in Azure Machine Learning so I can best deploy my MLflow models.
 ---

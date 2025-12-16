@@ -12,11 +12,12 @@ ms.custom:
   - ignite-2023
   - references_regions
   - build-2025
+monikerRange: 'foundry-classic || foundry'
+
 ---
 
 # Azure OpenAI in Microsoft Foundry Models quotas and limits
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 This article contains a quick reference and a detailed description of the quotas and limits for Azure OpenAI.
 
@@ -269,6 +270,9 @@ The following section provides you with a quick guide to the default quotas and 
 |`gpt-audio-mini` |   Default | 100K | 30 |
 |`gpt-realtime` | Default | 100K | 100 |
 |`gpt-realtime-mini` | Default | 100K | 100 |
+|`gpt-realtime-mini-2025-12-15` | Default | 100K | 100 |
+
+
 
 
 ## GPT-image-1 rate limits

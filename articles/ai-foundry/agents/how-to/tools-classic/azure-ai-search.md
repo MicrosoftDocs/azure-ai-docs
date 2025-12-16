@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 11/20/2025
+ms.date: 12/15/2025
 author: alvinashcraft
 ms.author: aashcraft
 ms.reviewer: aahi
@@ -16,7 +16,11 @@ ms.custom: azure-ai-agents
 
 # Azure AI Search tool
 
-[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
+
+> [!NOTE]
+> This document refers to the classic version of the agents API. 
+>
+> 🔍 [View the new Azure AI Search tool documentation](../../../default/agents/how-to/tools/ai-search.md).
 
 
 The [Azure AI Search](/azure/search/search-what-is-azure-search) tool in Agent Service connects an agent to a new or existing search index. You can use this tool to retrieve and summarize your indexed documents, grounding the agent's responses in your proprietary content.
