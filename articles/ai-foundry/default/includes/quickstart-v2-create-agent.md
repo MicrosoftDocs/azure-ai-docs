@@ -31,7 +31,7 @@ An agent defines core behavior. Once created, it ensures consistent responses in
 
 # [Java](#tab/java)
 
-:::code language="java" source="~/foundry-samples-main/samples/java/quickstart/src/main/java/com/azure/ai/foundry/samples/CreateAgent.java":::
+:::code language="java" source="~/foundry-samples-main/samples/java/quickstart/src/main/java/com/microsoft/foundry/samples/CreateAgent.java":::
 
 # [REST API](#tab/rest)
 

@@ -28,7 +28,7 @@ Use the previously created agent named "MyAgent" to interact by asking a questio
 
 # [Java](#tab/java) 
 
-:::code language="java" source="~/foundry-samples-main/samples/java/quickstart/src/main/java/com/azure/ai/foundry/samples/ChatWithAgent.java" :::
+:::code language="java" source="~/foundry-samples-main/samples/java/quickstart/src/main/java/com/microsoft/foundry/samples/ChatWithAgent.java" :::
 
 
 # [REST API](#tab/rest)

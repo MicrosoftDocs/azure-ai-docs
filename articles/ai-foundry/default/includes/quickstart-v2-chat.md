@@ -29,7 +29,7 @@ Interacting with a model is the basic building block of AI applications.  Send a
 
 # [Java](#tab/java)
 
-:::code language="java" source="~/foundry-samples-main/java/quickstart/src/main/java/com/azure/ai/foundry/samples/CreateResponses.java":::
+:::code language="java" source="~/foundry-samples-main/java/quickstart/src/main/java/com/microsoft/foundry/samples/CreateResponses.java":::
 
 # [REST API](#tab/rest)
 
