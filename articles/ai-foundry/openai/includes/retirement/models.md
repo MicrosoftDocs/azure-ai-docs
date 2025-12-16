@@ -17,15 +17,14 @@ ms.custom: references_regions, build-2025
 
 | Model Name | Model Version<sup>1</sup> | Lifecycle Status | Deprecation Date (No New Customers) | Retirement Date | Replacement Model |
 |:--|:--|:--|:--|:--|:--|
-| `gpt-4o` | 2024-05-13 | Generally Available | 2025-05-13 | 2026-02-27 | `gpt-4.1` |
-| `gpt-4o` | 2024-08-06 | Generally Available | 2025-08-06 | 2026-02-27 | `gpt-4.1` |
-| `gpt-4o` | 2024-11-20 | Generally Available | 2025-11-20 | 2026-05-22 | `gpt-4.1` |
+| `gpt-4o` | 2024-05-13 | Generally Available | 2025-05-13 | 2026-02-27 | `gpt-5.1` |
+| `gpt-4o` | 2024-08-06 | Generally Available | 2025-08-06 | 2026-02-27 | `gpt-5.1` |
+| `gpt-4o` | 2024-11-20 | Generally Available | 2025-11-20 | 2026-06-03 | `gpt-5.1` |
 | `gpt-4o-mini` | 2024-07-18 | Generally Available | 2025-07-18 | 2026-02-27 | `gpt-4.1-mini` |
 | `gpt-4.1` | 2025-04-14 | Generally Available | 2026-04-14 | 2026-10-14 | `gpt-5` |
 | `gpt-4.1-mini` | 2025-04-14 | Generally Available | 2026-04-14 | 2026-10-14 | `gpt-5-mini` |
 | `gpt-4.1-nano` | 2025-04-14 | Generally Available | 2026-04-14 | 2026-10-14 | `gpt-5-nano` |
-| `computer-use-preview` | 2025-02-11 | Preview | 2026-02-11 | 2026-04-14 |  |
-| `computer-use-preview` | 2025-03-11 | Preview | 2026-03-11 | 2026-04-14 |  |
+| `computer-use-preview` | 2025-03-11 | Preview | n/a | No earlier than 2026-04-14 |  |
 | `o1` | 2024-12-17 | Generally Available | 2025-12-17 | 2026-06-18 | `o3` |
 | `o1-pro` | 2025-03-19 | Generally Available | 2026-03-19 | 2026-09-18 | `o3-pro` |
 | `o3-mini` | 2025-01-31 | Generally Available | 2026-01-31 | 2026-08-02 | `o4-mini` |
@@ -34,16 +33,15 @@ ms.custom: references_regions, build-2025
 | `o3-deep-research` | 2025-06-26 | Generally Available | 2026-06-26 | 2026-12-26 |  |
 | `o4-mini` | 2025-04-16 | Generally Available | 2026-04-16 | 2026-10-16 |  |
 | `codex-mini` | 2025-05-16 | Generally Available | 2026-05-16 | 2026-11-15 |  |
-| `model-router` | 2025-05-19 | Preview | 2026-05-19 | 2026-11-18 |  |
 | `model-router` | 2025-11-18 | Generally Available | 2026-11-18 | 2027-05-20 |  |
 | `gpt-5-mini` | 2025-08-07 | Generally Available | 2026-08-07 | 2027-02-06 |  |
 | `gpt-5-nano` | 2025-08-07 | Generally Available | 2026-08-07 | 2027-02-06 |  |
 | `gpt-5-codex` | 2025-09-15 | Generally Available | 2026-09-15 | 2027-03-17 |  |
 | `gpt-5-pro` | 2025-10-06 | Generally Available | 2026-10-06 | 2027-04-07 |  |
-| `gpt-5.1-chat` | 2025-11-13 | Preview | 2026-11-13 | 2027-05-15 |  |
+| `gpt-5.1` | 2025-11-13 | Generally Available | 2026-11-13 | 2027-05-15 |  |
 | `gpt-5.1-codex` | 2025-11-13 | Generally Available | 2026-11-13 | 2027-05-15 |  |
 | `gpt-5.1-codex-mini` | 2025-11-13 | Generally Available | 2026-11-13 | 2027-05-15 |  |
-| `gpt-5.1` | 2025-11-13 | Generally Available | 2026-11-13 | 2027-05-15 |  |
+| `gpt-5.1-chat` | 2025-11-13 | Preview | n/a | No earlier than 206-03-31 |  |
 
 
 # [Audio](#tab/audio)
@@ -76,7 +74,7 @@ ms.custom: references_regions, build-2025
 
 | Model Name | Model Version<sup>1</sup>  | Lifecycle Status | Deprecation Date (No New Customers) | Retirement Date | Replacement Model |
 |:--|:--|:--|:--|:--|:--|
-| `dall-e-3` | 3 | Generally Available | 2026-01-31 | 2026-02-18 | `gpt-image-1-mini` |
+| `dall-e-3` | 3 | Generally Available | n/a | 2026-02-18 | `gpt-image-1-mini` |
 | `gpt-image-1` | 2025-04-15 | Preview | n/a | No earlier than 2026-03-31 | `gpt-image-1-mini` |
 | `gpt-image-1-mini` | 2025-10-06 | Generally Available | 2026-10-06 | 2027-04-07 |  |
 | `sora` | 2025-05-02 | Preview | 2026-05-02 | No earlier than 2026-02-15 | `sora-2` |
