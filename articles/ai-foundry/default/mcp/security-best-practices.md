@@ -90,9 +90,9 @@ Tenant admins can use Azure Policy to grant or block access to Foundry MCP Serve
 
     :::image type="content" source="../media/mcp/foundry-find-mcp-app.png" alt-text="Screenshot of MCP app in Entra ID.":::
 
-    :::image type="content" source="../media/mcp/foundry-conditional-access.png" alt-text="Screenshot of conditional access options for the app configuration.":::
-
 1. Click Conditional Access under Security on the left pane of the selected app for Foundry MCP Server (preview) and click New Policy to specify the users or workload identities.
+
+    :::image type="content" source="../media/mcp/foundry-conditional-access.png" alt-text="Screenshot of conditional access options for the app configuration.":::
 
     :::image type="content" source="../media/mcp/foundry-new-access-policy.png" alt-text="Screenshot of creating a new conditional access policy for the app.":::
 
