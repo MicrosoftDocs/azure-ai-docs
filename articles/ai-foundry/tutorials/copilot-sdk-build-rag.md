@@ -4,7 +4,7 @@ titleSuffix: Microsoft Foundry
 description:  Learn how to build a RAG-based chat app using the Microsoft Foundry SDK. This tutorial is part 2 of a 3-part tutorial series.
 ms.service: azure-ai-foundry
 ms.topic: tutorial
-ms.date: 08/29/2025
+ms.date: 12/16/2025
 ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
@@ -87,6 +87,8 @@ The search index is used to store vectorized data from the embeddings model. The
     python create_search_index.py
     ```
 
+    Successful completion displays: `➕ Uploaded 20 documents to 'example-index' index`.
+
 ## Get product documents
 
 Next, you create a script to get product documents from the search index. The script queries the search index for documents that match a user's question.
@@ -163,6 +165,8 @@ python chat_with_products.py --query "I need a new tent for 4 people, what would
 ### Add telemetry logging
 
 To enable logging of telemetry to your project:
+
+1. Register the **Microsoft.OperationalInsights** and **microsoft.insights** resource providers in your subscription. For more information on registering a resource provider, see [Register resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider-1).
 
 1. Add an Application Insights resource to your project.  Navigate to the **Tracing** tab in the [Foundry portal](https://ai.azure.com/?cid=learnDocs), and create a new resource if you don't already have one.
 

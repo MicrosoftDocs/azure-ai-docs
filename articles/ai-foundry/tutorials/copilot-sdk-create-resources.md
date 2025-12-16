@@ -8,7 +8,7 @@ ms.custom:
   - update-code
   - hub-only
 ms.topic: tutorial
-ms.date: 08/29/2025
+ms.date: 12/16/2025
 ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
