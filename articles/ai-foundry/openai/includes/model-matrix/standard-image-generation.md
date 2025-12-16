@@ -1,5 +1,4 @@
 ---
----
 title: Standard image model availability
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Standard image model availability
