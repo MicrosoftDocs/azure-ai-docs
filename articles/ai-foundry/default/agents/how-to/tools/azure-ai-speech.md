@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 09/12/2025
+ms.date: 12/15/2025
 author: PatrickFarley
 ms.author: pafarley
 ms.custom: azure-ai-agents
@@ -24,7 +24,7 @@ The Azure Speech in Foundry Tools tool allows agents to interact with users thro
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- A [Microsoft Foundry resource](/azure/ai-services/multi-service-resource?pivots=azportal) created in a [supported region](../../../../ai-services/speech-service/regions.md). Your Foundry resource includes speech capabilities and will be used by the Speech MCP server
+- A [Microsoft Foundry resource](/azure/ai-services/multi-service-resource?pivots=azportal) created in a [supported region](../../../../../ai-services/speech-service/regions.md). Your Foundry resource includes speech capabilities and will be used by the Speech MCP server
 
 ## Set up storage
 
@@ -36,7 +36,7 @@ Create one or more blob containers to store the input and output audio files.
 
 ## Create an agent
 
-1. Go to the [!INCLUDE [foundry-link](../../../default/includes/foundry-link.md)].
+1. Go to the [!INCLUDE [foundry-link](../../../includes/foundry-link.md)].
 1. In the top right menu, go to **Build**
 1. On the left pane, select **Agents**, and select the **Create agent** button.  
 1. Create a new agent by providing a name and description, then select **Create**. You don't need to configure your agent any further for this scenario.
