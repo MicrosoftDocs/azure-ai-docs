@@ -1408,6 +1408,8 @@ groups:
     title: C#
   - id: rest
     title: REST API
+  - id: typescript
+    title: TypeScript
 # owner: fosteramanda
 - id: selection-azure-ai-search
   title: Selections
