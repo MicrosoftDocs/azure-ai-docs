@@ -150,93 +150,92 @@ Optionally, configure parameters for your fine-tuning job. The following paramet
 
 |Name| Type| Description|
 |---|---|---|
-|`batch_size` |Integer | The batch size to use for training. The batch size is the number of training examples used to train a single forward and backward pass. In general, we've found that larger batch sizes tend to work better for larger datasets. The default value as well as the maximum value for this property are specific to a base model. A larger batch size means that model parameters are updated less frequently, but with lower variance. When set to -1, batch_size is calculated as 0.2% of examples in training set and the max is 256. |
-| `learning_rate_multiplier` | Number | The learning rate multiplier to use for training. The fine-tuning learning rate is the original learning rate used for pre-training multiplied by this value. Larger learning rates tend to perform better with larger batch sizes. We recommend experimenting with values in the range 0.02 to 0.2 to see what produces the best results. A smaller learning rate may be useful to avoid overfitting. |
-|`n_epochs` | Integer | The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. If set to -1, the number of epochs is determined dynamically based on the input data. |
-|`seed` | Integer | The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases. If a seed isn't specified, one will be generated for you. |
-| `Beta`| Integer | Temperature parameter for the dpo loss, typically in the range 0.1 to 0.5. This controls how much attention we pay to the reference model. The smaller the beta, the more we allow the model to drift away from the reference model. As beta gets smaller the more, we ignore the reference model.  |
+|`batch_size` |Integer | The batch size to use for training. The batch size is the number of training examples used to train a single forward and backward pass. In general, we find that larger batch sizes tend to work better for larger datasets.<br><br> The default value and the maximum value for this property are specific to a base model. A larger batch size means that model parameters are updated less frequently, but with lower variance. When the value is set to `-1`, batch_size is calculated as 0.2% of examples in training set. The maximum is 256. |
+| `learning_rate_multiplier` | Number | The learning rate multiplier to use for training. The fine-tuning learning rate is the original learning rate used for pre-training, multiplied by this value. Larger learning rates tend to perform better with larger batch sizes. We recommend experimenting with values in the range of `0.02` to `0.2` to see what produces the best results. A smaller learning rate can be useful to avoid overfitting. |
+|`n_epochs` | Integer | The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. If the value is set to `-1`, the number of epochs is determined dynamically based on the input data. |
+|`seed` | Integer | The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results but might differ in rare cases. If you don't specify a seed, one is generated for you. |
+| `Beta`| Integer | Temperature parameter for direct preference optimization (DPO) loss, typically in the range of `0.1` to `0.5`. This parameter controls how much attention we pay to the reference model. The smaller the beta, the more we allow the model to drift away from the reference model.  |
 
 You can choose to leave the default configuration or customize the values to your preference. After you finish making your configurations, select **Next**.
 
 ### Review your choices and train your model
 
-Review your choices and select **Submit** to start training your new fine-tuned model.
+Review your choices, and then select **Submit** to start training your new fine-tuned model.
 
 ## Check the status of your fine-tuned model
 
-After you submit your fine-tuning job, you see a page with details about your fine-tuned model. You can find the status and more information about your fine-tuned model on the **Fine-tuning** page in Foundry portal.
+After you submit your fine-tuning job, a page appears with details about your fine-tuned model. You can find the status and more information about your fine-tuned model on the **Fine-tuning** page in the Foundry portal.
 
-Your job might be queued behind other jobs on the system. Training your model can take minutes or hours depending on the model and dataset size.
+Your job might be queued behind other jobs in the system. Training your model can take minutes or hours, depending on the model and dataset size.
 
-## Checkpoints
+## Generate checkpoints
 
-When each training epoch completes a checkpoint is generated. A checkpoint is a fully functional version of a model which can both be deployed and used as the target model for subsequent fine-tuning jobs. Checkpoints can be particularly useful, as they may provide snapshots prior to overfitting. When a fine-tuning job completes you will have the three most recent versions of the model available to deploy.
+When each training epoch finishes, a checkpoint is generated. A checkpoint is a fully functional version of a model that can be both deployed and used as the target model for subsequent fine-tuning jobs.
 
-:::image type="content" source="../media/fine-tuning/checkpoints.png" alt-text="Screenshot of checkpoints UI." lightbox="../media/fine-tuning/checkpoints.png":::
+Checkpoints can be particularly useful, because they might provide snapshots prior to overfitting. When a fine-tuning job finishes, you have the three most recent versions of the model available to deploy.
+
+:::image type="content" source="../media/fine-tuning/checkpoints.png" alt-text="Screenshot of a list of checkpoints." lightbox="../media/fine-tuning/checkpoints.png":::
 
 ## Pause and resume
 
-You can track progress in both fine-tuning views of the Foundry portal. You'll see your job go through the same statuses as normal fine tuning jobs (queued, running, succeeded).
+You can track progress in both fine-tuning views of the Foundry portal. Your job goes through the same statuses as normal fine-tuning jobs (**Queued**, **Running**, **Succeeded**).
 
-You can also review the results files while training runs, to get a peak at the progress and whether your training is proceeding as expected.
+You can also review the results files while training runs, to get a peek at the progress and whether your training is proceeding as expected.
 
-> [!NOTE]
-> During the training you can view the logs and metrics and pause the job as needed. Pausing can be useful, if metrics aren't converging or if you feel model isn't learning at the right pace. Once the training job is paused, a deployable checkpoint will be created once safety evals are complete. This checkpoint available for you to deploy and use for inference or resume the job further to completion. Pause operation is only applicable for jobs which have been trained for at least one step and are in *Running* state.
+During the training, you can view the logs and metrics and pause the job as needed. Pausing can be useful if metrics aren't converging or if you feel model isn't learning at the right pace. When you pause a training job, a deployable checkpoint is created after safety evaluations are complete. This checkpoint available for you to deploy and use for inference, or you can resume the job to complete it. The pause operation is applicable only for jobs that are trained for at least one step and are in a **Running** state.
 
-:::image type="content" source="../media/how-to/reinforcement-fine-tuning/pause.png" alt-text="Screenshot of the reinforcement fine-tuning with a running job." lightbox="../media/how-to/reinforcement-fine-tuning/pause.png":::
+:::image type="content" source="../media/how-to/reinforcement-fine-tuning/pause.png" alt-text="Screenshot of reinforcement fine-tuning with a running job." lightbox="../media/how-to/reinforcement-fine-tuning/pause.png":::
 
 ## Analyze your fine-tuned model
 
-After fine-tuning is successfully completed, you can download a result file named `results.csv` from the fine-tuned model page under the **Details** tab. You can use the result file to analyze the training and validation performance of your custom model.
+After fine-tuning is successfully completed, you can download a result file named `results.csv` from the fine-tuned model's page on the **Details** tab. You can use the result file to analyze the training and validation performance of your custom model.
 
-The result file is a CSV file that contains a header row and a row for each training step performed by the fine-tuning job. The result file contains the following columns:
+The result file is a CSV file that contains a header row and a row for each training step that the fine-tuning job performs. The result file contains the following columns:
 
 | Column name | Description |
 | --- | --- |
 | `step` | The number of the training step. A training step represents a single pass, forward and backward, on a batch of training data. |
 | `train_loss` | The loss for the training batch. |
-| `train_mean_token_accuracy` | The percentage of tokens in the training batch correctly predicted by the model.<br><br>For example, if the batch size is set to 3 and your data contains completions `[[1, 2], [0, 5], [4, 2]]`, this value is set to 0.83 (5 of 6) if the model predicted `[[1, 1], [0, 5], [4, 2]]`. |
+| `train_mean_token_accuracy` | The percentage of tokens in the training batch that the model correctly predicted.<br><br>For example, if the batch size is set to `3` and your data contains completions `[[1, 2], [0, 5], [4, 2]]`, this value is set to `0.83` (5 of 6) if the model predicted `[[1, 1], [0, 5], [4, 2]]`. |
 | `valid_loss` | The loss for the validation batch. |
-| `validation_mean_token_accuracy` | The percentage of tokens in the validation batch correctly predicted by the model.<br><br>For example, if the batch size is set to 3 and your data contains completions `[[1, 2], [0, 5], [4, 2]]`, this value is set to 0.83 (5 of 6) if the model predicted `[[1, 1], [0, 5], [4, 2]]`. |
+| `validation_mean_token_accuracy` | The percentage of tokens in the validation batch that the model correctly predicted.<br><br>For example, if the batch size is set to `3` and your data contains completions `[[1, 2], [0, 5], [4, 2]]`, this value is set to `0.83` (5 of 6) if the model predicted `[[1, 1], [0, 5], [4, 2]]`. |
 | `full_valid_loss` | The validation loss calculated at the end of each epoch. When training goes well, loss should decrease. |
 |`full_valid_mean_token_accuracy` | The valid mean token accuracy calculated at the end of each epoch. When training is going well, token accuracy should increase. |
 
-You can also view the data in your results.csv file as plots in Foundry portal under the **Monitoring** tab of your fine-tuned model. Select the link for your trained model, and you will see two charts: loss, and token accuracy. If you provided validation data, both datasets will appear on the same plot.
+You can also view the data in your `results.csv` file as plots in Foundry portal, on the **Monitoring** tab of your fine-tuned model. When you select the link for your trained model, two charts appear: loss and token accuracy. If you provided validation data, both datasets appear on the same plot.
 
-:::image type="content" source="../media/fine-tuning/metrics.png" alt-text="Screenshot of metrics UI." lightbox="../media/fine-tuning/metrics.png":::
+:::image type="content" source="../media/fine-tuning/metrics.png" alt-text="Screenshot of a metrics chart." lightbox="../media/fine-tuning/metrics.png":::
 
-Look for your loss to decrease over time, and your accuracy to increase. If you see a divergence between your training and validation data that may indicate that you are overfitting. Try training with fewer epochs, or a smaller learning rate multiplier.
+Look for your loss to decrease over time, and your accuracy to increase. If your training and validation data diverge, you might be overfitting. Try training with fewer epochs or a smaller learning-rate multiplier.
 
 ## Deploy a fine-tuned model
 
-Once your model is fine-tuned, you can deploy the model and can use it in your own application.
+After your model is fine-tuned, you can deploy the model and use it in your own application.
 
-When you deploy the model, you make the model available for inferencing, and that incurs an hourly hosting charge. Fine-tuned models, however, can be stored in Foundry portal at no cost until you're ready to use them.
+When you deploy the model, you make the model available for inferencing. This availability incurs an hourly hosting charge. However, you can store fine-tuned models in the Foundry portal at no cost until you're ready to use them.
 
-[!INCLUDE [Fine-tuning deletion](fine-tune.md)]
-
-You can monitor the progress of your deployment on the **Deployments** page in Foundry portal.
+You can monitor the progress of your deployment on the **Deployments** pane in the Foundry portal.
 
 ### Use a deployed fine-tuned model
 
-After your fine-tuned model deploys, you can use it like any other deployed model. You can use the **Playground** in [Foundry](https://ai.azure.com/?cid=learnDocs) to experiment with your new deployment. You can also use the REST API to call your fine-tuned model from your own application. You can even begin to use this new fine-tuned model in your prompt flow to build your generative AI application.
+After you deploy your fine-tuned model, you can use it like any other deployed model. You can use the playground in [Foundry](https://ai.azure.com/?cid=learnDocs) to experiment with your new deployment. You can also use the REST API to call your fine-tuned model from your own application. You can even begin to use this new fine-tuned model in your prompt flow to build your generative AI application.
 
 > [!NOTE]
-> For chat models, the [system message that you use to guide your fine-tuned model](../concepts/system-message.md) (whether it's deployed or available for testing in the playground) must be the same as the system message you used for training. If you use a different system message, the model might not perform as expected.
+> For chat models, the [system message that you use to guide your fine-tuned model](../concepts/system-message.md) (whether it's deployed or available for testing in the playground) must be the same as the system message that you used for training. If you use a different system message, the model might not perform as expected.
 
 ## Clean up your deployments, fine-tuned models, and training files
 
-When you're done with your fine-tuned model, you can delete the deployment and model. You can also delete the training and validation files you uploaded to the service, if needed.
+When you no longer need your fine-tuned model, you can delete the deployment and model. You can also delete the training and validation files that you uploaded to the service, if necessary.
 
 ### Delete your fine-tuned model deployment
 
 [!INCLUDE [Fine-tuning deletion](fine-tune.md)]
 
-You can delete the deployment for your fine-tuned model on the **Deployments** page in Foundry portal. Select the deployment to delete, and then select **Delete** to delete the deployment.
+You can delete the deployment for your fine-tuned model on the **Deployments** pane in the Foundry portal. Select the deployment to delete, and then select **Delete**.
 
 ### Delete your fine-tuned model
 
-You can delete a fine-tuned model on the **Fine-tuning** page in Foundry portal. Select the fine-tuned model to delete and then select **Delete** to delete the fine-tuned model.
+You can delete a fine-tuned model on the **Fine-tuning** pane in the Foundry portal. Select the fine-tuned model to delete, and then select **Delete**.
 
 > [!NOTE]
 > You can't delete a fine-tuned model if it has an existing deployment. You must [delete your model deployment](#delete-your-fine-tuned-model-deployment) before you can delete your fine-tuned model.
