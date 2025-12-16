@@ -300,15 +300,15 @@ public static ResponseResult CreateAndCheckResponse(ResponsesClient responseClie
 ResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
 
 ResponseItem request = ResponseItem.CreateUserMessageItem("What's the weather like in my favorite city?");
-List<ResponseItem> inputItems = [request];
-bool funcionCalled = false;
+var inputItems = new List<ResponseItem> { request };
+bool functionCalled = false;
 ResponseResult response;
 do
 {
     response = CreateAndCheckResponse(
         responseClient,
         inputItems);
-    funcionCalled = false;
+    functionCalled = false;
     foreach (ResponseItem responseItem in response.OutputItems)
     {
         inputItems.Add(responseItem);
@@ -316,10 +316,10 @@ do
         {
             Console.WriteLine($"Calling {functionToolCall.FunctionName}...");
             inputItems.Add(GetResolvedToolOutput(functionToolCall));
-            funcionCalled = true;
+            functionCalled = true;
         }
     }
-} while (funcionCalled);
+} while (functionCalled);
 Console.WriteLine(response.GetOutputText());
 
 // Remove all the resources created in this sample.
