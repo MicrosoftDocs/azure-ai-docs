@@ -1299,6 +1299,8 @@ groups:
     title: Python
   - id: csharp
     title: C#
+  - id: typescript
+    title: TypeScript
 # owner: aashcraft
 - id: selection-web-search
   title: Selections
