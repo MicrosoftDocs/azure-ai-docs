@@ -379,6 +379,12 @@ For more information on using the OpenAI SDK, see [Azure OpenAI supported progra
 
 ::: zone-end
 
+## Using the Agent Framework for local orchestration
+
+Microsoft Agent Framework is an open-source development kit for building AI agents and multi-agent workflows for .NET and Python. It provides a way to build and manage AI agents that can interact with users and other services. It can orchestrate agents in Foundry, or have local agents that use Foundry models. 
+
+For more information, see the [Microsoft Agent Framework overview](/agent-framework/overview/agent-framework-overview)
+
  The next section lists the Foundry Tools client libraries and shows how to use them.
 
 ## Foundry Tools SDKs
@@ -446,10 +452,3 @@ The following sections include quickstart links for the Foundry Tools SDKs and r
 <!-- ::: zone pivot="programming-language-swift"
 [!INCLUDE [Swift include](../../includes/sdk/swift.md)]
 ::: zone-end -->
-
-## Using the Agent Framework for local orchestration
-
-Microsoft Agent Framework is an open-source development kit for building AI agents and multi-agent workflows for .NET and Python. It provides a way to build and manage AI agents that can interact with users and other services. It can orchestrate agents in Foundry, or have local agents that use Foundry models. 
-
-For more information, see the [Microsoft Agent Framework overview](/agent-framework/overview/agent-framework-overview)
-
