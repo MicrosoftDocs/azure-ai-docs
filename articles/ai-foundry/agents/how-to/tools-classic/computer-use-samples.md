@@ -17,7 +17,7 @@ ms.author: aashcraft
 > [!NOTE]
 > This document refers to the classic version of the agents API. 
 >
-> 🔍 [View the new Computer Use documentation](../../../default/agents/how-to/tools/computer-use.md).
+> 🔍 [View the new Computer Use documentation](../../../default/agents/how-to/tools/computer-use.md?view=foundry&preserve-view=true).
 
 
 

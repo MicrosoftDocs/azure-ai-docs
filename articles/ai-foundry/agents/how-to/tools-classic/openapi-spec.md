@@ -17,7 +17,7 @@ ms.custom: azure-ai-agents
 > [!NOTE]
 > This document refers to the classic version of the agents API. 
 >
-> 🔍 [View the new OpenAPI tool documentation](../../../default/agents/how-to/tools/openapi.md).
+> 🔍 [View the new OpenAPI tool documentation](../../../default/agents/how-to/tools/openapi.md?view=foundry&preserve-view=true).
 
 You can now connect your Azure AI Agent to an external API using an OpenAPI 3.0 specified tool, 
 allowing for scalable interoperability with various applications. Enable your custom tools 

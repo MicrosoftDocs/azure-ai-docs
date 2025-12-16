@@ -17,7 +17,7 @@ ms.author: aashcraft
 > [!NOTE]
 > This document refers to the classic version of the agents API. 
 >
-> 🔍 [View the new MCP tool documentation](../../../default/agents/how-to/tools/model-context-protocol.md).
+> 🔍 [View the new MCP tool documentation](../../../default/agents/how-to/tools/model-context-protocol.md?view=foundry&preserve-view=true).
 
 You can extend the capabilities of your Foundry agent by connecting it to tools hosted on remote [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) servers (bring your own MCP server endpoint). Developers and organizations maintain these servers. The servers expose tools that MCP-compatible clients, such as Foundry Agent Service, can access.
 

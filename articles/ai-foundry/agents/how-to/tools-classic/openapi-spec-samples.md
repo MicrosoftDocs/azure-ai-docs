@@ -20,7 +20,7 @@ zone_pivot_groups: selection-openapi-function
 > [!NOTE]
 > This document refers to the classic version of the agents API. 
 >
-> 🔍 [View the new OpenAPI tool documentation](../../../default/agents/how-to/tools/openapi.md).
+> 🔍 [View the new OpenAPI tool documentation](../../../default/agents/how-to/tools/openapi.md?view=foundry&preserve-view=true).
 
 Use this article to find step-by-step instructions and code samples for using OpenAPI based tools.
 
