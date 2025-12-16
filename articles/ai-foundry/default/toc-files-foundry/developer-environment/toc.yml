@@ -11,6 +11,34 @@ items:
 - name: Playgrounds and quick evaluation
   href: ../../../concepts/concept-playgrounds.md
 
+# Agent configuration
+- name: Agent configuration
+  items:
+  - name: Set up your agent resources
+    href: ../../../agents/environment-setup.md
+  - name: Standard agent setup
+    href: ../../../agents/concepts/standard-agent-setup.md
+  - name: Use your own Azure resources
+    href: ../../../agents/how-to/use-your-own-resources.md
+  - name: Migrate agents
+    href: ../../agents/how-to/migrate.md
+  - name: Virtual networks
+    href: ../../../agents/how-to/virtual-networks.md
+  - name: Use an AI Gateway
+    href: ../../agents/how-to/ai-gateway.md
+
+# Agent Tools
+- name: Agent development tools
+  items:
+  - name: Use the Visual Studio Code extension for agent development
+    href: ../../../how-to/develop/vs-code-agents.md
+  - name: Use MCP Tools in the Visual Studio Code extension
+    href: ../../../how-to/develop/vs-code-agents-mcp.md
+  - name: Use declarative agent workflows in the Visual Studio Code extension
+    href: ../../agents/how-to/vs-code-agents-workflow-low-code.md
+  - name: Use hosted agent workflows in the Visual Studio Code extension
+    href: ../../agents/how-to/vs-code-agents-workflow-pro-code.md
+
 # MCP Server
 - name: Foundry MCP Server (preview)
   items:
