@@ -35,9 +35,9 @@ The Microsoft Foundry SDK integrates with other client libraries and services th
 
 ## Prerequisites
 
-- [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
+- [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
 - You must be **Owner** of the subscription to get the appropriate access control needed to use your project.
-- Install the required language runtimes, global tools, and VS Code extensions as described in [Prepare your development environment](../how-to/develop/install-cli-sdk.md).
+- Install the required language runtimes, global tools, and VS Code extensions as described in [Prepare your development environment](install-cli-sdk.md).
 
 > [!IMPORTANT]
 > Before starting, make sure your development environment is ready.  
