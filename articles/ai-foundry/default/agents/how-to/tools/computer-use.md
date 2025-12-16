@@ -297,7 +297,7 @@ private static string ProcessComputerUseCall(ComputerCallResponseItem item, stri
             currentScreenshot = "search_typed";
             break;
         case ComputerCallActionKind.KeyPress:
-            HashSet<string> codes = [.. item.Action.KeyPressKeyCodes];
+            HashSet<string> codes = new(item.Action.KeyPressKeyCodes);
             if (codes.Contains("Return") || codes.Contains("ENTER"))
             {
                 // If we have typed the value to the search field, go to search results.
