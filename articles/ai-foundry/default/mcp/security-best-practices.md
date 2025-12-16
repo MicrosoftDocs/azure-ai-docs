@@ -86,11 +86,13 @@ Tenant admins can use Azure Policy to grant or block access to Foundry MCP Serve
 
 1. Materialize the service principal for Foundry MCP Server (preview) application ID by running `az ad sp create --id fcdfa2de-b65b-4b54-9a1c-81c8a18282d9`. The application ID used in this command represents Foundry MCP Server (preview).
 
-1. Find the enterprise application for Foundry MCP Server (preview) using the application ID. Open the [Azure portal Enterprise Applications page](https://portal.azure.com/#view/Microsoft_AAD_IAM/StartboardApplicationsMenuBlade/~/AppAppsPreview) and search for the application ID.
+1. Find the enterprise application for Foundry MCP Server (preview) using the application ID. Open the [Azure portal Entra ID page](https://portal.azure.com/#view/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/~/Overview) and search for the application ID `fcdfa2de-b65b-4b54-9a1c-81c8a18282d9`.
+
+    :::image type="content" source="../media/mcp/foundry-mcp-find-app.png" alt-text="Screenshot of MCP app in Entra ID.":::
 
     :::image type="content" source="../media/mcp/foundry-conditional-access.png" alt-text="Screenshot of conditional access options for the app configuration.":::
 
-1. Add a conditional access policy that targets Foundry MCP Server (preview) and specifies the users or workload identities. Go to [Azure portal Conditional Access page](https://portal.azure.com/#view/Microsoft_AAD_IAM/ConditionalAccessBlade) to create a new policy.
+1. Click Conditional Access under Security on the left pane of the selected app for Foundry MCP Server (preview) and click New Policy to specify the users or workload identities.
 
     :::image type="content" source="../media/mcp/foundry-new-access-policy.png" alt-text="Screenshot of creating a new conditional access policy for the app.":::
 
