@@ -3,7 +3,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 12/15/2025
 ms.author: lajanuar
 ---
 # [Text summarization](#tab/text-summarization)
@@ -14,15 +14,15 @@ ms.author: lajanuar
 
 ---
 
-Use this quickstart to send text summarization requests using the [REST API](/rest/api/language/analyze-documents/analyze-documents-submit-job/analyze-documents-submit-job?view=rest-language-analyze-documents-2024-11-15-preview&preserve-view=true&tabs=HTTP). In the following example, you will use cURL to summarize documents or text-based customer service conversations.
+Use this quickstart to send text summarization requests using the [REST API](/rest/api/language/analyze-documents/analyze-documents-submit-job/analyze-documents-submit-job?view=rest-language-analyze-documents-2024-11-15-preview&preserve-view=true&tabs=HTTP). In the following example, you use cURL to summarize documents or text-based customer service conversations.
 
-[!INCLUDE [Use Language Studio](../use-language-studio.md)]
+[!INCLUDE [Use Microsoft Foundry](../use-microsoft-foundry.md)]
 
 ## Prerequisites
 
 * The current version of [cURL](https://curl.haxx.se/).
 * Once you have your Azure subscription, <[create a Foundry resource](../../../../../ai-services/multi-service-resource.md?pivots=azportal#create-your-first-resource).
-    * You will need the key and endpoint from the resource you create to connect your application to the API. You'll paste your key and endpoint into the code below later in the quickstart.
+    * You need the key and endpoint from the resource you create to connect your application to the API. You paste your key and endpoint into the code later in the quickstart.
     * You can use the free pricing tier (`Free F0`) to try the service, and upgrade later to a paid tier for production.
 
 
@@ -36,11 +36,11 @@ Use this quickstart to send text summarization requests using the [REST API](/re
 ## Example request
 
 > [!NOTE]
-> * The following BASH exaples use the `\` line continuation character. If your console or terminal uses a different line continuation character, use that character.
+> * The following BASH examples use the `\` line continuation character. If your console or terminal uses a different line continuation character, use that character.
 > * You can find language specific samples on [GitHub](https://github.com/Azure-Samples/cognitive-services-quickstart-code).
 To call the API, you need the following information:
 
-Choose the type of summarization you would like to perform, and select one of the tabs below to see an example API call:
+Choose the type of summarization you would like to perform, and select one of the tabs and see an example API call:
 
 | Feature | Description |
 |---------|-------------|
@@ -62,9 +62,9 @@ The following cURL commands are executed from a BASH shell. Edit these commands 
 
 ### Text extractive summarization example
 
-The following example will get you started with text extractive summarization:
+The following example gets you started with text extractive summarization:
 
-1. Copy the command below into a text editor. The BASH example uses the `\` line continuation character. If your console or terminal uses a different line continuation character, use that character instead.
+1. Copy the command into a text editor. The BASH example uses the `\` line continuation character. If your console or terminal uses a different line continuation character, use that character instead.
 
 ```bash
 curl -i -X POST $LANGUAGE_ENDPOINT/language/analyze-text/jobs?api-version=2024-11-15-preview \
@@ -100,7 +100,7 @@ curl -i -X POST $LANGUAGE_ENDPOINT/language/analyze-text/jobs?api-version=2024-1
 
 3. Paste the command from the text editor into the command prompt window, then run the command.
 
-4. Get the `operation-location` from the response header. The value will look similar to the following URL:
+4. Get the `operation-location` from the response header. The value looks similar to the following URL:
 
 ```http
 https://<your-language-resource-endpoint>/language/analyze-text/jobs/12345678-1234-1234-1234-12345678?api-version=2024-11-15-preview
@@ -194,9 +194,9 @@ curl -X GET $LANGUAGE_ENDPOINT/language/analyze-text/jobs/<my-job-id>?api-versio
 
 ## Conversation issue and resolution summarization
 
-The following example will get you started with conversation issue and resolution summarization:
+The following example gets you started with conversation issue and resolution summarization:
 
-1. Copy the command below into a text editor. The BASH example uses the `\` line continuation character. If your console or terminal uses a different line continuation character, use that character instead.
+1. Copy the command into a text editor. The BASH example uses the `\` line continuation character. If your console or terminal uses a different line continuation character, use that character instead.
 
 ```bash
 curl -i -X POST $LANGUAGE_ENDPOINT/language/analyze-conversations/jobs?api-version=2024-11-15-preview \
@@ -279,13 +279,13 @@ curl -i -X POST $LANGUAGE_ENDPOINT/language/analyze-conversations/jobs?api-versi
 }
 '
 ```
-Only the `resolution` aspect supports sentenceCount. If you do not specify the `sentenceCount` parameter, the model will determine the summary's length. Note that `sentenceCount` is just the approximation of sentence count of output summary, range 1 to 7.
+Only the `resolution` aspect supports sentenceCount. If you don't specify the `sentenceCount` parameter, the model determines the summary's length. That `sentenceCount` is just the approximation of sentence count of output summary, range 1 to 7.
 
 2. Open a command prompt window (for example: BASH).
 
 3. Paste the command from the text editor into the command prompt window, then run the command.
 
-4. Get the `operation-location` from the response header. The value will look similar to the following URL:
+4. Get the `operation-location` from the response header. The value looks similar to the following URL:
 
 ```http
 https://<your-language-resource-endpoint>/language/analyze-conversations/jobs/12345678-1234-1234-1234-12345678?api-version=2024-11-15-preview

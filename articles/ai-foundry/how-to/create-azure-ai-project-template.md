@@ -45,7 +45,7 @@ Use a [Microsoft Bicep](/azure/azure-resource-manager/bicep/overview) file (temp
 
 ## Review the Bicep file
 
-The Bicep file used in this article can be found at [https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/00-basic](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/00-basic).
+The Bicep file used in this article can be found at [https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/00-basic](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/00-basic).
 
 This template creates the following resources:
 

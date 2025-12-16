@@ -6,7 +6,7 @@ ms.subservice: azure-ai-qna-maker
 ms.author: lajanuar
 author: laujan
 ms.topic: how-to
-ms.date: 06/12/2025
+ms.date: 12/15/2025
 ---
 
 # Use follow-up prompts to create multiple turns of a conversation
@@ -40,7 +40,7 @@ When the user selects an option (#3), the next list of refining options (#4) is 
 
 ### Use multi-turn in a bot
 
-After publishing your KB, you can select the **Create Bot** button to deploy your QnA Maker bot to Azure AI Bot Service. The prompts will appear in the chat clients that you have enabled for your bot.
+After publishing your KB, you can select the **Create Bot** button to deploy your QnA Maker bot to Azure AI Bot Service. The prompts will appear in the chat clients that you enabled for your bot.
 
 ## Create a multi-turn conversation from a document's structure
 
@@ -79,7 +79,7 @@ When you add a hierarchical document, QnA Maker determines follow-up prompts fro
 
 ## Create knowledge base with multi-turn prompts with the Create API
 
-You can create a knowledge case with multi-turn prompts using the [QnA Maker Create API](/rest/api/qnamaker/knowledgebase/create). The prompts are adding in the `context` property's `prompts` array.
+You can create a knowledge case with multi-turn prompts using the [QnA Maker Create API](/azure/ai-services/language-service/question-answering/how-to/authoring). The prompts are adding in the `context` property's `prompts` array.
 
 ## Show questions and answers with context
 
@@ -117,7 +117,7 @@ Add a follow-up prompt to an existing question-and-answer pair that isn't curren
 
     ![The "Follow-up prompt" page](../media/conversational-context/search-follow-up-prompt-for-existing-answer.png)
 
-1. After you've added the follow-up prompt, select **Save and train** in the top navigation.
+1. After you add the follow-up prompt, select **Save and train** in the top navigation.
 
 ### Edit the display text
 
@@ -165,7 +165,7 @@ When you add a new question-and-answer pair to the knowledge base, each pair sho
 
     :::image type="content" source="../media/conversational-context/child-prompt-created.png" alt-text="Screenshot shows the Context column, for both questions, indicates a follow-up prompt relationship." lightbox="../media/conversational-context/child-prompt-created.png":::
 
-1. After you've added the follow-up prompt, select **Save and train** in the top navigation bar.
+1. After you'v added the follow-up prompt, select **Save and train** in the top navigation bar.
 
 <a name="enable-multi-turn-during-testing-of-follow-up-prompts"></a>
 
@@ -350,11 +350,11 @@ If you are building a custom application, in the initial question's response, an
 
 ## Display order is supported in the Update API
 
-The [display text and display order](/rest/api/qnamaker/knowledgebase/update#promptdto), returned in the JSON response, is supported for editing by the [Update API](/rest/api/qnamaker/knowledgebase/update).
+The [display text and display order](/azure/ai-services/language-service/question-answering/how-to/authoring), returned in the JSON response, is supported for editing by the [Update API](/azure/ai-services/language-service/question-answering/how-to/authoring).
 
 ## Add or delete multi-turn prompts with the Update API
 
-You can add or delete multi-turn prompts using the [QnA Maker Update API](/rest/api/qnamaker/knowledgebase/update).  The prompts are adding in the `context` property's `promptsToAdd` array and the `promptsToDelete` array.
+You can add or delete multi-turn prompts using the [QnA Maker Update API](/azure/ai-services/language-service/question-answering/how-to/authoring).  The prompts are adding in the `context` property's `promptsToAdd` array and the `promptsToDelete` array.
 
 ## Export knowledge base for version control
 

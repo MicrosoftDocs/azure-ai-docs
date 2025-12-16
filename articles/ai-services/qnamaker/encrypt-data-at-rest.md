@@ -6,8 +6,8 @@ author: erindormier
 manager: nitinme
 ms.service: azure-ai-language
 ms.subservice: azure-ai-qna-maker
-ms.topic: conceptual
-ms.date: 06/12/2025
+ms.topic: concept-article
+ms.date: 12/15/2025
 ms.author: egeaney
 ms.custom: sfi-image-nochange
 #Customer intent: As a user of the QnA Maker service, I want to learn how encryption at rest works.
@@ -37,7 +37,7 @@ The QnA Maker service uses CMK from the Azure Search service. Follow these steps
 
    ![View Encryption settings 1](../media/cognitive-services-encryption/qna-encryption-1.png)
 
-2. When you create a QnA Maker resource, it's automatically associated with an Azure Search instance. This instance cannot be used with CMK. To use CMK, you'll need to associate your newly created instance of Azure Search that was created in step 1. Specifically, you'll need to update the `AzureSearchAdminKey` and `AzureSearchName` in your QnA Maker resource.
+2. When you create a QnA Maker resource, it's automatically associated with an Azure Search instance. This instance cannot be used with CMK. To use CMK, you need to associate your newly created instance of Azure Search that was created in step 1. Specifically, you need to update the `AzureSearchAdminKey` and `AzureSearchName` in your QnA Maker resource.
 
    ![View Encryption settings 2](../media/cognitive-services-encryption/qna-encryption-2.png)
 

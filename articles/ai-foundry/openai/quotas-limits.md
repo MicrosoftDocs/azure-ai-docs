@@ -4,7 +4,7 @@ description: This article features detailed descriptions and best practices on t
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 11/13/2025
+ms.date: 12/10/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: article
@@ -12,11 +12,12 @@ ms.custom:
   - ignite-2023
   - references_regions
   - build-2025
+monikerRange: 'foundry-classic || foundry'
+
 ---
 
 # Azure OpenAI in Microsoft Foundry Models quotas and limits
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 This article contains a quick reference and a detailed description of the quotas and limits for Azure OpenAI.
 
@@ -75,15 +76,23 @@ The following section provides you with a quick guide to the default quotas and 
 > [!NOTE]
 > Quota limits are subject to change.
 
+## GPT-5.2 series
+
+| Model                | Deployment Type | Default RPM | Default TPM | Enterprise and MCA-E RPM | Enterprise and MCA-E TPM |
+|:---------------------|:----------------|:-----------:|:-----------:|:------------------------:|:------------------------:|
+| `gpt-5.2`            | GlobalStandard  | 10,000      | 1,000,000   | 100,000                  | 10,000,000               |
+| `gpt-5.2-chat`       | GlobalStandard  | 10,000      | 1,000,000   | 50,000                   | 5,000,000                |
+
 ## GPT-5.1 series
 
 | Model                | Deployment Type         | Default RPM   | Default TPM   | Enterprise and MCA-E RPM   | Enterprise and MCA-E TPM   |
 |:---------------------|:------------------------|:-------------:|:-------------:|:--------------------------:|:--------------------------:|
-| `gpt-5.1`            | DataZoneStandard        | 3,000         | 300,000       | 30,000					            | 3,000,000                  |
-| `gpt-5.1`            | GlobalStandard          | 10,000        | 1,000,000     | 100,000					          | 10,000,000                 |
-| `gpt-5.1-chat`       | GlobalStandard          | 10,000        | 1,000,000     | 50,000						          | 5,000,000                  |
-| `gpt-5.1-codex`      | GlobalStandard          | 1,000         | 1,000,000     | 10,000					            | 10,000,000                 |
-| `gpt-5.1-codex-mini` | GlobalStandard          | 1,000         | 1,000,000     | 10,000						          | 10,000,000                 |
+| `gpt-5.1`            | DataZoneStandard        | 3,000         | 300,000       | 30,000                     | 3,000,000                  |
+| `gpt-5.1`            | GlobalStandard          | 10,000        | 1,000,000     | 100,000                    | 10,000,000                 |
+| `gpt-5.1-chat`       | GlobalStandard          | 10,000        | 1,000,000     | 50,000                     | 5,000,000                  |
+| `gpt-5.1-codex`      | GlobalStandard          | 1,000         | 1,000,000     | 10,000                     | 10,000,000                 |
+| `gpt-5.1-codex-mini` | GlobalStandard          | 1,000         | 1,000,000     | 10,000                     | 10,000,000                 |
+| `gpt-5.1-codex-max`  | GlobalStandard          | 10,000        | 1,000,000     | 100,000                    | 10,000,000                 |
 
 ## GPT-5 series
 

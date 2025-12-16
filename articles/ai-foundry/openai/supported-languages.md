@@ -48,6 +48,4 @@ zone_pivot_groups: openai-supported-languages
 
 ::: zone-end
 
-## Next steps
 
-- To see what models are currently supported, check out the [Azure OpenAI models page](./concepts/models.md)

@@ -29,7 +29,7 @@ Upgrading your Azure OpenAI resource to a Foundry resource unlocks the following
 | Azure OpenAI API (batch, stored completions, fine-tuning, evaluation, etc.) | ✅ | ✅ |
 | Agent service | | ✅ |
 | Azure Foundry API |  | ✅ |
-| AI Services (Speech, Vision, Language, Content Understanding) | | ✅ |
+| Foundry Tools (Speech, Vision, Language, Content Understanding) | | ✅ |
 
 Your existing resource configurations and state remain preserved including:
 

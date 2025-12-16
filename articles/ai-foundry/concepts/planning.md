@@ -25,7 +25,7 @@ To accelerate adoption while maintaining oversight, Contoso Enterprise IT aims t
 
 ## Rollout considerations
 
-The Foundry resource defines the scope for configuring, securing, and monitoring your team’s environment. Projects are like folders to organize your work within this resource context. Projects also grant access to Foundry’s developer APIs and tools.
+The Foundry resource defines the scope for configuring, securing, and monitoring your team's environment. It's available in the Foundry portal and through Azure APIs. Projects are like folders to organize your work within this resource context. Projects also control access and permissions to Foundry developer APIs and tools.
 
 :::image type="content" source="../media/planning/foundry-resource.png" alt-text="Screenshot of a diagram showing Foundry resource.":::
 
@@ -35,7 +35,7 @@ To ensure consistency, scalability, and governance across teams, consider the fo
 
 - **Create a separate Foundry resource for each business group** Align deployments with logical boundaries such as data domains or business functions to ensure autonomy, governance, and cost tracking.
 
-- **Define a project per use case** Foundry projects are designed to represent one specific use case. They're containers to organize components such as agents, files, for one application. While they inherit security settings from their parent resource, they also implement their own access controls, data integration, and other governance controls.
+- **Associate projects with use cases** Foundry projects are designed to represent specific use cases. They're containers to organize components such as agents or files for an application. While they inherit security settings from their parent resource, they can also implement their own access controls, data integration, and other governance controls.
 
 ## Securing the Foundry environment
 
@@ -57,7 +57,7 @@ Foundry is built on the Azure platform, allowing you to customize security contr
 
 Contoso secures its Foundry deployments using private networking with Enterprise IT managing a central hub network, and each business group connecting via a spoke VNet. They use built-in Role Based Access Roles (RBAC) to separate access:
 
-* **Admins** manage deployments/connections/shared resources
+* **Admins** manage deployments, connections, and shared resources
 * **Project Managers** oversee specific projects
 * **Users** interact with GenAI tools
 
@@ -88,7 +88,7 @@ Effective access management is foundational to a secure and scalable Foundry set
 
 Foundry supports **connections**, which are reusable configurations that enable access to application components on Azure and non-Azure services. These connections also act as **identity brokers**, allowing Foundry to authenticate to external systems using managed identities or service principals on behalf of project users.
 
-Connections can be created at the **Foundry resource level**—ideal for shared services like Azure Storage or Key Vault—or scoped to a **specific project**, which is recommended for sensitive or project-specific integrations. This flexibility allows teams to balance reuse and isolation based on their needs. [Learn more about connections in Foundry](/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline).
+Connections can be created at the **Foundry resource level**—ideal for shared services like Azure Storage or Key Vault—or scoped to a **specific project**, which is recommended for sensitive or project-specific integrations. This flexibility allows teams to balance reuse and isolation based on their needs. [Learn more about connections in Foundry](../how-to/connections-add.md).
 
 Connection authentication can be configured to use either shared access tokens—such as Microsoft Entra ID managed identities or API keys—for simplified management and onboarding, or user tokens via Entra ID passthrough, which offer greater control when accessing sensitive data sources.
 
@@ -118,9 +118,9 @@ Effective governance in Foundry ensures secure, compliant, and cost-efficient op
 
 When deploying models in Foundry, teams can choose between standard and provisioned [deployment types](../../ai-services/openai/how-to/deployment-types.md). Standard deployments are ideal for development and experimentation, offering flexibility and ease of setup. Provisioned deployments are recommended for production scenarios where predictable performance, cost control, and model version pinning are required.
 
-To support cross-region scenarios and let you access existing model deployments, Foundry allows [connections](../how-to/connections-add.md) to model deployments hosted in other Foundry or Azure OpenAI instances. Connections enable teams to centralize deployments for experimentation while still enabling access from distributed projects. For production workloads, consider for use cases to manage its own deployments to ensure tighter control over model lifecycle, versioning, and rollback strategies.
+To support cross-region scenarios and let you access existing model deployments, Foundry allows [connections](../how-to/connections-add.md) to model deployments hosted in other Foundry or Azure OpenAI instances. Connections enable teams to centralize deployments for experimentation while still enabling access from distributed projects. For production workloads, consider having use cases manage their own deployments to ensure tighter control over model lifecycle, versioning, and rollback strategies.
 
-To prevent overuse and ensure fair resource allocation, you can apply [Tokens Per Minute (TPM) limits at the deployment level](../../ai-services/openai/concepts/provisioned-throughput.md?tabs=global-ptum). TPM limits help control consumption, protect against accidental spikes, and align usage with project budgets or quotas. Consider setting conservative limits for shared deployments and higher thresholds for critical production services.
+To prevent overuse and ensure fair resource allocation, you can apply [Tokens Per Minute (TPM) limits at the deployment level](../openai/concepts/provisioned-throughput.md?tabs=global-ptum). TPM limits help control consumption, protect against accidental spikes, and align usage with project budgets or quotas. Consider setting conservative limits for shared deployments and higher thresholds for critical production services.
 
 ::: moniker range="foundry-classic"
 
@@ -143,7 +143,7 @@ A hub resource is deployed side-by-side with your Foundry resource and takes a d
   - Identity & Managed Identity: [Configure managed identity in Foundry](../../ai-services/openai/how-to/managed-identity.md)
   - Customer-Managed Keys (CMK): [Customer-managed keys in Foundry](../concepts/encryption-keys-portal.md)
   - Example infrastructure [templates repository with sample infrastructure templates](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup)
-  - [Recover or purge deleted Foundry resources](../../ai-services/recover-purge-resources.md?context=/azure/ai-foundry/context/context)
+  - [Recover or purge deleted Foundry resources](../../ai-services/recover-purge-resources.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json)
 
 - Establish Connectivity with Other Azure Services
 

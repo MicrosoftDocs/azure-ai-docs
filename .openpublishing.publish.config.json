@@ -128,12 +128,6 @@
       "branch": "main",
       "branch_mapping": {}
     },
-        {
-      "path_to_root": "foundry-samples-nov25-updates",
-      "url": "https://github.com/azure-ai-foundry/foundry-samples",
-      "branch": "nov25-updates",
-      "branch_mapping": {}
-    },
     {
       "path_to_root": "azureml-examples-main",
       "url": "https://github.com/azure/azureml-examples",

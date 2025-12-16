@@ -55,7 +55,7 @@ This minimal sample demonstrates enterprise-ready patterns with realistic busine
 
 ## Step 1: Get the sample code
 
-<!-- Instead of navigating a large repository tree, use one of these approaches:
+Instead of navigating a large repository tree, use one of these approaches:
 
 #### Option A (clone entire samples repo)
 
@@ -63,7 +63,7 @@ This minimal sample demonstrates enterprise-ready patterns with realistic busine
 
 ```bash
 git clone --depth 1 https://github.com/azure-ai-foundry/foundry-samples.git
-cd foundry-samples/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype
+cd foundry-samples/samples/python/enterprise-agent-tutorial/1-idea-to-prototype
 ```
 
 #### Option B (sparse checkout only this tutorial - reduced download)
@@ -72,22 +72,21 @@ cd foundry-samples/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-
 git clone --no-checkout https://github.com/azure-ai-foundry/foundry-samples.git
 cd foundry-samples
 git sparse-checkout init --cone
-git sparse-checkout set samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype
+git sparse-checkout set samples/python/enterprise-agent-tutorial/1-idea-to-prototype
 git checkout
-cd samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype
+cd samples/python/enterprise-agent-tutorial/1-idea-to-prototype
 ```
 
 Repeat the path for `csharp` or `java` variants as needed.
 
 #### Option C (Download ZIP of repository)
--->
 
 Download the repository ZIP, extract it to your local environment, and go to the tutorial folder.
 
 > [!IMPORTANT]
 > For production adoption, use a standalone repository. This tutorial uses the shared samples repo. Sparse checkout minimizes local noise.
 > [!div class="nextstepaction"] 
-> [Download the Python code now](https://github.com/azure-ai-foundry/foundry-samples/tree/nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype)
+> [Download the Python code now](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/python/enterprise-agent-tutorial/1-idea-to-prototype)
 
 The minimal structure contains only essential files:
 
@@ -221,35 +220,35 @@ The code breaks down into the following main sections, ordered as they appear in
 
 The code uses several client libraries from the Microsoft Foundry SDK to create a robust enterprise agent.
 
-:::code language="python" source="~/foundry-samples-nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" id="imports_and_includes":::
+:::code language="python" source="~/foundry-samples-main/samples/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" id="imports_and_includes":::
 
 ### Configure authentication in Azure
 
 Before you create your agent, set up authentication to the Foundry.
 
-:::code language="python" source="~/foundry-samples-nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" id="agent_authentication":::
+:::code language="python" source="~/foundry-samples-main/samples/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" id="agent_authentication":::
 
 ### Create the SharePoint tool for the agent
 
 The agent uses SharePoint and can access company policy and procedure documents stored there. Set up the connection to SharePoint in your code.
 
-:::code language="python" source="~/foundry-samples-nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" id="sharepoint_tool_setup":::
+:::code language="python" source="~/foundry-samples-main/samples/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" id="sharepoint_tool_setup":::
 
 ### Create the MCP tool for the agent
 
-:::code language="python" source="~/foundry-samples-nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" id="mcp_tool_setup":::
+:::code language="python" source="~/foundry-samples-main/samples/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" id="mcp_tool_setup":::
 
 ### Create the agent and connect the tools
 
 Now, create the agent and connect the SharePoint and MCP tools.
 
-:::code language="python" source="~/foundry-samples-nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" id="create_agent_with_tools":::
+:::code language="python" source="~/foundry-samples-main/samples/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" id="create_agent_with_tools":::
 
 ### Converse with the agent
 
 Finally, implement an interactive loop to converse with the agent.
 
-:::code language="python" source="~/foundry-samples-nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" id="agent_conversation":::
+:::code language="python" source="~/foundry-samples-main/samples/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" id="agent_conversation":::
 
 ### Expected output from agent sample code (main.py)
 
@@ -363,17 +362,17 @@ The code breaks down into the following main sections:
 
 In this section, the evaluation framework loads test questions from `questions.jsonl`. The file contains business scenarios that test different aspects of the agent:
 
-:::code language="jsonl" source="~/foundry-samples-nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/questions.jsonl":::
+:::code language="jsonl" source="~/foundry-samples-main/samples/python/enterprise-agent-tutorial/1-idea-to-prototype/questions.jsonl":::
 
-:::code language="python" source="~/foundry-samples-nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/evaluate.py" id="load_test_data":::
+:::code language="python" source="~/foundry-samples-main/samples/python/enterprise-agent-tutorial/1-idea-to-prototype/evaluate.py" id="load_test_data":::
 
 ### Run batch evaluation
 
-:::code language="python" source="~/foundry-samples-nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/evaluate.py" id="run_batch_evaluation":::
+:::code language="python" source="~/foundry-samples-main/samples/python/enterprise-agent-tutorial/1-idea-to-prototype/evaluate.py" id="run_batch_evaluation":::
 
 ### Compile evaluation results
 
-:::code language="python" source="~/foundry-samples-nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/evaluate.py" id="evaluation_results":::
+:::code language="python" source="~/foundry-samples-main/samples/python/enterprise-agent-tutorial/1-idea-to-prototype/evaluate.py" id="evaluation_results":::
 
 ### Expected output from evaluation sample code (evaluate.py)
 

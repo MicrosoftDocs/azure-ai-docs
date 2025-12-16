@@ -5,7 +5,7 @@ description: Learn about content safety for models deployed using serverless API
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.topic: concept-article
-ms.date: 10/24/2025
+ms.date: 12/08/2025
 author: ssalgadodev
 ms.author: ssalgado
 ms.reviewer: ositanachi

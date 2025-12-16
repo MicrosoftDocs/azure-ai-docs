@@ -3,11 +3,11 @@ title: Collaborate with others - QnA Maker
 description: Learn how to collaborate with other authors and editors using Azure role-based access control.
 ms.service: azure-ai-language
 ms.subservice: azure-ai-qna-maker
-ms.topic: conceptual
+ms.topic: article
 manager: nitinme
 ms.author: lajanuar
 author: laujan
-ms.date: 06/12/2025
+ms.date: 12/15/2025
 ---
 
 # Collaborate with other authors and editors

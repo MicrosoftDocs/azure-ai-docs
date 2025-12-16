@@ -52,20 +52,20 @@ For content embedding, choose one of the following methods:
 
 + **Multimodal embeddings:** Uses an embedding model to directly vectorize both text and images.
 
-The following table lists the supported providers and models for each method. Deployment instructions for the models are provided in a [later section](#deploy-models).
+The portal supports the following models for each method. Deployment instructions are provided in a [later section](#deploy-models).
 
 | Provider | Models for image verbalization | Models for multimodal embeddings |
 |--|--|--|
-| [Azure OpenAI in Foundry Models resource](/azure/ai-services/openai/how-to/create-resource) <sup>1, 2</sup> | LLMs:<br>gpt-4o<br>gpt-4o-mini<br>gpt-5<br>gpt-5-mini<br>gpt-5-nano<br><br>Embedding models:<br>text-embedding-ada-002<br>text-embedding-3-small<br>text-embedding-3-large | |
-| [Foundry project](/azure/ai-foundry/how-to/create-projects) | LLMs:<br>phi-4<br>gpt-4o<br>gpt-4o-mini<br>gpt-5<br>gpt-5-mini<br>gpt-5-nano<br><br>Embedding models:<br>text-embedding-ada-002<br>text-embedding-3-small<br>text-embedding-3-large | |
-| [Foundry hub-based project](/azure/ai-foundry/how-to/hub-create-projects) | LLMs:<br>phi-4<br>gpt-4o<br>gpt-4o-mini<br>gpt-5<br>gpt-5-mini<br>gpt-5-nano<br><br>Embedding models:<br>text-embedding-ada-002<br>text-embedding-3-small<br>text-embedding-3-large<br>Cohere-embed-v3-english <sup>3</sup><br>Cohere-embed-v3-multilingual <sup>3</sup> | Cohere-embed-v3-english <sup>3</sup><br>Cohere-embed-v3-multilingual <sup>3</sup> |
-| [Foundry resource](/azure/ai-services/multi-service-resource) <sup>4</sup> | Embedding model: [Azure Vision in Foundry Tools multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) <sup>5</sup> | [Azure Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) <sup>5</sup> |
+| [Azure OpenAI resource](/azure/ai-foundry/openai/how-to/create-resource?view=foundry-classic&pivots=web-portal&preserve-view=true) <sup>1, 2</sup> | LLMs:<br>gpt-4o<br>gpt-4o-mini<br>gpt-5<br>gpt-5-mini<br>gpt-5-nano<br><br>Embedding models:<br>text-embedding-ada-002<br>text-embedding-3-small<br>text-embedding-3-large | |
+| [Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects?view=foundry-classic&pivots=web-portal&preserve-view=true) | LLMs:<br>phi-4<br>gpt-4o<br>gpt-4o-mini<br>gpt-5<br>gpt-5-mini<br>gpt-5-nano<br><br>Embedding models:<br>text-embedding-ada-002<br>text-embedding-3-small<br>text-embedding-3-large | |
+| [Microsoft Foundry hub-based project](/azure/ai-foundry/how-to/hub-create-projects?view=foundry-classic&pivots=web-portal&preserve-view=true) | LLMs:<br>phi-4<br>gpt-4o<br>gpt-4o-mini<br>gpt-5<br>gpt-5-mini<br>gpt-5-nano<br><br>Embedding models:<br>text-embedding-ada-002<br>text-embedding-3-small<br>text-embedding-3-large<br>Cohere-embed-v3-english <sup>3</sup><br>Cohere-embed-v3-multilingual <sup>3</sup> | Cohere-embed-v3-english <sup>3</sup><br>Cohere-embed-v3-multilingual <sup>3</sup> |
+| [Microsoft Foundry resource](/azure/ai-services/multi-service-resource) <sup>4</sup> | Embedding model: [Azure Vision in Foundry Tools multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) <sup>5</sup> | [Azure Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) <sup>5</sup> |
 
 <sup>1</sup> The endpoint of your Azure OpenAI resource must have a [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains), such as `https://my-unique-name.openai.azure.com`. If you created your resource in the [Azure portal](https://portal.azure.com/), this subdomain was automatically generated during resource setup.
 
 <sup>2</sup> Azure OpenAI resources (with access to embedding models) that were created in the [Foundry portal](https://ai.azure.com/?cid=learnDocs) aren't supported. You must create an Azure OpenAI resource in the Azure portal.
 
-<sup>3</sup> To use this model in the wizard, you must [deploy it as a serverless API deployment](/azure/ai-foundry/how-to/deploy-models-serverless).
+<sup>3</sup> To use this model in the wizard, you must provision it as a serverless API deployment. You can use an [ARM/Bicep template](https://github.com/Azure-Samples/azure-ai-search-multimodal-sample/blob/42b4d07f2dd9f7720fdc0b0788bf107bdac5eecb/infra/ai/modules/project.bicep#L37C1-L38C1) for this task.
 
 <sup>4</sup> For billing purposes, you must [attach your Foundry resource](cognitive-search-attach-cognitive-services.md) to the skillset in your Azure AI Search service. Unless you use a [keyless connection (preview)](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) to create the skillset, both resources must be in the same region.
 
@@ -273,7 +273,7 @@ To use the skills for image verbalization:
 
 1. On the **Image Verbalization** tab:
 
-   1. For the kind, select your LLM provider: **Azure OpenAI** or **Foundry Hub catalog models**.
+   1. For the kind, select your LLM provider: **Azure OpenAI** or **Azure AI Foundry**.
 
    1. Select your Azure subscription, resource, and LLM deployment.
 
@@ -285,7 +285,7 @@ To use the skills for image verbalization:
 
 1. On the **Text Vectorization** tab:
 
-   1. For the kind, select your model provider: **Azure OpenAI**, **Foundry Hub catalog models**, or **AI Vision vectorization**.
+   1. For the kind, select your model provider: **Azure OpenAI**, **Azure AI Foundry**, or **AI Vision vectorization**.
 
    1. Select your Azure subscription, resource, and embedding model deployment (if applicable).
 
@@ -309,7 +309,7 @@ To use the skills for multimodal embeddings:
 
    :::image type="content" source="media/search-get-started-portal-images/multimodal-embedding-tile.png" alt-text="Screenshot of the Multimodal Embedding tile in the wizard." border="true" lightbox="media/search-get-started-portal-images/multimodal-embedding-tile.png":::
 
-1. For the kind, select your model provider: **Foundry Hub catalog models** or **AI Vision vectorization**.
+1. For the kind, select your model provider: **Azure AI Foundry** or **AI Vision vectorization**.
 
    If Azure Vision is unavailable, make sure your search service and Foundry resource are both in a [region that supports the Azure Vision multimodal APIs](/azure/ai-services/computer-vision/how-to/image-retrieval).
 

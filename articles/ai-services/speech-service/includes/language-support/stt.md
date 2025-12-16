@@ -30,12 +30,12 @@ ms.author: pafarley
 | `ar-YE` | Arabic (Yemen) | No | Audio + human-labeled transcript<br/><br/>Plain text |
 | `as-IN` | Assamese (India) | No | Audio + human-labeled transcript |
 | `az-AZ` | Azerbaijani (Latin, Azerbaijan) | Yes | Plain text |
-| `bg-BG` | Bulgarian (Bulgaria) | No | Plain text |
+| `bg-BG` | Bulgarian (Bulgaria) | Yes | Plain text |
 | `bn-IN` | Bengali (India) | Yes | Plain text |
 | `bs-BA` | Bosnian (Bosnia and Herzegovina) | No | Plain text |
-| `ca-ES` | Catalan | No | Plain text<br/><br/>Pronunciation |
+| `ca-ES` | Catalan | Yes | Plain text<br/><br/>Pronunciation |
 | `cs-CZ` | Czech (Czechia) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
-| `cy-GB` | Welsh (United Kingdom) | No | Plain text |
+| `cy-GB` | Welsh (United Kingdom) | Yes | Plain text |
 | `da-DK` | Danish (Denmark) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation |
 | `de-AT` | German (Austria) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `de-CH` | German (Switzerland) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Pronunciation<br/><br/>Phrase list |
@@ -80,7 +80,7 @@ ms.author: pafarley
 | `es-VE` | Spanish (Venezuela) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `et-EE` | Estonian (Estonia) | Yes | Plain text<br/><br/>Pronunciation |
 | `eu-ES` | Basque | Yes | Plain text |
-| `fa-IR` | Persian (Iran) | No | Plain text |
+| `fa-IR` | Persian (Iran) | Yes | Plain text |
 | `fi-FI` | Finnish (Finland) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation |
 | `fil-PH` | Filipino (Philippines) | Yes | Plain text<br/><br/>Pronunciation |
 | `fr-BE` | French (Belgium) | No | Plain text |
@@ -92,8 +92,8 @@ ms.author: pafarley
 | `gu-IN` | Gujarati (India) | No | Plain text |
 | `he-IL` | Hebrew (Israel) | Yes | Audio + human-labeled transcript<br/><br/>Plain text |
 | `hi-IN` | Hindi (India) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Phrase list |
-| `hr-HR` | Croatian (Croatia) | No | Plain text<br/><br/>Pronunciation |
-| `hu-HU` | Hungarian (Hungary) | No | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
+| `hr-HR` | Croatian (Croatia) | Yes | Plain text<br/><br/>Pronunciation |
+| `hu-HU` | Hungarian (Hungary) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `hy-AM` | Armenian (Armenia) | Yes | Plain text |
 | `id-ID` | Indonesian (Indonesia) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation<br/><br/>Phrase list |
 | `is-IS` | Icelandic (Iceland) | Yes | Plain text |
@@ -108,15 +108,15 @@ ms.author: pafarley
 | `ko-KR` | Korean (Korea) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Phrase list |
 | `lo-LA` | Lao (Laos) | Yes | Plain text |
 | `lt-LT` | Lithuanian (Lithuania) | Yes | Plain text<br/><br/>Pronunciation |
-| `lv-LV` | Latvian (Latvia) | No | Plain text<br/><br/>Pronunciation |
+| `lv-LV` | Latvian (Latvia) | Yes | Plain text<br/><br/>Pronunciation |
 | `mk-MK` | Macedonian (North Macedonia) | Yes | Plain text |
 | `ml-IN` | Malayalam (India) | Yes | Plain text |
 | `mn-MN` | Mongolian (Mongolia) | Yes | Plain text |
-| `mr-IN` | Marathi (India) | No | Audio + human-labeled transcript<br/><br/>Plain text |
-| `ms-MY` | Malay (Malaysia) | No | Plain text |
+| `mr-IN` | Marathi (India) | Yes | Audio + human-labeled transcript<br/><br/>Plain text |
+| `ms-MY` | Malay (Malaysia) | Yes | Plain text |
 | `mt-MT` | Maltese (Malta) | Yes | Plain text |
 | `my-MM` | Burmese (Myanmar) | Yes | Plain text |
-| `nb-NO` | Norwegian Bokmål (Norway) | No | Plain text<br/><br/>Output format |
+| `nb-NO` | Norwegian Bokmål (Norway) | Yes | Plain text<br/><br/>Output format |
 | `ne-NP` | Nepali (Nepal) | No | Plain text |
 | `nl-BE` | Dutch (Belgium) | No | Plain text |
 | `nl-NL` | Dutch (Netherlands) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
@@ -126,11 +126,11 @@ ms.author: pafarley
 | `ps-AF` | Pashto (Afghanistan) | Yes | Plain text |
 | `pt-BR` | Portuguese (Brazil) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
 | `pt-PT` | Portuguese (Portugal) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
-| `ro-RO` | Romanian (Romania) | No | Plain text<br/><br/>Pronunciation |
+| `ro-RO` | Romanian (Romania) | Yes | Plain text<br/><br/>Pronunciation |
 | `ru-RU` | Russian (Russia) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Phrase list |
 | `si-LK` | Sinhala (Sri Lanka) | No | Plain text |
-| `sk-SK` | Slovak (Slovakia) | No | Plain text<br/><br/>Pronunciation |
-| `sl-SI` | Slovenian (Slovenia) | No | Plain text<br/><br/>Pronunciation |
+| `sk-SK` | Slovak (Slovakia) | Yes | Plain text<br/><br/>Pronunciation |
+| `sl-SI` | Slovenian (Slovenia) | Yes | Plain text<br/><br/>Pronunciation |
 | `so-SO` | Somali (Somalia) | Yes | Plain text |
 | `sq-AL` | Albanian (Albania) | Yes | Plain text |
 | `sr-RS` | Serbian (Cyrillic, Serbia) | Yes | Plain text |
@@ -141,16 +141,16 @@ ms.author: pafarley
 | `te-IN` | Telugu (India) | No | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text |
 | `th-TH` | Thai (Thailand) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Phrase list |
 | `tr-TR` | Turkish (Türkiye) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format |
-| `uk-UA` | Ukrainian (Ukraine) | No | Audio + human-labeled transcript<br/><br/>Plain text |
+| `uk-UA` | Ukrainian (Ukraine) | Yes | Audio + human-labeled transcript<br/><br/>Plain text |
 | `ur-IN` | Urdu (India) | Yes | Audio + human-labeled transcript |
 | `uz-UZ` | Uzbek (Latin, Uzbekistan) | Yes | Plain text |
-| `vi-VN` | Vietnamese (Vietnam) | No | Plain text<br/><br/>Phrase list |
+| `vi-VN` | Vietnamese (Vietnam) | Yes | Plain text<br/><br/>Phrase list |
 | `wuu-CN` | Chinese (Wu, Simplified) | No | Plain text |
 | `yue-CN` | Chinese (Cantonese, Simplified) | No | Plain text |
 | `zh-CN` | Chinese (Mandarin, Simplified) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Phrase list |
 | `zh-CN-shandong` | Chinese (Jilu Mandarin, Simplified) | No | Plain text |
 | `zh-CN-sichuan` | Chinese (Southwestern Mandarin, Simplified) | No | Plain text |
-| `zh-HK` | Chinese (Cantonese, Traditional) | No | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Phrase list |
+| `zh-HK` | Chinese (Cantonese, Traditional) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Phrase list |
 | `zh-TW` | Chinese (Taiwanese Mandarin, Traditional) | No | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Phrase list |
 | `zu-ZA` | isiZulu (South Africa) | Yes | Plain text |
 

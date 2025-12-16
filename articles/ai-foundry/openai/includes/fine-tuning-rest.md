@@ -18,7 +18,7 @@ ms.custom:
 - Read the [When to use Azure OpenAI fine-tuning guide](../concepts/fine-tuning-considerations.md).
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - An Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
-- Fine-tuning access requires **Cognitive Services OpenAI Contributor**.
+- Fine-tuning access requires **Azure AI User** role.
 - If you don't already have access to view quota, and deploy models in Microsoft Foundry portal you'll require [additional permissions](../how-to/role-based-access-control.md).  
 
 ### Supported models
@@ -165,6 +165,21 @@ The current supported hyperparameters for Supervised Fine-Tuning are:
 > [!NOTE]
 > See the guides for [Direct Preference Optimization](../how-to/fine-tuning-direct-preference-optimization.md) and [Reinforcement Fine-Tuning](../how-to/reinforcement-fine-tuning.md) to learn more about their supported hyperparameters.
 
+
+## Training type
+
+Select the training tier based on your use case and budget.
+
+* **Standard**: Training occurs in the current Foundry resource's region, providing data residency guarantees. Ideal for workloads where data must remain in a specific region.
+
+* **Global**: Provides more affordable pricing compared to Standard by leveraging capacity beyond your current region. Data and weights are copied to the region where training occurs. Ideal if data residency is not a restriction and you want faster queue times.
+
+* **Developer** (preview): Provides significant cost savings by leveraging idle capacity for training. There are no latency or SLA guarantees, so jobs in this tier may be automatically preempted and resumed later. There are no data residency guarantees either. Ideal for experimentation and price-sensitive workloads.
+
+```curl
+curl -X POST "https://<ACCOUNT-NAME>.openai.azure.com/openai/fine_tuning/jobs?api-version=2025-04-01-preview" -H "Content-Type: application/json" -H "api-key: <API-KEY>" -d "{"model": "gpt-4.1", "training_file": "<FILE_ID>", "hyperparameters": {"prompt_loss_weight": 0.1}, "trainingType": "developerTier"}"
+```
+
 ## Check the status of your customized model
 
 After you start a fine-tune job, it can take some time to complete. Your job might be queued behind other jobs in the system. Training your model can take minutes or hours depending on the model and dataset size. The following example uses the REST API to check the status of your fine-tuning job. The example retrieves information about your job by using the job ID returned from the previous example:
@@ -221,7 +236,7 @@ Once the model is copied from region A to region B, you can continually fine-tun
 **Permissions configuration**
 
 1. Create a [user-assigned managed identity](/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp).
-2. Give Cognitive Services OpenAI contributor role to your user-assigned managed identity on your destination resource/account.
+2. Give Azure AI User role to your user-assigned managed identity on your destination resource/account.
 3. [Assign the user-assigned managed identity](/entra/identity/managed-identities-azure-resources/how-to-assign-access-azure-resource?pivots=identity-mi-access-portal#use-azure-rbac-to-assign-a-managed-identity-access-to-another-resource-using-the-azure-portal) to your source resource account.
 
 **Copy model**
@@ -338,6 +353,9 @@ Learn more about cross region deployment and use the deployed model [here](../ho
 ## Continuous fine-tuning
 
 Once you have created a fine-tuned model, you might want to continue to refine the model over time through further fine-tuning. Continuous fine-tuning is the iterative process of selecting an already fine-tuned model as a base model and fine-tuning it further on new sets of training examples.
+
+> [!NOTE]
+> Continuous fine-tuning is only supported for OpenAI models.
 
 To perform fine-tuning on a model that you have previously fine-tuned, you would use the same process as described in [create a customized model](#create-a-customized-model) but instead of specifying the name of a generic base model you would specify your already fine-tuned model's ID. The fine-tuned model ID looks like `gpt-4.1-2025-04-14.ft-5fd1918ee65d4cd38a5dcf6835066ed7`
 

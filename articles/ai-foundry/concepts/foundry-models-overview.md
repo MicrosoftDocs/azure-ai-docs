@@ -38,7 +38,7 @@ Our catalog is organized into two main categories:
 Understanding the distinction between these categories helps you choose the right models based on your specific requirements and strategic goals. 
 
 > [!NOTE]
-> * For all models, Customers remain responsible for (i) complying with the law in their use of any model or system; (ii) reviewing model descriptions in the model catalog, model cards made available by the model provider, and other relevant documentation; (iii) selecting an appropriate model for their use case, and (iv) implementing appropriate measures (including use of Azure AI Content Safety) to ensure Customer's use of the Microsoft AI Services complies with the Acceptable Use Policy in Microsoft’s Product Terms and the Microsoft Enterprise AI Services Code of Conduct. 
+> * For all models, Customers remain responsible for (i) complying with the law in their use of any model or system; (ii) reviewing model descriptions in the model catalog, model cards made available by the model provider, and other relevant documentation; (iii) selecting an appropriate model for their use case, and (iv) implementing appropriate measures (including use of Azure AI Content Safety) to ensure Customer's use of the Foundry Tools complies with the Acceptable Use Policy in Microsoft’s Product Terms and the Microsoft Enterprise AI Services Code of Conduct. 
  
 ## Models Sold Directly by Azure 
  
@@ -60,7 +60,7 @@ These models constitute the vast majority of the Foundry Models and are provided
 
 Anthropic includes Claude family of state-of-the-art large language models that support text and image input, text output, multilingual capabilities, and vision. For help with Anthropic models, use [Microsoft Support](https://aka.ms/anthropic-maas-support). To know more about privacy, use [Anthropic privacy policy](https://aka.ms/anthropic_privacy), and for terms of service, see [Commercial Terms of Service](https://aka.ms/anthropic_tandc). To learn how to work with Anthropic models, see [Deploy and use Claude models in Microsoft Foundry](../foundry-models/how-to/use-foundry-models-claude.md).
 
-Hugging Face hub includes hundreds of models for real-time inference with managed compute. Hugging Face creates and maintains models listed in this collection. For help with the Hugging Face models, use the [Hugging Face forum](https://discuss.huggingface.co) or [Hugging Face support](https://huggingface.co/support). Learn how to deploy Hugging Face models in [Deploy open models with Azure AI Foundry](../how-to/deploy-models-managed.md).
+Hugging Face hub includes hundreds of models for real-time inference with managed compute. Hugging Face creates and maintains models listed in this collection. For help with the Hugging Face models, use the [Hugging Face forum](https://discuss.huggingface.co) or [Hugging Face support](https://huggingface.co/support). Learn how to deploy Hugging Face models in [Deploy open models with Microsoft Foundry](../how-to/deploy-models-managed.md).
 
 Characteristics of Models from Partners and Community: 
 * Developed and supported by external partners and community contributors 

@@ -21,7 +21,7 @@ monikerRange: 'foundry-classic || foundry'
 
 Microsoft Foundry provides a comprehensive set of tools to support development teams in building, customizing, evaluating, and operating AI Agents and its composing models and tools.
 
-This article is intended to provide IT security teams with details on the Azure service architecture, its components, and its relation with related Azure resource types. Use this information to guide how to [customize](../how-to/configure-private-link.md) your Foundry deployment to your organization's requirements. For more information on how to roll out Foundry in your organization, see [Foundry Rollout](planning.md).
+This article provices IT operations and security teams with details on the  Foundry resource and underlying Azure service architecture, its components, and its relation with other Azure resource types. Use this information to guide how to [customize](../how-to/configure-private-link.md) your Foundry deployment to your organization's requirements. For more information on how to roll out Foundry in your organization, see [Foundry Rollout](planning.md).
 
 ## Azure AI resource types and providers
 
@@ -75,7 +75,7 @@ Foundry applies a flexible compute architecture to support diverse [model access
 ::: moniker-end
 
 ::: moniker range="foundry"
-- **Model Hosting Architecture** is provided by [standard deployment in Foundry resources](deployments-overview.md#standard-deployment-in-foundry-resources).   For an overview of data, privacy, and security considerations with deployment, see [Data, privacy, and security for use of models](../how-to/concept-data-privacy.md)
+- **Model Hosting Architecture** is provided by standard deployment in Foundry resources.   For an overview of data, privacy, and security considerations with deployment, see [Data, privacy, and security for use of models](../how-to/concept-data-privacy.md)
 
 ::: moniker-end
 

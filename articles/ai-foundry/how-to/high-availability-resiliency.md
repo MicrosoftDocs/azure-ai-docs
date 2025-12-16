@@ -29,8 +29,10 @@ Microsoft strives to ensure that Azure services are always available. However, u
 > [!IMPORTANT]
 > Foundry itself doesn't provide automatic failover or disaster recovery.
 
+:::moniker-range="foundry-classic"
 > [!NOTE]
 > The information in this article applies only to **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**. For disaster recovery for **[!INCLUDE [hub](../includes/hub-project-name.md)]**, see [Disaster recovery for Foundry hubs](hub-disaster-recovery.md).
+:::moniker-end
 
 ## Service model and shared responsibility
 
@@ -199,7 +201,7 @@ Decide what level of business continuity you need. The level can differ between 
 
 Foundry is a regional service that stores data on the service side and in a storage account in your subscription. If a regional disaster occurs, service data can't be recovered. You can recover data that the service stores in the storage account in your subscription if storage redundancy is enabled. Service-side data is mostly metadata like tags, asset names, and descriptions. Data in your storage account typically isn't metadata, like uploaded data.
 
-For connections, create two separate resources in two different regions, and then create two connections for the project. For example, if AI Services is critical for business continuity, create two AI Services resources and two project connections. With this configuration, if one region goes down, the other region stays operational.
+For connections, create two separate resources in two different regions, and then create two connections for the project. For example, if Foundry Tools is critical for business continuity, create two AI Services resources and two project connections. With this configuration, if one region goes down, the other region stays operational.
 
 For any projects that are essential to business continuity, deploy resources in two regions.
 

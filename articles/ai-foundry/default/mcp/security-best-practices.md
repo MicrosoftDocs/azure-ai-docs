@@ -2,8 +2,9 @@
 title: Explore Foundry MCP Server best practices and security guidance
 description: Learn about Foundry MCP Server best practices and security guidance
 keywords: azure developer cli, azd
-author: alexwolfmsft
-ms.author: alexwolf
+author: sdgilley
+ms.author: sgilley
+ms.reviewer: sehan
 ms.date: 11/04/2025
 ms.topic: get-started
 ms.service: azure-ai-foundry

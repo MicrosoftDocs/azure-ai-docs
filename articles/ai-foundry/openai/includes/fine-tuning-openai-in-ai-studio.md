@@ -20,7 +20,7 @@ ms.custom:
 - An [Azure OpenAI connection](/azure/ai-foundry/how-to/connections-add?tabs=azure-openai#connection-details) to a resource in a [region where fine-tuning is supported](/azure/ai-foundry/openai/concepts/models#fine-tuning-models).
     > [!NOTE]
     > The supported regions might vary if you use Azure OpenAI models in a Foundry project versus outside a project.
-- Fine-tuning access requires **Cognitive Services OpenAI Contributor** role on the Azure OpenAI resource.
+- Fine-tuning access requires **Azure AI User** role on the Azure OpenAI resource.
 - If you don't already have access to view quota and deploy models in Foundry portal you need [more permissions](../how-to/role-based-access-control.md).
 
 ### Supported models

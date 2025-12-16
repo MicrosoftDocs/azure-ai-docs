@@ -8,7 +8,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.custom: devx-track-python
 ms.topic: how-to
-ms.date: 11/14/2025
+ms.date: 12/10/2025
 manager: nitinme
 monikerRange: 'foundry-classic || foundry'
 ---
@@ -791,7 +791,10 @@ To learn more about our recommendations on how to use Azure OpenAI models respon
 * `gpt-5.1` (`2025-11-13`)
 * `gpt-5.1-chat` (`2025-11-13`)
 * `gpt-5.1-codex` (`2025-11-13`)
-* `gpt-5.1-codex mini` (`2025-11-13`)
+* `gpt-5.1-codex-mini` (`2025-11-13`)
+* `gpt-5.1-codex-max` (`2025-12-04`)
+* `gpt-5.2` (`2025-12-11`)
+* `gpt-5.2-chat` (`2025-12-11`)
 
 Support for parallel function was first added in API version [`2023-12-01-preview`](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2023-12-01-preview/inference.json)
 

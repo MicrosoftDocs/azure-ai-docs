@@ -23,7 +23,7 @@ In this article, you learn how to connect an agent in Microsoft Foundry to a kno
 
 The agent uses the response to ground its answers in enterprise data or web sources, ensuring factual accuracy and transparency through source attribution.
 
-For an end-to-end example of integrating Azure AI Search and Foundry Agent Service for knowledge retrieval, see the [agentic-retrieval-pipeline-example](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-foundry/samples/agentic-retrieval-pipeline) Python sample on GitHub.
+For an end-to-end example of integrating Azure AI Search and Foundry Agent Service for knowledge retrieval, see the [agentic-retrieval-pipeline-example](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/agentic-retrieval-pipeline-example) Python sample on GitHub.
 
 ## Prerequisites
 
@@ -141,7 +141,7 @@ Content-Type: application/json
 
 ---
 
-## Optimize agent instructions for knowledge base retrieval
+## Optimize agent instructions for knowledge retrieval
 
 To maximize the accuracy of knowledge base invocations and ensure proper citation formatting, use optimized agent instructions. Based on our experiments, we recommend the following instruction template as a starting point:
 
@@ -149,7 +149,6 @@ To maximize the accuracy of knowledge base invocations and ensure proper citatio
 You are a helpful assistant that must use the knowledge base to answer all the questions from user. You must never answer from your own knowledge under any circumstances.
 Every answer must always provide annotations for using the MCP knowledge base tool and render them as: `【message_idx:search_idx†source_name】`
 If you cannot find the answer in the provided knowledge base you must respond with "I don't know".
-"""
 ```
 
 This instruction template optimizes for:
@@ -158,7 +157,7 @@ This instruction template optimizes for:
 + **Proper annotation formatting**: The specified citation format ensures the agent includes provenance information in responses, making it clear which knowledge sources were used.
 
 > [!TIP]
-> While this template provides a strong foundation, we recommend evaluating and iterating on the instructions based on your specific use case and the tasks you're trying to accomplish. Test different variations to find what works best for your scenarios.
+> While this template provides a strong foundation, we recommend evaluating and iterating on the instructions based on your specific use case and objectives. Test different variations to find what works best for your scenario.
 
 ## Create an agent with the MCP tool
 

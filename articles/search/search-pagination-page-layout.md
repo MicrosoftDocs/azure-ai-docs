@@ -44,7 +44,7 @@ Results are mostly tabular, composed of fields of either all `retrievable` field
 
 You can choose which fields are in search results. While a search document might have a large number of fields, typically only a few are needed to represent each document in results. On a query request, append `select=<field list>` to specify which `retrievable` fields should appear in the response.
 
-Pick fields that offer contrast and differentiation among documents, providing sufficient information to invite a clickthrough response on the part of the user. On an e-commerce site, it might be a product name, description, brand, color, size, price, and rating. For the built-in hotels-sample index, it might be the "select" fields in the following example:
+Pick fields that offer contrast and differentiation among documents, providing sufficient information to invite a clickthrough response on the part of the user. On an e-commerce site, it might be a product name, description, brand, color, size, price, and rating. For the [hotels-sample index](search-get-started-portal.md), it might be the "select" fields in the following example:
 
 ```http
 POST /indexes/hotels-sample-index/docs/search?api-version=2025-09-01 
@@ -85,7 +85,7 @@ Azure AI Search uses server-side paging to prevent queries from retrieving too m
 The default page size is 50, while the maximum page size is 1,000. If you specify a value greater than 1,000 and there are more than 1,000 results found in your index, only the first 1,000 results are returned. If the number of matches exceed the page size, the response includes information to retrieve the next page of results. For example:
 
 ```json
-"@odata.nextLink": "https://contoso-search-eastus.search.windows.net/indexes/realestate-us-sample-index/docs/search?api-version=2025-09-01"
+"@odata.nextLink": "https://contoso-search-eastus.search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2025-09-01"
 ```
 
 The top matches are determined by search score, assuming the query is full text search or semantic. Otherwise, the top matches are an arbitrary order for exact match queries (where uniform `@search.score=1.0` indicates arbitrary ranking).
@@ -95,10 +95,10 @@ Set `top` to override the default of 50. In newer preview APIs, if you're using 
 To control the paging of all documents returned in a result set, use `top` and `skip` together. This query returns the first set of 15 matching documents plus a count of total matches.
 
 ```http
-POST https://contoso-search-eastus.search.windows.net/indexes/realestate-us-sample-index/docs/search?api-version=2025-09-01
+POST https://contoso-search-eastus.search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2025-09-01
 
 {
-    "search": "condos with a view",
+    "search": "room with a view",
     "count": true,
     "top": 15,
     "skip": 0
@@ -108,10 +108,10 @@ POST https://contoso-search-eastus.search.windows.net/indexes/realestate-us-samp
 This query returns the second set, skipping the first 15 to get the next 15 (16 through 30):
 
 ```http
-POST https://contoso-search-eastus.search.windows.net/indexes/realestate-us-sample-index/docs/search?api-version=2025-09-01
+POST https://contoso-search-eastus.search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2025-09-01
 
 {
-    "search": "condos with a view",
+    "search": "room with a view",
     "count": true,
     "top": 15,
     "skip": 15
@@ -382,7 +382,5 @@ For search services created after July 2020, only phrases that match the full ph
 To quickly generate a search page for your client, consider these options:
 
 + [Create demo app](search-create-app-portal.md), in the Azure portal, creates an HTML page with a search bar, faceted navigation, and a thumbnail area if you have images.
-
-+ [Add search to an ASP.NET Core (MVC) app](tutorial-csharp-create-mvc-app.md) is a tutorial and code sample that builds a functional client.
 
 + [Add search to web apps](tutorial-csharp-overview.md) is a C# tutorial and code sample that uses the React JavaScript libraries for the user experience. The app is deployed using Azure Static Web Apps and it implements pagination.

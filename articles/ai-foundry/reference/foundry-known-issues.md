@@ -24,7 +24,7 @@ Microsoft Foundry is updated regularly and we're continually improving and enhan
 
 No current active known issues
 
-## AI Services
+## Foundry Tools
 
 ### AI Content Safety
 

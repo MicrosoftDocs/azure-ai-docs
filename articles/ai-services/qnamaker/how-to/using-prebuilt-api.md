@@ -8,7 +8,7 @@ author: laujan
 ms.service: azure-ai-language
 ms.subservice: azure-ai-qna-maker
 ms.topic: how-to
-ms.date: 06/12/2025
+ms.date: 12/15/2025
 ---
 
 # Prebuilt question answering
@@ -102,4 +102,4 @@ We see that multiple answers are received as part of the API response. Each answ
 Visit the [Prebuilt API Limits](../limits.md#prebuilt-question-answering-limits) documentation 
 
 ## Prebuilt API reference
-Visit the [Prebuilt API reference](/rest/api/qnamaker/prebuilt/generate-answer) documentation to understand the input and output parameters required for calling the API.
+Visit the [Prebuilt API reference](/azure/ai-services/language-service/concepts/developer-guide) documentation to understand the input and output parameters required for calling the API.

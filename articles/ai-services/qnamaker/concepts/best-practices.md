@@ -6,8 +6,8 @@ manager: nitinme
 ms.author: lajanuar
 author: laujan
 ms.subservice: azure-ai-qna-maker
-ms.topic: conceptual
-ms.date: 06/12/2025
+ms.topic: article
+ms.date: 12/15/2025
 ---
 
 # Best practices of a QnA Maker knowledge base
@@ -45,7 +45,7 @@ The best answers are simple answers but not too simple. Don't use answers such a
 
 |Answer|Follow-up prompts|
 |--|--|
-|Power down the Surface laptop with the power button on the keyboard.|* Key-combinations to sleep, shut down, and restart.<br>* How to hard-boot a Surface laptop<br>* How to change the BIOS for a Surface laptop<br>* Differences between sleep, shut down and restart|
+|Power down the Surface laptop with the power button on the keyboard.|* Key-combinations to sleep, shut down, and restart.<br>* How to hard-boot a Surface laptop<br>* How to change the BIOS for a Surface laptop<br>* and see the differences between sleep, shut down, and restart.|
 |Customer service is available via phone, Skype, and text message 24 hours a day.|* Contact information for sales.<br> * Office and store locations and hours for an in-person visit.<br> * Accessories for a Surface laptop.|
 
 ## Chit-Chat
@@ -117,7 +117,7 @@ By default, QnA Maker searches through questions and answers. If you want to sea
 
 ### Use synonyms
 
-While there's some support for synonyms in the English language, use case-insensitive word alterations via the [Alterations API](/rest/api/qnamaker/alterations/replace) to add synonyms to keywords that take different forms. Synonyms are added at the QnA Maker service-level and **shared by all knowledge bases in the service**.
+While there's some support for synonyms in the English language, use case-insensitive word alterations via the [Alterations API](/azure/ai-services/language-service/question-answering/how-to/migrate-qnamaker-to-question-answering) to add synonyms to keywords that take different forms. Synonyms are added at the QnA Maker service-level and **shared by all knowledge bases in the service**.
 
 ### Use distinct words to differentiate questions
 QnA Maker's ranking algorithm that matches a user query with a question in the knowledge base works best if each question addresses a different need. Repetition of the same word set between questions reduces the likelihood that the right answer is chosen for a given user query with those words.
