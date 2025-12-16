@@ -472,7 +472,7 @@ export async function main(): Promise<void> {
     } else if (event.type === "response.output_item.done") {
       const item = event.item as any;
       if (item.type === "remote_function_call") {
-        // TODO: support remote_function_call schema
+        // Add your handling logic for remote function call items here
         const callId = item.call_id;
         const label = item.label;
         console.log(`Call ID: ${callId ?? "None"}`);
