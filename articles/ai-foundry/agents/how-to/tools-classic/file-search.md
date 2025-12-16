@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 11/20/2025
+ms.date: 12/16/2025
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents, references_regions
@@ -15,7 +15,10 @@ ms.custom: azure-ai-agents, references_regions
 
 # Foundry Agent Service file search tool
 
-[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
+> [!NOTE]
+> This document refers to the classic version of the agents API. 
+>
+> 🔍 [View the new file search documentation](../../../default/agents/how-to/tools/file-search.md).
 
 
 File search augments agents with knowledge from outside its model, such as proprietary product information or documents provided by your users.  
