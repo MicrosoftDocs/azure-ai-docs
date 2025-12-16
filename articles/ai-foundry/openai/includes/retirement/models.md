@@ -3,7 +3,7 @@ title: Model Retirement Table
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Model retirement table for Azure OpenAI in Microsoft Foundry Models.
 manager: nitinme
-ms.date: 12/15/2025
+ms.date: 12/16/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
@@ -41,7 +41,7 @@ ms.custom: references_regions, build-2025
 | `gpt-5.1` | 2025-11-13 | Generally Available | 2026-11-13 | 2027-05-15 |  |
 | `gpt-5.1-codex` | 2025-11-13 | Generally Available | 2026-11-13 | 2027-05-15 |  |
 | `gpt-5.1-codex-mini` | 2025-11-13 | Generally Available | 2026-11-13 | 2027-05-15 |  |
-| `gpt-5.1-chat` | 2025-11-13 | Preview | n/a | No earlier than 206-03-31 |  |
+| `gpt-5.1-chat` | 2025-11-13 | Preview | n/a | No earlier than 2026-03-31 |  |
 
 
 # [Audio](#tab/audio)
