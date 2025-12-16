@@ -35,6 +35,8 @@ In general, there are two authentication scenarios:
 |Unauthenticated|No authentication is needed | No |
 
 ### Key-based authentication 
+> [!NOTE]
+> API key stored in Foundry connection will be accessible to users who have access to this project. We recommend you storing shared keys and tokens in the Foundry connection. For user specific tokens, we recommend using OAuth Identity Passthrough.
 
 You can pass your API key, PAT token, and other credentials to MCP servers supporting key-based authentication. With Foundry Agent Service, we recommend you put your credentials in Foundry connection instead of manually passing each time during runtime for improved security. When you connect your MCP server to an agent in Foundry portal, a Foundry connection will be automatically created for you. You need to provide the credential name and credential value. For example, if you're trying to connect with GitHub MCP server, you can select to use key-based authentication to pass your personal access token. The credential name is `Authorization` and the credential value is `Bearer <your personal access token>`. 
 
@@ -151,7 +153,7 @@ This is supported if the MCP server doesn’t require authentication.
 
 ## Host a local MCP server
 
-The Foundry Agent Service runtime only accepts a remote MCP server endpoint. If you want to add tools from a local MCP server, you'll have to self-host it on [Azure Container Apps](/samples/azure-samples/mcp-container-ts/mcp-container-ts/) or [Azure Functions](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-python/blob/main/ExistingServer.md) to get a remote MCP server endpoint. Pay attention to the following considerations when attempting to host local MCP servers in the cloud:
+The Foundry Agent Service runtime only accepts a remote MCP server endpoint. If you want to add tools from a local MCP server, you'll have to self-host it on [Azure Container Apps](/samples/azure-samples/mcp-container-ts/mcp-container-ts/) or [Azure Functions](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-python/tree/main) to get a remote MCP server endpoint. Pay attention to the following considerations when attempting to host local MCP servers in the cloud:
 
 |Local MCP server setup | Hosting in Azure Container Apps | Hosting in Azure Functions |
 |:---------:|:---------:|:---------:|

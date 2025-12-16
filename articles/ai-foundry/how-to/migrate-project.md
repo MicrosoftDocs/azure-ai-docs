@@ -205,7 +205,7 @@ Any code agents build using the preview of Agent service require the following u
 
 1. Update your script to reflect any class structure changes between the preview and stable SDK packages.
 
-See the [SDK migration guide](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/AGENTS_MIGRATION_GUIDE.md) on how to update your existing code.
+See the [SDK migration guide](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects) on how to update your existing code.
 
 ## (Optional) Clean up hub-based projects
 
@@ -257,4 +257,4 @@ There are some reasons you might want to keep hubs and [!INCLUDE [hub-project-na
 
 - [Sample Terraform templates](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-terraform/)
 
-- [SDK Migration guide](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/AGENTS_MIGRATION_GUIDE.md)
+- [SDK Migration guide](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects)
