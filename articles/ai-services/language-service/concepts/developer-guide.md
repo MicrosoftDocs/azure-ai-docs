@@ -5,7 +5,7 @@ description: Learn about how to integrate Azure Language service SDK and REST AP
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/18/2025
 ms.author: lajanuar
 ---

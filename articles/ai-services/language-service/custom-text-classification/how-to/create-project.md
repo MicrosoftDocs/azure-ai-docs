@@ -58,7 +58,7 @@ You also need an Azure storage account where to upload your `.txt` documents tha
 
 ## Create a custom text classification project (REST API)
 
-Once your resource and storage container are configured, create a new custom text classification project. A project is a work area for building your custom AI models based on your data. Your project is only accessible by you and others who have access to the Azure resource being used. If you labeled data, you can [import it](#import-a-custom-text-classification-project) to get started.
+Once your resource and storage container are configured, create a new custom text classification project. A project is a work area for building your custom AI models based on your data. Your project is only accessible by you and others who have access to the Azure resource being used. If you labeled data, you can [import it](#import-a-custom-text-classification-project-rest-api) to get started.
 
 
 [!INCLUDE [REST APIs project creation](../includes/rest-api/create-project.md)]

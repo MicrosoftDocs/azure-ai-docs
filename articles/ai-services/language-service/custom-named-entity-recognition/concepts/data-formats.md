@@ -12,11 +12,11 @@ ms.custom: language-service-custom-ner
 ---
 # Accepted custom NER data formats
 
-If you're trying to [import your data](../how-to/create-project.md#import-project) into custom NER, it has to follow a specific format. If you don't have data to import, you can [create your project](../how-to/create-project.md) and use [Microsoft Foundry](https://ai.azure.com/) to label your documents.
+If you're trying to [import your data](../how-to/create-project.md#import-project-rest-api) into custom NER, it has to follow a specific format. If you don't have data to import, you can [create your project](../how-to/create-project.md) and use [Microsoft Foundry](https://ai.azure.com/) to label your documents.
 
 ## Labels file format
 
-Your Labels file should be in `json` format for use in [importing](../how-to/create-project.md#import-project) your labels into a project.
+Your Labels file should be in `json` format for use in [importing](../how-to/create-project.md#import-project-rest-api) your labels into a project.
 
 ```json
 {
@@ -108,5 +108,5 @@ Your Labels file should be in `json` format for use in [importing](../how-to/cre
 
 
 ## Next steps
-* You can import your labeled data into your project directly. Learn how to [import project](../how-to/create-project.md#import-project)
+* You can import your labeled data into your project directly. Learn how to [import project](../how-to/create-project.md#import-project-rest-api)
 * See the [how-to article](../how-to/tag-data.md)  more information about labeling your data. When you're done labeling your data, you can [train your model](../how-to/train-model.md).  

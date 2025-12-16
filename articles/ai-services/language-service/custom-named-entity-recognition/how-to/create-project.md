@@ -55,7 +55,7 @@ You can create a resource in the following ways:
 
 ## Create a custom named entity recognition project (REST API)
 
-Once your resource and storage container are configured, create a new custom NER project. A project is a work area for building your custom AI models based on your data. Only you can access your project along with others who have access to the Azure resource being used. If you labeled data, you can use it to get started by [importing a project](#import-project).
+Once your resource and storage container are configured, create a new custom NER project. A project is a work area for building your custom AI models based on your data. Only you can access your project along with others who have access to the Azure resource being used. If you labeled data, you can use it to get started by [importing a project](#import-project-rest-api).
 
 [!INCLUDE [REST APIs project creation](../includes/rest-api/create-project.md)]
 
