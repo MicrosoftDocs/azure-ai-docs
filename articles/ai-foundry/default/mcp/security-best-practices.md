@@ -88,7 +88,7 @@ Tenant admins can use Azure Policy to grant or block access to Foundry MCP Serve
 
 1. Find the enterprise application for Foundry MCP Server (preview) using the application ID. Open the [Azure portal Entra ID page](https://portal.azure.com/#view/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/~/Overview) and search for the application ID `fcdfa2de-b65b-4b54-9a1c-81c8a18282d9`.
 
-    :::image type="content" source="../media/mcp/foundry-mcp-find-app.png" alt-text="Screenshot of MCP app in Entra ID.":::
+    :::image type="content" source="../media/mcp/foundry-find-mcp-app.png" alt-text="Screenshot of MCP app in Entra ID.":::
 
     :::image type="content" source="../media/mcp/foundry-conditional-access.png" alt-text="Screenshot of conditional access options for the app configuration.":::
 
