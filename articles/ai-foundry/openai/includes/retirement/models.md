@@ -66,7 +66,9 @@ ms.custom: references_regions, build-2025
 | `tts` | 001 | Generally Available | No earlier than February 28, 2026 |  |  |
 | `tts-hd` | 001 | Generally Available | No earlier than February 28, 2026 |  |  |
 | `whisper` | 001 | Generally Available | No earlier than February 28, 2026 |  |  |
-
+| `gpt-realtime-mini-2025-12-15`    | 2025-12-15   | Generally Available | n/a | 2026-12-15    |       |
+| `gpt-4o-mini-transcribe-2025-12-15`    | 2025-12-15   | Generally Available | n/a | 2026-12-15    |       |
+| `gpt-4o-mini-tts-2025-12-15`    | 2025-12-15   | Generally Available | n/a | 2026-12-15    |       |
 
 # [Image and video](#tab/image)
 
