@@ -1323,6 +1323,8 @@ groups:
     title: C#
   - id: rest-api
     title: REST API
+  - id: typescript
+    title: TypeScript
 - id: selection-deep-research
   title: Selections
   prompt: What would you like to see?
