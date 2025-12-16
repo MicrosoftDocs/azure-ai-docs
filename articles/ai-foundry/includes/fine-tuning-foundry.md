@@ -140,7 +140,7 @@ Automatic deployment is supported only for OpenAI models.
 
 After you submit your fine-tuning job, a table view lists all of your fine-tuning job submissions. To see more information about the individual results, open the **Job details** page.
 
-Your job might be queued behind other jobs on the system. Training your model can take minutes to hours, depending on the model and the dataset size.
+Your job might be queued behind other jobs in the system. Training your model can take minutes to hours, depending on the model and the dataset size.
 
 ### Metrics
 
@@ -162,7 +162,9 @@ When each training epoch finishes, a checkpoint is generated. You can view check
 A checkpoint is a fully functional version of a model that can be both deployed and used as the target model for subsequent fine-tuning jobs. Checkpoints can be particularly useful, because they might provide snapshots prior to overfitting. When a fine-tuning job finishes, you have the three most recent versions of the model available to deploy. You can copy checkpoints between resources and subscriptions through the REST API.
 
 > [!NOTE]
-> During the training, you can view the metrics and pause the job as needed. Pausing can be useful if metrics aren't converging or if you feel that the model isn't learning at the right pace. When you pause a training job, a deployable checkpoint is created after safety evaluations are complete. This checkpoint is available for you to deploy and use for inference, or you can resume the job to complete it. The pause operation is applicable only for jobs that are trained for at least one step and are in a **Running** state. Pausing is supported only for OpenAI models.
+> During the training, you can view the metrics and pause the job as needed. Pausing can be useful if metrics aren't converging or if you feel that the model isn't learning at the right pace. When you pause a training job, a deployable checkpoint is created after safety evaluations are complete. This checkpoint is available for you to deploy and use for inference, or you can resume the job to complete it.
+>
+> The pause operation is applicable only for jobs that are trained for at least one step and are in a **Running** state. Pausing is supported only for OpenAI models.
 
 ## Deploy the fine-tuned model
 
@@ -170,7 +172,7 @@ When you're satisfied with the metrics from your fine-tuning job, you can deploy
 
 For more information, see the [fine-tuning deployment guide](../openai/how-to/fine-tuning-deploy.md?tabs=portal).
 
-### Use a deployed fine-tuned model
+## Use a deployed fine-tuned model
 
 After you deploy your fine-tuned model, you can use it like any other deployed model. You can use the playground in [Foundry](https://ai.azure.com/?cid=learnDocs) to experiment with your new deployment. You can also use the REST API to call your fine-tuned model from your own application. You can even begin to use this new fine-tuned model in your prompt flow to build your generative AI application.
 
@@ -181,7 +183,7 @@ After you deploy your fine-tuned model, you can use it like any other deployed m
 
 After you create a fine-tuned model, you might want to continue to refine the model over time through further fine-tuning. Continuous fine-tuning is the iterative process of selecting an already fine-tuned model as a base model and fine-tuning it further on new sets of training examples.
 
-To perform fine-tuning on a model that you previously fine-tuned, you use the same process described in [Create a fine-tuned model](#create-a-fine-tuned-model). But instead of specifying the name of a generic base model, you specify your already fine-tuned model. A custom fine-tuned model looks like `gpt-4o-2024-08-06.ft-d93dda6110004b4da3472d96f4dd4777-ft`.
+To perform fine-tuning on a model that you previously fine-tuned, you use the same process described in [Create your fine-tuned model](#create-your-fine-tuned-model). But instead of specifying the name of a generic base model, you specify your already fine-tuned model. A custom fine-tuned model looks like `gpt-4o-2024-08-06.ft-d93dda6110004b4da3472d96f4dd4777-ft`.
 
 Continuous fine-tuning is supported only for OpenAI models.
 

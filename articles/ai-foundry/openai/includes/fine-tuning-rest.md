@@ -134,7 +134,7 @@ curl -X POST $AZURE_OPENAI_ENDPOINT/openai/v1/fine_tuning/jobs \
 }'
 ```
 
-If you're fine-tuning a model that supports [global training](../concepts/models.md#fine-tuning-models), you can specify the training type by using the `extra_body` named argument and using api-version `2025-04-01-preview`:
+If you're fine-tuning a model that supports [global training](../concepts/models.md#fine-tuning-models), you can specify the training type by using the `extra_body` named argument and using `api-version=2025-04-01-preview`:
 
 ```bash
 curl -X POST $AZURE_OPENAI_ENDPOINT/openai/fine_tuning/jobs?api-version=2025-04-01-preview \
@@ -158,7 +158,7 @@ The currently supported hyperparameters for supervised fine-tuning are:
 |`batch_size` |Integer | The batch size to use for training. The batch size is the number of training examples used to train a single forward and backward pass. In general, we find that larger batch sizes tend to work better for larger datasets.<br><br> The default value and the maximum value for this property are specific to a base model. A larger batch size means that model parameters are updated less frequently, but with lower variance. |
 | `learning_rate_multiplier` | Number | The learning rate multiplier to use for training. The fine-tuning learning rate is the original learning rate used for pre-training, multiplied by this value.<br><br> Larger learning rates tend to perform better with larger batch sizes. We recommend experimenting with values in the range of `0.02` to `0.2` to see what produces the best results. A smaller learning rate can be useful to avoid overfitting. |
 |`n_epochs` | Integer | The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. |
-|`seed` | Integer | The seed that controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results but might differ in rare cases. If you don't specify a seed, one is generated for you. |
+|`seed` | Integer | The seed that controls the reproducibility of the job. |
 
 To learn about supported hyperparameters for the other customization methods, see the [guide for direct preference optimization](../how-to/fine-tuning-direct-preference-optimization.md) and the [guide for reinforcement fine-tuning](../how-to/reinforcement-fine-tuning.md).
 
@@ -197,13 +197,27 @@ curl -X POST $AZURE_OPENAI_ENDPOINT/openai/v1/fine_tuning/jobs/{fine_tuning_job_
   -H "api-key: $AZURE_OPENAI_API_KEY" 
 ```
 
+### List checkpoints
+
+The completion of each training epoch generates a checkpoint. A checkpoint is a fully functional version of a model that can be both deployed and used as the target model for subsequent fine-tuning jobs. Checkpoints can be particularly useful, because they might provide snapshots prior to overfitting.
+
+When a fine-tuning job finishes, you have the three most recent versions of the model available to deploy. Your fine-tuned model represents the final epoch. The previous two epochs are available as checkpoints.
+
+You can run the following command to retrieve the list of checkpoints associated with an individual fine-tuning job:
+
+```bash
+curl -X POST $AZURE_OPENAI_ENDPOINT/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" 
+```
+
 ## Pause and resume
 
 During the training, you can view the logs and metrics and pause the job as needed. Pausing can be useful if metrics aren't converging or if you feel that the model isn't learning at the right pace.
 
 After the training job is paused and safety evaluations are complete, a deployable checkpoint is created. This checkpoint is available for you to deploy and use for inference, or you can resume the job to complete it.
 
-The pause operation is applicable only for jobs that are trained for at least one step and are in **Running** state.
+The pause operation is applicable only for jobs that are trained for at least one step and are in a **Running** state.
 
 ### Pause
 
@@ -258,7 +272,7 @@ curl --request POST \
 
 Because this is a long-running operation, check the status of the fine-tuned model copy by providing the checkpoint ID of the source account used in the `POST` call.
 
-## Check the copy status
+### Check the copy status
 
 ```bash
 curl --request GET \
@@ -270,20 +284,6 @@ curl --request GET \
 
 > [!NOTE]
 > When you copy a checkpoint from a source account, the same checkpoint name is retained in the destination account. Ensure that you use exactly this same name for fine-tuning, deployment, or any other operation in the destination account. This checkpoint doesn't appear in the UI or in the `list checkpoints` API.
-
-## List checkpoints
-
-The completion of each training epoch generates a checkpoint. A checkpoint is a fully functional version of a model that can be both deployed and used as the target model for subsequent fine-tuning jobs. Checkpoints can be particularly useful, because they might provide snapshots prior to overfitting.
-
-When a fine-tuning job finishes, you have the three most recent versions of the model available to deploy. Your fine-tuned model represents the final epoch. The previous two epochs are available as checkpoints.
-
-You can run the following command to retrieve the list of checkpoints associated with an individual fine-tuning job:
-
-```bash
-curl -X POST $AZURE_OPENAI_ENDPOINT/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints \
-  -H "Content-Type: application/json" \
-  -H "api-key: $AZURE_OPENAI_API_KEY" 
-```
 
 ## Analyze your customized model
 

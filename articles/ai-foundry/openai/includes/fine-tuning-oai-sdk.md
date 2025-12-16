@@ -135,7 +135,7 @@ response = client.fine_tuning.jobs.create(
     validation_file=validation_file_id,
     model="gpt-4.1-2025-04-14", # Enter the base model name.
     suffix="my-model", # Custom suffix for naming the resulting model. Note that in Microsoft Foundry, the model can't contain dot/period characters.
-    seed=105, # Seed parameter controls reproducibility of the fine-tuning job. If no seed is specified, one is generated automatically.
+    seed=105, # Seed parameter controls reproducibility of the fine-tuning job. If you don't specify a seed, one is generated automatically.
     extra_body={ "trainingType": "GlobalStandard" } # Change this value to your preferred training type. Other options are `Standard` and `Developer`.
 )
 
@@ -394,12 +394,12 @@ When you no longer need your customized model, you can delete the deployment and
 
 You can use either of these methods to delete the deployment for your customized model:
 
-- [Microsoft Foundry](../how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-model-deployment)</a>
+- [Foundry](../how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-model-deployment)</a>
 - [Azure CLI](/cli/azure/cognitiveservices/account/deployment?preserve-view=true#az-cognitiveservices-account-deployment-delete)
 
 ### Delete your customized model
 
-You can delete your customized model by using [Microsoft Foundry](../how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-customized-model).
+You can delete your customized model by using [Foundry](../how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-customized-model).
 
 > [!NOTE]
 > You can't delete a customized model if it has an existing deployment. You must [delete your model deployment](#delete-your-model-deployment) before you can delete your customized model.
@@ -408,7 +408,7 @@ You can delete your customized model by using [Microsoft Foundry](../how-to/fine
 
 You can optionally delete training and validation files that you uploaded for training, and result files generated during training, from your Azure OpenAI subscription. You can use the following methods to delete your training, validation, and result files:
 
-- [Microsoft Foundry](../how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-training-files)
+- [Foundry](../how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-training-files)
 - [REST APIs](/rest/api/azureopenai/files/delete)
 - Python SDK
 

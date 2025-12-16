@@ -30,7 +30,7 @@ Or you can fine-tune a previously fine-tuned model, formatted as `base-model.ft-
 
 ## Review the workflow for the Python SDK
 
-Take a moment to review the fine-tuning workflow for using the Python SDK with Microsoft Foundry:
+Take a moment to review the fine-tuning workflow for using the Python SDK with Foundry:
 
 1. Prepare your training and validation data.
 1. Select a base model.
@@ -135,7 +135,7 @@ response = client.fine_tuning.jobs.create(
     validation_file=validation_file_id,
     model="gpt-4.1-2025-04-14", # Enter the base model name.
     suffix="my-model", # Custom suffix for naming the resulting model. Note that in Microsoft Foundry, the model can't contain dot/period characters.
-    seed=105, # Seed parameter controls reproducibility of the fine-tuning job. If no seed is specified, one is generated automatically.
+    seed=105, # Seed parameter controls reproducibility of the fine-tuning job. If you don't specify a seed, one is generated automatically.
     extra_body={ "trainingType": "GlobalStandard" } # Change this to your preferred training type. Other options are `Standard` and `Developer`.
 )
 
@@ -222,7 +222,7 @@ print(response.model_dump_json(indent=2))
 
 ## Analyze your customized model
 
-Microsoft Foundry attaches a result file named `results.csv` to each fine-tuning job after it finishes. You can use the result file to analyze the training and validation performance of your customized model. The file ID for the result file is listed for each customized model. You can use the Python SDK to retrieve the file ID and download the result file for analysis.
+Foundry attaches a result file named `results.csv` to each fine-tuning job after it finishes. You can use the result file to analyze the training and validation performance of your customized model. The file ID for the result file is listed for each customized model. You can use the Python SDK to retrieve the file ID and download the result file for analysis.
 
 The following Python example retrieves the file ID of the first result file attached to the fine-tuning job for your customized model. It then uses the Python SDK to download the file to your current working directory for analysis.
 
@@ -255,7 +255,7 @@ The result file is a CSV file that contains a header row and a row for each trai
 | `full_valid_loss` | The validation loss calculated at the end of each epoch. When training goes well, loss should decrease. |
 |`full_valid_mean_token_accuracy` | The valid mean token accuracy calculated at the end of each epoch. When training is going well, token accuracy should increase. |
 
-You can also view the data in your `results.csv` file as plots in the Microsoft Foundry portal. When you select the link for your trained model, three charts appear: loss, mean token accuracy, and token accuracy. If you provided validation data, both datasets appear on the same plot.
+You can also view the data in your `results.csv` file as plots in the Foundry portal. When you select the link for your trained model, three charts appear: loss, mean token accuracy, and token accuracy. If you provided validation data, both datasets appear on the same plot.
 
 Look for your loss to decrease over time, and your accuracy to increase. If your training and validation data diverge, you might be overfitting. Try training with fewer epochs or a smaller learning-rate multiplier.
 
@@ -270,9 +270,9 @@ Unlike with the previous SDK commands, you must use the control plane API for th
 |Variable      | Definition|
 |--------------|-----------|
 | `token`        | An authorization token. There are multiple ways to generate an authorization token. The easiest method for initial testing is to open Azure Cloud Shell from the [Azure portal](https://portal.azure.com). Then run [`az account get-access-token`](/cli/azure/account#az-account-get-access-token()). You can use this token as your temporary authorization token for API testing. We recommend storing this token in a new environment variable. |
-| `subscription` | The subscription ID for the associated Microsoft Foundry resource. |
-| `resource_group` | The resource group name for your Microsoft Foundry resource. |
-| `resource_name` | The Microsoft Foundry resource name. |
+| `subscription` | The subscription ID for the associated Foundry resource. |
+| `resource_group` | The resource group name for your Foundry resource. |
+| `resource_name` | The Foundry resource name. |
 | `model_deployment_name` | The custom name for your new fine-tuned model deployment. This name is referenced in your code during chat completion calls. |
 | `fine_tuned_model` | Your fine-tuned model. Retrieve this value from your fine-tuning job results in the previous step. It looks like `gpt-4.1-2025-04-14.ft-b044a9d3cf9c4228b5d393567f693b83`. You need to add the value to the `deploy_data` JSON. Alternatively, you can deploy a checkpoint by passing the checkpoint ID, which appears in the format `ftchkpt-e559c011ecc04fc68eaa339d8227d02d`. |
 
@@ -342,4 +342,4 @@ print(response.model_dump_json(indent=2))
 
 We also recommend that you include the `suffix` parameter to more easily distinguish between iterations of your fine-tuned model. The `suffix` parameter takes a string and is set to identify the fine-tuned model. You can add a string of up to 18 characters to the name of your fine-tuned model.
 
-If you're unsure of the ID of your existing fine-tuned model, you can find this information on the **Models** page of Microsoft Foundry.
+If you're unsure of the ID of your existing fine-tuned model, you can find this information on the **Models** page of Foundry.
