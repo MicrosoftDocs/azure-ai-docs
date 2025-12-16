@@ -22,7 +22,7 @@ ms.custom:
   > [!NOTE]
   > The supported regions might vary if you use Azure OpenAI models in a Foundry project versus outside a project.
 - Fine-tuning access requires the Azure AI User role on the Azure OpenAI resource.
-- If you don't already have access to view quota and deploy models in the Foundry portal, you need [more permissions](../how-to/role-based-access-control.md).
+- If you don't already have access to view quotas and deploy models in the Foundry portal, you need [more permissions](../how-to/role-based-access-control.md).
 
 ### Supported models
 
@@ -216,7 +216,7 @@ When you deploy the model, you make the model available for inferencing. This av
 
 You can monitor the progress of your deployment on the **Deployments** pane in the Foundry portal.
 
-### Use a deployed fine-tuned model
+## Use a deployed fine-tuned model
 
 After you deploy your fine-tuned model, you can use it like any other deployed model. You can use the playground in [Foundry](https://ai.azure.com/?cid=learnDocs) to experiment with your new deployment. You can also use the REST API to call your fine-tuned model from your own application. You can even begin to use this new fine-tuned model in your prompt flow to build your generative AI application.
 

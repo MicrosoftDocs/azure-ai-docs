@@ -137,7 +137,7 @@ Your training data and the resulting model weights might be copied to another Az
 
 When you use this tier, you can:
 
-- Train the latest OpenAI models from over a dozen Azure OpenAI regions.  
+- Train the latest OpenAI models from more than a dozen Azure OpenAI regions.  
 - Benefit from lower per-token training rates compared to the Standard tier.
 
 #### Developer training tier
@@ -145,8 +145,6 @@ When you use this tier, you can:
 The Developer tier is a cost-effective option that uses idle capacity for non-urgent or exploratory workloads. Jobs in this tier might be preempted and resumed later, so it's ideal for experimentation and cost-sensitive use cases.  
 
 ### Choose your training data
-
-The next step is to either choose existing prepared training data or upload new prepared training data to use when you're customizing your model.
 
 The next step is to either choose existing prepared training data or upload new prepared training data to use when you're customizing your model by selecting **Add training data**.
 
@@ -196,9 +194,9 @@ The following hyperparameters are available for tuning via the Foundry portal:
 
 |Name| Type| Description|
 |---|---|---|
-|**Batch Size** | Integer | The batch size to use for training. The batch size is the number of training examples used to train a single forward and backward pass. In general, we find that larger batch sizes tend to work better for larger datasets.<br><br> The default value and the maximum value for this property are specific to a base model. A larger batch size means that model parameters are updated less frequently, but with lower variance. |
-|**Learning Rate Multiplier** | Number | The learning rate multiplier to use for training. The fine-tuning learning rate is the original learning rate used for pre-training, multiplied by this value.<br><br> Larger learning rates tend to perform better with larger batch sizes. We recommend experimenting with values in the range of **0.02** to **0.2** to see what produces the best results. A smaller learning rate can be useful to avoid overfitting. |
-|**Number of Epochs** | Integer | The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. |
+|**Batch size** | Integer | The batch size to use for training. The batch size is the number of training examples used to train a single forward and backward pass. In general, we find that larger batch sizes tend to work better for larger datasets.<br><br> The default value and the maximum value for this property are specific to a base model. A larger batch size means that model parameters are updated less frequently, but with lower variance. |
+|**Learning rate multiplier** | Number | The learning rate multiplier to use for training. The fine-tuning learning rate is the original learning rate used for pre-training, multiplied by this value.<br><br> Larger learning rates tend to perform better with larger batch sizes. We recommend experimenting with values in the range of **0.02** to **0.2** to see what produces the best results. A smaller learning rate can be useful to avoid overfitting. |
+|**Number of epochs** | Integer | The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. |
 
 ### Enable automatic deployment (optional)
 

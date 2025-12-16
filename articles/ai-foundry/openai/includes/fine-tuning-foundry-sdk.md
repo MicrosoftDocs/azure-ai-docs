@@ -45,7 +45,7 @@ Take a moment to review the fine-tuning workflow for using the Python SDK with M
 
 Your training and validation datasets consist of input and output examples for how you want the model to perform.
 
-The training and validation data that you use *must* be formatted as a JSON Lines (JSONL) document. It must also be formatted in the conversational format that the [Chat Completions](../openai/how-to/chatgpt.md) API uses.
+The training and validation data that you use *must* be formatted as a JSON Lines (JSONL) document. It must also be formatted in the conversational format that the [Chat Completions](../how-to/chatgpt.md) API uses.
 
 In addition to the JSONL format, training and validation data files must be encoded in UTF-8 and include a byte-order mark (BOM). Each file must be less than 512 MB in size.
 
@@ -95,7 +95,7 @@ The next step is to either choose existing prepared training data or upload new 
 - [From a local file](/rest/api/azureopenai/files/upload)
 - [From Azure Blob Storage or a web location (import)](/rest/api/azureopenai/files/import)
 
-For large data files, we recommend that you import from Azure Blob Storage. Large files can become unstable when you upload them through multipart forms because the requests are atomic and can't be retried or resumed. For more information about Azure Blob Storage, see [What is Azure Blob Storage?](/azure/storage/blobs/storage-blobs-overview).
+For large data files, we recommend that you import from Blob Storage. Large files can become unstable when you upload them through multipart forms because the requests are atomic and can't be retried or resumed. For more information about Blob Storage, see [What is Azure Blob Storage?](/azure/storage/blobs/storage-blobs-overview).
 
 The following Python example uploads local training and validation files by using the Python SDK, and retrieves the returned file IDs:
 
@@ -153,14 +153,14 @@ print(response.model_dump_json(indent=2))
 
 You can also pass additional optional parameters, like hyperparameters, to take greater control of the fine-tuning process. For initial training, we recommend using the automatic defaults that are present without specifying these parameters.
 
-The current supported hyperparameters for supervised fine-tuning are:
+The currently supported hyperparameters for supervised fine-tuning are:
 
 |Name| Type| Description|
 |---|---|---|
 |`batch_size` |Integer | The batch size to use for training. The batch size is the number of training examples used to train a single forward and backward pass. In general, we find that larger batch sizes tend to work better for larger datasets.<br><br> The default value and the maximum value for this property are specific to a base model. A larger batch size means that model parameters are updated less frequently, but with lower variance. |
 | `learning_rate_multiplier` | Number | The learning rate multiplier to use for training. The fine-tuning learning rate is the original learning rate used for pre-training, multiplied by this value.<br><br> Larger learning rates tend to perform better with larger batch sizes. We recommend experimenting with values in the range of `0.02` to `0.2` to see what produces the best results. A smaller learning rate can be useful to avoid overfitting. |
 |`n_epochs` | Integer | The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. |
-|`seed` | integer | The seed that controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results but might differ in rare cases. If you don't specify a seed, one is generated for you. |
+|`seed` | Integer | The seed that controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results but might differ in rare cases. If you don't specify a seed, one is generated for you. |
 
 To set custom hyperparameters with the 1.x version of the OpenAI Python API, provide them as part of `method`:
 
@@ -196,7 +196,7 @@ print(response.model_dump_json(indent=2))
 
 ---
 
-## List fine-tuning events
+### List fine-tuning events
 
 To examine the individual fine-tuning events that were generated during training, run the following command. Before you run the command, you might need to upgrade your OpenAI client library to the latest version by using `pip install openai --upgrade`.
 
@@ -205,7 +205,7 @@ response = client.fine_tuning.jobs.list_events(fine_tuning_job_id=job_id, limit=
 print(response.model_dump_json(indent=2))
 ```
 
-## List checkpoints
+### List checkpoints
 
 The completion of each training epoch generates a checkpoint. A checkpoint is a fully functional version of a model that can be both deployed and used as the target model for subsequent fine-tuning jobs. Checkpoints can be particularly useful, because they might provide snapshots prior to overfitting.
 
