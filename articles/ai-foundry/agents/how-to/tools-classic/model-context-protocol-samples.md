@@ -7,17 +7,19 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 11/21/2025
+ms.date: 12/16/2025
 author: alvinashcraft
 ms.author: aashcraft
 zone_pivot_groups: selection-mcp-code
 ms.custom: azure-ai-agents-code
 ---
 
-# How to use the Model Context Protocol tool (preview)
+# How to use the Model Context Protocol (MCP) tool (preview)
 
-[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
-
+> [!NOTE]
+> This document refers to the classic version of the agents API. 
+>
+> 🔍 [View the new MCP tool documentation](../../../default/agents/how-to/tools/model-context-protocol.md?view=foundry&preserve-view=true).
 
 Use this article to find code samples for connecting Foundry Agent Service with Model Context Protocol (MCP) servers.
 

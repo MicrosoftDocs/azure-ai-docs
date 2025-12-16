@@ -270,6 +270,9 @@ The following section provides you with a quick guide to the default quotas and 
 |`gpt-audio-mini` |   Default | 100K | 30 |
 |`gpt-realtime` | Default | 100K | 100 |
 |`gpt-realtime-mini` | Default | 100K | 100 |
+|`gpt-realtime-mini-2025-12-15` | Default | 100K | 100 |
+
+
 
 
 ## GPT-image-1 rate limits
