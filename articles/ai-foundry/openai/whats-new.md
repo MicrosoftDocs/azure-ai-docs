@@ -25,9 +25,9 @@ This article provides a summary of the latest releases and major documentation u
 
 ### GPT-image-1.5 model is now available
 
-GPT-image-1.5 is OpenAI's latest cutting-edge image generation model. It features improved performance, quality, editing controls, and face preservation.     
+GPT-image-1.5 is OpenAI's latest cutting-edge image generation model. It features improved performance, quality, editing controls, and face preservation. In editing mode, the model supports high *input_fidelity* and adding/removing one aspect of the input image while retaining others.
 
-In editing mode, the model supports high *input_fidelity* and adding/removing one aspect of the input image while retaining others.  
+Request access: [limited access model application](https://aka.ms/oai/gptimage1.5access)
 
 Key model capabilities:
 - Includes all capabilities of GPT-image-1:
@@ -35,7 +35,9 @@ Key model capabilities:
     - Image to image generation (editing)
 - Inpainting  
 - High quality image generations, up to 1024x1536 and 1536x1024 pixels 
-- Face preservation  
+- Face preservation
+
+Follow the [image generation how-to guide](/en-us/azure/ai-foundry/openai/how-to/dall-e) to get started with this model.
 
 ## October 2025
 

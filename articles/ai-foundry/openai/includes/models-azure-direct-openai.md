@@ -304,7 +304,7 @@ The image generation models generate images from text prompts that the user prov
 
 Registration is required to access `gpt-image-1`, `gpt-image-1-mini`, or `gpt-image-1.5`. Access is granted based on Microsoft's eligibility criteria. Customers who have access to other limited access models still need to request access for this model.
 
-To request access, go to [`gpt-image-1` limited access model application](https://aka.ms/oai/gptimage1access). When access is granted, you need to create a deployment for the model.
+To request access, fill out an application form: [Apply for GPT-image-1 access](https://aka.ms/oai/gptimage1access); [Apply for GPT-image-1.5 access](https://aka.ms/oai/gptimage1.5access). When access is granted, you need to create a deployment for the model.
 
 ### Region availability
 
