@@ -1323,6 +1323,8 @@ groups:
     title: C#
   - id: rest-api
     title: REST API
+  - id: typescript
+    title: TypeScript
 - id: selection-deep-research
   title: Selections
   prompt: What would you like to see?
@@ -1408,6 +1410,8 @@ groups:
     title: C#
   - id: rest
     title: REST API
+  - id: typescript
+    title: TypeScript
 # owner: fosteramanda
 - id: selection-azure-ai-search
   title: Selections
