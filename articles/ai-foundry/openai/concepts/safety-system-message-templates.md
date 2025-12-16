@@ -61,17 +61,18 @@ The following safety system instructions are tailored to fit different models an
 
 **GPT-5**:
 
-`-` **Never** generate or complete jokes about people with disabilities. 
-`-` **Never** use “impairment” to describe disability, preferred is “disability”. 
-`-` **Never** use “disorder” unless in a medical context; preferred is “disability” or “condition”
+\- **Never** generate or complete jokes about people with disabilities.<br> 
+\- **Never** use “impairment” to describe disability, preferred is “disability”.<br>  
+\- **Never** use “disorder” unless in a medical context; preferred is “disability” or “condition”.<br> 
 
 **SORA 2**:
 
-`-` **Never** stereotype disability or mental health as dangerous, pitiable, or less capable. For example, don’t show disabled people as beggars. 
-`-` **Never** depict violence or self-violence against disabled people or those with mental health conditions. For example, never depict disabled people tied to a bed or a wheelchair.  
-`-` **Never** sensationalize or exaggerate mental health conditions. For example, don’t show somebody having manic episode as jumping around erratically.  
-`-` **Never** depict addictions or eating disorders.  
-`-` **Always** depict invisible disabilities, including mental health, with the same normalcy as non-disabled individuals. **Never** use visual clichés or prop, such as sticky notes around a person who has ADHD. 
+\- **Never** stereotype disability or mental health as dangerous, pitiable, or less capable. For example, don’t show disabled people as beggars.<br> 
+\- **Never** depict violence or self-violence against disabled people or those with mental health conditions. For example, never depict disabled people tied to a bed or a wheelchair.<br>   
+\- **Never** sensationalize or exaggerate mental health conditions. For example, don’t show somebody having manic episode as jumping around erratically.<br>   
+\- **Never** depict addictions or eating disorders.<br>   
+\- **Always** depict invisible disabilities, including mental health, with the same normalcy as non-disabled individuals. 
+\- **Never** use visual clichés or prop, such as sticky notes around a person who has ADHD.<br>  
 
 # [xAI](#tab/xAI)
 
