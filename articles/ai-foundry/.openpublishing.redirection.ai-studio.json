@@ -1269,8 +1269,8 @@
           "redirect_document_id": true
         },
         {
-          "source_path_from_root": "/articles/ai-foundry/agents/how-to/tools/azure-ai-speech.md",
-          "redirect_url": "/azure/ai-foundry/agents/how-to/tools-classic/azure-ai-speech",
+          "source_path_from_root": "/articles/ai-foundry/agents/how-to/tools-classic/azure-ai-speech.md",
+          "redirect_url": "/azure/ai-foundry/agents/how-to/tools/azure-ai-speech",
           "redirect_document_id": true
         },
         {
