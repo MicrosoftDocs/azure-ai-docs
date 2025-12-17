@@ -19,7 +19,7 @@ ai-usage: ai-assisted
 
 # Tutorial:  Part 2 - Build a custom knowledge retrieval (RAG) app with the Microsoft Foundry SDK
 
-In this tutorial, you use the [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) SDK (and other libraries) to build, configure, and evaluate a chat app for your retail company called Contoso Trek. Your retail company specializes in outdoor camping gear and clothing. The chat app should answer questions about your products and services. For example, the chat app can answer questions such as "which tent is the most waterproof?" or "what is the best sleeping bag for cold weather?".
+In this tutorial, you use the [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) SDK and other libraries to build, configure, and evaluate a chat app for your retail company called Contoso Trek. Your retail company specializes in outdoor camping gear and clothing. The chat app answers questions about your products and services. For example, the chat app can answer questions such as "which tent is the most waterproof?" or "what is the best sleeping bag for cold weather?".
 
 This part two shows you how to enhance a basic chat application by adding [retrieval augmented generation (RAG)](../concepts/retrieval-augmented-generation.md) to ground the responses in your custom data. Retrieval Augmented Generation (RAG) is a pattern that uses your data with a large language model (LLM) to generate answers specific to your data. In this part two, you learn how to:
 
@@ -37,9 +37,9 @@ This tutorial builds on [Tutorial: Part 1 - Create resources for building a cust
 [!INCLUDE [hub-only-tutorial](../includes/hub-only-tutorial.md)]
 
 * Complete [Tutorial: Part 1 - Create resources for building a custom chat application with the Microsoft Foundry SDK](copilot-sdk-create-resources.md) to:
-    * Create a project with a connected Azure AI Search index
-    * Install the Azure CLI, Python, and required packages
-    * Configure your environment variables
+    * Create a project with a connected Azure AI Search index.
+    * Install the Azure CLI, Python, and required packages.
+    * Configure your environment variables.
 * Use the same **Microsoft Foundry** project you created in Part 1.
 * **Azure AI permissions**: Owner or Contributor role to create search indexes and deploy models; Cognitive Services Contributor or higher for AI Services resources. 
 
@@ -70,11 +70,11 @@ Create an **assets** directory and add this example data to a **products.csv** f
 
 :::code language="csv" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/assets/products.csv":::
 
-This CSV file contains product information that the search index will store and retrieve to ground the chat responses.
+This CSV file contains product information that the search index stores and retrieves to ground the chat responses.
 
 ## Create a search index
 
-The search index is used to store vectorized data from the embeddings model. The search index is used to retrieve relevant documents based on the user's question. 
+You use the search index to store vectorized data from the embeddings model. The search index retrieves relevant documents based on the user's question. 
 
 1. Create the file **create_search_index.py** in your main folder (that is, the same directory where you placed your **assets** folder, not inside the **assets** folder).  
 1. Copy and paste the following code into your **create_search_index.py** file.
@@ -82,7 +82,7 @@ The search index is used to store vectorized data from the embeddings model. The
 
     :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/create_search_index.py" id="imports_and_config":::
 
-    The imports include `AIProjectClient` (to connect to your project), `SearchClient` (to manage the search index), and `EmbeddingsModel` (to vectorize documents).
+    The imports include `AIProjectClient` to connect to your project, `SearchClient` to manage the search index, and `EmbeddingsModel` to vectorize documents.
 
     References: [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.aiclient), [SearchClient](/python/api/azure-search-documents/azure.search.documents.search_client), [embed_query_text](/python/api/azure-ai-projects/azure.ai.projects.models.embedding_models).
 
@@ -92,7 +92,7 @@ The search index is used to store vectorized data from the embeddings model. The
 
     References: [SearchIndex](/python/api/azure-search-documents/azure.search.documents.indexes.models.search_index), [SearchIndexClient](/python/api/azure-search-documents/azure.search.documents.indexes.search_index_client).
 
-1. Create the function to add a csv file to the index:
+1. Create the function to add a CSV file to the index:
 
     :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/create_search_index.py" id="add_csv_to_index":::
 
@@ -104,7 +104,7 @@ The search index is used to store vectorized data from the embeddings model. The
 
     References: [AIProjectClient.agents](/python/api/azure-ai-projects/azure.ai.projects.aiclient), [SearchIndexClient.create_or_update_index](/python/api/azure-search-documents/azure.search.documents.indexes.search_index_client).
 
-1. From your console, log in to your Azure account and follow instructions for authenticating your account:
+1. From your console, sign in to your Azure account and follow instructions for authenticating your account:
 
     ```bash
     az login
@@ -148,9 +148,9 @@ Next, create a script to query the search index and retrieve product documents t
 
 ### Create prompt template for intent mapping
 
-The **get_product_documents.py** script uses a prompt template called **intent_mapping.prompty** to transform the user's question into an optimized search query. This helps the search index find the most relevant product documents.
+The **get_product_documents.py** script uses a prompt template named **intent_mapping.prompty** to transform the user's question into an optimized search query. This transformation helps the search index find the most relevant product documents.
 
-Before you run the script, create the prompt template. Add the file **intent_mapping.prompty** to your **assets** folder:
+Before running the script, create the prompt template. Add the file **intent_mapping.prompty** to your **assets** folder:
 
 :::code language="prompty" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/assets/intent_mapping.prompty":::
 
@@ -158,7 +158,7 @@ This template instructs the model to extract the user's intent and convert it in
 
 ### Test the product document retrieval script
 
-Now that you have both the script and template, run the script to test out what documents the search index returns from a query. In a terminal window run:
+Now that you have both the script and template, run the script to test what documents the search index returns from a query. In a terminal window, run:
 
 ```bash
 python get_product_documents.py --query "I need a new tent for 4 people, what would you recommend?"
@@ -168,11 +168,11 @@ The script returns a list of product documents from your search index that match
 
 ## Develop custom knowledge retrieval (RAG) code
 
-Next you create custom code to add retrieval augmented generation (RAG) capabilities to a basic chat application.
+Next, you create custom code to add retrieval augmented generation (RAG) capabilities to a basic chat application.
 
 ### Create a chat script with RAG capabilities
 
-1. In your main folder, create a new file called **chat_with_products.py**. This script retrieves product documents and generates a response to a user's question.
+1. In your main folder, create a new file named **chat_with_products.py**. This script retrieves product documents and generates a response to a user's question.
 1. Add the code to import the required libraries, create a project client, and configure settings: 
 
     :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/chat_with_products.py" id="imports_and_config":::
@@ -195,7 +195,7 @@ Next you create custom code to add retrieval augmented generation (RAG) capabili
 
 ### Create a grounded chat prompt template
 
-The **chat_with_products.py** script calls a prompt template called **grounded_chat.prompty** to generate responses. This template instructs the model to use the retrieved product documents to ground answers and stay on-topic for your retail business.
+The **chat_with_products.py** script calls a prompt template named **grounded_chat.prompty** to generate responses. This template instructs the model to use the retrieved product documents to ground answers and stay on-topic for your retail business.
 
 In your **assets** folder, add the file **grounded_chat.prompty**:
 
@@ -211,7 +211,7 @@ Now that you have both the script and the template, run the script to test your 
 python chat_with_products.py --query "I need a new tent for 4 people, what would you recommend?"
 ```
 
-The script returns a conversational response grounded in your product data. The response should reference specific products from your search index rather than generic advice.
+The script returns a conversational response grounded in your product data. The response references specific products from your search index rather than generic advice.
 
 ### Add telemetry logging
 
@@ -241,9 +241,9 @@ Follow the link in the console output to see the telemetry data in your Applicat
 
 ## Clean up resources
 
-To avoid incurring unnecessary Azure costs, you should delete the resources you created in this tutorial if they're no longer needed. To manage resources, you can use the [Azure portal](https://portal.azure.com?azure-portal=true).
+To avoid incurring unnecessary Azure costs, delete the resources you created in this tutorial if they're no longer needed. To manage resources, you can use the [Azure portal](https://portal.azure.com?azure-portal=true).
 
-But don't delete them yet, if you want to deploy your chat app to Azure in [the next part of this tutorial series](copilot-sdk-evaluate.md).
+Don't delete the resources if you want to deploy your chat app to Azure in [the next part of this tutorial series](copilot-sdk-evaluate.md).
 
 ## Next step
 

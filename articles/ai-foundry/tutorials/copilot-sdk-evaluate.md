@@ -35,24 +35,24 @@ This tutorial builds on [Part 2: Build a custom chat app with the Microsoft Foun
 - Complete [Part 2 of the tutorial series](copilot-sdk-build-rag.md) to build the chat application.
 - Use the same **Microsoft Foundry** project you created in Part 1.
 - **Azure AI permissions**: Owner or Contributor role to modify model endpoint rate limits and run evaluation jobs.
-- Make sure you've completed the steps to [add telemetry logging](copilot-sdk-build-rag.md#add-telemetry-logging) from Part 2.
+- Make sure you complete the steps to [add telemetry logging](copilot-sdk-build-rag.md#add-telemetry-logging) from Part 2.
 
 ## Create evaluation dataset
 
-Use the following evaluation dataset, which contains example questions and expected answers. You'll use this dataset with an evaluator and the `get_chat_response()` target function to assess your chat app's performance across relevance, groundedness, and coherence metrics.
+Use the following evaluation dataset, which contains example questions and expected answers. Use this dataset with an evaluator and the `get_chat_response()` target function to assess your chat app's performance across relevance, groundedness, and coherence metrics.
 
-1. Create a file called **chat_eval_data.jsonl** in your **assets** folder.
+1. Create a file named **chat_eval_data.jsonl** in your **assets** folder.
 1. Paste this dataset into the file:
 
     :::code language="jsonl" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/assets/chat_eval_data.jsonl":::
 
-    References: [JSONL format for evaluation datasets](https://learn.microsoft.com/en-us/azure/ai-studio/how-to/evaluate-results).
+    References: [JSONL format for evaluation datasets](../how-to/evaluate-results.md).
 
 ## Evaluate with Azure AI evaluators
 
 Create an evaluation script that generates a target function wrapper, loads your dataset, runs the evaluation, and logs results to your Foundry project.
 
-1. Create a file called **evaluate.py** in your main folder.
+1. Create a file named **evaluate.py** in your main folder.
 1. Add the following code to import the required libraries, create a project client, and configure some settings:
 
     :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/evaluate.py" id="imports_and_config":::
@@ -73,19 +73,19 @@ Create an evaluation script that generates a target function wrapper, loads your
 
 ### Configure the evaluation model
 
-Since the evaluation script calls the model many times, you might want to increase the number of tokens per minute for the evaluation model.  
+The evaluation script calls the model many times. Consider increasing the number of tokens per minute for the evaluation model.  
 
 In Part 1 of this tutorial series, you created an **.env** file that specifies the name of the evaluation model, `gpt-4o-mini`.  Try to increase the tokens per minute limit for this model, if you have available quota. If you don't have enough quota to increase the value, don't worry.  The script is designed to handle limit errors.
 
 1. In your project in Foundry portal, select **Models + endpoints**.
 1. Select **gpt-4o-mini**.  
 1. Select **Edit**.
-1. If you have quota to increase the **Tokens per Minute Rate Limit**, try increasing it to 30 or above. 
+1. If you have quota, increase the **Tokens per Minute Rate Limit** to 30 or more. 
 1. Select **Save and close**.
 
 ### Run the evaluation script
 
-1. From your console, sign in to your Azure account with the Azure CLI:
+1. From your console, sign in to your Azure account by using the Azure CLI:
 
     ```bash
     az login
@@ -124,13 +124,13 @@ References: [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.ai
     python evaluate.py
     ```
 
-Expect the evaluation to take 5–10 minutes to complete. You may see timeout warnings and rate-limit errors; the script handles them automatically and continues processing.
+The evaluation takes 5–10 minutes to complete. You might see timeout warnings and rate-limit errors. The script handles these errors automatically and continues processing.
 
 ### Interpret the evaluation output
 
 In the console output, you see an answer for each question, followed by a table with summarized metrics showing relevance, groundedness, and coherence scores. Scores range from 0 (worst) to 4 (best) for GPT-assisted metrics. Look for low groundedness scores to identify responses that aren't well-supported by the reference documents, and low relevance scores to identify off-topic responses.
 
-You may see many `WARNING:opentelemetry.attributes:` messages and timeout errors. These can be safely ignored and do not affect the evaluation results. The evaluation script is designed to handle rate-limit errors and continue processing.
+You might see many `WARNING:opentelemetry.attributes:` messages and timeout errors. You can safely ignore these messages. They don't affect the evaluation results. The evaluation script is designed to handle rate-limit errors and continue processing.
 
 The evaluation results output also includes a link to view detailed results in the Foundry portal, where you can compare evaluation runs side-by-side and track improvements over time.
 
@@ -162,7 +162,7 @@ The evaluation results output also includes a link to view detailed results in t
 
 ## Iterate and improve
 
-The evaluation results revealed that responses often aren't well-grounded in the reference documents. To improve groundedness, modify your system prompt in the **assets/grounded_chat.prompty** file to encourage the model to use the reference documents more directly.
+The evaluation results reveal that responses often aren't well-grounded in the reference documents. To improve groundedness, modify your system prompt in the **assets/grounded_chat.prompty** file to encourage the model to use the reference documents more directly.
 
 **Current prompt (problematic)**:
 ```
@@ -186,18 +186,18 @@ After updating the prompt:
     python evaluate.py
     ```
 
-1. Compare the new evaluation results to the previous run—you should see improved groundedness scores.
+1. Compare the new evaluation results to the previous run. You should see improved groundedness scores.
 
 Try additional modifications like:
 - Changing the system prompt to focus on accuracy over completeness
-- Testing with a different model (e.g., `gpt-4-turbo` if available)
+- Testing with a different model (for example, `gpt-4-turbo` if available)
 - Adjusting the context retrieval to return more relevant documents
 
 Each iteration helps you understand which changes improve specific metrics.
 
 ## Clean up resources
 
-To avoid incurring unnecessary Azure costs, you should delete the resources you created in this tutorial if they're no longer needed. To manage resources, you can use the [Azure portal](https://portal.azure.com?azure-portal=true).
+To avoid incurring unnecessary Azure costs, delete the resources you created in this tutorial if they're no longer needed. To manage resources, you can use the [Azure portal](https://portal.azure.com?azure-portal=true).
 
 ## Related content
 

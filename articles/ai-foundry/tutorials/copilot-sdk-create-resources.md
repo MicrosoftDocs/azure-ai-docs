@@ -20,7 +20,7 @@ author: sdgilley
 
 # Tutorial:  Part 1 - Set up project and development environment to build a custom knowledge retrieval (RAG) app with the Microsoft Foundry SDK
 
-In this tutorial, you set up the resources needed to build a custom knowledge retrieval (RAG) chat app with the Microsoft Foundry SDK. This is part one of a three-part tutorial series; you'll create the resources here, build the app in part two, and evaluate it in part three. In this part, you:
+In this tutorial, you set up the resources needed to build a custom knowledge retrieval (RAG) chat app with the Microsoft Foundry SDK. This is part one of a three-part tutorial series. You create the resources here, build the app in part two, and evaluate it in part three. In this part, you:
 
 > [!div class="checklist"]
 > - Create a project
@@ -30,7 +30,7 @@ In this tutorial, you set up the resources needed to build a custom knowledge re
 > - Deploy models into your project
 > - Configure your environment variables
 
-If you've completed other tutorials or quickstarts, you might have already created some of the resources needed for this tutorial. If you have, feel free to skip those steps here.
+If you completed other tutorials or quickstarts, you might have already created some of the resources needed for this tutorial. If you did, feel free to skip those steps.
 
 ## Prerequisites
 
@@ -38,16 +38,15 @@ If you've completed other tutorials or quickstarts, you might have already creat
 
 * An Azure account with an active subscription and **Owner** or **Contributor** role assigned. If you don't have one, [create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * **Microsoft Foundry**: Owner or Contributor role to create a project.
-* **Azure AI Search**: Search Service Contributor and Search Index Data Contributor roles (required for creating search indexes). For more information, see [Role-based access control in Foundry portal](../concepts/rbac-azure-ai-foundry.md).
 
 
-## Create a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]
+## Create a hub-based project
 
 [!INCLUDE [create-hub-project-simple](../includes/create-hub-project-simple.md)]
 
 ## Deploy models
 
-You need two models to build a RAG-based chat app: an Azure OpenAI chat model (`gpt-4o-mini`) and an Azure OpenAI embedding model (`text-embedding-ada-002`). Deploy these models in your Foundry project, using this set of steps for each model.
+You need two models to build a RAG-based chat app: an Azure OpenAI chat model (`gpt-4o-mini`) and an Azure OpenAI embedding model (`text-embedding-ada-002`). Deploy these models in your Foundry project by using this set of steps for each model.
 
 These steps deploy a model to a real-time endpoint from the Foundry portal [model catalog](../how-to/model-catalog-overview.md):
 
@@ -60,48 +59,48 @@ These steps deploy a model to a real-time endpoint from the Foundry portal [mode
 
 1. On the model details page, select **Use this model**.
 
-1. Leave the default **Deployment name**. select **Deploy**.  Or, if the model isn't available in your region, a different region is selected for you and connected to your project.  In this case, select **Connect and deploy**.
+1. Leave the default **Deployment name** and select **Deploy**. Or, if the model isn't available in your region, a different region is selected for you and connected to your project. In this case, select **Connect and deploy**.
 
 After you deploy the **gpt-4o-mini**, repeat the steps to deploy the **text-embedding-ada-002** model.
 
 ## Create an Azure AI Search service
 
-The goal with this application is to ground the model responses in your custom data. The search index is used to retrieve relevant documents based on the user's question.
+The goal of this application is to ground the model responses in your custom data. The search index retrieves relevant documents based on the user's question.
 
-You need an Azure AI Search service and connection in order to create a search index.
+You need an Azure AI Search service and connection to create a search index.
 
 > [!NOTE]
-> Creating an [Azure AI Search service](/azure/search/) and subsequent search indexes has associated costs. You can see details about pricing and pricing tiers for the Azure AI Search service on the creation page, to confirm cost before creating the resource. For this tutorial, we recommend using a pricing tier of **Basic** or above.
+> Creating an [Azure AI Search service](/azure/search/) and subsequent search indexes incurs costs. To confirm the cost before creating the resource, check the pricing and pricing tiers for the Azure AI Search service on the creation page. For this tutorial, use a pricing tier of **Basic** or higher.
 
-If you already have an Azure AI Search service, you can skip to the [next section](#connect-the-azure-ai-search-to-your-project).
+If you already have an Azure AI Search service, go to the [next section](#connect-the-azure-ai-search-to-your-project).
 
-Otherwise, you can create an Azure AI Search service using the Azure portal. 
+Otherwise, create an Azure AI Search service by using the Azure portal. 
 
 > [!TIP]
-> This step is the only time you use the Azure portal in this tutorial series.  The rest of your work is done in Foundry portal or in your local development environment.
+> This step is the only time you use the Azure portal in this tutorial series.  You do the rest of your work in the Foundry portal or in your local development environment.
 
 1. [Create an Azure AI Search service](https://portal.azure.com/#create/Microsoft.Search) in the Azure portal.
-1. Select your resource group and instance details. You can see details about pricing and pricing tiers on this page.
+1. Select your resource group and instance details. Check the pricing and pricing tiers on this page. For this tutorial, use a pricing tier of **Basic** or higher.
 1. Continue through the wizard and select **Review + assign** to create the resource.
-1. Confirm the details of your Azure AI Search service, including estimated cost.
+1. Confirm the details of your Azure AI Search service, including the estimated cost.
 1. Select **Create** to create the Azure AI Search service.
 
 ### Connect the Azure AI Search to your project
 
-If you already have an Azure AI Search connection in your project, you can skip to [Install the Azure CLI and sign in](#install-the-azure-cli-and-sign-in).
+If your project already has an Azure AI Search connection, go to [Install the Azure CLI and sign in](#install-the-azure-cli-and-sign-in).
 
 In the Foundry portal, check for an Azure AI Search connected resource.
 
 1. In [Foundry](https://ai.azure.com/?cid=learnDocs), go to your project and select **Management center** from the left pane.
 1. In the **Connected resources** section, look to see if you have a connection of type **Azure AI Search**.
-1. If you have an Azure AI Search connection, you can skip ahead to the next section.
+1. If you have an Azure AI Search connection, you can skip the next steps.
 1. Otherwise, select **New connection** and then **Azure AI Search**.
 1. Find your Azure AI Search service in the options and select **Add connection**.
 1. Use **API key** for **Authentication**.
 
     > [!IMPORTANT]
     > The **API key** option isn't recommended for production. The recommended approach is **Microsoft Entra ID** authentication, which requires the *Search Index Data Contributor* and *Search Service Contributor* roles (configured in Prerequisites). For more information, see [Connect to Azure AI Search using roles](../../search/search-security-rbac.md).
-    > For this tutorial, **API key** is acceptable if you want to proceed quickly; switch to Entra ID before deploying to production.
+    > For this tutorial, **API key** is acceptable if you want to proceed quickly. Switch to Entra ID before deploying to production.
 
 1. Select **Add connection**.  
 
@@ -114,9 +113,9 @@ In the IDE of your choice, create a new folder for your project.  Open a termina
 
 ## Install packages
 
-Install required packages.
+Install the required packages.
 
-1. First, create a file named **requirements.txt** in your project folder. Add the following packages to the file:
+1. Create a file named **requirements.txt** in your project folder. Add the following packages to the file:
 
     :::code language="txt" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/requirements.txt":::
 
@@ -147,7 +146,7 @@ References: [Azure AI Projects client library](/python/api/azure-ai-projects), [
 
 ### Create helper script
 
-Create a folder for your work. Create a file called **config.py** in this folder. This helper script is used in the next two parts of the tutorial series. The script loads your environment variables and initializes the Azure AI Projects client. Add the following code:
+Create a folder for your work. Create a file named **config.py** in this folder. Ypu'll use this helper script in the next two parts of the tutorial series. The script loads your environment variables and initializes the Azure AI Projects client. Add the following code:
 
 :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/config.py":::
 
@@ -164,13 +163,13 @@ References: [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.ai
 
 [!INCLUDE [Install the Azure CLI](../includes/install-cli.md)]
 
-Keep this terminal window open to run your python scripts from here as well, now that you've signed in.
+Keep this terminal window open to run your python scripts from here as well, now that you signed in.
 
 ## Clean up resources
 
-To avoid incurring unnecessary Azure costs, you should delete the resources you created in this tutorial if they're no longer needed. To manage resources, you can use the [Azure portal](https://portal.azure.com?azure-portal=true).
+To avoid incurring unnecessary Azure costs, delete the resources you created in this tutorial if they're no longer needed. To manage resources, you can use the [Azure portal](https://portal.azure.com?azure-portal=true).
 
-But don't delete them yet, if you want to build a chat app in [the next part of this tutorial series](copilot-sdk-build-rag.md).
+But don't delete them yet if you want to build a chat app in [the next part of this tutorial series](copilot-sdk-build-rag.md).
 
 ## Next step
 
