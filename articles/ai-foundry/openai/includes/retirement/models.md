@@ -17,10 +17,10 @@ ms.custom: references_regions, build-2025
 
 | Model Name | Model Version<sup>1</sup> | Lifecycle Status | Deprecation Date (No New Customers) | Retirement Date | Replacement Model |
 |:--|:--|:--|:--|:--|:--|
-| `gpt-4o` | 2024-05-13 | Generally Available | 2025-05-13 | 2026-02-27 | `gpt-5.1` |
-| `gpt-4o` | 2024-08-06 | Generally Available | 2025-08-06 | 2026-02-27 | `gpt-5.1` |
+| `gpt-4o` | 2024-05-13 | Generally Available | 2025-05-13 | 2026-03-31 | `gpt-5.1` |
+| `gpt-4o` | 2024-08-06 | Generally Available | 2025-08-06 | 2026-03-31 | `gpt-5.1` |
 | `gpt-4o` | 2024-11-20 | Generally Available | 2025-11-20 | 2026-06-03 | `gpt-5.1` |
-| `gpt-4o-mini` | 2024-07-18 | Generally Available | 2025-07-18 | 2026-02-27 | `gpt-4.1-mini` |
+| `gpt-4o-mini` | 2024-07-18 | Generally Available | 2025-07-18 | 2026-03-31 | `gpt-4.1-mini` |
 | `gpt-4.1` | 2025-04-14 | Generally Available | 2026-04-14 | 2026-10-14 | `gpt-5` |
 | `gpt-4.1-mini` | 2025-04-14 | Generally Available | 2026-04-14 | 2026-10-14 | `gpt-5-mini` |
 | `gpt-4.1-nano` | 2025-04-14 | Generally Available | 2026-04-14 | 2026-10-14 | `gpt-5-nano` |
