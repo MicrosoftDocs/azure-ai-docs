@@ -40,7 +40,7 @@ This quickstart uses a JSON document that contains metadata for 50 fictitious ho
 
 To prepare the sample data for this quickstart:
 
-1. Download the [sample JSON document](https://github.com/Azure-Samples/azure-search-sample-data/blob/main/hotels/HotelsData_toAzureBlobs.json).
+1. Download the `HotelsData_toAzureBlobs.json` file from the [azure-search-sample-data](https://github.com/Azure-Samples/azure-search-sample-data/blob/main/hotels/HotelsData_toAzureBlobs.json) repo.
 
 1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure Storage account.
 
@@ -48,7 +48,7 @@ To prepare the sample data for this quickstart:
 
 1. Create a container named **hotels-sample**.
 
-1. Upload the HotelsData_toAzureBlobs.json file to the container.
+1. Upload the `HotelsData_toAzureBlobs.json` file to the container.
 
 ## Start the wizard
 
@@ -109,8 +109,8 @@ To configure the index:
    | `HotelName`, `Category` | Retrievable, Filterable, Sortable, Searchable |
    | `Description`, `Description_fr` | Retrievable, Searchable |
    | `Tags` | Retrievable, Filterable, Searchable |
-   | `ParkingIncluded`, `IsDeleted`, `Location` | Retrievable, Filterable, Facetable |
-   | `LastRenovationDate`, `Rating` | Retrievable, Filterable, Sortable |
+   | `ParkingIncluded`, `IsDeleted` | Retrievable, Filterable, Facetable |
+   | `LastRenovationDate`, `Rating`, `Location` | Retrievable, Filterable, Sortable |
    | `Address.StreetAddress`, `Rooms.Description`, `Rooms.Description_fr` | Retrievable, Searchable |
    | `Address.City`, `Address.StateProvince`, `Address.PostalCode`, `Address.Country` | Retrievable, Filterable, Facetable, Searchable, Sortable|
    | `Rooms.Type`, `Rooms.BedOptions`, `Rooms.Tags` | Retrievable, Filterable, Facetable, Searchable |

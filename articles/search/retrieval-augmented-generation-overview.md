@@ -22,7 +22,7 @@ Retrieval-augmented Generation (RAG) is a pattern that extends LLM capabilities 
 
 | Challenge | Description |
 |-----------|-------------|
-| **Query&nbsp;understanding** | Modern users ask complex, conversational, or vague questions with assumed context. Traditional keyword search fails when queries don't match document terminology. Your information retrieval system must understand intent, not just match words. |
+| **Query&nbsp;understanding** | Modern users ask complex, conversational, or vague questions with assumed context. Traditional keyword search fails when queries don't match document terminology. For RAG, an information retrieval system must understand intent, not just match words. |
 | **Multi-source&nbsp;data&nbsp;access** | Enterprise content spans SharePoint, databases, blob storage, and other platforms. Creating a unified search corpus without disrupting data operations is essential. |
 | **Token&nbsp;constraints** | LLMs accept limited token inputs. Your retrieval system must return highly relevant, concise results—not exhaustive document dumps. |
 | **Response&nbsp;time&nbsp;expectations** | Users expect AI-powered answers in seconds, not minutes. The retrieval system must balance thoroughness with speed.
@@ -64,7 +64,8 @@ The following sections explain how each approach solves specific RAG challenges.
 **Agentic retrieval solution:**
 
 + Knowledge bases unify multiple knowledge sources
-+ Direct query against remote SharePoint and Bing (no indexing needed)
++ Direct query against remote SharePoint and Bing (no indexing needed) to supplement index content
++ Retrieval instructions guide the LLM to appropriate data sources
 + Automatic indexing pipeline generation for Azure Blob, OneLake, ingested SharePoint content, ingested other external content
 + Single query interface and query plan across all sources
 
@@ -201,7 +202,7 @@ RAG quality depends on how you prepare content for retrieval. Azure AI Search su
 |-------------------|---------------------------|
 | **Large documents** | Automatic chunking (built-in or via skills) |
 | **Multiple languages** | 50+ language analyzers for text, multilingual vectors |
-| **Images and PDFs** | OCR, image analysis, document extraction skills |
+| **Images and PDFs** | OCR, image analysis, image verbalization, document extraction skills |
 | **Need for similarity search** | Integrated vectorization (Azure OpenAI, Azure AI Vision, custom) |
 | **Terminology mismatches** | Synonym maps, semantic ranking |
 
@@ -213,7 +214,7 @@ RAG quality depends on how you prepare content for retrieval. Azure AI Search su
 
 How do you provide the best grounding data for LLM answer formulation? It's a combination of having appropriate content, smart queries, and query logic that can identify the best chunks for answering a question.
 
-On the content, use chunking to subdivide large documents so that portions can be matched on independently. Use vectorization to create embeddings used for vector queries.
+During indexing, use chunking to subdivide large documents so that portions can be matched on independently. Include a vectorization step to create embeddings used for vector queries.
 
 On the query side, to ensure the most relevant results for your RAG implementation:
 
@@ -231,6 +232,7 @@ Learn more about [hybrid search](hybrid-search-overview.md) and [semantic rankin
 
 **Use agentic retrieval when:**
 
++ Your client is an agent or chatbot
 + You need the highest possible relevance and accuracy
 + Your queries are complex or conversational
 + You want structured responses with citations and query details

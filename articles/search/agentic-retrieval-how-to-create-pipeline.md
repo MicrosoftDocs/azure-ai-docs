@@ -5,7 +5,7 @@ description: Learn how to design and build a custom agentic retrieval solution w
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 11/19/2025
+ms.date: 12/17/2025
 ms.service: azure-ai-search
 ms.topic: tutorial
 ms.custom:
@@ -208,6 +208,26 @@ agent = project_client.agents.create_version(
 )
 
 print(f"Agent '{agent_name}' created or updated successfully.")
+```
+
+### Connect to a remote SharePoint knowledge source
+
+Optionally, if your knowledge base includes a [remote SharePoint knowledge source](agentic-knowledge-source-how-to-sharepoint-remote.md), you must also include the `x-ms-query-source-authorization` header in the MCP tool connection.
+
+```python
+from azure.identity import get_bearer_token_provider
+
+# Create MCP tool with SharePoint authorization header
+mcp_kb_tool = MCPTool(
+    server_label = "knowledge-base",
+    server_url = mcp_endpoint,
+    require_approval = "never",
+    allowed_tools = ["knowledge_base_retrieve"],
+    project_connection_id = project_connection_name,
+    headers = {
+        "x-ms-query-source-authorization": get_bearer_token_provider(credential, "https://search.azure.com/.default")()
+    }
+)
 ```
 
 ### Chat with the agent
