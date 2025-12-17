@@ -435,7 +435,7 @@ Authorization: Bearer {management_access_token}
 ---
 
 > [!NOTE]
-> Deleting your agent and project connection doesn't delete your knowledge base or its knowledge sources. You must delete these knowledge sources separately on your Azure AI Search service. For more information, see [Delete a knowledge base](/azure/search/agentic-retrieval-how-to-create-knowledge-base?#delete-a-knowledge-base) and [Delete a knowledge source](/azure/search/agentic-knowledge-source-how-to-search-index#delete-a-knowledge-source).
+> Deleting your agent and project connection doesn't delete your knowledge base or its knowledge sources. You must delete these objects separately on your Azure AI Search service. For more information, see [Delete a knowledge base](/azure/search/agentic-retrieval-how-to-create-knowledge-base?#delete-a-knowledge-base) and [Delete a knowledge source](/azure/search/agentic-knowledge-source-how-to-search-index#delete-a-knowledge-source).
 
 ## Related content
 
