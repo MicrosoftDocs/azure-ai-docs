@@ -57,7 +57,7 @@ Unlike LUIS, you can't label the same text as two different entities. Learned co
 
 ## Can I import a LUIS JSON file into conversational language understanding?
 
-Yes, you can [import any LUIS application](./how-to/migrate-from-luis.md) JSON file from the latest version in the service.
+Yes, you can [import any LUIS application](/previous-versions/azure/ai-services/qnamaker/overview/overview) JSON file from the latest version in the service.
 
 ## Can I import a LUIS `.LU` file into conversational language understanding?
 
