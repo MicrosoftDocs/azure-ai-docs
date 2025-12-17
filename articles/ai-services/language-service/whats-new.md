@@ -34,7 +34,7 @@ Azure Language in Foundry Tools is updated on an ongoing basis. Bookmark this pa
 * [Conversational Language Understanding multi-turn conversations](conversational-language-understanding/concepts/multi-turn-conversations.md). Enable natural, context-aware dialogues through entity slot filling → Microsoft Foundry (new).
 * [Language detection](conversational-language-understanding/concepts/multiple-languages.md). Automatically detect the language of user utterances in conversational applications → Microsoft Foundry (new).
  * [PII detection for text](personally-identifiable-information/how-to/redact-text-pii.md). Detect and redact personally identifiable information in text documents → Microsoft Foundry (new).
-* [Custom Named Entity Recognition](custom-named-entity-recognition/quickstart.md). Test, train, and deploy custom NER models directly in the Foundry playground → Microsoft Foundry (classic).
+* [Custom Named Entity Recognition](custom-named-entity-recognition/quickstart.md). You can test, train, and deploy custom NER models directly in the Foundry playground → Microsoft Foundry (classic).
 * [PII detection for conversations](personally-identifiable-information/how-to/redact-conversation-pii.md). Identify and redact personally identifiable information in conversations → Microsoft Foundry (classic).
 
 **Text PII detection enhancements (2025-11-15-preview API)**. The preview API introduces several new feature parameters for [PII detection](personally-identifiable-information/overview.md):
