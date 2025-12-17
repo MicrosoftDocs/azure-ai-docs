@@ -10,7 +10,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: conceptual
-ms.date: 11/10/2025
+ms.date: 12/17/2025
 ---
 
 # Preview features in Azure AI Search
@@ -63,7 +63,7 @@ Currently, there are no control plane features in preview.
 
 ## Preview features in Azure SDKs
 
-Each Azure SDK team releases beta packages on their own timeline. Check the change log for mentions of new features in beta packages:
+Preview features in Azure SDKs are available through preview packages. To determine which preview features are available in a specific package version, see the SDK's change log:
 
 + [Change log for Azure SDK for .NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md)
 + [Change log for Azure SDK for Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md)
@@ -72,7 +72,7 @@ Each Azure SDK team releases beta packages on their own timeline. Check the chan
 
 ## Using preview features
 
-Experimental features are available through the preview REST API first, followed by Azure portal, and then the Azure SDKs. 
+You can access experimental features through preview REST API versions or preview SDK packages. Some features might also be available in the Azure portal. For more information about availability, see [Data plane preview features](#data-plane-preview-features) and [Control plane preview features](#control-plane-preview-features).
 
 The following statements apply to preview features:
 
