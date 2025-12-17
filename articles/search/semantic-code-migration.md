@@ -50,7 +50,6 @@ Check your code for the REST API version or SDK package version to confirm which
 
 ## Change logs for Azure SDKs
 
-
 To determine which semantic features are available in a specific Azure SDK package and whether any APIs have been renamed, see the SDK's change log:
 
 + [Azure SDK for .NET change log](https://github.com/Azure/azure-sdk-for-net/blob/Azure.Search.Documents_11.5.1/sdk/search/Azure.Search.Documents/CHANGELOG.md#1150-2023-11-10&preserve-view=true)
