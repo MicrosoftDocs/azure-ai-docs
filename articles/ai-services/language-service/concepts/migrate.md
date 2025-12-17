@@ -5,7 +5,7 @@ description: Use this article to learn if you need to migrate your applications 
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/18/2025
 ms.author: lajanuar
 ---
