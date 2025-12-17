@@ -134,7 +134,7 @@ Here's how you can do this:
 
    **Option 2: Create a guardrail policy for enforcement**
 
-  1. In the compliance workspace, select the **Policies** tab.
+   1. In the compliance workspace, select the **Policies** tab.
    1. Create a new guardrail policy to enforce guardrail requirements across all deployments.
 
 ## Set up security recommendations and alerts
@@ -185,7 +185,7 @@ To enable Purview in Foundry:
 1. Select the **Security posture** tab.
 1. Select the Azure subscription.
 1. Turn on the enablement toggle next to **Microsoft Purview**.
-:::image type="content" source="media/new-draft/microsoft-purview-toggle.png" alt-text="Screenshot of the Microsoft Purview enablement toggle in the Compliance Security tab.":::
+:::image:::media/new-draft/microsoft-purview-toggle.png:::Screenshot of the Microsoft Purview enablement toggle in the Compliance Security tab:::
 
 Repeat the preceding steps for other Azure subscriptions, as appropriate.
 
