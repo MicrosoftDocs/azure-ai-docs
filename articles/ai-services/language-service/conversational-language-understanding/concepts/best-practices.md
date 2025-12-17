@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: best-practice
-ms.date: 11/18/2025
+ms.date: 12/17/2025
 ms.author: lajanuar
 ms.custom: language-service-clu
 ---
@@ -93,7 +93,7 @@ First, you can enable the setting for **Enable data transformation for casing**,
 ...
 ```
 
-Second, you can also enable the setting for **Enable data augmentation for diacritics** to generate variations of your training data for possible diacritic variations used in natural language. This feature is available for all languages. It's especially useful for Germanic and Slavic languages, where users often write words by using classic English characters instead of the correct characters. For example, the phrase "Navigate to the sports channel" in French is "Accédez à la chaîne sportive." When this feature is enabled, the phrase "Accedez a la chaine sportive" (without diacritic characters) is also included in the training dataset.
+Second, you can also enable the setting for **Enable data augmentation for diacritics** to generate variations of your training data for possible diacritic variations used in natural language. This feature is available for all languages. It's especially useful for Germanic and Slavic languages, where users often write words by using classic English characters instead of the correct characters. For example, the phrase "Navigate to the sports channel" in French is `Accédez à la chaîne sportive.` When this feature is enabled, the phrase `Accedez a la chaine sportive` (without diacritic characters) is also included in the training dataset.
 
 If you enable this feature, the utterance count of your training set increases. For this reason, you might need to adjust your training data size accordingly. The current maximum utterance count after augmentation is 25,000. To access this feature via the API, set the `augmentDiacritics` parameter to `true`. See the following example:
 

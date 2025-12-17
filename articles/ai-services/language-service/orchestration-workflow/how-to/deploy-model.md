@@ -20,11 +20,11 @@ Once you're satisfied with how your model performs, it's ready to be deployed, a
 * [Labeled utterances](tag-utterances.md) and successfully [trained model](train-model.md)
 <!--* Reviewed the [model evaluation details](view-model-evaluation.md) to determine how your model is performing.-->
 
-See [project development lifecycle](../overview.md#project-development-lifecycle) for more information.
+For more information, *see*  [project development lifecycle](../overview.md#project-development-lifecycle).
 
 ## Deploy model
 
-After you have reviewed the model's performance and decide it's fit to be used in your environment, you need to assign it to a deployment to be able to query it. Assigning the model to a deployment makes it available for use through the [prediction API](https://aka.ms/clu-apis). It is recommended to create a deployment named `production` to which you assign the best model you have built so far and use it in your system. You can create another deployment called `staging` to which you can assign the model you're currently working on to be able to test it. You can have a maximum on 10 deployments in your project. 
+After you reviewed the model's performance and decide it's a good fit for use in your environment, you need to assign it to a deployment to be able to query it. Assigning the model to a deployment makes it available for use through the [prediction API](https://aka.ms/clu-apis). We recommended that you create a deployment named `production` to which you assign the best model you built so far and use it in your system. You can create another deployment called `staging` to which you can assign the model you're currently working on to be able to test it. You can have a maximum on 10 deployments in your project. 
 
 ### Submit deployment job
 
@@ -40,7 +40,7 @@ After you're done testing a model assigned to one deployment, you might want to 
 * Taking the model assigned to the first deployment, and assigning it to the second deployment. 
 * taking the model assigned to second deployment and assign it to the first deployment. 
 
-This can be used to swap your `production` and `staging` deployments when you want to take the model assigned to `staging` and assign it to `production`. 
+This step can be used to swap your `production` and `staging` deployments when you want to take the model assigned to `staging` and assign it to `production`. 
 
 [!INCLUDE [Swap deployments](../includes/rest-api/swap-deployment.md)]
 
@@ -57,7 +57,7 @@ You can [deploy your project to multiple regions](../../concepts/custom-features
 
 ## Unassign deployment resources
 
-When unassigning or removing a deployment resource from a project, you will also delete all the deployments that have been deployed to that resource's region.
+When unassigning or removing a deployment resource from a project, you can also delete all the deployments that are deployed to that resource region.
 
 [!INCLUDE [Unassign resource](../../conversational-language-understanding/includes/rest-api/unassign-resources.md)]
 
