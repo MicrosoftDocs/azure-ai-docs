@@ -7,7 +7,7 @@ ms.author: haileytapia
 ms.reviewer: liulewis
 ms.service: azure-ai-foundry
 ms.topic: concept-article
-ms.date: 12/15/2025
+ms.date: 12/17/2025
 ---
 
 # Memory in Foundry Agent Service (preview)
@@ -17,7 +17,7 @@ ms.date: 12/15/2025
 
 Memory in Foundry Agent Service is a managed, long-term memory solution. It enables agent continuity across sessions, devices, and workflows. By creating and managing memory stores, you can build agents that retain user preferences, maintain conversation history, and deliver personalized experiences.
 
-This article provides an overview of agent memory, including its concepts, use cases, best practices, and limitations. For usage instructions, see [Manage memory in Foundry Agent Service](../how-to/memory-usage.md).
+This article provides an overview of agent memory, including its concepts, use cases, best practices, and limitations. For usage instructions, see [Create and use memory in Foundry Agent Service](../how-to/memory-usage.md).
 
 ## What is memory?
 
@@ -31,7 +31,8 @@ Memory in Foundry Agent Service is designed for long-term memory. It extracts me
 
 ## How memory works
 
-Behind the scenes, memories are stored as "facts" in a managed memory store. The system applies retention, consolidation, and conflict‑resolution logic to ensure that memories remain accurate and useful over time. It also uses hybrid search techniques (both keyword and vector) to efficiently retrieve relevant memories.
+Behind the scenes, memories are stored as items in a managed memory store. The system applies consolidation and conflict‑resolution logic where applicable. Currently, consolidation is performed for user profile memories to merge duplicate or overlapping profile information. Chat summary memories aren't consolidated.
+
 Memory operates in the following phases:
 
 1. **Extraction:** When a user interacts with an agent, the system actively extracts key information from the conversation, such as user preferences, facts, and relevant context. For example, preferences like "allergic to dairy" and summaries of recent activities are identified and stored.
@@ -53,8 +54,16 @@ Memory in Foundry Agent Service extracts and stores two types of long-term memor
 
 | Type | Description | Configuration |
 |--|--|--|
-| User profile memory | Information and preferences about the user, such as preferred name, dietary restrictions, and language preference. These memories are considered "static" with respect to a conversation because they generally don't depend on the current chat context. We recommend that you retrieve user profile memories only once at the beginning of each conversation. | Specify `user_profile_details` in a [memory store](../how-to/memory-usage.md#create-a-memory-store). |
+| User profile memory | Information and preferences about the user, such as preferred name, dietary restrictions, and language preference. These memories are considered "static" with respect to a conversation because they generally don't depend on the current chat context. We recommend that you retrieve user profile memories only once at the beginning of each conversation. | Specify `user_profile_details` in a [memory store](../how-to/memory-usage.md#customize-memory). |
 | Chat summary memory | A distilled summary of each topic or thread covered in a chat session. These memories allow users to continue conversations or reference prior sessions without repeating earlier context. We recommend that you retrieve chat summary memories dynamically based on the current conversation to surface relevant threads. | Enable `chat_summaries` in a [memory store](../how-to/memory-usage.md#create-a-memory-store). |
+
+## Working with memory
+
+There are two ways to use memory for agent interactions:
+
++ **Memory search tool:** Attach the memory search tool to a prompt agent to enable reading from and writing to the memory store during conversations. This approach is ideal for most scenarios because it simplifies memory management. For more information, see [Use memories via an agent tool](../how-to/memory-usage.md#use-memories-via-an-agent-tool).
+
++ **Memory search APIs:** Interact directly with the memory store using the memory store APIs. This approach provides more control and flexibility for advanced use cases. For more information, see [Use memories via APIs](../how-to/memory-usage.md#use-memories-via-apis).
 
 ## Use cases
 
@@ -77,22 +86,6 @@ The following examples illustrate how memory can enhance various types of agents
 - A medical research agent that remembers which compounds were previously tested and failed, key findings from different labs, and complex relationships between proteins. The agent uses this knowledge to suggest new, untested research hypotheses.
 
 ---
-
-## Best practices
-
-- **Implement per-user access controls:** Avoid giving agents access to memories shared across all users. Use the `scope` property to partition the memory store by user. When you share `scope` across users, use `user_profile_details` to instruct the memory system not to store personal information.
-
-- **Map scope to an authenticated user:** When you specify scope in the [memory search tool](../how-to/memory-usage.md#add-the-memory-search-tool-to-an-agent), set `scope={{$userId}}` to map to the user from the authentication token (`{tid}_{oid}`). This ensures that memory searches automatically target the correct user.
-
-- **Seed and inject memories:** Add static memories at the start of each conversation. The agent should always search for relevant contextual memories and inject them into the response-generation prompt. At the end of the session (period of inactivity defined by `update_delay`), the agent should update the memory store with memories from the conversation.
-
-- **Minimize and protect sensitive data:** Store only what's necessary for your use case. If you must store sensitive data, such as personal data, health data, or confidential business inputs, redact or remove other content that could be used to trace back to an individual.
-
-- **Support privacy and compliance:** Provide users with transparency, including options to access and delete their data. Record all deletions in a tamper-evident audit trail. Ensure the system adheres to local compliance requirements and regulatory standards.
-
-- **Segment data and isolate memory:** In multi-agent systems, segment memory logically and operationally. Allow customers to define, isolate, inspect, and delete their own memory footprint.
-
-- **Monitor memory usage:** Track token usage and memory operations to understand costs and optimize performance.
 
 ## Security risks
 
@@ -120,6 +113,6 @@ During the public preview, memory features are free. You're only billed for usag
 ## Related content
 
 - [Python code samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/memories)
-- [Manage memory in Foundry Agent Service](../how-to/memory-usage.md)
+- [Create and use memory in Foundry Agent Service](../how-to/memory-usage.md)
 - [Build an agent with Microsoft Foundry](../../../agents/quickstart.md)
 - [Microsoft Agent Framework overview](/agent-framework/overview/agent-framework-overview)

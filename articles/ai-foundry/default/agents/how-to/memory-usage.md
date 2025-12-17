@@ -3,16 +3,16 @@ title: Create and Use Memory
 titleSuffix: Microsoft Foundry
 description: Learn how to create and manage memory in Foundry Agent Service to enable AI agents to retain context across sessions and personalize user interactions.
 #customer intent: As a developer, I want to attach a memory store to my AI agent so that it can access and update memories during interactions.
-author: jonburchel
-ms.author: jburchel
+author: haileytap
+ms.author: haileytapia
 ms.reviewer: liulewis
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 12/15/2025
+ms.date: 12/17/2025
 ai-usage: ai-assisted
 ---
 
-# Manage memory in Foundry Agent Service (preview)
+# Create and use memory in Foundry Agent Service (preview)
 
 > [!IMPORTANT]
 > Memory (preview) in Foundry Agent Service and the Memory Store API (preview) are licensed to you as part of your Azure subscription and are subject to terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/all) and the [Microsoft Products and Services Data Protection Addendum](https://aka.ms/DPA), as well as the Microsoft Generative AI Services Previews terms in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
@@ -130,7 +130,206 @@ For example, set `user_profile_details` to prioritize "flight carrier preference
 
 You can also use this parameter to exclude certain types of data, keeping memory lean and compliant with privacy requirements. For example, set `user_profile_details` to "avoid irrelevant or sensitive data, such as age, financials, precise location, and credentials."
 
-## Add memories to a memory store
+## Update a memory store
+
+Update memory store properties, such as `description` or `metadata`, to better manage memory stores.
+
+# [Python](#tab/python)
+
+```python
+# Update memory store properties
+updated_store = client.memory_stores.update(
+    name="my_memory_store",
+    description="Updated description"
+)
+
+print(f"Updated: {updated_store.description}")
+```
+
+# [REST API](#tab/rest)
+
+```bash
+# Configuration
+ENDPOINT="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
+API_VERSION="2025-11-15-preview"
+ACCESS_TOKEN="your-access-token-here"
+
+curl -X POST "${ENDPOINT}/memory_stores/my_memory_store?api-version=${API_VERSION}" \
+  -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "description": "Updated description"
+  }'
+```
+
+---
+
+## List memory stores
+
+Retrieve a list of memory stores in your project to manage and monitor your memory infrastructure.
+
+# [Python](#tab/python)
+
+```python
+# List all memory stores
+stores_list = client.memory_stores.list()
+
+print(f"Found {len(stores_list.data)} memory stores")
+for store in stores_list.data:
+    print(f"- {store.name} ({store.description})")
+```
+
+# [REST API](#tab/rest)
+
+```bash
+# Configuration
+ENDPOINT="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
+API_VERSION="2025-11-15-preview"
+ACCESS_TOKEN="your-access-token-here"
+
+curl -X GET "${ENDPOINT}/memory_stores?api-version=${API_VERSION}" \
+  -H "Authorization: Bearer ${ACCESS_TOKEN}"
+```
+
+---
+
+## Use memories via an agent tool
+
+After you create a memory store, you can attach the memory search tool to a prompt agent. This tool enables the agent to read from and write to your memory store during conversations. Configure the tool with the appropriate `scope` and `update_delay` to control how and when memories are updated.
+
+# [Python](#tab/python)
+
+```python
+# Set scope to associate the memories with
+# You can also use "{{$userId}}" to take the oid of the request authentication header
+scope = "user_123"
+
+# Create memory search tool
+tool = MemorySearchTool(
+    memory_store_name=memory_store.name,
+    scope=scope,
+    update_delay=1,  # Wait 1 second of inactivity before updating memories
+    # In a real application, set this to a higher value like 300 (5 minutes, default)
+)
+
+# Create a prompt agent with memory search tool
+agent = project_client.agents.create_version(
+    agent_name="MyAgent",
+    definition=PromptAgentDefinition(
+        model="gpt-4.1",
+        instructions="You are a helpful assistant that answers general questions",
+        tools=[tool],
+    )
+)
+
+print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+```
+
+# [REST API](#tab/rest)
+
+```bash
+# Configuration
+ENDPOINT="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
+API_VERSION="2025-11-15-preview"
+ACCESS_TOKEN="your-access-token-here"
+
+curl -X POST "${ENDPOINT}/agents/MyAgent/versions?api-version=${API_VERSION}" \
+  -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "definition": {
+        "kind": "prompt",
+        "model": "gpt-4.1",
+        "instructions": "You are a helpful assistant that answers general questions",
+        "tools": [
+            {
+                "type": "memory_search",
+                "memory_store_name": "my_memory_store",
+                "scope": "user_123",
+                "update_delay": 1
+            }
+        ]
+    }
+}'
+```
+
+---
+
+### Create a conversation
+
+You can now create conversations and request agent responses. At the start of each conversation, static memories are injected so the agent has immediate, persistent context. Contextual memories are retrieved per turn based on the latest messages to inform each response.
+
+After each agent response, the service internally calls `update_memories`. However, actual writes to long‑term memory are debounced by the `update_delay` setting. The update is scheduled and only completes after the configured period of inactivity.
+
+# [Python](#tab/python)
+
+```python
+# Create a conversation with the agent with memory tool enabled
+conversation = openai_client.conversations.create()
+print(f"Created conversation (id: {conversation.id})")
+
+# Create an agent response to initial user message
+response = openai_client.responses.create(
+    input="I prefer dark roast coffee",
+    conversation=conversation.id,
+    extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+)
+
+print(f"Response output: {response.output_text}")
+
+# After an inactivity in the conversation, memories will be extracted from the conversation and stored
+print("Waiting for memories to be stored...")
+time.sleep(60)
+
+# Create a new conversation
+new_conversation = openai_client.conversations.create()
+print(f"Created new conversation (id: {new_conversation.id})")
+
+# Create an agent response with stored memories
+new_response = openai_client.responses.create(
+    input="Please order my usual coffee",
+    conversation=new_conversation.id,
+    extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+)
+
+print(f"Response output: {new_response.output_text}")
+```
+
+# [REST API](#tab/rest)
+
+```bash
+# Configuration
+ENDPOINT="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
+API_VERSION="2025-11-15-preview"
+ACCESS_TOKEN="your-access-token-here"
+
+curl -X POST "${ENDPOINT}/openai/conversations?api-version=${API_VERSION}" \
+    -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+    -H "Content-Type: application/json" \
+    -d '{}'
+
+# Use the "id" from previous response
+CONVERSATION_ID="your-conversation-id"
+curl -X POST "${ENDPOINT}/openai/responses?api-version=${API_VERSION}" \
+    -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+    -H "Content-Type: application/json" \
+    -d '{
+        "input": "I prefer dark roast coffee",
+        "conversation": "${CONVERSATION_ID}",
+        "agent": {
+            "name": "MyAgent",
+            "type": "agent_reference"
+        }
+    }'
+```
+
+---
+
+## Use memories via APIs
+
+You can interact with a memory store directly using the memory store APIs. Start by adding memories from conversation content to the memory store, and then search for relevant memories to provide context for agent interactions.
+
+### Add memories to a memory store
 
 Add memories by providing conversation content to the memory store. The system preprocesses and postprocesses the data, including memory extraction and consolidation, to optimize the agent's memory. This long-running operation might take about one minute.
 
@@ -218,141 +417,7 @@ curl -X GET "${ENDPOINT}/memory_stores/my_memory_store/updates/${UPDATE_ID}?api-
 
 ---
 
-## Add the memory search tool to an agent
-
-After you create a memory store, you can attach the memory search tool to a prompt agent. This tool enables the agent to read from and write to your memory store during conversations. Configure the tool with the appropriate `scope` and `update_delay` to control how and when memories are updated.
-
-Alternatively, you can use the memory store directly through [search](#search-for-memories-in-a-memory-store), [update](#update-a-memory-store), [list](#list-memory-stores), and [delete](#delete-memories) operations.
-
-# [Python](#tab/python)
-
-```python
-# Set scope to associate the memories with
-# You can also use "{{$userId}}" to take the oid of the request authentication header
-scope = "user_123"
-
-# Create memory search tool
-tool = MemorySearchTool(
-    memory_store_name=memory_store.name,
-    scope=scope,
-    update_delay=1,  # Wait 1 second of inactivity before updating memories
-    # In a real application, set this to a higher value like 300 (5 minutes, default)
-)
-
-# Create a prompt agent with memory search tool
-agent = project_client.agents.create_version(
-    agent_name="MyAgent",
-    definition=PromptAgentDefinition(
-        model="gpt-4.1",
-        instructions="You are a helpful assistant that answers general questions",
-        tools=[tool],
-    )
-)
-
-print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
-```
-
-# [REST API](#tab/rest)
-
-```bash
-# Configuration
-ENDPOINT="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
-API_VERSION="2025-11-15-preview"
-ACCESS_TOKEN="your-access-token-here"
-
-curl -X POST "${ENDPOINT}/agents/MyAgent/versions?api-version=${API_VERSION}" \
-  -H "Authorization: Bearer ${ACCESS_TOKEN}" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "definition": {
-        "kind": "prompt",
-        "model": "gpt-4.1",
-        "instructions": "You are a helpful assistant that answers general questions",
-        "tools": [
-            {
-                "type": "memory_search",
-                "memory_store_name": "my_memory_store",
-                "scope": "user_123",
-                "update_delay": 1
-            }
-        ]
-    }
-}'
-```
-
----
-
-### Create a conversation
-
-You can now create conversations and request agent responses. At the start of each conversation, static memories are injected so the agent has immediate, persistent context. Contextual memories are retrieved per turn based on the latest messages to inform each response.
-
-After each agent response, the service calls `update_memories`, but actual writes to long‑term memory are controlled by the `update_delay` setting. The update is scheduled and only completes after the configured period of inactivity.
-
-# [Python](#tab/python)
-
-```python
-# Create a conversation with the agent with memory tool enabled
-conversation = openai_client.conversations.create()
-print(f"Created conversation (id: {conversation.id})")
-
-# Create an agent response to initial user message
-response = openai_client.responses.create(
-    input="I prefer dark roast coffee",
-    conversation=conversation.id,
-    extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
-)
-
-print(f"Response output: {response.output_text}")
-
-# After an inactivity in the conversation, memories will be extracted from the conversation and stored
-print("Waiting for memories to be stored...")
-time.sleep(60)
-
-# Create a new conversation
-new_conversation = openai_client.conversations.create()
-print(f"Created new conversation (id: {new_conversation.id})")
-
-# Create an agent response with stored memories
-new_response = openai_client.responses.create(
-    input="Please order my usual coffee",
-    conversation=new_conversation.id,
-    extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
-)
-
-print(f"Response output: {new_response.output_text}")
-```
-
-# [REST API](#tab/rest)
-
-```bash
-# Configuration
-ENDPOINT="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
-API_VERSION="2025-11-15-preview"
-ACCESS_TOKEN="your-access-token-here"
-
-curl -X POST "${ENDPOINT}/openai/conversations?api-version=${API_VERSION}" \
-    -H "Authorization: Bearer ${ACCESS_TOKEN}" \
-    -H "Content-Type: application/json" \
-    -d '{}'
-
-# Use the "id" from previous response
-CONVERSATION_ID="your-conversation-id"
-curl -X POST "${ENDPOINT}/openai/responses?api-version=${API_VERSION}" \
-    -H "Authorization: Bearer ${ACCESS_TOKEN}" \
-    -H "Content-Type: application/json" \
-    -d '{
-        "input": "I prefer dark roast coffee",
-        "conversation": "${CONVERSATION_ID}",
-        "agent": {
-            "name": "MyAgent",
-            "type": "agent_reference"
-        }
-    }'
-```
-
----
-
-## Search for memories in a memory store
+### Search for memories in a memory store
 
 Search memories to retrieve relevant context for agent interactions. Specify the memory store name and scope to narrow the search.
 
@@ -410,76 +475,13 @@ curl -X POST "${ENDPOINT}/memory_stores/my_memory_store:search_memories?api-vers
 
 ### Retrieve static or contextual memories
 
+Often, user profile memories can't be retrieved based on semantic similarity to a user's message. We recommend that you inject static memories into the beginning of each conversation and use contextual memories to generate each agent response.
+
 - To retrieve static memories, call `search_memories` with a `scope` but without `items` or `previous_search_id`. This returns user profile memories associated with the scope.
 
 - To retrieve contextual memories, call `search_memories` with `items` set to the latest messages. This can return both user profile and chat summary memories most relevant to the given items.
 
-Often, user profile memories can't be retrieved based on semantic similarity to a user's message. We recommend that you inject static memories into the beginning of each conversation and use contextual memories to generate each agent response.
-
 For more information about user profile and chat summary memories, see [Memory types](../concepts/what-is-memory.md#memory-types).
-
-## Update a memory store
-
-Update memory store properties, such as `description` or `metadata`, to better manage memory stores.
-
-# [Python](#tab/python)
-
-```python
-# Update memory store properties
-updated_store = client.memory_stores.update(
-    name="my_memory_store",
-    description="Updated description"
-)
-
-print(f"Updated: {updated_store.description}")
-```
-
-# [REST API](#tab/rest)
-
-```bash
-# Configuration
-ENDPOINT="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
-API_VERSION="2025-11-15-preview"
-ACCESS_TOKEN="your-access-token-here"
-
-curl -X POST "${ENDPOINT}/memory_stores/my_memory_store?api-version=${API_VERSION}" \
-  -H "Authorization: Bearer ${ACCESS_TOKEN}" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "description": "Updated description"
-  }'
-```
-
----
-
-## List memory stores
-
-Retrieve a list of memory stores in your project to manage and monitor your memory infrastructure.
-
-# [Python](#tab/python)
-
-```python
-# List all memory stores
-stores_list = client.memory_stores.list()
-
-print(f"Found {len(stores_list.data)} memory stores")
-for store in stores_list.data:
-    print(f"- {store.name} ({store.description})")
-```
-
-# [REST API](#tab/rest)
-
-```bash
-# Configuration
-ENDPOINT="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
-API_VERSION="2025-11-15-preview"
-ACCESS_TOKEN="your-access-token-here"
-
-curl -X GET "${ENDPOINT}/memory_stores?api-version=${API_VERSION}" \
-  -H "Authorization: Bearer ${ACCESS_TOKEN}"
-```
-
----
 
 ## Delete memories
 
@@ -547,6 +549,20 @@ curl -X DELETE "${ENDPOINT}/memory_stores/my_memory_store?api-version=${API_VERS
 ```
 
 ---
+
+## Best practices
+
+- **Implement per-user access controls:** Avoid giving agents access to memories shared across all users. Use the `scope` property to partition the memory store by user. When you share `scope` across users, use `user_profile_details` to instruct the memory system not to store personal information.
+
+- **Map scope to an authenticated user:** When you specify scope in the [memory search tool](#use-memories-via-an-agent-tool), set `scope={{$userId}}` to map to the user from the authentication token (`{tid}_{oid}`). This ensures that memory searches automatically target the correct user.
+
+- **Minimize and protect sensitive data:** Store only what's necessary for your use case. If you must store sensitive data, such as personal data, health data, or confidential business inputs, redact or remove other content that could be used to trace back to an individual.
+
+- **Support privacy and compliance:** Provide users with transparency, including options to access and delete their data. Record all deletions in a tamper-evident audit trail. Ensure the system adheres to local compliance requirements and regulatory standards.
+
+- **Segment data and isolate memory:** In multi-agent systems, segment memory logically and operationally. Allow customers to define, isolate, inspect, and delete their own memory footprint.
+
+- **Monitor memory usage:** Track token usage and memory operations to understand costs and optimize performance.
 
 ## Related content
 
