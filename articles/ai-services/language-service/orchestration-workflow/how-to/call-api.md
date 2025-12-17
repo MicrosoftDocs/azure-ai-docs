@@ -15,7 +15,7 @@ ms.custom: language-service-clu
 # Query deployment for intent predictions
 
 After the deployment is added successfully, you can query the deployment for intent and entities predictions from your utterance based on the model you assigned to the deployment.
-You can query the deployment programmatically [Prediction API](https://aka.ms/ct-runtime-swagger) or through the [Client libraries (Azure SDK)](#send-an-orchestration-workflow-request).
+You can query the deployment programmatically [Prediction API](https://aka.ms/ct-runtime-swagger) or through the [Client libraries (Azure SDK)](#use-the-client-libraries-azure-sdk).
 
 ## Test deployed model
 

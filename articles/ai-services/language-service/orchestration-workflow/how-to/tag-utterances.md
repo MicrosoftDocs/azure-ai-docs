@@ -10,11 +10,11 @@ ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-orchestration
 ---
-# Add utterances in Language Studio
+# Add utterances
 
 Once you have [built a schema](build-schema.md), you should add training and testing utterances to your project. The utterances should be similar to what your users will use when interacting with the project. When you add an utterance, you have to assign which intent it belongs to.
 
-Adding utterances is a crucial step in project development lifecycle; this data is used in the next step when training your model so that your model can learn from the added data. If you already have utterances, you can directly [import it into your project](create-project.md#import-an-orchestration-workflow-project), but you need to make sure that your data follows the [accepted data format](../concepts/data-formats.md). Labeled data informs the model how to interpret text, and is used for training and evaluation.
+Adding utterances is a crucial step in project development lifecycle; this data is used in the next step when training your model so that your model can learn from the added data. If you already have utterances, you can directly [import it into your project](create-project.md#import-an-orchestration-workflow-project-rest-api), but you need to make sure that your data follows the [accepted data format](../concepts/data-formats.md). Labeled data informs the model how to interpret text, and is used for training and evaluation.
 
 ## Prerequisites
 
