@@ -5,7 +5,7 @@ description: Learn about how to deploy your custom language projects to multiple
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 12/05/2025
 ms.author: lajanuar
 ms.custom: language-service-clu, ignite-2024
@@ -43,7 +43,7 @@ The same request body to each of those different URLs serves the exact same resp
 
 ## Validations and requirements
 
-Assigning deployment resources requires Microsoft Entra authentication. Microsoft Entra ID is used to confirm that you have access to the resources that you want to assign to your project for multiregion deployment. In Language Studio, you can automatically [enable Microsoft Entra authentication](https://aka.ms/rbac-language) by assigning yourself the Azure Cognitive Services Language Owner role to your original resource. To programmatically use Microsoft Entra authentication, learn more from the [Foundry Tools documentation](../../../authentication.md?source=docs&tabs=powershell&tryIt=true#authenticate-with-azure-active-directory).
+Assigning deployment resources requires Microsoft Entra authentication. Microsoft Entra ID is used to confirm that you have access to the resources that you want to assign to your project for multiregion deployment. In Microsoft Foundry, you can automatically [enable Microsoft Entra authentication](https://aka.ms/rbac-language) by assigning yourself the Azure Cognitive Services Language Owner role to your original resource. To programmatically use Microsoft Entra authentication, learn more from the [Foundry Tools documentation](../../../authentication.md?source=docs&tabs=powershell&tryIt=true#authenticate-with-azure-active-directory).
 
 Your project name and resource are used as its main identifiers. A Language resource can only have a specific project name in each resource. Any other projects with the same name can't be deployed to that resource.
 
