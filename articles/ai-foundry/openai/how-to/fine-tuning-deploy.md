@@ -433,5 +433,4 @@ You can also delete a deployment in Foundry portal, or use [Azure CLI](/cli/azur
 
 ## Next steps
 
-- [Azure OpenAI Quotas & limits](./quota.md)
 - [Azure OpenAI deployment types](../../foundry-models/concepts/deployment-types.md)

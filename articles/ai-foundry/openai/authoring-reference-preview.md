@@ -5,8 +5,8 @@ description: Learn how to use Azure OpenAI's latest authoring preview REST API. 
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: conceptual
-ms.date: 09/30/2025
+ms.topic: reference
+ms.date: 12/6/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -23,7 +23,7 @@ This article provides details on the inference REST API endpoints for Azure Open
 
 ## Data plane authoring
 
-The rest of the article covers the latest preview release of the Azure OpenAI data plane inference specification, `2025-04-01-preview`.
+The rest of the article covers the preview release of the Azure OpenAI data plane inference specification, `2025-04-01-preview`.
 
 If you're looking for documentation on the latest GA API release, refer to the [latest GA data plane inference API](./latest.md)
 

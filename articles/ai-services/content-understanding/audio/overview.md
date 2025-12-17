@@ -3,7 +3,7 @@ title: Azure Content Understanding in Foundry Tools audio overview
 titleSuffix: Foundry Tools
 description: Learn about Azure Content Understanding in Foundry Tools audio solutions
 author: PatrickFarley 
-ms.author: jagoerge
+ms.author: pafarley
 manager: nitinme
 ms.date: 05/19/2025
 ms.service: azure-ai-content-understanding
