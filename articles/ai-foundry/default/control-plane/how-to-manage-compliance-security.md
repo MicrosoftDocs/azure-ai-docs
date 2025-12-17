@@ -141,7 +141,7 @@ Here's how you can do this:
 
 Microsoft Defender for Cloud provides security posture gaps and recommendations for remediation. Your security posture represents the overall security status of your Azure resources, including potential vulnerabilities, misconfigurations, and recommended improvements. Defender assesses your resources and workloads against built-in and custom security standards. 
 
-To get security posture recommendations from Microsoft Defender for Cloud, [enable it on your Azure subscription](/azure/defender-for-cloud/connect-azure-subscription). To get threat protection alerts for jailbreak attacks based on Foundry's user input attack risk detection, [enable threat protection for Foundry Tools](/azure/defender-for-cloud/ai-onboarding). Jailbreak attacks attempt to bypass AI safety measures by using carefully crafted prompts. Foundry detects these attack patterns in user input.
+To get security posture recommendations from Microsoft Defender for Cloud, [enable it on your Azure subscription](/azure/defender-for-cloud/connect-azure-subscription). To get threat protection alerts for jailbreak attacks based on Foundry's user input attack risk detection, [enable threat protection for Foundry Tools](/azure/defender-for-cloud/ai-onboarding). Jailbreak attacks attempt to bypass AI safety measures by using carefully crafted prompts. Foundry detects these attack patterns in user input.  
 
 ### Review your security recommendations
 
@@ -177,7 +177,8 @@ This capability helps your organization manage and monitor AI-generated data in 
 > 1. Purview Audit is included as part of Microsoft Purview license for Foundry services. For data security policies setup in Purview by your enterprise security admins, billing is based on [pay-as-you-go](https://azure.microsoft.com/pricing/details/purview/) meters.
 >
 > 1. Integration with Purview for the above features in Microsoft Foundry doesn't yet support Network Isolation.
-
+>
+> 1. Integration with Purview is currently available only for calls made on the OpenAI Completions API.
 
 To enable Purview in Foundry:
 1. Go to **Operate** > **Compliance**.
@@ -187,7 +188,6 @@ To enable Purview in Foundry:
 :::image type="content" source="media/new-draft/microsoft-purview-toggle.png" alt-text="Screenshot of the Microsoft Purview enablement toggle in the Compliance Security tab.":::
 
 Repeat the preceding steps for other Azure subscriptions, as appropriate.
-
 
 
 ## Related content
