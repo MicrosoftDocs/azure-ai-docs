@@ -39,7 +39,7 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 
 :::code language="console" source="~/foundry-samples-main/samples/REST/quickstart/quickstart-create-agent.sh":::
 
-# [Microsoft Foundry portal](#tab/portal)
+# [Foundry portal](#tab/portal)
 
 Now create an agent and interact with it.
 1. Still in the **Build** section, select **Agents** in the left pane.

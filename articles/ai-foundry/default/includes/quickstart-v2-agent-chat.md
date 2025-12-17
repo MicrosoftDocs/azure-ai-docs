@@ -37,7 +37,7 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 
 :::code language="console" source="~/foundry-samples-main/samples/REST/quickstart/quickstart-chat-with-agent.sh":::
 
-# [Microsoft Foundry portal](#tab/portal)
+# [Foundry portal](#tab/portal)
 
 Interact with your agent.
 1. Add instructions, such as, "You are a helpful writing assistant."
