@@ -47,5 +47,5 @@ For the Anthropic Claude API, prompts and outputs may be processed anywhere in t
 
 ## Related content
 
-- Deploy and use Claude models in Microsoft Foundry (preview)
+- [Deploy and use Claude models in Microsoft Foundry (preview)](../../foundry-models/how-to/use-foundry-models-claude.md)
 
