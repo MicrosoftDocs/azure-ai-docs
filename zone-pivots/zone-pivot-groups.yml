@@ -1312,6 +1312,8 @@ groups:
     title: C#
   - id: rest-api
     title: REST API
+  - id: typescript
+    title: TypeScript
 # owner: aahi
 - id: selection-image-generation
   title: Selections
