@@ -20,6 +20,12 @@ Azure Content Understanding in Foundry Tools service is updated on an ongoing ba
 > [!NOTE]
 > Content Understanding is now a Generally Available (GA) service with the release of the `2025-11-01` API version. 
 
+## December 2025
+
+- **Read & Layout update**: The Read and Layout prebuilt models no longer require specifying a model (LLM). They also no longer require your Foundry resource to be configured with a model. Content Understanding will run them even if no model is defined in `contentunderstanding/defaults`.
+- **Updated GitHub samples**: New and refreshed samples are now available, including updated [Python](https://github.com/Azure-Samples/azure-ai-content-understanding-python) and [.NET](https://github.com/Azure-Samples/azure-ai-content-understanding-dotnet) samples. Other samples have also been updated.
+- **Foundry NextGen availability**: The new Read and Layout models are now available directly in the Foundry New portal.
+
 ## November 2025
 
 Azure Content Understanding in Foundry Tools is now Generally Available with API version `2025-11-01`. The release brings production readiness plus customer-driven enhancements across model choice, management, and security.
