@@ -37,7 +37,7 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 
 :::code language="console" source="~/foundry-samples-main/samples/REST/quickstart/quickstart-responses.sh":::
 
-# [Microsoft Foundry portal](#tab/portal)
+# [Foundry portal](#tab/portal)
 
 1. After the model deploys, you're automatically moved from **Home** to the **Build** section. Your new model is selected and ready for you to try out.
 

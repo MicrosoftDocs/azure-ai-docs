@@ -34,10 +34,9 @@ Follow along below or get the code:
     Add NuGet packages using the .NET CLI in the integrated terminal: These packages use the **Foundry projects (new) API** (preview).
         
     ```bash
-    dotnet add package Azure.AI.Agents --prerelease
     dotnet add package Azure.AI.Projects --prerelease
+    dotnet add package Azure.AI.Projects.OpenAI --prerelease
     dotnet add package Azure.Identity
-    dotnet add package OpenAI --version 2.6.*
     ```
 
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your C# scripts.
@@ -85,7 +84,7 @@ Follow along below or get the code:
 > [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/REST/mslearn-resources/quickstart).
 
 
-# [Microsoft Foundry portal](#tab/portal)
+# [Foundry portal](#tab/portal)
 
 No installation is necessary to use the Foundry portal.
 
