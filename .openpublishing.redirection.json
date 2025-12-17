@@ -151,6 +151,16 @@
       "redirect_document_id": false
     },
     {
+      "source_path": "articles/ai-services/qnamaker/how-to/migrate-qnamaker-to-question-answering.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/how-to/migrate-qnamaker-to-question-answering",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/how-to/migrate-qnamaker.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/how-to/migrate-qnamaker",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/ai-services/qnamaker/how-to/multi-turn.md",
       "redirect_url": "/previous-versions/azure/ai-services/qnamaker/how-to/multi-turn",
       "redirect_document_id": false
