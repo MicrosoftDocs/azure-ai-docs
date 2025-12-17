@@ -119,7 +119,7 @@ Install the required packages.
 
     :::code language="txt" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/requirements.txt":::
 
-References: [Azure AI Projects client library](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects), [azure-ai-inference](https://pypi.org/project/azure-ai-inference/), [python-dotenv](https://pypi.org/project/python-dotenv/).
+    References: [Azure AI Projects client library](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects), [azure-ai-inference](https://pypi.org/project/azure-ai-inference/), [python-dotenv](https://pypi.org/project/python-dotenv/).
 
 1. Install the required packages:
 

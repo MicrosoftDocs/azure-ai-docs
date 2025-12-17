@@ -118,7 +118,7 @@ References: [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.AI
 
 ### Start the evaluation
 
-1. Run the evaluation script:
+* Run the evaluation script:
 
     ```bash
     python evaluate.py
