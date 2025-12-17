@@ -56,3 +56,11 @@ items:
   href: /security/benchmark/azure/baselines/azure-ai-foundry-security-baseline
 - name: Service architecture
   href: ../../../concepts/architecture.md
+
+# Privacy and data protection for Foundry Models
+- name: Data, privacy, and security for Foundry Models
+  items:
+  - name: Models sold directly by Azure
+    href: ../../../responsible-ai/openai/data-privacy.md
+  - name: Claude models in Microsoft Foundry
+    href: ../../../responsible-ai/claude-models/data-privacy.md
