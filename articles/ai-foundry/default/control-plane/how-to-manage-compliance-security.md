@@ -6,7 +6,7 @@ author: s-polly
 ms.author: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 10/31/2025
+ms.date: 12/16/2025
 ai-usage: ai-assisted
 ms.custom: dev-focus
 
@@ -172,7 +172,7 @@ By enabling Microsoft Purview on your Azure subscription, you can access, proces
 This capability helps your organization manage and monitor AI-generated data in alignment with enterprise policies and regulatory requirements.
 
 > [!NOTE]
-> 1. Purview Data Security Policies for Foundry Services interactions are supported for those API calls that use Microsoft Entra ID authentication with a user-context token, or for API calls that explicitly include user context. To learn more, see [Gain end-user context for Azure AI API calls][AzureUserSecurityContext](../../openai/latest.md#azureusersecuritycontext) . For all other authentication scenarios, user interactions captured in Purview show up only in Purview Audit and AI Interactions with classifications within DSPM for AI Activity Explorer.
+> 1. Purview Data Security Policies for Foundry Services interactions are supported for those API calls that use Microsoft Entra ID authentication with a user-context token, or for API calls that explicitly include user context. To learn more, see [Gain end-user context for Azure AI API calls](../../openai/latest.md#azureusersecuritycontext). For all other authentication scenarios, user interactions captured in Purview show up only in Purview Audit and AI Interactions with classifications within DSPM for AI Activity Explorer.
 >
 > 1. Purview Audit is included as part of Microsoft Purview license for Foundry services. For data security policies setup in Purview by your enterprise security admins, billing is based on [pay-as-you-go](https://azure.microsoft.com/pricing/details/purview/) meters.
 >
@@ -188,6 +188,7 @@ To enable Purview in Foundry:
 :::image type="content" source="media/new-draft/microsoft-purview-toggle.png" alt-text="Screenshot of the Microsoft Purview enablement toggle in the Compliance Security tab.":::
 
 Repeat the preceding steps for other Azure subscriptions, as appropriate.
+
 
 
 ## Related content
