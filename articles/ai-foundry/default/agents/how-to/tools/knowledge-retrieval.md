@@ -40,9 +40,6 @@ For an end-to-end example of integrating Azure AI Search and Foundry Agent Servi
 - [Authentication and permissions](#authentication-and-permissions) on your search service and project.
 - The latest preview Python SDK or the 2025-11-01-preview REST API version.
 
-> [!TIP]
-> For a complete working example, see the [agentic-retrieval-pipeline-example](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/agentic-retrieval-pipeline-example) Python sample on GitHub.
-
 ### Authentication and permissions
 
 We recommend role-based access control for production deployments. If roles aren't feasible, skip this section and use key-based authentication instead.
