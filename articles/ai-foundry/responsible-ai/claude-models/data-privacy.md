@@ -20,7 +20,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-This article describes how the data that you provide is processed, used, and stored when you use Anthropic Claude models from the Microsoft Marketplace in Microsoft Foundry. Claude in Foundry processes data differently from Models Sold directly by Azure. When you transact for Claude in Foundry, you will agree to Anthropic's terms of use and Anthropic (not Microsoft) is the processor of the data. 
+This article describes how the data that you provide is processed, used, and stored when you use Anthropic Claude models from the Microsoft Marketplace in Microsoft Foundry. Claude in Foundry processes data differently from models sold directly by Azure. When you transact for Claude in Foundry, you will agree to Anthropic's terms of use and Anthropic (not Microsoft) is the processor of the data. 
 
 As detailed in the following sections, to the extent Microsoft plays a role in processing data in connection with Claude on Foundry, it will do so pursuant to its own terms.
 
@@ -32,7 +32,7 @@ The model processes your input prompts and generates outputs based on its functi
 
 ## What data is processed by Microsoft for Anthropic Claude models in Microsoft Foundry?
 
-For Anthropic Claude Models, Microsoft provides and manages the API deployment infrastructure and API endpoint. This data processing is pursuant to the [Microsoft Products and Services Data Protection Addendum (DPA)](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA). Microsoft also collects certain billing and usage information, which it may share with Anthropic. Such processing is subject to your Marketplace terms with Microsoft. 
+For Anthropic Claude models, Microsoft provides and manages the API deployment infrastructure and API endpoint. This data processing is pursuant to the [Microsoft Products and Services Data Protection Addendum (DPA)](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA). Microsoft also collects certain billing and usage information, which it may share with Anthropic. Such processing is subject to your Marketplace terms with Microsoft. 
 
 > [!NOTE]
 > As explained during the deployment process for Anthropic Claude API deployment, Microsoft will share customer contact information and transaction details (including the usage volume associated with the offering) with the model publisher so that the publisher can contact customers regarding the model. To learn more about information available to model publishers, see [Access insights for the Microsoft commercial marketplace in Partner Center](/partner-center/insights/analytics).
