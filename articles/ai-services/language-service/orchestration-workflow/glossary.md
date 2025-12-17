@@ -5,7 +5,7 @@ description: Learn about definitions used in orchestration workflow.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
+ms.topic: glossary
 ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-orchestration
