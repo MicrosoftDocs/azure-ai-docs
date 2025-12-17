@@ -63,7 +63,7 @@ Currently, there are no control plane features in preview.
 
 ## Preview features in Azure SDKs
 
-Preview features in Azure SDKs are available through beta packages. To determine which preview features are available in a specific package version, see the SDK's change log:
+Preview features in Azure SDKs are available through preview packages. To determine which preview features are available in a specific package version, see the SDK's change log:
 
 + [Change log for Azure SDK for .NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md)
 + [Change log for Azure SDK for Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md)
@@ -72,7 +72,7 @@ Preview features in Azure SDKs are available through beta packages. To determine
 
 ## Using preview features
 
-You can access experimental features through preview REST API versions or beta SDK packages. Some features might also be available in the Azure portal. For more information about availability, see [Data plane preview features](#data-plane-preview-features) and [Control plane preview features](#control-plane-preview-features).
+You can access experimental features through preview REST API versions or preview SDK packages. Some features might also be available in the Azure portal. For more information about availability, see [Data plane preview features](#data-plane-preview-features) and [Control plane preview features](#control-plane-preview-features).
 
 The following statements apply to preview features:
 
