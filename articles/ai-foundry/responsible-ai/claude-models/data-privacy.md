@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 
 # Data, privacy, and security for Claude models in Microsoft Foundry (preview)
 
-[!INCLUDE [version-banner](../../../includes/version-banner.md)]
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 This article describes how the data that you provide is processed, used, and stored when you use Anthropic Claude models from the Microsoft Marketplace in Microsoft Foundry. Claude in Foundry processes data differently from Models Sold directly by Azure. When you transact for Claude in Foundry, you will agree to Anthropic's terms of use and Anthropic (not Microsoft) is the processor of the data. 
 
