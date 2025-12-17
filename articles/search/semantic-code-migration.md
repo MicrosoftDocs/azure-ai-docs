@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 11/06/2025
+ms.date: 12/17/2025
 ms.update-cycle: 365-days
 ---
 
@@ -50,7 +50,8 @@ Check your code for the REST API version or SDK package version to confirm which
 
 ## Change logs for Azure SDKs
 
-Azure SDKs are on an independent release schedule. You should check the change logs to determine which packages provide semantic features and whether any APIs have been renamed.
+
+To determine which semantic features are available in a specific Azure SDK package and whether any APIs have been renamed, see the SDK's change log:
 
 + [Azure SDK for .NET change log](https://github.com/Azure/azure-sdk-for-net/blob/Azure.Search.Documents_11.5.1/sdk/search/Azure.Search.Documents/CHANGELOG.md#1150-2023-11-10&preserve-view=true)
 + [Azure SDK for Python change log](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md#1140-2023-10-13&preserve-view=true)

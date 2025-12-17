@@ -9,14 +9,14 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 11/21/2025
+ms.date: 12/17/2025
 ---
 
 # REST samples for Azure AI Search
 
 Learn about REST API samples that demonstrate the functionality and workflow of an Azure AI Search solution. These samples use the [Search Service REST APIs](/rest/api/searchservice).
 
-REST is the definitive programming interface for Azure AI Search. All operations that can be invoked programmatically are first available in REST, followed by the SDKs. For this reason, most examples in our documentation use the REST APIs to demonstrate and explain important concepts.
+REST is the definitive programming interface for Azure AI Search, offering a language-agnostic way to interact with the service. For this reason, most examples in our documentation use the REST APIs to demonstrate and explain important concepts.
 
 You can use any client that supports HTTP calls. To learn how to formulate the HTTP request using Visual Studio Code with the REST Client extension, see the REST portion of [Quickstart: Full-text search](search-get-started-text.md).
 
