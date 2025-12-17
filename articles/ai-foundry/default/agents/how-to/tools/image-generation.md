@@ -25,6 +25,12 @@ zone_pivot_groups: selection-image-generation
 
 The Foundry Agent Service enables image generation by using the image generation tool in conversations and multistep workflows. It supports image inputs and outputs within context and includes built-in tools for generating and editing images. 
 
+### Usage support
+
+| Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
+|---------|---------|---------|---------|---------|---------|---------|---------|
+| ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
+
 ## Prerequisites
 
 - An Azure account with an active subscription.
@@ -38,12 +44,6 @@ The Foundry Agent Service enables image generation by using the image generation
   - `FOUNDRY_MODEL_DEPLOYMENT_NAME`
   - `IMAGE_GENERATION_DEPLOYMENT_NAME`
   - `IMAGE_GENERATION_MODEL_DEPLOYMENT_NAME`
-
-### Usage support
-
-| Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
-|---------|---------|---------|---------|---------|---------|---------|---------|
-| ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
 
 ## Code examples
 
