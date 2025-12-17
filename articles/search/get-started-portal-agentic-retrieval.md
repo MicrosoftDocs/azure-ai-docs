@@ -139,7 +139,7 @@ To create the knowledge source for this quickstart:
 
 1. Select **Add vectorizer**.
 
-1. Select **Microsoft Foundry** for the kind, and then select your subscription, project, and embedding model deployment.
+1. Select **Azure AI Foundry** for the kind, and then select your subscription, project, and embedding model deployment.
 
 1. Select **System managed identity** for the authentication type.
 
@@ -166,7 +166,7 @@ To create the knowledge base for this quickstart:
 
 1. Under **Model deployment**, select **Add model deployment**.
 
-1. Select **Foundry** for the kind, and then select your subscription, project, and LLM deployment.
+1. Select **Azure AI Foundry** for the kind, and then select your subscription, project, and LLM deployment.
 
 1. Select **System assigned identity** for the authentication type.
 

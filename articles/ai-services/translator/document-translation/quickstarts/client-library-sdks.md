@@ -16,7 +16,7 @@ zone_pivot_groups: programming-languages-document-sdk
 <!-- markdownlint-disable MD024 -->
 <!-- markdownlint-disable MD001 -->
 
-Document translation is a cloud-based feature of the [Azure Translator](../../overview.md) service that asynchronously translates whole documents in [supported languages](../../language-support.md) and various [file formats](../overview.md#batch-supported-document-formats). In this quickstart, learn to use Document translation with a programming language of your choice to translate a source document into a target language while preserving structure and text formatting.
+Document translation is a cloud-based feature of the [Azure Translator](../../overview.md) service that asynchronously translates whole documents in [supported languages](../../language-support.md) and various [file formats](../overview.md#supported-document-and-glossary-formats). In this quickstart, learn to use Document translation with a programming language of your choice to translate a source document into a target language while preserving structure and text formatting.
 
 > [!IMPORTANT]
 >

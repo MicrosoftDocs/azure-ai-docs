@@ -14,6 +14,8 @@ items:
 
 - name: Code interpreter
   href: ../../agents/how-to/tools/code-interpreter.md
+- name: Custom code interpreter (preview)
+  href: ../../agents/how-to/tools/custom-code-interpreter.md
 - name: Browser automation (preview)
   href: ../../agents/how-to/tools/browser-automation.md
 - name: Computer Use (preview)
@@ -47,23 +49,23 @@ items:
 - name: Foundry Tools
   items:
   - name: Azure Speech in Foundry Tools
-    href: ../../../agents/how-to/tools/azure-ai-speech.md
+    href: ../../agents/how-to/tools/azure-ai-speech.md
   - name: Azure Language in Foundry Tools
     items:
     - name: Azure Language tools and agents
-      href: /azure/ai-services/language-service/concepts/foundry-tools-agents?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+      href: /azure/ai-services/language-service/concepts/foundry-tools-agents?context=/azure/ai-foundry/context/context
     - name: Try CLU multi-turn conversations
-      href: /azure/ai-services/language-service/conversational-language-understanding/how-to/quickstart-multi-turn-conversations?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+      href: /azure/ai-services/language-service/conversational-language-understanding/how-to/quickstart-multi-turn-conversations?context=/azure/ai-foundry/context/context
     - name: Detect Personally Identifiable Information (PII)
-      href: /azure/ai-services/language-service/personally-identifiable-information/quickstart?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+      href: /azure/ai-services/language-service/personally-identifiable-information/quickstart?context=/azure/ai-foundry/context/context
     - name: Try Azure Language detection
-      href: /azure/ai-services/language-service/language-detection/quickstart?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+      href: /azure/ai-services/language-service/language-detection/quickstart?context=/azure/ai-foundry/context/context
   - name: Azure Translator in Foundry Tools
     items:
     - name: Azure text translation
-      href: /azure/ai-services/translator/text-translation/overview?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+      href: /azure/ai-services/translator/text-translation/overview?context=/azure/ai-foundry/context/context
     - name: Azure document translation
-      href: /azure/ai-services/translator/document-translation/overview?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+      href: /azure/ai-services/translator/document-translation/overview?context=/azure/ai-foundry/context/context
 
 # Protocols
 - name: Protocols

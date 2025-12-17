@@ -1,5 +1,5 @@
 ---
-title: What's new in Azure OpenAI in Microsoft Foundry Models?
+title: What's new in Azure OpenAI in Azure AI Foundry Models?
 description: Learn about the latest news and features updates for Azure OpenAI.
 author: mrbullwinkle
 ms.author: mbullwin #
@@ -15,11 +15,49 @@ ms.custom:
   - build-2025
 ---
 
-# What's new in Azure OpenAI in Microsoft Foundry Models
-
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+# What's new in Azure OpenAI in Azure AI Foundry Models
 
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI.
+
+## December 2025
+
+### GPT-image-1.5 model is now available
+
+GPT-image-1.5 is OpenAI's latest cutting-edge image generation model. It features improved performance, quality, editing controls, and face preservation. In editing mode, the model supports high *input_fidelity* and adding/removing one aspect of the input image while retaining others.
+
+Request access: [limited access model application](https://aka.ms/oai/gptimage1.5access)
+
+Key model capabilities:
+- Includes all capabilities of GPT-image-1:
+    - Text to image generation  
+    - Image to image generation (editing)
+- Inpainting  
+- High quality image generations, up to 1024x1536 and 1536x1024 pixels 
+- Face preservation
+
+Follow the [image generation how-to guide](/en-us/azure/ai-foundry/openai/how-to/dall-e) to get started with this model.
+
+
+### Automatic speech recognition (ASR) model update
+
+`gpt-4o-mini-transcribe-2025-12-15`
+- Improved transcription accuracy and robustness for real-time scenarios. ~50% lower word error rate (WER) than previous gpt-4o-transcribe-mini on English benchmarks
+- Improves multilingual performance across Japanese, Indic, and other languages. 
+- Reduced hallucinations on silence by up to 4×, making it a more reliable choice for noisy environments and real-world audio streams. 
+- Input remains audio, with text as output, and deployment is API-only.  
+
+### Realtime-mini (speech-to-speech) model update
+
+`gpt-realtime-mini-2025-12-15`
+- Feature parity with full gpt-realtime model in instruction-following and function-calling.
+- Input and output are both audio, and is be API-only.  
+
+### Text to speech model update
+
+`gpt-4o-mini-tts-2025-12-15`
+- New benchmark for multilingual speech synthesis, 
+- More natural, human-like speech with fewer artifacts and improved speaker similarity. 
+- Input is text, output is audio, and deployment is API-only.  
 
 ## October 2025
 
@@ -73,7 +111,7 @@ This Sora model is now available in the Sweden Central region and East US 2.
 
 ### Realtime API audio model GA
 
-OpenAI's GPT RealTime and Audio models are now generally available on Microsoft Foundry Direct Models.
+OpenAI's GPT RealTime and Audio models are now generally available on Azure AI Foundry Direct Models.
 
 Model improvements:
 - Improved instruction following: Enhanced capabilities to follow tone, pacing, and escalation instructions more accurately and reliably. Can also switch languages.
@@ -86,7 +124,7 @@ Realtime API service improvements:
 - Conversation Mode: Real-world turn-taking behavior for natural interactions. Conversation mode uses VAD to prompt users if no response is detected, improving real-world usability for phone-like interactions.
 
 
-We highly recommend that all customers transition to the newly launched GA models to take full advantage of the latest features. Visit the [Azure OpenAI documentation](./how-to/realtime-audio-webrtc.md) and [Foundry Playground](https://ai.azure.com/playgrounds) to explore capabilities and integrate into your applications. 
+We highly recommend that all customers transition to the newly launched GA models to take full advantage of the latest features. Visit the [Azure OpenAI documentation](./how-to/realtime-audio-webrtc.md) and [Azure AI Foundry Playground](https://ai.azure.com/playgrounds) to explore capabilities and integrate into your applications. 
 
 <!-- and quickstart page: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/realtime-audio-quickstart?tabs=keyless%2Cwindows&pivots=ai-foundry-portal -->
 
@@ -115,6 +153,12 @@ Spillover is now Generally Available. Spillover manages traffic fluctuations on 
 
 - `gpt-5-mini`, `gpt-5-nano`, and `gpt-5-chat` don't require registration.
 
+
+### New version of model-router
+
+- Model router now supports GPT-5 series models.
+
+- Model router for Azure AI Foundry is a deployable AI chat model that automatically selects the best underlying chat model to respond to a given prompt. For more information on how model router works and its advantages and limitations, see the [Model router concepts guide](./concepts/model-router.md). To use model router with the Completions API, follow the [How-to guide](./concepts/model-router.md).
 
 
 ## July 2025 
@@ -150,7 +194,7 @@ Spotlighting is a sub-feature of prompt shields that enhances protection against
 
 ### Model router (preview)
 
-Model router for Foundry is a deployable AI chat model that automatically selects the best underlying chat model to respond to a given prompt. For more information on how model router works and its advantages and limitations, see the [Model router concepts guide](./concepts/model-router.md). To use model router with the Completions API, follow the [How-to guide](./concepts/model-router.md).
+Model router for Azure AI Foundry is a deployable AI chat model that automatically selects the best underlying chat model to respond to a given prompt. For more information on how model router works and its advantages and limitations, see the [Model router concepts guide](./concepts/model-router.md). To use model router with the Completions API, follow the [How-to guide](./concepts/model-router.md).
 
 ## April 2025
 
@@ -247,7 +291,7 @@ For more information about available models, see the [models and versions docume
 
 The `gpt-4o-audio-preview` model is now available for global deployments in [East US 2 and Sweden Central regions](./concepts/models.md#global-standard-model-availability). Use the `gpt-4o-audio-preview` model for audio generation.
 
-The `gpt-4o-audio-preview` model introduces the audio modality into the existing `/chat/completions` API. The audio model expands the potential for AI applications in text and voice-based interactions and audio analysis. Modalities supported in `gpt-4o-audio-preview` model include:  text, audio, and text + audio. For more information, see the [audio generation quickstart](./audio-completions-quickstart.md).
+The `gpt-4o-audio-preview` model introduces the audio modality into the existing `/chat/completions` API. The audio model expands the potential for AI applications in text and voice-based interactions and audio analysis. Modalities supported in `gpt-4o-audio-preview` model include:  text, audio, and text + audio. For more information, see the [audio generation quickstart](./audio-completions-quickstart.md).
 
 > [!NOTE]
 > The [Realtime API](./realtime-audio-quickstart.md) uses the same underlying GPT-4o audio model as the completions API, but is optimized for low-latency, real-time audio interactions.
@@ -258,7 +302,7 @@ The `gpt-4o-realtime-preview` model version 2024-12-17 is available for global d
 
 - Added support for [prompt caching](./how-to/prompt-caching.md) with the `gpt-4o-realtime-preview` model.
 - Added support for new voices. The `gpt-4o-realtime-preview` models now support the following voices: `alloy`, `ash`, `ballad`, `coral`, `echo`, `sage`, `shimmer`, `verse`.
-- Rate limits are no longer based on connections per minute. Rate limiting is now based on RPM (requests per minute) and TPM (tokens per minute) for the `gpt-4o-realtime-preview` model. The rate limits for each `gpt-4o-realtime-preview` model deployment are 100 K TPM and 1 K RPM. During the preview, [Foundry portal](https://ai.azure.com/?cid=learnDocs) and APIs might inaccurately show different rate limits. Even if you try to set a different rate limit, the actual rate limit is 100 K TPM and 1 K RPM.
+- Rate limits are no longer based on connections per minute. Rate limiting is now based on RPM (requests per minute) and TPM (tokens per minute) for the `gpt-4o-realtime-preview` model. The rate limits for each `gpt-4o-realtime-preview` model deployment are 100 K TPM and 1 K RPM. During the preview, [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and APIs might inaccurately show different rate limits. Even if you try to set a different rate limit, the actual rate limit is 100 K TPM and 1 K RPM.
 
 For more information, see the [GPT real-time audio quickstart](realtime-audio-quickstart.md) and the [how-to guide](./how-to/realtime-audio.md).
 
