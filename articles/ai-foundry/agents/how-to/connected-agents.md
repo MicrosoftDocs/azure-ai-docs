@@ -332,67 +332,15 @@ To create a multi-agent setup, follow these steps:
 
 ## Publish connected agents to Azure
 
-After creating and testing your connected agents locally, you can publish them to Azure for production use. Publishing creates an Agent Application with a dedicated endpoint, independent identity, and governance capabilities.
+After testing your connected agents, you can publish them to Azure for production use. The publishing process for connected agents has one key difference from publishing individual agents: **both the main agent and all connected agents must be published separately** as Agent Applications.
 
-### Publishing process
+### Connected agents-specific considerations
 
-When you publish connected agents:
+* **Publish each agent individually**: Publish the connected agents first, then the main agent. Each receives its own stable endpoint and Agent Identity.
+* **Routing continues to work**: After publishing, the main agent automatically routes to the published connected agents using their Agent IDs in the `ConnectedAgentToolDefinition`. No code changes are needed.
+* **Identity management**: Published connected agents receive their own Agent Identity. Reconfigure permissions for any Azure resources that your connected agents access, as the shared development identity permissions don't transfer.
 
-* **Both the main agent and connected agents must be published separately** as Agent Applications.
-* Each published agent gets its own stable endpoint and Agent Identity.
-* The main agent can still call connected agents through the Agent Service routing.
-* You can update agent versions without changing the public endpoints.
-
-### Steps to publish
-
-:::zone pivot="portal"
-
-1. In the Agent Builder, select the connected agent you want to publish first.
-1. Select **Publish Agent** to create an Agent Application and deployment for the connected agent.
-1. Configure authentication (RBAC by default) and assign necessary permissions.
-1. Repeat the process for the main agent.
-1. The main agent will automatically route to the published connected agents using their Agent IDs.
-
-:::zone-end
-
-:::zone pivot="csharp,python"
-
-Use the REST API to publish each agent:
-
-```http
-PUT https://management.azure.com/subscriptions/{{subscription_id}}/resourceGroups/{{resource_group}}/providers/Microsoft.CognitiveServices/accounts/{{account_name}}/projects/{{project_name}}/applications/{{application_name}}/agentdeployments/{{deployment_name}}?api-version={{api_version}}
-Authorization: Bearer {{token}}
-Content-Type: application/json
-
-{
-  "properties":{
-    "displayName": "Published Agent Deployment",
-    "deploymentType": "Managed",
-    "protocols": [
-        {
-          "protocol": "responses",
-          "version": "1.0"
-        }
-    ],
-    "agents": [
-        {
-            "agentName": "your-agent-name",
-            "agentVersion": "1"
-        }
-    ]
-  }
-}
-```
-
-:::zone-end
-
-### Important considerations
-
-* **Identity management**: Published agents receive their own Agent Identity. You must reconfigure permissions for any Azure resources that your agents access.
-* **Connected agent references**: The main agent should continue using the connected agent's ID in the `ConnectedAgentToolDefinition`. The routing will automatically work with published agents.
-* **Authentication**: Ensure that both the main agent and connected agents have appropriate RBAC permissions configured.
-
-For comprehensive publishing instructions, including authentication configuration, permission management, and consuming published agents, see [Publish and share agents in Microsoft Foundry](../../default/agents/how-to/publish-agent.md).
+For complete publishing instructions, including how to publish agents through the portal or REST API, authentication configuration, and consuming published agents, see [Publish and share agents in Microsoft Foundry](../../default/agents/how-to/publish-agent.md).
 
 ## Related content
 
