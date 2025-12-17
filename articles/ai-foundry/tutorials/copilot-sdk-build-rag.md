@@ -30,7 +30,10 @@ This part two shows you how to enhance a basic chat application by adding [retri
 
 This tutorial builds on [Tutorial: Part 1 - Create resources for building a custom chat application with the Microsoft Foundry SDK](copilot-sdk-create-resources.md).
 
-[!INCLUDE [migrate-model-inference-to-v1-openai](../includes/migrate-model-inference-to-v1-openai.md)]
+> [!IMPORTANT]
+> This example uses Azure AI Inference beta SDK.  We recommend that you transition to the generally available [OpenAI/v1 API](https://aka.ms/openai/v1), which uses an OpenAI stable SDK.
+>
+> For more information on how to migrate to the OpenAI/v1 API by using an SDK in your programming language of choice, see [Migrate from Azure AI Inference SDK to OpenAI SDK](../how-to/model-inference-to-openai-migration.md).
 
 ## Prerequisites
 
