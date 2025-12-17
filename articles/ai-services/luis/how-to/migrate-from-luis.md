@@ -72,8 +72,6 @@ Follow these steps to begin migration using the LUIS Portal:
 
 1. A popup window lets you track the migration status of your applications. Applications that are successfully migrated have a status of **Not started**. Applications that are beginning migration have a status of **In progress**, and once migration completes the status is **Succeeded**. A **Failed** application means that you must repeat the migration process. Once the migration is completed for all applications, select **Done**.
 
-    :::image type="content" source="../media/backwards-compatibility/migration-progress.svg" alt-text="A screenshot showing the application migration progress window." lightbox="../media/backwards-compatibility/migration-progress.svg":::
-
 1. After your applications are migrated, you can perform the following steps:
 
    * Train your model
@@ -178,7 +176,7 @@ Training utterance (English):  *How are you?*
 
 Labeled intent: Greeting
 
-Runtime utterance (French): *Comment ça va?*
+Runtime utterance (French): *`Comment ça va?`*
 
 Predicted intent: Greeting
 
@@ -224,7 +222,7 @@ In CLU, you would label the entire span for _Pizza Order_ inclusive of the size 
 - Pass the utterance to each project.
 - Combine the analyses of each project in the stage proceeding CLU.
 
-For a detailed example on this concept, check out the pizza sample projects available on GitHub.
+For a detailed example of this concept, check out the pizza sample projects available on GitHub.
 
 ### How do I manage versions in CLU?
 
@@ -291,7 +289,7 @@ Any special characters in the LUIS application name are removed. If the cleared 
 
 ## Migration from LUIS git p
 
-If you have any questions that were unanswered in this article, consider leaving your questions at our Microsoft Q&A thread.
+If you have any questions that were unanswered in this article, consider leaving your questions at our Microsoft `Q&A` thread.
 
 ## Next steps
 * Quickstart: create a CLU project
