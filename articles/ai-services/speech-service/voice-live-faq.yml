@@ -3,13 +3,13 @@ metadata:
   title: Voice live frequently asked questions (FAQ)
   titleSuffix: Foundry Tools
   description: Get answers to frequently asked questions about the Voice live API in Azure Speech in Foundry Tools.
-  author: PatrickFarley
+  author: goergenj
   reviewers: pafarley
   manager: nitinme
   ms.service: azure-ai-speech
   ms.topic: faq
   ms.date: 09/30/2025
-  ms.author: pafarley
+  ms.author: jagoerge
   ms.reviewer: pafarley
 title: Voice live FAQ
 summary: |

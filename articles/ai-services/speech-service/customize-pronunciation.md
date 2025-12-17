@@ -1,8 +1,8 @@
 ---
 title: Structured text phonetic pronunciation data
 description: Use phonemes to customize pronunciation of words in Speech to text.
-author: PatrickFarley
-ms.author: pafarley
+author: ut-karsh
+ms.author: umaheshwari
 ms.service: azure-ai-speech
 ms.topic: conceptual
 ms.date: 08/07/2025

@@ -64,10 +64,10 @@ items:
 # Foundry Tools APIs and SDKs
 - name: Foundry Tools SDKs
   displayName: client library libraries development kit
-  href: ../../../../ai-services/reference/sdk-package-resources.md?context=/azure/ai-foundry/context/context
+  href: ../../../../ai-services/reference/sdk-package-resources.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry&preserve-view=true
 - name: Foundry Tools REST APIs
   displayName: swagger http
-  href: ../../../../ai-services/reference/rest-api-resources.md?context=/azure/ai-foundry/context/context
+  href: ../../../../ai-services/reference/rest-api-resources.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry&preserve-view=true
 
 # Resource Management
 - name: Resource Management

@@ -1,10 +1,10 @@
 ---
-author: PatrickFarley
+author: goergenj
 reviewer: patrickfarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 10/21/2025
-ms.author: pafarley
+ms.author: jagoerge
 ms.reviewer: pafarley
 ---
 

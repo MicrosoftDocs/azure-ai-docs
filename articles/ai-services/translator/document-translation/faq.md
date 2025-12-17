@@ -5,7 +5,7 @@ description: Get answers to Azure Translator in Foundry Tools Document translati
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.topic: faq
+ms.topic: conceptual
 ms.date: 11/18/2025
 ms.author: lajanuar
 ---
@@ -30,9 +30,9 @@ If the language of the content in the source document is known, we recommend tha
 
 * Various factors influence the preservation and retention of font style. For instance, some fonts aren't available in both the source and target languages. Typically, the same font style, or an optimally suited alternative, is applied to the target language to maintain formatting that most closely resembles the original source text.
 
-#### Does the document translation feature support translating text within images? 🆕
+#### Can the text in an image within a document be translated?
 
-Yes. Our asynchronous (batch) document translation feature supports [translating images](reference/start-batch-translation.md#translate-image-files).
+Yes. Document translation feature supports [translating text embedded in images within documents](how-to-guides/use-rest-api-programmatically.md#translate-text-embedded-within-images-in-documents-) as an optional capability.
 
 #### Can Azure Translator Document translation translate content from fully scanned documents?
 
@@ -58,5 +58,5 @@ PDF documents generated from digital file formats (also known as "native" PDFs) 
 
 Yes.
 
-* For more information, *see* [Synchronous document translation](overview.md#key-features)
+* For more information, *see* [Synchronous document translation](overview.md#synchronous-translation)
 * To view `synchronous document translation` sample code in our GitHub repository, *see* [.NET/C#](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/translation/Azure.AI.Translation.Document/samples/Sample5_SynchronousTranslation.md); [Python](https://github.com/Azure/azure-sdk-for-python/blob/azure-ai-translation-document_1.0.0/sdk/translation/azure-ai-translation-document/samples/sample_begin_translation.py); [REST API](quickstarts/rest-api.md#synchronously-translate-a-single-document-post)

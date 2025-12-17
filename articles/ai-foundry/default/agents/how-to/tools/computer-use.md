@@ -1,18 +1,16 @@
 ---
-title: Use the Computer Use Tool for Agents
+title: 'How to use the computer use tool for the Microsoft Foundry agents'
 titleSuffix: Microsoft Foundry
-description: Learn to use the computer use tool in Microsoft Foundry agents to automate UI interactions. Includes Python, C#, and JavaScript samples.
+description: Learn how to use the computer use tool for agents
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 12/16/2025
-author: alvinashcraft
-ms.author: aashcraft
-ms.custom: references_regions, dev-focus
-ai-usage: ai-assisted
-zone_pivot_groups: selection-computer-use
+ms.date: 09/24/2025
+author: aahill
+ms.author: aahi
+ms.custom: references_regions
 ---
 
 # Computer use tool for agents (Preview)
@@ -20,22 +18,19 @@ zone_pivot_groups: selection-computer-use
 [!INCLUDE [feature-preview](../../../../includes/feature-preview.md)]
 
 > [!WARNING]
-> The computer use tool comes with significant security and privacy risks, including prompt injection attacks. For more information about intended uses, capabilities, limitations, risks, and considerations when choosing a use case, see the [Azure OpenAI transparency note](../../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview).
+> The computer use tool comes with additional significant security and privacy risks, including prompt injection attacks. Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case in the [Azure OpenAI transparency note](../../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview).
 
-This article explains how to work with the computer use tool in Foundry Agent Service. Computer use is a specialized AI tool that uses a specialized model to perform tasks by interacting with computer systems and applications through their user interfaces. By using computer use, you can create an agent that handles complex tasks and makes decisions by interpreting visual elements and taking action based on on-screen content. 
-
-### Usage support
-
-| Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
-|---------|---------|---------|---------|---------|---------|---------|---------|
-| ✔️ | ✔️ | ✔️ | ✔️ | - | - | ✔️ | ✔️ |
+Use this article to learn how to work with the computer use tool in Foundry Agent Service. Computer use is a specialized AI tool that uses a specialized model that can perform tasks by interacting with computer systems and applications through their user interfaces. With computer use, you can create an agent that can handle complex tasks and make decisions by interpreting visual elements and taking action based on on-screen content. 
 
 ## Features 
 
-- Autonomous navigation: For example, computer use can open applications, click buttons, fill out forms, and navigate multistep workflows. 
-- Dynamic adaptation: Interprets UI changes and adjusts actions accordingly. 
-- Cross-application task execution: Operates across web-based and desktop applications. 
-- Natural language interface: Users can describe a task in plain language, and the Computer Use model determines which UI interactions to execute. 
+* Autonomous navigation: For example, computer use can open applications, click buttons, fill out forms, and navigate multi-page workflows. 
+
+* Dynamic adaptation: Interpreting UI changes and adjusting actions accordingly. 
+
+* Cross-application task execution: Can operate across web-based and desktop applications. 
+
+* Natural language interface: Users can describe a task in plain language, and the Computer Use model determines which UI interactions to execute. 
 
 ## Prerequisites
 
@@ -44,25 +39,20 @@ This article explains how to work with the computer use tool in Foundry Agent Se
 
 ## Request access 
 
-To access the `computer-use-preview` model, you need to register. Microsoft grants access based on eligibility criteria. If you have access to other limited access models, you still need to request access for this model. 
+For access to the `computer-use-preview` model, registration is required and access will be granted based on Microsoft's eligibility criteria. Customers who have access to other limited access models will still need to request access for this model. 
 
 To request access, see the [application form](https://aka.ms/oai/cuaaccess).
 
-After Microsoft grants access, you need to create a deployment for the model. 
+Once access has been granted, you will need to create a deployment for the model. 
 
 
-## Code samples
-
+## Code Samples
 > [!WARNING] 
-> Use the computer use tool on virtual machines with no access to sensitive data or critical resources. For more information about the intended uses, capabilities, limitations, risks, and considerations when choosing a use case, see the [Azure OpenAI transparency note](../../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview).
+> We strongly recommend using the computer use tool on virtual machines with no access to sensitive data or critical resources. Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case in the [Azure OpenAI transparency note](../../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview).
 
-To run this code, you need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
+To run this code you will need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
 
-:::zone pivot="python"
-### Screenshot initialization for computer use tool execution
-
-The following code sample demonstrates how to create an agent version with the computer use tool, send an initial request with a screenshot, and perform multiple iterations to complete a task.
-
+### Start with a screenshot to represent the computer use tool execution
 ```python
 import os
 from dotenv import load_dotenv
@@ -92,9 +82,7 @@ except FileNotFoundError:
     print("Failed to load required screenshot assets. Please ensure the asset files exist in ../assets/")
     exit(1)
 ```
-
 ### Create an agent version with the tool
-
 ```python
 project_client = AIProjectClient(
     endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
@@ -119,9 +107,7 @@ with project_client:
     )
     print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
 ```
-
 ### One iteration for the tool to process the screenshot and take the next step
-
 ```python
     openai_client = project_client.get_openai_client()
 
@@ -150,11 +136,8 @@ with project_client:
 
     print(f"Initial response received (ID: {response.id})")
 ```
-
 ### Perform multiple iterations
-
-Make sure you review each iteration and action. The following code sample shows a basic API request. After you send the initial API request, perform a loop where your application code carries out the specified action. Send a screenshot with each turn so the model can evaluate the updated state of the environment. For an example integration for a similar API, see the [Azure OpenAI documentation](../../../../openai/how-to/computer-use.md#playwright-integration).
-
+Make sure you have reviewed each iteration and action. The following code sample shows a basic API request. Once the initial API request is sent, you would perform a loop where the specified action is performed in your application code, sending a screenshot with each turn so the model can evaluate the updated state of the environment. You can see an example integration for a similar API in the [Azure OpenAI documentation](../../../../openai/how-to/computer-use.md#playwright-integration).
 ```python
 
 max_iterations = 10  # Allow enough iterations for completion
@@ -208,471 +191,70 @@ while True:
 ```
 
 ### Clean up
-
 ```python project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
 print("Agent deleted")
 ```
-
-### Expected output
-
-The following is an example of the expected output when running the previous code sample:
-
-```console
-Successfully loaded screenshot assets
-Agent created (id: ..., name: ComputerUseAgent, version: 1)
-Starting computer automation session (initial screenshot: cua_browser_search.png)...
-Initial response received (ID: ...)
---- Iteration 1 ---
-Processing computer call (ID: ...)
-  Typing text "OpenAI news" - Simulating keyboard input
-  -> Action processed: type
-Sending action result back to agent (using cua_search_typed.png)...
-Follow-up response received (ID: ...)
---- Iteration 2 ---
-Processing computer call (ID: ...)
-    Click at (512, 384) - Simulating click on UI element
-    -> Assuming click on Search button when search field was populated, displaying results.
-    -> Action processed: click
-Sending action result back to agent (using cua_search_results.png)...
-Follow-up response received (ID: ...)
-OpenAI news - Latest Updates
-Agent deleted
-```
-:::zone-end
-
-:::zone pivot="csharp"
-## Sample for use of an Agent with Computer Use tool
-
-The following C# code sample demonstrates how to create an agent version with the computer use tool, send an initial request with a screenshot, and perform multiple iterations to complete a task. To enable your Agent to use the Computer Use tool, you need to use `ComputerTool` while creating `PromptAgentDefinition`. This example uses synchronous code. For asynchronous usage, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample10_ComputerUse.md) example in the Azure SDK for .NET repository on GitHub.
-
-```csharp
-// Create project client and read the environment variables, which will be used in the next steps.
-var projectEndpoint = System.Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
-var modelDeploymentName = System.Environment.GetEnvironmentVariable("COMPUTER_USE_DEPLOYMENT_NAME");
-AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
-
-// Read image files using `ReadImageFile` method.
-private static BinaryData ReadImageFile(string name, [CallerFilePath] string pth = "")
-{
-    var dirName = Path.GetDirectoryName(pth) ?? "";
-    return new BinaryData(File.ReadAllBytes(Path.Combine(dirName, name)));
-}
-
-// Read in three example screenshots and place them into a dictionary.
-Dictionary<string, BinaryData> screenshots = new() {
-    { "browser_search", ReadImageFile("Assets/cua_browser_search.png")},
-    { "search_typed", ReadImageFile("Assets/cua_search_typed.png")},
-    { "search_results", ReadImageFile("Assets/cua_search_results.png")},
-};
-
-// Create a PromptAgentDefinition with ComputerTool.
-PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
-{
-    Instructions = "You are a computer automation assistant.\n\n" +
-                   "Be direct and efficient. When you reach the search results page, read and describe the actual search result titles and descriptions you can see.",
-    Tools = {
-        ResponseTool.CreateComputerTool(
-            environment: new ComputerToolEnvironment("windows"),
-            displayWidth: 1026,
-            displayHeight: 769
-        ),
-    }
-};
-AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
-    agentName: "myAgent",
-    options: new(agentDefinition)
-);
-
-// Create a helper method to parse the ComputerTool outputs and to respond
-// to Agents queries with new screenshots. Note that throughout
-// this sample the media type for image is set. Agents support `image/jpeg`,
-// `image/png`, `image/gif` and `image/webp` media types.
-private static string ProcessComputerUseCall(ComputerCallResponseItem item, string oldScreenshot)
-{
-    string currentScreenshot = "browser_search";
-    switch (item.Action.Kind)
-    {
-        case ComputerCallActionKind.Type:
-            Console.WriteLine($"  Typing text \"{item.Action.TypeText}\" - Simulating keyboard input");
-            currentScreenshot = "search_typed";
-            break;
-        case ComputerCallActionKind.KeyPress:
-            HashSet<string> codes = new(item.Action.KeyPressKeyCodes);
-            if (codes.Contains("Return") || codes.Contains("ENTER"))
-            {
-                // If we have typed the value to the search field, go to search results.
-                if (string.Equals(oldScreenshot, "search_typed"))
-                {
-                    Console.WriteLine("  -> Detected ENTER key press, when search field was populated, displaying results.");
-                    currentScreenshot = "search_results";
-                }
-                else
-                {
-                    Console.WriteLine("  -> Detected ENTER key press, on results or unpopulated search, do nothing.");
-                    currentScreenshot = oldScreenshot;
-                }
-            }
-            else
-            {
-                Console.WriteLine($"  Key press: {item.Action.KeyPressKeyCodes.Aggregate("", (agg, next) => agg + "+" + next)} - Simulating key combination");
-            }
-            break;
-        case ComputerCallActionKind.Click:
-            Console.WriteLine($"  Click at ({item.Action.ClickCoordinates.Value.X}, {item.Action.ClickCoordinates.Value.Y}) - Simulating click on UI element");
-            if (string.Equals(oldScreenshot, "search_typed"))
-            {
-                Console.WriteLine("  -> Assuming click on Search button when search field was populated, displaying results.");
-                currentScreenshot = "search_results";
-            }
-            else
-            {
-                Console.WriteLine("  -> Assuming click on Search on results or when search was not populated, do nothing.");
-                currentScreenshot = oldScreenshot;
-            }
-            break;
-        case ComputerCallActionKind.Drag:
-            string pathStr = item.Action.DragPath.ToArray().Select(p => $"{p.X}, {p.Y}").Aggregate("", (agg, next) => $"{agg} -> {next}");
-            Console.WriteLine($"  Drag path: {pathStr} - Simulating drag operation");
-            break;
-        case ComputerCallActionKind.Scroll:
-            Console.WriteLine($"  Scroll at ({item.Action.ScrollCoordinates.Value.X}, {item.Action.ScrollCoordinates.Value.Y}) - Simulating scroll action");
-            break;
-        case ComputerCallActionKind.Screenshot:
-            Console.WriteLine("  Taking screenshot - Capturing current screen state");
-            break;
-        default:
-            break;
-    }
-    Console.WriteLine($"  -> Action processed: {item.Action.Kind}");
-
-    return currentScreenshot;
-}
-
-// For brevity, create the methods to get the response.
-public static ResponseResult CreateResponse(ResponsesClient responseClient, CreateResponseOptions options)
-{
-    ResponseResult response = responseClient.CreateResponse(options);
-    Assert.That(response.Status, Is.EqualTo(ResponseStatus.Completed));
-    return response;
-}
-
-// Create an `ResponseResult` using `ResponseItem`, containing two `ResponseContentPart`:
-// one with the image and another with the text. In the loop, request Agent
-// while it is continuing to browse web. Finally, print the tool output message.
-ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
-CreateResponseOptions responseOptions = new()
-{
-    TruncationMode = ResponseTruncationMode.Auto,
-    InputItems =
-    {
-        ResponseItem.CreateUserMessageItem(
-        [
-            ResponseContentPart.CreateInputTextPart("I need you to help me search for 'OpenAI news'. Please type 'OpenAI news' and submit the search. Once you see search results, the task is complete."),
-            ResponseContentPart.CreateInputImagePart(imageBytes: screenshots["browser_search"], imageBytesMediaType: "image/png", imageDetailLevel: ResponseImageDetailLevel.High)
-        ]),
-    },
-};
-bool computerUseCalled = false;
-string currentScreenshot = "browser_search";
-int limitIteration = 10;
-ResponseResult response;
-do
-{
-    response = CreateResponse(responseClient, responseOptions);
-    computerUseCalled = false;
-    responseOptions.InputItems.Clear();
-    responseOptions.PreviousResponseId = response.Id;
-    foreach (ResponseItem responseItem in response.OutputItems)
-    {
-        responseOptions.InputItems.Add(responseItem);
-        if (responseItem is ComputerCallResponseItem computerCall)
-        {
-            currentScreenshot = ProcessComputerUseCall(computerCall, currentScreenshot);
-            responseOptions.InputItems.Add(ResponseItem.CreateComputerCallOutputItem(callId: computerCall.CallId, output: ComputerCallOutput.CreateScreenshotOutput(screenshotImageBytes: screenshots[currentScreenshot], screenshotImageBytesMediaType: "image/png")));
-            computerUseCalled = true;
-        }
-    }
-    limitIteration--;
-} while (computerUseCalled && limitIteration > 0);
-Console.WriteLine(response.GetOutputText());
-
-// Clean up resources by deleting Agent.
-projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
-```
-
-### Expected output
-
-The following is an example of the expected output when running the previous code sample:
-
-```console
-Agent created (id: ..., name: myAgent, version: 1)
-Starting computer automation session (initial screenshot: cua_browser_search.png)...
-Initial response received (ID: ...)
---- Iteration 1 ---
-Processing computer call (ID: ...)
-  Typing text "OpenAI news" - Simulating keyboard input
-  -> Action processed: Type
-Sending action result back to agent (using cua_search_typed.png)...
-Follow-up response received (ID: ...)
---- Iteration 2 ---
-Processing computer call (ID: ...)
-  Click at (512, 384) - Simulating click on UI element
-  -> Assuming click on Search button when search field was populated, displaying results.
-  -> Action processed: Click
-Sending action result back to agent (using cua_search_results.png)...
-Follow-up response received (ID: ...)
-OpenAI news - Latest Updates
-Agent deleted
-```
-
-:::zone-end
-
-:::zone pivot="typescript"
-## Sample for use of an Agent with Computer Use tool
-
-The following TypeScript code sample demonstrates how to create an agent version with the computer use tool, send an initial request with a screenshot, and perform multiple iterations to complete a task. For a JavaScript example, see the [sample code](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentComputerUse.js) in the Azure SDK for JavaScript repository on GitHub.
-
-```typescript
-import { DefaultAzureCredential } from "@azure/identity";
-import { AIProjectClient } from "@azure/ai-projects";
-import "dotenv/config";
-import {
-  SearchState,
-  loadScreenshotAssets,
-  handleComputerActionAndTakeScreenshot,
-  printFinalOutput,
-  type ComputerAction,
-} from "./computerUseUtil.js";
-
-const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "<project endpoint>";
-const deploymentName =
-  process.env["COMPUTER_USE_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
-
-export async function main(): Promise<void> {
-  // Initialize state machine
-  let currentState = SearchState.INITIAL;
-
-  // Load screenshot assets
-  const screenshots = loadScreenshotAssets();
-  console.log("Successfully loaded screenshot assets");
-
-  // Create AI Project client
-  const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
-  const openAIClient = await project.getOpenAIClient();
-
-  console.log("Creating Computer Use Agent...");
-  const agent = await project.agents.createVersion("ComputerUseAgent", {
-    kind: "prompt" as const,
-    model: deploymentName,
-    instructions: `
-You are a computer automation assistant.
-
-Be direct and efficient. When you reach the search results page, read and describe the actual search result titles and descriptions you can see.
-    `.trim(),
-    tools: [
-      {
-        type: "computer_use_preview",
-        display_width: 1026,
-        display_height: 769,
-        environment: "windows" as const,
-      },
-    ],
-  });
-  console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
-
-  // Initial request with screenshot - start with Bing search page
-  console.log(
-    "Starting computer automation session (initial screenshot: cua_browser_search.png)...",
-  );
-  let response = await openAIClient.responses.create(
-    {
-      input: [
-        {
-          role: "user" as const,
-          content: [
-            {
-              type: "input_text",
-              text: "I need you to help me search for 'OpenAI news'. Please type 'OpenAI news' and submit the search. Once you see search results, the task is complete.",
-            },
-            {
-              type: "input_image",
-              image_url: screenshots.browser_search.url,
-              detail: "high",
-            },
-          ],
-        },
-      ],
-      truncation: "auto",
-    },
-    {
-      body: { agent: { name: agent.name, type: "agent_reference" } },
-    },
-  );
-
-  console.log(`Initial response received (ID: ${response.id})`);
-
-  // Main interaction loop with deterministic completion
-  const maxIterations = 10; // Allow enough iterations for completion
-  let iteration = 0;
-
-  while (iteration < maxIterations) {
-    iteration++;
-    console.log(`\n--- Iteration ${iteration} ---`);
-
-    // Check for computer calls in the response
-    const computerCalls = response.output.filter((item) => item.type === "computer_call");
-
-    if (computerCalls.length === 0) {
-      printFinalOutput({
-        output: response.output,
-        status: response.status ?? "",
-      });
-      break;
-    }
-
-    // Process the first computer call
-    const computerCall = computerCalls[0];
-    const action: ComputerAction = computerCall.action;
-    const callId: string = computerCall.call_id;
-
-    console.log(`Processing computer call (ID: ${callId})`);
-
-    // Handle the action and get the screenshot info
-    const [screenshotInfo, updatedState] = handleComputerActionAndTakeScreenshot(
-      action,
-      currentState,
-      screenshots,
-    );
-    currentState = updatedState;
-
-    console.log(`Sending action result back to agent (using ${screenshotInfo.filename})...`);
-    // Regular response with just the screenshot
-    response = await openAIClient.responses.create(
-      {
-        previous_response_id: response.id,
-        input: [
-          {
-            call_id: callId,
-            type: "computer_call_output",
-            output: {
-              type: "computer_screenshot",
-              image_url: screenshotInfo.url,
-            },
-          },
-        ],
-        truncation: "auto",
-      },
-      {
-        body: { agent: { name: agent.name, type: "agent_reference" } },
-      },
-    );
-
-    console.log(`Follow-up response received (ID: ${response.id})`);
-  }
-
-  if (iteration >= maxIterations) {
-    console.log(`\nReached maximum iterations (${maxIterations}). Stopping.`);
-  }
-
-  // Clean up resources
-  console.log("\nCleaning up...");
-  await project.agents.deleteVersion(agent.name, agent.version);
-  console.log("Agent deleted");
-
-  console.log("\nComputer Use Agent sample completed!");
-}
-
-main().catch((err) => {
-  console.error("The sample encountered an error:", err);
-});
-```
-
-### Expected output
-
-The following is an example of the expected output when running the previous code sample:
-
-```console
-Successfully loaded screenshot assets
-Creating Computer Use Agent...
-Agent created (id: ..., name: ComputerUseAgent, version: 1)
-Starting computer automation session (initial screenshot: cua_browser_search.png)...
-Initial response received (ID: ...)
---- Iteration 1 ---
-Processing computer call (ID: ...)
-  Typing text "OpenAI news" - Simulating keyboard input
-  -> Action processed: type
-Sending action result back to agent (using cua_search_typed.png)...
-Follow-up response received (ID: ...)
---- Iteration 2 ---
-Processing computer call (ID: ...)
-    Click at (512, 384) - Simulating click on UI element
-    -> Assuming click on Search button when search field was populated, displaying results.
-    -> Action processed: click
-Sending action result back to agent (using cua_search_results.png)...
-Follow-up response received (ID: ...)
-OpenAI news - Latest Updates
-Cleaning up...
-Agent deleted
-Computer Use Agent sample completed!
-```
-:::zone-end
 
 ## Differences between browser automation and computer use
 
 The following table lists some of the differences between the computer use tool and [browser automation](../../../../agents/how-to/tools/browser-automation.md) tool.
 
-| Feature                        | Browser Automation          | Computer use tool          |
+| Feature                        | Browser Automation          | computer use tool          |
 |--------------------------------|-----------------------------|----------------------------|
 | Model support                  | All GPT models              | `Computer-use-preview` model only |
 | Can I visualize what's happening?     | No                          | Yes                        |
 | How it understands the screen  | Parses the HTML or XML pages into DOM documents | Raw pixel data from screenshots |
 | How it acts                    | A list of actions provided by the model | Virtual keyboard and mouse |
-| Is it multistep?                    | Yes                         | Yes                        |
+| Is it multi-step?                    | Yes                         | Yes                        |
 | Interfaces                     | Browser                     | Computer and browser       |
 | Do I need to bring my own resource?    | Your own Playwright resource with the keys stored as a connection. | No additional resource required but we highly recommend running this tool in a sandboxed environment.          |
 
 ## Regional support 
 
-To use the computer use tool, you need a [computer use model](../../../../foundry-models/concepts/models-sold-directly-by-azure.md#computer-use-preview) deployment. The computer use model is available in the following regions: 
+In order to use the computer use tool, you need to have a [computer use model](../../../../foundry-models/concepts/models-sold-directly-by-azure.md#computer-use-preview) deployment. The computer use model is available in the following regions: 
 * `eastus2` 
 * `swedencentral` 
 * `southindia` 
 
 ## Understanding the computer use integration 
 
-When working with the computer use tool, integrate it into your application by performing the following steps: 
+When working with the computer use tool, you typically would perform the following to integrate it into your application. 
 
-1. Send a request to the model that includes a call to the computer use tool, the display size, and the environment. You can also include a screenshot of the initial state of the environment in the first API request. 
-1. Receive a response from the model. If the response has action items, those items contain suggested actions to make progress toward the specified goal. For example, an action might be `screenshot` so the model can assess the current state with an updated screenshot, or `click` with X/Y coordinates indicating where the mouse should be moved. 
-1. Execute the action by using your application code on your computer or browser environment. 
+1. Send a request to the model that includes a call to the computer use tool, and the display size and environment. You can also include a screenshot of the initial state of the environment in the first API request. 
+
+1. Receive a response from the model. If the response has action items, those items contain suggested actions to make progress toward the specified goal. For example an action might be screenshot so the model can assess the current state with an updated screenshot, or click with X/Y coordinates indicating where the mouse should be moved. 
+
+1. Execute the action using your application code on your computer or browser environment. 
+
 1. After executing the action, capture the updated state of the environment as a screenshot. 
+
 1. Send a new request with the updated state as a `tool_call_output`, and repeat this loop until the model stops requesting actions or you decide to stop. 
 
-   > [!NOTE]
-   > Before using the tool, set up an environment that can capture screenshots and execute the recommended actions by the agent. For safety reasons, use a sandboxed environment, such as Playwright.
+    > [!NOTE]
+    > Before using the tool, you need to set up an environment that can capture screenshots and execute the recommended actions by the agent. We recommend using a sandboxed environment, such as Playwright for safety reasons.
 
-## Manage conversation history
+## Handling conversation history 
 
-Use the `tool_call_id` parameter to link the current request to the previous response. Use this parameter if you don't want to manage the conversation history. 
+You can use the `tool_call_id` parameter to link the current request to the previous response. Using this parameter is recommended if you don't want to manage the conversation history. 
 
-If you don't use this parameter, make sure to include all the items returned in the response output of the previous request in your inputs array. This requirement includes reasoning items if present. 
+If you don't use this parameter, you should make sure to include all the items returned in the response output of the previous request in your inputs array. This includes reasoning items if present. 
 
-## Safety checks and security considerations
+## Safety checks 
 
 > [!WARNING] 
-> Computer use carries substantial security and privacy risks and user responsibility. Both errors in judgment by the AI and the presence of malicious or confusing instructions on web pages, desktops, or other operating environments that the AI encounters might cause it to execute commands you or others don't intend. These risks could compromise the security of your or other users’ browsers, computers, and any accounts to which AI has access, including personal, financial, or enterprise systems.
+> Computer use carries substantial security and privacy risks and user responsibility. Computer use comes with significant security and privacy risks. Both errors in judgment by the AI and the presence of malicious or confusing instructions on web pages, desktops, or other operating environments which the AI encounters may cause it to execute commands you or others do not intend, which could compromise the security of your or other users’ browsers, computers, and any accounts to which AI has access, including personal, financial, or enterprise systems.
 > 
-> Use the computer use tool on virtual machines with no access to sensitive data or critical resources. For more information about the intended uses, capabilities, limitations, risks, and considerations when choosing a use case, see the [Azure OpenAI transparency note](../../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview).
+> We strongly recommend using the computer use tool on virtual machines with no access to sensitive data or critical resources. Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case in the [Azure OpenAI transparency note](../../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview).
 
 The API has safety checks to help protect against prompt injection and model mistakes. These checks include: 
 
 **Malicious instruction detection**: The system evaluates the screenshot image and checks if it contains adversarial content that might change the model's behavior. 
 
-**Irrelevant domain detection**: The system evaluates the `current_url` parameter (if provided) and checks if the current domain is relevant given the conversation history. 
+**Irrelevant domain detection**: The system evaluates the `current_url` parameter (if provided) and checks if the current domain is considered relevant given the conversation history. 
 
 **Sensitive domain detection**: The system checks the `current_url` parameter (if provided) and raises a warning when it detects the user is on a sensitive domain. 
 
-If one or more of the preceding checks are triggered, the model raises a safety check when it returns the next `computer_call` by using the `pending_safety_checks` parameter. 
+If one or more of the above checks is triggered, a safety check is raised when the model returns the next `computer_call` with the `pending_safety_checks` parameter. 
 
 ```json
 "output": [ 
@@ -708,7 +290,7 @@ If one or more of the preceding checks are triggered, the model raises a safety 
 ]
 ```
 
-You need to pass the safety checks back as `acknowledged_safety_checks` in the next request to proceed. 
+You need to pass the safety checks back as `acknowledged_safety_checks` in the next request in order to proceed. 
 
 ```json
 "input":[ 
@@ -732,8 +314,8 @@ You need to pass the safety checks back as `acknowledged_safety_checks` in the n
 
 ## Safety check handling 
 
-In all cases where `pending_safety_checks` are returned, hand over actions to the end user to confirm proper model behavior and accuracy. 
+In all cases where `pending_safety_checks` are returned, actions should be handed over to the end user to confirm proper model behavior and accuracy. 
 
-`malicious_instructions` and `irrelevant_domain`: End users should review model actions and confirm that the model behaves as intended. 
+`malicious_instructions` and `irrelevant_domain`: end users should review model actions and confirm that the model is behaving as intended. 
 
-`sensitive_domain`: Ensure an end user actively monitors the model actions on these sites. The exact implementation of this "watch mode" can vary by application, but a potential example could be collecting user impression data on the site to make sure there's active end user engagement with the application. 
+`sensitive_domain`: ensure an end user is actively monitoring the model actions on these sites. Exact implementation of this "watch mode" can vary by application, but a potential example could be collecting user impression data on the site to make sure there is active end user engagement with the application. 

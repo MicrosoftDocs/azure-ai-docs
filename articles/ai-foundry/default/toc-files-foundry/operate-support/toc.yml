@@ -1,6 +1,4 @@
 items:
-- name: What's new in Microsoft Foundry
-  href: ../../../whats-new-azure-ai-foundry.md
 # Service Status and Support
 - name: Status dashboard
   href: ../../../azure-ai-foundry-status-dashboard-documentation.md

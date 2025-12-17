@@ -55,14 +55,12 @@ items:
   items: 
   - name: Realtime API for speech and audio
     href: ../../../openai/how-to/realtime-audio.md
-  - name: Realtime API for speech and audio quickstart
-    href: ../../../openai/realtime-audio-quickstart.md
   - name: Realtime API via WebRTC
     href: ../../../openai/how-to/realtime-audio-webrtc.md
   - name: Realtime API via WebSockets
     href: ../../../openai/how-to/realtime-audio-websockets.md
-  - name: Realtime API via SIP
-    href: ../../../openai/how-to/realtime-audio-sip.md
+  - name: Realtime API for speech and audio quickstart
+    href: ../../../openai/realtime-audio-quickstart.md
   - name: Speech to text with Whisper
     href: ../../../openai/whisper-quickstart.md
 

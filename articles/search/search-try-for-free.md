@@ -7,7 +7,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
-ms.topic: article
+ms.topic: conceptual
 ms.date: 11/06/2025
 ms.custom: references_regions
 ---
@@ -94,7 +94,7 @@ Try the Azure portal quickstarts for Azure AI Search or quickstarts that use Vis
 - [Quickstart: Vector search in the Azure portal](search-get-started-portal-import-vectors.md)
 - [Quickstart: Image search in the Azure portal](search-get-started-portal-image-search.md)
 - [Quickstart: Keyword in the Azure portal](search-get-started-portal.md)
-- [Quickstart: Agentic retrieval](search-get-started-agentic-retrieval.md)
+- [Quickstart: Generative search (RAG) using a Python client](search-get-started-rag.md)
 - [Quickstart: Vector search using a REST client](search-get-started-vector.md)
 
 Foundry supports connecting to content in Azure AI Search.

@@ -165,7 +165,7 @@ All indexing and query requests target an index. Endpoints are usually one of th
 
    + [Quickstart: REST](search-get-started-text.md)
    + [Quickstart: Full-text search](search-get-started-text.md)
-   + [Quickstart: Agentic retrieval](search-get-started-agentic-retrieval.md)
+   + [Quickstart: RAG (using Visual Studio Code and a Jupyter notebook)](search-get-started-rag.md)
 
 ## Next steps
 

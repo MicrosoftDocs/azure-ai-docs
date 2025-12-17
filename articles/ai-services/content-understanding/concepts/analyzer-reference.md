@@ -3,7 +3,7 @@ title: Azure Content Understanding in Foundry Tools - What is an analyzer? Confi
 titleSuffix: Foundry Tools
 description: Learn about Azure Content Understanding in Foundry Tools analyzers, how to configure them, and the parameters you can set when creating custom analyzers.
 author: PatrickFarley 
-ms.author: pafarley
+ms.author: jfilcik
 manager: nitinme
 ms.date: 05/19/2025
 ms.service: azure-ai-content-understanding

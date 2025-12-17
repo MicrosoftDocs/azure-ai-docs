@@ -2,10 +2,10 @@
 title: Azure resources - custom question answering
 description: Question answering uses several Azure sources, each with a different purpose. Understanding how they're used individually allows you to plan for and select the correct pricing tier or know when to change your pricing tier. Understanding how they're used in combination allows you to find and fix problems when they occur.
 ms.service: azure-ai-language
-ms.topic: get-started
+ms.topic: conceptual
 author: laujan
 ms.author: lajanuar
-ms.date: 12/11/2025
+ms.date: 11/18/2025
 ms.custom: language-service-question-answering
 ---
 # Azure resources for custom question answering
@@ -37,7 +37,7 @@ Typically there are three parameters you need to consider:
 
 * **Size and the number of projects**: Choose the appropriate [Azure search SKU](https://azure.microsoft.com/pricing/details/search/) for your scenario. Typically, you decide the number of projects you need based on number of different subject domains. One subject domain (for a single language) should be in one project.
 
-    With custom question answering, you have a choice to set up your language resource in a single language or multiple languages.
+    With custom question answering, you have a choice to set up your language resource in a single language or multiple languages. You can make this selection when you create your first project in the [Language Studio](https://language.azure.com/).
 
     > [!IMPORTANT]
     > You can publish N-1 projects  with a single language resource or N-2 projects with multiple language resources in a single tier. The `N` notation is the maximum indexes allowed in the tier.

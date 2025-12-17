@@ -133,8 +133,8 @@ System evaluation focuses on assessing the relevance, groundedness, and response
 
 Examples
 
-- [Groundedness sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_groundedness.py)
-- [Relevance sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_relevance.py)
+- [Groundedness sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluation/agentic_evaluators/sample_groundedness.py)
+- [Relevance sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluation/agentic_evaluators/sample_relevance.py)
 - For the Groundedness Pro response completeness sample, see [system and process evaluation example](#example-of-system-and-process-evaluation).
 
 ## Process evaluation
@@ -807,7 +807,7 @@ The numerical score on a Likert scale (integer 1 to 5). A higher score is better
 
 ::: moniker range="foundry"
 
-- [More examples for quality evaluators](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations)
+- [More examples for quality evaluators](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluation)
 - [How to run agent evaluation](../../how-to/develop/agent-evaluate-sdk.md)
 - [How to run cloud evaluation](../../how-to/develop/cloud-evaluation.md)
 - [How to optimize agentic RAG](https://aka.ms/optimize-agentic-rag-blog)

@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 12/15/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom:
   - language-service-summarization
@@ -39,7 +39,7 @@ For easier navigation, here are links to the corresponding sections for each ser
 ## Features
 
 > [!TIP]
-> If you want to start using these features, you can follow the [quickstart article](../quickstart.md) to get started. You can also make example requests using [Microsoft Foundry](https://ai.azure.com/)) without needing to write code.
+> If you want to start using these features, you can follow the [quickstart article](../quickstart.md) to get started. You can also make example requests using [Language Studio](../../language-studio.md) without needing to write code.
 
 The extractive summarization API uses natural language processing techniques to locate key sentences in an unstructured text document. These sentences collectively convey the main idea of the document.
 

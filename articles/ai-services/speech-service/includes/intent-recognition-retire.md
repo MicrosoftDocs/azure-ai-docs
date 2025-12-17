@@ -1,10 +1,10 @@
 ---
-author: PatrickFarley
+author: goergenj
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 10/06/2025
-ms.author: pafarley
+ms.author: jagoerge
 ---
 
 > [!IMPORTANT]

@@ -5,7 +5,7 @@ description: Learn how to use events with the Realtime API and Voice Live API.
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: article
+ms.topic: conceptual
 ms.date: 09/16/2025
 author: PatrickFarley
 ms.author: pafarley
@@ -1200,7 +1200,6 @@ The server `session.updated` event is returned when a session is updated by the 
 * `gpt-4o-transcribe`
 * `gpt-4o-mini-transcribe`
 * `gpt-4o-transcribe-diarize`
-* `gpt-4o-mini-transcribe-2025-12-15`
 
 
 ### RealtimeAudioInputTranscriptionSettings
@@ -1209,7 +1208,7 @@ The server `session.updated` event is returned when a session is updated by the 
 |-------|------|-------------|
 | language | string | The language of the input audio. Supplying the input language in ISO-639-1 format (such as `en`) will improve accuracy and latency. |
 | model | [RealtimeAudioInputTranscriptionModel](#realtimeaudioinputtranscriptionmodel) | The model for audio input transcription. For example, `whisper-1`. |
-| prompt | string | The prompt for the audio input transcription. Optional text to guide the model's style or continue a previous audio segment. For the `whisper-1` model, the prompt is a list of keywords. For the `gpt-4o-transcribe`-series models and `gpt-4o-transcribe-diarize` model, the prompt is a free text string such as "expect words related to technology."|
+| prompt | string | The prompt for the audio input transcription. Optional text to guide the model's style or continue a previous audio segment. For the `whisper-1` model, the prompt is a list of keywords. For the `gpt-4o-transcribe`, `gpt-4o-transcribe-diarize`, and `gpt-4o-mini-transcribe` models, the prompt is a free text string such as "expect words related to technology."|
 
 ### RealtimeAudioInputAudioNoiseReductionSettings
 

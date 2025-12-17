@@ -4,8 +4,8 @@ description: Use these best practices to improve your project and provide better
 ms.service: azure-ai-language
 author: laujan
 ms.author: lajanuar
-ms.topic: best-practice
-ms.date: 12/12/2025
+ms.topic: conceptual
+ms.date: 11/18/2025
 ms.custom: language-service-question-answering
 ---
 # Custom question answering best practices
@@ -189,7 +189,7 @@ Custom question answering allows users to collaborate on a project. Users need a
 
 ## Active learning
 
-[Active learning](../tutorials/active-learning.md) does the best job of suggesting alternative questions when it has a wide range of quality and quantity of user-based queries. It's important to allow client-applications' user queries to participate in the active learning feedback loop without censorship. Once questions are suggested you can review and accept or reject those suggestions.
+[Active learning](../tutorials/active-learning.md) does the best job of suggesting alternative questions when it has a wide range of quality and quantity of user-based queries. It's important to allow client-applications' user queries to participate in the active learning feedback loop without censorship. Once questions are suggested in Language Studio, you can review and accept or reject those suggestions.
 
 ## Next steps
 

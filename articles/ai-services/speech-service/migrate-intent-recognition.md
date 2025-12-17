@@ -5,8 +5,8 @@ ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 10/31/2025
 ai-usage: ai-assisted
-author: PatrickFarley
-ms.author: pafarley
+author: goergenj
+ms.author: jagoerge
 #Customer intent: As a developer, I want to migrate from Speech IntentRecognizer to an alternative.
 ---
 

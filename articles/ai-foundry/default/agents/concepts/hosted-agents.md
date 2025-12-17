@@ -4,7 +4,7 @@ description: Learn how to deploy and manage containerized AI agents with zero in
 titleSuffix: Microsoft Foundry
 author: aahill
 ms.author: aahi
-ms.date: 12/11/2025
+ms.date: 12/05/2025
 ms.manager: nitinme
 ms.topic: concept-article
 ms.service: azure-ai-foundry
@@ -238,9 +238,8 @@ To build your agent as a Docker container and upload it to Azure Container Regis
 
    ```bash
    docker build -t myagent:v1 .
-   ```   
-   Refer to sample DockerFile for [python](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/python/hosted-agents/agents_in_workflow/Dockerfile) and [C#](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/csharp/hosted-agents/AgentsInWorkflows/Dockerfile). 
-   
+   ```
+
 2. Sign in to Azure Container Registry:
 
    ```bash
@@ -277,35 +276,19 @@ Before you create the agent, give your project's managed identity access to pull
 
 Updating capability hosts is not supported. If you have an existing capability host for your Microsoft Foundry account, you must delete the existing one and recreate it with the property `enablePublicHostingEnvironment` set to `true`. 
 
-#### Get access token
-
-```bash
-TOKEN=$(az account get-access-token --resource https://management.azure.com/ --query accessToken -o tsv)
-```
-
-#### Create capability host
-
 ```bash
 curl --request PUT \
   --url 'https://management.azure.com/subscriptions/[SUBSCRIPTIONID]/resourceGroups/[RESOURCEGROUPNAME]/providers/Microsoft.CognitiveServices/accounts/[ACCOUNTNAME]/capabilityHosts/accountcaphost?api-version=2025-10-01-preview' \
   --header 'content-type: application/json' \
-  --header "authorization: Bearer $TOKEN"\
   --data '{
   "properties": {
     "capabilityHostKind": "Agents",
     "enablePublicHostingEnvironment": true
-    }
- }
+  }
 ```
 
 
 ### Create the hosted agent version
-
-Install version>=2.0.0b2 of the [Azure AI Projects SDK](/python/api/overview/azure/ai-projects-readme?view=azure-python-preview&preserve-view=true)
-
-```bash
-pip install --pre azure-ai-projects==2.0.0b2
-```
 
 Use the Azure AI Projects SDK to create and register your agent:
 
@@ -336,6 +319,8 @@ agent = client.agents.create_version(
         }
     )
 )
+
+print(f"Agent created: {agent.id}")
 ```
 
 Here are the key parameters:
@@ -414,10 +399,8 @@ The arguments for this code include:
 | `--agent-version` | ✅ | Foundry Tools hosted agent version |
 | `--name -n` | ✅ | Foundry Tools hosted agent name |
 | `--project-name` | ✅ | AI project name |
-| `--min-replicas` | ❌ | Minimum number of replicas for horizontal scaling |
-| `--max-replicas` | ❌ | Maximum number of replicas for horizontal scaling |
-
-If no max and min replicas are specified during agent start operation, default value used is 1 for both the arguments. 
+| `--min-replicas` | ✅ | Minimum number of replicas for horizontal scaling |
+| `--max-replicas` | ✅ | Maximum number of replicas for horizontal scaling |
 
 Here's an example:
 
@@ -538,7 +521,7 @@ The arguments for this code include:
 
 ### Invoke hosted agents
 
-You can view and test hosted agents in the agent playground UI. Hosted agents expose an OpenAI Responses-compatible API that you can invoke by using the Azure AI Projects SDK.
+You can view and test hosted agents in the agent playground UI. Hosted agents expose an OpenAI Responses-compatible API that you can invoke by using the OpenAI SDK.
 
 ```python
 #!/usr/bin/env python3
@@ -571,14 +554,14 @@ print(f"Agent response: {response.output_text}")
 
 ### Use tools with hosted agents
 
-Before your hosted agent can run with Foundry tools, you need to create a connection to your remote Model Context Protocol (MCP) server on Foundry.
+Before your hosted agent can run tools, you need to create a connection to your remote Model Context Protocol (MCP) server on Foundry.
 
 The `RemoteMCPTool` connection supports these authentication mechanisms:
 
 - **Stored credentials**: Use predefined credentials stored in the system.
 - **Project managed identity**: Use the managed identity for the Foundry project.
 
-Choose your authentication method:
+#### Choose your authentication method
 
 - **For shared identity**: Use key-based or Foundry project managed identity authentication when every user of your agent should use the same identity. Individual user identity or context doesn't persist with these methods.
 
@@ -586,51 +569,28 @@ Choose your authentication method:
 
 To learn how to create the `RemoteMCPTool` connection, see [Connect to Model Context Protocol servers](../../../agents/how-to/tools/model-context-protocol.md).
 
-Reference the Foundry tool connection ID for Remote MCP servers within your agent code using an environment variable and wrap it with the Hosting adapter for testing locally. Build and push your Docker image to Azure Container Registry (ACR), configure image pull permissions on the ACR, create a capability host by following the instructions mentioned [above](#create-a-hosted-agent-by-using-the-foundry-sdk) and proceed to registering your agent on Foundry.
-
-Create a hosted agents version with tools definition using the Foundry SDK:
+Use the companion package with your local agent code to list and invoke tools from within your container:
 
 ```python
-from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import ImageBasedHostedAgentDefinition, ProtocolVersionRecord, AgentProtocol
-from azure.identity import DefaultAzureCredential
+from azure.ai.agentshosting import tool_client, from_langgraph
+from langchain_openai import AzureChatOpenAI
+from langgraph.prebuilt import create_react_agent
 
-# Initialize the client
-client = AIProjectClient(
-    endpoint="https://your-project.services.ai.azure.com/api/projects/project-name",
-    credential=DefaultAzureCredential()
-)
+async def agent_run(self, request_body: CreateResponse, context: AgentRunContext):
+    deployment_name = os.getenv("AZURE_OPENAI_CHAT_DEPLOYMENT_NAME", "gpt-4o")
+    model = AzureChatOpenAI(model=deployment_name)
+    
+    tools_client = await tool_client(context)
 
-# Create the agent from a container image
-agent = client.agents.create_version(
-    agent_name="my-agent",
-    description="Coding agent expert in assisting with github issues",
-    definition=ImageBasedHostedAgentDefinition(
-        container_protocol_versions=[ProtocolVersionRecord(protocol=AgentProtocol.RESPONSES, version="v1")],
-        cpu="1",
-        memory="2Gi",
-        image="your-registry.azurecr.io/your-image:tag",
-        tools=[
-            {
-                "type": "code_interpreter"
-            },
-            {
-                "type": "mcp",
-                "project_connection_id": "github_connection_id"
-            }
-        ],
-        environment_variables={
-            "AZURE_AI_PROJECT_ENDPOINT": "https://your-project.services.ai.azure.com/api/projects/project-name",
-            "API_KEY": "your-api-key",
-            "MODEL_NAME": "gpt-4",
-            "CUSTOM_SETTING": "value"
-        }
-    )
-)
+    try:
+        tools = await tools_client.list_tools()
+        agent = create_react_agent(model, tools)
+        await from_langgraph(agent).run_async()
+    except OAuthRequiresConsentException as oauthException:
+        return ResponseOauthConsentRequestEvent(oauthException)
 ```
-Start the agent using Azure CognitiveServices CLI or from within Agent Builder in the new Foundry UI. 
 
-Currently supported built-in Foundry tools include:
+You can also use hosted agents with Foundry built-in tools. Supported tools include:
 
 - Code Interpreter
 - Image Generation
@@ -804,10 +764,10 @@ If your agent deployment fails, view error logs by selecting **View deployment l
 
 | Dimension | Limit |
 |-----------|-------|
-| Microsoft Foundry resources with hosted agents per Azure subscription | 100 |
-| Maximum number of hosted agents per Foundry resource | 200 |
-| Maximum `min_replica` count for an agent deployment | 2 |
-| Maximum `max_replica` count for an agent deployment | 5 |
+| Microsoft Foundry resource per region per Azure subscription | 100 |
+| Maximum number of agents per Foundry resource | 200 |
+| Maximum (`min_replica`) count for an agent deployment | 2 |
+| Maximum (`max_replica`) count for an agent deployment | 5 |
 
 ### Hosting pricing
 
@@ -817,17 +777,14 @@ Billing for managed hosting runtime will be enabled no earlier than February 1, 
 
 Currently, hosted agents are supported in North Central US only.
 
-### Private networking support
-
-Currently, hosted agents can not be created with the [standard setup](/azure/ai-foundry/agents/how-to/virtual-networks) within network isolated Foundry resources. 
-
 ## Related content
 
-- [Python code samples](https://github.com/azure-ai-foundry/foundry-samples/tree/hosted-agents/pyaf-samples/samples/microsoft/python/getting-started-agents/hosted-agents)
-- [C# code samples](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/csharp/hosted-agents)
-- [Agent runtime components](./runtime-components.md)
 - [Agent development lifecycle](./development-lifecycle.md)
 - [Agent identity concepts in Microsoft Foundry](./agent-identity.md)
+- [Agent runtime components](./runtime-components.md)
 - [Discover tools in Foundry Tools](./tool-catalog.md)
 - [Publish and share agents in Microsoft Foundry](../how-to/publish-agent.md)
 - [Azure Container Registry documentation](/azure/container-registry/)
+- [Create a project for Microsoft Foundry](../../../how-to/create-projects.md)
+- [Microsoft Foundry feature availability across cloud regions](../../../reference/region-support.md)
+- [Microsoft Foundry quickstart](../../../quickstarts/get-started-code.md)

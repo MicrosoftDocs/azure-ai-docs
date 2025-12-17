@@ -2,9 +2,8 @@
 title: Explore Foundry MCP Server best practices and security guidance
 description: Learn about Foundry MCP Server best practices and security guidance
 keywords: azure developer cli, azd
-author: sdgilley
-ms.author: sgilley
-ms.reviewer: sehan
+author: alexwolfmsft
+ms.author: alexwolf
 ms.date: 11/04/2025
 ms.topic: get-started
 ms.service: azure-ai-foundry
@@ -45,9 +44,6 @@ Follow these practices to make sure write operations run as you intend:
 
 - **Verify tool selection**: Confirm the correct MCP tool and parameters match your intention before execution.
 - **Check parameters**: Review all tool parameters (resource IDs, deployment names, dataset paths) for accuracy.
-  - For example, many model and deployment related tools would take Foundry resource ID in the format of `/subscriptions/{subscription_id}/resourceGroups/{resource_group_name}/providers/Microsoft.CognitiveServices/accounts/{account_name}` - this Foundry resource ID has the information about the subscription, resource group name, and the Foundry account name.
-  - Similarly, many agent and evaluation related tools would take Foundry project endpoint in the format of `https://{account_name}.services.ai.azure.com/api/projects/{project_name}`, which has the information about the Foundry account name and the project name.
-  - If you provide project resource ID in the format of `/subscriptions/{subscription_id}/resourceGroups/{resource_group_name}/providers/Microsoft.CognitiveServices/accounts/{account_name}/projects/{project_name}` that you can find from either Properties page of the account on Azure portal or Microsoft Foundry project details page, the language model used in your MCP Host will extract needed info and formulate the parameters to pass to the MCP tools. Confirm before approval that intended parameter values are passed to the MCP tools.
 - **Check environment targeting**: Make sure resource endpoints and project URLs point to the intended environment.
 
 ### Resource management via MCP server
@@ -86,13 +82,11 @@ Tenant admins can use Azure Policy to grant or block access to Foundry MCP Serve
 
 1. Materialize the service principal for Foundry MCP Server (preview) application ID by running `az ad sp create --id fcdfa2de-b65b-4b54-9a1c-81c8a18282d9`. The application ID used in this command represents Foundry MCP Server (preview).
 
-1. Find the enterprise application for Foundry MCP Server (preview) using the application ID. Open the [Azure portal Entra ID page](https://portal.azure.com/#view/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/~/Overview) and search for the application ID `fcdfa2de-b65b-4b54-9a1c-81c8a18282d9`.
-
-    :::image type="content" source="../media/mcp/foundry-find-mcp-app.png" alt-text="Screenshot of MCP app in Entra ID.":::
-
-1. Click Conditional Access under Security on the left pane of the selected app for Foundry MCP Server (preview) and click New Policy to specify the users or workload identities.
+1. Find the enterprise application for Foundry MCP Server (preview) using the application ID.
 
     :::image type="content" source="../media/mcp/foundry-conditional-access.png" alt-text="Screenshot of conditional access options for the app configuration.":::
+
+1. Add a conditional access policy that targets Foundry MCP Server (preview) and specifies the users or workload identities.
 
     :::image type="content" source="../media/mcp/foundry-new-access-policy.png" alt-text="Screenshot of creating a new conditional access policy for the app.":::
 
@@ -123,7 +117,7 @@ Check your permissions in Entra ID and confirm your access token is valid. Sign 
 
 ### Permission errors
 
-Check your resource role assignments in the Azure portal to make sure you have the permissions for the operations you need. For more information, see [Role-based access control for Microsoft Foundry](../../concepts/rbac-azure-ai-foundry.md).
+Check your resource role assignments in the Azure portal to make sure you have the permissions for the operations you need. For more information, see Role-based access control for Foundry.
 
 ### Server connectivity issues
 

@@ -2,10 +2,10 @@
 title: Pricing for Azure Content Understanding in Foundry Tools
 titleSuffix: Foundry Tools
 description: Understand the pricing model for Azure Content Understanding in Foundry Tools, including what you're charged for, how to estimate costs, and pricing examples.
-author: PatrickFarley
-ms.author: pafarley
+author: jfilcik
+ms.author: jfilcik
 ms.service: azure-ai-content-understanding
-ms.topic: article
+ms.topic: conceptual
 ms.date: 10/03/2025
 ms.custom:
   - build-2025
@@ -70,7 +70,7 @@ Find Content Understanding in the [Azure Pricing Calculator](https://azure.micro
 
 - Add "Content Understanding" to the calculator 
 - Use your test results from step 1 to calculate per-page or per-minute token averages
-- Enter token counts along with your region, [file type](/azure/ai-services/content-understanding/service-limits#input-file-limits), expected volume, and model deployment
+- Enter token counts along with your region, file type, expected volume, and model deployment
 
 The calculator provides accurate cost projections for your workload. 
 

@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 12/11/2025
+ms.date: 10/02/2025
 ms.reviewer: lajanuar
 ms.author: lajanuar
 author: laujan
@@ -29,8 +29,8 @@ Depending on the Foundry Tool and model you want to use, you can use them in Fou
 - The [project-level playgrounds](#try-foundry-tools-in-the-project-level-playgrounds).
 - [Fine-tune](#fine-tune-foundry-tools) models. You can fine-tune a subset of Foundry Tools models in Foundry portal.
 - [Deploy](#deploy-models-to-production) models. You can deploy base models and fine-tuned models to production. Most Foundry Tools models are already deployed and ready to use.
-
-### Connect Foundry Tools after you create a project
+- 
+- ### Connect Foundry Tools after you create a project
 
 You can connect Foundry Tools resources to a Foundry project after you create a project. To use your existing Foundry Tools resources (such as Azure Speech in Foundry Tools) in a Foundry project, you need to create a connection to the resource.
 

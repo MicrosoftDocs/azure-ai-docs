@@ -95,14 +95,3 @@ After you configure Microsoft Entra ID in your resource, update your code to use
 ## Troubleshooting
 
 [!INCLUDE [troubleshooting](troubleshooting.md)]
-
-## Disable key-based authentication in the resource
-
-Disable key-based authentication when you implement Microsoft Entra ID and fully address compatibility or fallback concerns in all the applications that consume the service. 
-You can use PowerShell with the Azure CLI to disable local authentication for an individual resource. First sign in with the `Connect-AzAccount` command. Then use the `Set-AzCognitiveServicesAccount` cmdlet with the parameter `-DisableLocalAuth $true`, like the following example:
-
-```powershell
-Set-AzCognitiveServicesAccount -ResourceGroupName "my-resource-group" -Name "my-resource-name" -DisableLocalAuth $true
-```
-
-For more details on how to use the Azure CLI to disable or re-enable local authentication and verify authentication status, see [Disable local authentication in Foundry Tools](../../../../ai-services/disable-local-auth.md).

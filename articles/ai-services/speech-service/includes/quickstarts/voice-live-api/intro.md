@@ -1,9 +1,9 @@
 ---
-author: PatrickFarley
+author: goergenj
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 9/26/2025
-ms.author: pafarley
+ms.author: jagoerge
 ---
 
 You create and run an application to use voice live directly with generative AI models for real-time voice agents.

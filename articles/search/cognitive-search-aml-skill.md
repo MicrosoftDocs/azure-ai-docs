@@ -43,9 +43,9 @@ We recommend using the [**Import data (new)** wizard](search-get-started-portal-
 
 ## Prerequisites
 
-+ A [Microsoft Foundry hub-based project](/azure/ai-foundry/how-to/hub-create-projects) or an [AML workspace](../machine-learning/concept-workspace.md) for a custom model that you create.
++ A [Foundry hub-based project](/azure/ai-foundry/how-to/hub-create-projects) or an [AML workspace](../machine-learning/concept-workspace.md) for a custom model that you create.
 
-+ For hub-based projects only, a serverless deployment of a [supported model](#skill-parameters) from the Microsoft Foundry model catalog. You can use an [ARM/Bicep template](https://github.com/Azure-Samples/azure-ai-search-multimodal-sample/blob/42b4d07f2dd9f7720fdc0b0788bf107bdac5eecb/infra/ai/modules/project.bicep#L37C1-L38C1) to provision the serverless deployment.
++ For hub-based projects only, a [serverless deployment](/azure/ai-foundry/how-to/deploy-models-serverless) of a [supported model](#skill-parameters) from the Foundry model catalog.
 
 ## @odata.type
 
@@ -57,7 +57,7 @@ Parameters are case sensitive. The parameters you use depend on what [authentica
 
 | Parameter name | Description |
 |--------------------|-------------|
-| `uri` | (Required for [key authentication](#WhatSkillParametersToUse)) The target URI of the serverless deployment from the Microsoft Foundry model catalog or the [scoring URI of the AML online endpoint](../machine-learning/how-to-authenticate-online-endpoint.md). Only the HTTPS URI scheme is allowed. Supported models from the model catalog (serverless deployments only) are:<ul><li>Cohere-embed-v3-english</li><li>Cohere-embed-v3-multilingual</li><li>Cohere-embed-v4</li></ul> |
+| `uri` | (Required for [key authentication](#WhatSkillParametersToUse)) The target URI of the serverless deployment from the Foundry model catalog or the [scoring URI of the AML online endpoint](../machine-learning/how-to-authenticate-online-endpoint.md). Only the HTTPS URI scheme is allowed. Supported models from the model catalog are:<ul><li>Cohere-embed-v3-english</li><li>Cohere-embed-v3-multilingual</li><li>Cohere-embed-v4</li></ul> |
 | `key` | (Required for [key authentication](#WhatSkillParametersToUse)) The API key of the model provider. |
 | `resourceId` | (Required for [token authentication](#WhatSkillParametersToUse)) The Azure Resource Manager resource ID of the model provider. For an AML online endpoint, use the `subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.MachineLearningServices/workspaces/{workspace-name}/onlineendpoints/{endpoint_name}` format. |
 | `region` | (Optional for [token authentication](#WhatSkillParametersToUse)) The region in which the model provider is deployed. Required if the region is different from the region of the search service. |

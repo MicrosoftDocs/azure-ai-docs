@@ -12,7 +12,7 @@ author: PatrickFarley
 zone_pivot_groups: foundry-speech-studio
 ---
 
-# How to create a custom video avatar
+# How to create a custom text to speech avatar
 
 ::: zone pivot="ai-foundry-portal"
 [!INCLUDE [Foundry include](../includes/how-to/custom-avatar/create-avatar/ai-foundry.md)]

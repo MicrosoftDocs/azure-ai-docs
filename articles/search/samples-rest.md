@@ -28,6 +28,7 @@ Code samples from the Azure AI Search team demonstrate features and workflows. T
 |--|--|--|
 | [quickstart](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart) | [Quickstart: Full-text search](search-get-started-text.md) | Create, load, and query a search index using sample data. |
 | [quickstart-agentic-retrieval](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-agentic-retrieval) | [Quickstart: Agentic retrieval](search-get-started-agentic-retrieval.md) | Integrate semantic ranking with LLM-powered query planning and answer generation. |
+| [quickstart-RAG](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-RAG) | [Quickstart: Classic generative search (RAG)](search-get-started-rag.md) | Use grounding data from Azure AI Search with a chat completion model from Azure OpenAI. |
 | [quickstart-semantic-search](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-semantic-search) | [Quickstart: Semantic ranking](search-get-started-semantic.md) | Add semantic ranking to an index schema and run semantic queries. |
 | [quickstart-vectors](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-vectors) | [Quickstart: Vector search](search-get-started-vector.md) | Index and query vector content. |
 | [acl](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/acl) | [Query-time ACL and RBAC enforcement](search-query-access-control-rbac-enforcement.md) | Implement query-time access control using role-based access control (RBAC) and access control lists (ACLs). |
@@ -40,11 +41,15 @@ Code samples from the Azure AI Search team demonstrate features and workflows. T
 
 ## Other samples
 
+Currently, there are no other REST samples available.
+
+<!--
 The following samples are also published by the Azure AI Search team but aren't referenced in documentation. Associated README files provide usage instructions.
 
 | Sample | Description |
 |--|--|
-| [azure-search-classic-rag](https://github.com/Azure-Samples/azure-search-classic-rag/tree/main/quickstarts) | Single-shot RAG using the classic search engine as grounding data from Azure AI Search, with a chat completion model from Azure OpenAI. |
+| | |
+-->
 
 > [!TIP]
 > Use the [samples browser](/samples/browse/?expanded=azure&languages=http&products=azure-cognitive-search) to search for Microsoft code samples on GitHub. You can filter your search by product, service, and language.

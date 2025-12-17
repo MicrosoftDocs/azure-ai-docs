@@ -259,7 +259,7 @@ This training pipeline contains the following steps:
    - This component uses the trained model to predict taxi fares on the test set.
    - Input: ML model and Test dataset
    - Output: Performance of model and a deploy flag whether to deploy or not.
-   - This component compares the performance of the model with all previous deployed models on the new test dataset and decides whether to promote or not model into production. Promoting model into production happens by registering the model in Azure Machine Learning workspace.
+   - This component compares the performance of the model with all previous deployed models on the new test dataset and decides whether to promote or not model into production. Promoting model into production happens by registering the model in AML workspace.
 
 **Register Model**
    - This component scores the model based on how accurate the predictions are in the test set.
@@ -329,7 +329,7 @@ This scenario includes prebuilt workflows for two approaches to deploying a trai
    
    ![Screenshot of ADO Pipeline batch run result page.](./media/how-to-setup-mlops-azureml/ADO-batch-pipeline-run.png)
 
-1. To test this deployment, go to the **Endpoints** tab in your Azure Machine Learning workspace, select the endpoint and click the **Test** Tab. You can use the sample input data located in the cloned repo at `/data/taxi-request.json` to test the endpoint.
+1. To test this deployment, go to the **Endpoints** tab in your AzureML workspace, select the endpoint and click the **Test** Tab. You can use the sample input data located in the cloned repo at `/data/taxi-request.json` to test the endpoint.
 
 ## Clean up resources
 

@@ -17,8 +17,6 @@ ai-usage: ai-assisted
 
 # Endpoints for Microsoft Foundry Models
 
-[!INCLUDE [version-banner](../../includes/version-banner.md)]
-
 Microsoft Foundry Models enables you to access the most powerful models from leading model providers through a single endpoint and set of credentials. This capability lets you switch between models and use them in your application without changing any code.
 
 This article explains how the Foundry services organize models and how to use the inference endpoint to access them.

@@ -96,4 +96,4 @@ Azure Content Understanding adheres to Microsoft's strict policies on customer d
 ## Related content
 
 * Learn how to build a [**person directory**](../tutorial/build-person-directory.md) (preview).
-* Review code sample: [**person directory**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/notebooks).
+* Review code sample: [**person directory**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/blob/main/notebooks/build_person_directory.ipynb).

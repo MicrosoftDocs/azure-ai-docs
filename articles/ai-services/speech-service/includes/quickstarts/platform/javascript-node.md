@@ -2,7 +2,7 @@
 title: "Quickstart: Speech SDK for JavaScript (NodeJS) platform setup - Speech service"
 titleSuffix: Foundry Tools
 description: Use this guide to set up your platform for using JavaScript (NodeJS) with the Speech SDK.
-author: PatrickFarley
+author: markamos
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: include

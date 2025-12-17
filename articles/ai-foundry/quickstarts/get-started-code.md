@@ -5,7 +5,7 @@ description: Get started with Microsoft Foundry SDK to build AI applications.
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: dantaylo
-ms.date: 12/16/2025
+ms.date: 11/09/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.custom:
@@ -122,9 +122,6 @@ Follow along below or get the code:
 1. Set these environment variables to use in your scripts:
 
     :::code language="plaintext" source="~/foundry-samples-main/samples-classic/typescript/quickstart/.env.template":::
-1. Start your code with these imports:
-    
-    :::code language="typescript" source="~/foundry-samples-main/samples-classic/typescript/quickstart/src/quickstart.ts" id="imports":::
 
 Follow along below or get the code:
 > [!div class="nextstepaction"]
@@ -185,9 +182,9 @@ Store the endpoint as an environment variable.  Also set these values for use in
 1. Set these environment variables to use in your scripts:
 
     ```plaintext
-    PROJECT_ENDPOINT=<endpoint copied from welcome screen>
-    AGENT_NAME="MyAgent"
-    MODEL_DEPLOYMENT_NAME="gpt-4.1-mini"
+    AZURE_AI_FOUNDRY_PROJECT_ENDPOINT=<endpoint copied from welcome screen>
+    AZURE_AI_FOUNDRY_AGENT_NAME="MyAgent"
+    AZURE_AI_FOUNDRY_MODEL_DEPLOYMENT_NAME="gpt-4.1-mini"
     ```
 ### Install and authenticate
 

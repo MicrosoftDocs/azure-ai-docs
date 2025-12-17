@@ -6,8 +6,8 @@ manager: nitinme
 ms.service: azure-ai-services
 ms.topic: reference
 ms.date: 9/26/2025
-author: PatrickFarley
-ms.author: pafarley
+author: goergenj
+ms.author: jagoerge
 ---
 
 # Voice live API Reference

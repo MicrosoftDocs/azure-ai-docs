@@ -1,5 +1,5 @@
 ---
-author: PatrickFarley
+author: goergenj
 reviewer: patrickfarley
 ms.service: azure-ai-speech
 ms.topic: include

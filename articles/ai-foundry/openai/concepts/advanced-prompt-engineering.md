@@ -7,7 +7,7 @@ ms.author: mbullwin
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual 
-ms.date: 12/6/2025
+ms.date: 09/30/2025
 manager: nitinme
 keywords: ChatGPT, GPT-4, meta prompts, chain of thought
 monikerRange: 'foundry-classic || foundry'

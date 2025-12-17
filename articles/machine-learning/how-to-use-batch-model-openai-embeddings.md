@@ -10,7 +10,7 @@ author: s-polly
 ms.author: scottpolly
 ms.reviewer: cacrest
 ms.date: 12/16/2024
-ms.custom: how-to, devplatv2, update-code2
+ms.custom: how-to, devplatv2, update-code
 # customer intent: As a developer, I want to deploy an Azure OpenAI ADA-002 model to a batch endpoint so I can compute embeddings at scale.
 ---
 
