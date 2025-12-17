@@ -262,11 +262,14 @@ Content-Type: application/json
 
 ### Connect to a remote SharePoint knowledge source
 
-If your knowledge base includes a remote SharePoint knowledge source, you must also include the `x-ms-query-source-authorization` header in the MCP tool connection.
+Optionally, if your knowledge base includes a [remote SharePoint knowledge source](/azure/search/agentic-knowledge-source-how-to-sharepoint-remote), you must also include the `x-ms-query-source-authorization` header in the MCP tool connection.
 
 #### [Python](#tab/python)
 
 ```python
+from azure.identity import get_bearer_token_provider
+
+# Create MCP tool with SharePoint authorization header
 mcp_kb_tool = MCPTool(
     server_label = "knowledge-base",
     server_url = mcp_endpoint,

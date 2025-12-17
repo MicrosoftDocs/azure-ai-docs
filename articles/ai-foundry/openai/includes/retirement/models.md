@@ -93,7 +93,7 @@ ms.custom: references_regions, build-2025
 
 ---
 
-<sup>1</sup> For some models, the launch date is the value of the model version.
+<sup>1</sup> For some models, the launch date is used as the value of the model version.
 
 We notify all customers with these preview deployments at least 30 days before the start of the upgrades. We publish an upgrade schedule that details the order of regions and model versions that we follow during the upgrades, and link to that schedule from here.
 

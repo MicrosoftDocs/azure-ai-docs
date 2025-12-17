@@ -12,7 +12,7 @@ ms.custom:
   - devx-track-extended-java
   - ignite-2023
 ms.topic: concept-article
-ms.date: 09/23/2025
+ms.date: 12/15/2025
 ---
 
 # Java samples for Azure AI Search
@@ -48,7 +48,9 @@ Code samples from the Azure AI Search team demonstrate features and workflows. T
 
 | Sample | Article | Description |
 |--|--|--|
-| [quickstart](https://github.com/Azure-Samples/azure-search-java-samples/tree/main/quickstart) | [Quickstart: Full-text search](search-get-started-text.md) | Create, load, and query an index using sample data. |
+| [quickstart](https://github.com/Azure-Samples/azure-search-java-samples/tree/main/quickstart) | [Quickstart: Full-text search](search-get-started-text.md) | Create, load, and query a search index using sample data. |
+| [semantic-ranking-quickstart](https://github.com/Azure-Samples/azure-search-java-samples/tree/main/semantic-ranking-quickstart) | [Quickstart: Semantic ranking](search-get-started-semantic.md) | Add semantic ranking to an index schema and run semantic queries. |
+| [vector-quickstart](https://github.com/Azure-Samples/azure-search-java-samples/tree/main/vector-quickstart) | [Quickstart: Vector search](search-get-started-vector.md) | Index and query vector content. |
 
 > [!TIP]
 > Use the [samples browser](/samples/browse/?languages=java&products=azure-cognitive-search) to search for Microsoft code samples on GitHub. You can filter your search by product, service, and language.
