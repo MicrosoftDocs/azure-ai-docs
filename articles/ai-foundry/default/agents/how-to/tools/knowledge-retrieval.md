@@ -1,7 +1,7 @@
 ---
 title: Connect Agents to Foundry IQ Knowledge Bases
 titleSuffix: Microsoft Foundry
-description: Learn how to connect Microsoft Foundry agents to Foundry IQ knowledge bases powered by Azure AI Search. Enable grounded retrieval with citation-backed responses using Model Context Protocol.
+description: Learn how to connect Microsoft Foundry agents to Foundry IQ knowledge bases, which are powered by Azure AI Search. The integration enables grounded retrieval and citation-backed responses.
 author: haileytap
 ms.author: haileytapia
 ms.reviewer: fsunavala
@@ -45,7 +45,7 @@ For an end-to-end example of integrating Azure AI Search and Foundry Agent Servi
 
 ### Authentication and permissions
 
-For production deployments, use role-based access control. If roles aren't feasible, skip this section and use key-based authentication instead.
+We recommend role-based access control for production deployments. If roles aren't feasible, skip this section and use key-based authentication instead.
 
 #### [Microsoft Foundry](#tab/foundry)
 
@@ -63,11 +63,11 @@ For production deployments, use role-based access control. If roles aren't feasi
 
 ## Understand knowledge
 
-By integrating the following services, knowledge enables agent grounding and reasoning over enterprise content:
+Knowledge enables agent grounding and reasoning over enterprise content by integrating the following services:
 
 - [Azure AI Search](/azure/search/search-what-is-azure-search) provides knowledge sources (*what* to retrieve) and knowledge bases (*how* to retrieve). The knowledge base plans and executes subqueries and outputs formatted results with citations.
 
-  Although knowledge bases support [answer synthesis](/azure/search/agentic-retrieval-how-to-answer-synthesis), use the extractive data output mode for integration with Foundry Agent Service. This mode ensures that the agent receives verbatim content instead of pre-generated answers, providing full control over the response format and quality.
+  Although knowledge bases support [answer synthesis](/azure/search/agentic-retrieval-how-to-answer-synthesis), we recommend the extractive data output mode for integration with Foundry Agent Service. This mode ensures that the agent receives verbatim content instead of pre-generated answers, providing full control over the response format and quality.
 
 - [Foundry Agent Service](../../../../agents/overview.md) orchestrates calls to the knowledge base via the MCP tool and synthesizes the final answer. At runtime, the agent calls only the knowledge base, not the data platform (such as Azure Blob Storage or Microsoft OneLake) that underlies the knowledge source. The knowledge base handles all retrieval operations.
 
@@ -117,7 +117,7 @@ print(f"Connection '{project_connection_name}' created or updated successfully."
 
 ### [REST](#tab/rest)
 
-Use the [Azure CLI](/cli/azure/what-is-azure-cli) to obtain an access token for Azure API Management:
+Use the [Azure CLI](/cli/azure/what-is-azure-cli) to get an access token for Azure API Management:
 
 ```azurecli
 az account get-access-token --scope https://management.azure.com/.default --query accessToken -o tsv
@@ -150,7 +150,7 @@ Content-Type: application/json
 
 ## Optimize agent instructions for knowledge retrieval
 
-To maximize the accuracy of knowledge base invocations and ensure proper citation formatting, use optimized agent instructions. Based on our experiments, use the following instruction template as a starting point:
+To maximize the accuracy of knowledge base invocations and ensure proper citation formatting, use optimized agent instructions. Based on our experiments, we recommend the following instruction template as a starting point:
 
 ```plaintext
 You are a helpful assistant that must use the knowledge base to answer all the questions from user. You must never answer from your own knowledge under any circumstances.
