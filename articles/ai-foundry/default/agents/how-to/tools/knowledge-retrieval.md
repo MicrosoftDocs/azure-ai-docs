@@ -58,7 +58,7 @@ We recommend role-based access control for production deployments. If roles aren
 
 To enable retrieval-augmented generation (RAG) over a knowledge domain, the following services work together:
 
-+ Powered by [Azure AI Search](/azure/search/search-what-is-azure-search), **Foundry IQ** is a unified knowledge layer that consists of knowledge sources (*what* to retrieve) and knowledge bases (*how* to retrieve). The knowledge base plans and executes subqueries and outputs formatted results with citations.
++ **Foundry IQ** provides a unified knowledge layer for agent grounding. Powered by [Azure AI Search](/azure/search/search-what-is-azure-search), Foundry IQ consists of knowledge sources (*what* to retrieve) and knowledge bases (*how* to retrieve). The knowledge base plans and executes subqueries and outputs formatted results with citations.
 
   Although knowledge bases support [answer synthesis](/azure/search/agentic-retrieval-how-to-answer-synthesis), we recommend the extractive data output mode for integration with Foundry Agent Service. This mode ensures that the agent receives verbatim content instead of pre-generated answers, providing full control over the response format and quality.
 
