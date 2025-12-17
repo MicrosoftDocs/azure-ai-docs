@@ -69,7 +69,7 @@ To call the synchronous translation feature via the REST API, include the follow
 
 |Name |Description|Content Type|Condition|
 |---|---|---|---|
-|**document**| Source document to be translated.|Any one of the [supported document formats](../overview.md#supported-document-and-glossary-formats).|***Required***|
+|**document**| Source document to be translated.|Any one of the [supported document formats](../overview.md#synchronous-supported-document-formats).|***Required***|
 |**glossary**|Document containing a list of terms with definitions to use during the translation process.|Any one of the supported [glossary formats](get-supported-glossary-formats.md).|***Optional***|
 
 ### Response Status Codes
@@ -100,8 +100,9 @@ To call the synchronous translation feature via the REST API, include the follow
   }
 }
 ```
+## Examples
 
-## Translate a Word document
+### Translate a Word document
 
 ```bash
 curl --request POST \
@@ -123,7 +124,7 @@ curl --request POST \
 
 For more information, *see* [Supported Document Formats](../overview.md).
 
-## Translate a Word document with a Glossary
+### Translate a Word document with a Glossary
 
 ```bash
 curl --request POST \

@@ -1,5 +1,5 @@
 ---
-author: PatrickFarley
+author: IEvangelist
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 12/04/2021

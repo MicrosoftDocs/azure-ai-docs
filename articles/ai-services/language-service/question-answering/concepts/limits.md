@@ -4,10 +4,9 @@ description: Custom question answering has meta-limits for parts of the knowledg
 ms.service: azure-ai-language
 author: laujan
 ms.author: lajanuar
-ms.topic: limits-and-quotas
-ms.date: 12/11/2025
+ms.topic: conceptual
+ms.date: 11/18/2025
 ---
-
 # Project limits and boundaries
 
 The following custom question answering limits are a combination of the [Azure AI Search pricing tier limits](/azure/search/search-limits-quotas-capacity) and custom question answering limits. Both sets of limits affect how many projects you can create per resource and how large each project can grow.
@@ -18,7 +17,8 @@ The maximum number of projects is based on [Azure AI Search tier limits](/azure/
 
 Choose the appropriate [Azure search SKU](https://azure.microsoft.com/pricing/details/search/) for your scenario. Typically, you decide the number of projects you need based on number of different subject domains. One subject domain (for a single language) should be in one project.
 
-With custom question answering, you have a choice to set up your language resource in a single language or multiple languages. 
+With custom question answering, you have a choice to set up your language resource in a single language or multiple languages. You can make this selection when you create your first project in the [Language Studio](https://language.azure.com/).
+
   > [!IMPORTANT]
   > You can publish N-1 projects with a single language resource or N-2 projects with multiple language resources in a single tier. The `N` notation is the maximum indexes allowed in the tier.
   > Also check the maximum size and the number of documents allowed per tier.

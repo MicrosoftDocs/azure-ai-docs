@@ -1,7 +1,7 @@
 ---
 manager: nitinme
-author: PatrickFarley
-ms.author: pafarley
+author: goergenj
+ms.author: jagoerge
 reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.service: azure-ai-openai

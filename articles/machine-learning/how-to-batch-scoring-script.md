@@ -10,7 +10,7 @@ author: s-polly
 ms.author: scottpolly
 ms.reviewer: jturuk
 ms.date: 11/13/2025
-ms.custom: how-to, update-code2
+ms.custom: how-to, update-code
 ---
 
 # Author scoring scripts for batch deployments

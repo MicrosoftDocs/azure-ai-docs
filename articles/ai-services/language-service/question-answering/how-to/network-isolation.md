@@ -5,7 +5,7 @@ ms.service: azure-ai-language
 ms.topic: how-to
 author: laujan
 ms.author: lajanuar
-ms.date: 12/15/2025
+ms.date: 11/18/2025
 ms.custom: language-service-question-answering
 ---
 #  Network isolation and private endpoints
@@ -54,6 +54,11 @@ This will establish a private endpoint connection between language resource and 
 ## Restrict access to Azure AI Search resource
 
 Follow these steps to restrict public access to custom question answering language resources. Protect a Foundry resource from public access by [configuring the virtual network](../../../cognitive-services-virtual-networks.md?tabs=portal).
+
+After you restrict access to a Foundry resource based on virtual network, to browse projects on Language Studio from your on-premises network or your local browser:
+- Grant access to [on-premises network](../../../cognitive-services-virtual-networks.md?tabs=portal#configure-access-from-on-premises-networks).
+- Grant access to your [local browser/machine](../../../cognitive-services-virtual-networks.md?tabs=portal#managing-ip-network-rules).
+- Add the **public IP address of the machine  under the Firewall** section of the **Networking** tab. By default `portal.azure.com` shows the current browsing machine's public IP (select this entry) and then select **Save**.
 
   > [!div class="mx-imgBorder"]
   > [![Screenshot of firewall and virtual networks configuration UI](../../../qnamaker/media/network-isolation/firewall.png)](../../../qnamaker/media/network-isolation/firewall.png#lightbox)

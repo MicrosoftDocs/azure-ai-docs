@@ -2949,16 +2949,6 @@
       "source_path_from_root": "/articles/ai-services/content-understanding/quickstart/use-ai-foundry-pro-mode.md",
       "redirect_url": "/azure/ai-services/content-understanding/how-to/content-understanding-foundry-classic",
       "redirect_document_id": false
-    },
-    {
-      "source_path_from_root": "/articles/ai-services/language-service/question-answering/how-to/migrate-qnamaker-to-question-answering.md",
-      "redirect_url": "/azure/ai-services/qnamaker/how-to/migrate-qnamaker-to-question-answering",
-      "redirect_document_id": false
-    },
-    {
-      "source_path_from_root": "/articles/ai-services/language-service/question-answering/how-to/migrate-qnamaker.md",
-      "redirect_url": "/azure/ai-services/qnamaker/how-to/migrate-qnamaker",
-      "redirect_document_id": false
     }
   ]
 }

@@ -6,7 +6,7 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: reference
-ms.custom: cliv2, update-code
+ms.custom: cliv2
 ms.reviewer: None
 author: s-polly
 ms.author: scottpolly

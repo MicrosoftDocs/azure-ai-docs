@@ -5,10 +5,10 @@ description: Learn how to use Azure OpenAI's new stateful Responses API.
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 12/09/2025
+ms.date: 12/04/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: how-to
+ms.topic: include
 ms.custom:
   - references_regions
   - build-2025
@@ -57,8 +57,6 @@ The responses API is currently available in the following regions:
 
 ### Model support
 
-- `gpt-5.2` (Version: `2025-12-11`)
-- `gpt-5.2-chat` (Version: `2025-12-11`)
 - `gpt-5.1-codex-max` (Version: `2025-12-04`)
 - `gpt-5.1` (Version: `2025-11-13`)
 - `gpt-5.1-chat` (Version: `2025-11-13`)
@@ -80,7 +78,6 @@ The responses API is currently available in the following regions:
 - `gpt-4.1-mini` (Version: `2025-04-14`)
 - `gpt-image-1` (Version: `2025-04-15`)
 - `gpt-image-1-mini` (Version: `2025-10-06`)
-- `gpt-image-1.5` (Version: `2025-12-16`)
 - `o1` (Version: `2024-12-17`)
 - `o3-mini` (Version: `2025-01-31`)
 - `o3` (Version: `2025-04-16`)
@@ -1313,7 +1310,7 @@ token_provider = get_bearer_token_provider(
 client = OpenAI(  
   base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
   api_key=token_provider,
-  default_headers={"x-ms-oai-image-generation-deployment":"gpt-image-1.5", "api_version":"preview"}
+  default_headers={"x-ms-oai-image-generation-deployment":"gpt-image-1", "api_version":"preview"}
 )
 
 response = client.responses.create(
@@ -1341,4 +1338,4 @@ For examples of how to use reasoning models with the responses API see the [reas
 
 ## Computer use
 
-Computer use with Playwright has moved to the [dedicated computer use model guide](https://learn.microsoft.com/azure/ai-foundry/openai/how-to/computer-use#playwright-integration)
+Computer use with Playwright has moved to the [dedicated computer use model guide](./computer-use.md#playwright-integration)

@@ -1,9 +1,9 @@
 ---
-author: PatrickFarley
+author: yulin-li
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 08/30/2023
-ms.author: pafarley
+ms.author: yulili
 ---
 
 [!INCLUDE [Header](../../common/go.md)]

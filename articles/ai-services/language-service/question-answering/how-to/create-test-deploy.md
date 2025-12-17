@@ -5,7 +5,7 @@ ms.service: azure-ai-language
 ms.topic: how-to
 author: laujan
 ms.author: lajanuar
-ms.date: 12/15/2025
+ms.date: 11/18/2025
 ms.custom: language-service-question-answering, mode-other
 ---
 # Create, test, and deploy: CQA knowledge base

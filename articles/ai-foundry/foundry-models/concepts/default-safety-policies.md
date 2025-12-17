@@ -9,7 +9,7 @@ reviewer: ychang-msft
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: concept-article
-ms.date: 12/03/2025
+ms.date: 08/29/2025
 ai-usage: ai-assisted
 
 #CustomerIntent: As a developer or AI practitioner, I want to understand the default safety policies and content filtering configurations applied to Microsoft Foundry Models so that I can ensure my AI applications comply with responsible AI practices and understand what safety measures are in place by default.

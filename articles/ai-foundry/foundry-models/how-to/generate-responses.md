@@ -221,6 +221,7 @@ This section lists some of the Foundry Models that are supported for use with th
 - [Azure OpenAI supported programming languages](../../openai/supported-languages.md)
 - [Switch between OpenAI and Azure OpenAI endpoints](/azure/developer/ai/how-to/switching-endpoints)
 - [Generate chat completions with Foundry Models, using the OpenAI v1 chat completions API ](../../openai/api-version-lifecycle.md#model-support)
+- [Use reasoning models](use-chat-reasoning.md)
 
 
 

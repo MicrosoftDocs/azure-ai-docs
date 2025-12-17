@@ -6,7 +6,7 @@ author: erindormier
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 12/15/2025
+ms.date: 11/18/2025
 ms.author: egeaney
 ms.custom: language-service-question-answering
 ---
@@ -47,7 +47,7 @@ Customer-managed keys are available in all Azure Search regions.
 
 ## Encryption of data in transit
 
-Every action triggers a direct call to the respective Foundry Tools API. Hence, custom question answering is compliant for data in transit.
+Language Studio runs in the user's browser. Every action triggers a direct call to the respective Foundry Tools API. Hence, custom question answering is compliant for data in transit.
 
 ## Next steps
 

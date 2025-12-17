@@ -407,7 +407,7 @@ The `mltable` library supports reading of tabular data from different path types
 
 - file(s) - for example: `abfss://<file_system>@<account_name>.dfs.core.windows.net/my-csv.csv`
 - folder(s) - for example `abfss://<file_system>@<account_name>.dfs.core.windows.net/my-folder/`
-- [glob](https://en.wikipedia.org/wiki/Glob_(programming)) pattern(s) - for example `abfss://<file_system>@<account_name>.dfs.core.windows.net/my-folder/*.csv`
+- [glob](https://wikipedia.org/wiki/Glob_(programming)) pattern(s) - for example `abfss://<file_system>@<account_name>.dfs.core.windows.net/my-folder/*.csv`
 - a combination of files, folders, and/or globbing patterns
 
 `mltable` flexibility allows data materialization, into a single dataframe, from a combination of local and cloud storage resources, and combinations of files/folder/globs. For example:
@@ -511,7 +511,7 @@ df.head()
 ---
 
 #### Read parquet files in a folder
-This example shows how `mltable` can use [glob](https://en.wikipedia.org/wiki/Glob_(programming)) patterns - such as wildcards - to ensure that only the parquet files are read.
+This example shows how `mltable` can use [glob](https://wikipedia.org/wiki/Glob_(programming)) patterns - such as wildcards - to ensure that only the parquet files are read.
 
 ##### [ADLS gen2](#tab/adls)
 
@@ -655,7 +655,7 @@ df.head()
 > [!TIP]
 > Pandas is not designed to handle large datasets. Pandas can only process data that can fit into the memory of the compute instance.
 >
-> For large datasets, we recommend use of Azure Machine Learning managed Spark. This provides the [PySpark Pandas API](https://spark.apache.org/docs/latest/api/python/tutorial/pandas_on_spark/index.html).
+> For large datasets, we recommend use of Azure Machine Learning managed Spark. This provides the [PySpark Pandas API](https://spark.apache.org/docs/3.5.3/api/python/user_guide/pandas_on_spark/index.html).
 
 You might want to iterate quickly on a smaller subset of a large dataset before scaling up to a remote asynchronous job. `mltable` provides in-built functionality to get samples of large data using the [take_random_sample](/python/api/mltable/mltable.mltable.mltable#mltable-mltable-mltable-take-random-sample) method:
 

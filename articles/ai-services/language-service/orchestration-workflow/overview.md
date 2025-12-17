@@ -15,7 +15,7 @@ ms.custom: language-service-orchestration
 
 Orchestration workflow is one of the features offered by [Azure Language in Foundry Tools](../overview.md). It is a cloud-based API service that applies machine-learning intelligence to enable you to build orchestration models to connect [Conversational Language Understanding (CLU)](../conversational-language-understanding/overview.md), [Question Answering](../question-answering/overview.md) projects and [LUIS](../../luis/what-is-luis.md) applications.
 By creating an orchestration workflow, developers can iteratively tag utterances, train and evaluate model performance before making it available for consumption. 
-To simplify building and customizing your model, the service offers a custom playground that can be accessed through the [Microsoft Foundry](https://ai.azure.com/). You can easily get started with the service by following the steps in this [quickstart](quickstart.md). 
+To simplify building and customizing your model, the service offers a custom web portal that can be accessed through the [Language studio](https://aka.ms/languageStudio). You can easily get started with the service by following the steps in this [quickstart](quickstart.md). 
 
 
 This documentation contains the following article types:

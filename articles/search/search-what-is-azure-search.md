@@ -10,7 +10,7 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2024
 ms.topic: overview
-ms.date: 12/10/2025
+ms.date: 12/04/2025
 ---
 
 # What is Azure AI Search?
@@ -83,7 +83,7 @@ During indexing, you can use [AI enrichment](cognitive-search-concept-intro.md) 
 
 ---
 
-:::image type="content" source="media/search-what-is-azure-search/classic-search-architecture.png" alt-text="Diagram of the Azure AI Search architecture for classic search." lightbox="media/search-what-is-azure-search/classic-search-architecture.png" :::
+:::image type="content" source="media/search-what-is-azure-search/azure-search.svg" alt-text="Diagram of the Azure AI Search architecture for classic search." lightbox="media/search-what-is-azure-search/azure-search.svg" :::
 
 > [!NOTE]
 > This diagram separates the indexing and query engines for clarity, but in Azure AI Search, they're the same component operating in read-write and read-only modes.
@@ -92,11 +92,13 @@ During indexing, you can use [AI enrichment](cognitive-search-concept-intro.md) 
 
 [Agentic retrieval](agentic-retrieval-overview.md) is a multi-query pipeline designed for complex agent-to-agent workflows. Each query targets a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) that represents a complete domain of knowledge. Your agent references the knowledge base for *what* to ground on, while the knowledge base handles *how* to perform grounding.
 
-A knowledge base consists of one or more [knowledge sources](agentic-knowledge-source-overview.md), an optional LLM for query planning and answer synthesis, and parameters that govern retrieval behavior. Each query undergoes planning, decomposition into focused subqueries, parallel retrieval from knowledge sources, semantic reranking, and results merging. The three-pronged response is optimized for agent consumption.
+One knowledge base consists of one or more [knowledge sources](agentic-knowledge-source-overview.md), an optional LLM for query planning and answer synthesis, and parameters that govern retrieval behavior. Each query undergoes planning, decomposition into focused subqueries, parallel retrieval from knowledge sources, semantic reranking, and results merging. The three-pronged response is optimized for agent consumption.
 
 Under the hood, agentic retrieval builds on the classic search architecture by adding a context layer (knowledge base) that orchestrates multi-source retrieval. Knowledge sources can be indexed or remote: indexed sources use the same indexing and query engines as classic search, while remote sources bypass indexing and are queried live.
 
-:::image type="content" source="media/search-what-is-azure-search/agentic-retrieval-architecture.png" alt-text="Diagram of the Azure AI Search architecture for agentic retrieval." lightbox="media/search-what-is-azure-search/agentic-retrieval-architecture.png" :::
+<!--
+:::image type="content" source="media/search-what-is-azure-search/azure-search-agentic-retrieval.svg" alt-text="Diagram of the Azure AI Search architecture for agentic retrieval." lightbox="media/search-what-is-azure-search/azure-search-agentic-retrieval.svg" :::
+-->
 
 ## How they compare
 

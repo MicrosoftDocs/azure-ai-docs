@@ -2,9 +2,9 @@
 title: What are neural text to speech HD voices?
 titleSuffix: Foundry Tools
 description: Learn about neural text to speech HD voices that you can use with speech synthesis.
-author: PatrickFarley
+author: goergenj
 reviewer: patrickfarley
-ms.author: pafarley
+ms.author: jagoerge
 ms.reviewer: pafarley
 manager: nitinme
 ms.service: azure-ai-speech

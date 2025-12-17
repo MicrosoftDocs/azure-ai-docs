@@ -8,7 +8,7 @@ manager: nitinme
 ms.date: 11/24/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
-ms.topic: article
+ms.topic: conceptual
 ms.custom:
   - references_regions
   - tool_generated
@@ -43,8 +43,6 @@ Anthropic's flagship product is Claude, a frontier AI model trusted by leading e
 To work with Claude models in Foundry, see [Deploy and use Claude models in Microsoft Foundry](../how-to/use-foundry-models-claude.md). 
 
 Claude models are also supported for use in the [Foundry Agent Service](../../agents/concepts/model-region-support.md).
-
-[!INCLUDE [claude-usage-restriction](../includes/claude-usage-restriction.md)]
 
 ::: moniker range="foundry-classic"
 

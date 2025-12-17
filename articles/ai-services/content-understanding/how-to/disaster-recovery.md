@@ -3,11 +3,11 @@ title: Azure Content Understanding in Foundry Tools Disaster recovery
 titleSuffix: Foundry Tools
 description: Learn about disaster recovery features in Azure Content Understanding.
 author: PatrickFarley 
-ms.author: pafarley
+ms.author: jppark
 manager: nitinme
 ms.date: 09/16/2025
 ms.service: azure-ai-content-understanding
-ms.topic: article
+ms.topic: conceptual
 ms.custom:
   - build-2025
 ---

@@ -4,7 +4,7 @@ titleSuffix: Microsoft Foundry
 description: This article provides instructions on how to continuously evaluate AI agents.
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 12/08/2025
+ms.date: 07/31/2025
 ms.reviewer: amibp
 ms.author: lagayhar  
 author: lgayhardt
@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-Continuous evaluation for Agents provides near real-time observability and monitoring for your AI application. Once enabled, this feature continuously evaluates agent interactions at a set sampling rate to provide insights into quality, safety, and performance with metrics surfaced in the Foundry Observability dashboard. By using continuous evaluation, you're able to identify and troubleshoot issues early, optimize agent performance, and maintain safety. Evaluations are also connected to traces. to enable detailed debugging and root cause analysis.
+Continuous evaluation for Agents provides near real-time observability and monitoring for your AI application. Once enabled, this feature continuously evaluates agent interactions at a set sampling rate to provide insights into quality, safety, and performance with metrics surfaced in the Foundry Observability dashboard. By using continuous evaluation, you're able to identify and troubleshoot issues early, optimize agent performance, and maintain safety. Evaluations are also connected to [traces](./develop/trace-application.md) to enable detailed debugging and root cause analysis.
 
 ## Prerequisites
 
@@ -53,7 +53,7 @@ To view continuous evaluations in Foundry:
 
 1. Open the **Settings** wizard to begin configuring continuous evaluations.
 
-1. Use the *Add Evaluator* dropdown to include one or more evaluators. You can add evaluators in two ways: 
+1. Use the Add Evaluator dropdown to include one or more evaluators. You can add evaluators in two ways: 
 
     - **Evaluator Name**
     
@@ -61,15 +61,16 @@ To view continuous evaluations in Foundry:
     
     - **Importing from Past Evaluation**
     
-        - Reuse evaluators from previous evaluation runs for consistency.
+        - Reuse evaluators from previous evaluation runs for consistency. 
 
-1. Set *Sample Rate* by defining how many runs per hour will be evaluated.
+1. Set Sample Rate by defining how many runs per hour will be evaluated
 
-1. Apply changes.
+1. Apply Changes 
 
-1. Select **Verify + Submit** to save your configuration.
+1. Click Verify + Submit to save your configuration. 
 
-After configuring your continuous evaluation settings, you will be able to view top-level metrics on the summary cards and associated charts with more granular data.
+
+After configuring your continuous evaluation settings, you will be able to view top-level metrics on the summary cards and associated charts with more granular data. 
 
 ::: moniker-end
 
@@ -251,27 +252,12 @@ project_client.evaluation.create_agent_evaluation(
 )
 ```
 
-::: moniker range="foundry-classic"
-
 > [!NOTE]
 > If multiple AI applications send continuous evaluation data to the same Application Insights resource, it's recommended to use the service name to differentiate application data. See [Azure AI Tracing](./develop/trace-application.md) for details.
-
-::: moniker-end
-
-::: moniker range="foundry"
-
-> [!NOTE]
-> If multiple AI applications send continuous evaluation data to the same Application Insights resource, it's recommended to use the service name to differentiate application data.
-
-::: moniker-end
-
-::: moniker range="foundry-classic"
 
 ## Viewing continuous evaluation results
 
 After you deploy your application to production with continuous evaluation setup, you can [monitor the quality and safety of your agent with Foundry and Azure Monitor](./monitor-applications.md).
-
-::: moniker-end
 
 ## Related content
 

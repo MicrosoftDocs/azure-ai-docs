@@ -379,7 +379,7 @@ curl -i -X POST "{endpoint}/contentunderstanding/analyzers/{analyzerId}:analyze?
           {
             "url": "https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/pieChart.jpg"
           }          
-        ]
+        ]s
       }'  
 ```
 

@@ -1,6 +1,6 @@
 ---
-author: PatrickFarley
-ms.author: pafarley
+author: goergenj 
+ms.author: jagoerge
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 11/06/2025

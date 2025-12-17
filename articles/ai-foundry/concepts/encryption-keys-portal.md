@@ -72,7 +72,7 @@ To configure CMK for Microsoft Foundry, ensure the following prerequisites are m
 
 1.  **Key Vault Permissions**:
 
-    - If you're using **Azure RBAC**, assign Key Vault Crypto User role to the managed identity.
+    - If you're using **Azure RBAC**, assign roles like Key Vault Crypto Officer or Key Vault Contributor to the managed identity.
     - If you're using **Vault Access Policies**, grant key-specific permissions to the managed identity, such as **unwrap key** and **wrap key**.
 
 ## Regional availability note (UAI for CMK)
@@ -134,7 +134,7 @@ Configure appropriate permissions for the **system-assigned** or **user-assigned
 1. Go to the Key Vault in the Azure portal.
 1. Select **Access Control (IAM)**.
 1. Select **+ Add role assignment**.
-1. Assign the Key Vault Crypto User role to the **system-assigned managed identity** of the Microsoft Foundry resource.
+1. Assign the Key Vault Crypto Officer, Key Vault Contributor, or a similar role to the **system-assigned managed identity** of the Microsoft Foundry resource.
 
 **User-assigned managed identity**
 
@@ -160,7 +160,7 @@ Azure Key Vault supports two models for managing access permissions:
 1.  **Azure RBAC (Recommended)**:
     - Provides centralized access control using Azure AD roles.
     - Simplifies permission management for resources across Azure.
-    - Use Key Vault Crypto User role.
+    - Recommended roles include Key Vault Crypto Officer or Key Vault Contributor.
 1.  **Vault Access Policies**:
     - Allows granular access control specific to Key Vault resources.
     - Suitable for configurations where legacy or isolated permission settings are necessary.

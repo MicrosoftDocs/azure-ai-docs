@@ -14,9 +14,6 @@ zone_pivot_groups: foundry-speech-studio-rest
 
 # How to use video translation
 
-[Reference documentation](/rest/api/aiservices/videotranslation/operation-groups) |  [Samples](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/video-translation)
-
-
 ::: zone pivot="rest-api"
 [!INCLUDE [REST API include](./includes/how-to/video-translation/rest.md)]
 ::: zone-end

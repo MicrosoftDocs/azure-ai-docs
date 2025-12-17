@@ -2,9 +2,8 @@
 title:  Explore available tools and example prompts for Foundry MCP Server (preview) 
 description: Learn about the available tools and example prompts for Foundry MCP Server (preview) 
 keywords: azure developer cli, azd
-author: sdgilley
-ms.author: sgilley
-ms.reviewer: sehan
+author: alexwolfmsft
+ms.author: alexwolf
 ms.date: 11/04/2025
 ms.topic: get-started
 ms.service: azure-ai-foundry

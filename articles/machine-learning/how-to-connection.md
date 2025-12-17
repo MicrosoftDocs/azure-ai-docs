@@ -736,7 +736,7 @@ from azure.ai.ml import command
 username = os.environ["REGISTRY_USERNAME"]
 password = os.environ["REGISTRY_PASSWORD"]
 
-# Enter details of Azure Machine Learning workspace
+# Enter details of AML workspace
 subscription_id = "<SUBSCRIPTION_ID>"
 resource_group = "<RESOURCE_GROUP>"
 workspace = "<AML_WORKSPACE_NAME>"

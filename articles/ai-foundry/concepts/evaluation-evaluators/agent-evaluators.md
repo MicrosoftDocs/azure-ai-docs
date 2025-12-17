@@ -363,7 +363,7 @@ Examples:
 
 ## Evaluator model support for AI-assisted evaluators
 
-For AI-assisted evaluators, you can use AzureOpenAI or OpenAI [reasoning models](../../../ai-services/openai/how-to/reasoning.md) and non-reasoning models for the LLM-judge depending on the evaluators. For complex evaluation that requires refined reasoning, we recommend a strong reasoning model like `gpt-5-mini` with a balance of reasoning performance, cost-effectiveness, and efficiency.
+For AI-assisted evaluators, you can use AzureOpenAI or OpenAI [reasoning models](../../../ai-services/openai/how-to/reasoning.md) and non-reasoning models for the LLM-judge depending on the evaluators. For complex evaluation that requires refined reasoning, we recommend a strong reasoning model like `gpt-5-mini` with a balance of reasoning performance and cost and performance efficiency.
 
 ### Tool evaluators support
 

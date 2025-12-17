@@ -42,9 +42,9 @@ Go to your resource in the Azure portal. On the navigation pane, select **Keys a
 
 Create a new Python file named _quickstart.py_. Open the new file in your preferred editor or IDE.
 
-#### [GPT-image-1 series](#tab/gpt-image-1)
+#### [GPT-image-1](#tab/gpt-image-1)
 
-1. Replace the contents of _quickstart.py_ with the following code. Change the value of `prompt` to your preferred text. Also set `deployment` to the deployment name you chose when you deployed the GPT-image-1 series model.
+1. Replace the contents of _quickstart.py_ with the following code. Change the value of `prompt` to your preferred text. Also set `deployment` to the deployment name you chose when you deployed the GPT-image-1 model.
     
     ```python
     import os
@@ -57,7 +57,7 @@ Create a new Python file named _quickstart.py_. Open the new file in your prefer
     endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
     subscription_key = os.getenv("AZURE_OPENAI_API_KEY")
     
-    deployment = "gpt-image-1.5" # the name of your GPT-image-1 series deployment
+    deployment = "gpt-image-1" # the name of your GPT-image-1 deployment
     api_version = "2025-04-01-preview" # or later version
     
     def decode_and_save_image(b64_data, output_filename):

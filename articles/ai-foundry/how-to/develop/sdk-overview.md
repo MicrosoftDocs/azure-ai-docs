@@ -8,7 +8,7 @@ ms.custom:
   - ignite-2024
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 12/15/2025
+ms.date: 11/24/2025
 ms.reviewer: dantaylo
 ms.author: johalexander
 author: ms-johnalex
@@ -132,17 +132,9 @@ The [Azure AI Projects client library for JavaScript](/javascript/api/overview/a
 
 * Install dependencies (preview):
 
-
-    ::: moniker range="foundry-classic"
     ```bash
     npm install @azure/ai-projects @azure/identity
     ```
-    ::: moniker-end
-    ::: moniker range="foundry"
-    ```bash
-    npm install @azure/ai-projects@beta @azure/identity
-    ```
-    ::: moniker-end
 
 * Create a project client in code. **Copy** the Foundry project endpoint from the Overview page of the project and update the endpoint string value.
 

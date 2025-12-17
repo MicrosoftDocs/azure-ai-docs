@@ -15,7 +15,7 @@ ms.custom:
   - devplatv2
   - event-tier1-build-2023
   - ignite-2023
-  - update-code4
+  - update-code3
 ---
 
 # How to operationalize a training pipeline with batch endpoints

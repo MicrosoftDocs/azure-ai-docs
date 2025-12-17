@@ -314,6 +314,22 @@ groups:
     title: REST
   - id: programming-language-typescript
     title: TypeScript
+- id: programming-languages-ai-search-rag-qs
+  title: Programming languages
+  prompt: Choose a programming language
+  pivots:
+  - id: csharp
+    title: C#
+  - id: java
+    title: Java
+  - id: javascript
+    title: JavaScript
+  - id: python
+    title: Python
+  - id: rest
+    title: REST
+  - id: typescript
+    title: TypeScript
 # Owner: diberry
 - id: programming-languages-rest-ps-py-js
   title: Programming languages
@@ -1232,7 +1248,7 @@ groups:
     title: Foundry portal
   - id: python
     title: Python
-# owner: aashcraft
+# owner: aahi
 - id: selection-code-interpreter
   title: Selections
   prompt: What would you like to see?
@@ -1247,69 +1263,13 @@ groups:
     title: Java 
   - id: rest-api
     title: REST API
-- id: selection-code-interpreter-new
-  title: Selections
-  prompt: What would you like to see?
-  pivots:
-  - id: python
-    title: Python
-  - id: csharp
-    title: C#
-- id: selection-ai-search-tool
-  title: Selections
-  prompt: What would you like to see?
-  pivots:
-  - id: python
-    title: Python
-  - id: csharp
-    title: C#
-  - id: rest
-    title: REST API
-  - id: typescript
-    title: TypeScript
-- id: selection-fabric-tool
-  title: Selections
-  prompt: What would you like to see?
-  pivots:
-  - id: python
-    title: Python
-  - id: csharp
-    title: C#
-  - id: rest
-    title: REST API
-  - id: typescript
-    title: TypeScript
-- id: selection-browser-tool
-  title: Selections
-  prompt: What would you like to see?
-  pivots:
-  - id: python
-    title: Python
-  - id: csharp
-    title: C#
-  - id: rest
-    title: REST API
-  - id: typescript
-    title: TypeScript
-- id: selection-computer-use
-  title: Selections
-  prompt: What would you like to see?
-  pivots:
-  - id: python
-    title: Python
-  - id: csharp
-    title: C#
-  - id: typescript
-    title: TypeScript
-# owner: aashcraft
+# owner: aahi
 - id: selection-web-search
   title: Selections
   prompt: What would you like to see?
   pivots:
   - id: python
-    title: Python
-  - id: csharp
-    title: C#
+    title: Python 
   - id: rest-api
     title: REST API
 # owner: aahi
@@ -1318,13 +1278,9 @@ groups:
   prompt: What would you like to see?
   pivots:
   - id: python
-    title: Python
-  - id: csharp
-    title: C#
+    title: Python 
   - id: rest-api
     title: REST API
-  - id: typescript
-    title: TypeScript
 - id: selection-deep-research
   title: Selections
   prompt: What would you like to see?
@@ -1356,14 +1312,6 @@ groups:
     title: Python
   - id: rest
     title: REST API
-- id: selection-mcp-code-new
-  title: Selections
-  prompt: What would you like to see?
-  pivots:
-  - id: python
-    title: Python
-  - id: csharp
-    title: C#
 - id: selection-agent-sharepoint
   title: Selections
   prompt: What would you like to see?
@@ -1372,18 +1320,6 @@ groups:
     title: Python
   - id: rest
     title: REST API
-- id: selection-agent-sharepoint-new
-  title: Selections
-  prompt: What would you like to see?
-  pivots:
-  - id: python
-    title: Python 
-  - id: csharp
-    title: C#
-  - id: rest
-    title: REST API
-  - id: typescript
-    title: TypeScript
 - id: selection-file-search-upload
   title: Selections
   prompt: What would you like to see?
@@ -1406,12 +1342,8 @@ groups:
   pivots:
   - id: python  
     title: Python
-  - id: csharp
-    title: C#
   - id: rest
     title: REST API
-  - id: typescript
-    title: TypeScript
 # owner: fosteramanda
 - id: selection-azure-ai-search
   title: Selections
@@ -1456,18 +1388,6 @@ groups:
     title: Java
   - id: rest
     title: REST API
-- id: selection-bing-grounding-new
-  title: Selections
-  prompt: What would you like to see?
-  pivots:
-  - id: python
-    title: Python
-  - id: csharp
-    title: C#
-  - id: rest
-    title: REST API
-  - id: typescript
-    title: TypeScript
 - id: selection-bing-custom-grounding
   title: Selections
   prompt: What would you like to see?
@@ -1494,18 +1414,6 @@ groups:
     title: Java
   - id: rest-api
     title: REST API
-- id: selection-openapi-function-new
-  title: Selections
-  prompt: What would you like to see?
-  pivots:
-  - id: python
-    title: Python 
-  - id: csharp
-    title: C#
-  - id: rest
-    title: REST API
-  - id: typescript
-    title: TypeScript
 - id: selection-azure-functions-samples
   title: Selections
   prompt: What would you like to see?
@@ -1538,8 +1446,6 @@ groups:
   pivots:
   - id: python
     title: Python
-  - id: csharp
-    title: C#
   - id: rest
     title: REST API
 - id: selection-agent-to-agent
@@ -1548,12 +1454,8 @@ groups:
   pivots:
   - id: python
     title: Python
-  - id: csharp
-    title: C#
   - id: rest-api
     title: REST API
-  - id: typescript
-    title: TypeScript
 # owner: sgilley
 - id: programming-languages-sdk-overview
   title: Programming languages

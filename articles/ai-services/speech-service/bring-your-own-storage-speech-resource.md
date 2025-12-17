@@ -7,8 +7,8 @@ ms.service: azure-ai-speech
 ms.custom: devx-track-azurepowershell
 ms.topic: how-to
 ms.date: 10/31/2025
-author: PatrickFarley
-ms.author: pafarley
+author: goergenj
+ms.author: jagoerge
 ---
 
 # Set up the Bring your own storage (BYOS) Speech resource

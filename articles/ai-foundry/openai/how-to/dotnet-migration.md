@@ -8,7 +8,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.custom: devx-track-dotnet
 ms.topic: how-to
-ms.date: 11/6/2025
+ms.date: 09/30/2025
 manager: nitinme
 ---
 

@@ -69,8 +69,8 @@ Access to a given Azure Machine Learning workspace via Private Link is done by c
 **Microsoft Azure operated by 21Vianet regions**:
 - ```<per-workspace globally-unique identifier>.workspace.<region the workspace was created in>.api.ml.azure.cn```
 - ```<per-workspace globally-unique identifier>.workspace.<region the workspace was created in>.cert.api.ml.azure.cn```
-- ```<compute instance name>.<region the workspace was created in>.instances.azureml.ms```
-- `<compute instance name>-22.<region the workspace was created in>.instances.azureml.ms` - Used by the `az ml compute connect-ssh` command to connect to computes in a private virtual network.
+- ```<compute instance name>.<region the workspace was created in>.instances.azureml.cn```
+- `<compute instance name>-22.<region the workspace was created in>.instances.azureml.cn` - Used by the `az ml compute connect-ssh` command to connect to computes in a private virtual network.
 - ```ml-<workspace-name, truncated>-<region>-<per-workspace globally-unique identifier>.<region>.notebooks.chinacloudapi.cn```
 - ```<managed online endpoint name>.<region>.inference.ml.azure.cn``` - Used by managed online endpoints
 
@@ -138,11 +138,11 @@ The following FQDNs are for Microsoft Azure operated by 21Vianet regions:
     > [!NOTE]
     > The workspace name for this FQDN may be truncated. Truncation is done to keep `ml-<workspace-name, truncated>-<region>-<workspace-guid>` at 63 characters or less.
 
-* `<instance-name>.<region>.instances.azureml.ms`
+* `<instance-name>.<region>.instances.azureml.cn`
 
    * The IP address for this FQDN is **not** the IP of the compute instance. Instead, use the private IP address of the workspace private endpoint (the IP of the `*.api.azureml.ms` entries.)
 
-* `<instance-name>-22.<region>.instances.azureml.ms` - Only used by the `az ml compute connect-ssh` command to connect to computes in a private virtual network. Not needed if you aren't using a managed network or SSH connections.
+* `<instance-name>-22.<region>.instances.azureml.cn` - Only used by the `az ml compute connect-ssh` command to connect to computes in a private virtual network. Not needed if you aren't using a managed network or SSH connections.
 * `<managed online endpoint name>.<region>.inference.ml.azure.cn` - Used by managed online endpoints
 * `models.ai.azure.com` - Used for standard deployment
 
@@ -322,7 +322,7 @@ The following steps describe how this topology works:
     **Microsoft Azure operated by 21Vianet regions**:
     - ```api.ml.azure.cn```
     - ```notebooks.chinacloudapi.cn```
-    - ```instances.azureml.ms```
+    - ```instances.azureml.cn```
     - ```aznbcontent.net```
     - ```inference.ml.azure.cn``` - Used by managed online endpoints
 
@@ -468,7 +468,7 @@ The following steps describe how this topology works:
     **Microsoft Azure operated by 21Vianet regions**:
     - ```api.ml.azure.cn```
     - ```notebooks.chinacloudapi.cn```
-    - ```instances.azureml.ms```
+    - ```instances.azureml.cn```
     - ```aznbcontent.net```
     - ```inference.ml.azure.cn``` - Used by managed online endpoints
 
@@ -497,7 +497,7 @@ The following steps describe how this topology works:
     **Microsoft Azure operated by 21Vianet regions**:
     - ```api.ml.azure.cn```
     - ```notebooks.chinacloudapi.cn```
-    - ```instances.azureml.ms```
+    - ```instances.azureml.cn```
     - ```inference.ml.azure.cn``` - Used by managed online endpoints
 
     **Azure US Government regions**:

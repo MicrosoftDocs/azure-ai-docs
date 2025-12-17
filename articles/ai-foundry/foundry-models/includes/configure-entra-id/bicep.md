@@ -107,9 +107,7 @@ After you configure Microsoft Entra ID in your resource, update your code to use
 
 ## Disable key-based authentication in the resource
 
-Disable key-based authentication when you implement Microsoft Entra ID and fully address compatibility or fallback concerns in all the applications that consume the service. Change the `disableLocalAuth` property to disable key-based authentication.
-
-For more details on how to disable local authentication when you're using a Bicep or ARM template, see [How to disable local authentication](../../../../ai-services/disable-local-auth.md#how-to-disable-local-authentication).
+Disable key-based authentication when you implement Microsoft Entra ID and fully address compatibility or fallback concerns in all the applications that consume the service. Change the `disableLocalAuth` property to disable key-based authentication:
 
 __modules/ai-services-template.bicep__
 

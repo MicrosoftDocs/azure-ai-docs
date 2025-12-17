@@ -2,7 +2,7 @@
 author: laujan
 ms.author: lajanuar
 manager: nitinme
-ms.date: 12/15/2025
+ms.date: 11/18/2025
 ms.service: azure-ai-language
 ms.topic: include
 ms.custom:
@@ -14,7 +14,7 @@ ms.custom:
 
 Use this quickstart to create a text summarization application with the client library for Java. In the following example, you'll create a Java application that can summarize documents.
 
-[!INCLUDE [Use Microsoft Foundry](../use-microsoft-foundry.md)]
+[!INCLUDE [Use Language Studio](../use-language-studio.md)]
 
 ## Prerequisites
 
@@ -138,8 +138,8 @@ public class Example {
 
 ```console
 Extractive Summarization action results:
-    Extracted summary sentences:
-         Sentence text: The extractive summarization feature uses natural language processing techniques to locate key sentences in an unstructured text document., length: 138, offset: 0, rank score: 1.000000.
-         Sentence text: This feature is provided as an API for developers., length: 50, offset: 206, rank score: 0.510000.
-         Sentence text: Extractive summarization supports several languages., length: 52, offset: 378, rank score: 0.410000.
+	Extracted summary sentences:
+		 Sentence text: The extractive summarization feature uses natural language processing techniques to locate key sentences in an unstructured text document., length: 138, offset: 0, rank score: 1.000000.
+		 Sentence text: This feature is provided as an API for developers., length: 50, offset: 206, rank score: 0.510000.
+		 Sentence text: Extractive summarization supports several languages., length: 52, offset: 378, rank score: 0.410000.
 ```

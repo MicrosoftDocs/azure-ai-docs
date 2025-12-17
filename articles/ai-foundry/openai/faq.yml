@@ -203,7 +203,7 @@ sections:
       - question: |
           Is there a limit to the size of the image I can upload?
         answer: |
-          Yes, we restrict image uploads to 50 MB per image.
+          Yes, we restrict image uploads to 20 MB per image.
       - question: |
           Can I delete an image I uploaded?
         answer: |

@@ -31,7 +31,7 @@ items:
     displayName: support,plan,issue,problem,bug,troubleshoot,troubleshooting
     href: secure-deployment.md  
 
-- name: Text translation (GA)
+- name: Azure Translator text translation (GA)
   items:
   - name: What is Translator text translation?
     displayName: features,develop,development,free
@@ -146,7 +146,7 @@ items:
     displayName: key,subscription,endpoint,region,location,resource,token,header,header value,header-value
     href: text-translation/reference/authentication.md   
 
-- name: Document translation
+- name: Azure Translator document translation
   items:
   - name: What is Azure Translator document translation?
     displayName: ocr,batch,features,development,formats,file types
@@ -181,7 +181,7 @@ items:
     - name: Create SAS tokens for storage containers
       displayName: user,delegation,shared access,tokens,storage explorer,azure,portal,blob,url
       href: document-translation/how-to-guides/create-sas-tokens.md
-  - name: Document translation REST APIs
+  - name: Reference
     items:
       - name: Document translation operations
         href: document-translation/reference/rest-api-guide.md
@@ -232,7 +232,7 @@ items:
         href: containers/translate-document-parameters.md
   - name: Translator container FAQ
     href: containers/faq.yml
-- name: Custom translations (Microsoft Foundry)🆕
+- name: Foundry Tools custom translations 🆕
   items:
   - name: What are Foundry Tools custom translations?
     href: custom-translator/azure-ai-foundry/overview.md
@@ -379,7 +379,7 @@ items:
       href: custom-translator/platform-upgrade.md
   - name: Custom Translator portal FAQ
     href: custom-translator/faq.md
-- name: Translator solutions
+- name: Azure Translator solutions
   items:
   - name: What are Azure Translator solutions?
     href: solutions/overview.md

@@ -3,8 +3,8 @@ title: Voice live API language support
 titleSuffix: Foundry Tools
 description: Learn about the languages supported by Voice live API and how to configure them.
 manager: nitinme
-author: PatrickFarley
-ms.author: pafarley
+author: goergenj
+ms.author: jagoerge
 reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.service: azure-ai-speech

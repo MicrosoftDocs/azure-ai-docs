@@ -11,7 +11,7 @@ ms.custom:
   - devx-track-js
   - ignite-2023
 ms.topic: concept-article
-ms.date: 12/12/2025
+ms.date: 09/23/2025
 ---
 
 # JavaScript samples for Azure AI Search
@@ -61,6 +61,7 @@ Code samples from the Azure AI Search team demonstrate features and workflows. T
 | Sample | Article | Description |
 |--|--|--|
 | [quickstart](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart) | [Quickstart: Full-text search](search-get-started-text.md) | Create, load, and query a search index using sample data. |
+| [quickstart-rag-js](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart-rag-js) | [Quickstart: Generative search (RAG)](search-get-started-rag.md) | Use grounding data from Azure AI Search with a chat completion model from Azure OpenAI. |
 | [quickstart-semantic-ranking-js](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart-semantic-ranking-js) | [Quickstart: Semantic ranking](search-get-started-semantic.md) | Add semantic ranking to an index schema and run semantic queries. |
 | [quickstart-vector-js](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart-vector-js) | [Quickstart: Vector search](search-get-started-vector.md) | Index and query vector content. |
 
@@ -68,6 +69,7 @@ Code samples from the Azure AI Search team demonstrate features and workflows. T
 
 | Sample | Article | Description |
 |--|--|--|
+| [quickstart-rag-ts](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart-rag-ts) | [Quickstart: Generative search (RAG)](search-get-started-rag.md) | Use grounding data from Azure AI Search with a chat completion model from Azure OpenAI. |
 | [quickstart-semantic-ranking-ts](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart-semantic-ranking-ts) | [Quickstart: Semantic ranking](search-get-started-semantic.md) | Add semantic ranking to an index schema and run semantic queries. |
 | [quickstart-vector-ts](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart-vector-ts) | [Quickstart: Vector search](search-get-started-vector.md) | Index and query vector content. |
 
@@ -77,7 +79,6 @@ The following samples are also published by the Azure AI Search team but aren't 
 
 | Sample | Description |
 |--|--|
-| [azure-search-classic-rag](https://github.com/Azure-Samples/azure-search-classic-rag/tree/main/quickstarts) | Single-shot RAG using the classic search engine as grounding data from Azure AI Search, with a chat completion model from Azure OpenAI. |
 | [azure-search-vector-sample.js](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-javascript/readme.md) | JavaScript example of how to perform vector search. |
 | [azure-function-search](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/azure-function-search) | JavaScript example of an Azure function that sends queries to a search service. You can substitute this JavaScript version for the `api` code used in [Add search to web sites with .NET](tutorial-csharp-overview.md). |
 | [bulk-insert](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/bulk-insert) | JavaScript example of how to [use the push APIs](search-how-to-load-search-index.md) to upload and index documents. |

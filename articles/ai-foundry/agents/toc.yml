@@ -31,96 +31,96 @@ items:
     - name: Tools
       items:
         - name: Tool Overview
-          href: how-to/tools-classic/overview.md
+          href: how-to/tools/overview.md
           displayName: tools
         - name: Azure AI Search
           items:
           - name: Overview
-            href: how-to/tools-classic/azure-ai-search.md
+            href: how-to/tools/azure-ai-search.md
             displayName: azure ai search, search
           - name: How to use Azure AI Search
-            href: how-to/tools-classic/azure-ai-search-samples.md
+            href: how-to/tools/azure-ai-search-samples.md
         - name: Azure Functions
           items:
             - name: Overview
-              href: how-to/tools-classic/azure-functions.md
+              href: how-to/tools/azure-functions.md
               displayName: azure functions, functions
             - name: How to use Azure Functions with queues
-              href: how-to/tools-classic/azure-functions-samples.md
+              href: how-to/tools/azure-functions-samples.md
         - name: Browser automation (preview)
           items:
           - name: Overview
-            href: how-to/tools-classic/browser-automation.md
+            href: how-to/tools/browser-automation.md
             displayName: browser automation, web automation
           - name: How to use browser automation
-            href: how-to/tools-classic/browser-automation-samples.md
+            href: how-to/tools/browser-automation-samples.md
         - name: Code interpreter
-          href: how-to/tools-classic/code-interpreter.md
+          href: how-to/tools/code-interpreter.md
         - name: Computer Use (preview)
           items:
             - name: Overview
-              href: how-to/tools-classic/computer-use.md
+              href: how-to/tools/computer-use.md
               displayName: computer use, computer-capable models
             - name: How to use Computer Use
-              href: how-to/tools-classic/computer-use-samples.md
+              href: how-to/tools/computer-use-samples.md
         - name: Deep Research (preview)
           items:
             - name: Overview
-              href: how-to/tools-classic/deep-research.md
+              href: how-to/tools/deep-research.md
               displayName: deep research
             - name: How to use Deep Research
-              href: how-to/tools-classic/deep-research-samples.md
+              href: how-to/tools/deep-research-samples.md
         - name: File search
           items:
           - name: Overview
             displayName: file search, upload
-            href: how-to/tools-classic/file-search.md
+            href: how-to/tools/file-search.md
           - name: How to upload files
-            href: how-to/tools-classic/file-search-upload-files.md
+            href: how-to/tools/file-search-upload-files.md
         - name: Function calling
-          href: how-to/tools-classic/function-calling.md
+          href: how-to/tools/function-calling.md
         - name: Grounding with Bing Search
           items:
           - name: Overview
-            href: how-to/tools-classic/bing-grounding.md
+            href: how-to/tools/bing-grounding.md
             displayName: bing, grounding with bing  
           - name: How to use Grounding with Bing Search
-            href: how-to/tools-classic/bing-code-samples.md
+            href: how-to/tools/bing-code-samples.md
         - name: Grounding with Bing Custom Search (preview)
           items:
           - name: Overview
-            href: how-to/tools-classic/bing-custom-search.md
+            href: how-to/tools/bing-custom-search.md
             displayName: bing, grounding with bing custom search
           - name: How to use Grounding with Bing Custom Search
-            href: how-to/tools-classic/bing-custom-search-samples.md
+            href: how-to/tools/bing-custom-search-samples.md
         - name: Logic apps
-          href: how-to/tools-classic/logic-apps.md
+          href: how-to/tools/logic-apps.md
         - name: Microsoft Fabric (preview)
-          href: how-to/tools-classic/fabric.md
+          href: how-to/tools/fabric.md
         - name: Model Context Protocol (preview)
           items:
             - name: Overview
-              href: how-to/tools-classic/model-context-protocol.md
+              href: how-to/tools/model-context-protocol.md
               displayName: model context protocol, mcp
             - name: How to use Model Context Protocol
               displayName: model context protocol, mcp samples
-              href: how-to/tools-classic/model-context-protocol-samples.md
+              href: how-to/tools/model-context-protocol-samples.md
         - name: OpenAPI defined tools
           items:
             - name: Overview
-              href: how-to/tools-classic/openapi-spec.md
+              href: how-to/tools/openapi-spec.md
               displayName: openapi spec, openapi defined tools
             - name: How to use OpenAPI defined tools
-              href: how-to/tools-classic/openapi-spec-samples.md
+              href: how-to/tools/openapi-spec-samples.md
             - name: Invoke an OpenAPI App Service web app
               href: /azure/app-service/invoke-openapi-web-app-from-azure-ai-agent-service?context=/azure/ai-services/agents/context/context
         - name: SharePoint
           items:
             - name: Overview
-              href: how-to/tools-classic/sharepoint.md
+              href: how-to/tools/sharepoint.md
               displayName: sharepoint
             - name: How to use SharePoint
-              href: how-to/tools-classic/sharepoint-samples.md
+              href: how-to/tools/sharepoint-samples.md
     - name: Enterprise features
       items: 
         - name: Use your own resources
