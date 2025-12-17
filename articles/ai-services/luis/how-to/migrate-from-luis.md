@@ -57,24 +57,16 @@ Use the following steps to migrate your LUIS application using either the LUIS p
 
 Follow these steps to begin migration using the LUIS Portal:
 
-1. After logging into the LUIS portal, select the button on the banner at the top of the screen to launch the migration wizard. The migration copies your selected LUIS applications to CLU.
+1. After logging into the LUIS portal, select the button on the banner at the top of the screen to launch the migration wizard. The migration copies your selected LUIS applications to CLU. The migration overview tab provides a brief explanation of conversational language understanding and its benefits. Press Next to proceed.
 
-    :::image type="content" source="../media/backwards-compatibility/banner.svg" alt-text="A screenshot showing the migration banner in the LUIS portal." lightbox="../media/backwards-compatibility/banner.svg":::
-
-
-    The migration overview tab provides a brief explanation of conversational language understanding and its benefits. Press Next to proceed.
-
-    :::image type="content" source="../media/backwards-compatibility/migration-overview.svg" alt-text="A screenshot showing the migration overview window." lightbox="../media/backwards-compatibility/migration-overview.svg":::
 
 1. Determine Azure Language resource that you wish to migrate your LUIS application to. If you created a Language resource, select your Azure subscription followed by your Language resource, and then select **Next**. If you don't have a Language resource, select the link to create a new Language resource. Afterwards, select the resource and select **Next**.
 
-    :::image type="content" source="../media/backwards-compatibility/select-resource.svg" alt-text="A screenshot showing the resource selection window." lightbox="../media/backwards-compatibility/select-resource.svg":::
 
 1. Select all your LUIS applications that you want to migrate, and specify each of their versions. Select **Next**. After selecting your application and version, you're prompted with a message informing you of any features that won't be carried over from your LUIS application.
 
     > [!NOTE]
     > Conversational language understanding currently doesn't support special characters. Any special characters in your selected LUIS application names are removed in your new migrated applications.
-    :::image type="content" source="../media/backwards-compatibility/select-applications.svg" alt-text="A screenshot showing the application selection window." lightbox="../media/backwards-compatibility/select-applications.svg":::
 
 1. Review your Language resource and LUIS applications selections. Select **Finish** to migrate your applications.
 
@@ -107,7 +99,7 @@ Follow these steps to begin migration programmatically using the CLU Authoring R
     |---------|---------|---------|
     |`{ENDPOINT}`     | The endpoint for authenticating your API request.   | `https://<your-custom-subdomain>.cognitiveservices.azure.com` |
     |`{PROJECT-NAME}`     | The name for your project. This value is case sensitive.   | `myProject` |
-    |`{API-VERSION}`     | The [version](../../concepts/model-lifecycle.md#api-versions) of the API you're calling. | `2023-04-01` |
+    |`{API-VERSION}`     | The version of the API you're calling. | `2023-04-01` |
 
     ### Headers
 
