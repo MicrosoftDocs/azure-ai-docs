@@ -146,7 +146,7 @@ References: [Azure AI Projects client library](/python/api/azure-ai-projects/azu
 
 ### Create helper script
 
-Create a folder for your work. Create a file named **config.py** in this folder. Ypu'll use this helper script in the next two parts of the tutorial series. The script loads your environment variables and initializes the Azure AI Projects client. Add the following code:
+Create a folder for your work. Create a file named **config.py** in this folder. You'll use this helper script in the next two parts of the tutorial series. The script loads your environment variables and initializes the Azure AI Projects client. Add the following code:
 
 :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/config.py":::
 
