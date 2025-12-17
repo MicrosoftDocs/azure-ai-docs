@@ -142,7 +142,7 @@ print("Setup successful! You're ready to build your RAG app.")
 
 If you see `"Setup successful!"`, your Azure credentials and SDK are configured correctly.
 
-References: [Azure AI Projects client library](/python/api/azure-ai-projects), [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential).
+References: [Azure AI Projects client library](/python/api/azure-ai-projects/azure.ai.projects), [DefaultAzureCredential](/python/api/azure-identity/azure.identity.DefaultAzureCredential).
 
 ### Create helper script
 
