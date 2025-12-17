@@ -7,7 +7,7 @@ ms.author: haileytapia
 ms.reviewer: fsunavala
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 12/17/2025
 ---
 
 # Connect a Foundry IQ knowledge base to Foundry Agent Service
@@ -23,7 +23,7 @@ In this article, you learn how to connect an agent in Microsoft Foundry to a kno
 
 The agent uses the response to ground its answers in enterprise data or web sources, ensuring factual accuracy and transparency through source attribution.
 
-For an end-to-end example of integrating Azure AI Search and Foundry Agent Service for knowledge retrieval, see the [agentic-retrieval-pipeline-example](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-foundry/samples/agentic-retrieval-pipeline) Python sample on GitHub.
+For an end-to-end example of integrating Azure AI Search and Foundry Agent Service for knowledge retrieval, see the [agentic-retrieval-pipeline-example](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/agentic-retrieval-pipeline-example) Python sample on GitHub.
 
 ## Prerequisites
 
@@ -255,11 +255,14 @@ Content-Type: application/json
 
 ### Connect to a remote SharePoint knowledge source
 
-If your knowledge base includes a remote SharePoint knowledge source, you must also include the `x-ms-query-source-authorization` header in the MCP tool connection.
+Optionally, if your knowledge base includes a [remote SharePoint knowledge source](/azure/search/agentic-knowledge-source-how-to-sharepoint-remote), you must also include the `x-ms-query-source-authorization` header in the MCP tool connection.
 
 #### [Python](#tab/python)
 
 ```python
+from azure.identity import get_bearer_token_provider
+
+# Create MCP tool with SharePoint authorization header
 mcp_kb_tool = MCPTool(
     server_label = "knowledge-base",
     server_url = mcp_endpoint,

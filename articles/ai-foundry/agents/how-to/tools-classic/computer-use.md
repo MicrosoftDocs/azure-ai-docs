@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 11/20/2025
+ms.date: 12/16/2025
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: references_regions
@@ -15,7 +15,10 @@ ms.custom: references_regions
 
 # Foundry Agent Service Computer Use Tool
 
-[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
+> [!NOTE]
+> This document refers to the classic version of the agents API. 
+>
+> 🔍 [View the new Computer Use documentation](../../../default/agents/how-to/tools/computer-use.md?view=foundry&preserve-view=true).
 
 
 > [!WARNING]
