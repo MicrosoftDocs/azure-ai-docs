@@ -57,19 +57,19 @@ Create an evaluation script that generates a target function wrapper, loads your
 
     :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/evaluate.py" id="imports_and_config":::
 
-    References: [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.aiclient), [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential), [azure-ai-evaluation](https://pypi.org/project/azure-ai-evaluation/).
+    References: [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.AIProjectClient), [DefaultAzureCredential](/python/api/azure-identity/azure.identity.DefaultAzureCredential), [azure-ai-evaluation](https://pypi.org/project/azure-ai-evaluation/).
 
 1. Add code to create a wrapper function that implements the evaluation interface for query and response evaluation:
 
     :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/evaluate.py" id="evaluate_wrapper":::
 
-    References: [Evaluators API](/python/api/azure-ai-evaluation/azure.ai.evaluation.evaluators), [evaluation target functions](https://github.com/Azure/azure-ai-evaluation).
+    References: [azure-ai-evaluation](https://pypi.org/project/azure-ai-evaluation/), [evaluation target functions](https://github.com/Azure/azure-ai-evaluation).
 
 1. Finally, add code to run the evaluation, view the results locally, and get a link to the evaluation results in Foundry portal:
  
     :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/evaluate.py" id="run_evaluation":::
 
-    References: [evaluate() method](/python/api/azure-ai-evaluation/azure.ai.evaluation.evaluate), [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.aiclient).
+    References: [azure-ai-evaluation](https://pypi.org/project/azure-ai-evaluation/), [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.AIProjectClient).
 
 ### Configure the evaluation model
 
@@ -114,7 +114,7 @@ print("Evaluation SDK is ready! You can now run evaluate.py")
 
 If you see `"Evaluation SDK is ready!"`, your setup is complete and you can proceed.
 
-References: [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.aiclient), [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential).
+References: [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.AIProjectClient), [DefaultAzureCredential](/python/api/azure-identity/azure.identity.DefaultAzureCredential).
 
 ### Start the evaluation
 

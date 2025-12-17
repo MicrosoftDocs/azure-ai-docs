@@ -150,7 +150,7 @@ Create a folder for your work. Create a file named **config.py** in this folder.
 
 :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/config.py":::
 
-References: [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.aiclient), [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential), [load_dotenv](https://pypi.org/project/python-dotenv/).
+References: [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.AIProjectClient), [DefaultAzureCredential](/python/api/azure-identity/azure.identity.DefaultAzureCredential), [load_dotenv](https://pypi.org/project/python-dotenv/).
 
 > [!NOTE]
 > This script also uses a package you haven't installed yet, `azure.monitor.opentelemetry`.  You'll install this package in the next part of the tutorial series.

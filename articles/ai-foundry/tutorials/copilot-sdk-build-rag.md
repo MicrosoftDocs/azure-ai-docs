@@ -84,7 +84,7 @@ You use the search index to store vectorized data from the embeddings model. The
 
     The imports include `AIProjectClient` to connect to your project, `SearchClient` to manage the search index, and `EmbeddingsModel` to vectorize documents.
 
-    References: [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.AIProjectClient), [SearchClient](/python/api/azure-search-documents/azure.search.documents.SearchClient), [EmbeddingModels](/python/api/azure-ai-projects/azure.ai.projects.models.EmbeddingModels).
+    References: [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.AIProjectClient), [SearchClient](/python/api/azure-search-documents/azure.search.documents.SearchClient), [azure-ai-projects](https://pypi.org/project/azure-ai-projects/).
 
 1. Now add the function to define a search index:
 
@@ -96,7 +96,7 @@ You use the search index to store vectorized data from the embeddings model. The
 
     :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/create_search_index.py" id="add_csv_to_index":::
 
-    References: [EmbeddingModels](/python/api/azure-ai-projects/azure.ai.projects.models.EmbeddingModels), [SearchClient.upload_documents](/python/api/azure-search-documents/azure.search.documents.SearchClient).
+    References: [azure-ai-projects](https://pypi.org/project/azure-ai-projects/), [SearchClient.upload_documents](/python/api/azure-search-documents/azure.search.documents.SearchClient).
 
 1. Finally, run the functions to build the index and register it to the cloud project:
 
@@ -132,7 +132,7 @@ Next, create a script to query the search index and retrieve product documents t
 
     Key imports: `SearchClient` (to query the search index) and `PromptTemplate` (to construct search queries from user intent).
 
-    References: [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.AIProjectClient), [SearchClient](/python/api/azure-search-documents/azure.search.documents.SearchClient), [PromptTemplate](/python/api/promptflow/promptflow.entities.PromptTemplate).
+    References: [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.AIProjectClient), [SearchClient](/python/api/azure-search-documents/azure.search.documents.SearchClient), [promptflow](https://pypi.org/project/promptflow/).
 
 1. Add the function to get product documents:
 
@@ -144,7 +144,7 @@ Next, create a script to query the search index and retrieve product documents t
 
     :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/get_product_documents.py" id="test_get_documents":::
 
-    References: [AIProjectClient.from_config](/python/api/azure-ai-projects/azure.ai.projects.AIProjectClient), [argparse](/python/library/argparse).
+    References: [AIProjectClient.from_config](/python/api/azure-ai-projects/azure.ai.projects.AIProjectClient), [argparse](https://docs.python.org/3/library/argparse.html).
 
 ### Create prompt template for intent mapping
 
@@ -179,19 +179,19 @@ Next, you create custom code to add retrieval augmented generation (RAG) capabil
 
     Key imports: `AIProjectClient` (connects to your project), `chat` function (from prompt flow), and `get_product_documents` (your retrieval function).
 
-    References: [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.AIProjectClient), [ChatTemplate](/python/api/promptflow/promptflow.entities.ChatTemplate), [PromptTemplate](/python/api/promptflow/promptflow.entities.PromptTemplate).
+    References: [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.AIProjectClient), [promptflow](https://pypi.org/project/promptflow/).
 
 1. Create the chat function that uses the RAG capabilities:
 
     :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/chat_with_products.py" id="chat_function":::
 
-    References: [ChatCompletionClient](/python/api/azure-ai-projects/azure.ai.projects.models.ChatCompletionClient), [AIProjectClient.inference](/python/api/azure-ai-projects/azure.ai.projects.AIProjectClient).
+    References: [azure-ai-projects](https://pypi.org/project/azure-ai-projects/), [AIProjectClient.inference](/python/api/azure-ai-projects/azure.ai.projects.AIProjectClient).
 
 1. Finally, add the code to run the chat function:
     
     :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/chat_with_products.py" id="test_function":::
 
-    References: [argparse](/python/library/argparse), [AIProjectClient.from_config](/python/api/azure-ai-projects/azure.ai.projects.AIProjectClient).
+    References: [argparse](https://docs.python.org/3/library/argparse.html), [AIProjectClient.from_config](/python/api/azure-ai-projects/azure.ai.projects.AIProjectClient).
 
 ### Create a grounded chat prompt template
 
