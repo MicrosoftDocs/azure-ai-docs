@@ -56,9 +56,9 @@ Grant hub system-assigned managed identity: Get, Wrap, Unwrap permissions.
 
 Supported keys: RSA / RSA-HSM 2048.
 
-## Enable CMK (hub)
+## Create a hub with customer-managed keys
 
-Customer-managed keys must be configured during hub creation. You cannot add CMK to an existing hub or convert a hub from Microsoft-managed keys to customer-managed keys after creation.
+For customers in highly regulated industries, creating a hub with customer-managed keys (CMK) is a critical requirement. You must configure CMK during the initial creation of the hub. It is not possible to enable CMK on an existing hub that was created with Microsoft-managed keys.
 
 ### Prerequisites
 
@@ -78,13 +78,17 @@ Before creating your hub with CMK:
 
 ### Configure CMK during hub creation
 
-In the Azure portal during hub creation:
+To create a hub with CMK enabled, follow these steps in the Azure portal:
 
-1. Navigate to the **Encryption** tab
-1. Select **Customer-managed keys**
-1. Choose your Key Vault and key
-1. (Optional) Select service-side encryption setting
-1. Complete the hub creation process
+1. Start the **Create an Azure AI Hub** wizard.
+1. On the **Basics** tab, fill in the required details.
+1. Navigate to the **Encryption** tab.
+1. Select **Customer-managed keys**.
+1. Select **Select a key vault and key**.
+1. Choose your existing Key Vault and the key you created in the prerequisites.
+1. (Optional) Configure the **Service-side encryption** setting if needed.
+1. Continue through the remaining tabs (Networking, Tags) and select **Review + create**.
+1. Select **Create** to finish the hub creation.
 
 After the hub is created, the system assigns a managed identity that receives Get, Wrap, and Unwrap permissions for the specified key.
 

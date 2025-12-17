@@ -24,6 +24,9 @@ Foundry Agent Service offers **Standard Setup with private networking** environm
 > [!TIP]
 > See the [FAQ article](../faq.yml#virtual-networking) for common questions when working with Virtual Networks.
 
+> [!NOTE]
+> End-to-end network isolation is not supported in the new Foundry portal experience. Please use the classic Foundry portal experience or the SDK or CLI to securely access your Foundry projects when network isolation is enabled. 
+
 ## Security features
 
 By default, the Standard Setup with Private Network Isolation ensures:

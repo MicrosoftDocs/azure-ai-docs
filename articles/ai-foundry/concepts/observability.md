@@ -190,7 +190,7 @@ Alternatively, you can also use [the Foundry portal](../how-to/evaluate-generati
 
 - Simulators and AI red teaming agent: If you don't have evaluation data (test data), simulators can help by generating topic-related or adversarial queries. These simulators test the model's response to situation-appropriate or attack-like queries (edge cases).
 
-  - [AI red teaming agent](../how-to/develop/run-scans-ai-red-teaming-agent.md) simulates complex adversarial attacks against your AI system using a broad range of safety and security attacks using Microsoft's open framework for Python Risk Identification Tool or PyRIT.
+  [AI red teaming agent](../how-to/develop/run-scans-ai-red-teaming-agent.md) simulates complex adversarial attacks against your AI system using a broad range of safety and security attacks using Microsoft's open framework for Python Risk Identification Tool or PyRIT.
   
   Automated scans using the AI red teaming agent enhances preproduction risk assessment by systematically testing AI applications for risks. This process involves simulated attack scenarios to identify weaknesses in model responses before real-world deployment. By running AI red teaming scans, you can detect and mitigate potential safety issues before deployment. This tool is recommended to be used with human-in-the-loop processes such as conventional AI red teaming probing to help accelerate risk identification and aid in the assessment by a human expert.
 
@@ -233,7 +233,7 @@ GenAIOps establishes a reliable process for managing AI applications throughout 
 
 ::: moniker range="foundry-classic"
 
-| Purpose |  Process | Parameters |
+| Purpose | Process | Parameters, guidance, and samples |
 | -----| -----| ----|
 | What are you evaluating for? | Identify or build relevant evaluators | - [Quality and performance sample notebook](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/blob/main/src/evaluation/evaluate.py) <br> </br> - [Agents Response Quality](https://github.com/Azure-Samples/azureai-samples/tree/main/scenarios/evaluate/Supported_Evaluation_Metrics/Agent_Evaluation) <br> </br> - [Safety and Security](./evaluation-evaluators/risk-safety-evaluators.md) ([Safety and Security sample notebook](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/blob/main/src/evaluation/evaluatesafetyrisks.py)) <br> </br> - [Custom](./evaluation-evaluators/custom-evaluators.md) ([Custom sample notebook](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/blob/main/src/evaluation/evaluate.py)) |
 | What data should you use?  | Upload or generate relevant dataset | - [Generic simulator for measuring Quality and Performance](./concept-synthetic-data.md) ([Generic simulator sample notebook](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/system/finetune/Llama-notebooks/datagen/synthetic-data-generation.ipynb)) <br></br> - [Adversarial simulator for measuring Safety and Security](../how-to/develop/simulator-interaction-data.md) ([Adversarial simulator sample notebook](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/blob/main/src/evaluation/simulate_and_evaluate_online_endpoint.ipynb)) <br></br> - AI red teaming agent for running automated scans to assess safety and security vulnerabilities ([AI red teaming agent sample notebook](https://github.com/Azure-Samples/azureai-samples/blob/main/scenarios/evaluate/AI_RedTeaming/AI_RedTeaming.ipynb))|
@@ -245,7 +245,7 @@ GenAIOps establishes a reliable process for managing AI applications throughout 
 
 ::: moniker range="foundry"
 
-| Purpose |  Process | Parameters |
+| Purpose | Process | Parameters, guidance, and samples  |
 | -----| -----| ----|
 | What are you evaluating for? | Identify or build relevant evaluators | - [RAG Quality](https://aka.ms/rag-evaluators-samples) <br> </br> - [Agents Quality](https://aka.ms/agent-evaluator-samples) <br> </br> - [Safety and Security](./evaluation-evaluators/risk-safety-evaluators.md) ([Safety and Security sample notebook](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/blob/main/src/evaluation/evaluatesafetyrisks.py)) <br> </br> - [Custom](./evaluation-evaluators/custom-evaluators.md) ([Custom sample notebook](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/blob/main/src/evaluation/evaluate.py)) |
 | What data should you use?  | Upload or generate relevant dataset | - [Synthetic dataset generation](../how-to/evaluate-generative-ai-app.md#select-or-create-a-dataset) <br></br> - AI red teaming agent for running automated scans to assess safety and security vulnerabilities ([AI red teaming agent sample notebook](https://aka.ms/airedteamingagent-sample))|
@@ -264,18 +264,7 @@ For network isolation purposes you can bring your own virtual network for evalua
 
 ### Virtual network region support
 
-| Geography | Supported Azure region|
-|--|--|
-| US | westus, westus3, eastus, eastus2 |
-| Australia | australiaeast |
-| France | francecentral
-| India | southindia |
-| Japan | japaneast |
-| Norway | norwayeast |
-| Sweden | swedencentral |
-| Switzerland | switzerlandnorth |
-| UAE | uaenorth |
-| UK | uksouth |
+Bring your own virtual network for evaluation is supported in all regions except for Central India, East Asia, North Europe and Qatar Central.
 
 ## Region support
 

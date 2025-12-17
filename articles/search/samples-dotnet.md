@@ -10,7 +10,7 @@ ms.custom:
   - devx-track-dotnet
   - ignite-2023
 ms.topic: concept-article
-ms.date: 09/23/2025
+ms.date: 12/10/2025
 ---
 
 # C# samples for Azure AI Search
@@ -49,10 +49,8 @@ Code samples from the Azure AI Search team demonstrate features and workflows. T
 |--|--|--|
 | [quickstart](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart/AzureSearchQuickstart) | [Quickstart: Full-text search](search-get-started-text.md) | Create, load, and query an index using sample data. |
 | [quickstart-agentic-retrieval](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-agentic-retrieval) | [Quickstart: Agentic retrieval](search-get-started-agentic-retrieval.md) | Integrate semantic ranking with LLM-powered query planning and answer generation. |
-| [quickstart-rag](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-rag) | [Quickstart: Generative search (RAG)](search-get-started-rag.md) | Use grounding data from Azure AI Search with a chat completion model from Azure OpenAI. |
 | [quickstart-semantic-search](https://github.com/Azure-Samples/azure-search-dotnet-samples/blob/main/quickstart-semantic-search/) | [Quickstart: Semantic ranking](search-get-started-semantic.md) | Add semantic ranking to an index schema and run semantic queries. |
 | [quickstart-vector-search](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-vector-search) | [Quickstart: Vector search](search-get-started-vector.md) | Index and query vector content. |
-| [create-mvc-app](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/create-mvc-app) | [Tutorial: Add search to an ASP.NET Core (MVC) app](tutorial-csharp-create-mvc-app.md) | Add basic search, pagination, and other server-side behaviors to an MVC web app, unlike the console applications used in most samples. |
 | [search-website](https://github.com/Azure-Samples/azure-search-static-web-app) | [Tutorial: Add search to web apps](tutorial-csharp-overview.md) | Build an end-to-end search app that uses the push API for bulk upload and a rich client for hosting the app and handling search requests. |
 | [tutorial-ai-enrichment](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/tutorial-ai-enrichment) | [Tutorial: AI-generated searchable content from Azure blobs](tutorial-skillset.md) | Create a skillset that iterates over Azure blobs to extract information and infer structure. |
 | [multiple-data-sources](https://github.com/Azure-Samples/azure-search-dotnet-scale/tree/main/multiple-data-sources) | [Tutorial: Index from multiple data sources](tutorial-multiple-data-sources.md) | Merge content from two data sources into one index. |
@@ -60,14 +58,6 @@ Code samples from the Azure AI Search team demonstrate features and workflows. T
 | [DotNetHowTo](https://github.com/Azure-Samples/search-dotnet-getting-started/tree/master/DotNetHowTo) | [Use the .NET client library](search-howto-dotnet-sdk.md) | Create and manage multiple search objects while learning about the APIs. |
 | [DotNetToIndexers](https://github.com/Azure-Samples/search-dotnet-getting-started/tree/master/DotNetHowToIndexers) | [Tutorial: Index Azure SQL data](search-indexer-tutorial.md) | Configure an Azure SQL indexer with a schedule, field mappings, and parameters. |
 | [DotNetHowToEncryptionUsingCMK](https://github.com/Azure-Samples/search-dotnet-getting-started/tree/master/DotNetHowToEncryptionUsingCMK) | [Configure customer-managed keys for data encryption](search-security-manage-encryption-keys.md) | Create objects that are encrypted with a customer-managed key. |
-
-## Accelerators
-
-An accelerator is an end-to-end solution that includes code and documentation you can adapt for your own implementation of a specific scenario.
-
-| Sample | Description |
-|--|--|
-| [search-qna-maker-accelerator](https://github.com/Azure-Samples/search-qna-maker-accelerator) | [Solution](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/qna-with-azure-cognitive-search/2081381) that combines Azure AI Search and QnA Maker. See the live [demo site](https://aka.ms/qnaWithAzureSearchDemo). |
 
 ## Demos
 
@@ -84,6 +74,7 @@ The following samples are also published by the Azure AI Search team but aren't 
 
 | Sample | Description |
 |--|--|
+| [azure-search-classic-rag](https://github.com/Azure-Samples/azure-search-classic-rag/tree/main/quickstarts) | Single-shot RAG using the classic search engine as grounding data from Azure AI Search, with a chat completion model from Azure OpenAI. |
 | [check-storage-usage](https://github.com/Azure-Samples/azure-search-dotnet-utilities/blob/main/check-storage-usage/README.md) | Check search service storage on a schedule using an Azure function. |
 | [export-data](https://github.com/Azure-Samples/azure-search-dotnet-utilities/blob/main/export-data) | Partition and export a large index using a C# console app. |
 | [index-backup-restore](https://github.com/Azure-Samples/azure-search-dotnet-utilities/blob/main/index-backup-restore) | Copy an index from one service to another, creating JSON files with the index schema and documents. |

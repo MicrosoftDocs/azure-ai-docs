@@ -2,7 +2,7 @@
 title: "Use liveness detection with network isolation - Face"
 titleSuffix: Foundry Tools
 description: Learn how to use the face liveness detection feature when your resource has public network access disabled. This guide shows how you can support end users on public networks while keeping your Foundry Tools private.
-author: dipidoo
+author: PatrickFarley
 manager: 
 #customer intent: As a developer, I want to use Face API Liveness Detection but also want to disable public network access to satisfy network isolation requirements of my organization or industry.
 
@@ -11,7 +11,7 @@ ms.subservice: azure-ai-face
 ms.update-cycle: 90-days
 ms.topic: how-to
 ms.date: 10/31/2025
-ms.author: pradiphe
+ms.author: pafarley
 feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 
