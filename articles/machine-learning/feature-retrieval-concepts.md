@@ -59,7 +59,7 @@ featurestore2 = FeatureStoreClient(
     name=featurestore_name2,
 )
 
-features.exend(
+features.extend(
   featurestore2.resolve_feature_uri([
     f"loans:1:last_loan_amount",
   ])
