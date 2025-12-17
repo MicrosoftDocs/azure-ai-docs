@@ -3,7 +3,7 @@ title: Azure Content Understanding in Foundry Tools prebuilt analyzers
 titleSuffix: Foundry Tools
 description: Learn about prebuilt analyzers, base analyzers, RAG analyzers, vertical analyzers, and how to use and customize them in Azure Content Understanding in Foundry Tools.
 author: PatrickFarley 
-ms.author: jfilcik
+ms.author: pafarley
 manager: nitinme
 ms.date: 05/19/2025
 ms.service: azure-ai-content-understanding
@@ -74,7 +74,7 @@ Content understanding provides a set of analyzers optimized for retrieval-augmen
 * Analyzes charts and diagrams, providing structured output as chart.js syntax for charts or mermaid.js syntax for diagrams<sup>1</sup>
 * Captures hand-written annotations and markup on the document
 * Generates a one-paragraph summary of the entire document content
-* Supports a wide range of file formats including PDF, images, Office documents, and text files
+* Supports a [wide range of file formats](/azure/ai-services/content-understanding/service-limits#input-file-limits) including PDF, images, Office documents, and text files
 * Recommended for document ingestion in RAG workflows
 
 <sup>1</sup> Figure analysis is only supported for PDF and image file formats.

@@ -16,23 +16,24 @@ An agent defines core behavior. Once created, it ensures consistent responses in
 
 [!INCLUDE [agent-v2-switch](agent-v2-switch.md)]
 
-# [Python](#tab/python2)
+# [Python](#tab/python)
 
 :::code language="python" source="~/foundry-samples-main/samples/python/quickstart/quickstart-create-agent.py":::
 
-# [C#](#tab/csharp2)
+# [C#](#tab/csharp)
 
 :::code language="csharp" source="~/foundry-samples-main/samples/csharp/quickstart/quickstart-create-agent.cs":::
 
-<!-- # [TypeScript](#tab/typescript)
+# [TypeScript](#tab/typescript)
 
-Not yet available
+:::code language="typescript" source="~/foundry-samples-main/samples/typescript/quickstart/src/quickstart-create-agent.ts":::
+
 
 # [Java](#tab/java)
 
-Not yet available -->
+:::code language="java" source="~/foundry-samples-main/samples/java/quickstart/src/main/java/com/microsoft/foundry/samples/CreateAgent.java":::
 
-# [REST API](#tab/rest2)
+# [REST API](#tab/rest)
 
 Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 

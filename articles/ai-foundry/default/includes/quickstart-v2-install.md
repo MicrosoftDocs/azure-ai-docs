@@ -12,7 +12,7 @@ ms.custom: include
 
 [!INCLUDE [agent-v2-switch](agent-v2-switch.md)]
 
-# [Python](#tab/python2)
+# [Python](#tab/python)
 
 1. Install these packages, including the preview version of `azure-ai-projects`. This version uses the **Foundry projects (new) API** (preview).
 
@@ -27,7 +27,7 @@ Follow along below or get the code:
 > [!div class="nextstepaction"]
 > [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/python/quickstart)
 
-# [C#](#tab/csharp2)
+# [C#](#tab/csharp)
 
 1. Install packages:
 
@@ -47,18 +47,19 @@ Follow along below or get the code:
 > [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/csharp/quickstart)
 
 
-<!-- # [TypeScript](#tab/typescript)
+# [TypeScript](#tab/typescript)
 
-1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your TypeScript scripts.
-1. Install packages:
+1. Install these packages, including the preview version of `@azure/ai-projects`. This version uses the **Foundry projects (new) API** (preview).:
 
     ```bash
-    npm install @azure/ai-projects@2.0.0-beta.1'
+    npm install @azure/ai-projects@beta @azure/identity dotenv
     ```
+
+1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your TypeScript scripts.
 
 Follow along below or get the code:
 > [!div class="nextstepaction"]
-> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/typescript/quickstart)
+> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/typescript/quickstart/src)
 
 # [Java](#tab/java)
 
@@ -66,9 +67,9 @@ Follow along below or get the code:
 
 Follow along below or get the code:
 > [!div class="nextstepaction"]
-> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/java/quickstart) -->
+> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/java/quickstart/src/main/java/com/microsoft/foundry/samples/)
 
-# [REST API](#tab/rest2)
+# [REST API](#tab/rest)
 
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running the next command.
 1. Get a temporary access token. It will expire in 60-90 minutes, you'll need to refresh after that.

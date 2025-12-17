@@ -93,4 +93,4 @@ To change this behavior, update the connections in your projects to use Microsof
 
 ## Disable key-based authentication in the resource
 
-Disable key-based authentication when you implement Microsoft Entra ID and fully address compatibility or fallback concerns in all the applications that consume the service. You can disable key-based authentication only when deploying with Bicep or ARM.
+Disable key-based authentication when you implement Microsoft Entra ID and fully address compatibility or fallback concerns in all the applications that consume the service. You can disable key-based authentication using the Azure CLI and when deploying with Bicep or ARM.

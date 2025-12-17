@@ -64,7 +64,13 @@ Additional quota can be requested by clicking the **Request Quota** button.
 
 ## Create a Foundry resource 
 
-Provisioned deployments are created via Foundry resource objects within Azure. You must have a Foundry resource in each region where you intend to create a deployment. Use the Azure portal to [create a resource](./create-resource.md) in a region with available quota, if required.  
+Provisioned deployments are created via Foundry resource objects within Azure. You must have a Foundry resource in each region where you intend to create a deployment. 
+
+::: moniker range="foundry-classic"
+
+Use the Azure portal to [create a resource](./create-resource.md) in a region with available quota, if required.  
+
+::: moniker-end
 
 > [!NOTE]
 > Foundry resources can support multiple types of Foundry deployments at the same time.  It is not necessary to dedicate new resources for your provisioned deployments. 
@@ -259,8 +265,11 @@ You can find the utilization measure in the Azure-Monitor section for your resou
 
 :::image type="content" source="../media/provisioned/azure-monitor-utilization.jpg" alt-text="Screenshot of the provisioned managed utilization on the resource's metrics blade in the Azure portal." lightbox="../media/provisioned/azure-monitor-utilization.jpg":::
 
+::: moniker range="foundry-classic"
+
 For more information about monitoring your deployments, see the [Monitoring Azure OpenAI](./monitor-openai.md) page.
 
+::: moniker-end
 
 ## Handling high utilization
 Provisioned deployments provide you with an allocated amount of compute capacity to run a given model. The 'Provisioned-Managed Utilization V2' metric in Azure Monitor measures the utilization of the deployment in one-minute increments. Provisioned-Managed deployments are also optimized so that calls accepted are processed with a consistent per-call max latency. When the workload exceeds its allocated capacity, the service returns a 429 HTTP status code until the utilization drops down below 100%. The time before retrying is provided in the `retry-after` and `retry-after-ms` response headers that provide the time in seconds and milliseconds respectively. This approach maintains the per-call latency targets while giving the developer control over how to handle high-load situations – for example retry or divert to another experience/endpoint. 
