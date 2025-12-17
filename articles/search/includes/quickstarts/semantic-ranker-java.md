@@ -97,7 +97,7 @@ In this section, you get settings for the existing `hotels-sample-index` index o
 
 After the `hotels-sample-index` index has a semantic configuration, you can run queries that include semantic parameters.
 
-1. Create a `SemanticQuery.java` file in the `src/main/java/com/azure/search/quickstart` directory to create a semantic query that targets the index.
+1. Create a `SemanticQuery.java` file in the `src/main/java/com/azure/search/quickstart` directory to create a semantic query of the index.
 
    :::code language="java" source="~/azure-search-java-samples/semantic-ranking-quickstart/src/main/java/com/azure/search/quickstart/SemanticQuery.java" :::
 
