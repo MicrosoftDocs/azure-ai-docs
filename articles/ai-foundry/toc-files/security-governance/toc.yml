@@ -67,7 +67,7 @@ items:
       href: ../../how-to/troubleshoot-secure-connection-project.md
   - name: High availability and disaster recovery for hubs
     href: ../../how-to/hub-disaster-recovery.md
-- name: Data, privacy, and security for FoundryModels sold directly by Azure
+- name: Data, privacy, and security for Foundry Models sold directly by Azure
   href: ../../responsible-ai/openai/data-privacy.md
 - name: Data, privacy, and security for Claude models in Microsoft Foundry
   href: ../../responsible-ai/claude-models/data-privacy.md

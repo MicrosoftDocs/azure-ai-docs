@@ -57,7 +57,6 @@ items:
 - name: Service architecture
   href: ../../../concepts/architecture.md
 
-# Privacy and data protection for Foundry Models
 - name: Data, privacy, and security for Foundry Models sold directly by Azure
   href: ../../../responsible-ai/openai/data-privacy.md
 - name: Data, privacy, and security for Claude models in Microsoft Foundry
