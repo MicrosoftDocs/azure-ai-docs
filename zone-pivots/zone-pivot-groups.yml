@@ -1364,6 +1364,8 @@ groups:
     title: Python
   - id: csharp
     title: C#
+  - id: typescript
+    title: TypeScript
 - id: selection-agent-sharepoint
   title: Selections
   prompt: What would you like to see?
