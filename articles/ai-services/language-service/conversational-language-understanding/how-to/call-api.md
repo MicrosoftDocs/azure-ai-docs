@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 12/17/2025
 ms.author: lajanuar
 ms.custom: language-service-clu
 ---
@@ -17,19 +17,8 @@ You can query the deployment programmatically through the [prediction API](https
 
 ## Test deployed model
 
-You can use Microsoft Foundry to submit an utterance, get predictions, and visualize the results.
-
-[!INCLUDE [Test model](../includes/language-studio/test-model.md)]
-
----
 
 ## Send a conversational language understanding request
-
-# [Language Studio](#tab/language-studio)
-
-[!INCLUDE [Get prediction URL](../includes/language-studio/get-prediction-url.md)]
-
-# [REST APIs](#tab/REST-APIs)
 
 First you need to get your resource key and endpoint:
 
