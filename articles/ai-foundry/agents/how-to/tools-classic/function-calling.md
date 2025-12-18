@@ -150,7 +150,7 @@ print("Deleted agent")
 ::: zone-end
 
 ::: zone pivot="csharp"
-## Example code
+## Function calling code example
 
 > [!NOTE]
 > You can find a streaming example on [GitHub](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Agents.Persistent/samples/Sample8_PersistentAgents_FunctionsWithStreaming.md).
@@ -417,7 +417,7 @@ client.Administration.DeleteAgent(agentId: agent.Id);
 ::: zone-end
 
 ::: zone pivot="javascript"
-## Function calling implementation
+## Function calling code example
 
 The following JavaScript code demonstrates how to implement an agent with function calling capabilities. This example shows how to:
 
@@ -620,7 +620,7 @@ console.log(`Deleted agent, agent ID: ${agent.id}`);
 ::: zone-end
 
 ::: zone pivot="rest"
-## Function calling implementation
+## Function calling code example
 
 The following REST API examples demonstrate how to implement an agent with function calling capabilities. This example shows:
 
@@ -722,7 +722,7 @@ curl --request GET \
 ::: zone-end
 
 ::: zone pivot="java"
-## Function calling implementation
+## Function calling code example
 
 The following Java code demonstrates how to implement an agent with function calling capabilities. This example shows:
 
