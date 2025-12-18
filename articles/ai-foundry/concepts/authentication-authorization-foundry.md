@@ -21,7 +21,7 @@ Authentication and authorization in Microsoft Foundry define how principals prov
 
 ## Control plane and data plane
 
-Azure operations divide into two categories: control plane and data plane. Azure separates resource management (control plane) from operational runtime (data plane). Therefore, you use the control plane to manage resources in your subscription and use the data plane to use capabilities exposed by your instance of a resource type. To learn more about control plane and data plane, see [Azure control plane and data plane](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/control-plane-and-data-plane).
+Azure operations divide into two categories: control plane and data plane. Azure separates resource management (control plane) from operational runtime (data plane). Therefore, you use the control plane to manage resources in your subscription and use the data plane to use capabilities exposed by your instance of a resource type. To learn more about control plane and data plane, see [Azure control plane and data plane](/azure/azure-resource-manager/management/control-plane-and-data-plane).
 In Foundry, there's a clear distinction between control plane operations versus data plane operations. The following table explains the difference between the two, the scope in Foundry, typical operations of a user, example tools and features, and the authorization surface to use each.
 
 | Plane | Scope in Foundry | Typical operations | Example tools | Authorization surface |
@@ -67,7 +67,7 @@ Use Microsoft Entra ID for:
 
 Advantages: Fine-grained role assignments, per-principal auditing, controllable token lifetimes, automatic secret hygiene, and managed identities for services.
 
-Limitations: Higher initial setup complexity. Requires understanding of Role-based access control (RBAC). For more on RBAC in Foundry, see [Role-based access control for Microsoft Foundry](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/rbac-azure-ai-foundry?view=foundry).
+Limitations: Higher initial setup complexity. Requires understanding of Role-based access control (RBAC). For more on RBAC in Foundry, see [Role-based access control for Microsoft Foundry](rbac-azure-ai-foundry.md).
 
 ### API keys
 
@@ -81,7 +81,7 @@ Advantages: Simple, language agnostic, and doesn't require token acquisition.
 
 Limitations: Cannot express user identity, is difficult to scope granularly, and is harder to audit. Generally not accepted by enterprise production workloads and not recommended by Microsoft. 
 
-For more information on enabling keyless authentication, see [Configure key-less authentication with Microsoft Entra ID](https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/how-to/configure-entra-id?view=foundry-classic&tabs=python&pivots=ai-foundry-portal).
+For more information on enabling keyless authentication, see [Configure key-less authentication with Microsoft Entra ID](../foundry-models/how-to/configure-entra-id.md).
 
 ## Feature support matrix
 
@@ -114,8 +114,8 @@ Azure supports the following identity types.
 | Identity type | Description | 
 | --- | --- |
 | User principal | Individual user in Microsoft Entra ID |
-| [Service principal](https://learn.microsoft.com/en-us/entra/identity-platform/app-objects-and-service-principals?tabs=browser) (app registration) | Application identity that uses a client secret or certificate | 
-| [Managed identity](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview) (system-assigned) | Azure resource-bound identity automatically managed by the platform. | 
+| [Service principal](/entra/identity-platform/app-objects-and-service-principals) (app registration) | Application identity that uses a client secret or certificate | 
+| [Managed identity](/entra/identity/managed-identities-azure-resources/overview) (system-assigned) | Azure resource-bound identity automatically managed by the platform. | 
 | Managed identity (user-assigned) | Standalone identity that attaches to multiple resources. |
 
 
@@ -150,7 +150,7 @@ For high-level guidance on setting up Entra ID authentication in Foundry, see [C
 
 ## Related content
 
-- [Role-based access control for Foundry](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/rbac-azure-ai-foundry?view=foundry)
+- [Role-based access control for Foundry](rbac-azure-ai-foundry.md)
 - [Configure key-less authentication with Microsoft Entra ID](../foundry-models/how-to/configure-entra-id.md)
 - [Rotate API access keys](../../ai-services/rotate-keys.md?context=/azure/ai-foundry/context/context)
 - [Azure built-in roles (AI + machine learning)](/azure/role-based-access-control/built-in-roles#ai-+-machine-learning)
