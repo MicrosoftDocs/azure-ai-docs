@@ -50,7 +50,7 @@ Data plane actions within Foundry include...
 
 The diagram below shows the view of control plane versus data plane separation in Foundry alongside role-based access control (RBAC) assignments and what access a user may have in either the control plane or data plane or both. As seen in the diagram, RBAC "actions" are associated with control plane while RBAC "dataActions" are associated with data plane. 
 
-:::image type="content" source="../media/authentication-authorization-ai-foundry/azure-ai-control-data-plane-diagram.png" alt-text="Diagram illustrating separation of control plane and data plane operations with associated RBAC surfaces." lightbox="../media/authentication-authorization-ai-foundry/azure-ai-control-data-plane-diagram.png":::
+:::image type="content" source="../media/authentication-authorization/foundry-rbac-control-data-separation.png" alt-text="Diagram illustrating separation of control plane and data plane operations with associated RBAC surfaces." lightbox="../media/authentication-authorization/foundry-rbac-control-data-separation.png":::
 
 ## Authentication methods
 
@@ -133,7 +133,7 @@ In Foundry, there are a set of built-in roles to the best separate the allowed a
 
 To understand the breakdown of built-in roles and the control and data plane actions please review the following diagram. 
 
-:::image type="content" source="../media/authentication-authorization-ai-foundry/azure-ai-role-mapping-diagram.png" alt-text="Diagram mapping built-in roles to control plane actions and data plane actions in Foundry." lightbox="../media/authentication-authorization-ai-foundry/azure-ai-role-mapping-diagram.png":::
+:::image type="content" source="../media/authentication-authorization/role-mapping-diagram.png" alt-text="Diagram mapping built-in roles to control plane actions and data plane actions in Foundry." lightbox="../media/authentication-authorization/role-mapping-diagram.png":::
 
 > [!TIP]
 > Create a custom role if a built-in role grants excess permissions for your use-case.
