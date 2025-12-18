@@ -3,9 +3,9 @@ title: "Best practices for using tools in foundry agent service"
 description: "Best practices for using tools in foundry agent service"
 author: aahill
 ms.author: aahi
-ms.date: 11/12/2025
+ms.date: 12/18/2025
 ms.manager: nitinme
-ms.topic: conceptual
+ms.topic: concept-article
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ai-usage: ai-assisted
