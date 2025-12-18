@@ -109,4 +109,27 @@ References: [Git](https://git-scm.com/downloads)
 ## Related content
 
 * [Get started with Foundry](../../quickstarts/get-started-code.md)
-* [Microsoft Foundry SDK Reference documentation](/python/api/azure-ai-foundry/)
+
+::: zone pivot="programming-language-python"
+
+* [Microsoft Foundry SDK Reference documentation](/python/api/overview/azure/ai-projects-readme)
+
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
+
+* [.NET SDK Reference documentation](/dotnet/api/overview/azure/ai.projects-readme)
+
+::: zone-end
+
+::: zone pivot="programming-language-javascript"
+
+* [JavaScript/TypeScript SDK Reference documentation](/javascript/api/overview/azure/ai-projects-readme)
+
+::: zone-end
+
+::: zone pivot="programming-language-java"
+
+* [Java SDK Reference documentation](/java/api/overview/azure/ai-projects-readme)
+
+::: zone-end
