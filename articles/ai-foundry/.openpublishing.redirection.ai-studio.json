@@ -1507,6 +1507,11 @@
           "source_path_from_root": "/articles/ai-foundry/concepts/a-b-experimentation.md",
           "redirect_url": "/azure/ai-foundry/concepts/observability",
           "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/default/agents/concepts/agent-memory.md",
+          "redirect_url": "/azure/ai-foundry/agents/concepts/what-is-memory",
+          "redirect_document_id": false
         }
     ]
 }
