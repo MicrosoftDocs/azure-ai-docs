@@ -7,7 +7,7 @@ ms.author: haileytapia
 ms.reviewer: fsunavala
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 12/17/2025
+ms.date: 12/18/2025
 ---
 
 # Connect a Foundry IQ knowledge base to Foundry Agent Service
@@ -54,15 +54,24 @@ We recommend role-based access control for production deployments. If roles aren
 
 ---
 
-## Understand the integration
+## Understand Foundry IQ
 
-To enable retrieval-augmented generation (RAG) over a knowledge domain, the following services work together:
+Foundry IQ creates a separation of concerns between domain knowledge and agent logic, enabling retrieval-augmented generation (RAG) and grounding at scale. Instead of bundling retrieval complexity into each agent, you create a knowledge base that represents a complete domain of knowledge, such as human resources or sales. Your agents then call the knowledge base to ground their responses in relevant, up-to-date information.
 
-+ **Foundry IQ** provides a unified knowledge layer for agent grounding. Powered by [Azure AI Search](/azure/search/search-what-is-azure-search), Foundry IQ consists of knowledge sources (*what* to retrieve) and knowledge bases (*how* to retrieve). The knowledge base plans and executes subqueries and outputs formatted results with citations.
+This separation has two key benefits:
 
-  Although knowledge bases support [answer synthesis](/azure/search/agentic-retrieval-how-to-answer-synthesis), we recommend the extractive data output mode for integration with Foundry Agent Service. This mode ensures that the agent receives verbatim content instead of pre-generated answers, providing full control over the response format and quality.
++ You can independently update a knowledge base without modifying agents.
++ Multiple agents can share the same knowledge base, avoiding duplicate configurations.
 
-+ [**Foundry Agent Service**](../../../../agents/overview.md) orchestrates calls to the knowledge base via the MCP tool and synthesizes the final answer. At runtime, the agent calls only the knowledge base, not the data platform (such as Azure Blob Storage or Microsoft OneLake) that underlies the knowledge source. The knowledge base handles all retrieval operations.
+### How Foundry IQ works
+
+Powered by [Azure AI Search](/azure/search/search-what-is-azure-search), Foundry IQ consists of knowledge sources (*what* to retrieve) and knowledge bases (*how* to retrieve). The knowledge base plans and executes subqueries and outputs formatted results with citations.
+
+Although knowledge bases support [answer synthesis](/azure/search/agentic-retrieval-how-to-answer-synthesis), we recommend the extractive data output mode for integration with Foundry Agent Service. This mode ensures the agent receives verbatim content instead of pre-generated answers, providing full control over response format and quality.
+
+### How Foundry Agent Service uses knowledge bases
+
+[Foundry Agent Service](../../../../agents/overview.md) orchestrates calls to the knowledge base via the MCP tool and synthesizes the final answer. At runtime, the agent calls only the knowledge base, not the data platform (such as Azure Blob Storage or Microsoft OneLake) that underlies the knowledge source. The knowledge base handles all retrieval operations.
 
 ## Create a project connection
 
