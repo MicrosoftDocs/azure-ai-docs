@@ -21,34 +21,34 @@ Authentication and authorization in Microsoft Foundry define how principals prov
 
 ## Control plane and data plane
 
-Azure operations can be divided into two categories - control plane and data plane. Azure separates resource management (control plane) from operational runtime (data plane). Therefore you use the control plane to manage resources in your subscription and use the data plane to use capabilities exposed by your instance of a resource type. To learn more about control plane and data plane, see [Azure control plane and data plane](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/control-plane-and-data-plane).
-In Foundry, there is a clear distinction between control plane operations versus data plane operations. The below table explains the difference between the two, the scope in Foundry, typical operations of a user, example tools and features, and the authorization surface to use each.
+Azure operations divide into two categories: control plane and data plane. Azure separates resource management (control plane) from operational runtime (data plane). Therefore, you use the control plane to manage resources in your subscription and use the data plane to use capabilities exposed by your instance of a resource type. To learn more about control plane and data plane, see [Azure control plane and data plane](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/control-plane-and-data-plane).
+In Foundry, there's a clear distinction between control plane operations versus data plane operations. The following table explains the difference between the two, the scope in Foundry, typical operations of a user, example tools and features, and the authorization surface to use each.
 
 | Plane | Scope in Foundry | Typical operations | Example tools | Authorization surface |
 | --- | --- | --- | --- | --- |
-| Control plane | Setting up and configuring resource, projects, networking, encryption, and connections | CCreate or delete resources, assign roles, rotate keys, set up Private Link | Azure portal, Azure CLI, ARM templates, Bicep, Terraform | Azure RBAC actions |
+| Control plane | Setting up and configuring resource, projects, networking, encryption, and connections | Create or delete resources, assign roles, rotate keys, set up Private Link | Azure portal, Azure CLI, ARM templates, Bicep, Terraform | Azure RBAC actions |
 | Data plane | Running and using model inference, agent interactions, evaluation jobs, and content safety calls | Chat completions, embedding generation, start fine-tune jobs, send agent messages, analyzer and classifier operations | SDKs, REST APIs, Foundry portal playground | Azure RBAC dataActions |
 
-For all Bicep, Terraform, and SDK samples, see our [foundry-samples repository on GitHub](https://github.com/azure-ai-foundry/foundry-samples) for Foundry.
+For all Bicep, Terraform, and SDK samples, see the [foundry-samples repository on GitHub](https://github.com/azure-ai-foundry/foundry-samples) for Foundry.
 
 
-### Control and data plane diagram
-Within Foundry, there is a clear separation of control plane and data plane actions.
-Control plane actions within Foundry include...
+### Control plane and data plane diagram
+Within Foundry, there's a clear separation between control plane and data plane actions.
+Control plane actions within Foundry include:
 * Foundry resource creation
 * Foundry project creation
 * Account Capability Host creation
 * Project Capability Host creation
 * Model deployment
-* Account and Project connection creation
+* Account and project connection creation
 
-Data plane actions within Foundry include...
-* Building Agents
+Data plane actions within Foundry include:
+* Building agents
 * Running an evaluation
 * Tracing and monitoring
 * Fine-tuning
 
-The diagram below shows the view of control plane versus data plane separation in Foundry alongside role-based access control (RBAC) assignments and what access a user may have in either the control plane or data plane or both. As seen in the diagram, RBAC "actions" are associated with control plane while RBAC "dataActions" are associated with data plane. 
+The following diagram shows the view of control plane versus data plane separation in Foundry alongside role-based access control (RBAC) assignments and what access a user may have in either the control plane or data plane or both. As seen in the diagram, RBAC "actions" are associated with control plane while RBAC "dataActions" are associated with data plane. 
 
 :::image type="content" source="../media/authentication-authorization/foundry-rbac-control-data-separation.png" alt-text="Diagram illustrating separation of control plane and data plane operations with associated RBAC surfaces." lightbox="../media/authentication-authorization/foundry-rbac-control-data-separation.png":::
 
@@ -73,7 +73,7 @@ Limitations: Higher initial setup complexity. Requires understanding of Role-bas
 
 API keys are static secrets scoped to a Foundry resource.
 
-Use Microsoft Entra ID for:
+Use API keys for:
 - Rapid prototyping.
 - Isolated test environments where single-secret rotation is acceptable.
 
@@ -85,7 +85,7 @@ For more information on enabling keyless authentication, see [Configure key-less
 
 ## Feature support matrix
 
-Reference the following matrix to understand what capabilities in Foundry support API key vs Entra ID. 
+Reference the following matrix to understand what capabilities in Foundry support API key versus Microsoft Entra ID. 
 
 | Capability or feature | API key | Microsoft Entra ID | Notes |
 | --- | --- | --- | --- |
@@ -107,21 +107,21 @@ Reference the following matrix to understand what capabilities in Foundry suppor
 
 ## Identity types
 
-Azure resources and applications authenticate using different identity types, each designed for specific scenarios. User principals represent human users, service principals represent applications or automated processes, and managed identities provide a secure, credential-free way for Azure resources to access other services. Understanding these distinctions helps you choose the right identity for interactive sign-ins, app-to-app communication, or workload automation.
+Azure resources and applications authenticate by using different identity types, each designed for specific scenarios. User principals represent human users, service principals represent applications or automated processes, and managed identities provide a secure, credential-free way for Azure resources to access other services. Understanding these distinctions helps you choose the right identity for interactive sign-ins, app-to-app communication, or workload automation.
 
-In Azure, the following identity types are supported.
+Azure supports the following identity types.
 
 | Identity type | Description | 
 | --- | --- |
 | User principal | Individual user in Microsoft Entra ID |
-| [Service principal](https://learn.microsoft.com/en-us/entra/identity-platform/app-objects-and-service-principals?tabs=browser) (app registration) | Application identity using client secret or certificate | 
+| [Service principal](https://learn.microsoft.com/en-us/entra/identity-platform/app-objects-and-service-principals?tabs=browser) (app registration) | Application identity that uses a client secret or certificate | 
 | [Managed identity](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview) (system-assigned) | Azure resource-bound identity automatically managed by the platform. | 
 | Managed identity (user-assigned) | Standalone identity that attaches to multiple resources. |
 
 
 ## Built-in roles overview
 
-In Foundry, there are a set of built-in roles to the best separate the allowed actions for a user. Most enterprises want a separation of control and data plane actions for their built-in roles. Others expect a combined data and control plane role to minimize the number of role assignments required. Below is the short list of the scenarios to unblock and its corresponding built-in Foundry role that best fits the scenario. 
+In Foundry, use the built-in roles to separate the allowed actions for a user. Most enterprises want a separation of control and data plane actions for their built-in roles. Others expect a combined data and control plane role to minimize the number of role assignments required. The following table lists scenarios and the corresponding built-in Foundry roles that best fit each scenario. 
 
 | Scenario | Typical built-in roles | Notes |
 | --- | --- | --- |
@@ -131,22 +131,22 @@ In Foundry, there are a set of built-in roles to the best separate the allowed a
 | Manage resource, manage deployments, build agents. You're a digital native. | Azure AI Owner (role coming soon) | Combine with Azure Monitor Reader if observability required. |
 | Observability, tracing, monitoring | Azure AI User (minimum) | Add Azure Monitor Reader on Application Insights. |
 
-To understand the breakdown of built-in roles and the control and data plane actions please review the following diagram. 
+To understand the breakdown of built-in roles and the control and data plane actions, review the following diagram. 
 
 :::image type="content" source="../media/authentication-authorization/role-mapping-diagram.png" alt-text="Diagram mapping built-in roles to control plane actions and data plane actions in Foundry." lightbox="../media/authentication-authorization/role-mapping-diagram.png":::
 
 > [!TIP]
-> Create a custom role if a built-in role grants excess permissions for your use-case.
+> Create a custom role if a built-in role grants excess permissions for your use case.
 
 
 ## Set up Microsoft Entra ID
 
-For the high-level guidance on setting up Entra ID authentication in Foundry, see [Configure key-less authentication](../foundry-models/how-to/configure-entra-id.md).
+For high-level guidance on setting up Entra ID authentication in Foundry, see [Configure key-less authentication](../foundry-models/how-to/configure-entra-id.md).
 1. Ensure your Azure AI Foundry resource has a custom subdomain configured. See [Custom subdomains](/azure/ai-services/cognitive-services-custom-subdomains).
-2.	Assign the needed built-in or custom role, such as Azure AI User, to each principal—user, service principal, or managed identity—at the resource or project scope.
-- (Optional) For a service principal, create an app registration, add a client secret or certificate, and note the tenant ID, client ID, and secret or certificate.
-- (Optional) For a managed identity, enable the system-assigned identity on the calling service or attach a user-assigned identity, then assign a role to it on the Azure AI Foundry resource.
-3.	Remove key-based authentication after all callers use token authentication. Optionally disable local authentication in deployment templates.
+1. Assign the needed built-in or custom role, such as Azure AI User, to each principal user, service principal, or managed identity at the resource or project scope.
+1. (Optional) For a service principal, create an app registration, add a client secret or certificate, and note the tenant ID, client ID, and secret or certificate.
+1. (Optional) For a managed identity, enable the system-assigned identity on the calling service or attach a user-assigned identity, then assign a role to it on the Azure AI Foundry resource.
+1. Remove key-based authentication after all callers use token authentication. Optionally disable local authentication in deployment templates.
 
 ## Related content
 
