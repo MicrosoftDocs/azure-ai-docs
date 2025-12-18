@@ -69,7 +69,7 @@ As you use these features in your application, use the following documentation a
 The `Azure.AI.Language.Conversations` namespace enables you to use the following Language features. Use the following links for articles to help you send API requests using the SDK.
 
 * [Conversational language understanding](../conversational-language-understanding/how-to/call-api.md?tabs=azure-sdk#send-a-conversational-language-understanding-request)
-* [Orchestration workflow](../orchestration-workflow/how-to/call-api.md?tabs=azure-sdk#send-an-orchestration-workflow-request)
+* [Orchestration workflow](../orchestration-workflow/how-to/call-api.md)
 * [Conversation summarization (Python only)](../summarization/quickstart.md?tabs=conversation-summarization&pivots=programming-language-python)
 * [Personally Identifying Information (PII) detection for conversations](../personally-identifiable-information/how-to-call-for-conversations.md?tabs=client-libraries#examples)
 
@@ -113,7 +113,7 @@ For more information, *see* the [reference documentation](/rest/api/language/).
 
 The conversation analysis runtime API enables you to send requests to custom models you create for the following features:
 * [Conversational language understanding](../conversational-language-understanding/how-to/call-api.md?tabs=REST-APIs#send-a-conversational-language-understanding-request)
-* [Orchestration workflow](../orchestration-workflow/how-to/call-api.md?tabs=REST-APIs#send-an-orchestration-workflow-request)
+* [Orchestration workflow](../orchestration-workflow/how-to/call-api.md)
 
 It additionally enables you to use the following features, without creating any models:
 * [Conversation summarization](../summarization/quickstart.md?pivots=rest-api&tabs=conversation-summarization)

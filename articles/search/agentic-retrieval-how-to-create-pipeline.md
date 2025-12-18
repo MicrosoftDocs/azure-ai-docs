@@ -312,7 +312,7 @@ index_client.delete_knowledge_base(base_name)
 print(f"Knowledge base '{base_name}' deleted successfully")
 
 # Delete the knowledge source
-index_client.delete_knowledge_source(knowledge_source=knowledge_source_name) # This is new feature in 2025-08-01-Preview api version
+index_client.delete_knowledge_source(knowledge_source=knowledge_source_name)
 print(f"Knowledge source '{knowledge_source_name}' deleted successfully.")
 
 # Delete the search index

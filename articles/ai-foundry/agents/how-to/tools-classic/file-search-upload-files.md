@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 12/16/2025
+ms.date: 12/18/2025
 author: alvinashcraft
 ms.author: aashcraft
 zone_pivot_groups: selection-bing-grounding-code
@@ -24,12 +24,12 @@ ms.custom: azure-ai-agents-code
 Use this article to find step-by-step instructions and code samples for uploading files using the file search tool.
 
 ## Prerequisites 
+
+The following prerequisites are required to complete this how-to article:
+
 1. Complete the [agent setup](../../quickstart.md).
-
-2. Ensure that you have the role **Storage Blob Data Contributor** on your project's storage account.
-
-3. Ensure that you have the role **Azure AI Developer** on your project.
-
+1. Ensure that you have the role **Storage Blob Data Contributor** on your project's storage account.
+1. Ensure that you have the role **Azure AI Developer** on your project.
 
 ::: zone pivot="portal"
 
@@ -589,11 +589,11 @@ curl --request GET \
 
 :::zone pivot="java"
 
-## Code example
+## Create a project client
+
+Create a client object that contains the endpoint for connecting to your AI project and other resources.
 
 ```java
-package com.example.agents;
-
 import com.azure.ai.agents.persistent.FilesClient;
 import com.azure.ai.agents.persistent.MessagesClient;
 import com.azure.ai.agents.persistent.PersistentAgentsAdministrationClient;
@@ -602,112 +602,171 @@ import com.azure.ai.agents.persistent.PersistentAgentsClientBuilder;
 import com.azure.ai.agents.persistent.RunsClient;
 import com.azure.ai.agents.persistent.ThreadsClient;
 import com.azure.ai.agents.persistent.VectorStoresClient;
-import com.azure.ai.agents.persistent.models.CreateAgentOptions;
-import com.azure.ai.agents.persistent.models.CreateRunOptions;
+import com.azure.core.util.Configuration;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+
+// Get Connection information from environment variables
+String projectEndpoint = Configuration.getGlobalConfiguration().get("PROJECT_ENDPOINT", "endpoint");
+String modelDeploymentName = Configuration.getGlobalConfiguration().get("MODEL_DEPLOYMENT_NAME", "model");
+
+// Create the Agent Client
+PersistentAgentsClientBuilder clientBuilder = new PersistentAgentsClientBuilder()
+    .endpoint(projectEndpoint)
+    .credential(new DefaultAzureCredentialBuilder().build());
+PersistentAgentsClient agentsClient = clientBuilder.buildClient();
+PersistentAgentsAdministrationClient administrationClient = agentsClient.getPersistentAgentsAdministrationClient();
+ThreadsClient threadsClient = agentsClient.getThreadsClient();
+MessagesClient messagesClient = agentsClient.getMessagesClient();
+RunsClient runsClient = agentsClient.getRunsClient();
+FilesClient filesClient = agentsClient.getFilesClient();
+VectorStoresClient vectorStoresClient = agentsClient.getVectorStoresClient();
+```
+
+## Upload files and add them to a Vector Store
+
+To access your files, the file search tool uses the vector store object. Upload your files and create a vector store. After creating the vector store, poll its status until all files are uploaded to ensure that all content is fully processed.
+
+```java
 import com.azure.ai.agents.persistent.models.FileDetails;
 import com.azure.ai.agents.persistent.models.FileInfo;
 import com.azure.ai.agents.persistent.models.FilePurpose;
-import com.azure.ai.agents.persistent.models.FileSearchToolDefinition;
-import com.azure.ai.agents.persistent.models.FileSearchToolResource;
-import com.azure.ai.agents.persistent.models.MessageImageFileContent;
-import com.azure.ai.agents.persistent.models.MessageRole;
-import com.azure.ai.agents.persistent.models.MessageTextContent;
-import com.azure.ai.agents.persistent.models.PersistentAgent;
-import com.azure.ai.agents.persistent.models.PersistentAgentThread;
-import com.azure.ai.agents.persistent.models.RunStatus;
-import com.azure.ai.agents.persistent.models.ThreadMessage;
-import com.azure.ai.agents.persistent.models.ThreadRun;
-import com.azure.ai.agents.persistent.models.ToolResources;
 import com.azure.ai.agents.persistent.models.UploadFileRequest;
 import com.azure.ai.agents.persistent.models.VectorStore;
 import com.azure.ai.agents.persistent.models.VectorStoreStatus;
-import com.azure.ai.agents.persistent.models.MessageContent;
-import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.util.BinaryData;
-import com.azure.identity.DefaultAzureCredentialBuilder;
-
 import java.util.Arrays;
 
-public class AgentExample {
+// Upload file
+FileInfo uploadedAgentFile = filesClient.uploadFile(
+    new UploadFileRequest(
+        new FileDetails(
+            BinaryData.fromString("The word `apple` uses the code 442345, while the word `banana` uses the code 673457."))
+            .setFilename("sample_file_for_upload.txt"),
+        FilePurpose.AGENTS));
+System.out.println("Uploaded file, file ID: " + uploadedAgentFile.getId());
 
-    public static void main(String[] args) throws InterruptedException{
+// Create vector store
+VectorStore vectorStore = vectorStoresClient.createVectorStore(
+    Arrays.asList(uploadedAgentFile.getId()),
+    "my_vector_store",
+    null, null, null, null);
+System.out.println("Created vector store, vector store ID: " + vectorStore.getId());
 
-        // variables for authenticating requests to the agent service 
-        String projectEndpoint = System.getenv("PROJECT_ENDPOINT");
-        String modelName = System.getenv("MODEL_DEPLOYMENT_NAME");
-        String bingConnectionId = Configuration.getGlobalConfiguration().get("BING_CONNECTION_ID", "");
+// Poll until vector store is ready
+do {
+    Thread.sleep(500);
+    vectorStore = vectorStoresClient.getVectorStore(vectorStore.getId());
+}
+while (vectorStore.getStatus() == VectorStoreStatus.IN_PROGRESS);
+```
 
-        BingGroundingSearchConfiguration searchConfiguration = new BingGroundingSearchConfiguration(bingConnectionId);
-        BingGroundingSearchToolParameters searchToolParameters
-            = new BingGroundingSearchToolParameters(Arrays.asList(searchConfiguration));
+## Create an agent and enable file search
 
-        BingGroundingToolDefinition bingGroundingTool = new BingGroundingToolDefinition(searchToolParameters);
+Create a file search tool object with the vector store ID, and attach tool and tool resources to the agent.
 
-        String agentName = "bing_grounding_example";
-        CreateAgentOptions createAgentOptions = new CreateAgentOptions("gpt-35-turbo")
-            .setName(agentName)
-            .setInstructions("You are a helpful agent")
-            .setTools(Arrays.asList(bingGroundingTool));
-        PersistentAgent agent = administrationClient.createAgent(createAgentOptions);
+```java
+import com.azure.ai.agents.persistent.models.CreateAgentOptions;
+import com.azure.ai.agents.persistent.models.FileSearchToolDefinition;
+import com.azure.ai.agents.persistent.models.FileSearchToolResource;
+import com.azure.ai.agents.persistent.models.PersistentAgent;
+import com.azure.ai.agents.persistent.models.ToolResources;
 
-        PersistentAgentThread thread = threadsClient.createThread();
-        ThreadMessage createdMessage = messagesClient.createMessage(
-            thread.getId(),
-            MessageRole.USER,
-            "How does wikipedia explain Euler's Identity?");
+// Create file search tool resource
+FileSearchToolResource fileSearchToolResource = new FileSearchToolResource()
+    .setVectorStoreIds(Arrays.asList(vectorStore.getId()));
 
-        try {
-            //run agent
-            CreateRunOptions createRunOptions = new CreateRunOptions(thread.getId(), agent.getId())
-                .setAdditionalInstructions("");
-            ThreadRun threadRun = runsClient.createRun(createRunOptions);
+// Create agent with file search tool
+String agentName = "file_search_example";
+CreateAgentOptions createAgentOptions = new CreateAgentOptions(modelDeploymentName)
+    .setName(agentName)
+    .setInstructions("You are a helpful agent that can help fetch data from files you know about.")
+    .setTools(Arrays.asList(new FileSearchToolDefinition()))
+    .setToolResources(new ToolResources().setFileSearch(fileSearchToolResource));
+PersistentAgent agent = administrationClient.createAgent(createAgentOptions);
+System.out.println("Created agent, ID: " + agent.getId());
+```
 
-            waitForRunCompletion(thread.getId(), threadRun, runsClient);
-            printRunMessages(messagesClient, thread.getId());
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        } finally {
-            //cleanup
-            threadsClient.deleteThread(thread.getId());
-            administrationClient.deleteAgent(agent.getId());
-        }
+## Create a thread and run
+
+You can also attach files as Message attachments on your thread. Doing so creates another vector store associated with the thread, or, if there's already a vector store attached to this thread, attaches the new files to the existing thread vector store.
+
+```java
+import com.azure.ai.agents.persistent.models.CreateRunOptions;
+import com.azure.ai.agents.persistent.models.MessageRole;
+import com.azure.ai.agents.persistent.models.PersistentAgentThread;
+import com.azure.ai.agents.persistent.models.ThreadMessage;
+import com.azure.ai.agents.persistent.models.ThreadRun;
+
+// Create thread
+PersistentAgentThread thread = threadsClient.createThread();
+System.out.println("Created thread, ID: " + thread.getId());
+
+// Create message
+ThreadMessage createdMessage = messagesClient.createMessage(
+    thread.getId(),
+    MessageRole.USER,
+    "Can you give me the documented codes for 'banana' and 'orange'?");
+System.out.println("Created message, ID: " + createdMessage.getId());
+```
+
+## Create a run and check the output
+
+Create a run and observe that the model uses the file search tool to provide a response.
+
+```java
+import com.azure.ai.agents.persistent.models.MessageContent;
+import com.azure.ai.agents.persistent.models.MessageImageFileContent;
+import com.azure.ai.agents.persistent.models.MessageTextContent;
+import com.azure.ai.agents.persistent.models.RunStatus;
+import com.azure.core.http.rest.PagedIterable;
+
+try {
+    // Run agent
+    CreateRunOptions createRunOptions = new CreateRunOptions(thread.getId(), agent.getId())
+        .setAdditionalInstructions("");
+    ThreadRun threadRun = runsClient.createRun(createRunOptions);
+
+    // Wait for completion
+    do {
+        Thread.sleep(500);
+        threadRun = runsClient.getRun(thread.getId(), threadRun.getId());
     }
-    
-    // A helper function to print messages from the agent
-    public static void printRunMessages(MessagesClient messagesClient, String threadId) {
+    while (threadRun.getStatus() == RunStatus.QUEUED
+        || threadRun.getStatus() == RunStatus.IN_PROGRESS
+        || threadRun.getStatus() == RunStatus.REQUIRES_ACTION);
 
-        PagedIterable<ThreadMessage> runMessages = messagesClient.listMessages(threadId);
-        for (ThreadMessage message : runMessages) {
-            System.out.print(String.format("%1$s - %2$s : ", message.getCreatedAt(), message.getRole()));
-            for (MessageContent contentItem : message.getContent()) {
-                if (contentItem instanceof MessageTextContent) {
-                    System.out.print((((MessageTextContent) contentItem).getText().getValue()));
-                } else if (contentItem instanceof MessageImageFileContent) {
-                    String imageFileId = (((MessageImageFileContent) contentItem).getImageFile().getFileId());
-                    System.out.print("Image from ID: " + imageFileId);
-                }
-                System.out.println();
+    System.out.println("Run finished with status: " + threadRun.getStatus());
+
+    if (threadRun.getStatus() == RunStatus.FAILED) {
+        System.out.println("Run failed: " + threadRun.getLastError().getMessage());
+    }
+
+    // Print messages
+    PagedIterable<ThreadMessage> runMessages = messagesClient.listMessages(thread.getId());
+    for (ThreadMessage message : runMessages) {
+        System.out.print(String.format("%1$s - %2$s : ", message.getCreatedAt(), message.getRole()));
+        for (MessageContent contentItem : message.getContent()) {
+            if (contentItem instanceof MessageTextContent) {
+                System.out.print((((MessageTextContent) contentItem).getText().getValue()));
+            } else if (contentItem instanceof MessageImageFileContent) {
+                String imageFileId = (((MessageImageFileContent) contentItem).getImageFile().getFileId());
+                System.out.print("Image from ID: " + imageFileId);
             }
+            System.out.println();
         }
     }
-
-    // a helper function to wait until a run has completed running
-    public static void waitForRunCompletion(String threadId, ThreadRun threadRun, RunsClient runsClient)
-        throws InterruptedException {
-
-        do {
-            Thread.sleep(500);
-            threadRun = runsClient.getRun(threadId, threadRun.getId());
-        }
-        while (
-            threadRun.getStatus() == RunStatus.QUEUED
-                || threadRun.getStatus() == RunStatus.IN_PROGRESS
-                || threadRun.getStatus() == RunStatus.REQUIRES_ACTION);
-
-        if (threadRun.getStatus() == RunStatus.FAILED) {
-            System.out.println(threadRun.getLastError().getMessage());
-        }
-    }
+} catch (InterruptedException e) {
+    throw new RuntimeException(e);
+} finally {
+    // Cleanup
+    threadsClient.deleteThread(thread.getId());
+    System.out.println("Deleted thread");
+    administrationClient.deleteAgent(agent.getId());
+    System.out.println("Deleted agent");
+    filesClient.deleteFile(uploadedAgentFile.getId());
+    System.out.println("Deleted file");
+    vectorStoresClient.deleteVectorStore(vectorStore.getId());
+    System.out.println("Deleted vector store");
 }
 ```
 
