@@ -20,7 +20,7 @@ ms.custom: include, build-2024, ignite-2024
 1. Enter a name for the project.
 1. If you have a hub, you'll see the one you most recently used selected.  
    * If you have access to more than one hub, you can select a different hub from the dropdown.
-   * If you want to create a new one, select **Create new hub** and supply a  name.  
+   * If you want to create a new one, select **Create a new hub** from the dropdown.  
 
       :::image type="content" source="../media/how-to/projects/projects-create-details.png" alt-text="Screenshot of the project details page within the create project dialog." lightbox="../media/how-to/projects/projects-create-details.png":::
 

@@ -98,9 +98,6 @@ items:
         - name: Back up and recover your models
           href: conversational-language-understanding/how-to/fail-over.md
           displayName: disaster recovery, failover, clu
-        - name: Migrate from LUIS
-          href: conversational-language-understanding/how-to/migrate-from-luis.md
-          displayName: language understanding, luis to clu
     - name: Concepts
       items:
         - name: Multi-turn conversations 🆕
