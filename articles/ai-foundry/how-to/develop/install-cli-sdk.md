@@ -5,7 +5,7 @@ description: Instructions for installing the Microsoft Foundry SDK and the Azure
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: dantaylo
-ms.date: 11/04/2025
+ms.date: 12/18/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.custom:
@@ -22,16 +22,16 @@ Set up your development environment to use the Microsoft Foundry SDK. You also n
 
 
 > [!IMPORTANT]  
-> This article covers **general prerequisites** only—language runtimes, global tools, VS Code and extension setup.  
-> It does **not** include scenario-specific steps like SDK installation or authentication.  
+> This article covers **general prerequisites** only, such as language runtimes, global tools, and VS Code and extension setup.  
+> It doesn't cover scenario-specific steps like SDK installation or authentication.  
 > When your environment is ready, continue to the [quickstart](../../quickstarts/get-started-code.md) for those instructions.
 
 
 ## Prerequisites
 
 - [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
-- Download, install, and configure Visual Studio Code. More information: [Download Visual Studio Code](https://code.visualstudio.com/Download)
-- Set the appropriate RBAC permissions to create and manage Microsoft Foundry resources with the Visual Studio Code extension. For more information, see [Role-based access control for Foundry](/azure/ai-foundry/concepts/rbac-azure-ai-foundry).
+- Download, install, and configure Visual Studio Code, or the IDE of your choice. For more information, see [Download Visual Studio Code](https://code.visualstudio.com/Download).
+- Set the appropriate RBAC permissions to create and manage Microsoft Foundry resources in the Visual Studio Code extension. For more information, see [Role-based access control for Foundry](/azure/ai-foundry/concepts/rbac-azure-ai-foundry).
 
 
 ## Install your programming language
@@ -56,7 +56,7 @@ The Python extension for Visual Studio Code supports Python with IntelliSense, d
 
 ### Install the Visual Studio Code Extension Pack for Java
 
-The Extension Pack for Java is a collection of popular extensions that can help write, test, and debug Java applications in Visual Studio Code. 
+The Extension Pack for Java is a collection of popular extensions that can help you write, test, and debug Java applications in Visual Studio Code. 
 
 [Install the Visual Studio Code Extension Pack for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack).
 
@@ -64,7 +64,7 @@ The Extension Pack for Java is a collection of popular extensions that can help 
 
 ::: zone pivot="programming-language-javascript"
 
-Install [Node.js](https://nodejs.org/)
+Install [Node.js](https://nodejs.org/).
 
 ::: zone-end
 
@@ -86,6 +86,8 @@ Keep this terminal open to run scripts after signing in.
 
 The Azure Developer CLI (azd) is an open-source tool that helps you set up and deploy app resources on Azure. It provides simple commands for key stages of development, whether you use a terminal, IDE, or CI/CD pipelines.
 [Install the Azure Developer CLI for your platform](/azure/developer/azure-developer-cli/install-azd?tabs=winget-windows%2Cbrew-mac%2Cscript-linux&pivots=os-windows).
+
+The Azure Developer CLI allows you to quickly deploy many of the [AI solution templates](ai-template-get-started.md).
 
 ## Install The Foundry VS Code Extension
 
