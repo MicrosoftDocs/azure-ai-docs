@@ -12,16 +12,16 @@ ms.custom: language-service-clu
 ---
 # Migrate from Language Understanding (LUIS) to conversational language understanding (CLU)
 
-[Conversational language understanding (CLU)](../overview.md) is a cloud-based AI offering in Azure Language in Foundry Tools. It's the newest generation of [Language Understanding (LUIS)](../../../luis/what-is-luis.md) and offers backwards compatibility with previously created LUIS applications. CLU employs state-of-the-art machine learning intelligence to allow users to build a custom natural language understanding model for predicting intents and entities in conversational utterances.
+Conversational language understanding (CLU) is a cloud-based AI offering in Azure Language in Foundry Tools. It's the newest generation of Language Understanding (LUIS) and offers backwards compatibility with previously created LUIS applications. CLU employs state-of-the-art machine learning intelligence to allow users to build a custom natural language understanding model for predicting intents and entities in conversational utterances.
 
 CLU offers the following advantages over `LUIS`:
 
 - Improved accuracy with state-of-the-art machine learning models for better intent classification and entity extraction. LUIS required more examples to generalize certain concepts in intents and entities, while CLU's more advanced machine learning reduces the burden on customers by requiring less data.
 - Multilingual support for model learning and training. Train projects in one language and immediately predict intents and entities across 96 languages.
-- Ease of integration with different CLU and [custom question answering](../../question-answering/overview.md) projects using [orchestration workflow](../../orchestration-workflow/overview.md).
+- Ease of integration with different CLU and custom question answering projects using orchestration workflow.
 - The ability to add testing data within the experience using Language Studio and APIs for model performance evaluation before deployment.
 
-To get started, you can [use CLU directly](../quickstart.md) or [migrate your LUIS application](#migrate-your-luis-applications).
+To get started, you can use CLU directly or migrate your LUIS application.
 
 ## Comparison between LUIS and CLU
 
@@ -29,23 +29,23 @@ The following table presents a side-by-side comparison between the features of L
 
 |LUIS features | CLU features | Post migration |
 |:------------:|:----------------------------------------------:|:--------------:|
-|Machine-learned and Structured ML entities| Learned [entity components](#how-are-entities-different-in-clu) |Machine-learned entities without subentities are transferred as CLU entities. Structured ML entities only transfer leaf nodes (lowest level subentities that don't have their own subentities) as entities in CLU. The name of the entity in CLU is the name of the subentity concatenated with the parent. For example, _Order.Size_|
-|List, regex, and prebuilt entities| List, regex, and prebuilt [entity components](#how-are-entities-different-in-clu) | List, regex, and prebuilt entities are transferred as entities in CLU with a populated entity component based on the entity type.|
+|Machine-learned and Structured ML entities| Learned entity components |Machine-learned entities without subentities are transferred as CLU entities. Structured ML entities only transfer leaf nodes (lowest level subentities that don't have their own subentities) as entities in CLU. The name of the entity in CLU is the name of the subentity concatenated with the parent. For example, _Order.Size_|
+|List, regex, and prebuilt entities| List, regex, and prebuilt entity components | List, regex, and prebuilt entities are transferred as entities in CLU with a populated entity component based on the entity type.|
 |`Pattern.Any` entities| Not currently available | `Pattern.Any` entities are removed.|
-|Single culture for each application|[Multilingual models](#how-is-conversational-language-understanding-multilingual) enable multiple languages for each project. |The primary language of your project is set as your LUIS application culture. Your project can be trained to extend to different languages.|
-|Entity roles  |[Roles](#how-are-entity-roles-transferred-to-clu) are no longer needed. | Entity roles are transferred as entities.|
-|Settings for: normalize punctuation, normalize diacritics, normalize word form, and use all training data.  |[Settings](#how-is-the-accuracy-of-clu-better-than-luis) are no longer needed. |Settings aren't transferred.  |
-|Patterns and phrase list features|[Patterns and Phrase list features](#how-is-the-accuracy-of-clu-better-than-luis) are no longer needed. |Patterns and phrase list features aren't transferred.  |
-|Entity features| Entity components| List or prebuilt entities added as features to an entity are transferred as added components to that entity. [Entity features](#how-do-entity-features-get-transferred-in-clu) aren't transferred for intents. |
+|Single culture for each application|Multilingual models enable multiple languages for each project. |The primary language of your project is set as your LUIS application culture. Your project can be trained to extend to different languages.|
+|Entity roles  |Roles are no longer needed. | Entity roles are transferred as entities.|
+|Settings for: normalize punctuation, normalize diacritics, normalize word form, and use all training data.  |Settings are no longer needed. |Settings aren't transferred.  |
+|Patterns and phrase list features|Patterns and Phrase list features are no longer needed. |Patterns and phrase list features aren't transferred.  |
+|Entity features| Entity components| List or prebuilt entities added as features to an entity are transferred as added components to that entity. Entity features aren't transferred for intents. |
 |Intents and utterances| Intents and utterances |All intents and utterances are transferred. Utterances are labeled with their transferred entities. |
 |Application `GUID`s |Project names| A project is created for each migrating application with the application name. Any special characters in the application names are removed in CLU.|
-|Versioning| Every time you train, a model is created and acts as a version of your [project](#how-do-i-manage-versions-in-clu). | A project is created for the selected application version. |
-|Evaluation using batch testing |Evaluation using testing sets | [Adding your testing dataset](../how-to/tag-utterances.md#label-your-utterances) is required.|
-|Role-Based Access Control (RBAC) for LUIS resources |Role-Based Access Control (RBAC) available for Language resources |Language resource RBAC must be [manually added after migration](../../concepts/role-based-access-control.md). |
-|Single training mode| Standard and advanced [training modes](#how-are-the-training-times-different-in-clu-how-is-standard-training-different-from-advanced-training) | Training is required after application migration. |
+|Versioning| Every time you train, a model is created and acts as a version of your project. | A project is created for the selected application version. |
+|Evaluation using batch testing |Evaluation using testing sets | Adding your testing dataset is required.|
+|Role-Based Access Control (RBAC) for LUIS resources |Role-Based Access Control (RBAC) available for Language resources |Language resource RBAC must be manually added after migration. |
+|Single training mode| Standard and advanced training modes | Training is required after application migration. |
 |Two publishing slots and version publishing |Ten deployment slots with custom naming | Deployment is required after the application's migration and training. |
-|LUIS authoring APIs and SDK support in .NET, Python, Java, and Node.js |[CLU Authoring REST APIs](https://aka.ms/clu-authoring-apis). | For more information, see the [quickstart article](../quickstart.md?pivots=rest-api) for information on the CLU authoring APIs. [Refactoring](#do-i-have-to-refactor-my-code-if-i-migrate-my-applications-from-luis-to-clu) is necessary to use the CLU authoring APIs. |
-|LUIS Runtime APIs and SDK support in .NET, Python, Java, and Node.js |[CLU Runtime APIs](https://aka.ms/clu-runtime-api). CLU Runtime SDK support for [.NET](/dotnet/api/overview/azure/ai.language.conversations-readme) and [Python](/python/api/overview/azure/ai-language-conversations-readme?view=azure-python-preview&preserve-view=true). | For more information, *see* [how to call the API](../how-to/call-api.md#use-the-client-libraries-azure-sdk). [Refactoring](#do-i-have-to-refactor-my-code-if-i-migrate-my-applications-from-luis-to-clu) is necessary to use the CLU runtime API response. |
+|LUIS authoring APIs and SDK support in .NET, Python, Java, and Node.js |CLU Authoring REST APIs. | For more information, see the quickstart article for information on the CLU authoring APIs. Refactoring is necessary to use the CLU authoring APIs. |
+|LUIS Runtime APIs and SDK support in .NET, Python, Java, and Node.js |CLU Runtime APIs. CLU Runtime SDK support for .NET and Python. | For more information, *see* how to call the API. Refactoring is necessary to use the CLU runtime API response. |
 
 ## Migrate your LUIS applications
 
@@ -55,38 +55,28 @@ Use the following steps to migrate your LUIS application using either the LUIS p
 
 ## Migrate your LUIS applications using the LUIS portal
 
-Follow these steps to begin migration using the [LUIS Portal](https://www.luis.ai/):
+Follow these steps to begin migration using the LUIS Portal:
 
-1. After logging into the LUIS portal, select the button on the banner at the top of the screen to launch the migration wizard. The migration copies your selected LUIS applications to CLU.
+1. After logging into the LUIS portal, select the button on the banner at the top of the screen to launch the migration wizard. The migration copies your selected LUIS applications to CLU. The migration overview tab provides a brief explanation of conversational language understanding and its benefits. Press Next to proceed.
 
-    :::image type="content" source="../media/backwards-compatibility/banner.svg" alt-text="A screenshot showing the migration banner in the LUIS portal." lightbox="../media/backwards-compatibility/banner.svg":::
-
-
-    The migration overview tab provides a brief explanation of conversational language understanding and its benefits. Press Next to proceed.
-
-    :::image type="content" source="../media/backwards-compatibility/migration-overview.svg" alt-text="A screenshot showing the migration overview window." lightbox="../media/backwards-compatibility/migration-overview.svg":::
 
 1. Determine Azure Language resource that you wish to migrate your LUIS application to. If you created a Language resource, select your Azure subscription followed by your Language resource, and then select **Next**. If you don't have a Language resource, select the link to create a new Language resource. Afterwards, select the resource and select **Next**.
 
-    :::image type="content" source="../media/backwards-compatibility/select-resource.svg" alt-text="A screenshot showing the resource selection window." lightbox="../media/backwards-compatibility/select-resource.svg":::
 
 1. Select all your LUIS applications that you want to migrate, and specify each of their versions. Select **Next**. After selecting your application and version, you're prompted with a message informing you of any features that won't be carried over from your LUIS application.
 
     > [!NOTE]
     > Conversational language understanding currently doesn't support special characters. Any special characters in your selected LUIS application names are removed in your new migrated applications.
-    :::image type="content" source="../media/backwards-compatibility/select-applications.svg" alt-text="A screenshot showing the application selection window." lightbox="../media/backwards-compatibility/select-applications.svg":::
 
 1. Review your Language resource and LUIS applications selections. Select **Finish** to migrate your applications.
 
 1. A popup window lets you track the migration status of your applications. Applications that are successfully migrated have a status of **Not started**. Applications that are beginning migration have a status of **In progress**, and once migration completes the status is **Succeeded**. A **Failed** application means that you must repeat the migration process. Once the migration is completed for all applications, select **Done**.
 
-    :::image type="content" source="../media/backwards-compatibility/migration-progress.svg" alt-text="A screenshot showing the application migration progress window." lightbox="../media/backwards-compatibility/migration-progress.svg":::
-
 1. After your applications are migrated, you can perform the following steps:
 
-   * [Train your model](../how-to/train-model.md?tabs=language-studio)
-   * [Deploy your model](../how-to/deploy-model.md?tabs=language-studio)
-   * [Call your deployed model](../how-to/call-api.md?tabs=language-studio)
+   * Train your model
+   * Deploy your model
+   * Call your deployed model
 
 # [REST API](#tab/rest-api)
 
@@ -94,7 +84,7 @@ Follow these steps to begin migration using the [LUIS Portal](https://www.luis.a
 
 Follow these steps to begin migration programmatically using the CLU Authoring REST APIs:
 
-1. Export your LUIS application in JSON format. You can use the [LUIS Portal](https://www.luis.ai/) to export your applications, or the [LUIS programmatic APIs](https://westus.dev.cognitive.microsoft.com/docs/services/luis-programmatic-apis-v3-0-preview/operations/5890b47c39e2bb052c5b9c40).
+1. Export your LUIS application in JSON format. You can use the LUIS Portal to export your applications, or the LUIS programmatic APIs.
 
 1. Submit a POST request using the following URL, headers, and JSON body to import LUIS application into your CLU project. CLU doesn't support names with special characters so remove any special characters from the project name.
 
@@ -107,7 +97,7 @@ Follow these steps to begin migration programmatically using the CLU Authoring R
     |---------|---------|---------|
     |`{ENDPOINT}`     | The endpoint for authenticating your API request.   | `https://<your-custom-subdomain>.cognitiveservices.azure.com` |
     |`{PROJECT-NAME}`     | The name for your project. This value is case sensitive.   | `myProject` |
-    |`{API-VERSION}`     | The [version](../../concepts/model-lifecycle.md#api-versions) of the API you're calling. | `2023-04-01` |
+    |`{API-VERSION}`     | The version of the API you're calling. | `2023-04-01` |
 
     ### Headers
 
@@ -123,9 +113,9 @@ Follow these steps to begin migration programmatically using the CLU Authoring R
 
 1. After your application migrates, you can perform the following steps:
 
-   * [Train your model](../how-to/train-model.md?tabs=language-studio)
-   * [Deploy your model](../how-to/deploy-model.md?tabs=language-studio)
-   * [Call your deployed model](../how-to/call-api.md?tabs=language-studio)
+   * Train your model
+   * Deploy your model
+   * Call your deployed model
 
 ---
 
@@ -162,7 +152,7 @@ Migrated LUIS entity in CLU:
 
 You also can't label two different entities in CLU for the same span of characters. Learned components in CLU are mutually exclusive and don't provide overlapping predictions for learned components only. When you migrate your LUIS application, entity labels that overlap preserve the longest label and ignore any others.
 
-For more information on entity components, see [Entity components](../concepts/entity-components.md).
+For more information on entity components, see Entity components.
 
 ### How are entity roles transferred to CLU?
 
@@ -186,7 +176,7 @@ Training utterance (English):  *How are you?*
 
 Labeled intent: Greeting
 
-Runtime utterance (French): *Comment ça va?*
+Runtime utterance (French): *`Comment ça va?`*
 
 Predicted intent: Greeting
 
@@ -232,17 +222,17 @@ In CLU, you would label the entire span for _Pizza Order_ inclusive of the size 
 - Pass the utterance to each project.
 - Combine the analyses of each project in the stage proceeding CLU.
 
-For a detailed example on this concept, check out the pizza sample projects available on [GitHub](https://aka.ms/clu-pizza).
+For a detailed example of this concept, check out the pizza sample projects available on GitHub.
 
 ### How do I manage versions in CLU?
 
 CLU saves the data assets used to train your model. You can export a model's assets or load them back into the project at any point. So models act as different versions of your project.
 
-You can export your CLU projects using [Language Studio](https://language.cognitive.azure.com/home) or [programmatically](../how-to/fail-over.md#export-your-primary-project-assets) and store different versions of the assets locally.
+You can export your CLU projects using Language Studio or programmatically and store different versions of the assets locally.
 
 ### Why is CLU classification different from LUIS? How does None classification work?
 
-CLU presents a different approach to training models by using multi-classification as opposed to binary classification. As a result, the interpretation of scores is different and also differs across training options. While you're likely to achieve better results, you have to observe the difference in scores and determine a new threshold for accepting intent predictions. You can easily add a confidence score threshold for the [None intent](../concepts/none-intent.md) in your project settings. This returns *None* as the top intent if the top intent didn't exceed the confidence score threshold provided.
+CLU presents a different approach to training models by using multi-classification as opposed to binary classification. As a result, the interpretation of scores is different and also differs across training options. While you're likely to achieve better results, you have to observe the difference in scores and determine a new threshold for accepting intent predictions. You can easily add a confidence score threshold for the None intent in your project settings. This returns *None* as the top intent if the top intent didn't exceed the confidence score threshold provided.
 
 ### Do I need more data for CLU models than LUIS?
 
@@ -258,23 +248,23 @@ CLU only supports JSON format. You can import your .LU files to LUIS and export 
 
 ### What are the service limits of CLU?
 
-For more information, *see* [service limits](../service-limits.md).
+For more information, *see* service limits.
 
 ### Do I have to refactor my code if I migrate my applications from LUIS to CLU?
 
 The API objects of CLU applications are different from LUIS and therefore code refactoring is necessary.
 
-If you're using the LUIS [programmatic](https://westus.dev.cognitive.microsoft.com/docs/services/luis-programmatic-apis-v3-0-preview/operations/5890b47c39e2bb052c5b9c40) and [runtime](https://westus.dev.cognitive.microsoft.com/docs/services/luis-endpoint-api-v3-0/operations/5cb0a9459a1fe8fa44c28dd8) APIs, you can replace them with their equivalent APIs.
+If you're using the LUIS programmatic and runtime APIs, you can replace them with their equivalent APIs.
 
-[CLU authoring APIs](https://aka.ms/clu-authoring-apis): Instead of LUIS's specific CRUD APIs for individual actions such as _add utterance_, _delete entity_, and _rename intent_, CLU offers an [import API](/rest/api/language/2023-04-01/conversational-analysis-authoring/import). This APIreplaces the full content of a project using the same name. If your service used LUIS programmatic APIs to provide a platform for other customers, you must consider this new design paradigm. All other APIs such as: _listing projects_, _training_, _deploying_, and _deleting_ are available. APIs for actions such as _importing_ and _deploying_ are asynchronous operations instead of synchronous as they were in LUIS.
+CLU authoring APIs: Instead of LUIS's specific CRUD APIs for individual actions such as _add utterance_, _delete entity_, and _rename intent_, CLU offers an import API. This API replaces the full content of a project using the same name. If your service used LUIS programmatic APIs to provide a platform for other customers, you must consider this new design paradigm. All other APIs such as: _listing projects_, _training_, _deploying_, and _deleting_ are available. APIs for actions such as _importing_ and _deploying_ are asynchronous operations instead of synchronous as they were in LUIS.
 
-[CLU runtime APIs](https://aka.ms/clu-runtime-api): The new API request and response includes many of the same parameters such as: _query_, _prediction_, _top intent_, _intents_, _entities_, and their values. The CLU response object offers a more straightforward approach. Entity predictions are provided as they are within the utterance text, and any additional information such as resolution or list keys are provided in extra parameters called `extraInformation` and `resolution`.
+CLU runtime APIs: The new API request and response includes many of the same parameters such as: _query_, _prediction_, _top intent_, _intents_, _entities_, and their values. The CLU response object offers a more straightforward approach. Entity predictions are provided as they are within the utterance text, and any additional information such as resolution or list keys are provided in extra parameters called `extraInformation` and `resolution`.
 
-You can use the [.NET](https://github.com/Azure/azure-sdk-for-net/tree/Azure.AI.Language.Conversations_1.0.0-beta.3/sdk/cognitivelanguage/Azure.AI.Language.Conversations/samples/) or [Python](https://github.com/Azure/azure-sdk-for-python/blob/azure-ai-language-conversations_1.1.0b1/sdk/cognitivelanguage/azure-ai-language-conversations/samples/README.md) CLU runtime SDK to replace the LUIS runtime SDK. There's currently no authoring SDK available for CLU.
+You can use the .NET or Python CLU runtime SDK to replace the LUIS runtime SDK. There's currently no authoring SDK available for CLU.
 
 ### How are the training times different in CLU? How is standard training different from advanced training?
 
-CLU offers standard training, which trains and learns in English and is comparable to the training time of LUIS. It also offers advanced training, which takes a considerably longer duration as it extends the training to all other [supported languages](../language-support.md). The train API continues to be an asynchronous process, and you need to assess the change in the DevOps process you employ for your solution.
+CLU offers standard training, which trains and learns in English and is comparable to the training time of LUIS. It also offers advanced training, which takes a considerably longer duration as it extends the training to all other supported languages. The train API continues to be an asynchronous process, and you need to assess the change in the DevOps process you employ for your solution.
 
 ### How has the experience changed in CLU compared to LUIS? How is the development lifecycle different?
 
@@ -299,9 +289,9 @@ Any special characters in the LUIS application name are removed. If the cleared 
 
 ## Migration from LUIS git p
 
-If you have any questions that were unanswered in this article, consider leaving your questions at our [Microsoft Q&A thread](https://aka.ms/luis-migration-qna-thread).
+If you have any questions that were unanswered in this article, consider leaving your questions at our Microsoft `Q&A` thread.
 
 ## Next steps
-* [Quickstart: create a CLU project](../quickstart.md)
-* [CLU language support](../language-support.md)
-* [CLU FAQ](../faq.md)
+* Quickstart: create a CLU project
+* CLU language support
+* CLU FAQ

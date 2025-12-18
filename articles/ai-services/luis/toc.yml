@@ -22,8 +22,11 @@ items:
   - name: Train and test your app
   - name: Improve prediction accuracy
   - name: Integrate your app
-  - name: Migrate to conversational language understanding
-    href: ../language-service/conversational-language-understanding/how-to/migrate-from-luis.md?context=/azure/ai-services/LUIS/context/context
+    items:
+    - name: With Bing Spell Check v7
+      href: luis-tutorial-bing-spellcheck.md
+    - name: With LUIS and question answering using orchestration
+      href: how-to/orchestration-projects.md
   - name: Manage app
   - name: Use containers
     items:
