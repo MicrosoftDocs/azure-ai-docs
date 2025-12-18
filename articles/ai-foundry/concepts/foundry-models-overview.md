@@ -3,6 +3,7 @@ title: Explore Microsoft Foundry Models
 titleSuffix: Microsoft Foundry
 description: This article introduces Microsoft Foundry Models and the model catalog in Microsoft Foundry portal.
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.custom:
   - build-2025
   - ai-learning-hub
