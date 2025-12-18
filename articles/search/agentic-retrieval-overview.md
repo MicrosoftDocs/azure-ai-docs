@@ -98,16 +98,14 @@ Your application drives the pipeline by calling the knowledge base and handling 
 
 ## How to get started
 
-To create an agentic retrieval solution, you must use a preview REST API version or a prerelease Azure SDK package that provides the functionality.
+To create an agentic retrieval solution, you can use the Azure portal, the latest preview REST APIs, or a preview Azure SDK package that provides the functionality.
 
-Currently, Azure portal support for agentic retrieval is limited to the 2025-08-01-preview. We recommend using a programmatic approach to access the latest features.
+Currently, the portal only supports the creation of search index and blob knowledge sources. We recommend using a programmatic approach to create other types of knowledge sources.
 
 ### [**Quickstarts**](#tab/quickstarts)
 
-+ [Quickstart: Use agentic retrieval in Azure AI Search](search-get-started-agentic-retrieval.md)
-  + This quickstart supports C#, Java, JavaScript, Python, TypeScript, and REST.
 + [Quickstart: Use agentic retrieval in the Azure portal](get-started-portal-agentic-retrieval.md)
-  + The portal uses the 2025-08-01-preview, which uses the previous "knowledge agent" terminology and doesn't support all 2025-11-01-preview features. Breaking changes apply to objects created in this quickstart.
++ [Quickstart: Use agentic retrieval in Azure AI Search](search-get-started-agentic-retrieval.md) (C#, Java, JavaScript, Python, TypeScript, REST)
 
 ### [**How-to guides**](#tab/how-to-guides)
 
