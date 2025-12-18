@@ -32,7 +32,7 @@ You can enable answer synthesis in two ways:
 
 + A knowledge base that uses the [2025-11-01-preview syntax](agentic-retrieval-how-to-migrate.md).
 
-+ [Visual Studio Code](https://code.visualstudio.com/) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) or a prerelease package of an Azure SDK that provides the knowledge base REST APIs.
++ [Visual Studio Code](https://code.visualstudio.com/) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) or a preview Azure SDK package that provides the knowledge base REST APIs.
 
 ## Enable answer synthesis on a knowledge base
 
