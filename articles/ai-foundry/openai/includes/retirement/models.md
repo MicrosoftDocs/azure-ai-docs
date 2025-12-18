@@ -17,10 +17,10 @@ ms.custom: references_regions, build-2025
 
 | Model Name | Model Version<sup>1</sup> | Lifecycle Status | Deprecation Date (No New Customers) | Retirement Date | Replacement Model |
 |:--|:--|:--|:--|:--|:--|
-| `gpt-4o` | 2024-05-13 | Generally Available | 2025-05-13 | 2026-02-27 | `gpt-5.1` |
-| `gpt-4o` | 2024-08-06 | Generally Available | 2025-08-06 | 2026-02-27 | `gpt-5.1` |
+| `gpt-4o` | 2024-05-13 | Generally Available | 2025-05-13 | 2026-03-31 | `gpt-5.1` |
+| `gpt-4o` | 2024-08-06 | Generally Available | 2025-08-06 | 2026-03-31 | `gpt-5.1` |
 | `gpt-4o` | 2024-11-20 | Generally Available | 2025-11-20 | 2026-06-03 | `gpt-5.1` |
-| `gpt-4o-mini` | 2024-07-18 | Generally Available | 2025-07-18 | 2026-02-27 | `gpt-4.1-mini` |
+| `gpt-4o-mini` | 2024-07-18 | Generally Available | 2025-07-18 | 2026-03-31 | `gpt-4.1-mini` |
 | `gpt-4.1` | 2025-04-14 | Generally Available | 2026-04-14 | 2026-10-14 | `gpt-5` |
 | `gpt-4.1-mini` | 2025-04-14 | Generally Available | 2026-04-14 | 2026-10-14 | `gpt-5-mini` |
 | `gpt-4.1-nano` | 2025-04-14 | Generally Available | 2026-04-14 | 2026-10-14 | `gpt-5-nano` |
@@ -77,7 +77,7 @@ ms.custom: references_regions, build-2025
 | `dall-e-3` | 3 | Generally Available | n/a | 2026-02-18 | `gpt-image-1-mini` |
 | `gpt-image-1` | 2025-04-15 | Preview | n/a | No earlier than 2026-03-31 | `gpt-image-1-mini` |
 | `gpt-image-1-mini` | 2025-10-06 | Generally Available | 2026-10-06 | 2027-04-07 |  |
-| `sora` | 2025-05-02 | Preview | 2026-05-02 | No earlier than 2026-02-15 | `sora-2` |
+| `sora` | 2025-05-02 | Preview | n/a | No earlier than 2026-02-15 | `sora-2` |
 | `gpt-image-1.5`    | 2025-12-16   | Preview    | n/a | No earlier than December 16, 2026 |  |
 
 
@@ -93,7 +93,7 @@ ms.custom: references_regions, build-2025
 
 ---
 
-<sup>1</sup> For some models, the launch date is the value of the model version.
+<sup>1</sup> For some models, the launch date is used as the value of the model version.
 
 We notify all customers with these preview deployments at least 30 days before the start of the upgrades. We publish an upgrade schedule that details the order of regions and model versions that we follow during the upgrades, and link to that schedule from here.
 

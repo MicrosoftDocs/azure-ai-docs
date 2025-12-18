@@ -517,6 +517,7 @@ Choose the appropriate Claude model based on your specific requirements:
 
 ## Related content
 
+- [Data, privacy, and security for Claude models in Microsoft Foundry (preview)](../../responsible-ai/claude-models/data-privacy.md)
 - [Monitor model usage and costs](../../how-to/costs-plan-manage.md)
 - [How to generate text responses with Microsoft Foundry Models](generate-responses.md)
 - [Explore Microsoft Foundry Models](../../concepts/foundry-models-overview.md)
