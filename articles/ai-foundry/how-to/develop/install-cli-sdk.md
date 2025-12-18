@@ -11,6 +11,8 @@ ms.topic: how-to
 ms.custom:
   - build-aifnd
   - build-2025
+  - dev-focus
+ai-usage: ai-assisted
 zone_pivot_groups: foundry-sdk-overview-languages
 monikerRange: 'foundry-classic || foundry'
 # customer intent: As a developer, I want to install the Microsoft Foundry SDK in my development environment
@@ -31,7 +33,12 @@ Set up your development environment to use the Microsoft Foundry SDK. You also n
 
 - [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
 - Download, install, and configure Visual Studio Code, or the IDE of your choice. For more information, see [Download Visual Studio Code](https://code.visualstudio.com/Download).
-- Set the appropriate RBAC permissions to create and manage Microsoft Foundry resources in the Visual Studio Code extension. For more information, see [Role-based access control for Foundry](/azure/ai-foundry/concepts/rbac-azure-ai-foundry).
+- Have one of the following Azure RBAC roles to create and manage Foundry resources:
+  - **Azure AI User** (least-privilege role for development)
+  - **Azure AI Project Manager** (for managing Foundry projects)
+  - **Contributor** or **Owner** (for subscription-level permissions)
+  
+  For details on each role's permissions, see [Role-based access control for Microsoft Foundry](/azure/ai-foundry/concepts/rbac-azure-ai-foundry).
 
 
 ## Install your programming language
@@ -87,7 +94,7 @@ Keep this terminal open to run scripts after signing in.
 The Azure Developer CLI (azd) is an open-source tool that helps you set up and deploy app resources on Azure. It provides simple commands for key stages of development, whether you use a terminal, IDE, or CI/CD pipelines.
 [Install the Azure Developer CLI for your platform](/azure/developer/azure-developer-cli/install-azd?tabs=winget-windows%2Cbrew-mac%2Cscript-linux&pivots=os-windows).
 
-The Azure Developer CLI allows you to quickly deploy many of the [AI solution templates](ai-template-get-started.md).
+Many of the [AI solution templates](ai-template-get-started.md) include a deployment option using `azd`.
 
 ## Install The Foundry VS Code Extension
 
@@ -95,8 +102,11 @@ The Foundry extension for Visual Studio Code lets you deploy models, build AI ap
 
 ## Install Git
 
-Many of the Microsoft Foundry SDK samples use Git for version control. If you don't have Git installed, [follow the instructions for your platform](https://git-scm.com/downloads) and select your operating system.
+Git is required to clone Foundry SDK samples. If you don't have Git installed, [follow the instructions for your platform](https://git-scm.com/downloads) and select your operating system.
 
-## Next step
+References: [Git](https://git-scm.com/downloads)
 
-* [Get started in Foundry](../../quickstarts/get-started-code.md)
+## Related content
+
+* [Get started with Foundry](../../quickstarts/get-started-code.md)
+* [Microsoft Foundry SDK Reference documentation](/python/api/azure-ai-foundry/)
