@@ -8,7 +8,7 @@ ms.custom: linux-related-content
 
 author: s-polly 
 ms.author: scottpolly 
-ms.topic: conceptual
+ms.topic: concept-article
 ms.reviewer: jcioffi
 ms.date: 04/25/2024
 ---
