@@ -91,5 +91,5 @@ The following table lists the metrics available for the Microsoft.CognitiveServi
 
 ## Related content
 
-- See [Monitor Azure OpenAI](./how-to/monitor-openai.md?view=foundry-classic) for a description of monitoring Azure OpenAI.
+- See [Monitor Azure OpenAI](./how-to/monitor-openai.md) for a description of monitoring Azure OpenAI.
 - See [Monitor Azure resources with Azure Monitor](/azure/azure-monitor/essentials/monitor-azure-resource) for details on monitoring Azure resources.

@@ -8,7 +8,7 @@ manager: nitinme
 ms.date: 12/6/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom:
   - build-2025
 monikerRange: 'foundry-classic || foundry'
