@@ -17,7 +17,7 @@ monikerRange: 'foundry-classic || foundry'
 
 This article explains how to set up a managed virtual network for your Foundry resource. Managed virtual network streamlines and automates network isolation for your Foundry resource by provisioning a Microsoft‑managed virtual network that secures the Agents service underlying compute within your Foundry projects. When enabled, Agents outbound network traffic is secured by this managed network boundary, and the isolation mode you choose governs all the traffic. You can create the required private endpoints to dependent Azure services and apply the necessary network rules, giving you a secure default without requiring you to build or maintain your own virtual network. This managed network restricts what your Agents can access, helping prevent data exfiltration while still allowing connectivity to approved Azure resources. 
 
-Before continuing, consider the [limitations](#limitations) of the offering and review the prerequisites. This feature is currently in public preview, so consider preview conditions before enabling this network isolation method. If you're not allowed to use preview features in your enterprise, use the existing GA supported [custom virtual network support for Agents](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/virtual-networks?view=foundry-classic) in Foundry. 
+Before continuing, consider the [limitations](#limitations) of the offering and review the prerequisites. This feature is currently in public preview, so consider preview conditions before enabling this network isolation method. If you're not allowed to use preview features in your enterprise, use the existing GA supported [custom virtual network support for Agents](../agents/how-to/virtual-networks.md) in Foundry. 
 
 ## Understand isolation modes
 
@@ -35,11 +35,11 @@ Two different configuration modes exist for outbound traffic from the managed vi
 
 The following architecture diagram shows a managed network in `allow internet outbound` mode. 
 
-:::image type="content" source="media/managed-virtual-network/diagram-aio-managed-network.png" alt-text="Diagram of managed virtual network configuration in allow internet outbound mode." lightbox="media/managed-virtual-network/diagram-aio-managed-network.png":::
+:::image type="content" source="media/managed-virtual-network/diagram-allow-internet-outbound-managed-network.png" alt-text="Diagram of managed virtual network configuration in allow internet outbound mode." lightbox="media/managed-virtual-network/diagram-allow-internet-outbound-managed-network.png":::
 
 The following architecture diagram shows a managed network in `allow only approved outbound` mode. 
 
-:::image type="content" source="media/managed-virtual-network/diagram-aoao-managed-network.png" alt-text="Diagram of managed virtual network configuration in allow only approved outbound mode." lightbox="media/managed-virtual-network/diagram-aoao-managed-network.png":::
+:::image type="content" source="media/managed-virtual-network/diagram-allow-only-approved-outbound-managed-network.png" alt-text="Diagram of managed virtual network configuration in allow only approved outbound mode." lightbox="media/managed-virtual-network/diagram-allow-only-approved-outbound-managed-network.png":::
 
 After you configure a managed virtual network Foundry to allow internet outbound, you can't reconfigure the resource to disabled. Similarly, after you configure a managed virtual network resource to allow only approved outbound, you can't reconfigure the workspace to allow internet outbound.
 
@@ -63,7 +63,7 @@ Consider the following limitations before enabling managed network isolation for
 1. You can't disable managed virtual network isolation after enabling it. There's no upgrade path from custom virtual network set-up to managed virtual network. A Foundry resource redeployment is required. Deleting your Foundry resource deletes the managed virtual network.
 1. You must create outbound rules from the managed network through Azure CLI. For the end-to-end secured Agent service set-up with a managed virtual network, the template creates the managed private endpoint to the associated Storage account. Private endpoints aren't created to CosmosDB or AI Search. For information on how to create the managed private endpoints, see the [outbound rules CLI](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/18-managed-virtual-network-preview/update-outbound-rules-cli/outbound-rule-cli.md) file.
 1. Support for managed virtual network is only in the following regions: **East US, East US2, Japan East, France Central, UAE North, Brazil South, Spain Central, Germany West Central, Italy North, South Central US, West Central US, Australia East, Sweden Central, Canada East, South Africa North, West Europe, West US, West US 3, South India, and UK South.**
-1. If you require private access to on-premises resources for your Foundry resource, use the to [Application Gatway](https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/access-on-premises-resources?view=foundry-classic&viewFallbackFrom=foundry) to configure on-premises access. The same set-up with a private endpoint to Application Gateway and setting up backend pools is supported. Both L4 and L7 traffic are now supported with the Application Gateway in GA.
+1. If you require private access to on-premises resources for your Foundry resource, use the to [Application Gatway](access-on-premises-resources.md) to configure on-premises access. The same set-up with a private endpoint to Application Gateway and setting up backend pools is supported. Both L4 and L7 traffic are now supported with the Application Gateway in GA.
 1. Supports only Standard BYO resources Agents v1 and the Foundry classic experience. Basic Agents don't require network isolation. Support in the new Agents v2 and the new Foundry UI is coming soon. 
 1. End-to-end network isolation for Agent MCP tools with managed virtual network is currently not supported. Please use public MCP tools with managed network isolation Foundry. 
 
@@ -79,13 +79,13 @@ To get started deploying a managed virtual network Foundry resource, follow the 
 1. Complete all of your parameters before deploying such as region, resource group, virtual network name, and others. If you're bringing your own CosmosDB Storage, or Search, ensure the resourceIDs are included as well.
 1. Finally, deploy the template. Template deployment should take roughly 30 minutes. 
 
-For more details on the parameters required for managed virtual network deployment, see [Microsoft.MachineLearningServices/workspaces/managedNetwork](https://learn.microsoft.com/en-us/azure/templates/microsoft.machinelearningservices/workspaces/managednetworks?pivots=deployment-language-bicep).
+For more details on the parameters required for managed virtual network deployment, see [Microsoft.MachineLearningServices/workspaces/managedNetwork](/azure/templates/microsoft.machinelearningservices/workspaces/managednetworks).
 
 ## Manage outbound rules
 
 To update outbound rules from your managed virtual network after deployment, use the Azure CLI `az rest` command. Follow the instructions listed in the `outbound-rules-cli.md` file of the foundry-samples repository. 
 
-For more details on the parameters required for managed virtual network outbound rules, see [Microsoft.MachineLearningServices/workspaces/managedNetwork/outboundRules](https://learn.microsoft.com/en-us/azure/templates/microsoft.machinelearningservices/workspaces/managednetworks/outboundrules?pivots=deployment-language-bicep).
+For more details on the parameters required for managed virtual network outbound rules, see [Microsoft.MachineLearningServices/workspaces/managedNetwork/outboundRules](/azure/templates/microsoft.machinelearningservices/workspaces/managednetworks/outboundrules).
 
 ## Select Azure Firewall version
 
@@ -153,7 +153,7 @@ The Foundry managed virtual network feature is free. However, you're charged for
 
 * FQDN outbound rules - You implement FQDN outbound rules by using Azure Firewall. If you use outbound FQDN rules, you add charges for Azure Firewall to your billing. A standard version of Azure Firewall is used by default. You can select the Basic version. The firewall isn't created until you add an outbound FQDN rule. 
 
-For more on Azure pricing, see [Private Link Pricing](https://azure.microsoft.com/pricing/details/private-link) and [Azure Firewall Pricing](https://azure.microsoft.com/en-us/pricing/details/azure-firewall/).
+For more on Azure pricing, see [Private Link Pricing](https://azure.microsoft.com/pricing/details/private-link) and [Azure Firewall Pricing](https://azure.microsoft.com/pricing/details/azure-firewall/).
 
 
 ## Compare managed and custom (BYO) network
