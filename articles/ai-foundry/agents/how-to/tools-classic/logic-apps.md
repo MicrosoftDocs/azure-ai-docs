@@ -10,7 +10,6 @@ ms.topic: how-to
 ms.date: 11/19/2025
 author: alvinashcraft
 ms.author: aashcraft
-ms.reviewer: umangsehgal
 zone_pivot_groups: selection-logic-apps
 ms.custom: azure-ai-agents
 ---

@@ -20,23 +20,11 @@ To use custom text classification, you'll need to [create an Azure storage accou
 
 ## Enable identity management for your resource
 
-# [Azure portal](#tab/azure-portal)
-
 Your Language resource must have identity management, to enable it using [Azure portal](https://portal.azure.com/):
 
 1. Go to your Language resource
-2. From left hand menu, under **Resource Management** section, select **Identity**
-3. From **System assigned** tab, make sure to set **Status** to **On**
-
-# [Language Studio](#tab/language-studio)
-
-Your Language resource must have identity management, to enable it using [Language Studio](https://aka.ms/languageStudio):
-
-1. Select the settings icon in the top right corner of the screen
-2. Select **Resources**
-3. Select the check box **Managed Identity** for your Azure Language in Foundry Tools resource.
-
----
+1. From left hand menu, under **Resource Management** section, select **Identity**
+1. From **System assigned** tab, make sure to set **Status** to **On**
 
 ### Enable custom text classification feature
 

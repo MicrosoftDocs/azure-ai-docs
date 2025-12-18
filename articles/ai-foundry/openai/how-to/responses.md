@@ -80,6 +80,7 @@ The responses API is currently available in the following regions:
 - `gpt-4.1-mini` (Version: `2025-04-14`)
 - `gpt-image-1` (Version: `2025-04-15`)
 - `gpt-image-1-mini` (Version: `2025-10-06`)
+- `gpt-image-1.5` (Version: `2025-12-16`)
 - `o1` (Version: `2024-12-17`)
 - `o3-mini` (Version: `2025-01-31`)
 - `o3` (Version: `2025-04-16`)
@@ -1312,7 +1313,7 @@ token_provider = get_bearer_token_provider(
 client = OpenAI(  
   base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
   api_key=token_provider,
-  default_headers={"x-ms-oai-image-generation-deployment":"gpt-image-1", "api_version":"preview"}
+  default_headers={"x-ms-oai-image-generation-deployment":"gpt-image-1.5", "api_version":"preview"}
 )
 
 response = client.responses.create(

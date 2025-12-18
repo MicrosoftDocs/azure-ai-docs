@@ -5,7 +5,7 @@ description: Get started with Microsoft Foundry SDK to build AI applications.
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: dantaylo
-ms.date: 11/09/2025
+ms.date: 12/16/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.custom:
@@ -13,7 +13,7 @@ ms.custom:
   - devx-track-azurecli
   - devx-track-python
   - ignite-2024
-  - update-code6
+  - update-code7
   - build-aifnd
   - build-2025
   - peer-review-program
@@ -165,7 +165,7 @@ Follow along below or get the code:
 > [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/REST/quickstart).
 
 
-# [Foundry portal](#tab/azure-ai-foundry)
+# [Foundry portal](#tab/portal)
 
 No installation is necessary to use the Foundry portal.
 
@@ -185,9 +185,9 @@ Store the endpoint as an environment variable.  Also set these values for use in
 1. Set these environment variables to use in your scripts:
 
     ```plaintext
-    AZURE_AI_FOUNDRY_PROJECT_ENDPOINT=<endpoint copied from welcome screen>
-    AZURE_AI_FOUNDRY_AGENT_NAME="MyAgent"
-    AZURE_AI_FOUNDRY_MODEL_DEPLOYMENT_NAME="gpt-4.1-mini"
+    PROJECT_ENDPOINT=<endpoint copied from welcome screen>
+    AGENT_NAME="MyAgent"
+    MODEL_DEPLOYMENT_NAME="gpt-4.1-mini"
     ```
 ### Install and authenticate
 
@@ -227,7 +227,7 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 
 :::code language="console" source="~/foundry-samples-main/samples-classic/REST/quickstart/quickstart.sh" id="chat_completion":::
 
-# [Foundry portal](#tab/azure-ai-foundry)
+# [Foundry portal](#tab/portal)
 
 1. In the chat playground, fill in the prompt and select **Send**.
 1. The model returns a response in the **Response** pane.
@@ -278,7 +278,7 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` and `YOUR-PROJECT-NAME` with your values:
 
 :::code language="console" source="~/foundry-samples-main/samples-classic/REST/quickstart/quickstart.sh" id="create_and_run_agent":::
 
-# [Foundry portal](#tab/azure-ai-foundry)
+# [Foundry portal](#tab/portal)
 
 When you're ready to try an agent, a default agent is created for you. To chat with this agent:
 
@@ -332,7 +332,7 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` and `YOUR-PROJECT-NAME` with your values:
 
 :::code language="console" source="~/foundry-samples-main/samples-classic/REST/quickstart/quickstart.sh" id="create_filesearch_agent":::
 
-# [Foundry portal](#tab/azure-ai-foundry)
+# [Foundry portal](#tab/portal)
 
 1. In your agent's **Setup** pane, scroll down if necessary to find **Knowledge**.
 1. Select **Add**.

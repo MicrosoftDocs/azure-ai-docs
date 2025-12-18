@@ -2953,12 +2953,43 @@
     {
       "source_path_from_root": "/articles/ai-services/language-service/question-answering/how-to/migrate-qnamaker-to-question-answering.md",
       "redirect_url": "/azure/ai-services/qnamaker/how-to/migrate-qnamaker-to-question-answering",
-      "redirect_document_id": false
+      "redirect_document_id": true
     },
     {
       "source_path_from_root": "/articles/ai-services/language-service/question-answering/how-to/migrate-qnamaker.md",
       "redirect_url": "/azure/ai-services/qnamaker/how-to/migrate-qnamaker",
       "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/question-answering/tutorials/bot-service.md",
+      "redirect_url": "/azure/ai-services/language-service/question-answering/how-to/deploy-agent",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/question-answering/tutorials/guided-conversations.md",
+      "redirect_url": "/azure/ai-services/language-service/conversational-language-understanding/how-to/quickstart-multi-turn-conversations",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/question-answering/tutorials/power-virtual-agents.md",
+      "redirect_url": "/microsoft-copilot-studio/fundamentals-get-started",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/question-answering/tutorials/multiple-languages.md",
+      "redirect_url": "/azure/ai-services/language-service/question-answering/quickstart/sdk",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/custom/azure-machine-learning-labeling.md",
+      "redirect_url": "/azure/ai-services/language-service/custom-text-classification/how-to/use-autolabeling",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/conversational-language-understanding/how-to/migrate-from-luis.md",
+      "redirect_url": "/azure/ai-services/luis/how-to/migrate-from-luis",
+      "redirect_document_id": true
     }
+
   ]
 }

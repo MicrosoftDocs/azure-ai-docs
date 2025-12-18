@@ -9,7 +9,7 @@ ms.topic: include
 ms.date: 11/10/2025
 ---
 
-In this article, you learn how to use Azure Speech in Foundry Tools voice live with [Microsoft Foundry models](/azure/ai-foundry/concepts/foundry-models-overview) using the VoiceLive SDK for Java.
+In this article, you learn how to use voice live with [Microsoft Foundry models](/azure/ai-foundry/concepts/foundry-models-overview) using the VoiceLive SDK for Java.
 
 [!INCLUDE [Header](../../common/voice-live-java.md)]
 

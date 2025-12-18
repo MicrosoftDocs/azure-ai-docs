@@ -1,5 +1,5 @@
 ---
-title: Get started with Azure Speech in Foundry Tools voice live and Microsoft Foundry Agent Service
+title: Get started with voice live and Microsoft Foundry Agent Service
 titleSuffix: Foundry Tools
 description: Learn how to use voice live with agents for real-time voice agents with Azure Speech in Foundry Tools.
 manager: nitinme

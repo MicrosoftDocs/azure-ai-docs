@@ -1,13 +1,13 @@
 ---
-title: 'How to use Foundry Agent Service with function calling'
+title: Use Foundry Agent Service with function calling
 titleSuffix: Microsoft Foundry
-description: Learn how to use Azure AI Agents with function calling.
+description: Learn how to implement function calling with Azure AI Foundry Agents. Define functions, handle requests, and execute custom code for AI-powered workflows.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 11/20/2025
+ms.date: 12/18/2025
 author: alvinashcraft
 ms.author: aashcraft
 zone_pivot_groups: selection-function-calling
@@ -16,14 +16,16 @@ ms.custom: azure-ai-agents
 
 # Azure AI Agents function calling
 
-[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
+> [!NOTE]
+> This article refers to the classic version of the agents API. 
+>
+> 🔍 [View the new function calling documentation](../../../default/agents/how-to/tools/function-calling.md?view=foundry&preserve-view=true).
 
-
-Azure AI Agents supports function calling, which allows you to describe the structure of functions to an agent and then return the functions that need to be called along with their arguments.
+By using Azure AI Agents function calling, you can extend agent capabilities by defining custom functions. When an agent determines that a function needs to be called, it returns metadata with the function name and arguments. Your application code executes the function and returns results. This guide shows you how to implement function calling in Python, C#, JavaScript, Java, and REST API to create powerful AI workflows.
 
 > [!NOTE]
-> * Runs expire 10 minutes after creation. Be sure to submit your tool outputs before the expiration.
-> * Although function calling isn't supported in the Microsoft Foundry portal, agents will appear in the portal after creation. Agents run in the portal won't perform function calling.
+> - The agent requests function calls from your code, and your application executes the functions. Run executions expire 10 minutes after creation, so ensure your functions complete and return responses within this time limit.
+> - Both the Microsoft Foundry portal and the Microsoft Foundry SDK support function calling. When you create agents with function calling capabilities, they appear in both portals. However, executing function calling requires your custom code. The portals facilitate agent configuration and monitoring but can't directly execute your custom functions.
 
 ### Usage support
 
@@ -32,11 +34,22 @@ Azure AI Agents supports function calling, which allows you to describe the stru
 |      | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ::: zone pivot="python"
-
-## Example agent code
+## Function calling code example
 
 > [!NOTE]
 > You can find a streaming example on [GitHub](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-agents/samples/agents_streaming/sample_agents_stream_eventhandler_with_functions.py).
+
+The following Python code demonstrates how to implement an agent with function calling capabilities. This example shows:
+
+1. **Define function tools** - Create Python functions (like `fetch_weather`) that the agent can request to call.
+1. **Register functions with the agent** - Provide function definitions to the agent so it knows what capabilities are available.
+1. **Create and run the agent** - Set up the agent, thread, and message to start a conversation.
+1. **Handle function call requests** - When the agent determines it needs a function, poll the run status and detect when `status == "requires_action"`.
+1. **Execute functions** - **Your code is responsible for calling the actual function** - the agent doesn't execute it automatically.
+1. **Return results** - Submit the function output back to the agent to continue the conversation.
+
+> [!IMPORTANT]
+> The language model (LLM) doesn't execute your functions directly. When the agent determines a function is needed, it returns a request with the function name and arguments. Your application code must detect this request, execute the appropriate function, and submit the results back to the agent.
 
 Use the following code sample to create an agent and call the function.
 
@@ -137,11 +150,25 @@ print("Deleted agent")
 ::: zone-end
 
 ::: zone pivot="csharp"
+## Function calling code example
 
 > [!NOTE]
 > You can find a streaming example on [GitHub](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Agents.Persistent/samples/Sample8_PersistentAgents_FunctionsWithStreaming.md).
 
-## Configure the client and define functions
+The following C# code demonstrates how to implement an agent with function calling capabilities. This example shows:
+
+1. **Define function tools** - Create C# methods (like `GetWeatherAtLocation`) that the agent can request to call.
+1. **Create function definitions** - Use `FunctionToolDefinition` to describe each function's purpose and parameters to the agent.
+1. **Implement function execution logic** - Build a helper method to route function call requests to your actual C# methods.
+1. **Create and run the agent** - Set up the agent, thread, and message to start a conversation.
+1. **Handle function call requests** - Poll the run status and detect when `Status == RunStatus.RequiresAction`.
+1. **Execute functions** - **Your code is responsible for calling the actual function** - the agent doesn't execute it automatically.
+1. **Return results** - Submit the function output back to the agent using `SubmitToolOutputsToRun`.
+
+> [!IMPORTANT]
+> The language model (LLM) doesn't execute your functions directly. When the agent determines a function is needed, it returns a request with the function name and arguments. Your application code must detect this request, execute the appropriate function, and submit the results back to the agent.
+
+### Configure the client and define functions
 
 ```csharp
 using Azure;
@@ -390,8 +417,20 @@ client.Administration.DeleteAgent(agentId: agent.Id);
 ::: zone-end
 
 ::: zone pivot="javascript"
+## Function calling code example
 
-## Example code
+The following JavaScript code demonstrates how to implement an agent with function calling capabilities. This example shows how to:
+
+1. **Define function tools** - Create JavaScript functions (like `getWeather`) that the agent can request to call.
+1. **Create a function executor class** - Use `FunctionToolExecutor` to organize functions and their definitions.
+1. **Register functions with the agent** - Provide function definitions by using `ToolUtility.createFunctionTool`.
+1. **Create and run the agent** - Set up the agent, thread, and message to start a conversation.
+1. **Handle function call requests** - Poll the run status and detect when `status === "requires_action"`.
+1. **Execute functions** - **Your code is responsible for calling the actual function** - the agent doesn't execute it automatically.
+1. **Return results** - Submit the function output back to the agent by using `submitToolOutputs`.
+
+> [!IMPORTANT]
+> The language model (LLM) doesn't execute your functions directly. When the agent determines a function is needed, it returns a request with the function name and arguments. Your application code must detect this request, execute the appropriate function, and submit the results back to the agent.
 
 ```javascript
 
@@ -581,15 +620,29 @@ console.log(`Deleted agent, agent ID: ${agent.id}`);
 ::: zone-end
 
 ::: zone pivot="rest"
+## Function calling code example
 
-## Define a function for your agent to call
+The following REST API examples demonstrate how to implement an agent with function calling capabilities. This example shows:
 
-Start by defining a function for your agent to call. When you create a function for an agent to call, you describe its structure of it with any required parameters in a docstring. See the other SDK languages for example functions.
+1. **Define function tools** - Describe your function structure with parameters in the agent creation request.
+1. **Create the agent** - Register the agent with function definitions so it knows what capabilities are available.
+1. **Create a thread and add messages** - Set up the conversation thread and add the user's question.
+1. **Run the thread** - Start the agent execution to process the message.
+1. **Poll run status** - Check the run status to detect when the agent requests a function call.
+1. **Execute functions** - **Your code is responsible for calling the actual function** - the agent doesn't execute it automatically.
+1. **Submit function results** - Return the function output to the agent (not shown in this example, but required to complete the flow).
+
+> [!IMPORTANT]
+> The language model (LLM) doesn't execute your functions directly. When the agent determines a function is needed, the run status indicates `requires_action` with function call details. Your application code must detect this, execute the appropriate function, and submit the results back to the agent via the API.
+
+### Define a function for your agent to call
+
+Start by defining a function for your agent to call. When you create a function for an agent to call, describe its structure with any required parameters in a docstring. See the other SDK languages for example functions.
 
 
-## Create an agent
+### Create an agent
 
-Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
+Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT`, and `API_VERSION`.
 
 ```bash
 curl --request POST \
@@ -616,8 +669,7 @@ curl --request POST \
   }'
 ```
 
-
-## Create a thread
+### Create a thread
 
 ```bash
 curl --request POST \
@@ -627,7 +679,7 @@ curl --request POST \
   -d ''
 ```
 
-### Add a user question to the thread
+#### Add a user question to the thread
 
 ```bash
 curl --request POST \
@@ -640,7 +692,7 @@ curl --request POST \
     }'
 ```
 
-## Run the thread
+### Run the thread
 
 ```bash
 curl --request POST \
@@ -652,7 +704,7 @@ curl --request POST \
   }'
 ```
 
-## Retrieve the status of the run
+### Retrieve the status of the run
 
 ```bash
 curl --request GET \
@@ -660,17 +712,30 @@ curl --request GET \
   -H "Authorization: Bearer $AGENT_TOKEN"
 ```
 
-## Retrieve the agent response
+### Retrieve the agent response
 
 ```bash
 curl --request GET \
   --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
   -H "Authorization: Bearer $AGENT_TOKEN"
 ```
-
 ::: zone-end
 
 ::: zone pivot="java"
+## Function calling code example
+
+The following Java code demonstrates how to implement an agent with function calling capabilities. This example shows:
+
+1. **Define function tools** - Create Java functions (like `getUserFavoriteCity` and `getCityNickname`) that the agent can request to call.
+1. **Create function definitions** - Use `FunctionToolDefinition` to describe each function's purpose and parameters to the agent.
+1. **Implement function execution logic** - Build a resolver function to route function call requests to your actual Java methods.
+1. **Create and run the agent** - Set up the agent, thread, and message to start a conversation.
+1. **Handle function call requests** - Poll the run status and detect when `status == RunStatus.REQUIRES_ACTION`.
+1. **Execute functions** - **Your code is responsible for calling the actual function** - the agent doesn't execute it automatically.
+1. **Return results** - Submit the function output back to the agent using `submitToolOutputsToRun`.
+
+> [!IMPORTANT]
+> The language model (LLM) doesn't execute your functions directly. When the agent determines a function is needed, it returns a request with the function name and arguments. Your application code must detect this request, execute the appropriate function, and submit the results back to the agent.
 
 ```java
 package com.example.agents;
