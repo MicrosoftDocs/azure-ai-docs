@@ -2984,8 +2984,12 @@
       "source_path_from_root": "/articles/ai-services/language-service/custom/azure-machine-learning-labeling.md",
       "redirect_url": "/azure/ai-services/language-service/custom-text-classification/how-to/use-autolabeling",
       "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/conversational-language-understanding/how-to/migrate-from-luis.md",
+      "redirect_url": "/azure/ai-services/luis/how-to/migrate-from-luis",
+      "redirect_document_id": true
     }
-
 
   ]
 }
