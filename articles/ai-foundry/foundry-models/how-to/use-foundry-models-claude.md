@@ -448,6 +448,9 @@ For a full list of the supported capabilities and tools, see [Claude's features 
 
 ## API quotas and limits
 
+> [!IMPORTANT]
+> At this time, only Enterprise and MCA-E subscriptions are eligible for Claude model usage in Foundry.
+
 Claude models in Foundry have the following rate limits, measured in Tokens Per Minute (TPM) and Requests Per Minute (RPM):
 
 | Model        |   Deployment Type       | Default RPM   | Default TPM   |Enterprise and MCA-E RPM   |Enterprise and MCA-E TPM   |
@@ -459,8 +462,6 @@ Claude models in Foundry have the following rate limits, measured in Tokens Per 
 
 To increase your quota beyond the default limits, submit a request through the [quota increase request form](https://aka.ms/oai/stuquotarequest).
 
-> [!IMPORTANT]
-> At this time, only Enterprise and MCA-E subscriptions are eligible for Claude model usage in Foundry.
 
 ### Rate limit best practices
 
