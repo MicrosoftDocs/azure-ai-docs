@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 12/16/2025
+ms.date: 12/19/2025
 author: alvinashcraft
 ms.author: aashcraft
 zone_pivot_groups: selection-mcp-code
@@ -17,24 +17,49 @@ ms.custom: azure-ai-agents-code
 # How to use the Model Context Protocol (MCP) tool (preview)
 
 > [!NOTE]
-> This document refers to the classic version of the agents API. 
+> This article refers to the classic version of the agents API. 
 >
 > 🔍 [View the new MCP tool documentation](../../../default/agents/how-to/tools/model-context-protocol.md?view=foundry&preserve-view=true).
 
-Use this article to find code samples for connecting Foundry Agent Service with Model Context Protocol (MCP) servers.
+This article provides code samples for connecting Foundry Agent Service with Model Context Protocol (MCP) servers.
 
 ## Prerequisites
 
-* A [configured MCP server](./model-context-protocol.md#setup), such as the GitHub MCP server.
+- A [configured MCP server](./model-context-protocol.md#setup), such as the GitHub MCP server.
+
+:::zone pivot="csharp"
+- Install the `Azure.AI.Agents.Persistent` and `Azure.Identity` NuGet packages to your project:
+
+  ```console
+  dotnet add package Azure.AI.Agents.Persistent
+  dotnet add package Azure.Identity
+  ```
+:::zone-end
+
+> [!NOTE]
+> **MCP server authentication**: Many MCP servers require authentication through custom headers, such as API keys, Bearer tokens, or OAuth credentials. Use the `UpdateHeader` method (C#) or `update_headers` method (Python) to pass authentication headers to your MCP server. For more information about authentication and security considerations, see the [How it works](./model-context-protocol.md?view=foundry&preserve-view=true#how-it-works) section in the **Connect to Model Context Protocol servers** documentation.
+
+## Code samples
 
 :::zone pivot="csharp"
 
 ## Create a project client
 
+Make sure your code includes the required `using` statements for this example.
+
+```csharp
+using Azure;
+using Azure.AI.Agents.Persistent;
+using Azure.Identity;
+using System;
+using System.Collections.Generic;
+using System.Threading;
+```
+
 Create a client object that contains the endpoint for connecting to your AI project and other resources.
 
 > [!NOTE]
-> You can find an asynchronous example on [GitHub](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Agents.Persistent/samples)
+> You can find an asynchronous example on [GitHub](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Agents.Persistent/samples).
 
 ```csharp
 var projectEndpoint = System.Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
@@ -43,12 +68,11 @@ var mcpServerUrl = System.Environment.GetEnvironmentVariable("MCP_SERVER_URL");
 var mcpServerLabel = System.Environment.GetEnvironmentVariable("MCP_SERVER_LABEL");
 
 PersistentAgentsClient agentClient = new(projectEndpoint, new DefaultAzureCredential());
-
 ```
 
 ## Create the MCP tool definition
 
-Create the MCP tool definition and configure allowed tools.
+Create the MCP tool definition and configure the allowed tools.
 
 ```csharp
 // Create MCP tool definition
@@ -71,7 +95,7 @@ PersistentAgent agent = agentClient.Administration.CreateAgent(
 
 ## Create a thread and add a message
 
-Create the thread, add the message containing a question for agent and start the run with MCP tool resources.
+Create the thread, add the message containing a question for the agent, and start the run with MCP tool resources.
 
 ```csharp
 PersistentAgentThread thread = agentClient.Threads.CreateThread();
@@ -146,7 +170,7 @@ foreach (PersistentThreadMessage threadMessage in messages)
 
 ## Optional: Delete the agent
 
-When you are done with your agent, you can delete it with:
+When you finish using your agent, delete it by using the following code:
 
 ```csharp
 agentClient.Threads.DeleteThread(threadId: thread.Id);
@@ -388,11 +412,11 @@ curl --request POST \
 
 ## Create a run and check the output
 
-Create a run to pass headers for the tool. Observe that the model uses the Grounding with Bing Search tool to provide a response to the user's question.
+Create a run to pass headers for the tool. You can see that the model uses the Grounding with Bing Search tool to provide a response to the user's question.
 
 The `require_approval` parameter is optional. Supported values are:
 
-- `always`: A developer needs to provide approval for every call. If you don't provide a value, this one is the default.
+- `always`: A developer needs to provide approval for every call. If you don't provide a value, this value is the default.
 - `never`: No approval is required.
 - `{"never":[<tool_name_1>, <tool_name_2>]}`: You provide a list of tools that don't require approval.
 - `{"always":[<tool_name_1>, <tool_name_2>]}`: You provide a list of tools that require approval.

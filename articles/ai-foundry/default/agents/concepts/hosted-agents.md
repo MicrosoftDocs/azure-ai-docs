@@ -124,6 +124,10 @@ This local testing approach lets you:
 - Test different input scenarios quickly.
 - Verify API compatibility with the Foundry Responses API.
 
+## Create a hosted agent
+
+# [Azure Developer CLI](#tab/cli)
+
 ## Create a hosted agent by using the Azure Developer CLI
 
 Developers can use the [Azure Developer CLI](/azure/developer/azure-developer-cli/overview) `ai agent` extension for seamless and rapid provisioning and deployment of their agentic applications on Microsoft Foundry.
@@ -144,7 +148,7 @@ To get started:
 
     To upgrade to the latest version, see [Install or update the Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd).
 
-1. If you're starting with no existing Foundry resources and you want to simplify all the required infrastructure provisioning and RBAC, download the Foundry starter template. The template automatically installs the `ai agent` extension.
+1. If you're starting with no existing Foundry resources and you want to simplify all the required infrastructure provisioning and RBAC, download the Foundry starter template. The template automatically installs the `ai agent` extension. When prompted, you can provide an environment name which will create a resource group named `rg-<name-you-provide>`.
 
     ```bash
     azd init -t https://github.com/Azure-Samples/azd-ai-starter-basic
@@ -190,11 +194,11 @@ Make sure you have [RBAC](/azure/role-based-access-control/built-in-roles) enabl
 
 ### Roles and permissions
 
-If you have an existing Foundry resource and need to create a new Foundry project to deploy a hosted agent, you need Account Owner and Azure AI User roles.
+* If you have an existing Foundry resource and need to create a new Foundry project to deploy a hosted agent, you need Account Owner and Azure AI User roles.
 
-If you have an existing project and want to create the model deployment and container registry in the project, you need Account Owner and Azure AI User roles on Foundry in addition to the Contributor role on the Azure subscription.
+* If you have an existing project and want to create the model deployment and container registry in the project, you need Account Owner and Azure AI User roles on Foundry in addition to the Contributor role on the Azure subscription.
 
-If you have everything configured in the project to deploy a hosted agent, you need Reader and Azure AI User roles.
+* If you have everything configured in the project to deploy a hosted agent, you need Reader and Azure AI User roles.
 
 ### Resource cleanup
 
@@ -213,6 +217,8 @@ azd down
 ```
 
 This process might take up to 20 minutes to complete.
+
+# [Foundry SDK](#tab/foundry-sdk)
 
 ## Create a hosted agent by using the Foundry SDK
 
@@ -349,6 +355,8 @@ Here are the key parameters:
 >
 > - Ensure that your container image is accessible from the Foundry project.
 > - `DefaultAzureCredential` handles authentication automatically.
+
+---
 
 The agent appears in the Foundry portal after you create it.
 
