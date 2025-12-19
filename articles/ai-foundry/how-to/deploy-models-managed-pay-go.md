@@ -3,6 +3,7 @@ title: Deploy Microsoft Foundry Models to managed compute with pay-as-you-go bil
 titleSuffix: Microsoft Foundry
 description: Learn how to deploy protected AI models from partners and community to Microsoft Foundry managed compute with pay-as-you-go billing.
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.custom:
 ms.topic: how-to
 ms.date: 11/14/2025

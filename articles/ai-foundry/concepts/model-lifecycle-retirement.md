@@ -5,6 +5,7 @@ description: Learn about the lifecycle stages, deprecation, and retirement for M
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: concept-article
 ms.date: 09/17/2025
 ms.author: mopeakande

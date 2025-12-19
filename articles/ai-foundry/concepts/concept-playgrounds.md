@@ -5,6 +5,7 @@ description: Learn how to use Microsoft Foundry playgrounds for rapid prototypin
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: concept-article
 ms.date: 11/06/2025
 ms.author: mopeakande
