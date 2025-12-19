@@ -5,8 +5,8 @@ description: The Speech service supports numerous languages for speech to text a
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: conceptual
-ms.date: 6/5/2025
+ms.topic: article
+ms.date: 12/19/2025
 ms.author: pafarley
 ms.custom: references_regions, build-2024
 #Customer intent: As a developer, I want to learn about the languages supported by the Speech service.
@@ -16,7 +16,7 @@ ms.custom: references_regions, build-2024
 
 The following tables summarize language support for [speech to text](speech-to-text.md), [text to speech](text-to-speech.md), [pronunciation assessment](how-to-pronunciation-assessment.md), [speech translation](speech-translation.md), and more service features.
 
-You can also get a list of locales and voices supported for each specific region or endpoint via:
+You can also see the list of locales and voices supported for each specific region or endpoint:
 - [Speech SDK](speech-sdk.md)
 - [Speech to text REST API](rest-speech-to-text.md)
 - [Speech to text REST API for short audio](rest-speech-to-text-short.md)
@@ -27,7 +27,7 @@ You can also get a list of locales and voices supported for each specific region
 Language support varies by Speech service functionality. 
 
 > [!NOTE]
-> See [speech containers](speech-container-overview.md#available-speech-containers) and [embedded speech](embedded-speech.md#models-and-voices) documentation for their supported languages.
+> See the [speech containers](speech-container-overview.md#available-speech-containers) and [embedded speech](embedded-speech.md#models-and-voices) documentation for their supported languages.
 
 **Choose a Speech feature**
 
@@ -185,9 +185,8 @@ The table in this section summarizes the locales supported for custom keyword an
 
 [!INCLUDE [Language support include](includes/language-support/custom-keyword.md)]
 
+---
 
-***
-
-## Next steps
+## Next step
 
 * [Region support](regions.md)

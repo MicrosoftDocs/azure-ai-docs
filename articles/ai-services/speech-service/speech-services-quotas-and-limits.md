@@ -6,7 +6,7 @@ author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: conceptual
+ms.topic: article
 ms.date: 7/15/2025
 ms.reviewer: jagoerge
 #Customer intent: As a developer, I want to learn about the quotas and limits for the Speech service in Foundry Tools.

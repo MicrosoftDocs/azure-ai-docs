@@ -5,8 +5,8 @@ description: Learn how to assign access roles for an AI Speech resource.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: conceptual
-ms.date: 5/22/2025
+ms.topic: article
+ms.date: 12/19/2025
 ms.author: pafarley
 # Customer intent: As a developer, I want to learn how to assign access roles for an AI Speech resource.
 ---
@@ -98,7 +98,7 @@ curl -v "$uri" \
 
 For the SDK, you configure whether to authenticate with an API key or Microsoft Entra token. For details, see [Microsoft Entra authentication with the Speech SDK](how-to-configure-azure-ad-auth.md).                    |
 
-## Next steps
+## Related content
 
 * [Microsoft Entra authentication with the Speech SDK](how-to-configure-azure-ad-auth.md).
 * [Speech service encryption of data at rest](speech-encryption-of-data-at-rest.md).

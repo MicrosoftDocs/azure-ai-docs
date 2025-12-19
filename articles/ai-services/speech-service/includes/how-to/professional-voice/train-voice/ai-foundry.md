@@ -5,7 +5,7 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 5/19/2025
+ms.date: 12/19/2025
 ms.custom: include
 ---
 
@@ -23,11 +23,11 @@ Training duration varies depending on how much data you use. It takes about 40 c
 
 After you validate your data files, use them to build your custom voice model. When you create a custom voice, you can choose to train it with one of the following methods:
 
-- [Neural](?tabs=neural#train-your-custom-voice-model): Create a voice in the same language of your training data.
+- [Neural](?tabs=neural#train-your-custom-voice-model): Create a voice in the same language as your training data.
 
-- [Neural - cross lingual](?tabs=crosslingual#train-your-custom-voice-model): Create a voice that speaks a different language from your training data. For example, with the `zh-CN` training data, you can create a voice that speaks `en-US`.
+- [Neural - cross lingual](?tabs=crosslingual#train-your-custom-voice-model): Create a voice that speaks a different language from your training data. For example, with `zh-CN` training data, you can create a voice that speaks `en-US`.
 
-  The language of the training data and the target language must both be one of the [languages that are supported](../../../../language-support.md?tabs=tts#professional-voice) for cross lingual voice training. You don't need to prepare training data in the target language, but your test script must be in the target language.
+  The language of the training data and the target language must both be one of the [supported languages](../../../../language-support.md?tabs=tts#professional-voice) for cross lingual voice training. You don't need to prepare training data in the target language, but your test script must be in the target language.
 
 - [Neural - multi style](?tabs=multistyle#train-your-custom-voice-model): Create a custom voice that speaks in multiple styles and emotions, without adding new training data. Multiple style voices are useful for video game characters, conversational chatbots, audiobooks, content readers, and more.
 
