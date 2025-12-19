@@ -63,8 +63,8 @@ Consider the following limitations before enabling managed network isolation for
 1. You can't disable managed virtual network isolation after enabling it. There's no upgrade path from custom virtual network set-up to managed virtual network. A Foundry resource redeployment is required. Deleting your Foundry resource deletes the managed virtual network.
 1. You must create outbound rules from the managed network through Azure CLI. For the end-to-end secured Agent service set-up with a managed virtual network, the template creates the managed private endpoint to the associated Storage account. Private endpoints aren't created to CosmosDB or AI Search. For information on how to create the managed private endpoints, see the [outbound rules CLI](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/18-managed-virtual-network-preview/update-outbound-rules-cli/outbound-rule-cli.md) file.
 1. Support for managed virtual network is only in the following regions: **East US, East US2, Japan East, France Central, UAE North, Brazil South, Spain Central, Germany West Central, Italy North, South Central US, West Central US, Australia East, Sweden Central, Canada East, South Africa North, West Europe, West US, West US 3, South India, and UK South.**
-1. If you require private access to on-premises resources for your Foundry resource, use the to [Application Gatway](access-on-premises-resources.md) to configure on-premises access. The same set-up with a private endpoint to Application Gateway and setting up backend pools is supported. Both L4 and L7 traffic are now supported with the Application Gateway in GA.
-1. Supports only Standard BYO resources Agents v1 and the Foundry classic experience. Basic Agents don't require network isolation. Support in the new Agents v2 and the new Foundry UI is coming soon. 
+1. If you require private access to on-premises resources for your Foundry resource, use the to [Application Gateway](access-on-premises-resources.md) to configure on-premises access. The same set-up with a private endpoint to Application Gateway and setting up backend pools is supported. Both L4 and L7 traffic are now supported with the Application Gateway in GA.
+1. Supports only Standard BYO resources Agents v1 and the Foundry classic experience. Basic Agents don't require network isolation.
 1. End-to-end network isolation for Agent MCP tools with managed virtual network is currently not supported. Please use public MCP tools with managed network isolation Foundry. 
 
 
@@ -161,7 +161,7 @@ For more on Azure pricing, see [Private Link Pricing](https://azure.microsoft.co
 | Aspect | Managed network | Custom (BYO) network |
 | --- | --- | --- |
 | Benefits | Microsoft handles subnet range, IP selection, delegation. | Full control: bring custom firewall, set user-defined routes, network peering, delegate subnet. |
-| Limitations | Can't bring your own firewall for allow only approved outbound. Requires Application Gateway for secure on-premises (L7 and L4 traffic support by Application Gateway). No logging of outbound traffic support (coming soon). Doesn't support Evaluations compute security (coming soon). | More complex setup such as subnet delegation to Azure Container Apps. Requires correct CapHost creation.Requires private Class A, B, and C, not public. Requires minimum /27 subnet for Agent delegation. |
+| Limitations | Can't bring your own firewall for allow only approved outbound. Requires Application Gateway for secure on-premises (L7 and L4 traffic support by Application Gateway). No logging of outbound traffic support. Doesn't support Evaluations compute security. | More complex setup such as subnet delegation to Azure Container Apps. Requires correct CapHost creation. Requires private Class A, B, and C, not public. Requires minimum /27 subnet for Agent delegation. |
 
 ## Clean up resources
 
