@@ -3,6 +3,7 @@ title: Fine-tune models with Microsoft Foundry
 titleSuffix: Microsoft Foundry
 description: This article explains what fine-tuning is and under what circumstances you should consider doing it.
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.custom:
   - build-2024
   - code01

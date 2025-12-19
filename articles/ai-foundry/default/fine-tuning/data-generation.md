@@ -4,6 +4,7 @@ titleSuffix: Microsoft Foundry
 description: Learn how to generate synthetic data using the Microsoft Foundry portal. Create high-quality training datasets for fine-tuning models (Preview).
 manager: nitinme
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.custom: ignite-2025
 ms.topic: how-to
 ms.date: 10/08/2025
