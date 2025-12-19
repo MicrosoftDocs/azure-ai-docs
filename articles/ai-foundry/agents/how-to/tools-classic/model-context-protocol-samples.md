@@ -28,7 +28,7 @@ Use this article to find code samples for connecting Foundry Agent Service with 
 - A [configured MCP server](./model-context-protocol.md#setup), such as the GitHub MCP server.
 
 :::zone pivot="csharp"
-- Install the `Azure.AI.Agents.Persistent` NuGet package to your project:
+- Install the `Azure.AI.Agents.Persistent` and `Azure.Identity` NuGet packages to your project:
 
   ```console
   dotnet add package Azure.AI.Agents.Persistent
