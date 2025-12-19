@@ -5,10 +5,10 @@ description: Learn how to use the Azure Machine Learning CLI or Python SDK to cr
 services: machine-learning
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: kritifaujdar
+ms.reviewer: jturuk
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.date: 01/07/2025
+ms.date: 12/12/2025
 ms.topic: how-to
 ms.custom: cli-v2, sdk-v2, devx-track-azurecli, update-code2, devx-track-python
 ---

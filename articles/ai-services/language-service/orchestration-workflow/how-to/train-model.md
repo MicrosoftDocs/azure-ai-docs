@@ -53,39 +53,15 @@ Orchestration workflow supports two methods for data splitting:
 
 ### Start training job
 
-#### [Language Studio](#tab/language-studio)
-
-[!INCLUDE [Train model](../includes/language-studio/train-model.md)]
-
-#### [REST APIs](#tab/rest-api)
-
 [!INCLUDE [train model](../includes/rest-api/train-model.md)]
 
----
-
 ### Get training job status
-
-#### [Language Studio](#tab/language-studio)
-
-Select the training job ID from the list, a side pane appears where you can check the **Training progress**, **Job status**, and other details for this job.
-
-<!--:::image type="content" source="../../../media/train-pane.png" alt-text="A screenshot showing the training job details." lightbox="../../../media/train-pane.png":::-->
-
-
-#### [REST APIs](#tab/rest-api)
 
 Training could take sometime depending on the size of your training data and complexity of your schema. You can use the following request to keep polling the status of the training job until it successfully completes.
 
 [!INCLUDE [get training model status](../includes/rest-api/get-training-status.md)]
 
----
 ### Cancel training job
-
-# [Language Studio](#tab/language-studio)
-
-[!INCLUDE [Cancel training](../includes/language-studio/cancel-training.md)]
-
-# [REST APIs](#tab/rest-api)
 
 [!INCLUDE [Cancel training](../includes/rest-api/cancel-training.md)]
 

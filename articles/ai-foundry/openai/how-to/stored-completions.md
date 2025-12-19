@@ -829,7 +829,7 @@ You can store a maximum 10 GB of data.
 
 ### Can I prevent stored completions in my project?
 
-Users of Azure OpenAI resources can disabled within the Azure portal by using the controls within the Stored Completions panel in the Resource Management view on the Azure OpenAI resource.
+Users of Azure OpenAI resources can disable stored completions within the Azure portal. Within the Azure OpenAI resource, navigate to the Stored Completions panel in the Resource Management view. Toggle the Stored Completions control to Disabled and click Save.
 
 Users of Foundry resources must open a case with customer support to disable Stored Completions at the Azure subscription level.
 

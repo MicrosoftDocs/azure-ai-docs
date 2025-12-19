@@ -5,7 +5,7 @@ description: Learn about the languages supported by orchestration workflow.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/18/2025
 ms.custom: references_regions, language-service-custom-ner
 ms.author: lajanuar
