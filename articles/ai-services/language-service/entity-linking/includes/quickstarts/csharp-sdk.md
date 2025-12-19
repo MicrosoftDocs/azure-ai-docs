@@ -11,7 +11,7 @@ ms.author: lajanuar
 
 Use this quickstart to create an entity linking application with the client library for .NET. In the following example, you create a C# application that can identify and disambiguate entities found in text.
 
-[!INCLUDE [Use Microsoft Foundry](../../../includes/use-microsoft-foundry.md)]
+[!INCLUDE [Use Microsoft Foundry](../../../includes/microsoft-foundry/tip-you-can-use-foundry.md)]
 
 ## Prerequisites
 

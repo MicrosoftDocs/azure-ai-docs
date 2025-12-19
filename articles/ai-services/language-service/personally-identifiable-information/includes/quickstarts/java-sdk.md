@@ -14,7 +14,7 @@ ms.custom:
 
 Use this quickstart to create a Personally Identifiable Information (PII) detection application with the client library for Java. In the following example, you create a Java application that can identify [recognized sensitive information](../../concepts/entity-categories.md) in text.
 
-[!INCLUDE [Use Microsoft Foundry](../use-microsoft-foundry.md)]
+[!INCLUDE [Use Microsoft Foundry](../microsoft-foundry/tip-you-can-use-foundry.md)]
 
 ## Prerequisites
 

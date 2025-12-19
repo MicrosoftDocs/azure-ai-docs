@@ -26,7 +26,7 @@ ms.custom:
 
 Use this quickstart to create a text summarization application with the client library for .NET. In the following example, you'll create a C# application that can summarize documents or text-based customer service conversations.
 
-[!INCLUDE [Use Microsoft Foundry](../use-microsoft-foundry.md)]
+[!INCLUDE [Use Microsoft Foundry](../microsoft-foundry/tip-you-can-use-foundry.md)]
 
 ## Prerequisites
 

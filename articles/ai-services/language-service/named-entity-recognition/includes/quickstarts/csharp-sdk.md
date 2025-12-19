@@ -10,7 +10,7 @@ ms.author: lajanuar
 
 Use this quickstart to create a Named Entity Recognition (NER) application with the client library for .NET. In the following example, you will create a C# application that can identify [recognized entities](../../concepts/named-entity-categories.md) in text.
 
-[!INCLUDE [Use Microsoft Foundry](../../../includes/use-microsoft-foundry.md)]
+[!INCLUDE [Use Microsoft Foundry](../../../includes/microsoft-foundry/tip-you-can-use-foundry.md)]
 
 ## Prerequisites
 

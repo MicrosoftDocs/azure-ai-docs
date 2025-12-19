@@ -19,7 +19,7 @@ zone_pivot_groups: programming-languages-text-analytics
 
 This article contains Text Analytics for health quickstarts that help with using the supported client libraries, C#, Java, NodeJS, and Python and the REST API.
 
-[!INCLUDE [Use Microsoft Foundry](../includes/use-microsoft-foundry.md)]
+[!INCLUDE [Use Microsoft Foundry](../includes/microsoft-foundry/tip-you-can-use-foundry.md)]
 ::: zone pivot="programming-language-csharp"
 
 [!INCLUDE [C# quickstart](includes/quickstarts/csharp-sdk.md)]

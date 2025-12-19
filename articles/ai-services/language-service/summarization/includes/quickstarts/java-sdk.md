@@ -14,7 +14,7 @@ ms.custom:
 
 Use this quickstart to create a text summarization application with the client library for Java. In the following example, you'll create a Java application that can summarize documents.
 
-[!INCLUDE [Use Microsoft Foundry](../use-microsoft-foundry.md)]
+[!INCLUDE [Use Microsoft Foundry](../microsoft-foundry/tip-you-can-use-foundry.md)]
 
 ## Prerequisites
 

@@ -14,7 +14,7 @@ ms.custom:
 
 Use this quickstart to create a text summarization application with the client library for Node.js. In the following example, you create a JavaScript application that can summarize documents.
 
-[!INCLUDE [Use Microsoft Foundry](../use-microsoft-foundry.md)]
+[!INCLUDE [Use Microsoft Foundry](../microsoft-foundry/tip-you-can-use-foundry.md)]
 
 ## Prerequisites
 
