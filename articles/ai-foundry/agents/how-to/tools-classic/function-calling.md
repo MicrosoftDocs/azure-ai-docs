@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 12/18/2025
+ms.date: 12/19/2025
 author: alvinashcraft
 ms.author: aashcraft
 zone_pivot_groups: selection-function-calling
@@ -30,7 +30,7 @@ By using Azure AI Agents function calling, you can extend agent capabilities by 
 
 ### Usage support
 
-|Azure AI foundry support  | Python SDK |    C# SDK | JavaScript SDK | REST API | Basic agent setup | Standard agent setup |
+| Azure AI foundry support | Python SDK | C# SDK | JavaScript SDK | REST API | Basic agent setup | Standard agent setup |
 |---------|---------|---------|---------|---------|---------|---------|
 |      | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
@@ -677,7 +677,7 @@ curl --request POST \
 
 ### Create a thread
 
-Capture the `id` from the response (for example `thread_abc123`) so you can reuse it in later requests.
+Capture the `id` from the response (for example, `thread_abc123`) so you can reuse it in later requests.
 
 ```bash
 curl --request POST \
@@ -702,7 +702,7 @@ curl --request POST \
 
 ### Run the thread
 
-Store the returned `run` identifier (for example `run_abc123`) for subsequent polling requests.
+Store the returned `run` identifier (for example, `run_abc123`) for subsequent polling requests.
 
 ```bash
 curl --request POST \
