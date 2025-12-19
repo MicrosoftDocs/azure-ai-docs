@@ -23,6 +23,8 @@ ai-usage: ai-assisted
 
 This article explains how to deploy and use the latest Claude models in Foundry, including Claude Opus 4.5, Claude Sonnet 4.5, Claude Haiku 4.5, and Claude Opus 4.1. Anthropic's flagship product is Claude, a frontier AI model useful for complex tasks such as coding, agents, financial analysis, research, and office tasks. Claude delivers exceptional performance while maintaining high safety standards.
 
+[!INCLUDE [claude-usage-restriction](../includes/claude-usage-restriction.md)]
+
 ## Available Claude models
 
 Foundry supports  Claude Opus 4.5, Claude Sonnet 4.5, Claude Haiku 4.5, and Claude Opus 4.1 models through global standard deployment. These models have key capabilities that include:
@@ -58,7 +60,7 @@ Claude Opus 4.1 is an industry leader for coding. It delivers sustained performa
 
 ## Deploy Claude models
 
-Claude models in Foundry are available for [global standard deployment](../concepts/deployment-types.md#global-standard). To deploy a Claude model, follow the instructions in [Add and configure models to Microsoft Foundry Models](create-model-deployments.md).
+Claude models in Foundry are available for [global standard deployment](../concepts/deployment-types.md#global-standard). To deploy a Claude model, follow the instructions in [Deploy Microsoft Foundry Models in the Foundry portal](deploy-foundry-models.md).
 
 After deployment, you can use the [Foundry playground](../../concepts/concept-playgrounds.md) to interactively test the model.
 
@@ -450,10 +452,10 @@ Claude models in Foundry have the following rate limits, measured in Tokens Per 
 
 | Model        |   Deployment Type       | Default RPM   | Default TPM   |Enterprise and MCA-E RPM   |Enterprise and MCA-E TPM   |
 |:------------------|:----------------|:--------------|:--------------|:-----------|:-----------|
-| claude-haiku-4-5  | GlobalStandard  | 1,000         | 1,000,000     | 4,000      | 4,000,000  |
-| claude-opus-4-1   | GlobalStandard  | 1,000         | 1,000,000     | 2,000      | 2,000,000  |
-| claude-sonnet-4-5 | GlobalStandard  | 1,000         | 1,000,000     | 4,000      | 2,000,000  |
-| claude-opus-4-5   | Global Standard | 1,000         | 1,000,000     | 2,000      | 2,000,000  |
+| claude-haiku-4-5  | [Global Standard](../concepts/deployment-types.md#global-standard)  | 1,000         | 150,000     | 4,000      | 4,000,000  |
+| claude-opus-4-1   | GlobalStandard  | 1,000         | 150,000     | 2,000      | 2,000,000  |
+| claude-sonnet-4-5 | GlobalStandard  | 1,000         | 150,000     | 4,000      | 2,000,000  |
+| claude-opus-4-5   | Global Standard | 1,000         | 150,000     | 2,000      | 2,000,000  |
 
 To increase your quota beyond the default limits, submit a request through the [quota increase request form](https://aka.ms/oai/stuquotarequest).
 
@@ -515,6 +517,7 @@ Choose the appropriate Claude model based on your specific requirements:
 
 ## Related content
 
+- [Data, privacy, and security for Claude models in Microsoft Foundry (preview)](../../responsible-ai/claude-models/data-privacy.md)
 - [Monitor model usage and costs](../../how-to/costs-plan-manage.md)
 - [How to generate text responses with Microsoft Foundry Models](generate-responses.md)
 - [Explore Microsoft Foundry Models](../../concepts/foundry-models-overview.md)

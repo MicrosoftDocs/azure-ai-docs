@@ -1,7 +1,7 @@
 ---
 manager: nitinme
-author: goergenj
-ms.author: jagoerge
+author: PatrickFarley
+ms.author: pafarley
 reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.service: azure-ai-openai
@@ -9,7 +9,7 @@ ms.topic: include
 ms.date: 10/30/2025
 ---
 
-In this article, you learn how to use Azure Speech in Foundry Tools voice live with Microsoft Foundry models using the VoiceLive SDK for C#.
+In this article, you learn how to use voice live with Microsoft Foundry models using the VoiceLive SDK for C#.
 
 [!INCLUDE [Header](../../common/voice-live-csharp.md)]
 

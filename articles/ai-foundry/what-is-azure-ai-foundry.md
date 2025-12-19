@@ -66,7 +66,7 @@ With Microsoft Foundry, you can explore a wide variety of models, services and c
 * **[Multi-Agent Orchestration and Workflows](default/agents/concepts/workflow.md?view=foundry&preserve-view=true)** – Build advanced automation using SDKs for C# and Python that enable collaborative agent behavior and complex workflow execution.
 * **[Expanded Integration Options](default/agents/how-to/publish-copilot.md?view=foundry&preserve-view=true)** – Publish agents to Microsoft 365, Teams, and BizChat, plus leverage containerized deployments for greater portability.
 * **[Expanded Tool Access](default/agents/concepts/tool-catalog.md?view=foundry&preserve-view=true)** – Access the Foundry tool catalog (preview) with a public tool catalog and your own private catalogs, connecting over 1,400 tools in Microsoft Foundry.
-* **[Enhanced Memory Capabilities](default/agents/concepts/agent-memory.md?view=foundry&preserve-view=true)** – Use memory to help your agent retain and recall contextual information across interactions. Memory maintains continuity, adapts to user needs, and delivers tailored experiences without requiring repeated input.
+* **[Enhanced Memory Capabilities](default/agents/concepts/what-is-memory.md?view=foundry&preserve-view=true)** – Use memory to help your agent retain and recall contextual information across interactions. Memory maintains continuity, adapts to user needs, and delivers tailored experiences without requiring repeated input.
 * **[Knowledge Integration](default/agents/how-to/tools/knowledge-retrieval.md?view=foundry&preserve-view=true)** – Connect your agent to a Foundry IQ (powered by Azure AI Search) knowledge base to ground responses in enterprise or web content. This integration provides reliable, citation-backed answers for multi-turn conversations.
 * **[Real-Time Observability](how-to/continuous-evaluation-agents.md?view=foundry&preserve-view=true)** – Monitor performance and governance using built-in metrics and model tracking tools.
 * **Enhanced Enterprise Support** – Use open protocols in Foundry Agent Service with full authentication support in MCP and A2A tool, AI gateway integration, and Azure Policy integration.
@@ -83,7 +83,7 @@ In the Foundry (new) portal, the project you're working with appears in the uppe
 
 ## Find other resources
 
-The Foundry (new) portal displays only Foundry projects, not other resources or hub-based projects you might have created in Foundry (classic).
+The Foundry (new) portal displays only the **default** project for each Foundry resource, not other resources or hub-based projects you might have created in Foundry (classic). If you created multiple projects under the same Foundry resource, you can identify which project is the default by checking the Microsoft Foundry (classic) portal. The default project is marked with (default) next to its name.
 
 To find these other resources,  select the project name in the upper-left corner, then select **View all resources**.  A new browser tab opens the Foundry (classic) portal.  [Switch to Microsoft Foundry (classic) documentation](?view=foundry-classic&preserve-view=true) to work with these other resources in the Foundry (classic) portal.
 
@@ -243,3 +243,4 @@ You need an [Azure account](https://azure.microsoft.com/pricing/purchase-options
 - [Quickstart: Get started with Microsoft Foundry](quickstarts/get-started-code.md)
 - [Create a project](./how-to/create-projects.md)
 - [Get started with an AI template](how-to/develop/ai-template-get-started.md)
+- [What's new in Microsoft Foundry documentation?](whats-new-azure-ai-foundry.md)

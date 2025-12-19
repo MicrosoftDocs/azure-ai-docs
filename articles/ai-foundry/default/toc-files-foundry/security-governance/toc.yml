@@ -1,5 +1,7 @@
 items:
 # Access Control
+- name: Authentication and authorization
+  href: ../../../concepts/authentication-authorization-foundry.md
 - name: Role-based access control
   displayName: RBAC, roles, permissions
   href: ../../../concepts/rbac-azure-ai-foundry.md
@@ -22,14 +24,14 @@ items:
   - name: Store secrets in your Azure Key Vault
     href: ../../../how-to/set-up-key-vault-connection.md
   - name: Rotate API access keys
-    href: /azure/ai-services/rotate-keys?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry&preserve-view=true
+    href: /azure/ai-services/rotate-keys?context=/azure/ai-foundry/context/context
 
 # Governance and Compliance
 - name: Policy management
   items:
   - name: Built-in policy definitions
     displayName: samples, policies, definitions, Azure Policy
-    href: ../../../../ai-services/policy-reference.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry&preserve-view=true
+    href: ../../../../ai-services/policy-reference.md?context=/azure/ai-foundry/context/context
   - name: Built-in policy for model deployment
     href: ../../../how-to/model-deployment-policy.md
   - name: Create custom policy definitions
@@ -56,3 +58,8 @@ items:
   href: /security/benchmark/azure/baselines/azure-ai-foundry-security-baseline
 - name: Service architecture
   href: ../../../concepts/architecture.md
+
+- name: Data, privacy, and security for Foundry Models sold directly by Azure
+  href: ../../../responsible-ai/openai/data-privacy.md
+- name: Data, privacy, and security for Claude models in Microsoft Foundry
+  href: ../../../responsible-ai/claude-models/data-privacy.md

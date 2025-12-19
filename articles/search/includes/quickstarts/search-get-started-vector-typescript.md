@@ -123,7 +123,7 @@ You're using Microsoft Entra ID and role assignments for the connection. Make su
 
 Run each of the following commands in sequence.
 
-```azure-cli
+```azurecli
 az account show
 
 az account set --subscription <PUT YOUR SUBSCRIPTION ID HERE>
@@ -175,7 +175,7 @@ In this section, you create a vector index in Azure AI Search with [SearchIndexC
 
 ## Upload documents to the index
 
-Creating and loading the index are separate steps. You created the index schema [in the previous step](#create-the-vector-index). Now you need to load documents into the index with [SearchClient](/javascript/api/@azure/search-documents/searchclient).[uploadDocuments](/javascript/api/%40azure/search-documents/searchclient#@azure-search-documents-searchclient-uploaddocuments).
+Creating and loading the index are separate steps. You created the index schema in the [previous step](#create-the-vector-index). Now you need to load documents into the index with [SearchClient](/javascript/api/@azure/search-documents/searchclient).[uploadDocuments](/javascript/api/%40azure/search-documents/searchclient#@azure-search-documents-searchclient-uploaddocuments).
 
 In Azure AI Search, the index stores all searchable content, while the search engine executes queries against that index.
 
@@ -389,7 +389,7 @@ This search uses [SearchClient](/javascript/api/@azure/search-documents/searchcl
       Tags: ["pool","free wifi","air conditioning","concierge"]
     ```
 
-    Because Reciprocal Rank Fusion (RRF) merges results, it helps to review the inputs. The following results are from only the full-text query. The top two results are Sublime Palace Hotel and History Lion Resort. The Sublime Palace Hotel has a stronger BM25 relevance score.
+    Because Reciprocal Rank Fusion (RRF) merges results, it helps to review the inputs. The following results are from only the full-text query. The top two results are Sublime Palace Hotel and Luxury Lion Resort. The Sublime Palace Hotel has a stronger BM25 relevance score.
 
     ```json
        {
@@ -404,7 +404,7 @@ This search uses [SearchClient](/javascript/api/@azure/search-documents/searchcl
        },
     ```
 
-    In the vector-only query, which uses HNSW for finding matches, the Sublime Palace Hotel drops to fourth position. Historic Lion, which was second in the full-text search and third in the vector search, doesn't experience the same range of fluctuation, so it appears as a top match in a homogenized result set.
+    In the vector-only query, which uses HNSW for finding matches, the Sublime Palace Hotel drops to fourth position. Luxury Lion, which was second in the full-text search and third in the vector search, doesn't experience the same range of fluctuation, so it appears as a top match in a homogenized result set.
    
    ```json
    "value": [
@@ -537,7 +537,7 @@ When you're working in your own subscription, it's a good idea at the end of a p
 
 You can find and manage resources in the Azure portal by using the **All resources** or **Resource groups** link in the leftmost pane.
 
-If you want to keep the search service, but delete the index and documents, you can delete the index programmatically.
+If you want to keep your search service but delete the index and its documents, you can delete the index programmatically.
 
 1. Create a `deleteIndex.ts` file in the `src` directory.
 1. Add the dependencies, environment variables, and code to delete the index.

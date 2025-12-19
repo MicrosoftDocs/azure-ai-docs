@@ -7,7 +7,7 @@ author: laujan
 manager: nitinme
 ms.date: 11/18/2025
 ms.service: azure-ai-language
-ms.topic: conceptual
+ms.topic: limits-and-quotas
 ms.author: lajanuar
 ms.custom: language-service-custom-classification, references_regions
 ---

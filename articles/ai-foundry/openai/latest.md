@@ -5591,7 +5591,7 @@ A TextSimilarityGrader object which grades text based on similarity metrics.
 
 ### OpenAI.ImageGenTool
 
-A tool that generates images using a model like `gpt-image-1`.
+A tool that generates images using a model like `gpt-image-1`-series.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|

@@ -21,6 +21,16 @@ Azure Translator in Foundry Tools is a language service that enables users to tr
 
 Azure Translator supports language translation for more than 100 languages. If your language community is interested in partnering with Microsoft to add your language to Translator, contact us via the [Translator community partner onboarding form](https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GRqy180BHbR-riVR3Xj0tOnIRdZOALbM9UOU1aMlNaWFJOOE5YODhRR1FWVzY0QzU1OS4u).
 
+## December 2025
+
+### Translate image files (2025-12-01-preview)
+
+**Asynchronous document translation image file formats support**
+
+* The batch API now enables you to [submit image files for translation](document-translation/reference/start-batch-translation.md#translate-image-files).
+* This update eliminates the requirement to preprocess images by converting them to PDF format or using scanned PDF translation pipelines
+* For pricing details, *see* [Azure Translator pricing ](https://azure.microsoft.com/pricing/details/cognitive-services/translator/)
+
 ## November 2025
 
 ### Microsoft Foundry (new)
@@ -33,7 +43,7 @@ Azure Translator supports language translation for more than 100 languages. If y
 
 ### Azure Translator in Foundry Tools 2025-10-01-preview
 
-Translator `2025-10-01-preview` is our newest cloud-based multilingual translation solution. It offers flexibility to use either standard neural machine translation (NMT) or select from a variety of generative AI large language models (LLMs) for each translation request. This service provides powerful and scalable translation functionality, making it ideal for a wide range of needs and applications.
+Translator `2025-10-01-preview` is our newest cloud-based multilingual translation solution. It offers flexibility to use either standard neural machine translation (NMT) or select from various generative AI large language models (LLMs) for each translation request. This service provides powerful and scalable translation functionality, making it ideal for a wide range of needs and applications.
 
 For more information, *see* [Text translation overview (preview)](text-translation/preview/overview.md).
 
@@ -55,10 +65,10 @@ Azure Translator `2025-05-01-preview` is our latest cloud-based, multilingual, n
 
 ### Document Translation new feature update
 
-Azure Translator [Document translation feature](document-translation/overview.md#batch-key-features) now supports [translating text embedded in images](document-translation/how-to-guides/use-rest-api-programmatically.md#translate-text-embedded-within-images-in-documents-) within documents.
+Azure Translator [Document translation feature](document-translation/overview.md#key-features) now supports [translating text embedded in images detected in Word documents](document-translation/how-to-guides/use-rest-api-programmatically.md#translate-images-in-word-document-files-docx) within documents.
 
 * This feature is optional and must be enabled for each translation request.
-* Currently, the feature is available only with the [batch document translation](document-translation/how-to-guides/use-rest-api-programmatically.md#translate-text-embedded-within-images-in-documents-) API for `.docx` file format.
+* Currently, the feature is available only with the [batch document translation](document-translation/how-to-guides/use-rest-api-programmatically.md#translate-images-in-word-document-files-docx) API for `.docx` file format.
 * A [Foundry resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesAIFoundry) (not the standalone Translator resource) is required to use this feature.
 
 ## May 2025
@@ -97,15 +107,15 @@ Azure Translator [Document translation feature](document-translation/overview.md
 
 ## May 2024
 
-A [single API](document-translation/reference/rest-api-guide.md) is now available for both [asynchronous batch](document-translation/overview.md#asynchronous-batch-translation) and [synchronous single document](document-translation/overview.md#synchronous-translation) translation operations.
+A [single API](document-translation/reference/rest-api-guide.md) is now available for both [asynchronous batch](document-translation/overview.md#key-features) and [synchronous single document](document-translation/overview.md#key-features) translation operations.
 
 ## February 2024
 
 The Document translation API now supports two translation operations:
 
-* [Asynchronous Batch](document-translation/overview.md#asynchronous-batch-translation) document translation supports asynchronous processing of multiple documents and files. The batch translation process requires an Azure Blob storage account with containers for your source and translated documents.
+* [Asynchronous Batch](document-translation/overview.md#key-features) document translation supports asynchronous processing of multiple documents and files. The batch translation process requires an Azure Blob storage account with containers for your source and translated documents.
 
-* [Synchronous](document-translation/overview.md#synchronous-translation) document translation supports synchronous processing of single file translations. The file translation process doesn't require an Azure Blob storage account. The final response contains the translated document and is returned directly to the calling client.
+* [Synchronous](document-translation/overview.md#key-features) document translation supports synchronous processing of single file translations. The file translation process doesn't require an Azure Blob storage account. The final response contains the translated document and is returned directly to the calling client.
 
 ## Related content
 
