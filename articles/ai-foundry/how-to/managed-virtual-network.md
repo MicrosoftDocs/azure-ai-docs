@@ -21,7 +21,7 @@ Before continuing, consider the [limitations](#limitations) of the offering and 
 
 ## Understand isolation modes
 
-When you enable managed virtual network isolation, you create a managed virtual network for the Foundry account. Any new Agent you build in your projects automatically uses the managed virtual network for outbound traffic. The managed virtual network can use private endpoints for Azure resources that your Agents use, such as Azure Storage, Azure CosmosDB, and Azure AI Search. 
+When you enable managed virtual network isolation, you create a managed virtual network for the Foundry account. Any new Agent you build in your projects automatically uses the managed virtual network for outbound traffic. The managed virtual network can use private endpoints for Azure resources that your Agents use, such as Azure Storage, Azure Cosmos DB, and Azure AI Search. 
 
 :::image type="content" source="media/managed-virtual-network/diagram-managed-network.png" alt-text="Diagram of managed virtual network configuration." lightbox="media/managed-virtual-network/diagram-managed-network.png":::
 
@@ -59,9 +59,9 @@ Before following the steps in this article, make sure you have the following pre
 Consider the following limitations before enabling managed network isolation for your Foundry resource. 
 
 1. You can only deploy a managed network Foundry resource via the Bicep template in the folder [18-managed-virtual-network-preview in foundry-samples](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/18-managed-virtual-network-preview).
-1. If you create FQDN outbound rules when the managed virtual network is in **Allow Only Approved Outbound** mode, a managed Azure Firewall is created which comes with associated Firewall costs. For more on pricing see [Pricing](#pricing). The FQDN outbound rules only support ports 80 and 443. 
+1. If you create FQDN outbound rules when the managed virtual network is in **Allow Only Approved Outbound** mode, a managed Azure Firewall is created which comes with associated Firewall costs. For more on pricing, see [Pricing](#pricing). The FQDN outbound rules only support ports 80 and 443. 
 1. You can't disable managed virtual network isolation after enabling it. There's no upgrade path from custom virtual network set-up to managed virtual network. A Foundry resource redeployment is required. Deleting your Foundry resource deletes the managed virtual network.
-1. You must create outbound rules from the managed network through Azure CLI. For the end-to-end secured Agent service set-up with a managed virtual network, the template creates the managed private endpoint to the associated Storage account. Private endpoints aren't created to CosmosDB or AI Search. For information on how to create the managed private endpoints, see the [outbound rules CLI](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/18-managed-virtual-network-preview/update-outbound-rules-cli/outbound-rule-cli.md) file.
+1. You must create outbound rules from the managed network through Azure CLI. For the end-to-end secured Agent service set-up with a managed virtual network, the template creates the managed private endpoint to the associated Storage account. Private endpoints aren't created to Cosmos DB or AI Search. For information on how to create the managed private endpoints, see the [outbound rules CLI](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/18-managed-virtual-network-preview/update-outbound-rules-cli/outbound-rule-cli.md) file.
 1. Support for managed virtual network is only in the following regions: **East US, East US2, Japan East, France Central, UAE North, Brazil South, Spain Central, Germany West Central, Italy North, South Central US, West Central US, Australia East, Sweden Central, Canada East, South Africa North, West Europe, West US, West US 3, South India, and UK South.**
 1. If you require private access to on-premises resources for your Foundry resource, use the to [Application Gateway](access-on-premises-resources.md) to configure on-premises access. The same set-up with a private endpoint to Application Gateway and setting up backend pools is supported. Both L4 and L7 traffic are now supported with the Application Gateway in GA.
 1. Supports only Standard BYO resources Agents v1 and the Foundry classic experience. Basic Agents don't require network isolation.
@@ -76,7 +76,7 @@ To get started deploying a managed virtual network Foundry resource, follow the 
 1. Open the `managed-network.bicep` template in the folder `modules-network-secured`.
 1. Set the isolation mode parameter `IsolationMode` depending on your selected isolation mode: `AllowInternetOutbound` or `AllowOnlyApprovedOutbound`.
 1. In the README.md file, select the **Deploy to Azure** button. This action opens the template in the Azure portal for a quick deploy.
-1. Complete all of your parameters before deploying such as region, resource group, virtual network name, and others. If you're bringing your own CosmosDB Storage, or Search, ensure the resourceIDs are included as well.
+1. Complete all of your parameters before deploying such as region, resource group, virtual network name, and others. If you're bringing your own Cosmos DB Storage, or Search, ensure the resourceIDs are included as well.
 1. Finally, deploy the template. Template deployment should take roughly 30 minutes. 
 
 For more details on the parameters required for managed virtual network deployment, see [Microsoft.MachineLearningServices/workspaces/managedNetwork](/azure/templates/microsoft.machinelearningservices/workspaces/managednetworks).
@@ -113,7 +113,7 @@ The following resources support private endpoints from the managed network. You 
     - Supports only the Classic tier without VNet injection and the Standard V2 tier with virtual network integration. 
 - Azure AI Search
 - Azure Container Registry
-- Azure CosmosDB 
+- Azure Cosmos DB 
 - Azure Data Factory
 - Azure Database for MariaDB
 - Azure Database for MySQL
