@@ -2,7 +2,6 @@
 title: 'How to connect the Azure Speech tool to an agent'
 titleSuffix: Microsoft Foundry
 description: Learn how to use Agents Azure Speech in Foundry Tools tool.
-services: azure-ai-speech
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
