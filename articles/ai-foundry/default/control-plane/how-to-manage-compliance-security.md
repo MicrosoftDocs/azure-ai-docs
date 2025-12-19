@@ -184,7 +184,7 @@ To enable Purview in Foundry:
 1. Go to **Operate** > **Compliance**.
 1. Select the **Security posture** tab.
 1. Select the Azure subscription.
-1. Turn on the enablement toggle next to **Microsoft Purview**.
+1. Enable **Microsoft Purview** with the toggle.
 
     :::image type="content" source="media/how-to-manage-compliance-security/microsoft-purview-toggle.png" alt-text="Screenshot of the Microsoft Purview enablement toggle in the Compliance Security tab":::
 
