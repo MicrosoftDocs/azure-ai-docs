@@ -144,7 +144,7 @@ To get started:
 
     To upgrade to the latest version, see [Install or update the Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd).
 
-1. If you're starting with no existing Foundry resources and you want to simplify all the required infrastructure provisioning and RBAC, download the Foundry starter template. The template automatically installs the `ai agent` extension.
+1. If you're starting with no existing Foundry resources and you want to simplify all the required infrastructure provisioning and RBAC, download the Foundry starter template. The template automatically installs the `ai agent` extension. When prompted, you can provide an environment name which will create a resource group named `rg-<name-you-provide>`.
 
     ```bash
     azd init -t https://github.com/Azure-Samples/azd-ai-starter-basic
@@ -190,11 +190,11 @@ Make sure you have [RBAC](/azure/role-based-access-control/built-in-roles) enabl
 
 ### Roles and permissions
 
-If you have an existing Foundry resource and need to create a new Foundry project to deploy a hosted agent, you need Account Owner and Azure AI User roles.
+* If you have an existing Foundry resource and need to create a new Foundry project to deploy a hosted agent, you need Account Owner and Azure AI User roles.
 
-If you have an existing project and want to create the model deployment and container registry in the project, you need Account Owner and Azure AI User roles on Foundry in addition to the Contributor role on the Azure subscription.
+* If you have an existing project and want to create the model deployment and container registry in the project, you need Account Owner and Azure AI User roles on Foundry in addition to the Contributor role on the Azure subscription.
 
-If you have everything configured in the project to deploy a hosted agent, you need Reader and Azure AI User roles.
+* If you have everything configured in the project to deploy a hosted agent, you need Reader and Azure AI User roles.
 
 ### Resource cleanup
 
