@@ -41,8 +41,8 @@ For this quickstart, you can use either a [!INCLUDE [hub](../includes/hub-projec
 [!INCLUDE [feature-preview](../includes/first-run-experience-classic.md)]
 
 You need the following permissions and setup:
-- **Azure role:** Contributor or higher on the project. To verify your role, see [Manage access to projects](../how-to/create-manage-projects.md#manage-access).
-- **Deployed model:** A chat model already deployed in your Foundry project (for example, GPT-4o). If you don't have one, see [Deploy models to Foundry resources](../how-to/deploy-models-to-foundry-resources.md).
+- **Azure role:** Contributor or higher on the project. To verify your role, see [Manage access control](../how-to/create-azure-ai-resource.md#manage-access-control).
+- **Deployed model:** A chat model already deployed in your Foundry project (for example, GPT-4o). If you don't have one, see [Deploy a model using serverless API deployment](../how-to/deploy-models-serverless.md).
 
 ## Use the chat playground
 
@@ -82,5 +82,5 @@ Next, add your data so the model can answer domain-specific questions. Try the e
 ## Related content
 
 - [Deploy an enterprise chat web app](../tutorials/deploy-chat-web-app.md).
-- [Add evaluations to measure response quality](../how-to/evaluate-generative-ai-apps.md).
-- [Fine-tune a model for improved performance](../how-to/fine-tune-models-vision.md).
+- [Add evaluations to measure response quality](../how-to/evaluate-generative-ai-app.md).
+- [Fine-tune a model for improved performance](../how-to/fine-tune-serverless.md).
