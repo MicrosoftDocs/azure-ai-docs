@@ -21,7 +21,7 @@ ms.custom: azure-ai-agents-code
 >
 > 🔍 [View the new MCP tool documentation](../../../default/agents/how-to/tools/model-context-protocol.md?view=foundry&preserve-view=true).
 
-Use this article to find code samples for connecting Foundry Agent Service with Model Context Protocol (MCP) servers.
+This article provides code samples for connecting Foundry Agent Service with Model Context Protocol (MCP) servers.
 
 ## Prerequisites
 
@@ -37,7 +37,7 @@ Use this article to find code samples for connecting Foundry Agent Service with 
 :::zone-end
 
 > [!NOTE]
-> **MCP server authentication**: Many MCP servers require authentication through custom headers (such as API keys, Bearer tokens, or OAuth credentials). Use the `UpdateHeader` method (C#) or `update_headers` method (Python) to pass authentication headers to your MCP server. For more information about authentication and security considerations, see the [Connect to Model Context Protocol servers - How it works](./model-context-protocol.md#how-it-works) section in the MCP conceptual documentation.
+> **MCP server authentication**: Many MCP servers require authentication through custom headers, such as API keys, Bearer tokens, or OAuth credentials. Use the `UpdateHeader` method (C#) or `update_headers` method (Python) to pass authentication headers to your MCP server. For more information about authentication and security considerations, see the [Connect to Model Context Protocol servers - How it works](./model-context-protocol.md#how-it-works) section in the MCP conceptual documentation.
 
 ## Code samples
 
@@ -170,7 +170,7 @@ foreach (PersistentThreadMessage threadMessage in messages)
 
 ## Optional: Delete the agent
 
-When you're done with your agent, you can delete it by using the following code:
+When you finish using your agent, delete it by using the following code:
 
 ```csharp
 agentClient.Threads.DeleteThread(threadId: thread.Id);
@@ -412,7 +412,7 @@ curl --request POST \
 
 ## Create a run and check the output
 
-Create a run to pass headers for the tool. Observe that the model uses the Grounding with Bing Search tool to provide a response to the user's question.
+Create a run to pass headers for the tool. You can see that the model uses the Grounding with Bing Search tool to provide a response to the user's question.
 
 The `require_approval` parameter is optional. Supported values are:
 
