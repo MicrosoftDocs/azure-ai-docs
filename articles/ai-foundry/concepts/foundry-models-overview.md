@@ -7,8 +7,8 @@ ms.subservice: azure-ai-foundry-model-inference
 ms.custom:
   - build-2025
   - ai-learning-hub
-ms.topic: how-to
-ms.date: 09/04/2025
+ms.topic: concept-article
+ms.date: 12/04/2025
 ms.reviewer: jcioffi
 ms.author: ssalgado
 manager: nitinme
