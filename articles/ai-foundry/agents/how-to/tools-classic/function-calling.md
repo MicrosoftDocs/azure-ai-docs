@@ -710,7 +710,7 @@ curl --request POST \
   -H "Authorization: Bearer $AGENT_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
-    "assistant_id": "asst_abc123",
+    "assistant_id": "asst_abc123"
   }'
 ```
 
@@ -746,7 +746,12 @@ When the agent needs one of your functions, the run enters the `requires_action`
 }
 ```
 
-Use the `function.arguments` payload to execute your own `get_weather` implementation and capture the output.
+When you detect the `requires_action` status:
+
+1. Extract the `tool_calls` array from `required_action.submit_tool_outputs.tool_calls`.
+1. For each tool call, use the `function.name` and `function.arguments` values to execute your own function implementation.
+1. Capture the output from your function.
+1. Submit the results by using the following endpoint, matching each output to its `tool_call_id`.
 
 ### Submit function results to the run
 
