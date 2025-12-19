@@ -3,6 +3,7 @@ title: Deploy models as serverless API deployments
 titleSuffix: Microsoft Foundry
 description: Learn to deploy models as serverless API deployments, using Microsoft Foundry.
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
 ms.date: 09/15/2025
 author: ssalgadodev

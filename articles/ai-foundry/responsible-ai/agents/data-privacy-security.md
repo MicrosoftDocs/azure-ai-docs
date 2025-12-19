@@ -5,7 +5,8 @@ description: This document details issues for data, privacy, and security for Az
 author: aahill
 ms.author: aahi
 manager: nitinme
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.date: 11/19/2025
 ms.topic: article
 monikerRange: 'foundry-classic || foundry'

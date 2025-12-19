@@ -4,6 +4,7 @@ titleSuffix: Microsoft Foundry
 description: Learn about content safety for models deployed using serverless API deployments, using Microsoft Foundry.
 manager: nitinme
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: concept-article
 ms.date: 12/08/2025
 author: ssalgadodev

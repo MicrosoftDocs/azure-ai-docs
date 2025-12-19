@@ -3,6 +3,7 @@ title: Deployment options for Microsoft Foundry Models
 titleSuffix: Microsoft Foundry
 description: Learn about deployment options for Microsoft Foundry Models including standard, serverless API, and managed compute deployments.
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: concept-article
 ms.date: 09/22/2025
 ms.author: mopeakande

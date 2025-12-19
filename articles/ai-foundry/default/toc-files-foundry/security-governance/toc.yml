@@ -1,5 +1,7 @@
 items:
 # Access Control
+- name: Authentication and authorization
+  href: ../../../concepts/authentication-authorization-foundry.md
 - name: Role-based access control
   displayName: RBAC, roles, permissions
   href: ../../../concepts/rbac-azure-ai-foundry.md
