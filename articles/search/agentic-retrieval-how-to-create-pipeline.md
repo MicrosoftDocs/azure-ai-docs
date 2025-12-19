@@ -44,7 +44,7 @@ The following diagram shows the high-level architecture of this agentic retrieva
 
 Before you begin, make sure you have permissions to access content and operations. We recommend Microsoft Entra ID authentication and role-based access for authorization. You must be an **Owner** or **User Access Administrator** to assign roles. If roles aren't feasible, you can use [key-based authentication](search-security-api-keys.md) instead.
 
-To configure access for this solution, select both of the following tabs.
+To configure access for this solution, you must set permissions in both Azure AI Search and Microsoft Foundry. Select both of the following tabs for service-specific guidance.
 
 ### [**Azure AI Search**](#tab/search-perms)
 

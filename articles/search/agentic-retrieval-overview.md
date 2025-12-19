@@ -100,7 +100,7 @@ Your application drives the pipeline by calling the knowledge base and handling 
 
 To create an agentic retrieval solution, you can use the Azure portal, the latest preview REST APIs, or a preview Azure SDK package that provides the functionality.
 
-Currently, the portal only supports the creation of search index and blob knowledge sources. We recommend using a programmatic approach to create other types of knowledge sources.
+Currently, the portal only supports creating search indexes and blob knowledge sources. Other types of knowledge sources must be created programmatically.
 
 ### [**Quickstarts**](#tab/quickstarts)
 
