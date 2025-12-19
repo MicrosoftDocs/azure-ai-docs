@@ -5,7 +5,7 @@ description: Learn to build a retrieval-augmented generation solution with Conte
 author: PatrickFarley 
 ms.author: paulhsu
 manager: nitinme
-ms.date: 05/19/2025
+ms.date: 12/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: tutorial
 ms.custom:
@@ -112,7 +112,7 @@ sys.path.append(str(parent_dir))
 ```
 ---
 
-#### Code sample: create analyzer
+#### Code sample: Create analyzer
 
 ``` python
 from pathlib import Path
@@ -355,7 +355,7 @@ for analyzer_result in analyzer_results:
 ```
 
 ---
-### Extraction Results
+### Extraction results
 
 The following code samples demonstrate the output of content and field extraction using Azure Content Understanding. The JSON response contains multiple fields, each serving a specific purpose in representing the extracted data.
 
