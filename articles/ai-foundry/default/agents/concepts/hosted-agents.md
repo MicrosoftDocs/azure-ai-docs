@@ -124,6 +124,10 @@ This local testing approach lets you:
 - Test different input scenarios quickly.
 - Verify API compatibility with the Foundry Responses API.
 
+## Create a hosted agent
+
+# [Azure Developer CLI](#tab/cli)
+
 ## Create a hosted agent by using the Azure Developer CLI
 
 Developers can use the [Azure Developer CLI](/azure/developer/azure-developer-cli/overview) `ai agent` extension for seamless and rapid provisioning and deployment of their agentic applications on Microsoft Foundry.
@@ -213,6 +217,8 @@ azd down
 ```
 
 This process might take up to 20 minutes to complete.
+
+# [Foundry SDK](#tab/foundry-sdk)
 
 ## Create a hosted agent by using the Foundry SDK
 
@@ -349,6 +355,8 @@ Here are the key parameters:
 >
 > - Ensure that your container image is accessible from the Foundry project.
 > - `DefaultAzureCredential` handles authentication automatically.
+
+---
 
 The agent appears in the Foundry portal after you create it.
 
