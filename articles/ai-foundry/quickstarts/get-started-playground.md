@@ -19,7 +19,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
-Learn how to get answers using the chat playground in [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Deploy (or reuse) a chat model and send prompts to receive AI-generated responses.
+Learn how to get answers by using the chat playground in [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Deploy (or reuse) a chat model and send prompts to receive AI-generated responses.
 
 In this quickstart, you learn how to:
 - Configure a system message.
@@ -36,20 +36,20 @@ For this quickstart, you can use either a [!INCLUDE [hub](../includes/hub-projec
 
 ## Get answers in the playground
 
-Use the [Foundry](https://ai.azure.com/?cid=learnDocs) playground to get answers from AI models. In this quickstart, you'll learn how to ask questions and get responses from deployed chat models.
+Use the [Foundry](https://ai.azure.com/?cid=learnDocs) playground to get answers from AI models. In this quickstart, you learn how to ask questions and get responses from deployed chat models.
 
 To get answers from your deployed model in the chat playground:
 
 1. In the **System message** text box, provide this prompt to guide the assistant: "You're an AI assistant that helps people find information." You can tailor the prompt for your scenario.
-1. Optionally, add a safety system message by selecting the **Add section** button, then **Safety system messages**. Choose from the prebuilt messages, and then edit them to your needs.
+1. Optionally, add a safety system message by selecting the **Add section** button, and then **Safety system messages**. Choose from the prebuilt messages, and then edit them to your needs.
 
-1. Select **Apply changes** to save your changes, and when prompted to see if you want to update the system message, select **Continue**. 
+1. Select **Apply changes** to save your changes. When prompted to see if you want to update the system message, select **Continue**. 
 1. In the chat session pane, enter the following question: "How much do the TrailWalker hiking shoes cost?"
 1. Select the right arrow icon to send.
 
     :::image type="content" source="../media/tutorials/chat/chat-without-data.png" alt-text="Screenshot of the first chat question without grounding data." lightbox="../media/tutorials/chat/chat-without-data.png":::
 
-1. The assistant either replies that it doesn't know the answer or provides a generic response (for example, noting price variability). The model doesn't have access to current product data yet.
+1. The assistant either replies that it doesn't know the answer or provides a generic response, such as noting price variability. The model doesn't have access to current product data yet.
 
 Next, add your data so the model can answer domain-specific questions. Try the enterprise chat web app tutorial.
 
@@ -57,14 +57,14 @@ Next, add your data so the model can answer domain-specific questions. Try the e
 
 | Issue | Action |
 |-------|--------|
-| No deployed models listed | Deploy a model from the model catalog first |
-| Repeated generic answers | Refine system message or add domain data |
-| Safety message overrides tone | Adjust or remove conflicting safety sections |
-| Slow first response | Allow for cold start; subsequent prompts are faster |
+| No deployed models listed | Deploy a model from the model catalog first. |
+| Repeated generic answers | Refine system message or add domain data. |
+| Safety message overrides tone | Adjust or remove conflicting safety sections. |
+| Slow first response | Allow for cold start; subsequent prompts are faster. |
 
 ## Next steps
 
-- Build a custom chat app with the SDK.
+- Build a custom chat app by using the SDK.
 - Add evaluations to measure response quality.
 - Fine-tune a model for improved intent handling.
 
