@@ -36,6 +36,9 @@ Use this article to find code samples for connecting Foundry Agent Service with 
   ```
 :::zone-end
 
+> [!NOTE]
+> **MCP server authentication**: Many MCP servers require authentication through custom headers (such as API keys, Bearer tokens, or OAuth credentials). Use the `UpdateHeader` method (C#) or `update_headers` method (Python) to pass authentication headers to your MCP server. For more information about authentication and security considerations, see the [Connect to Model Context Protocol servers - How it works](./model-context-protocol.md#how-it-works) section in the MCP conceptual documentation.
+
 ## Code samples
 
 :::zone pivot="csharp"
