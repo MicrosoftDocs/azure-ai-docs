@@ -386,7 +386,7 @@ For more information about this step, see [Quickstart: Create a new agent](/azur
 from azure.ai.projects.models import PromptAgentDefinition, MCPTool
 
 instructions = """
-You are a helpful assistant that must use the knowledge base to answer all the questions from user. You must never answer from your own knowledge under any circumstances.
+You are a helpful assistant that must use the knowledge base to answer all the questions from the user. You must never answer from your own knowledge under any circumstances.
 Every answer must always provide annotations for using the MCP knowledge base tool and render them as: `【message_idx:search_idx†source_name】`
 If you cannot find the answer in the provided knowledge base you must respond with "I don't know".
 """
