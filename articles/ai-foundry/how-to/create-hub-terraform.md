@@ -32,7 +32,7 @@ In this article, you use Terraform to create a [Microsoft Foundry](https://ai.az
 > * Establish a key vault
 > * Configure Foundry Tools
 > * Build a Foundry hub
-> * Develop a Foundry project
+> * Develop a hub-based project
 > * Establish a Foundry Tools connection
 
 ## Prerequisites
