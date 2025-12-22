@@ -228,12 +228,12 @@ If you're using a Resource Manager service connection, you can use the Machine L
 
 In the Pipeline review window, add a Server Job. In the steps part of the job, select __Show assistant__, and then search for __AzureML__. Select the __AzureML Job Wait__ task, and then provide the information for the job. 
 
-The task has four inputs: `Service Connection`, `Azure Resource Group Name`, `AzureML Workspace Name` and `AzureML Job Name`. Provide these inputs. The resulting YAML for these steps is similar to the following example: 
+The task has four inputs: `Service Connection`, `Azure Resource Group Name`, `AzureML Workspace Name`, and `AzureML Job Name`. Provide these inputs. The resulting YAML for these steps is similar to the following example: 
 
 > [!NOTE]
 > * The Azure Machine Learning job wait task runs on a server job, which doesn't use expensive agent pool resources and requires no additional charges. Server jobs (indicated by `pool: server`) run on the same machine as your pipeline. For more information, see [Server jobs](/azure/devops/pipelines/process/phases#server-jobs).
 > * One Azure Machine Learning job wait task can only wait for one job. You need to set up a separate task for each job that you want to wait for.
-> * The Azure Machine Learning job wait task can wait for a maximum of 2 days. This is a hard limit set by Azure DevOps pipelines. 
+> * The Azure Machine Learning job wait task can wait for a maximum of two days. This limit is a hard limit set by Azure DevOps pipelines. 
 
 ```yml
 - job: WaitForAzureMLJobCompletion
