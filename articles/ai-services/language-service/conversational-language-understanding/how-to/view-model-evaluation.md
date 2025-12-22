@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 12/17/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-classification
 ---
@@ -28,42 +28,15 @@ See the [project development lifecycle](../overview.md#project-development-lifec
 
 ## Model details
 
-### [Microsoft Foundry](#tab/azure-ai-foundry)
-
-[!INCLUDE [Model performance](../includes/language-studio/model-performance.md)]
-
-### [REST APIs](#tab/REST-APIs)
-
 [!INCLUDE [Evaluate model](../includes/rest-api/model-evaluation.md)]
-
----
 
 ## Load or export model data
 
-### [Foundry](#tab/azure-ai-foundry)
-
-[!INCLUDE [Load export model](../includes/language-studio/load-export-model.md)]
-
-
-### [REST APIs](#tab/REST-APIs)
-
 [!INCLUDE [Load export model](../includes/rest-api/load-export-model.md)]
-
----
 
 ## Delete model
 
-### [Foundry](#tab/azure-ai-foundry)
-
-[!INCLUDE [Delete model](../includes/language-studio/delete-model.md)]
-
-
-### [REST APIs](#tab/REST-APIs)
-
 [!INCLUDE [Delete model](../includes/rest-api/delete-model.md)]
-
-
----
 
 
 ## Next steps

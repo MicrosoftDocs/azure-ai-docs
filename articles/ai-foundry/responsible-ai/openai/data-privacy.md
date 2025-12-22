@@ -6,10 +6,10 @@ author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: article
 monikerRange: 'foundry-classic || foundry'
 ms.date: 10/01/2025
-ms.subservice: azure-ai-foundry-openai
 ---
 
 # Data, privacy, and security for Azure Direct Models in Microsoft Foundry 

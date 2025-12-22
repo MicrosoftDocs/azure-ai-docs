@@ -2,7 +2,7 @@
 title: 'Use Terraform to create a Microsoft Foundry hub'
 description: In this article, you create a Microsoft Foundry hub, a Microsoft Foundry project, an AI services resource, and more resources.
 ms.topic: how-to
-ms.date: 08/25/2025
+ms.date: 12/22/2025
 titleSuffix: Microsoft Foundry 
 ms.service: azure-ai-foundry
 ms.reviewer: andyaviles 
@@ -11,6 +11,7 @@ author: sdgilley
 ms.custom: 
   - devx-track-terraform
   - hub-only
+  - dev-focus
 content_well_notification: 
   - AI-contribution
 ai-usage: ai-assisted
@@ -31,39 +32,77 @@ In this article, you use Terraform to create a [Microsoft Foundry](https://ai.az
 > * Establish a key vault
 > * Configure Foundry Tools
 > * Build a Foundry hub
-> * Develop a Foundry project
+> * Develop a hub-based project
 > * Establish a Foundry Tools connection
 
 ## Prerequisites
 
 - [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 
+- **Azure role:** Owner or Contributor on the Azure subscription. This role is required to create resource groups, storage accounts, key vaults, and Foundry resources.
+
 - [Install and configure Terraform](/azure/developer/terraform/quickstart-configure)
 
-## Implement the Terraform code
+## Create Terraform configuration files
+
+You'll create four Terraform files to configure the Azure provider, define Foundry resources, declare input variables, and output deployment results.
 
 > [!NOTE]
-> The sample code for this article is located in the [Azure Terraform GitHub repo](https://github.com/Azure/terraform/tree/master/quickstart/101-azure-ai-foundry). You can view the log file containing the [test results from current and previous versions of Terraform](https://github.com/Azure/terraform/tree/master/quickstart/101-azure-ai-foundry/TestRecord.md). You may need to update the resource provider versions used in the template to use the latest available versions.
+> The sample code for this article is located in the [Azure Terraform GitHub repo](https://github.com/Azure/terraform/tree/master/quickstart/101-azure-ai-foundry). You can view the log file containing the [test results from current and previous versions of Terraform](https://github.com/Azure/terraform/tree/master/quickstart/101-azure-ai-foundry/TestRecord.md). You might need to update the resource provider versions used in the template to use the latest available versions.
 > 
-> See more [articles and sample code showing how to use Terraform to manage Azure resources](/azure/terraform)
+> See more [articles and sample code showing how to use Terraform to manage Azure resources](/azure/terraform).
 
-1. Create a directory in which to test and run the sample Terraform code and make it the current directory.
+1. Create a directory to test and run the sample Terraform code. Make it the current directory.
 
 1. Create a file named `providers.tf` and insert the following code.
 
     :::code language="Terraform" source="~/terraform_samples/quickstart/101-azure-ai-foundry/providers.tf":::
 
+    This file configures the Azure Terraform provider, specifying the Azure subscription and required provider versions. It establishes the connection between Terraform and your Azure subscription.
+
+    **Reference:** [Terraform Azure Provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs)
+
 1. Create a file named `main.tf` and insert the following code.
 
     :::code language="Terraform" source="~/terraform_samples/quickstart/101-azure-ai-foundry/main.tf":::
+
+    This file defines the core Foundry resources: a resource group, storage account, key vault, Foundry hub, project, and Foundry Tools connection. These resources form the foundation for your AI development environment.
+
+    **Reference:** [azurerm_machine_learning_workspace](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/machine_learning_workspace), [azurerm_storage_account](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account), [azurerm_key_vault](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault)
 
 1. Create a file named `variables.tf` and insert the following code.
 
     :::code language="Terraform" source="~/terraform_samples/quickstart/101-azure-ai-foundry/variables.tf":::
 
+    This file declares input variables for your Terraform configuration (such as location, environment, and resource naming). These variables allow you to customize the deployment without editing the main resource definitions.
+
+    **Reference:** [Terraform Input Variables](https://registry.terraform.io/language/values/variables)
+
 1. Create a file named `outputs.tf` and insert the following code.
     
     :::code language="Terraform" source="~/terraform_samples/quickstart/101-azure-ai-foundry/outputs.tf":::
+
+    This file defines output values that display deployment results after Terraform apply completes. Outputs include the resource group name, workspace name, and other resource identifiers that you'll need to reference or manage your Foundry resources.
+
+    **Reference:** [Terraform Output Values](https://registry.terraform.io/language/values/outputs)
+
+## Authenticate to Azure
+
+1. Run [az login](/cli/azure/account#az-login) without any parameters and follow the instructions to sign in to Azure.
+
+    ```azurecli
+    az login
+    ```
+
+    **Key points:**
+
+    - Upon successful sign in, `az login` displays a list of the Azure subscriptions associated with the logged-in Microsoft account, including the default subscription.
+
+1. To confirm the current Azure subscription, run [az account show](/cli/azure/account#az-account-show).
+
+    ```azurecli
+    az account show
+    ```
 
 ## Initialize Terraform
 

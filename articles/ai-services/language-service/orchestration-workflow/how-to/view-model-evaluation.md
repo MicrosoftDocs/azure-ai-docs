@@ -10,6 +10,7 @@ ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-classification
 ---
+
 # View orchestration workflow model details
 
 After model training is completed, you can view your model details and see how well it performs against the test set. Observing how well your model performed is called evaluation. The test set consists of data that wasn't introduced to the model during the training process.
@@ -29,39 +30,16 @@ See the [project development lifecycle](../overview.md#project-development-lifec
 
 ## Model details
 
-### [Language studio](#tab/Language-studio)
-
-In the **view model details** page, you'll be able to see all your models, with their current training status, and the date they were last trained.
-
-[!INCLUDE [Model performance](../includes/language-studio/model-performance.md)]
-
-### [REST APIs](#tab/REST-APIs)
 
 [!INCLUDE [Evaluate model](../includes/rest-api/model-evaluation.md)]
 
----
-
 ## Load or export model data
-
-### [Language studio](#tab/Language-studio)
-
-[!INCLUDE [Load export model](../../conversational-language-understanding/includes/language-studio/load-export-model.md)]
-
-
-### [REST APIs](#tab/REST-APIs)
 
 [!INCLUDE [Load export model](../../conversational-language-understanding/includes/rest-api/load-export-model.md)]
 
 ---
 
 ## Delete model
-
-### [Language studio](#tab/Language-studio)
-
-[!INCLUDE [Delete model](../includes/language-studio/delete-model.md)]
-
-
-### [REST APIs](#tab/REST-APIs)
 
 [!INCLUDE [Delete model](../includes/rest-api/delete-model.md)]
 

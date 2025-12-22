@@ -3,6 +3,7 @@ title: Deploy Fine-Tuned Models with Managed Compute in Microsoft Foundry
 titleSuffix: Microsoft Foundry
 description: Deploy fine-tuned models using managed compute in Microsoft Foundry portal. Step-by-step guide to fine-tune, train, and deploy custom models with GPU compute resources.
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
 ms.date: 08/15/2025
 ms.reviewer: vkann

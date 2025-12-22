@@ -6,10 +6,10 @@ author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: article
 monikerRange: 'foundry-classic || foundry'
 ms.date: 07/28/2025
-ms.subservice: azure-ai-foundry-openai
 ---
 
 # Overview of responsible AI practices for Azure OpenAI models 

@@ -4,6 +4,7 @@ description: Include file
 ms.author: mopeakande
 author: msakande
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: include
 ms.date: 06/13/2025
 ms.custom: include
