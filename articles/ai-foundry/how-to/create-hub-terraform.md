@@ -2,7 +2,7 @@
 title: 'Use Terraform to create a Microsoft Foundry hub'
 description: In this article, you create a Microsoft Foundry hub, a Microsoft Foundry project, an AI services resource, and more resources.
 ms.topic: how-to
-ms.date: 08/25/2025
+ms.date: 12/22/2025
 titleSuffix: Microsoft Foundry 
 ms.service: azure-ai-foundry
 ms.reviewer: andyaviles 
@@ -43,11 +43,11 @@ In this article, you use Terraform to create a [Microsoft Foundry](https://ai.az
 ## Implement the Terraform code
 
 > [!NOTE]
-> The sample code for this article is located in the [Azure Terraform GitHub repo](https://github.com/Azure/terraform/tree/master/quickstart/101-azure-ai-foundry). You can view the log file containing the [test results from current and previous versions of Terraform](https://github.com/Azure/terraform/tree/master/quickstart/101-azure-ai-foundry/TestRecord.md). You may need to update the resource provider versions used in the template to use the latest available versions.
+> The sample code for this article is located in the [Azure Terraform GitHub repo](https://github.com/Azure/terraform/tree/master/quickstart/101-azure-ai-foundry). You can view the log file containing the [test results from current and previous versions of Terraform](https://github.com/Azure/terraform/tree/master/quickstart/101-azure-ai-foundry/TestRecord.md). You might need to update the resource provider versions used in the template to use the latest available versions.
 > 
-> See more [articles and sample code showing how to use Terraform to manage Azure resources](/azure/terraform)
+> See more [articles and sample code showing how to use Terraform to manage Azure resources](/azure/terraform).
 
-1. Create a directory in which to test and run the sample Terraform code and make it the current directory.
+1. Create a directory to test and run the sample Terraform code. Make it the current directory.
 
 1. Create a file named `providers.tf` and insert the following code.
 
