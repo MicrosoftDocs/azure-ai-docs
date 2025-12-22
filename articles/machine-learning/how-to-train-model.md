@@ -101,9 +101,6 @@ workspace = '<AZUREML_WORKSPACE_NAME>'
 ml_client = MLClient(DefaultAzureCredential(), subscription_id, resource_group, workspace)
 ```
 
-Expected output: The script instantiates `ml_client`, which you can then use to submit jobs or query workspace resources.
-
-Reference: [MLClient](how-to-train-model.md#prerequisites), [DefaultAzureCredential](../python/api/azure-identity/azure.identity.defaultazurecredential.md)
 
 # [Azure CLI](#tab/azurecli)
 
@@ -114,9 +111,6 @@ az account set --subscription <subscription ID>
 az configure --defaults workspace=<Azure Machine Learning workspace name> group=<resource group>
 ```
 
-Expected output: Both commands complete without error, setting the active subscription and default workspace context for subsequent Azure CLI calls.
-
-Reference: [az account set](../../cli/azure/account.md#az-account-set), [az configure --defaults](../../cli/azure/reference-index.md#az-configure)
 
 # [REST API](#tab/restapi)
 

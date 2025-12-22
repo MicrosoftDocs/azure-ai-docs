@@ -35,7 +35,7 @@ Before you open the Responsible AI dashboard, make sure you have:
 * [!INCLUDE [workspace and compute instance](includes/prerequisite-workspace-compute-instance.md)]
 * A registered model with a generated Responsible AI dashboard. To create or update one, see [Generate Responsible AI insights in the studio UI](how-to-responsible-ai-insights-ui.md) or [Generate Responsible AI insights with the SDK or CLI](how-to-responsible-ai-insights-sdk-cli.md).
 * Permissions in the workspace to view models and start compute instances (for example, Workspace Contributor or Compute Operator). [TO VERIFY]
-* Any network approvals required by your organization to reach the compute instance (for example, managed virtual network access or firewall allowlists). [TO VERIFY]
+* Any network approvals required by your organization to reach the compute instance (for example, managed virtual network access or firewall allow lists). [TO VERIFY]
 
 ## Full functionality with an integrated compute resource
 
