@@ -24,7 +24,7 @@ You can use an [Azure DevOps pipeline](/azure/devops/pipelines/) to automate the
 * Deployment of machine learning models as public or private web services.
 * Monitoring deployed machine learning models (such as for performance or data-drift analysis).
 
-This article describes how to create an Azure pipeline that builds  a machine learning model and deploys it to [Azure Machine Learning](overview-what-is-azure-machine-learning.md). 
+This article describes how to create an Azure pipeline that builds  a machine learning model and deploys itg to [Azure Machine Learning](overview-what-is-azure-machine-learning.md). 
 
 This tutorial uses [Azure Machine Learning Python SDK v2](/python/api/overview/azure/ai-ml-readme) and [Azure CLI ML extension v2](/cli/azure/ml). 
 
