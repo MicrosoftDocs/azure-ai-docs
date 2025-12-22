@@ -10,11 +10,13 @@ ms.service: azure-machine-learning
 ms.subservice: training
 ms.date: 12/22/2025
 ms.topic: how-to
+ai-usage: ai-assisted
 ms.custom:
   - sdkv2
   - build-2023
   - ignite-2023
   - update-code3
+  - dev-focus
 ---
 
 # Train models with Azure Machine Learning CLI, SDK, and REST API
@@ -99,6 +101,10 @@ workspace = '<AZUREML_WORKSPACE_NAME>'
 ml_client = MLClient(DefaultAzureCredential(), subscription_id, resource_group, workspace)
 ```
 
+Expected output: The script instantiates `ml_client`, which you can then use to submit jobs or query workspace resources.
+
+Reference: [MLClient](how-to-train-model.md#prerequisites), [DefaultAzureCredential](../python/api/azure-identity/azure.identity.defaultazurecredential.md)
+
 # [Azure CLI](#tab/azurecli)
 
 When you use the Azure CLI, you need identifier parameters - a subscription, resource group, and workspace name. While you can specify these parameters for each command, you can also set defaults that all commands use. Use the following commands to set default values. Replace `<subscription ID>`, `<Azure Machine Learning workspace name>`, and `<resource group>` with the values for your configuration:
@@ -107,6 +113,10 @@ When you use the Azure CLI, you need identifier parameters - a subscription, res
 az account set --subscription <subscription ID>
 az configure --defaults workspace=<Azure Machine Learning workspace name> group=<resource group>
 ```
+
+Expected output: Both commands complete without error, setting the active subscription and default workspace context for subsequent Azure CLI calls.
+
+Reference: [az account set](../../cli/azure/account.md#az-account-set), [az configure --defaults](../../cli/azure/reference-index.md#az-configure)
 
 # [REST API](#tab/restapi)
 
