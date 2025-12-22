@@ -14,7 +14,7 @@ ms.date: 11/18/2025
 <!-- markdownlint-disable MD024 -->
 <!-- markdownlint-disable MD001 -->
 
-Document translation is a cloud-based feature of the [Azure Translator in Foundry Tools](../../overview.md) service that asynchronously translates whole documents in [supported languages](../../language-support.md) and various [file formats](../overview.md#batch-supported-document-formats). In this quickstart, learn to use Document translation with a programming language of your choice to translate a source document into a target language while preserving structure and text formatting.
+Document translation is a cloud-based feature of the [Azure Translator in Foundry Tools](../../overview.md) service that asynchronously translates whole documents in [supported languages](../../language-support.md) and various [file formats](../overview.md#supported-document-and-glossary-formats). In this quickstart, learn to use Document translation with a programming language of your choice to translate a source document into a target language while preserving structure and text formatting.
 
 The Document translation API supports two translation processes:
 
@@ -139,7 +139,7 @@ To call the synchronous translation feature via the [REST API](../reference/sync
 |`-F` or `--form` |The filepath to an optional glossary to include with your request. The glossary requires a separate `--form` flag.|***Optional***|
 | &bull; `glossary=`<br> &bull; `type={contentType}/fileExtension`|&bull; Path to the file location for your optional glossary file.</br> &bull; Content type and file extension.</br></br> Ex: **"glossary=@C:\Test\glossary-file.txt;type=text/plain**|***Optional***|
 
-✔️ For more information on **`contentType`**, *see* [**Supported document formats**](../overview.md#synchronous-supported-document-formats).
+✔️ For more information on **`contentType`**, *see* [**Supported document formats**](../overview.md#supported-document-and-glossary-formats).
 
 ### Build and run the synchronous POST request
 

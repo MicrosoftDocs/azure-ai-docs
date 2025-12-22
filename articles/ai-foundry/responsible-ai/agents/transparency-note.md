@@ -6,10 +6,10 @@ author: aahill
 ms.author: aahi
 manager: nitinme
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: article
 ms.date: 11/17/2025
 monikerRange: 'foundry-classic || foundry'
-ms.subservice: azure-ai-foundry-agent-service
 ---
 
 # Transparency Note for Azure Agent Service

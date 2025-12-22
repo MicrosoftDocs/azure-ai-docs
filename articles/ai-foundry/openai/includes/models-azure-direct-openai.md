@@ -10,10 +10,10 @@ ms.topic: include
 
 > [!NOTE]
 > Foundry Models sold directly by Azure also include select models from top model providers, such as:
-> 
-> - Black Forest Labs: `FLUX.1-Kontext-pro`, `FLUX-1.1-pro`
-> - Cohere: `Cohere-command-a`, `embed-v-4-0`
-> - DeepSeek: `DeepSeek-V3.1`, `DeepSeek-V3-0324`, `DeepSeek-R1-0528`, `DeepSeek-R1`
+>
+> - Black Forest Labs: `FLUX.2-pro`, `FLUX.1-Kontext-pro`, `FLUX-1.1-pro`
+> - Cohere: `Cohere-command-a`, `embed-v-4-0`, `Cohere-rerank-v4.0-pro`, `Cohere-rerank-v4.0-fast`
+> - DeepSeek: `DeepSeek-V3.2`, `DeepSeek-V3.2-Speciale`, `DeepSeek-V3.1`, `DeepSeek-V3-0324`, `DeepSeek-R1-0528`, `DeepSeek-R1`
 > - Moonshot AI: `Kimi-K2-Thinking`
 > - Meta: `Llama-4-Maverick-17B-128E-Instruct-FP8`, `Llama-3.3-70B-Instruct` 
 > - Microsoft: `MAI-DS-R1`, `model-router`
@@ -26,6 +26,34 @@ ms.topic: include
 ## Azure OpenAI in Microsoft Foundry models
 
 [!INCLUDE [azure-open-ai-models-list](../includes/azure-openai-models-list.md)]
+
+## GPT-5.2
+
+### Region availability
+
+| Model | Region |
+|---|---|
+| `gpt-5.2` | East US2 & Sweden Central (Global Standard)  |
+| `gpt-5.2-chat` | East US2 & Sweden Central (Global Standard) |
+
+
+- **[Registration is required for access to gpt-5.2](https://aka.ms/oai/gpt5access).**
+
+Access will be granted based on Microsoft's eligibility criteria. Customers who previously applied and received access to a limited access model, don't need to reapply as their approved subscriptions will automatically be granted access upon model release.
+
+|  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
+|  --- |  :--- |:--- |:---|:---: |
+| `gpt-5.2` (2025-12-11) |  - [Reasoning](../how-to/reasoning.md) <br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Full summary of capabilities](../how-to/reasoning.md).  | 400,000<br><br>Input: 272,000<br>Output: 128,000  | 128,000 | October 2024 |
+| `gpt-5.2-chat` (2025-12-11)<br>**Preview** |  - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs <br> - Functions, tools, and parallel tool calling. |128,000 <br><br>Input: 111,616 <br> Output: 16,384  | 16,384 | October 2024 |
+
+
+<!-- > [!IMPORTANT]
+> - `gpt-5.1` `reasoning_effort` defaults to `none`. When upgrading from previous reasoning models to `gpt-5.1`, keep in mind that you may need to update your code to explicitly pass a `reasoning_effort` level if you want reasoning to occur.
+>
+> - `gpt-5.1-chat` adds built-in reasoning capabilities. Like other [reasoning models](../how-to/reasoning.md) it does not support parameters like `temperature`. If you upgrade from using `gpt-5-chat` (which is not a reasoning model) to `gpt-5.1-chat` make sure you remove any custom parameters like `temperature` from your code which are not supported by reasoning models.
+>
+> - `gpt-5.1-codex-max` adds support for setting `reasoning_effort` to `xhigh`. Reasoning effort `none` is not supported with `gpt-5.1-codex-max`.  -->
+
 
 ## GPT-5.1
 
@@ -274,9 +302,9 @@ OpenAI's MTEB benchmark testing found that even when the third generation model'
 
 The image generation models generate images from text prompts that the user provides. GPT-image-1 series models are in limited access preview. DALL-E 3 is generally available for use with the REST APIs. DALL-E 2 and DALL-E 3 with client SDKs are in preview.
 
-Registration is required to access `gpt-image-1` or `gpt-image-1-mini`. Access is granted based on Microsoft's eligibility criteria. Customers who have access to other limited access models still need to request access for this model.
+Registration is required to access `gpt-image-1`, `gpt-image-1-mini`, or `gpt-image-1.5`. Access is granted based on Microsoft's eligibility criteria. Customers who have access to other limited access models still need to request access for this model.
 
-To request access, go to [`gpt-image-1` limited access model application](https://aka.ms/oai/gptimage1access). When access is granted, you need to create a deployment for the model.
+To request access, fill out an application form: [Apply for GPT-image-1 access](https://aka.ms/oai/gptimage1access); [Apply for GPT-image-1.5 access](https://aka.ms/oai/gptimage1.5access). When access is granted, you need to create a deployment for the model.
 
 ### Region availability
 
@@ -285,6 +313,8 @@ To request access, go to [`gpt-image-1` limited access model application](https:
 |`dall-e-3` | East US<br>Australia East<br>Sweden Central|
 |`gpt-image-1` | West US 3 (Global Standard) <br> East US 2 (Global Standard) <br> UAE North (Global Standard) <br> Poland Central (Global Standard)<br>Sweden Central (Global Standard)|
 |`gpt-image-1-mini` | West US 3 (Global Standard) <br> East US 2 (Global Standard) <br> UAE North (Global Standard) <br> Poland Central (Global Standard)<br>Sweden Central (Global Standard) |
+|`gpt-image-1.5` | West US 3 (Global Standard) <br> East US 2 (Global Standard) <br> UAE North (Global Standard) <br> Poland Central (Global Standard)<br>Sweden Central (Global Standard)|
+
 
 
 ## Video generation models
@@ -319,7 +349,7 @@ Details about maximum request tokens and training data are available in the foll
 |`gpt-4o-realtime-preview` (2025-06-03) <br> GPT-4o audio | Audio model for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | October 2023 |
 |`gpt-4o-realtime-preview` (2024-12-17) <br> GPT-4o audio | Audio model for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | October 2023 |
 |`gpt-4o-mini-realtime-preview` (2024-12-17) <br> GPT-4o audio | Audio model for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | October 2023 |
-|`gpt-realtime` (2025-08-28) (GA)<br>`gpt-realtime-mini` (2025-10-06)<br> `gpt-audio`(2025-08-28)<br>`gpt-audio-mini`(2025-10-06) | Audio model for real-time audio processing. |Input: 28,672  <br> Output: 4,096 | October 2023 |
+|`gpt-realtime` (2025-08-28) (GA)<br>`gpt-realtime-mini` (2025-10-06)<br> `gpt-realtime-mini-2025-12-15` (2025-12-15) <br> `gpt-audio`(2025-08-28)<br>`gpt-audio-mini`(2025-10-06) | Audio model for real-time audio processing. |Input: 28,672  <br> Output: 4,096 | October 2023 |
 
 To compare the availability of GPT-4o audio models across all regions, refer to the [models table](#global-standard-model-availability).
 
@@ -336,6 +366,8 @@ The audio models via the `/audio` API can be used for speech to text, translatio
 | `gpt-4o-transcribe` | Speech-to-text model powered by GPT-4o. | 25 MB|
 | `gpt-4o-mini-transcribe` | Speech-to-text model powered by GPT-4o mini. | 25 MB|
 | `gpt-4o-transcribe-diarize` | Speech-to-text model with automatic speech recognition. | 25 MB|
+| `gpt-4o-mini-transcribe-2025-12-15` | Speech-to-text model with automatic speech recognition. Improved transcription accuracy and robustness. | 25 MB|
+
 
 
 #### Speech translation models
@@ -351,6 +383,7 @@ The audio models via the `/audio` API can be used for speech to text, translatio
 | `tts` | Text-to-speech model optimized for speed. |
 | `tts-hd` | Text-to-speech model optimized for quality.|
 | `gpt-4o-mini-tts` | Text-to-speech model powered by GPT-4o mini.<br/><br/>You can guide the voice to speak in a specific style or tone. |
+| `gpt-4o-mini-tts-2025-12-15` | Text-to-speech model powered by GPT-4o mini.<br/><br/>You can guide the voice to speak in a specific style or tone. |
 
 For more information, see [Audio models region availability](?tabs=standard-audio#standard-deployment-regional-models-by-endpoint) later in this article.
 
@@ -482,6 +515,7 @@ These models can be used only with Embedding API requests.
 |  --- | :---: |
 | `gpt-image-1` | 4,000 |
 | `gpt-image-1-mini` | 4,000 |
+| `gpt-image-1.5` | 4,000 |
 | `dall-e-3`  | 4,000 |
 
 # [Video generation](#tab/standard-video-generations)

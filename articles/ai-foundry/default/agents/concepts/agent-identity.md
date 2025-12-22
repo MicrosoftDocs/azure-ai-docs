@@ -14,9 +14,9 @@ ai-usage: ai-assisted
 
 # Agent identity concepts in Microsoft Foundry
 
-An *agent identity* is a specialized identity type in Microsoft Entra ID that's designed specifically for AI agents. It provides a standardized framework for governing, authenticating, and authorizing AI agents across Microsoft services. This framework enables agents to securely access resources, interact with users, and communicate with other systems.
+An *agent identity* is a specialized identity type in [Microsoft Entra ID](/entra/fundamentals/what-is-entra) that's designed specifically for AI agents. It provides a standardized framework for governing, authenticating, and authorizing AI agents across Microsoft services. This framework enables agents to securely access resources, interact with users, and communicate with other systems.
 
-Microsoft Foundry integrates automatically with Microsoft Entra Agent ID to create and manage agent identities for agents throughout their lifecycle. This integration simplifies permission management while maintaining security and auditability as agents move from development to production.
+Microsoft Foundry automatically provisions and manages agent identities throughout the agent lifecycle. This integration simplifies permission management while maintaining security and auditability as agents move from development to production.
 
 ## Prerequisites
 
@@ -52,7 +52,7 @@ Agent identities support two key authentication scenarios:
 
 An agent identity blueprint serves as the reusable, governing template from which all associated agent identities are created. It corresponds to a *kind*, *type*, or *class* of agents. It acts as the management object for all agent identity instances of that class.
 
-#### Blueprint functions
+#### Blueprint capabilities
 
 Agent identity blueprints serve three essential purposes:
 
@@ -87,7 +87,7 @@ All unpublished or in-development agents within the same project share a common 
 * **Reduced identity sprawl**: Using a single identity per project prevents unnecessary identity creation during early experimentation.
 * **Developer autonomy**: After the shared identity is configured, developers can independently build and test agents without repeatedly configuring new permissions.
 
-To find your shared agent identity blueprint and agent identity, go to your Foundry project in the Azure portal. On the **Overview** pane, select **JSON View**. Choose the latest API version to view and copy the identities.
+To find your shared agent identity blueprint and agent identity, go to your Foundry project in the [Azure portal](https://portal.azure.com). On the **Overview** pane, select **JSON View**. Choose the latest API version to view and copy the identities.
 
 :::image type="content" source="../media/agent-identity/azure-agent-identity-json-view.png" alt-text="Screenshot of the JSON view in the Azure portal displaying an agent identity blueprint and agent identity details for a Foundry project." lightbox="../media/agent-identity/azure-agent-identity-json-view.png":::
 

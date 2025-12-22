@@ -7,7 +7,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 11/18/2025
+ms.date: 12/15/2025
 ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python
@@ -19,7 +19,7 @@ zone_pivot_groups: programming-languages-text-analytics
 
 This article contains Text Analytics for health quickstarts that help with using the supported client libraries, C#, Java, NodeJS, and Python and the REST API.
 
-[!INCLUDE [Use Language Studio](../includes/use-language-studio.md)]
+[!INCLUDE [Use Microsoft Foundry](../includes/use-microsoft-foundry.md)]
 ::: zone pivot="programming-language-csharp"
 
 [!INCLUDE [C# quickstart](includes/quickstarts/csharp-sdk.md)]
