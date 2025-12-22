@@ -45,7 +45,7 @@ https://github.com/azure/azureml-examples
 
 ## Step 2: Sign in to Azure Pipelines
 
-[!INCLUDE [include](~/reusable-content/devops-pipelines/sign-in-azure-pipelines.md)]
+Sign in to Azure. Search for and select **Azure DevOps organizations**. Select **View my organizations**. Select the organization that you want to use. 
 
 [!INCLUDE [include](~/reusable-content/devops-pipelines/create-project.md)]
 
