@@ -68,7 +68,7 @@ By using API key authentication, you can authenticate your OpenAPI spec through 
 1. Remove any parameter in the OpenAPI spec that needs API key, because the API key is stored and passed through a connection, as described later in this article.
 1. Create a `custom keys` connection to store your API key.
 
-    1. Go to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) and select **Management center** for the AI project.
+    1. Go to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) and select **Management center** from the left navigation pane.
 
        :::image type="content" source="../../media\tools\bing\project-settings-button.png" alt-text="A screenshot of the settings button for an AI project." lightbox="../../media\tools\bing\project-settings-button.png":::
 
