@@ -5,7 +5,7 @@ description: Learn how to design and build a custom agentic retrieval solution w
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 12/19/2025
+ms.date: 12/22/2025
 ms.service: azure-ai-search
 ms.topic: tutorial
 ms.custom:
@@ -16,7 +16,7 @@ ms.custom:
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-Learn how to create an intelligent, MCP-enabled solution that integrates Azure AI Search with Foundry Agent Service for agentic retrieval. You can use this architecture for conversational applications that require complex reasoning over large knowledge domains, such as customer support or technical troubleshooting.
+Learn how to create an intelligent, MCP-enabled solution that integrates Azure AI Search with Foundry Agent Service for [agentic retrieval](agentic-retrieval-overview.md). You can use this architecture for conversational applications that require complex reasoning over large knowledge domains, such as customer support or technical troubleshooting.
 
 In this tutorial, you:
 
@@ -27,13 +27,12 @@ In this tutorial, you:
 > + Create a project connection for MCP communication between Azure AI Search and Microsoft Foundry
 > + Create an agent in Microsoft Foundry that uses the MCP tool for retrieval
 > + Test the solution by chatting with the agent
-
-The following diagram shows the high-level architecture of this solution:
+> + Review tips for optimizing the solution
 
 :::image type="content" source="media/agentic-retrieval/end-to-end-pipeline.svg" alt-text="Diagram of Azure AI Search integration with Foundry Agent Service via MCP." lightbox="media/agentic-retrieval/end-to-end-pipeline.svg" :::
 
 > [!TIP]
-> Want to get started right away? Clone the [agentic-retrieval-pipeline-example](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/agentic-retrieval-pipeline-example) Python notebook on GitHub. The notebook contains all the code from this tutorial in a ready-to-run format.
+> Want to get started right away? Clone the [agentic-retrieval-pipeline-example](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/agentic-retrieval-pipeline-example) Python notebook on GitHub. The notebook contains the code from this tutorial in a ready-to-run format.
 
 ## Prerequisites
 
@@ -41,11 +40,23 @@ The following diagram shows the high-level architecture of this solution:
 
 + A [Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects) and resource. When you create a project, the resource is automatically created.
 
-+ A [supported LLM](agentic-retrieval-how-to-create-knowledge-base.md#supported-models) deployed to your project. We recommend a minimum token capacity of 100,000. You can find the LLM's capacity and rate limit in the Microsoft Foundry portal. If you want [vectorization at query time](vector-search-integrated-vectorization.md#using-integrated-vectorization-in-queries), you should also deploy a text embedding model.
++ A text embedding model deployed to your project for [query-time vectorization](vector-search-integrated-vectorization.md#using-integrated-vectorization-in-queries). This solution uses `text-embedding-3-large`.
+
++ An LLM deployed to your project for the agent. This solution uses `gpt-4.1-mini`.
 
 + The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
 
 + [Visual Studio Code](https://code.visualstudio.com/download) with the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and [Jupyter package](https://pypi.org/project/jupyter/).
+
+## Understand the solution
+
+This solution combines Azure AI Search and Microsoft Foundry to create an end-to-end retrieval pipeline:
+
++ **Azure AI Search** hosts your knowledge base, which handles query planning, query execution, and result synthesis. You create a search index to store content, a knowledge source that references the index, and a knowledge base that performs hybrid retrieval from the knowledge source.
+
++ **Microsoft Foundry** hosts your Azure OpenAI model deployments, project connection, and agent. You create a project connection that points to the MCP endpoint of your knowledge base, and then you create an agent that uses the MCP tool to access the knowledge base.
+
+A user initiates query processing by interacting with a client app, such as a chatbot, that calls the agent. The agent uses the MCP tool to orchestrate requests to the knowledge base and synthesize responses. When the chatbot calls the agent, the MCP tool calls the knowledge base in Azure AI Search and sends the response to the agent and chatbot.
 
 ## Configure access
 
@@ -53,39 +64,33 @@ Before you begin, make sure you have permissions to access content and operation
 
 To configure access for this solution:
 
-1. Enable a system-assigned managed identity for both your search service and your project. You can do so on the **Identity** page of each resource in the [Azure portal](https://portal.azure.com).
+1. Sign in to the [Azure portal](https://portal.azure.com).
 
-1. On your search service, [enable role-based access](search-security-enable-roles.md) and [assign the following roles](search-security-rbac.md):
+1. [Enable a system-assigned managed identity](search-how-to-managed-identities.md#create-a-system-managed-identity) for both your search service and your project. You can do so on the **Identity** page of each resource.
+
+1. On your search service, [enable role-based access](search-security-enable-roles.md) and [assign the following roles](search-security-rbac.md).
 
     | Role | Assignee | Purpose |
     |------|----------|---------|
     | Search Service Contributor | Your user account | Create objects |
     | Search Index Data Contributor | Your user account | Load data |
-    | Search Index Data Reader | Your user account and your project's managed identity | Read indexed content |
+    | Search Index Data Reader | Your user account and project managed identity | Read indexed content |
 
-1. On your project's parent resource, assign the following roles:
+1. On your project's parent resource, assign the following roles.
 
     | Role | Assignee | Purpose |
     |------|----------|---------|
     | Azure AI User | Your user account | Access model deployments and create agents |
-    | Azure AI Project Manager | Your user account | Create a project connection and use the MCP tool in agents |
-    | Cognitive Services User | Your search service's managed identity | Access the knowledge base |
-
-## Understand the solution
-
-This solution combines Azure AI Search and Microsoft Foundry to create an agentic retrieval pipeline:
-
-+ **Azure AI Search** hosts your knowledge base, which uses your LLM deployment to process queries against a search index knowledge source. This solution uses the extractive data output mode, which is recommended for integration with Foundry Agent Service because it provides the agent with verbatim, unprocessed content for grounding and reasoning.
-
-+ **Microsoft Foundry** hosts your Azure OpenAI model deployments, project connection, and agent. You create a project connection that points to the MCP endpoint of your knowledge base, and then you create an agent that uses the MCP tool to coordinate retrieval.
-
-A user initiates query processing by interacting with a client app, such as a chatbot, that calls the agent. The agent uses the MCP tool to orchestrate requests to the knowledge base and synthesize responses. When the chatbot calls the agent, the MCP tool calls the knowledge base in Azure AI Search and sends the response to the agent and chatbot.
+    | Azure AI Project Manager | Your user account | Create project connection and use MCP tool in agents |
+    | Cognitive Services User | Search service managed identity | Access knowledge base |
 
 ## Set up your environment
 
 1. Create a folder named `tutorial-agentic-retrieval` on your local system.
 
 1. Open the folder in Visual Studio Code.
+
+1. Select **View > Command Palette**, and then select **Python: Create Environment**. Follow the prompts to create a virtual environment.
 
 1. Select **Terminal > New Terminal**.
 
@@ -104,8 +109,8 @@ A user initiates query processing by interacting with a client app, such as a ch
    PROJECT_ENDPOINT = https://{your-resource-name}.services.ai.azure.com/api/projects/{your-project-name}
    PROJECT_RESOURCE_ID = /subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.CognitiveServices/accounts/{account-name}/projects/{project-name}
    AZURE_OPENAI_ENDPOINT = https://{your-resource-name}.openai.azure.com
-   AZURE_OPENAI_GPT_DEPLOYMENT = gpt-5-mini
-   AGENT_MODEL = gpt-5-mini
+   AZURE_OPENAI_EMBEDDING_DEPLOYMENT = text-embedding-3-large
+   AGENT_MODEL = gpt-4.1-mini
    ```
 
    You can find the endpoints and resource ID in the Azure portal:
@@ -124,11 +129,11 @@ A user initiates query processing by interacting with a client app, such as a ch
     az login
     ```
 
-1. Create a file named `tutorial-agentic-retrieval.ipynb` in the `tutorial-agentic-retrieval` folder. You add code cells to this file in the next section.
+1. Create a file named `tutorial.ipynb` in the `tutorial-agentic-retrieval` folder. You add code cells to this file in the next section.
 
 ## Build the solution
 
-In this section, you create the components of your agentic retrieval solution. Add each code snippet to a separate code cell in the `tutorial-agentic-retrieval.ipynb` notebook and run the cells sequentially.
+In this section, you create the components of the agentic retrieval solution. Add each code snippet to a separate code cell in the `tutorial.ipynb` notebook and run the cells sequentially.
 
 Steps in this section include:
 
@@ -137,8 +142,8 @@ Steps in this section include:
 1. [Upload documents to the index](#upload-documents-to-the-index)
 1. [Create a knowledge source](#create-a-knowledge-source)
 1. [Create a knowledge base](#create-a-knowledge-base)
+1. [Set up a project client](#set-up-a-project-client)
 1. [Create a project connection](#create-a-project-connection)
-1. [Set up an AI project client](#set-up-an-ai-project-client)
 1. [Create an agent with the MCP tool](#create-an-agent-with-the-mcp-tool)
 1. [Chat with the agent](#chat-with-the-agent)
 1. [Clean up resources](#clean-up-resources)
@@ -148,10 +153,11 @@ Steps in this section include:
 The following code loads the environment variables from your `.env` file and establishes connections to Azure AI Search and Microsoft Foundry.
 
 ```python
+import os
+
 from azure.identity import DefaultAzureCredential
 from azure.mgmt.core.tools import parse_resource_id
 from dotenv import load_dotenv
-import os
 
 load_dotenv(override=True) # Take environment variables from .env
 
@@ -165,8 +171,6 @@ credential = DefaultAzureCredential()
 knowledge_source_name = os.getenv("AZURE_SEARCH_KNOWLEDGE_SOURCE_NAME", "earth-knowledge-source")
 index_name = os.getenv("AZURE_SEARCH_INDEX", "earth-at-night")
 azure_openai_endpoint = os.environ["AZURE_OPENAI_ENDPOINT"]
-azure_openai_gpt_deployment = os.getenv("AZURE_OPENAI_GPT_DEPLOYMENT", "gpt-4.1-mini")
-azure_openai_gpt_model = os.getenv("AZURE_OPENAI_GPT_MODEL", "gpt-4.1-mini")
 azure_openai_embedding_deployment = os.getenv("AZURE_OPENAI_EMBEDDING_DEPLOYMENT", "text-embedding-3-large")
 azure_openai_embedding_model = os.getenv("AZURE_OPENAI_EMBEDDING_MODEL", "text-embedding-3-large")
 base_name = os.getenv("AZURE_SEARCH_AGENT_NAME", "earth-knowledge-base")
@@ -181,7 +185,9 @@ project_name = parsed_resource_id['child_name_1']
 
 ### Create a search index
 
-This step creates a search index that contains plain text and vector content. You can use an existing index, but it must meet the criteria for agentic retrieval workloads. The primary schema requirement is a semantic configuration with a `default_configuration_name`.
+In Azure AI Search, an index is a structured collection of data. The following code creates an index to store searchable content for your knowledge base.
+
+The index schema contains fields for document identification and page content, embeddings, and numbers. The schema also includes configurations for semantic ranking and vector search, which uses your `text-embedding-3-large` deployment to vectorize text and match documents based on semantic similarity.
 
 For more information about this step, see [Create an index for agentic retrieval in Azure AI Search](agentic-retrieval-how-to-create-index.md).
 
@@ -238,9 +244,9 @@ print(f"Index '{index_name}' created or updated successfully")
 
 ### Upload documents to the index
 
-Currently, the search index is empty. Upload documents to the index so your knowledge base has content to retrieve. This code passes data from NASA's Earth at Night e-book to the search client for indexing.
+Currently, the index is empty. The following code populates the index with JSON documents from [NASA's Earth at Night e-book](https://raw.githubusercontent.com/Azure-Samples/azure-search-sample-data/refs/heads/main/nasa-e-book/earth-at-night-json/documents.json). As required by Azure AI Search, each document conforms to the fields and data types defined in the index schema.
 
-For more information about this step, see [Pushing data to an index in Azure AI Search](search-what-is-data-import.md#pushing-data-to-an-index).
+For more information about this step, see [Pushing data to an index](search-what-is-data-import.md#pushing-data-to-an-index).
 
 ```python
 import requests
@@ -257,7 +263,9 @@ print(f"Documents uploaded to index '{index_name}'")
 
 ### Create a knowledge source
 
-A knowledge source represents searchable content. This step creates a search index knowledge source that points to the index you previously created. You can also create knowledge sources that ingest data from external sources, such as Azure Blob Storage or Microsoft OneLake, into auto-generated indexes. Alternatively, you can create knowledge sources that access remote, non-indexed content.
+A knowledge source is a reusable reference to source data. The following code creates a knowledge source that targets the index you previously created.
+
+`source_data_fields` specifies which index fields are included in citation references. Our example includes only human-readable fields to avoid lengthy, uninterpretable embeddings in responses.
 
 For more information about this step, see [Create a search index knowledge source](agentic-knowledge-source-how-to-search-index.md).
 
@@ -284,13 +292,15 @@ print(f"Knowledge source '{knowledge_source_name}' created or updated successful
 
 ### Create a knowledge base
 
-A knowledge base uses agentic retrieval to process queries against your knowledge sources. Depending on the reasoning effort you configure, it can connect to your LLM deployment for intelligent query planning and response generation.
+The following code creates a knowledge base that orchestrates agentic retrieval from your knowledge source. The code also stores the MCP endpoint of the knowledge base, which your agent will use to access the knowledge base.
 
-When you create a knowledge base, you specify the knowledge sources to query, the data output mode (`EXTRACTIVE_DATA` or `ANSWER_SYNTHESIS`), and the retrieval reasoning effort. This solution uses `KnowledgeRetrievalMinimalReasoningEffort`, which doesn't require an LLM because it bypasses query planning and sends the user query directly to retrieval. If you want to use low or medium reasoning effort for more sophisticated query planning, you must also specify the LLM model parameters (`model_id` and `endpoint`). For more information, see [Set retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md).
+For integration with Foundry Agent Service, the knowledge base is configured with the following parameters:
 
-This step also stores the MCP endpoint of your knowledge base in a variable. The agent you create in a later step uses this endpoint to access the knowledge base.
++ `output_mode` is set to extractive data, which provides the agent with verbatim, unprocessed content for grounding and reasoning. The alternative mode, answer synthesis, returns pregenerated answers that limit the agent's ability to reason over source content.
 
-For more information about this step, see [Create a knowledge base for agentic retrieval in Azure AI Search](agentic-retrieval-how-to-create-knowledge-base.md).
++ `retrieval_reasoning_effort` is set to minimal effort, which bypasses LLM-based query planning to reduce costs and latency. For other reasoning efforts, the knowledge base uses an LLM to reformulate user queries before retrieval.
+
+For more information about this step, see [Create a knowledge base in Azure AI Search](agentic-retrieval-how-to-create-knowledge-base.md).
 
 ```python
 from azure.search.documents.indexes import SearchIndexClient
@@ -318,9 +328,21 @@ print(f"Knowledge base '{base_name}' created or updated successfully")
 mcp_endpoint = f"{endpoint}/knowledgebases/{base_name}/mcp?api-version=2025-11-01-Preview"
 ```
 
+### Set up a project client
+
+Use [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.aiprojectclient?view=azure-python-preview&preserve-view=true) to create a client connection to your Microsoft Foundry project. Your project might not contain any agents yet, but if you've already completed this tutorial, the agent is listed here.
+
+```python
+from azure.ai.projects import AIProjectClient
+
+project_client = AIProjectClient(endpoint=project_endpoint, credential=credential)
+
+list(project_client.agents.list())
+```
+
 ### Create a project connection
 
-The Azure AI Search development tasks are now complete. However, before you can create an agent, you must create a project connection in Microsoft Foundry that points to the MCP endpoint of your knowledge base. This endpoint allows the agent to access your knowledge base.
+The following code creates a project connection in Microsoft Foundry that points to the MCP endpoint of your knowledge base. This endpoint allows the agent to access your knowledge base.
 
 ```python
 import requests
@@ -330,7 +352,6 @@ bearer_token_provider = get_bearer_token_provider(credential, "https://managemen
 headers = {
     "Authorization": f"Bearer {bearer_token_provider()}",
 }
-
 response = requests.put(
     f"https://management.azure.com{project_resource_id}/connections/{project_connection_name}?api-version=2025-10-01-preview",
     headers=headers,
@@ -347,26 +368,13 @@ response = requests.put(
         }
     }
 )
-
 response.raise_for_status()
 print(f"Connection '{project_connection_name}' created or updated successfully.")
 ```
 
-### Set up an AI project client
-
-Use [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.aiprojectclient?view=azure-python-preview&preserve-view=true) to create a client connection to your Microsoft Foundry project.
-
-```python
-from azure.ai.projects import AIProjectClient
-
-project_client = AIProjectClient(endpoint=project_endpoint, credential=credential)
-
-list(project_client.agents.list())
-```
-
 ### Create an agent with the MCP tool
 
-You can now create an agent configured with the MCP tool. When the agent receives a user query, it can call your knowledge base through the MCP tool to retrieve relevant content for response grounding.
+The following code creates an agent configured with the MCP tool. When the agent receives a user query, it can call your knowledge base through the MCP tool to retrieve relevant content for response grounding.
 
 The agent definition includes instructions that specify its behavior and the project connection you previously created. Based on our experiments, these instructions are effective in maximizing the accuracy of knowledge base invocations and ensuring proper citation formatting.
 
@@ -375,14 +383,12 @@ For more information about this step, see [Quickstart: Create a new agent](/azur
 ```python
 from azure.ai.projects.models import PromptAgentDefinition, MCPTool
 
-# Define agent instructions
 instructions = """
 You are a helpful assistant that must use the knowledge base to answer all the questions from user. You must never answer from your own knowledge under any circumstances.
 Every answer must always provide annotations for using the MCP knowledge base tool and render them as: `【message_idx:search_idx†source_name】`
 If you cannot find the answer in the provided knowledge base you must respond with "I don't know".
 """
 
-# Create MCP tool with knowledge base connection
 mcp_kb_tool = MCPTool(
     server_label="knowledge-base",
     server_url=mcp_endpoint,
@@ -390,8 +396,6 @@ mcp_kb_tool = MCPTool(
     allowed_tools=["knowledge_base_retrieve"],
     project_connection_id=project_connection_name
 )
-
-# Create agent with MCP tool
 agent = project_client.agents.create_version(
     agent_name=agent_name,
     definition=PromptAgentDefinition(
@@ -452,9 +456,9 @@ print(f"AI agent '{agent_name}' created or updated successfully")
 
 ### Chat with the agent
 
-Your client app uses the Conversations and [Responses](/azure/ai-foundry/openai/how-to/responses) APIs from Azure OpenAI to send user input to the agent. The client creates a conversation and passes each user message to the agent through the Responses API, resembling a typical chat experience.
+Your client app uses the Conversations and [Responses](/azure/ai-foundry/openai/how-to/responses) APIs from Azure OpenAI to interact with the agent.
 
-The agent manages the conversation, determines when to call your knowledge base through the MCP tool, and returns a natural-language response (with references to the retrieved content) to the client app.
+The following code creates a conversation and passes user messages to the agent, resembling a typical chat experience. The agent determines when to call your knowledge base through the MCP tool and returns a natural-language answer with references. Setting `tool_choice="required"` ensures the agent always uses the knowledge base tool when processing queries.
 
 ```python
 # Get the OpenAI client for responses and conversations
@@ -547,7 +551,7 @@ print(f"Index '{index_name}' deleted successfully")
 
 ## Improve data quality
 
-By default, search results from your knowledge base are consolidated into a large unified string that can be passed to the agent for grounding. Azure AI Search provides the following indexing and relevance-tuning features to help you generate high-quality results. You can implement these features in the search index, and the improvements in search relevance are evident in the quality of retrieval responses.
+By default, search results from knowledge bases are consolidated into a large, unified string that can be passed to agents for grounding. Azure AI Search provides the following indexing and relevance-tuning features to help you generate high-quality results. You can implement these features in the search index, and the improvements in search relevance are evident in the quality of retrieval responses.
 
 + [Scoring profiles](index-add-scoring-profiles.md) provide built-in boosting criteria. Your index must specify a default scoring profile, which is used by the retrieval engine when queries include fields associated with that profile.
 
@@ -559,13 +563,13 @@ By default, search results from your knowledge base are consolidated into a larg
 
 ## Control the number of subqueries
 
-The LLM that powers your knowledge base determines the number of subqueries based on the following factors:
+You can control the number of subqueries by [setting the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md) on the knowledge base. The reasoning effort determines the level of LLM processing for query planning, ranging from minimal (no LLM processing) to medium (deeper search and follow-up iterations).
+
+For non-minimal reasoning efforts, the LLM determines the number of subqueries based on the following factors:
 
 + User query
 + Chat history
 + Semantic ranker input constraints
-
-As the developer, you can control the number of subqueries by [setting the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). The reasoning effort determines the level of LLM processing for query planning, ranging from minimal (no LLM processing) to medium (deeper search and follow-up iterations).
 
 ## Control the context sent to the agent
 
