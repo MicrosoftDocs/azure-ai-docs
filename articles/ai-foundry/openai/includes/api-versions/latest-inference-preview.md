@@ -1187,7 +1187,7 @@ Status Code: 200
 POST https://{endpoint}/openai/deployments/{deployment-id}/images/generations?api-version=2025-04-01-preview
 ```
 
-Generates a batch of images from a text caption on a given DALLE or gpt-image-1 model deployment
+Generates a batch of images from a text caption on a given DALL-E or gpt-image-1 series model deployment
 
 ### URI Parameters
 
@@ -1211,15 +1211,15 @@ Generates a batch of images from a text caption on a given DALLE or gpt-image-1 
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| background | [imageBackground](#imagebackground) | Allows to set transparency for the background of the generated images. This parameter is only supported for gpt-image-1. | No | auto |
+| background | [imageBackground](#imagebackground) | Allows to set transparency for the background of the generated images. This parameter is only supported for gpt-image-1 series models. | No | auto |
 | n | integer | The number of images to generate. For dall-e-3, only n=1 is supported. | No | 1 |
-| output_compression | integer | The compression level (0-100%) for the generated images. This parameter is only supported for gpt-image-1 with the jpeg output format. | No | 100 |
-| output_format | [imagesOutputFormat](#imagesoutputformat) | The file format in which the generated images are returned. Only supported for gpt-image-1. | No | png |
-| prompt | string | A text description of the desired image(s). The maximum length is 32000 characters for gpt-image-1 and 4000 characters for dall-e-3 | Yes |  |
+| output_compression | integer | The compression level (0-100%) for the generated images. This parameter is only supported for gpt-image-1 series models with the jpeg output format. | No | 100 |
+| output_format | [imagesOutputFormat](#imagesoutputformat) | The file format in which the generated images are returned. Only supported for gpt-image-1 series models. | No | png |
+| prompt | string | A text description of the desired image(s). The maximum length is 32000 characters for gpt-image-1 series and 4000 characters for dall-e-3 | Yes |  |
 |partial_images| integer | The number of partial images to generate. This parameter is used for streaming responses that return partial images. Value must be between 0 and 3. When set to 0, the response will be a single image sent in one streaming event. Note that the final image may be sent before the full number of partial images are generated if the full image is generated more quickly. | 0 |
 | stream | boolean | Edit the image in streaming mode. | no | `false` |
 | quality | [imageQuality](#imagequality) | The quality of the image that will be generated. | No | auto |
-| response_format | [imagesResponseFormat](#imagesresponseformat) | The format in which the generated images are returned. This parameter isn't supported for `gpt-image-1` which will always return base64-encoded images.<br>Possible values: `url`, `b64_json`. | No | url |
+| response_format | [imagesResponseFormat](#imagesresponseformat) | The format in which the generated images are returned. This parameter isn't supported for `gpt-image-1`-series models which will always return base64-encoded images.<br>Possible values: `url`, `b64_json`. | No | url |
 | size | [imageSize](#imagesize) | The size of the generated images. | No | auto |
 | style | [imageStyle](#imagestyle) | The style of the generated images. Only supported for dall-e-3. | No | vivid |
 | user | string | A unique identifier representing your end-user, which can help to monitor and detect abuse. | No |  |
@@ -1352,7 +1352,7 @@ Edits an image from a text caption on a given gpt-image-1 model deployment
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | image | string or array | The image(s) to edit. Must be a supported image file or an array of images. Each image should be a png, or jpg file less than 50MB. | Yes |  |
-| input_fidelity| string | Control how much effort the model will exert to match the style and features, especially facial features, of input images. This parameter is only supported for gpt-image-1. Supports `high` and `low`. | no |  `low`. | 
+| input_fidelity| string | Control how much effort the model will exert to match the style and features, especially facial features, of input images. This parameter is only supported for gpt-image-1 series models. Supports `high` and `low`. | no |  `low`. | 
 | mask | string | An additional image whose fully transparent areas (e.g., where alpha is zero) indicate where the image should be edited. If there are multiple images provided, the mask will be applied to the first image. Must be a valid PNG file, less than 4MB, and have the same dimensions as the image. | No |  |
 | n | integer | The number of images to generate.  Must be between 1 and 10. | No | 1 |
 | prompt | string | A text description of the desired image(s). The maximum length is 32000 characters. | Yes |  |
@@ -4553,7 +4553,7 @@ It responds with a session object, plus a `client_secret` key which contains a u
 | └─ type | enum | Type of noise reduction. `near_field` is for close-talking microphones such as headphones, `far_field` is for far-field microphones such as laptop or conference room microphones.<br><br>Possible values: `near_field`, `far_field` | No |  |
 | input_audio_transcription | object | Configuration for input audio transcription, defaults to off and can be set to `null` to turn off once on. Input audio transcription isn't native to the model, since the model consumes audio directly. Transcription runs asynchronously through [the Transcriptions endpoint](/azure/ai-foundry/openai/reference-preview#transcriptions---create) and should be treated as guidance of input audio content rather than precisely what the model heard. The client can optionally set the language and prompt for transcription, these offer additional guidance to the transcription service.<br> | No |  |
 | └─ language | string | The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) (e.g. `en`) format improves accuracy and latency.<br> | No |  |
-| └─ model | string | The model to use for transcription, current options are `gpt-4o-transcribe`, `gpt-4o-transcribe-diarize`, `gpt-4o-mini-transcribe`, and `whisper-1`.<br> | No |  |
+| └─ model | string | The model to use for transcription, current options are `gpt-4o-transcribe`, `gpt-4o-transcribe-diarize`, `gpt-4o-mini-transcribe`, `gpt-4o-mini-transcribe-2025-12-15`, and `whisper-1`.<br> | No |  |
 | └─ prompt | string | An optional text to guide the model's style or continue a previous audio segment.<br>For `whisper-1`, the prompt is a list of keywords.<br>For `gpt-4o-transcribe` models, the prompt is a free text string, for example "expect words related to technology".<br> | No |  |
 | instructions | string | The default system instructions (i.e. system message) prepended to model calls. This field allows the client to guide the model on desired responses. The model can be instructed on response content and format, (e.g. "be extremely succinct", "act friendly", "here are examples of good  responses") and on audio behavior (e.g. "talk quickly", "inject emotion into your voice", "laugh frequently"). The instructions are not guaranteed to be followed by the model, but they provide guidance to the model on the desired behavior.<br><br>Note that the server sets default instructions which will be used if this  field isn't set and are visible in the `session.created` event at the  start of the session.<br> | No |  |
 | max_response_output_tokens | integer or string | Maximum number of output tokens for a single assistant response, inclusive of tool calls. Provide an integer between 1 and 4096 to limit output tokens, or `inf` for the maximum available tokens for a given model. Defaults to `inf`.<br> | No |  |
@@ -4606,7 +4606,7 @@ It responds with a session object, plus a `client_secret` key which contains a u
 | └─ type | enum | Type of noise reduction. `near_field` is for close-talking microphones such as headphones, `far_field` is for far-field microphones such as laptop or conference room microphones.<br><br>Possible values: `near_field`, `far_field` | No |  |
 | input_audio_transcription | object | Configuration for input audio transcription. The client can optionally set the language and prompt for transcription, these offer additional guidance to the transcription service.<br> | No |  |
 | └─ language | string | The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) (e.g. `en`) format improves accuracy and latency.<br> | No |  |
-| └─ model | enum | The model to use for transcription, current options are `gpt-4o-transcribe`, `gpt-4o-mini-transcribe`, and `whisper-1`.<br><br>Possible values: `gpt-4o-transcribe`, `gpt-4o-mini-transcribe`, `whisper-1` | No |  |
+| └─ model | enum | The model to use for transcription, current options are `gpt-4o-transcribe`, `gpt-4o-mini-transcribe`, `gpt-4o-mini-transcribe-2025-12-15`, and `whisper-1`.<br><br>Possible values: `gpt-4o-transcribe`, `gpt-4o-mini-transcribe`, `gpt-4o-mini-transcribe-2025-12-15`, `whisper-1` | No |  |
 | └─ prompt | string | An optional text to guide the model's style or continue a previous audio segment.<br>For `whisper-1`, the prompt is a list of keywords.<br>For `gpt-4o-transcribe` models, the prompt is a free text string, for example "expect words related to technology".<br> | No |  |
 | modalities |  | The set of modalities the model can respond with. To disable audio, set this to ["text"].<br> | No |  |
 | turn_detection | object | Configuration for turn detection, ether Server VAD or Semantic VAD. This can be set to `null` to turn off, in which case the client must manually trigger model response.<br>Server VAD means that the model will detect the start and end of speech based on audio volume and respond at the end of user speech.<br>Semantic VAD is more advanced and uses a turn detection model (in conjunction with VAD) to semantically estimate whether the user has finished speaking, then dynamically sets a timeout based on this probability. For example, if user audio trails off with `uhhm`, the model will score a low probability of turn end and wait longer for the user to continue speaking. This can be useful for more natural conversations, but may have a higher latency.<br> | No |  |
@@ -6191,11 +6191,11 @@ The format in which the generated images are returned.
 
 ### imagesOutputFormat
 
-The file format in which the generated images are returned. Only supported for gpt-image-1.
+The file format in which the generated images are returned. Only supported for  series models.
 
 | Property | Value |
 |----------|-------|
-| **Description** | The file format in which the generated images are returned. Only supported for gpt-image-1. |
+| **Description** | The file format in which the generated images are returned. Only supported for gpt-image-1 series models. |
 | **Type** | string |
 | **Default** | png |
 | **Values** | `png`<br>`jpeg` |
@@ -6224,11 +6224,11 @@ The style of the generated images. Only supported for dall-e-3.
 
 ### imageBackground
 
-Allows to set transparency for the background of the generated image(s). This parameter is only supported for gpt-image-1.
+Allows to set transparency for the background of the generated image(s). This parameter is only supported for gpt-image-1 series models.
 
 | Property | Value |
 |----------|-------|
-| **Description** | Allows to set transparency for the background of the generated image(s). This parameter is only supported for gpt-image-1. |
+| **Description** | Allows to set transparency for the background of the generated image(s). This parameter is only supported for gpt-image-1 series models. |
 | **Type** | string |
 | **Default** | auto |
 | **Values** | `transparent`<br>`opaque`<br>`auto` |
@@ -6237,11 +6237,11 @@ Allows to set transparency for the background of the generated image(s). This pa
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| background | [imageBackground](#imagebackground) | Allows to set transparency for the background of the generated image(s). This parameter is only supported for gpt-image-1. | No | auto |
+| background | [imageBackground](#imagebackground) | Allows to set transparency for the background of the generated image(s). This parameter is only supported for gpt-image-1 series models. | No | auto |
 | n | integer | The number of images to generate. For dall-e-3, only n=1 is supported. | No | 1 |
-| output_compression | integer | The compression level (0-100%) for the generated images. This parameter is only supported for gpt-image-1 with the jpeg output format. | No | 100 |
-| output_format | [imagesOutputFormat](#imagesoutputformat) | The file format in which the generated images are returned. Only supported for gpt-image-1. | No | png |
-| prompt | string | A text description of the desired image(s). The maximum length is 32000 characters for gpt-image-1 and 4000 characters for dall-e-3 | Yes |  |
+| output_compression | integer | The compression level (0-100%) for the generated images. This parameter is only supported for gpt-image-1 series models with the jpeg output format. | No | 100 |
+| output_format | [imagesOutputFormat](#imagesoutputformat) | The file format in which the generated images are returned. Only supported for gpt-image-1 series models. | No | png |
+| prompt | string | A text description of the desired image(s). The maximum length is 32000 characters for gpt-image-1 series models and 4000 characters for dall-e-3 | Yes |  |
 | quality | [imageQuality](#imagequality) | The quality of the image that will be generated. | No | auto |
 | response_format | [imagesResponseFormat](#imagesresponseformat) | The format in which the generated images are returned. Only supported for dall-e-3. | No | url |
 | size | [imageSize](#imagesize) | The size of the generated images. | No | auto |
@@ -6267,7 +6267,7 @@ Allows to set transparency for the background of the generated image(s). This pa
 |------|------|-------------|----------|---------|
 | created | integer | The unix timestamp when the operation was created. | Yes |  |
 | data | array | The result data of the operation, if successful | Yes |  |
-| usage | [imageGenerationsUsage](#imagegenerationsusage) | Represents token usage details for image generation requests. Only for gpt-image-1. | No |  |
+| usage | [imageGenerationsUsage](#imagegenerationsusage) | Represents token usage details for image generation requests. Only for gpt-image-1 series models. | No |  |
 
 ### imageResult
 
@@ -6283,7 +6283,7 @@ The image url or encoded image if successful, and an error otherwise.
 
 ### imageGenerationsUsage
 
-Represents token usage details for image generation requests. Only for gpt-image-1.
+Represents token usage details for image generation requests. Only for gpt-image-1 series models.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -8826,7 +8826,7 @@ Realtime session object configuration.
 | └─ type | enum | Type of noise reduction. `near_field` is for close-talking microphones such as headphones, `far_field` is for far-field microphones such as laptop or conference room microphones.<br><br>Possible values: `near_field`, `far_field` | No |  |
 | input_audio_transcription | object | Configuration for input audio transcription, defaults to off and can be set to `null` to turn off once on. Input audio transcription isn't native to the model, since the model consumes audio directly. Transcription runs asynchronously through [the Transcriptions endpoint](/azure/ai-foundry/openai/reference-preview#transcriptions---create) and should be treated as guidance of input audio content rather than precisely what the model heard. The client can optionally set the language and prompt for transcription, these offer additional guidance to the transcription service.<br> | No |  |
 | └─ language | string | The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) (e.g. `en`) format improves accuracy and latency.<br> | No |  |
-| └─ model | string | The model to use for transcription, current options are `gpt-4o-transcribe`, `gpt-4o-mini-transcribe`, and `whisper-1`.<br> | No |  |
+| └─ model | string | The model to use for transcription, current options are `gpt-4o-transcribe`, `gpt-4o-mini-transcribe`, `gpt-4o-mini-transcribe-2025-12-15`, and `whisper-1`.<br> | No |  |
 | └─ prompt | string | An optional text to guide the model's style or continue a previous audio segment.<br>For `whisper-1`, the prompt is a list of keywords.<br>For `gpt-4o-transcribe` models, the prompt is a free text string, for example "expect words related to technology".<br> | No |  |
 | instructions | string | The default system instructions (i.e. system message) prepended to model calls. This field allows the client to guide the model on desired responses. The model can be instructed on response content and format, (e.g. "be extremely succinct", "act friendly", "here are examples of good  responses") and on audio behavior (e.g. "talk quickly", "inject emotion into your voice", "laugh frequently"). The instructions are not guaranteed to be followed by the model, but they provide guidance to the model on the desired behavior.<br><br>Note that the server sets default instructions which will be used if this  field isn't set and are visible in the `session.created` event at the  start of the session.<br> | No |  |
 | max_response_output_tokens | integer or string | Maximum number of output tokens for a single assistant response, inclusive of tool calls. Provide an integer between 1 and 4096 to limit output tokens, or `inf` for the maximum available tokens for a given model. Defaults to `inf`.<br> | No |  |
@@ -8885,7 +8885,7 @@ Realtime transcription session object configuration.
 | └─ type | enum | Type of noise reduction. `near_field` is for close-talking microphones such as headphones, `far_field` is for far-field microphones such as laptop or conference room microphones.<br><br>Possible values: `near_field`, `far_field` | No |  |
 | input_audio_transcription | object | Configuration for input audio transcription. The client can optionally set the language and prompt for transcription, these offer additional guidance to the transcription service.<br> | No |  |
 | └─ language | string | The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) (e.g. `en`) format improves accuracy and latency.<br> | No |  |
-| └─ model | enum | The model to use for transcription, current options are `gpt-4o-transcribe`, `gpt-4o-transcribe-diarize`, `gpt-4o-mini-transcribe`, and `whisper-1`.<br><br>Possible values: `gpt-4o-transcribe`, `gpt-4o-transcribe-diarize`, `gpt-4o-mini-transcribe`, `whisper-1` | No |  |
+| └─ model | enum | The model to use for transcription, current options are `gpt-4o-transcribe`, `gpt-4o-transcribe-diarize`, `gpt-4o-mini-transcribe`, `gpt-4o-mini-transcribe-2025-12-15`, and `whisper-1`.<br><br>Possible values: `gpt-4o-transcribe`, `gpt-4o-transcribe-diarize`, `gpt-4o-mini-transcribe`, `gpt-4o-mini-transcribe-2025-12-15`, `whisper-1` | No |  |
 | └─ prompt | string | An optional text to guide the model's style or continue a previous audio segment.<br>For `whisper-1`, the prompt is a list of keywords.<br>For `gpt-4o-transcribe` models, the prompt is a free text string, for example "expect words related to technology".<br> | No |  |
 | modalities |  | The set of modalities the model can respond with. To disable audio, set this to ["text"].<br> | No |  |
 | turn_detection | object | Configuration for turn detection, ether Server VAD or Semantic VAD. This can be set to `null` to turn off, in which case the client must manually trigger model response.<br>Server VAD means that the model will detect the start and end of speech based on audio volume and respond at the end of user speech.<br>Semantic VAD is more advanced and uses a turn detection model (in conjunction with VAD) to semantically estimate whether the user has finished speaking, then dynamically sets a timeout based on this probability. For example, if user audio trails off with `uhhm`, the model will score a low probability of turn end and wait longer for the user to continue speaking. This can be useful for more natural conversations, but may have a higher latency.<br> | No |  |
@@ -8912,7 +8912,7 @@ When a session is created on the server via REST API, the session object also co
 | input_audio_format | string | The format of input audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`.<br> | No |  |
 | input_audio_transcription | object | Configuration of the transcription model.<br> | No |  |
 | └─ language | string | The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) (e.g. `en`) format improves accuracy and latency.<br> | No |  |
-| └─ model | enum | The model to use for transcription. Can be `gpt-4o-transcribe`, `gpt-4o-mini-transcribe`, or `whisper-1`.<br><br>Possible values: `gpt-4o-transcribe`, `gpt-4o-mini-transcribe`, `whisper-1` | No |  |
+| └─ model | enum | The model to use for transcription. Can be `gpt-4o-transcribe`, `gpt-4o-mini-transcribe`, `gpt-4o-mini-transcribe-2025-12-15`, or `whisper-1`.<br><br>Possible values: `gpt-4o-transcribe`, `gpt-4o-mini-transcribe`, `gpt-4o-mini-transcribe-2025-12-15`, `whisper-1` | No |  |
 | └─ prompt | string | An optional text to guide the model's style or continue a previous audio segment. The prompt should match the audio language.<br> | No |  |
 | modalities |  | The set of modalities the model can respond with. To disable audio, set this to ["text"].<br> | No |  |
 | turn_detection | object | Configuration for turn detection. Can be set to `null` to turn off. Server VAD means that the model will detect the start and end of speech based on audio volume and respond at the end of user speech.<br> | No |  |

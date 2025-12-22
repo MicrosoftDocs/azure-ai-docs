@@ -618,7 +618,7 @@ The output should contain the following components:
 
 When you work in your own subscription, it's a good idea to finish a project by determining whether you still need the resources you created. Resources that are left running can cost you money.
 
-In the [Azure portal](https://portal.azure.com/), you can manage your Azure AI Search and Foundry resources by selecting **All resources** or **Resource groups** from the left pane.
+In the [Azure portal](https://portal.azure.com/), you can manage your Azure AI Search and Microsoft Foundry resources by selecting **All resources** or **Resource groups** from the left pane.
 
 Otherwise, the following requests from `agentic-retrieval.rest` deleted the objects you created in this quickstart.
 

@@ -26,12 +26,6 @@ For more information, *see* [project development lifecycle](../overview.md#proje
 
 After you review the model's performance and decide it can be used in your environment, you need to assign it to a deployment to be able to query it. Assigning the model to a deployment makes it available for use through the [prediction API](/rest/api/language/2023-04-01/conversation-analysis-runtime/analyze-conversation). We recommend creating a deployment named `production` to which you assign the best model you built so far and use it in your system. You can create another deployment called `staging` to which you can assign the model you're currently working on to be able to test it. You can have a maximum on 10 deployments in your project. 
 
-# [Language Studio](#tab/language-studio)
-
-[!INCLUDE [Deploy a model using Language Studio](../includes/language-studio/deploy-model.md)]
-   
-# [REST APIs](#tab/rest-api)
-
 ### Submit deployment job
 
 [!INCLUDE [deploy model](../includes/rest-api/deploy-model.md)]
@@ -40,7 +34,6 @@ After you review the model's performance and decide it can be used in your envir
 
 [!INCLUDE [get deployment status](../includes/rest-api/get-deployment-status.md)]
 
----
 
 ## Swap deployments
 
@@ -50,55 +43,25 @@ After you're done testing a model assigned to one deployment, you might want to 
 
 For example, you can swap your `production` and `staging` deployments when you want to take the model assigned to `staging` and assign it to `production`. 
 
-# [Language Studio](#tab/language-studio)
-
-[!INCLUDE [Swap deployments](../includes/language-studio/swap-deployment.md)]
-
-# [REST APIs](#tab/rest-api)
-
 [!INCLUDE [Swap deployments](../includes/rest-api/swap-deployment.md)]
-
----
 
 ## Delete deployment
 
-# [Language Studio](#tab/language-studio)
-
-[!INCLUDE [Delete deployment](../includes/language-studio/delete-deployment.md)]
-
-# [REST APIs](#tab/rest-api)
-
 [!INCLUDE [Delete deployment](../includes/rest-api/delete-deployment.md)]
 
----
 
 ## Assign deployment resources
 
 You can [deploy your project to multiple regions](../../concepts/custom-features/multi-region-deployment.md) by assigning different Language resources that exist in different regions. 
 
-# [Language Studio](#tab/language-studio)
-
-[!INCLUDE [Assign resource](../includes/language-studio/assign-resources.md)]
-
-# [REST APIs](#tab/rest-api)
-
 [!INCLUDE [Assign resource](../includes/rest-api/assign-resources.md)]
-
----
 
 ## Unassign deployment resources
 
 When unassigning or removing a deployment resource from a project, you also delete all the deployments that are deployed to the resource's region.
 
-# [Language Studio](#tab/language-studio)
-
-[!INCLUDE [Unassign resource](../includes/language-studio/unassign-resources.md)]
-
-# [REST APIs](#tab/rest-api)
 
 [!INCLUDE [Unassign resource](../includes/rest-api/unassign-resources.md)]
-
----
 
 ## Next steps
 

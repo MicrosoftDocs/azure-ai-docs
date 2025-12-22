@@ -6,6 +6,7 @@ ms.author: pafarley
 manager: nitinme
 ms.date: 11/06/2025
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: whats-new
 monikerRange: 'foundry-classic || foundry'
 

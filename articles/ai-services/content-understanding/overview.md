@@ -110,9 +110,6 @@ Content Understanding supports modified content filtering for approved customers
 
 ## Face capabilities
 
-> [!NOTE]
-> Face description capabilities are available in the GA API version (`2025-11-01`). This feature is limited access and requires registration at [Face Recognition](https://aka.ms/facerecognition). Face identification and grouping features from the preview API are only available in the preview API.
-
 Content Understanding provides face description capabilities that can generate detailed textual descriptions of faces in video and image content. When enabled, the generative model describes facial attributes such as facial hair, facial expression, and can identify prominent people or celebrities. Learn more about [face description in video processing](video/overview.md#face-description-fields).
 
 

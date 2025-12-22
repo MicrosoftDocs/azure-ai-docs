@@ -3,6 +3,7 @@ title: How to deploy and inference a managed compute deployment
 titleSuffix: Microsoft Foundry
 description: Learn how to deploy large language models on managed compute in Microsoft Foundry and perform real-time inference for generative AI applications.
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.custom:
   - build-2024
 ms.topic: how-to

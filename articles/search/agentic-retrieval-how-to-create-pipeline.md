@@ -5,7 +5,7 @@ description: Learn how to design and build a custom agentic retrieval solution w
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 11/19/2025
+ms.date: 12/17/2025
 ms.service: azure-ai-search
 ms.topic: tutorial
 ms.custom:
@@ -44,7 +44,7 @@ The following diagram shows the high-level architecture of this agentic retrieva
 
 Before you begin, make sure you have permissions to access content and operations. We recommend Microsoft Entra ID authentication and role-based access for authorization. You must be an **Owner** or **User Access Administrator** to assign roles. If roles aren't feasible, you can use [key-based authentication](search-security-api-keys.md) instead.
 
-To configure access for this solution, select both of the following tabs.
+To configure access for this solution, you must set permissions in both Azure AI Search and Microsoft Foundry. Select both of the following tabs for service-specific guidance.
 
 ### [**Azure AI Search**](#tab/search-perms)
 
@@ -210,6 +210,26 @@ agent = project_client.agents.create_version(
 print(f"Agent '{agent_name}' created or updated successfully.")
 ```
 
+### Connect to a remote SharePoint knowledge source
+
+Optionally, if your knowledge base includes a [remote SharePoint knowledge source](agentic-knowledge-source-how-to-sharepoint-remote.md), you must also include the `x-ms-query-source-authorization` header in the MCP tool connection.
+
+```python
+from azure.identity import get_bearer_token_provider
+
+# Create MCP tool with SharePoint authorization header
+mcp_kb_tool = MCPTool(
+    server_label = "knowledge-base",
+    server_url = mcp_endpoint,
+    require_approval = "never",
+    allowed_tools = ["knowledge_base_retrieve"],
+    project_connection_id = project_connection_name,
+    headers = {
+        "x-ms-query-source-authorization": get_bearer_token_provider(credential, "https://search.azure.com/.default")()
+    }
+)
+```
+
 ### Chat with the agent
 
 Your client app uses the Conversations and [Responses](/azure/ai-foundry/openai/how-to/responses) APIs from Azure OpenAI to send user input to the agent. The client creates a conversation and passes each user message to the agent through the Responses API, resembling a typical chat experience.
@@ -292,7 +312,7 @@ index_client.delete_knowledge_base(base_name)
 print(f"Knowledge base '{base_name}' deleted successfully")
 
 # Delete the knowledge source
-index_client.delete_knowledge_source(knowledge_source=knowledge_source_name) # This is new feature in 2025-08-01-Preview api version
+index_client.delete_knowledge_source(knowledge_source=knowledge_source_name)
 print(f"Knowledge source '{knowledge_source_name}' deleted successfully.")
 
 # Delete the search index

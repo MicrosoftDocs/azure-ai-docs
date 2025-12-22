@@ -3,8 +3,8 @@ title: How to customize voice live input and output
 titleSuffix: Foundry Tools
 description: Learn how to use the Voice live API with customized models.
 manager: nitinme
-author: goergenj
-ms.author: jagoerge
+author: PatrickFarley
+ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 10/05/2025
