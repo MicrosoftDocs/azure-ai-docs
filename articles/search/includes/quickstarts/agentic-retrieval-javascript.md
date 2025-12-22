@@ -37,7 +37,7 @@ To set up the console application for this quickstart:
 
 1. Open the folder in Visual Studio Code.
 
-1. Select **Terminal** > **New Terminal**, and then run the following commands to initalize the `package.json` file.
+1. Select **Terminal** > **New Terminal**, and then run the following commands to initialize the `package.json` file.
 
     ```console
     npm init -y
