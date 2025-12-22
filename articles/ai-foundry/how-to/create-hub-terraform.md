@@ -86,7 +86,7 @@ You'll create four Terraform files to configure the Azure provider, define Found
 
     **Reference:** [Terraform Output Values](https://registry.terraform.io/language/values/outputs)
 
-# Authenticate to Azure
+## Authenticate to Azure
 
 1. Run [az login](/cli/azure/account#az-login) without any parameters and follow the instructions to sign in to Azure.
 
@@ -123,13 +123,13 @@ You'll create four Terraform files to configure the Azure provider, define Found
 1. Get the Azure resource group name.
 
     ```console
-    resource_group_name=$(terraform output -raw resource_group_name)
+    $resource_group_name=$(terraform output -raw resource_group_name)
     ```
 
 1. Get the workspace name.
 
     ```console
-    workspace_name=$(terraform output -raw workspace_name)
+    $workspace_name=$(terraform output -raw workspace_name)
     ```
 
 1. Run [az ml workspace show](/cli/azure/ml/workspace#az-ml-workspace-show) to display information about the new workspace.
