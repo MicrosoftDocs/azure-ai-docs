@@ -43,7 +43,7 @@ Fork the following repo from GitHub:
 https://github.com/azure/azureml-examples
 ```
 
-## Step 2: Sign in to Azure Pipelines
+## Step 2: Create a project
 
 Sign in to Azure. Search for and select **Azure DevOps organizations**. Select **View my organizations**. Select the organization that you want to use. 
 
@@ -57,11 +57,11 @@ You can use an existing service connection.
 
 You need an Azure Resource Manager connection to authenticate with the Azure portal. 
 
-1. In Azure DevOps, select **Project Settings**, and then open the **Service connections** page.
+1. In Azure DevOps, select **Project settings**, and then select **Service connections**.
 
-1. Select **Create service connection**, and then select **Azure Resource Manager**.
+1. Select **Create service connection**, select **Azure Resource Manager**, and then select **Next**.
 
-1. Select the default authentication method: **Service principal (automatic)**.
+1. Use the defaults for **Indentity type** and **Credential**.
 
 1. Create your service connection. Set your preferred scope level, subscription, resource group, and connection name. 
 
@@ -240,7 +240,7 @@ The task has four inputs: `Service Connection`, `Azure Resource Group Name`, `Az
   timeoutInMinutes: 0
   dependsOn: SubmitAzureMLJob
   variables: 
-    # Save the name of the azureMl job submitted in the previous step to a variable. It will be used as an inut to the AzureML Job Wait task.
+    # Save the name of the azureMl job submitted in the previous step to a variable. It will be used as an input to the AzureML Job Wait task.
     azureml_job_name_from_submit_job: $[ dependencies.SubmitAzureMLJob.outputs['submit_azureml_job_task.JOB_NAME'] ] 
   steps:
   - task: AzureMLJobWaitTask@1
