@@ -69,22 +69,24 @@ You need an Azure Resource Manager connection to authenticate with the Azure por
 
 # [Generic](#tab/generic)
 
-1. In Azure DevOps, select **Project Settings**, and then open the **Service connections** page.
+1. In Azure DevOps, select **Project settings**, and then select **Service connections**.
 
-1. Select **Create service connection**, and then select **Generic**.
+1. Select **Create service connection**, select **Generic**, and then select **Next**.
 
-1. Use ```https://management.azure.com``` and provide a service connection name. Don't provide any authentication-related information.
+1. In **Server URL**, enter **https://management.azure.com**. 
 
-1. Create your service connection.
+1. Provide a service connection name. Don't provide any authentication-related information.
+
+1. Select **Save**.
 
 ---
 
 
 ## Step 4: Create a pipeline
 
-1. Go to **Pipelines**, and then select **create pipeline**.
+1. Go to **Pipelines**, and then select **Create Pipeline**.
 
-1. Complete the steps of the wizard by first selecting **GitHub** as the location of your source code.
+1. Select **GitHub** as the location of your source code.
 
 1. You might be redirected to GitHub to sign in. If you are, enter your GitHub credentials.
 
