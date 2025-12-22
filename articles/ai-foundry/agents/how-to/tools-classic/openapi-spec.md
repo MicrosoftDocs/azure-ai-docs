@@ -105,7 +105,16 @@ By using API key authentication, you can authenticate your OpenAPI spec through 
 
 ## Authenticate with managed identity (Microsoft Entra ID)
 
-[Microsoft Entra ID](/entra/fundamentals/whatis) is a cloud-based identity and access management service that your employees can use to access external resources. By using Microsoft Entra ID, you can add extra security when you authenticate your APIs without needing to use API keys. After you set up managed identity authentication, the Foundry Tool your agent uses handles the authentication. 
+[Microsoft Entra ID](/entra/fundamentals/whatis) is a cloud-based identity and access management service that your employees can use to access external resources. By using Microsoft Entra ID, you can add extra security when you authenticate your APIs without needing to use API keys. After you set up managed identity authentication, the Foundry Tool your agent uses handles the authentication.
+
+When configuring managed identity authentication, you need to provide an **Audience** value. The audience is the OAuth2 resource identifier (also called scope or application ID URI) that identifies which API or service the managed identity can access.
+
+**Common audience values:**
+
+- Azure AI services (including Foundry): `https://cognitiveservices.azure.com/`
+- Azure Resource Manager APIs: `https://management.azure.com/`
+- Microsoft Graph: `https://graph.microsoft.com/`
+- Custom APIs registered in Microsoft Entra ID: Use the **Application ID URI** found in the API's app registration
 
 To set up authentication by using Managed Identity:
 
