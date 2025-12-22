@@ -27,7 +27,6 @@ For more information, see [Deploy an application with an Azure Resource Manager 
 
 * To use a template from a CLI, you need either [Azure PowerShell](/powershell/azure/) or the [Azure CLI](/cli/azure/install-azure-cli).
 
-* Ensure you have the **Contributor** role (or higher) on the subscription or resource group that hosts the workspace resources. For more information, see [Azure roles for Azure Machine Learning](how-to-identity-based-service-authentication.md#azure-roles-for-azure-machine-learning).
 
 ## Limitations
 
