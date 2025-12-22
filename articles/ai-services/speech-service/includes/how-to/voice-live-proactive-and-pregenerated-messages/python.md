@@ -7,6 +7,7 @@ ms.author: pafarley
 ms.service: azure-ai-openai
 ms.topic: include
 ms.date: 11/09/2025
+ms.subservice: azure-ai-foundry-openai
 ---
 
 [!INCLUDE [Header](../../common/voice-live-python.md)]
