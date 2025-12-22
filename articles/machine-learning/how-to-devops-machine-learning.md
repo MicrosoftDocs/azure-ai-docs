@@ -61,7 +61,7 @@ You need an Azure Resource Manager connection to authenticate with the Azure por
 
 1. Select **Create service connection**, select **Azure Resource Manager**, and then select **Next**.
 
-1. Use the defaults for **Indentity type** and **Credential**.
+1. Use the defaults for **Identity type** and **Credential**.
 
 1. Create your service connection. Set your preferred scope level, subscription, resource group, and connection name. 
 
