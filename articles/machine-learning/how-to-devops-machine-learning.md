@@ -8,7 +8,7 @@ ms.subservice: mlops
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: kritifaujdar
-ms.date: 06/12/2024
+ms.date: 12/22/2025
 ms.topic: how-to
 ms.custom: devops-pipelines-deploy
 ---
