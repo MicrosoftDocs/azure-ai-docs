@@ -17,7 +17,7 @@ ms.custom: azure-ai-agents
 # Grounding with Bing Custom Search (preview)
 
 > [!NOTE]
-> This document refers to the classic version of the agents API. 
+> This article refers to the classic version of the agents API. 
 >
 > 🔍 [View the new Grounding with Bing Search documentation](../../../default/agents/how-to/tools/bing-tools.md).
 
@@ -40,7 +40,7 @@ The user query is the message that an end user sends to an agent, such as "what 
 When a user sends a query, the customer's AI model deployment first processes it (using the provided instructions) to later perform a Bing Custom Search query (which is visible to developers). Grounding with Bing Custom Search returns relevant search results to the customer's model deployment, which then generates the final output. 
 
 > [!NOTE]
-> When using Grounding with Bing Custom Search, the Bing Custom Search query, the configuration instance, tool parameters, and your resource key are sent to Bing, and no end user-specific information is included. Your resource key is sent to Bing solely for billing and rate limiting purposes. 
+> When you use Grounding with Bing Custom Search, the Bing Custom Search query, the configuration instance, tool parameters, and your resource key are sent to Bing. The query doesn't include any end user-specific information. You send your resource key to Bing solely for billing and rate limiting purposes. 
 
 The authorization will happen between Grounding with Bing Custom Search service and Foundry Agent service. Any Bing Custom Search query that is generated and sent to Bing for the purposes of grounding is transferred, along with the resource key and configuration instance, outside of the Azure compliance boundary to the Grounding with Bing Custom Search service. Grounding with Bing Custom Search is subject to Bing's terms and don't have the same compliance standards and certifications as the Agent Service, as described in the Grounding with Bing Custom Search Terms of Use. It's your responsibility to assess whether the use of Grounding with Bing Custom Search in your agent meets your needs and requirements. 
 
@@ -78,12 +78,12 @@ Transactions with your Grounding with Bing resource are counted by the number of
 
 When you create or update a configuration, enter the following information: 
 
-1. The name of your configuration. This can be changed at any time. 
+1. The name of your configuration. You can change this name at any time. 
 
 1. Include URLs to define your search slices in at least one of the following fields: 
 
     > [!NOTE]
-    > Grounding with Bing Custom Search only returns results for domains and webpages that are public and have been indexed by Bing. 
+    > Grounding with Bing Custom Search only returns results for domains and webpages that are public and indexed by Bing. 
     > * Domain (for example, `https://www.microsoft.com`) 
     > * Domain and path (for example, `https://www.microsoft.com/surface`) 
     > * Webpage (for example, `https://www.microsoft.com/en-us/p/surface-earbuds/8r9cpq146064`) 
@@ -116,7 +116,7 @@ When you create or update a configuration, enter the following information:
 
 Grounding with Bing Custom Search is a powerful tool that allows you to select a subspace of the web to limit your Agent’s grounding knowledge. Here you can find a few tips for how to take the maximum advantage of this capability: 
 
-1. If you own a public site that you want to include in the search but Bing hasn’t indexed, see the [Bing webmaster documentation](https://www.bing.com/webmaster/help/webmaster-guidelines-30fba23a) for details about getting your site indexed. The webmaster documentation also provides details about getting Bing to crawl your site if the index is out of date. 
+1. If you own a public site that you want to include in the search but Bing hasn't indexed, see the [Bing webmaster documentation](https://www.bing.com/webmaster/help/webmaster-guidelines-30fba23a) for details about getting your site indexed. The webmaster documentation also provides details about getting Bing to crawl your site if the index is out of date. 
 
 1. You can only block certain domains and perform a search against the rest of the Web (a competitor’s site, for example). 
 
@@ -130,4 +130,4 @@ When you add the Grounding with Bing Custom Search tool to your agent, you can p
 |`count`|The number of search results to return in the response. The default is 5 and the maximum value is 50. The actual number delivered might be less than requested. It's possible for multiple pages to include some overlap in results. This parameter affects only web page results. It's possible that AI model might not use all search results returned by Bing.|`UnsignedShort`|No |
 |`freshness`|Filter search results by the following case-insensitive age values: <br/> **Day**: Return webpages that Bing discovered within the last 24 hours.<br/> **Week**: Return webpages that Bing discovered within the last 7 days.<br/> **Month**: Return webpages that Bing discovered within the last 30 days. To get articles discovered by Bing during a specific timeframe, specify a date range in the form: `YYYY-MM-DD..YYYY-MM-DD`. For example, `freshness=2019-02-01..2019-05-30`. To limit the results to a single date, set this parameter to a specific date. For example, `freshness=2019-02-04`.|String|No |
 |`market`|The market where the results come from. Typically, `mkt` is the country/region where the user is making the request from. However, it could be a different country/region if the user isn't located in a country/region where Bing delivers results. The market must be in the form: `<language>-<country/region>`. For example, `en-US`. The string is case insensitive. For a list of possible market values, see [Market codes](/bing/search-apis/bing-web-search/reference/market-codes). If known, you're encouraged to always specify the market. Specifying the market helps Bing route the request and return an appropriate and optimal response. If you specify a market that is not listed in Market codes, Bing uses a best fit market code based on an internal mapping that is subject to change. |String|No |
-|`set_lang`|The language to use for user interface strings. You may specify the language using either a 2-letter or 4-letter code. Using 4-letter codes is preferred.<br/> For a list of supported language codes, see [Bing supported languages](/bing/search-apis/bing-web-search/reference/market-codes#bing-supported-language-codes).<br/> Bing loads the localized strings if `setlang` contains a valid 2-letter neutral culture code (`fr`) or a valid 4-letter specific culture code (`fr-ca`). For example, for `fr-ca`, Bing loads the `fr` neutral culture code strings.<br/> If `setlang` isn't valid (for example, `zh`) or Bing doesn’t support the language (for example, `af`, `af-na`), Bing defaults to `en` (English).<br/> To specify the 2-letter code, set this parameter to an ISO 639-1 language code.<br/> To specify the 4-letter code, use the form `<language>-<country/region>` where `<language>` is an ISO 639-1 language code (neutral culture) and `<country/region>` is an ISO 3166 country/region (specific culture) code. For example, use `en-US` for United States English.<br/> Although optional, you should always specify the language. Typically, you set `setLang` to the same language specified by `mkt` unless the user wants the user interface strings displayed in a different language.|String|No|
+|`set_lang`|The language to use for user interface strings. Specify the language by using either a 2-letter or 4-letter code. Using 4-letter codes is preferred.<br/> For a list of supported language codes, see [Bing supported languages](/bing/search-apis/bing-web-search/reference/market-codes#bing-supported-language-codes).<br/> Bing loads the localized strings if `setlang` contains a valid 2-letter neutral culture code (`fr`) or a valid 4-letter specific culture code (`fr-ca`). For example, for `fr-ca`, Bing loads the `fr` neutral culture code strings.<br/> If `setlang` isn't valid (for example, `zh`) or Bing doesn’t support the language (for example, `af`, `af-na`), Bing defaults to `en` (English).<br/> To specify the 2-letter code, set this parameter to an ISO 639-1 language code.<br/> To specify the 4-letter code, use the form `<language>-<country/region>` where `<language>` is an ISO 639-1 language code (neutral culture) and `<country/region>` is an ISO 3166 country or region (specific culture) code. For example, use `en-US` for United States English.<br/> Although optional, always specify the language. Typically, set `setLang` to the same language specified by `mkt` unless the user wants the user interface strings displayed in a different language.|String|No|
