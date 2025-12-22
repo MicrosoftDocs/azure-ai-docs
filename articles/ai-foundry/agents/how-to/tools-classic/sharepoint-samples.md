@@ -217,3 +217,9 @@ curl --request GET \
 ```
 
 :::zone-end
+
+## Related content
+
+- [Use the Microsoft SharePoint tool](sharepoint.md)
+- [Call Azure Logic apps as functions using Azure OpenAI Assistants](/azure/ai-foundry/openai/how-to/assistants-logic-apps)
+- [Workflows with AI agents and models in Azure Logic Apps](/azure/logic-apps/agent-workflows-concepts)
