@@ -10,7 +10,7 @@ ms.author: lajanuar
 
 Use this quickstart to create a language detection application with the client library for Python. In the following example, you create a Python application that can identify the language a text sample was written in.
 
-[!INCLUDE [Use Language Studio](../../../includes/use-language-studio.md)]
+[!INCLUDE [Use Microsoft Foundry](../../../includes/use-microsoft-foundry.md)]
 
 
 ## Prerequisites

@@ -1,7 +1,7 @@
 ---
 manager: nitinme
-author: goergenj
-ms.author: jagoerge
+author: PatrickFarley
+ms.author: pafarley
 reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.service: azure-ai-foundry
@@ -10,7 +10,7 @@ ms.date: 11/06/2025
 ms.subservice: azure-ai-foundry-openai
 ---
 
-In this article, you learn how to use Azure Speech in Foundry Tools voice live with [Foundry Agent Service](/azure/ai-foundry/agents/overview) using the VoiceLive SDK for C#.
+In this article, you learn how to use  voice live with [Foundry Agent Service](/azure/ai-foundry/agents/overview) using the VoiceLive SDK for C#.
 
 [!INCLUDE [Header](../../common/voice-live-csharp.md)]
 

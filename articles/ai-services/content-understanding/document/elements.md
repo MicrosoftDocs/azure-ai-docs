@@ -3,7 +3,7 @@ title: 'Document Analysis: Extract Structured Content with Azure Content Underst
 titleSuffix: Foundry Tools
 description: Learn about Azure Content Understanding in Foundry Tools document layout analysis and data extraction capabilities.
 author: PatrickFarley 
-ms.author: jppark
+ms.author: pafarley
 manager: nitinme
 ms.date: 10/19/2025
 ms.service: azure-ai-content-understanding

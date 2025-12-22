@@ -103,7 +103,11 @@ Otherwise proceed with best-effort assumptions (state them briefly).
 	• When changes have been made, update those parts of the plan with [DONE] for tracking
 	• **Distinguish chat from article content**: In your chat responses explaining recommendations, you SHOULD cite instruction files (e.g., "based on foundry-branding.instructions.md"). However, in the actual suggested article text/edits you propose, NEVER include ANY citations or source references—article text should be clean documentation without meta-commentary.
 
-
+### Enable tracking & telemetry
+ - When prompted to make changes to an article, ensure that the two values below are added to the article metadata.
+    - `ms.custom:`Leave existing custom tags intact and add `dev-focus` to the list.
+    - `ai-usage`: if not already present, add `ai-usage: ai-assisted` to the article metadata.
+		
 ## Microsoft Writing Style Guide Implementation
 
 ### Voice and Tone

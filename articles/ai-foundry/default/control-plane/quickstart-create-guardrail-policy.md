@@ -4,7 +4,7 @@ description: These instructions guide you in creating a guardrail policy for you
 author: gregharen
 ms.author: scottpolly
 ms.reviewer: gregharen
-ms.date: 11/05/2025
+ms.date: 12/11/2025
 ms.topic: quickstart
 ms.service: azure-ai-foundry
 ms.custom: dev-focus
@@ -38,7 +38,7 @@ In this quickstart, you create an Azure Policy in Microsoft Foundry to govern th
 
 1. Select **Compliance** in the left pane.
 
-1. Select **Create new policy**.
+1. Select **Create policy**.
 
      :::image type="content" source="media/quickstart-create-a-guardrail-policy/compliance-tab.png" alt-text="Screenshot of the Compliance pane of the Foundry Control Plane." lightbox="media/quickstart-create-a-guardrail-policy/compliance-tab.png":::
 
