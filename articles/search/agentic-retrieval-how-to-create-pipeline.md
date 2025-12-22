@@ -342,7 +342,7 @@ list(project_client.agents.list())
 
 ### Create a project connection
 
-The following code creates a project connection in Microsoft Foundry that points to the MCP endpoint of your knowledge base. This endpoint allows the agent to access your knowledge base.
+The following code creates a project connection in Microsoft Foundry that points to the MCP endpoint of your knowledge base. This connection uses your project managed identity to authenticate to Azure AI Search.
 
 ```python
 import requests
@@ -352,6 +352,7 @@ bearer_token_provider = get_bearer_token_provider(credential, "https://managemen
 headers = {
     "Authorization": f"Bearer {bearer_token_provider()}",
 }
+
 response = requests.put(
     f"https://management.azure.com{project_resource_id}/connections/{project_connection_name}?api-version=2025-10-01-preview",
     headers=headers,
@@ -368,6 +369,7 @@ response = requests.put(
         }
     }
 )
+
 response.raise_for_status()
 print(f"Connection '{project_connection_name}' created or updated successfully.")
 ```
@@ -396,6 +398,7 @@ mcp_kb_tool = MCPTool(
     allowed_tools=["knowledge_base_retrieve"],
     project_connection_id=project_connection_name
 )
+
 agent = project_client.agents.create_version(
     agent_name=agent_name,
     definition=PromptAgentDefinition(
@@ -429,6 +432,7 @@ print(f"Knowledge source '{remote_sp_ks.name}' created or updated successfully."
 knowledge_base.knowledge_sources = [
     KnowledgeSourceReference(name=remote_sp_ks.name), KnowledgeSourceReference(name=knowledge_source_name)
 ]
+
 index_client.create_or_update_knowledge_base(knowledge_base=knowledge_base)
 print(f"Knowledge base '{base_name}' updated with new knowledge source successfully")
 
@@ -442,6 +446,7 @@ mcp_kb_tool = MCPTool(
         "x-ms-query-source-authorization": get_bearer_token_provider(credential, "https://search.azure.com/.default")()
     }
 )
+
 agent = project_client.agents.create_version(
     agent_name=agent_name,
     definition=PromptAgentDefinition(
