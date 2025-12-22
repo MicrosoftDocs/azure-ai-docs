@@ -639,7 +639,7 @@ print(f"Documents uploaded to index '{index_name}' successfully.")
 
 A knowledge source is a reusable reference to source data. The following code defines a knowledge source named `earth-knowledge-source` that targets the `earth-at-night` index.
 
-`source_data_fields` specifies which index fields are accessible for retrieval and citations. Our example includes only human-readable fields to avoid lengthy, uninterpretable embeddings in responses.
+`source_data_fields` specifies which index fields are included in citation references. Our example includes only human-readable fields to avoid lengthy, uninterpretable embeddings in responses.
 
 ```python
 # Create a knowledge source

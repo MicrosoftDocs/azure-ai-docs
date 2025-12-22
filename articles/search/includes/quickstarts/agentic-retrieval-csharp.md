@@ -682,7 +682,7 @@ Console.WriteLine($"Documents uploaded to index '{indexName}' successfully.");
 
 A knowledge source is a reusable reference to source data. The following code defines a knowledge source named `earth-knowledge-source` that targets the `earth-at-night` index.
 
-`SourceDataFields` specifies which index fields are accessible for retrieval and citations. Our example includes only human-readable fields to avoid lengthy, uninterpretable embeddings in responses.
+`SourceDataFields` specifies which index fields are included in citation references. Our example includes only human-readable fields to avoid lengthy, uninterpretable embeddings in responses.
 
 ```csharp
 // Create a knowledge source
