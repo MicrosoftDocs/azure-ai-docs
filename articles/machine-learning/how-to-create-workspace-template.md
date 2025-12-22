@@ -6,11 +6,12 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.topic: how-to
-ms.custom: devx-track-azurepowershell, devx-track-arm-template, devx-track-azurecli
+ms.custom: devx-track-azurepowershell, devx-track-arm-template, devx-track-azurecli, dev-focus
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: deeikele
-ms.date: 11/26/2025
+ms.reviewer: shshubhe
+ms.date: 12/22/2025
+ai-usage: ai-assisted
 #Customer intent: As a DevOps deployment manager, I want to automate or customize the creation of Azure Machine Learning by using templates.
 ---
 
@@ -25,6 +26,8 @@ For more information, see [Deploy an application with an Azure Resource Manager 
 * An Azure subscription. If you don't have one, try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * To use a template from a CLI, you need either [Azure PowerShell](/powershell/azure/) or the [Azure CLI](/cli/azure/install-azure-cli).
+
+* Ensure you have the **Contributor** role (or higher) on the subscription or resource group that hosts the workspace resources. For more information, see [Azure roles for Azure Machine Learning](how-to-identity-based-service-authentication.md#azure-roles-for-azure-machine-learning).
 
 ## Limitations
 
@@ -50,7 +53,7 @@ If you want to create a template that deploys multiple workspaces in the same vi
 
 ## About the Resource Manager template
 
-You can get the Resource Manager template used throughout this document from the [microsoft.machineleaerningservices/machine-learning-workspace-vnet](https://github.com/Azure/azure-quickstart-templates/blob/master/quickstarts/microsoft.machinelearningservices/machine-learning-workspace-vnet/azuredeploy.json) directory of the Azure Quickstart Templates GitHub repository.
+You can get the Resource Manager template used throughout this document from the [microsoft.machinelearningservices/machine-learning-workspace-vnet](https://github.com/Azure/azure-quickstart-templates/blob/master/quickstarts/microsoft.machinelearningservices/machine-learning-workspace-vnet/azuredeploy.json) directory of the Azure Quickstart Templates GitHub repository.
 
 This template creates the following Azure services:
 
@@ -81,12 +84,6 @@ The example template has two required parameters:
 > You can also reference an existing container registry or storage account in the Azure Resource Manager template, instead of creating a new one. If you do, you must either [use a managed identity](how-to-identity-based-service-authentication.md) or [enable the admin account](/azure/container-registry/container-registry-authentication#admin-account) for the container registry.
 
 [!INCLUDE [machine-learning-delete-acr](includes/machine-learning-delete-acr.md)]
-
-For more information on templates, see the following articles:
-
-* [Write Azure Resource Manager templates](/azure/azure-resource-manager/templates/syntax)
-* [Deploy an application with Azure Resource Manager templates](/azure/azure-resource-manager/templates/deploy-powershell)
-* [Microsoft.MachineLearningServices resource types](/azure/templates/microsoft.machinelearningservices/allversions)
 
 ## Deploy the template
 
@@ -134,7 +131,26 @@ New-AzResourceGroupDeployment `
 
 ---
 
-By default, all resources created by the template are new. However, you can also use existing resources by including different parameters in the template. For example, if you want to use an existing storage account, set the `storageAccountOption` value to `existing`, and provide the name of your storage account in the `storageAccountName` parameter, as shown in the following command.
+After the deployment completes, verify that the workspace exists by using the Azure CLI. The `az ml workspace show` command requires the Azure Machine Learning extension (`az extension add --name ml`) and returns a `provisioningState` of `Succeeded` when the deployment finishes.
+
+```azurecli
+az ml workspace show \
+  --name "exampleworkspace" \
+  --resource-group "examplegroup" \
+  --output table
+```
+
+By default, all resources created by the template are new. However, you can also use existing resources by including different parameters in the template. Key parameters you'll reuse across scenarios include:
+
+* `workspaceName`: Sets the friendly name for the Azure Machine Learning workspace.
+* `location`: Specifies the region for the workspace metadata and dependent services.
+* `storageAccountOption`: Choose `new` or `existing` to control whether the template provisions storage.
+* `storageAccountName`: Provide the name when you reference an existing storage account.
+* `privateEndpointType`: Set to `AutoApproval` or `ManualApproval` when you deploy with private endpoints.
+* `vnetOption`: Choose `new` or `existing` to decide how the workspace connects to a virtual network.
+* `vnetName`: Supply the virtual network name whenever you integrate with a virtual network.
+
+For example, if you want to use an existing storage account, set the `storageAccountOption` value to `existing`, and provide the name of your storage account in the `storageAccountName` parameter, as shown in the following command.
 
 > [!IMPORTANT]
 > If you want to use an existing Azure Storage account, it can't be a premium account (Premium_LRS or Premium_GRS). It also can't have a hierarchical namespace (which is used with Azure Data Lake Storage Gen2). Neither premium storage nor hierarchical namespaces are supported with the default storage account of the workspace. You can use premium storage or hierarchical namespace with non-default storage accounts.
@@ -219,7 +235,7 @@ To get the values for the `cmk_keyvault` (the ID of the key vault) and the `reso
     # [Azure PowerShell](#tab/azpowershell)    
     
     ```azurepowershell    
-    Get-AzureKeyVaultKey -VaultName '<keyvault-name>' -KeyName '<key-name>'    
+    Get-AzKeyVaultKey -VaultName '<keyvault-name>' -KeyName '<key-name>'    
     ```    
     ---    
 
@@ -245,7 +261,7 @@ az deployment group create \
       location="eastus" \
       encryption_status="Enabled" \
       cmk_keyvault="/subscriptions/{subscription-guid}/resourceGroups/<resource-group-name>/providers/Microsoft.KeyVault/vaults/<keyvault-name>" \
-      resource_cmk_uri="https://mykeyvault.vault.azure.net/keys/mykey/{guid}" \
+      resource_cmk_uri="https://mykeyvault.vault.azure.net/keys/mykey/{guid}"
 ```
 
 # [Azure PowerShell](#tab/azpowershell)
@@ -272,9 +288,6 @@ You can optionally set the `confidential_data` parameter to `true`. Doing so ena
 * Securely passes credentials for the storage account, container registry, and SSH account from the execution layer to your compute clusters by using Key Vault.
 * Enables IP filtering to ensure that no external services other than AzureMachineLearningService can call the underlying batch pools.
 
-    > [!IMPORTANT]
-    > After a workspace it created, you can't change the settings for confidential data, encryption, key vault ID, or key identifiers. To change these values, you must create a new workspace that uses the new values.
-
   For more information, see [Encryption at rest](concept-data-encryption.md#encryption-at-rest).
 
 ## Deploy a workspace behind a virtual network
@@ -289,7 +302,7 @@ By setting the `vnetOption` parameter value to either `new` or `existing`, you c
 
 ### Only deploy the workspace behind a private endpoint
 
-If your associated resources aren't behind a virtual network, you can set the `privateEndpointType` parameter to `AutoAproval` or `ManualApproval` to deploy the workspace behind a private endpoint. This setting can be used for both new and existing workspaces. When updating an existing workspace, configure the template parameters with the information from the existing workspace.
+If your associated resources aren't behind a virtual network, you can set the `privateEndpointType` parameter to `AutoApproval` or `ManualApproval` to deploy the workspace behind a private endpoint. This setting can be used for both new and existing workspaces. When updating an existing workspace, configure the template parameters with the information from the existing workspace.
 
 # [Azure CLI](#tab/azcli)
 
@@ -332,7 +345,7 @@ az deployment group create \
       location="eastus" \
       vnetOption="new" \
       vnetName="examplevnet" \
-      storageAccountBehindVNet="true"
+      storageAccountBehindVNet="true" \
       privateEndpointType="AutoApproval"
 ```
 
@@ -370,7 +383,7 @@ az deployment group create \
       keyVaultBehindVNet="true" \
       containerRegistryBehindVNet="true" \
       containerRegistryOption="new" \
-      containerRegistrySku="Premium"
+      containerRegistrySku="Premium" \
       privateEndpointType="AutoApproval"
 ```
 
@@ -445,7 +458,7 @@ To deploy a workspace with existing resources, you have to set the `vnetOption` 
       containerRegistryOption="new" \
       containerRegistrySku="Premium" \
       subnetName="examplesubnet" \
-      subnetOption="existing"
+      subnetOption="existing" \
       privateEndpointType="AutoApproval"
     ```
     
@@ -483,7 +496,7 @@ To deploy a workspace with existing resources, you have to set the `vnetOption` 
    * Region: Select the Azure region to create the resources in.
    * Workspace name: Enter a name for the Azure Machine Learning workspace. The workspace name must be between 3 and 33 characters. It can contain only alphanumeric characters and the `-` character.
    * Location: Select the location for the deployment metadata. This location can be the same as the region location, or it can be different. 
-   * Vnet Name: Enter a virtual network name. 
+  * VNet name: Enter a virtual network name. 
 1. Select __Review + create__.
 1. Select __Create__.
 
@@ -592,6 +605,9 @@ To avoid this problem, we recommend one of the following approaches:
 
 * [Deploy resources with Resource Manager templates and Resource Manager REST API](/azure/azure-resource-manager/templates/deploy-rest)
 * [Creating and deploying Azure resource groups through Visual Studio](/azure/azure-resource-manager/templates/create-visual-studio-deployment-project)
+* [Write Azure Resource Manager templates](/azure/azure-resource-manager/templates/syntax)
+* [Deploy an application with Azure Resource Manager templates](/azure/azure-resource-manager/templates/deploy-powershell)
+* [Microsoft.MachineLearningServices resource types](/azure/templates/microsoft.machinelearningservices/allversions)
 * [Get other templates related to Azure Machine Learning](https://github.com/Azure/azure-quickstart-templates)
 * [How to use workspace diagnostics](how-to-workspace-diagnostic-api.md)
 * [Move an Azure Machine Learning workspace to another subscription](how-to-move-workspace.md)
