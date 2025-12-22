@@ -8,7 +8,6 @@ ms.topic: article
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 monikerRange: 'foundry-classic || foundry'
-ms.subservice: azure-ai-foundry-openai
 ---
 
 # Personally identifiable information (PII) filter
