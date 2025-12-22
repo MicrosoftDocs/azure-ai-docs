@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 11/21/2025
+ms.date: 12/22/2025
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents-code
@@ -17,7 +17,7 @@ zone_pivot_groups: selection-agent-sharepoint
 # How to use the SharePoint tool
 
 > [!NOTE]
-> This document refers to the classic version of the agents API. 
+> This article refers to the classic version of the agents API. 
 >
 > 🔍 [View the new SharePoint tool documentation](../../../default/agents/how-to/tools/sharepoint.md?view=foundry&preserve-view=true).
 
@@ -37,14 +37,14 @@ Use this article to find step-by-step instructions and code samples for using th
     Save this endpoint to an environment variable named `PROJECT_ENDPOINT`. 
 
 
-* The name of your SharePoint connection name. You can find it in the Foundry portal by selecting **Management center** from the left navigation menu. Then selecting **Connected resources**.
+* The name of your SharePoint connection name. Find it in the Foundry portal by selecting **Management center** from the left navigation menu. Then select **Connected resources**.
     
     :::image type="content" source="../../media/tools/sharepoint-connection.png" alt-text="A screenshot showing the SharePoint connection name. " lightbox="../../media/tools/sharepoint-connection.png":::
 
-    Save this endpoint to an environment variable named `SHAREPOINT_RESOURCE_NAME`
+    Save this endpoint to an environment variable named `SHAREPOINT_RESOURCE_NAME`.
 
 
-* The names of your model's deployment name. You can find it in **Models + Endpoints** in the left navigation menu. 
+* The names of your model's deployment name. Find it in **Models + Endpoints** in the left navigation menu. 
 
     :::image type="content" source="../../media/tools/model-deployment-portal.png" alt-text="A screenshot showing the model deployment screen the Foundry portal." lightbox="../../media/tools/model-deployment-portal.png":::
     
@@ -52,7 +52,7 @@ Use this article to find step-by-step instructions and code samples for using th
 
 ## Create a project client
 
-Create a client object, which will contain the connection string for connecting to your AI project and other resources.
+Create a client object that contains the connection string for connecting to your AI project and other resources.
 
 ```python
 import os
@@ -70,7 +70,7 @@ project_client = AIProjectClient(
 )
 ``` 
 
-## Create an agent with the Sharepoint tool enabled
+## Create an agent with the SharePoint tool enabled
 
 To make the Microsoft Fabric tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the Foundry portal.
 
@@ -139,7 +139,7 @@ for msg in messages:
 
 ## Create an agent
 
-Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
+Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT`, and `API_VERSION`.
 
 ```bash
 curl --request POST \
@@ -217,3 +217,9 @@ curl --request GET \
 ```
 
 :::zone-end
+
+## Related content
+
+- [Use the Microsoft SharePoint tool](sharepoint.md)
+- [Call Azure Logic apps as functions using Azure OpenAI Assistants](/azure/ai-foundry/openai/how-to/assistants-logic-apps)
+- [Workflows with AI agents and models in Azure Logic Apps](/azure/logic-apps/agent-workflows-concepts)

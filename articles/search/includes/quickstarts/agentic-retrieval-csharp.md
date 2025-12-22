@@ -46,7 +46,7 @@ To set up the console application for this quickstart:
     dotnet new console
     ```
 
-1. Install the [Azure AI Search client library](/dotnet/api/overview/azure/search.documents-readme) for .NET.
+1. Install the [Azure AI Search client library for .NET](/dotnet/api/overview/azure/search.documents-readme).
 
     ```console
     dotnet add package Azure.Search.Documents --version 11.8.0-beta.1
@@ -64,7 +64,7 @@ To set up the console application for this quickstart:
     dotnet add package Azure.Identity
     ```
 
-1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service and Foundry project.
+1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service and Microsoft Foundry project.
 
     ```console
     az login
@@ -682,7 +682,7 @@ Console.WriteLine($"Documents uploaded to index '{indexName}' successfully.");
 
 A knowledge source is a reusable reference to source data. The following code defines a knowledge source named `earth-knowledge-source` that targets the `earth-at-night` index.
 
-`SourceDataFields` specifies which index fields are accessible for retrieval and citations. Our example includes only human-readable fields to avoid lengthy, uninterpretable embeddings in responses.
+`SourceDataFields` specifies which index fields are included in citation references. Our example includes only human-readable fields to avoid lengthy, uninterpretable embeddings in responses.
 
 ```csharp
 // Create a knowledge source
@@ -897,7 +897,7 @@ foreach (var reference in retrievalResult.Value.References)
 
 When you work in your own subscription, it's a good idea to finish a project by determining whether you still need the resources you created. Resources that are left running can cost you money.
 
-In the Azure portal, you can manage your Azure AI Search and Foundry resources by selecting **All resources** or **Resource groups** from the left pane.
+In the Azure portal, you can manage your Azure AI Search and Microsoft Foundry resources by selecting **All resources** or **Resource groups** from the left pane.
 
 Otherwise, the following code from `Program.cs` deleted the objects you created in this quickstart.
 
