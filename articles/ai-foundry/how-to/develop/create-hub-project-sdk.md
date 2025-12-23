@@ -243,6 +243,7 @@ az keyvault show --name <key-vault-name> --resource-group <resource-group> --que
 
 **References**: [az ml workspace create](/cli/azure/ml/workspace#az-ml-workspace-create)
 
+---
 
 ## Related content
 
