@@ -16,11 +16,9 @@ author: sdgilley
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
-
 In this article, you learn how to create the following [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) resources by using the Azure Machine Learning SDK and Azure CLI (with machine learning extension):
 - A Foundry hub
-- A Microsoft Foundry connection
+- A Foundry connection
 
 > [!NOTE]
 > A hub is used only for a **[!INCLUDE [hub](../../includes/hub-project-name.md)]**. A **[!INCLUDE [fdp](../../includes/fdp-project-name.md)]** doesn't use a hub. For more information, see [Types of projects](../../what-is-azure-ai-foundry.md#types-of-projects).
@@ -41,33 +39,7 @@ Use the following tabs to select whether you're using the Python SDK or Azure CL
 
 [!INCLUDE [SDK setup](../../includes/development-environment-config.md)]
 
-### Verify your authentication
 
-Before creating a hub, verify that your authentication is configured correctly:
-
-```python
-from azure.ai.ml import MLClient
-from azure.identity import DefaultAzureCredential
-
-# Authenticate to Azure
-credential = DefaultAzureCredential()
-
-# Update these values with your Azure subscription details
-subscription_id = "<your-subscription-id>"
-resource_group_name = "<your-resource-group-name>"
-
-# Create an ML client instance
-ml_client = MLClient(credential, subscription_id, resource_group_name)
-
-# List existing hubs to verify authentication
-print("Connected successfully. Existing hubs:")
-for hub in ml_client.workspaces.list():
-    print(f"  - {hub.name}")
-```
-
-If you receive an authentication error, ensure your Azure credentials are configured (run `az login` or set up your credentials via the Azure Identity SDK). If you receive a permission error, check that you have the Contributor role on the subscription or resource group.
-
-**References**: [`MLClient`](/python/api/azure-ai-ml/azure.ai.ml.mlclient), [`DefaultAzureCredential`](/python/api/azure-identity/azure.identity.defaultazurecredential)
 
 # [Azure CLI](#tab/azurecli)
 
