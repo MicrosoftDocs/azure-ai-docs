@@ -67,7 +67,7 @@ for hub in ml_client.workspaces.list():
 
 If you receive an authentication error, ensure your Azure credentials are configured (run `az login` or set up your credentials via the Azure Identity SDK). If you receive a permission error, check that you have the Contributor role on the subscription or resource group.
 
-**References**: [`MLClient`](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.mlclient), [`DefaultAzureCredential`](https://learn.microsoft.com/python/api/azure-identity/azure.identity.defaultazurecredential)
+**References**: [`MLClient`](/python/api/azure-ai-ml/azure.ai.ml.mlclient), [`DefaultAzureCredential`](/python/api/azure-identity/azure.identity.defaultazurecredential)
 
 # [Azure CLI](#tab/azurecli)
 
@@ -118,7 +118,7 @@ print(f"Created hub: {created_hub.name}")
 
 This code creates a new hub with the specified name, location, and display name. Azure automatically provisions associated Azure Storage and Azure Key Vault resources.
 
-**References**: [`Hub`](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.entities.hub), [`MLClient.workspaces.begin_create`](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.operations.workspacesoperations#azure-ai-ml-operations-workspacesoperations-begin-create)
+**References**: [`Hub`](/python/api/azure-ai-ml/azure.ai.ml.entities.hub), [MLClient.workspaces.begin_create](/azure/machine-learning/reference-azure-machine-learning-cli)
 
 # [Azure CLI](#tab/azurecli)
 
@@ -172,7 +172,7 @@ After creating your own [Foundry resource](../../../ai-services/multi-service-re
     print(f"Created connection: {my_connection.name}")
     ```
 
-    **References**: [`AzureAIServicesConnection`](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.entities.azureaiservicesconnection), [`MLClient.connections.create_or_update`](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.operations.connectionoperations#azure-ai-ml-operations-connectionoperations-create-or-update)
+    **References**: [`AzureAIServicesConnection`](/python/api/azure-ai-ml/azure.ai.ml.entities.azureaiservicesconnection), [MLClient.connections](/azure/machine-learning/reference-azure-machine-learning-cli)
 
 # [Azure CLI](#tab/azurecli)
 
@@ -251,7 +251,7 @@ az storage account show --name <storage-account-name> --resource-group <resource
 az keyvault show --name <key-vault-name> --resource-group <resource-group> --query "id"
 ```
 
-**References**: [`Hub`](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.entities.hub)
+**References**: [`Hub`](/python/api/azure-ai-ml/azure.ai.ml.entities.hub)
 
 # [Azure CLI](#tab/azurecli)
 
