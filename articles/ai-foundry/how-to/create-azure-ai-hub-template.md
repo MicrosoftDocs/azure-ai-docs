@@ -8,8 +8,10 @@ ms.custom:
   - devx-track-bicep
   - build-2024
   - hub-only
+  - dev-focus
 ms.topic: how-to
 ms.date: 12/23/2025
+ai-usage: ai-assisted
 ms.reviewer: deeikele
 ms.author: sgilley
 author: sdgilley
@@ -24,7 +26,7 @@ author: sdgilley
 
 Use a [Microsoft Bicep](/azure/azure-resource-manager/bicep/overview) template to create a hub for [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). A template makes it easy to create resources as a single, coordinated operation. A Bicep template is a text document that defines the resources needed for a deployment. It might also specify deployment parameters. You use parameters to provide input values when using the template.
 
-You can find the template used in this article at [https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/aifoundry-basics](https://github.com/Azure/azure-resource-manager/bicep/quickstarts/microsoft.machinelearningservices/aifoundry-basics). Both the source `main.bicep` file and the compiled Azure Resource Manager template (`main.json`) file are available. This template creates the following resources:
+You can find the template used in this article at [https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/aifoundry-basics](https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/aifoundry-basics). Both the source `main.bicep` file and the compiled Azure Resource Manager template (`main.json`) file are available. This template creates the following resources:
 
 - An Azure resource group (if one doesn't already exist)
 - A Foundry hub
@@ -38,6 +40,7 @@ You can find the template used in this article at [https://github.com/Azure/azur
 
 [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 
+- **RBAC requirements**: You must have the **Owner** or **Contributor** role on your Azure subscription or resource group to deploy a hub and create resources. If you're deploying to an existing resource group, ensure you have at least **Contributor** permissions.
 - A copy of the template files from the GitHub repo. To clone the GitHub repo to your local machine, you can use [Git](https://git-scm.com/). Use the following command to clone the quickstart repository to your local machine and navigate to the `aifoundry-basics` directory.
 
     # [Azure CLI](#tab/cli)
@@ -71,11 +74,16 @@ The Bicep template is made up of the following files:
 > [!IMPORTANT]
 > The example templates might not always use the latest API version for the Azure resources they create. Before using the template, modify it to use the latest API versions. Each Azure service has its own set of API versions. For information on the API for a specific service, check the service information in the [Azure REST API reference](/rest/api/azure/).
 >
-> The hub is based on Azure Machine Learning. For information on the latest API versions for Azure Machine Learning, see the [Azure Machine Learning REST API reference](/rest/api/azureml/). To update this API version, find the `Microsoft.MachineLearningServices/<resource>` entry for the resource type and update it to the latest version. The following example is an entry for a hub that uses an API version of `2023-08-01-preview`:
+> The hub is based on Azure Machine Learning. For information on the latest API versions for Azure Machine Learning, see the [Azure Machine Learning REST API reference](/rest/api/azureml/). To update this API version in your template:
+> 1. Open the Bicep file in a text editor
+> 2. Find the line with `Microsoft.MachineLearningServices/workspaces@<version>`
+> 3. Replace `<version>` with the latest version from the Azure REST API reference (for example, `2024-01-01-preview`)
 >
->```bicep
->resource aiResource 'Microsoft.MachineLearningServices/workspaces@2023-08-01-preview' = {
->```
+> The following is an example of the entry for a hub using an API version of `2024-01-01-preview`:
+>
+> ```bicep
+> resource aiResource 'Microsoft.MachineLearningServices/workspaces@2024-01-01-preview' = {
+> ```
 
 ### Azure Resource Manager template
 
@@ -126,10 +134,33 @@ To run the Bicep template, use the following commands from the `aifoundry-basics
 
     ---
 
-    When the operation finishes, use your hub to create projects, manage resources, and collaborate with others.
+    When the command completes successfully, you'll see a message showing the deployment status. The hub and its dependent resources are now created.
 
-## Next steps
+## Verify your deployment
+
+After the template deployment completes, verify that your resources were created successfully:
+
+1. In the [Azure portal](https://portal.azure.com), navigate to your resource group.
+
+1. Verify that the following resources appear in the resource list:
+   - Your Foundry hub (named with your hub name)
+   - Azure Storage Account
+   - Azure Key Vault
+   - Azure Container Registry
+   - Azure Application Insights
+   - Azure AI Services resource
+
+1. Select your Foundry hub from the resource list to open it and confirm it's ready to use.
+
+If the deployment fails, check the following:
+- Verify your RBAC role has Owner or Contributor permissions
+- Ensure the `aiHubName` meets the naming requirements (5 or fewer characters, not all numeric)
+- Check that you're using the latest API versions in your template
+
+## Related content
 
 - [Create a Foundry project](create-projects.md)
-- [Learn more about Foundry](../what-is-azure-ai-foundry.md)
-- [Learn more about hubs](../concepts/ai-resources.md)
+- [Learn more about Microsoft Foundry](../what-is-azure-ai-foundry.md)
+- [Learn more about Foundry hubs](../concepts/ai-resources.md)
+- [Bicep CLI documentation](/azure/azure-resource-manager/bicep/bicep-cli)
+- [Azure Resource Manager deployment reference](/azure/azure-resource-manager/templates/)
