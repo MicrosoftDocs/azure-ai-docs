@@ -20,7 +20,7 @@ author: sdgilley
 
 [!INCLUDE [hub-only-alt](../includes/uses-hub-only-alt.md)]
 
-You can secure your [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) hub, projects, and managed resources in a managed virtual network. With a managed virtual network, inbound access is only allowed through a private endpoint for your hub. Outbound access can be configured to allow either all outbound access, or only allowed outbound that you specify. For more information, see [Managed virtual network](configure-managed-network.md).
+You can secure your [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) hub, projects, and managed resources by using a managed virtual network. By using a managed virtual network, you can only allow inbound access through a private endpoint for your hub. You can configure outbound access to allow either all outbound access or only allowed outbound that you specify. For more information, see [Managed virtual network](configure-managed-network.md).
 
 > [!IMPORTANT]
 > The managed virtual network doesn't provide inbound connectivity for your clients. For more information, see the [Connect to the hub](#connect-to-the-hub) section. 
@@ -28,7 +28,7 @@ You can secure your [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) hub
 ## Prerequisites
 
 - [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
-- An Azure Virtual Network that you use to securely connect to Azure services. For example, you might use [Azure Bastion](/azure/bastion/bastion-overview), [VPN Gateway](/azure/vpn-gateway/vpn-gateway-about-vpngateways) or [ExpressRoute](/azure/expressroute/expressroute-introduction) to connect to the Azure Virtual Network from your on-premises network. If you don't have an Azure Virtual Network, you can create one by following the instructions in [Create a virtual network](/azure/virtual-network/quick-create-portal).
+- An Azure Virtual Network that you use to securely connect to Azure services. For example, you might use [Azure Bastion](/azure/bastion/bastion-overview), [VPN Gateway](/azure/vpn-gateway/vpn-gateway-about-vpngateways), or [ExpressRoute](/azure/expressroute/expressroute-introduction) to connect to the Azure Virtual Network from your on-premises network. If you don't have an Azure Virtual Network, you can create one by following the instructions in [Create a virtual network](/azure/virtual-network/quick-create-portal).
 
 ## Create a hub
 
@@ -51,23 +51,23 @@ You can secure your [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) hub
 1. Select the **Outbound access** to configure the managed virtual network that Foundry uses to secure its hub and projects. Select **Private with Internet Outbound**, which allows compute resources to access the public internet for resources such as Python packages.
     
     > [!TIP]
-    > To provision the virtual network during hub creation, select **Provision managed virtual network**. If this option isn't selected, the network isn't provisioned until you create a compute resource. For more information, see [Managed virtual network](configure-managed-network.md#manually-provision-a-managed-vnet).
+    > To provision the virtual network during hub creation, select **Provision managed virtual network**. If you don't select this option, the network isn't provisioned until you create a compute resource. For more information, see [Managed virtual network](configure-managed-network.md#manually-provision-a-managed-vnet).
 
     :::image type="content" source="../media/how-to/network/outbound-access.png" alt-text="Screenshot of the Create a hub with the option to set network isolation information." lightbox="../media/how-to/network/outbound-access.png":::
 
-1. Select **Review + create**, then **Create** to create the hub. Once the hub is created, any projects or compute instances created from the hub inherit the network configuration.
+1. Select **Review + create**, and then select **Create** to create the hub. Once the hub is created, any projects or compute instances created from the hub inherit the network configuration.
 
 ## Connect to the hub
 
-The managed virtual network doesn't directly provide access to your clients. Instead, your clients connect to an Azure Virtual Network that *you* manage. They can then access the hub using the private endpoint you created in these steps.
+The managed virtual network doesn't directly provide access to your clients. Instead, your clients connect to an Azure Virtual Network that *you* manage. They can then access the hub by using the private endpoint you created in these steps.
 
-There are multiple methods that you might use to connect clients to the Azure Virtual Network. The following table lists the common ways that clients connect to an Azure Virtual Network:
+You can use multiple methods to connect clients to the Azure Virtual Network. The following table lists common ways that clients connect to an Azure Virtual Network:
 
 | Method | Description |
 | ----- | ----- |
 | [Azure VPN gateway](/azure/vpn-gateway/vpn-gateway-about-vpngateways) | Connects on-premises networks to an Azure Virtual Network over a private connection. Connection is made over the public internet. |
 | [ExpressRoute](https://azure.microsoft.com/services/expressroute/) | Connects on-premises networks into the cloud over a private connection. Connection is made using a connectivity provider. |
-| [Azure Bastion](/azure/bastion/bastion-overview) | Connects to a virtual machine inside the Azure Virtual Network using your web browser. |
+| [Azure Bastion](/azure/bastion/bastion-overview) | Connects to a virtual machine inside the Azure Virtual Network by using your web browser. |
 
 ## Next steps
 
