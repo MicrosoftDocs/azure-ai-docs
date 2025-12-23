@@ -1,37 +1,29 @@
 ---
-title: How to create and manage compute instances in Microsoft Foundry portal
+title: Create and manage compute instances
 titleSuffix: Microsoft Foundry
-description: This article provides instructions on how to create and manage compute instances in Microsoft Foundry portal.
+description: Learn how to create and manage compute instances in Foundry portal to use prompt flow, create indexes, and access Visual Studio Code.
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
   - hub-only
+  - dev-focus
 ms.topic: how-to
 ms.date: 12/23/2025
 ms.reviewer: deeikele
 ms.author: sgilley
 author: sdgilley
+ai-usage: ai-assisted
 ---
 
-# How to create and manage compute instances in Microsoft Foundry portal
+# Create and manage compute instances
 
 [!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-In this article, you learn how to create a compute instance in Microsoft Foundry portal. You can create a compute instance in the Foundry portal.
-
-You need a compute instance to:
-
-- Use prompt flow in Foundry portal. 
-- Create an index
-- Open Visual Studio Code (Web or Desktop) in Foundry portal.
-
-You can use the same compute instance for multiple scenarios and workflows. A compute instance can't be shared. It can only be used by a single assigned user. By default, it is assigned to the creator. You can change the assignment to a different user in the security step during creation.
-
-Compute instances run jobs securely in a virtual network environment, without requiring enterprises to open up SSH ports. The job executes in a containerized environment and packages your model dependencies in a Docker container.
+In this article, you learn how to create and manage a compute instance in Foundry portal. A compute instance is required to use prompt flow, create indexes, or access Visual Studio Code in Foundry portal for hub-based projects.
 
 > [!IMPORTANT]
 > Compute instances get the latest VM images when you provision them. Microsoft releases new VM images monthly. Once you deploy a compute instance, it doesn't get updates. You can query an instance's operating system version. 
@@ -65,12 +57,14 @@ To create a compute instance in Foundry portal:
     
     For more information on configuration details such as CPU and RAM, see [Azure Machine Learning pricing](https://azure.microsoft.com/pricing/details/machine-learning/) and [virtual machine sizes](/azure/virtual-machines/sizes).
 
-1. On the **Scheduling** page under **Auto shut down** make sure idle shutdown is enabled by default. You can opt to automatically shut down compute after the instance has been idle for a set amount of time. If you disable auto shutdown costs continue to accrue even during periods of inactivity. For more information, see [Configure idle shutdown](#configure-idle-shutdown).
-
-    :::image type="content" source="../media/compute/compute-scheduling.png" alt-text="Screenshot of the option to enable idle shutdown and create a schedule." lightbox="../media/compute/compute-scheduling.png":::
+1. On the **Scheduling** page under **Auto shut down**, note that idle shutdown is enabled by default.
 
     > [!IMPORTANT]
-    > The compute can't be idle if you have [prompt flow compute sessions](./create-manage-compute-session.md) in **Running** status on the compute. Delete any active compute sessions so the compute instance can be eligible for idle shutdown. 
+    > The compute can't be idle if you have [prompt flow compute sessions](./create-manage-compute-session.md) in **Running** status on the compute. Delete any active compute sessions before configuring idle shutdown.
+
+    You can automatically shut down compute after the instance has been idle for a set amount of time. If you disable auto shutdown, costs continue to accrue during periods of inactivity. For more information, see [Configure idle shutdown](#configure-idle-shutdown).
+
+    :::image type="content" source="../media/compute/compute-scheduling.png" alt-text="Screenshot of the option to enable idle shutdown and create a schedule." lightbox="../media/compute/compute-scheduling.png"::: 
 
 1. You can update the schedule days and times to meet your needs. You can add additional schedules. For example, create a schedule to start at 9 AM and stop at 6 PM from Monday-Thursday, and a second schedule to start at 9 AM and stop at 4 PM for Friday. You can create a total of four schedules per compute instance.
 
@@ -116,7 +110,7 @@ You can start or stop a compute instance from the Foundry portal.
 1. From the left menu, select **Management center**.
 1. Under the **Hub** heading, select **Computes**.
 1. In the list, select the compute instance you want to start or stop.
-1. 1. Select **Stop** to stop the compute instance. Select **Start** to start the compute instance. Only stopped compute instances can be started and only started compute instances can be stopped.
+1. Select **Stop** to stop the compute instance. Select **Start** to start the compute instance. Only stopped compute instances can be started and only started compute instances can be stopped.
 
     :::image type="content" source="../media/compute/compute-start-stop.png" alt-text="Screenshot of the option to start or stop a compute instance." lightbox="../media/compute/compute-start-stop.png":::
 
