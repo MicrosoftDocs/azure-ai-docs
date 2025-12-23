@@ -5,7 +5,7 @@ description: Upgrade seamlessly from Azure OpenAI to Microsoft Foundry and unloc
 ms.author: sgilley
 author: sdgilley
 ms.reviewer: deeikele
-ms.date: 10/01/2025
+ms.date: 12/23/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ---
@@ -60,7 +60,7 @@ The upgrade converts your Azure OpenAI resource type to Foundry resource type. B
 
 ## How to upgrade
 
-As a prerequisite to upgrade, managed identity must be enabled on your Azure OpenAI resource. Upgrade can be completed via the Foundry portal, or using Azure Bicep or Resource Manager templates (recommended for resource configurations with custom security settings).
+As a prerequisite to upgrade, managed identity must be enabled on your Azure OpenAI resource. Upgrade can be completed via the Foundry portal, Azure portal, or using Azure Bicep or Resource Manager templates (recommended for resource configurations with custom security settings).
 
 # [Foundry portal](#tab/portal)
 
@@ -115,7 +115,7 @@ Run the template using [Azure Bicep CLI](/azure/azure-resource-manager/bicep/bic
 
 ---
 
-## UX navigation differences after upgrading
+## Portal navigation differences after upgrading
 
 After upgrading from Azure OpenAI to Foundry, you'll notice updates to the portal's navigation and feature access:
 
