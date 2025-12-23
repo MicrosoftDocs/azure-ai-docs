@@ -9,7 +9,7 @@ ms.custom:
   - ignite-2024
   - hub-only
 ms.topic: how-to
-ms.date: 08/14/2025
+ms.date: 12/23/2025
 ms.reviewer: deeikele
 ms.author: sgilley
 author: sdgilley
@@ -31,11 +31,11 @@ You need a compute instance to:
 
 You can use the same compute instance for multiple scenarios and workflows. A compute instance can't be shared. It can only be used by a single assigned user. By default, it is assigned to the creator. You can change the assignment to a different user in the security step during creation.
 
-Compute instances can run jobs securely in a virtual network environment, without requiring enterprises to open up SSH ports. The job executes in a containerized environment and packages your model dependencies in a Docker container.
+Compute instances run jobs securely in a virtual network environment, without requiring enterprises to open up SSH ports. The job executes in a containerized environment and packages your model dependencies in a Docker container.
 
 > [!IMPORTANT]
-> Compute instances get the latest VM images at the time of provisioning. Microsoft releases new VM images on a monthly basis. Once a compute instance is deployed, it does not get actively updated. You could query an instance's operating system version. 
-> To keep current with the latest software updates and security patches, you could: Recreate a compute instance to get the latest OS image (recommended) or regularly update OS and Python packages on the compute instance to get the latest security patches.
+> Compute instances get the latest VM images when you provision them. Microsoft releases new VM images monthly. Once you deploy a compute instance, it doesn't get updates. You can query an instance's operating system version. 
+> To keep current with the latest software updates and security patches, you can: Recreate a compute instance to get the latest OS image (recommended) or regularly update OS and Python packages on the compute instance to get the latest security patches.
 
 ## Prerequisites
 
