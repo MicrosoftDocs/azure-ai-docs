@@ -1,7 +1,7 @@
 ---
-title: 'Tutorial: AutoML- train object detection model'
+title: 'Tutorial: AutoML- Train an Object Detection Model'
 titleSuffix: Azure Machine Learning
-description: Train an object detection model to identify if an image contains certain objects with automated ML and the Azure Machine Learning CLI v2 and Python SDK v2.
+description: Train an object detection model to determine whether an image contains certain objects by using automated ML and the Azure Machine Learning CLI v2 or Python SDK v2.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: automl
@@ -9,7 +9,7 @@ ms.topic: tutorial
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: swatig
-ms.date: 01/20/2025
+ms.date: 12/23/2025
 ms.custom: devx-track-python, automl, devx-track-azurecli, update-code, build-2023
 ---
 
