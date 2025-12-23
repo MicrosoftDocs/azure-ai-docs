@@ -14,24 +14,24 @@ ms.topic: how-to
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
-The Microsoft Foundry resource type offers a superset of capabilities compared to the Azure OpenAI resource type. It enables access to a broader model catalog, agents service, and evaluation capabilities.
+The Microsoft Foundry resource type provides a superset of capabilities compared to the Azure OpenAI resource type. It gives you access to a broader model catalog, agents service, and evaluation capabilities.
 
-An upgrade option is available to convert your Azure OpenAI resource to a Foundry resource. You keep your existing Azure OpenAI API endpoint, state of work, and security configurations, and don't need to create a new Foundry resource.
+You can upgrade your Azure OpenAI resource to a Foundry resource. You keep your existing Azure OpenAI API endpoint, state of work, and security configurations, and don't need to create a new Foundry resource.
 
 ## Benefits of upgrading
 
-Upgrading your Azure OpenAI resource to a Foundry resource unlocks the following capabilities.
+When you upgrade your Azure OpenAI resource to a Foundry resource, you get access to the following capabilities.
 
-|Feature|Azure OpenAI|Foundry|
+| Feature | Azure OpenAI | Foundry |
 |---|---|---|
 | Models sold directly by Azure | Azure OpenAI only | Azure OpenAI, Black Forest Labs, DeepSeek, Meta, xAI, Mistral, Microsoft  |
-| Partner & Community Models sold through Marketplace - Stability, Cohere, etc.|  | ✅ |
-| Azure OpenAI API (batch, stored completions, fine-tuning, evaluation, etc.) | ✅ | ✅ |
+| Partner and community models sold through Marketplace - Stability, Cohere, and others |  | ✅ |
+| Azure OpenAI API - batch, stored completions, fine-tuning, evaluation, and more | ✅ | ✅ |
 | Agent service | | ✅ |
 | Azure Foundry API |  | ✅ |
-| Foundry Tools (Speech, Vision, Language, Content Understanding) | | ✅ |
+| Foundry Tools - Speech, Vision, Language, Content Understanding | | ✅ |
 
-Your existing resource configurations and state remain preserved including:
+Your existing resource configurations and state stay the same, including:
 
 * Resource name
 * Azure resource tags
@@ -39,13 +39,13 @@ Your existing resource configurations and state remain preserved including:
 * Access and identity configurations
 * API endpoint and API key
 * Custom Domain Name
-* Existing state including fine-tuning jobs, batch, stored completions, etc.
+* Existing state including fine-tuning jobs, batch, stored completions, and more
 
 ## Limitations
 
 Backend limitations:
 
-* Foundry model and feature availability [differs by region](../reference/region-support.md). For example, Agent service is [available](../agents/concepts/model-region-support.md) in select regions compared to Azure OpenAI service.
+* Foundry model and feature availability [differs by region](../reference/region-support.md). For example, the Agent service is [available](../agents/concepts/model-region-support.md) in select regions compared to Azure OpenAI service.
 * Azure OpenAI resources using **customer-managed keys** for encryption are available for upgrade by request only. [Fill out the request form here](https://forms.office.com/r/sKGZJ0YhDd).
 * The Foundry resource type doesn't support configuring Weights & Biases.
 * Private network setups require [reconfiguration of private link endpoints and extra Domain Name Server (DNS) configurations](#private-network-configuration) before all Foundry capabilities can be used.
@@ -60,7 +60,7 @@ The upgrade converts your Azure OpenAI resource type to Foundry resource type. B
 
 ## How to upgrade
 
-As a prerequisite to upgrade, managed identity must be enabled on your Azure OpenAI resource. Upgrade can be completed via the Foundry portal, Azure portal, or using Azure Bicep or Resource Manager templates (recommended for resource configurations with custom security settings).
+As a prerequisite to upgrade, managed identity must be enabled on your Azure OpenAI resource. You can complete the upgrade via the Foundry portal, Azure portal, or by using Azure Bicep or Resource Manager templates (recommended for resource configurations with custom security settings).
 
 # [Foundry portal](#tab/portal)
 
@@ -74,17 +74,17 @@ As a prerequisite to upgrade, managed identity must be enabled on your Azure Ope
 
 1. Sign in to [Azure portal](https://portal.azure.com/)
 1. Select your Azure OpenAI resource
-1. On the overview page, locate the banner "Want to try the latest industry models and Agents?" and select 'Get Started'.
+1. On the overview page, locate the banner "Want to try the latest industry models and Agents?" and select **Get Started**.
 1. Confirm to start the upgrade.
 
-:::image type="content" source="../media/upgrade-azure-openai/azure-portal-upgrade.png" alt-text="Screenshot shows how to upgrade in Azure portal." lightbox = "../media/upgrade-azure-openai/azure-portal-upgrade.png":::
+:::image type="content" source="../media/upgrade-azure-openai/azure-portal-upgrade.png" alt-text="Screenshot shows how to upgrade in Azure portal." lightbox="../media/upgrade-azure-openai/azure-portal-upgrade.png":::
 
 # [Azure Bicep](#tab/bicep)
 
 Starting with your existing Azure OpenAI template configuration, set the following properties:
 
-* Update kind from value 'OpenAI' => 'AIServices'
-* Set allowProjectManagement: True
+* Update `kind` from value `OpenAI` to `AIServices`
+* Set `allowProjectManagement` to `true`
 * Configure managed identity
 
 Sample configuration:
@@ -117,24 +117,24 @@ Run the template using [Azure Bicep CLI](/azure/azure-resource-manager/bicep/bic
 
 ## Portal navigation differences after upgrading
 
-After upgrading from Azure OpenAI to Foundry, you'll notice updates to the portal's navigation and feature access:
+After upgrading from Azure OpenAI to Foundry, you see updates to the portal's navigation and feature access:
 
 1. **Updated left-side navigation**
    
-   The left-hand menu is reorganized to consolidate playgrounds, including Assistants, under a single landing page, streamlining access to experimentation environments. You find access to new features including Agent service and Content Understanding.
+   The portal reorganizes the left-hand menu to consolidate playgrounds, including Assistants, under a single landing page. This change streamlines access to experimentation environments. You find access to new features including Agent service and Content Understanding.
 
-   An *Azure OpenAI section* provides access to features that are exclusively used with Azure OpenAI models.
+   An *Azure OpenAI section* provides access to features that you exclusively use with Azure OpenAI models.
 
    > [!NOTE]
-   > Not all Foundry tools are visible by default in the left side navigation, which is customizable. Select '... More' to locate them.
+   > The portal doesn't show all Foundry tools by default in the left side navigation. The navigation is customizable. Select *... More* to locate them.
 
 1. **Your default view is now a project**
 
-   Projects are folders to organize your work in Foundry. They're also a container for access management and data isolation. Multiple can be created as part of your Foundry resource, so you can separate your work between use cases that you're working on. The first project after upgrade has access to your previous work in Azure OpenAI.
+   Projects are folders to organize your work in Foundry. They're also a container for access management and data isolation. You can create multiple projects as part of your Foundry resource, so you can separate your work between use cases that you're working on. Your first project after upgrade has access to your previous work in Azure OpenAI.
 
 1. **Broader set of models in model catalog**
    
-   Your model catalog now includes more models that can be directly deployed using your Foundry resource. 
+   Your model catalog now includes more models that you can directly deploy by using your Foundry resource. 
 
 1. **Developer endpoints**
 
