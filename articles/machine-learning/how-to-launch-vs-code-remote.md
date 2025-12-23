@@ -112,14 +112,14 @@ This option connects your current VS Code session to a remote compute instance. 
 
 1. In VS Code, start the Azure Machine Learning extension.
 1. Expand the **Compute instances** node in your extension.
-1. Right-click the compute instance you want to connect to, and then select **Connect to Compute Instance**.
+1. Right-click the compute instance you want to connect to, and then select **Connect In New Window**.
 
 :::image type="content" source="media/how-to-launch-vs-code-remote/vs-code-connect-compute-instance.png" alt-text="Screenshot that shows how to connect to a compute instance." lightbox="media/how-to-launch-vs-code-remote/vs-code-connect-compute-instance.png":::
 
 ### Command palette
 
 1. In VS Code, open the command palette by selecting **View > Command Palette**.
-1. Filter for and select **AzureML- Remote: Connect to compute instance**.
+1. Filter for and select **Azure ML- Remote: Connect to compute instance in New Window**.
 1. Select your subscription.
 1. Select your workspace.
 1. Select your compute instance or create a new one.
@@ -157,9 +157,10 @@ To connect to a compute instance:
     Alternatively, use the command palette:
 
     1. Select **View > Command Palette**  to open the command palette.
-    1. Filter for and select **AzureML: Connect to Compute instance Jupyter server**.
+    1. Filter for and select **Azure ML: Connect to compute instance Jupyter server**.
 
-1. Select **Azure ML Compute Instances** from the list of Jupyter server options.
+1. Select **Azure ML compute instance** from the list of Jupyter server options.
+1. Select a Kernel.
 1. Select your subscription in the list of subscriptions. If you have previously configured your default Azure Machine Learning workspace, this step is skipped.
 1. Select your workspace.
 1. Select your compute instance from the list. If you don't have one, select **Create new Azure Machine Learning Compute Instance** and follow the prompts to create one.
