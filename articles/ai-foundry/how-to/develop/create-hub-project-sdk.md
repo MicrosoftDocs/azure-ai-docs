@@ -5,24 +5,24 @@ description: This article provides instructions on how to create a Microsoft Fou
 ms.service: azure-ai-foundry
 ms.custom: build-2024, devx-track-azurecli
 ms.topic: how-to
-ms.date: 08/14/2025
+ms.date: 12/23/2025
 ms.reviewer: dantaylo
 ms.author: sgilley
 author: sdgilley
 ---
 
-# Create a hub using the Azure Machine Learning SDK and CLI
+# Create a hub by using the Azure Machine Learning SDK and CLI
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-In this article, you learn how to create the following [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) resources using the Azure Machine Learning SDK and Azure CLI (with machine learning extension):
+In this article, you learn how to create the following [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) resources by using the Azure Machine Learning SDK and Azure CLI (with machine learning extension):
 - A Foundry hub
 - A Microsoft Foundry connection
 
 > [!NOTE]
-> A hub is used only for a **[!INCLUDE [hub](../../includes/hub-project-name.md)]**. A **[!INCLUDE [fdp](../../includes/fdp-project-name.md)]** does not use a hub. For more information, see [Types of projects](../../what-is-azure-ai-foundry.md#types-of-projects).
+> A hub is used only for a **[!INCLUDE [hub](../../includes/hub-project-name.md)]**. A **[!INCLUDE [fdp](../../includes/fdp-project-name.md)]** doesn't use a hub. For more information, see [Types of projects](../../what-is-azure-ai-foundry.md#types-of-projects).
 
 ## Prerequisites
 
@@ -86,9 +86,9 @@ After creating your own [Foundry resource](../../../ai-services/multi-service-re
 
 # [Python SDK](#tab/python)
 
-1. Your `ml_client` connection now needs to include your hub:
+1. Include your hub in your `ml_client` connection:
 
-    * Provide your subscription details.  For `<AML_WORKSPACE_NAME>`, use your hub name:
+    * Enter your subscription details. For `<AML_WORKSPACE_NAME>`, enter your hub name:
     
         [!notebook-python[](~/azureml-examples-main/sdk/python/resources/connections/connections.ipynb?name=details)]
 
@@ -96,7 +96,7 @@ After creating your own [Foundry resource](../../../ai-services/multi-service-re
 
         [!notebook-python[](~/azureml-examples-main/sdk/python/resources/connections/connections.ipynb?name=ml_client)]
 
-2. Use `ml_client` to create the connection to your Foundry Tools.  You can find endpoints in [Azure portal](https://portal.azure.com) under **Resource management > Keys and endpoints**. For a Foundry resource, use the **Foundry Tools** endpoint. For Azure AI Search, use the Url for the endpoint.
+1. Use `ml_client` to create the connection to your Foundry Tools. You can find endpoints in [Azure portal](https://portal.azure.com) under **Resource management > Keys and endpoints**. For a Foundry resource, use the **AI Services** endpoint. For Azure AI Search, use the URL for the endpoint.
 
     ```python
     from azure.ai.ml.entities import AzureAIServicesConnection
@@ -123,9 +123,9 @@ After creating your own [Foundry resource](../../../ai-services/multi-service-re
 az ml connection create --file {connection.yml} --resource-group {my_resource_group} --workspace-name {my_hub_name}
 ```
 
-You can use either an API key or credential-less YAML configuration file. For more information on the YAML configuration file, see the [Foundry Tools connection YAML schema](/azure/machine-learning/reference-yaml-connection-ai-services):
+You can use either an API key or a credential-less YAML configuration file. For more information on the YAML configuration file, see the [Foundry Tools connection YAML schema](/azure/machine-learning/reference-yaml-connection-ai-services).
 
-- API Key example:
+- API key example:
 
     ```yml
     name: myazai_ei
@@ -144,16 +144,16 @@ You can use either an API key or credential-less YAML configuration file. For mo
     ai_services_resource_id: <fully_qualified_resource_id>
     ```
 
-The <fully_qualified_resource_id> is the resource ID of your AI Services resource. It is in the format `/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/Microsoft.CognitiveServices/accounts/{aiservices_resource_name}`.
+The <fully_qualified_resource_id> is the resource ID of your AI Services resource. It's in the format `/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/Microsoft.CognitiveServices/accounts/{aiservices_resource_name}`.
 
 ---
 
 ## Create a Foundry hub using existing dependency resources
 
-You can also create a hub using existing resources such as Azure Storage and Azure Key Vault. In the following examples, replace the example string values with your own values:
+You can also create a hub by using existing resources such as Azure Storage and Azure Key Vault. In the following examples, replace the example string values with your own values:
 
 > [!TIP]
-> You can retrieve the resource ID of the storage account and key vault from the Azure portal by going to the resource's overview and selecting __JSON view__. The resource ID is located in the __id__ field. You can also use the Azure CLI to retrieve the resource ID. For example, `az storage account show --name {my_storage_account_name} --query "id"` and `az keyvault show --name {my_key_vault_name} --query "id"`.
+> You can retrieve the resource ID of the storage account and key vault from the Azure portal by going to the resource's overview and selecting __JSON view__. The resource ID is located in the __id__ field. You can also use the Azure CLI to retrieve the resource ID. For example, use `az storage account show --name {my_storage_account_name} --query "id"` and `az keyvault show --name {my_key_vault_name} --query "id"`.
 
 # [Python SDK](#tab/python)
 
