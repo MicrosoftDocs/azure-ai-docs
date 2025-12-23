@@ -55,7 +55,7 @@ You can create the connection from either the **Notebooks** or **Compute** secti
     1. In the **Files** list, select the file you want to edit.
     1. If the compute instance is stopped, select **Start compute** and wait until it's running.
 
-        :::image type="content" source="media/tutorial-azure-ml-in-a-day/start-compute.png" alt-text="Screenshot that shows how to start compute if it's stopped." lightbox="media/tutorial-azure-ml-in-a-day/start-compute.png":::
+        :::image type="content" source="media/how-to-launch-vs-code-remote/start-compute.png" alt-text="Screenshot that shows how to start compute if it's stopped." lightbox="media/how-to-launch-vs-code-remote/start-compute.png":::
 
     1. In the list of code editors, select **Edit in VS Code (Web)**.
 
