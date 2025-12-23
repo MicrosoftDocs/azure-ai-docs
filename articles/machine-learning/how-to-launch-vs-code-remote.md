@@ -59,9 +59,9 @@ You can create the connection from either the **Notebooks** or **Compute** secti
 
     1. In the list of code editors, select **Edit in VS Code (Web)**.
 
-    :::image type="content" source="media/how-to-launch-vs-code-remote/edit-in-vs-code.png" alt-text="Screenshot of how to connect to Compute Instance VS Code (Web) Azure Machine Learning Notebook." lightbox="media/how-to-launch-vs-code-remote/edit-in-vs-code.png":::
+       :::image type="content" source="media/how-to-launch-vs-code-remote/edit-in-vs-code.png" alt-text="Screenshot of how to connect to Compute Instance VS Code (Web) Azure Machine Learning Notebook." lightbox="media/how-to-launch-vs-code-remote/edit-in-vs-code.png":::
 
-     1. You can also start VS Code for Web without opening a notebook by selecting the **VS Code (Web)** button above the **Files** list or by right-clicking a folder in the **Files** list. 
+    - You can also start VS Code for Web without opening a notebook by selecting the **VS Code (Web)** button above the **Files** list or by right-clicking a folder in the **Files** list. 
 
         :::image type="content" source="media/how-to-launch-vs-code-remote/file-explorer.png" alt-text="Screenshot that shows the VS Code (Web) button above the **Files** list.":::
 
