@@ -544,7 +544,7 @@ CLI example not available. Use the Python SDK.
 
 ### Register the model
 
-Register the model either using the `azureml` path or your locally downloaded path. 
+Register the model by using either the `azureml` path or your locally downloaded path. 
 
 # [Azure CLI](#tab/cli)
 
@@ -559,7 +559,7 @@ Register the model either using the `azureml` path or your locally downloaded pa
 [!Notebook-python[] (~/azureml-examples-main/sdk/python/jobs/automl-standalone-jobs/automl-image-object-detection-task-fridge-items/automl-image-object-detection-task-fridge-items.ipynb?name=register_model)]    
 ---
 
-After you register the model you want to use, you can deploy it using the managed online endpoint [deploy-managed-online-endpoint](how-to-deploy-managed-online-endpoint-sdk-v2.md)
+After you register the model you want to use, you can deploy it by using the [managed online endpoint](how-to-deploy-managed-online-endpoint-sdk-v2.md)
 
 ### Configure online endpoint
 
@@ -581,7 +581,7 @@ auth_mode: key
 
 ### Create the endpoint
 
-Using the `MLClient` created earlier, we'll now create the Endpoint in the workspace. This command starts the endpoint creation and return a confirmation response while the endpoint creation continues.
+By using the `ml_client` created earlier, you'll now create the endpoint in the workspace. This command starts the endpoint creation and returns a confirmation response while the endpoint creation continues.
 
 
 # [Azure CLI](#tab/cli)
@@ -597,12 +597,11 @@ az ml online-endpoint create --file .\create_endpoint.yml --workspace-name [YOUR
 
 [!Notebook-python[] (~/azureml-examples-main/sdk/python/jobs/automl-standalone-jobs/automl-image-object-detection-task-fridge-items/automl-image-object-detection-task-fridge-items.ipynb?name=create_endpoint)]
 ---
-We can also create a batch endpoint for batch inferencing on large volumes of data over a period of time. Check out the [object detection batch scoring](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/automl-standalone-jobs/automl-image-object-detection-task-fridge-items-batch-scoring) notebook for batch inferencing using the batch endpoint.
+You can also create a batch endpoint for batch inferencing on large volumes of data over a period of time. See the [object detection batch scoring](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/automl-standalone-jobs/automl-image-object-detection-task-fridge-items-batch-scoring) notebook for an example of batch inferencing using the batch endpoint.
 
 ### Configure online deployment
 
-A deployment is a set of resources required for hosting the model that does the actual inferencing. We create a deployment for our endpoint using the `ManagedOnlineDeployment` class. You can use either GPU or CPU VM SKUs for your deployment cluster.
-
+A deployment is a set of resources required for hosting the model that does the actual inferencing. The following code creates a deployment for the endpoint. You can use either GPU or CPU VM SKUs for your deployment cluster.
 
 # [Azure CLI](#tab/cli)
 
