@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - hub-only
 ms.topic: how-to
-ms.date: 08/14/2025
+ms.date: 12/23/2025
 ms.reviewer: deeikele
 ms.author: sgilley
 author: sdgilley
@@ -32,11 +32,11 @@ The template used in this article can be found at [https://github.com/Azure/azur
 - Azure Key Vault
 - Azure Container Registry
 - Azure Application Insights
-- Foundry Tools (created by the template)
+- Foundry resource (created by the template)
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+[!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 
 - A copy of the template files from the GitHub repo. To clone the GitHub repo to your local machine, you can use [Git](https://git-scm.com/). Use the following command to clone the quickstart repository to your local machine and navigate to the `aifoundry-basics` directory.
 
