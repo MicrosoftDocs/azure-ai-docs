@@ -184,6 +184,7 @@ created_hub = ml_client.workspaces.begin_create(my_hub).result()
 az ml workspace create --kind hub --resource-group {my_resource_group} --name {my_hub_name} --location {hub-region} --storage-account {my_storage_account_id} --key-vault {my_key_vault_id}
 ```
 
+
 ## Related content
 
 - [Get started building a chat app using the prompt flow SDK](../../quickstarts/get-started-code.md)
