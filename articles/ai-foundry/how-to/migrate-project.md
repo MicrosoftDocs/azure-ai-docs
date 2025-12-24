@@ -7,12 +7,23 @@ ms.date: 12/24/2025
 ms.author: sgilley
 ms.reviewer: deeikele
 ms.service: azure-ai-foundry
+ms.custom:
+  - dev-focus
+ai-usage: ai-assisted
 ---
 
 
 # Migrate from hub-based to Foundry projects
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
+**What you'll do**: Create a new Foundry project and optionally migrate your agents and connections from hub-based projects.
+
+**Time estimate**: 5–10 minutes.
+
+**Prerequisites**: 
+- An existing hub-based project
+- **Azure role**: Contributor or Owner role on the subscription or resource group to create resources and projects
 
 This guide helps existing customers with [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]s migrate to the new [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]s to access the latest platform capabilities.
 
@@ -54,11 +65,11 @@ New capabilities include:
 
 ## How to switch to Foundry project
 
-Create new [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]s in the Foundry models resource from your [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]. This process allows the new projects to access work originally done in the [!INCLUDE [hub-project-name](../includes/hub-project-name.md)].
+Create new [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]s in the Foundry models resource from your [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]. This process allows the new projects to access work originally done in the [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]
 
 :::image type="content" source="../media/migrate-project/upgrade.svg" alt-text="Screenshot shows the upgrade path from hub-based to Foundry project types.":::
 
-What can you take forward to the new project type?
+### What transfers to Foundry projects
 
 - Model deployments
 - Data files
@@ -66,11 +77,11 @@ What can you take forward to the new project type?
 - Assistants
 - Vector stores
 
-Limitations:
+### What doesn't transfer
 
-- You can't move your Preview Agent's state, including messages, thread, and files. However, you can recreate your agent by using code in your new project.
-- Foundry projects don't currently support open-source model deployments.
-- [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]s don't have access to any of the new projects created on the Foundry models resource.
+- Preview Agent state (messages, threads, files) — You can recreate your agent by using code in your new project
+- Open-source model deployments — Foundry projects don't currently support these
+- Hub project access — [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]s don't have access to any of the new projects created on the Foundry models resource
 
 In the following sections, you learn how to move from [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]s to [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]s:
 
@@ -195,7 +206,7 @@ To move from the preview of Agent service to Agent service in general availabili
 
 1. Install the [latest version](/azure/ai-foundry/agents/quickstart?pivots=programming-language-python-azure) of your preferred SDK client.
 
-1. Update your project client to  use the Foundry API. Instead of a connection string, you now use the Foundry project endpoint. For example, in Python:
+1. Update your project client to use the Foundry API. Instead of a connection string, you now use the Foundry project endpoint. For example, in Python:
 
     ```python
     from azure.identity import DefaultAzureCredential
@@ -205,6 +216,10 @@ To move from the preview of Agent service to Agent service in general availabili
       endpoint="your_project_endpoint",  # Replace with your endpoint
       credential=DefaultAzureCredential())
     ```
+
+    This snippet authenticates to your Foundry project using the Azure Identity library and creates a project client instance. The `endpoint` is your Foundry project endpoint; the `DefaultAzureCredential` uses your Azure credentials for authentication.
+
+    Reference: [AIProjectClient](/rest/api/aifoundry/), [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential), [SDK migration guide](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/AGENTS_MIGRATION_GUIDE.md)
 
 1. Update your script to reflect any class structure changes between the preview and stable SDK packages.
 
