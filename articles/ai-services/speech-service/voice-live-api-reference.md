@@ -2202,6 +2202,23 @@ OpenAI voice configuration with explicit type field.
 
 Base for Azure voice configurations. This is a discriminated union with different types:
 
+##### RealtimeAzureStandardVoice
+
+Azure standard voice configuration.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | Must be `"azure-standard"` |
+| name | string | Voice name (cannot be empty) |
+| temperature | number | Optional. Temperature between 0.0 and 1.0 |
+| custom_lexicon_url | string | Optional. URL to custom lexicon |
+| prefer_locales | string[] | Optional. Preferred locales<br/> Prefer locales will change the accents of languages. If the value is not set, TTS will use default accent of each language. e.g. When TTS speaking English, it will use the American English accent. And when speaking Spanish, it will use the Mexican Spanish accent. <br/>If set the prefer_locales to `["en-GB", "es-ES"]`, the English accent will be British English and the Spanish accent will be European Spanish. And TTS also able to speak other languages like French, Chinese, etc. |
+| locale | string | Optional. Locale specification<br/> Enforce The locale for TTS output. If not set, TTS will always use the given locale to speak. e.g. set locale to `en-US`, TTS will always use American English accent to speak the text content, even the text content is in another language. And TTS will output silence if the text content is in Chinese. |
+| style | string | Optional. Voice style |
+| pitch | string | Optional. Pitch adjustment |
+| rate | string | Optional. Speech rate adjustment |
+| volume | string | Optional. Volume adjustment |
+
 ##### RealtimeAzureCustomVoice
 
 Azure custom voice configuration (preferred for custom voices).
@@ -2213,8 +2230,8 @@ Azure custom voice configuration (preferred for custom voices).
 | endpoint_id | string | Endpoint ID (cannot be empty) |
 | temperature | number | Optional. Temperature between 0.0 and 1.0 |
 | custom_lexicon_url | string | Optional. URL to custom lexicon |
-| prefer_locales | string[] | Optional. Preferred locales<br/> Prefer locales will change the accents of languages. If the value is not set, TTS will use default accent of each language. e.g. When TTS speaking English, it will use the American English accent. And when speaking Spanish, it will use the Mexican Spanish accent. <br/>If set the prefer_locales to `["en-GB", "es-ES"]`, the English accent will be British English and the Spanish accent will be European Spanish. And TTS also able to speak other languages like French, Chinese, etc. |
-| locale | string | Optional. Locale specification<br/> Enforce The locale for TTS output. If not set, TTS will always use the given locale to speak. e.g. set locale to `en-US`, TTS will always use American English accent to speak the text content, even the text content is in another language. And TTS will output silence if the text content is in Chinese. |
+| prefer_locales | string[] | Optional. Same as `prefer_locales` in [RealtimeAzureStandardVoice](#realtimeazurestandardvoice) |
+| locale | string | Optional. Same as `locale` in [RealtimeAzureStandardVoice](#realtimeazurestandardvoice) |
 | style | string | Optional. Voice style |
 | pitch | string | Optional. Pitch adjustment |
 | rate | string | Optional. Speech rate adjustment |
@@ -2232,23 +2249,6 @@ Example:
 }
 ```
 
-##### RealtimeAzureStandardVoice
-
-Azure standard voice configuration.
-
-| Field | Type | Description |
-|-------|------|-------------|
-| type | string | Must be `"azure-standard"` |
-| name | string | Voice name (cannot be empty) |
-| temperature | number | Optional. Temperature between 0.0 and 1.0 |
-| custom_lexicon_url | string | Optional. URL to custom lexicon |
-| prefer_locales | string[] | Optional. Preferred locales |
-| locale | string | Optional. Locale specification |
-| style | string | Optional. Voice style |
-| pitch | string | Optional. Pitch adjustment |
-| rate | string | Optional. Speech rate adjustment |
-| volume | string | Optional. Volume adjustment |
-
 ##### RealtimeAzurePersonalVoice
 
 Azure personal voice configuration.
@@ -2259,6 +2259,7 @@ Azure personal voice configuration.
 | name | string | Voice name (cannot be empty) |
 | temperature | number | Optional. Temperature between 0.0 and 1.0 |
 | model | string | Underlying neural model: `DragonLatestNeural`, `PhoenixLatestNeural`, `PhoenixV2Neural` |
+| custom_lexicon_url | string | Optional. URL to custom lexicon |
 
 ### Turn Detection
 
