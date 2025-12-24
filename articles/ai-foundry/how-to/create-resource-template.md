@@ -8,11 +8,13 @@ reviewer: deeikele
 ms.date: 12/24/2025
 monikerRange: foundry-classic || foundry
 ms.service: azure-ai-foundry
-ms.topic: quickstart-bicep
+ms.topic: quickstart
 ms.custom:
   - "subject-bicepqs"
   - "build-aifnd"
   - "build-2025"
+  - "dev-focus"
+ai-usage: ai-assisted
 # Customer intent: As a DevOps person, I need to automate or customize the creation of a Foundry resource by using templates.
 ---
 
@@ -42,16 +44,8 @@ Use a [Microsoft Bicep](/azure/azure-resource-manager/bicep/overview) file (temp
 
     ---
 
-- The Bicep command-line tools. To install the Bicep command-line tools, see [Install the Bicep CLI](/azure/azure-resource-manager/bicep/install).
-
-## Review the Bicep file
-
-You can find the Bicep file used in this article at [https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/00-basic](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/00-basic).
-
-This template creates the following resources:
-
-- [microsoft.cognitiveservices/accounts](/azure/templates/microsoft.cognitiveservices/accounts?pivots=deployment-language-bicep)
-- [microsoft.cognitiveservices/accounts/projects](/azure/templates/microsoft.cognitiveservices/accounts/projects?pivots=deployment-language-bicep)
+- The Bicep command-line tools. To install the Bicep CLI, see [Install the Bicep CLI](/azure/azure-resource-manager/bicep/install).
+- **Azure role**: Contributor or Owner role on the subscription or resource group where you deploy resources.
 
 
 ## Deploy the Bicep file
@@ -65,6 +59,8 @@ az group create --name exampleRG --location eastus
 az deployment group create --resource-group exampleRG --template-file main.bicep --parameters aiFoundryName=myai aiProjectName=myai-proj 
 ```
 
+Reference: [az group create](/cli/azure/group#az-group-create), [az deployment group create](/cli/azure/deployment/group#az-deployment-group-create)
+
 # [Azure PowerShell](#tab/powershell)
 
 ```azurepowershell
@@ -72,12 +68,25 @@ New-AzResourceGroup -Name exampleRG -Location eastus
 New-AzResourceGroupDeployment -ResourceGroupName exampleRG -TemplateFile main.bicep -aiFoundryName myai -aiProjectName myai-proj
 ```
 
+Reference: [New-AzResourceGroup](/powershell/module/az.resources/new-azresourcegroup), [New-AzResourceGroupDeployment](/powershell/module/az.resources/new-azresourcegroupdeployment)
+
 ---
 
 > [!NOTE]
-> Replace `myai` with the name of your resource.
+> Replace `myai` with the name of your resource. `exampleRG` is the name of the resource group, and `eastus` is the Azure region where resources are deployed.
 
-When the deployment finishes, you see a message indicating the deployment succeeded.
+When the deployment finishes, you see a message indicating the deployment succeeded (output displays: `"provisioningState": "Succeeded"`). This confirms that your Foundry resource and project have been created.
+
+## Review the Bicep file (optional)
+
+Optionally, review the Bicep template to understand the resource definitions. 
+
+You can find the Bicep file used in this article at [https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/00-basic](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/00-basic).
+
+This template creates the following resources:
+
+- [microsoft.cognitiveservices/accounts](/azure/templates/microsoft.cognitiveservices/accounts?pivots=deployment-language-bicep)
+- [microsoft.cognitiveservices/accounts/projects](/azure/templates/microsoft.cognitiveservices/accounts/projects?pivots=deployment-language-bicep)
 
 ## Review deployed resources
 
@@ -107,18 +116,19 @@ If you plan to continue working with subsequent quickstarts and tutorials, you c
 az group delete --name exampleRG
 ```
 
+Reference: [az group delete](/cli/azure/group#az-group-delete)
+
 # [Azure PowerShell](#tab/powershell)
 
 ```azurepowershell
 Remove-AzResourceGroup -Name exampleRG
 ```
 
+Reference: [Remove-AzResourceGroup](/powershell/module/az.resources/remove-azresourcegroup)
+
 ---
-
-## Security configurations samples
-
-See the [Foundry Samples](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup) repository for example Bicep template configurations for the most common enterprise security configurations. Template examples include [network isolation](configure-private-link.md), [customer-managed key encryption](../concepts/encryption-keys-portal.md), [advanced identity options](../concepts/rbac-azure-ai-foundry.md), and [Agents standard setup](../../ai-services/agents/how-to/use-your-own-resources.md) with your resources for storing data.
 
 ## Related content
 
 - [Get started with the SDK](../quickstarts//get-started-code.md)
+- [Security configurations samples](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup) — See example Bicep template configurations for enterprise security configurations, including network isolation, customer-managed key encryption, advanced identity options, and Agents standard setup.
