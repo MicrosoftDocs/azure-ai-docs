@@ -367,69 +367,6 @@ ml_client.connections.create_or_update(workspace_connection=wps_connection)
 
 ---
 
-## Create data connections using the studio
-
-You can create data connections to Snowflake, Azure SQL DB, and Amazon S3 in Machine Learning studio, and use these connections to run data import jobs. Credentials are securely stored in the key vault associated with the workspace. The studio doesn't support creating data connections using OAuth authentication.
-
-### Create a Snowflake DB connection
-
-1. In your [Azure Machine Learning studio](https://ml.azure.com) workspace, select **Data** under **Assets** in the left navigation menu.
-1. On the **Data** page, select the **Data Connection** tab, and then select **Connect**.
-
-   :::image type="content" source="media/how-to-connection/create-new-data-connection.png" lightbox="media/how-to-connection/create-new-data-connection.png" alt-text="Screenshot showing the start of a new data connection in Azure Machine Learning studio.":::
-
-1. In the **Create connection** pane, complete the following information:
-
-   - **Service**: Select **Snowflake**.
-   - **Target**: Provide the following information, using the values from your Snowflake account for the placeholders:<br>**jdbc:snowflake://\<account>.snowflakecomputing.com/?db=\<database>&warehouse=\<warehouse>&role=\<role>**.
-   - **Authentication type**: Select **Username password**.
-   - **Username**: Enter your Snowflake user name.
-   - **Password**: Enter your Snowflake password.
-   - **Connection name**: Enter a name for the Snowflake connection.
-
-1. Optionally, select **Test Connection** to test the connection.
-1. Select **Save**.
-
-   :::image type="content" source="media/how-to-connection/create-snowflake-connection.png" lightbox="media/how-to-connection/create-snowflake-connection.png" alt-text="Screenshot showing creation of a new Snowflake connection in Azure Machine Learning studio.":::
-
-### Create an Azure SQL DB connection
-
-1. In your [Azure Machine Learning studio](https://ml.azure.com) workspace, select **Data** under **Assets** in the left navigation menu.
-1. On the **Data** page, select the **Data Connection** tab, and then select **Connect**.
-1. In the **Create connection** pane, fill in the following information:
-
-   - **Service**: Select **AzureSqlDb**.
-   - **Target**: Provide the following information, using the values from your Azure SQL database for the placeholders:<br>**Server=tcp:\<server>,\<port>;Database=\<database>;Trusted_Connection=False;Encrypt=True;Connection Timeout=30**
-   - **Authentication type**: Select **Username password**.
-   - **Username**: Enter your Azure SQL DB username.
-   - **Password**: Enter your Azure SQL DB password.
-   - **Connection name**: Enter a name for the Azure SQL DB connection.
-
-1. Optionally, select **Test Connection** to test the connection.
-1. Select **Save**.
-
-   :::image type="content" source="media/how-to-connection/how-to-create-azuredb-connection.png" lightbox="media/how-to-connection/how-to-create-azuredb-connection.png" alt-text="Screenshot showing creation of a new Azure DB connection in Azure Machine Learning studio UI.":::
-
-### Create an Amazon S3 connection
-
-1. In your [Azure Machine Learning studio](https://ml.azure.com) workspace, select **Data** under **Assets** in the left navigation menu.
-1. On the **Data** page, select the **Data Connection** tab, and then select **Connect**.
-1. In the **Create connection** pane, fill in the following information:
-
-   - **Service**: Select **S3**.
-   - **Target**: Enter your Amazon S3 bucket name.
-   - **Authentication type**: Select **Access key**.
-   - **Access key ID**: Enter your Amazon S3 access key ID.
-   - **Secret Access Key**: Enter your Amazon S3 Secret Access Key.
-   - **Connection name**: Enter a name for the Amazon S3 connection.
-
-1. Optionally, select **Test Connection** to test the connection.
-1. Select **Save**.
-
-   :::image type="content" source="media/how-to-connection/how-to-create-amazon-s3-connection.png" lightbox="media/how-to-connection/how-to-create-amazon-s3-connection.png" alt-text="Screenshot showing creation of a new Amazon S3 connection in Azure Machine Learning studio UI.":::
-
----
-
 ## Create nondata connections using Azure CLI or Python SDK
 
 You can also use Azure CLI or Python SDK to create the following connections for Azure Machine Learning. These connections aren't for data, but connect to external services to use in your code.
@@ -748,7 +685,70 @@ job = command(command="echo 'hello world'", environment=env_docker_conda,display
 returned_job = ml_client.create_or_update(job)
 ```
 
-# [Studio](#tab/azure-studio)
+---
+
+## Create connections using the studio
+
+You can create data connections to Snowflake, Azure SQL DB, and Amazon S3 in Machine Learning studio, and use these connections to run data import jobs. Credentials are securely stored in the key vault associated with the workspace. The studio doesn't support creating data connections using OAuth authentication.
+
+### Create a Snowflake DB connection
+
+1. In your [Azure Machine Learning studio](https://ml.azure.com) workspace, select **Data** under **Assets** in the left navigation menu.
+1. On the **Data** page, select the **Data Connection** tab, and then select **Connect**.
+
+   :::image type="content" source="media/how-to-connection/create-new-data-connection.png" lightbox="media/how-to-connection/create-new-data-connection.png" alt-text="Screenshot showing the start of a new data connection in Azure Machine Learning studio.":::
+
+1. In the **Create connection** pane, complete the following information:
+
+   - **Service**: Select **Snowflake**.
+   - **Target**: Provide the following information, using the values from your Snowflake account for the placeholders:<br>**jdbc:snowflake://\<account>.snowflakecomputing.com/?db=\<database>&warehouse=\<warehouse>&role=\<role>**.
+   - **Authentication type**: Select **Username password**.
+   - **Username**: Enter your Snowflake user name.
+   - **Password**: Enter your Snowflake password.
+   - **Connection name**: Enter a name for the Snowflake connection.
+
+1. Optionally, select **Test Connection** to test the connection.
+1. Select **Save**.
+
+   :::image type="content" source="media/how-to-connection/create-snowflake-connection.png" lightbox="media/how-to-connection/create-snowflake-connection.png" alt-text="Screenshot showing creation of a new Snowflake connection in Azure Machine Learning studio.":::
+
+### Create an Azure SQL DB connection
+
+1. In your [Azure Machine Learning studio](https://ml.azure.com) workspace, select **Data** under **Assets** in the left navigation menu.
+1. On the **Data** page, select the **Data Connection** tab, and then select **Connect**.
+1. In the **Create connection** pane, fill in the following information:
+
+   - **Service**: Select **AzureSqlDb**.
+   - **Target**: Provide the following information, using the values from your Azure SQL database for the placeholders:<br>**Server=tcp:\<server>,\<port>;Database=\<database>;Trusted_Connection=False;Encrypt=True;Connection Timeout=30**
+   - **Authentication type**: Select **Username password**.
+   - **Username**: Enter your Azure SQL DB username.
+   - **Password**: Enter your Azure SQL DB password.
+   - **Connection name**: Enter a name for the Azure SQL DB connection.
+
+1. Optionally, select **Test Connection** to test the connection.
+1. Select **Save**.
+
+   :::image type="content" source="media/how-to-connection/how-to-create-azuredb-connection.png" lightbox="media/how-to-connection/how-to-create-azuredb-connection.png" alt-text="Screenshot showing creation of a new Azure DB connection in Azure Machine Learning studio UI.":::
+
+### Create an Amazon S3 connection
+
+1. In your [Azure Machine Learning studio](https://ml.azure.com) workspace, select **Data** under **Assets** in the left navigation menu.
+1. On the **Data** page, select the **Data Connection** tab, and then select **Connect**.
+1. In the **Create connection** pane, fill in the following information:
+
+   - **Service**: Select **S3**.
+   - **Target**: Enter your Amazon S3 bucket name.
+   - **Authentication type**: Select **Access key**.
+   - **Access key ID**: Enter your Amazon S3 access key ID.
+   - **Secret Access Key**: Enter your Amazon S3 Secret Access Key.
+   - **Connection name**: Enter a name for the Amazon S3 connection.
+
+1. Optionally, select **Test Connection** to test the connection.
+1. Select **Save**.
+
+   :::image type="content" source="media/how-to-connection/how-to-create-amazon-s3-connection.png" lightbox="media/how-to-connection/how-to-create-amazon-s3-connection.png" alt-text="Screenshot showing creation of a new Amazon S3 connection in Azure Machine Learning studio UI.":::
+
+### Create nondata connections in the studio
 
 1. Navigate to the [Azure Machine Learning studio](https://ml.azure.com/).
 
@@ -757,13 +757,11 @@ returned_job = ml_client.create_or_update(job)
    :::image type="content" source="media/how-to-connection/how-to-manage-connections-create.png" lightbox="media/how-to-connection/create-new-data-connection.png" alt-text="Screenshot showing the start of creating a new connection in Azure Machine Learning studio UI.":::
 
 What type of resource do you want to connect?
-1. Under **Other resources types**, select **Generic Container Registry*
+1. Under **Other resources types**, select **Generic Container Registry**.
    :::image type="content" source="media/how-to-connection/how-to-connect-generic-container-registry.png" lightbox="media/how-to-connection/create-new-data-connection.png" alt-text="Screenshot highlighting the option to connect to a generic container registry in Azure Machine Learning studio UI.":::
 
-1. Input the required information, and then select **Add connection**
+1. Input the required information, and then select **Add connection**.
    :::image type="content" source="media/how-to-connection/how-to-connect-add-connection.png" lightbox="media/how-to-connection/create-new-data-connection.png" alt-text="Screenshot showing the input fields for connecting to a generic container registry in Azure Machine Learning studio UI.":::
-
----
 
 ## Related content
 
