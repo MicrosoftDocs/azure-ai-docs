@@ -91,7 +91,7 @@ It's important that the transcripts are 100% accurate transcriptions of the corr
 > [!NOTE]
 > For **Long audio + transcript**, only these languages are supported: Chinese (Mandarin, Simplified), Chinese (Cantonese, Traditional), Chinese (Taiwanese Mandarin), English (India), English (United Kingdom), English (United States), French (France), German (Germany), Hindi (India), Italian (Italy), Japanese (Japan), Portuguese (Brazil), Spanish (Spain) and Spanish (Mexico).
 >
-> Processed as Contextual is currently only available for English, Chinese (Mandarin, Simplified), French, Italian, German, Spanish, Portuguese (Brazil), Japanese, Korean and Czech .
+> Processed as Contextual is currently only available for English, Chinese (Mandarin, Simplified), French, Italian, German, Spanish, Portuguese (Brazil), Japanese, Korean and Czech.
 
 In some cases, you might not have segmented audio available. The Speech Studio can help you segment long audio files and create transcriptions. The long-audio segmentation service uses the [Batch Transcription API](batch-transcription.md) feature of speech to text.
 
