@@ -43,7 +43,9 @@ Azure supports connections to the following external sources for data availabili
 
 # [Azure CLI](#tab/cli)
 
-- To run the CLI commands, the Azure CLI and the `ml` extension version 2.15.1 or later installed. If you have an older Azure CLI version or extension, use the following code to uninstall it and install the new one.
+- The Azure CLI and the `ml` extension version 2.15.1 or later installed.
+
+  If you have an older Azure CLI version or extension, use the following code to uninstall it and install the new one.
 
   ```azurecli
   az extension remove -n ml
@@ -53,7 +55,9 @@ Azure supports connections to the following external sources for data availabili
 
 # [Python SDK](#tab/python)
 
-- To run the Python SDK commands, the [Azure Machine Learning SDK for Python](https://aka.ms/sdk-v2-install) with the `azure-ai-ml` version 1.5.0 or later package installed. If you have an older SDK package, use the following code to uninstall it and install the new one.
+- The [Azure Machine Learning SDK for Python](https://aka.ms/sdk-v2-install) with the `azure-ai-ml` version 1.5.0 or later package installed.
+
+  If you have an older SDK package, use the following code to uninstall it and install the new one.
 
   ```python
   pip uninstall azure-ai-ml
