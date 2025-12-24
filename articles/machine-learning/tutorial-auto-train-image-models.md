@@ -636,7 +636,7 @@ readiness_probe:
 
 ### Create the deployment
 
-Using the `MLClient` created earlier, we'll create the deployment in the workspace. This command starts the deployment creation and return a confirmation response while the deployment creation continues.
+Using the `ml_client` created earlier, you'll create the deployment in the workspace. This command starts the deployment creation and returns a confirmation response while the deployment creation continues.
 
 # [Azure CLI](#tab/cli)
 
@@ -652,8 +652,9 @@ az ml online-deployment create --file .\create_deployment.yml --workspace-name [
 [!Notebook-python[] (~/azureml-examples-main/sdk/python/jobs/automl-standalone-jobs/automl-image-object-detection-task-fridge-items/automl-image-object-detection-task-fridge-items.ipynb?name=create_deploy)]
 ---
 
-### Update traffic:
-By default the current deployment is set to receive 0% traffic. you can set the traffic percentage current deployment should receive. Sum of traffic percentages of all the deployments with one end point shouldn't exceed 100%.
+### Update traffic
+
+By default, the current deployment is set to receive 0% traffic. You can set the traffic percentage that the current deployment should receive. The sum of the traffic percentages of all the deployments with one endpoint shouldn't exceed 100%.
 
 # [Azure CLI](#tab/cli)
 
@@ -674,7 +675,7 @@ az ml online-endpoint update --name 'od-fridge-items-endpoint' --traffic 'od-fri
 
 [!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
 ```yaml
-CLI example not available, please use Python SDK.
+CLI example not available. Use the Python SDK.
 ```
 
 # [Python SDK](#tab/python)
@@ -689,12 +690,12 @@ CLI example not available, please use Python SDK.
 
 ## Visualize detections
 
-Now that you have scored a test image, you can visualize the bounding boxes for this image. To do so, be sure you have matplotlib installed.
+Now that you've scored a test image, you can visualize the bounding boxes for the image. To do so, you need to have Matplotlib installed.
 # [Azure CLI](#tab/cli)
 
 [!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
 ```yaml
-CLI example not available, please use Python SDK.
+CLI example not available. Use the Python SDK.
 ```
 
 # [Python SDK](#tab/python)
@@ -705,12 +706,12 @@ CLI example not available, please use Python SDK.
 
 ## Clean up resources
 
-Don't complete this section if you plan on running other Azure Machine Learning tutorials.
+Don't complete this section if you plan to complete other Azure Machine Learning tutorials.
 
-If you don't plan to use the resources you created, delete them, so you don't incur any charges.
+If you don't plan to use the resources you created, delete them so that you don't incur any charges.
 
-1. In the Azure portal, select **Resource groups** on the far left.
-1. From the list, select the resource group you created.
+1. In the Azure portal, select **Resource groups** in the left pane.
+1. In the list of resource groups, select the resource group that you created.
 1. Select **Delete resource group**.
 1. Enter the resource group name. Then select **Delete**.
 
@@ -718,10 +719,10 @@ You can also keep the resource group but delete a single workspace. Display the 
 
 ## Next steps
 
-In this automated machine learning tutorial, you did the following tasks:
+In this automated machine learning tutorial, you completed the following tasks:
 
 > [!div class="checklist"]
-> * Configured a workspace and prepared data for an experiment.
+> * Configured a workspace and prepared data for an experiment
 > * Trained an automated object detection model
 > * Specified hyperparameter values for your model
 > * Performed a hyperparameter sweep
@@ -729,20 +730,20 @@ In this automated machine learning tutorial, you did the following tasks:
 > * Visualized detections
 
 * [Learn more about computer vision in automated ML](concept-automated-ml.md#computer-vision).
-* [Learn how to set up AutoML to train computer vision models with Python](how-to-auto-train-image-models.md).
+* [Learn how to set up AutoML to train computer vision models by using Python](how-to-auto-train-image-models.md).
 * [Learn how to configure incremental training on computer vision models](how-to-auto-train-image-models.md#incremental-training-optional).
 * See [what hyperparameters are available for computer vision tasks](reference-automl-images-hyperparameters.md).
-* Code examples:
+* View code examples:
 
     # [Azure CLI](#tab/cli)
     [!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
     
-    * Review detailed code examples and use cases in the [azureml-examples repository for automated machine learning samples](https://github.com/Azure/azureml-examples/tree/sdk-preview/cli/jobs/automl-standalone-jobs). Check the folders with 'cli-automl-image-' prefix for samples specific to building computer vision models.
+    * Review detailed code examples and use cases in the [azureml-examples repository for automated machine learning samples](https://github.com/Azure/azureml-examples/tree/sdk-preview/cli/jobs/automl-standalone-jobs). See the folders that have the *cli-automl-image-* prefix for samples that are specific to creating computer vision models.
     
     # [Python SDK](#tab/python)
     [!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
 
-    * Review detailed code examples and use cases in the [GitHub notebook repository for automated machine learning samples](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/automl-standalone-jobs). Check the folders with 'automl-image-' prefix for samples specific to building computer vision models.
+    * Review detailed code examples and use cases in the [GitHub notebook repository for automated machine learning samples](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/automl-standalone-jobs). See the folders that have the *automl-image-* prefix for samples that are specific to creating computer vision models.
     
     ---
 
