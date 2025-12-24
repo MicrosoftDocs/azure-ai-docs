@@ -5,7 +5,7 @@ description: Learn how to use a Bicep file (template) to create a Microsoft Foun
 ms.author: sgilley
 author: sdgilley
 reviewer: deeikele
-ms.date: 09/15/2025
+ms.date: 12/24/2025
 monikerRange: foundry-classic || foundry
 ms.service: azure-ai-foundry
 ms.topic: quickstart-bicep
@@ -18,7 +18,7 @@ ms.custom:
 
 # Quickstart: Create a Microsoft Foundry resource using a Bicep file
 
-Use a [Microsoft Bicep](/azure/azure-resource-manager/bicep/overview) file (template) to create a [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) resource. A template makes it easy to create resources as a single, coordinated operation. A Bicep file is a text document that defines the resources that are needed for a deployment. It might also specify deployment parameters. Parameters are used to provide input values when using the file to deploy resources.
+Use a [Microsoft Bicep](/azure/azure-resource-manager/bicep/overview) file (template) to create a [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) resource. A template makes it easy to create resources as a single, coordinated operation. A Bicep file is a text document that defines the resources that are needed for a deployment. It might also specify deployment parameters. You use parameters to provide input values when deploying resources by using the file.
 
 ## Prerequisites
 
@@ -42,11 +42,11 @@ Use a [Microsoft Bicep](/azure/azure-resource-manager/bicep/overview) file (temp
 
     ---
 
-- The Bicep command-line tools. To install the Bicep command-line tools, use the [Install the Bicep CLI](/azure/azure-resource-manager/bicep/install) article.
+- The Bicep command-line tools. To install the Bicep command-line tools, see [Install the Bicep CLI](/azure/azure-resource-manager/bicep/install).
 
 ## Review the Bicep file
 
-The Bicep file used in this article can be found at [https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/00-basic](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/00-basic).
+You can find the Bicep file used in this article at [https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/00-basic](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/00-basic).
 
 This template creates the following resources:
 
@@ -56,7 +56,7 @@ This template creates the following resources:
 
 ## Deploy the Bicep file
 
-Deploy the Bicep file using either the Azure CLI or Azure PowerShell.
+Deploy the Bicep file by using either Azure CLI or Azure PowerShell.
 
 # [Azure CLI](#tab/cli)
 
@@ -77,11 +77,11 @@ New-AzResourceGroupDeployment -ResourceGroupName exampleRG -TemplateFile main.bi
 > [!NOTE]
 > Replace `myai` with the name of your resource.
 
-When the deployment finishes, you should see a message indicating the deployment succeeded.
+When the deployment finishes, you see a message indicating the deployment succeeded.
 
 ## Review deployed resources
 
-Use the [Foundry portal](https://ai.azure.com/?cid=learnDocs) to view the created resources. You can also use the Azure CLI or Azure PowerShell to list the resources.
+Use the [Foundry portal](https://ai.azure.com/?cid=learnDocs) to view the created resources. You can also use Azure CLI or Azure PowerShell to list the resources.
 
 # [Azure CLI](#tab/cli)
 
@@ -99,7 +99,7 @@ Get-AzResource -ResourceGroupName exampleRG
 
 ## Clean up resources
 
-If you plan to continue working with subsequent quickstarts and tutorials, you can leave the resources created in this quickstart. If you want to remove the resources, use the following command.
+If you plan to continue working with subsequent quickstarts and tutorials, you can keep the resources you created in this quickstart. If you want to remove the resources, use the following command.
 
 # [Azure CLI](#tab/cli)
 
@@ -117,7 +117,7 @@ Remove-AzResourceGroup -Name exampleRG
 
 ## Security configurations samples
 
-See the [Foundry Samples](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup) repository with example Bicep template configurations for the most common enterprise security configurations. Template examples include [network isolation](configure-private-link.md), [customer-managed key encryption](../concepts/encryption-keys-portal.md), [advanced identity options](../concepts/rbac-azure-ai-foundry.md) and [Agents standard setup](../../ai-services/agents/how-to/use-your-own-resources.md) with your resources for storing data.
+See the [Foundry Samples](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup) repository for example Bicep template configurations for the most common enterprise security configurations. Template examples include [network isolation](configure-private-link.md), [customer-managed key encryption](../concepts/encryption-keys-portal.md), [advanced identity options](../concepts/rbac-azure-ai-foundry.md), and [Agents standard setup](../../ai-services/agents/how-to/use-your-own-resources.md) with your resources for storing data.
 
 ## Related content
 
