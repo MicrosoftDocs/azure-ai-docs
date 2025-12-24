@@ -16,6 +16,8 @@ ms.custom:
   - build-aifnd
   - build-2025
   - hub-only
+  - dev-focus
+ai-usage: ai-assisted
 ---
 
 # Hub resources overview
@@ -23,6 +25,9 @@ ms.custom:
 [!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
 
 Foundry AI Hub is a resource type that you use with the Microsoft Foundry resource type. You only need it for selected use cases. Hub resources provide access to open-source model hosting and fine-tuning capabilities, as well as Azure Machine Learning capabilities, in addition to the capabilities supported by its associated Foundry resource.
+
+> [!NOTE]
+> Hub resources are available in Foundry portal, Azure Machine Learning studio, and the Azure portal. The feature set and management options vary by tool.
 
 When you create an AI Hub, you automatically provision a Foundry resource. You can use hub resources in [Foundry](https://ai.azure.com/?cid=learnDocs) and [Azure Machine Learning studio](https://ml.azure.com).
 
