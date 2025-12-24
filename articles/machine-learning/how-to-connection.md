@@ -62,7 +62,6 @@ Azure supports connections to the following external sources for data availabili
   ```
 
 ---
-``
 
 ## Create data connections using Azure CLI or Python SDK
 
