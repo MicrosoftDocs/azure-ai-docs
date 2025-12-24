@@ -3,7 +3,7 @@ title: Migrate From Hub-based to Foundry Projects
 description: Learn how to migrate from existing hub-based projects to new Microsoft Foundry projects to access the latest platform capabilities, unified workflows, and enhanced governance features.
 author: sdgilley
 ms.topic: how-to
-ms.date: 09/15/2025
+ms.date: 12/24/2025
 ms.author: sgilley
 ms.reviewer: deeikele
 ms.service: azure-ai-foundry
@@ -84,7 +84,7 @@ Once you have your new project, you might want to:
 
 ## 1. Locate your existing Foundry resource
 
-Most Foundry users already have an 'Foundry' (formerly called 'AI Services') resource, which was previously created alongside your hub-based project to access model deployments.
+Most Foundry users already have a 'Foundry' (formerly called 'AI Services') resource, which was previously created alongside your hub-based project to access model deployments.
 
 > [!NOTE]
 > If you don't have an existing Foundry resource, most common because your hub was using Azure OpenAI for accessing model deployments, you must [create a new Foundry resource first](./create-azure-ai-resource.md). You can [connect](./connections-add.md) your existing Azure OpenAI resource for continued access to existing model deployments. Other configuration steps apply for use with Agent service. See details in [Create a project to build with agents (Bicep)](#2-create-your-new-project) and [Agent standard setup](../agents/concepts/standard-agent-setup.md).
@@ -97,6 +97,9 @@ Most Foundry users already have an 'Foundry' (formerly called 'AI Services') res
 1.  Find the **Foundry models** connection, and select the link to view its details.
 
     :::image type="content" source="../media/migrate-project/find-resource.png" alt-text="Screenshot of Foundry connection details.":::
+    
+    > [!TIP]
+    > If you don't see the **Type** column select **Columns** in the upper right to customize the columns that are visible.
 
 1.  Follow the link in the connection details to open your Foundry resource overview page.
 
@@ -105,7 +108,7 @@ Most Foundry users already have an 'Foundry' (formerly called 'AI Services') res
 # [Azure portal](#tab/azure)
 
 1.  In [Azure portal](https://portal.azure.com), select the resource group that contains your [!INCLUDE [hub-project-name](../includes/hub-project-name.md)].
-1.  Locate your resource with 'Foundry' resource type. (This resource type used to be shown as 'Foundry Tools.')
+1.  Locate your resource with 'Foundry' resource type. 
 
     :::image type="content" source="../media/migrate-project/resource-azure-portal.png" alt-text="Screenshot of Foundry resource in Azure portal.":::
 
@@ -235,7 +238,7 @@ There are some reasons you might want to keep hubs and [!INCLUDE [hub-project-na
 1. Select **Delete** to delete the hub and all its associated projects.
 
 > [!CAUTION]
-> Make sure you don't delete the Foundry (Foundry Tools) resource, since this contains your existing deployments, files, fine-tuning jobs, and going forward will manage your Foundry projects.
+> Make sure you don't delete the Foundry resource, since this contains your existing deployments, files, fine-tuning jobs, and going forward will manage your Foundry projects.
 
 # [Bicep](#tab/bicep)
 
