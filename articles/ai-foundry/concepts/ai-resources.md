@@ -5,7 +5,7 @@ description: This article introduces concepts about Microsoft Foundry hubs for y
 ms.author: sgilley
 author: sdgilley
 ms.reviewer: deeikele
-ms.date: 09/15/2025
+ms.date: 12/24/2025
 ms.service: azure-ai-foundry
 ms.topic: concept-article
 ms.custom:
@@ -22,13 +22,13 @@ ms.custom:
 
 [!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
 
-Azure AI Hub is a resource type that is used in combination with Microsoft Foundry resource type, and is only required for selected use cases. Hub resources provide access to open-source model hosting and fine-tuning capabilities, as well as Azure Machine Learning capabilities, next to capabilities supported by its associated Foundry resource.
+Foundry AI Hub is a resource type that is used in combination with Microsoft Foundry resource type, and is only required for selected use cases. Hub resources provide access to open-source model hosting and fine-tuning capabilities, as well as Azure Machine Learning capabilities, next to capabilities supported by its associated Foundry resource.
 
 When you create an AI Hub, a Foundry resource is automatically provisioned. Hub resources can be used in [Foundry](https://ai.azure.com/?cid=learnDocs) and [Azure Machine Learning studio](https://ml.azure.com).
 
 Hubs have their own project types that support a differentiated feature set from Foundry projects. See [project types](../what-is-azure-ai-foundry.md#which-type-of-project-do-i-need) for an overview of supported features.
 
-## Create an AI hub resource
+## Create a hub resource
 
 Get started by [creating your first hub in Foundry portal](../how-to/create-azure-ai-resource.md), or use [Azure portal](../how-to/create-secure-ai-hub.md) or [templates](../how-to/create-azure-ai-hub-template.md) for advanced configuration options such as networking.
 
@@ -78,7 +78,7 @@ After a connection is created, model deployments are accessible via playground e
 
 ## Storage and Key Vault dependent resources
 
-Azure AI Hub is an implementation of Azure Machine Learning and requires multiple Azure services as a dependency.
+Foundry AI Hub is an implementation of Azure Machine Learning and requires multiple Azure services as a dependency.
 
 [!INCLUDE [Resource provider kinds](../includes/hub-resource-provider-kinds.md)]
 
