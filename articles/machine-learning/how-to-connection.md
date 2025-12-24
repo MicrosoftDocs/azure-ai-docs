@@ -30,9 +30,9 @@ You have the option to store credentials in a YAML file, and to use the Azure CL
 
 Azure supports connections to the following external sources for data availability:
 
-- Azure SQL DB
 - Snowflake DB
 - Amazon S3
+- Azure SQL DB
 
 [!INCLUDE [machine-learning-preview-generic-disclaimer](includes/machine-learning-preview-generic-disclaimer.md)]
 
@@ -97,7 +97,7 @@ To use the username and password stored in the YAML file, run the following comm
 az ml connection create --file <yaml-filename>.yaml
 ```
 
-Orto provide the username and password as part of the command line, run the following command, entering your `<username>` and `<password>` for the placeholders:
+Or to provide the username and password as part of the command line, run the following command, entering your `<username>` and `<password>` for the placeholders:
 
 ```azurecli
 az ml connection create --file <yaml-filename>.yaml --set credentials.username="<username>" credentials.password="<password>"
@@ -200,7 +200,7 @@ from azure.ai.ml import MLClient, load_workspace_connection
 ml_client = MLClient.from_config()
 
 wps_connection = load_workspace_connection(source="./<yaml-filename>.yaml")
-wps_connection.credentials_client_id="<client-id>"
+wps_connection.credentials.client_id="<client-id>"
 wps_connection.credentials.client_secret="<client-secret>"
 wps_connection.credentials.tenant_id="<tenant-id>"
 ml_client.connections.create_or_update(workspace_connection=wps_connection)
@@ -398,7 +398,7 @@ To connect to a public repo without using credentials, provide a `<connection-na
 ```yml
 name: <connection-name>
 type: git
-target: https://https://github.com/<account>/<repo>
+target: https://github.com/<account>/<repo>
 ```
 
 To create the Azure Machine Learning connection, run the following command, providing your YAML filename for the `<yaml-filename>` placeholder.
