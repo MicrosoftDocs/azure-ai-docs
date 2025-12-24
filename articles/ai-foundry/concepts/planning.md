@@ -9,6 +9,9 @@ ms.date: 12/24/2025
 ms.author: sgilley
 ms.reviewer: deeikele
 monikerRange: 'foundry-classic || foundry'
+ms.custom:
+  - dev-focus
+ai-usage: ai-assisted
 ---
 
 # Microsoft Foundry rollout across my organization
@@ -51,11 +54,11 @@ Foundry is built on the Azure platform, so you can customize security controls t
 
 - **Templates**: Use ARM templates or Bicep to automate secure deployments. Explore the [sample templates](/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline).
 
-- **Storage resource**: You might choose to use built-in storage capabilities in Foundry or use your own storage resources. For Agent services, threads and messages can optionally be stored in [resources managed by you](/azure/ai-foundry/agents/how-to/use-your-own-resources).
+- **Storage resource**: You might choose to use built-in storage capabilities in Foundry or use your own storage resources. For the Agent Service, threads and messages can optionally be stored in [resources managed by you](/azure/ai-foundry/agents/how-to/use-your-own-resources).
 
-### Example: Contoso’s security approach
+## Example: Contoso's security approach
 
-Contoso secures its Foundry deployments by using private networking with Enterprise IT managing a central hub network. Each business group connects via a spoke VNet. They use built-in Role Based Access Roles (RBAC) to separate access:
+Contoso secures its Foundry deployments by using private networking with Enterprise IT managing a central hub network. Each business group connects via a spoke VNet. They use built-in Role Based Access Control (RBAC) to separate access:
 
 * **Admins** manage deployments, connections, and shared resources
 * **Project Managers** oversee specific projects
@@ -94,7 +97,7 @@ Configure connection authentication to use either shared access tokens, such as 
 
 :::image type="content" source="../media/planning/connectivity.png" alt-text="Screenshot of a diagram showing Foundry project connectivity and integration with other Azure services.":::
 
-### Example: Contoso’s connectivity strategy
+### Example: Contoso's connectivity strategy
 
 - Contoso creates a Foundry resource for every business group, ensuring projects with similar data needs share the same connected resources.
 - By default, connected resources use shared authentication tokens and are shared across all projects.
