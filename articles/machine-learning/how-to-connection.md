@@ -256,7 +256,7 @@ To use the username and password stored in the YAML file, run the following comm
 az ml connection create --file <yaml-filename>.yaml
 ```
 
-Orto provide the username and password as part of the command line, run the following command, entering your `<username>` and `<password>` for the placeholders:
+Or to provide the username and password as part of the command line, run the following command, entering your `<username>` and `<password>` for the placeholders:
 
 ```azurecli
 az ml connection create --file <yaml-filename>.yaml --set credentials.username="<username>" credentials.password="<password>"
