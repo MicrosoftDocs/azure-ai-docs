@@ -100,7 +100,7 @@ max_instances: 4
 idle_time_before_scale_down: 120
 ```
 
-To create the compute, you run the following CLI v2 command with the path to your .yml file, workspace name, resource group and subscription ID.
+To create the compute, you run the following CLI v2 command with the path to your .yml file, workspace name, resource group, and subscription ID.
 
 ```azurecli
 az ml compute create -f [PATH_TO_YML_FILE] --workspace-name [YOUR_AZURE_WORKSPACE] --resource-group [YOUR_AZURE_RESOURCE_GROUP] --subscription [YOUR_AZURE_SUBSCRIPTION]
@@ -221,7 +221,7 @@ def plot_ground_truth_boxes_jsonl(image_file, jsonl_file):
         print("Unable to find ground truth information for image: {}".format(image_file))
 ```
 
-Using the above helper functions, for any given image, you can run the following code to display the bounding boxes.
+By using the preceding helper functions, for any given image, you can run the following code to display the bounding boxes.
 
 ```python
 image_file = "./odFridgeObjects/images/31.jpg"
@@ -250,7 +250,7 @@ path: ./data/odFridgeObjects
 type: uri_folder
 ```
 
-To upload the images as a data asset, run the following CLI v2 command with the path to your .yml file, workspace name, resource group and subscription ID.
+To upload the images as a data asset, run the following CLI v2 command with the path to your .yml file, workspace name, resource group, and subscription ID.
 
 ```azurecli
 az ml data create -f [PATH_TO_YML_FILE] --workspace-name [YOUR_AZURE_WORKSPACE] --resource-group [YOUR_AZURE_RESOURCE_GROUP] --subscription [YOUR_AZURE_SUBSCRIPTION]
@@ -416,7 +416,7 @@ limits:
 
 ---
 
-The following code defines the search space in preparation for the hyperparameter sweep for each defined architecture, YOLOv5 and FasterRCNN ResNet50 FPN.  In the search space, specify the range of values for `learning_rate`, `optimizer`, `lr_scheduler`, and so on, for AutoML to choose from as it attempts to generate a model with the optimal primary metric. If hyperparameter values aren't specified, default values are used for each architecture.
+The following code defines the search space in preparation for the hyperparameter sweep for each defined architecture, YOLOv5 and FasterRCNN ResNet50 FPN. In the search space, specify the range of values for `learning_rate`, `optimizer`, `lr_scheduler`, and so on, for AutoML to choose from as it attempts to generate a model with the optimal primary metric. If hyperparameter values aren't specified, default values are used for each architecture.
 
 For the tuning settings, use random sampling to pick samples from this parameter space by using the `random` sampling algorithm. The job limits specified in the preceding code configure automated ML to try a total of 10 trials with these different samples, running two trials at a time on the compute target, which is set up using four nodes. The more parameters the search space has, the more trials you need to find optimal models.
 
@@ -559,7 +559,7 @@ Register the model by using either the `azureml` path or your locally downloaded
 [!Notebook-python[] (~/azureml-examples-main/sdk/python/jobs/automl-standalone-jobs/automl-image-object-detection-task-fridge-items/automl-image-object-detection-task-fridge-items.ipynb?name=register_model)]    
 ---
 
-After you register the model you want to use, you can deploy it by using the [managed online endpoint](how-to-deploy-managed-online-endpoint-sdk-v2.md)
+After you register the model you want to use, you can deploy it by using the [managed online endpoint](how-to-deploy-managed-online-endpoint-sdk-v2.md).
 
 ### Configure online endpoint
 
@@ -715,7 +715,7 @@ If you don't plan to use the resources you created, delete them so that you don'
 1. Select **Delete resource group**.
 1. Enter the resource group name. Then select **Delete**.
 
-You can also keep the resource group but delete a single workspace. Display the workspace properties and select **Delete**.
+You can also keep the resource group but delete a single workspace. Go to the workspace page, and then select **Delete**.
 
 ## Next steps
 
