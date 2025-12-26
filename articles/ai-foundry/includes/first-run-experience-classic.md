@@ -26,4 +26,3 @@ In the portal, you can explore a rich catalog of cutting-edge models from many d
 
 If you're building an agent, you can instead start with **Create an agent**. The steps are similar, but in a different order.  Once the project is created, you arrive at the Agent playground instead of the Chat playground.
 
-Now that you have an agent, you can interact with it either in code or in the portal.

@@ -262,6 +262,9 @@ For network isolation purposes you can bring your own virtual network for evalua
 > [!NOTE]
 > Evaluation data is sent to Application Insights if Application Insights is connected. Virtual Network support for Application Insights and tracing isn't available.
 
+> [!IMPORTANT]
+> To prevent evaluation and red teaming run failures, assign the Azure AI User role to the project's Managed Identity during initial project setup.
+
 ### Virtual network region support
 
 Bring your own virtual network for evaluation is supported in all regions except for Central India, East Asia, North Europe and Qatar Central.

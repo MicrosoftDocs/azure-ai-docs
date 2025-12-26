@@ -4,9 +4,10 @@ author: PatrickFarley
 ms.author: pafarley
 reviewer: patrickfarley
 ms.reviewer: pafarley
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 10/30/2025
+ms.subservice: azure-ai-foundry-openai
 ---
 
 In this article, you learn how to use voice live with Microsoft Foundry models using the VoiceLive SDK for C#.

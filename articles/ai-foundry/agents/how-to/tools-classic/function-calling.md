@@ -7,11 +7,12 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 12/18/2025
+ms.date: 12/19/2025
 author: alvinashcraft
 ms.author: aashcraft
 zone_pivot_groups: selection-function-calling
 ms.custom: azure-ai-agents
+ai-usage: ai-assisted
 ---
 
 # Azure AI Agents function calling
@@ -29,7 +30,7 @@ By using Azure AI Agents function calling, you can extend agent capabilities by 
 
 ### Usage support
 
-|Azure AI foundry support  | Python SDK |    C# SDK | JavaScript SDK | REST API | Basic agent setup | Standard agent setup |
+| Azure AI foundry support | Python SDK | C# SDK | JavaScript SDK | REST API | Basic agent setup | Standard agent setup |
 |---------|---------|---------|---------|---------|---------|---------|
 |      | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
@@ -630,7 +631,7 @@ The following REST API examples demonstrate how to implement an agent with funct
 1. **Run the thread** - Start the agent execution to process the message.
 1. **Poll run status** - Check the run status to detect when the agent requests a function call.
 1. **Execute functions** - **Your code is responsible for calling the actual function** - the agent doesn't execute it automatically.
-1. **Submit function results** - Return the function output to the agent (not shown in this example, but required to complete the flow).
+1. **Submit function results** - Return the function output to the agent so that the run can continue and complete.
 
 > [!IMPORTANT]
 > The language model (LLM) doesn't execute your functions directly. When the agent determines a function is needed, the run status indicates `requires_action` with function call details. Your application code must detect this, execute the appropriate function, and submit the results back to the agent via the API.
@@ -652,31 +653,38 @@ curl --request POST \
   -d '{
     "instructions": "You are a weather bot. Use the provided functions to answer questions.",
     "model": "gpt-4o-mini",
-    tools=[{
-      "type": "function",
-      "function": {
-        "name": "get_weather",
-        "description": "Get the weather in location",
-        "parameters": {
-          "type": "object",
-          "properties": {
-            "location": {"type": "string", "description": "The city name, for example San Francisco"}
-          },
-          "required": ["location"]
+    "tools": [
+      {
+        "type": "function",
+        "function": {
+          "name": "get_weather",
+          "description": "Get the weather in location",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "location": {
+                "type": "string",
+                "description": "The city name, for example San Francisco"
+              }
+            },
+            "required": ["location"]
+          }
         }
       }
-    }]
+    ]
   }'
 ```
 
 ### Create a thread
+
+Capture the `id` from the response (for example, `thread_abc123`) so you can reuse it in later requests.
 
 ```bash
 curl --request POST \
   --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads?api-version=$API_VERSION \
   -H "Authorization: Bearer $AGENT_TOKEN" \
   -H "Content-Type: application/json" \
-  -d ''
+  -d '{}'
 ```
 
 #### Add a user question to the thread
@@ -694,13 +702,15 @@ curl --request POST \
 
 ### Run the thread
 
+Store the returned `run` identifier (for example, `run_abc123`) for subsequent polling requests.
+
 ```bash
 curl --request POST \
   --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs?api-version=$API_VERSION \
   -H "Authorization: Bearer $AGENT_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
-    "assistant_id": "asst_abc123",
+    "assistant_id": "asst_abc123"
   }'
 ```
 
@@ -711,6 +721,58 @@ curl --request GET \
   --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=$API_VERSION \
   -H "Authorization: Bearer $AGENT_TOKEN"
 ```
+
+When the agent needs one of your functions, the run enters the `requires_action` state. The response includes the `required_action.submit_tool_outputs.tool_calls` array, which lists the name of the function to call and its arguments.
+
+```json
+{
+  "id": "run_abc123",
+  "status": "requires_action",
+  "required_action": {
+    "type": "submit_tool_outputs",
+    "submit_tool_outputs": {
+      "tool_calls": [
+        {
+          "id": "call_123",
+          "type": "function",
+          "function": {
+            "name": "get_weather",
+            "arguments": "{\"location\":\"Seattle\"}"
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+When you detect the `requires_action` status:
+
+1. Extract the `tool_calls` array from `required_action.submit_tool_outputs.tool_calls`.
+1. For each tool call, use the `function.name` and `function.arguments` values to execute your own function implementation.
+1. Capture the output from your function.
+1. Submit the results by using the following endpoint, matching each output to its `tool_call_id`.
+
+### Submit function results to the run
+
+After your code executes the function, send the output back to the run by calling `submit-tool-outputs`. Use the `tool_call_id` from the polling response so the service can match your output to the original request.
+
+```bash
+curl --request POST \
+  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs/run_abc123/submit-tool-outputs?api-version=$API_VERSION \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "tool_outputs": [
+      {
+        "tool_call_id": "call_123",
+        "output": "{\"forecast\":\"Rainy and 55 F\"}"
+      }
+    ]
+  }'
+```
+
+Submitting the output moves the run back to the `in_progress` state. Continue polling until the status changes to `completed`.
 
 ### Retrieve the agent response
 
