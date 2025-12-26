@@ -636,7 +636,7 @@ readiness_probe:
 
 ### Create the deployment
 
-Using the `ml_client` created earlier, you'll create the deployment in the workspace. This command starts the deployment creation and returns a confirmation response while the deployment creation continues.
+Using the `MLClient` created earlier, you'll create the deployment in the workspace. This command starts the deployment creation and returns a confirmation response while the deployment creation continues.
 
 # [Azure CLI](#tab/cli)
 
