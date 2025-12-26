@@ -1,6 +1,11 @@
 {
     "redirections": [
         {
+          "source_path_from_root": "/articles/ai-foundry/how-to/create-azure-ai-project-template.md",
+          "redirect_url": "/azure/ai-foundry/how-to/create-resource-template",
+          "redirect_document_id": false
+        },
+        {
           "source_path_from_root": "/articles/ai-foundry/azure-openai-in-ai-foundry.md",
           "redirect_url": "/azure/ai-foundry/azure-openai-in-azure-ai-foundry",
           "redirect_document_id": false
