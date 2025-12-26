@@ -69,7 +69,7 @@ You write code by using the Python SDK in this tutorial and learn the following 
         ```
     
         > [!NOTE]
-        > Only Python 3.6 and 3.7 are compatible with automated ML support for computer vision tasks. 
+        > Only Python 3.9 and 3.10 are compatible with automated ML support for computer vision tasks. 
     
     ---
 
