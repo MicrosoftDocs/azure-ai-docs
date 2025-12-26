@@ -38,7 +38,8 @@ You write code by using the Python SDK in this tutorial and learn the following 
 
 * Use Python 3.9 or 3.10.
 
-* Download and unzip the [odFridgeObjects.zip](https://automlsamplenotebookdata.blob.core.windows.net/image-object-detection/odFridgeObjects.zip) data file. The dataset is annotated in Pascal VOC format, where each image corresponds to an XML file. Each XML file contains information on where its corresponding image file is located and also contains information about the bounding boxes and the object labels. To use this data, you first need to convert it to the required JSONL format, as seen in the [Convert the downloaded data to JSONL](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/automl-standalone-jobs/automl-image-object-detection-task-fridge-items/automl-image-object-detection-task-fridge-items.ipynb) section of the notebook.
+* Download and unzip the [odFridgeObjects.zip](https://automlsamplenotebookdata.blob.core.windows.net/image-object-detection/odFridgeObjects.zip) data file. The dataset is annotated in Pascal VOC format, where each image corresponds to an XML file. Each XML file contains information on where its corresponding image file is located and also contains information about the bounding boxes and the object labels. To use this data, you first need to convert it to the required JSONL format, as shown in the [Convert the downloaded data to JSONL](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/automl-standalone-jobs/automl-image-object-detection-task-fridge-items/automl-image-object-detection-task-fridge-items.ipynb) section of the automl-image-object-detection-task-fridge-items.ipynb
+notebook.
 
 * Use a compute instance to complete this tutorial without further installation. (See [Create a compute instance](./quickstart-create-resources.md#create-a-compute-instance).) Or install the CLI or SDK to use your own local environment.
     
@@ -47,29 +48,26 @@ You write code by using the Python SDK in this tutorial and learn the following 
     [!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
     
     
-    This tutorial is also available in the [azureml-examples repository on GitHub](https://github.com/Azure/azureml-examples/tree/sdk-preview/cli/jobs/automl-standalone-jobs/cli-automl-image-object-detection-task-fridge-items). If you want to run it in your local environment:
-    
-    * Install and [set up CLI (v2)](how-to-configure-cli.md#prerequisites) and make sure you install the `ml` extension.
+    This tutorial is also available in the [azureml-examples repository on GitHub](https://github.com/Azure/azureml-examples/tree/sdk-preview/cli/jobs/automl-standalone-jobs/cli-automl-image-object-detection-task-fridge-items). If you want to run it in your local environment, install and [set up CLI (v2)](how-to-configure-cli.md#prerequisites) and make sure you install the `ml` extension.
     
     # [Python SDK](#tab/python)
     
     [!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
     
     
-    This tutorial is also available in the [azureml-examples repository on GitHub](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/automl-standalone-jobs/automl-image-object-detection-task-fridge-items). If you want to run it in your local environment:
-    
-    * Use the following commands to install Azure Machine Learning Python SDK v2:
-        * Uninstall previous preview version:
+    This tutorial is also available in the [azureml-examples repository on GitHub](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/automl-standalone-jobs/automl-image-object-detection-task-fridge-items). If you want to run it in your local environment, use the following commands to install Azure Machine Learning Python SDK v2:
+
+    * Uninstall previous preview version:
         ```python
         pip uninstall azure-ai-ml
         ```
-        * Install the Azure Machine Learning Python SDK v2:
+    * Install the Azure Machine Learning Python SDK v2:
         ```python
         pip install azure-ai-ml azure-identity
         ```
     
-        > [!NOTE]
-        > Python 3.6 and higher are compatible with automated ML support for computer vision tasks. 
+    > [!NOTE]
+    > Python 3.6 and higher are compatible with automated ML support for computer vision tasks. 
     
     ---
 
