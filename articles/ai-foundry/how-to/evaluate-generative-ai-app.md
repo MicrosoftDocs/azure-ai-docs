@@ -7,7 +7,7 @@ ai-usage: ai-assisted
 ms.service: azure-ai-foundry
 ms.custom: ignite-2023, references_regions, build-2024, ignite-2024
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 12/23/2025
 ms.reviewer: dlozier
 ms.author: lagayhar
 author: lgayhardt
@@ -127,10 +127,10 @@ In the evaluation creation wizard, select from preexisting datasets or upload a 
 If you choose to evaluate a model or agent, you need a dataset to act as inputs to these targets so that responses can be assessed by evaluators. In the dataset step, you can choose to select or upload a dataset of your own, or you can synthetically generate a dataset.  
 
 - **Add new dataset**: Upload files from your local storage. Only CSV and JSONL file formats are supported. A preview of your test data displays on the right pane.
-- **Synthetic Dataset Generation**: Synthetic datasets are useful in situations where you either lack data or lack access to data to test the model or agent you’ve built. With synthetic data generation, you choose the resource to generate the data, the number of rows you would like to generate, and must enter a prompt describing the type of data you would like to generate. Additionally, you can upload files to improve the relevance of your dataset to the desired task of your agent or model  
+- **Synthetic Dataset Generation**: Synthetic datasets are useful in situations where you either lack data or lack access to data to test the model or agent you’ve built. With synthetic data generation, you choose the resource to generate the data, the number of rows you would like to generate, and must enter a prompt describing the type of data you would like to generate. Additionally, you can upload files to improve the relevance of your dataset to the desired task of your agent or model.  
 
 > [!NOTE]
-> This feature isn't available in all regions. Synthetic data generation is available in regions supporting Response API. For an up to date list of supporting regions, see [Azure OpenAI Responses API region availability](../openai/how-to/responses.md#region-availability).
+> Synthetic data generation isn't available in all regions. It is available in regions supporting Response API. For an up to date list of supporting regions, see [Azure OpenAI Responses API region availability](../openai/how-to/responses.md#region-availability).
 
 ::: moniker-end
 
