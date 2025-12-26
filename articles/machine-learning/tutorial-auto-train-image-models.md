@@ -380,7 +380,7 @@ az ml job create --file ./hello-automl-job-basic.yml --workspace-name [YOUR_AZUR
 # [Python SDK](#tab/python)
  [!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
 
-After you configure your AutoML Job to the settings you want, you can submit the job.
+After you configure your AutoML job with the settings you want, you can submit the job.
 
 [!Notebook-python[] (~/azureml-examples-main/sdk/python/jobs/automl-standalone-jobs/automl-image-object-detection-task-fridge-items/automl-image-object-detection-task-fridge-items.ipynb?name=submit-run)]
 
@@ -579,7 +579,7 @@ auth_mode: key
 
 ### Create the endpoint
 
-By using the `ml_client` created earlier, you'll now create the endpoint in the workspace. This command starts the endpoint creation and returns a confirmation response while the endpoint creation continues.
+By using the `MLClient` created earlier, you'll now create the endpoint in the workspace. This command starts the endpoint creation and returns a confirmation response while the endpoint creation continues.
 
 
 # [Azure CLI](#tab/cli)
