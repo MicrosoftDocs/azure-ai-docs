@@ -38,7 +38,7 @@ You write code by using the Python SDK in this tutorial and learn the following 
 
 * Use Python 3.9 or 3.10.
 
-* Download and unzip the [**odFridgeObjects.zip*](https://automlsamplenotebookdata.blob.core.windows.net/image-object-detection/odFridgeObjects.zip) data file. The dataset is annotated in Pascal VOC format, where each image corresponds to an XML file. Each XML file contains information on where its corresponding image file is located and also contains information about the bounding boxes and the object labels. To use this data, you first need to convert it to the required JSONL format, as seen in the [Convert the downloaded data to JSONL](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/automl-standalone-jobs/automl-image-object-detection-task-fridge-items/automl-image-object-detection-task-fridge-items.ipynb) section of the notebook.
+* Download and unzip the [odFridgeObjects.zip](https://automlsamplenotebookdata.blob.core.windows.net/image-object-detection/odFridgeObjects.zip) data file. The dataset is annotated in Pascal VOC format, where each image corresponds to an XML file. Each XML file contains information on where its corresponding image file is located and also contains information about the bounding boxes and the object labels. To use this data, you first need to convert it to the required JSONL format, as seen in the [Convert the downloaded data to JSONL](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/automl-standalone-jobs/automl-image-object-detection-task-fridge-items/automl-image-object-detection-task-fridge-items.ipynb) section of the notebook.
 
 * Use a compute instance to complete this tutorial without further installation. (See [Create a compute instance](./quickstart-create-resources.md#create-a-compute-instance).) Or install the CLI or SDK to use your own local environment.
     
@@ -69,7 +69,7 @@ You write code by using the Python SDK in this tutorial and learn the following 
         ```
     
         > [!NOTE]
-        > Only Python 3.9 and 3.10 are compatible with automated ML support for computer vision tasks. 
+        > Python 3.6 and higher are compatible with automated ML support for computer vision tasks. 
     
     ---
 
@@ -135,7 +135,7 @@ You can use an experiment to track your model training jobs.
 
 # [Azure CLI](#tab/cli)
 [!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
-You can provide the experiment name by using `experiment_name` key: 
+You can provide the experiment name by using the `experiment_name` key: 
 
 ```yaml
 experiment_name: dpv2-cli-automl-image-object-detection-experiment
