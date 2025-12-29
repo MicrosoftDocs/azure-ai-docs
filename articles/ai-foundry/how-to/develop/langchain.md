@@ -6,6 +6,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
   - update-code
+  - dev-focus
 ms.topic: how-to
 ms.date: 12/29/2025
 ms.reviewer: fasantia
@@ -43,8 +44,8 @@ This tutorial shows how to use the `langchain-azure-ai` package with LangChain.
 To run this tutorial, you need:
 
 * [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
-
-* A model deployment that supports the [Model Inference API](https://aka.ms/azureai/modelinference). This article uses a `Mistral-Large-2411` deployment available in the [Foundry model catalog](../../../ai-foundry/model-inference/overview.md).
+* Required role: **Owner**, **Contributor**, or **Azure AI Developer** on the AI hub resource or Foundry project to deploy models.
+* A model deployment that supports the [Model Inference API](https://aka.ms/azureai/modelinference). This article uses a `Mistral-Large-3` deployment available in the [Foundry model catalog](../../../ai-foundry/model-inference/overview.md). 
 * Python 3.9 or later installed, including pip.
 * LangChain installed. You can install it by using the following command:
 
@@ -72,6 +73,12 @@ To run this tutorial, you need:
 Create a client to connect to the chat model by using the `AzureAIChatCompletionsModel` class.
 
 [!notebook-python[](~/azureai-samples-main/scenarios/langchain/getting-started-with-langchain-chat-models.ipynb?name=create_client)]
+
+**What this snippet does:** Instantiates an `AzureAIChatCompletionsModel` client configured to connect to your deployed model using an API key for authentication. This client acts as an interface to the Model Inference API.
+
+**References:**
+- [AzureAIChatCompletionsModel](/python/api/langchain-azure-ai/langchain_azure_ai.chat_models.AzureAIChatCompletionsModel)
+- [Model Inference API reference](/azure/ai-services/model-inference/reference/reference-model-inference-api)
 
 
 > [!CAUTION]
@@ -120,6 +127,20 @@ model = AzureAIChatCompletionsModel(
     credential=os.environ["AZURE_INFERENCE_CREDENTIAL"],
 )
 ```
+
+### Verify your setup
+
+Test your client connection with a simple invocation:
+
+```python
+response = model.invoke("Say hello")
+print(response.content)
+```
+
+**What this does:** Calls the model with a simple prompt to verify authentication and connectivity. Expected output: A greeting message from the model (for example, "Hello! How can I assist you today?").
+
+**References:**
+- [LangChain Runnable.invoke()](/python/api/langchain-core/langchain_core.runnables.base.Runnable#invoke)
 
 ## Use chat completion models
 
