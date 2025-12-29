@@ -9,7 +9,7 @@ ms.custom:
   - ignite-2024
   - hub-only
 ms.topic: how-to
-ms.date: 09/15/2025
+ms.date: 12/29/2025
 ms.reviewer: deeikele
 ms.author: sgilley
 author: sdgilley
@@ -37,24 +37,16 @@ If your organization is using [Azure Policy](/azure/governance/policy/overview),
 
     :::image type="content" source="../media/how-to/hubs/create-hub.png" alt-text="Screenshot of the Foundry portal." lightbox="../media/how-to/hubs/create-hub.png":::
 
-1. Enter your hub name, subscription, resource group, and location details. For **Foundry Tools base models**, select an existing AI services resource or create a new one. Foundry Tools include multiple API endpoints for Speech, Content Safety, and Azure OpenAI. 
-    
-    :::image type="content" source="../media/how-to/hubs/resource-create-basics.png" alt-text="Screenshot of the option to set hub basic information." lightbox="../media/how-to/hubs/resource-create-basics.png":::
+1. Enter your hub name, subscription, resource group, and location details. For **Azure AI services base models**, select an existing Foundry resource or create a new one. Foundry resources include multiple API endpoints for Speech, Content Safety, and Azure OpenAI. 
 
 1. Select the **Storage** tab to specify storage account settings. For storing credentials, either provide your Azure Key Vault or use the [Microsoft-managed credential store (preview)](#choose-how-credentials-are-stored).
-
-    :::image type="content" source="../media/how-to/hubs/resource-create-resources.png" alt-text="Screenshot of the Create a hub with the option to set storage resource information." lightbox="../media/how-to/hubs/resource-create-resources.png"::: 
 
 1. Select the **Inbound Access** and **Outbound Access** tab to set up network isolation. For more information, see the [network isolation](configure-managed-network.md) article.
 
 
 1. Select the **Encryption** tab to set up data encryption. By default, **Microsoft-managed keys** are used to encrypt data. You can select to **Encrypt data using a customer-managed key**. 
 
-    :::image type="content" source="../media/how-to/hubs/resource-create-encryption.png" alt-text="Screenshot of the Create a hub with the option to select your encryption type." lightbox="../media/how-to/hubs/resource-create-encryption.png":::
-
 1. Select the **Identity** tab. By default, **System assigned identity** is enabled, but you can switch to **User assigned identity** if existing storage, key vault, and container registry are selected in **Storage**. You can also select whether to use **Credential-based** or **Identity-based** access to the storage account.
-
-    :::image type="content" source="../media/how-to/hubs/resource-create-identity.png" alt-text="Screenshot of the Create a hub with the option to select a managed identity." lightbox="../media/how-to/hubs/resource-create-identity.png":::
 
     > [!NOTE]
     > If you select **User assigned identity**, your identity needs to have the `Cognitive Services Contributor` role in order to successfully create a new hub.
