@@ -49,7 +49,7 @@ You can create a hub with default settings quickly, then customize settings afte
 
 1. Enter your hub name, subscription, resource group, and location details. For **Azure AI services base models**, select an existing Foundry resource or create a new one. Foundry resources include multiple API endpoints for Speech, Content Safety, and Azure OpenAI. 
 
-1. Select the **Storage** tab to specify storage account settings. To store credentials, either provide your Azure Key Vault or use the [Microsoft-managed credential store (preview)](#choose-how-credentials-are-stored).
+1. Select the **Storage** tab to specify storage account settings. To store credentials, either provide your Azure Key Vault or use the [Microsoft-managed credential store (preview)](#choose-how-to-store-credentials).
 
 1. Select the **Inbound Access** and **Outbound Access** tabs to set up network isolation. For more information, see the [network isolation](configure-managed-network.md) article.
 

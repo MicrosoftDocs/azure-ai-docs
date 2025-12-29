@@ -272,7 +272,7 @@ print(f"Hub updated: {updated_hub.name}")
 
 This script updates an existing hub with the specified Application Insights and Container Registry resources. The `update_dependent_resources=True` parameter confirms the update.
 
-Reference: [Hub](/python/api/azure-ai-ml/azure.ai.ml.entities.hub), [MLClient.workspaces.begin_update()](/python/api/azure-ai-ml/azure.ai.ml.operations.workspacesoperations#azure-ai-ml-operations-workspacesoperations-begin-update)
+Reference: [Hub](/python/api/azure-ai-ml/azure.ai.ml.entities.hub), [MLClient.workspaces.begin_update()](/python/api/azure-ai-ml/azure.ai.ml.operations.workspacesoperations)
 
 # [Azure CLI](#tab/azurecli)
 
