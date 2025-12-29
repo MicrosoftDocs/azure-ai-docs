@@ -45,7 +45,7 @@ To run this tutorial, you need:
 
 * [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
 * Required role: **Owner**, **Contributor**, or **Azure AI Developer** on the AI hub resource or Foundry project to deploy models.
-* A model deployment that supports the [Model Inference API](https://aka.ms/azureai/modelinference). This article uses a `Mistral-Large-3` deployment available in the [Foundry model catalog](../../../ai-foundry/model-inference/overview.md). 
+* A model deployment that supports the [Model Inference API](https://aka.ms/azureai/modelinference). This article uses a `Mistral-Large-2411` deployment available in the [Foundry model catalog](../../../ai-foundry/model-inference/overview.md). 
 * Python 3.9 or later installed, including pip.
 * LangChain installed. You can install it by using the following command:
 
