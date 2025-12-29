@@ -5,7 +5,7 @@ description: Learn how to create a hub-based project in Microsoft Foundry.
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: deeikele
-ms.date: 09/22/2025
+ms.date: 12/29/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.custom:
@@ -29,27 +29,30 @@ See [Types of projects](../what-is-azure-ai-foundry.md#types-of-projects) for mo
 
 Choose a method:
 
-### Foundry portal
+# [Foundry portal](#tab/portal)
+
 - Azure subscription.
 
-### Python SDK
+# [Python SDK](#tab/python)
+
 - Azure subscription.
 - Azure Machine Learning SDK v2.
 - Existing hub resource (see create hub article).
 - Azure CLI installed and authenticated (`az login`).
 
-### Azure CLI
+# [Azure CLI](#tab/cli)
+
 - Azure subscription.
 - Azure CLI with ML extension installed.
 - Existing hub resource.
 
 ## Create a hub project
 
-### Foundry portal
+# [Foundry portal](#tab/portal)
 
 [!INCLUDE [Create Foundry project](../includes/create-hub-project.md)]
 
-### Python SDK
+# [Python SDK](#tab/python)
 
 ```python
 from azure.ai.ml.entities import Project
@@ -68,7 +71,7 @@ my_project = Project(
 created_project = ml_client.workspaces.begin_create(workspace=my_project).result()
 ```
 
-### Azure CLI
+# [Azure CLI](#tab/cli)
 
 ```azurecli
 az ml workspace create --kind project --hub-id {my_hub_ID} --resource-group {my_resource_group} --name {my_project_name}
