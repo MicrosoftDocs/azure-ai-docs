@@ -8,7 +8,7 @@ ms.author: scottpolly
 ms.reviewer: fasantia
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.date: 11/20/2024
+ms.date: 12/29/2025
 ms.topic: how-to
 ms.custom: mlflow, cliv2, devplatv2
 ms.devlang: azurecli
