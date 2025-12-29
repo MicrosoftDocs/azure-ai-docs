@@ -20,7 +20,7 @@ ms.devlang: azurecli
 
 This article describes how to use [NVIDIA Triton Inference Server](https://aka.ms/nvidia-triton-docs) in Azure Machine Learning with [online endpoints](concept-endpoints-online.md).
 
-Triton is multi-framework, open-source software that's optimized for inference. It supports popular machine learning frameworks like TensorFlow, ONNX Runtime, PyTorch, and NVIDIA TensorRT. You can use it for CPU or GPU workloads.
+Triton is multi-framework open-source software that's optimized for inference. It supports popular machine learning frameworks like TensorFlow, ONNX Runtime, PyTorch, and NVIDIA TensorRT. You can use it for CPU or GPU workloads.
 
 There are two main approaches you can take to use Triton models when deploying them to online endpoints: No-code deployment or full-code (Bring Your Own Container) deployment.
 - No-code deployment for Triton models is a simple way to deploy them because you only need to bring Triton models to deploy.
@@ -30,7 +30,7 @@ For both options, Triton Inference Server Performs inferencing based on the [Tri
 
 Triton is supported in both [managed online endpoints and Kubernetes online endpoints](concept-endpoints-online.md#managed-online-endpoints-vs-kubernetes-online-endpoints).
 
-In this article, you'll learn how to deploy a model by using no-code deployment for Triton to a [managed online endpoint](concept-endpoints-online.md#online-endpoints). Information is provided for using the CLI (command line), Python SDK v2, and Azure Machine Learning studio. If you want to customize further by directly using Triton Inference Server's configuration, see [Use a custom container to deploy a model](how-to-deploy-custom-container.md) and the BYOC example for Triton ([deployment definition](https://github.com/Azure/azureml-examples/tree/main/cli/endpoints/online/custom-container/triton/single-model) and [end-to-end script](https://github.com/Azure/azureml-examples/blob/main/cli/deploy-custom-container-triton-single-model.sh)). 
+In this article, you'll learn how to deploy a model by using no-code deployment for Triton to a [managed online endpoint](concept-endpoints-online.md#online-endpoints). Information is provided for using the Azure CLI, Python SDK v2, and Azure Machine Learning studio. If you want to customize further by directly using Triton Inference Server's configuration, see [Use a custom container to deploy a model](how-to-deploy-custom-container.md) and the BYOC example for Triton ([deployment definition](https://github.com/Azure/azureml-examples/tree/main/cli/endpoints/online/custom-container/triton/single-model) and [end-to-end script](https://github.com/Azure/azureml-examples/blob/main/cli/deploy-custom-container-triton-single-model.sh)). 
 
 > [!NOTE]
 > Use of the NVIDIA Triton Inference Server container is governed by the [NVIDIA AI Enterprise Software license agreement](https://www.nvidia.com/en-us/data-center/products/nvidia-ai-enterprise/eula/) and can be used for 90 days without an enterprise product subscription. For more information, see [NVIDIA AI Enterprise on Azure Machine Learning](https://www.nvidia.com/en-us/data-center/azure-ml).
@@ -61,9 +61,9 @@ In this article, you'll learn how to deploy a model by using no-code deployment 
     > [!IMPORTANT]
     > You might need to request a quota increase for your subscription before you can use this series of VMs. For more information, see [NCv3-series](/azure/virtual-machines/ncv3-series).
 
-NVIDIA Triton Inference Server requires a specific model repository structure, where there's a directory for each model and subdirectories for the model versions. The contents of each model version subdirectory is determined by the type of the model and the requirements of the backend that supports the model. For information about the structure for all models, see [Model Files](https://github.com/triton-inference-server/server/blob/main/docs/user_guide/model_repository.md#model-files).
+* NVIDIA Triton Inference Server requires a specific model repository structure, where there's a directory for each model and subdirectories for the model versions. The contents of each model version subdirectory is determined by the type of the model and the requirements of the backend that supports the model. For information about the structure for all models, see [Model Files](https://github.com/triton-inference-server/server/blob/main/docs/user_guide/model_repository.md#model-files).
 
-The information in this document is based on using a model stored in ONNX format, so the directory structure of the model repository is `<model-repository>/<model-name>/1/model.onnx`. Specifically, this model performs image identification.
+   The information in this document is based on using a model stored in ONNX format, so the directory structure of the model repository is `<model-repository>/<model-name>/1/model.onnx`. Specifically, this model performs image identification.
 
 [!INCLUDE [clone repo & set defaults](includes/machine-learning-cli-prepare.md)]
 
