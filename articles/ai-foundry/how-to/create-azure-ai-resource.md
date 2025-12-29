@@ -8,6 +8,8 @@ ms.custom:
   - build-2024
   - ignite-2024
   - hub-only
+  - dev-focus
+ai-usage: ai-assisted
 ms.topic: how-to
 ms.date: 12/29/2025
 ms.reviewer: deeikele
@@ -20,6 +22,14 @@ author: sdgilley
 
 [!INCLUDE [hub-only-alt](../includes/uses-hub-only-alt.md)]
 
+**What you'll do**: Create and manage a Foundry hub, configure security settings, networking, and access control.
+
+**Time estimate**: 10–15 minutes.
+
+**Prerequisites**:
+- An Azure subscription
+- **Azure role**: Contributor or Owner role on the subscription or resource group to create and manage hubs.
+
 In the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs), hubs provide the environment for a team to collaborate and organize work. As a team lead or IT admin, you can use hubs to centrally set up security settings and govern usage and spend. You can create and manage a hub from the Azure portal. Your developers can create projects from the hub.
 
 This article shows you how to create and manage a hub in Foundry portal with the default settings so you can get started quickly. If you need to customize security or the dependent resources of your hub, use [Azure portal](create-secure-ai-hub.md) or [template options](create-azure-ai-hub-template.md). 
@@ -29,9 +39,9 @@ This article shows you how to create and manage a hub in Foundry portal with the
 > 
 > If you're an admin or dev lead and want to create your Foundry hub using a template, see the articles on using [Bicep](create-azure-ai-hub-template.md) or [Terraform](create-hub-terraform.md).
 
-## Create a secure hub in the Azure portal
+## Create a hub in the Azure portal
 
-If your organization uses [Azure Policy](/azure/governance/policy/overview), set up a hub that meets your organization's requirements instead of using Foundry for resource creation. 
+You can create a hub with default settings quickly, then customize settings after creation. For a hub with advanced security settings configured during creation, see [Create a secure hub](create-secure-ai-hub.md). If your organization uses [Azure Policy](/azure/governance/policy/overview), you can also configure a hub using [Azure portal](create-secure-ai-hub.md) or [template options](create-azure-ai-hub-template.md) to meet your organization's requirements. 
 
 1. From the [Azure portal](https://portal.azure.com), search for `Foundry`. From the left menu, select **AI Hubs**, and then select **+ Create** and **Hub**.
 
@@ -99,32 +109,9 @@ To update Azure Application Insights from the Azure portal, go to the **Properti
 
 :::image type="content" source="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-manage-update-associated-resources.png" alt-text="Screenshot of the properties page of the hub resource in the Azure portal." lightbox="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-manage-update-associated-resources.png":::
 
-# [Python SDK](#tab/python)
 
-```python
-from azure.ai.ml.entities import Hub
+For code examples to create or update a hub, see [Add Azure Application Insights and Azure Container Registry](./develop/create-hub-project-sdk.md#update-azure-application-insights-and-azure-container-registry).
 
-my_app_insights = "{APPLICATION_INSIGHTS_ARM_ID}"
-my_container_registry = "{CONTAINER_REGISTRY_ARM_ID}"
-
-# construct a basic hub
-my_hub = Hub(name="myexamplehub", 
-             location="East US", 
-             application_insights=my_app_insights,
-             container_registry=my_container_registry)
-
-# update_dependent_resources is used to give consent to update the workspace dependent resources.
-created_hub = ml_client.workspaces.begin_update(workspace=my_hub, update_dependent_resources=True).result()
-```
-
-# [Azure CLI](#tab/azurecli)
-
-See flag documentation for [```az ml workspace update```](/cli/azure/ml/workspace#az-ml-workspace-update)
-
-```azurecli
-az ml workspace update -n "myexamplehub" -g "{MY_RESOURCE_GROUP}" -a "APPLICATION_INSIGHTS_ARM_ID" -u
-```
----
 
 ### Choose how to store credentials
 
@@ -144,10 +131,11 @@ To delete a hub from [Foundry](https://ai.azure.com?cid=LearnDocs), select the h
 
 :::image type="content" source="../media/how-to/hubs/studio-delete-hub.png" alt-text="Screenshot of the delete hub link in hub properties." lightbox="../media/how-to/hubs/studio-delete-hub.png":::
 
+> [!CAUTION]
+> Deleting a hub is irreversible. This action deletes all associated projects and nested endpoints. Back up any critical work or data before deleting. You can optionally delete connected resources, but ensure no other applications are using those connections—for example, another Foundry deployment.
+
 > [!NOTE]
 > You can also delete the hub from the [Azure portal](https://portal.azure.com).
-
-Deleting a hub deletes all associated projects. When you delete a project, you also delete all nested endpoints for the project. You can optionally delete connected resources. However, make sure that no other applications are using this connection. For example, another Foundry deployment might be using it.
 
 ## Related content
 

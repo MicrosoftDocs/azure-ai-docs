@@ -245,6 +245,47 @@ az keyvault show --name <key-vault-name> --resource-group <resource-group> --que
 
 ---
 
+## Update Azure Application Insights and Azure Container Registry
+
+To use custom environments for Prompt Flow, you need to configure an Azure Container Registry for your hub. To use Azure Application Insights for Prompt Flow deployments, you need to configure an Azure Application Insights resource for your hub. Updating the workspace-attached Azure Container Registry or Application Insights resources might break lineage of previous jobs, deployed inference endpoints, or your ability to rerun earlier jobs in the workspace. After association with a Foundry hub, Azure Container Registry and Application Insights resources can't be disassociated (set to null).
+
+You can use the Azure portal, Azure SDK/CLI options, or the infrastructure-as-code templates to update both Azure Application Insights and Azure Container Registry for the hub.
+
+# [Python SDK](#tab/python)
+
+```python
+from azure.ai.ml.entities import Hub
+
+my_app_insights = "{APPLICATION_INSIGHTS_ARM_ID}"
+my_container_registry = "{CONTAINER_REGISTRY_ARM_ID}"
+
+# construct a hub with Application Insights and Container Registry
+my_hub = Hub(name="myexamplehub", 
+             location="East US", 
+             application_insights=my_app_insights,
+             container_registry=my_container_registry)
+
+# update_dependent_resources is used to give consent to update the workspace dependent resources.
+updated_hub = ml_client.workspaces.begin_update(workspace=my_hub, update_dependent_resources=True).result()
+print(f"Hub updated: {updated_hub.name}")
+```
+
+This script updates an existing hub with the specified Application Insights and Container Registry resources. The `update_dependent_resources=True` parameter confirms the update.
+
+Reference: [Hub](/python/api/azure-ai-ml/azure.ai.ml.entities.hub), [MLClient.workspaces.begin_update()](/python/api/azure-ai-ml/azure.ai.ml.operations.workspacesoperations#azure-ai-ml-operations-workspacesoperations-begin-update)
+
+# [Azure CLI](#tab/azurecli)
+
+```azurecli
+az ml workspace update -n "myexamplehub" -g "{MY_RESOURCE_GROUP}" -a "APPLICATION_INSIGHTS_ARM_ID" -u
+```
+
+This command updates the hub named "myexamplehub" with the specified Application Insights resource. The `-u` flag grants consent to update dependent resources.
+
+Reference: [az ml workspace update](/cli/azure/ml/workspace#az-ml-workspace-update)
+
+---
+
 ## Related content
 
 - [Get started building a chat app using the prompt flow SDK](../../quickstarts/get-started-code.md)
