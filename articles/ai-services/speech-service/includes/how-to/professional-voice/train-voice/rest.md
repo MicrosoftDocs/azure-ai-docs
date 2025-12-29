@@ -229,7 +229,7 @@ You should receive a response body in the following format:
 }
 ```
 
-# [Neural - multi lingual (preview)](#tab/multilingual)
+# [Neural - multilingual (preview)](#tab/multilingual)
 
 Not currently supported via the REST API.
 

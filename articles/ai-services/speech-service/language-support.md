@@ -100,7 +100,7 @@ Use the following table to determine supported styles and roles for each voice.
 
 ### Viseme
 
-This table lists all the locales supported for [Viseme](speech-synthesis-markup-voice.md#viseme-element). For more information about Viseme, see [Get facial position with viseme](how-to-speech-synthesis-viseme.md) and [Viseme element](speech-synthesis-markup-voice.md#viseme-element). 
+This table lists all the locales supported for [viseme](speech-synthesis-markup-voice.md#viseme-element). For more information about Viseme, see [Get facial position with viseme](how-to-speech-synthesis-viseme.md) and [Viseme element](speech-synthesis-markup-voice.md#viseme-element). 
 
 [!INCLUDE [Language support include](includes/language-support/viseme.md)]
 

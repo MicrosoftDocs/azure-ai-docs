@@ -28,8 +28,8 @@ Here’s a summary of the three available services:
 |Service | What it Does | Ideal For | Strengths | Core Features |
 |--------|---------------|-----------|-----------|----------------|
 | Document Intelligence | Extracts text, key-value pairs, tables, and layout  (structure) from documents, field extraction with grounding, confidence, support for classification and splitting | Standard forms, invoices, receipts, purchase orders, IDs, contracts, legal documents | Proven, high-accuracy extraction, consistency, confidence score and grounding, predefined schemas for many templated document types | OCR/Read/Layout models, Prebuilt Models (invoice, tax, receipt, etc.), Custom model (field extraction and classification) |
-| Content Understanding | Processes documents, images, audio, and video; richer field extraction  and inference, built-in support for validation, enrichment, and post processing, integrated reasoning for complex tasks (preview) | Complex document processing requiring extractive and inferred fields, document formats with large number of complex variations or truly unstructured documents, inferring, summarization and generate metadata | Built-in unified process for multimodal inputs, start with no labeling. Handles varying templates and unstructured documents, supports continuous improvement with labeled samples| Enhanced support for content extraction(OCR, layout), field extraction, inferred fields and classification, tackle large documents with high variations, configure your Gen AI model for control over quality an price. |
-| Build your own solution with Azure OpenAI Service | Build a solution with any Azure-hosted LLM models, Fully control on model, prompt and tools | Developers aiming to build, own and manage a solution that requires fine grained control on models, costs and prompts | Maximum flexibility and control | Multiple options to plug and play with model choice, prompt tuning, workflow definition with complete flexibility in building each component. Requires engineering investment in model upgrades, quality and reliability. |
+| Content Understanding | Processes documents, images, audio, and video; richer field extraction  and inference, built-in support for validation, enrichment, and post processing, integrated reasoning for complex tasks (preview) | Complex document processing requiring extractive and inferred fields, document formats with large number of complex variations or truly unstructured documents, inferring, summarization and generate metadata | Built-in unified process for multimodal inputs; start with no labeling. Handles varying templates and unstructured documents, supports continuous improvement with labeled samples| Enhanced support for content extraction(OCR, layout), field extraction, inferred fields and classification, tackle large documents with high variations, configure your Gen AI model for control over quality and price. |
+| Build your own solution with Azure OpenAI Service | Build a solution with any Azure-hosted LLM models, Fully control on model, prompt, and tools | Developers aiming to build, own, and manage a solution that requires fine grained control on models, costs, and prompts | Maximum flexibility and control | Multiple options to plug and play with model choice, prompt tuning, workflow definition with complete flexibility in building each component. Requires engineering investment in model upgrades, quality, and reliability. |
 
 ## Azure Document Intelligence
 
@@ -57,13 +57,13 @@ Content Understanding simplifies the process of building an effective document p
 * **Inferred fields and enrichments**: Generate output fields that aren't explicitly present in the document. For example, calculate total tax on an invoice, determine jurisdiction on a contract from parties' addresses, or derive insights from clause wording.
 * **Classification and splitting**: Parse large files to identify and split individual segments for intelligent routing and targeted schema extraction. Targets include all analyzers including prebuilt and custom.
 * **Post-processing and validations**: Define post-processing rules directly in field descriptions, such as converting date formats, normalizing currency codes, and performing consistency checks.
-* **Model choice**: Content Understanding supports multiple Gen AI models for use, providing you with the flexibility to select the model that provides the best result quality/cost trade off. Learn more about the [models suuported](./concepts/models-deployments.md).
+* **Model choice**: Content Understanding supports multiple Gen AI models for use, providing you with the flexibility to select the model that provides the best result quality/cost trade-off. Learn more about the [models supported](./concepts/models-deployments.md).
 * **Multi-file input (preview)**: Process multiple input files in a single request and extract a unified schema across all inputs, enabling cross-document validation and aggregation.
 * **Reasoning (preview)**: Simplify complex intelligent document processing workflows. Instead of building multi-step processes for extraction, validation, aggregation, and reviews, Content Understanding handles everything in a single unified operation.
 
 > [!NOTE]
 >
-> Starting with the GA version, Content Understanding uses your Foundry model deployments for all operations that require a Gen AI model. To learn more about which models to deploy and use, please refer to the [Models and deployments](./concepts/models-deployments.md) page.
+> Starting with the GA version, Content Understanding uses your Foundry model deployments for all operations that require a Gen AI model. To learn more about which models to deploy and use, refer to the [Models and deployments](./concepts/models-deployments.md) page.
 
 ## Azure-hosted LLMs (Foundry models) 
 
@@ -74,7 +74,7 @@ For organizations requiring niche AI workflows, custom solutions built with Foun
 
 Here's a capabilities overview for all three services. 
 
-| Capabilities             | Document Intelligence                              | Content Understanding                              | Build Your Own with AOAI                          |
+| Capabilities             | Document Intelligence                              | Content Understanding                              | Build Your Own with Azure OpenAI                          |
 |--------------------------|----------------------------------------------------|----------------------------------------------------|---------------------------------------------------|
 | OCR                      | Industry leading OCR                               | Industry leading OCR                               | Requires preprocessing                            |
 | Complex document structure | Layout with tables, sections, selection marks, figures, and more   | Enhanced layout with multi-page tables, sections, selection marks, figures, and more   | Requires preprocessing  |
@@ -137,7 +137,7 @@ Extract fixed fields like Name, Date of Birth, Address, Account Number, and othe
 :::image type="content" source="media/overview/simple-form.png" alt-text="Scan of a sample W2 form." :::
 
 **Recommendation**:
-* This class of documents would be served by either Content Understanding ```(recommended)``` or Document Intelligence . Content Understanding would offer an easier getting started experience. Both services would provide confidence scores and grounding to ensure you minimize your human review costs and scale. 
+* This class of documents would be served by either Content Understanding ```(recommended)``` or Document Intelligence. Content Understanding would offer an easier getting started experience. Both services would provide confidence scores and grounding to ensure you minimize your human review costs and scale. 
 
 
 
@@ -193,7 +193,7 @@ Extract, generate abstract details like obligations, summaries, inferencing deta
 :::image type="content" source="media/overview/contracts.png" alt-text="Scan of a sample web hosting agreement contract." :::
 
 **Recommendation**:
-* Content Understanding ```(Recommended)```: The ideal service for this use case. Content Understanding can extract inferred fields, like a end date of a contract with start date and duration, total tax or geography
+* Content Understanding ```(Recommended)```: The ideal service for this use case. Content Understanding can extract inferred fields, like an end date of a contract with start date and duration, total tax or geography
 * Build a custom solution: Build and configure the components needed for parsing the documents (Layout), extracting the fields and any build any post-processing needed. The solution needs to be tested and verified with different variations, and you'll need to scale and manage the deployed solution. With no confidence scores, you either accept all results or review all results based on the expected error rate. 
 
 
