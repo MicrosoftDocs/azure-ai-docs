@@ -191,7 +191,7 @@ chain.invoke({"language": "italian", "text": "hi"})
 
 Because models in Foundry expose a common Model Inference API, you can chain multiple LLM operations and choose the model best suited to each step.
 
-In the following example, you create two model clients: one producer and one verifier. To make the distinction clear, use a multi-model endpoint such as the [Model Inference API](../../model-inference/overview.md) and pass the `model` parameter to a Mistral-Large model for generation and a Mistral-Small model for verification. Producing content generally requires a larger model, while verification can use a smaller one.
+In the following example, you create two model clients: one producer and one verifier. To make the distinction clear, use a multi-model endpoint such as the [Model Inference API](../../model-inference/overview.md) and pass the `model` parameter to a large model for generation and a small model for verification. Producing content generally requires a larger model, while verification can use a smaller one.
 
 [!notebook-python[](~/azureai-samples-main/scenarios/langchain/getting-started-with-langchain-chat-models.ipynb?name=create_producer_verifier)]
 
