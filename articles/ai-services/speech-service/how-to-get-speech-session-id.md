@@ -7,7 +7,7 @@ ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 5/25/2025
+ms.date: 12/29/2025
 ms.reviewer: jagoerge
 #Customer intent: As a developer, I need to know how to get the session ID and transcription ID for speech to text so that I can debug issues with my application.
 ---
@@ -20,7 +20,7 @@ If you use [speech to text](speech-to-text.md) and need to open a support case, 
 > * *Session ID* is used in [real-time speech to text](get-started-speech-to-text.md) and [speech translation](speech-translation.md).
 > * *Transcription ID* is used in [batch transcription](batch-transcription.md).
 
-## Getting Session ID
+## Get the session ID
 
 [Real-time speech to text](get-started-speech-to-text.md) and [speech translation](speech-translation.md) use either the [Speech SDK](speech-sdk.md) or the [REST API for short audio](rest-speech-to-text-short.md).
 
@@ -39,20 +39,20 @@ With the [speech to text REST API for short audio](rest-speech-to-text-short.md)
 
 Enable logging for your application as described in [this article](how-to-use-logging.md).
 
-### Get Session ID from the log
+### Get session ID from the log
 
 Open the log file your application produced and look for `SessionId:`. The number that would follow is the Session ID you need. In the following log excerpt example, `0b734c41faf8430380d493127bd44632` is the Session ID.
 
 ```
 [874193]: 218ms SPX_DBG_TRACE_VERBOSE:  audio_stream_session.cpp:1238 [0000023981752A40]CSpxAudioStreamSession::FireSessionStartedEvent: Firing SessionStarted event: SessionId: 0b734c41faf8430380d493127bd44632
 ```
-### Get Session ID using JavaScript
+### Get session ID using JavaScript
 
 If you use Speech SDK for JavaScript, you get Session ID with the help of `sessionStarted` event from the [Recognizer class](/javascript/api/microsoft-cognitiveservices-speech-sdk/recognizer).
 
 See an example of getting Session ID using JavaScript in [this sample](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/js/browser/index.html). Look for `recognizer.sessionStarted = onSessionStarted;` and then for `function onSessionStarted`.
 
-### Get Session ID using Speech CLI
+### Get session ID using Speech CLI
 
 If you use [Speech CLI](spx-overview.md), then you see the Session ID in `SESSION STARTED` and `SESSION STOPPED` console messages.
 
@@ -66,7 +66,7 @@ spx help translate log
 ```
 
 
-### Provide Session ID using REST API for short audio
+### Provide session ID using REST API for short audio
 
 Unlike Speech SDK, [Speech to text REST API for short audio](rest-speech-to-text-short.md) doesn't automatically generate a Session ID. You need to generate it yourself and provide it within the REST request.
 
@@ -89,7 +89,7 @@ https://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiv
 >
 >then the value of `X-ConnectionId` will not be accepted by the system, and the Session won't be found in the logs.
 
-## Getting Transcription ID for Batch transcription
+## Get transcription ID for batch transcription
 
 [Batch transcription API](batch-transcription.md) is part of the [Speech to text REST API](rest-speech-to-text.md). 
 
