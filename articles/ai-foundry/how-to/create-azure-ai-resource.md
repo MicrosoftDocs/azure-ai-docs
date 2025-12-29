@@ -110,7 +110,7 @@ To update Azure Application Insights from the Azure portal, go to the **Properti
 :::image type="content" source="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-manage-update-associated-resources.png" alt-text="Screenshot of the properties page of the hub resource in the Azure portal." lightbox="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-manage-update-associated-resources.png":::
 
 
-For code examples to create or update a hub, see [Add Azure Application Insights and Azure Container Registry](./develop/create-hub-project-sdk.md#update-azure-application-insights-and-azure-container-registry).
+For code examples, see [Add Azure Application Insights and Azure Container Registry](./develop/create-hub-project-sdk.md#update-azure-application-insights-and-azure-container-registry).
 
 
 ### Choose how to store credentials
