@@ -43,8 +43,40 @@ Choose a method:
 # [Azure CLI](#tab/cli)
 
 - Azure subscription.
-- Azure CLI with ML extension installed.
+- Azure CLI and machine learning extension installed. Follow the steps in the [Install and set up the machine learning extension](/azure/machine-learning/how-to-configure-cli) article to install.
 - Existing hub resource.
+
+---
+
+
+## Set up your environment
+
+# [Foundry portal](#tab/portal)
+
+No additional setup is necessary if you're using the Foundry portal.
+
+# [Python SDK](#tab/python)
+
+[!INCLUDE [SDK setup](../includes/development-environment-config.md)]
+
+
+# [Azure CLI](#tab/azurecli)
+
+1. To authenticate to your Azure subscription from the Azure CLI, use the following command:
+
+    ```azurecli
+    az login
+    ```
+
+    For more information on authenticating, see [Authentication methods](/cli/azure/authenticate-azure-cli).
+
+1. Verify your authentication by listing existing hubs:
+
+    ```azurecli
+    az ml workspace list --resource-group <your-resource-group-name>
+    ```
+
+    If the command succeeds and displays any existing hubs, your authentication is configured correctly.
 
 ---
 
