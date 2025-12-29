@@ -30,7 +30,7 @@ Unlike the batch transcription API, fast transcription API only produces transcr
 
 - An Azure Speech resource in one of the regions where the fast transcription API is available. For the current list of supported regions, see the [Speech service regions table](./regions.md?tabs=stt).
   
-- An audio file (less than 2 hours long and less than 300 MB in size) in one of the formats and codecs supported by the batch transcription API: WAV, MP3, OPUS/OGG, FLAC, WMA, AAC, ALAW in WAV container, MULAW in WAV container, AMR, WebM, and SPEEX. For more information about supported audio formats, see [supported audio formats](./batch-transcription-audio-data.md#supported-audio-formats-and-codecs).
+- An audio file (less than 2 hours long and less than 300 MB in size) in one of the formats and codecs supported by the batch transcription API: WAV, MP3, OPUS/OGG, FLAC, WMA, AAC, ALAW in WAV container, MULAW in WAV container, AMR, WebM, and SPEEX. For more information about supported audio formats, see [supported audio formats](./batch-transcription-audio-data.md#supported-input-formats-and-codecs).
 
 
 ## Upload audio

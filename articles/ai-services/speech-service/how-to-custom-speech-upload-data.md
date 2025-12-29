@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 5/19/2025
+ms.date: 12/29/2025
 ms.author: pafarley
 zone_pivot_groups: foundry-speech-studio-cli-rest
 #Customer intent: As a developer, I need to understand how to upload data to test or train a custom speech model so that I can improve the accuracy of speech recognition.
@@ -35,14 +35,14 @@ Follow these steps to upload datasets for training (fine-tuning) your custom spe
 
     :::image type="content" source="./media/custom-speech/ai-foundry/new-fine-tune-add-data.png" alt-text="Screenshot of the page with an option to add data to the custom speech project." lightbox="./media/custom-speech/ai-foundry/new-fine-tune-add-data.png":::
 
-1. In the **Add data** wizard, select the type of training data you want to add. In this example, we select **Audio + human-labeled transcript**. Then select **Next**.
+1. In the **Add data** wizard, select the type of training data you want to add. In this example, select **Audio + human-labeled transcript**. Then select **Next**.
 
     :::image type="content" source="./media/custom-speech/ai-foundry/new-fine-tune-add-data-select-type.png" alt-text="Screenshot of the page with an option to select the type of training data you want to add." lightbox="./media/custom-speech/ai-foundry/new-fine-tune-add-data-select-type.png":::
 
 1. On the **Upload your data** page, select local files, Azure Blob Storage, or other shared web locations. Then select **Next**. 
 
 
-    If you select a remote location and you don't use trusted Azure services security mechanism, then the remote location should be a URL that can be retrieved with a simple anonymous GET request. For example, a [SAS URL](/azure/storage/common/storage-sas-overview) or a publicly accessible URL. URLs that require extra authorization or expect user interaction aren't supported.
+    If you select a remote location and you don't use trusted Azure services security mechanism, the remote location should be a URL that can be retrieved by using a simple anonymous GET request. For example, a [SAS URL](/azure/storage/common/storage-sas-overview) or a publicly accessible URL. URLs that require extra authorization or expect user interaction aren't supported.
 
     > [!NOTE]
     > If you use Azure Blob URL, you can ensure maximum security of your dataset files by using trusted Azure services security mechanism. You use the same techniques as for batch transcription and plain Storage Account URLs for your dataset files. See details [here](batch-transcription-audio-data.md#trusted-azure-services-security-mechanism). 
@@ -66,7 +66,7 @@ To upload your own datasets in Speech Studio, follow these steps:
 1. Select **Custom speech** > Your project name > **Speech datasets** > **Upload data**.
 1. Select the **Training data** or **Testing data** tab.
 1. Select a dataset type, and then select **Next**.
-1. Specify the dataset location, and then select **Next**. You can choose a local file or enter a remote location such as Azure Blob URL. If you select a remote location and you don't use trusted Azure services security mechanism, then the remote location should be a URL that can be retrieved with a simple anonymous GET request. For example, a [SAS URL](/azure/storage/common/storage-sas-overview) or a publicly accessible URL. URLs that require extra authorization or expect user interaction aren't supported.
+1. Specify the dataset location, and then select **Next**. You can choose a local file or enter a remote location such as Azure Blob URL. If you select a remote location and you don't use trusted Azure services security mechanism, the remote location should be a URL that can be retrieved by using a simple anonymous GET request. For example, a [SAS URL](/azure/storage/common/storage-sas-overview) or a publicly accessible URL. URLs that require extra authorization or expect user interaction aren't supported.
 
     > [!NOTE]
     > If you use Azure Blob URL, you can ensure maximum security of your dataset files by using trusted Azure services security mechanism. You use the same techniques as for Batch transcription and plain Storage Account URLs for your dataset files. See details [here](batch-transcription-audio-data.md#trusted-azure-services-security-mechanism). 
@@ -86,7 +86,7 @@ Before proceeding, make sure that you have the [Speech CLI](./spx-basics.md) ins
 
 To create a dataset and connect it to an existing project, use the `spx csr dataset create` command. Construct the request parameters according to the following instructions:
 
-- Set the `project` property to the ID of an existing project. The `project` property is recommended so that you can also manage fine-tuning for custom speech in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). To get the project ID, see [Get the project ID for the REST API](./how-to-custom-speech-create-project.md#get-the-project-id-for-the-rest-api) documentation.
+- Set the `project` property to the ID of an existing project. Use the `project` property so that you can also manage fine-tuning for custom speech in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). To get the project ID, see [Get the project ID for the REST API](./how-to-custom-speech-create-project.md#get-the-project-id-for-the-rest-api) documentation.
 - Set the required `kind` property. The possible set of values for a training dataset kind are: Acoustic, AudioFiles, Language, LanguageMarkdown, and Pronunciation.
 - Set the required `contentUrl` property. This parameter is the location of the dataset. If you don't use trusted Azure services security mechanism (see next Note), then the `contentUrl` property should be a URL that can be retrieved with a simple anonymous GET request. For example, a [SAS URL](/azure/storage/common/storage-sas-overview) or a publicly accessible URL. URLs that require extra authorization, or expect user interaction aren't supported.
 
@@ -105,7 +105,7 @@ spx csr dataset create --api-version v3.2 --kind "Acoustic" --name "My Acoustic 
 > [!IMPORTANT]
 > You must set `--api-version v3.2`. The Speech CLI uses the REST API, but doesn't yet support versions later than `v3.2`.
 
-You should receive a response body in the following format:
+You receive a response body in the following format:
 
 ```json
 {
@@ -151,7 +151,7 @@ spx help csr dataset
 
 To create a dataset and connect it to an existing project, use the [Datasets_Create](/rest/api/speechtotext/datasets/create) operation of the [Speech to text REST API](rest-speech-to-text.md). Construct the request body according to the following instructions:
 
-- Set the `project` property to the ID of an existing project. The `project` property is recommended so that you can also manage fine-tuning for custom speech in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). To get the project ID, see [Get the project ID for the REST API](./how-to-custom-speech-create-project.md#get-the-project-id-for-the-rest-api) documentation.
+- Set the `project` property to the ID of an existing project. Use the `project` property so that you can also manage fine-tuning for custom speech in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). To get the project ID, see [Get the project ID for the REST API](./how-to-custom-speech-create-project.md#get-the-project-id-for-the-rest-api) documentation.
 - Set the required `kind` property. The possible set of values for a training dataset kind are: Acoustic, AudioFiles, Language, LanguageMarkdown, and Pronunciation. 
 - Set the required `contentUrl` property. This property is the location of the dataset. If you don't use trusted Azure services security mechanism (see next Note), then the `contentUrl` property should be a URL that can be retrieved with a simple anonymous GET request. For example, a [SAS URL](/azure/storage/common/storage-sas-overview) or a publicly accessible URL. URLs that require extra authorization, or expect user interaction aren't supported. 
 
@@ -176,7 +176,7 @@ curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey" -H "Content
 }'  "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.2/datasets"
 ```
 
-You should receive a response body in the following format:
+You receive a response body in the following format:
 
 ```json
 {
@@ -211,7 +211,7 @@ The top-level `self` property in the response body is the dataset's URI. Use thi
 ::: zone-end
 
 > [!IMPORTANT] 
-> Connecting a dataset to a custom speech project isn't required to train and test a custom model using the REST API or Speech CLI. But if the dataset isn't connected to any project, you can't select it for training or testing in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). 
+> You don't need to connect a dataset to a custom speech project to train and test a custom model by using the REST API or Speech CLI. However, if you don't connect the dataset to a project, you can't select it for training or testing in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). 
 
 ## Next steps
 

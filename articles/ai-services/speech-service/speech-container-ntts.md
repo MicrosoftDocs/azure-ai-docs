@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python
 ms.topic: how-to
-ms.date: 7/1/2025
+ms.date: 12/29/2025
 ms.author: pafarley
 zone_pivot_groups: programming-languages-speech-sdk-cli
 keywords: on-premises, Docker, container
@@ -200,7 +200,7 @@ For example, a model that was downloaded via the `latest` tag (defaults to "en-U
 </speak>
 ```
 
-## Next steps
+## Related content
 
 * See the [Speech containers overview](speech-container-overview.md)
 * Review [configure containers](speech-container-configuration.md) for configuration settings

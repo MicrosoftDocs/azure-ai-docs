@@ -5,7 +5,7 @@ description: Learn how to best use Azure Content Understanding in Foundry Tools 
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
-ms.date: 05/19/2025
+ms.date: 12/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: overview
 ms.custom:
@@ -42,18 +42,18 @@ Equal to the 'Distributions' column. Also disclosed as 'Realizations' or 'Realiz
 
 Describe what the field *is* rather than what it *isn't*. Positive descriptions are clearer and more effective.
 
-**Instead of:** "This field isn't the invoice date and not the due date."  
+**Instead of:** "This field isn't the invoice date and isn't the due date."  
 **Use:** "The date when goods or services were delivered, found in the delivery information section."
 
 ### Match language to content
 
-Define field names and descriptions in the same language as your file. Language mismatches can reduce accuracy significantly.
+Define field names and descriptions in the same language as your file. Language mismatches can significantly reduce accuracy.
 
 **Example:** For Italian invoices, use `Fornitore` with Italian descriptions instead of `Vendor` with English descriptions.
 
 ### Use structured types for repeated data
 
-Define repeated items (like line items or entries) as arrays of objects rather than string fields requesting JSON output.
+Define repeated items, like line items or entries, as arrays of objects rather than string fields requesting JSON output.
 
 **Example - Invoice line items:**
 ```json
@@ -74,20 +74,20 @@ Define repeated items (like line items or entries) as arrays of objects rather t
 ### Specify generation methods
 
 Explicitly set the method (`extract`, `generate`, or `classify`) for each field based on its purpose:
-- **Generate**: Values requiring inference or summarization (Risk Level, Summary)  
-- **Classify**: Selection from predefined options (Document Type, Category)
-- **Extract**: Values appearing directly in the content (Invoice Number, Date).
+- **Generate**: Values requiring inference or summarization, such as risk level or summary.  
+- **Classify**: Selection from predefined options, like document type or category.
+- **Extract**: Values appearing directly in the content, such as invoice number or date.
 
 > [!NOTE]
 > Extract is only supported for Document analyzers. 
 
 ## Optimize classification and categorization
 
-Content Understanding handles visual template variations within semantic categories automatically. Follow these guidelines:
+Content Understanding automatically handles visual template variations within semantic categories. Follow these guidelines:
 
-### Use semantic categories, not visual templates for document classification
+### Use semantic categories, not visual templates, for document classification
 
-Don't create separate categories for documents or files with the same semantic type but different visual layouts. For example, use one `Invoice` category for all invoice variations rather than `Invoice_Template_A`, `Invoice_Template_B`.
+Don't create separate categories for documents or files with the same semantic type but different visual layouts. For example, use one `Invoice` category for all invoice variations rather than `Invoice_Template_A` and `Invoice_Template_B`.
 
 ### Write effective category definitions
 
@@ -111,10 +111,10 @@ Confidence scores help determine when human review is needed. Set different thre
 * **Important fields** (VendorName, InvoiceNumber): Use medium thresholds (≥0.80)  
 * **Non-critical fields** (Comments, Notes): Use lower thresholds (≥0.70)
 
-Confidence score is currently only supported for document analyzers. 
+Currently, only document analyzers support confidence score. 
 
 > [!NOTE]
-> These thresholds are included as an illustration. Thresholds need to be determined experimentally per use case. 
+> These thresholds are included as an illustration. Determine thresholds experimentally for each use case. 
 
 ## Improve accuracy over time
 
@@ -128,17 +128,17 @@ If accuracy or confidence scores are lower than expected with zero-shot extracti
 
 ## Optimize audio and video processing
 
-All the best practices described above for defining field schemas apply to audio and video processing as well. The following are additional tips specific to audio and video content:
+All the best practices described earlier for defining field schemas apply to audio and video processing as well. The following are additional tips specific to audio and video content:
 
 ### Narrow language selection
 
 Specify only the languages you expect in the content. Including too many languages increases transcription errors as the system must guess which language is being spoken.
 
-**Example:** For content containing only English and Spanish, configure only those two languages rather than autodetecting from all available languages.
+**Example:** For content containing only English and Spanish, configure only those two languages rather than using autodetect from all available languages.
 
 ### Avoid extracting content as fields unnecessarily    
 
-Speech transcripts, optical character recognition (OCR) text, and video key frames are automatically available in analyzer output. Don't define fields for this content unless you need extra processing (summarization, entity extraction).
+Speech transcripts, optical character recognition (OCR) text, and video key frames are automatically available in analyzer output. Don't define fields for this content unless you need extra processing, such as summarization or entity extraction.
 
 ## Related content
 
