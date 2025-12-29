@@ -61,7 +61,7 @@ In this article, you'll learn how to deploy a model by using no-code deployment 
     > [!IMPORTANT]
     > You might need to request a quota increase for your subscription before you can use this series of VMs. For more information, see [NCv3-series](/azure/virtual-machines/ncv3-series).
 
-NVIDIA Triton Inference Server requires a specific model repository structure, where there's a directory for each model and subdirectories for the model versions. The contents of each model version subdirectory is determined by the type of the model and the requirements of the backend that supports the model. To see all the model repository structure [https://github.com/triton-inference-server/server/blob/main/docs/user_guide/model_repository.md#model-files](https://github.com/triton-inference-server/server/blob/main/docs/user_guide/model_repository.md#model-files)
+NVIDIA Triton Inference Server requires a specific model repository structure, where there's a directory for each model and subdirectories for the model versions. The contents of each model version subdirectory is determined by the type of the model and the requirements of the backend that supports the model. For information about the structure for all models, see [Model Files](https://github.com/triton-inference-server/server/blob/main/docs/user_guide/model_repository.md#model-files).
 
 The information in this document is based on using a model stored in ONNX format, so the directory structure of the model repository is `<model-repository>/<model-name>/1/model.onnx`. Specifically, this model performs image identification.
 
@@ -73,13 +73,13 @@ The information in this document is based on using a model stored in ONNX format
 
 [!INCLUDE [sdk](includes/machine-learning-sdk-v2-prereqs.md)]
 
-* A working Python 3.8 (or higher) environment.
+* A working Python 3.8 or later environment.
 
-* You must have additional Python packages installed for scoring and may install them with the code below. They include:
-    * NumPy - An array and numerical computing library 
-    * [Triton Inference Server Client](https://github.com/triton-inference-server/client) - Facilitates requests to the Triton Inference Server
-    * Pillow - A library for image operations
-    * Gevent - A networking library used when connecting to the Triton Server
+* You must have additional Python packages installed for scoring. You can install them by using the following code. They include:
+    * NumPy. An array and numerical computing library.
+    * [Triton Inference Server Client](https://github.com/triton-inference-server/client). Facilitates requests to the Triton Inference Server.
+    * Pillow. A library for image operations.
+    * Gevent. A networking library used for connecting to the Triton server.
 
     ```azurecli
     pip install numpy
@@ -93,7 +93,7 @@ The information in this document is based on using a model stored in ONNX format
     > [!IMPORTANT]
     > You might need to request a quota increase for your subscription before you can use this series of VMs. For more information, see [NCv3-series](/azure/virtual-machines/ncv3-series).
 
-The information in this article is based on the [online-endpoints-triton.ipynb](https://github.com/Azure/azureml-examples/blob/main/sdk/python/endpoints/online/triton/single-model/online-endpoints-triton.ipynb) notebook contained in the [azureml-examples](https://github.com/azure/azureml-examples) repository. To run the commands locally without having to copy/paste files, clone the repo, and then change directories to the `sdk/endpoints/online/triton/single-model/` directory in the repo:
+The information in this article is based on the [online-endpoints-triton.ipynb](https://github.com/Azure/azureml-examples/blob/main/sdk/python/endpoints/online/triton/single-model/online-endpoints-triton.ipynb) notebook contained in the [azureml-examples](https://github.com/azure/azureml-examples) repository. To run the commands locally without having to copy and paste files, clone the repo, and then change directories to the `sdk/endpoints/online/triton/single-model/` directory in the repo:
 
 ```azurecli
 git clone https://github.com/Azure/azureml-examples --depth 1
@@ -104,7 +104,7 @@ cd azureml-examples/sdk/python/endpoints/online/triton/single-model/
 
 * An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-* An Azure Machine Learning workspace. If you don't have one, use the steps in [Manage Azure Machine Learning workspaces in the portal, or with the Python SDK](how-to-manage-workspace.md) to create one.
+* An Azure Machine Learning workspace. If you don't have one, complete the steps in [Manage Azure Machine Learning workspaces in the portal, or with the Python SDK](how-to-manage-workspace.md) to create one.
 
 --- 
 
@@ -114,10 +114,10 @@ cd azureml-examples/sdk/python/endpoints/online/triton/single-model/
 
 [!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
 
-This section shows how you can deploy to a managed online endpoint using the Azure CLI with the Machine Learning extension (v2).
+This section describes how to deploy to a managed online endpoint by using the Azure CLI with the Machine Learning extension (v2).
 
 > [!IMPORTANT]
-> For Triton no-code-deployment, **[testing via local endpoints](how-to-deploy-online-endpoints.md#deploy-and-debug-locally-by-using-a-local-endpoint)** is currently not supported.
+> For Triton no-code-deployment, [testing via local endpoints](how-to-deploy-online-endpoints.md#deploy-and-debug-locally-by-using-a-local-endpoint) is currently not supported.
 
 1. To avoid typing in a path for multiple commands, use the following command to set a `BASE_PATH` environment variable. This variable points to the directory where the model and associated YAML configuration files are located:
 
@@ -129,16 +129,16 @@ This section shows how you can deploy to a managed online endpoint using the Azu
 
     :::code language="azurecli" source="~/azureml-examples-main/cli/deploy-triton-managed-online-endpoint.sh" ID="set_endpoint_name":::
 
-1. Create a YAML configuration file for your endpoint. The following example configures the name and authentication mode of the endpoint. The one used in the following commands is located at `/cli/endpoints/online/triton/single-model/create-managed-endpoint.yml` in the azureml-examples repo you cloned earlier:
+1. Create a YAML configuration file for your endpoint. The following example configures the name and authentication mode of the endpoint. The file used in the following commands is located at `/cli/endpoints/online/triton/single-model/create-managed-endpoint.yml` in the azureml-examples repo you cloned earlier:
 
     __create-managed-endpoint.yaml__
 
     :::code language="yaml" source="~/azureml-examples-main/cli/endpoints/online/triton/single-model/create-managed-endpoint.yaml":::
 
-1. Create a YAML configuration file for the deployment. The following example configures a deployment named __blue__ to the endpoint defined in the previous step. The one used in the following commands is located at `/cli/endpoints/online/triton/single-model/create-managed-deployment.yml` in the azureml-examples repo you cloned earlier:
+1. Create a YAML configuration file for the deployment. The following example configures a deployment named `blue` to the endpoint defined in the previous step. The file used in the following commands is located at `/cli/endpoints/online/triton/single-model/create-managed-deployment.yml` in the azureml-examples repo you cloned earlier:
 
     > [!IMPORTANT]
-    > For Triton no-code-deployment (NCD) to work, setting **`type`** to **`triton_model​`** is required, `type: triton_model​`. For more information, see [CLI (v2) model YAML schema](reference-yaml-model.md).
+    > For Triton no-code-deployment to work, you need to set `type` to `triton_model​`: `type: triton_model​`. For more information, see [CLI (v2) model YAML schema](reference-yaml-model.md).
     >
     > This deployment uses a Standard_NC6s_v3 VM. You might need to request a quota increase for your subscription before you can use this VM. For more information, see [NCv3-series](/azure/virtual-machines/ncv3-series).
 
