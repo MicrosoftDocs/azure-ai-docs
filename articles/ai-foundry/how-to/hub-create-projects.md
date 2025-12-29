@@ -11,6 +11,7 @@ ms.topic: how-to
 ms.custom:
   - build-2025
   - hub-only
+  - dev-focus
 ai-usage: ai-assisted
 ---
 
@@ -32,10 +33,12 @@ Choose a method:
 # [Foundry portal](#tab/portal)
 
 - Azure subscription.
+- Required role: **Owner** or **Contributor** on the hub resource.
 
 # [Python SDK](#tab/python)
 
 - Azure subscription.
+- Required role: **Owner** or **Contributor** on the hub resource.
 - Azure Machine Learning SDK v2.
 - Existing hub resource (see create hub article).
 - Azure CLI installed and authenticated (`az login`).
@@ -43,6 +46,7 @@ Choose a method:
 # [Azure CLI](#tab/cli)
 
 - Azure subscription.
+- Required role: **Owner** or **Contributor** on the hub resource.
 - Azure CLI and machine learning extension installed. Follow the steps in the [Install and set up the machine learning extension](/azure/machine-learning/how-to-configure-cli) article to install.
 - Existing hub resource.
 
@@ -58,6 +62,16 @@ No additional setup is necessary if you're using the Foundry portal.
 # [Python SDK](#tab/python)
 
 [!INCLUDE [SDK setup](../includes/development-environment-config.md)]
+
+Verify your authentication by listing existing hubs:
+
+```python
+hubs = ml_client.workspaces.list()
+for hub in hubs:
+    print(f"Hub: {hub.name}")
+```
+
+If you receive an authentication error, ensure your Azure credentials are configured (run `az login` or set up your credentials via the Azure Identity SDK). If you receive a permission error, check that you have the Contributor role on the subscription or resource group.
 
 
 # [Azure CLI](#tab/azurecli)
@@ -91,7 +105,8 @@ No additional setup is necessary if you're using the Foundry portal.
 ```python
 from azure.ai.ml.entities import Project
 
-my_project_name = "myexampleproject"
+
+my_project_name = "myexampleproject"  # Project names must be lowercase, 3–64 chars, alphanumeric with hyphens
 my_display_name = "My Example Project"
 hub_name = "myhubname"  # Hub resource name
 hub_id = f"/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/Microsoft.MachineLearningServices/workspaces/{hub_name}"
@@ -103,14 +118,31 @@ my_project = Project(
 )
 
 created_project = ml_client.workspaces.begin_create(workspace=my_project).result()
+print(f"Project '{created_project.name}' created successfully.")
 ```
+
+**What this snippet does:** Defines project properties and creates the project on the existing hub. The `.result()` method waits for the creation to complete. Expected output: A confirmation message displaying the created project name.
+
+**References:**
+- [Project entity](/python/api/azure-ai-ml/azure.ai.ml.entities.project)
+- [MLClient.workspaces](/python/api/azure-ai-ml/azure.ai.ml.mlclient#workspaces)
+- [Azure Identity DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential)
 
 # [Azure CLI](#tab/cli)
 
 ```azurecli
-az ml workspace create --kind project --hub-id {my_hub_ID} --resource-group {my_resource_group} --name {my_project_name}
+az ml workspace create --kind project --hub-id <my-hub-id> --resource-group <my-resource-group> --name <my-project-name>
 ```
-`my_hub_ID` syntax: `/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/Microsoft.MachineLearningServices/workspaces/{hub_name}`
+
+Replace the placeholders as follows:
+- `<my-hub-id>`: Full resource ID of the hub in format `/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/Microsoft.MachineLearningServices/workspaces/{hub_name}`
+- `<my-resource-group>`: Name of the resource group containing your hub
+- `<my-project-name>`: Name for the new project (lowercase, 3–64 characters, alphanumeric with hyphens)
+
+**What this command does:** Creates a new hub-based project associated with the specified hub.
+
+**References:**
+- [az ml workspace create](/cli/azure/ml/workspace#az-ml-workspace-create)
 
 ---
 
