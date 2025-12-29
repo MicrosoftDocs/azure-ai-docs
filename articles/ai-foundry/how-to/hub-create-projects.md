@@ -74,7 +74,7 @@ for hub in hubs:
 If you receive an authentication error, ensure your Azure credentials are configured (run `az login` or set up your credentials via the Azure Identity SDK). If you receive a permission error, check that you have the Contributor role on the subscription or resource group.
 
 
-# [Azure CLI](#tab/azurecli)
+# [Azure CLI](#tab/cli)
 
 1. To authenticate to your Azure subscription from the Azure CLI, use the following command:
 
