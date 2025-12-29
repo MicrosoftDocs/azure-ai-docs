@@ -40,7 +40,7 @@ Ranking occurs whenever the query request is for agentic retrieval and classic s
 
 ## Levels of ranking
 
-The query engine in Azure AI Search supports a multi-level approach to ranking search results, where there's a built-in ranking modality for each query type, plus extra ranking capabilities for extended relevance tuning.
+The query engine in Azure AI Search supports a multi-level approach to rank search results, where there's a built-in ranking modality for each query type, plus extra ranking capabilities for extended relevance tuning.
 
 This section describes the levels of scoring operations. For an illustration of how they work together, see the [diagram](#diagram-of-ranking-algorithms) in this article. A [comparison of all search score types and ranges](#types-of-search-scores) is also provided in this article.
 
