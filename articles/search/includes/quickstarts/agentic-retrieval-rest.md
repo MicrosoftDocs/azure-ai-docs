@@ -506,7 +506,7 @@ Authorization: Bearer {{token}}
 
 A knowledge source is a reusable reference to source data. The following code uses [Knowledge Sources - Create (REST API)](/rest/api/searchservice/knowledge-sources/create?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to define a knowledge source named `earth-knowledge-source` that targets the `earth-at-night` index.
 
-`sourceDataFields` specifies which index fields are accessible for retrieval and citations. Our example includes only human-readable fields to avoid lengthy, uninterpretable embeddings in responses.
+`sourceDataFields` specifies which index fields are included in citation references. Our example includes only human-readable fields to avoid lengthy, uninterpretable embeddings in responses.
 
 ```HTTP
 ### Create a knowledge source
@@ -618,7 +618,7 @@ The output should contain the following components:
 
 When you work in your own subscription, it's a good idea to finish a project by determining whether you still need the resources you created. Resources that are left running can cost you money.
 
-In the [Azure portal](https://portal.azure.com/), you can manage your Azure AI Search and Foundry resources by selecting **All resources** or **Resource groups** from the left pane.
+In the [Azure portal](https://portal.azure.com/), you can manage your Azure AI Search and Microsoft Foundry resources by selecting **All resources** or **Resource groups** from the left pane.
 
 Otherwise, the following requests from `agentic-retrieval.rest` deleted the objects you created in this quickstart.
 

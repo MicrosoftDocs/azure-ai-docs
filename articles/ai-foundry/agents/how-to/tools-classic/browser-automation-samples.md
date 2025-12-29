@@ -1,22 +1,23 @@
 ---
-title: How to use the Browser Automation tool with the Foundry Agent Service
+title: Use the Browser Automation Tool in Foundry Agent Service
 titleSuffix: Microsoft Foundry
-description: Learn how to automate browser use and interact with websites using AI Agents.
+description: Learn how to use the Browser Automation tool in Foundry Agent Service to automate website tasks with AI agents. Follow the steps and run the sample.
 services: azure-ai-agent-service
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 11/20/2025
+ms.date: 12/22/2025
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents
+ai-usage: ai-assisted
 ---
 
 # How to use the Browser Automation tool (preview)
 
 > [!NOTE]
-> This document refers to the classic version of the agents API. 
+> This article refers to the classic version of the agents API. 
 >
 > 🔍 [View the new Browser Automation documentation](../../../default/agents/how-to/tools/browser-automation.md?view=foundry&preserve-view=true).
 
@@ -39,7 +40,7 @@ Use this article to find step-by-step instructions and code samples for using th
     pip install azure-identity
     ```
 * The **contributor** role assigned to your Foundry project from within your Playwright workplace. 
-* Your Playwright connection ID. You can find it in the Foundry portal by selecting **Management center** from the left navigation menu. Then select **Connected resources**. The URI should start with `wss://` instead of `https://` if presented. 
+* Your Playwright connection ID. You can find it in the Foundry portal by selecting **Management center** from the left navigation menu. Then select **Connected resources**. The URI starts with `wss://` instead of `https://` if presented. 
     
     <!--
     :::image type="content" source="../../media/tools/deep-research/bing-resource-name.png" alt-text="A screenshot showing the Playwright connection. " lightbox="../../media/tools/deep-research/bing-resource-name.png":::
@@ -159,3 +160,14 @@ with project_client:
         for annotation in response_message.url_citation_annotations:
             print(f"URL Citation: [{annotation.url_citation.title}]({annotation.url_citation.url})")
 ```
+
+## Visualize what the agent does
+
+Browser Automation runs in your connected Microsoft Playwright Workspaces environment. It doesn't open a visible browser window inside your local development environment.
+
+To visualize what happens, review the Browser Automation tool-call details that the run steps return:
+
+- The sample prints each tool call and its step-by-step progress. For example, it shows `last_step_result`, `current_state`, and `next_step`.
+- The tool captures a screenshot after actions during execution and includes the updated browser state in the tool output. Review the printed `current_state` for each step to see what the model sees at that point.
+
+For more information, see the [How it works](./browser-automation.md#how-it-works) section in the **Browser Automation** overview article.

@@ -5,7 +5,7 @@ description: Find code samples to use OpenAPI tools with agents.
 author: alvinashcraft
 ms.author: aashcraft
 manager: nitinme
-ms.date: 11/20/2025
+ms.date: 12/22/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
@@ -40,8 +40,8 @@ Use this article to find step-by-step instructions and code samples for using Op
    :::image type="content" source="../../media\tools\open-api-details.png" alt-text="A screenshot showing the openAPI tool details in the Foundry portal." lightbox="../../media\tools\open-api-details.png":::
 
 1. Select **Next** and select your authentication method.
-   1. If you choose `connection`, you need to select the [custom connection](./openapi-spec.md#authenticating-with-api-key) with an API key.
-   1. If you choose `managed identity`, you need to input the audience to get your token which is the authentication scope. Make sure you have already set up authentication and role assignment as described in the [OpenAPI tool overview](./openapi-spec.md#authenticating-with-managed-identity-microsoft-entra-id). An example of an audience might be `https://cognitiveservices.azure.com/` to connect to Foundry Tools, once proper setup has been performed.
+   1. If you choose `connection`, you need to select the [custom connection](./openapi-spec.md#authenticate-with-api-key) with an API key.
+   1. If you choose `managed identity`, you need to input the **Audience** value. The audience is the OAuth2 resource identifier for the API you're calling. For common audience values and guidance on finding the correct value for your API, see [Authenticate with managed identity](./openapi-spec.md#authenticate-with-managed-identity-microsoft-entra-id). Make sure you have already set up authentication and role assignment as described in that section.
       
 1. Copy and paste your OpenAPI specification in the text box.
 

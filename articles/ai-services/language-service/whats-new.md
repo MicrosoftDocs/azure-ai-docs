@@ -1,7 +1,7 @@
 ---
 title: What's new in Azure Language in Foundry Tools?
 titleSuffix: Foundry Tools
-description: Find out about new releases and features for Azure Language in Foundry Tools.
+description: Stay informed about recent releases and enhancements designed to help you get the most out of Azure Language capabilities.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
@@ -11,7 +11,7 @@ ms.author: lajanuar
 ---
 # What's new in Azure Language in Foundry Tools?
 
-Azure Language in Foundry Tools is updated on an ongoing basis. Bookmark this page to stay up to date with release notes, feature enhancements, and our newest documentation.
+Stay informed about recent releases and enhancements designed to help you get the most out of Azure Language capabilities. Azure Language in Foundry Tools is updated on an ongoing basis. Bookmark this page and stay up to date with release notes, feature enhancements, and our newest documentation.
 
 ## December 2025
 

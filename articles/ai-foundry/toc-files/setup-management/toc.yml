@@ -62,7 +62,7 @@ items:
   - name: Migrate from hub-based to Foundry project
     href: ../../how-to/migrate-project.md
   - name: Create a project using a Bicep template
-    href: ../../how-to/create-azure-ai-project-template.md
+    href: ../../how-to/create-resource-template.md
 - name: Management center
   href: ../../concepts/management-center.md
 - name: Consolidated view
