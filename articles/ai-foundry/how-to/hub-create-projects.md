@@ -23,7 +23,7 @@ ai-usage: ai-assisted
 
 This article describes how to create a hub-based project in Foundry. Use a hub project when you need prompt flow, managed compute, Azure Machine Learning compatibility, or advanced development features.
 
-See [Types of projects](../what-is-azure-ai-foundry.md#types-of-projects) for more information on the different project types.
+For more information on the different project types, see [Types of projects](../what-is-azure-ai-foundry.md#types-of-projects).
 
 ## Prerequisites
 
@@ -76,7 +76,7 @@ No additional setup is necessary if you're using the Foundry portal.
     az ml workspace list --resource-group <your-resource-group-name>
     ```
 
-    If the command succeeds and displays any existing hubs, your authentication is configured correctly.
+    If the command succeeds and displays any existing hubs, your authentication is correct.
 
 ---
 
@@ -118,7 +118,7 @@ az ml workspace create --kind project --hub-id {my_hub_ID} --resource-group {my_
 
 # [Foundry portal](#tab/portal)
 
-Open project Overview to see name, subscription, resource group. Use Management center for shared assets or Manage in Azure portal for underlying resource.
+Open project **Overview** to see the name, subscription, and resource group. Use **Management center** for shared assets or **Manage in Azure portal** for the underlying resource.
 
 # [Python SDK](#tab/python)
 
@@ -137,25 +137,25 @@ az ml workspace show --name {my_project_name} --resource-group {my_resource_grou
 
 Shared from hub: connections, compute, network configuration.
 
-Project-scoped:
+Project-scoped resources:
 - Components (datasets, flows, indexes, deployments)
 - Project connections
-- Storage containers & file share:
+- Storage containers and file share:
   - workspaceblobstore – default data uploads
-  - workspaceartifactstore – components & metadata
-  - workspacefilestore – files from compute & prompt flow
+  - workspaceartifactstore – components and metadata
+  - workspacefilestore – files from compute and prompt flow
 
 > [!NOTE]
-> Storage connections may delay creation when storage public access is disabled until first private network access.
+> If you disable storage public access, storage connections might delay creation until the first private network access.
 
 ## Delete projects
 
-1. Open hub in portal.
-2. Management center > Overview.
-3. Select projects to remove.
-4. Delete project.
+1. Open the hub in the portal.
+1. Go to Management center > Overview.
+1. Select the projects to remove.
+1. Select **Delete project**.
 
-Delete hub (with all projects): In Hub properties, select Delete hub to open Azure portal hub deletion.
+To delete a hub and all its projects, select **Delete hub** in **Hub properties** to open Azure portal hub deletion.
 
 ## Related content
 
