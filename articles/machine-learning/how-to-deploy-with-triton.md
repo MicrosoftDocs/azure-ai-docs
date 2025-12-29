@@ -18,19 +18,19 @@ ms.devlang: azurecli
 
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
-Learn how to use [NVIDIA Triton Inference Server](https://aka.ms/nvidia-triton-docs) in Azure Machine Learning with [online endpoints](concept-endpoints-online.md).
+This article describes how to use [NVIDIA Triton Inference Server](https://aka.ms/nvidia-triton-docs) in Azure Machine Learning with [online endpoints](concept-endpoints-online.md).
 
-Triton is multi-framework, open-source software that is optimized for inference. It supports popular machine learning frameworks like TensorFlow, ONNX Runtime, PyTorch, NVIDIA TensorRT, and more. It can be used for your CPU or GPU workloads.
+Triton is multi-framework, open-source software that's optimized for inference. It supports popular machine learning frameworks like TensorFlow, ONNX Runtime, PyTorch, and NVIDIA TensorRT. You can use it for CPU or GPU workloads.
 
-There are mainly two approaches you can take to leverage Triton models when deploying them to online endpoint: No-code deployment or full-code (Bring your own container) deployment.
-- No-code deployment for Triton models is a simple way to deploy them as you only need to bring Triton models to deploy.
-- Full-code deployment (Bring your own container) for Triton models is more advanced way to deploy them as you have full control on customizing the configurations available for Triton inference server.
+There are two main approaches you can take to use Triton models when deploying them to online endpoints: No-code deployment or full-code (Bring Your Own Container) deployment.
+- No-code deployment for Triton models is a simple way to deploy them because you only need to bring Triton models to deploy.
+- Full-code deployment for Triton models is a more advanced way to deploy them because you have full control over customizing the configurations available for Triton inference server.
 
-For both options, Triton inference server will perform inferencing based on the [Triton model as defined by NVIDIA](https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/user_guide/model_repository.html). For instance, [ensemble models](https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/user_guide/architecture.html#ensemble-models) can be used for more advanced scenarios.
+For both options, Triton Inference Server Performs inferencing based on the [Triton model as defined by NVIDIA](https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/user_guide/model_repository.html). For instance, [ensemble models](https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/user_guide/architecture.html#ensemble-models) can be used for more advanced scenarios.
 
 Triton is supported in both [managed online endpoints and Kubernetes online endpoints](concept-endpoints-online.md#managed-online-endpoints-vs-kubernetes-online-endpoints).
 
-In this article, you will learn how to deploy a model using no-code deployment for Triton to a [managed online endpoint](concept-endpoints-online.md#online-endpoints). Information is provided on using the CLI (command line), Python SDK v2, and Azure Machine Learning studio. If you want to customize further directly using Triton inference server's configuration, refer to [Use a custom container to deploy a model](how-to-deploy-custom-container.md) and the BYOC example for Triton ([deployment definition](https://github.com/Azure/azureml-examples/tree/main/cli/endpoints/online/custom-container/triton/single-model) and [end-to-end script](https://github.com/Azure/azureml-examples/blob/main/cli/deploy-custom-container-triton-single-model.sh)). 
+In this article, you'll learn how to deploy a model by using no-code deployment for Triton to a [managed online endpoint](concept-endpoints-online.md#online-endpoints). Information is provided for using the CLI (command line), Python SDK v2, and Azure Machine Learning studio. If you want to customize further by directly using Triton Inference Server's configuration, see [Use a custom container to deploy a model](how-to-deploy-custom-container.md) and the BYOC example for Triton ([deployment definition](https://github.com/Azure/azureml-examples/tree/main/cli/endpoints/online/custom-container/triton/single-model) and [end-to-end script](https://github.com/Azure/azureml-examples/blob/main/cli/deploy-custom-container-triton-single-model.sh)). 
 
 > [!NOTE]
 > Use of the NVIDIA Triton Inference Server container is governed by the [NVIDIA AI Enterprise Software license agreement](https://www.nvidia.com/en-us/data-center/products/nvidia-ai-enterprise/eula/) and can be used for 90 days without an enterprise product subscription. For more information, see [NVIDIA AI Enterprise on Azure Machine Learning](https://www.nvidia.com/en-us/data-center/azure-ml).
@@ -41,27 +41,27 @@ In this article, you will learn how to deploy a model using no-code deployment f
 
 [!INCLUDE [basic prereqs](includes/machine-learning-cli-prereqs.md)]
 
-* A working Python 3.8 (or higher) environment. 
+* A working Python 3.8 or later environment. 
 
-* You must have additional Python packages installed for scoring and may install them with the code below. They include:
-    * NumPy - An array and numerical computing library 
-    * [Triton Inference Server Client](https://github.com/triton-inference-server/client) - Facilitates requests to the Triton Inference Server
-    * Pillow - A library for image operations
-    * Gevent - A networking library used when connecting to the Triton Server
+* You must have additional Python packages installed for scoring. You can install them by using the following code. They include:
+    * NumPy. An array and numerical computing library.
+    * [Triton Inference Server Client](https://github.com/triton-inference-server/client). Facilitates requests to the Triton Inference Server.
+    * Pillow. A library for image operations.
+    * Gevent. A networking library used for connecting to the Triton server.
 
-```azurecli
-pip install numpy
-pip install tritonclient[http]
-pip install pillow
-pip install gevent
-```
+    ```azurecli
+    pip install numpy
+    pip install tritonclient[http]
+    pip install pillow
+    pip install gevent
+    ```
 
 * Access to NCv3-series VMs for your Azure subscription.
 
     > [!IMPORTANT]
     > You might need to request a quota increase for your subscription before you can use this series of VMs. For more information, see [NCv3-series](/azure/virtual-machines/ncv3-series).
 
-NVIDIA Triton Inference Server requires a specific model repository structure, where there is a directory for each model and subdirectories for the model version. The contents of each model version subdirectory is determined by the type of the model and the requirements of the backend that supports the model. To see all the model repository structure [https://github.com/triton-inference-server/server/blob/main/docs/user_guide/model_repository.md#model-files](https://github.com/triton-inference-server/server/blob/main/docs/user_guide/model_repository.md#model-files)
+NVIDIA Triton Inference Server requires a specific model repository structure, where there's a directory for each model and subdirectories for the model versions. The contents of each model version subdirectory is determined by the type of the model and the requirements of the backend that supports the model. To see all the model repository structure [https://github.com/triton-inference-server/server/blob/main/docs/user_guide/model_repository.md#model-files](https://github.com/triton-inference-server/server/blob/main/docs/user_guide/model_repository.md#model-files)
 
 The information in this document is based on using a model stored in ONNX format, so the directory structure of the model repository is `<model-repository>/<model-name>/1/model.onnx`. Specifically, this model performs image identification.
 
