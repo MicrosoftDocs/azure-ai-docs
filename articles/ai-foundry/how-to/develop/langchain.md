@@ -7,7 +7,7 @@ ms.custom:
   - ignite-2024
   - update-code
 ms.topic: how-to
-ms.date: 09/09/2025
+ms.date: 12/29/2025
 ms.reviewer: fasantia
 ms.author: sgilley
 author: sdgilley
@@ -68,15 +68,8 @@ To run this tutorial, you need:
 [!INCLUDE [set-endpoint](../../default/includes/set-endpoint.md)]
 ::: moniker-end
 
-After configuration, create a client to connect to the chat model using `init_chat_model`. For Azure OpenAI models, see [Use Azure OpenAI models](#use-azure-openai-models).
 
-```python
-from langchain.chat_models import init_chat_model
-
-llm = init_chat_model(model="Mistral-Large-2411", model_provider="azure_ai")
-```
-
-You can also use the class `AzureAIChatCompletionsModel` directly.
+Create a client to connect to the chat model using the class `AzureAIChatCompletionsModel`.
 
 [!notebook-python[](~/azureai-samples-main/scenarios/langchain/getting-started-with-langchain-chat-models.ipynb?name=create_client)]
 
