@@ -5,7 +5,7 @@ description: Learn about Azure Content Understanding in Foundry Tools classifier
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
-ms.date: 09/16/2025
+ms.date: 12/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: overview
 ms.custom:
@@ -75,7 +75,7 @@ For example, you can use this linking to create classifiers that identify and an
 
 You can also omit setting any `analyzerId` to categorize, but not perform any content analysis on the categorized file or segment.
 
-On the top layer, you can also specify `omitContent` as true to ensure that original content object is omitted and only return content objects from additional analysis performed on the classified segment or files.
+On the top layer, you can also specify `omitContent` as true to ensure that original content object is omitted and only return content objects from other analysis performed on the classified segment or files.
 
 #### Hierarchical classifier
 

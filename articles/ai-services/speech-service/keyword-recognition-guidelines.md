@@ -6,7 +6,7 @@ author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: conceptual
+ms.topic: article
 ms.date: 08/07/2025
 ms.reviewer: jagoerge
 #Customer intent: As a developer, I want to learn about recommendations and guidelines for keyword recognition with the Speech service.

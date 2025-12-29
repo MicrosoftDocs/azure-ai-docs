@@ -5,7 +5,7 @@ description: Quick reference, detailed description, and best practices for worki
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
-ms.date: 09/16/2025
+ms.date: 12/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: article
 ms.custom:
@@ -56,11 +56,9 @@ The currently supported models are:
 |Embeddings | text-embedding-3-large |  |
 |Embeddings | text-embedding-ada-002 |  |
 
-## Analyzers
+## Input file limits
 
-### Input file limits
-
-#### Document and text
+### Document and text
 
 | Supported File Types | File Size | Length |
 | --- | --- | --- |
@@ -72,13 +70,13 @@ The currently supported models are:
 > [Pro mode (preview)](./concepts/standard-pro-modes.md) currently only supports .pdf, .tiff, and image file types as input.
 > Total input may not exceed 100 MB and 150 pages.
 
-#### Image
+### Image
 
 | Supported File Types | File Size | Resolution |
 | --- | --- | --- |
 | ✓ `.jpg`, `.jpeg`, `.jpe`, `.png`, `.bmp`, `.heif`, `.heic` | ≤ 200 MB | Min: 50 x 50 pixels <br> Max: 10k x 10k pixels |
 
-#### Audio
+### Audio
 
 | Supported File Types | File Size | Length |
 | --- | --- |  --- |
@@ -86,15 +84,15 @@ The currently supported models are:
 
 <sup>†</sup> Content Understanding supports audio files up to 1 GB and 4 hours in duration, but transcription time is substantially reduced for files ≤ 300 MB or ≤ 2 hours.
 
-#### Video
+### Video
 
-##### Supported file types and resolution
+#### Supported file types and resolution
 
 | Supported File Types | Resolution |
 | --- | --- |
 | ✓  `.mp4`, `.m4v` <br> ✓ `.flv` (H.264 and `AAC`) <br> ✓ `.wmv`, `.asf` <br> ✓ `.avi` <br> ✓ `.mkv` <br> ✓ `.mov` | Min: 320 x 240 pixels <br>Max: 1920 x 1,080 pixels |
 
-##### File size limits
+#### File size limits
 
 | Upload Method | File Size | Length | Description |
 | --- | --- | --- | --- |
@@ -108,7 +106,7 @@ The currently supported models are:
 > * Resolution: All frames are scaled to 512 x 512 pixels, which may affect visibility of small details or distant objects
 
 
-### Field schema limits
+## Field schema limits
 
 Content Understanding supports both basic field value types and nested structures, including lists, groups, tables, and fixed tables.
 
@@ -118,7 +116,7 @@ Content Understanding supports both basic field value types and nested structure
 * **Table field**: A variable number of items with fixed subfields, represented as an array of objects of basic fields in the API.
 * **Fixed table field**: A group of fields with shared subfields, represented as an object of objects of basic fields in the API.
 
-#### Basic limits
+### Basic limits
 
 | Property | Document | Text | Image | Audio | Video |
 | --- | --- | --- | --- | --- | --- |
@@ -135,14 +133,11 @@ Content Understanding supports both basic field value types and nested structure
 | -----| ------ |
 | Training data | Documents only <br/> 1 GB total <br/> 50k pages/images total |
 
----
 
-## Segmentation/Classification
+## Segmentation/Classification limits
 
-### General limits
-
-   > [!NOTE]
-   > This limit is for [Content Understanding segmentation/classification](concepts/classifier.md) itself, not classify fields within the extraction capability.
+> [!NOTE]
+> This limit is for [Content Understanding segmentation/classification](concepts/classifier.md) itself, not classify fields within the extraction capability.
 
 | Property | Limit |
 | --- | --- |
@@ -151,7 +146,6 @@ Content Understanding supports both basic field value types and nested structure
 | Number of categories | 200 per analyzer for documents, 1 for videos |
 | Hierarchical classification | 5 layers for documents, 2 layers for videos |
 
----
 
 
 
