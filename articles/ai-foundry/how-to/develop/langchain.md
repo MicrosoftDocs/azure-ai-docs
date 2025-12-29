@@ -198,7 +198,7 @@ In the following example, you create two model clients: one producer and one ver
 **What this snippet does:** Instantiates two separate `AzureAIChatCompletionsModel` clients: one using `Mistral-Large-2411` for content generation and another using `Mistral-Small` for verification, demonstrating how to choose different models for different tasks.
 
 **References:**
-- [AzureAIChatCompletionsModel](/python/api/langchain-azure-ai/langchain_azure_ai.chat_models.AzureAIChatCompletionsModel)
+- [LangChain Azure AI integration](https://python.langchain.com/docs/integrations/chat/azure_ai)
 
 
 > [!TIP]
@@ -299,7 +299,7 @@ llm = AzureAIChatCompletionsModel(
 **What this snippet does:** Instantiates a client configured specifically for Azure OpenAI models using the Azure OpenAI endpoint format. The `endpoint` parameter points to your Azure OpenAI resource, and the `credential` uses the API key stored in the environment variable.
 
 **References:**
-- [AzureAIChatCompletionsModel](/python/api/langchain-azure-ai/langchain_azure_ai.chat_models.AzureAIChatCompletionsModel)
+- [LangChain Azure AI integration](https://python.langchain.com/docs/integrations/chat/azure_ai)
 
 ## Debugging and troubleshooting
 
