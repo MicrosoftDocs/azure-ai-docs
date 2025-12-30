@@ -6,7 +6,7 @@ manager: nitinme
 keywords: Foundry Tools, cognitive
 ms.service: azure-ai-foundry
 ms.topic: overview
-ms.date: 11/21/2025
+ms.date: 12/30/2025
 ms.author: pafarley
 author: PatrickFarley
 ms.custom: ignite-2024
