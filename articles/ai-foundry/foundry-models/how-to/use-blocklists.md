@@ -15,6 +15,8 @@ monikerRange: 'foundry-classic || foundry'
 
 # Use blocklists with Foundry Models in Microsoft Foundry
 
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
+
 The configurable content filters are sufficient for most content moderation needs. However, you might need to create custom blocklists in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) as part of your content filtering configurations to filter terms specific to your use case. This article shows how to create custom blocklists as part of your content filters in the [Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 ## Prerequisites

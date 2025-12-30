@@ -15,6 +15,8 @@ monikerRange: 'foundry-classic || foundry'
 
 # Responsible AI for Microsoft Foundry
 
+[!INCLUDE [version-banner](includes/version-banner.md)]
+
 This article provides an overview of the resources for building and deploying trustworthy AI agents. This includes end-to end security, observability, and governance with controls and checkpoints at all stages of the agent lifecycle. Our recommended essential development steps are grounded in the [Microsoft Responsible AI Standard](https://aka.ms/RAI), which sets policy requirements that our own engineering teams follow. Much of the content of the Standard follows a pattern, asking teams to Discover, Protect, and Govern potential content risks.
 
 At Microsoft, our approach is guided by a governance framework rooted in AI principles, which establish product requirements and serve as our "north star." When we identify a business use case for generative AI, we first discover and assess the potential risks of the AI system to pinpoint critical focus areas.

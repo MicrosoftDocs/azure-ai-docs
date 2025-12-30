@@ -19,6 +19,7 @@ monikerRange: 'foundry-classic || foundry'
 
 Get started using images in your chats with Azure OpenAI in Microsoft Foundry Models.
 
+[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 > [!IMPORTANT]
 > Extra usage fees might apply when using chat completion models with vision functionality.

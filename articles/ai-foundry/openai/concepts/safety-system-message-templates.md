@@ -14,6 +14,7 @@ monikerRange: 'foundry-classic || foundry'
 
 ---
 
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 # Safety system message templates
 

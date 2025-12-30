@@ -17,6 +17,8 @@ monikerRange: 'foundry-classic || foundry'
 
 # Quickstart: Text to speech with Azure OpenAI in Microsoft Foundry Models
 
+[!INCLUDE [version-banner](../includes/version-banner.md)]
+
 In this quickstart, you use Azure OpenAI for text to speech with OpenAI voices.  
 
 The available voices are: `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. For more information, see [Azure OpenAI reference documentation for text to speech](./reference.md#text-to-speech-preview).
