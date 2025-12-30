@@ -32,13 +32,13 @@ In this article, you will learn more about role-based access control (RBAC) in y
 
 In this article, you learn how to manage access to your [!INCLUDE [foundry-link](../default/includes/foundry-link.md)] resources. Role-based access control (RBAC) is used to manage access to resources, like creating new resources or using an existing one. You can assign users roles that grant access to resources. We will dive into the details about RBAC in Microsoft Foundry and how to best utilize roles assignments for your enterprise. 
 
-For more on authentication and authorization in Microsoft Foundry, see [Authetication and Authorization](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/authentication-authorization-foundry?view=foundry). This article mentions terminology explained in the previous article. 
+For more on authentication and authorization in Microsoft Foundry, see [Authetication and Authorization](../concepts/authentication-authorization-foundry.md). This article mentions terminology explained in the previous article. 
 
 ::: moniker-end
 
 ## Getting Started
 
-For new users to Azure and Microsoft Foundry, use the following check-list to ensure all the correct roles are assigned to your user principle and your project's managed identity to get started in Foundry. You can check your roles using the [Check access for a user to a single Azure resource](https://learn.microsoft.com/en-us/azure/role-based-access-control/check-access?tabs=default) guidelines.
+For new users to Azure and Microsoft Foundry, use the following check-list to ensure all the correct roles are assigned to your user principle and your project's managed identity to get started in Foundry. You can check your roles using the [Check access for a user to a single Azure resource](/azure/role-based-access-control/check-access?tabs=default) guidelines.
 
 * Your __user principle__ is assigned the **Azure AI User** role on your Foundry resource. 
 * Your __project's managed identity__ is assigned the **Azure AI User** role on your Foundry resource.
@@ -93,7 +93,7 @@ In Microsoft Foundry, there are two scopes to consider when completeing role ass
 
 A **built-in role** in Foundry is a role created by Microsoft that covers common access scenarios that can be assigned to your team members. There are a few key built-in roles used across Azure such as Owner, Contributor, and Reader. These roles aren't specific to Foundry resource permissions. 
 
-For Foundry resources, there are additional built-in roles to adhere to least privilege access principles. Below are the five key built-in roles for Foundry, a short description, and the link to the exact role definition in the [AI + Machine Learning built-in roles article](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/ai-machine-learning).
+For Foundry resources, there are additional built-in roles to adhere to least privilege access principles. Below are the five key built-in roles for Foundry, a short description, and the link to the exact role definition in the [AI + Machine Learning built-in roles article](/azure/role-based-access-control/built-in-roles/ai-machine-learning).
 
 | Role | Description |
 |--------------------|-----------------------|
@@ -118,7 +118,7 @@ Use the following table and diagram to see the permissions allowed for each buil
 
 :::image type="content" source="../media/how-to/network/detailed-rbac-diagram.png" alt-text="Diagram of the built-in roles in Foundry." lightbox="../media/how-to/network/detailed-rbac-diagram.png":::
  
-For more on built-in roles in Azure and Foundry, see [Azure built-in roles](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles). To learn more about conditional delegation used in the Azure AI Account Owner and Azure AI Project Manager role, see [Delegate Azure role assignment management to others with conditions](/azure/role-based-access-control/delegate-role-assignments-portal).
+For more on built-in roles in Azure and Foundry, see [Azure built-in roles](/azure/role-based-access-control/built-in-roles). To learn more about conditional delegation used in the Azure AI Account Owner and Azure AI Project Manager role, see [Delegate Azure role assignment management to others with conditions](/azure/role-based-access-control/delegate-role-assignments-portal).
 
 
 ## Sample enterprise RBAC setup for projects
@@ -187,7 +187,7 @@ For more details on creating a custom role, see the following articles.
 - [Azure portal](/azure/role-based-access-control/custom-roles-portal)
 - [Azure CLI](/azure/role-based-access-control/custom-roles-cli)
 - [Azure PowerShell](/azure/role-based-access-control/custom-roles-powershell)
-- [Disable Preview Features with Role-Based Access](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/disable-preview-features-with-rbac?view=foundry-classic). This article provides more details on specific permissions in Foundry across control and data plane which you can utilize when building custom roles.
+- [Disable Preview Features with Role-Based Access](../concepts/disable-preview-features-with-rbac.md). This article provides more details on specific permissions in Foundry across control and data plane which you can utilize when building custom roles.
 
 ## Notes and Limitations  
 
@@ -205,17 +205,17 @@ For more details on creating a custom role, see the following articles.
 
 - [Create a project](../how-to/create-projects.md).
 - [Add a connection in Foundry portal](../how-to/connections-add.md).
-- [Authentication and Authorization in Foundry](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/authentication-authorization-foundry?view=classic)
-- [Disable Preview Features with Role-Based Access](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/disable-preview-features-with-rbac?view=foundry-classic).
+- [Authentication and Authorization in Foundry](../concepts/authentication-authorization-foundry.md)
+- [Disable Preview Features with Role-Based Access](../concepts/disable-preview-features-with-rbac.md).
 
 ::: moniker-end
 
 ::: moniker range="foundry"
 
 - [Create a project](../how-to/create-projects.md).
-- [Check access for a user to a single Azure resource](https://learn.microsoft.com/en-us/azure/role-based-access-control/check-access?tabs=default).
-- [Authentication and Authorization in Foundry](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/authentication-authorization-foundry?view=foundry)
-- [Disable Preview Features with Role-Based Access](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/disable-preview-features-with-rbac?view=foundry-classic).
+- [Check access for a user to a single Azure resource](/azure/role-based-access-control/check-access?tabs=default).
+- [Authentication and Authorization in Foundry](../concepts/authentication-authorization-foundry.md)
+- [Disable Preview Features with Role-Based Access](../concepts/disable-preview-features-with-rbac.md).
 
 ::: moniker-end
 
