@@ -305,7 +305,9 @@ This section describes how to define a Triton deployment on a managed online end
 
 # [Studio](#tab/azure-studio)
 
-1. On the **Deploy page**, select **Deploy**.
+1. In the **Deploy** pane, select **Deploy**.
+
+:::image type="content" source="media/how-to-deploy-with-triton/review-screen-triton.png" lightbox="media/how-to-deploy-with-triton/review-screen-triton.png" alt-text="Screenshot showing the Deploy button.":::
 
 1. After the deployment is complete, its traffic value will be set to 0%. Update the traffic value to 100% by selecting **Update traffic** on the page for the endpoint. 
 
@@ -468,7 +470,7 @@ Triton Inference Server requires the use of Triton Client for inference, and it 
 
 1. On the endpoint's page, select **Delete**. 
 
-1. On the model's page, select **Delete**. 
+1. On the model's page, select **Archive**. 
 ---
 
 
