@@ -42,7 +42,7 @@ In this example, you work with the **Model Inference API**.
 To run this tutorial, you need:
 
 * [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
-* Required role: **Owner** or **Contributor** on the AI hub or project resource to access model deployments.
+* Required role: **Owner**, **Contributor**, or **Azure AI Developer** on the AI hub or project resource to access model deployments.
 * A [Foundry project](../create-projects.md).
 * A model deployment that supports the [Model Inference API](https://aka.ms/azureai/modelinference). This article uses `Mistral-Large-3` in code examples; you can substitute your own deployed model name.
 * To use embeddings capabilities in LlamaIndex, you need an embedding model like `cohere-embed-v3-multilingual`. 
