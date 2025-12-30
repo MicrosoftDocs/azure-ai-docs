@@ -198,7 +198,7 @@ This section describes how to define a Triton deployment to deploy to a managed 
     from azure.ai.ml.entities import ManagedOnlineDeployment, Model
     
     model_name = "densenet-onnx-model"
-    model_version = 1
+    model_version = "1"
     
     deployment = ManagedOnlineDeployment(
         name="blue",
@@ -234,7 +234,7 @@ This section describes how to define a Triton deployment on a managed online end
     az ml model create -f create-triton-model.yaml
     ```
 
-    The following screenshot shows how your registered model will look on the __Models page__ of Azure Machine Learning studio.
+    The following screenshot shows how your registered model will look on the __Models__ page of Azure Machine Learning studio.
 
     :::image type="content" source="media/how-to-deploy-with-triton/triton-model-format.png" lightbox="media/how-to-deploy-with-triton/triton-model-format.png" alt-text="Screenshot showing the Triton model format on the Models page.":::
 
@@ -358,7 +358,7 @@ After your deployment is complete, use the following command to make a scoring r
 1. To get an authentication key, use the following command:
  
     ```python
-    keys = ml_client.online_endpoints.list_keys(endpoint_name)
+    keys = ml_client.online_endpoints.get_keys(endpoint_name)
     auth_key = keys.primary_key
     ```
 
