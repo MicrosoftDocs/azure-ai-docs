@@ -26,7 +26,7 @@ There are two main approaches you can take to use Triton models when deploying t
 - No-code deployment for Triton models is a simple way to deploy them because you only need to bring Triton models to deploy.
 - Full-code deployment for Triton models is a more advanced way to deploy them because you have full control over customizing the configurations available for Triton inference server.
 
-For both options, Triton Inference Server Performs inferencing based on the [Triton model as defined by NVIDIA](https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/user_guide/model_repository.html). For instance, [ensemble models](https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/user_guide/architecture.html#ensemble-models) can be used for more advanced scenarios.
+For both options, Triton Inference Server performs inferencing based on the [Triton model as defined by NVIDIA](https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/user_guide/model_repository.html). For instance, [ensemble models](https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/user_guide/architecture.html#ensemble-models) can be used for more advanced scenarios.
 
 Triton is supported in both [managed online endpoints and Kubernetes online endpoints](concept-endpoints-online.md#managed-online-endpoints-vs-kubernetes-online-endpoints).
 
@@ -446,7 +446,7 @@ Triton Inference Server requires the use of Triton Client for inference, and it 
 1. Use the following command to archive your model:
 
     ```azurecli
-    az ml model archive --name $MODEL_NAME --version $MODEL_VERSION
+    az ml model archive --name sample-densenet-onnx-model --version 1
     ```
 
 # [Python](#tab/python)
