@@ -8,7 +8,7 @@ ms.custom:
 ms.topic: how-to
 monikerRange: foundry-classic || foundry
 ai-usage: ai-assisted
-ms.date: 09/09/2025
+ms.date: 12/30/2025
 ms.reviewer: fasantia
 ms.author: sgilley
 author: sdgilley
@@ -43,7 +43,8 @@ To run this tutorial, you need:
 
 * [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
 * A [Foundry project](../create-projects.md).
-* A model supporting the [Model Inference API](/rest/api/aifoundry/modelinference/) deployed. In this example, we use a `Mistral-Large` deployment, but use any model of your preference. For using embeddings capabilities in LlamaIndex, you need an embedding model like `cohere-embed-v3-multilingual`. 
+* A model deployment that supports the [Model Inference API](https://aka.ms/azureai/modelinference). This article uses `Mistral-Large-2411` in code examples, but this model is deprecated. Deploy a more recent Mistral model such as `Mistral-Large-3` or `Mistral-Nemo` from the Foundry model catalog instead, and substitute your model name in the code examples. 
+* For using embeddings capabilities in LlamaIndex, you need an embedding model like `cohere-embed-v3-multilingual`. 
 
     * You can follow the instructions at [Deploy models as serverless API deployments](../deploy-models-serverless.md).
 
