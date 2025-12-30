@@ -246,19 +246,19 @@ This section describes how to define a Triton deployment on a managed online end
 
         :::image type="content" source="media/how-to-deploy-with-triton/create-option-from-endpoints-page.png" lightbox="media/how-to-deploy-with-triton/create-option-from-endpoints-page.png" alt-text="Screenshot showing the Create option on the Endpoints page.":::
 
-    1. Provide a name and authentication type for the endpoint, and then select __Next__.
-    1. When you select a model, select the Triton model that you registered earlier. Select __Next__ to continue.
+    1. Select the Triton model that you registered earlier, and then click **Select**.
 
-    1. When you select a model registered in Triton format, in the **Environment** step of the deployment, you don't need a scoring script or environment.
+    1. When you select a model registered in Triton format, you don't need a scoring script or environment.
 
         :::image type="content" source="media/how-to-deploy-with-triton/ncd-triton.png" lightbox="media/how-to-deploy-with-triton/ncd-triton.png" alt-text="Screenshot showing the message stating that no script or environment is needed for Triton models":::
 
     # [Models page](#tab/models)
 
-    1. Select the Triton model, and then select __Deploy__ > __Deploy to real-time endpoint__.
+    1. Select the Triton model, and then select **Use this model** > __Real-time endpoint__.
 
-        :::image type="content" source="media/how-to-deploy-with-triton/deploy-from-models-page.png" lightbox="media/how-to-deploy-with-triton/deploy-from-models-page.png" alt-text="Screenshot showing how to deploy a model from the Models List page.":::
+        :::image type="content" source="media/how-to-deploy-with-triton/deploy-from-models-page.png" lightbox="media/how-to-deploy-with-triton/deploy-from-models-page.png" alt-text="Screenshot showing how to deploy a model from the Model page.":::
 
+    
     ---
 ---
 
@@ -304,9 +304,8 @@ This section describes how to define a Triton deployment on a managed online end
 
 
 # [Studio](#tab/azure-studio)
-1. Complete the steps on the **Create deployment** page to deploy to the endpoint.
 
-    :::image type="content" source="media/how-to-deploy-with-triton/review-screen-triton.png" lightbox="media/how-to-deploy-with-triton/review-screen-triton.png" alt-text="Screenshot showing the Review step of the deployment.":::
+1. On the **Deploy page**, select **Deploy**.
 
 1. After the deployment is complete, its traffic value will be set to 0%. Update the traffic value to 100% by selecting **Update traffic** on the page for the endpoint. 
 
