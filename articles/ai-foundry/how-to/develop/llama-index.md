@@ -146,7 +146,7 @@ print(response)
 
 **References:**
 - [LlamaIndex ChatMessage](https://docs.llamaindex.ai/en/stable/module_guides/models/llms/)
-- [LlamaIndex LLM Chat Method](https://docs.llamaindex.ai/en/stable/module_guides/models/llms/usage/)
+- [LlamaIndex LLM Chat Method](https://docs.llamaindex.ai/en/stable/module_guides/models/llms/)
 
 If you plan to use asynchronous calling, use the asynchronous version for the credentials:
 
@@ -224,7 +224,7 @@ llm = AzureAICompletionsModel(
 
 ## Use LLM models
 
-You can use the client directly or [configure the models used by your code](#configure-the-models-used-by-your-code) in LlamaIndex. To use the model directly, use the `chat` method for chat instruction models:
+You can use the client directly or [configure the models used by your code](#configure-the-models-your-code-uses) in LlamaIndex. To use the model directly, use the `chat` method for chat instruction models:
 
 ```python
 from llama_index.core.llms import ChatMessage
@@ -324,7 +324,7 @@ relevancy_evaluator = RelevancyEvaluator(llm=llm)
 **What this does:** Creates a relevancy evaluator that uses your custom LLM client for evaluating retrieval results. This allows you to use different models for different tasks (e.g., a specific model for evaluation vs. general chat).
 
 **References:**
-- [LlamaIndex Evaluators](https://docs.llamaindex.ai/en/stable/module_guides/evaluators/)
+- [LlamaIndex Evaluators](https://docs.llamaindex.ai/en/stable/module_guides/)
 
 Generally, use a combination of both strategies.
 
