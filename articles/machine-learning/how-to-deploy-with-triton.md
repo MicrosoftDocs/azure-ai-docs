@@ -102,7 +102,7 @@ cd azureml-examples/sdk/python/endpoints/online/triton/single-model/
 
 # [Studio](#tab/azure-studio)
 
-* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azurex](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * An Azure Machine Learning workspace. If you don't have one, complete the steps in [Manage Azure Machine Learning workspaces in the portal, or with the Python SDK](how-to-manage-workspace.md) to create one.
 
@@ -154,7 +154,7 @@ This section describes how to define a Triton deployment to deploy to a managed 
 > For Triton no-code-deployment, [testing via local endpoints](how-to-deploy-online-endpoints.md#deploy-and-debug-locally-by-using-a-local-endpoint) is currently not supported.
 
 
-1. To connect to a workspace, you need identifier parameters: a subscription, resource group and workspace name. 
+1. To connect to a workspace, you need identifier parameters: a subscription, resource group, and workspace name. 
 
     ```python 
     subscription_id = "<SUBSCRIPTION_ID>"
@@ -322,7 +322,7 @@ This section describes how to define a Triton deployment on a managed online end
 After your deployment is complete, use the following command to make a scoring request to the deployed endpoint. 
 
 > [!TIP]
-> The file `/cli/endpoints/online/triton/single-model/triton_densenet_scoring.py` in the azureml-examples repo is used for scoring. The image passed to the endpoint needs pre-processing to meet the size, type, and format requirements, and post-processing to show the predicted label. The `triton_densenet_scoring.py` file uses the `tritonclient.http` library to communicate with the Triton inference server. This file runs on the client side.
+> The file `/cli/endpoints/online/triton/single-model/triton_densenet_scoring.py` in the azureml-examples repo is used for scoring. The image passed to the endpoint needs preprocessing to meet the size, type, and format requirements, and post-processing to show the predicted label. The `triton_densenet_scoring.py` file uses the `tritonclient.http` library to communicate with the Triton inference server. This file runs on the client side.
 
 1. To get the endpoint scoring URI, use the following command:
 
