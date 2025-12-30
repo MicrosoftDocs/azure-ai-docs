@@ -5,6 +5,7 @@ description: This article explains how to use LlamaIndex with models deployed in
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
+  - dev-focus
 ms.topic: how-to
 monikerRange: foundry-classic || foundry
 ai-usage: ai-assisted
@@ -18,7 +19,7 @@ author: sdgilley
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-In this article, you learn how to use [LlamaIndex](https://github.com/run-llama/llama_index) with models deployed from the Foundry model catalog in Microsoft Foundry portal.
+In this article, you learn how to use [LlamaIndex](https://github.com/run-llama/llama_index) with models deployed from the model catalog in Microsoft Foundry.
 
 ::: moniker range="foundry-classic"
 You can use models deployed to [!INCLUDE [classic-link](../../includes/classic-link.md)] with LlamaIndex in two ways:
@@ -41,8 +42,9 @@ In this example, you work with the **Model Inference API**.
 To run this tutorial, you need:
 
 * [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
+* Required role: **Owner** or **Contributor** on the AI hub or project resource to access model deployments.
 * A [Foundry project](../create-projects.md).
-* A model deployment that supports the [Model Inference API](https://aka.ms/azureai/modelinference). This article uses `Mistral-Large-3`.
+* A model deployment that supports the [Model Inference API](https://aka.ms/azureai/modelinference). This article uses `Mistral-Large-3` in code examples; you can substitute your own deployed model name.
 * To use embeddings capabilities in LlamaIndex, you need an embedding model like `cohere-embed-v3-multilingual`. 
 
     * You can follow the instructions at [Deploy models as serverless API deployments](../deploy-models-serverless.md).
@@ -104,6 +106,12 @@ llm = AzureAICompletionsModel(
 )
 ```
 
+**What this does:** Creates an LLM client with explicit model name specification for multi-model endpoints. The `model_name` parameter tells the service which model to use for chat completions.
+
+**References:**
+- [LlamaIndex Azure Inference Integration](https://docs.llamaindex.ai/en/stable/module_guides/models/llms/)
+- [AzureAICompletionsModel Parameters](https://github.com/run-llama/llama_index/blob/main/llama-index-integrations/llms/llama-index-llms-azure-inference/llama_index/llms/azure_inference/base.py)
+
 Alternatively, if your endpoint supports Microsoft Entra ID, you can use the following code to create the client:
 
 ```python
@@ -117,8 +125,28 @@ llm = AzureAICompletionsModel(
 )
 ```
 
+**What this does:** Creates an LLM client using Microsoft Entra ID (Azure AD) authentication, which is more secure for production environments than API keys.
+
 > [!NOTE]
 > When using Microsoft Entra ID, make sure that the endpoint is deployed with that authentication method and that you have the required permissions to invoke it.
+
+### Verify your setup
+
+Test your client connection with a simple invocation:
+
+```python
+from llama_index.core.llms import ChatMessage
+
+messages = [ChatMessage(role="user", content="Hello")]
+response = llm.chat(messages)
+print(response)
+```
+
+**What this does:** Calls the model with a simple message to verify authentication and connectivity. Expected output: A response object containing the model's greeting message.
+
+**References:**
+- [LlamaIndex ChatMessage](https://docs.llamaindex.ai/en/stable/module_guides/models/llms/)
+- [LlamaIndex LLM Chat Method](https://docs.llamaindex.ai/en/stable/module_guides/models/llms/usage/)
 
 If you plan to use asynchronous calling, use the asynchronous version for the credentials:
 
@@ -177,6 +205,11 @@ llm = AzureAICompletionsModel(
     model_kwargs={"top_p": 1.0},
 )
 ```
+
+**What this does:** Sets default inference parameters (`temperature` and `top_p`) that apply to all chat and completion calls made with this client. Lower temperature (0.0) produces more deterministic outputs; `top_p` controls diversity in sampling.
+
+**References:**
+- [Model Inference API Parameters](../../../ai-foundry/model-inference/reference/reference-model-inference-chat-completions.md)
 
 For parameters not supported in the Model Inference API ([reference](../../../ai-foundry/model-inference/reference/reference-model-inference-chat-completions.md)) but available in the underlying model, use the `model_extras` argument. In the following example, the parameter `safe_prompt`, which is only available for Mistral models, is passed.
 
@@ -238,6 +271,12 @@ embed_model = AzureAIEmbeddingsModel(
 )
 ```
 
+**What this does:** Instantiates an embeddings client to convert text into vector embeddings. Embeddings are numerical representations of text used for semantic similarity searches and retrieval-augmented generation (RAG).
+
+**References:**
+- [LlamaIndex Embeddings Integration](https://docs.llamaindex.ai/en/stable/module_guides/models/embeddings/)
+- [AzureAIEmbeddingsModel](https://github.com/run-llama/llama_index/blob/main/llama-index-integrations/embeddings/llama-index-embeddings-azure-inference/llama_index/embeddings/azure_inference/base.py)
+
 The following example shows a simple test to verify it works:
 
 ```python
@@ -253,6 +292,11 @@ response = embed_model(nodes=nodes)
 print(response[0].embedding)
 ```
 
+**What this does:** Converts a text node into embeddings and prints the numerical vector representation. Expected output: A list of floating-point numbers representing the semantic meaning of the text (typical length: 384–1024 dimensions depending on the model).
+
+**References:**
+- [TextNode](https://docs.llamaindex.ai/en/stable/module_guides/models/embeddings/)
+
 ## Configure the models your code uses
 
 In your code, you can use the LLM or embeddings model client individually when working with LlamaIndex, or you can configure the entire session by using the `Settings` options. When you configure the session, all your code uses the same models for all operations.
@@ -264,6 +308,11 @@ Settings.llm = llm
 Settings.embed_model = embed_model
 ```
 
+**What this does:** Registers the LLM and embeddings clients globally so all LlamaIndex operations automatically use these models without needing to pass them as parameters to each function.
+
+**References:**
+- [LlamaIndex Settings](https://docs.llamaindex.ai/en/stable/module_guides/models/llms/)
+
 However, some scenarios require a general model for most operations and a specific model for a given task. In these cases, set the LLM or embedding model for each LlamaIndex construct. The following example shows how to set a specific model:
 
 ```python
@@ -271,6 +320,11 @@ from llama_index.core.evaluation import RelevancyEvaluator
 
 relevancy_evaluator = RelevancyEvaluator(llm=llm)
 ```
+
+**What this does:** Creates a relevancy evaluator that uses your custom LLM client for evaluating retrieval results. This allows you to use different models for different tasks (e.g., a specific model for evaluation vs. general chat).
+
+**References:**
+- [LlamaIndex Evaluators](https://docs.llamaindex.ai/en/stable/module_guides/evaluators/)
 
 Generally, use a combination of both strategies.
 
