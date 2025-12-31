@@ -5,7 +5,7 @@ description: Convert custom models to MLflow model format for no code deployment
 services: machine-learning
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: fasantia
+ms.reviewer: jturuk
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.date: 08/16/2024
