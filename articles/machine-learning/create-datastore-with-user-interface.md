@@ -2,9 +2,8 @@
 title: Linking Tables in OneLake to Azure Machine Learning Through UI
 titleSuffix: Azure Machine Learning
 description: Learn how to link a Table in OneLake Lakehouse to Azure Machine Learning and create datastore through UI.
-author: helenzusa1 
-ms.author: helenzeng
-ms.reviewer:  franksolomon
+ms.author: scottpolly
+ms.reviewer: soumyapatro 
 ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.topic: how-to

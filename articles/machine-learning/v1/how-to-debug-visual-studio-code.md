@@ -6,10 +6,9 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.topic: how-to
-ms.reviewer: ssalgado
-author: tbombach
-ms.author: tbombach
-ms.date: 10/21/2021
+ms.author: scottpolly
+ms.reviewer: jturuk
+ms.date: 10/21/2023
 monikerRange: 'azureml-api-1'
 ms.custom:
   - UpdateFrequency5

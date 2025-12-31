@@ -5,9 +5,8 @@ description: Link your Azure Synapse Analytics workspace to your Azure Machine L
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mldata
-ms.author: zhanxia
-author: xiaoharper
-ms.reviewer: franksolomon
+ms.author: scottpolly
+ms.reviewer: soumyapatro 
 ms.date: 06/03/2025
 ms.topic: how-to
 ms.custom: UpdateFrequency5, synapse-azureml, sdkv1
