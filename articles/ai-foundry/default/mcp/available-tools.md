@@ -237,7 +237,6 @@ Example prompts include:
 
 ## Related content
 
-- Learn how to [set up and configure the Foundry MCP Server](how-to-mcp-setup.md)
-- Explore [MCP server concepts and architecture](../../concepts/mcp-servers.md)
-- Review the [MCP protocol specification](https://spec.modelcontextprotocol.io/)
+- Get started with [Foundry MCP Server](get-started.md)
+- Learn how to [build your own MCP server](build-your-own-mcp-server.md)
 - Try the example workflows above in your own Azure AI Foundry project

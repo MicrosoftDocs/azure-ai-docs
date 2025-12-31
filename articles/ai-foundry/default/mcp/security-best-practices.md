@@ -136,6 +136,5 @@ Make sure the MCP server is running and tools are loaded by checking the Output 
 ## Related content
 
 - Review [available tools and example prompts](available-tools.md) for Foundry MCP Server
-- Learn how to [set up and configure the Foundry MCP Server](how-to-mcp-setup.md)
-- Explore [MCP server concepts and architecture](../../concepts/mcp-servers.md)
-- Review the [MCP protocol specification](https://spec.modelcontextprotocol.io/) 
+- Get started with [Foundry MCP Server](get-started.md)
+- Learn how to [build your own MCP server](build-your-own-mcp-server.md) 
