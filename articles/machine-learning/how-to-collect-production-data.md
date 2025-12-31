@@ -45,7 +45,7 @@ If you're interested in collecting production inference data for an MLflow model
 
 ## Perform custom logging for model monitoring
 
-Data collection with custom logging allows you to log pandas DataFrames directly from your scoring script before, during, and after any data transformations. With custom logging, tabular data is logged in real time to your workspace Blob Storage or a custom blob storage container. Your model monitors can consume the data from storage.
+Data collection with custom logging allows you to log pandas DataFrames directly from your scoring script before, during, and after any data transformations. With custom logging, tabular data is logged in real time to your workspace Blob Storage or a custom Blob Storage container. Your model monitors can consume the data from storage.
 
 ### Update your scoring script with custom logging code
 
