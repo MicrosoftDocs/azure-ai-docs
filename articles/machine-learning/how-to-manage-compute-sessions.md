@@ -5,7 +5,7 @@ description: Use the session management panel to manage the active notebook and 
 services: machine-learning
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: lebaro
+ms.reviewer: jturuk
 ms.service: azure-machine-learning
 ms.subservice: compute
 ms.topic: how-to

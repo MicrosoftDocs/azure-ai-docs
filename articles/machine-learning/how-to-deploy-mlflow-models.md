@@ -7,7 +7,7 @@ ms.service: azure-machine-learning
 ms.subservice: mlops
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: cacrest
+ms.reviewer: jturuk
 ms.date: 10/20/2025
 ms.topic: concept-article
 ms.custom: deploy, mlflow, devplatv2, no-code-deployment, cliv2, update-code3, FY25Q1-Linter

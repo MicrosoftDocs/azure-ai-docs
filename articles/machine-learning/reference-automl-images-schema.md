@@ -7,7 +7,7 @@ ms.service: azure-machine-learning
 ms.subservice: automl
 ms.custom:  update-code, devx-track-python
 ms.topic: reference
-ms.reviewer: None
+ms.reviewer: sooryar
 ms.author: scottpolly
 author: s-polly
 ms.date: 09/09/2022

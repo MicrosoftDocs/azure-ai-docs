@@ -8,7 +8,7 @@ ms.subservice: mldata
 ms.topic: how-to
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: yogipandey
+ms.reviewer: soumyapatro
 ms.date: 08/06/2025
 ms.custom:
   - devplatv2

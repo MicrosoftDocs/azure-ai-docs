@@ -5,7 +5,7 @@ description: Learn how to configure authentication for machine learning models d
 services: machine-learning
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: sehan
+ms.reviewer: jturuk
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.date: 03/11/2025

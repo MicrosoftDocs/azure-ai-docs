@@ -8,7 +8,7 @@ ms.subservice: automl
 ms.topic: tutorial
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: manashg
+ms.reviewer: sooryar
 ms.date: 10/15/2025
 ms.custom: automl, build-2023
 #Customer intent: As a non-coding data scientist, I want to use automated machine learning techniques so that I can build a classification model.

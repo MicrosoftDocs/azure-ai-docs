@@ -234,3 +234,9 @@ Example prompts include:
 - "Check which deployments are using deprecated model versions."
 - "Show me my quota usage across all regions."
 - "Delete unused test deployments to free up capacity."
+
+## Related content
+
+- Get started with [Foundry MCP Server](get-started.md)
+- Learn how to [build your own MCP server](build-your-own-mcp-server.md)
+- Try the example workflows above in your own Azure AI Foundry project

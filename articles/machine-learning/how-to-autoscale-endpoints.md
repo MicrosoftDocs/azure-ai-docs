@@ -7,7 +7,7 @@ ms.subservice: inferencing
 ms.topic: how-to
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: sehan
+ms.reviewer: jturuk
 ms.custom: devplatv2, cliv2, update-code
 ms.date: 08/07/2024
 

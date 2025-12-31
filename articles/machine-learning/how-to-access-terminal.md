@@ -5,7 +5,7 @@ description: Learn how to use the terminal on a compute instance for Git operati
 services: machine-learning
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: kritifaujdar
+ms.reviewer: jturuk
 ms.service: azure-machine-learning
 ms.subservice: compute
 ms.topic: how-to

@@ -4,7 +4,7 @@ titleSuffix: Azure Machine Learning
 description: Learn about the managed feature store in Azure Machine Learning
 author: s-polly 
 ms.author: scottpolly 
-ms.reviewer: seramasu
+ms.reviewer: soumyapatro
 ms.service: azure-machine-learning
 ms.subservice: mldata 
 ms.custom: build-2023, ignite-2023

@@ -3,7 +3,8 @@ title: Transparency Note for auto-generate prompt variants in prompt flow
 titleSuffix: Azure Machine Learning
 description: Learn about the feature in prompt flow that automatically generates variations of a base prompt with the help of language models.
 author: prakharg-msft
-ms.author: prakharg
+ms.author: lagayhar
+ms.reviewer: sooryar
 manager: omkarm
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow

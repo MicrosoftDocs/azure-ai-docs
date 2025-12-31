@@ -5,9 +5,9 @@ description: Trigger pipelines so that you can automate routine, time-consuming 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.author: lagayhar
+ms.author: scottpolly
 author: lgayhardt
-ms.reviewer: keli19
+ms.reviewer: jturuk
 ms.date: 06/24/2025
 ms.topic: how-to
 ms.custom:

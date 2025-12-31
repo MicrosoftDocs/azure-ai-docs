@@ -7,7 +7,7 @@ ms.service: azure-machine-learning
 ms.subservice: mlops
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: ericadebarge
+ms.reviewer: jturuk
 ms.date: 06/13/2025
 ms.topic: troubleshooting
 ms.custom: devx-track-python
