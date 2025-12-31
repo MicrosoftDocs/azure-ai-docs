@@ -8,7 +8,7 @@ ms.subservice: prompt-flow
 ms.topic: reference
 author: lgayhardt
 ms.author: lagayhar
-ms.reviewer: keli19
+ms.reviewer: sooryar
 ms.date: 01/02/2024
 ms.update-cycle: 365-days
 ---

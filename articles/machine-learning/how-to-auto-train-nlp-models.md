@@ -6,7 +6,7 @@ services: machine-learning
 author: s-polly
 ms.author: scottpolly
 ms.service: azure-machine-learning
-ms.reviewer: wenxwei
+ms.reviewer: sooryar
 ms.subservice: automl
 ms.topic: how-to
 ms.custom: devplatv2, sdkv2, cliv2, build-2023, build-2023-dataai, devx-track-python

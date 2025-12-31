@@ -8,8 +8,8 @@ ms.subservice: mlops
 ms.topic: how-to
 author: s-polly
 ms.author: scottpolly
-ms.date: 12/30/2025
-ms.reviewer: alehughes
+ms.date: 12/31/2025
+ms.reviewer: jturuk
 ms.custom: devplatv2, build-2023
 ---
 

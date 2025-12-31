@@ -7,7 +7,7 @@ author: s-polly
 ms.author: scottpolly
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
-ms.reviewer: roastala
+ms.reviewer: shshubhe
 ms.topic: how-to
 ms.date: 06/13/2025
 ms.custom: UpdateFrequency5, cliv1, sdkv1, devx-track-azurecli

@@ -194,11 +194,11 @@ Make sure you have [RBAC](/azure/role-based-access-control/built-in-roles) enabl
 
 ### Roles and permissions
 
-* If you have an existing Foundry resource and need to create a new Foundry project to deploy a hosted agent, you need Account Owner and Azure AI User roles.
+* If you have an existing Foundry resource and need to create a new Foundry project to deploy a hosted agent, you need **Azure AI Owner** roles.
 
-* If you have an existing project and want to create the model deployment and container registry in the project, you need Account Owner and Azure AI User roles on Foundry in addition to the Contributor role on the Azure subscription.
+* If you have an existing project and want to create the model deployment and container registry in the project, you need **Azure AI Owner**  role on Foundry in addition to the **Contributor** role on the Azure subscription.
 
-* If you have everything configured in the project to deploy a hosted agent, you need Reader and Azure AI User roles.
+* If you have everything configured in the project to deploy a hosted agent, you need **Reader** on the Foundry account and **Azure AI User** on the project.
 
 ### Resource cleanup
 

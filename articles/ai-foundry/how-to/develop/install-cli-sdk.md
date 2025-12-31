@@ -33,11 +33,12 @@ Set up your development environment to use the Microsoft Foundry SDK. You also n
 
 - [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
 - Download, install, and configure Visual Studio Code, or the IDE of your choice. For more information, see [Download Visual Studio Code](https://code.visualstudio.com/Download).
-- Have one of the following Azure RBAC roles to create and manage Foundry resources:
-  - **Azure AI User** (least-privilege role for development)
+- To create and manage Foundry resources, one of the following Azure RBAC roles 
   - **Azure AI Project Manager** (for managing Foundry projects)
   - **Contributor** or **Owner** (for subscription-level permissions)
-  
+- To use project but not create new resources, you need at least:
+  - **Azure AI User** on the projects you use (least-privilege role for development)
+
   For details on each role's permissions, see [Role-based access control for Microsoft Foundry](/azure/ai-foundry/concepts/rbac-azure-ai-foundry).
 
 

@@ -5,7 +5,7 @@ description: Find out how to connect MLflow to an Azure Machine Learning workspa
 services: machine-learning
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: fasantia
+ms.reviewer: jturuk
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.date: 11/20/2024

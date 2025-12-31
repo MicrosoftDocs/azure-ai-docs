@@ -70,10 +70,9 @@ The upgrade converts your Azure OpenAI resource type to Foundry resource type. B
 Before you upgrade your Azure OpenAI resource to a Foundry resource, ensure you have:
 
 - **Azure role requirements**: You must have one of the following Azure roles on your subscription or resource group:
-  - **Owner** or **Contributor** role for resource management and configuration
-  - **Azure AI Administrator** role for managing AI services
+  - **Owner** role on the subscription or resource group for resource management and configuration and assign roles to the new project.
   
-  These roles are needed to enable managed identity and perform the upgrade operation.
+  This role is needed to enable managed identity and perform the upgrade operation.
 
 - **Managed identity**: Managed identity must be enabled on your Azure OpenAI resource. If it isn't already enabled, you can enable it via the [Azure portal](https://portal.azure.com) by navigating to your resource, selecting **Identity** from the left menu, and toggling **System assigned** to **On**.
 
@@ -260,7 +259,7 @@ Azure resource limits and organizational configurations may require extra steps 
 |---|---|
 |User principal lacks account/write permissions|Obtain a privileged Azure RBAC role to manage top-level Azure resource. For example Owner, Contributor, Azure AI Administrator.| 
 |Managed identity isn't enabled on the Azure OpenAI resource|Configure managed identity on your resource via templates or Azure portal.|
-|No permissions to create agents, while you're the owner/contributor on the resource.|An EntraID data plane role is required for development actions including agents. Examples include Azure AI User or Azure AI Project Manager role. Owner and Contributor roles only grant access to management operations in Azure such as managing deployments.|
+|No permissions to create agents, while you're the owner/contributor on the resource.|An EntraID data plane role is required for development actions including agents. Examples include Azure AI User, Azure AI Project Manager, or Azure AI Owner roles. Owner and Contributor roles only grant access to management operations in Azure such as managing deployments.|
 |An Azure Policy conflict occurred.|Your organization may put constraints on resource configurations. Inspect the details of the policy violation error. Then upgrade your resource via template options for further customization. For example, network configurations for Agents can only be configured via template options such as Azure Bicep.|
 |Exceeded number of Azure OpenAI instances of 30 per subscription per region when rolling back.|Delete an Azure OpenAI resource or upgrade it to the Foundry. Then retry rolling back your current resource.|
 |Exceeded number of AIServices instances of 100 per subscription per region.|Delete a Foundry resource you may not use in this subscription. Then retry upgrading your current resource.|

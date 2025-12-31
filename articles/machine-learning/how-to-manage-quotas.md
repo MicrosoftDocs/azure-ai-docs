@@ -7,7 +7,7 @@ ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: siarora
+ms.reviewer: shshubhe
 ms.date: 12/12/2025
 ms.topic: how-to
 ms.custom:

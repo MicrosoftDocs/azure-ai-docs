@@ -69,7 +69,7 @@ Transactions with your Grounding with Bing resource are counted by the number of
 
 1. Create an Azure AI Agent by following the steps in the [quickstart](../../quickstart.md).
 
-1. Create a Grounding with Bing Search resource. You need to have `owner` or `contributor` role in your subscription or resource group to create it.
+1. Create a Grounding with Bing Search resource. You need to have **Owner** or `**Contributor** role in your subscription or resource group to create it.
 
    1. You can create one in the [Azure portal](https://portal.azure.com/#create/Microsoft.BingGroundingSearch), and select the different fields in the creation form. Make sure you create this Grounding with Bing Search resource in the same resource group as your Azure AI Agent, AI Project, and other resources.
 

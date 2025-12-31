@@ -6,9 +6,9 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: reference
-ms.reviewer: ssalgado
+ms.reviewer: sooryar
 author: swatig007
-ms.author: swatig
+ms.author: scottpolly
 ms.date: 01/18/2022
 ---
 

@@ -5,7 +5,7 @@ description: Explore how you can use automated machine learning (AutoML) in Azur
 services: machine-learning
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: chuantian
+ms.reviewer: sooryar
 ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: concept-article

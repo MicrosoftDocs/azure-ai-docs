@@ -6,7 +6,7 @@ ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: how-to
 ms.date: 04/22/2025
-ms.reviewer: None
+ms.reviewer: jturuk
 ms.author: scottpolly
 author: s-polly
 ms.collection: ce-skilling-ai-copilot 
