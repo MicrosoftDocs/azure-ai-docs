@@ -114,7 +114,7 @@ wps = load_workspace("workspace_creation_with_multiple_UAIs.yml")
 workspace = client.workspaces.begin_create(workspace=wps).result()
 ```
 
-# [Studio](#tab/azure-studio)
+# [Studio](#tab/studio)
 
 Not supported currently.
 
@@ -159,7 +159,7 @@ wps = load_workspace("workspace_update_with_multiple_UAIs.yml")
 workspace = client.workspaces.begin_update(workspace=wps).result()
 ```
 
-# [Studio](#tab/azure-studio)
+# [Studio](#tab/studio)
 
 Not supported currently.
 
@@ -286,7 +286,7 @@ workspace = Workspace(
 ml_client.workspaces.begin_create(workspace).result()
 ```
 
-# [Studio](#tab/azure-studio)
+# [Studio](#tab/studio)
 
 Data isolation is automatically enabled when creating hub or project workspaces through Azure Machine Learning studio. For default workspaces, this setting isn't available in the studio interface. Use the Azure CLI or Python SDK to create a default workspace with data isolation enabled.
 
@@ -372,7 +372,7 @@ except Exception:
     ml_client.compute.begin_create_or_update(compute)
 ```
 
-# [Studio](#tab/azure-studio)
+# [Studio](#tab/studio)
 
 During cluster creation or when editing compute cluster details, in the **Advanced settings**, toggle **Assign a managed identity** and specify a system-assigned identity or user-assigned identity.
 
@@ -661,7 +661,7 @@ except Exception:
     ml_client.compute.begin_create_or_update(compute)
 ```
 
-# [Studio](#tab/azure-studio)
+# [Studio](#tab/studio)
 
 For information on configuring managed identity when creating a compute cluster in studio, see [Set up managed identity](how-to-create-attach-compute-cluster.md#set-up-managed-identity).
 
@@ -734,54 +734,6 @@ To use a custom base image internal to your enterprise, you can use managed iden
 
     You can now use the environment in a [training job](how-to-train-cli.md).
 
-<!-- 20240725: this commented block will be restored at a later date TBD . . .
-
-[!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
-
-In this scenario, Azure Machine Learning service builds the training or inference environment on top of a base image you supply from a private ACR. Because the image build task happens on the workspace ACR using ACR Tasks, you must perform more steps to allow access.
-
-1. Create __user-assigned managed identity__ and grant the identity ACRPull access to the __private ACR__.  
-1. Grant the workspace __managed identity__ a __Managed Identity Operator__ role on the __user-assigned managed identity__ from the previous step. This role allows the workspace to assign the user-assigned managed identity to ACR Task for building the managed environment. 
-
-    1. Obtain the principal ID of workspace system-assigned managed identity:
-
-        [!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
-
-        ```azurecli-interactive
-        az ml workspace show -n <workspace name> -g <resource group> --query identityPrincipalId
-        ```
-
-    1. Grant the Managed Identity Operator role:
-
-        ```azurecli-interactive
-        az role assignment create --assignee <principal ID> --role managedidentityoperator --scope <user-assigned managed identity resource ID>
-        ```
-
-        The user-assigned managed identity resource ID is Azure resource ID of the user assigned identity, in the format `/subscriptions/<subscription ID>/resourceGroups/<resource group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<user-assigned managed identity name>`.
-
-1. Specify the external ACR and client ID of the __user-assigned managed identity__ in workspace connections by using the `az ml connection` command. This command accepts a YAML file that provides information on the connection. The following example demonstrates the format for specifying a managed identity. Replace the `client_id` and `resource_id` values with the ones for your managed identity:
-
-    [!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
-
-    :::code language="yaml" source="~/azureml-examples-main/cli/resources/connections/container-registry-managed-identity.yml":::
-
-    The following command demonstrates how to use the YAML file to create a connection with your workspace. Replace `<yaml file>`, `<workspace name>`, and `<resource group>` with the values for your configuration:
-
-    ```azurecli-interactive
-    az ml connection create --file <yml file> --resource-group <resource group> --name <workspace>
-    ```
-
-1. Once the configuration is complete, you can use the base images from private ACR when building environments for training or inference. The following code snippet demonstrates how to specify the base image ACR and image name in an environment definition:
-
-    [!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
-
-    ```yml
-    $schema: https://azuremlschemas.azureedge.net/latest/environment.schema.json
-    name: private-acr-example
-    image: <acr url>/pytorch/pytorch:latest
-    description: Environment created from private ACR.
-    ```
--->
 
 ## Related articles
 
