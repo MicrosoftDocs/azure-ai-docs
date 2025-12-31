@@ -19,7 +19,7 @@ A hybrid search is a single query request configured for both full-text and vect
 + Executes full-text search and vector search in parallel.
 + Merges results from each query using [Reciprocal Rank Fusion (RRF)](hybrid-search-ranking.md).
 
-This article explains the concepts, benefits, and limitations of hybrid search. Links at the end provide usage instructions and next steps. You can also watch the [embedded video](#why-use-hybrid-search) for an explanation of how hybrid retrieval contributes to high-quality generative search applications.
+This article explains the concepts, benefits, and limitations of hybrid search. Links at the end provide usage instructions and next steps. You can also see [below section](#why-use-hybrid-search) for an explanation of how hybrid retrieval contributes to high-quality generative search applications.
 
 ## Why use hybrid search?
 
