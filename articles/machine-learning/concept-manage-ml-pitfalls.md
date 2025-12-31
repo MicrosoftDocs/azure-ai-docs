@@ -8,7 +8,7 @@ ms.subservice: automl
 ms.topic: concept-article
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: manashg
+ms.reviewer: sooryar
 ms.date: 11/13/2025
 
 #customer intent: As a developer, I want to use Automated ML solutions in Azure Machine Learning, so I can find and address common issues like overfitting and imbalanced data.

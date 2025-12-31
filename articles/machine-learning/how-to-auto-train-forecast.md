@@ -5,7 +5,7 @@ description: Set up Azure Machine Learning automated machine learning (AutoML) t
 services: machine-learning
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: erwright
+ms.reviewer: sooryar
 ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: how-to

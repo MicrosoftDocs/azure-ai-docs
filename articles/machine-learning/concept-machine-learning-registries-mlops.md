@@ -7,7 +7,7 @@ ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: kritifaujdar
+ms.reviewer: jturuk
 ms.date: 06/12/2025
 ms.topic: concept-article
 ms.custom: build-2023

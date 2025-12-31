@@ -9,7 +9,7 @@ ms.date: 11/09/2023
 ms.topic: how-to
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: timanghn
+ms.reviewer: jturuk
 ms.custom: deploy, devplatv2, devx-track-azurecli, cliv2, sdkv2
 ms.devlang: azurecli
 ---

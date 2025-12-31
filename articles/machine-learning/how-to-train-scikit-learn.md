@@ -7,7 +7,7 @@ ms.service: azure-machine-learning
 ms.subservice: training
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: balapv
+ms.reviewer: sooryar
 ms.date: 03/06/2025
 ms.topic: how-to
 ms.custom: sdkv2, update-code

@@ -5,7 +5,7 @@ description: Learn how to set up and configure authentication between Azure Mach
 services: machine-learning
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: meyetman
+ms.reviewer: shshubhe
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.date: 06/10/2025

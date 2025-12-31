@@ -10,7 +10,7 @@ ms.custom: cliv2, build-2023, update-code
 author: s-polly
 ms.author: scottpolly
 ms.date: 10/19/2023
-ms.reviewer: sehan
+ms.reviewer: jturuk
 ---
 
 # CLI (v2) managed online deployment YAML schema

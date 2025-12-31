@@ -6,7 +6,7 @@ services: machine-learning
 ms.author: scottpolly
 author: s-polly
 ms.service: azure-machine-learning
-ms.reviewer: kritifaujdar
+ms.reviewer: jturuk
 ms.subservice: mlops
 ms.date: 11/20/2024
 ms.topic: concept-article

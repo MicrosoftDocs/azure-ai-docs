@@ -8,7 +8,7 @@ ms.subservice: mlops
 ms.topic: concept-article
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: zetia
+ms.reviewer: jturuk
 ms.custom: devplatv2
 ms.date: 03/12/2025
 ---

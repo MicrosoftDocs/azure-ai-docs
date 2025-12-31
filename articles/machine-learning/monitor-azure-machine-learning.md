@@ -5,6 +5,7 @@ ms.date: 03/06/2025
 ms.custom: horz-monitor
 ms.topic: concept-article
 ms.author: scottpolly
+ms.reviewer: jturuk
 author: s-polly
 ms.service: azure-machine-learning
 ms.subservice: mlops

@@ -5,7 +5,7 @@ description: Enable logging on your ML training runs to monitor real-time run me
 services: machine-learning
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: fasantia
+ms.reviewer: jturuk
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.date: 04/26/2024
