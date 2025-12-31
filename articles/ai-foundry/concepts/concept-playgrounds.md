@@ -31,7 +31,7 @@ Some highlights of the Foundry playgrounds experience include:
 
 - **AgentOps support** for evaluations and tracing in the **Agents playground.**
 - **Open in VS Code** for Chat and Agents playground. This feature saves you time by automatically importing your endpoint and key from Foundry to VS Code for multilingual code samples.
-- **Images Playground 2.0** for models such as [gpt-image-1](https://ai.azure.com/explore/models/gpt-image-1/version/2025-04-15/registry/azure-openai/?cid=learnDocs), [Stable Diffusion 3.5 Large](https://ai.azure.com/explore/models/Stable-Diffusion-3.5-Large/version/1/registry/azureml-stabilityai/?cid=learnDocs), and [FLUX.1-Kontext-pro](https://ai.azure.com/resource/models/Flux.1-Kontext-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs) models.
+- **Images playground 2.0** for models such as [gpt-image-1](https://ai.azure.com/explore/models/gpt-image-1/version/2025-04-15/registry/azure-openai/?cid=learnDocs), [Stable Diffusion 3.5 Large](https://ai.azure.com/explore/models/Stable-Diffusion-3.5-Large/version/1/registry/azureml-stabilityai/?cid=learnDocs), and [FLUX.1-Kontext-pro](https://ai.azure.com/resource/models/Flux.1-Kontext-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs) models.
 - **Video playground** for Azure OpenAI Sora-2.
 
 ::: moniker range="foundry-classic"
@@ -45,7 +45,7 @@ Some highlights of the Foundry playgrounds experience include:
 :::image type="content" source="../media/concept-playgrounds/playground-landing-page.png" alt-text="Screenshot of the Foundry playground landing page showcasing features for rapid prototyping and experimentation. The left pane of the portal has been customized to show the Playgrounds tab." lightbox="../media/concept-playgrounds/playground-landing-page.png":::
 
 > [!TIP]
-> In the screenshot of the playground landing page, the left pane of the portal is customized to show the Playgrounds tab. To learn more about seeing the other items in the left pane, see [Customize the left pane](../what-is-azure-ai-foundry.md#customize-the-left-pane).
+> In the screenshot of the playground landing page, the left pane of the portal is customized to show the playgrounds tab. To learn more about seeing the other items in the left pane, see [Customize the left pane](../what-is-azure-ai-foundry.md#customize-the-left-pane).
 
 ::: moniker-end
 
@@ -219,7 +219,7 @@ The Language playground consists of four primary sections:
 
 To use the Language playground:
 
-1. Select **Playgrounds** from the left pane.
+1. Select **playgrounds** from the left pane.
 
 1. Select **Try Azure Language Playground**.
 
@@ -398,7 +398,7 @@ The images playground is ideal for developers who build image generation flows. 
 ::: moniker range="foundry-classic"
 
 > [!TIP]  
-> See the [60-second reel of the Images playground for gpt-image-1](https://youtu.be/btA8njJjLXY) and our DevBlog for [Images Playground in Foundry.](https://devblogs.microsoft.com/foundry/images-playground-may-2025/)
+> See the [60-second reel of the Images playground for gpt-image-1](https://youtu.be/btA8njJjLXY) and our DevBlog for [Images playground in Foundry.](https://devblogs.microsoft.com/foundry/images-playground-may-2025/)
 
 You can use the images playground with these models:
 
