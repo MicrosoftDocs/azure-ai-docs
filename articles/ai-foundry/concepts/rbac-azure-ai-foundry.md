@@ -32,7 +32,7 @@ In this article, you learn about role-based access control (RBAC) in your Micros
 
 In this article, you learn how to manage access to your [!INCLUDE [foundry-link](../default/includes/foundry-link.md)] resources. Use role-based access control (RBAC) to manage access to resources, like creating new resources or using an existing one. Assign users roles that grant access to resources. This article dives into the details about RBAC in Microsoft Foundry and how to best utilize roles assignments for your enterprise. 
 
-For more information about authentication and authorization in Microsoft Foundry, see [Authetication and Authorization](../concepts/authentication-authorization-foundry.md). This article mentions terminology explained in the previous article. 
+For more information about authentication and authorization in Microsoft Foundry, see [Authentication and Authorization](../concepts/authentication-authorization-foundry.md). This article mentions terminology explained in the previous article. 
 
 ::: moniker-end
 
@@ -100,7 +100,7 @@ For Foundry resources, use additional built-in roles to follow least privilege a
 | **Azure AI User** | Grants reader access to Foundry project, Foundry resource, and data actions for your Foundry project. If you can assign roles, this role is assigned to you automatically. Otherwise, your subscription Owner or a user with role assignment permissions grants it. Least privilege access role in Foundry. |
 | **Azure AI Project Manager** | Lets you perform management actions on Foundry projects, build and develop with projects, and conditionally assign the Azure AI User role to other user principals. |
 | **Azure AI Account Owner** | Grants full access to manage projects and resources, and lets you conditionally assign the Azure AI User role to other user principals. |
-| **Azure AI Owner**    | Grants full access to managed projects and resources and build and develop with projects. Highly priviledged self-serve role designed for digital natives. | 
+| **Azure AI Owner**    | Grants full access to managed projects and resources and build and develop with projects. Highly privileged self-serve role designed for digital natives. | 
 
 ### Permissions for each built-in role
 
@@ -225,18 +225,18 @@ For more information on creating a custom role, see the following articles.
 
 Each organization may have different access isolation requirements depending on the user personas in their enterprise. Access isolation refers to which users in your enterprise are given what role assignments for either a separation of permissions using our built-in roles or a unified, highly permissive role. There are three access isolation options for Foundry that you can select for your organization depending on your access isolation requirements. 
 
-**No access isolation.** This means in your enterprise, you do not have any requirements separating permissions between a developer, project manager, or an admin. The permissions for these roles can be assigned across teams. 
+**No access isolation.** This means in your enterprise, you don't have any requirements separating permissions between a developer, project manager, or an admin. The permissions for these roles can be assigned across teams. 
 
 Therefore, you should...
 * Grant all users in your enterprise the **Azure AI Owner** role on the resource scope 
 
-**Partial access isolation.** This means the project manager in your enterprise should be able to develop within projects as well as create projects. But your admins should not be able to develop within Foundry, only create Foundry projects and accounts. 
+**Partial access isolation.** This means the project manager in your enterprise should be able to develop within projects as well as create projects. But your admins shouldn't be able to develop within Foundry, only create Foundry projects and accounts. 
 
 Therefore, you should...
 * Grant your admin with **Azure AI Account Owner** on the resource scope
 * Grant your developer and project managers with **Azure AI Project Manager** role on the resource 
 
-**Full access isolation.** This means your admins, project managers, and developers have clear permissions assigned that do not overlap for their different functions within an enterprise. 
+**Full access isolation.** This means your admins, project managers, and developers have clear permissions assigned that don't overlap for their different functions within an enterprise. 
 
 Therefore you should...
 * Grant your admin the **Azure AI Account Owner** on resource scope
