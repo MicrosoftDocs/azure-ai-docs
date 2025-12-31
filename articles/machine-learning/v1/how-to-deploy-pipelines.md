@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
 author: lgayhardt
-ms.author: lagayhar
-ms.reviewer: zhanxia
+ms.author: scottpolly
+ms.reviewer: jturuk
 ms.date: 06/18/2025
 ms.topic: how-to
 ms.custom:

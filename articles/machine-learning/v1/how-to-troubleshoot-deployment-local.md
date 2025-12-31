@@ -7,6 +7,7 @@ ms.service: azure-machine-learning
 ms.subservice: mlops
 author: s-polly
 ms.author: scottpolly
+ms.reviewer: jturuk
 ms.date: 08/15/2022
 ms.topic: troubleshooting
 ms.custom: UpdateFrequency5, deploy, sdkv1

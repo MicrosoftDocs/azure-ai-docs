@@ -7,7 +7,7 @@ ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: vaidyas
+ms.reviewer: jturuk
 ms.date: 03/07/2025
 ms.topic: how-to
 ms.custom: UpdateFrequency5, deploy, sdkv1

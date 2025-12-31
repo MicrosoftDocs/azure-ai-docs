@@ -5,7 +5,8 @@ description: How to troubleshoot when you get errors running a machine learning 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.author: lagayhar
+ms.author: scottpolly
+ms.reviewer: jturuk
 author: lgayhardt
 ms.date: 03/31/2025
 ms.topic: troubleshooting
