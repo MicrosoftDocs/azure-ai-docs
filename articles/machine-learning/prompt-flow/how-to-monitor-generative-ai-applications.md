@@ -7,7 +7,7 @@ author: s-polly
 ms.author: scottpolly
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
-ms.reviewer: scottpolly
+ms.reviewer: sooryar
 reviewer: s-polly
 ms.topic: how-to
 ms.date: 08/25/2025
