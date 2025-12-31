@@ -4,7 +4,7 @@ description: Learn how to centralize distributed training logs in Azure Applicat
 #customer intent: As a data scientist, I want to centralize distributed training logs in Azure Application Insights so that I can quickly diagnose errors across multiple nodes.
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: scottpolly
+ms.reviewer: sooryar
 ms.date: 11/5/2025
 ms.topic: how-to
 ms.service: azure-machine-learning
