@@ -7,7 +7,7 @@ ms.service: azure-machine-learning
 ms.subservice: prompt-flow
 ms.topic: reference
 ms.date: 08/29/2024
-ms.reviewer: jingyizhu
+ms.reviewer: sooryar
 ms.author: lagayhar
 author: lgayhardt
 ms.update-cycle: 365-days
