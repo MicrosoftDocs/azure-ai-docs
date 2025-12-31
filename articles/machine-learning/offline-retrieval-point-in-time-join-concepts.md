@@ -7,7 +7,7 @@ ms.subservice: mldata
 ms.topic: how-to
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: yogipandey
+ms.reviewer: soumyapatro
 ms.date: 01/24/2025
 ms.custom: template-concept
 ---

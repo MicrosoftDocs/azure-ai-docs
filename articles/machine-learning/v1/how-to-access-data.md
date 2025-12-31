@@ -8,7 +8,7 @@ ms.subservice: mldata
 ms.topic: how-to
 ms.author: scottpolly
 author: ynpandey
-ms.reviewer: nibaccam
+ms.reviewer: soumyapatro
 ms.date: 03/13/2025
 ms.custom: UpdateFrequency5, data4ml
 #Customer intent: As an experienced Python developer, I need to make my data in Azure storage available to my remote compute to train my machine learning models.
