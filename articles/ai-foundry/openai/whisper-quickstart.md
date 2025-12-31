@@ -18,6 +18,8 @@ ai-usage: ai-assisted
 
 # Quickstart: Speech to text with the Azure OpenAI Whisper model
 
+[!INCLUDE [version-banner](../includes/version-banner.md)]
+
 In this quickstart, you use the [Azure OpenAI Whisper model](../../ai-services/speech-service/whisper-overview.md) for speech to text conversion. The Whisper model can transcribe human speech in numerous languages, and it can also translate other languages into English.
 
 ::: zone pivot="rest-api"
