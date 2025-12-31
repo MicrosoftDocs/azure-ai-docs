@@ -4,9 +4,9 @@ titleSuffix: Microsoft Foundry
 description: Learn how to ask AI for help, getting your questions answered and tasks supported.
 ms.service: azure-ai-foundry
 ms.date: 10/27/2025
-ms.reviewer: sgilley
-ms.author: jeomhove
-author: jfomhover
+ms.author: sgilley
+ms.reviewer: jeomhove
+author: sdgilley
 ms.topic: concept-article
 monikerRange: 'foundry-classic || foundry'
 ---
