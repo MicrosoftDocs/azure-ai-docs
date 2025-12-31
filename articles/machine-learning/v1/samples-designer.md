@@ -6,8 +6,9 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: sample
-ms.reviewer: lgayhardt
-ms.author: sooryar
+ms.reviewer: sooryar
+ms.author: lagayhar
+author: lgayhardt
 ms.date: 06/25/2025
 ms.custom: UpdateFrequency5, designer
 ---
