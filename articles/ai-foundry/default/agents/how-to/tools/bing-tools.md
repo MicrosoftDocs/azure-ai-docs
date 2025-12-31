@@ -1033,13 +1033,13 @@ Create a `.env` file or set system environment variables with these values.
 - Verify the tool is properly configured in the agent definition.
 - Check agent instructions encourage using available tools for current information.
 
-### instance name not found for Grounding with Bing Custom Search tool
+### Instance name not found for Grounding with Bing Custom Search tool
 
 **Problem**:  {"error": "Tool_User_Error", "message": "[bing_search] Failed to call Get Custom Search Instance with status 404: {\"error\":{\"code\":\"ResourceNotFound\",\"message\":\"Instance or Customer not found\",\"target\":\"instanceName or customerId\"}}.
 
 **Solution**:
 - Ensure your instance name is in the Grounding with Bing Custom Search resource you are using.
-- Double check if your instance name spells correctly.
+- Double check if your instance name is spelled correctly.
 
 ## Manage Grounding with Bing Search and Grounding with Bing Custom Search
 
