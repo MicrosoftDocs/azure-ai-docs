@@ -17,7 +17,7 @@ ai-usage: ai-assisted
 
 # Image prompt engineering techniques
 
-
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 To unlock the full potential of vision-enabled chat models, it's essential to tailor the prompts to your specific needs. Here are some guidelines to enhance the accuracy and efficiency of your prompts.
 

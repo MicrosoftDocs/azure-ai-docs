@@ -59,6 +59,7 @@ To run this tutorial, you need:
 :::moniker-end
 
 * A model deployment that supports the [Model Inference API](https://aka.ms/azureai/modelinference). This article uses `Mistral-Large-2411` in code examples, but this model is deprecated. Deploy a more recent Mistral model such as `Mistral-Large-3` or `Mistral-Nemo` from the Foundry model catalog instead, and substitute your model name in the code examples.
+
 * Python 3.9 or later installed, including pip.
 * LangChain installed. You can install it by using the following command:
 

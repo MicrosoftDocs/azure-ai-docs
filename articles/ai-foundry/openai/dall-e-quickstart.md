@@ -17,7 +17,7 @@ zone_pivot_groups: openai-quickstart-dall-e
 
 # Quickstart: Generate images with Azure OpenAI in Microsoft Foundry Models
 
-
+[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 
 ::: zone pivot="rest-api"

@@ -18,6 +18,8 @@ monikerRange: 'foundry-classic || foundry'
 
 # Quickstart: Get started using Azure OpenAI audio generation
 
+[!INCLUDE [version-banner](../includes/version-banner.md)]
+
 ::: zone pivot="ai-foundry-portal"
 
 [!INCLUDE [Foundry](includes/audio-completions-ai-foundry.md)]

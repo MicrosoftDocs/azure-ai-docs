@@ -42,7 +42,6 @@ In this example, you work with the **Model Inference API**.
 To run this tutorial, you need:
 
 * [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
-* Required role: **Owner**, **Contributor**, or **Azure AI Developer** on the AI hub or project resource to access model deployments.
 * A [Foundry project](../create-projects.md).
 
 :::moniker range="foundry-classic"
