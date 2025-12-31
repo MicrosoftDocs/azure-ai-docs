@@ -57,7 +57,7 @@ An example flow would be:
     1. [Generate an access token](https://aka.ms/pww/docs/manage-access-tokens) for the Playwright Workspace resource. 
     
     1. Access the workspace region endpoint in the **Workspace Details** page.
-    1. Give the project identity a "Contributor" role on the Playwright Workspace resource, or [configure a custom role](https://aka.ms/pww/docs/manage-workspace-access). 
+    1. Give the project identity a **Contributor** role on the Playwright Workspace resource, or [configure a custom role](https://aka.ms/pww/docs/manage-workspace-access). 
     
 1. Create a serverless connection in the Microsoft Foundry project with the Playwright workspace region endpoint and the Playwright workspace Access Token.
 

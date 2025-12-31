@@ -44,6 +44,20 @@ To run this tutorial, you need:
 * [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
 * Required role: **Owner**, **Contributor**, or **Azure AI Developer** on the AI hub or project resource to access model deployments.
 * A [Foundry project](../create-projects.md).
+
+:::moniker range="foundry-classic"
+* Required role: 
+    * **Owner** or **Contributor** on the Foundry resource or AI Hub to deploy models
+    * **Azure AI User** to use the model in a Foundry project
+    * **Azure AI Developer** to use the model in a hub-based project
+:::moniker-end
+
+:::moniker range="foundry"
+* Required role: 
+    * **Owner** or **Contributor** on the Foundry resource to deploy models
+    * **Azure AI User** to use the model in a Foundry project
+:::moniker-end
+
 * A model deployment that supports the [Model Inference API](https://aka.ms/azureai/modelinference). This article uses `Mistral-Large-3` in code examples; you can substitute your own deployed model name.
 * To use embeddings capabilities in LlamaIndex, you need an embedding model like `cohere-embed-v3-multilingual`. 
 

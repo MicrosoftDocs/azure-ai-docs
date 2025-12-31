@@ -8,10 +8,10 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: concept-article
-ms.date: 11/18/2025
+ms.date: 12/31/2025
 ms.reviewer: meerakurup
-ms.author: jburchel 
-author: jonburchel 
+ms.author: sgilley 
+author: sdgilley 
 monikerRange: 'foundry-classic || foundry'
 ai.usage: ai-assisted
 ---
