@@ -9,10 +9,10 @@ ms.custom:
   - ignite-2024
   - hub-only
 ms.topic: concept-article
-ms.date: 09/12/2025
+ms.date: 12/31/2025
 ms.reviewer: deeikele
-ms.author: jburchel 
-author: jonburchel 
+ms.author: sgilley 
+author: sdgilley 
 ai-usage: ai-assisted
 # Hub-focused copy of RBAC article. Project-only content remains in rbac-azure-ai-foundry.md
 ---

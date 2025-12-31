@@ -23,7 +23,7 @@ ai-usage: ai-assisted
 
 **Prerequisites**: 
 - An existing hub-based project
-- **Azure role**: Contributor or Owner role on the subscription or resource group to create resources and projects
+- **Azure role**: **Owner** role on the subscription or resource group to create resources and projects and assign roles to the new project.
 
 This guide helps existing customers with [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]s migrate to the new [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]s to access the latest platform capabilities.
 

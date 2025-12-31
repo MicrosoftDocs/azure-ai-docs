@@ -45,15 +45,20 @@ To run this tutorial, you need:
 
 * [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
 
-* A model deployment that supports the [Model Inference API](https://aka.ms/azureai/modelinference). This article uses `Mistral-Large-2411` in code examples, but this model is deprecated. Deploy a more recent Mistral model such as `Mistral-Large-3` or `Mistral-Nemo` from the Foundry model catalog instead, and substitute your model name in the code examples.
-
 :::moniker range="foundry-classic"
-* Required role: **Owner**, **Contributor**, or **Azure AI Developer** on the AI hub to deploy models.
+* Required role: 
+    * **Owner** or **Contributor** on the Foundry resource or AI Hub to deploy models
+    * **Azure AI User** to use the model in a Foundry project
+    * **Azure AI Developer** to use the model in a hub-based project
 :::moniker-end
 
 :::moniker range="foundry"
-* Required role: **Owner**, **Contributor**, or **Azure AI User** on the Foundry resource to deploy models.
+* Required role: 
+    * **Owner** or **Contributor** on the Foundry resource to deploy models
+    * **Azure AI User** to use the model in a Foundry project
 :::moniker-end
+
+* A model deployment that supports the [Model Inference API](https://aka.ms/azureai/modelinference). This article uses `Mistral-Large-2411` in code examples, but this model is deprecated. Deploy a more recent Mistral model such as `Mistral-Large-3` or `Mistral-Nemo` from the Foundry model catalog instead, and substitute your model name in the code examples.
 
 * Python 3.9 or later installed, including pip.
 * LangChain installed. You can install it by using the following command:
