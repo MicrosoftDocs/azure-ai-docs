@@ -641,24 +641,24 @@ az ml compute create --name cpu-cluster --type <cluster name>  --identity-type s
 [!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
 
 ```python
-from azure.ai.ml.entities import IdentityConfiguration, AmlCompute
-from azure.ai.ml.constants import ManagedServiceIdentityType
-
-# Create an identity configuration for a system-assigned managed identity
-identity_config = IdentityConfiguration(type = ManagedServiceIdentityType.SYSTEM_ASSIGNED)
-
-# specify aml compute name.
-cpu_compute_target = "cpu-cluster"
-
-try:
-    ml_client.compute.get(cpu_compute_target)
-except Exception:
-    print("Creating a new cpu compute target...")
-    # Pass the identity configuration
-    compute = AmlCompute(
-        name=cpu_compute_target, size="STANDARD_D2_V2", min_instances=0, max_instances=4, identity=identity_config
-    )
-    ml_client.compute.begin_create_or_update(compute)
+    from azure.ai.ml.entities import IdentityConfiguration, AmlCompute
+    from azure.ai.ml.constants import ManagedServiceIdentityType
+    
+    # Create an identity configuration for a system-assigned managed identity
+    identity_config = IdentityConfiguration(type = ManagedServiceIdentityType.SYSTEM_ASSIGNED)
+    
+    # specify aml compute name.
+    cpu_compute_target = "cpu-cluster"
+    
+    try:
+        ml_client.compute.get(cpu_compute_target)
+    except Exception:
+        print("Creating a new cpu compute target...")
+        # Pass the identity configuration
+        compute = AmlCompute(
+            name=cpu_compute_target, size="STANDARD_D2_V2", min_instances=0, max_instances=4, identity=identity_config
+        )
+        ml_client.compute.begin_create_or_update(compute)
 ```
 
 # [Studio](#tab/studio)
