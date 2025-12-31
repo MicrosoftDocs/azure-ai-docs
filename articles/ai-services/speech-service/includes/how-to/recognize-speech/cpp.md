@@ -21,7 +21,7 @@ To call the Speech service using the Speech SDK, you need to create a [`SpeechCo
 using namespace std;
 using namespace Microsoft::CognitiveServices::Speech;
 
-auto speechConfig = SpeechConfig::FromEndpoint("YourServiceEndpoint", "YourSpeechResoureKey");
+auto speechConfig = SpeechConfig::FromEndpoint("YourServiceEndpoint", "YourSpeechResourceKey");
 ```
 
 You can initialize `SpeechConfig` in a few other ways:
@@ -205,7 +205,7 @@ For a complete code sample, see [Language identification](../../../language-iden
 With [custom speech](../../../custom-speech-overview.md), you can upload your own data, test and train a custom model, compare accuracy between models, and deploy a model to a custom endpoint. The following example shows how to set a custom endpoint.
 
 ```cpp
-auto speechConfig = SpeechConfig::FromEndpoint("YourServiceEndpoint", "YourSpeechResoureKey");
+auto speechConfig = SpeechConfig::FromEndpoint("YourServiceEndpoint", "YourSpeechResourceKey");
 speechConfig->SetEndpointId("YourEndpointId");
 auto speechRecognizer = SpeechRecognizer::FromConfig(speechConfig);
 ```
