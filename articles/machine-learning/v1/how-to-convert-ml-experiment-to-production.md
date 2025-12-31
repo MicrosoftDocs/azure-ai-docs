@@ -3,6 +3,7 @@ title: Convert notebook code into Python scripts
 titleSuffix: Azure Machine Learning
 description: Turn your machine learning experimental notebooks into production-ready code using the MLOpsPython code template. You can then test, deploy, and automate that code.
 ms.author: scottpolly
+author: s-polly
 ms.reviewer: jturuk
 ms.service: azure-machine-learning
 ms.subservice: mlops

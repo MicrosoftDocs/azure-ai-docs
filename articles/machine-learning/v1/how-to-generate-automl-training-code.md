@@ -4,6 +4,7 @@ titleSuffix: Azure Machine Learning AutoML
 description: How to view model training code for an automated ML trained model and explanation of each stage.
 services: machine-learning
 ms.author: scottpolly
+author: s-polly
 ms.reviewer: sooryar
 ms.service: azure-machine-learning
 ms.subservice: automl

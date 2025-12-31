@@ -6,6 +6,7 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.author: scottpolly
+author: s-polly
 ms.reviewer: soumyapatro 
 ms.date: 06/11/2025
 ms.topic: how-to

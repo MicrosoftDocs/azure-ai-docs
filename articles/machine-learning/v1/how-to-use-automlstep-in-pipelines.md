@@ -6,6 +6,7 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: automl
 ms.author: scottpolly
+author: s-polly
 ms.reviewer: sooryar
 ms.date: 04/04/2025
 ms.topic: how-to

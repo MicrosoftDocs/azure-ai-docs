@@ -4,6 +4,7 @@ titleSuffix: Azure Machine Learning
 description: Learn to set up a development environment in Azure Machine Learning and Azure Databricks. Use the Azure Machine Learning SDKs for Databricks and Databricks with AutoML.
 services: machine-learning
 ms.author: scottpolly
+author: s-polly
 ms.reviewer: sooryar
 ms.service: azure-machine-learning
 ms.subservice: automl

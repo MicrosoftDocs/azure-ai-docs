@@ -4,6 +4,7 @@ titleSuffix: Azure Machine Learning
 description: Understand the metrics used when monitoring the performance of generative AI models deployed to production on Azure Machine Learning.
 services: machine-learning
 ms.author: scottpolly
+author: s-polly
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.reviewer: jturuk

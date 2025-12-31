@@ -7,6 +7,7 @@ ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.topic: how-to
 ms.author: scottpolly
+author: s-polly
 ms.reviewer: jturuk
 ms.date: 10/21/2023
 monikerRange: 'azureml-api-1'

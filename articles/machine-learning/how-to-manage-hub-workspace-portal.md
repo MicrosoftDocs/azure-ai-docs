@@ -6,6 +6,7 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.author: scottpolly
+author: s-polly
 ms.reviewer: shshubhe
 ms.date: 05/09/2024
 ms.topic: how-to
