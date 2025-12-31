@@ -8,7 +8,7 @@ ms.subservice: inferencing
 ms.topic: concept-article
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: sehan
+ms.reviewer: jturuk
 ms.custom: devplatv2, FY25Q1-Linter
 ms.date: 11/14/2025
 #Customer intent: As a data scientist, I want to learn how authentication and authorization work for Azure Machine Learning online endpoints so I can create and deploy online endpoints.

@@ -8,7 +8,7 @@ ms.subservice: mlops
 ms.topic: concept-article
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: sehan
+ms.reviewer: jturuk
 ms.custom: mktng-kw-nov2021, FY25Q1-Linter
 ms.date: 10/06/2025
 #Customer intent: As a data scientist, I want to understand how MLOps can help manage the lifecycle of my models so I can improve the quality and consistency of my machine learning solutions.

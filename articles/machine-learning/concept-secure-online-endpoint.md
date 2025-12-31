@@ -8,7 +8,7 @@ ms.subservice: inferencing
 ms.topic: concept-article
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: sehan
+ms.reviewer: jturuk
 ms.date: 11/13/2025
 ms.custom:
   - devplatv2
