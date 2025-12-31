@@ -10,7 +10,8 @@ ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.date: 06/10/2025
 ms.topic: how-to
-ms.custom: has-adal-ref, subject-rbac-steps, cliv2, sdkv2, devx-track-azurecli
+ms.custom: has-adal-ref, subject-rbac-steps, cliv2, sdkv2, devx-track-azurecli, dev-focus
+ai-usage: ai-assisted
 ---
 
 # Set up authentication between Azure Machine Learning and other services
@@ -189,6 +190,107 @@ In some scenarios, you might need to use a user-assigned managed identity in add
     ```azurecli
     az ml workspace update --resource-group <RESOURCE_GROUP> --name <WORKSPACE_NAME> --file <YAML_FILE_NAME>.yaml
     ```
+
+### Data isolation for shared resources
+
+When multiple workspaces share the same associated resources (storage account, key vault, or container registry), you can enable data isolation to prevent naming conflicts and ensure each workspace can only access its own data. The `enableDataIsolation` flag configures how workspace artifacts are stored and accessed in shared resources.
+
+> [!IMPORTANT]
+> The data isolation setting can only be configured when creating a workspace. You can't enable or disable it after the workspace is created.
+
+#### Effects of enabling data isolation
+
+When data isolation is enabled, the workspace applies the following configurations:
+
+| Resource | Behavior |
+|----------|----------|
+| **Storage account** | Container names are prefixed with the workspace GUID (for example, `{workspaceGUID}-azureml-blobstore`). The workspace managed identity receives a data plane role assignment with an [Azure attribute-based access control (ABAC)](/azure/role-based-access-control/conditions-overview) condition that limits access to only the workspace's specific containers. |
+| **Key vault** | Secret names are prefixed with the workspace GUID to isolate secrets between workspaces sharing the same key vault. |
+| **Container registry** | Docker image names are prefixed with the workspace GUID to isolate images between workspaces sharing the same registry. |
+
+#### Default behavior by workspace kind
+
+The default value for data isolation depends on the workspace kind:
+
+| Workspace kind | Data isolation default |
+|----------------|------------------------|
+| `hub` | Enabled |
+| `project` | Enabled (inherited from hub) |
+| `default` | Disabled |
+
+#### When to enable data isolation
+
+Enable data isolation when:
+
+- Multiple workspaces share the same storage account, key vault, or container registry
+- You need to prevent naming conflicts for artifacts (such as Docker images or secrets) created with the same name across workspaces
+- You require stricter access control to ensure workspace identities can only access their own data
+
+For hub and project workspaces, data isolation is enabled by default to support the shared resource model. For more information, see [What is an Azure Machine Learning hub workspace?](concept-hub-workspace.md).
+
+#### Enable data isolation when creating a workspace
+
+# [Azure CLI](#tab/cli)
+
+[!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
+
+```azurecli
+az ml workspace create --name <WORKSPACE_NAME> \
+    --resource-group <RESOURCE_GROUP> \
+    --enable-data-isolation
+```
+
+Alternatively, specify data isolation in a YAML configuration file:
+
+```yaml
+$schema: https://azuremlschemas.azureedge.net/latest/workspace.schema.json
+name: my-workspace
+location: eastus
+enable_data_isolation: true
+storage_account: /subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.Storage/storageAccounts/<STORAGE_ACCOUNT>
+key_vault: /subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.KeyVault/vaults/<KEY_VAULT>
+container_registry: /subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.ContainerRegistry/registries/<CONTAINER_REGISTRY>
+```
+
+Then create the workspace:
+
+```azurecli
+az ml workspace create --file workspace.yml --resource-group <RESOURCE_GROUP>
+```
+
+# [Python SDK](#tab/python)
+
+[!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
+
+```python
+from azure.ai.ml import MLClient
+from azure.ai.ml.entities import Workspace
+from azure.identity import DefaultAzureCredential
+
+# Replace with your Azure subscription and resource group
+subscription_id = "<SUBSCRIPTION_ID>"
+resource_group = "<RESOURCE_GROUP>"
+
+credential = DefaultAzureCredential()
+ml_client = MLClient(credential, subscription_id, resource_group)
+
+workspace = Workspace(
+    name="my-workspace",
+    location="eastus",
+    enable_data_isolation=True,
+    storage_account="/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.Storage/storageAccounts/<STORAGE_ACCOUNT>",
+    key_vault="/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.KeyVault/vaults/<KEY_VAULT>",
+    container_registry="/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.ContainerRegistry/registries/<CONTAINER_REGISTRY>"
+)
+
+ml_client.workspaces.begin_create(workspace).result()
+```
+
+# [Studio](#tab/azure-studio)
+
+Data isolation is automatically enabled when creating hub or project workspaces through Azure Machine Learning studio. For default workspaces, this setting isn't available in the studio interface. Use the Azure CLI or Python SDK to create a default workspace with data isolation enabled.
+
+---
 
 ### Compute cluster
 
