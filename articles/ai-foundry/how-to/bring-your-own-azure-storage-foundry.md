@@ -205,7 +205,7 @@ resource "azurerm_cognitive_account" "foundry" {
 
 ### Role assignment
 
-Create the role assignment on the Azure Storage account for the Foundry resource (account) managed identity—not the project managed identity. Assign `Storage Blob Data Contributor`.
+Create the role assignment on the Azure Storage account for the Foundry resource managed identity, not the project managed identity. Assign `Storage Blob Data Contributor`.
 
 
 ::: moniker range="foundry-classic"

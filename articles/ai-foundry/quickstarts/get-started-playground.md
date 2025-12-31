@@ -34,15 +34,17 @@ For this quickstart, you can use either a [!INCLUDE [hub](../includes/hub-projec
 
 ## Prerequisites
 
-[!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
+* [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
+* The following Azure RBAC roles are required. To verify your role, see [Manage access control](../how-to/create-azure-ai-resource.md#manage-access-control).
+    * **Owner** on the subscription to create a project and assign roles.
+    * **Azure AI User** on the project to deploy models (assigned automatically when you create the project as Owner of the subscription).
 
 ## Deploy a model
 
 [!INCLUDE [feature-preview](../includes/first-run-experience-classic.md)]
 
-You need the following permissions and setup:
-- **Azure role:** Contributor or higher on the project. To verify your role, see [Manage access control](../how-to/create-azure-ai-resource.md#manage-access-control).
-- **Deployed model:** A chat model already deployed in your Foundry project (for example, GPT-4o). If you don't have one, see [Deploy a model using serverless API deployment](../how-to/deploy-models-serverless.md).
+
+
 
 ## Use the chat playground
 
