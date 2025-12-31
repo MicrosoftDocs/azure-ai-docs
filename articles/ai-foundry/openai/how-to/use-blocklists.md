@@ -15,6 +15,8 @@ ai-usage: ai-assisted
 
 # How to use block lists in Microsoft Foundry models
 
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
+
 ::: moniker range="foundry"
 
 The [configurable Guardrails and controls](/azure/ai-foundry/openai/how-to/content-filters) available in Microsoft Foundry are sufficient for most content moderation needs. However, you might need to filter terms specific to your use case. For this, you can use custom block lists.

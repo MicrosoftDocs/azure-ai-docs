@@ -16,6 +16,7 @@ monikerRange: 'foundry-classic || foundry'
 
 This article provides a summary of the latest releases and major documentation updates for Azure model router.
 
+[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 ## November 2025
 

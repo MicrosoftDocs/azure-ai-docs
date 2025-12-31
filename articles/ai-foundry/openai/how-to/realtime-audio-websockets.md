@@ -19,7 +19,7 @@ ai-usage: ai-assisted
 
 # Use the GPT Realtime API via WebSockets
 
-
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 Azure OpenAI GPT Realtime API for speech and audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. 
 
