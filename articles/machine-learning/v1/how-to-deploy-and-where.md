@@ -5,7 +5,7 @@ description: 'Learn how and where to deploy machine learning models. Deploy to A
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
-ms.reviewer: None
+ms.reviewer: jturuk
 author: s-polly
 ms.author: scottpolly
 ms.date: 03/06/2025

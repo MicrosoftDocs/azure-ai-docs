@@ -5,7 +5,7 @@ description: Explore how automated machine learning (AutoML) in Azure Machine Le
 services: machine-learning
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: vlbejan
+ms.reviewer: sooryar
 ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: concept-article

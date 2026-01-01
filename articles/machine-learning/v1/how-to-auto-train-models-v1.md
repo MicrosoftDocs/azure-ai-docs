@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: how-to
 author: manashgoswami
-ms.author: manashg
-ms.reviewer: ssalgado
+ms.author: scottpolly
+ms.reviewer: sooryar
 ms.date: 07/11/2024
 ms.custom:
   - UpdateFrequency5

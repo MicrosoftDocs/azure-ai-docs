@@ -30,7 +30,7 @@ The `contents` object with `kind: "audioVisual"` supports both audio-only and vi
 - **Audio files**: Common audio formats
 - **Video files**: Common video formats
 
-For complete details about supported file types, file size limits, and other constraints, see [service quotas and limits](../service-limits.md#analyzers).
+For complete details about supported file types, file size limits, and other constraints, see [service quotas and limits](../service-limits.md).
 
 ## JSON response structure
 

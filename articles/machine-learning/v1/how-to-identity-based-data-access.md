@@ -7,7 +7,7 @@ ms.subservice: enterprise-readiness
 ms.topic: how-to
 ms.author: scottpolly
 author: ynpandey
-ms.reviewer: franksolomon
+ms.reviewer: shshubhe
 ms.date: 03/07/2025
 ms.custom: UpdateFrequency5, devx-track-python, data4ml
 # Customer intent: As an experienced Python developer, I need to make my data in Azure Storage available to my compute for training my machine learning models.

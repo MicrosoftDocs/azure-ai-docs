@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mldata
 author: lgayhardt
-ms.author: lagayhar
-ms.reviewer: keli19
+ms.author: scottpolly
+ms.reviewer: soumyapatro
 ms.date: 06/13/2025
 ms.topic: how-to
 ms.custom: UpdateFrequency5, designer

@@ -5,7 +5,7 @@ description: Learn about Azure Content Understanding in Foundry Tools standard a
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
-ms.date: 05/19/2025
+ms.date: 12/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: overview
 ms.custom:
@@ -45,7 +45,7 @@ During analyzer creation, you can provide documents that can aid in providing co
 
 ### Multi-step reasoning
 
-Multi-step reasoning offers the ability to decompose complex problems into a simples tasks. Multi-step reasoning takes data analysis a step further than extracting and aggregating structured data and allows you to draw conclusions on that data, minimizing the need for human review. Examples of the types of questions pro mode can answer with multi-step reasoning include:
+Multi-step reasoning offers the ability to decompose complex problems into simple tasks. Multi-step reasoning takes data analysis a step further than extracting and aggregating structured data and allows you to draw conclusions on that data, minimizing the need for human review. Examples of the types of questions pro mode can answer with multi-step reasoning include:
 
 * Does x match y?
 * Does x pass the outlined criteria?

@@ -8,7 +8,7 @@ ms.subservice: inferencing
 ms.topic: how-to
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: cacrest
+ms.reviewer: jturuk
 ms.date: 08/04/2025
 ai-usage: ai-assisted
 ms.custom:

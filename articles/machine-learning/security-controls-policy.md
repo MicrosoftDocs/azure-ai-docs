@@ -5,7 +5,7 @@ ms.date: 02/05/2025
 ms.topic: sample
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: larryfr
+ms.reviewer: shshubhe
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.custom: subject-policy-compliancecontrols

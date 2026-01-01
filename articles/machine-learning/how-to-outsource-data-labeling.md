@@ -5,7 +5,7 @@ description: Use a data labeling vendor company to help label the data in your d
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mldata
-ms.reviewer: None
+ms.reviewer: soumyapatro
 author: s-polly
 ms.author: scottpolly
 ms.date: 10/21/2021

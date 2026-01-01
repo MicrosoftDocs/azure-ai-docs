@@ -5,7 +5,7 @@ description: A list of available regions and endpoints for the Speech service, i
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: conceptual
+ms.topic: article
 ms.date: 11/09/2025
 ms.author: pafarley
 ms.custom: references_regions

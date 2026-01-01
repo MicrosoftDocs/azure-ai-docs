@@ -7,7 +7,7 @@ ms.service: azure-machine-learning
 ms.subservice: inferencing
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: fasantia
+ms.reviewer: jturuk
 ms.date: 03/31/2025
 ms.topic: how-to
 ms.custom:

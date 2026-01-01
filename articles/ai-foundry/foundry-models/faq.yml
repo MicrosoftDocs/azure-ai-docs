@@ -8,8 +8,9 @@ metadata:
   ms.subservice: azure-ai-foundry-model-inference
   ms.topic: faq
   ms.date: 1/21/2025
-  ms.author: fasantia
-  author: santiagxf
+  ms.areviewer: fasantia
+  ms.author: mopeakande
+  author: msakande
 title: Foundry Models frequently asked questions
 summary: |
   If you can't find answers to your questions in this document, and still need help check the [Foundry Tools support options guide](../../ai-services/cognitive-services-support-options.md?context=/azure/ai-foundry/openai/context/context).

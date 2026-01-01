@@ -8,7 +8,7 @@ ms.subservice: enterprise-readiness
 ms.topic: concept-article
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: meerakurup
+ms.reviewer: shshubhe
 ms.date: 06/13/2025
 ---
 

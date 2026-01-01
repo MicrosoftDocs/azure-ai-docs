@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 5/19/2025
+ms.date: 12/19/2025
 ms.author: pafarley
 zone_pivot_groups: foundry-speech-studio-cli-rest
 #Customer intent: As a developer, I want to train a custom speech model to improve recognition accuracy for the Microsoft base model or a custom model.

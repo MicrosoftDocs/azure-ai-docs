@@ -498,6 +498,20 @@ Instead of requiring developers to export SharePoint content, build a custom sem
 
 Customers rely on data security in SharePoint to access, create, and share documents with flexible document-level access control. Enterprise features such as Identity Passthrough/On-Behalf-Of (OBO) authentication ensure proper access control. End users receive responses generated from SharePoint documents they have permission to access. By using OBO authentication, the Foundry Agent service uses the end user's identity to authorize and retrieve relevant SharePoint documents, generating responses tailored towards specific end users.
 
+## Troubleshooting
+
+1. Error message: Request to Graph API failed, with error-code: AuthenticationError and error-message: AppOnly OBO tokens not supported by target service.
+
+  This means you are using an application's identity to authenticate with the Foundry Agent Service and the SharePoint tool, which is not supported. Make sure you are always passing the user's identity.
+
+2. Error message: Request to Graph API failed, with error-code: Forbidden and error-message: Authorization Failed - User does not have valid license.
+
+   This means the user doesn't have a valid Microsoft 365 Copilot license to use the SharePoint tool. Make sure each user has Microsoft 365 Copilot license, as required by [Microsoft 365 Copilot API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview).
+
+3. Other error message with 401 error code or authentication issue
+
+   1. Make sure user in Foundry and Microsoft 365 are in the same tenant.
+
 ## Next steps
 
 - For reference, see articles about content retrieval used by the tool:

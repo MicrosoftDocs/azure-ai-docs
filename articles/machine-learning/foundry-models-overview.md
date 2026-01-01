@@ -9,7 +9,7 @@ ms.topic: concept-article
 ms.custom:
   - build-2025
 ms.date: 05/12/2025
-ms.reviewer: jcioffi
+ms.reviewer: sooryar
 ms.author: scottpolly
 author: s-polly
 ---

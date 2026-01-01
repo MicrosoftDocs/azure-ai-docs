@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java, devx-track-js, devx-track-python
 ms.topic: how-to
-ms.date: 5/25/2025
+ms.date: 12/19/2025
 ms.author: pafarley
 zone_pivot_groups: programming-languages-speech-services-nomore-variant
 #customer intent: As an application developer, I want to use language recognition or translations in order to make my apps work seamlessly for more customers.
@@ -15,7 +15,7 @@ zone_pivot_groups: programming-languages-speech-services-nomore-variant
 
 # Implement language identification
 
-Language identification is used to identify languages spoken in audio when compared against a list of supported languages.
+Language identification is used to automatically identify languages spoken in audio by comparing it against a list of supported languages.
 
 Language identification (LID) use cases include:
 

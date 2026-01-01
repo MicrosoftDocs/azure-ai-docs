@@ -9,7 +9,7 @@ ms.subservice: inferencing
 ms.topic: concept-article
 ms.date: 07/29/2025
 ms.author: scottpolly
-ms.reviewer: fasantia
+ms.reviewer: jturuk
 ms.custom: references_regions, tool_generated
 ms.collection: ce-skilling-ai-copilot 
 

@@ -7,13 +7,13 @@ ms.author: pafarley
 ms.reviewer: pafarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 10/21/2025
+ms.date: 12/19/2025
 ms.custom: references_regions
 ---
 
 In this article, you learn how to use video translation with Azure Speech in Foundry Tools in the [Speech Studio](https://aka.ms/speechstudio).
 
-## Pre-requisites
+## Prerequisites
 
 - An Azure subscription. If you don't have an Azure subscription, create a free account before you begin.
 - A Speech resource [in a supported region](../../../regions.md?tabs=speech-translation). If you don't have a Speech resource, create one in the [Azure portal](https://portal.azure.com/).

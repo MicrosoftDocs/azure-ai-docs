@@ -8,7 +8,7 @@ ms.subservice: enterprise-readiness
 ms.custom: devx-track-terraform
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: deeikele
+ms.reviewer: shshubhe
 ms.date: 06/13/2025
 ms.topic: how-to
 ms.tool: terraform

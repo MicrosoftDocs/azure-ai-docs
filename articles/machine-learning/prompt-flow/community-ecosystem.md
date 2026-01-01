@@ -10,7 +10,7 @@ ms.custom:
 ms.topic: concept-article
 author: lgayhardt
 ms.author: lagayhar
-ms.reviewer: chenlujiao
+ms.reviewer: sooryar
 ms.date: 10/30/2025
 ms.update-cycle: 365-days
 ---

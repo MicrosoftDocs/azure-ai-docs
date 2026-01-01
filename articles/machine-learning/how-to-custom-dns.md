@@ -5,7 +5,7 @@ description: How to configure a custom DNS server to work with an Azure Machine 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
-ms.reviewer: meerakurup 
+ms.reviewer: shshubhe 
 ms.author: scottpolly
 author: s-polly
 ms.date: 05/06/2025

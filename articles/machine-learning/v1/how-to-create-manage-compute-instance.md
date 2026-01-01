@@ -9,7 +9,7 @@ ms.topic: how-to
 ms.custom: UpdateFrequency5, devx-track-azurecli, references_regions, cliv1
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: swatig
+ms.reviewer: jturuk
 ms.date: 05/02/2022
 ---
 

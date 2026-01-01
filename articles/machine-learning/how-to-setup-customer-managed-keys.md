@@ -11,7 +11,7 @@ ms.custom:
 ms.topic: concept-article
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: deeikele
+ms.reviewer: shshubhe
 ms.date: 02/05/2025
 monikerRange: 'azureml-api-2 || azureml-api-1'
 ---

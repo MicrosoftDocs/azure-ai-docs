@@ -6,9 +6,9 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: responsible-ai
 ms.topic: how-to
-ms.author: mesameki
-author: mesameki
-ms.reviewer: lgayhardt
+ms.author: lagayhar
+ms.reviewer: lagayhar
+author: lgayhardt
 ms.custom: responsible-ml, mktng-kw-nov2021, build-2023, devx-track-python
 ms.date: 03/25/2025
 ---

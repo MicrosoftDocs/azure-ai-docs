@@ -5,9 +5,9 @@ description: Learn how to manage Azure Machine Learning hub workspaces in the Az
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.author: deeikele
-author: deeikele
-ms.reviewer: blackmist
+ms.author: scottpolly
+author: s-polly
+ms.reviewer: shshubhe
 ms.date: 05/09/2024
 ms.topic: how-to
 ---

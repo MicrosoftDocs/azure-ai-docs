@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.topic: how-to
 author: lgayhardt
-ms.author: lagayhar
-ms.reviewer: zhanxia
+ms.author: scottpolly
+ms.reviewer: jturuk
 ms.date: 09/19/2024
 ms.custom: devx-track-python, sdkv2, cliv2, update-code2
 ---

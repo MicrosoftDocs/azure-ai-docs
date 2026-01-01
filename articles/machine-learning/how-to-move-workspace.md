@@ -7,7 +7,7 @@ author: s-polly
 ms.author: scottpolly
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
-ms.reviewer: deeikele
+ms.reviewer: shshubhe
 ms.topic: how-to
 ms.date: 06/12/2025
 ms.custom: sfi-image-nochange

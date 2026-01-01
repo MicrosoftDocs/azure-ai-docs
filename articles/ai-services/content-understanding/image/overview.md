@@ -5,7 +5,7 @@ description: Learn how to use Azure Content Understanding in Foundry Tools image
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
-ms.date: 09/16/2025
+ms.date: 12/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: how-to
 ms.custom:
@@ -16,7 +16,7 @@ ms.custom:
 
 > [!IMPORTANT]
 >
-> * Azure Content Understanding in Foundry Tools is available in preview. Public preview releases provide early access to features that are in active development.
+> * This feature is available in preview. Public preview releases provide early access to features that are in active development.
 > * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 

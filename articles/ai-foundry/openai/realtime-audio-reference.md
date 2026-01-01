@@ -15,6 +15,8 @@ recommendations: false
 
 # Audio events reference
 
+[!INCLUDE [version-banner](../includes/version-banner.md)]
+
 Realtime events are used to communicate between the client and server in real-time audio applications. The events are sent as JSON objects over various endpoints, such as WebSockets or WebRTC. The events are used to manage the conversation, audio buffers, and responses in real-time.
 
 You can use audio client and server events with these APIs:
