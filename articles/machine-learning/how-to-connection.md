@@ -28,9 +28,9 @@ An Azure Machine Learning connection securely stores usernames and passwords as 
 
 Azure supports connections to the following external sources for data availability:
 
-- Snowflake DB
+- Snowflake
 - Amazon S3
-- Azure SQL DB
+- Azure SQL Database
 
 [!INCLUDE [machine-learning-preview-generic-disclaimer](includes/machine-learning-preview-generic-disclaimer.md)]
 
@@ -65,21 +65,21 @@ Azure supports connections to the following external sources for data availabili
 
 ---
 <!--``-->
-## Create a Snowflake DB data connection
+## Create a Snowflake data connection
 
-You can use the Azure Machine Learning CLI, the Azure Machine Learning SDK for Python, or Machine Learning studio to create a Snowflake DB data connection.
+You can use the Azure Machine Learning CLI, the Azure Machine Learning SDK for Python, or Machine Learning studio to create a data connection to a Snowflake database (Snowflake DB).
 
-### Use the Azure CLI or Python SDK to create a Snowflake DB username/password connection
+### Use the Azure CLI or Python SDK to create a username/password connection
 
 You can use the Azure Machine Learning CLI or the Azure Machine Learning SDK for Python to create a Snowflake DB data connection that uses username/password authentication. You can also use the CLI or SDK to [create a Snowflake DB connection that uses OAuth for service principal authentication](#oauth).
 
-You create the data connection by first assembling a YAML file that defines the connection. Save the file with a name like *my_snowflakedb_connection.yaml*.
+You create the data connection by first assembling a YAML file that defines the connection. Save the file with a name like *my_snowflake_connection.yaml*.
 
 Then run an Azure CLI or Python SDK command that calls the YAML file to create the connection. For Python SDK, you can also specify the connection information directly in a Python script without using a YAML file.
 
 The following YAML file defines a Snowflake DB connection that uses username/password authentication. To create the file, provide a `<connection-name>`, and replace the `<account>`, `<database>`, `<warehouse>`, and `<role>` placeholders with the values from your Snowflake account. If you don't provide a `<role>`, the value defaults to `PUBLIC`. 
 
-You have the option to store credentials in the YAML file, and then override the stored credentials in the Azure CLI or Python SDK command line. However, it's best to avoid credential storage in a file, because a security breach could lead to a credential leak. For `credentials`, you can leave the values blank and provide them in the command line that creates the connection.
+You can store credentials in the YAML file, and then override the stored credentials in the Azure CLI or Python SDK command line. However, it's best to avoid credential storage in a file, because a security breach could lead to a credential leak. You can leave the `credentials` values blank and provide them in the command line that creates the connection.
 
 ```yaml
 $schema: http://azureml/sdk-2-0/Connection.json
@@ -154,8 +154,8 @@ ml_client.connections.create_or_update(workspace_connection=wps_connection)
 
 ---
 
-<a name="oauth></a>
-### Use the Azure CLI or Python SDK to create a Snowflake DB OAuth connection
+<a name="oauth"></a>
+### Use the Azure CLI or Python SDK to create an OAuth connection
 
 You can use the Azure CLI or Python SDK to create a Snowflake DB connection that uses a service principal for OAuth to authenticate.
 
@@ -201,7 +201,7 @@ az ml connection create --file <yaml-filename>.yaml --set credentials.client_id=
 
 You can use the Python SDK to call the YAML file that defines the connection, or you can specify the connection information directly without using a YAML file.
 
-To create the OAuth connection by calling a YAML file, run the following script, replacing the `<yaml-filename>` placeholder with your YAML filename. You can optionally provide or overridethe `<wps_connection.credentials>` values.
+To create the OAuth connection by calling a YAML file, run the following script, replacing the `<yaml-filename>` placeholder with your YAML filename. You can optionally provide or override the `<wps_connection.credentials>` values.
 
 ```python
 from azure.ai.ml import MLClient, load_workspace_connection
@@ -518,7 +518,7 @@ ml_client.connections.create_or_update(workspace_connection=wps_connection)
 
 #### Create a Git connection in studio
 
-1.In [Azure Machine Learning studio](https://ml.azure.com/), select **Connections** under **Manage** in the left navigation, and then select **Connect**..
+1. In [Azure Machine Learning studio](https://ml.azure.com/), select **Connections** under **Manage** in the left navigation, and then select **Connect**.
 
    :::image type="content" source="media/how-to-connection/how-to-manage-connections-create.png" lightbox="media/how-to-connection/create-new-data-connection.png" alt-text="Screenshot showing the start of creating a new connection in Azure Machine Learning studio UI.":::
 
@@ -527,8 +527,6 @@ ml_client.connections.create_or_update(workspace_connection=wps_connection)
    :::image type="content" source="media/how-to-connection/how-to-connect-git.png" lightbox="media/how-to-connection/create-new-data-connection.png" alt-text="Screenshot highlighting the option to connect to a Git repo in Azure Machine Learning studio UI.":::
 
 1. Input the path to your Git repo under **Endpoint**, your Git PAT under **Personal access token**, and a **Connection name**, and then select **Add connection**.
-
-   :::image type="content" source="media/how-to-connection/how-to-connect-add-connection.png" lightbox="media/how-to-connection/create-new-data-connection.png" alt-text="Screenshot showing the input fields for connecting to a generic container registry in Azure Machine Learning studio UI.":::
 
 ### Python feed
 
@@ -663,7 +661,7 @@ ml_client.connections.create_or_update(workspace_connection=wps_connection)
 
 #### Create a connection to Azure Container Registry in studio
 
-1.In [Azure Machine Learning studio](https://ml.azure.com/), select **Connections** under **Manage** in the left navigation, and then select **Connect**..
+1. In [Azure Machine Learning studio](https://ml.azure.com/), select **Connections** under **Manage** in the left navigation, and then select **Connect**.
 
 1. On the **Add a connection to external assets** screen, select **Container Registry** under **Other resources types**.
 
@@ -776,7 +774,7 @@ returned_job = ml_client.create_or_update(job)
 
 #### Create a Generic Container Registry (preview) connection in studio
 
-1.In [Azure Machine Learning studio](https://ml.azure.com/), select **Connections** under **Manage** in the left navigation, and then select **Connect**..
+1. In [Azure Machine Learning studio](https://ml.azure.com/), select **Connections** under **Manage** in the left navigation, and then select **Connect**.
 
    :::image type="content" source="media/how-to-connection/how-to-manage-connections-create.png" lightbox="media/how-to-connection/create-new-data-connection.png" alt-text="Screenshot showing the start of creating a new connection in Azure Machine Learning studio UI.":::
 
@@ -785,6 +783,8 @@ returned_job = ml_client.create_or_update(job)
    :::image type="content" source="media/how-to-connection/how-to-connect-generic-container-registry.png" lightbox="media/how-to-connection/create-new-data-connection.png" alt-text="Screenshot highlighting the option to connect to a generic container registry in Azure Machine Learning studio UI.":::
 
 1. Input the path to your container registry under **Endpoint**, enter your **User name** and **Password**, enter a **Connection name**, and then select **Add connection**.
+
+   :::image type="content" source="media/how-to-connection/how-to-connect-add-connection.png" lightbox="media/how-to-connection/create-new-data-connection.png" alt-text="Screenshot showing the input fields for connecting to a generic container registry in Azure Machine Learning studio UI.":::
 
 ### API key
 
