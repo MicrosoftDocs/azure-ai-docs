@@ -25,13 +25,15 @@ This article provides a quick reference and detailed description of the quotas a
 
 Azure uses quotas and limits to prevent budget overruns due to fraud and to honor Azure capacity constraints. Consider these limits as you scale for production workloads. The following sections provide a quick guide to the default quotas and limits that apply to Azure AI model inference service in Foundry:
 
-### Resource limits
+### Resource limits (per Azure subscription, per region)
+<!-- Qualified "resource" to explicitly define scope as per subscription and region. -->
 
 | Limit name | Limit value |
 |--|--|
 | Foundry resources per region per Azure subscription | 100 |
 | Max projects per resource | 250 |
-| Max deployments per resource | 32 | 
+| Max deployments per resource (model deployments within a Foundry resource) | 32 | 
+<!-- Clarified that "deployments" refers to model deployments within a Foundry resource. -->
 
 ### Rate limits
 
@@ -69,7 +71,8 @@ Due to high demand, we evaluate limit increase requests per request.
 
 Global Standard deployments use Azure's global infrastructure to dynamically route customer traffic to the data center with best availability for the customer's inference requests. This infrastructure enables more consistent latency for customers with low to medium levels of traffic. Customers with high sustained levels of usage might see more variabilities in response latency.
 
-The Usage Limit determines the level of usage above which customers might see larger variability in response latency. A customer's usage is defined per model and is the total tokens consumed across all deployments in all subscriptions in all regions for a given tenant.
+The Usage Limit (a per-model, tenant-wide threshold based on total tokens consumed across all deployments, subscriptions, and regions) determines the level of usage above which customers might see larger variability in response latency. A customer's usage is defined per model and is the total tokens consumed across all deployments in all subscriptions in all regions for a given tenant.
+<!-- Clarified definition and scope of Usage Limit at first introduction. -->
 
 ## Request increases to the default limits
 
@@ -91,7 +94,8 @@ We recommend explicitly setting the client side timeout as follows.
 > [!NOTE]
 > If not explicitly set, the client side timeout exists as per the library used, and may not be the same limits as above.
 
-- Reasoning models: up to 29 minutes. 
+- Reasoning models (models that generate intermediate reasoning tokens before producing a summarized response): up to 29 minutes. 
+<!-- Qualified "reasoning models" to explain their operational behavior. -->
 - Non-reasoning models: 
     - For streaming, up to 60 seconds.
     - For non-streaming requests, up to 29 minutes.

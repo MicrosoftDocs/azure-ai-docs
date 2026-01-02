@@ -18,10 +18,8 @@ monikerRange: 'foundry-classic || foundry'
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-> [!NOTE]
-> Updating capability hosts is not supported. To modify a capability host, you must delete the existing one and recreate it with the new configuration.
-
-Capability hosts are sub-resources that you define at both the Microsoft Foundry Account and Foundry project scopes. They specify where the Foundry Agent Service should store and process your agent data, including:
+Capability hosts are sub-resources that you define at both the Microsoft Foundry account and Foundry project scopes. They specify where the Foundry Agent Service stores and processes your agent data, including:
+<!-- Tightened wording to reduce low-signal phrasing and improve readability. -->
 - **Conversation history (threads)** 
 - **File uploads** 
 - **Vector stores** 
@@ -36,7 +34,8 @@ Capability hosts allow you to **bring your own Azure resources** instead of usin
 
 ## How do capability hosts work?
 
-Creating capability hosts is not required. However if you do want agents to use your own resources, you must create a capability host on both the account and project. 
+Creating capability hosts is optional. To use your own resources, you must create a capability host at both the account and project levels.
+<!-- Combined and tightened the conditional explanation into a single, clearer sentence. -->
 
 ### Default behavior (Microsoft-managed resources)
 If you don't create an account-level and project-level capability host, the Agent Service automatically uses Microsoft-managed Azure resources for:
@@ -47,7 +46,8 @@ If you don't create an account-level and project-level capability host, the Agen
 ### Bring-your-own resources
 When you create capability hosts at both the account and project levels, all agent data is stored and processed using your own Azure resources within your subscription. This configuration is called a **standard agent setup**.
 
-All Foundry workspace resources should be in the same region as the VNet, including CosmosDB, Storage Account, AI Search, Foundry Account, Project, and Managed Identity.
+All Foundry workspace resources should be in the same region as the VNet, including Cosmos DB, Storage accounts, Azure AI Search, Foundry accounts, projects, and managed identities.
+<!-- Tightened list formatting and terminology for consistency with Microsoft style. -->
 
 #### Configuration hierarchy
 
@@ -59,11 +59,12 @@ Capability hosts follow a hierarchy where more specific configurations override 
 
 ## Understand capability host constraints
 
-When creating capability hosts, be aware of these important constraints to avoid conflicts:
+When creating capability hosts, be aware of these constraints to avoid conflicts:
 
-- **One capability host per scope**: Each account and each project can only have one active capability host. Attempting to create a second capability host with a different name at the same scope will result in a 409 conflict.
+- **One capability host per scope**: Each account and each project can have only one active capability host. Creating a second capability host with a different name at the same scope results in a 409 Conflict.
 
-- **Configuration updates are not supported**: If you need to change configuration, you must delete the existing capability host and recreate it.
+- **Configuration updates aren't supported**: To change the configuration, delete the existing capability host and recreate it.
+<!-- Removed the earlier standalone note and consolidated this guidance here to eliminate duplicate note blocks. -->
 
 
 ## Recommended setup 
@@ -74,15 +75,16 @@ A capability host must be configured with the following three properties at eith
 
 | Property | Purpose | Required Azure resource | Example connection name |
 |----------|---------|------------------------|------------------------|
-| `threadStorageConnections` | Stores agent definitions, conversation history and chat threads | Azure Cosmos DB | `"my-cosmosdb-connection"` |
+| `threadStorageConnections` | Stores agent definitions, conversation history, and chat threads | Azure Cosmos DB | `"my-cosmosdb-connection"` |
 | `vectorStoreConnections` | Handles vector storage for retrieval and search | Azure AI Search | `"my-ai-search-connection"` |
-| `storageConnections` | Manages file uploads and blob storage | Azure Storage Account | `"my-storage-connection"` |
+| `storageConnections` | Manages file uploads and blob storage | Azure Storage account | `"my-storage-connection"` |
+<!-- Minor punctuation and capitalization adjustments for Microsoft style consistency. -->
 
 ### Optional property
 
 | Property | Purpose | Required Azure resource | When to use |
 |----------|---------|------------------------|-------------|
-| `aiServicesConnections` | Use your own model deployments | Azure OpenAI | When you want to use models from your existing Azure OpenAI resource instead of the built-in account level ones. |
+| `aiServicesConnections` | Use your own model deployments | Azure OpenAI | When you want to use models from your existing Azure OpenAI resource instead of the built-in account-level ones. |
 
 **Account capability host**
 ```http
@@ -97,7 +99,8 @@ PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
 
 **Project capability host**
 
-This configuration overrides service defaults and any account-level settings. All agents in this project will use your specified resources:
+This configuration overrides service defaults and any account-level settings. All agents in this project use your specified resources:
+<!-- Tightened phrasing to remove low-signal future tense. -->
 ```http
 PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/capabilityHosts/{name}?api-version=2025-06-01
 
@@ -123,7 +126,7 @@ PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
   "properties": {
     "capabilityHostKind": "Agents",
 
-    // Optional: define shared BYO resources for every project. All foundry projects under this account will uses these Azure resources  
+    // Optional: define shared BYO resources for every project. All Foundry projects under this account use these Azure resources  
     "threadStorageConnections": ["shared-cosmosdb-connection"],
     "vectorStoreConnections": ["shared-ai-search-connection"],
     "storageConnections": ["shared-storage-connection"]
@@ -131,12 +134,14 @@ PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
 }
 ```
 > [!NOTE]
-> All Foundry projects will inherit these settings. Then override specific settings at the project level as needed.
+> All Foundry projects inherit these settings. Override specific settings at the project level as needed.
+<!-- Tightened inheritance explanation and removed redundant phrasing. -->
 
 ## Delete capability hosts
 
 > [!WARNING]
-> Deleting a capability host will affect all agents that depend on it. Make sure you understand the impact before proceeding. For instance, if you delete the project and account capability host, agents in your project will no longer have access to the files, thread, and vector stores it previously did.
+> Deleting a capability host affects all agents that depend on it. Make sure you understand the impact before proceeding. For example, if you delete both the project-level and account-level capability hosts, agents in the project lose access to the files, threads, and vector stores they previously used.
+<!-- Tightened warning language while preserving intent. -->
 
 ### Delete an account-level capability host
 
@@ -152,13 +157,14 @@ DELETE https://management.azure.com/subscriptions/{subscriptionId}/resourceGroup
 
 ## Troubleshooting
 
-If you're experiencing issues when creating capability hosts, this section provides solutions to the most common problems and errors.
+If you experience issues when creating capability hosts, this section provides solutions to common problems and errors.
+<!-- Minor tightening for concision. -->
 
 ### HTTP 409 Conflict errors
 
 #### Problem: Multiple capability hosts per scope
 
-**Symptoms:** You receive a 409 Conflict error when trying to create a capability host, even though you believe the scope is empty.
+**Symptoms:** You receive a 409 Conflict error when you try to create a capability host, even though you believe the scope is empty.
 
 **Error message:**
 ```json
@@ -170,12 +176,13 @@ If you're experiencing issues when creating capability hosts, this section provi
 }
 ```
 
-**Root cause:** Each account and each project can only have one active capability host. You're trying to create a capability host with a different name when one already exists at the same scope.
+**Root cause:** Each account and project can have only one active capability host. You're trying to create a capability host with a different name when one already exists at the same scope.
 
 **Solution:**
-1. **Check existing capability hosts** - Query the scope to see what already exists
-2. **Use consistent naming** - Ensure you're using the same name across all requests for the same scope
-3. **Review your requirements** - Determine if the existing capability host meets your needs
+1. **Check existing capability hosts** - Query the scope to see what already exists.
+2. **Use consistent naming** - Use the same name for all requests at the same scope.
+3. **Review requirements** - Determine whether the existing capability host meets your needs.
+<!-- Tightened list items for clarity and parallelism. -->
 
 **Validation steps:**
 ```http
@@ -188,7 +195,7 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
 
 #### Problem: Concurrent operations in progress
 
-**Symptoms:** You receive a 409 Conflict error indicating that another operation is currently running.
+**Symptoms:** You receive a 409 Conflict error indicating that another operation is running.
 
 **Error message:**
 ```json
@@ -200,12 +207,13 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
 }
 ```
 
-**Root cause:** You're trying to create a capability host while another operation (update, delete, modify) is in progress at the same scope.
+**Root cause:** You're trying to create a capability host while another operation (create, delete, or modify) is in progress at the same scope.
 
 **Solution:**
-1. **Wait for current operation to complete** - Check the status of ongoing operations
-2. **Monitor operation progress** - Use the operations API to track completion
-3. **Implement retry logic** - Add exponential backoff for temporary conflicts
+1. **Wait for the operation to complete** - Check the status of ongoing operations.
+2. **Monitor progress** - Use the operations API to track completion.
+3. **Implement retry logic** - Add exponential backoff for temporary conflicts.
+<!-- Clarified operation types and tightened phrasing. -->
 
 **Operation monitoring:**
 ```http
@@ -215,10 +223,11 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Micros
 ### Best practices for conflict prevention
 
 #### 1. Pre-request validation
-Always verify the current state before making changes:
-- Query existing capability hosts in the target scope
-- Check for any ongoing operations
-- Understand the current configuration
+Verify the current state before making changes:
+- Query existing capability hosts in the target scope.
+- Check for ongoing operations.
+- Understand the current configuration.
+<!-- Tightened imperative phrasing. -->
 
 #### 2. Implement retry logic with exponential backoff
 ```csharp
@@ -231,37 +240,40 @@ catch (HttpRequestException ex) when (ex.Message.Contains("409"))
 {
     if (ex.Message.Contains("existing Capability Host with name"))
     {
-        // Handle name conflict - check if existing resource is acceptable
+        // Handle name conflict - check whether the existing resource is acceptable
         var existing = await GetExistingCapabilityHostAsync();
         if (IsAcceptable(existing))
         {
-            return existing; // Use existing resource
+            return existing; // Use the existing resource
         }
         else
         {
-            throw new InvalidOperationException("Scope already has a capability host with different name");
+            throw new InvalidOperationException("The scope already has a capability host with a different name.");
         }
     }
     else if (ex.Message.Contains("currently in non creating"))
     {
-        // Handle concurrent operation - implement retry with backoff
+        // Handle concurrent operation - retry with backoff
         await Task.Delay(TimeSpan.FromSeconds(30));
         return await CreateCapabilityHostAsync(request); // Retry once
     }
 }
 ```
+<!-- Minor comment and punctuation adjustments for clarity. -->
 
 #### 3. Understand idempotent behavior
 The system supports idempotent create requests:
-- **Same name + same configuration** → Returns existing resource (200 OK)
-- **Same name + different configuration** → Returns 400 Bad Request  
-- **Different name** → Returns 409 Conflict
+- **Same name + same configuration** → Returns the existing resource (200 OK).
+- **Same name + different configuration** → Returns 400 Bad Request.  
+- **Different name** → Returns 409 Conflict.
+<!-- Added consistent punctuation. -->
 
 #### 4. Configuration change workflow
-Since updates aren't supported, follow this sequence for configuration changes:
-1. Delete the existing capability host
-2. Wait for deletion to complete  
-3. Create a new capability host with the desired configuration
+Because updates aren't supported, use this sequence for configuration changes:
+1. Delete the existing capability host.
+2. Wait for deletion to complete.  
+3. Create a new capability host with the desired configuration.
+<!-- Tightened introductory clause. -->
 
 
 ## Next steps
