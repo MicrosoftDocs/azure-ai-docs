@@ -45,19 +45,12 @@ Your existing resource configurations and state stay the same, including:
 
 ## Limitations
 
-### Backend limitations
+Backend limitations:
 
-* Foundry model and feature availability [differs by region](../reference/region-support.md). For example, Agent Service is [available](../agents/concepts/model-region-support.md) in select regions compared to Azure OpenAI service. **Impact**: You may not have access to all new Foundry features in your region immediately after upgrade.
-
-* Foundry resources using **customer-managed keys** for encryption are available for upgrade by request only. [Fill out the request form here](https://forms.office.com/r/sKGZJ0YhDd). **Impact**: If you use encryption with customer-managed keys, contact Microsoft before upgrading.
-
-* The Foundry resource type doesn't support configuring Weights & Biases. **Impact**: Existing Weights & Biases integrations won't function post-upgrade.
-
-* Private network setups require [reconfiguration of private link endpoints and extra Domain Name Server (DNS) configurations](#private-network-configuration) before all Foundry capabilities can be used. **Impact**: You must update your network configuration to access all Foundry features over private networks.
-
-### Foundry portal limitations
-
-* The evaluations view doesn't yet support all the capabilities available in the Azure OpenAI evaluations view. **Impact**: Some evaluation features may be unavailable in the portal.
+* Foundry model and feature availability [differs by region](../reference/region-support.md). For example, Agent service is [available](../agents/concepts/model-region-support.md) in select regions compared to Azure OpenAI service.
+* Azure OpenAI resources using **customer-managed keys** for encryption are available for upgrade by request only. [Fill out the request form here](https://forms.office.com/r/sKGZJ0YhDd).
+* The Foundry resource type doesn't support configuring Weights & Biases.
+* Private network setups require [additional DNS zone configurations](#private-network-configuration) next to your existing Azure OpenAI DNS Zone before all Foundry capabilities can be used.
 
 ## Support level post-upgrade 
 
@@ -112,8 +105,8 @@ Starting with your existing Azure OpenAI template configuration, set the followi
 Sample configuration:
 
 ```bicep
-resource aiFoundry 'Microsoft.CognitiveServices/accounts@2025-06-01' = {
-    name: aiFoundryName // Your existing resource name
+resource foundry 'Microsoft.CognitiveServices/accounts@2025-06-01' = {
+    name: foundryName // Your existing resource name
     location: location
     identity: {
         type: 'SystemAssigned'
@@ -127,7 +120,7 @@ resource aiFoundry 'Microsoft.CognitiveServices/accounts@2025-06-01' = {
         allowProjectManagement: true 
 
         // Needed for capabilities that require EntraID authentication
-        customSubDomainName: aiFoundryName
+        customSubDomainName: foundryName
         disableLocalAuth: true
     }
 }
@@ -139,11 +132,27 @@ Run the template using [Azure Bicep CLI](/azure/azure-resource-manager/bicep/bic
 
 **Success**: The patch operation completes with no errors. Your resource's `kind` property changes from `OpenAI` to `AIServices`, and `allowProjectManagement` is set to `true`. Your existing endpoint, API keys, and configurations are preserved.
 
+
+# [Terraform](#tab/terraform)
+
+You can upgrade your Azure OpenAI resource using either the AzAPI or AzureRM Terraform providers.
+
+> [!NOTE]
+> When using the [AzureRM resource provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cognitive_account.html), ensure you use a version greater than 4.57.0 of your Terraform CLI client for a non-destructive resource update.
+
+Start from your existing Azure OpenAI configuration and update the following properties:
+
+* Update kind from value 'OpenAI' => 'AIServices'
+* Set allowProjectManagement: True
+* Configure managed identity
+
+Finally, run `terraform apply` to complete the upgrade.
+
 ---
 
-## Portal navigation differences after upgrading
+## UX navigation differences after upgrading
 
-After upgrading from Azure OpenAI to Foundry, you see updates to the portal's navigation and feature access:
+After upgrading from Azure OpenAI to Foundry, you'll notice updates to the portal's navigation and feature access:
 
 * **Updated left-side navigation**
    
@@ -172,6 +181,24 @@ There are no pricing differences for existing Azure OpenAI functionality when up
 
 For estimating costs of new features available in Foundry, use the [Azure Pricing Calculator](https://azure.microsoft.com/pricing/calculator/).
 
+## Considerations for RBAC and Policy During Upgrade
+
+Microsoft Foundry provides a broader set of models and capabilities than an Azure OpenAI resource. If your organization relies on Azure RBAC or Azure Policy, these controls continue to function after upgrade because both resource types use the same management APIs.
+
+However, **IT administrators should review any wildcard role assignments or Policies that do not restrict access to a specific resource kind.** These broad definitions may unintentionally grant users access to Foundry‑only features immediately after upgrade.
+
+If you intend to roll out non‑OpenAI features gradually, ensure that you update your RBAC role assignments, Azure Policy definitions, and any custom roles before performing the upgrade.
+
+Post-upgrade behavior depends on your existing governance setup:
+
+|Governance control|Access before upgrade|Access after upgrade|
+|---|---|---|
+|[Cognitive Services User (RBAC role)](/azure/role-based-access-control/built-in-roles/ai-machine-learning#cognitive-services-user)|OpenAI features|All Foundry features |
+|[Cognitive Services OpenAI User (RBAC role)](/azure/role-based-access-control/built-in-roles/ai-machine-learning#cognitive-services-openai-user)|OpenAI features|OpenAI features|
+|[Custom RBAC roles](/azure/role-based-access-control/custom-roles)|Only features you defined|Only feature you defined|
+|Model access (no policy applied)|OpenAI models|Any Foundry model|
+|[Model access (policy enforced)](model-deployment-policy.md)|Only OpenAI models allowed by policy|Only models you allow through policy|
+
 ## Private network configuration
 
 Foundry resource is a superset of Azure OpenAI resource and its capabilities are exposed over three FQDNs:
@@ -186,7 +213,7 @@ Your DNS configuration must be able to resolve each of the FQDNs in order to use
 
 * If you're using a custom DNS implementation, you need to implement a conditional forwarder for each of the above configurations. 
 
-After this, delete and [re-create a private link endpoint](configure-private-link.md) on your resource. Your private link endpoint creates an IP address in your Azure Virtual Network to map to each endpoint.
+After this, update or alternatively [delete and re-create a private link endpoint](configure-private-link.md) on your resource. Your private link endpoint creates an IP address in your Azure Virtual Network to map to each endpoint.
 
 > [!IMPORTANT] 
 > When upgrading to Foundry, you must recreate your private link endpoint, for the "services.ai.azure.com" and "{custom-domain}.cognitiveservices.azure.com" IP configurations to be created.
@@ -226,8 +253,8 @@ Then, use either the Foundry portal, Azure portal, or an ARM template to roll ba
 To roll back, convert your template configuration back to 'OpenAI' as kind.
 
   ```bicep
-  resource aiFoundry 'Microsoft.CognitiveServices/accounts@2025-06-01' = {
-  name: aiFoundryName
+  resource foundry 'Microsoft.CognitiveServices/accounts@2025-06-01' = {
+  name: foundryName
   location: location
   identity: {
       type: 'SystemAssigned'
@@ -239,15 +266,25 @@ To roll back, convert your template configuration back to 'OpenAI' as kind.
   properties: {
 
       // Defines developer API endpoint subdomain
-      customSubDomainName: aiFoundryName
+      customSubDomainName: foundryName
       disableLocalAuth: true
   }
   ```
 
   Run the template using [Azure Bicep CLI](/azure/azure-resource-manager/bicep/bicep-cli) or your [Visual Studio Code extension for Bicep](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep) as a patch operation on your current resource.
 
-**References**: [`Microsoft.CognitiveServices/accounts`](/azure/templates/microsoft.cognitiveservices/accounts), [Bicep CLI documentation](/azure/azure-resource-manager/bicep/bicep-cli)
+  **References**: [`Microsoft.CognitiveServices/accounts`](/azure/templates/microsoft.cognitiveservices/accounts), [Bicep CLI documentation](/azure/azure-resource-manager/bicep/bicep-cli)
 
+# [Terraform](#tab/terraform)
+
+To roll back to Azure OpenAI, you can use either the AzAPI or AzureRM Terraform providers.
+
+> [!NOTE]
+> When using the [AzureRM resource provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cognitive_account.html), ensure you use a version greater than 4.57.0 of your Terraform CLI client for a non-destructive resource update.
+
+* Delete any non-OpenAI model deployments.
+* Delete Foundry-specific sub-resources, including projects and connections.
+* In your `azurerm_cognitive_account` resource, update kind from value 'AIServices' => 'OpenAI' and set `allowProjectManagement` to False.
 
 ---
 
