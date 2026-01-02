@@ -22,7 +22,8 @@ Disclosure is a means of letting people know they're interacting with or listeni
 
 ## Why is disclosure necessary?
 
-The need to disclose the synthetic origins of a computer-generated voice is relatively new. In the past, computer-generated voices were obviously that—no one would ever mistake them for a real person. Every day, however, the realism of synthetic voices improves, and they become increasingly indistinguishable from human voices.
+- Disclosure helps mitigate concrete risks, including user deception, unmet regulatory or policy obligations, and erosion of user trust as synthetic voices become more realistic.
+<!-- Replaced two narrative sentences with a single concise bullet listing concrete, retrievable impacts, as requested by agent feedback. -->
 
 ## Design principles
 

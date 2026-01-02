@@ -17,7 +17,8 @@ manager: nitinme
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 
-Audio models in Azure OpenAI are available via the `realtime`, `completions`, and `audio` APIs. The audio models are designed to handle a variety of tasks including speech recognition, translation, and text to speech.
+Audio models in Azure OpenAI are available via the `realtime`, `completions`, and `audio` APIs, and support speech recognition, translation, and text to speech.
+<!-- Edited to remove marketing language and consolidate capabilities into a concise description. -->
 
 For information about the available audio models per region in Azure OpenAI, see the [audio models](models.md?tabs=standard-audio#standard-deployment-regional-models-by-endpoint), [standard models by endpoint](models.md?tabs=standard-audio#standard-deployment-regional-models-by-endpoint), and [global standard model availability](models.md?tabs=standard-audio#global-standard-model-availability) documentation.
 
@@ -26,11 +27,13 @@ For information about the available audio models per region in Azure OpenAI, see
 
 ## GPT-4o audio Realtime API
 
-GPT real-time audio is designed to handle real-time, low-latency conversational interactions, making it a great fit for support agents, assistants, translators, and other use cases that need highly responsive back-and-forth with a user. For more information on how to use GPT real-time audio, see the [GPT real-time audio quickstart](../realtime-audio-quickstart.md) and [how to use GPT-4o audio](../how-to/realtime-audio.md).
+GPT real-time audio supports real-time, low-latency conversational interactions for scenarios that require responsive bidirectional audio exchange. For more information on how to use GPT real-time audio, see the [GPT real-time audio quickstart](../realtime-audio-quickstart.md) and [how to use GPT-4o audio](../how-to/realtime-audio.md).
+<!-- Edited to remove marketing-style phrasing and focus on capability characteristics. -->
 
 ## GPT-4o audio completions
 
-GPT-4o audio completion is designed to generate audio from audio or text prompts, making it a great fit for generating audio books, audio content, and other use cases that require audio generation. The GPT-4o audio completions model introduces the audio modality into the existing `/chat/completions` API. For more information on how to use GPT-4o audio completions, see the [audio generation quickstart](../audio-completions-quickstart.md).
+GPT-4o audio completion generates audio outputs from audio or text prompts. The GPT-4o audio completions model introduces the audio modality into the existing `/chat/completions` API. For more information on how to use GPT-4o audio completions, see the [audio generation quickstart](../audio-completions-quickstart.md).
+<!-- Edited to remove marketing-style phrasing and state functionality directly. -->
 
 ## Audio API
 

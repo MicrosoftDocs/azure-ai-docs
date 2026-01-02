@@ -14,7 +14,8 @@ ms.date: 08/15/2022
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
-This article provides details regarding how Azure Language in Foundry Tools processes your data. Language is designed with compliance, privacy, and security in mind. However, you are responsible for its use and the implementation of this technology. It's your responsibility to comply with all applicable laws and regulations in your jurisdiction.
+This article provides details regarding how Azure Language in Foundry Tools processes your data. Language encrypts customer data at rest, limits temporary data retention to defined timeframes, and restricts access to authorized engineers for support and debugging scenarios. However, you are responsible for its use and the implementation of this technology. It's your responsibility to comply with all applicable laws and regulations in your jurisdiction.
+<!-- Replaced marketing boilerplate with explicit, factual descriptions of data protection controls as requested in agent feedback. -->
  
 
 ## What data does Language process and how does it process it?

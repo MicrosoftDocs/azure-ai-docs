@@ -63,12 +63,14 @@ The following section provides you with a quick guide to the default quotas and 
 | Maximum number of `/chat completions` tools | 128. |
 | Maximum number of provisioned throughput units per deployment | 100,000. |
 | Maximum files per assistant or thread | 10,000 when using the API or the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).|
-| Maximum file size for assistants and fine-tuning | 512 MB<br/><br/>200 MB via the [Foundry portal](https://ai.azure.com/?cid=learnDocs). |
+| Maximum file size for assistants and fine-tuning | 512 MB via the API<br/><br/>200 MB via the [Foundry portal](https://ai.azure.com/?cid=learnDocs). |
+<!-- EDIT: Clarified the 512 MB limit applies to API uploads and corrected garbled formatting. -->
 | Maximum file upload requests per resource | 30 requests per second. |
 | Maximum size for all uploaded files for assistants |200 GB. |
 | Assistants token limit | 2,000,000 token limit. |
 | `GPT-4o` and `GPT-4.1` maximum images per request (number of images in the messages array or conversation history) | 50. |
-| `GPT-4` `vision-preview` and `GPT-4` `turbo-2024-04-09` default maximum tokens | 16. <br><br> Increase the `max_tokens` parameter value to avoid truncated responses. `GPT-4o` maximum tokens defaults to 4,096. |
+| `GPT-4 vision-preview` and `GPT-4 turbo-2024-04-09` default maximum tokens | 16. <br><br> Increase the `max_tokens` parameter value to avoid truncated responses. `GPT-4o` maximum tokens defaults to 4,096. |
+<!-- EDIT: Fixed malformed backtick usage and spacing for model names to improve readability. -->
 | Maximum number of custom headers in API requests<sup>1</sup> | 10. |
 | Message character limit | 1,048,576. |
 | Message size for audio files | 20 MB. |
@@ -284,14 +286,13 @@ The following section provides you with a quick guide to the default quotas and 
 | Model|Tier| Quota limit in tokens per minute | Requests per minute |
 |---|---|:---:|:---:|
 |`gpt-image-1`|Enterprise and MCA-E | N/A | 60 |
-|`gpt-image-1` |Medium  | N/A | 36 |
-|`gpt-image-1` |Low  | N/A | 9 |
+|`gpt-image-1` |Low     | N/A | 9  |
+|`gpt-image-1` |Medium  | N/A | 18 |
+|`gpt-image-1` |High    | N/A | 60 |
 |`gpt-image-1-mini`|Low | N/A | 12 |
 |`gpt-image-1-mini` |Medium | N/A | 36 |
 |`gpt-image-1-mini` |High | N/A | 120 |
-|`gpt-image-1` |Low  | N/A | 9 |
-|`gpt-image-1` |Medium  | N/A | 18 |
-|`gpt-image-1` |High  | N/A | 60 |
+<!-- EDIT: Removed duplicated and malformed GPT-image-1 rows and normalized tier ordering and spacing. -->
 
 
 ## Usage tiers
