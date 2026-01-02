@@ -33,16 +33,15 @@ The following information is displayed:
 | **Name** | The name of the agent or the agentic resource. | All |
 | **Source** | The source platform from where the agent or resource was discovered. | All |
 | **Project** | The Foundry project associated with the agent. For custom agents, it's the project where the agent was registered to. | Foundry<br />Custom | 
-| **Status** | The status of the agent. Possible values are: <ul><li>Running</li><li>Stopped</li><li>Blocked</li><li>Unblocked</li><li>Unknown</li></ul> | All. |
+| **Status** | It refers to a broad range of conditions, including operational, health, or lifecycle, of the agent. Agents transition to different *status* depending on the platform, the agent condition, and [lifecycle operations](#lifecycle-operations). Possible values are: <ul><li>Running</li><li>Stopped</li><li>Blocked</li><li>Unblocked</li><li>Unknown</li></ul> | All |
 | **Version** | The version of the agent asset. | Foundry |
 | **Published as** | Indicates if the agent was published as an agent application. Published agents in Foundry have their own endpoint for invocation. | Foundry |
-| **Error rate** | The proportion of failed runs in the last month. This column requires [observability configured](#observe-agents). | All |
-| **Error rate** | The proportion of failed runs in the last month. This column requires [observability configured](#observe-agents). | All |
+| **Error rate** | The proportion of failed runs compared to successful ones in the last month. This column requires [observability configured](#observe-agents). | All |
 | **Estimated cost** | The estimated cost of the agent executions in the last month, based on the number of tokens consumed. This column requires [observability configured](#observe-agents). | Foundry |
 | **Token usage** | The estimated tokens consumed by the runs in the last month. This column requires [observability configured](#observe-agents). | Foundry |
 | **Runs** | The number of executions in the last month. This column requires [observability configured](#observe-agents). | All |
 | **Monitoring features** | The number of monitoring features that are enabled in the agent. See [The three stages of GenAIOps evaluation](../observability/concepts/observability.md#the-three-stages-of-genaiops-evaluation). | Foundry |
-| **EntraID** | Microsoft Entra ID Agent ID application and object ID associated with the agent. Agents may use this identity to access resources. | Foundry |
+| **Entra ID** | Microsoft Entra ID Agent ID application and object ID associated with the agent. An agent identity is a special service principal in Microsoft Entra ID. It represents an identity that the agent identity blueprint created and is authorized to impersonate. Learn more about [Agent identity concepts in Microsoft Foundry](../agents/concepts/agent-identity.md). | Foundry |
 
 ### Permission's model
 
@@ -53,7 +52,7 @@ Control Plane automatically discovers agents that users have access to. Because 
 Control Plane automatically discovers agents in the following platforms:
 
 > [!div class="checklist"]
-> * Foundry agents, including [prompt-based agents](../agents/concepts/overview.md), [workflows](../agents/concepts/workflow.md), and [hosted-agents](../agents/concepts/hosted-agents.md). 
+> * Foundry agents, including [prompt-based agents](../../agents/concepts/overview.md), [workflows](../../agents/concepts/workflow.md), and [hosted-agents](../../agents/concepts/hosted-agents.md). 
 > * [Azure SRE Agent](/azure/sre-agent/)
 > * [Azure LogicApp agent loops](/azure/logic-apps/agent-workflows-concepts)
 
@@ -73,7 +72,7 @@ In this way, you can monitor versions consumed by your users and new versions un
 
 :::image type="content" source="media/how-to-manage-agents/inventory-foundry-agent.png" alt-text="Screenshot of the inventory page listing multiple Foundry agents." lightbox="media/how-to-manage-agents/inventory-foundry-agent.png":::
 
-> [!IMPORTANT]
+> [!NOTE]
 > Foundry classic agents and Azure OpenAI Assistants are not supported.
 
 ### Azure SRE agent
@@ -88,8 +87,14 @@ Azure Logic Apps supports workflows that complete tasks by using agent loops wit
 
 Control Plane discovers Azure Logic Apps resources containing agent loop workflows and lists them in the inventory page.
 
-> [!IMPORTANT]
+> [!NOTE]
 > Observability features, including traces and metrics, are not supported in Azure Logic Apps agent loops.
+
+### Custom agents
+
+You can register custom agents—running in Azure compute services or other cloud environments—to gain visibility into their operations and control their behavior. You can register a custom agent in the Control Plane and develop the agent in the technology of your choice, both platform and infrastructure solutions.
+
+Learn how to [register an agent in Control Plane](register-custom-agent.md) to enable management.
 
 ## Observe agents
 
