@@ -102,7 +102,7 @@ Control Plane uses the Azure Application Insights associated with the resources 
 
 * Compute runs and error rates
 * Compute usage metrics, including token usage and cost
-* Collect execution traces to diagnose behaviors
+* Collect execution traces
 
 If you don't see such information for your agent, you need to configure Azure Application Insights.
 
@@ -127,7 +127,7 @@ To view them:
 
 1. You see one entry for each call made to the agent. 
 
-1. Two columns contain IDs associated with the call, **Trace ID** and **Conversation ID**. Traces are stored in Azure Application Insights and contain telemetry to diagnost behavior. **Conversation ID** column applies for Foundry agents which contains the *conversation* associated with the trace. Conversations are stored in Microsoft Foundry service:
+1. Two columns contain IDs associated with the call, **Trace ID** and **Conversation ID**. Traces are stored in Azure Application Insights and contain telemetry to diagnose behavior. **Conversation ID** column applies for Foundry agents, which contains the *conversation* associated with the trace. Conversations are stored in Microsoft Foundry service:
 
     :::image type="content" source="media/how-to-manage-agents/inventory-traces-list.png" alt-text="Screenshot of the traces associated with one agent." lightbox="media/how-to-manage-agents/inventory-traces-list.png":::
 
