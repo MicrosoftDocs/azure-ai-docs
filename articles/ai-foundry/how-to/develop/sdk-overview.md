@@ -331,8 +331,7 @@ For more information on using the OpenAI SDK, see [Azure OpenAI supported progra
     using OpenAI;
     using OpenAI.Responses;
     using System.ClientModel.Primitives;
-    
-    
+        
     string endpointUrl = "https://<YOUR-RESOURCE-NAME>.cognitiveservices.azure.com/openai/v1/";
     
     DefaultAzureCredential credential = new();
@@ -343,10 +342,9 @@ For more information on using the OpenAI SDK, see [Azure OpenAI supported progra
         Endpoint = new Uri(endpointUrl)
     };
     
-    #pragma warning disable OPENAI001
-    
+    #pragma warning disable OPENAI001    
     var projectClient = new ResponsesClient(
-        model: "<YOUR-DEPLOYMENT-NAME>", //e.g. gpt-5.2-chat
+        model: "<YOUR-DEPLOYMENT-NAME>", //e.g. gpt-5.2-chat, must be a model that supports Responses API
         authenticationPolicy: tokenPolicy, // if use EntraID
         // credential: new ApiKeyCredential("<YOUR-KEY>") // if use APIKEY
         clientOptions
