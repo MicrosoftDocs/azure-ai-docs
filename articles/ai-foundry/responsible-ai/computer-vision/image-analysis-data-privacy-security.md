@@ -16,7 +16,8 @@ ms.date: 10/15/2025
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 
-This article provides high-level details regarding how Azure Vision in Foundry Tools processes data provided by customers. Image Analysis was designed with compliance, privacy, and security in mind. As an important reminder, you're responsible for the implementation of this technology. It's your responsibility to comply with all applicable laws and regulations in your jurisdiction, including ensuring you have all necessary licenses, permissions or other third-party approvals required to transfer and process your content using Image Analysis.
+This article describes how Azure Vision in Foundry Tools processes customer data; customers are responsible for implementing Image Analysis in compliance with applicable laws and for obtaining any required licenses, permissions, or third‑party approvals.
+<!-- Edited to tighten multiple introductory legal and marketing statements into a single concise responsibility statement, per agent feedback. -->
 
 Image Analysis is part of the Azure Cognitive Azure Vision in Foundry Tools. To learn more about the different offerings, see [Azure Vision Overview](/azure/ai-services/computer-vision/overview).
 

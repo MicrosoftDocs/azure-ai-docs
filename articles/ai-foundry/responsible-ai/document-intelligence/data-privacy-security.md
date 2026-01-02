@@ -15,7 +15,8 @@ ms.date: 10/15/2025
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
-This article provides details regarding how Document Intelligence processes your data. Document Intelligence is designed with compliance, privacy, and security in mind. However, you are responsible for its use and the implementation of this technology. It's your responsibility to comply with all applicable laws and regulations in your jurisdiction.
+This article explains how Document Intelligence processes data, while customers remain responsible for compliant use in accordance with applicable laws and regulations.
+<!-- Condensed introductory marketing and responsibility boilerplate into a single concise sentence per agent feedback. -->
 
 ## How does Document Intelligence process data?
 

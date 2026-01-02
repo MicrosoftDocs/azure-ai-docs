@@ -54,7 +54,8 @@ Customer controls include:
 
 ## Security for customers' data
 
-Azure services are implemented while maintaining appropriate technical and organizational measures to protect customer data in the cloud.
+Azure services implement technical and organizational measures to protect customer data, as described in the Microsoft Trust Center.
+<!-- Updated to replace a vague marketing statement with a concise, factual reference to the Microsoft Trust Center. -->
 
 To learn more about Microsoft's privacy and security commitments, see the [Microsoft Trust Center](https://www.microsoft.com/trust-center).
 

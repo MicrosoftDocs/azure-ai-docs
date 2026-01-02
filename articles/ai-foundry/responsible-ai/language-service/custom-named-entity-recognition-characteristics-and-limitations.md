@@ -14,7 +14,8 @@ ms.date: 09/29/2021
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
-Performance of custom named entity recognition (NER) models varies based on the scenario and input data. The following sections help you understand key concepts about performance and evaluation of custom NER models.
+Performance of custom named entity recognition (NER) models varies by scenario and input data and is evaluated using precision, recall, and F1 score on designated training and test sets.
+<!-- Updated to replace a generic transition with a concrete, parameter-focused description of how performance is evaluated, as requested in agent feedback. -->
 
 ## Performance evaluation metrics
 

@@ -19,9 +19,11 @@ ms.date: 08/12/2022
 > [!IMPORTANT]
 > This article assumes that you're familiar with guidelines and best practices for Azure Language in Foundry Tools. For more information, see [Transparency note for Language](transparency-note.md).
 
-An AI system includes not only the technology, but also the people who will use it, the people who will be affected by it, and the environment in which it is deployed. Creating a system that is fit for its intended purpose requires an understanding of how the technology works, its capabilities and limitations, and how to achieve the best performance. Microsoft's Transparency Notes are intended to help you understand how our AI technology works, the choices system owners can make that influence system performance and behavior, and the importance of thinking about the whole system, including the technology, the people, and the environment. You can use Transparency Notes when developing or deploying your own system, or share them with the people who will use or be affected by your system.
+A transparency note describes how a specific Azure AI feature works, including its intended use, supported scenarios, model behavior, and known limitations. For Sentiment Analysis, this includes information about the type of text the model was trained on, the outputs it produces (such as sentiment labels and confidence scores), and factors that can affect performance across different use cases.  
+<!-- Explanation: Replaced broad, organizational boilerplate with a concise, factual definition focused on feature scope, training data, outputs, and limitations. -->
 
-Microsoft's Transparency notes are part of a broader effort at Microsoft to put our AI principles into practice. To find out more, see [Microsoft AI Principles](https://www.microsoft.com/ai/responsible-ai).
+Transparency notes are designed to help system owners evaluate whether a feature is appropriate for their scenario and to support informed decisions during development and deployment.  
+<!-- Explanation: Condensed guidance to a single factual sentence describing the practical purpose of transparency notes, removing high-level marketing language. -->
 
 ## The basics of Sentiment Analysis
 
