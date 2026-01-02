@@ -35,7 +35,7 @@ The following information is displayed:
 | **Project** | The Foundry project associated with the agent. For custom agents, it's the project where the agent was registered to. | Foundry<br />Custom | 
 | **Status** | It refers to a broad range of conditions, including operational, health, or lifecycle, of the agent. Agents transition to different *status* depending on the platform, the agent condition, and [lifecycle operations](#lifecycle-operations). Possible values are: <ul><li>Running</li><li>Stopped</li><li>Blocked</li><li>Unblocked</li><li>Unknown</li></ul> | All |
 | **Version** | The version of the agent asset. | Foundry |
-| **Published as** | Indicates if the agent was published as an agent application. Published agents in Foundry have their own endpoint for invocation. | Foundry |
+| **Published as** | Indicates if the agent was [published as an agent application](../agents/how-to/publish-agent.md). Published agents in Foundry have their own endpoint for invocation. | Foundry |
 | **Error rate** | The proportion of failed runs compared to successful ones in the last month. This column requires [observability configured](#observe-agents). | All |
 | **Estimated cost** | The estimated cost of the agent executions in the last month, based on the number of tokens consumed. This column requires [observability configured](#observe-agents). | Foundry |
 | **Token usage** | The estimated tokens consumed by the runs in the last month. This column requires [observability configured](#observe-agents). | Foundry |
@@ -66,7 +66,7 @@ For each agent, you see:
 
 * The latest version of the agent.
 
-* Versions published as agent applications.
+* Versions [published as agent applications](../agents/how-to/publish-agent.md).
 
 In this way, you can monitor versions consumed by your users and new versions under development. The following example shows multiple Foundry agents listed. Agent `format-agent` version 6 has been published, however, version 7 (latest) is still under development. 
 
