@@ -40,7 +40,7 @@ The following information is displayed:
 | **Estimated cost** | The estimated cost of the agent executions in the last month, based on the number of tokens consumed. This column requires [observability configured](#observe-agents). | Foundry |
 | **Token usage** | The estimated tokens consumed by the runs in the last month. This column requires [observability configured](#observe-agents). | Foundry |
 | **Runs** | The number of executions in the last month. This column requires [observability configured](#observe-agents). | All |
-| **Monitoring features** | The number of monitoring features that are enabled in the agent. See [The three stages of GenAIOps evaluation](../observability/concepts/observability.md#the-three-stages-of-genaiops-evaluation). | Foundry |
+| **Monitoring features** | The number of monitoring features that are enabled in the agent. See [The three stages of GenAIOps evaluation](../../concepts/observability.md#the-three-stages-of-genaiops-evaluation). | Foundry |
 | **Entra ID** | Microsoft Entra ID Agent ID application and object ID associated with the agent. An agent identity is a special service principal in Microsoft Entra ID. It represents an identity that the agent identity blueprint created and is authorized to impersonate. Learn more about [Agent identity concepts in Microsoft Foundry](../agents/concepts/agent-identity.md). | Foundry |
 
 ### Permission's model
@@ -52,7 +52,7 @@ Control Plane automatically discovers agents that users have access to. Because 
 Control Plane automatically discovers agents in the following platforms:
 
 > [!div class="checklist"]
-> * Foundry agents, including [prompt-based agents](../../agents/concepts/overview.md), [workflows](../../agents/concepts/workflow.md), and [hosted-agents](../../agents/concepts/hosted-agents.md). 
+> * Foundry agents, including [prompt-based agents](../../agents/overview.md), [workflows](../agents/concepts/workflow.md), and [hosted-agents](../agents/concepts/hosted-agents.md). 
 > * [Azure SRE Agent](/azure/sre-agent/)
 > * [Azure LogicApp agent loops](/azure/logic-apps/agent-workflows-concepts)
 
@@ -113,7 +113,9 @@ Learn more about [Monitor agent health and performance across your fleet](monito
 
 ### View traces
 
-You can view traces and logs sent to Foundry. To view them:
+You can view traces and logs sent to Foundry. Traces are stored in Azure Application Insights and can be quiered using Microsoft Foundry portal or any other compatible tool.
+
+To view them:
 
 1. Select **Operate** from the upper-right navigation.
 
@@ -125,9 +127,9 @@ You can view traces and logs sent to Foundry. To view them:
 
 1. You see one entry for each HTTP call made to the agent.
 
-    :::image type="content" source="media/how-to-manage-agents/inventory-traces-list.png" alt-text="Screenshot of the inventory page listing multiple Foundry agents." lightbox="media/how-to-manage-agents/inventory-traces-list.png":::
+    :::image type="content" source="media/how-to-manage-agents/inventory-traces-list.png" alt-text="Screenshot of the traces associated with one agent." lightbox="media/how-to-manage-agents/inventory-traces-list.png":::
 
-1. To see the details, select an entry: 
+1. To see the details, select an value under **Trace ID** column. For Foundry agents, you also see **Conversation ID** column, which contains the *conversation* associated with the trace: 
 
     :::image type="content" source="media/how-to-manage-agents/inventory-traces-view.png" alt-text="Screenshot of a single trace with LLM calls." lightbox="media/how-to-manage-agents/inventory-traces-view.png":::
 
@@ -165,7 +167,7 @@ To stop an agent:
 
 1. Select **Update status** and then select **Stop**.
 
-    :::image type="content" source="media/how-to-manage-agents/how-to-manage-agents-stop.png" alt-text="Screenshot of how to block incoming requests to the agent." lightbox="media/how-to-manage-agents/how-to-manage-agents-stop.png":::
+    :::image type="content" source="media/how-to-manage-agents/how-to-manage-agents-stop.png" alt-text="Screenshot of how to stop a given agent." lightbox="media/how-to-manage-agents/how-to-manage-agents-stop.png":::
 
 1. Confirm the operation.
 
