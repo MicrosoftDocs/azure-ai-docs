@@ -34,14 +34,16 @@ Priority processing provides low-latency performance with the flexibility of pay
 
 ### Benefits
 
-- **Predictable low latency**: Faster, more consistent token generation.
-- **Easy-to-use flexibility**: Like standard pay-as-you-go processing, access priority processing on a flexible, pay-as-you-go basis instead of requiring provisioning and reservations in advance.
+- **Predictable low latency**: More consistent token generation rates for latency-sensitive requests.
+- **Pay-as-you-go access**: Enable priority processing without advance provisioning or capacity reservations.
+<!-- Edited to remove marketing-style phrasing and focus each benefit on a single concrete outcome. -->
 
 ### Key use cases
 
-- **Consistent, low latency** for responsive user experiences.
-- **Pay-as-you-go simplicity** with no long-term commitments. 
-- **Business-hour or bursty traffic** that benefits from scalable, cost-efficient performance. Optionally, you can combine priority processing with Provisioned Throughput Units (PTU) for steady-state capacity and cost optimization.
+- **Latency-sensitive applications** that require consistent response times.
+- **On-demand workloads** that must avoid long-term capacity commitments.
+- **Business-hour or bursty traffic** where traffic spikes benefit from on-demand scaling; optionally combined with Provisioned Throughput Units (PTU) for steady-state capacity.
+<!-- Edited to focus each use case on a specific scenario and operational outcome. -->
 
 ### Limits
 

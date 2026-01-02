@@ -15,7 +15,8 @@ monikerRange: 'foundry-classic || foundry'
 
 # Microsoft Foundry fine-tuning considerations
 
-Fine-tuning is the process of taking a pretrained language model and adapting it to perform a specific task or improve its performance on a particular dataset. This involves training the model on a smaller, task-specific dataset while adjusting the model's weights slightly. Fine-tuning leverages the knowledge the model acquired during its initial training on a large, diverse dataset, allowing it to specialize without starting from scratch. This approach is often more efficient and effective than training a new model from scratch, especially for specialized tasks. 
+Fine-tuning is the process of taking a pretrained language model and adapting it to perform a specific task or improve its performance on a particular dataset. This involves training the model on a smaller, task-specific dataset while adjusting the model's weights slightly. Fine-tuning leverages the knowledge the model acquired during its initial training on a large, diverse dataset, allowing it to specialize without starting from scratch. This approach is often more efficient than training a new model from scratch; for example, many teams fine-tune with hundreds to thousands of labeled examples instead of retraining on millions of samples. 
+<!-- Changed per agent feedback: replaced generalized efficiency claim with a concrete dataset-size example. -->
 
 ## Key benefits of fine-tuning
 
@@ -27,7 +28,8 @@ Unlike few-shot learning, where only a limited number of examples can be include
 
 ### Efficiency and potential cost savings
 
-Fine-tuned models require shorter prompts because they are trained on relevant examples. This process reduces the number of tokens needed in each request, which can lead to cost savings depending on the use case. 
+Fine-tuned models require shorter prompts because they are trained on relevant examples; for example, applications often reduce prompts from dozens of in-context examples to a single instruction, lowering per-request token counts and cost. 
+<!-- Changed per agent feedback: tightened benefit statement and added a concrete prompt-length and token-cost example. -->
 
 Since fine-tuned models need fewer examples in the prompt, they process requests faster, resulting in quicker response times. 
 
@@ -39,7 +41,8 @@ Fine-tuning smaller models can achieve performance levels comparable to larger, 
 
 ## When to fine-tune
 
-Fine-tuning is suited for times when you have a small amount of data and want to improve the performance of your model. Fine-tuning can be for different kinds of use cases - but they often fall into broader categories. 
+Fine-tuning is suited for times when you have a relatively small, high-quality dataset (for example, hundreds to a few thousand task-specific prompt–response pairs) and want to improve the performance of your model. Fine-tuning can be for different kinds of use cases - but they often fall into broader categories. 
+<!-- Changed per agent feedback: replaced vague data-size wording with a concrete dataset-oriented example. -->
 
 * **Reducing prompt engineering overhead**: Many users begin with few-shot learning, appending examples of desired outputs to their system message. Over time, this process can lead to increasingly long prompts, driving up token counts and latency. Fine-tuning lets you embed these examples into the model by training on the expected outputs, which is valuable in scenarios with numerous edge cases.
 

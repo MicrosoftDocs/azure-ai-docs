@@ -18,14 +18,17 @@ As Microsoft works to help customers responsibly develop and deploy solutions us
 
 This article discusses OCR and the key considerations for making use of this technology responsibly. Consider the following factors when you decide how to use and implement AI-powered products and features:
 
-- Will this product or feature perform well in my scenario? Before you deploy AI into your scenario, test how it performs by using real-life data and make sure it can deliver the accuracy you need.
-- Are we equipped to identify and respond to errors? AI-powered products and features won't be 100% accurate, so consider how you will identify and respond to any errors that might occur.
+- Will this product or feature perform well in my scenario? Before deployment, test OCR performance using representative, real‑world samples (for example, hundreds to thousands of documents matching your production formats) and verify that accuracy metrics such as character or word recognition rates meet your defined acceptance thresholds.
+<!-- Comment: Updated to provide concrete testing guidance, including sample size and measurable accuracy thresholds, per agent feedback. -->
+- Are we equipped to identify and respond to errors? Because OCR outputs are probabilistic, define explicit error‑handling workflows (for example, confidence‑score thresholds that trigger human review, logging of misrecognitions, and user correction paths).
+<!-- Comment: Revised to make error-handling expectations actionable with specific workflow examples, per agent feedback. -->
 
 ## General guidelines for integration and responsible use
 
 When you prepare to integrate and responsibly use the OCR features, the following activities help to set you up for success.
 
-**Understand what it can do**: Fully vet and review the capabilities of any AI model you're using to understand its capabilities and limitations. Understand how it will perform in your particular scenario by thoroughly testing it with real-life conditions and data. Synthetic data and tests that don't reflect your end-to-end scenario won't be sufficient.
+**Understand what it can do**: Fully vet and review the capabilities of any AI model you're using to understand its capabilities and limitations. Understand how it will perform in your particular scenario by testing with production‑like images and documents (for example, scanned forms, mobile photos, or low‑resolution images) and by measuring accuracy across relevant languages, fonts, and layouts. Synthetic data and tests that don't reflect your end-to-end scenario won't be sufficient.
+<!-- Comment: Tightened guidance with concrete testing criteria, including data types and accuracy dimensions, per agent feedback. -->
 
 **Respect an individual's right to privacy**: Only collect images and documents from individuals for lawful and justifiable purposes. Only use the images and documents that you have consent to use for this purpose.
 
@@ -41,4 +44,5 @@ A successful privacy approach empowers individuals with information and provides
 
 - If the service is part of a solution designed to incorporate personally identifiable information (PII), then think carefully about whether and how to record that data. Follow applicable national and regional regulations concerning privacy.
 
-- Privacy managers should consider the retention policies on the extracted text and the underlying documents or images of those documents. The retention policies will be tied to the intended use of each application.
+- Privacy managers should define explicit retention policies for extracted text and source images (for example, delete transient OCR outputs after processing or retain them only for a fixed business period such as 30–90 days), aligned to the intended use of each application.
+<!-- Comment: Added specific, actionable retention examples to clarify privacy and data lifecycle expectations, per agent feedback. -->
