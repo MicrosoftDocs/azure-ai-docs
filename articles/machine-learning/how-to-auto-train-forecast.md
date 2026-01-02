@@ -754,7 +754,7 @@ returned_job.services["Studio"].endpoint
 
 # [Azure CLI](#tab/cli)
 
-In following Azure CLI command, the job YAML configuration is in the current working directory at the path *./automl-forecasting-job.yml*. If you run the command from a different directory, you need to change the path accordingly.
+In the following Azure CLI command, the job YAML configuration is in the current working directory at the path *./automl-forecasting-job.yml*. If you run the command from a different directory, you need to change the path accordingly.
 
 ```yml
 run_id=$(az ml job create --file automl-forecasting-job.yml)
@@ -1103,7 +1103,7 @@ Next, you'll define a factory function that creates pipelines for the orchestrat
 | `parallel_step_timeout_in_seconds` | Many models component timeout, specified in number of seconds. |
 | `retrain_failed_models`            | Flag to enable retraining for failed models. This value is useful if you did previous many-models runs that resulted in failed AutoML jobs on some data partitions. When you enable this flag, many models only runs training jobs for previously failed partitions. |
 | `forecast_mode`                    | Inference mode for model evaluation. Valid values are `recursive` (default) and `rolling`. For more information, see [Inference and evaluation of forecasting models](concept-automl-forecasting-evaluation.md) and the [ManyModelsInferenceParameters Class](/python/api/azureml-train-automl-runtime/azureml.train.automl.runtime.manymodelsinferenceparameters#parameters) reference. |
-| `step`                             | Step size for rolling forecast. The default is 1. For more information, see [Inference and evaluation of forecasting models](concept-automl-forecasting-evaluation.md) and the [ManyModelsInferenceParameters Class](/python/api/azureml-train-automl-runtime/azureml.train.automl.runtime.manymodelsinferenceparameters#parameters) reference.|
+| `step`                             | Step size for rolling forecast. The default is `1`. For more information, see [Inference and evaluation of forecasting models](concept-automl-forecasting-evaluation.md) and the [ManyModelsInferenceParameters Class](/python/api/azureml-train-automl-runtime/azureml.train.automl.runtime.manymodelsinferenceparameters#parameters) reference.|
 
 The following example demonstrates a factory method for constructing many-models training and model evaluation pipelines:
 
@@ -1316,7 +1316,7 @@ For a more detailed example, see the [Demand Forecasting by Using Many Models no
 
 #### Training considerations for a many-models run
 
-- The many-models training and inference components conditionally partition your data according to the `partition_column_names` setting. This process results in each partition being in its own file. The process can be slow or fail when you have a lot of data. We recommend that you to partition your data manually before you run many-models training or inference.
+- The many-models training and inference components conditionally partition your data according to the `partition_column_names` setting. This process results in each partition being in its own file. The process can be slow or fail when you have a lot of data. We recommend that you partition your data manually before you run many-models training or inference.
 
 - During many-models training, models are automatically registered in the workspace, so manual registration of models isn't required. Models are named based on the partition on which they were trained, and these names aren't customizable. Tags also aren't customizable. These properties are used to automatically detect models during inference.
 
@@ -1388,7 +1388,7 @@ Next, define a factory function that creates pipelines for the orchestration of 
 | `max_concurrency_per_node`         | The number of AutoML processes to run on each node. The total concurrency of an HTS job is `max_nodes` * `max_concurrency_per_node`. |
 | `parallel_step_timeout_in_seconds` |The many-models component timeout, specified in seconds. |
 | `forecast_mode`                    | The inference mode for model evaluation. Valid values are `recursive` and `rolling`. For more information, see [Inference and evaluation of forecasting models](concept-automl-forecasting-evaluation.md) and the [HTSInferenceParameters Class](/python/api/azureml-train-automl-runtime/azureml.train.automl.runtime.htsinferenceparameters#parameters) reference. |
-| `step`                             | The step size for rolling forecast. The default is 1. For more information, see [Inference and evaluation of forecasting models](concept-automl-forecasting-evaluation.md) and the [HTSInferenceParameters Class](/python/api/azureml-train-automl-runtime/azureml.train.automl.runtime.htsinferenceparameters#parameters) reference. |
+| `step`                             | The step size for rolling forecast. The default is `1`. For more information, see [Inference and evaluation of forecasting models](concept-automl-forecasting-evaluation.md) and the [HTSInferenceParameters Class](/python/api/azureml-train-automl-runtime/azureml.train.automl.runtime.htsinferenceparameters#parameters) reference. |
 
 # [Python SDK](#tab/python)
 
@@ -1598,7 +1598,7 @@ For a more detailed example, see the [Demand Forecasting Using HTS notebook](htt
 
 #### Training considerations for an HTS run
 
-The HTS training and inference components conditionally partition your data according to the `hierarchy_column_names` setting so that each partition is in its own file. This process can be slow or fail when you have a lot of data. We recommended that you to partition your data manually before you run HTS training or inference.
+The HTS training and inference components conditionally partition your data according to the `hierarchy_column_names` setting so that each partition is in its own file. This process can be slow or fail when you have a lot of data. We recommended that you partition your data manually before you run HTS training or inference.
 
 > [!NOTE]
 > The default parallelism limit for an HTS run in a subscription is 320. If your workload requires a higher limit, you can contact Microsoft support.
@@ -1616,7 +1616,7 @@ Detailed code samples that demonstrate advanced forecasting configurations are a
 - [Create demand forecasting pipeline (HTS and many models)](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/pipelines/1k_demand_forecast_pipeline)
 - [Train TCNForecaster (DNN) model on GitHub dataset](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/automl-standalone-jobs/automl-forecasting-github-dau/auto-ml-forecasting-github-dau.ipynb)
 - [Forecast with holiday detection and featurization (bike-share dataset)](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/automl-standalone-jobs/automl-forecasting-task-bike-share/auto-ml-forecasting-bike-share.ipynb)
-- [Configure lags and rolling window aggregation manually](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/automl-standalone-jobs/automl-forecasting-task-energy-demand/automl-forecasting-task-energy-demand-advanced.ipynb)
+- [Configure lags and rolling-window aggregation manually](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/automl-standalone-jobs/automl-forecasting-task-energy-demand/automl-forecasting-task-energy-demand-advanced.ipynb)
 
 ## Related content
 
