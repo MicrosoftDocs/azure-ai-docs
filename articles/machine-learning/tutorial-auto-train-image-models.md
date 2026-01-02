@@ -8,7 +8,7 @@ ms.subservice: automl
 ms.topic: tutorial
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: swatig
+ms.reviewer: sooryar
 ms.date: 01/20/2025
 ms.custom: devx-track-python, automl, devx-track-azurecli, update-code, build-2023
 ---

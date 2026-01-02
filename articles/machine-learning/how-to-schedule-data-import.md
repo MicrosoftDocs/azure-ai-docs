@@ -8,7 +8,7 @@ ms.subservice: mldata
 ms.topic: how-to
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: ambadal
+ms.reviewer: soumyapatro
 ms.date: 07/28/2024
 ms.custom: data4ml, devx-track-azurecli
 ---

@@ -958,6 +958,7 @@ Transcribes audio into the input language.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
+|model | string | ID of the model to use. The options are `gpt-4o-transcribe`, `gpt-4o-mini-transcribe`, `gpt-4o-mini-transcribe-2025-12-15`, `whisper-1`, and `gpt-4o-transcribe-diarize`.| Yes |  |
 | file | string | The audio file object to transcribe. | Yes |  |
 | language | string | The language of the input audio. Supplying the input language in ISO-639-1 format improves accuracy and latency. | No |  |
 | prompt | string | An optional text to guide the model's style or continue a previous audio segment. The prompt should match the audio language. | No |  |

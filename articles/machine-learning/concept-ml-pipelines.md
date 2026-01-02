@@ -6,9 +6,9 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.topic: concept-article
-ms.author: lagayhar
+ms.author: scottpolly
 author: lgayhardt
-ms.reviewer: lagayhar
+ms.reviewer: jturuk
 ms.date: 09/09/2025
 monikerRange: 'azureml-api-2 || azureml-api-1'
 ---

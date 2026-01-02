@@ -38,7 +38,7 @@ The file search tool augments Microsoft Foundry agents with knowledge from outsi
 - A [basic or standard agent environment](../../../../agents/environment-setup.md)
 - The latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details
 - **Storage Blob Data Contributor** role on your project's storage account (required for uploading files to your project's storage)
-- **Azure AI Developer** role on your project (required for creating agent resources)
+- **Azure AI Owner** role on your Foundry resource (required for creating agent resources)
 - Environment variables configured: `FOUNDRY_PROJECT_ENDPOINT`, `MODEL_DEPLOYMENT_NAME`
 
 ## Code example

@@ -9,7 +9,7 @@ ms.topic: how-to
 ms.custom: devx-track-azurecli, cliv2, sdkv2, build-2023
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: vijetaj
+ms.reviewer: jturuk
 ms.date: 09/11/2025
 ---
 

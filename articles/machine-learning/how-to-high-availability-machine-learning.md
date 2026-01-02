@@ -8,7 +8,7 @@ ms.subservice: enterprise-readiness
 ms.topic: how-to
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: andyaviles
+ms.reviewer: shshubhe
 ms.date: 06/12/2025
 monikerRange: 'azureml-api-2'
 ---

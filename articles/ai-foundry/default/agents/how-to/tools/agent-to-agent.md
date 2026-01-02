@@ -39,7 +39,7 @@ Connecting agents via the A2A tool versus a multi-agent workflow:
 
 - An Azure subscription with an active Foundry project.
 - A model deployment (for example, gpt-4) in your Foundry project.
-- Required Azure role: Contributor or Owner on the Foundry project resource.
+- Required Azure role: On the Foundry resource, **Contributor** or **Owner** for management and **Azure AI User** for building an agent.
 - SDK installation:
   - Python: `pip install azure-ai-projects[agents]` (latest prerelease)
   - C#: `Azure.AI.Projects` NuGet package

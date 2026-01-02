@@ -9,7 +9,7 @@ ms.topic: how-to
 author: s-polly
 ms.author: scottpolly
 ms.date: 11/16/2023
-ms.reviewer: cacrest
+ms.reviewer: jturuk
 ms.custom:
   - how-to
   - devplatv2

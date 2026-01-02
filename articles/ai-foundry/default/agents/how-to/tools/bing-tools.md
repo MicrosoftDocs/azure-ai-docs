@@ -45,7 +45,7 @@ Before you begin, make sure you have:
 - An Azure subscription with the right permissions.
 - Azure RBAC roles:
   - **Contributor** or **Owner** role at the subscription or resource group level to create Bing resources and get resource keys.
-  - **Azure AI Project Manager** role to create Foundry connections to Bing resources.
+  - **Azure AI Owner** role to create Foundry connections to Bing resources.
 - A Foundry project created with a configured endpoint.
 - An AI model deployed in your project.
 - SDK installed for your preferred language:
@@ -983,7 +983,7 @@ Replace all placeholder values (including `{{` and `}}`) with your actual resour
 **Solution**: 
 1. Verify you have the required RBAC roles:
    - **Contributor** or **Owner** role for creating Bing resources
-   - **Azure AI Project Manager** role for creating Foundry connections
+   - **Azure AI Owner** role for creating Foundry connections
 1. Check that your Azure credentials are properly configured:
    - For Python/TypeScript: `DefaultAzureCredential` can authenticate
    - For REST: Bearer token is valid and not expired
@@ -1032,6 +1032,14 @@ Create a `.env` file or set system environment variables with these values.
 - For explicit tool usage, set `tool_choice="required"` in your request (Python/TypeScript examples show this).
 - Verify the tool is properly configured in the agent definition.
 - Check agent instructions encourage using available tools for current information.
+
+### Instance name not found for Grounding with Bing Custom Search tool
+
+**Problem**:  {"error": "Tool_User_Error", "message": "[bing_search] Failed to call Get Custom Search Instance with status 404: {\"error\":{\"code\":\"ResourceNotFound\",\"message\":\"Instance or Customer not found\",\"target\":\"instanceName or customerId\"}}.
+
+**Solution**:
+- Ensure your instance name is in the Grounding with Bing Custom Search resource you are using.
+- Double check if your instance name is spelled correctly.
 
 ## Manage Grounding with Bing Search and Grounding with Bing Custom Search
 
