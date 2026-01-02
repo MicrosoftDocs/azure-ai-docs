@@ -113,7 +113,7 @@ Learn more about [Monitor agent health and performance across your fleet](monito
 
 ### View traces
 
-You can view traces and logs sent to Foundry. Traces are stored in Azure Application Insights and can be quiered using Microsoft Foundry portal or any other compatible tool.
+You can view traces and logs sent to Foundry. Traces are stored in Azure Application Insights and can be queried using Microsoft Foundry portal or any other compatible tool.
 
 To view them:
 
@@ -125,11 +125,13 @@ To view them:
 
 1. Select the **Traces** tab.
 
-1. You see one entry for each HTTP call made to the agent.
+1. You see one entry for each call made to the agent. 
+
+1. Two columns contain IDs associated with the call, **Trace ID** and **Conversation ID**. Traces are stored in Azure Application Insights and contain telemetry to diagnost behavior. **Conversation ID** column applies for Foundry agents which contains the *conversation* associated with the trace. Conversations are stored in Microsoft Foundry service:
 
     :::image type="content" source="media/how-to-manage-agents/inventory-traces-list.png" alt-text="Screenshot of the traces associated with one agent." lightbox="media/how-to-manage-agents/inventory-traces-list.png":::
 
-1. To see the details, select an value under **Trace ID** column. For Foundry agents, you also see **Conversation ID** column, which contains the *conversation* associated with the trace. Traces are stored in Azure Application Insights, while conversations are stored in Microsoft Foundry service: 
+1. To see the details, select a value under **Trace ID** column.: 
 
     :::image type="content" source="media/how-to-manage-agents/inventory-traces-view.png" alt-text="Screenshot of a single trace with LLM calls." lightbox="media/how-to-manage-agents/inventory-traces-view.png":::
 
@@ -152,7 +154,7 @@ The following platforms support stopping agents. Foundry agent's support depends
 | Platform | Agent kind | Published | Supported actions | Notes        |
 |----------|------------|-----------|-------------------|--------------|
 | Foundry | Prompt<br />Workflow | No | None | Unpublished agents don't have dedicated deployments and they use the project's endpoint to receive requests. Hence, their lifecycle is attached to the project's lifecycle. To stop an unpublished prompt agent or workflow, you must delete them. |
-| Foundry | Hosted | No | Start/stop | Stopping a hosted agent stops the deployment associated with it. Any compute attached to it's deallocated. |
+| Foundry | Hosted | No | Start/stop | Stopping a hosted agent stops the deployment associated with it. Any compute attached to is deallocated. |
 | Foundry | Prompt<br />Workflow<br />Hosted | Yes | Start/stop | Stopping a published agent stops the deployment associated with it. It deallocates any compute attached. |
 | Azure SRE | NA | NA | Start/stop | |
 | Azure Logic Apps | NA | NA | Start/stop | You can start/stop an Azure Logic Apps agent loop by stopping the LogicApp resource that hosts them. Stopping a LogicApp resources stops all the workflows associated with it. |
@@ -207,7 +209,7 @@ To unblock the agent:
 
 ### Unknown states
 
-Under certain circustances, agents can display the status **Unkown**. On those cases, Control Plane is unable to determine the status of the agent either because the source platform is unavailable or because the agent has failed to report its state back.
+Under certain circumstances, agents can display the status **Unknown**. On those cases, Control Plane is unable to determine the status of the agent either because the source platform is unavailable or because the agent failed to report its state back.
 
 ## Related content
 
