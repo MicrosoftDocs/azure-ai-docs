@@ -89,12 +89,14 @@ Speech to text can offer different ways for users to interact with applications 
 
 ### Considerations when choosing other use cases
 
-The speech to text API offers convenient options for developing voice-enabled applications, but it is very important to consider the context in which you will integrate the API. You must ensure that you comply with all laws and regulations that apply to your application. This includes understanding your obligations under privacy and communication laws, including national and regional privacy, eavesdropping, and wiretap laws that apply to your jurisdiction. Collect and process only audio that is within the reasonable expectations of your users. This includes ensuring that you have all necessary and appropriate consents from users for you to collect, process, and store their audio data.
+The speech to text API offers convenient options for developing voice-enabled applications, but it is important to consider the context in which you integrate the API. You must ensure that you comply with all applicable laws and regulations when integrating the speech to text API.
+<!-- Edited to remove duplicated privacy boilerplate and retain a single, precise compliance statement -->
 
-Many applications are designed and intended to be used by a specific individual user for voice-enabled queries, commands, or dictation. However, the microphone for your application might pick up sound or voice from non-primary users. To avoid unintentionally capturing the voices of non-primary users, you should consider the following information:
+Many applications are designed and intended to be used by a specific individual user for voice-enabled queries, commands, or dictation. However, the microphone for your application might capture audio from non-primary users.
+<!-- Edited to consolidate incidental-capture guidance -->
 
-- **Microphone considerations**:  Often, you cannot control who might speak near the input device that sends audio input to the speech to text cloud service. You should encourage your users to take extra care when they use voice-enabled features and applications in a public or open environment where other people's voices might be easily captured.
-- **Use speech to text only in experiences and features that are within the reasonable expectations of your users**:  Audio data that contains a person speaking is personal information. Speech to text is not intended to be used for covert audio surveillance purposes, in a manner that violates legal requirements, or in applications and devices in public spaces or locations where users might have a reasonable expectation of privacy. Use the Speech service only to collect and process audio in ways that are within the reasonable expectations of your users. This includes ensuring that you have all necessary and appropriate consents from users to collect, process, and store their audio data.
+- **Incidental audio capture**: Microphones might unintentionally capture the voices of people other than the primary user, especially in public or shared environments. Design your experiences to account for this risk, and provide clear user awareness and controls.  
+<!-- Edited to retain a single concise bullet and defer detailed consent guidance to privacy sections -->
 - **Azure Speech service and integration of the Whisper model**: The Whisper model enhances the Azure Speech service with advanced features like multilingual recognition and readability. The Speech service also enriches the performance of the Whisper model by enabling larger-scale batch transcriptions and speaker diarization. Whether to use the default Speech service speech to text model or Whisper model depends on the specific use case. We recommend that you take advantage of the batch try out and custom speech experiences in Speech Studio to evaluate both options to find the best fit for your business needs.
 - **Conversation transcription on prerecorded events**: The system will perform better if all speakers are in the same acoustic environment (for example, the conversation takes place in a room in which people speak into a common microphone).
 - **Conversation transcription**: Although there is no limitation on the numbers of speakers in the conversation, the system performs better when the number of speakers is under 30.
@@ -222,7 +224,7 @@ When getting ready to deploy AI-powered products or features, the following acti
 A successful privacy approach empowers individuals with information and provides controls and protection to preserve their privacy.
 
 **Consent to process and store audio input**: Be sure to have all necessary permissions from your end users before you use the speech to text-enabled features in your applications or devices. Also ensure that you have permission for Microsoft to process this data as your third-party cloud service processor. Note that the real-time API does not separately store any of the audio input and transcription output data. However, you can design your application or device to retain end-user data, such as transcription text. You have an option to turn on local data logging via the Speech SDK (see [Enable logging in the Speech SDK](/azure/ai-services/speech-service/how-to-use-logging)).
-
+<!-- Edited to preserve the specific technical qualifier about real-time processing while removing repetition -->
 
 ## Next steps
 

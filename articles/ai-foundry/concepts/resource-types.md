@@ -20,15 +20,13 @@ ms.custom:
 
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
-Choosing the right Azure resource type ensures you have access to the capabilities you need while maintaining appropriate security and governance. This article helps you understand which resource type best fits your AI development scenario—whether you're building generative AI applications, integrating search, or working within specific security constraints.
-
-An Azure resource is required to use and manage services in Azure. It defines the scope for configuring, securing, and monitoring the tools or capabilities you want to use—like AI models, agents, or storage.
-
-Microsoft Foundry portal and SDK clients support multiple distinct Azure resource types, each designed to serve different development and operational needs.
+An Azure resource defines the scope for configuring, securing, and monitoring AI capabilities (such as models, agents, and storage) in Azure. Microsoft Foundry portal and SDK clients support multiple resource types, each optimized for a specific development or operational scenario.
+<!-- Condensed introductory marketing-style content into a single concise definition with clear scope, per agent feedback. -->
 
 ## Resource Types supported with Foundry portal and SDK clients
 
-* **Foundry** – The primary resource type for designing, deploying, and managing generative AI applications and agents. It provides access to the superset of Azure AI capabilities. This includes agent service, models sold by Microsoft and its partners, evaluations, Foundry Tools and Azure OpenAI service capabilities. Foundry is the recommended resource type for most applications built in Foundry. 
+* **Foundry** – An Azure resource that scopes design, deployment, governance, and runtime access for generative AI applications and agents, including agent service, Microsoft‑ and partner‑provided models, evaluations, Foundry Tools, and Azure OpenAI–compatible APIs. It is the default resource type for projects built in the Foundry portal.
+<!-- Replaced marketing-heavy description with a concise, scoped definition that focuses on what the resource controls and where it applies, per agent feedback. -->
  
   Get started by [creating a first Foundry resource](../../ai-services/multi-service-resource.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json).
 

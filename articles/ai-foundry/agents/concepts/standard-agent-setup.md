@@ -17,7 +17,8 @@ monikerRange: 'foundry-classic || foundry'
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-Standard Agent Setup offers enterprise-grade security, compliance, and control. This configuration uses customer-managed, single-tenant resources to store agent state and ensures all data remains within your control.  
+Standard Agent Setup uses customer-managed, single-tenant Azure resources to store agent state and keep all agent data under your control.  
+<!-- Edited to trim introductory marketing language to a single concise statement, per agent feedback. -->
 
 In this setup: 
 * Agent states (conversations, responses) are stored in your own Azure resources. 
@@ -32,12 +33,8 @@ By bundling these BYO features (file storage, search, and thread storage), the s
 
 ### Azure Cosmos DB for NoSQL
 
-Your existing Azure Cosmos DB for NoSQL Account used in standard setup must have a total throughput limit of at least **3000 RU/s**. Both **Provisioned Throughput** and **Serverless** modes are supported.
-
-When you use standard setup, **three containers** will be provisioned in your existing Cosmos DB account, and **each container requires 1000 RU/s**.
-* thread-message-store: End-user conversations
-* system-thread-message-store: Internal system messages
-* agent-entity-store: Agent metadata including their instructions, tools, name, etc.
+Standard setup requires an existing Azure Cosmos DB for NoSQL account with sufficient throughput to support three containers per project (thread-message-store, system-thread-message-store, and agent-entity-store), each requiring 1000 RU/s. This means a minimum of 3000 RU/s per project. For example, two projects under the same Foundry account require at least 6000 RU/s. Both Provisioned Throughput and Serverless modes are supported.
+<!-- Consolidated duplicated Cosmos DB throughput guidance into a single precise paragraph with a numeric example, per agent feedback. -->
 
 ## Project-Level Data Isolation
 Standard setup enforces project-level data isolation by default. Two blob storage containers will automatically be provisioned in your storage account, one for files and one for intermediate system data (chunks, embeddings) and three containers will be provisioned in your Cosmos DB, one for user systems, one for system messages, and one for user inputs related to created agents such as their instructions, tools, name, etc. This default behavior was chosen to reduce setup complexity while still enforcing strict data boundaries between projects.
@@ -123,15 +120,7 @@ Use an existing Azure OpenAI, Azure Storage account, Azure Cosmos DB for NoSQL a
 #### Use an existing Azure Cosmos DB for NoSQL account for thread storage
 
 An Azure Cosmos DB for NoSQL account is created for each Foundry account.
-
-For every project under a Foundry account, three containers are deployed within the same Cosmos DB account. Each container requires a minimum of 1000 RU/s.
-
-For example, if two projects are deployed under the same Foundry account, the Cosmos DB account must be configured with at least 6000 RU/s (3 containers × 1000 RU/s × 2 projects) to ensure sufficient throughput.
-
-Both provisioned throughput and serverless modes are supported.
-
-> [!NOTE]
-> Insufficient RU/s capacity in the Cosmos DB account will result in capability host provisioning failures during deployment.
+<!-- Removed duplicated throughput and RU/s guidance here to avoid repetition; consolidated earlier in the Azure Cosmos DB for NoSQL section, per agent feedback. -->
 
 1. To get your Azure Cosmos DB account resource ID, sign in to the Azure CLI and select the subscription with your account: 
     
