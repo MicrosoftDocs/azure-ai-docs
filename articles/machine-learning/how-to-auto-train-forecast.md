@@ -10,7 +10,7 @@ ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: how-to
 ms.custom: automl, sdkv2, build-2023, devx-track-python, devx-track-azurecli
-ms.date: 10/27/2025
+ms.date: 01/02/2026
 show_latex: true
 #customer intent: As a data scientist, I want to train time-series forecasting models and understand the options available for training them by using AutoML.
 ---
