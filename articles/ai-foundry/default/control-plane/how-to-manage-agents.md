@@ -1,3 +1,17 @@
+---
+title: "Manage agents in Microsoft Foundry Control Plane"
+description: "Learn how to manage agents using Microsoft Foundry Control Plane."
+author: santiagxf
+ms.author: scottpolly
+ms.reviewer: fasantia
+ms.date: 01/02/2026
+ms.manager: mcleans
+ms.topic: how-to
+ms.service: azure-ai-foundry
+ms.custom: dev-focus
+ai-usage: ai-assisted
+---
+
 # Manage agents
 
 The Microsoft Foundry Control Plane provides centralized management and observability for agents running across different platforms and infrastructures.
@@ -15,6 +29,7 @@ Control Plane automatically discovers [supported agents](#supported-agent-platfo
 The following information is displayed:
 
 | Column | Description | Applies to |
+|--------|-------------|------------|
 | **Name** | The name of the agent or the agentic resource. | All |
 | **Source** | The source platform from where the agent or resource was discovered. | All |
 | **Project** | The Foundry project associated with the agent. For custom agents, it's the project where the agent was registered to. | Foundry<br />Custom | 
@@ -38,7 +53,7 @@ Control Plane automatically discovers agents that users have access to. Because 
 Control Plane automatically discovers agents in the following platforms:
 
 > [!div class="checklist"]
-> * Foundry agents, including [prompt-based agents](../agents/concepts/overview.md), [workflows](../agents/concepts/workflow.md), and [hosted-agents](../agents/concepts/hosted-agents.md). Foundry classic agents and Azure OpenAI assistants are not supported.
+> * Foundry agents, including [prompt-based agents](../agents/concepts/overview.md), [workflows](../agents/concepts/workflow.md), and [hosted-agents](../agents/concepts/hosted-agents.md). 
 > * [Azure SRE Agent](/azure/sre-agent/)
 > * [Azure LogicApp agent loops](/azure/logic-apps/agent-workflows-concepts)
 
@@ -54,9 +69,9 @@ For each agent, you see:
 
 * Versions published as agent applications.
 
-:::image type="content" source="media/how-to-manage-agents/inventory-foundry-agent.png" alt-text="Screenshot of the inventory page listing multiple Foundry agents." lightbox="media/how-to-manage-agents/inventory-foundry-agent.png":::
+In this way, you can monitor versions consumed by your users and new versions under development. The following example shows multiple Foundry agents listed. Agent `format-agent` version 6 has been published, however, version 7 (latest) is still under development. 
 
-In this way, you can monitor versions consumed by your users and new versions under development.
+:::image type="content" source="media/how-to-manage-agents/inventory-foundry-agent.png" alt-text="Screenshot of the inventory page listing multiple Foundry agents." lightbox="media/how-to-manage-agents/inventory-foundry-agent.png":::
 
 > [!IMPORTANT]
 > Foundry classic agents and Azure OpenAI Assistants are not supported.
@@ -115,9 +130,13 @@ You can view traces and logs sent to Foundry. To view them:
     > Custom agents require extra configuration to see details including tools and LLMs spans. Learn more at [Instrument custom code agents](register-custom-agent.md#instrument-custom-code-agents).
 
 
+## Lifecycle operations
+
+Control Plane helps organizations to control agents to manage usage and infrastructure cost. Different agent platforms support different operations.
+
 ### Stop/start agents
 
-Stop agents to control usage and infrastructure costs. Stopping an agent stops the infrastructure that is associated with this agent and moves the agent to the **Stopped** state.
+Stopping an agent stops the infrastructure that is associated with this agent and moves the agent to the **Stopped** state.
 
 Stopping an agent deprovisions its infrastructure, terminating existing runs and preventing new runs. Any workflows or resources connected to this agent can't access it.
 
@@ -153,7 +172,7 @@ To start the agent:
 
 1. Confirm the operation.
 
-### Block and unblock the agent
+### Block and unblock agents
 
 For [custom agents](register-custom-agent.md), Foundry doesn't have access to the underlying infrastructure where the agent runs, so start and stop operations aren't available. However, Foundry can block incoming requests to the agent, preventing clients from consuming it. This capability allows administrators to disable an agent if it misbehaves.
 
