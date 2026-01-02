@@ -1341,4 +1341,4 @@ For examples of how to use reasoning models with the responses API see the [reas
 
 ## Computer use
 
-Computer use with Playwright has moved to the [dedicated computer use model guide](https://learn.microsoft.com/azure/ai-foundry/openai/how-to/computer-use#playwright-integration)
+Computer use with Playwright has moved to the [dedicated computer use model guide](computer-use.md#playwright-integration)
