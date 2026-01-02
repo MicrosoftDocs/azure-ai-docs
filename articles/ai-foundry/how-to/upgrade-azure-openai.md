@@ -45,8 +45,6 @@ Your existing resource configurations and state stay the same, including:
 
 ## Limitations
 
-Backend limitations:
-
 * Foundry model and feature availability [differs by region](../reference/region-support.md). For example, Agent service is [available](../agents/concepts/model-region-support.md) in select regions compared to Azure OpenAI service.
 * Azure OpenAI resources using **customer-managed keys** for encryption are available for upgrade by request only. [Fill out the request form here](https://forms.office.com/r/sKGZJ0YhDd).
 * The Foundry resource type doesn't support configuring Weights & Biases.
@@ -71,7 +69,7 @@ Before you upgrade your Azure OpenAI resource to a Foundry resource, ensure you 
 
 ### Upgrade your resource
 
-As a prerequisite to upgrade, managed identity must be enabled on your Azure OpenAI resource. You can complete the upgrade via the Foundry portal, Azure portal, or by using Azure Bicep or Resource Manager templates (recommended for resource configurations with custom security settings).
+You can complete the upgrade via the Foundry portal, Azure portal, or by using Azure Bicep or Resource Manager templates (recommended for resource configurations with custom security settings).
 
 # [Foundry portal](#tab/portal)
 
@@ -137,7 +135,7 @@ Run the template using [Azure Bicep CLI](/azure/azure-resource-manager/bicep/bic
 
 You can upgrade your Azure OpenAI resource using either the AzAPI or AzureRM Terraform providers.
 
-> [!NOTE]
+> [!IMPORTANT]
 > When using the [AzureRM resource provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cognitive_account.html), ensure you use a version greater than 4.57.0 of your Terraform CLI client for a non-destructive resource update.
 
 Start from your existing Azure OpenAI configuration and update the following properties:
@@ -187,7 +185,7 @@ Microsoft Foundry provides a broader set of models and capabilities than an Azur
 
 However, **IT administrators should review any wildcard role assignments or Policies that do not restrict access to a specific resource kind.** These broad definitions may unintentionally grant users access to Foundry‑only features immediately after upgrade.
 
-If you intend to roll out non‑OpenAI features gradually, ensure that you update your RBAC role assignments, Azure Policy definitions, and any custom roles before performing the upgrade.
+If you intend to roll out non‑OpenAI features gradually, ensure that you update your RBAC role assignments, Azure Policy definitions, and any custom roles before performing the upgrade. For details on permissions, see [Role Based Acess Control](/concepts/rbac-azure-ai-foundry.md).
 
 Post-upgrade behavior depends on your existing governance setup:
 
