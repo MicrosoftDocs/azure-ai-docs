@@ -19,7 +19,10 @@ The Foundry Tools enables you to:
 
 * Browse and use Model Context Protocol (MCP) tool servers created by Microsoft and non-Microsoft services, for various use cases such as data integration, productivity and more. 
 * Streamline integration between tool configuration and adding to an agent or workflow. 
-* Filter, search, and sort by your desired outcome 
+* Filter, search, and sort by your desired outcome
+
+>[Note]
+>If you are interested in bringing your official, remote MCP server(s) to all Foundry customers, please fill out this [form](https://forms.office.com/r/EEvMNceMRU). 
 
 ## Considerations for using non-Microsoft services and servers 
 
@@ -106,3 +109,4 @@ Foundry Tools contains three sections:
 
 * [Create a private tool catalog](../how-to/private-tool-catalog.md)
 * [Build your own MCP server](https://aka.ms/FoundryCustomTool)
+* [Bring your remote, official MCP server to all Foundry customers](https://forms.office.com/r/EEvMNceMRU)
