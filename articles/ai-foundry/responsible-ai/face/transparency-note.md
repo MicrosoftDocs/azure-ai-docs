@@ -16,21 +16,26 @@ ms.date: 06/21/2022
 
 ## What is a Transparency Note?
 
-An AI system includes not only the technology, but also the people who will use it, the people who will be affected by it, and the environment in which it is deployed. Creating a system that is fit for its intended purpose requires an understanding of how the technology works, its capabilities and limitations, and how to achieve the best performance. 
+An AI system includes the technology itself, the people who operate it, the people affected by its outputs, and the environment in which it runs. To determine whether a system is fit for a specific purpose, you must understand how the technology works, what inputs it requires, what outputs it produces, and the known limitations that affect performance.  
+<!-- Edited to reduce high-level framing and focus on concrete evaluation criteria -->
 
-Microsoft's Transparency Notes are intended to help you understand how our AI technology works, the choices system owners can make that influence system performance and behavior, and the importance of thinking about the whole system, including the technology, the people, and the environment. You can use Transparency Notes when developing or deploying your own system, or share them with the people who will use or be affected by your system. 
+Microsoft Transparency Notes describe how an AI service functions, the configuration and usage choices that affect system behavior, and the limitations that system owners must account for when designing and deploying solutions. They are intended to support design, risk assessment, deployment planning, and communication with users or affected stakeholders.  
+<!-- Rephrased to remove marketing language and emphasize practical use -->
 
-Microsoft's Transparency Notes are part of a broader effort at Microsoft to put our AI principles into practice. To find out more, see [Microsoft AI principles](https://www.microsoft.com/ai/responsible-ai). 
+Transparency Notes support Microsoft’s broader Responsible AI commitments by documenting expected behaviors, constraints, and risk considerations for each service. For more information, see [Microsoft AI principles](https://www.microsoft.com/ai/responsible-ai).  
+<!-- Trimmed to focus on documentation purpose rather than promotional intent -->
 
-This Transparency Note is part of our effort at Microsoft to implement our [Facial Recognition Principles](https://blogs.microsoft.com/on-the-issues/2018/12/17/six-principles-to-guide-microsofts-facial-recognition-work/), which set out how we approach the development and deployment of facial recognition technology. We encourage you to use the principles to guide your development efforts as you use this technology. 
+This Transparency Note aligns with Microsoft’s [Facial Recognition Principles](https://blogs.microsoft.com/on-the-issues/2018/12/17/six-principles-to-guide-microsofts-facial-recognition-work/), which define requirements and safeguards for the development and deployment of facial recognition technology. System owners should use these principles to evaluate whether their intended use is appropriate and compliant.  
+<!-- Rephrased to clarify how principles are applied in practice -->
 
 ## The basics of Azure Vision in Foundry Tools Face API
 
-Depending on the specific capability, Vision Face API (“Face API”) detects, recognizes, and/or analyzes human faces in images and videos using pre-trained machine learning models that have been developed by Microsoft. Developers can integrate Face API functions into their systems without creating their own models. 
+Depending on the specific capability, Vision Face API (“Face API”) detects, recognizes, and/or analyzes human faces in images and videos using pre-trained machine learning models developed by Microsoft. Developers can integrate Face API functions into their systems without training or hosting their own models.  
 
-When used responsibly, Face API is an important and useful building block technology that can improve efficiency, security, and customer experiences when used to create systems that analyze the face. 
+Face API can be used as a component in systems that analyze faces for detection, verification, identification, or liveness scenarios, subject to eligibility requirements, feature limitations, and Responsible AI constraints described in this document.  
+<!-- Rephrased to remove promotional tone and emphasize constraints -->
 
-Certain Face API features, such as facial recognition, generate unique identifying numerical (or other) representations of the face known as facial templates. Learn more about the process, including data retention periods, at the [Data and privacy for Vision Face API](/azure/ai-foundry/responsible-ai/face/data-privacy-security) documentation page. 
+Certain Face API features, such as facial recognition, generate unique identifying numerical (or other) representations of the face known as facial templates. Learn more about the process, including data retention periods, at the [Data and privacy for Vision Face API](/azure/ai-foundry/responsible-ai/face/data-privacy-security) documentation page.  
 
 > [!WARNING]
 > On June 11, 2020, Microsoft announced that it will not sell facial recognition technology to police departments in the United States until strong regulation, grounded in human rights, has been enacted. As such, customers may not use facial recognition features or functionality included in Azure Services, such as Face or Video Indexer, if a customer is, or is allowing use of such services by or for, a police department in the United States. When you create a new Face resource, you must acknowledge and agree in the Azure portal that you will not use the service by or for a police department in the United States and that you have reviewed the Responsible AI documentation and will use this service in accordance with it.

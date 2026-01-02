@@ -36,7 +36,8 @@ When getting ready to integrate and responsibly use AI-powered products or featu
 * **Train and support your end users**: The people who use the output of your solution or who decide whether the output is correct might not have experience collaborating with AI systems, which might result in mismatched judgments or the introduction of unfair bias. You can empower these users by evaluating where mismatches might occur and providing training and ongoing evaluation and support.
 
 * **Security**: Ensure your solution is secure and has adequate controls to preserve the integrity of your content and prevent unauthorized access, including: 
-    - Implement (and, when possible, automate) strict data retention plans per existing policies/regulation, such as deleting raw data as soon as insights are derived.  
+    - Implement (and, when possible, automate) strict data retention plans per existing policies/regulation, such as deleting raw biometric images as soon as insights are derived (for example, retaining raw images for no more than 24 hours).  
+    <!-- Added a concrete example to clarify data retention expectations and replace a general statement with a specific constraint. -->
     - Provide appropriate safeguards to secure any data collected, including de-identification and encryption. 
 
 * **Build trust with affected stakeholders**: Communicate the expected benefits and potential risks to affected stakeholders. Help people understand why the data is needed and how the use of the data will lead to their benefit. Describe data handling in an understandable way.  

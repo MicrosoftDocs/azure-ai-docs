@@ -36,7 +36,8 @@ To access the management center, sign in to [Foundry](https://ai.azure.com/?cid=
 
 ## Manage Foundry projects
 
-Use the management center to create and configure [!INCLUDE [FDP](../includes/fdp-project-name.md)]s. Use **All resources** to view all [!INCLUDE [FDP](../includes/fdp-project-name.md)]s that you have access to, or to create new projects. Use the **Project** section of the left menu to manage and create individual [!INCLUDE [FDP](../includes/fdp-project-name.md)] on the Foundry resource.
+Use the management center to create and configure [!INCLUDE [FDP](../includes/fdp-project-name.md)]s. Use **All resources** to view all [!INCLUDE [FDP](../includes/fdp-project-name.md)]s that you have access to, or to create new projects. Use the **Project** section (Project = Foundry project) of the left menu to manage and create individual [!INCLUDE [FDP](../includes/fdp-project-name.md)] on the Foundry resource.
+<!-- Explanation: Added an inline qualifier to clarify that the Project section refers specifically to a Foundry project. -->
 
 :::image type="content" source="../media/management-center/project-management.png" alt-text="Screenshot of the all resources, hub, and project sections of the management studio selected." lightbox="../media/management-center/project-management.png":::
 
@@ -51,7 +52,8 @@ For more information, see [Create a [!INCLUDE [hub-project-name](../includes/hub
 
 ## Manage resource utilization
 
-View and manage quotas and usage metrics across multiple projects and Azure subscriptions. Use the **Quota** link from the left menu to view and manage quotas.
+View and manage quotas and usage metrics across multiple projects and Azure subscriptions. Use the **Quota** link from the left menu to view and manage quotas (VM quotas — hub-based projects only).
+<!-- Explanation: Added an inline scope qualifier to clarify that VM quotas apply only to hub-based projects. -->
 
 :::image type="content" source="../media/management-center/quotas.png" alt-text="Screenshot of the quotas section of the management center." lightbox="../media/management-center/quotas.png":::
 

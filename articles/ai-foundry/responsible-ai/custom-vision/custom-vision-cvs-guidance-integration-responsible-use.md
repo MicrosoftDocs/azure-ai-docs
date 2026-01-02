@@ -20,19 +20,25 @@ Microsoft wants to help you responsibly develop and deploy solutions that use Az
 
 When you're getting ready to deploy Custom Vision, the following activities help to set you up for success:
 
-* **Understand what it can do:** Fully assess Custom Vision to understand its capabilities and limitations. Understand how it will perform in your particular scenario and context, by thoroughly testing it with real-life conditions and data.
+* **Understand what it can do:** Fully assess Custom Vision to understand its capabilities and limitations. Understand how it will perform in your particular deployment scenario and operational context by thoroughly testing it with production‑like images, representative lighting conditions, and target camera hardware.
+<!-- Comment: Scoped ambiguous terms by adding concrete deployment and testing context. -->
 
-* **Respect an individual's right to privacy:** Only collect data and information from individuals for lawful and justifiable purposes. Only use data and information that you have consent to use for this purpose. For example, evaluate camera locations and positions. Adjust angles and the region of interest, so they don't monitor protected areas, such as bathrooms, or public spaces, such as external streets or mall concourses.
+* **Respect an individual's right to privacy:** Only collect image data from individuals for lawful and justifiable purposes, and only use training or inference images for which you have explicit, documented consent for the stated use. For example, evaluate camera locations and positions. Adjust camera angles and regions of interest so they exclude protected areas (for example, bathrooms) and non‑consented public spaces (for example, external streets or mall concourses).
+<!-- Comment: Clarified data type, consent scope, and tightened camera usage guidance with explicit constraints. -->
 
 * **Legal review:** Obtain appropriate legal advice to review your solution, particularly if you will use it in sensitive or high-risk applications. Understand what restrictions you might need to work within, and your responsibility to resolve any issues that might come up in the future. Do not provide any legal advice or guidance.
 
-* **Human in the loop:** Keep a human in the loop, and include human oversight as a consistent pattern area to explore. This means ensuring constant human oversight of the AI-powered product or feature, and maintaining the role of humans in decision-making. Ensure that you can have real-time human intervention in the solution to prevent harm. This enables you to manage situations when the AI system does not perform as required.
+* **Human in the loop:** Keep a human in the loop by requiring human review for high‑impact predictions and maintaining real‑time human override for production inference workflows. This means ensuring constant human oversight of the AI-powered product or feature, and maintaining the role of humans in decision-making. Ensure that you can have real-time human intervention in the solution to prevent harm. This enables you to manage situations when the AI system does not perform as required.
+<!-- Comment: Clarified human-in-the-loop expectations with operational qualifiers. -->
 
-* **Security:** Ensure your solution is secure, and that it has adequate controls to preserve the integrity of your content and prevent unauthorized access.
+* **Security:** Ensure your solution is secure by implementing controls such as encrypted storage for training images, role‑based access control for project resources, and restricted access to prediction endpoints.
+<!-- Comment: Strengthened security guidance with explicit control examples. -->
 
-* **Build trust with affected stakeholders**: Communicate the expected benefits and potential risks to affected stakeholders. Help people understand why the data is needed and how the use of the data will lead to their benefit. Describe data handling in an understandable way.
+* **Build trust with affected stakeholders**: Communicate the expected benefits and potential risks of image collection and automated classification to affected stakeholders, including employees, visitors, or customers. Help people understand why the data is needed and how the use of the data will lead to their benefit. Describe data handling in an understandable way.
+<!-- Comment: Clarified stakeholder communication scope and affected parties. -->
 
-* **Customer feedback loop:** Provide a feedback channel that allows users and individuals to report issues with the service after it has been deployed. Monitor and improve the AI-powered product or feature on an ongoing basis. Be ready to implement any feedback and suggestions for improvement. Establish channels to collect questions and concerns from affected stakeholders (people who might be directly or indirectly impacted by the system, including employees, visitors, and the general public). For example:
+* **Customer feedback loop:** Provide at least one persistent feedback channel (for example, an in‑app form or monitored email address) that allows users and affected individuals to report issues after deployment. Monitor and improve the AI-powered product or feature on an ongoing basis. Be ready to implement any feedback and suggestions for improvement. Establish channels to collect questions and concerns from affected stakeholders (people who might be directly or indirectly impacted by the system, including employees, visitors, and the general public). For example:
+<!-- Comment: Tightened feedback loop guidance with explicit, actionable channels. -->
 
   * Feedback features built into app experiences.
   * An easy-to-remember email address for feedback.

@@ -36,9 +36,11 @@ For single-label classification, it is not possible to have a false negative, be
 
 The preceding categories are then used to calculate *precision*, *recall* and an *F1 score*. These metrics are provided as part of the service's model evaluation. Here are the metric definitions and how they're calculated:<br>
 
-**Precision**: The measure of the model's ability to predict actual positive classes. It's the ratio between the predicted true positives and the actually tagged positives. Recall returns how many predicted classes are correct.
+**Precision**: The measure of the model’s ability to predict actual positive classes. It is calculated as true positives divided by the sum of true positives and false positives (TP / (TP + FP)).  
+<!-- Updated to remove duplicated/incorrect wording and provide the correct precision definition and formula. -->
 
-**Recall**: The measure of the model's ability to predict actual positive classes. It's the ratio between the predicted true positives and the actually tagged positives. Recall returns how many predicted classes are correct.
+**Recall**: The measure of the model’s ability to identify all actual positive classes. It is calculated as true positives divided by the sum of true positives and false negatives (TP / (TP + FN)).  
+<!-- Updated to remove duplicated precision text and provide the correct recall definition and formula. -->
 
 **F1 score**: A function of precision and recall. An F1 score is needed when you are seeking a balance between precision and recall.
 

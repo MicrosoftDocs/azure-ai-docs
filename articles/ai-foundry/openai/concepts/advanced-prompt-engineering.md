@@ -16,16 +16,19 @@ monikerRange: 'foundry-classic || foundry'
 
 # System message design
 
-This guide walks you through some techniques in system message design. 
+This guide describes concrete techniques for writing system messages, including when to use short constraints versus multi-line rule sets.  
+<!-- Edited to replace low-signal introductory boilerplate with concise, concrete guidance per agent feedback. -->
 
 
 
 ## What is a system message?
 
-A system message is a feature-specific set of instructions or contextual frameworks given to a generative AI model (for example GPT-4o, GPT-3.5 Turbo, etc.) to direct and improve the quality and safety of a model’s output. This is particularly helpful in situations that need certain degrees of formality, technical language, or industry-specific terms.  
+A system message is a feature-specific set of instructions given to a generative AI model (for example, GPT‑4o or GPT‑3.5‑Turbo) that constrains output style, scope, and safety (for example, formality level, required terminology, or allowed topics).  
+<!-- Edited to remove generic benefit language and focus on specific, actionable purpose. -->
 
 
-There is no prescribed length. A system message can be one short sentence:  
+There is no prescribed length; use one sentence for a single behavioral constraint, or multiple lines when defining rules, formatting requirements, or refusal behavior:  
+<!-- Edited to emphasize actionable guidance on when to use short versus multi-line system messages. -->
 
 ```
 You are a helpful AI assistant.
@@ -57,6 +60,5 @@ Some other examples of system messages are:
 }
 ```
 
-An important detail to understand is that even if you instruct a model in the system message to answer **I don't know** when unsure of an answer this doesn't guarantee that the request will be honored. A well designed system message can increase the likelihood of a certain outcome, but it's still possible that an incorrect response could be generated that contradicts the intent of the instruction in the system message.
-
-
+Even with explicit instructions (for example, “respond with *I don’t know* when uncertain”), compliance is probabilistic. System messages increase likelihood, not guarantees, and should be validated with testing and monitoring.  
+<!-- Edited to reduce repetition and clearly state limitations with a concrete outcome. -->

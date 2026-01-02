@@ -18,15 +18,13 @@ ms.date: 5/5/2021
 
 ## What is a transparency note?
 
-An AI system includes not only the technology, but also the people who will use it, the people who will be affected by it, and the environment in which it is deployed. Creating a system that is fit for its intended purpose requires an understanding of how the technology works, its capabilities and limitations, and how to achieve the best performance.
-
-Microsoft provides *transparency notes* to help you understand how our AI technology works. This includes the choices system owners can make that influence system performance and behavior, and the importance of thinking about the whole system, including the technology, the people, and the environment. You can use transparency notes when developing or deploying your own system, or share them with the people who will use or be affected by your system.
-
-Transparency notes are part of a broader effort at Microsoft to put our AI principles into practice. To find out more, see [Microsoft's AI principles](https://www.microsoft.com/ai/responsible-ai).
+A transparency note describes how an AI service works, its intended use, key capabilities, limitations, and deployment considerations so system owners can make informed design and governance decisions. For more information, see [Microsoft's AI principles](https://www.microsoft.com/ai/responsible-ai).
+<!-- Edited to replace marketing-style narrative with a concise, factual definition per agent feedback. -->
 
 ## Introduction to QnA Maker
 
-QnA Maker is a cloud-based, natural language processing service that easily creates a natural conversational layer over your data. It can be used to find the most appropriate answer for a specified natural language input, from your custom knowledge base of information. See the list of supported languages [here](/azure/ai-services/qnamaker/overview/language-support?tabs=v1).
+QnA Maker is a cloud-based natural language processing service that answers user questions by matching them against a customer‑managed knowledge base of question‑and‑answer pairs. Supported languages are listed [here](/azure/ai-services/qnamaker/overview/language-support?tabs=v1).
+<!-- Edited to focus on concrete capabilities and constraints, removing marketing-style language per agent feedback. -->
 
 QnA Maker is commonly used to build conversational client applications, which include social media applications, chat bots, and speech-enabled desktop applications. A client application based on QnA Maker can be any conversational application that communicates with a user in natural language to answer a question.
 

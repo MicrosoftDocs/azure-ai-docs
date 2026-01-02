@@ -41,9 +41,11 @@ The prediction results are returned to the caller that provided the prediction i
 
 ## How is data retained and what customer controls are available?
 
-The configuration, training images, training labels, and custom model are associated with the project. Custom Vision stores all of them for the lifetime of the project. The prediction images can also be stored with the project, to be used later for model training. When the images aren't used for training for 30 days, they're deleted automatically.
+The configuration, training images, training labels, and custom model are associated with a project and are stored for the lifetime of that project. Prediction images can also be stored with a project and used later for model training. Prediction images that are stored with a project but not used for training are automatically deleted after 30 days.
+<!-- Clarified retention behavior by explicitly separating project-scoped data and unused prediction images, as requested in agent feedback. -->
 
-You have full control over viewing and deleting your data. For more information, see [View or delete user data in Custom Vision](/azure/ai-services/custom-vision-service/export-delete-data). When you delete a project, the data associated with the project is deleted within 30 days from the Azure AI Custom Vision service. Note that if the Azure subscription is deleted, the project data is also deleted after 90 days.
+You have full control over viewing and deleting your data. For more information, see [View or delete user data in Custom Vision](/azure/ai-services/custom-vision-service/export-delete-data). When you delete a project, all data associated with that project is removed from the Azure AI Custom Vision service within 30 days. If the Azure subscription is deleted, project data associated with that subscription is deleted after 90 days.
+<!-- Clarified deletion timelines by explicitly stating the scope (project deletion vs. subscription deletion) and associated retention periods. -->
 
 To learn more about privacy and security commitments, see the [Microsoft Trust Center](https://www.microsoft.com/trust-center).
 

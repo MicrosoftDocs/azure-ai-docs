@@ -14,7 +14,8 @@ ms.date: 02/21/2024
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
-Microsoft works to help customers responsibly develop and deploy solutions that use Anomaly Detector. Our principled approach upholds personal agency and dignity by considering the AI system's fairness, reliability and safety, privacy and security, inclusiveness, transparency, and human accountability. These considerations reflect our commitment to developing responsible AI.
+This article provides guidance for customers and developers who integrate Anomaly Detector into their solutions, with a focus on responsible use, deployment considerations, and risk mitigation.
+<!-- Replaced marketing-style introduction with a concise scope statement defining audience and purpose, per agent feedback and Microsoft style guidance. -->
 
 > [!NOTE]
 > While the information in this article only refers to Anomaly Detector, most of the concepts described apply to both Anomaly Detector and Azure AI Metrics Advisor. Metrics Advisor is built on top of the core technology from Anomaly Detector.
