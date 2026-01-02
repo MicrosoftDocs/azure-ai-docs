@@ -58,7 +58,7 @@ train_table = mltable.from_delimited_files(paths)
 train_table.save('./train_data')
 ```
 
-This code creates a new file, *./train_data/MLTable*, which contains the file format and loading instructions.
+This code creates a new file, *./train_data/MLTable*, that contains the file format and loading instructions.
 
 To start the training job, define an input data object by using the Python SDK:
 
@@ -151,7 +151,7 @@ You can create a new compute named `cpu-compute` by using the following Azure CL
 az ml compute create -n cpu-compute --type amlcompute --min-instances 0 --max-instances 4
 ```
 
-Reference the compute in the job definition as follows:
+Reference the compute in the job definition as shown here:
 
 ```yml
 $schema: https://azuremlsdk2.blob.core.windows.net/preview/0.0.1/autoMLJob.schema.json
@@ -341,7 +341,7 @@ forecasting:
 
 ---
 
-AutoML tries to automatically detect time series ID columns in your data if none is specified.
+AutoML tries to automatically detect time series ID columns in your data if none are specified.
 
 Other settings are optional and described in the following section.
 
@@ -431,9 +431,9 @@ AutoML ships with a custom deep neural network (DNN) model named `TCNForecaster`
 
 :::image type="content" source="media/how-to-auto-train-forecast/tcn-basic.png" alt-text="Diagram that shows the major components of the AutoML TCNForecaster model." border="false" lightbox="media/how-to-auto-train-forecast/tcn-basic.png":::
 
-TCNForecaster often achieves higher accuracy than standard time-series models when there are thousands or more observations in the training history. However, it also takes longer to train and sweep over TCNForecaster models because of their higher capacity.
+TCNForecaster often achieves higher accuracy than standard time-series models when there are thousands of observations or more in the training history. However, it also takes longer to train and sweep over TCNForecaster models because of their higher capacity.
 
-You can enable the TCNForecaster in AutoML by setting the `enable_dnn_training` flag in the training configuration, as follows:
+You can enable the TCNForecaster in AutoML by setting the `enable_dnn_training` flag in the training configuration, as shown here:
 
 # [Python SDK](#tab/python)
 
@@ -469,7 +469,7 @@ To enable DNN for an AutoML experiment created in Azure Machine Learning studio,
 
 Recent values of the target are often impactful features in a forecasting model. Accordingly, AutoML can create time-lagged and rolling-window aggregation features to potentially improve model accuracy.
 
-Consider an energy demand forecasting scenario where weather data and historical demand are available. The table shows resulting feature engineering that occurs when window aggregation is applied over the most recent three hours. Columns for *minimum*, *maximum,* and *sum* are generated on a sliding window of three hours based on the defined settings. For instance, for the observation valid on September 8, 2017, 4:00 AM, the maximum, minimum, and sum values are calculated by using the *demand values* for September 8, 2017, 1:00 AM - 3:00 AM. This window of three hours shifts along to populate data for the remaining rows. For more information and examples, see the [Lag features for time-series forecasting in AutoML](concept-automl-forecasting-lags.md).
+Consider an energy demand forecasting scenario where weather data and historical demand are available. The table shows resulting feature engineering that occurs when window aggregation is applied over the most recent three hours. Columns for *minimum*, *maximum,* and *sum* are generated on a sliding window of three hours based on the defined settings. For instance, for the observation valid on September 8, 2017, 4:00 AM, the maximum, minimum, and sum values are calculated by using the *demand values* for September 8, 2017, 1:00 AM to 3:00 AM. This window of three hours shifts along to populate data for the remaining rows. For more information and examples, see the [Lag features for time-series forecasting in AutoML](concept-automl-forecasting-lags.md).
 
 :::image type="content" source="./media/how-to-auto-train-forecast/target-roll.png" alt-text="A table with data that shows the target rolling window. The values in the Demand column are highlighted." border="false" lightbox="./media/how-to-auto-train-forecast/target-roll.png":::
 
@@ -509,7 +509,7 @@ AutoML has several actions it can take for short series. You can configure these
 | Setting | Description | Notes |
 | --- | --- |--|
 | `auto` | The default value for short series handling. | - If all series are short, pad the data. <br> - If not all series are short, drop the short series. |
-| `pad`  | If the `short_series_handling_config = pad` setting is used, AutoML adds random values to each short series found. AutoML pads the target column with white noise. | You can use the following column types with the specified padding: <br> - Object columns, pad with `NaN`s. <br> - Numeric columns, pad with 0 (zero). <br> - Boolean/logic columns, pad with `False`. |
+| `pad`  | If the `short_series_handling_config = pad` setting is used, AutoML adds random values to each short series found. AutoML pads the target column with white noise. | You can use the following column types with the specified padding: <br> - Object columns - pad with `NaN`s. <br> - Numeric columns - pad with 0 (zero). <br> - Boolean/logic columns - pad with `False`. |
 | `drop` | If the `short_series_handling_config = drop` setting is used, AutoML drops the short series, and it isn't used for training or prediction. | Predictions for these series return `NaN`. |
 | `None` | No series is padded or dropped. | |
 
