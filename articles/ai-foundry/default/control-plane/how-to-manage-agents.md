@@ -1,5 +1,5 @@
 ---
-title: "Manage agents in Microsoft Foundry Control Plane"
+title: "Manage agents at scale in Microsoft Foundry Control Plane"
 description: "Learn how to manage agents using Microsoft Foundry Control Plane."
 author: santiagxf
 ms.author: scottpolly
@@ -12,11 +12,11 @@ ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
 
-# Manage agents
+# Manage agents at scale
 
 The Microsoft Foundry Control Plane provides centralized management and observability for agents running across different platforms and infrastructures.
 
-This article explains how to manage agents using Microsoft Foundry Control Plane.
+This article explains how to manage agents across a subscription using Microsoft Foundry Control Plane.
 
 ## Agents inventory
 
@@ -104,12 +104,10 @@ Control Plane uses the Azure Application Insights associated with the resources 
 * Compute usage metrics, including token usage and cost
 * Collect execution traces
 
-If you don't see such information for your agent, you need to configure Azure Application Insights.
+If you don't see such information for your agent, you need to configure Azure Application Insights. Learn more at [Monitor agent health and performance across your fleet](monitoring-across-fleet.md).
 
 > [!TIP]
 > We strongly advise configuring Azure Application Insights for each of the resources hosting agents. For Foundry agents, Azure Applications Insights is configured per Foundry project. However, you can connect multiple Foundry projects to the same Azure Applications Insights to optimize resources.
-
-Learn more about [Monitor agent health and performance across your fleet](monitoring-across-fleet.md).
 
 ### View traces
 
