@@ -200,7 +200,7 @@ from azure.ai.ml import automl
 # Set forecasting variables.
 # As needed, modify the variable values to run the snippet successfully.
 forecasting_job = automl.forecasting(
-    compute="cpu-compute",
+    compute="cpu-cluster",
     experiment_name="sdk-v2-automl-forecasting-job",
     training_data=my_training_data_input,
     target_column_name=target_column_name,
