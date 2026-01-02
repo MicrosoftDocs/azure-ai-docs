@@ -28,7 +28,7 @@ Control Plane automatically discovers [supported agents](#supported-agent-platfo
 
 The following information is displayed:
 
-| Column | Description | Applies to |
+| Column | Description | [Agent platform](#supported-agent-platforms) |
 |--------|-------------|------------|
 | **Name** | The name of the agent or the agentic resource. | All |
 | **Source** | The source platform from where the agent or resource was discovered. | All |
