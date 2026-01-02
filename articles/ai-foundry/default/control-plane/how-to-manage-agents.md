@@ -33,7 +33,7 @@ The following information is displayed:
 | **Name** | The name of the agent or the agentic resource. | All |
 | **Source** | The source platform from where the agent or resource was discovered. | All |
 | **Project** | The Foundry project associated with the agent. For custom agents, it's the project where the agent was registered to. | Foundry<br />Custom | 
-| **Status** | It refers to a broad range of conditions, including operational, health, or lifecycle, of the agent. Agents transition to different *status* depending on the platform, the agent condition, and [lifecycle operations](#lifecycle-operations). Possible values are: <ul><li>Running</li><li>Stopped</li><li>Blocked</li><li>Unblocked</li><li>Unknown</li></ul> | All |
+| **Status** | It refers to a broad range of conditions, including operational, health, or lifecycle, status of the agent. Agents transition to different values depending on the platform and [lifecycle operations](#lifecycle-operations). Possible values are: <ul><li>[Running](#start-and-stop-agents)</li><li>[Stopped](#start-and-stop-agents)</li><li>[Blocked](#block-and-unblock-agents)</li><li>[Unblocked](#block-and-unblock-agents)</li><li>[Unknown](#unknown-states)</li></ul> | All |
 | **Version** | The version of the agent asset. | Foundry |
 | **Published as** | Indicates if the agent was [published as an agent application](../agents/how-to/publish-agent.md). Published agents in Foundry have their own endpoint for invocation. | Foundry |
 | **Error rate** | The proportion of failed runs compared to successful ones in the last month. This column requires [observability configured](#observe-agents). | All |
@@ -68,12 +68,12 @@ For each agent, you see:
 
 * Versions [published as agent applications](../agents/how-to/publish-agent.md).
 
-In this way, you can monitor versions consumed by your users and new versions under development. The following example shows multiple Foundry agents listed. Agent `format-agent` version 6 has been published, however, version 7 (latest) is still under development. 
+In this way, you can monitor versions consumed by your users and new versions under development. The following example shows multiple Foundry agents listed. Agent `format-agent` version 6 was published, however, version 7 (latest) is still under development. 
 
 :::image type="content" source="media/how-to-manage-agents/inventory-foundry-agent.png" alt-text="Screenshot of the inventory page listing multiple Foundry agents." lightbox="media/how-to-manage-agents/inventory-foundry-agent.png":::
 
 > [!NOTE]
-> Foundry classic agents and Azure OpenAI Assistants are not supported.
+> Foundry classic agents and Azure OpenAI Assistants aren't supported.
 
 ### Azure SRE agent
 
@@ -88,7 +88,7 @@ Azure Logic Apps supports workflows that complete tasks by using agent loops wit
 Control Plane discovers Azure Logic Apps resources containing agent loop workflows and lists them in the inventory page.
 
 > [!NOTE]
-> Observability features, including traces and metrics, are not supported in Azure Logic Apps agent loops.
+> Observability features, including traces and metrics, aren't supported in Azure Logic Apps agent loops.
 
 ### Custom agents
 
@@ -129,7 +129,7 @@ To view them:
 
     :::image type="content" source="media/how-to-manage-agents/inventory-traces-list.png" alt-text="Screenshot of the traces associated with one agent." lightbox="media/how-to-manage-agents/inventory-traces-list.png":::
 
-1. To see the details, select an value under **Trace ID** column. For Foundry agents, you also see **Conversation ID** column, which contains the *conversation* associated with the trace: 
+1. To see the details, select an value under **Trace ID** column. For Foundry agents, you also see **Conversation ID** column, which contains the *conversation* associated with the trace. Traces are stored in Azure Application Insights, while conversations are stored in Microsoft Foundry service: 
 
     :::image type="content" source="media/how-to-manage-agents/inventory-traces-view.png" alt-text="Screenshot of a single trace with LLM calls." lightbox="media/how-to-manage-agents/inventory-traces-view.png":::
 
@@ -141,21 +141,21 @@ To view them:
 
 Control Plane helps organizations to control agents to manage usage and infrastructure cost. Different agent platforms support different operations.
 
-### Stop/start agents
+### Start and stop agents
 
 Stopping an agent stops the infrastructure that is associated with this agent and moves the agent to the **Stopped** state.
 
-Stopping an agent deprovisions its infrastructure, terminating existing runs and preventing new runs. Any workflows or resources connected to this agent can't access it.
+Stopping an agent deprovisions its infrastructure and prevents new runs. Any workflows or resources connected to this agent can't access it. Notice that this operation **doesn't terminating existing runs**. 
 
-The following platforms support stopping agents:
+The following platforms support stopping agents. Foundry agent's support depends on the agent kind and its publishing state:
 
 | Platform | Agent kind | Published | Supported actions | Notes        |
 |----------|------------|-----------|-------------------|--------------|
-| Foundry | Prompt agent<br />Workflow | No | None | Unpublished agents don't have dedicated deployments and they use the project's endpoint to receive requests. Hence, their lifecycle is attached to the project's lifecycle. To stop an unpublished prompt agent or workflow, you must delete them. |
-| Foundry | Hosted agent | No | Start/stop | Stopping a hosted agent stops the deployment associated with it. Any compute attached to it is deallocated. |
-| Foundry | Prompt agent<br />Workflow<br />Hosted agent | Yes | Start/stop | Stopping a published agent stops the deployment associated with it. It deallocates any compute attached. |
-| Azure SRE | Interactive | NA | Start/stop | |
-| Azure Logic Apps | Workflow | NA | Start/stop | You can start/stop an Azure Logic Apps agent loop by stopping the LogicApp resource that hosts them. Stopping a LogicApp resources stops all the workflows associated with it. |
+| Foundry | Prompt<br />Workflow | No | None | Unpublished agents don't have dedicated deployments and they use the project's endpoint to receive requests. Hence, their lifecycle is attached to the project's lifecycle. To stop an unpublished prompt agent or workflow, you must delete them. |
+| Foundry | Hosted | No | Start/stop | Stopping a hosted agent stops the deployment associated with it. Any compute attached to it's deallocated. |
+| Foundry | Prompt<br />Workflow<br />Hosted | Yes | Start/stop | Stopping a published agent stops the deployment associated with it. It deallocates any compute attached. |
+| Azure SRE | NA | NA | Start/stop | |
+| Azure Logic Apps | NA | NA | Start/stop | You can start/stop an Azure Logic Apps agent loop by stopping the LogicApp resource that hosts them. Stopping a LogicApp resources stops all the workflows associated with it. |
 
 To stop an agent:
 
@@ -205,6 +205,9 @@ To unblock the agent:
 
 1. Confirm the operation.
 
+### Unknown states
+
+Under certain circustances, agents can display the status **Unkown**. On those cases, Control Plane is unable to determine the status of the agent either because the source platform is unavailable or because the agent has failed to report its state back.
 
 ## Related content
 
