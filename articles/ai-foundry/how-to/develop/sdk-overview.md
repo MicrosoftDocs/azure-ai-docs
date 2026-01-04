@@ -332,7 +332,7 @@ For more information on using the OpenAI SDK, see [Azure OpenAI supported progra
     using OpenAI.Responses;
     using System.ClientModel.Primitives;
         
-    string endpointUrl = "https://<YOUR-RESOURCE-NAME>.cognitiveservices.azure.com/openai/v1/";
+    string endpointUrl = "https://<YOUR-RESOURCE-NAME>.openai.azure.com/openai/v1/";
     
     DefaultAzureCredential credential = new();
     BearerTokenPolicy tokenPolicy = new(credential, "https://cognitiveservices.azure.com/.default");
