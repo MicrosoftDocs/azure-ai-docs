@@ -350,7 +350,7 @@ For more information on using the OpenAI SDK, see [Azure OpenAI supported progra
         clientOptions
     );
     
-    // The ResponseClient lets you interact with models and services in your project.
+    // The ResponsesClient lets you interact with models and services in your project.
     ResponseResult response = responsesClient.CreateResponse("How are you?");
     Console.WriteLine(response.GetOutputText());
     
