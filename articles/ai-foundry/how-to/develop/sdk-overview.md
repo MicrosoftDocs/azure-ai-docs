@@ -324,7 +324,7 @@ For more information on using the OpenAI SDK, see [Azure OpenAI supported progra
     dotnet add package Azure.Core
     dotnet add package OpenAI
     ```
-1. The following code snippet demonstrates how to create the OpenAI client directly using the Azure OpenAI v1 endpoint.
+1. The following code snippet demonstrates how to create the OpenAI client for responses directly using the Azure OpenAI v1 endpoint.
 
     ```csharp
     using Azure.Identity;
