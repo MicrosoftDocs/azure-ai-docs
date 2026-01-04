@@ -343,15 +343,15 @@ For more information on using the OpenAI SDK, see [Azure OpenAI supported progra
     };
     
     #pragma warning disable OPENAI001    
-    var projectClient = new ResponsesClient(
+    var responsesClient = new ResponsesClient(
         model: "<YOUR-DEPLOYMENT-NAME>", //e.g. gpt-5.2-chat, must be a model that supports Responses API
-        authenticationPolicy: tokenPolicy, // if use EntraID
+        authenticationPolicy: tokenPolicy, // if you use Microsoft Entra ID
         // credential: new ApiKeyCredential("<YOUR-KEY>") // if use APIKEY
         clientOptions
     );
     
     // The ResponseClient lets you interact with models and services in your project.
-    ResponseResult response = projectClient.CreateResponse("How are you?");
+    ResponseResult response = responsesClient.CreateResponse("How are you?");
     Console.WriteLine(response.GetOutputText());
     
     #pragma warning restore OPENAI001
