@@ -22,7 +22,7 @@ The Foundry Tools enables you to:
 * Filter, search, and sort by your desired outcome
 
 > [!NOTE]
->If you are interested in bringing your official, remote MCP server(s) to all Foundry customers, please fill out this [form](https://forms.office.com/r/EEvMNceMRU). 
+> If you're interested in bringing your official, remote MCP server(s) to all Foundry customers, please fill out this [form](https://forms.office.com/r/EEvMNceMRU).
 
 ## Considerations for using non-Microsoft services and servers 
 
