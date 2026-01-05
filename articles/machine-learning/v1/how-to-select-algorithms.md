@@ -42,9 +42,17 @@ The [Azure Machine Learning Algorithm Cheat Sheet](./algorithm-cheat-sheet.md?WT
 > [!NOTE]
 > You can download the [Machine Learning Algorithm Cheat Sheet](https://download.microsoft.com/download/3/5/b/35bb997f-a8c7-485d-8c56-19444dafd757/azure-machine-learning-algorithm-cheat-sheet-july-2021.pdf).
 
-The designer provides a comprehensive portfolio of algorithms, such as [Multiclass Decision Forest](../algorithm-module-reference/multiclass-decision-forest.md?WT.mc_id=docs-article-lazzeri), [Recommendation systems](../algorithm-module-reference/evaluate-recommender.md?WT.mc_id=docs-article-lazzeri), [Neural Network Regression](../algorithm-module-reference/neural-network-regression.md?WT.mc_id=docs-article-lazzeri), [Multiclass Neural Network](../algorithm-module-reference/multiclass-neural-network.md?WT.mc_id=docs-article-lazzeri), and [K-Means Clustering](../algorithm-module-reference/k-means-clustering.md?WT.mc_id=docs-article-lazzeri). Each algorithm is designed to address a different type of machine learning problem. See the [algorithm and component reference](../component-reference/component-reference.md?WT.mc_id=docs-article-lazzeri) for a complete list along with documentation about how each algorithm works and how to tune parameters to optimize the algorithm.
+The designer provides a comprehensive portfolio of algorithms, including:
 
-Along with this guidance, keep other requirements in mind when choosing a machine learning algorithm. Following are additional factors to consider, such as the accuracy, training time, linearity, number of parameters and number of features.
+- [Multiclass Decision Forest](../algorithm-module-reference/multiclass-decision-forest.md?WT.mc_id=docs-article-lazzeri)
+- [Recommendation systems](../algorithm-module-reference/evaluate-recommender.md?WT.mc_id=docs-article-lazzeri)
+- [Neural Network Regression](../algorithm-module-reference/neural-network-regression.md?WT.mc_id=docs-article-lazzeri)
+- [Multiclass Neural Network](../algorithm-module-reference/multiclass-neural-network.md?WT.mc_id=docs-article-lazzeri)
+- [K-Means Clustering](../algorithm-module-reference/k-means-clustering.md?WT.mc_id=docs-article-lazzeri)
+
+Each algorithm is designed to address a different type of machine learning problem. See the [algorithm and component reference](../component-reference/component-reference.md?WT.mc_id=docs-article-lazzeri) for a complete list along with documentation about how each algorithm works and how to tune parameters to optimize the algorithm.
+
+Along with this guidance, keep other requirements in mind when choosing a machine learning algorithm. Following are other factors to consider, such as the accuracy, training time, linearity, number of parameters and number of features.
 
 ### Comparison of machine learning algorithms
 
@@ -94,7 +102,7 @@ Getting the most accurate answer possible isn’t always necessary. Sometimes an
 
 There are three ways to use the Evaluate Model component:
 
-- Generate scores over your training data in order to evaluate the model.
+- Generate scores over your training data to evaluate the model.
 - Generate scores on the model, but compare those scores to scores on a reserved testing set.
 - Compare scores for two different but related models, using the same set of data.
 
@@ -116,7 +124,7 @@ In the designer, creating and using a machine learning model is typically a thre
 
 ### Linearity
 
-Linearity in statistics and machine learning means that there's a linear relationship between a variable and a constant in your dataset. For example, linear classification algorithms assume that classes can be separated by a straight line (or its higher-dimensional analog).
+Linearity in statistics and machine learning means that there's a linear relationship between a variable and a constant in your dataset. For example, linear classification algorithms assume that a straight line can separate classes, or its higher-dimensional analog.
 
 Lots of machine learning algorithms make use of linearity. In Azure Machine Learning designer, they include:
 
@@ -140,11 +148,11 @@ Parameters are the knobs that a data scientist gets to turn when setting up an a
 
 Alternatively, there's the [Tune Model Hyperparameters component](../algorithm-module-reference/tune-model-hyperparameters.md?WT.mc_id=docs-article-lazzeri) in the designer. The goal of this component is to determine the optimum hyperparameters for a machine learning model. The component builds and tests multiple models by using different combinations of settings. It compares metrics over all models to get the combinations of settings.
 
-While this is a great way to make sure you spanned the parameter space, the time required to train a model increases exponentially with the number of parameters. The upside is that having many parameters typically indicates that an algorithm has greater flexibility. It can often achieve very good accuracy, provided you can find the right combination of parameter settings.
+While this approach is a great way to make sure you spanned the parameter space, the time required to train a model increases exponentially with the number of parameters. The upside is that having many parameters typically indicates that an algorithm has greater flexibility. It can often achieve very good accuracy, provided you can find the right combination of parameter settings.
 
 ### Number of features
 
-In machine learning, a feature is a quantifiable variable of the phenomenon you're trying to analyze. For certain types of data, the number of features can be very large compared to the number of data points. This is often the case with genetics or textual data.
+In machine learning, a feature is a quantifiable variable of the phenomenon you're trying to analyze. For certain types of data, the number of features can be very large compared to the number of data points. This situation is often the case with genetics or textual data.
 
 A large number of features can bog down some learning algorithms, making training time unfeasibly long. [Support vector machines](../algorithm-module-reference/two-class-support-vector-machine.md?WT.mc_id=docs-article-lazzeri) are well suited to scenarios with a high number of features. For this reason, they have been used in many applications from information retrieval to text and image classification. Support vector machines can be used for both classification and regression tasks.
 
