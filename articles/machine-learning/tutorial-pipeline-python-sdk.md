@@ -27,7 +27,7 @@ ms.custom:
 
 The core of a machine learning pipeline is to split a complete machine learning task into a multistep workflow. Each step is a manageable component that can be developed, optimized, configured, and automated individually. Steps are connected through well-defined interfaces. The Azure Machine Learning pipeline service automatically orchestrates all the dependencies between pipeline steps. The benefits of using a pipeline are standardized the MLOps practice, scalable team collaboration, training efficiency, and cost reduction. To learn more about the benefits of pipelines, see [What are Azure Machine Learning pipelines](concept-ml-pipelines.md).
 
-In this tutorial, you use Azure Machine Learning to create a production-ready machine learning project, using Azure Machine Learning Python SDK v2. This means you are able to use the Azure Machine Learning Python SDK to:
+In this tutorial, you use Azure Machine Learning to create a production-ready machine learning project, using Azure Machine Learning Python SDK v2. This means you're able to use the Azure Machine Learning Python SDK to:
 
 > [!div class="checklist"]
 > - Get a handle to your Azure Machine Learning workspace
@@ -56,7 +56,7 @@ This video shows how to get started in Azure Machine Learning studio so that you
 
 1. [!INCLUDE [sign in](includes/prereq-sign-in.md)]
 
-1. Complete the tutorial [Upload, access and explore your data](tutorial-explore-data.md) to create the data asset you need in this tutorial.  Make sure you run all the code to create the initial data asset.  Explore the data and revise it if you wish, but you only need the initial data in this tutorial.
+1. Complete the tutorial [Upload, access and explore your data](tutorial-explore-data.md) to create the data asset you need in this tutorial. Make sure you run all the code to create the initial data asset. Explore the data and revise it if you wish, but you only need the initial data in this tutorial.
 
 1. [!INCLUDE [open or create  notebook](includes/prereq-open-or-create.md)]
     * [!INCLUDE [new notebook](includes/prereq-new-notebook.md)]
@@ -113,9 +113,9 @@ ml_client = MLClient(
 - [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential)
 
 > [!NOTE]
-> Creating MLClient won't connect to the workspace. The client initialization is lazy, it will wait for the first time it needs to make a call (this will happen in the next code cell).
+> Creating MLClient doesn't connect to the workspace. The client initialization is lazy. It waits for the first time it needs to make a call. Initialization happens in the next code cell.
 
-Verify the connection by making a call to `ml_client`. Since this is the first time that you're making a call to the workspace, you might be asked to authenticate. 
+Verify the connection by making a call to `ml_client`. Since this call is the first time that you're making a call to the workspace, you might be asked to authenticate. 
 
 
 ```python
@@ -470,7 +470,7 @@ if __name__ == "__main__":
 
 As you can see in this training script, once the model is trained, the model file is saved and registered to the workspace. Now you can use the registered model in inferencing endpoints.
 
-For the environment of this step, you use one of the built-in (curated) Azure Machine Learning environments. The tag `azureml`, tells the system to use look for the name in curated environments.
+For the environment of this step, you use one of the built-in (curated) Azure Machine Learning environments. The tag `azureml` tells the system to use look for the name in curated environments.
 First, create the *yaml* file describing the component:
 
 
@@ -508,7 +508,7 @@ command: >-
 
 ```
 
-Now create and register the component.  Registering it allows you to reuse it in other pipelines.  Also, anyone else with access to your workspace can use the registered component.
+Now create and register the component. Registering it allows you to reuse it in other pipelines. Also, anyone else with access to your workspace can use the registered component.
 
 
 ```python
@@ -640,7 +640,7 @@ There are two important results you want to see about training:
     1. Open the folders to `user_logs` > `std_log.txt`
     This section shows the script run stdout.
     :::image type="content" source="media/tutorial-pipeline-python-sdk/user-logs.jpg" alt-text="Screenshot of std_log.txt." lightbox="media/tutorial-pipeline-python-sdk/user-logs.jpg":::
-* View your metrics: Select the **Metrics** tab.  This section shows different logged metrics. In this example, mlflow `autologging` has automatically logged the training metrics.
+* View your metrics: Select the **Metrics** tab. This section shows different logged metrics. In this example, mlflow `autologging` automatically logs the training metrics.
     
     :::image type="content" source="media/tutorial-pipeline-python-sdk/metrics.jpg" alt-text="Screenshot shows logged metrics.txt." lightbox="media/tutorial-pipeline-python-sdk/metrics.jpg":::
 
@@ -648,8 +648,6 @@ There are two important results you want to see about training:
 To learn how to deploy your model to an online endpoint, see [Deploy a model as an online endpoint tutorial](tutorial-deploy-model.md).
 
 <!-- nbend -->
-
-
 
 ## Clean up resources
 
@@ -668,7 +666,7 @@ If you aren't going to use it now, stop the compute instance:
 
 [!INCLUDE [aml-delete-resource-group](includes/aml-delete-resource-group.md)]
 
-## Next steps
+## Next step
 
 > [!div class="nextstepaction"]
-> Learn how to [Schedule machine learning pipeline jobs](how-to-schedule-pipeline-job.md)
+> [Schedule machine learning pipeline jobs](how-to-schedule-pipeline-job.md)
