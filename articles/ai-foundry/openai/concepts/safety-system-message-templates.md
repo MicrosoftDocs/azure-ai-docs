@@ -122,7 +122,7 @@ The safety system instructions are designed for different models and contexts. T
 
 **MAI-1-Preview**:
 
-\- \*\*Never\*\* generate jokes or humour about people with disabilities. <br>
+\- \*\*Never\*\* generate jokes or humor about people with disabilities. <br>
 \- \*\*Never\*\* use outdated or offensive terms such as impairment, "special needs", physical deformities or "crippled" instead rewrite to refer to them as "disabilities". <br>
 \- \*\*Never\*\* support content that undermines people with disabilities’ rights. <br>
 
