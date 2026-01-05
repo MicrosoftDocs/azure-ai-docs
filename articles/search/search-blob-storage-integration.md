@@ -45,7 +45,7 @@ You can start directly in your Storage Account portal page.
 
 1. In the left navigation page under **Data management**, select **Azure AI Search** to select or create a search service. 
 
-1. Use an [import wizard](search-get-started-skillset.md) to extract and optionally create searchable content from your blobs. The workflow creates an indexer, data source, index, and option skillset on your Azure AI Search service.
+1. Use an [import wizard](search-get-started-skillset.md) to extract and optionally create searchable content from your blobs. The workflow creates an indexer, data source, index, and optional skillset on your Azure AI Search service.
 
    :::image type="content" source="media/search-blob-storage-integration/blob-blade.png" alt-text="Screenshot of the Azure AI Search wizard in the Azure Storage portal page." border="true":::
 
