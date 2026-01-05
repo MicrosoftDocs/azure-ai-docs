@@ -261,7 +261,9 @@ You can use the Azure Machine Learning CLI, the Azure Machine Learning SDK for P
 
 ### Use Azure CLI or Python SDK to create an Azure SQL Database connection
 
-Use the Azure Machine Learning CLI or the Azure Machine Learning SDK for Python to create an Azure SQL database connection by first assembling a YAML file that defines the connection. Save the file with a name like *my_azuresqldb_connection.yaml*. To create the connection, run an Azure CLI or Python SDK command that calls the YAML file. For Python SDK, you can also specify the connection information directly in a Python script without using a YAML file.
+Use the Azure Machine Learning CLI or the Azure Machine Learning SDK for Python to create an Azure SQL database connection. First, assemble a YAML file that defines the connection. Save the file with a name like *my_azuresqldb_connection.yaml*.
+
+To create the connection, run an Azure CLI or Python SDK command that calls the YAML file. For Python SDK, you can also specify the connection information directly in a Python script without using a YAML file.
 
 The following YAML file defines an Azure SQL Database connection. To create the file, provide a `<connection-name>`, and replace the `<server>`, `<port>`, and `<database>` placeholders with the appropriate values from your Azure SQL database. For `credentials`, you can store the Azure SQL database user name and password in this file, but for better security, leave the values blank and provide them in the command line that creates the connection.
 
@@ -355,15 +357,15 @@ ml_client.connections.create_or_update(workspace_connection=wps_connection)
 1. Optionally, select **Test Connection** to test the connection.
 1. Select **Save**.
 
-   :::image type="content" source="media/how-to-connection/how-to-create-azuredb-connection.png" lightbox="media/how-to-connection/how-to-create-azuredb-connection.png" alt-text="Screenshot showing creation of a new Azure DB connection in Azure Machine Learning studio UI.":::
+   :::image type="content" source="media/how-to-connection/how-to-create-azuredb-connection.png" lightbox="media/how-to-connection/how-to-create-azuredb-connection.png" alt-text="Screenshot showing creation of a new Azure SQL Datatbase connection in Azure Machine Learning studio UI.":::
 
 ## Create an Amazon S3 data connection
 
-You can use the Azure Machine Learning CLI, the Azure Machine Learning SDK for Python, or Machine Learning studio to create an Azure SQL DB data connection.
+You can use the Azure Machine Learning CLI, the Azure Machine Learning SDK for Python, or Machine Learning studio to create an Azure SQL Database data connection.
 
 ### Use Azure CLI or Python SDK to create an Amazon S3 connection
 
-To use the Azure Machine Learning CLI or Azure Machine Learning SDK for Python to create an Amazon S3 data connection, first assemble a YAML file that defines the connection. Save the file with a name like *my_amazons3_connection.yaml*.
+Use the Azure Machine Learning CLI or Azure Machine Learning SDK for Python to create an Amazon S3 data connection. First, assemble a YAML file that defines the connection. Save the file with a name like *my_amazons3_connection.yaml*.
 
 To create the connection, run an Azure CLI or Python SDK command that calls the YAML file . For Python SDK, you can also specify the connection information directly in a Python script without using a YAML file.
 
