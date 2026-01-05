@@ -161,7 +161,7 @@ Reference:
         > [!IMPORTANT]
         > The model ID value must be an exact match for the model. If the model ID isn't an exact match, the policy doesn't work as expected.
 
-     ::: moniker-end
+        ::: moniker-end
 
      1. Select the **Review + create** tab and verify that the policy assignment is correct. When ready, select **Create** to assign the policy.
      1. Notify your developers that the policy is in place. They receive an error message if they try to deploy a model that isn't on the list of allowed models.
