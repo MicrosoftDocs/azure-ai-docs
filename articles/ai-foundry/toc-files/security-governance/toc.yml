@@ -4,7 +4,7 @@ items:
   - name: Authentication and authorization
     href: ../../concepts/authentication-authorization-foundry.md
   - name: Role-based access control
-    href: ../../concepts/rbac-azure-ai-foundry.md
+    href: ../../concepts/rbac-foundry.md
   - name: Disable preview features with RBAC
     href: ../../concepts/disable-preview-features-with-rbac.md    
   - name: Rotate API access keys

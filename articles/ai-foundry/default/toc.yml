@@ -1,7 +1,7 @@
 monikerRange: 'foundry'
 items:
 - name: What is Microsoft Foundry (new)?
-  href: ../what-is-azure-ai-foundry.md
+  href: ../what-is-foundry.md
 
 - name: Get started
   href: toc-files-foundry/get-started/toc.yml

@@ -23,8 +23,8 @@ Publishing enables you to share agents with teammates, your organization, or cus
 ## Prerequisites
 
 - A [Foundry project](../../../how-to/create-projects.md) with at least one agent version created
-- [Azure AI Project Manager role](../../../concepts/rbac-azure-ai-foundry.md) on the Foundry project scope to publish agents
-- [Azure AI User role](../../../concepts/rbac-azure-ai-foundry.md) on the Agent Application scope to chat with a published agent
+- [Azure AI Project Manager role](../../../concepts/rbac-foundry.md) on the Foundry project scope to publish agents
+- [Azure AI User role](../../../concepts/rbac-foundry.md) on the Agent Application scope to chat with a published agent
 - Familiarity with [Azure role-based access control (RBAC)](/azure/role-based-access-control/overview) for permission configuration
 - Familiarity with [Agent identity concepts in Foundry](../concepts/agent-identity.md)
 - Install the required language runtimes, global tools, and VS Code extensions as described in [Prepare your development environment](../../../how-to/develop/install-cli-sdk.md)

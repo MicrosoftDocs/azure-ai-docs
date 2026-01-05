@@ -1,6 +1,6 @@
 items:
 - name: Use Foundry Tools in Microsoft Foundry portal
-  href: ../../../ai-services/connect-services-ai-foundry-portal.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+  href: ../../../ai-services/connect-services-foundry-portal.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
   displayName: cognitive,task,speech,vision,language,translator,document,intelligence,content,understanding,safety
 - name: What are Foundry Tools?
   href: ../../../ai-services/what-are-ai-services.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true

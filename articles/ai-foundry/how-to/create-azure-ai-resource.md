@@ -140,5 +140,5 @@ To delete a hub from [Foundry](https://ai.azure.com?cid=LearnDocs), select the h
 ## Related content
 
 - [Create a hub project](hub-create-projects.md)
-- [Learn more about Foundry](../what-is-azure-ai-foundry.md)
+- [Learn more about Foundry](../what-is-foundry.md)
 - [Learn more about hubs](../concepts/ai-resources.md)

@@ -153,7 +153,7 @@ Custom question answering works with semi-structured support web pages. These we
 
 ## Import and export project
 
-To migrate your Azure Language Studio project to your Microsoft Foundry project, link your existing Azure Language resource as a **`Connected Resource`** within your Foundry project's **`Management Center`**. For more information, *see* [Connect Foundry Tools to a Foundry project](/azure/ai-services/connect-services-ai-foundry-portal#connect-foundry-tools-after-you-create-a-project)
+To migrate your Azure Language Studio project to your Microsoft Foundry project, link your existing Azure Language resource as a **`Connected Resource`** within your Foundry project's **`Management Center`**. For more information, *see* [Connect Foundry Tools to a Foundry project](/azure/ai-services/connect-services-foundry-portal#connect-foundry-tools-after-you-create-a-project)
 
 ## Next steps
 

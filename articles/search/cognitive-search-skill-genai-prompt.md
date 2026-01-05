@@ -15,7 +15,7 @@ ms.date: 10/23/2025
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-The **GenAI (Generative AI) Prompt** skill executes a *chat completion* request against a large language model (LLM) deployed in [Azure OpenAI in Foundry Models](/azure/ai-services/openai/overview) or [Microsoft Foundry](/azure/ai-foundry/what-is-azure-ai-foundry). Use this skill to create new information that can be indexed and stored as searchable content.
+The **GenAI (Generative AI) Prompt** skill executes a *chat completion* request against a large language model (LLM) deployed in [Azure OpenAI in Foundry Models](/azure/ai-services/openai/overview) or [Microsoft Foundry](/azure/ai-foundry/what-is-foundry). Use this skill to create new information that can be indexed and stored as searchable content.
 
 Here are some examples of how the GenAI prompt skill can help you create content:
 
@@ -61,7 +61,7 @@ The GenAI Prompt skill is available in the [latest preview REST API](/rest/api/s
 
   - On Azure OpenAI, assign [**Cognitive Services OpenAI User**](/azure/ai-services/openai/how-to/role-based-access-control) to the managed identity.
 
-  - On Foundry, assign [**Azure AI User**](/azure/ai-foundry/concepts/rbac-azure-ai-foundry#azure-ai-user) to the managed identity.
+  - On Foundry, assign [**Azure AI User**](/azure/ai-foundry/concepts/rbac-foundry#azure-ai-user) to the managed identity.
 
 ## @odata.type  
 

@@ -30,7 +30,7 @@ In this quickstart, you learn how to:
 - Interpret model responses and recognize limitations.
 - Add safety system messages to ensure responsible AI use.
 
-For this quickstart, you can use either a [!INCLUDE [hub](../includes/hub-project-name.md)] or a [!INCLUDE [fdp](../includes/fdp-project-name.md)]. For more information about the differences between these two project types, see [Project types](../what-is-azure-ai-foundry.md#types-of-projects).
+For this quickstart, you can use either a [!INCLUDE [hub](../includes/hub-project-name.md)] or a [!INCLUDE [fdp](../includes/fdp-project-name.md)]. For more information about the differences between these two project types, see [Project types](../what-is-foundry.md#types-of-projects).
 
 ## Prerequisites
 

@@ -67,7 +67,7 @@ Use Microsoft Entra ID for:
 
 Advantages: Fine-grained role assignments, per-principal auditing, controllable token lifetimes, automatic secret hygiene, and managed identities for services.
 
-Limitations: Higher initial setup complexity. Requires understanding of Role-based access control (RBAC). For more on RBAC in Foundry, see [Role-based access control for Microsoft Foundry](rbac-azure-ai-foundry.md).
+Limitations: Higher initial setup complexity. Requires understanding of Role-based access control (RBAC). For more on RBAC in Foundry, see [Role-based access control for Microsoft Foundry](rbac-foundry.md).
 
 ### API keys
 
@@ -150,7 +150,7 @@ For high-level guidance on setting up Entra ID authentication in Foundry, see [C
 
 ## Related content
 
-- [Role-based access control for Foundry](rbac-azure-ai-foundry.md)
+- [Role-based access control for Foundry](rbac-foundry.md)
 - [Configure key-less authentication with Microsoft Entra ID](../foundry-models/how-to/configure-entra-id.md)
 - [Rotate API access keys](../../ai-services/rotate-keys.md?context=/azure/ai-foundry/context/context)
 - [Azure built-in roles (AI + machine learning)](/azure/role-based-access-control/built-in-roles#ai-+-machine-learning)
