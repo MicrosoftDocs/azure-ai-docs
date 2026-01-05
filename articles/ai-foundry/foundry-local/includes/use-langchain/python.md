@@ -7,7 +7,8 @@ ms.date: 05/02/2025
 ms.author: jburchel
 ms.reviewer: maanavd
 reviewer: maanavdalal
-ms.author: jonburchel
+author: jonburchel
+ai-usage: ai-assisted
 ---
 
 ## Prerequisites
@@ -84,6 +85,11 @@ ai_msg = chain.invoke({
 print(f"Response: {ai_msg.content}")
 ```
 
+#### References
+
+- Reference: [Foundry Local SDK reference](../../reference/reference-sdk.md)
+- Reference: [Get started with Foundry Local](../../get-started.md)
+
 > [!NOTE]
 > One of key benefits of Foundry Local is that it **automatically** selects the most suitable model **variant** for the user's hardware. For example, if the user has a GPU, it downloads the GPU version of the model. If the user has an NPU (Neural Processing Unit), it downloads the NPU version. If the user doesn't have either a GPU or NPU, it downloads the CPU version of the model.
 
@@ -93,4 +99,13 @@ To run the application, open a terminal and navigate to the directory where you 
 
 ```bash
 python translation_app.py
+```
+
+You're done when you see a `Response:` line with the translated text.
+
+You should see output similar to:
+
+```text
+Translating 'I love to code.' to French...
+Response: <translated text>
 ```
