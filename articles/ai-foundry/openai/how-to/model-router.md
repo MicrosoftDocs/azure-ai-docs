@@ -76,7 +76,7 @@ In the model router deployment pane, select **Route to a subset of models**. The
 :::image type="content" source="media/working-with-models/model-router-model-subset.png" alt-text="Screenshot of model router subset selection.":::
 
 > [!IMPORTANT]
-> To include models by Anthropic (Claude) in your model router deployment, you need to deploy them yourself to your Foundry resource. See [Deploy and use Claude models](/azure/ai-foundry/foundry-models/how-to/use-foundry-models-claude?view=foundry&tabs=python).
+> To include models by Anthropic (Claude) in your model router deployment, you need to deploy them yourself to your Foundry resource. See [Deploy and use Claude models](/azure/ai-foundry/foundry-models/how-to/use-foundry-models-claude?view=foundry&tabs=python&preserve-view=true).
 
 New models introduced later are excluded by default until explicitly added.
 
