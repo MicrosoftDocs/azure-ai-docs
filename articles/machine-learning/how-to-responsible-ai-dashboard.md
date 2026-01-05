@@ -9,23 +9,24 @@ ms.topic:  how-to
 ms.reviewer: None
 ms.author: lagayhar
 author: lgayhardt
-ms.date: 12/22/2025
+ms.date: 01/05/2026
 ms.custom: responsible-ml
+ai-usage: ai-assisted
 ---
 
 # Use the Responsible AI dashboard in Azure Machine Learning studio
 
 Link Responsible AI dashboards to your registered models. To view your Responsible AI dashboard, go to your model registry and select the registered model you generated a Responsible AI dashboard for. Then, select the **Responsible AI** tab to view a list of generated dashboards.
 
-:::image type="content" source="./media/how-to-responsible-ai-dashboard/view-responsible-ai-model-page.png" alt-text="Screenshot of the model details pane in Azure Machine Learning studio, with the 'Responsible AI' tab highlighted." lightbox= "./media/how-to-responsible-ai-dashboard/view-responsible-ai-model-page.png":::
+:::image type="content" source="./media/how-to-responsible-ai-dashboard/view-responsible-ai-model-page.png" alt-text="Screenshot of the model details pane in Azure Machine Learning studio, with the 'Responsible AI' tab highlighted." lightbox="./media/how-to-responsible-ai-dashboard/view-responsible-ai-model-page.png":::
 
 You can configure multiple dashboards and attach them to your registered model. Attach various combinations of components, such as interpretability, error analysis, and causal analysis, to each Responsible AI dashboard. The following image displays a dashboard's customization and the components that were generated within it. In each dashboard, you can view or hide various components within the dashboard UI itself.
 
-:::image type="content" source="./media/how-to-responsible-ai-dashboard/view-responsible-ai-dashboard.png" alt-text="Screenshot of Responsible AI tab with a dashboard name highlighted." lightbox = "./media/how-to-responsible-ai-dashboard/view-responsible-ai-dashboard.png":::
+:::image type="content" source="./media/how-to-responsible-ai-dashboard/view-responsible-ai-dashboard.png" alt-text="Screenshot of Responsible AI tab with a dashboard name highlighted." lightbox="./media/how-to-responsible-ai-dashboard/view-responsible-ai-dashboard.png":::
 
 Select the name of the dashboard to open it into a full view in your browser. To return to your list of dashboards, select **Back to models details**.
 
-:::image type="content" source="./media/how-to-responsible-ai-dashboard/dashboard-full-view.png" alt-text="Screenshot of a Responsible AI dashboard with the 'Back to model details' button highlighted." lightbox = "./media/how-to-responsible-ai-dashboard/dashboard-full-view.png":::
+:::image type="content" source="./media/how-to-responsible-ai-dashboard/dashboard-full-view.png" alt-text="Screenshot of a Responsible AI dashboard with the 'Back to model details' button highlighted." lightbox="./media/how-to-responsible-ai-dashboard/dashboard-full-view.png":::
 
 ## Prerequisites
 
@@ -34,8 +35,8 @@ Before you open the Responsible AI dashboard, make sure you have:
 * An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 * [!INCLUDE [workspace and compute instance](includes/prerequisite-workspace-compute-instance.md)]
 * A registered model with a generated Responsible AI dashboard. To create or update one, see [Generate Responsible AI insights in the studio UI](how-to-responsible-ai-insights-ui.md) or [Generate Responsible AI insights with the SDK or CLI](how-to-responsible-ai-insights-sdk-cli.md).
-* Permissions in the workspace to view models and start compute instances (for example, Workspace Contributor or Compute Operator). [TO VERIFY]
-* Any network approvals required by your organization to reach the compute instance (for example, managed virtual network access or firewall allow lists). [TO VERIFY]
+* Permissions in the workspace to view models and start compute instances. For example, **Contributor** or **Owner** at the workspace scope can start compute instances. For least-privilege access, combine **Reader** (to view assets) with **AzureML Compute Operator** (to manage compute). For more information, see [Manage access to Azure Machine Learning workspaces](https://learn.microsoft.com/azure/machine-learning/how-to-assign-roles?view=azureml-api-2).
+* Network access required by your organization to reach Azure Machine Learning studio and connect to a compute instance. If your workspace uses network isolation (for example, managed virtual network or virtual networks with private endpoints), make sure required inbound and outbound traffic is allowed. For more information, see [Plan for network isolation in Azure Machine Learning](https://learn.microsoft.com/azure/machine-learning/how-to-network-isolation-planning?view=azureml-api-2) and [Secure an Azure Machine Learning workspace with virtual networks](https://learn.microsoft.com/azure/machine-learning/how-to-secure-workspace-vnet?view=azureml-api-2).
 
 ## Full functionality with an integrated compute resource
 
@@ -200,7 +201,7 @@ On the **Dataset cohorts** pane, you can investigate your model by comparing the
 Select **Help me choose metrics** to open a panel with a list of model performance metrics and their definitions. This list can help you select the right metrics to view.
 
 | Machine learning scenario | Metrics |
-|---|---|
+| --- | --- |
 | Regression | Mean absolute error, Mean squared error, R-squared, Mean prediction. |
 | Classification | Accuracy, Precision, Recall, F1 score, False positive rate, False negative rate, Selection rate. |
 
