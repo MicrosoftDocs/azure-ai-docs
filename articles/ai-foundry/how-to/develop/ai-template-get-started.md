@@ -6,7 +6,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 10/28/2025
+ms.date: 01/05/2026
 ms.reviewer: varundua
 ms.author: sgilley
 author: sdgilley
@@ -26,9 +26,9 @@ AI solution templates include customizable code samples, pre-integrated Azure se
 These templates harness the power of multi-agent, agentic AI, enabling you to automate workflows, optimize operations, reduce costs, and make faster, data-driven decisions.
 
 > [!IMPORTANT]
-> Starter templates, manifests, code samples, and other resources made available by Microsoft or its partners (“samples”) are designed to assist in accelerating development of agents and AI solutions for specific scenarios. Review all provided resources and carefully test output behavior in the context of your use case. AI responses may be inaccurate and AI actions should be monitored with human oversight. Learn more in the transparency documents for [Agent Service](../../responsible-ai/agents/transparency-note.md) and [Agent Framework](https://github.com/microsoft/agent-framework/blob/main/TRANSPARENCY_FAQ.md).  
+> Starter templates, manifests, code samples, and other resources made available by Microsoft or its partners ("samples") are designed to assist in accelerating development of agents and AI solutions for specific scenarios. Review all provided resources and carefully test output behavior in the context of your use case. AI responses might be inaccurate and AI actions should be monitored with human oversight. Learn more in the transparency documents for [Agent Service](../../responsible-ai/agents/transparency-note.md) and [Agent Framework](https://github.com/microsoft/agent-framework/blob/main/TRANSPARENCY_FAQ.md).  
 >
->Agents and AI solutions you create may be subject to legal and regulatory requirements, may require licenses, or may not be suitable for all industries, scenarios, or use cases. By using any sample, you are acknowledging that Agents, AI solutions, or other output created using those samples are solely your responsibility, and that you will comply with all applicable laws, regulations, and relevant safety standards, terms of service, and codes of conduct.”  
+>Agents and AI solutions you create might be subject to legal and regulatory requirements, might require licenses, or might not be suitable for all industries, scenarios, or use cases. By using any sample, you acknowledge that Agents, AI solutions, or other output created using those samples are solely your responsibility, and that you will comply with all applicable laws, regulations, and relevant safety standards, terms of service, and codes of conduct.  
 
 ::: moniker range="foundry-classic"
 
@@ -82,11 +82,11 @@ Available templates:
 
 AI templates in Microsoft Foundry provide:
 
-* **Faster time-to-value**: Skip boilerplate code and infrastructure setup to move from concept to production quickly
-* **Reduced engineering overhead**: Pre-integrated Azure services eliminate deployment friction
-* **Trusted infrastructure**: Build with confidence on Microsoft's secure, scalable AI platform
-* **Modular and interoperable foundation**: Scale solutions efficiently across your organization
-* **Best practices built-in**: Leverage proven patterns and frameworks from thousands of customer engagements
+* **Faster time-to-value**: Skip boilerplate code and infrastructure setup to move from concept to production quickly.
+* **Reduced engineering overhead**: Preintegrated Azure services eliminate deployment friction.
+* **Trusted infrastructure**: Build with confidence on Microsoft's secure, scalable AI platform.
+* **Modular and interoperable foundation**: Scale solutions efficiently across your organization.
+* **Best practices built-in**: Leverage proven patterns and frameworks from thousands of customer engagements.
 
 ## Start with a sample application
 
@@ -114,7 +114,7 @@ AI templates in Microsoft Foundry provide:
 
 ## Explore the sample application
 
-Once you're looking at the GitHub repository for your sample, refer to the README for more instructions and information on how to deploy your own version of the application.
+When you view the GitHub repository for your sample, check the README for more instructions and information on how to deploy your own version of the application.
 
 Instructions vary by sample, but most include how to:
 
@@ -129,7 +129,7 @@ The README also includes information about the application, such as the use case
 
 ## Deploy templates quickly
 
-With quick-deploy options, you can launch any Foundry template in minutes. These architectures and implementations are customizable while staying Well-Architected Framework (WAF) aligned using Azure Verified Modules. Use tools such as PSRule and TFlint to test that your modified implementation is production-ready.
+By using the quick-deploy options, you can launch any Foundry template in minutes. These architectures and implementations are customizable while staying Well-Architected Framework (WAF) aligned by using Azure Verified Modules. Use tools such as PSRule and TFlint to test that your modified implementation is production-ready.
 
 ## Next step
 
