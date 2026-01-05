@@ -24,7 +24,7 @@ This article contains recommended safety system messages for your generative AI 
 
 ## Recommended system messages
 
-Below are examples of recommended system message components you can include to potentially mitigate various harms in your AI system. 
+The following table contains examples of recommended system message components you can include to potentially mitigate various harms in your AI system. 
 
 | Category | Component | When this concern area may apply |
 | --- | --- | --- |
@@ -40,7 +40,7 @@ The following steps show how to leverage safety system messages in [Foundry port
     :::image type="content" source="../media/navigate-chat-playground.PNG" alt-text="Screenshot of the Foundry portal selection.":::
 1. Navigate to the default safety system messages integrated in the studio.
     :::image type="content" source="../media/navigate-system-message.PNG" alt-text="Screenshot of the system message navigation.":::
-1. Select the system message(s) that are applicable to your scenario. 
+1. Select the system messages that are applicable to your scenario. 
     :::image type="content" source="../media/select-system-message.PNG" alt-text="Screenshot of the system message selection.":::
 1. Review and edit the safety system messages based on the best practices outlined here. 
     :::image type="content" source="../media/review-system-message.PNG" alt-text="Screenshot of the system message review.":::
@@ -49,13 +49,13 @@ The following steps show how to leverage safety system messages in [Foundry port
 
 
 > [!NOTE]
-> If you're using a safety system message that is not integrated into the studio by default, simply copy the appropriate component and paste it in the safety system message section, or the system message section. Repeat steps 4 and 5 for optimal performance and safety. 
+> If you’re using a safety system message that isn’t built into the studio by default, copy the component you need and paste it into either the safety system message section or the system message section. Repeat steps 4 and 5 for optimal performance and safety. 
 
 ## Safety system messaging for disability related content harms  
 
 Content harms related to disability in generative AI refer to biased, inaccurate, or exclusionary outputs that misrepresent, marginalize, or exclude disabled people. Examples include using slurs to describe disabled people, denying their fundamental rights, or harmful depictions such as victimizing. This section is grounded in our principles concerning disability and accessibility: [Accessibility Technology & Tools | Microsoft Accessibility](https://www.microsoft.com/en-us/accessibility).
 
-The following safety system instructions are tailored to fit different models and contexts and are designed in a modular way so you can choose the parts that suit your needs best. For instance, the term “impairment” may be suitable in some regions but not in others. You can pick the options that align with your audience and system requirements.
+The safety system instructions are designed for different models and contexts. Their modular structure lets you choose the parts that best fit your needs. For instance, the term “impairment” may be suitable in some regions but not in others. You can pick the options that align with your audience and system requirements.
 
 # [OpenAI](#tab/openai)
 
