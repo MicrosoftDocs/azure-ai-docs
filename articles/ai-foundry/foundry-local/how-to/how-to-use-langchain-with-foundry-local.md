@@ -25,13 +25,6 @@ ai-usage: ai-assisted
 
 This article shows you how to build a translation app by using the Foundry Local SDK and [LangChain](https://www.langchain.com/langchain). Use a local model to translate text between languages.
 
-## Prerequisites
-
-- Install Foundry Local. See [Get started with Foundry Local](../get-started.md).
-- Choose one of the following options:
-  - Python 3.10 or later.
-  - Node.js 18 or later.
-
 <!-- markdownlint-disable MD044 -->
 ::: zone pivot="programming-language-python"
 [!INCLUDE [Python](../includes/use-langchain/python.md)]
