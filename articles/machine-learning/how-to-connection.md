@@ -357,7 +357,7 @@ ml_client.connections.create_or_update(workspace_connection=wps_connection)
 1. Optionally, select **Test Connection** to test the connection.
 1. Select **Save**.
 
-   :::image type="content" source="media/how-to-connection/how-to-create-azuredb-connection.png" lightbox="media/how-to-connection/how-to-create-azuredb-connection.png" alt-text="Screenshot showing creation of a new Azure SQL Datatbase connection in Azure Machine Learning studio UI.":::
+   :::image type="content" source="media/how-to-connection/how-to-create-azuredb-connection.png" lightbox="media/how-to-connection/how-to-create-azuredb-connection.png" alt-text="Screenshot showing creation of a new Azure SQL Database connection in Azure Machine Learning studio UI.":::
 
 ## Create an Amazon S3 data connection
 
