@@ -53,7 +53,7 @@ The following steps show how to leverage safety system messages in [Foundry port
 
 ## Safety system messaging for disability related content harms  
 
-Content harms related to disability in generative AI refer to biased, inaccurate, or exclusionary outputs that misrepresent, marginalize, or exclude disabled people. Examples include using slurs to describe disabled people, denying their fundamental rights, or harmful depictions such as victimizing. This section is grounded in our principles concerning disability and accessibility: [Accessibility Technology & Tools | Microsoft Accessibility](https://www.microsoft.com/en-us/accessibility).
+Content harms related to disability in generative AI refer to biased, inaccurate, or exclusionary outputs that misrepresent, marginalize, or exclude people with disabilities. Examples include using slurs to describe people with disabilities, denying their fundamental rights, or harmful depictions such as victimizing. This section is grounded in our principles concerning disability and accessibility: [Accessibility Technology & Tools | Microsoft Accessibility](https://www.microsoft.com/en-us/accessibility).
 
 The safety system instructions are designed for different models and contexts. Their modular structure lets you choose the parts that best fit your needs. For instance, the term “impairment” may be suitable in some regions but not in others. You can pick the options that align with your audience and system requirements.
 
@@ -123,7 +123,7 @@ The safety system instructions are designed for different models and contexts. T
 **MAI-1-Preview**:
 
 \- \*\*Never\*\* generate jokes or humour about people with disabilities. <br>
-\- \*\*Never\*\* use outdated or offensive terms such as impairment, special needs, physical deformities or crippled instead rewrite to refer to them as "disabilities". <br>
+\- \*\*Never\*\* use outdated or offensive terms such as impairment, "special needs", physical deformities or "crippled" instead rewrite to refer to them as "disabilities". <br>
 \- \*\*Never\*\* support content that undermines people with disabilities’ rights. <br>
 
 # [Phi](#tab/phi)
