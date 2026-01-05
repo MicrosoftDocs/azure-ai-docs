@@ -21,7 +21,7 @@ The Foundry Tools enables you to:
 * Streamline integration between tool configuration and adding to an agent or workflow. 
 * Filter, search, and sort by your desired outcome
 
->[Note]
+> [!NOTE]
 >If you are interested in bringing your official, remote MCP server(s) to all Foundry customers, please fill out this [form](https://forms.office.com/r/EEvMNceMRU). 
 
 ## Considerations for using non-Microsoft services and servers 
