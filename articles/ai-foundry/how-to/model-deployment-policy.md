@@ -143,25 +143,11 @@ Reference:
 
      To get the model asset ID strings and model publisher names, use the following steps:
 
-     ::: moniker range="foundry-classic"
-
      1. Go to the [model catalog](https://ai.azure.com/explore/models).
      1. For each model you want to allow, select the model to view the details. In the model detail information, copy the **Model ID** value. For example, the value might look like `azureml://registries/azure-openai/models/gpt-35-turbo/versions/3` for GPT-3.5-Turbo model.
 
         > [!IMPORTANT]
         > The model ID value must be an exact match for the model. If the model ID isn't an exact match, the policy doesn't work as expected.
-
-        ::: moniker-end
-
-        ::: moniker range="foundry"
-
-     1. Go to the [model catalog](https://ai.azure.com/explore/models).
-     1. For each model you want to allow, select the model to view the details. In the model detail information, copy the **Model ID** value. For example, the value might look like `azureml://registries/azure-openai/models/gpt-35-turbo/versions/3` for GPT-3.5-Turbo model.
-
-        > [!IMPORTANT]
-        > The model ID value must be an exact match for the model. If the model ID isn't an exact match, the policy doesn't work as expected.
-
-        ::: moniker-end
 
      1. Select the **Review + create** tab and verify that the policy assignment is correct. When ready, select **Create** to assign the policy.
      1. Notify your developers that the policy is in place. They receive an error message if they try to deploy a model that isn't on the list of allowed models.
