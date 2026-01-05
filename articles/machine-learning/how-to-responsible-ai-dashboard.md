@@ -9,23 +9,24 @@ ms.topic:  how-to
 ms.reviewer: None
 ms.author: lagayhar
 author: lgayhardt
-ms.date: 12/22/2025
+ms.date: 01/05/2026
 ms.custom: responsible-ml
+ai-usage: ai-assisted
 ---
 
 # Use the Responsible AI dashboard in Azure Machine Learning studio
 
 Link Responsible AI dashboards to your registered models. To view your Responsible AI dashboard, go to your model registry and select the registered model you generated a Responsible AI dashboard for. Then, select the **Responsible AI** tab to view a list of generated dashboards.
 
-:::image type="content" source="./media/how-to-responsible-ai-dashboard/view-responsible-ai-model-page.png" alt-text="Screenshot of the model details pane in Azure Machine Learning studio, with the 'Responsible AI' tab highlighted." lightbox= "./media/how-to-responsible-ai-dashboard/view-responsible-ai-model-page.png":::
+:::image type="content" source="./media/how-to-responsible-ai-dashboard/view-responsible-ai-model-page.png" alt-text="Screenshot of the model details pane in Azure Machine Learning studio, with the 'Responsible AI' tab highlighted." lightbox="./media/how-to-responsible-ai-dashboard/view-responsible-ai-model-page.png":::
 
 You can configure multiple dashboards and attach them to your registered model. Attach various combinations of components, such as interpretability, error analysis, and causal analysis, to each Responsible AI dashboard. The following image displays a dashboard's customization and the components that were generated within it. In each dashboard, you can view or hide various components within the dashboard UI itself.
 
-:::image type="content" source="./media/how-to-responsible-ai-dashboard/view-responsible-ai-dashboard.png" alt-text="Screenshot of Responsible AI tab with a dashboard name highlighted." lightbox = "./media/how-to-responsible-ai-dashboard/view-responsible-ai-dashboard.png":::
+:::image type="content" source="./media/how-to-responsible-ai-dashboard/view-responsible-ai-dashboard.png" alt-text="Screenshot of Responsible AI tab with a dashboard name highlighted." lightbox="./media/how-to-responsible-ai-dashboard/view-responsible-ai-dashboard.png":::
 
 Select the name of the dashboard to open it into a full view in your browser. To return to your list of dashboards, select **Back to models details**.
 
-:::image type="content" source="./media/how-to-responsible-ai-dashboard/dashboard-full-view.png" alt-text="Screenshot of a Responsible AI dashboard with the 'Back to model details' button highlighted." lightbox = "./media/how-to-responsible-ai-dashboard/dashboard-full-view.png":::
+:::image type="content" source="./media/how-to-responsible-ai-dashboard/dashboard-full-view.png" alt-text="Screenshot of a Responsible AI dashboard with the 'Back to model details' button highlighted." lightbox="./media/how-to-responsible-ai-dashboard/dashboard-full-view.png":::
 
 ## Prerequisites
 
@@ -34,12 +35,12 @@ Before you open the Responsible AI dashboard, make sure you have:
 * An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 * [!INCLUDE [workspace and compute instance](includes/prerequisite-workspace-compute-instance.md)]
 * A registered model with a generated Responsible AI dashboard. To create or update one, see [Generate Responsible AI insights in the studio UI](how-to-responsible-ai-insights-ui.md) or [Generate Responsible AI insights with the SDK or CLI](how-to-responsible-ai-insights-sdk-cli.md).
-* Permissions in the workspace to view models and start compute instances (for example, Workspace Contributor or Compute Operator). [TO VERIFY]
-* Any network approvals required by your organization to reach the compute instance (for example, managed virtual network access or firewall allow lists). [TO VERIFY]
+* Permissions in the workspace to view models and start compute instances. For example, **Contributor** or **Owner** at the workspace scope can start compute instances. For least-privilege access, combine **Reader** (to view assets) with **AzureML Compute Operator** (to manage compute). For more information, see [Manage access to Azure Machine Learning workspaces](/azure/machine-learning/how-to-assign-roles?view=azureml-api-2&preserve-view=true).
+* Network access required by your organization to reach Azure Machine Learning studio and connect to a compute instance. If your workspace uses network isolation (for example, managed virtual network or virtual networks with private endpoints), make sure required inbound and outbound traffic is allowed. For more information, see [Plan for network isolation in Azure Machine Learning](/azure/machine-learning/how-to-network-isolation-planning?view=azureml-api-2&preserve-view=true) and [Secure an Azure Machine Learning workspace with virtual networks](/azure/machine-learning/how-to-secure-workspace-vnet?view=azureml-api-2&preserve-view=true).
 
 ## Full functionality with an integrated compute resource
 
-Some features of the Responsible AI dashboard require dynamic, on-the-fly, and real-time computation (for example, what-if analysis). If you don't connect a compute resource to the dashboard, you might find some functionality missing. When you connect to a compute resource, you enable full functionality of your Responsible AI dashboard for the following components:
+Some features of the Responsible AI dashboard require dynamic, on-the-fly, and real-time computation, such as what-if analysis. If you don't connect a compute resource to the dashboard, you might find some functionality missing. When you connect to a compute resource, you enable full functionality of your Responsible AI dashboard for the following components:
 
 - **Error analysis**
     - Setting your global data cohort to any cohort of interest updates the error tree instead of disabling it.
@@ -64,19 +65,19 @@ Complete the following steps to connect a compute instance and unlock real-time 
 
 1. Select a running compute instance in the **Compute** dropdown list at the top of the dashboard. If you don't have a running compute, create a new compute instance by selecting the plus sign (**+**) next to the dropdown. Or you can select the **Start compute** button to start a stopped compute instance. Creating or starting a compute instance might take a few minutes.
 
-    :::image type="content" source="./media/how-to-responsible-ai-dashboard/select-compute.png" alt-text="Screenshot of the 'Compute' dropdown box for selecting a running compute instance." lightbox = "./media/how-to-responsible-ai-dashboard/select-compute.png":::
+    :::image type="content" source="./media/how-to-responsible-ai-dashboard/select-compute.png" alt-text="Screenshot of the 'Compute' dropdown box for selecting a running compute instance." lightbox="./media/how-to-responsible-ai-dashboard/select-compute.png":::
     
 1. When a compute is in a *Running* state, your Responsible AI dashboard starts to connect to the compute instance. To achieve this connection, the dashboard creates a terminal process on the selected compute instance and starts a Responsible AI endpoint on the terminal. Select **View terminal outputs** to view the current terminal process.
 
-    :::image type="content" source="./media/how-to-responsible-ai-dashboard/compute-connect-terminal.png" alt-text="Screenshot showing that the responsible AI dashboard is connecting to a compute resource." lightbox = "./media/how-to-responsible-ai-dashboard/compute-connect-terminal.png":::
+    :::image type="content" source="./media/how-to-responsible-ai-dashboard/compute-connect-terminal.png" alt-text="Screenshot showing that the responsible AI dashboard is connecting to a compute resource." lightbox="./media/how-to-responsible-ai-dashboard/compute-connect-terminal.png":::
 
 1. When your Responsible AI dashboard connects to the compute instance, you see a green message bar, and the dashboard is now fully functional.
 
-    :::image type="content" source="./media/how-to-responsible-ai-dashboard/compute-terminal-connected.png" alt-text="Screenshot showing that the dashboard is connected to the compute instance." lightbox= "./media/how-to-responsible-ai-dashboard/compute-terminal-connected.png":::
+    :::image type="content" source="./media/how-to-responsible-ai-dashboard/compute-terminal-connected.png" alt-text="Screenshot showing that the dashboard is connected to the compute instance." lightbox="./media/how-to-responsible-ai-dashboard/compute-terminal-connected.png":::
 
 1. If the process takes a while and your Responsible AI dashboard isn't connected to the compute instance, or a red error message bar is displayed, it means there are problems with starting your Responsible AI endpoint. Select **View terminal outputs** and scroll down to the bottom to view the error message.
 
-    :::image type="content" source="./media/how-to-responsible-ai-dashboard/compute-terminal-error.png" alt-text="Screenshot of an error connecting to a compute." lightbox ="./media/how-to-responsible-ai-dashboard/compute-terminal-error.png":::
+    :::image type="content" source="./media/how-to-responsible-ai-dashboard/compute-terminal-error.png" alt-text="Screenshot of an error connecting to a compute." lightbox="./media/how-to-responsible-ai-dashboard/compute-terminal-error.png":::
 
     If you're having difficulty figuring out how to resolve the "failed to connect to compute instance" issue, select the **Smile** icon at the upper right. Submit feedback to us about any error or issue you encounter. You can include a screenshot and your email address in the feedback form.
 
@@ -94,7 +95,7 @@ The Responsible AI dashboard provides a rich set of visualizations and features 
 
 ### Global controls
 
-At the top of the dashboard, you can create cohorts (subgroups of data points that share specified characteristics) to focus your analysis of each component. The dashboard always shows the name of the cohort currently applied to the dashboard at the top left. The default view in your dashboard is your whole dataset, titled **All data (default)**.
+At the top of the dashboard, you can create cohorts (subgroups of data points that share specified characteristics) to focus your analysis of each component. The dashboard always shows the name of the cohort currently applied to the dashboard at the upper left. The default view in your dashboard is your whole dataset, titled **All data (default)**.
 
 :::image type="content" source="./media/how-to-responsible-ai-dashboard/view-dashboard-global-controls.png" alt-text="Screenshot of a responsible AI dashboard showing all data." lightbox = "./media/how-to-responsible-ai-dashboard/view-dashboard-global-controls.png":::
 
@@ -107,7 +108,7 @@ Select **Cohort settings** to open a panel with a list of your cohorts, where yo
 
 :::image type="content" source="./media/how-to-responsible-ai-dashboard/view-dashboard-cohort-settings.png" alt-text="Screenshot showing the cohort settings on the dashboard." lightbox ="./media/how-to-responsible-ai-dashboard/view-dashboard-cohort-settings.png":::
 
-Select **New cohort** at the top of the dashboard or in the Cohort settings to open a new panel with options to filter on the following values:
+Select **New cohort** at the top of the dashboard or in the **Cohort settings** to open a new panel with options to filter on the following values:
 
 1. **Index**: Filters by the position of the data point in the full dataset.
 1. **Dataset**: Filters by the value of a particular feature in the dataset.
@@ -147,25 +148,25 @@ The first pane of the error analysis component is a tree map. It shows how model
 1. **Feature list:** Modify the features used in the heat map by using a side panel.
 1. **Error coverage**: Shows the percentage of all error in the dataset concentrated in the selected node.
 1. **Error (regression) or Error rate (classification)**: Shows the error or percentage of failures of all the data points in the selected node.
-5. **Node**: Represents a cohort of the dataset, potentially with filters applied, and the number of errors out of the total number of data points in the cohort.
-6. **Fill line**: Visualizes the distribution of data points into child cohorts based on filters, with the number of data points represented through line thickness.
-7. **Selection information**: Contains information about the selected node in a side panel.
-8. **Save as a new cohort:** Creates a new cohort with the specified filters.
+1. **Node**: Represents a cohort of the dataset, potentially with filters applied, and the number of errors out of the total number of data points in the cohort.
+1. **Fill line**: Visualizes the distribution of data points into child cohorts based on filters, with the number of data points represented through line thickness.
+1. **Selection information**: Contains information about the selected node in a side panel.
+1. **Save as a new cohort:** Creates a new cohort with the specified filters.
 1. **Instances in the base cohort**: Shows the total number of points in the entire dataset and the number of correctly and incorrectly predicted points.
 1. **Instances in the selected cohort**: Shows the total number of points in the selected node and the number of correctly and incorrectly predicted points.
-11. **Prediction path (filters)**: Lists the filters placed over the full dataset to create this smaller cohort.
+1. **Prediction path (filters)**: Lists the filters placed over the full dataset to create this smaller cohort.
 
 Select the **Feature list** button to open a side panel. You can retrain the error tree on specific features.
 
 :::image type="content" source="./media/how-to-responsible-ai-dashboard/error-analysis-feature-selection.png" alt-text="Screenshot of the dashboard side panel, which lists selectable features of an error analysis tree map." lightbox= "./media/how-to-responsible-ai-dashboard/error-analysis-feature-selection.png":::
 
 1. **Search features**: Find specific features in the dataset.
-2. **Features**: Lists the name of the feature in the dataset.
+1. **Features**: Lists the name of the feature in the dataset.
 1. **Importances**: A guideline for how related the feature might be to the error. Calculated via mutual information score between the feature and the error on the labels. Use this score to help you decide which features to choose in the error analysis.
 1. **Check mark**: Add or remove the feature from the tree map.
-5. **Maximum depth**: The maximum depth of the surrogate tree trained on errors.
-6. **Number of leaves**: The number of leaves of the surrogate tree trained on errors.
-7. **Minimum number of samples in one leaf**: The minimum amount of data required to create one leaf.
+1. **Maximum depth**: The maximum depth of the surrogate tree trained on errors.
+1. **Number of leaves**: The number of leaves of the surrogate tree trained on errors.
+1. **Minimum number of samples in one leaf**: The minimum amount of data required to create one leaf.
 
 #### Error heat map
 
@@ -176,9 +177,9 @@ Select the **Heat map** tab to switch to a different view of the error in the da
 1. **Cells**: Shows the number of cells selected.
 1. **Error coverage**: Shows the percentage of all errors concentrated in the selected cell(s).
 1. **Error rate**: Shows the percentage of failures of all data points in the selected cell(s).
-4. **Axis features**: Selects the intersection of features to display in the heat map.
-5. **Cells**: Represents a cohort of the dataset, with filters applied, and the percentage of errors out of the total number of data points in the cohort. A blue outline indicates selected cells, and the darkness of red represents the concentration of failures.
-6. **Prediction path (filters)**: Lists the filters placed over the full dataset for each selected cohort.
+1. **Axis features**: Selects the intersection of features to display in the heat map.
+1. **Cells**: Represents a cohort of the dataset, with filters applied, and the percentage of errors out of the total number of data points in the cohort. A blue outline indicates selected cells, and the darkness of red represents the concentration of failures.
+1. **Prediction path (filters)**: Lists the filters placed over the full dataset for each selected cohort.
 
 ### Model overview and fairness metrics
 
@@ -195,12 +196,12 @@ On the **Dataset cohorts** pane, you can investigate your model by comparing the
 1. **Table of metrics for each dataset cohort**: View columns of dataset cohorts, the sample size of each cohort, and the selected model performance metrics for each cohort.
 1. **Bar chart visualizing individual metric**: View mean absolute error across the cohorts for easy comparison. 
 1. **Choose metric (x-axis)**: Select this button to choose which metrics to view in the bar chart. 
-1. **Choose cohorts (y-axis)**: Select this button to choose which cohorts to view in the bar chart. **Feature cohort** selection might be disabled unless you first specify the features you want on the **Feature cohort tab** of the component. 
+1. **Choose cohorts (y-axis)**: Select this button to choose which cohorts to view in the bar chart. **Feature cohort** selection might be disabled unless you first specify the features you want on the **Feature cohort** tab of the component. 
 
 Select **Help me choose metrics** to open a panel with a list of model performance metrics and their definitions. This list can help you select the right metrics to view.
 
 | Machine learning scenario | Metrics |
-|---|---|
+| --- | --- |
 | Regression | Mean absolute error, Mean squared error, R-squared, Mean prediction. |
 | Classification | Accuracy, Precision, Recall, F1 score, False positive rate, False negative rate, Selection rate. |
 
