@@ -8,8 +8,7 @@ ms.reviewer: meerakurup
 ms.date: 01/05/2026
 ms.topic: how-to
 ms.service: azure-ai-foundry
-ms.custom:
-	- dev-focus
+ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
 
