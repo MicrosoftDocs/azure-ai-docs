@@ -6,7 +6,7 @@ ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.custom: build-2025, dev-focus
 ms.topic: reference
-ms.date: 10/01/2025
+ms.date: 01/05/2026
 ms.author: jburchel
 reviewer: maanavdalal
 author: jonburchel

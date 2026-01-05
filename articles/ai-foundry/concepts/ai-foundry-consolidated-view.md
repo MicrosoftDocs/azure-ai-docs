@@ -5,7 +5,7 @@ description: Discover how the Foundry consolidated view in the Azure portal simp
 author: jonburchel
 ms.author: jburchel
 ms.reviewer: aashishb
-ms.date: 09/29/2025
+ms.date: 01/05/2026
 ms.topic: concept-article
 ms.service: azure-ai-foundry
 ms.custom:
