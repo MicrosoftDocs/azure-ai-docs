@@ -61,7 +61,7 @@ The GenAI Prompt skill is available in the [latest preview REST API](/rest/api/s
 
   - On Azure OpenAI, assign [**Cognitive Services OpenAI User**](/azure/ai-services/openai/how-to/role-based-access-control) to the managed identity.
 
-  - On Foundry, assign [**Azure AI User**](../ai-foundry/concepts/rbac-foundry#built-in-roles) to the managed identity.
+  - On Foundry, assign [**Azure AI User**](../ai-foundry/concepts/rbac-foundry.md#built-in-roles) to the managed identity.
 
 ## @odata.type  
 

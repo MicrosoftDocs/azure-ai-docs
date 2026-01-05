@@ -61,7 +61,7 @@ New capabilities include:
 - **Projects are now child resources**; they might be assigned their own admin controls like Azure RBAC, but by default share common settings from their parent resource. This principle aims to take IT admins out of the day-to-day loop. Once security, resource connectivity and governance are established at the resource level, as developer you can create your own project as a folder to organize your work.
 
 > [!IMPORTANT]
-> Foundry projects feature set aren't yet on full parity with [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]s. For an up-to-date view on supported features, see [this support matrix](../what-is-foundry#types-of-projects).
+> Foundry projects feature set aren't yet on full parity with [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]s. For an up-to-date view on supported features, see [this support matrix](../what-is-foundry.md#types-of-projects).
 
 ## How to switch to Foundry project
 
@@ -231,7 +231,7 @@ If you no longer need access to your [!INCLUDE [hub-project-name](../includes/hu
 
 You might want to keep hubs and [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]s in your subscription for some reasons:
 
-- Access to select features that aren't supported yet in [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]s. See [this support matrix](/azure/ai-foundry/what-is-foundry?view=foundry&preserve-view=true#types-of-projects).
+- Access to select features that aren't supported yet in [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]s. See [this support matrix](../what-is-foundry.md#types-of-projects).
 
 - Use cases that focus on custom machine learning model training. A [!INCLUDE [hub-project-name](../includes/hub-project-name.md)] is built on the Azure Machine Learning stack and stays accessible through Azure Machine Learning Studio, CLI, or SDK.
 
