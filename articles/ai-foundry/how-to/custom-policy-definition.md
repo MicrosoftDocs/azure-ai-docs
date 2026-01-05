@@ -66,8 +66,8 @@ For more information, see [What is Azure Policy?](/azure/governance/policy/overv
    - After saving, assign the policy to the desired scope (subscription, resource group, or hub).
 
 1. **Validate the policy assignment**
-  - Try to create a connection with a category that isn't in `allowedCategories` and confirm the request is denied.
-  - Try to create a connection with a category that is in `allowedCategories` and confirm the request succeeds.
+   - Try to create a connection with a category that isn't in `allowedCategories` and confirm the request is denied.
+   - Try to create a connection with a category that is in `allowedCategories` and confirm the request succeeds.
 
 ## Common custom policy scenarios
 
