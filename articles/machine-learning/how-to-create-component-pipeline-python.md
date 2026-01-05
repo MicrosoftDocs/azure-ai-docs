@@ -224,7 +224,7 @@ You can use the `load_component()` function to load the score component, which i
 > [!NOTE]
 > To load registered components from your workspace, you must first configure your workspace connection as described in the [Get access to your workspace](#get-access-to-your-workspace) section. The `ml_client` object is required for the following operations.
 
-If you have components that are already registered in your workspace, you can load them directly using the `ml_client.components.get()` method. This approach is useful when you want to reuse components that were previously registered by you or shared by other team members.
+If you have components that are already registered in your workspace, you can load them directly using the `ml_client.components.get()` method. This approach is useful when you want to reuse components that you previously registered or other team members shared.
 
 ```python
 # Load a registered component by name and version
@@ -275,7 +275,7 @@ The pipeline contains three nodes: `prepare_data_node`, `train_node`, and `score
 
 ## Submit your pipeline job
 
-Now that you've constructed the pipeline, you can submit the job to your workspace. To submit a job, you first need to connect to a workspace.
+After you construct the pipeline, you can submit the job to your workspace. To submit a job, you first need to connect to a workspace.
 
 ### Get access to your workspace
 
@@ -283,7 +283,7 @@ Now that you've constructed the pipeline, you can submit the job to your workspa
 
 You use `DefaultAzureCredential` to get access to the workspace. `DefaultAzureCredential` should be capable of handling most Azure SDK authentication scenarios.
 
-If `DefaultAzureCredential` doesn't work for you, see [this configure credential example](https://github.com/Azure/MachineLearningNotebooks/blob/master/configuration.ipynb) and [identity Package](/python/api/azure-identity/azure.identity?view=azure-python&preserve-view=true).
+If `DefaultAzureCredential` doesn't work for you, see [the configure credential example](https://github.com/Azure/MachineLearningNotebooks/blob/master/configuration.ipynb) and [identity Package](/python/api/azure-identity/azure.identity?view=azure-python&preserve-view=true).
 
 
 [!notebook-python[] (~/azureml-examples-main/sdk/python/jobs/pipelines/2e_image_classification_keras_minist_convnet/image_classification_keras_minist_convnet.ipynb?name=credential)]
@@ -305,7 +305,7 @@ Now that you have a handle to your workspace, you can submit your pipeline job:
 
 The preceding code submits this image classification pipeline job to an experiment called `pipeline_samples`. It automatically creates the experiment if it doesn't exist. `pipeline_input_data` uses `fashion_ds`.
 
-The call to submit the experiment completes quickly and produces output similar to this:
+The call to submit the experiment completes quickly and produces output similar to this example:
 
 | Experiment | Name | Type | Status | Details page |
 | --- | ---- | ----------- | -------------- | ------------- |
@@ -334,9 +334,9 @@ In the previous sections, you built a pipeline using three components to complet
 
 You can use `ml_client.components.get()` to get a registered component by name and version. You can use `ml_client.components.create_or_update()` to register a component that was previously loaded from a Python function or YAML.
 
-## Next steps
+## Related content
 
-* For more examples of how to build pipelines using the machine learning SDK, see the [example repository](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/pipelines)
-* For information about using the studio UI to submit and debug a pipeline, see [Create and run machine learning pipelines using components with the Azure Machine Learning studio](how-to-create-component-pipelines-ui.md)
-* For information about using the Azure Machine Learning CLI to create components and pipelines, see [Create and run machine learning pipelines using components with the Azure Machine Learning CLI](how-to-create-component-pipelines-cli.md)
-* For information about deploying pipelines into production using batch endpoints, see [How to deploy pipelines with batch endpoints](how-to-use-batch-pipeline-deployments.md)
+* For more examples of how to build pipelines using the machine learning SDK, see the [example repository](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/pipelines).
+* For information about using the studio UI to submit and debug a pipeline, see [Create and run machine learning pipelines using components with the Azure Machine Learning studio](how-to-create-component-pipelines-ui.md).
+* For information about using the Azure Machine Learning CLI to create components and pipelines, see [Create and run machine learning pipelines using components with the Azure Machine Learning CLI](how-to-create-component-pipelines-cli.md).
+* For information about deploying pipelines into production using batch endpoints, see [How to deploy pipelines with batch endpoints](how-to-use-batch-pipeline-deployments.md).
