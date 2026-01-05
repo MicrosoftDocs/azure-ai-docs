@@ -47,7 +47,7 @@ Use the following quick checks to confirm the service is running and reachable.
 
   Replace `PORT` with the port shown by `foundry service status`. A successful response is JSON that includes `Endpoints`, `ModelDirPath`, and `PipeName`.
 
-  Reference: [Foundry Local REST API Reference](../reference/reference-rest.md#get-openai-status)
+  Reference: [Foundry Local REST API Reference](../reference/reference-rest.md#get-openaistatus)
 
 Foundry Local offers these key benefits:
 
