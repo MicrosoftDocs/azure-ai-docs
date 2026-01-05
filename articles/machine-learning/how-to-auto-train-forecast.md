@@ -23,7 +23,7 @@ Automated machine learning (AutoML) in Azure Machine Learning uses standard mach
 
 This article describes how to set up AutoML for time-series forecasting with Machine Learning by using the [Azure Machine Learning Python SDK](/python/api/overview/azure/ai-ml-readme) and the [Azure CLI](how-to-configure-cli.md). The process includes preparing data for training and configuring time-series parameters in a [forecasting job (class reference)](/python/api/azure-ai-ml/azure.ai.ml.automl.forecastingjob). You then train, inference, and evaluate models by using components and pipelines.
 
-For a low-code experience, see [Tutorial: Forecast demand with automated machine learning](tutorial-automated-ml-forecast.md). This article provides a time-series forecasting example that uses AutoML in [Azure Machine Learning studio](https://ml.azure.com/).
+For a low-code experience, see [Tutorial: Forecast demand with automated machine learning](tutorial-automated-ml-forecast.md). The tutorial provides a time-series forecasting example that uses AutoML in [Azure Machine Learning studio](https://ml.azure.com/).
 
 ## Prerequisites
 
@@ -151,7 +151,7 @@ You can create a new compute named `cpu-compute` by using the following Azure CL
 az ml compute create -n cpu-compute --type amlcompute --min-instances 0 --max-instances 4
 ```
 
-Reference the compute in the job definition as shown here:
+Reference the compute in the job definition, as shown here:
 
 ```yml
 $schema: https://azuremlsdk2.blob.core.windows.net/preview/0.0.1/autoMLJob.schema.json
@@ -469,7 +469,7 @@ To enable DNN for an AutoML experiment created in Azure Machine Learning studio,
 
 Recent values of the target are often impactful features in a forecasting model. Accordingly, AutoML can create time-lagged and rolling-window aggregation features to potentially improve model accuracy.
 
-Consider an energy demand forecasting scenario where weather data and historical demand are available. The table shows resulting feature engineering that occurs when window aggregation is applied over the most recent three hours. Columns for *minimum*, *maximum,* and *sum* are generated on a sliding window of three hours based on the defined settings. For instance, for the observation valid on September 8, 2017, 4:00 AM, the maximum, minimum, and sum values are calculated by using the *demand values* for September 8, 2017, 1:00 AM to 3:00 AM. This window of three hours shifts along to populate data for the remaining rows. For more information and examples, see the [Lag features for time-series forecasting in AutoML](concept-automl-forecasting-lags.md).
+Consider an energy demand forecasting scenario where weather data and historical demand are available. The table shows resulting feature engineering that occurs when window aggregation is applied over the most recent three hours. Columns for *minimum*, *maximum,* and *sum* are generated on a sliding window of three hours based on the defined settings. For instance, for the observation valid on September 8, 2017, 4:00 AM, the maximum, minimum, and sum values are calculated by using the *demand values* for September 8, 2017, 1:00 AM to 3:00 AM. This window of three hours shifts along to populate data for the remaining rows. For more information and examples, see [Lag features for time-series forecasting in AutoML](concept-automl-forecasting-lags.md).
 
 :::image type="content" source="./media/how-to-auto-train-forecast/target-roll.png" alt-text="A table with data that shows the target rolling window. The values in the Demand column are highlighted." border="false" lightbox="./media/how-to-auto-train-forecast/target-roll.png":::
 
@@ -1050,7 +1050,7 @@ The many-models components in AutoML enable you to train and manage millions of 
 
 ### Many-models training configuration
 
-The many-models training component accepts a YAML format configuration file of AutoML training settings. The component applies these settings to each AutoML instance it starts. The YAML file has the same specification as the [Forecasting command job](reference-automated-ml-forecasting.md), plus the `partition_column_names` and `allow_multi_partitions` parameters.
+The many-models training component accepts a YAML-format configuration file of AutoML training settings. The component applies these settings to each AutoML instance it starts. The YAML file has the same specification as the [Forecasting command job](reference-automated-ml-forecasting.md), plus the `partition_column_names` and `allow_multi_partitions` parameters.
 
 | Parameter | Description |
 | --- | --- |
