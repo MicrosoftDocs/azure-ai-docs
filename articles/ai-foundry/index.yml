@@ -10,7 +10,7 @@ metadata:
   author: sdgilley
   ms.author: sgilley
   manager: mcleans
-  ms.date: 08/07/2025
+  ms.date: 12/17/2025
   ms.service: azure-ai-foundry
   ms.topic: hub-page
   ms.custom:
@@ -21,7 +21,7 @@ highlightedContent:
   items:
     - title: What is Microsoft Foundry?
       itemType: overview
-      url: ./what-is-azure-ai-foundry.md
+      url: ./what-is-foundry.md
     - title: Explore Microsoft Foundry Models
       itemType: concept
       url: ./how-to/model-catalog-overview.md

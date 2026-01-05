@@ -9,7 +9,7 @@ ms.topic: troubleshooting-general
 author: s-polly
 ms.author: scottpolly
 ms.date: 07/29/2024
-ms.reviewer: cacrest
+ms.reviewer: jturuk
 ms.custom: devplatv2
 
 #customer intent: As a developer, I want to troubleshoot Azure Machine Learning batch endpoints jobs, so I can examine logs, diagnose errors, and resolve issues.

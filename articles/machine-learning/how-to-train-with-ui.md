@@ -10,7 +10,7 @@ ms.custom: devplatv2
 author: s-polly
 ms.author: scottpolly
 ms.date: 04/02/2025
-ms.reviewer: amipatel
+ms.reviewer: sooryar
 ---
 
 # Submit a training job in the Azure Machine Learning studio

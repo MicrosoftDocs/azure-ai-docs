@@ -2,11 +2,12 @@
 title: include file for voice live proactive and pregenerated messages with csharp SDK how to
 description: Learn how to invoke a proactive greeting or generate pregenerated messages with the Voice live API
 manager: nitinme
-author: goergenj
-ms.author: jagoerge
+author: PatrickFarley
+ms.author: pafarley
 ms.service: azure-ai-openai
 ms.topic: include
 ms.date: 11/05/2025
+ms.subservice: azure-ai-foundry-openai
 ---
 
 [!INCLUDE [Header](../../common/voice-live-csharp.md)]

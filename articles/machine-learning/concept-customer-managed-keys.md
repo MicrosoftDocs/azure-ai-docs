@@ -8,7 +8,7 @@ ms.subservice: enterprise-readiness
 ms.topic: concept-article
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: deeikele
+ms.reviewer: shshubhe
 ms.date: 01/28/2025
 ms.custom: engagement-fy23, build-2024
 monikerRange: 'azureml-api-2 || azureml-api-1'

@@ -4,6 +4,7 @@ titleSuffix: Microsoft Foundry
 description: This article provides instructions on how to manage and increase quotas for resources with Microsoft Foundry.
 monikerRange: 'foundry-classic || foundry'
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.custom:
   - ignite-2023
   - build-2024

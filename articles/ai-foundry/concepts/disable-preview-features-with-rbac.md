@@ -81,4 +81,4 @@ definition are the following
 
 ## Related content
 
-[Role-based access control for Foundry](rbac-azure-ai-foundry.md)
+[Role-based access control for Foundry](rbac-foundry.md)

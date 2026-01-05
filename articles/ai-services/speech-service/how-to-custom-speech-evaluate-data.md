@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 5/19/2025
+ms.date: 12/19/2025
 ms.author: pafarley
 zone_pivot_groups: foundry-speech-studio-cli-rest
 show_latex: true
@@ -16,7 +16,7 @@ no-loc: [$$, '\times', '\over']
 
 # Test accuracy of a custom speech model
 
-In this article, you learn how to quantitatively measure and improve the accuracy of the base speech to text model or your own custom models. [Audio + human-labeled transcript](how-to-custom-speech-test-and-train.md#audio--human-labeled-transcript-data-for-training-or-testing) data is required to test accuracy. You should provide from 30 minutes to 5 hours of representative audio. 
+This article shows you how to quantitatively measure and improve the accuracy of the base speech to text model or your own custom models. To test accuracy, you need [audio and human-labeled transcript data](how-to-custom-speech-test-and-train.md#audio--human-labeled-transcript-data-for-training-or-testing). Provide 30 minutes to 5 hours of representative audio. 
 
 [!INCLUDE [service-pricing-advisory](includes/service-pricing-advisory.md)]
 
@@ -45,7 +45,7 @@ To test your fine-tuned custom speech model, follow these steps:
     :::image type="content" source="./media/custom-speech/ai-foundry/new-fine-tune-test-model-select-type.png" alt-text="Screenshot of the page with an option to select the test type." lightbox="./media/custom-speech/ai-foundry/new-fine-tune-test-model-select-type.png":::
 
 1. Select the data that you want to use for testing. Then select **Next**.
-1. Select up to two models to evaluate and compare accuracy. In this example, we select the model that we trained and the base model. Then select **Next**.
+1. Select up to two models to evaluate and compare accuracy. In this example, select the model that you trained and the base model. Then select **Next**.
 
     :::image type="content" source="./media/custom-speech/ai-foundry/new-fine-tune-test-model-select-models.png" alt-text="Screenshot of the page with an option to select up to two models to evaluate and compare accuracy." lightbox="./media/custom-speech/ai-foundry/new-fine-tune-test-model-select-models.png":::
 
@@ -97,7 +97,7 @@ spx csr evaluation create --api-version v3.2 --project aaaabbbb-0000-cccc-1111-d
 > [!IMPORTANT]
 > You must set `--api-version v3.2`. The Speech CLI uses the REST API, but doesn't yet support versions later than `v3.2`.
 
-You should receive a response body in the following format:
+You receive a response body in the following format:
 
 ```json
 {
@@ -200,7 +200,7 @@ curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey" -H "Content
 }'  "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.2/evaluations"
 ```
 
-You should receive a response body in the following format:
+You receive a response body in the following format:
 
 ```json
 {
@@ -262,7 +262,7 @@ The top-level `self` property in the response body is the evaluation's URI. Use 
 
 ## Get test results
 
-You should get the test results and [evaluate](#evaluate-word-error-rate-wer) the word error rate (WER) compared to speech recognition results.
+Get the test results and [evaluate](#evaluate-word-error-rate-wer) the word error rate (WER) compared to speech recognition results.
 
 ::: zone pivot="ai-foundry-portal"
 
@@ -277,7 +277,7 @@ Follow these steps to get test results:
 1. Sign in to the [Speech Studio](https://aka.ms/speechstudio/customspeech).
 1. Select **Custom speech** > Your project name > **Test models**.
 1. Select the link by test name.
-1. After the test is complete, as indicated by the status set to *Succeeded*, you should see results that include the WER number for each tested model.
+1. After the test completes, as indicated by the status set to *Succeeded*, you see results that include the WER number for each tested model.
 
 This page lists all the utterances in your dataset and the recognition results, alongside the transcription from the submitted dataset. You can toggle various error types, including insertion, deletion, and substitution. By listening to the audio and comparing recognition results in each column, you can decide which model meets your needs and determine where more training and improvements are required.
 
@@ -302,7 +302,7 @@ spx csr evaluation status --api-version v3.2 --evaluation aaaabbbb-6666-cccc-777
 
 The word error rates and more details are returned in the response body.
 
-You should receive a response body in the following format:
+You receive a response body in the following format:
 
 ```json
 {
@@ -434,7 +434,7 @@ curl -v -X GET "https://YourServiceRegion.api.cognitive.microsoft.com/speechtote
 
 The word error rates and more details are returned in the response body.
 
-You should receive a response body in the following format:
+You receive a response body in the following format:
 
 ```json
 {
@@ -580,15 +580,15 @@ If you want to replicate WER measurements locally, you can use the sclite tool f
 
 ## Resolve errors and improve WER
 
-You can use the WER calculation from the machine recognition results to evaluate the quality of the model you're using with your app, tool, or product. A WER of 5-10% is considered to be good quality and is ready to use. A WER of 20% is acceptable, but you might want to consider more training. A WER of 30% or more signals poor quality and requires customization and training.
+You can use the WER calculation from the machine recognition results to evaluate the quality of the model you're using with your app, tool, or product. A WER of 5-10% is considered good quality and is ready to use. A WER of 20% is acceptable, but you might want to consider more training. A WER of 30% or more signals poor quality and requires customization and training.
 
-How the errors are distributed is important. When many deletion errors are encountered, it's usually because of weak audio signal strength. To resolve this issue, you need to collect audio data closer to the source. Insertion errors mean that the audio was recorded in a noisy environment and crosstalk might be present, causing recognition issues. Substitution errors are often encountered when an insufficient sample of domain-specific terms is provided as either human-labeled transcriptions or related text.
+How the errors are distributed is important. When you encounter many deletion errors, it's usually because of weak audio signal strength. To resolve this problem, collect audio data closer to the source. Insertion errors mean that the audio was recorded in a noisy environment and crosstalk might be present, causing recognition problems. Substitution errors often occur when an insufficient sample of domain-specific terms is provided as either human-labeled transcriptions or related text.
 
-By analyzing individual files, you can determine what type of errors exist, and which errors are unique to a specific file. Understanding issues at the file level helps you target improvements.
+By analyzing individual files, you can determine what type of errors exist and which errors are unique to a specific file. Understanding problems at the file level helps you target improvements.
 
 ## Evaluate token error rate (TER)
 
-Besides [word error rate](#evaluate-word-error-rate-wer), you can also use the extended measurement of **Token Error Rate (TER)** to evaluate quality on the final end-to-end display format. In addition to the lexical format (`That will cost $900.` instead of `that will cost nine hundred dollars`), TER takes into account the display format aspects such as punctuation, capitalization, and ITN. Learn more about [Display output formatting with speech to text](display-text-format.md). 
+Besides [word error rate](#evaluate-word-error-rate-wer), you can also use the extended measurement of **Token Error Rate (TER)** to evaluate quality on the final end-to-end display format. In addition to the lexical format (`That will cost $900.` instead of `that will cost nine hundred dollars`), TER takes into account the display format aspects such as punctuation, capitalization, and ITN. For more information, see [Display output formatting with speech to text](display-text-format.md). 
 
 TER counts the number of incorrect tokens identified during recognition, and divides the sum by the total number of tokens provided in the human-labeled transcript (N).
 
@@ -596,7 +596,7 @@ $$
 TER = {{I+D+S}\over N} \times 100
 $$
 
-The formula of TER calculation is also similar to WER. The only difference is that TER is calculated based on the token level instead of word level.
+The formula for TER calculation is also similar to WER. The only difference is that TER is calculated based on the token level instead of word level.
 * Insertion (I): Tokens that are incorrectly added in the hypothesis transcript
 * Deletion (D): Tokens that are undetected in the hypothesis transcript
 * Substitution (S): Tokens that were substituted between reference and hypothesis
@@ -604,7 +604,7 @@ The formula of TER calculation is also similar to WER. The only difference is th
 In a real-world case, you can analyze both WER and TER results to get the desired improvements. 
 
 > [!NOTE]
-> To measure TER, you need to make sure the [audio + transcript testing data](./how-to-custom-speech-test-and-train.md#audio--human-labeled-transcript-data-for-training-or-testing) includes transcripts with display formatting such as punctuation, capitalization, and ITN.
+> To measure TER, make sure the [audio + transcript testing data](./how-to-custom-speech-test-and-train.md#audio--human-labeled-transcript-data-for-training-or-testing) includes transcripts with display formatting such as punctuation, capitalization, and ITN.
 
 ## Example scenario outcomes
 

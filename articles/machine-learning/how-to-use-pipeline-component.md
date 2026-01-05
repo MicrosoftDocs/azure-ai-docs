@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.topic: how-to
 author: lgayhardt
-ms.author: lagayhar
-ms.reviewer: lochen
+ms.author: scottpolly
+ms.reviewer: jturuk
 ms.date: 09/13/2024
 ms.custom:
   - sdkv2

@@ -7,7 +7,7 @@ ms.service: azure-machine-learning
 ms.subservice: inferencing
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: sehan
+ms.reviewer: jturuk
 ms.date: 01/10/2024
 ms.topic: how-to
 ms.custom: how-to, ignite-2023, sdkv2, devx-track-azurecli

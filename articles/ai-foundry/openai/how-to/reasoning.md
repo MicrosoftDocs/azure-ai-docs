@@ -5,8 +5,8 @@ description: Learn how to use Azure OpenAI's advanced GPT-5 series, o3-mini, o1,
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: include
-ms.date: 12/04/2025
+ms.topic: how-to
+ms.date: 12/09/2025
 author: mrbullwinkle    
 ms.author: mbullwin
 monikerRange: 'foundry-classic || foundry'
@@ -883,6 +883,7 @@ print(response.model_dump_json(indent=2))
 
 | Model | Region | Limited access |
 |---|---|---|
+| `gpt-5.2`| East US2 & Sweden Central (Global Standard)  | Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required. |
 `gpt-5.1-codex-max` | East US2 & Sweden Central (Global Standard) |  Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required.|
 | `gpt-5.1`| East US2 & Sweden Central (Global Standard & DataZone Standard)  | Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required. |
 | `gpt-5.1-chat` | East US2 & Sweden Central (Global Standard) | No access request needed.  |
@@ -905,29 +906,30 @@ print(response.model_dump_json(indent=2))
 
 # [GPT-5 Reasoning Models](#tab/gpt-5)
 
-| **Feature**  | **gpt-5.1-codex-max** | **gpt-5.1**, **2025-11-13** | **gpt-5.1-chat**, **2025-11-13** | **gpt-5.1-codex**, **2025-11-13** | **gpt-5.1-codex-mini**, **2025-11-13** | **gpt-5-pro**, **2025-10-06** | **gpt-5-codex**, **2025-09-011**  | **gpt-5**, **2025-08-07**  | **gpt-5-mini**, **2025-08-07**   | **gpt-5-nano**, **2025-08-07**  |
-|:-------------------|:---:|:---:|:---:|:---:|:---:|:--------------------------:|:--------------------------:|:------:|:--------:|:--------:|
-| **API Version** | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) |
-| **[Developer Messages](#developer-messages)** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |✅ |
-| **[Structured Outputs](./structured-outputs.md)** | ✅| ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **[Context Window](../concepts/models.md#o-series-models)** | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 128,000 <br><br>Input: 111,616 <br> Output: 16,384 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br> Input: 272,000 <br> Output: 128,000 |  400,000 <br><br> Input: 272,000 <br> Output: 128,000 |
-| **[Reasoning effort](#reasoning-effort)** |✅ <sup>6</sup> | ✅<sup>4</sup> | ✅ | ✅ | ✅ | ✅<sup>5</sup>| ✅| ✅| ✅|✅|
-| **[Image input](./gpt-with-vision.md)** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Chat Completions API | - | ✅| ✅ | - | - | - | - | ✅ | ✅ | ✅ |
-| Responses API | ✅ | ✅ | ✅ | ✅ | ✅ | ✅| ✅|  ✅  | ✅  | ✅ |
-| Functions/Tools | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |✅ |
-| Parallel Tool Calls<sup>1</sup> | ✅  | ✅ | ✅ | ✅ | ✅ |- | ✅ | ✅ | ✅ | ✅ |
-| `max_completion_tokens` <sup>2</sup> | - | ✅ | ✅ | - | - | -  | - |  ✅ | ✅ | ✅ |
-| System Messages <sup>3</sup> | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅| ✅ |
-| [Reasoning summary](#reasoning-summary) | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Streaming | ✅ | ✅ | ✅ | ✅ | ✅ |- | ✅ | ✅ | ✅ | ✅|
+| **Feature**  | **gpt-5.2** | **gpt-5.1-codex-max** | **gpt-5.1**, **2025-11-13** | **gpt-5.1-chat**, **2025-11-13** | **gpt-5.1-codex**, **2025-11-13** | **gpt-5.1-codex-mini**, **2025-11-13** | **gpt-5-pro**, **2025-10-06** | **gpt-5-codex**, **2025-09-011**  | **gpt-5**, **2025-08-07**  | **gpt-5-mini**, **2025-08-07**   | **gpt-5-nano**, **2025-08-07**  |
+|:-------------------|:---:|:---:|:---:|:---:|:---:|:---:|:--------------------------:|:--------------------------:|:------:|:--------:|:--------:|
+| **API Version** | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) |
+| **[Developer Messages](#developer-messages)** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |✅ |
+| **[Structured Outputs](./structured-outputs.md)** | ✅ | ✅| ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **[Context Window](../concepts/models.md#o-series-models)** | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 128,000 <br><br>Input: 111,616 <br> Output: 16,384 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br> Input: 272,000 <br> Output: 128,000 |  400,000 <br><br> Input: 272,000 <br> Output: 128,000 |
+| **[Reasoning effort](#reasoning-effort)**<sup>7</sup>  | ✅| ✅<sup>6</sup> | ✅<sup>4</sup> | ✅  | ✅  | ✅  | ✅<sup>5</sup>| ✅| ✅| ✅|✅|
+| **[Image input](./gpt-with-vision.md)** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Chat Completions API | ✅ | - | ✅| ✅ | - | - | - | - | ✅ | ✅ | ✅ |
+| Responses API | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅| ✅|  ✅  | ✅  | ✅ |
+| Functions/Tools | ✅ | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |✅ |
+| Parallel Tool Calls<sup>1</sup> | ✅ | ✅  | ✅ | ✅ | ✅ | ✅ |- | ✅ | ✅ | ✅ | ✅ |
+| `max_completion_tokens` <sup>2</sup> | ✅ | - | ✅ | ✅ | - | - | -  | - |  ✅ | ✅ | ✅ |
+| System Messages <sup>3</sup> | ✅ | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅| ✅ |
+| [Reasoning summary](#reasoning-summary) | ✅ | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Streaming | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |- | ✅ | ✅ | ✅ | ✅|
 
 <sup>1</sup> Parallel tool calls are not supported when `reasoning_effort` is set to `minimal`<br><br>
 <sup>2</sup> Reasoning models will only work with the `max_completion_tokens` parameter when using the Chat Completions API. Use `max_output_tokens` with the Responses API. <br><br>
 <sup>3</sup> The latest reasoning models support system messages to make migration easier. You should not use both a developer message and a system message in the same API request.<br><br>
 <sup>4</sup> `gpt-5.1` `reasoning_effort` defaults to `none`. When upgrading from previous reasoning models to `gpt-5.1` keep in mind that you may need to update your code to explicitly pass a reasoning_effort level if you want reasoning_effort to occur.<br><br>
 <sup>5</sup> `gpt-5-pro` only supports `reasoning_effort` `high`, this is the default value even when not explicitly passed to the model.<br><br>
-<sup>6</sup> `gpt-5.1-codex-max` adds support for a new `reasoning_effort` level of `xhigh` which is the highest level that reasoning effort can be set to. 
+<sup>6</sup> `gpt-5.1-codex-max` adds support for a new `reasoning_effort` level of `xhigh` which is the highest level that reasoning effort can be set to.<br><br>
+<sup>7</sup> `gpt-5.2`, `gpt-5.1`, `gpt-5.1-codex`, `gpt-5.1-codex-max`, and `gpt-5.1-codex-mini` support `'None'` as a value for the `reasoning_effort` parameter. If you wish to use these models to generate responses without reasoning, set `reasoning_effort='None'`. This setting can increase speed.
 
 ### NEW GPT-5 reasoning features
 

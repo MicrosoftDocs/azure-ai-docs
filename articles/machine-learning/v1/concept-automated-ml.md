@@ -6,7 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: concept-article
-ms.author: cesardl
+ms.author: scottpolly
+ms.reviewer: sooryar
 author: CESARDELATORRE
 ms.date: 03/15/2022
 ms.custom: UpdateFrequency5, automl

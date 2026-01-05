@@ -82,7 +82,7 @@ First, identify the resources you need to set up in the Foundry portal.
 
 In the browser tab for the **Search service** resource in the Azure portal, enable managed identity:
 
-1. In the left pane, under **Resource Management**, select **Identity**.
+1. In the left pane, under **Settings**, select **Identity**.
 1. Switch **Status** to **On**.
 1. Select **Save**.
 

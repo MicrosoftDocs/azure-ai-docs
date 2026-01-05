@@ -12,7 +12,7 @@ ms.date: 04/14/2025
 ms.update-cycle: 365-days
 ---
 
-# Map enriched output to fields in a search index in Azure AI Search
+# Map enriched output to fields in a search index (output field mappings)
 
 :::image type="content" source="media/cognitive-search-output-field-mapping/indexer-stages-output-field-mapping.png" alt-text="Diagram of the Indexer Stages with Output Field Mappings highlighted.":::
 

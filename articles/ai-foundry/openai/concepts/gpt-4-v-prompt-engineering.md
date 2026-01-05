@@ -6,7 +6,7 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: conceptual 
+ms.topic: article 
 ms.date: 09/16/2025
 manager: nitinme
 monikerRange: 'foundry-classic || foundry'
@@ -17,7 +17,7 @@ ai-usage: ai-assisted
 
 # Image prompt engineering techniques
 
-
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 To unlock the full potential of vision-enabled chat models, it's essential to tailor the prompts to your specific needs. Here are some guidelines to enhance the accuracy and efficiency of your prompts.
 

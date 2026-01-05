@@ -1,6 +1,11 @@
 {
   "redirections": [
     {
+      "source_path_from_root": "/articles/ai-services/connect-services-ai-foundry-portal.md",
+      "redirect_url": "/azure/ai-services/connect-services-foundry-portal",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/speech-service/pattern-matching-overview.md",
       "redirect_url": "/azure/ai-services/speech-service/migrate-intent-recognition",
       "redirect_document_id": false
@@ -2157,7 +2162,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/includes/audio-completions-ai-foundry.md",
-      "redirect_url": "/azure/ai-foundry/openai/includes/audio-completions-ai-foundry",
+      "redirect_url": "/azure/ai-foundry/openai/includes/audio-completions-foundry",
       "redirect_document_id": true
     },
     {
@@ -2949,6 +2954,47 @@
       "source_path_from_root": "/articles/ai-services/content-understanding/quickstart/use-ai-foundry-pro-mode.md",
       "redirect_url": "/azure/ai-services/content-understanding/how-to/content-understanding-foundry-classic",
       "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/question-answering/how-to/migrate-qnamaker-to-question-answering.md",
+      "redirect_url": "/azure/ai-services/qnamaker/how-to/migrate-qnamaker-to-question-answering",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/question-answering/how-to/migrate-qnamaker.md",
+      "redirect_url": "/azure/ai-services/qnamaker/how-to/migrate-qnamaker",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/question-answering/tutorials/bot-service.md",
+      "redirect_url": "/azure/ai-services/language-service/question-answering/how-to/deploy-agent",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/question-answering/tutorials/guided-conversations.md",
+      "redirect_url": "/azure/ai-services/language-service/conversational-language-understanding/how-to/quickstart-multi-turn-conversations",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/question-answering/tutorials/power-virtual-agents.md",
+      "redirect_url": "/microsoft-copilot-studio/fundamentals-get-started",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/question-answering/tutorials/multiple-languages.md",
+      "redirect_url": "/azure/ai-services/language-service/question-answering/quickstart/sdk",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/custom/azure-machine-learning-labeling.md",
+      "redirect_url": "/azure/ai-services/language-service/custom-text-classification/how-to/use-autolabeling",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/conversational-language-understanding/how-to/migrate-from-luis.md",
+      "redirect_url": "/azure/ai-services/luis/how-to/migrate-from-luis",
+      "redirect_document_id": true
     }
+
   ]
 }

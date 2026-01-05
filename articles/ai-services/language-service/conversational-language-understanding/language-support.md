@@ -5,7 +5,7 @@ description: This article lists the natural languages Azure Language in Foundry 
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 12/05/2025
 ms.author: lajanuar
 ms.custom: language-service-clu

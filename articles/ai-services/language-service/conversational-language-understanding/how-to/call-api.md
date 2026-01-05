@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 12/17/2025
 ms.author: lajanuar
 ms.custom: language-service-clu
 ---
@@ -17,19 +17,9 @@ You can query the deployment programmatically through the [prediction API](https
 
 ## Test deployed model
 
-You can use Microsoft Foundry to submit an utterance, get predictions, and visualize the results.
+Once your model is deployed, you can test it by sending prediction requests to evaluate its performance with real utterances. Testing helps you verify that the model accurately identifies intents and extracts entities as expected before integrating it into your production applications. You can test your deployment using either the REST API or the Azure SDK client libraries.
 
-[!INCLUDE [Test model](../includes/language-studio/test-model.md)]
-
----
-
-## Send a conversational language understanding request
-
-# [Language Studio](#tab/language-studio)
-
-[!INCLUDE [Get prediction URL](../includes/language-studio/get-prediction-url.md)]
-
-# [REST APIs](#tab/REST-APIs)
+###  Send a conversational language understanding request
 
 First you need to get your resource key and endpoint:
 
@@ -39,9 +29,6 @@ First you need to get your resource key and endpoint:
 
 [!INCLUDE [Query model](../includes/rest-api/query-model.md)]
 
-# [Client libraries (Azure SDK)](#tab/azure-sdk)
-
-### Use the client libraries (Azure SDK)
 
 You can also use the client libraries provided by the Azure SDK to send requests to your model.
 
@@ -73,8 +60,6 @@ You can also use the client libraries provided by the Azure SDK to send requests
 
     * [C#](/dotnet/api/azure.ai.language.conversations)
     * [Python](/python/api/azure-ai-language-conversations/azure.ai.language.conversations.aio)
-
----
 
 ## Next steps
 

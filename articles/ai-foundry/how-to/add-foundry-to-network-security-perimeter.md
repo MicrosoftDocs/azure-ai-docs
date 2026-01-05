@@ -176,7 +176,7 @@ Always confirm the latest API version in the reference before scripting.
 
 ## Related content
 
-- [Role-based access control for Foundry](../concepts/rbac-azure-ai-foundry.md)
+- [Role-based access control for Foundry](../concepts/rbac-foundry.md)
 - [Network security perimeter concepts](/azure/private-link/network-security-perimeter-concepts)
 - [Azure OpenAI NSP article](/azure/ai-foundry/openai/how-to/network-security-perimeter)
 - [Azure CLI network perimeter reference](/cli/azure/network/perimeter?view=azure-cli-latest&preserve-view=true)

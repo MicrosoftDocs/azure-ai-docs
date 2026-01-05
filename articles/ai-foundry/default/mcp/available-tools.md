@@ -2,8 +2,9 @@
 title:  Explore available tools and example prompts for Foundry MCP Server (preview) 
 description: Learn about the available tools and example prompts for Foundry MCP Server (preview) 
 keywords: azure developer cli, azd
-author: alexwolfmsft
-ms.author: alexwolf
+author: sdgilley
+ms.author: sgilley
+ms.reviewer: sehan
 ms.date: 11/04/2025
 ms.topic: get-started
 ms.service: azure-ai-foundry
@@ -233,3 +234,9 @@ Example prompts include:
 - "Check which deployments are using deprecated model versions."
 - "Show me my quota usage across all regions."
 - "Delete unused test deployments to free up capacity."
+
+## Related content
+
+- Get started with [Foundry MCP Server](get-started.md)
+- Learn how to [build your own MCP server](build-your-own-mcp-server.md)
+- Try the example workflows above in your own Azure AI Foundry project

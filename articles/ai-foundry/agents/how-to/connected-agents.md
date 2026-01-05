@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 11/13/2025
+ms.date: 12/17/2025
 author: aahill
 ms.author: aahi
 recommendations: false
@@ -329,3 +329,21 @@ To create a multi-agent setup, follow these steps:
     ```
 
 ::: zone-end
+
+## Publish connected agents to Azure
+
+After testing your connected agents, you can publish them to Azure for production use. The publishing process for connected agents has one key difference from publishing individual agents: **both the main agent and all connected agents must be published separately** as Agent Applications.
+
+### Connected agents-specific considerations
+
+* **Publish each agent individually**: Publish the connected agents first, then the main agent. Each receives its own stable endpoint and Agent Identity.
+* **Routing continues to work**: After publishing, the main agent automatically routes to the published connected agents using their Agent IDs in the `ConnectedAgentToolDefinition`. No code changes are needed.
+* **Identity management**: Published connected agents receive their own Agent Identity. Reconfigure permissions for any Azure resources that your connected agents access, as the shared development identity permissions don't transfer.
+
+For complete publishing instructions, including how to publish agents through the portal or REST API, authentication configuration, and consuming published agents, see [Publish and share agents in Microsoft Foundry](../../default/agents/how-to/publish-agent.md).
+
+## Related content
+
+* [Publish and share agents in Microsoft Foundry](../../default/agents/how-to/publish-agent.md)
+* [Agent identity concepts](../../default/agents/concepts/agent-identity.md)
+* [Role-based access control for Microsoft Foundry](../../concepts/rbac-foundry.md)

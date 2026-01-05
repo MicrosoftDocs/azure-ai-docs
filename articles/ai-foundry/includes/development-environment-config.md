@@ -36,3 +36,13 @@ ms.custom: include file, build-2024
     from azure.identity import AzureAuthorityHosts
     DefaultAzureCredential(authority=AzureAuthorityHosts.AZURE_GOVERNMENT)
     ```
+1. Verify the connection.
+    
+    ```python
+    for hub in ml_client.workspaces.list():
+        print(f"  - {hub.name}")
+    ```
+
+If you receive an authentication error, ensure your Azure credentials are configured (run `az login` or set up your credentials via the Azure Identity SDK). If you receive a permission error, check that you have the Contributor role on the subscription or resource group.
+
+**References**: [`MLClient`](/python/api/azure-ai-ml/azure.ai.ml.mlclient), [`DefaultAzureCredential`](/python/api/azure-identity/azure.identity.defaultazurecredential)

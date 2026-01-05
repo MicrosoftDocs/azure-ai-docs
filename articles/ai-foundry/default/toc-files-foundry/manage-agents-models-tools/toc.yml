@@ -4,6 +4,8 @@ items:
   href: ../../control-plane/overview.md
 
 # Agent Management
+- name: Manage agents
+  href: ../../control-plane/how-to-manage-agents.md
 - name: Register and manage custom agents
   href: ../../control-plane/register-custom-agent.md
 

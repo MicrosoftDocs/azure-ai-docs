@@ -7,7 +7,7 @@ manager: nitinme
 ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 5/25/2025
+ms.date: 12/29/2025
 ms.reviewer: heikora
 zone_pivot_groups: foundry-speech-studio-cli-rest
 #Customer intent: As a developer, I want to understand the lifecycle of custom speech models and endpoints so that I can plan for the expiration of my models.

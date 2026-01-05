@@ -5,7 +5,7 @@ metadata:
   author: PatrickFarley 
   ms.author: pafarley
   manager: nitinme
-  ms.date: 09/16/2025
+  ms.date: 12/19/2025
   ms.service: azure-ai-content-understanding
   ms.topic: faq
   ms.custom:
@@ -68,7 +68,7 @@ sections:
       - question: |
          What security measures are in place to protect data processed by Content Understanding?
         answer: |
-         Foundry Tools, including Content Understanding, adheres to strict security and compliance standards to ensure data protection. These measures include data encryption, secure access controls, and compliance with industry regulations such as GDPR and HIPAA. The service also adheres to Microsoft’s responsible use of AI.
+         Foundry Tools, including Content Understanding, adheres to strict security and compliance standards to ensure data protection. These measures include data encryption, secure access controls, and compliance with industry regulations such as HIPAA. The service also adheres to Microsoft’s responsible use of AI.
       - question: |
          What base models does Azure Content Understanding use?
         answer: |

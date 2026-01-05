@@ -5,7 +5,8 @@ description: Transparency Note for Azure OpenAI
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: article
 monikerRange: 'foundry-classic || foundry'
 ms.date: 04/16/2025

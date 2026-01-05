@@ -10,7 +10,7 @@ ms.custom: cliv2, update-code2
 author: s-polly
 ms.author: scottpolly
 ms.date: 02/26/2024
-ms.reviewer: alehughes
+ms.reviewer: jturuk
 ---
 
 # CLI (v2) schedule YAML schema for model monitoring (preview)
