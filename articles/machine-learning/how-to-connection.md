@@ -166,7 +166,7 @@ To create the OAuth connection, you need the following information:
 - **Client Secret**: The service principal secret
 - **Tenant ID**: The ID of the Microsoft Entra ID tenant
 
-Create the following YAML file to defines a Snowflake connection that uses OAuth. To create the file, provide a `<connection-name>`, and replace the `<account>`, `<database>`, `<warehouse>`, and `<service-principal-scope>` placeholders with the values from your Snowflake account. For credentials, provide your `<client-id>`, `<client-secret>`, and `<tenant_id>`.
+Create the following YAML file to define a Snowflake connection that uses OAuth. To create the file, provide a `<connection-name>`, and replace the `<account>`, `<database>`, `<warehouse>`, and `<service-principal-scope>` placeholders with the values from your Snowflake account. For credentials, provide your `<client-id>`, `<client-secret>`, and `<tenant_id>`.
 
 ```yaml
 name: <connection-name>
@@ -314,7 +314,7 @@ ml_client.connections.create_or_update(workspace_connection=wps_connection)
 
 ```
 
-To directly specify the connection information without using a YAML file, run the following Python script, providing a `<connection-name>` and replacing the `<server>`, `<port>`, and `<database>` placeholders with the values for your Azure SQL database. For the username-password authentication type, the name and password values should be URL-encoded.
+To directly specify the connection information without using a YAML file, run the following Python script. Provide a `<connection-name>`, and replace the `<server>`, `<port>`, and `<database>` placeholders with the values for your Azure SQL database. For the username-password authentication type, the name and password values should be URL-encoded.
 
 ```python
 from azure.ai.ml import MLClient
@@ -367,7 +367,7 @@ You can use the Azure Machine Learning CLI, the Azure Machine Learning SDK for P
 
 Use the Azure Machine Learning CLI or Azure Machine Learning SDK for Python to create an Amazon S3 data connection. First, assemble a YAML file that defines the connection. Save the file with a name like *my_amazons3_connection.yaml*.
 
-To create the connection, run an Azure CLI or Python SDK command that calls the YAML file . For Python SDK, you can also specify the connection information directly in a Python script without using a YAML file.
+To create the connection, run an Azure CLI or Python SDK command that calls the YAML file. For Python SDK, you can also specify the connection information directly in a Python script without using a YAML file.
 
 Create the following YAML file that defines an Amazon S3 connection. Provide a `<connection-name>` and replace the `<s3-bucket-name>`, `<access-key-id>`, and `<secret-access-key>` placeholders with the values from your Amazon S3 account.
 
@@ -408,7 +408,7 @@ ml_client.connections.create_or_update(workspace_connection=wps_connection)
 
 ```
 
-To specify the connection information directly without using a YAML file, run the following Python script, providing a `<connection-name>` and replacing the `<s3-bucket-name>`, `<access-key-id>`, and `<secret-access-key>` placeholders with the values for your Amazon S3 account.
+To specify the connection information directly without using a YAML file, run the following Python script. Provide a `<connection-name>`, and replace the `<s3-bucket-name>`, `<access-key-id>`, and `<secret-access-key>` placeholders with the values for your Amazon S3 account.
 
 ```python
 from azure.ai.ml import MLClient
@@ -621,7 +621,7 @@ credentials:
    password: <password>
 ```
 
-Run the following command to create the connection:
+To create the connection, run the following command:
 
 ```azurecli
 az ml connection create --file connection.yaml
@@ -717,7 +717,7 @@ Run the following command to create the connection using the YAML files and your
 az ml connection create --file connection.yml --credentials username=myusername password=<password> --resource-group my-resource-group --workspace-name my-workspace
 ```
 
-Run the following command to create the environment.
+To create the environment, run the following command:
 
 ```azurecli
 az ml environment create --name docker-image-plus-conda-example --version 1 --file myenv.yml  --conda-file conda_dep.yml --image mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu20.04 --resource-group my-resource-group --workspace-name my-workspace
