@@ -33,8 +33,6 @@ these policies to control what models your developers can deploy in the Foundry 
 
 # [Azure CLI](#tab/cli)
 
-(Azure CLI)
-
 Use Azure CLI to find the built-in policy definition and assign it at a scope.
 
 1. Sign in and select the subscription you want to work in:
@@ -105,7 +103,7 @@ Reference:
 1. Select **Assign** to assign the policy:
 
    - **Scope**: Select the scope where you want to assign the policy. The scope can be a management group, subscription, or resource group.
-   - **Policy definition**: this section already has a value of `Cognitive Services Deployments should only use approved Registry Models`.
+   - **Policy definition**: This section already has a value of `Cognitive Services Deployments should only use approved Registry Models`.
    - **Assignment name**: Enter a unique name for the assignment.
 
    You can keep the default values for the rest of the fields or customize them as needed for your organization.
@@ -133,7 +131,7 @@ Reference:
 
      ::: moniker range="foundry"
 
-     1. Go to the [model catalog](/azure/ai-foundry/how-to/model-catalog-overview) in the Foundry portal:
+     1. Go to the [model catalog](/azure/ai-foundry/how-to/model-catalog-overview) in the Foundry portal.
      1. Select a model (for example, GPT-5).
      1. You find publisher name on the model card as shown in the following screenshot. For example, in this case it's `OpenAI`.
 
@@ -143,7 +141,7 @@ Reference:
 
    - **Allowed Asset Ids**: Enter a list of model asset IDs in quotes, separated by commas.
 
-   To get the model asset ID strings and model publisher names, use the following steps:
+     To get the model asset ID strings and model publisher names, use the following steps:
 
      ::: moniker range="foundry-classic"
 
