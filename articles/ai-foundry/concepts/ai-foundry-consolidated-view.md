@@ -68,4 +68,4 @@ The dashboard shows tiles for each visibility area:
 ## Related content
 
 - [Microsoft Foundry management center](management-center.md)
-- [Foundry status dashboard](../azure-ai-foundry-status-dashboard-documentation.md)
+- [Foundry status dashboard](../foundry-status-dashboard-documentation.md)

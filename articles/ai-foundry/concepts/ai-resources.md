@@ -31,7 +31,7 @@ Foundry AI Hub is a resource type that you use with the Microsoft Foundry resour
 
 When you create an AI Hub, you automatically provision a Foundry resource. You can use hub resources in [Foundry](https://ai.azure.com/?cid=learnDocs) and [Azure Machine Learning studio](https://ml.azure.com).
 
-Hubs have their own project types that support a differentiated feature set from Foundry projects. See [project types](../what-is-azure-ai-foundry.md#which-type-of-project-do-i-need) for an overview of supported features.
+Hubs have their own project types that support a differentiated feature set from Foundry projects. See [project types](../what-is-foundry.md#which-type-of-project-do-i-need) for an overview of supported features.
 
 ## Create a hub resource
 
@@ -95,5 +95,5 @@ If you don't provide the following dependent resources, they're automatically cr
 
 - [Create a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]](../how-to/hub-create-projects.md)
 - [Quickstart: Analyze images and video in the chat playground](/azure/ai-foundry/openai/gpt-v-quickstart)
-- [Learn more about Foundry](../what-is-azure-ai-foundry.md)
+- [Learn more about Foundry](../what-is-foundry.md)
 - [Learn more about hub projects](../how-to/hub-create-projects.md)

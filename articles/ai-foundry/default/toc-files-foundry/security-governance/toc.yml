@@ -4,7 +4,7 @@ items:
   href: ../../../concepts/authentication-authorization-foundry.md
 - name: Role-based access control
   displayName: RBAC, roles, permissions
-  href: ../../../concepts/rbac-azure-ai-foundry.md
+  href: ../../../concepts/rbac-foundry.md
 #-  missed from mainline: https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/how-to/configure-entra-id?tabs=python&pivots=ai-foundry-portal
 
 # Network Security

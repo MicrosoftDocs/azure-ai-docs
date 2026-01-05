@@ -15,7 +15,7 @@ ms.date: 10/23/2025
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-The **GenAI (Generative AI) Prompt** skill executes a *chat completion* request against a large language model (LLM) deployed in [Azure OpenAI in Foundry Models](/azure/ai-services/openai/overview) or [Microsoft Foundry](/azure/ai-foundry/what-is-azure-ai-foundry). Use this skill to create new information that can be indexed and stored as searchable content.
+The **GenAI (Generative AI) Prompt** skill executes a *chat completion* request against a large language model (LLM) deployed in [Azure OpenAI in Foundry Models](/azure/ai-services/openai/overview) or [Microsoft Foundry](../ai-foundry/what-is-foundry.md). Use this skill to create new information that can be indexed and stored as searchable content.
 
 Here are some examples of how the GenAI prompt skill can help you create content:
 
@@ -35,7 +35,7 @@ The GenAI Prompt skill is available in the [latest preview REST API](/rest/api/s
 
 ## Supported models
 
-- You can use any [chat completion inference model](/azure/ai-foundry/model-inference/concepts/models) deployed in Foundry, such as GPT models, Deepseek R#, Llama-4-Mavericj, and Cohere-command-r. For GPT models specifically, only the chat completions API endpoints are supported. Endpoints using the Azure OpenAI Responses API (containing `/openai/responses` in the URI) aren't currently compatible.
+- You can use any [chat completion inference model](../ai-foundry/foundry-models/concepts/models.md) deployed in Foundry, such as GPT models, Deepseek R#, Llama-4-Mavericj, and Cohere-command-r. For GPT models specifically, only the chat completions API endpoints are supported. Endpoints using the Azure OpenAI Responses API (containing `/openai/responses` in the URI) aren't currently compatible.
 
 - For image verbalization, the model you use to analyze the image determines what image formats are supported.
 
@@ -49,7 +49,7 @@ The GenAI Prompt skill is available in the [latest preview REST API](/rest/api/s
 
 ## Prerequisites
 
-- An [Azure OpenAI in Foundry Models resource](/azure/ai-foundry/openai/how-to/create-resource) or [Foundry project](/azure/ai-foundry/how-to/create-projects).
+- An [Azure OpenAI in Foundry Models resource](../ai-foundry/openai/how-to/create-resource.md) or [Foundry project](../ai-foundry/how-to/create-projects.md).
 
 - A [supported model](#supported-models) deployed to your resource or project.
 
@@ -61,7 +61,7 @@ The GenAI Prompt skill is available in the [latest preview REST API](/rest/api/s
 
   - On Azure OpenAI, assign [**Cognitive Services OpenAI User**](/azure/ai-services/openai/how-to/role-based-access-control) to the managed identity.
 
-  - On Foundry, assign [**Azure AI User**](/azure/ai-foundry/concepts/rbac-azure-ai-foundry#azure-ai-user) to the managed identity.
+  - On Foundry, assign [**Azure AI User**](../ai-foundry/concepts/rbac-foundry.md#built-in-roles) to the managed identity.
 
 ## @odata.type  
 
@@ -249,5 +249,5 @@ The GenAI Prompt skill is available in the [latest preview REST API](/rest/api/s
 - [Azure AI Search built-in indexers](search-indexer-overview.md)
 - [Integrated vectorization](vector-search-integrated-vectorization.md)
 - [How to define a skillset](cognitive-search-defining-skillset.md)  
-- [How to generate chat completions with Azure AI model inference (Foundry)](/azure/ai-foundry/model-inference/how-to/use-chat-completions)  
+- [How to generate chat completions with Azure AI model inference (Foundry)](../ai-foundry/foundry-models/how-to/use-chat-completions.md)  
 - [Structured outputs in Azure OpenAI](/azure/ai-services/openai/how-to/structured-outputs)  
