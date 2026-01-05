@@ -53,7 +53,7 @@ This example prints a non-zero number when the service is running and the catalo
 
 References:
 
-- [Foundry Local documentation](https://learn.microsoft.com/azure/ai-foundry/foundry-local/?view=foundry-classic)
+- [Foundry Local documentation](/azure/ai-foundry/foundry-local/)
 - [foundry-local crate docs](https://docs.rs/foundry-local/0.1.0)
 
 ### `FoundryLocalManager`
