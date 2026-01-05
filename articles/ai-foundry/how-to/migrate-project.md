@@ -176,7 +176,7 @@ You can create a new project in one of two ways:
 
 ---
 
-You're now ready to start building agents in general availability and with the latest capabilities. [Get started](/azure/ai-foundry/agents/quickstart?pivots=ai-foundry-portal) using SDK or Agent playground.
+You're now ready to start building agents in general availability and with the latest capabilities. [Get started](../agents/quickstart.md?pivots=ai-foundry-portal) using SDK or Agent playground.
 
 :::image type="content" source="../media/migrate-project/agent-playground.png" alt-text="Screenshot of agent building interface.":::
 
@@ -186,7 +186,7 @@ If your [!INCLUDE [hub-project-name](../includes/hub-project-name.md)] used conn
 
 # [Foundry portal](#tab/azure-ai-foundry)
 
- In the **Management center**, [add any connections](/azure/ai-foundry/how-to/connections-add) to tools and data you used before in your initial [!INCLUDE [hub-project-name](../includes/hub-project-name.md)].
+ In the **Management center**, [add any connections](./connections-add.md) to tools and data you used before in your initial [!INCLUDE [hub-project-name](../includes/hub-project-name.md)].
 
 # [Azure portal](#tab/azure)
 
@@ -204,7 +204,7 @@ You define connections as instances of type *CognitiveServices/account/connectio
 
 To move from the preview of Agent service to Agent service in general availability on Foundry projects, upgrade your code agents by making the following changes:
 
-1. Install the [latest version](/azure/ai-foundry/agents/quickstart?pivots=programming-language-python-azure) of your preferred SDK client.
+1. Install the [latest version](../agents/quickstart.md?pivots=programming-language-python-azure) of your preferred SDK client.
 
 1. Update your project client to use the Foundry API. Instead of a connection string, you now use the Foundry project endpoint. For example, in Python:
 
@@ -269,7 +269,7 @@ You might want to keep hubs and [!INCLUDE [hub-project-name](../includes/hub-pro
 
 ## Learn more
 
-- [Foundry rollout across my organization](/azure/ai-foundry/concepts/planning)
+- [Foundry rollout across my organization](../concepts/planning.md)
 
 - [Sample Bicep templates](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/01-connections)
 
