@@ -4,6 +4,7 @@ titleSuffix: Microsoft Foundry
 description: This article provides instructions on how to use an AI template to get started with Microsoft Foundry.
 ms.service: azure-ai-foundry
 ms.custom:
+  - dev-focus
   - ignite-2024
 ms.topic: how-to
 ms.date: 01/05/2026
@@ -18,6 +19,8 @@ monikerRange: foundry-classic || foundry
 # Get started with an AI template
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
+
+Find, explore, and deploy AI solution templates from the Foundry portal.
 
 Streamline your code-first development with prebuilt, task-specific Azure AI templates. These ready-to-use, customizable templates help you skip setup, reduce friction, and deliver value faster with trusted, scalable infrastructure. Built on insights from over 2,000 customer engagements, AI solution templates significantly reduce time from concept to production at scale.
 
@@ -68,9 +71,14 @@ Available templates:
 
 ::: moniker-end
 
+
+> [!TIP]
+> Each template includes a GitHub README with setup, deployment, and customization instructions. Start there for the fastest path forward.
+
 ## Prerequisites
 
 - [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
+- Appropriate RBAC role to create Foundry resources. For details, see [Role-based access control](../concepts/rbac-foundry.md).
 ::: moniker range="foundry-classic"
 - Either a [[!INCLUDE [fdp-project-name](../../includes/fdp-project-name.md)]](../create-projects.md) or a [[!INCLUDE [hub-project-name](../../includes/hub-project-name.md)]](../hub-create-projects.md).
 ::: moniker-end
