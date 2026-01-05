@@ -41,7 +41,7 @@ In this article, you learn how to:
 
 [!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
 
-- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Foundry portal. To perform the steps in this article, your user account must be assigned the __owner__ or __contributor__ role for the Azure subscription. For more information on permissions, see [Role-based access control in Foundry portal](../concepts/rbac-azure-ai-foundry.md).
+- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Foundry portal. To perform the steps in this article, your user account must be assigned the __owner__ or __contributor__ role for the Azure subscription. For more information on permissions, see [Role-based access control in Foundry portal](../concepts/rbac-foundry.md).
 
 ## Fine-tune a foundation model using managed compute
 

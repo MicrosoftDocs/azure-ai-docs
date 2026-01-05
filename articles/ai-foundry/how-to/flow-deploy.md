@@ -240,6 +240,6 @@ If you aren't going to use the endpoint after you finish this tutorial, delete t
 
 ## Related content
 
-- Learn more about what you can do in [Foundry](../what-is-azure-ai-foundry.md).
+- Learn more about what you can do in [Foundry](../what-is-foundry.md).
 - Get answers to frequently asked questions in the [Foundry FAQ](../faq.yml).
 - [Enable trace and collect feedback for your deployment](./develop/trace-production-sdk.md).

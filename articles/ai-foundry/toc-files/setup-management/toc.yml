@@ -44,7 +44,7 @@ items:
   - name: Create and manage compute
     href: ../../how-to/create-manage-compute.md
   - name: Role-based access control for Microsoft Foundry
-    href: ../../concepts/hub-rbac-azure-ai-foundry.md
+    href: ../../concepts/hub-rbac-foundry.md
   - name: Customer-managed keys
     href: ../../concepts/hub-encryption-keys-portal.md
   - name: How to configure a private link
@@ -68,7 +68,7 @@ items:
 - name: Consolidated view
   href: ../../concepts/ai-foundry-consolidated-view.md
 - name: Status dashboard
-  href: ../../azure-ai-foundry-status-dashboard-documentation.md  
+  href: ../../foundry-status-dashboard-documentation.md  
 - name: Connect to other services
   items:
   - name: Create a connection
