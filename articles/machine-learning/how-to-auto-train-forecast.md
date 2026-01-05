@@ -341,7 +341,7 @@ forecasting:
 
 ---
 
-AutoML tries to automatically detect time series ID columns in your data if none are specified.
+AutoML tries to automatically detect time series ID columns in your data if none is specified.
 
 Other settings are optional and described in the following section.
 
@@ -756,7 +756,7 @@ returned_job.services["Studio"].endpoint
 
 In the following Azure CLI command, the job YAML configuration is in the current working directory at the path *./automl-forecasting-job.yml*. If you run the command from a different directory, you need to change the path accordingly.
 
-```yml
+```azurecli
 run_id=$(az ml job create --file automl-forecasting-job.yml)
 ```
 
@@ -1302,7 +1302,7 @@ jobs:
             evaluation_result: ${{parent.outputs.metrics_result}}
 ```
 
-You start the pipeline job with the following command. The many-models pipeline configuration is at the path *./automl-mm-forecasting-pipeline.yml*:
+You start the pipeline job with the following command. The many-models pipeline configuration is at the path *./automl-mm-forecasting-pipeline.yml*.
 
 ```azurecli
 az ml job create --file automl-mm-forecasting-pipeline.yml -w <Workspace> -g <Resource Group> --subscription <Subscription>
@@ -1504,7 +1504,7 @@ experiment_name: cli-v2-automl-mm-forecasting-pipeline
 
 # Set the default compute for pipeline steps.
 settings:
-    default_compute: cpu-compute
+    default_compute: azureml:cpu-compute
 
 # Set pipeline inputs.
 inputs:
