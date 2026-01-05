@@ -175,8 +175,8 @@ Select the **Heat map** tab to switch to a different view of the error in the da
 :::image type="content" source="./media/how-to-responsible-ai-dashboard/error-analysis-heat-map.png" alt-text="Screenshot of the dashboard, showing an error analysis heat map and list of features to compare." lightbox= "./media/how-to-responsible-ai-dashboard/error-analysis-heat-map.png":::
 
 1. **Cells**: Shows the number of cells selected.
-1. **Error coverage**: Shows the percentage of all errors concentrated in the selected cell(s).
-1. **Error rate**: Shows the percentage of failures of all data points in the selected cell(s).
+1. **Error coverage**: Shows the percentage of all errors concentrated in the selected cells.
+1. **Error rate**: Shows the percentage of failures of all data points in the selected cells.
 1. **Axis features**: Selects the intersection of features to display in the heat map.
 1. **Cells**: Represents a cohort of the dataset, with filters applied, and the percentage of errors out of the total number of data points in the cohort. A blue outline indicates selected cells, and the darkness of red represents the concentration of failures.
 1. **Prediction path (filters)**: Lists the filters placed over the full dataset for each selected cohort.
@@ -207,7 +207,7 @@ Select **Help me choose metrics** to open a panel with a list of model performan
 
 #### Feature cohorts
 
-On the **Feature cohorts** pane, you can investigate your model by comparing model performance across user-specified sensitive and non-sensitive features. For example, you can compare performance across various gender, race, and income level cohorts.
+On the **Feature cohorts** pane, you can investigate your model by comparing model performance across user-specified sensitive and nonsensitive features. For example, you can compare performance across various gender, race, and income level cohorts.
 
 :::image type="content" source="./media/how-to-responsible-ai-dashboard/model-overview-feature-cohorts.png" alt-text="Screenshot of the dashboard 'Model overview' pane, showing the 'Feature cohorts' tab." lightbox= "./media/how-to-responsible-ai-dashboard/model-overview-feature-cohorts.png":::
 
@@ -216,7 +216,7 @@ On the **Feature cohorts** pane, you can investigate your model by comparing mod
 
     :::image type="content" source="./media/how-to-responsible-ai-dashboard/model-overview-choose-features.png" alt-text="Screenshot of the dashboard 'Model overview' pane, showing how to choose features." lightbox= "./media/how-to-responsible-ai-dashboard/model-overview-choose-features.png":::
 1. **Show heat map**: Toggle on and off to see a heat map visualization. The gradient of the heat map corresponds to the range that's normalized between the lowest value and the highest value in each column.
-1. **Table of metrics for each feature cohort**: A table with columns for feature cohorts (sub-cohort of your selected feature), sample size of each cohort, and the selected model performance metrics for each feature cohort.
+1. **Table of metrics for each feature cohort**: A table with columns for feature cohorts (subcohort of your selected feature), sample size of each cohort, and the selected model performance metrics for each feature cohort.
 1. **Fairness metrics/disparity metrics**: A table that corresponds to the metrics table and shows the maximum difference or maximum ratio in performance scores between any two feature cohorts.
 1. **Bar chart visualizing individual metric**: View mean absolute error across the cohorts for easy comparison.
 1. **Choose cohorts (y-axis)**: Select this button to choose which cohorts to view in the bar chart.
@@ -260,7 +260,7 @@ By using the model explanation component, you can see which features were most i
 
     :::image type="content" source="./media/how-to-responsible-ai-dashboard/aggregate-feature-importance-2.png" alt-text="Screenshot of the dashboard, showing a populated dependence plot on the 'Aggregate feature importances' pane." lightbox="./media/how-to-responsible-ai-dashboard/aggregate-feature-importance-2.png":::
 
-1. **Feature importance of [feature] (regression) or Feature importance of [feature] on [predicted class] (classification)**: Plots the importance of a particular feature across the predictions. For regression scenarios, the importance values are in terms of the output, so positive feature importance means it contributed positively toward the output. The opposite applies to negative feature importance.  For classification scenarios, positive feature importances mean that feature value is contributing toward the predicted class denoted in the y-axis title. Negative feature importance means it's contributing against the predicted class.
+1. **Feature importance of [feature] (regression) or Feature importance of [feature] on [predicted class] (classification)**: Plots the importance of a particular feature across the predictions. For regression scenarios, the importance values are in terms of the output, so positive feature importance means it contributed positively toward the output. The opposite applies to negative feature importance. For classification scenarios, positive feature importances mean that feature value is contributing toward the predicted class denoted in the y-axis title. Negative feature importance means it's contributing against the predicted class.
 1. **View dependence plot for**: Selects the feature whose importances you want to plot.
 1. **Select a dataset cohort**: Selects the cohort whose importances you want to plot.
 
@@ -277,7 +277,7 @@ The following image illustrates how features influence the predictions that are 
 **Feature importance plot**: A bar plot of the importance of each feature for the model's prediction on the selected data points.
 
 1. **Top k features**: Specify the number of features to show importances for by using a slider.
-1. **Sort by**: Select the point (of those checked above) whose feature importances are displayed in descending order on the feature importance plot.
+1. **Sort by**: Select the point of those points checked whose feature importances are displayed in descending order on the feature importance plot.
 1. **View absolute values**: Toggle on to sort the bar plot by the absolute values. This setting allows you to see the most impactful features regardless of their positive or negative direction.
 1. **Bar plot**: Displays the importance of each feature in the dataset for the model prediction of the selected data points.
 
@@ -312,9 +312,9 @@ Counterfactual analysis provides a diverse set of *what-if* examples generated b
 
 1. **Search features**: Finds features to observe and change values.
 1. **Sort counterfactual by ranked features**: Sorts counterfactual examples in order of perturbation effect. (Also see **Top ranked features plot**, discussed earlier.)
-1. **Counterfactual examples**: Lists feature values of example counterfactuals with the desired class or range. The first row is the original reference data point. Select **Set value** to set all the values of your own counterfactual data point in the bottom row with the values of the pre-generated counterfactual example.  
+1. **Counterfactual examples**: Lists feature values of example counterfactuals with the desired class or range. The first row is the original reference data point. Select **Set value** to set all the values of your own counterfactual data point in the bottom row with the values of the pregenerated counterfactual example.  
 1. **Predicted value or class**: Lists the model prediction of a counterfactual's class given those changed features.
-1. **Create your own counterfactual**: Allows you to perturb your own features to modify the counterfactual. Features that you change from the original feature value are denoted by the title being bolded (for example, Employer and Programming language). Select **See prediction delta** to view the difference in the new prediction value from the original data point.
+1. **Create your own counterfactual**: Allows you to perturb your own features to modify the counterfactual. Features that you change from the original feature value are denoted by the title being bolded, for example, Employer and Programming language. Select **See prediction delta** to view the difference in the new prediction value from the original data point.
 1. **What-if counterfactual name**: Allows you to name the counterfactual uniquely.
 1. **Save as new data point**: Saves the counterfactual you create.
 
@@ -361,7 +361,7 @@ Select the **Treatment policy** tab to switch to a view that helps determine rea
 
 1. **Recommended global treatment policy**: Displays recommended interventions for data cohorts to improve the target feature value. Read the table from left to right, where the segmentation of the dataset is first in rows and then in columns. For example, for 658 individuals whose employer isn't Snapchat and whose programming language isn't JavaScript, the recommended treatment policy is to increase the number of GitHub repos contributed to.
 
-    **Average gains of alternative policies over always applying treatment**: Plots the target feature value in a bar chart of the average gain in your outcome for the above recommended treatment policy versus always applying treatment.
+    **Average gains of alternative policies over always applying treatment**: Plots the target feature value in a bar chart of the average gain in your outcome for the recommended treatment policy versus always applying treatment.
 
     :::image type="content" source="./media/how-to-responsible-ai-dashboard/causal-treatment-policy-2.png" alt-text="Screenshot of the dashboard showing a bar chart of the average gains of alternative policies over always applying treatment on the treatment policy tab." lightbox= "./media/how-to-responsible-ai-dashboard/causal-treatment-policy-2.png":::
 
@@ -373,7 +373,7 @@ Select the **Treatment policy** tab to switch to a view that helps determine rea
 
 1. **Recommended individual treatment policy table**: Lists, in descending order of causal effect, the data points whose target features would be most improved by an intervention.
 
-## Next steps
+## Related content
 
 - Summarize and share your Responsible AI insights with the [Responsible AI scorecard as a PDF export](concept-responsible-ai-scorecard.md).
 - Learn more about the [concepts and techniques behind the Responsible AI dashboard](concept-responsible-ai-dashboard.md).
