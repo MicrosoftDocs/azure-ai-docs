@@ -88,6 +88,10 @@ project_client = AIProjectClient(
 openai_client = project_client.get_openai_client()
 
 with project_client:
+    fabric_connection = project_client.connections.get(os.environ["FABRIC_PROJECT_CONNECTION_NAME"])
+    connection_id = fabric_connection.id
+    print(f"Fabric connection ID: {connection_id}")
+
     agent = project_client.agents.create_version(
         agent_name="MyAgent",
         definition=PromptAgentDefinition(
@@ -97,7 +101,7 @@ with project_client:
                 MicrosoftFabricAgentTool(
                     fabric_dataagent_preview=FabricDataAgentToolParameters(
                         project_connections=[
-                            ToolProjectConnection(project_connection_id=os.environ["FABRIC_PROJECT_CONNECTION_ID"])
+                            ToolProjectConnection(project_connection_id=connection_id)
                         ]
                     )
                 )
