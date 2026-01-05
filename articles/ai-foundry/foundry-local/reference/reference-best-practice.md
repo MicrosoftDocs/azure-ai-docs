@@ -5,8 +5,8 @@ description: Guidance on best practices and troubleshooting for Foundry Local.
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.custom: build-2025
-ms.topic: reference
-ms.date: 10/01/2025
+ms.topic: troubleshooting
+ms.date: 01/05/2026
 ms.author: jburchel
 author: jonburchel
 reviewer: maanavdalal
