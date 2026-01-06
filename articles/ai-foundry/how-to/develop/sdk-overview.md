@@ -212,24 +212,28 @@ When the install succeeds, the .NET CLI reports that it added the package and it
 
     This snippet authenticates with `DefaultAzureCredential`, configures an `AIProjectClient`, and prepares it for retries with a token policy.
     ```csharp
-    using Azure.Identity;
-    using Azure.Core;
-    using Azure.Core.Pipeline;
     using Azure.AI.Projects;
+    using Azure.AI.Projects.OpenAI;
+    using Azure.Identity;
+    using OpenAI;
+    using OpenAI.Responses;
+    using System.ClientModel.Primitives;
     using System;
 
-    string endpointUrl = "https://<your-resource-name>.services.ai.azure.com"; // Replace with your endpoint
+    string projectEndpointUrl = "https://<your-resource-name>.services.ai.azure.com"; // Replace with your endpoint
 
     DefaultAzureCredential credential = new();
     BearerTokenPolicy tokenPolicy = new(credential, "https://cognitiveservices.azure.com/.default");
 
-    AIProjectClientOptions clientOptions = new AIProjectClientOptions();
-    // The PerRetry position ensures the authentication policy is applied to every retry attempt.
-    // This is important for robust authentication in distributed/cloud environments.
-    clientOptions.AddPolicy(tokenPolicy, HttpPipelinePosition.PerRetry);
-
-    AIProjectClient projectClient = new(new Uri(endpointUrl), new DefaultAzureCredential(), clientOptions);
+    AIProjectClient projectClient = new(endpoint: new Uri(projectEndpointUrl), tokenProvider: new DefaultAzureCredential());        
     // The AIProjectClient lets you access models, data, and services in your project.
+
+    const string deploymentName = "gpt-4.1";
+    
+    OpenAIResponseClient modelResponseClient = projectClient.OpenAI.GetProjectResponsesClientForModel(deploymentName);
+    OpenAIResponse modelResponse = modelResponseClient.CreateResponse("Tell me a C# joke in the style of a deadpan standup comic.");
+    
+    Console.WriteLine("Model response: " + modelResponse.GetOutputText());
     ```
 
 When the client builds successfully, you can call it to manage models, evaluations, and other project resources.
@@ -390,6 +394,7 @@ For more information on using the OpenAI SDK, see [Azure OpenAI supported progra
 
     Run this command to add the OpenAI client library to your .NET project.
     ```bash
+    
     dotnet add package OpenAI
     ```
 When it succeeds, the .NET CLI confirms that it installed the `OpenAI` package.
@@ -399,30 +404,35 @@ When it succeeds, the .NET CLI confirms that it installed the `OpenAI` package.
     ```csharp
     using Azure.Identity;
     using Azure.Core;
-    using Azure.Core.Pipeline;   
     using OpenAI;
     using System;
     using System.ClientModel.Primitives;
     
-    endpointUrl = "https://<YOUR-RESOURCE-NAME>.openai.azure.com/openai/v1/"
+    const string directModelEndpoint  = "https://<YOUR-RESOURCE-NAME>.openai.azure.com/openai/v1/"; // Replace with your endpoint
+    const string deploymentName = "gpt-4.1";    
+
+    BearerTokenPolicy tokenPolicy = new(
+        new DefaultAzureCredential(),
+        "https://cognitiveservices.azure.com/.default");
     
-    DefaultAzureCredential credential = new();
-    BearerTokenPolicy tokenPolicy = new(credential, "https://cognitiveservices.azure.com/.default");
-    
-    OpenAIClientOptions clientOptions = new()
+    OpenAIResponseClient client = new(
+        model: deploymentName,
+        authenticationPolicy: tokenPolicy,
+        options: new OpenAIClientOptions()
+        {
+            Endpoint = new($"{directModelEndpoint}"),
+        });
+    ResponseCreationOptions options = new ResponseCreationOptions
     {
-        Endpoint = new Uri(endpointUrl)
+        Temperature = (float)0.7,
     };
     
-    // The PerRetry position ensures the authentication policy is applied to every retry attempt.
-    // This is important for robust authentication in distributed/cloud environments.
-    clientOptions.AddPolicy(tokenPolicy, HttpPipelinePosition.PerRetry);
+    OpenAIResponse modelDirectResponse = client.CreateResponse(
+         [
+            ResponseItem.CreateUserMessageItem("What is the size of France in square miles?"),
+         ], options);
     
-    var projectClient = new ResponseClient(
-        endpointUrl, 
-        credential,
-        clientOptions
-    );
+    Console.WriteLine($"[ASSISTANT]: {modelDirectResponse.GetOutputText()}");
     // The ResponseClient lets you interact with models and services in your project.
     ```
 
