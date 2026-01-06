@@ -8,8 +8,9 @@ ms.author: aahi
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: conceptual
-ms.date: 11/19/2025
-ms.custom: azure-ai-agents
+ms.date: 01/06/2026
+ms.custom: azure-ai-agents, dev-focus
+ai-usage: ai-assisted
 ---
 
 # Threads, runs, and messages in Foundry Agent Service
@@ -20,14 +21,14 @@ Foundry Agent Service supports persistent threads, runs, and messages, which are
 
 ## Agent components
 
-When you use an Agent, there are a series of steps that are involved.
+When you use an agent, the following steps are involved:
 
-- **Creating an agent:** You create an agent to start sending messages and receiving responses.
-- **Creating a thread:** You create a thread once and append messages to it as users reply. This ensures that the conversation history is maintained and managed automatically.
-- **Sending messages:** Messages can be sent by both the agent and the user. These messages can include text, images, and other files, providing a rich interaction experience.
-- **Running the agent:** When a run is initiated, the agent processes the messages in the thread and performs tasks based on its configuration. It may append new messages to the thread as part of its response.
-- **Check the run status:** Monitor the run until it has completed. 
-- **Getting the response:** After the agent has created a response, display it to the user.
+- **Create an agent:** Create an agent to start sending messages and receiving responses.
+- **Create a thread:** Create a thread once and append messages to it as users reply. The conversation history is maintained and managed automatically.
+- **Send messages:** Messages can be sent by both the agent and the user. These messages can include text, images, and other files.
+- **Run the agent:** When a run is initiated, the agent processes the messages in the thread and performs tasks based on its configuration. It might append new messages to the thread as part of its response.
+- **Monitor the run status:** Monitor the run until it completes.
+- **Get the response:** After the agent creates a response, display it to the user.
 
 :::image type="content" source="../media\run-thread-model.png" alt-text="A diagram showing an example of an agent run." lightbox="../media\run-thread-model.png":::
 
@@ -45,7 +46,7 @@ Messages are the individual pieces of communication within a thread. They can be
 
 ## Runs
 
-A run involves invoking the agent on the thread, where it processes the messages in the thread and may append new messages (responses from the agent). The agent uses its configuration and the thread’s messages to perform tasks by calling models and tools. As part of a run, the agent appends messages to the thread.
+A run involves invoking the agent on the thread, where it processes the messages in the thread and might append new messages (responses from the agent). The agent uses its configuration and the thread's messages to perform tasks by calling models and tools. As part of a run, the agent appends messages to the thread.
 
 ## Next steps
 
