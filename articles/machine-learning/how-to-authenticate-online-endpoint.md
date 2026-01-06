@@ -216,7 +216,7 @@ You can get the token based on the managed identity for an Azure VM (when the VM
     ```
     
     > [!TIP]
-    > The `jq` utility is used To extract the token from the JSON output. However, you can use any suitable tool for this purpose.
+    > The `jq` utility is used to extract the token from the JSON output. However, you can use any suitable tool for this purpose.
     
     For more information on getting tokens based on managed identities, see [Get a token using HTTP](/entra/identity/managed-identities-azure-resources/how-to-use-vm-token#get-a-token-using-http).
 
@@ -338,7 +338,7 @@ The REST API call requires you to explicitly provide the control plane token. Us
     echo $response
     ```
 
-    You can replace `authMode` with `key` for key authentication or with`AMLToken` for Azure Machine Learning token authtication. In this example, you use `AADToken` for Microsoft Entra token authentication.
+    You can replace `authMode` with `key` for key authentication or with `AMLToken` for Azure Machine Learning token authentication. In this example, you use `AADToken` for Microsoft Entra token authentication.
 
 1. Get the current status of the online endpoint:
 
