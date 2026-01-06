@@ -5,7 +5,7 @@ description: Gain insights into your AI agents' performance with the Agent Monit
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: sonalimalik
-ms.date: 10/27/2025
+ms.date: 01/08/2026
 ms.topic: how-to
 ms.service: azure-ai-foundry
 ms.custom: dev-focus

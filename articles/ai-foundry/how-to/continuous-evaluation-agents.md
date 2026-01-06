@@ -17,6 +17,9 @@ ai-usage: ai-assisted
 
 Continuous evaluation for Agents provides near real-time observability and monitoring for your AI application. Once enabled, this feature continuously evaluates agent interactions at a set sampling rate to provide insights into quality, safety, and performance with metrics surfaced in the Foundry Observability dashboard. By using continuous evaluation, you're able to identify and troubleshoot issues early, optimize agent performance, and maintain safety. Evaluations are also connected to traces. to enable detailed debugging and root cause analysis.
 
+> [!IMPORTANT]
+> This document refers to the Microsoft Foundry (classic) portal. To continuously evaluate using the Microsoft Foundry (new) portal, see [Agent Monitoring Dashboard Create and manage evaluation rules](../default/observability/how-to/how-to-monitor-agents-dashboard.md#create-and-manage-evaluation-rules).
+
 ## Prerequisites
 
 [!INCLUDE [uses-fdp-only](../includes/uses-fdp-only.md)] 
