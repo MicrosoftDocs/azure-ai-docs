@@ -9,21 +9,25 @@ ms.reviewer: jeomhove
 author: sdgilley
 ms.topic: concept-article
 monikerRange: 'foundry-classic || foundry'
+ms.custom: dev-focus
+ai-usage: ai-assisted
 ---
 
 # Ask AI for help (preview)
-
-## Overview
 
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
 ::: moniker range="foundry-classic"
 
-Our portal offers the ability to ask AI to assist you in Microsoft Foundry. To start using AI to ask questions, select the AI icon in the upper right of the [!INCLUDE [classic-link](../includes/classic-link.md)] portal. A chat window opens where you can type your questions and receive answers in real-time.
+You can ask AI to assist you in Microsoft Foundry. To start using AI to ask questions, select the AI icon in the upper right of the [!INCLUDE [classic-link](../includes/classic-link.md)] portal. A chat window opens where you can type your questions and receive answers in real-time.
 
 :::image type="content" source="../media/ask-foundry-agent/ask-foundry.png" alt-text="Screenshot shows the Ask AI button in the top right bar of the Foundry (classic) portal.":::
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
+
+## Prerequisites
+
+- Access to the [Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 ## Capabilities
 
@@ -45,11 +49,15 @@ Use the agent to make the most of the Foundry experience but keep its scope and 
 
 ::: moniker range="foundry"
 
-Our portal offers the ability to ask AI to assist you in Foundry. To start using AI to ask questions or complete tasks, select its icon located in the top right bar of the [!INCLUDE [classic-link](../includes/classic-link.md)] portal. A chat window opens where you can type your questions and receive answers in real-time. You can also ask the agent to run tasks for you.
+You can ask AI to assist you in Foundry. To start using AI to ask questions or complete tasks, select its icon located in the top right bar of the [!INCLUDE [classic-link](../includes/classic-link.md)] portal. A chat window opens where you can type your questions and receive answers in real-time. You can also ask the agent to run tasks for you.
 
 :::image type="content" source="../default/media/ask-foundry-agent/ask-ai.png" alt-text="Screenshot shows the Ask AI button in the top right bar of the Foundry portal.":::
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
+
+## Prerequisites
+
+- Access to the [Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 ## Capabilities
 
@@ -61,7 +69,7 @@ Our portal offers the ability to ask AI to assist you in Foundry. To start using
 - **Quota & Model Operations**: Deploy models, debug deployment problems, find deployment details, check quota and capacity in specific regions, and delete model deployments.
 - **Model Analysis**: Recommend models based on cost, performance, or quality. Compare models using benchmark data across quality, cost, throughput, safety, and latency criteria. Analyze operational data for Azure OpenAI deployments.
 - **Monitoring Dashboard Insights**: Interpret evaluation dashboard visualizations, identify patterns and anomalies in monitoring data, and suggest optimizations based on performance metrics.
-- **Evaluation Management**: Manage evaluation workflows for large language models and agents, including setup, execution, and monitoring of evaluation jobs. 
+- **Evaluation Management**: Manage evaluation workflows for large language models and agents, including setup, execution, and monitoring of evaluation jobs.
 
 **What This AI Can't Do** - While the agent is a powerful tool, it has some limitations and constraints:
 
@@ -77,7 +85,7 @@ When you ask the Ask AI agent to perform tasks that require accessing or modifyi
 
 :::image type="content" source="../default/media/ask-foundry-agent/ask-ai-approval-flow.png" alt-text="Screenshot shows the Ask AI chat on the right side of Foundry portal. The Ask AI agent is responding a user query by proposing to run an action for the user to approve.":::
 
-The actions come from the tools available under the [Foundry MCP Server](../default/mcp/available-tools.md).
+The actions come from the tools available under the [Foundry Model Context Protocol (MCP) Server](../default/mcp/available-tools.md).
 
 To make this approval flow easier, you can **change the approval settings** to pre-approve some actions depending on their scope. Access the approval settings by selecting the settings icon in the Ask AI prompt chat box. By default, this experience is set to pre-approve **System access** actions. You can change these settings anytime, and they persist beyond your session.
 
@@ -85,7 +93,7 @@ To make this approval flow easier, you can **change the approval settings** to p
 
 ## Best practices and security guidance
 
-The Ask AI experience relies on the [Foundry MCP Server](../default/mcp/get-started.md). By using this server, it implements the [same best practices and security guidance](../default/mcp/security-best-practices.md).
+The Ask AI experience relies on the [Foundry Model Context Protocol (MCP) Server](../default/mcp/get-started.md). By using this server, it implements the [same best practices and security guidance](../default/mcp/security-best-practices.md).
 
 > [!IMPORTANT]
 > By using this preview feature, you acknowledge and consent to any cross-region processing that may occur. As an example, an EU resource accessed by a US user could be routed through US infrastructure. If your organization requires strict in-region processing, don't use Ask AI (preview) or restrict its use to scenarios that remain within your selected region.
