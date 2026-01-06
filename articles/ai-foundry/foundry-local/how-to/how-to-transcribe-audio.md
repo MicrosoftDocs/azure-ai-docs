@@ -4,11 +4,11 @@ titleSuffix: Foundry Local
 description: This article provides instructions on how to transcribe audio using Foundry Local.
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
-ms.custom: build-2025
+ms.custom: build-2025, dev-focus
 ms.topic: how-to
 ms.author: jburchel
 ms.reviewer: samkemp
-ms.date: 10/01/2025
+ms.date: 01/06/2026
 author: jonburchel
 reviewer: samuel100
 ai-usage: ai-assisted
@@ -18,11 +18,51 @@ ai-usage: ai-assisted
 
 [!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 
-In this article, you learn how to use Foundry Local's native audio transcription API to convert recorded audio files into text. You create a C# console application that downloads a transcription model called Whisper, loads it, and transcribes an audio file using the Whisper model. By the end of this article, you understand how to integrate audio transcription capabilities into your local applications without requiring cloud connectivity.
+Use Foundry Local's native audio transcription API to convert a local audio file into text. In this article, you create a C# console application that downloads a Whisper model, loads it, and streams transcription output.
 
 ## Prerequisites
 
-- [.NET 8.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) or later installed.
+- [.NET 9.0 SDK](https://dotnet.microsoft.com/download/dotnet/9.0) or later installed.
+- A local audio file to transcribe.
+- Internet access to download models (recommended).
+- Azure role-based access control (RBAC): Not applicable.
+
+## Quickstart
+
+Use this snippet to verify that the SDK can initialize and access the local model catalog.
+
+```csharp
+using Microsoft.AI.Foundry.Local;
+using Microsoft.Extensions.Logging;
+using System.Linq;
+
+var config = new Configuration
+{
+    AppName = "app-name",
+    LogLevel = Microsoft.AI.Foundry.Local.LogLevel.Information,
+};
+
+using var loggerFactory = LoggerFactory.Create(builder =>
+{
+    builder.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Information);
+});
+var logger = loggerFactory.CreateLogger<Program>();
+
+await FoundryLocalManager.CreateAsync(config, logger);
+var manager = FoundryLocalManager.Instance;
+
+var catalog = await manager.GetCatalogAsync();
+var models = await catalog.ListModelsAsync();
+
+Console.WriteLine($"Models available: {models.Count()}");
+```
+
+This example prints the number of models available for your hardware.
+
+References:
+
+- [Foundry Local SDK reference](../reference/reference-sdk.md)
+- [Catalog API reference](../reference/reference-catalog-api.md)
 
 ## Samples repository
 
@@ -32,21 +72,22 @@ The sample in this article can be found in the [Foundry Local C# SDK Samples Git
 
 [!INCLUDE [project-setup](../includes/csharp-project-setup.md)]
 
-## Use audio transcription API
+## Transcribe an audio file
 
 The following example demonstrates how to use the native audio transcription API in Foundry Local. The code includes the following steps:
 
-1. Initializes a `FoundryLocalManager` instance with a `Configuration`.
-1. Gets a `Model` object from the model catalog using an alias. Note: Foundry Local selects the best variant for the model automatically based on the available hardware of the host machine.
+1. Initializes a `FoundryLocalManager` instance with a `Configuration` object.
+1. Gets a `Model` object from the model catalog using an alias. Foundry Local automatically selects the best variant for the model based on the available hardware of the host machine.
 1. Downloads and loads the model variant.
 1. Uses the native audio transcription API to generate a response.
 1. Unloads the model.
 
-Copy-and-paste the following code into a C# file named `Program.cs`:
+Copy and paste the following code into a C# file named `Program.cs`:
 
 ```csharp
 using Microsoft.AI.Foundry.Local;
 using Microsoft.Extensions.Logging;
+using System.Linq;
 
 var config = new Configuration
 {
@@ -85,11 +126,10 @@ await model.DownloadAsync(progress =>
 // Load the model
 await model.LoadAsync();
 
-// Get a chat client
+// Get an audio client
 var audioClient = await model.GetAudioClientAsync();
 
-// get a cancellation token
-CancellationToken ct = new CancellationToken();
+var ct = CancellationToken.None;
 
 // Get a transcription with streaming outputs
 var response = audioClient.TranscribeAudioStreamingAsync("Recording.mp3", ct);
@@ -105,13 +145,19 @@ await model.UnloadAsync();
 ```
 
 > [!NOTE]
-> You'll need to replace `"Recording.mp3"` with the path to your audio file that you want to transcribe. Foundry Local has a native audio transcription API that allows you to transcribe audio files in the following formats:
->
-> - WAV
-> - MP3
-> - FLAC
+> You need to replace `"Recording.mp3"` with the path to the audio file that you want to transcribe.
 
-Run the code using the following command:
+**What to expect**
+
+- On the first run, the app downloads the model and prints the download progress.
+- As the transcription streams, the app prints text to the console.
+
+References:
+
+- [Foundry Local SDK reference](../reference/reference-sdk.md)
+- [Best practices and troubleshooting guide for Foundry Local](../reference/reference-best-practice.md)
+
+Run the code by using the following command:
 
 ### [Windows](#tab/windows)
 
@@ -149,9 +195,14 @@ dotnet run -r:win-x64
 ```
 
 > [!NOTE]
-> If you are targeting Windows, we recommend using the Windows-specific instructions under the Windows tab for optimal performance and experience.
+> If you're targeting Windows, use the Windows-specific instructions under the Windows tab for the best performance and experience.
 
 ---
+
+## Validate results
+
+1. Confirm the app prints transcription text to the console.
+1. If the model downloads on first run, confirm a second run starts faster and doesn't re-download the model.
 
 
 ## Related content
