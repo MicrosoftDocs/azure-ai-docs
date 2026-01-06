@@ -473,7 +473,7 @@ echo $scoringUri
 If you plan to use the Python SDK to invoke the endpoint, you don't need to get the scoring URI explicitly because the SDK provides it for you. However, you can still use the SDK to get the scoring URI so that you can use it with other channels, such as REST API.
 
 ```Python
-scoring_uri = ml_client.online_endpoints.get(name="endpoint_name").scoring_uri
+scoring_uri = ml_client.online_endpoints.get(name=endpoint_name).scoring_uri
 ```
 
 ### [Studio](#tab/studio)
