@@ -5,15 +5,13 @@ description: This article provides instructions on how to continuously evaluate 
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 01/08/2026
-ms.reviewer: amibp
+ms.reviewer: sonalimalik
 ms.author: lagayhar  
 author: lgayhardt
 ai-usage: ai-assisted
 ---
 
 # Continuously evaluate your AI agents (preview)
-
-[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
@@ -28,7 +26,7 @@ Continuous evaluation for Agents provides near real-time observability and monit
 
 ### Steps to connect Application Insights
 
-1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)]
+1. [!INCLUDE [classic-sign-in](classic-sign-in.md)]
 
 1. Select **Monitoring** on the left-hand menu and go to **Application Analytics**.
 
