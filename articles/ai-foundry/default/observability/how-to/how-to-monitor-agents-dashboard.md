@@ -127,7 +127,7 @@ with (
 
 ### Setup agent continuous evaluation
 
-Next, you want to define the set of evaluators you'd like to run continuously. To learn more about supported evaluators, see [What are evaluators?](../concepts/observability.md#what-are-evaluators)
+Next, you want to define the set of evaluators you'd like to run continuously. To learn more about supported evaluators, see [What are evaluators?](../../concepts/observability.md#what-are-evaluators)
 
 ```python
    data_source_config = {"type": "azure_ai_source", "scenario": "responses"}

@@ -29,7 +29,7 @@ Continuous evaluation for Agents provides near real-time observability and monit
 
 ### Steps to connect Application Insights
 
-1. [!INCLUDE [classic-sign-in](classic-sign-in.md)]
+1. [!INCLUDE [classic-sign-in](../includes/classic-sign-in.md)]
 
 1. Select **Monitoring** on the left-hand menu and go to **Application Analytics**.
 
