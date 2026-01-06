@@ -11,6 +11,7 @@ ms.reviewer: keli19
 ms.date:  12/26/2024
 ms.topic: how-to
 ms.custom: devplatv2, designer
+#customer intent:
 ---
 
 # Create and run machine learning pipelines using components with the Azure Machine Learning studio
