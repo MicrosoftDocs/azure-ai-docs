@@ -9,8 +9,7 @@ ms.reviewer: nisi
 ms.date: 01/06/2026
 ms.topic: concept-article
 ms.service: azure-ai-foundry
-ms.custom:
-	- dev-focus
+ms.custom: dev-focus
 # customer intent: As a developer, I want to monitor the status of Microsoft Foundry services so I can stay informed about service health and plan around incidents.
 ---
 
