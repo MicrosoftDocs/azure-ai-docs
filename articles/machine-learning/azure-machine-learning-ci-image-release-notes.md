@@ -9,7 +9,7 @@ ms.subservice: core
 ms.author: deeikele
 ms.reviewer: fsolomon
 ms.date: 07/03/2024
-ms.topic: reference
+ms.topic: release-notes
 ---
 
 # Azure Machine Learning compute instance image release notes
