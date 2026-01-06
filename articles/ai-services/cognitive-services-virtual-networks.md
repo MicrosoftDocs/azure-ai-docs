@@ -6,7 +6,7 @@ author: aahill
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: how-to
-ms.date: 10/02/2025
+ms.date: 01/06/2026
 ms.author: aahi
 ms.custom:
   - devx-track-azurepowershell
@@ -82,11 +82,9 @@ You can manage default network access rules for Foundry Tools resources through 
 
 1. Go to the Foundry Tools resource you want to secure.
 
-1. Select **Resource Management** to expand it, then select **Networking**.
+1. Select **Resource Management** to expand it, then select **Networking**. To deny access by default, under **Firewalls and virtual networks**, select **Selected Networks and Private Endpoints**.
 
    :::image type="content" source="media/vnet/virtual-network-blade.png" alt-text="Screenshot shows the Networking page with Selected Networks and Private Endpoints selected." lightbox="media/vnet/virtual-network-blade.png":::
-
-1. To deny access by default, under **Firewalls and virtual networks**, select **Selected Networks and Private Endpoints**.
 
    With this setting alone, unaccompanied by configured virtual networks or address ranges, all access is effectively denied. When all access is denied, requests that attempt to consume the Foundry Tools resource aren't permitted. The Azure portal, Azure PowerShell, or the Azure CLI can still be used to configure the Foundry Tools resource.
 
