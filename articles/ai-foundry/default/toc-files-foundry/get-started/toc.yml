@@ -5,4 +5,4 @@ items:
 - name: "Tutorial: Idea to prototype"
   href: ../../tutorials/developer-journey-idea-to-prototype.md
 - name: Ask AI
-  href: ../../../foundry-agent/ask-foundry-agent.md
+  href: ../../../concepts/ask-ai.md
