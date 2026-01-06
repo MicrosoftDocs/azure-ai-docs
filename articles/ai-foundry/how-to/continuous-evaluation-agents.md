@@ -13,12 +13,12 @@ ai-usage: ai-assisted
 
 # Continuously evaluate your AI agents (preview)
 
+> [!NOTE]
+> This document refers to the Microsoft Foundry (classic) portal. To continuously evaluate using the Microsoft Foundry (new) portal, see [Agent Monitoring Dashboard Create and manage evaluation rules](../default/observability/how-to/how-to-monitor-agents-dashboard.md#create-and-manage-evaluation-rules).
+
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 Continuous evaluation for Agents provides near real-time observability and monitoring for your AI application. Once enabled, this feature continuously evaluates agent interactions at a set sampling rate to provide insights into quality, safety, and performance with metrics surfaced in the Foundry Observability dashboard. By using continuous evaluation, you're able to identify and troubleshoot issues early, optimize agent performance, and maintain safety. Evaluations are also connected to traces. to enable detailed debugging and root cause analysis.
-
-> [!IMPORTANT]
-> This document refers to the Microsoft Foundry (classic) portal. To continuously evaluate using the Microsoft Foundry (new) portal, see [Agent Monitoring Dashboard Create and manage evaluation rules](../default/observability/how-to/how-to-monitor-agents-dashboard.md#create-and-manage-evaluation-rules).
 
 ## Prerequisites
 
@@ -104,9 +104,6 @@ project_client.evaluation.create_agent_evaluation(
 )
 
 ```
-
-> [!NOTE]
-> Application Insights must be connected to your project otherwise the service won't run. To connect an Application Insights resource, see to [Steps to connect Application Insights](#steps-to-connect-application-insights).
 
 ### Get the evaluation result using Application Insights
 
