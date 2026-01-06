@@ -37,7 +37,7 @@ In this article, you learn to deploy models with the managed compute deployment 
 
 - Foundry [Models from Partners and Community](../model-inference/concepts/models.md#models-from-partners-and-community) require access to Azure Marketplace, while Foundry [Models Sold Directly by Azure](../model-inference/concepts/models.md#models-sold-directly-by-azure) don't have this requirement. Ensure your Azure subscription has the permissions required to subscribe to model offerings in Azure Marketplace. See [Enable Azure Marketplace purchases](/azure/cost-management-billing/manage/enable-marketplace-purchases) to learn more.
 
-- Azure role-based access controls (Azure RBAC) grant access to operations in Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, see [Role-based access control in Foundry portal](../concepts/rbac-azure-ai-foundry.md).
+- Azure role-based access controls (Azure RBAC) grant access to operations in Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, see [Role-based access control in Foundry portal](../concepts/rbac-foundry.md).
 
 
 ## Find your model in the model catalog
@@ -225,5 +225,5 @@ To deploy and perform inferencing with real-time endpoints, you consume Virtual 
 
 ## Related content
 
-- Learn more about what you can do in [Foundry](../what-is-azure-ai-foundry.md)
+- Learn more about what you can do in [Foundry](../what-is-foundry.md)
 - Get answers to frequently asked questions in the [Azure AI FAQ article](../faq.yml)

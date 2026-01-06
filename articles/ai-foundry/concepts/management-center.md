@@ -64,7 +64,7 @@ With a project selected, use the __Users__ entry in the left menu to view and ma
 > [!NOTE]
 > You can only assign built-in roles for Foundry here.
 
-For more information, see [Role-based access control](rbac-azure-ai-foundry.md#built-in-roles).
+For more information, see [Role-based access control](rbac-foundry.md#built-in-roles).
 
 ## Connect resources
 

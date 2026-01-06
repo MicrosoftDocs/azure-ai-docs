@@ -131,7 +131,7 @@ To prevent overuse and ensure fair resource allocation, you can apply [Tokens Pe
 
 While a Foundry resource alone gives you access to most Foundry functionality, select capabilities are currently only available in combination with an Azure AI hub resource powered by Azure Machine Learning. These capabilities are lower in the AI development stack and focus on model customization.
 
-Hub resources require their own project types that you can also access by using the Azure Machine Learning Studio, SDK, or CLI. To help plan your deployment, see [this table](../what-is-azure-ai-foundry.md#which-type-of-project-do-i-need) and [choose a resource type](../concepts/resource-types.md) for an overview of supported capabilities.
+Hub resources require their own project types that you can also access by using the Azure Machine Learning Studio, SDK, or CLI. To help plan your deployment, see [this table](../what-is-foundry.md#which-type-of-project-do-i-need) and [choose a resource type](../concepts/resource-types.md) for an overview of supported capabilities.
 
 You deploy a hub resource side-by-side with your Foundry resource. The hub resource takes a dependency on your Foundry resource to provide access to select tools and models.
 
@@ -141,7 +141,7 @@ You deploy a hub resource side-by-side with your Foundry resource. The hub resou
 
 - Secure the Foundry environment
 
-  - Authentication and RBAC: [Role-based access control in Foundry](../concepts/rbac-azure-ai-foundry.md)
+  - Authentication and RBAC: [Role-based access control in Foundry](../concepts/rbac-foundry.md)
   - Networking: [Use a virtual network with Foundry](../how-to/configure-private-link.md)
   - Identity and managed identity: [Configure managed identity in Foundry](../../ai-services/openai/how-to/managed-identity.md)
   - Customer-managed keys (CMK): [Customer-managed keys in Foundry](../concepts/encryption-keys-portal.md)

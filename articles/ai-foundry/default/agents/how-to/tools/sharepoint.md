@@ -34,7 +34,7 @@ Integrate your agents with **Microsoft SharePoint** to chat with your private do
 ## Prerequisites
 
 - Developers and end users have Microsoft 365 Copilot license, as required by [Microsoft 365 Copilot API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview).
-- Developers and end users have at least `Azure AI User` RBAC role assigned on the Foundry project. For more information about Azure role-based access control, see [Azure role-based access control in Foundry](/azure/ai-foundry/concepts/rbac-azure-ai-foundry).
+- Developers and end users have at least `Azure AI User` RBAC role assigned on the Foundry project. For more information about Azure role-based access control, see [Azure role-based access control in Foundry](/azure/ai-foundry/concepts/rbac-foundry).
 - Developers and end users have at least `READ` access to the SharePoint site.
 - The latest prerelease package installed:
   - **Python**: `pip install azure-ai-projects --pre`
@@ -75,10 +75,14 @@ project_client = AIProjectClient(
 # Get the OpenAI client for responses and conversations
 openai_client = project_client.get_openai_client()
 
+sharepoint_connection = project_client.connections.get(os.environ["SHAREPOINT_PROJECT_CONNECTION_NAME"])
+connection_id = sharepoint_connection.id
+print(f"SharePoint connection ID: {connection_id}")
+
 sharepoint_tool = SharepointAgentTool(
     sharepoint_grounding_preview=SharepointGroundingToolParameters(
         project_connections=[
-            ToolProjectConnection(project_connection_id=os.environ["SHAREPOINT_PROJECT_CONNECTION_ID"])
+            ToolProjectConnection(project_connection_id=connection_id)
         ]
     )
 )

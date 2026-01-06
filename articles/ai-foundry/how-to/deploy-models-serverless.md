@@ -39,7 +39,7 @@ Although serverless API deployment is one option for deploying Foundry Models, w
 
 - Foundry [Models from Partners and Community](../model-inference/concepts/models.md#models-from-partners-and-community) require access to Azure Marketplace, while Foundry [Models Sold Directly by Azure](../model-inference/concepts/models.md#models-sold-directly-by-azure) don't have this requirement. Ensure you have the permissions required to subscribe to model offerings in Azure Marketplace.
 
-- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, see [Role-based access control in Foundry portal](../concepts/rbac-azure-ai-foundry.md).
+- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, see [Role-based access control in Foundry portal](../concepts/rbac-foundry.md).
 
 ::: zone pivot="ai-foundry-portal"
 
@@ -640,7 +640,7 @@ Azure role-based access controls (Azure RBAC) are used to grant access to operat
   - `Microsoft.MachineLearningServices/workspaces/marketplaceModelSubscriptions/*`  
   - `Microsoft.MachineLearningServices/workspaces/serverlessEndpoints/*`
 
-For more information on permissions, see [Role-based access control in Foundry portal](../concepts/rbac-azure-ai-foundry.md).
+For more information on permissions, see [Role-based access control in Foundry portal](../concepts/rbac-foundry.md).
 
 
 

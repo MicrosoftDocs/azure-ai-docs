@@ -76,7 +76,7 @@ Use the help wizard, labeling interface, training step, and interactive visualiz
 
 Document Intelligence is part of the Foundry Tools offerings in the [Foundry portal](https://ai.azure.com/?cid=learnDocs). Each of the Foundry Tools helps developers and organizations rapidly create intelligent and responsible applications. Developers can use the prebuilt and customizable APIs and models to make their applications.
 
-Learn how to [connect your Foundry Tools hub](../../ai-services/connect-services-ai-foundry-portal.md) with Foundry Tools and start using Document Intelligence.
+Learn how to [connect your Foundry Tools hub](../../ai-services/connect-services-foundry-portal.md) with Foundry Tools and start using Document Intelligence.
 
 ---
 

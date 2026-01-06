@@ -11,5 +11,5 @@ To use named entity recognition, you submit raw unstructured text for analysis a
 
 |Development option  |Description  |
 |---------|---------|
-|Microsoft Foundry     | Foundry is a web-based platform that lets you use named entity recognition with text examples with your own data when you sign up. For more information, see the [Foundry website](https://ai.azure.com/?cid=learnDocs) or [Foundry documentation](../../../../ai-foundry/what-is-azure-ai-foundry.md).         |
+|Microsoft Foundry     | Foundry is a web-based platform that lets you use named entity recognition with text examples with your own data when you sign up. For more information, see the [Foundry website](https://ai.azure.com/?cid=learnDocs) or [Foundry documentation](../../../../ai-foundry/what-is-foundry.md).         |
 |REST API or Client library (Azure SDK)      | Integrate named entity recognition into your applications using the REST API, or the client library available in a variety of languages. For more information, see the [named entity recognition quickstart](../quickstart.md).        |

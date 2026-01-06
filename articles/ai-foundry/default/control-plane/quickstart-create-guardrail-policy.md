@@ -28,7 +28,7 @@ In this quickstart, you create an Azure Policy in Microsoft Foundry to govern th
 - You must have the appropriate roles to create an Azure Policy for your subscription. You can learn more about Azure Policy roles here: [Overview of Azure Policy - Azure Policy](/azure/governance/policy/overview#azure-policy-and-azure-rbac)
 
 > [!NOTE]
-> This capability is available only in the [Microsoft Foundry (new) portal](../../what-is-azure-ai-foundry.md#microsoft-foundry-portals). 
+> This capability is available only in the [Microsoft Foundry (new) portal](../../what-is-foundry.md#microsoft-foundry-portals). 
 
 ## Create the guardrail policy
 

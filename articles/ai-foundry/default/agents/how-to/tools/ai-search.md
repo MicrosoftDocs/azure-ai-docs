@@ -76,6 +76,11 @@ project_client = AIProjectClient(
 openai_client = project_client.get_openai_client()
 
 with project_client:
+
+    azs_connection = project_client.connections.get(os.environ["AI_SEARCH_PROJECT_CONNECTION_NAME"])
+    connection_id = azs_connection.id
+    print(f"Azure AI Search connection ID: {connection_id}")
+
     agent = project_client.agents.create_version(
         agent_name="MyAgent",
         definition=PromptAgentDefinition(
@@ -87,7 +92,7 @@ with project_client:
                     azure_ai_search=AzureAISearchToolResource(
                         indexes=[
                             AISearchIndexResource(
-                                project_connection_id=os.environ["AI_SEARCH_PROJECT_CONNECTION_ID"],
+                                project_connection_id=connection_id,
                                 index_name=os.environ["AI_SEARCH_INDEX_NAME"],
                                 query_type=AzureAISearchQueryType.SIMPLE,
                             ),

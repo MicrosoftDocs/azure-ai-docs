@@ -11,4 +11,4 @@ ms.custom: include
 ---
 
 > [!NOTE]
-> This tutorial uses a **[!INCLUDE [hub](hub-project-name.md)]**. The steps and code shown here don't work for a **[!INCLUDE [fdp](fdp-project-name.md)]**. For more information, see [Types of projects](../what-is-azure-ai-foundry.md#types-of-projects).
+> This tutorial uses a **[!INCLUDE [hub](hub-project-name.md)]**. The steps and code shown here don't work for a **[!INCLUDE [fdp](fdp-project-name.md)]**. For more information, see [Types of projects](../what-is-foundry.md#types-of-projects).

@@ -160,7 +160,7 @@ If the deployment fails, check the following:
 ## Related content
 
 - [Create a Foundry project](create-projects.md)
-- [Learn more about Microsoft Foundry](../what-is-azure-ai-foundry.md)
+- [Learn more about Microsoft Foundry](../what-is-foundry.md)
 - [Learn more about Foundry hubs](../concepts/ai-resources.md)
 - [Bicep CLI documentation](/azure/azure-resource-manager/bicep/bicep-cli)
 - [Azure Resource Manager deployment reference](/azure/azure-resource-manager/templates/)
