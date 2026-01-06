@@ -47,7 +47,7 @@ Reference: [Foundry Local CLI reference](reference/reference-cli.md)
 
 ## Key features
 
-- **On-device inference**: Run models locally to reduce costs and keep data on your device.
+ - **On-device inference**: Run models locally to reduce costs and help keep data on your device.
 
 - **Model customization**: Select a preset model or use your own to meet specific needs.
 
@@ -66,6 +66,17 @@ Foundry Local is ideal when you need to:
 - Experiment with AI models before you deploy to the cloud
 
 ## Frequently asked questions
+
+### Does Foundry Local send my prompts or outputs to Microsoft?
+
+Foundry Local is designed to run inference on your device. When you send prompts to a local Foundry Local endpoint (for example, `http://localhost:PORT`), your prompts and model outputs are processed locally.
+
+Foundry Local can still use the network for operations like:
+
+- **Model and component downloads**: The first time you run a model, Foundry Local downloads the model files. It might also download execution providers for your hardware.
+- **Optional diagnostics you choose to share**: If you report a problem, you might choose to share logs (for example, by using `foundry zip-logs`).
+
+Your use of Foundry Local is governed by the product terms and licenses that apply to the software and the models you run. If the terms allow Microsoft to collect diagnostic information, the details are described in those terms and the [Microsoft Privacy Statement](https://www.microsoft.com/en-us/privacy/privacystatement).
 
 ### Do I need an Azure subscription?
 
