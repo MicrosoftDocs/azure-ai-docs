@@ -299,7 +299,7 @@ The CLI doesn't require you to explicitly provide the control plane token. Inste
 1. If you want to override `auth_mode` (for example, to `aad_token`) when creating an endpoint, run the following code:
 
     ```CLI
-    az ml online-endpoint create -n my-endpoint --auth_mode aad_token
+    az ml online-endpoint create -n my-endpoint --auth-mode aad_token
     ```
 
 1. If you want to update the existing endpoint and specify `auth_mode` (for example, as `aad_token`), run the following code:
@@ -317,7 +317,7 @@ The REST API call requires you to explicitly provide the control plane token. Us
     ```bash
     export SUBSCRIPTION_ID=<SUBSCRIPTION_ID>
     export RESOURCE_GROUP=<RESOURCE_GROUP>
-    export WORKSPACE=<AML_WORKSPACE_NAME>
+    export WORKSPACE=<WORKSPACE_NAME>
     export ENDPOINT_NAME=<ENDPOINT_NAME>
     export LOCATION=<LOCATION_NAME>
     export API_VERSION=2023-04-01
@@ -368,7 +368,7 @@ from azure.identity import DefaultAzureCredential
 
 subscription_id = "<SUBSCRIPTION_ID>"
 resource_group = "<RESOURCE_GROUP>"
-workspace = "<AML_WORKSPACE_NAME>"
+workspace = "<WORKSPACE_NAME>"
 
 ml_client = MLClient(
     DefaultAzureCredential(), subscription_id, resource_group, workspace
@@ -456,7 +456,7 @@ scoringUri=$(az ml online-endpoint show -n my-endpoint --query "scoring_uri")
 ```bash
 export SUBSCRIPTION_ID=<SUBSCRIPTION_ID>
 export RESOURCE_GROUP=<RESOURCE_GROUP>
-export WORKSPACE=<AML_WORKSPACE_NAME>
+export WORKSPACE=<WORKSPACE_NAME>
 export ENDPOINT_NAME=<ENDPOINT_NAME>
 export API_VERSION=2023-04-01
 response=$(curl --location --request GET "https://management.azure.com/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.MachineLearningServices/workspaces/$WORKSPACE/onlineEndpoints/$ENDPOINT_NAME?api-version=$API_VERSION" \
@@ -473,7 +473,7 @@ echo $scoringUri
 If you plan to use the Python SDK to invoke the endpoint, you don't need to get the scoring URI explicitly because the SDK provides it for you. However, you can still use the SDK to get the scoring URI so that you can use it with other channels, such as REST API.
 
 ```Python
-scoring_uri = ml_client.online_endpoints.get(name=endpoint_name).scoring_uri
+scoring_uri = ml_client.online_endpoints.get(name="endpoint_name").scoring_uri
 ```
 
 ### [Studio](#tab/studio)
@@ -642,7 +642,7 @@ See [Get a token using the Azure identity client library](/entra/identity/manage
 
 ### [Studio](#tab/studio)
 
-You can find the key, Azure Machine Learning token, or Microsoft Entra token on the __Consume__ tab of the endpoint's page.
+You can find the key, Azure Machine Learning token, or Microsoft Entra token on the __Consume__ tab of a deployment's page.
 
 ---
 
