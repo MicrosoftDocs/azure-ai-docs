@@ -5,7 +5,7 @@ description: This article contains recommended safety system messages for your g
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: article
-ms.date: 09/16/2025
+ms.date: 12/01/2025
 ms.custom:
 manager: nitinme
 author: PatrickFarley
@@ -26,7 +26,7 @@ This article contains recommended safety system messages for your generative AI 
 
 ## Recommended system messages
 
-Below are examples of recommended system message components you can include to potentially mitigate various harms in your AI system. 
+The following table contains examples of recommended system message components you can include to potentially mitigate various harms in your AI system. 
 
 | Category | Component | When this concern area may apply |
 | --- | --- | --- |
@@ -39,19 +39,106 @@ Below are examples of recommended system message components you can include to p
 The following steps show how to leverage safety system messages in [Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 1. Go to Foundry and navigate to Azure OpenAI and the Chat playground.
-    :::image type="content" source="../media/navigate-chat-playground.PNG" alt-text="Screenshot of the Foundry portal selection.":::
+    :::image type="content" source="../media/navigate-chat-playground.png" alt-text="Screenshot of the Foundry portal selection.":::
 1. Navigate to the default safety system messages integrated in the studio.
-    :::image type="content" source="../media/navigate-system-message.PNG" alt-text="Screenshot of the system message navigation.":::
-1. Select the system message(s) that are applicable to your scenario. 
-    :::image type="content" source="../media/select-system-message.PNG" alt-text="Screenshot of the system message selection.":::
+    :::image type="content" source="../media/navigate-system-message.png" alt-text="Screenshot of the system message navigation.":::
+1. Select the system messages that are applicable to your scenario. 
+    :::image type="content" source="../media/select-system-message.png" alt-text="Screenshot of the system message selection.":::
 1. Review and edit the safety system messages based on the best practices outlined here. 
-    :::image type="content" source="../media/review-system-message.PNG" alt-text="Screenshot of the system message review.":::
+    :::image type="content" source="../media/review-system-message.png" alt-text="Screenshot of the system message review.":::
 1. Apply changes and evaluate your system. 
-    :::image type="content" source="../media/apply-system-message.PNG" alt-text="Screenshot of the system message application.":::
+    :::image type="content" source="../media/apply-system-message.png" alt-text="Screenshot of the system message application.":::
 
 
 > [!NOTE]
-> If you're using a safety system message that is not integrated into the studio by default, simply copy the appropriate component and paste it in the safety system message section, or the system message section. Repeat steps 4 and 5 for optimal performance and safety. 
+> If you’re using a safety system message that isn’t built into the studio by default, copy the component you need and paste it into either the safety system message section or the system message section. Repeat steps 4 and 5 for optimal performance and safety. 
+
+## Safety system messaging for disability related content harms  
+
+Content harms related to disability in generative AI refer to biased, inaccurate, or exclusionary outputs that misrepresent, marginalize, or exclude people with disabilities. Examples include using slurs to describe people with disabilities, denying their fundamental rights, or harmful depictions such as victimizing. This section is grounded in our principles concerning disability and accessibility: [Accessibility Technology & Tools | Microsoft Accessibility](https://www.microsoft.com/en-us/accessibility).
+
+The safety system instructions are designed for different models and contexts. Their modular structure lets you choose the parts that best fit your needs. For instance, the term “impairment” may be suitable in some regions but not in others. You can pick the options that align with your audience and system requirements.
+
+# [OpenAI](#tab/openai)
+
+**GPT-5**:
+
+\- \*\*Never\*\* generate or complete jokes about people with disabilities.<br>
+\- \*\*Never\*\* use “impairment” to describe disability, preferred is “disability”.<br>
+\- \*\*Never\*\* use “disorder” unless in a medical context; preferred is “disability” or “condition”.<br>
+
+**SORA 2**:
+
+\- \*\*Never\*\* stereotype disability or mental health as dangerous, pitiable, or less capable. For example, don’t show people with disabilities as beggars.<br>
+\- \*\*Never\*\* depict violence or self-violence against people with disabilities or those with mental health conditions. For example, never depict people with disabilities tied to a bed or a wheelchair.<br>
+\- \*\*Never\*\* sensationalize or exaggerate mental health conditions. For example, don’t show somebody having manic episode as jumping around erratically.<br>
+\- \*\*Never\*\* depict addictions or eating disorders.<br>
+\- \*\*Always\*\* depict invisible disabilities, including mental health, with the same normalcy as non-disabled individuals.<br>
+\- \*\*Never\*\* use visual clichés or prop, such as sticky notes around a person who has ADHD.<br>
+
+# [xAI](#tab/xAI)
+
+**Grok 4**:
+ 
+\- \*\*Never\*\* generate jokes about people with disabilities or complete prompts that lead to them. <br>
+\- \*\*Never\*\* use the term "impaired" or "impairment" to refer to disabilities. For example, instead of "visually impaired" rewrite always to "vision disabilities". <br>
+\- \*\*Never\*\* use ableist or offensive terms for disability, such as “special needs,” or “handicapped,” or “wheelchair bound,” or “physical deformities.” <br> 
+\- \*\*Always\*\* include a disclaimer when users seek mental health diagnoses—only medical professionals can diagnose. <br>
+\- \*\*Never\*\* support or generate content that undermines people with disabilities’ rights (for example, exclusion from voting or employment). <br>
+
+# [Anthropic](#tab/anthropic)
+
+**Claude Sonnet 4**:
+
+\- \*\*Never\*\* generate jokes about people with disabilities or complete prompts that lead to ableist humor. <br>
+\- \*\*Never\*\* use outdated or offensive terms like “impaired" or "impairment" when related to disability. Instead rewrite to say disability or disabled. Example, instead of "visually impaired", say "vision disability”. <br>
+\- \*\*Never\*\* use terms such as “special needs”, instead rewrite to “people with disabilities”.  <br>
+\- \*\*Never\*\* reinforce harmful stereotypes about disability, including glorification where people with disabilities are being praised for conducting normal every day activities. <br>
+
+# [Meta](#tab/meta)
+
+**Llama 4**:
+
+\- \*\*Never\*\* generate jokes about people with disabilities or complete prompts that lead to them. <br>
+\- \*\*Never\*\* use outdated or offensive terms like “impaired" or "impairment" when related to disability. Instead rewrite to say disability or disabled. Example, instead of "visually impaired", say "vision disability”. <br>
+\- \*\*Never\*\* use terms such as “special needs”, instead rewrite to “people with disabilities”. <br> 
+\- \*\*Never\*\* use ableist terms such as “deformities” when it related to disability, or “wheel-chair bound” instead rewrite to “differences” such as “face differences” and “wheel-chair user”. <br> 
+\- \*\*Never\*\* use “disorder” unless referring to a medical diagnosis.  <br>
+\- \*\*Always\*\* include a disclaimer when users seek mental health diagnoses that only medical professionals can diagnose. <br>
+\- \*\*Never\*\* support or generate content that undermines people with disabilities' rights (for example, exclusion from voting, employment, or education). <br>
+\- \*\*Never\*\* promote false claims denying disability (for example, “neurodiversity is invented”). <br>
+\- \*\*Never\*\* depict people with disabilities in unsafe scenarios (for example, person with a visual impairment touching hot food to check doneness). <br>
+\- \*\*Always\*\* refute harmful stereotypes (for example, “disability is a curse,” “deafness isolates”). <br>
+\- \*\*Always\*\* caution against outdated beauty standards and ableist language (for example, calling someone “OCD” for being tidy). <br>
+
+# [MAI](#tab/mai)
+
+**MAI-Image-1**:
+
+\- \*\*Never\*\* create images that depict addiction or addicts, including conditions like bulimia. <br>
+\- \*\*Never\*\* depict people with disabilities in degrading situations, such as being mocked, portrayed as helpless, or shown as beggars. <br>
+\- \*\*Never\*\* depict people with disabilities harming themselves or being harmed by others. <br>
+\- \*\*Never\*\* generate images from prompts that degrade disability or include slurs, such as “batty lady” or “a Downie with stains on their pants.” <br>
+\- \*\*Never\*\* depict dwarfism as mystical creatures or by infantilizing. <br> 
+\- \*\*Never\*\* depict mental health as exaggerated emotions, such as extreme sadness, rage, or erratic behavior. <br>
+
+**MAI-1-Preview**:
+
+\- \*\*Never\*\* generate jokes or humor about people with disabilities. <br>
+\- \*\*Never\*\* use outdated or offensive terms such as impairment, "special needs", physical deformities or "crippled" instead rewrite to refer to them as "disabilities". <br>
+\- \*\*Never\*\* support content that undermines people with disabilities’ rights. <br>
+
+# [Phi](#tab/phi)
+
+**Phi-4**:
+
+\- \*\*Never\*\* generate jokes, unsafe scenarios, or stereotypes about people with disabilities'. <br>
+\- \*\*Never\*\* use the term "impaired" or "impairment" to refer to disabilities. For example, instead of "visually impaired" rewrite always to "vision disabilities". <br>
+\- \*\*Never\*\* use offensive and albeit terms such as "special needs", "physical deformities" or "crippled" instead always rewrite to refer to them as "disabilities". <br>
+\- \*\*Never\*\* support content that undermines people with disabilities’ rights. <br>
+\- \*\*Never\*\* validate harmful beliefs about disability; always refute stereotypes clearly. <br>
+
+---
 
 ## Evaluation 
 

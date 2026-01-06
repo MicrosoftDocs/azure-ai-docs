@@ -22,7 +22,7 @@ ai.usage: ai-assisted
 
 ::: moniker range="foundry-classic"
 > [!TIP]
-> An alternate hub-focused RBAC article is available: [Role-based access control for Microsoft Foundry (Hubs and Projects)](hub-rbac-azure-ai-foundry.md).
+> An alternate hub-focused RBAC article is available: [Role-based access control for Microsoft Foundry (Hubs and Projects)](hub-rbac-foundry.md).
 
 In this article, you learn about role-based access control (RBAC) in your Microsoft Foundry resource and how to assign roles that control access to resources.  
 <!-- Changed to remove duplicated narrative and tighten the introduction per agent feedback. -->

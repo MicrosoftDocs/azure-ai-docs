@@ -43,7 +43,7 @@ This article describes how to create a Foundry project in [Microsoft Foundry](ht
 
 * Do you need access to open-source models or PromptFlow? [Create a hub project type](../how-to/hub-create-projects.md) instead.
 
-* See [Types of projects](../what-is-azure-ai-foundry.md#types-of-projects) for more information on the different project types.
+* See [Types of projects](../what-is-foundry.md#types-of-projects) for more information on the different project types.
 
 ::: moniker-end
 
@@ -335,5 +335,5 @@ az cognitiveservices account project delete \
 ## Related content
 
 - [Quickstart: Get started with Foundry](../quickstarts/get-started-code.md)
-- [What is Foundry?](../what-is-azure-ai-foundry.md)
+- [What is Foundry?](../what-is-foundry.md)
 

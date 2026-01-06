@@ -90,5 +90,5 @@ You can use multiple methods to connect clients to the Azure Virtual Network. Th
 ## Next steps
 
 - [Create a project](create-projects.md)
-- [Learn more about Foundry](../what-is-azure-ai-foundry.md)
+- [Learn more about Foundry](../what-is-foundry.md)
 - [Learn more about Foundry hubs](../concepts/ai-resources.md)

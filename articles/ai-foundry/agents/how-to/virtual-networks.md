@@ -89,7 +89,7 @@ For customers without an existing virtual network, the Standard Setup with Priva
     * Alternatively, having the **Owner** role at the subscription level also satisfies this requirement.
     * The key permission needed is: `Microsoft.Authorization/roleAssignments/write`
 * [Python 3.8 or later](https://www.python.org/)
-* Once the agent environment is configured, ensure that each team member who wants to use the Agent Playground or SDK to create or edit agents has been assigned the built-in **Azure AI User** [RBAC role](../../concepts\rbac-azure-ai-foundry.md) for the project.
+* Once the agent environment is configured, ensure that each team member who wants to use the Agent Playground or SDK to create or edit agents has been assigned the built-in **Azure AI User** [RBAC role](../../concepts\rbac-foundry.md) for the project.
     * The minimum set of permissions required is: **agents/*/read**, **agents/*/action**, **agents/*/delete**  
 * Register providers. The following providers must be registered:
     * `Microsoft.KeyVault`

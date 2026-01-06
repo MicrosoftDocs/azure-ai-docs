@@ -346,4 +346,4 @@ For complete publishing instructions, including how to publish agents through th
 
 * [Publish and share agents in Microsoft Foundry](../../default/agents/how-to/publish-agent.md)
 * [Agent identity concepts](../../default/agents/concepts/agent-identity.md)
-* [Role-based access control for Microsoft Foundry](../../concepts/rbac-azure-ai-foundry.md)
+* [Role-based access control for Microsoft Foundry](../../concepts/rbac-foundry.md)
