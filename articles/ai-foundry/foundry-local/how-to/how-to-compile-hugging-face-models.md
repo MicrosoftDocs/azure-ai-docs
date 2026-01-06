@@ -20,11 +20,19 @@ ai-usage: ai-assisted
 
 Foundry Local runs ONNX models on your device. Use [Olive](https://microsoft.github.io/Olive/) to convert and optimize models from Hugging Face (Safetensors or PyTorch) into ONNX so you can run them with Foundry Local.
 
+> [!IMPORTANT]
+> The Olive CLI and optimization settings change over time, and a single command line example might not work for every model, device, or execution provider.
+>
+> For the most reliable, up-to-date examples, start with the [Olive Recipes repository](https://github.com/microsoft/olive-recipes). It includes a dedicated recipe for [`meta-llama/Llama-3.2-1B-Instruct`](https://github.com/microsoft/olive-recipes/tree/main/meta-llama-Llama-3.2-1B-Instruct).
+>
+> - For Olive CLI configs for this model, see the recipe folder: <https://github.com/microsoft/olive-recipes/tree/main/meta-llama-Llama-3.2-1B-Instruct/olive>.
+> - For a Foundry Local-oriented artifact layout (for example, an `inference_model.json` you can reuse), see: <https://github.com/microsoft/olive-recipes/tree/main/meta-llama-Llama-3.2-1B-Instruct/aitk>.
+
 This guide shows how to:
 
 > [!div class="checklist"]
 >
-> - Convert and optimize models from Hugging Face to run in Foundry Local. The examples use the `Llama-3.2-1B-Instruct` model, but any generative AI model from Hugging Face works.
+> - Convert and optimize models from Hugging Face to run in Foundry Local. The examples use the `Llama-3.2-1B-Instruct` model, but many Hugging Face models can work.
 > - Run your optimized models with Foundry Local.
 
 ## Prerequisites
@@ -115,7 +123,9 @@ References:
 
 ## Compile the model
 
-### Step 1: Run the Olive auto-opt command
+### Manual example (might require adjustments)
+
+#### Step 1: Run the Olive auto-opt command
 
 Use the Olive `auto-opt` command to download, convert, quantize, and optimize the model:
 
@@ -172,7 +182,7 @@ References:
 
 - Reference: [Olive documentation](https://microsoft.github.io/Olive/)
 
-### Step 2: Rename the output model
+#### Step 2: Rename the output model
 
 Olive creates a generic `model` directory. Rename it for easier reuse:
 
@@ -194,7 +204,7 @@ Rename-Item -Path "model" -NewName "llama-3.2"
 
 Expected result: The `models/llama/llama-3.2` directory exists.
 
-### Step 3: Create chat template file
+#### Step 3: Create chat template file
 
 Foundry Local requires a chat template JSON file named `inference_model.json` in the model directory. Foundry Local injects the user prompt into the template using the `{Content}` placeholder at runtime.
 
