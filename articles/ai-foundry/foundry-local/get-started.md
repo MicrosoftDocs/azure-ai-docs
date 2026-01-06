@@ -75,9 +75,9 @@ Get started quickly with Foundry Local:
 
   1. **Verify the installation**. Run:
 
-    ```bash
-    foundry --version
-    ```
+```bash
+foundry --version
+```
 
     You should see the installed version number.
 
@@ -85,9 +85,9 @@ Get started quickly with Foundry Local:
 
 1. **Run your first model**. Open a terminal and run this command:
 
-   ```bash
-   foundry model run qwen2.5-0.5b
-   ```
+```bash
+foundry model run qwen2.5-0.5b
+```
 
    Foundry Local downloads the model, which can take a few minutes depending on your internet speed, then runs it. After the model starts, interact with it by using the command-line interface (CLI). For example, you can ask:
 
@@ -159,7 +159,7 @@ foundry cache --help
 
 Reference: [Foundry Local CLI reference](reference/reference-cli.md)
 
-## Optional: Run the GPT OSS 20B model
+## Optional: Run the latest GPT OSS 20B model
 
 Run the `gpt-oss-20b` model:
 
