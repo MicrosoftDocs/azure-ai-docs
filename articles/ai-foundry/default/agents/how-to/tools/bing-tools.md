@@ -968,6 +968,7 @@ Grounding with Bing Custom Search is a powerful tool that you can use to select 
 - Azure AI Agent service returns **AI model generated response** as output so end-to-end latency is impacted by pre-/post-processing of LLMs.
 - The Grounding with Bing Search and Grounding with Bing Custom Search tools don't return the tool output to developers and end users.
 - Grounding with Bing Search and Grounding with Bing Custom Search only works with agents that aren't using VPN or Private Endpoints. The agent must have normal network access.
+- Customers should leverage default citations pattern - the links sent in `annotation`- for links from the Grounding with Bing tools, not asking the model to generate 
 
 ## Troubleshooting
 
