@@ -76,7 +76,7 @@ Before you create the pipeline, you need these resources:
 
 - The data asset for training
 - The software environment to run the pipeline
-- A compute resource to where the job runs
+- A compute resource where the job runs
 
 ## Create handle to workspace
 
@@ -634,7 +634,7 @@ To learn how to deploy your model to an online endpoint, see [Deploy a model as 
 
 ## Clean up resources
 
-If you plan to continue now to other tutorials, skip to [Next steps](#next-step).
+If you plan to continue now to other tutorials, skip to [Next step](#next-step).
 
 ### Stop compute instance
 
