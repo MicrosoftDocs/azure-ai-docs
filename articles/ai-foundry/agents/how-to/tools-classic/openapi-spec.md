@@ -111,7 +111,7 @@ When configuring managed identity authentication, you need to provide an **Audie
 
 **Common audience values:**
 
-- Foundry Tools (including Foundry): `https://cognitiveservices.azure.com/`
+- Foundry Tools (formerly Azure AI services or Cognitive Services): `https://cognitiveservices.azure.com/`
 - Azure Resource Manager APIs: `https://management.azure.com/`
 - Microsoft Graph: `https://graph.microsoft.com/`
 - Custom APIs registered in Microsoft Entra ID: Use the **Application ID URI** found in the API's app registration
