@@ -142,21 +142,21 @@ You can skip this step if you're using built-in roles or other pre-made custom r
 1. If you're using the `AzureML Data Scientist` built-in role, use the following code to assign the role to your user identity.
 
     ```bash
-    az role assignment create --assignee <identityId> --role "AzureML Data Scientist" --scope /subscriptions/<subscriptionID>/resourcegroups/<resourceGroupName>/providers/Microsoft.MachineLearningServices/workspaces/<workspaceName>
+    az role assignment create --assignee <identityID> --role "AzureML Data Scientist" --scope /subscriptions/<subscriptionID>/resourcegroups/<resourceGroupName>/providers/Microsoft.MachineLearningServices/workspaces/<workspaceName>
     ```
 
 1. Optionally, if you're using the `Azure Machine Learning Workspace Connection Secrets Reader` built-in role, use the following code to assign the role to your user identity.
 
     ```bash
-    az role assignment create --assignee <identityId> --role "Azure Machine Learning Workspace Connection Secrets Reader" --scope /subscriptions/<subscriptionID>/resourcegroups/<resourceGroupName>/providers/Microsoft.MachineLearningServices/workspaces/<workspaceName>
+    az role assignment create --assignee <identityID> --role "Azure Machine Learning Workspace Connection Secrets Reader" --scope /subscriptions/<subscriptionID>/resourcegroups/<resourceGroupName>/providers/Microsoft.MachineLearningServices/workspaces/<workspaceName>
     ```
 
 1. If you're using a custom role, use the following code to assign the role to your user identity.
 
     ```bash
-    az role assignment create --assignee <identityId> --role "Custom role for control plane operations - online endpoint" --scope /subscriptions/<subscriptionID>/resourcegroups/<resourceGroupName>/providers/Microsoft.MachineLearningServices/workspaces/<workspaceName>
+    az role assignment create --assignee <identityID> --role "Custom role for control plane operations - online endpoint" --scope /subscriptions/<subscriptionID>/resourcegroups/<resourceGroupName>/providers/Microsoft.MachineLearningServices/workspaces/<workspaceName>
     
-    az role assignment create --assignee <identityId> --role "Custom role for scoring - online endpoint" --scope /subscriptions/<subscriptionID>/resourcegroups/<resourceGroupName>/providers/Microsoft.MachineLearningServices/workspaces/<workspaceName>
+    az role assignment create --assignee <identityID> --role "Custom role for scoring - online endpoint" --scope /subscriptions/<subscriptionID>/resourcegroups/<resourceGroupName>/providers/Microsoft.MachineLearningServices/workspaces/<workspaceName>
     ```
 
     > [!NOTE]
