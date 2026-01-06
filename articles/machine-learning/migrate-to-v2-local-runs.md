@@ -5,7 +5,7 @@ description: Upgrade local runs from v1 to v2 of Azure Machine Learning SDK
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.topic: reference
+ms.topic: how-to
 ms.author: scottpolly
 author: s-polly
 ms.date: 09/16/2022
