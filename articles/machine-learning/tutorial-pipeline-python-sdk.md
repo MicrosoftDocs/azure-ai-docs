@@ -23,7 +23,7 @@ ms.custom:
 [!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
 
 > [!NOTE]
-> For a tutorial that uses SDK v1 to build a pipeline, see [Tutorial: Build an Azure Machine Learning pipeline for image classification](v1/tutorial-pipeline-python-sdk.md?view=azureml-api-1).
+> For a tutorial that uses SDK v1 to build a pipeline, see [Tutorial: Build an Azure Machine Learning pipeline for image classification](v1/tutorial-pipeline-python-sdk.md?view=azureml-api-1&preserve-view=true).
 
 A machine learning pipeline splits a complete machine learning task into a multistep workflow. Each step is a manageable component that you can develop, optimize, configure, and automate individually. Well-defined interfaces connect steps. The Azure Machine Learning pipeline service orchestrates all the dependencies between pipeline steps.
 
