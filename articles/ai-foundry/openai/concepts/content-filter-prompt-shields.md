@@ -20,7 +20,7 @@ Prompt shields are a feature of the Microsoft Foundry Guardrails and controls sy
 
 Prompt shields analyzes LLM inputs and detects adversarial user input attacks.
 
-<!-- BEGIN [!INCLUDE [prompt-shield-attack-info](../../../ai-services/content-safety/includes/prompt-shield-attack-info.md)] -->
+[!INCLUDE [prompt-shield-attack-info](../../../ai-services/content-safety/includes/prompt-shield-attack-info.md)]
 
 ::: moniker-end
 
@@ -30,7 +30,7 @@ Prompt shields are a feature of the Azure OpenAI content filtering system that h
 
 Prompt shields analyze LLM inputs and detects adversarial user input attacks.
 
-<!-- BEGIN [!INCLUDE [prompt-shield-attack-info](../../../ai-services/content-safety/includes/prompt-shield-attack-info.md)] -->
+[!INCLUDE [prompt-shield-attack-info](../../../ai-services/content-safety/includes/prompt-shield-attack-info.md)]
 
 ::: moniker-end
 
