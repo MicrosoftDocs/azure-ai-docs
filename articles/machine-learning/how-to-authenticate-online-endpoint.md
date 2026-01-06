@@ -302,7 +302,7 @@ The CLI doesn't require you to explicitly provide the control plane token. Inste
     az ml online-endpoint create -n my-endpoint --auth_mode aad_token
     ```
 
-1. If you want to update the existing endpoint and specify `auth_mode` (for example, to `aad_token`), run the following code:
+1. If you want to update the existing endpoint and specify `auth_mode` (for example, as `aad_token`), run the following code:
 
     ```CLI
     az ml online-endpoint update -n my-endpoint --set auth_mode=aad_token
@@ -338,7 +338,7 @@ The REST API call requires you to explicitly provide the control plane token. Us
     echo $response
     ```
 
-    You can replace `authMode` with `key` for key auth, or `AMLToken` for Azure Machine Learning token auth. In this example, you use `AADToken` for Microsoft Entra token auth.
+    You can replace `authMode` with `key` for key authentication or with`AMLToken` for Azure Machine Learning token authtication. In this example, you use `AADToken` for Microsoft Entra token authentication.
 
 1. Get the current status of the online endpoint:
 
@@ -383,28 +383,26 @@ endpoint = ManagedOnlineEndpoint(
 ml_client.online_endpoints.begin_create_or_update(endpoint).result()
 ```
 
-You can replace `auth_mode` with `key` for key auth, or `aml_token` for Azure Machine Learning token auth. In this example, you use `aad_token` for Microsoft Entra token auth.
+You can replace `auth_mode` with `key` for key authentication or with `aml_token` for Azure Machine Learning token authentication. The example uses `aad_token` for Microsoft Entra token authentication.
 
 ### [Studio](#tab/studio)
 
-The studio doesn't require you to explicitly provide the control plane token, as the studio would already authenticate you during sign in, and the token would automatically be retrieved and passed for you.
+The studio doesn't require you to explicitly provide the control plane token because the studio authenticates you during sign in, and the token is automatically retrieved and passed for you.
 
-For more information on deploying online endpoints, see [Deploy an ML model with an online endpoint (via Studio)](how-to-deploy-online-endpoints.md?tabs=azure-studio#deploy-to-azure)
+For more information on deploying online endpoints, see [Deploy a machine learning model with an online endpoint (via the studio)](how-to-deploy-online-endpoints.md?tabs=azure-studio#deploy-to-azure).
 
 ---
 
 
 ## Create a deployment
 
-To create a deployment, see [Deploy an ML model with an online endpoint](how-to-deploy-online-endpoints.md) or [Use REST to deploy an model as an online endpoint](how-to-deploy-with-rest.md). There's no difference in how you create deployments for different auth modes. 
+To create a deployment, see [Deploy a machine learning model with an online endpoint](how-to-deploy-online-endpoints.md) or [Use REST to deploy a model as an online endpoint](how-to-deploy-with-rest.md). There's no difference in how you create deployments for different authentication modes. 
 
 ### [Azure CLI](#tab/azure-cli)
 
-The following code is an example of how to create a deployment. For more information on deploying online endpoints, see [Deploy an ML model with an online endpoint (via CLI)](how-to-deploy-online-endpoints.md?tabs=azure-cli#deploy-to-azure)
+The following code is an example of how to create a deployment. For more information on deploying online endpoints, see [Deploy a machine learning model with an online endpoint (via CLI)](how-to-deploy-online-endpoints.md?tabs=azure-cli#deploy-to-azure).
 
-1. Create a deployment definition YAML file.
-
-    _blue-deployment.yml_:
+1. Create a deployment definition YAML file named _blue-deployment.yml_:
 
     ```yaml
     $schema: https://azuremlschemas.azureedge.net/latest/managedOnlineDeployment.schema.json
@@ -422,7 +420,7 @@ The following code is an example of how to create a deployment. For more informa
     instance_count: 1
     ```
 
-1. Create the deployment using the YAML file. For this example, set all traffic to the new deployment.
+1. Create the deployment by using the YAML file. For this example, set all traffic to the new deployment.
 
     ```CLI
     az ml online-deployment create -f blue-deployment.yml --all-traffic
@@ -430,15 +428,15 @@ The following code is an example of how to create a deployment. For more informa
 
 ### [REST](#tab/rest)
 
-For more information on deploying online endpoints using REST, see [Use REST to deploy an model as an online endpoint](how-to-deploy-with-rest.md).
+For more information on deploying online endpoints by using REST, see [Use REST to deploy a model as an online endpoint](how-to-deploy-with-rest.md).
 
 ### [Python](#tab/python)
 
-For more information on deploying online endpoints, see [Deploy an ML model with an online endpoint (via SDK)](how-to-deploy-online-endpoints.md?tabs=python#deploy-to-azure)
+For more information on deploying online endpoints, see [Deploy a machine learning model with an online endpoint (via SDK)](how-to-deploy-online-endpoints.md?tabs=python#deploy-to-azure).
 
 ### [Studio](#tab/studio)
 
-For more information on deploying online endpoints, see [Deploy an ML model with an online endpoint (via Studio)](how-to-deploy-online-endpoints.md?tabs=azure-studio#deploy-to-azure)
+For more information on deploying online endpoints, see [Deploy a machine learning model with an online endpoint (via the studio)](how-to-deploy-online-endpoints.md?tabs=azure-studio#deploy-to-azure).
 
 ---
 
@@ -447,7 +445,7 @@ For more information on deploying online endpoints, see [Deploy an ML model with
 
 ### [Azure CLI](#tab/azure-cli)
 
-If you plan to use the CLI to invoke the endpoint, you're not required to get the scoring URI explicitly, as the CLI handles it for you. However, you can still use the CLI to get the scoring URI so that you can use it with other channels, such as REST API.
+If you plan to use the CLI to invoke the endpoint, you don't need to get the scoring URI explicitly because the CLI provides it for you. However, you can still use the CLI to get the scoring URI so that you can use it with other channels, such as the REST API.
 
 ```CLI
 scoringUri=$(az ml online-endpoint show -n my-endpoint --query "scoring_uri")
@@ -472,7 +470,7 @@ echo $scoringUri
 
 ### [Python](#tab/python)
 
-If you plan to use the Python SDK to invoke the endpoint, you're not required to get the scoring URI explicitly, as the SDK handles it for you. However, you can still use the SDK to get the scoring URI so that you can use it with other channels, such as REST API.
+If you plan to use the Python SDK to invoke the endpoint, you don't need to get the scoring URI explicitly because the SDK provides it for you. However, you can still use the SDK to get the scoring URI so that you can use it with other channels, such as REST API.
 
 ```Python
 scoring_uri = ml_client.online_endpoints.get(name=endpoint_name).scoring_uri
@@ -480,7 +478,7 @@ scoring_uri = ml_client.online_endpoints.get(name=endpoint_name).scoring_uri
 
 ### [Studio](#tab/studio)
 
-If you plan to use the studio to invoke the endpoint, you're not required to get the scoring URI explicitly, as the studio handles it for you. However, you can still use the studio to get the scoring URI so that you can use it with other channels, such as REST API.
+If you plan to use the studio to invoke the endpoint, you don't need to get the scoring URI explicitly because the studio provides it for you. However, you can still use the studio to get the scoring URI so that you can use it with other channels, such as REST API.
 
 You can find the scoring URI on the __Details__ tab of the endpoint's page.
 
@@ -489,97 +487,97 @@ You can find the scoring URI on the __Details__ tab of the endpoint's page.
 
 ## Get the key or token for data plane operations
 
-A key or token can be used for data plane operations, even though the process of getting the key or token is a control plane operation. In other words, you use a control plane token to get the key or token that you later use to perform your data plane operations.
+You can use a key or token for data plane operations, even though the process of getting the key or token is a control plane operation. In other words, you use a control plane token to get the key or token that you later use to perform your data plane operations.
 
-Getting the _key_ or _Azure Machine Learning token_ requires that the correct role is assigned to the user identity that is requesting it, as described in [authorization for control plane operations](concept-endpoints-online-auth.md#control-plane-operations).
-Getting the _Microsoft Entra token_ doesn't require any extra roles for the user identity.
+To get the key or Azure Machine Learning token, the user identity that's requesting it needs to have the correct role assigned to it, as described in [Authorization for control plane operations](concept-endpoints-online-auth.md#control-plane-operations).
+The user identity doesn't need any extra roles to get the Microsoft Entra token.
 
 ### [Azure CLI](#tab/azure-cli)
 
-If you plan to use the CLI to invoke the endpoint, you're not required to get the keys or token for data plane operations explicitly, as the CLI handles it for you. However, you can still use the CLI to get the keys or token for data plane operation so that you can use it with other channels, such as REST API.
+If you plan to use the CLI to invoke the endpoint, you don't need to get the keys or token for data plane operations explicitly because the CLI provides it for you. However, you can still use the CLI to get the keys or token for data plane operations so that you can use it with other channels, such as REST API.
 
-To get the keys or token for data plane operations, use the [az ml online-endpoint get-credentials](/cli/azure/ml/online-endpoint#az-ml-online-endpoint-get-credentials) command. This command returns a JSON output that contains the keys, token, and/or additional information.
+To get the keys or token for data plane operations, use the [az ml online-endpoint get-credentials](/cli/azure/ml/online-endpoint#az-ml-online-endpoint-get-credentials) command. This command returns JSON output that contains the keys, token, and/or additional information.
 
 > [!TIP]
-> To extract a specific information from the JSON output, the `--query` parameter of the CLI command is used as an example. However, you can use any suitable tool for this purpose.
+> In the following command, the `--query` parameter is used to extract specific information from the JSON output. However, you can use any suitable tool for that purpose.
 
-__When `auth_mode` of the endpoint is `key`__
+__When the `auth_mode` of the endpoint is `key`__
 
 - Keys are returned in the `primaryKey` and `secondaryKey` fields.
 
-```bash
-export DATA_PLANE_TOKEN=$(az ml online-endpoint get-credentials -n $ENDPOINT_NAME -g $RESOURCE_GROUP -w $WORKSPACE_NAME -o tsv --query primaryKey)
-export DATA_PLANE_TOKEN2=$(az ml online-endpoint get-credentials -n $ENDPOINT_NAME -g $RESOURCE_GROUP -w $WORKSPACE_NAME -o tsv --query secondaryKey)
-```
+   ```bash
+   export DATA_PLANE_TOKEN=$(az ml online-endpoint get-credentials -n $ENDPOINT_NAME -g $RESOURCE_GROUP -w $WORKSPACE_NAME -o tsv --query primaryKey)
+   export DATA_PLANE_TOKEN2=$(az ml online-endpoint get-credentials -n $ENDPOINT_NAME -g $RESOURCE_GROUP -w $WORKSPACE_NAME -o tsv --query secondaryKey)
+   ```
 
-__When `auth_mode` of the endpoint is `aml_token`__
+__When the `auth_mode` of the endpoint is `aml_token`__
 
-- Token is returned in the `accessToken` field.
-- Token expiration time is returned in the `expiryTimeUtc` field.
-- Token refresh time is returned in the `refreshAfterTimeUtc` field.
+- The token is returned in the `accessToken` field.
+- The token expiration time is returned in the `expiryTimeUtc` field.
+- The token refresh time is returned in the `refreshAfterTimeUtc` field.
 
-```bash
-export DATA_PLANE_TOKEN=$(az ml online-endpoint get-credentials -n $ENDPOINT_NAME -g $RESOURCE_GROUP -w $WORKSPACE_NAME -o tsv --query accessToken)
-export EXPIRY_TIME_UTC=$(az ml online-endpoint get-credentials -n $ENDPOINT_NAME -g $RESOURCE_GROUP -w $WORKSPACE_NAME -o tsv --query expiryTimeUtc)
-export REFRESH_AFTER_TIME_UTC=$(az ml online-endpoint get-credentials -n $ENDPOINT_NAME -g $RESOURCE_GROUP -w $WORKSPACE_NAME -o tsv --query refreshAfterTimeUtc)
-```
+   ```bash
+   export DATA_PLANE_TOKEN=$(az ml online-endpoint get-credentials -n $ENDPOINT_NAME -g $RESOURCE_GROUP -w $WORKSPACE_NAME -o tsv --query accessToken)
+   export EXPIRY_TIME_UTC=$(az ml online-endpoint get-credentials -n $ENDPOINT_NAME -g $RESOURCE_GROUP -w $WORKSPACE_NAME -o tsv --query expiryTimeUtc)
+   export REFRESH_AFTER_TIME_UTC=$(az ml online-endpoint get-credentials -n $ENDPOINT_NAME -g $RESOURCE_GROUP -w $WORKSPACE_NAME -o tsv --query refreshAfterTimeUtc)
+   ```
 
-__When `auth_mode` of the endpoint is `aad_token`__
+__When the `auth_mode` of the endpoint is `aad_token`__
 
-- Token is returned in the `accessToken` field.
-- Token expiration time is returned in the `expiryTimeUtc` field.
+- The token is returned in the `accessToken` field.
+- The token expiration time is returned in the `expiryTimeUtc` field.
 
-```bash
-export DATA_PLANE_TOKEN=$(az ml online-endpoint get-credentials -n $ENDPOINT_NAME -g $RESOURCE_GROUP -w $WORKSPACE_NAME -o tsv --query accessToken)
-export EXPIRY_TIME_UTC=$(az ml online-endpoint get-credentials -n $ENDPOINT_NAME -g $RESOURCE_GROUP -w $WORKSPACE_NAME -o tsv --query expiryTimeUtc)
-```
+   ```bash
+   export DATA_PLANE_TOKEN=$(az ml online-endpoint get-credentials -n $ENDPOINT_NAME -g $RESOURCE_GROUP -w $WORKSPACE_NAME -o tsv --query accessToken)
+   export EXPIRY_TIME_UTC=$(az ml online-endpoint get-credentials -n $ENDPOINT_NAME -g $RESOURCE_GROUP -w $WORKSPACE_NAME -o tsv --query expiryTimeUtc)
+   ```
 
 ### [REST](#tab/rest)
 
-To get the keys or token for data plane operations, choose the right API, depending on the `auth_mode` of the endpoint. The API returns a JSON output that includes the keys and token.
+To get the keys or token for data plane operations, choose the right API, depending on the `auth_mode` of the endpoint. The API returns JSON output that includes the keys and token.
 
 > [!TIP]
-> The `jq` utility is used to demonstrate how to extract a specific information from the JSON output. However, you can use any suitable tool for this purpose.
+> The `jq` utility is used to demonstrate how to extract specific information from the JSON output. However, you can use any suitable tool for that purpose.
 
-__When `auth_mode` of the endpoint is `key`__
+__When the `auth_mode` of the endpoint is `key`__
 
 - Use the `listkeys` API.
 - Keys are returned in the `primaryKey` and `secondaryKey` fields.
 
-```bash
-response=$(curl -H "Content-Length: 0" --location --request POST "https://management.azure.com/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.MachineLearningServices/workspaces/$WORKSPACE/onlineEndpoints/$ENDPOINT_NAME/listkeys?api-version=$API_VERSION" \
---header "Authorization: Bearer $CONTROL_PLANE_TOKEN")
+   ```bash
+   response=$(curl -H "Content-Length: 0" --location --request POST "https://management.azure.com/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.MachineLearningServices/workspaces/$WORKSPACE/onlineEndpoints/$ENDPOINT_NAME/listkeys?api-version=$API_VERSION" \
+   --header "Authorization: Bearer $CONTROL_PLANE_TOKEN")
 
-export DATA_PLANE_TOKEN=$(echo $response | jq -r '.primaryKey')
-```
+   export DATA_PLANE_TOKEN=$(echo $response | jq -r '.primaryKey')
+   ```
 
-__When `auth_mode` of the endpoint is `aml_token`__
+__When the `auth_mode` of the endpoint is `aml_token`__
 
 - Use the `token` API.
-- Token is returned in the `accessToken` field.
-- Token expiration time is returned in the `expiryTimeUtc` field
-- Token refresh time is returned in the `refreshAfterTimeUtc` field
+- The token is returned in the `accessToken` field.
+- The token expiration time is returned in the `expiryTimeUtc` field.
+- The token refresh time is returned in the `refreshAfterTimeUtc` field.
 
-```bash
-response=$(curl -H "Content-Length: 0" --location --request POST "https://management.azure.com/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.MachineLearningServices/workspaces/$WORKSPACE/onlineEndpoints/$ENDPOINT_NAME/token?api-version=$API_VERSION" \
---header "Authorization: Bearer $CONTROL_PLANE_TOKEN")
+   ```bash
+   response=$(curl -H "Content-Length: 0" --location --request POST "https://management.azure.com/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.MachineLearningServices/workspaces/$WORKSPACE/onlineEndpoints/$ENDPOINT_NAME/token?api-version=$API_VERSION" \
+   --header "Authorization: Bearer $CONTROL_PLANE_TOKEN")
 
-export DATA_PLANE_TOKEN=$(echo $response | jq -r '.accessToken')
-export EXPIRY_TIME_UTC=$(echo $response | jq -r '.expiryTimeUtc')
-export REFRESH_AFTER_TIME_UTC=$(echo $response | jq -r '.refreshAfterTimeUtc')
-```
+   export DATA_PLANE_TOKEN=$(echo $response | jq -r '.accessToken')
+   export EXPIRY_TIME_UTC=$(echo $response | jq -r '.expiryTimeUtc')
+   export REFRESH_AFTER_TIME_UTC=$(echo $response | jq -r '.refreshAfterTimeUtc')
+   ```
 
-__When `auth_mode` of the endpoint is `aad_token`__
+__When the `auth_mode` of the endpoint is `aad_token`__
 
-- Use IMDS endpoint or MSI endpoint, depending on where you request for the token.
-- Token is returned in the `accessToken` field.
-- Token expiration time is returned in the `expiryTimeUtc` field
+- Use the IMDS endpoint or MSI endpoint, depending on where you request the token.
+- The token is returned in the `accessToken` field.
+- The token expiration time is returned in the `expiryTimeUtc` field.
 
-___From an Azure virtual machine___
+__From an Azure virtual machine__
 
-You can acquire the token based on the managed identities for an Azure VM (when the VM enables a managed identity). 
+You can get the token based on the managed identities for an Azure VM (when the VM enables a managed identity). 
 
-1. To get the Microsoft Entra token (`aad_token`) for the _data plane_ operation on the Azure VM with managed identity, submit the request to the [Azure Instance Metadata Service](/azure/virtual-machines/instance-metadata-service) (IMDS) endpoint for the Azure resource endpoint `ml.azure.com`:
+1. To get the Microsoft Entra token (`aad_token`) for the data plane operation on the Azure VM with managed identity, submit the request to the [IMDS](/azure/virtual-machines/instance-metadata-service)  endpoint for the Azure resource endpoint `ml.azure.com`:
 
     ```bash
     export DATA_PLANE_TOKEN=`(curl 'http://169.254.169.254/metadata/identity/oauth2/token?api-version=2018-02-01&resource=https%3A%2F%2Fml.azure.com%2F' -H Metadata:true -s | jq -r '.access_token' )`
@@ -588,9 +586,9 @@ You can acquire the token based on the managed identities for an Azure VM (when 
 
     For more information on getting tokens based on managed identities, see [Get a token using HTTP](/entra/identity/managed-identities-azure-resources/how-to-use-vm-token#get-a-token-using-http).
 
-___From a compute instance___
+__From a compute instance__
 
-You can get the token if you're using the Azure Machine Learning workspace's compute instance. To get the token, you must pass the client ID and the secret of the compute instance's managed identity to the managed system identity (MSI) endpoint that is configured locally at the compute instance. You can get the MSI endpoint, client ID, and secret from the environment variables `MSI_ENDPOINT`, `DEFAULT_IDENTITY_CLIENT_ID`, and `MSI_SECRET`, respectively. These variables are set automatically if you enable managed identity for the compute instance. 
+You can get the token if you're using the Azure Machine Learning workspace's compute instance. To get the token, you must pass the client ID and the secret of the compute instance's managed identity to the MSI endpoint that's configured locally at the compute instance. You can get the MSI endpoint, client ID, and secret from the environment variables `MSI_ENDPOINT`, `DEFAULT_IDENTITY_CLIENT_ID`, and `MSI_SECRET`, respectively. These variables are set automatically if you enable managed identity for the compute instance. 
 
 1. Get the token for the Azure resource endpoint `ml.azure.com` from the workspace's compute instance:
 
@@ -605,40 +603,40 @@ You can get the token if you're using the Azure Machine Learning workspace's com
 
 ### [Python](#tab/python)
 
-If you plan to use the SDK to invoke the endpoint, you're not required to get the keys or token for data plane operations explicitly, as the SDK handles it for you. However, you can still use the SDK to get the keys or token for data plane operations so that you can use it with other channels, such as REST API.
+If you plan to use the SDK to invoke the endpoint, you don't need to get the keys or token for data plane operations explicitly because the SDK provides it for you. However, you can still use the SDK to get the keys or token for data plane operations so that you can use it with other channels, such as REST API.
 
-To get the keys or token for data plane operations, use the [get_keys](/python/api/azure-ai-ml/azure.ai.ml.operations.onlineendpointoperations#azure-ai-ml-operations-onlineendpointoperations-get-keys) method in the `OnlineEndpointOperations` class. This method returns an object that includes keys and token.
+To get the keys or token for data plane operations, use the [get_keys](/python/api/azure-ai-ml/azure.ai.ml.operations.onlineendpointoperations#azure-ai-ml-operations-onlineendpointoperations-get-keys) method of the `OnlineEndpointOperations` class. This method returns an object that includes keys and the token.
 
-__When `auth_mode` of the endpoint is `key`__
+__When the `auth_mode` of the endpoint is `key`__
 
 - Keys are returned in the `primary_key` and `secondary_key` fields.
 
-```Python
-DATA_PLANE_TOKEN = ml_client.online_endpoints.get_keys(name=endpoint_name).primary_key
-DATA_PLANE_TOKEN2 = ml_client.online_endpoints.get_keys(name=endpoint_name).secondary_key
-```
+   ```Python
+   DATA_PLANE_TOKEN = ml_client.online_endpoints.get_keys(name=endpoint_name).primary_key
+   DATA_PLANE_TOKEN2 = ml_client.online_endpoints.get_keys(name=endpoint_name).secondary_key
+   ```
 
-__When `auth_mode` of the endpoint is `aml_token`__
+__When the `auth_mode` of the endpoint is `aml_token`__
 
-- Token is returned in the `access_token` field.
-- Token expiration time is returned in the `expiry_time_utc` field.
-- Token refresh time is returned in the `refresh_after_time_utc` field.
+- The token is returned in the `access_token` field.
+- The token expiration time is returned in the `expiry_time_utc` field.
+- The token refresh time is returned in the `refresh_after_time_utc` field.
 
-```Python
-DATA_PLANE_TOKEN = ml_client.online_endpoints.get_keys(name=endpoint_name).access_token
-EXPIRY_TIME_UTC = ml_client.online_endpoints.get_keys(name=endpoint_name).expiry_time_utc
-REFRESH_AFTER_TIME_UTC = ml_client.online_endpoints.get_keys(name=endpoint_name).refresh_after_time_utc
-```
+   ```Python
+   DATA_PLANE_TOKEN = ml_client.online_endpoints.get_keys(name=endpoint_name).access_token
+   EXPIRY_TIME_UTC = ml_client.online_endpoints.get_keys(name=endpoint_name).expiry_time_utc
+   REFRESH_AFTER_TIME_UTC = ml_client.online_endpoints.get_keys(name=endpoint_name).refresh_after_time_utc
+   ```
 
-__When `auth_mode` of the endpoint is `aad_token`__
+__When the `auth_mode` of the endpoint is `aad_token`__
 
-- Token is returned in the `access_token` field.
-- Token expiration time is returned in the `expiry_time_utc` field.
+- The token is returned in the `access_token` field.
+- The token expiration time is returned in the `expiry_time_utc` field.
 
-```Python
-DATA_PLANE_TOKEN = ml_client.online_endpoints.get_keys(name=endpoint_name).access_token
-EXPIRY_TIME_UTC = ml_client.online_endpoints.get_keys(name=endpoint_name).expiry_time_utc
-```
+   ```Python
+   DATA_PLANE_TOKEN = ml_client.online_endpoints.get_keys(name=endpoint_name).access_token
+   EXPIRY_TIME_UTC = ml_client.online_endpoints.get_keys(name=endpoint_name).expiry_time_utc
+   ```
 
 See [Get a token using the Azure identity client library](/entra/identity/managed-identities-azure-resources/how-to-use-vm-token#get-a-token-using-the-azure-identity-client-library) for more information.
 
@@ -650,7 +648,7 @@ You can find the key, Azure Machine Learning token, or Microsoft Entra token on 
 
 ### Verify the resource endpoint and client ID for the Microsoft Entra token
 
-After getting the Entra token, you can verify that the token is for the right Azure resource endpoint `ml.azure.com` and the right client ID by decoding the token via [jwt.ms](https://jwt.ms/), which will return a json response with the following information:
+After getting the Entra token, you can verify that the token is for the right Azure resource endpoint, `ml.azure.com`, and the right client ID by decoding the token via [jwt.ms](https://jwt.ms/), which returns a JSON response with the following information:
 
 ```json
 {
@@ -664,7 +662,7 @@ After getting the Entra token, you can verify that the token is for the right Az
 
 ### [Azure CLI](#tab/azure-cli)
 
-You can use `az ml online-endpoint invoke` for endpoints with a key, an Azure Machine Learning token, or a Microsoft Entra token. The CLI handles the key or token automatically so you don't need to pass it explicitly.
+You can use `az ml online-endpoint invoke` for endpoints with a key, an Azure Machine Learning token, or a Microsoft Entra token. The CLI provides the key or token automatically so you don't need to pass it explicitly.
 
 ```CLI
 az ml online-endpoint invoke -n my-endpoint -r request.json
@@ -672,7 +670,7 @@ az ml online-endpoint invoke -n my-endpoint -r request.json
 
 ### [REST](#tab/rest)
 
-When invoking the online endpoint for scoring, pass the key, Azure Machine Learning token, or Microsoft Entra token in the authorization header. The following code shows how to use the curl utility to call the online endpoint using a key or token:
+When invoking the online endpoint for scoring, pass the key, Azure Machine Learning token, or Microsoft Entra token in the authorization header. The following code shows how to use the cURL utility to call the online endpoint using a key or token:
 
 ```bash
 curl --request POST "$scoringUri" --header "Authorization: Bearer $DATA_PLANE_TOKEN" --header 'Content-Type: application/json' --data @endpoints/online/model-1/sample-request.json
@@ -680,10 +678,10 @@ curl --request POST "$scoringUri" --header "Authorization: Bearer $DATA_PLANE_TO
 
 ### [Python](#tab/python)
 
-Azure Machine Learning SDK using `ml_client.online_endpoints.invoke()` is supported for key, Azure Machine Learning token, and Microsoft Entra token.
-In addition to using Azure Machine Learning SDK, you can also use a generic Python SDK to send the POST request to the scoring URI.
+Azure Machine Learning SDK `ml_client.online_endpoints.invoke()` is supported for keys, Azure Machine Learning tokens, and Microsoft Entra tokens.
+You can also use a generic Python SDK to send the POST request to the scoring URI.
 
-When calling the online endpoint for scoring, pass the key or token in the authorization header. The following code shows how to call the online endpoint using a key or token with a generic Python SDK. In the code, replace the `api_key` variable with your key or token.
+When calling the online endpoint for scoring, pass the key or token in the authorization header. The following code shows how to call the online endpoint by using a key or token with a generic Python SDK. In the code, replace the `api_key` variable with your key or token.
 
 ```Python
 import urllib.request
@@ -711,7 +709,7 @@ try:
 except urllib.error.HTTPError as error:
     print("The request failed with status code: " + str(error.code))
 
-    # Print the headers - they include the requert ID and the timestamp, which are useful for debugging the failure
+    # Print the headers. They include the request ID and the timestamp, which are useful for debugging the failure.
     print(error.info())
     print(error.read().decode("utf8", 'ignore'))
 ```
@@ -720,20 +718,20 @@ except urllib.error.HTTPError as error:
 
 #### Key or Azure Machine Learning token
 
-The __Test__ tab of the deployment's detail page supports scoring for endpoints with key, Azure Machine Learning token, or Microsoft Entra token auth.
+The __Test__ tab of the deployment's detail page supports scoring for endpoints with key, Azure Machine Learning token, or Microsoft Entra token authentication.
 
 ---
 
 
 ## Log and monitor traffic
 
-To enable traffic logging in the diagnostics settings for the endpoint, follow the steps in [Turn on logs](how-to-monitor-online-endpoints.md#turn-on-logs).
+To enable traffic logging in the diagnostics settings for the endpoint, complete the steps in [Turn on logs](how-to-monitor-online-endpoints.md#turn-on-logs).
 
-If the diagnostic setting is enabled, you can check the `AmlOnlineEndpointTrafficLogs` table to see the auth mode and user identity.
+If the diagnostic setting is enabled, you can check the `AmlOnlineEndpointTrafficLogs` table to see the authentication mode and user identity.
 
 
 ## Related content
 
 * [Authentication for managed online endpoint](concept-endpoints-online-auth.md)
-* [Deploy a machine learning model using an online endpoint](how-to-deploy-online-endpoints.md)
+* [Deploy a machine learning model by using an online endpoint](how-to-deploy-online-endpoints.md)
 * [Enable network isolation for managed online endpoints](how-to-secure-online-endpoint.md)
