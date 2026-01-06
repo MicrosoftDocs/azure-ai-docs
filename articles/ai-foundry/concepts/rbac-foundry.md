@@ -85,7 +85,7 @@ To relate these terms to each other, an identity is assigned a *role* with certa
 
 In Microsoft Foundry, consider two scopes when completing role assignments. 
 
-* **Foundry resource**: The top-level scope that defines the administrative, security, and monitoring boundary for an Azure AI Foundry environment.
+* **Foundry resource**: The top-level scope that defines the administrative, security, and monitoring boundary for a Microsoft Foundry environment.
 * **Foundry project**: A sub-scope within a Foundry resource used to organize work and enforce access control for Foundry APIs, tools, and developer workflows.
 
 

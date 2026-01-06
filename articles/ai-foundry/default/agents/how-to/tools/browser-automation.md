@@ -100,10 +100,14 @@ project_client = AIProjectClient(
 
 openai_client = project_client.get_openai_client()
 
+browser_automation_connection = project_client.connections.get(os.environ["BROWSER_AUTOMATION_PROJECT_CONNECTION_NAME"])
+connection_id = browser_automation_connection.id
+print(f"Browser Automation connection ID: {connection_id}")
+
 tool = BrowserAutomationAgentTool(
     browser_automation_preview=BrowserAutomationToolParameters(
         connection=BrowserAutomationToolConnectionParameters(
-            project_connection_id=os.environ["BROWSER_AUTOMATION_PROJECT_CONNECTION_ID"],
+            project_connection_id=connection_id,
         )
     )
 )

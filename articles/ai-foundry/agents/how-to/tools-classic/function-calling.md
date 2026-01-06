@@ -1,7 +1,7 @@
 ---
 title: Use Foundry Agent Service with function calling
 titleSuffix: Microsoft Foundry
-description: Learn how to implement function calling with Azure AI Foundry Agents. Define functions, handle requests, and execute custom code for AI-powered workflows.
+description: Learn how to implement function calling with Microsoft Foundry Agents. Define functions, handle requests, and execute custom code for AI-powered workflows.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry

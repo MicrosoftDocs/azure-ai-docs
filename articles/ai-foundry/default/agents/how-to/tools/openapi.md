@@ -118,6 +118,10 @@ with (
     }
 
     # If you want to use key-based authentication
+    openapi_connection = project_client.connections.get(os.environ["OPENAPI_PROJECT_CONNECTION_NAME"])
+    connection_id = openapi_connection.id
+    print(f"OpenAPI connection ID: {connection_id}")
+
     openapi_key_auth_tool={
         "type": "openapi",
         "openapi":{
@@ -126,7 +130,7 @@ with (
             "auth": {
                   "type": "project_connection",
                   "security_scheme": {
-                      "project_connection_id": "/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}"              
+                      "project_connection_id": connection_id              
                   }              
             },
         }

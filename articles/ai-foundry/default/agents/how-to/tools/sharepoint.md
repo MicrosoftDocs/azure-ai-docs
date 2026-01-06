@@ -75,10 +75,14 @@ project_client = AIProjectClient(
 # Get the OpenAI client for responses and conversations
 openai_client = project_client.get_openai_client()
 
+sharepoint_connection = project_client.connections.get(os.environ["SHAREPOINT_PROJECT_CONNECTION_NAME"])
+connection_id = sharepoint_connection.id
+print(f"SharePoint connection ID: {connection_id}")
+
 sharepoint_tool = SharepointAgentTool(
     sharepoint_grounding_preview=SharepointGroundingToolParameters(
         project_connections=[
-            ToolProjectConnection(project_connection_id=os.environ["SHAREPOINT_PROJECT_CONNECTION_ID"])
+            ToolProjectConnection(project_connection_id=connection_id)
         ]
     )
 )
