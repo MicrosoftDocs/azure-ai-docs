@@ -274,9 +274,7 @@ The following example creates the endpoint with a system-assigned identity as th
 
 The CLI doesn't require you to explicitly provide the control plane token. Instead, the CLI `az login` authenticates you during sign in, and the token is automatically retrieved and passed for you.
 
-1. Create an endpoint definition YAML file.
-
-    _endpoint.yml_:
+1. Create an endpoint definition YAML file named _endpoint.yml_:
     
     ```yaml
     $schema: https://azuremlschemas.azureedge.net/latest/managedOnlineEndpoint.schema.json
@@ -284,7 +282,7 @@ The CLI doesn't require you to explicitly provide the control plane token. Inste
     auth_mode: aad_token
     ```
 
-1. You can replace `auth_mode` with `key` for key auth, or `aml_token` for Azure Machine Learning token auth. In this example, you use `aad_token` for Microsoft Entra token auth.
+1. You can set `auth_mode` to `key` for key authentication or `aml_token` for Azure Machine Learning token authentication. This example uses `aad_token` for Microsoft Entra token authentication.
 
     ```CLI
     az ml online-endpoint create -f endpoint.yml
