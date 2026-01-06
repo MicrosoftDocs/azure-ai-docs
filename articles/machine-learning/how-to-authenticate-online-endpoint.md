@@ -732,6 +732,6 @@ If the diagnostic setting is enabled, you can check the `AmlOnlineEndpointTraffi
 
 ## Related content
 
-* [Authentication for managed online endpoint](concept-endpoints-online-auth.md)
-* [Deploy a machine learning model by using an online endpoint](how-to-deploy-online-endpoints.md)
-* [Enable network isolation for managed online endpoints](how-to-secure-online-endpoint.md)
+* [Authentication and authorization for online endpoints](concept-endpoints-online-auth.md)
+* [Deploy and score a machine learning model by using an online endpoint](how-to-deploy-online-endpoints.md)
+* [Secure managed online endpoints by using network isolation](how-to-secure-online-endpoint.md)
