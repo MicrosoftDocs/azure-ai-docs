@@ -17,7 +17,7 @@ ms.custom: how-to, devplatv2, cliv2, sdkv2, devx-track-azurecli, build-2024
 
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
-This article covers how to authenticate clients to perform control plane and data plane operations on online endpoints.
+This article descibes how to authenticate clients to perform control plane and data plane operations on online endpoints.
 
 A _control plane operation_ controls an endpoint and changes it. Control plane operations include create, read, update, and delete (CRUD) operations on online endpoints and online deployments.
 
@@ -31,9 +31,9 @@ A _data plane operation_ uses data to interact with an online endpoint without c
 
 ## Prepare a user identity
 
-You need a user identity to perform control plane operations (that is, CRUD operations) and data plane operations (that is, send scoring requests) on the online endpoint. You can use the same user identity or different user identities for the control plane and data plane operations. In this article, you use the same user identity for both control plane and data plane operations.
+You need a user identity to perform control plane operations (for example, CRUD operations) and data plane operations (for example, sending scoring requests) on the online endpoint. You can use the same user identity or different user identities for the control plane and data plane operations. In this article, you use the same user identity for both control plane and data plane operations.
 
-To create a user identity under Microsoft Entra ID, see [Set up authentication](how-to-setup-authentication.md#microsoft-entra-id). You'll need the identity ID later.
+To create a user identity in Microsoft Entra ID, see [Set up authentication](how-to-setup-authentication.md#microsoft-entra-id). You'll need the identity ID later.
 
 
 ## Assign permissions to the identity
@@ -42,7 +42,7 @@ In this section, you assign permissions to the user identity that you use for in
 
 ### Use a built-in role
 
-The `AzureML Data Scientist` [built-in role](/azure/role-based-access-control/built-in-roles#azureml-data-scientist) can be used to manage and use endpoints and deployments and it uses wildcards to include the following _control plane_ RBAC actions:
+You can use the `AzureML Data Scientist` [built-in role](/azure/role-based-access-control/built-in-roles#azureml-data-scientist) to manage and use endpoints and deployments. It also uses wildcards to include the following control plane RBAC actions:
 - `Microsoft.MachineLearningServices/workspaces/onlineEndpoints/write`
 - `Microsoft.MachineLearningServices/workspaces/onlineEndpoints/delete`
 - `Microsoft.MachineLearningServices/workspaces/onlineEndpoints/read`
@@ -50,22 +50,22 @@ The `AzureML Data Scientist` [built-in role](/azure/role-based-access-control/bu
 - `Microsoft.MachineLearningServices/workspaces/onlineEndpoints/listKeys/action`
 - `Microsoft.MachineLearningServices/workspaces/onlineEndpoints/regenerateKeys/action`
 
-and to include the following _data plane_ RBAC action:
+It uses wildcards to include the following data plane RBAC action:
 - `Microsoft.MachineLearningServices/workspaces/onlineEndpoints/score/action`
 
-Optionally, the `Azure Machine Learning Workspace Connection Secrets Reader` built-in role can be used to access secrets from workspace connections and it include the following _control plane_ RBAC actions:
+Optionally, you can use the `Azure Machine Learning Workspace Connection Secrets Reader` built-in role to access secrets from workspace connections. It includes the following control plane RBAC actions:
 - `Microsoft.MachineLearningServices/workspaces/connections/listsecrets/action`
 - `Microsoft.MachineLearningServices/workspaces/metadata/secrets/read`
 
-If you use these built-in roles, there's no action needed at this step.
+If you use these built-in roles, you don't need to take any action at this step.
 
 ### (Optional) Create a custom role
 
 You can skip this step if you're using built-in roles or other pre-made custom roles.
 
-1. Define the scope and actions for custom roles by creating JSON definitions of the roles. For example, the following role definition allows the user to CRUD an online endpoint, under a specified workspace.
+1. Define the scope and actions for custom roles by creating JSON definitions of the roles. For example, the following role definition,  _custom-role-for-control-plane.json_, allows the user to perform CRUD operations on an online endpoint in a specified workspace.
 
-    _custom-role-for-control-plane.json_:
+
     
     ```json
     {
@@ -88,9 +88,8 @@ You can skip this step if you're using built-in roles or other pre-made custom r
     }
     ```
     
-    The following role definition allows the user to send scoring requests to an online endpoint, under a specified workspace.
+    The following role definition, _custom-role-for-scoring.json_, allows the user to send scoring requests to an online endpoint in a specified workspace.
     
-    _custom-role-for-scoring.json_:
     
     ```json
     {
@@ -119,9 +118,9 @@ You can skip this step if you're using built-in roles or other pre-made custom r
     > [!NOTE]
     > To create custom roles, you need one of three roles: 
     >
-    > - owner
-    > - user access administrator
-    > - a custom role with `Microsoft.Authorization/roleDefinitions/write` permission (to create/update/delete custom roles) and `Microsoft.Authorization/roleDefinitions/read` permission (to view custom roles).
+    > - Owner
+    > - User Access Administrator
+    > - A custom role with `Microsoft.Authorization/roleDefinitions/write` permission (to create/update/delete custom roles) and `Microsoft.Authorization/roleDefinitions/read` permission (to view custom roles).
     >
     > For more information on creating custom roles, see [Azure custom roles](/azure/role-based-access-control/custom-roles#who-can-create-delete-update-or-view-a-custom-role).
     
@@ -163,24 +162,24 @@ You can skip this step if you're using built-in roles or other pre-made custom r
     > [!NOTE]
     > To assign custom roles to the user identity, you need one of three roles: 
     >
-    > - owner
-    > - user access administrator
+    > - Owner
+    > - User Access Administrator
     > - a custom role that allows `Microsoft.Authorization/roleAssignments/write` permission (to assign custom roles) and `Microsoft.Authorization/roleAssignments/read` (to view role assignments).
     >
-    > For more information on the different Azure roles and their permissions, see [Azure roles](/azure/role-based-access-control/rbac-and-directory-admin-roles#azure-roles) and [Assigning Azure roles using Azure portal](/azure/role-based-access-control/role-assignments-portal).
+    > For more information on Azure roles and their permissions, see [Azure roles](/azure/role-based-access-control/rbac-and-directory-admin-roles#azure-roles) and [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
 
 1. Confirm the role assignment:
 
     ```bash
-    az role assignment list --scope /subscriptions/<subscriptionId>/resourcegroups/<resourceGroupName>/providers/Microsoft.MachineLearningServices/workspaces/<workspaceName>
+    az role assignment list --scope /subscriptions/<subscriptionID>/resourcegroups/<resourceGroupName>/providers/Microsoft.MachineLearningServices/workspaces/<workspaceName>
     ```
 
 
 ## Get the Microsoft Entra token for control plane operations
 
-Perform this step __if you plan to perform control plane operations with REST API__, which will directly use the token. 
+Complete this step if you plan to perform control plane operations by using the REST API, which directly uses the token. 
 
-If you plan to use other ways such as Azure Machine Learning CLI (v2), Python SDK (v2), or the Azure Machine Learning studio, you don't need to get the Microsoft Entra token manually. Rather, during sign in, your user identity would already be authenticated, and the token would automatically be retrieved and passed for you.
+If you plan to use other methods, like Azure CLI with the ml extension v2, Python SDK v2, or Azure Machine Learning studio, you don't need to get the Microsoft Entra token manually. Your user identity will authenticate during sign in, and the token will automatically be retrieved and passed for you.
 
 You can retrieve the Microsoft Entra token for _control_ plane operations from the Azure resource endpoint: `https://management.azure.com`.
 
@@ -195,10 +194,10 @@ You can retrieve the Microsoft Entra token for _control_ plane operations from t
 1. If you want to use a specific identity, use the following code to sign in with the identity:
 
     ```bash
-    az login --identity --username <identityId>
+    az login --identity --username <identityID>
     ```
 
-1. Use this context to get the token.
+1. Use this context to get the token:
 
     ```bash
     export CONTROL_PLANE_TOKEN=`(az account get-access-token --resource https://management.azure.com --query accessToken | tr -d '"')`
@@ -208,24 +207,24 @@ You can retrieve the Microsoft Entra token for _control_ plane operations from t
 
 __From an Azure virtual machine__
 
-You can acquire the token based on the managed identity for an Azure VM (when the VM enables a managed identity). 
+You can get the token based on the managed identity for an Azure VM (when the VM enables a managed identity). 
 
-1. To get the Microsoft Entra token (`aad_token`) for the control plane operation on the Azure VM, submit the request to the [Azure Instance Metadata Service](/azure/virtual-machines/instance-metadata-service) (IMDS) endpoint for the Azure resource endpoint `management.azure.com`:
+- To get the Microsoft Entra token (`aad_token`) for the control plane operation on the Azure VM, submit the request to the [Azure Instance Metadata Service](/azure/virtual-machines/instance-metadata-service) (IMDS) endpoint for the Azure resource endpoint `management.azure.com`:
 
     ```bash
     export CONTROL_PLANE_TOKEN=`(curl 'http://169.254.169.254/metadata/identity/oauth2/token?api-version=2018-02-01&resource=https%3A%2F%2Fmanagement.azure.com%2F' -H Metadata:true -s | jq -r '.access_token' )`
     ```
     
     > [!TIP]
-    > To extract the token from the JSON output, the `jq` utility is used as an example. However, you can use any suitable tool for this purpose.
+    > The `jq` utility is used To extract the token from the JSON output. However, you can use any suitable tool for this purpose.
     
     For more information on getting tokens based on managed identities, see [Get a token using HTTP](/entra/identity/managed-identities-azure-resources/how-to-use-vm-token#get-a-token-using-http).
 
 __From a compute instance__
 
-You can get the token if you're using the Azure Machine Learning workspace's compute instance. To get the token, you must pass the client ID and the secret of the compute instance's managed identity to the managed system identity (MSI) endpoint that is configured locally at the compute instance. You can get the MSI endpoint, client ID, and secret from the environment variables `MSI_ENDPOINT`, `DEFAULT_IDENTITY_CLIENT_ID`, and `MSI_SECRET`, respectively. These variables are set automatically if you enable managed identity for the compute instance. 
+You can get the token if you're using the Azure Machine Learning workspace's compute instance. To get the token, you must pass the client ID and the secret of the compute instance's managed identity to the Managed System Identity (MSI) endpoint that's configured locally at the compute instance. You can get the MSI endpoint, client ID, and secret from the environment variables `MSI_ENDPOINT`, `DEFAULT_IDENTITY_CLIENT_ID`, and `MSI_SECRET`, respectively. These variables are set automatically if you enable managed identity for the compute instance. 
 
-1. Get the token for the Azure resource endpoint `management.azure.com` from the workspace's compute instance:
+- Get the token for the Azure resource endpoint `management.azure.com` from the workspace's compute instance:
 
     ```bash
     export CONTROL_PLANE_TOKEN=`(curl $MSI_ENDPOINT'?api-version=2018-02-01&resource=https%3A%2F%2Fmanagement.azure.com%2F&clientid='$DEFAULT_IDENTITY_CLIENT_ID -H Metadata:true -H Secret:$MSI_SECRET -s | jq -r '.access_token' )`
@@ -238,16 +237,16 @@ from azure.identity import DefaultAzureCredential, InteractiveBrowserCredential
 
 try:
     credential = DefaultAzureCredential()
-    # Check if given credential can get token successfully.
+    # Check whether given credential can get token.
     access_token = credential.get_token("https://management.azure.com/.default")
     print(access_token)
 except Exception as ex:
-    # Fall back to InteractiveBrowserCredential in case DefaultAzureCredential not work
-    # This will open a browser page for
+    # Fall back to InteractiveBrowserCredential in case DefaultAzureCredential doesn't work.
+    # This will open a browser page. 
     credential = InteractiveBrowserCredential()
 ```
 
-See [Get a token using the Azure identity client library](/entra/identity/managed-identities-azure-resources/how-to-use-vm-token#get-a-token-using-the-azure-identity-client-library) for more information.
+See [Get a token using the Azure Identity client library](/entra/identity/managed-identities-azure-resources/how-to-use-vm-token#get-a-token-using-the-azure-identity-client-library) for more information.
 
 ### [Studio](#tab/studio)
 
@@ -255,9 +254,9 @@ The studio doesn't expose the Microsoft Entra token for control plane operations
 
 ---
 
-### (Optional) Verify the resource endpoint and client ID for Microsoft Entra token
+### (Optional) Verify the resource endpoint and client ID for the Microsoft Entra token
 
-After you retrieve the Microsoft Entra token, you can verify that the token is for the right Azure resource endpoint `management.azure.com` and the right client ID by decoding the token via [jwt.ms](https://jwt.ms/), which will return a json response with the following information:
+After you retrieve the Microsoft Entra token, you can verify that the token is for the right Azure resource endpoint `management.azure.com` and the right client ID by decoding the token via [jwt.ms](https://jwt.ms/), which returns a JSON response containing the following information:
 
 ```json
 {
@@ -269,7 +268,7 @@ After you retrieve the Microsoft Entra token, you can verify that the token is f
 
 ## Create an endpoint
 
-The following example creates the endpoint with a system-assigned identity (SAI) as the endpoint identity. The SAI is the default identity type of the managed identity for endpoints. Some basic roles are automatically assigned for the SAI. For more information on role assignment for a system-assigned identity, see [Automatic role assignment for endpoint identity](concept-endpoints-online-auth.md#automatic-role-assignment-for-endpoint-identity).
+The following example creates the endpoint with a system-assigned identity as the endpoint identity. The system-assigned identity is the default identity type of the managed identity for endpoints. Some basic roles are automatically assigned for the system-assigned identity. For more information on role assignment for a system-assigned identity, see [Automatic role assignment for endpoint identity](concept-endpoints-online-auth.md#automatic-role-assignment-for-endpoint-identity).
 
 ### [Azure CLI](#tab/azure-cli)
 
