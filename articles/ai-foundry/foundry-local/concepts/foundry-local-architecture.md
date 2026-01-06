@@ -118,7 +118,7 @@ Before you can use models with Foundry Local, you must compile and optimize them
 
 ### Hardware abstraction layer
 
-The hardware abstraction layer ensures that Foundry Local runs on various devices by abstractacing the underlying hardware. To optimize performance based on the available hardware, Foundry Local supports:
+The hardware abstraction layer ensures that Foundry Local runs on various devices by abstracting the underlying hardware. To optimize performance based on the available hardware, Foundry Local supports:
 
 - **multiple _execution providers_**, such as NVIDIA CUDA, AMD, Qualcomm, Intel.
 - **multiple _device types_**, such as CPU, GPU, NPU.
