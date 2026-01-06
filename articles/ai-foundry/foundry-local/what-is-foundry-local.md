@@ -11,9 +11,7 @@ ms.reviewer: samkemp
 ms.author: jburchel
 author: jonburchel
 reviewer: samuel100
-ms.custom:
-	- build-2025
-	- dev-focus
+ms.custom: build-2025, dev-focus
 ai-usage: ai-assisted
 #customer intent: As a developer, I want to understand what Microsoft Foundry Local is so that I can use it to build AI applications.
 ---
