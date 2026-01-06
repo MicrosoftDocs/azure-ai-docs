@@ -53,7 +53,7 @@ items:
   - name: Service monitoring
     href: ../../../agents/how-to/metrics.md
   - name: Monitor agents in the dashboard
-    href: ../../agents/how-to/how-to-monitor-agents-dashboard.md
+    href: ../../observability/how-to/how-to-monitor-agents-dashboard.md
   - name: Trace agents
     items:
     - name: Trace agent overview
