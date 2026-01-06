@@ -5,12 +5,13 @@ description: Learn how to disable preview features in Microsoft Foundry using ro
 author: jonburchel
 ms.author: jburchel
 ms.reviewer: meerakurup
-ms.date: 01/05/2026
+ms.date: 01/06/2026
 ms.topic: concept-article
 ms.service: azure-ai-foundry
 ms.custom:
   - dev-focus
 ai-usage: ai-assisted
+monikerRange: foundry-classic || foundry
 ---
 
 # Disable preview features in Microsoft Foundry by using role-based access control
