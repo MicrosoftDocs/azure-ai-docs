@@ -7,7 +7,7 @@ manager: mcleans
 ms.service: azure-ai-foundry
 ms.custom: ignite-2023, devx-track-azurecli, build-2024, ignite-2024, dev-focus
 ms.topic: how-to
-ms.date: 09/29/2025
+ms.date: 01/06/2026
 ms.reviewer: meerakurup
 ms.author: jburchel 
 author: jonburchel 

@@ -3,7 +3,7 @@ title: Azure OpenAI in Microsoft Foundry Models
 author: mrbullwinkle #ChrisHMSFT
 ms.author: mbullwin #chrhoder#
 manager: nitinme
-ms.date: 10/17/2025
+ms.date: 01/06/2026
 ms.service: azure-ai-foundry
 ms.topic: include
 ---
