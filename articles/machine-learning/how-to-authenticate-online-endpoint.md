@@ -282,7 +282,9 @@ The CLI doesn't require you to explicitly provide the control plane token. Inste
     auth_mode: aad_token
     ```
 
-1. You can set `auth_mode` to `key` for key authentication or `aml_token` for Azure Machine Learning token authentication. This example uses `aad_token` for Microsoft Entra token authentication.
+   You can set `auth_mode` to `key` for key authentication or `aml_token` for Azure Machine Learning token authentication. This example uses `aad_token` for Microsoft Entra token authentication.
+
+1. Create the endpoint: 
 
     ```CLI
     az ml online-endpoint create -f endpoint.yml
