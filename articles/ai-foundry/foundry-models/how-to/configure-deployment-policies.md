@@ -119,7 +119,7 @@ References:
 ---
 
 > [!NOTE]
-> The resource provider name for Azure AI services and Azure OpenAI is still `Microsoft.CognitiveServices`. Azure Cognitive Services is the former name of Azure AI services.
+> The resource provider name for Foundry Tools and Azure OpenAI is still `Microsoft.CognitiveServices`. Azure Cognitive Services is a former name of Foundry Tools.
 
 ## Create and assign a custom policy
 
