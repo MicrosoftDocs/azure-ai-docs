@@ -55,7 +55,7 @@ Foundry enforces a clear separation between management and development operation
 
 - **Top-Level Resource Governance:** Management operations, such as configuring security, establishing connectivity with other Azure services, and managing deployments, are scoped to the top-level Foundry resource. Development activities are isolated within dedicated project containers, which encapsulate use cases and provide boundaries for access control, files, agents, and evaluations.
 
-- **Role-Based Access Control (RBAC):** Azure RBAC actions reflect this separation of concerns. Control plane actions, such as creating deployments and projects, are distinct from data plane actions, such as building agents, running evaluations, and uploading files. You can scope RBAC assignments at both the top-level resource and individual project level. Assign [managed identities](/entra/identity/managed-identities-azure-resources/overview) at either scope to support secure automation and service access.
+- **Role-Based Access Control (RBAC):** Azure RBAC actions reflect this separation of concerns. Control plane actions, such as creating deployments and projects, are distinct from data plane actions, such as building agents, running evaluations, and uploading files. You can scope RBAC assignments at both the top-level resource and individual project level. Assign [managed identities](/entra/identity/managed-identities-azure-resources/overview) at either scope to support secure automation and service access. For more information, see [Role-based access control for Microsoft Foundry](rbac-foundry.md).
 
 - **Monitoring and Observability:** Azure Monitor metrics are segmented by scope. You can view management and usage metrics at the top-level resource, while project-specific metrics, such as evaluation performance or agent activity, are scoped to the individual project containers.
 
@@ -109,9 +109,10 @@ Users can optionally connect their own Azure Storage accounts. Foundry tools can
   
   To learn more about data encryption, see [customer-managed keys for encryption with Foundry](encryption-keys-portal.md).
 
-## Next steps
+## Related content
 
 * [Foundry rollout across my organization](planning.md)
+* [Role-based access control for Microsoft Foundry](rbac-foundry.md).
 * [Customer-managed keys for encryption with Foundry](encryption-keys-portal.md)
 * [How to configure a private link for Foundry](../how-to/configure-private-link.md)
 * [Bring-your-own resources with the Agent service](../agents/how-to/use-your-own-resources.md)
