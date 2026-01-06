@@ -386,7 +386,7 @@ You can manage IP network rules for Foundry Tools resources through the Azure po
 
 1. Confirm that you selected **Selected Networks and Private Endpoints**.
 
-1. Under **Firewalls and virtual networks**, locate the **Address range** option. To grant access to an internet IP range, enter the IP address or address range (in [CIDR format](#grant-access-from-an-internet-ip-range). Only valid public IP (nonreserved) addresses are accepted.
+1. Under **Firewalls and virtual networks**, locate the **Address range** option. To grant access to an internet IP range, enter the IP address or address range (in [CIDR format](#grant-access-from-an-internet-ip-range)). Only valid public IP (nonreserved) addresses are accepted.
 
    :::image type="content" source="media/vnet/virtual-network-add-ip-range.png" alt-text="Screenshot shows the Networking page with Selected Networks and Private Endpoints selected and the Address range highlighted." lightbox="media/vnet/virtual-network-add-ip-range.png":::
 
