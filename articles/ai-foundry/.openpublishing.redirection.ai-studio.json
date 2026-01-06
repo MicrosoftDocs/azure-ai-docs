@@ -1,6 +1,11 @@
 {
     "redirections": [
         {
+          "source_path_from_root": "/articles/ai-foundry/foundry-agent/ask-foundry-agent.md",
+          "redirect_url": "/azure/ai-foundry/concepts/ask-ai",
+          "redirect_document_id": false
+        },
+        {
           "source_path_from_root": "/articles/ai-foundry/what-is-azure-ai-foundry.md",
           "redirect_url": "/azure/ai-foundry/what-is-foundry",
           "redirect_document_id": false
