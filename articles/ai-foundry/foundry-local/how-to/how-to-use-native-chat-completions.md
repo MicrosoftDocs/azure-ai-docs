@@ -120,7 +120,7 @@ References:
 
 - [Foundry Local SDK reference](../reference/reference-sdk.md)
 - [Foundry Local C# SDK API Reference](https://aka.ms/fl-csharp-api-ref)
-- [CancellationToken](https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken)
+- [CancellationToken](/dotnet/api/system.threading.cancellationtoken)
 
 ### Optional: list model aliases available on your device
 
