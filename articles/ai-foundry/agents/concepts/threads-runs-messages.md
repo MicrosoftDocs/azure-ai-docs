@@ -17,7 +17,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
-Foundry Agent Service supports persistent threads, runs, and messages, which are essential components for managing conversation states and interactions with users.
+Foundry Agent Service supports persistent threads, runs, and messages. These components are essential for managing conversation states and interactions with users.
 
 ## Agent components
 
@@ -25,8 +25,8 @@ When you use an agent, the following steps are involved:
 
 - **Create an agent:** Create an agent to start sending messages and receiving responses.
 - **Create a thread:** Create a thread once and append messages to it as users reply. The conversation history is maintained and managed automatically.
-- **Send messages:** Messages can be sent by both the agent and the user. These messages can include text, images, and other files.
-- **Run the agent:** When a run is initiated, the agent processes the messages in the thread and performs tasks based on its configuration. It might append new messages to the thread as part of its response.
+- **Send messages:** Both the agent and the user can send messages. These messages can include text, images, and other files.
+- **Run the agent:** When you initiate a run, the agent processes the messages in the thread and performs tasks based on its configuration. It might append new messages to the thread as part of its response.
 - **Monitor the run status:** Monitor the run until it completes.
 - **Get the response:** After the agent creates a response, display it to the user.
 
@@ -34,19 +34,19 @@ When you use an agent, the following steps are involved:
 
 ## Agent
 
-An agent is a configurable orchestration component that uses AI models with instructions, tools, parameters, and optional safety/governance controls. At run time an agent uses these components and a given thread's message history to respond to user inputs. 
+An agent is a configurable orchestration component that uses AI models with instructions, tools, parameters, and optional safety and governance controls. At run time, an agent uses these components and a given thread's message history to respond to user inputs. 
 
 ## Threads
 
-Threads are conversation sessions between an agent and a user. They store messages and automatically handle truncation to fit content into a model’s context. When you create a thread, you can append new messages (maximum of 100,000 per thread) to it as users respond.
+Threads are conversation sessions between an agent and a user. They store messages and automatically handle truncation to fit content into a model’s context. When you create a thread, you can append new messages (up to 100,000 per thread) as users respond.
 
 ## Messages
 
-Messages are the individual pieces of communication within a thread. They can be created by either the agent or the user and can include text, or other files. Messages are stored as a list within the thread, allowing for a structured and organized conversation flow. You can attach up to 100,000 messages to a single thread.
+Messages are the individual pieces of communication within a thread. Either the agent or the user can create messages. Messages can include text or other files. The thread stores messages as a list, so the conversation flow stays structured and organized. You can attach up to 100,000 messages to a single thread.
 
 ## Runs
 
-A run involves invoking the agent on the thread, where it processes the messages in the thread and might append new messages (responses from the agent). The agent uses its configuration and the thread's messages to perform tasks by calling models and tools. As part of a run, the agent appends messages to the thread.
+A run involves invoking the agent on the thread. The agent processes the messages in the thread and might append new messages, which are responses from the agent. The agent uses its configuration and the thread's messages to perform tasks by calling models and tools. As part of a run, the agent appends messages to the thread.
 
 ## Next steps
 
