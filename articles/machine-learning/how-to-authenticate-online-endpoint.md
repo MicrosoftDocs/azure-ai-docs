@@ -17,7 +17,7 @@ ms.custom: how-to, devplatv2, cliv2, sdkv2, devx-track-azurecli, build-2024
 
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
-This article descibes how to authenticate clients to perform control plane and data plane operations on online endpoints.
+This article describes how to authenticate clients to perform control plane and data plane operations on online endpoints.
 
 A _control plane operation_ controls an endpoint and changes it. Control plane operations include create, read, update, and delete (CRUD) operations on online endpoints and online deployments.
 
@@ -33,7 +33,7 @@ A _data plane operation_ uses data to interact with an online endpoint without c
 
 You need a user identity to perform control plane operations (for example, CRUD operations) and data plane operations (for example, sending scoring requests) on the online endpoint. You can use the same user identity or different user identities for the control plane and data plane operations. In this article, you use the same user identity for both control plane and data plane operations.
 
-To create a user identity in Microsoft Entra ID, see [Set up authentication](how-to-setup-authentication.md#microsoft-entra-id). You'll need the identity ID later.
+For information about creating a user identity in Microsoft Entra ID, see [Set up authentication](how-to-setup-authentication.md#microsoft-entra-id). You'll need the identity ID later.
 
 
 ## Assign permissions to the identity
@@ -181,7 +181,7 @@ Complete this step if you plan to perform control plane operations by using the 
 
 If you plan to use other methods, like Azure CLI with the ml extension v2, Python SDK v2, or Azure Machine Learning studio, you don't need to get the Microsoft Entra token manually. Your user identity will authenticate during sign in, and the token will automatically be retrieved and passed for you.
 
-You can retrieve the Microsoft Entra token for _control_ plane operations from the Azure resource endpoint: `https://management.azure.com`.
+You can retrieve the Microsoft Entra token for control plane operations from the Azure resource endpoint: `https://management.azure.com`.
 
 ### [Azure CLI](#tab/azure-cli)
 
