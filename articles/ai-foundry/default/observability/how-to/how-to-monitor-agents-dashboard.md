@@ -52,7 +52,7 @@ To view metrics for your agent in the Foundry portal:
 
 ## View agent metrics
 
- :::image type="content" source="../../media/observability/how-to-monitor-agents-dashboard/foundry-metrics-dashboard.png" alt-text="Screenshot of the Agent Monitoring Dashboard in Foundry showing summary cards at the top with high-level metrics and charts below displaying evaluation scores, agent run success rates, and token usage over time.":::
+ :::image type="content" source="../../media/observability/how-to-monitor-agents-dashboard/foundry-metrics-dashboard.png" alt-text="Screenshot of the Agent Monitoring Dashboard in Foundry showing summary cards at the top with high-level metrics and charts below displaying evaluation scores, agent run success rates, and token usage over time." lightbox="../../media/observability/how-to-monitor-agents-dashboard/foundry-metrics-dashboard.png":::
 
 The Agent Monitoring Dashboard in Foundry is designed for quick insights and deep analysis of your AI agents' performance. It consists of two main areas:
 
@@ -64,7 +64,7 @@ The Agent Monitoring Dashboard in Foundry is designed for quick insights and dee
 
 The Monitor Settings panel allows you to enable and customize telemetry, evaluations, and security checks for your AI agents. These settings ensure that the dashboard displays accurate operational and quality metrics.
 
-:::image type="content" source="../../media/observability/how-to-monitor-agents-dashboard/monitor-settings-panel.png" alt-text="Screenshot showing the Monitor Settings panel in Foundry with options for operational metrics, continuous evaluation, scheduled evaluations, red team scans, and alerts configuration.":::
+:::image type="content" source="../../media/observability/how-to-monitor-agents-dashboard/monitor-settings-panel.png" alt-text="Screenshot showing the Monitor Settings panel in Foundry with options for operational metrics, continuous evaluation, scheduled evaluations, red team scans, and alerts configuration." lightbox="../../media/observability/how-to-monitor-agents-dashboard/monitor-settings-panel.png":::
 
 The following table describes the monitoring features available in the Monitor Settings panel:
 
