@@ -408,6 +408,8 @@ When it succeeds, the .NET CLI confirms that it installed the `OpenAI` package.
     using System;
     using System.ClientModel.Primitives;
     
+    #pragma warning disable OPENAI001 
+
     const string directModelEndpoint  = "https://<YOUR-RESOURCE-NAME>.openai.azure.com/openai/v1/"; // Replace with your endpoint
     const string deploymentName = "gpt-4.1";    
 
