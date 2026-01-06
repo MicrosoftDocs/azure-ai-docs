@@ -7,7 +7,7 @@ ms.author: gimondra
 ms.service: azure-ai-search
 ms.custom:
   - build-2025
-ms.topic: reference
+ms.topic: concept-article
 ms.date: 10/23/2025
 ---
 

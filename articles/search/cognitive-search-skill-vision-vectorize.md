@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - build-2024
   - references_regions
-ms.topic: reference
+ms.topic: concept-article
 ms.date: 10/23/2025
 ---
 
