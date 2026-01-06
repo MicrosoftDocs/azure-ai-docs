@@ -16,9 +16,6 @@ zone_pivot_groups: foundry-speech-studio-cli-rest
 
 You need audio or text data for testing the accuracy of speech recognition or training your custom models. For information about the data types supported for testing or training your model, see [Training and testing datasets](how-to-custom-speech-test-and-train.md).
 
-> [!TIP]
-> You can also use the [online transcription editor](how-to-custom-speech-transcription-editor.md) to create and refine labeled audio datasets.
-
 ## Upload datasets
 
 Follow these steps to upload datasets for training (fine-tuning) your custom speech model.
