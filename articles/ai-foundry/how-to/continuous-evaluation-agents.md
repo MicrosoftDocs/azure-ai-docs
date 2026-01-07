@@ -4,17 +4,17 @@ titleSuffix: Microsoft Foundry
 description: This article provides instructions on how to continuously evaluate AI agents.
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 12/08/2025
-ms.reviewer: amibp
+ms.date: 01/08/2026
+ms.reviewer: sonalimalik
 ms.author: lagayhar  
 author: lgayhardt
-monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ---
 
 # Continuously evaluate your AI agents (preview)
 
-[!INCLUDE [version-banner](../includes/version-banner.md)]
+> [!NOTE]
+> This document refers to the Microsoft Foundry (classic) portal. To continuously evaluate using the Microsoft Foundry (new) portal, see [Setup continuous evaluation](../default/observability/how-to/how-to-monitor-agents-dashboard.md#setup-continuous-evaluation).
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
@@ -29,65 +29,12 @@ Continuous evaluation for Agents provides near real-time observability and monit
 
 ### Steps to connect Application Insights
 
-::: moniker range="foundry-classic"
-
-1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)]
+1. [!INCLUDE [classic-sign-in](../includes/classic-sign-in.md)]
 
 1. Select **Monitoring** on the left-hand menu and go to **Application Analytics**.
 
 1. Connect your Application Insights resource to the project.
 
-::: moniker-end
-
-::: moniker range="foundry"
-
-To view continuous evaluations in Foundry: 
-
-1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)]
-
-1. Select **Build** from the upper-right navigation. 
-
-1. Select **Agents** from the left pane. Select the agent you'd like to evaluate. 
-
-1. Select the **Monitor** tab to view the agent monitoring dashboard.
-
-1. Open the **Settings** wizard to begin configuring continuous evaluations.
-
-1. Use the *Add Evaluator* dropdown to include one or more evaluators. You can add evaluators in two ways: 
-
-    - **Evaluator Name**
-    
-        - Select evaluators by name from your available list. 
-    
-    - **Importing from Past Evaluation**
-    
-        - Reuse evaluators from previous evaluation runs for consistency.
-
-1. Set *Sample Rate* by defining how many runs per hour will be evaluated.
-
-1. Apply changes.
-
-1. Select **Verify + Submit** to save your configuration.
-
-After configuring your continuous evaluation settings, you will be able to view top-level metrics on the summary cards and associated charts with more granular data.
-
-::: moniker-end
-
-## Microsoft Foundry project configuration and region support
-
-Since the evaluators use hosted evaluation LLMs in the Foundry evaluation service, they require your Foundry project information to be instantiated. The Foundry project must be in a supported region:
-
-> [!div class="mx-tdCol2BreakAll"]
-> | Region | Code Vulnerability, Coherence, Fluency, Hate/Unfairness, Indirect Attack, Intent Resolution, Relevance, Self-Harm, Sexual, Task Adherence, Tool Call Accuracy, Violence |
-> |--|--|
-> | East US | Supported | 
-> | East US 2 | Supported  | 
-> | West US | Supported |
-> | West US 2 | Supported | 
-> | West US 3 | Supported |
-> | France Central | Supported | 
-> | Norway East | Supported  |
-> | Sweden Central| Supported  | 
 
 ## Set up continuous evaluations with Azure AI Projects client library
 
@@ -157,9 +104,6 @@ project_client.evaluation.create_agent_evaluation(
 )
 
 ```
-
-> [!NOTE]
-> Application Insights must be connected to your project otherwise the service won't run. To connect an Application Insights resource, see to [Steps to connect Application Insights](#steps-to-connect-application-insights).
 
 ### Get the evaluation result using Application Insights
 
@@ -251,27 +195,12 @@ project_client.evaluation.create_agent_evaluation(
 )
 ```
 
-::: moniker range="foundry-classic"
-
 > [!NOTE]
 > If multiple AI applications send continuous evaluation data to the same Application Insights resource, it's recommended to use the service name to differentiate application data. See [Azure AI Tracing](./develop/trace-application.md) for details.
-
-::: moniker-end
-
-::: moniker range="foundry"
-
-> [!NOTE]
-> If multiple AI applications send continuous evaluation data to the same Application Insights resource, it's recommended to use the service name to differentiate application data.
-
-::: moniker-end
-
-::: moniker range="foundry-classic"
 
 ## Viewing continuous evaluation results
 
 After you deploy your application to production with continuous evaluation setup, you can [monitor the quality and safety of your agent with Foundry and Azure Monitor](./monitor-applications.md).
-
-::: moniker-end
 
 ## Related content
 
