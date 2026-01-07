@@ -47,7 +47,7 @@ Before you begin, make sure you have:
   - `operationId` should only contain letters, `-`, and `_`.
   - Use descriptive names to help models efficiently decide which function to use.
 - For managed identity authentication: Reader role or higher on target service resources.
-- For API key authentication: A project connection configured with your API key.
+- For API key/token authentication: A project connection configured with your API key or your auth token.
 
 ## Code example
 
@@ -60,8 +60,9 @@ Before you begin, make sure you have:
 > 1. A `securitySchemes` section with your API key configuration, such as the header name and parameter name.
 > 1. A `security` section that references the security scheme.
 > 1. A project connection configured with the matching key name and value.
->
+> 
 > Without these configurations, the API key isn't included in requests. For detailed setup instructions, see the [Authenticate with API key](#authenticate-with-api-key) section.
+> You can also pass auth token in, such as Bearer or PAT tokens.
 
 :::zone pivot="python"
 ### Quick verification
