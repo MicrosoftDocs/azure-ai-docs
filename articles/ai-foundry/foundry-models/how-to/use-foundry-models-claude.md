@@ -75,8 +75,6 @@ Once deployed, you have some options for interacting with Claude models to gener
     - [Files API](https://docs.claude.com/en/api/files-create) to upload and manage files to use with the Claude API without having to re-upload content with each request.
     - [Skills API](https://docs.claude.com/en/api/skills/create-skill) to create custom skills for Claude AI.
 
-- Use the [Responses API to generate text responses](generate-responses.md) with Claude models in Microsoft Foundry. For multi-language code samples that demonstrate this usage, see [Use Claude Models with OpenAI Responses API in Microsoft Foundry](https://github.com/Azure-Samples/claude-with-openai-responses).
-
 ### Use the Messages API to work with Claude models
 
 The following examples show how to **use the Messages API** to send requests to Claude Sonnet 4.5, by using both Microsoft Entra ID authentication and API key authentication methods. To work with your deployed model, you need these items:
