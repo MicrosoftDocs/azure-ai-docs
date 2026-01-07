@@ -215,13 +215,6 @@ This section lists some of the Foundry Models that are supported for use with th
 
 [!INCLUDE [agent-service-models-support-list](../../agents/includes/agent-service-models-support-list.md)]
 
-**Models from partners and community:**
-
-- **Claude-Opus-4-5**: Best performance across coding, agents, computer use, and enterprise workflows.
-- **Claude-Opus-4-1**: Frontier reasoning for the most complex problem-solving.
-- **Claude-Sonnet-4-5**: Balanced performance for multimodal and agentic workflows.
-- **Claude-Haiku-4-5**: Lightweight, high-speed generation for interactive scenarios.
-
 ## Related content
 
 - [Migrate from Azure AI Inference SDK to OpenAI SDK](../../how-to/model-inference-to-openai-migration.md)
