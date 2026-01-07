@@ -10,11 +10,12 @@ ms.custom:
   - ignite-2024
   - build-2025
 ---
+<!-- markdownlint-disable MD041 -->
 [Reference documentation](/java/api/overview/azure/ai-textanalytics-readme?preserve-view=true&view=azure-java-stable) | [More samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/textanalytics/azure-ai-textanalytics/src/samples) | [Package (Maven)](https://mvnrepository.com/artifact/com.azure/azure-ai-textanalytics/5.2.0) | [Library source code](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/textanalytics/azure-ai-textanalytics)
 
 Use this quickstart to create a Personally Identifiable Information (PII) detection application with the client library for Java. In the following example, you create a Java application that can identify [recognized sensitive information](../../concepts/entity-categories.md) in text.
 
-[!INCLUDE [Use Microsoft Foundry](../microsoft-foundry/tip-you-can-use-foundry.md)]
+[!INCLUDE [Use Microsoft Foundry](../use-microsoft-foundry.md)]
 
 ## Prerequisites
 

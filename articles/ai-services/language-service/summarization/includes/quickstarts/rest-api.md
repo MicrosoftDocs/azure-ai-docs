@@ -16,7 +16,7 @@ ms.author: lajanuar
 
 Use this quickstart to send text summarization requests using the [REST API](/rest/api/language/analyze-documents/analyze-documents-submit-job/analyze-documents-submit-job?view=rest-language-analyze-documents-2024-11-15-preview&preserve-view=true&tabs=HTTP). In the following example, you use cURL to summarize documents or text-based customer service conversations.
 
-[!INCLUDE [Use Microsoft Foundry](../microsoft-foundry/tip-you-can-use-foundry.md)]
+[!INCLUDE [Use Microsoft Foundry](../use-microsoft-foundry.md)]
 
 ## Prerequisites
 
