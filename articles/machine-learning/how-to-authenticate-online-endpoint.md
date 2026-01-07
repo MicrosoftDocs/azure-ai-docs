@@ -164,7 +164,7 @@ You can skip this step if you're using built-in roles or other pre-made custom r
     >
     > - Owner
     > - User Access Administrator
-    > - a custom role that allows `Microsoft.Authorization/roleAssignments/write` permission (to assign custom roles) and `Microsoft.Authorization/roleAssignments/read` (to view role assignments).
+    > - A custom role that allows `Microsoft.Authorization/roleAssignments/write` permission (to assign custom roles) and `Microsoft.Authorization/roleAssignments/read` (to view role assignments).
     >
     > For more information on Azure roles and their permissions, see [Azure roles](/azure/role-based-access-control/rbac-and-directory-admin-roles#azure-roles) and [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
 
@@ -256,7 +256,7 @@ The studio doesn't expose the Microsoft Entra token for control plane operations
 
 ### (Optional) Verify the resource endpoint and client ID for the Microsoft Entra token
 
-After you retrieve the Microsoft Entra token, you can verify that the token is for the right Azure resource endpoint `management.azure.com` and the right client ID by decoding the token via [jwt.ms](https://jwt.ms/), which returns a JSON response containing the following information:
+After you retrieve the Microsoft Entra token, you can verify that the token is for the right Azure resource endpoint (`management.azure.com`) and the right client ID by decoding the token via [jwt.ms](https://jwt.ms/), which returns a JSON response containing the following information:
 
 ```json
 {
@@ -272,7 +272,7 @@ The following example creates the endpoint with a system-assigned identity as th
 
 ### [Azure CLI](#tab/azure-cli)
 
-The CLI doesn't require you to explicitly provide the control plane token. Instead, the CLI `az login` authenticates you during sign in, and the token is automatically retrieved and passed for you.
+The CLI doesn't require you to explicitly provide the control plane token. Instead, the CLI `az login` command authenticates you during sign in, and the token is automatically retrieved and passed for you.
 
 1. Create an endpoint definition YAML file named _endpoint.yml_:
     
@@ -470,7 +470,7 @@ echo $scoringUri
 
 ### [Python](#tab/python)
 
-If you plan to use the Python SDK to invoke the endpoint, you don't need to get the scoring URI explicitly because the SDK provides it for you. However, you can still use the SDK to get the scoring URI so that you can use it with other channels, such as REST API.
+If you plan to use the Python SDK to invoke the endpoint, you don't need to get the scoring URI explicitly because the SDK provides it for you. However, you can still use the SDK to get the scoring URI so that you can use it with other channels, such as the REST API.
 
 ```Python
 scoring_uri = ml_client.online_endpoints.get(name=endpoint_name).scoring_uri
@@ -478,7 +478,7 @@ scoring_uri = ml_client.online_endpoints.get(name=endpoint_name).scoring_uri
 
 ### [Studio](#tab/studio)
 
-If you plan to use the studio to invoke the endpoint, you don't need to get the scoring URI explicitly because the studio provides it for you. However, you can still use the studio to get the scoring URI so that you can use it with other channels, such as REST API.
+If you plan to use the studio to invoke the endpoint, you don't need to get the scoring URI explicitly because the studio provides it for you. However, you can still use the studio to get the scoring URI so that you can use it with other channels, such as the REST API.
 
 You can find the scoring URI on the __Details__ tab of the endpoint's page.
 
@@ -494,7 +494,7 @@ The user identity doesn't need any extra roles to get the Microsoft Entra token.
 
 ### [Azure CLI](#tab/azure-cli)
 
-If you plan to use the CLI to invoke the endpoint, you don't need to get the keys or token for data plane operations explicitly because the CLI provides it for you. However, you can still use the CLI to get the keys or token for data plane operations so that you can use it with other channels, such as REST API.
+If you plan to use the CLI to invoke the endpoint, you don't need to get the keys or token for data plane operations explicitly because the CLI provides it for you. However, you can still use the CLI to get the keys or token for data plane operations so that you can use it with other channels, such as the REST API.
 
 To get the keys or token for data plane operations, use the [az ml online-endpoint get-credentials](/cli/azure/ml/online-endpoint#az-ml-online-endpoint-get-credentials) command. This command returns JSON output that contains the keys, token, and/or additional information.
 
@@ -590,7 +590,7 @@ __From a compute instance__
 
 You can get the token if you're using the Azure Machine Learning workspace's compute instance. To get the token, you must pass the client ID and the secret of the compute instance's managed identity to the MSI endpoint that's configured locally at the compute instance. You can get the MSI endpoint, client ID, and secret from the environment variables `MSI_ENDPOINT`, `DEFAULT_IDENTITY_CLIENT_ID`, and `MSI_SECRET`, respectively. These variables are set automatically if you enable managed identity for the compute instance. 
 
-1. Get the token for the Azure resource endpoint `ml.azure.com` from the workspace's compute instance:
+- Get the token for the Azure resource endpoint `ml.azure.com` from the workspace's compute instance:
 
     ```bash
     export DATA_PLANE_TOKEN=`(curl $MSI_ENDPOINT'?api-version=2018-02-01&resource=https%3A%2F%2Fml.azure.com%2F&clientid='$DEFAULT_IDENTITY_CLIENT_ID -H Metadata:true -H Secret:$MSI_SECRET -s | jq -r '.access_token' )`
@@ -603,7 +603,7 @@ You can get the token if you're using the Azure Machine Learning workspace's com
 
 ### [Python](#tab/python)
 
-If you plan to use the SDK to invoke the endpoint, you don't need to get the keys or token for data plane operations explicitly because the SDK provides it for you. However, you can still use the SDK to get the keys or token for data plane operations so that you can use it with other channels, such as REST API.
+If you plan to use the SDK to invoke the endpoint, you don't need to get the keys or token for data plane operations explicitly because the SDK provides it for you. However, you can still use the SDK to get the keys or token for data plane operations so that you can use it with other channels, such as the REST API.
 
 To get the keys or token for data plane operations, use the [get_keys](/python/api/azure-ai-ml/azure.ai.ml.operations.onlineendpointoperations#azure-ai-ml-operations-onlineendpointoperations-get-keys) method of the `OnlineEndpointOperations` class. This method returns an object that includes keys and the token.
 
@@ -670,7 +670,7 @@ az ml online-endpoint invoke -n my-endpoint -r request.json
 
 ### [REST](#tab/rest)
 
-When invoking the online endpoint for scoring, pass the key, Azure Machine Learning token, or Microsoft Entra token in the authorization header. The following code shows how to use the cURL utility to call the online endpoint using a key or token:
+When invoking the online endpoint for scoring, pass the key, Azure Machine Learning token, or Microsoft Entra token in the authorization header. The following code shows how to use the cURL utility to call the online endpoint by using a key or token:
 
 ```bash
 curl --request POST "$scoringUri" --header "Authorization: Bearer $DATA_PLANE_TOKEN" --header 'Content-Type: application/json' --data @endpoints/online/model-1/sample-request.json
@@ -727,7 +727,7 @@ The __Test__ tab of the deployment's detail page supports scoring for endpoints 
 
 To enable traffic logging in the diagnostics settings for the endpoint, complete the steps in [Turn on logs](how-to-monitor-online-endpoints.md#turn-on-logs).
 
-If the diagnostic setting is enabled, you can check the `AmlOnlineEndpointTrafficLogs` table to see the authentication mode and user identity.
+If the diagnostic setting is enabled, you can view the `AmlOnlineEndpointTrafficLogs` table to see the authentication mode and user identity.
 
 
 ## Related content
