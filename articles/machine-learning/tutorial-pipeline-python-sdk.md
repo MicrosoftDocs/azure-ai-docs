@@ -347,7 +347,7 @@ print(
 
 The second component that you create consumes the training and test data, trains a tree based model, and returns the output model. Use Azure Machine Learning logging capabilities to record and visualize the learning progress.
 
-You used the `CommandComponent` class to create your first component. This time you use the yaml definition to define the second component. Each method has its own advantages. A yaml definition can actually be checked in along the code and provides readable history tracking. The programmatic method using `CommandComponent` can be easier with built-in class documentation and code completion.
+You used the `CommandComponent` class to create your first component. This time you use the yaml definition to define the second component. Each method has its own advantages. A yaml definition can be checked in along the code and provides readable history tracking. The programmatic method using `CommandComponent` can be easier with built-in class documentation and code completion.
 
 Create the directory for this component:
 
@@ -494,7 +494,7 @@ command: >-
 
 ```
 
-Now create and register the component. Registering it allows you to reuse it in other pipelines. Also, anyone else with access to your workspace can use the registered component.
+Now create and register the component. Registering it allows you to reuse it in other pipelines. Anyone else with access to your workspace can also use the registered component.
 
 ```python
 # importing the Component Package
@@ -519,8 +519,6 @@ print(
 ### Create the pipeline from components
 
 Now that both your components are defined and registered, you can start implementing the pipeline.
-
-Use *input data*, *split ratio*, and *registered model name* as input variables. Then call the components and connect them by using their inputs/outputs identifiers. The outputs of each step can be accessed with the `.outputs` property.
 
 The Python functions returned by `load_component()` work like any regular Python function that you use in a pipeline to call each step.
 
@@ -589,11 +587,11 @@ pipeline = credit_defaults_pipeline(
 
 ## Submit the job 
 
-It's now time to submit the job to run in Azure Machine Learning. This time you use `create_or_update` on `ml_client.jobs`.
+Now submit the job to run in Azure Machine Learning. This time you use `create_or_update` on `ml_client.jobs`.
 
 Here you also pass an experiment name. An *experiment* is a container for all the iterations one does on a certain project. All the jobs submitted under the same experiment name are listed next to each other in Azure Machine Learning studio.
 
-Once completed, the pipeline registers a model in your workspace as a result of training.
+After it finishes, the pipeline registers a model in your workspace as a result of training.
 
 ```python
 # submit the pipeline job
