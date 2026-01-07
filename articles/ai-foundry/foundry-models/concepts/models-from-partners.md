@@ -5,7 +5,7 @@ description: Learn about Microsoft Foundry Models from partners and community, t
 author: msakande
 ms.author: mopeakande
 manager: nitinme
-ms.date: 11/24/2025
+ms.date: 01/07/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: article
@@ -41,8 +41,6 @@ To learn more about attributes of Foundry Models from partners and community, se
 Anthropic's flagship product is Claude, a frontier AI model trusted by leading enterprises and millions of users worldwide for complex tasks including coding, agents, financial analysis, research, and office tasks. Claude delivers exceptional performance while maintaining high safety standards.
 
 To work with Claude models in Foundry, see [Deploy and use Claude models in Microsoft Foundry](../how-to/use-foundry-models-claude.md). 
-
-Claude models are also supported for use in the [Foundry Agent Service](../../agents/concepts/model-region-support.md).
 
 [!INCLUDE [claude-usage-restriction](../includes/claude-usage-restriction.md)]
 
