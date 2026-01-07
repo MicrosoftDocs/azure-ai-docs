@@ -1,7 +1,7 @@
 ---
-title: Upgrade from Azure OpenAI to Microsoft Foundry 
+title: Upgrade Azure OpenAI to Microsoft Foundry 
 titleSuffix: Microsoft Foundry
-description: Upgrade seamlessly from Azure OpenAI to Microsoft Foundry and unlock advanced capabilities like a broader model catalog, agents service, and evaluation tools.
+description: Upgrade your Azure OpenAI resource to Microsoft Foundry to access advanced capabilities including a broader model catalog, agents service, and evaluation tools. Learn how to upgrade seamlessly.
 ms.author: sgilley
 author: sdgilley
 ms.reviewer: deeikele
