@@ -89,7 +89,8 @@ ms.custom: references_regions, build-2025
 |:--|:--|:--|:--|:--|:--|
 | `text-embedding-3-large` | 1 | Generally Available | n/a | No earlier than 2026-10-30 | n/a |
 | `text-embedding-3-small` | 1 | Generally Available | n/a | No earlier than 2026-10-30 | n/a |
-| `text-embedding-ada-002` | 1 & 2 | Generally Available | n/a | No earlier than 2026-10-30 | n/a |
+| `text-embedding-ada-002` | 2 | Generally Available | n/a | No earlier than 2026-10-30 | n/a |
+| `text-embedding-ada-002` | 1 | Generally Available | n/a | No earlier than 2026-10-30 | n/a |
 
 ---
 
