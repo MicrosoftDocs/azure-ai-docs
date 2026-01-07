@@ -5,7 +5,7 @@
  author: laujan
  ms.service: azure-ai-language
  ms.topic: include
- ms.date: 12/18/2025
+ ms.date: 01/07/2026
  ms.author: lajanuar
 ms.custom: include
 ---
@@ -14,7 +14,7 @@ ms.custom: include
 
 The Language playground consists of four primary sections:
 
-- **Top banner**: Select from the available Language capabilities including language detection, entity recognition, sentiment analysis, PII detection, summarization, and conversational language understanding.
+- **Top banner**: Select from the available Language capabilities including language detection, entity recognition, sentiment analysis, Personally Identifiable Information (PII) detection, summarization, and conversational language understanding.
 - **Left pane**: Configure service options such as API version, model version, and capability-specific parameters (language selection, entity types, redaction policies).
 - **Center pane**: Enter or upload text for processing. Results display here after you execute the operation.
 - **Right pane**: View detailed operation results including entity categories, confidence scores, offsets, and JSON-formatted responses.

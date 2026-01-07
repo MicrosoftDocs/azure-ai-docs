@@ -41,11 +41,9 @@ Create a Maven project in your preferred IDE or development environment. Then ad
 </dependencies>
 ```
 
-
-
 ## Code example
 
-Create a Java file named `Example.java`. Open the file and copy the below code. Then run the code. 
+Create a Java file named `Example.java`. Open the file and copy the following code. Then run the code.
 
 ```java
 import com.azure.core.credential.AzureKeyCredential;
@@ -71,7 +69,7 @@ public class Example {
                 .buildClient();
     }
 
-    // Example method for detecting sensitive information (PII) from text 
+    // Example method for detecting sensitive information (PII) from text
     static void recognizePiiEntitiesExample(TextAnalyticsClient client)
     {
         // The text that need be analyzed.
@@ -86,8 +84,6 @@ public class Example {
 }
 
 ```
-
-
 
 ## Output
 

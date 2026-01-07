@@ -29,11 +29,9 @@ Use this quickstart to create a Personally Identifiable Information (PII) detect
 
 ### Create a new .NET Core application
 
-Using the Visual Studio IDE, create a new .NET Core console app. This creates a "Hello World" project with a single C# source file: *program.cs*.
+Using the Visual Studio IDE, create a new .NET Core console app. This step creates a "Hello World" project with a single C# source file: *program.cs*.
 
 Install the client library by right-clicking the solution in the **Solution Explorer** and selecting **Manage NuGet Packages**. In the package manager that opens select **Browse** and search for `Azure.AI.TextAnalytics`. Select version `5.2.0`, and then **Install**. You can also use the [Package Manager Console](/nuget/consume-packages/install-use-packages-powershell#find-and-install-a-package).
-
-
 
 ## Code example
 
@@ -89,8 +87,6 @@ namespace Example
     }
 }
 ```
-
-
 
 ## Output
 
