@@ -20,6 +20,8 @@ author: sdgilley
 
 # Tutorial:  Part 1 - Set up project and development environment to build a custom knowledge retrieval (RAG) app with the Microsoft Foundry SDK
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 In this tutorial, you set up the resources needed to build a custom knowledge retrieval (RAG) chat app with the Microsoft Foundry SDK. This is part one of a three-part tutorial series. You create the resources here, build the app in part two, and evaluate it in part three. In this part, you:
 
 > [!div class="checklist"]
