@@ -5,16 +5,17 @@ description: Upgrade seamlessly from Azure OpenAI to Microsoft Foundry and unloc
 ms.author: sgilley
 author: sdgilley
 ms.reviewer: deeikele
-ms.date: 12/23/2025
+ms.date: 01/07/2026
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.custom: dev-focus
 ai-usage: ai-assisted
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Upgrade from Azure OpenAI to Microsoft Foundry
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 The Microsoft Foundry resource type provides a superset of capabilities compared to the Azure OpenAI resource type. It gives you access to a broader model catalog, agents service, and evaluation capabilities.
 
@@ -69,7 +70,7 @@ Before you upgrade your Azure OpenAI resource to a Foundry resource, ensure you 
 
 ### Upgrade your resource
 
-You can complete the upgrade via the Foundry portal, Azure portal, or by using Azure Bicep or Resource Manager templates (recommended for resource configurations with custom security settings).
+You can complete the upgrade via the Foundry (classic) portal, Azure portal, or by using Azure Bicep or Resource Manager templates (recommended for resource configurations with custom security settings).
 
 # [Foundry portal](#tab/portal)
 
@@ -79,7 +80,9 @@ You can complete the upgrade via the Foundry portal, Azure portal, or by using A
 1. Provide the name for your first project. A project is a folder to organize your work in Foundry. Your first 'default' project has backwards compatibility with your previous work in Azure OpenAI.
 1. Confirm to start the upgrade.
 
-**Success**: After the upgrade completes, you're taken to your new Foundry project. Your resource name, API endpoint, and existing configurations remain unchanged. You now have access to the broader model catalog, agent service, and Foundry Tools.
+**Success**: After the upgrade completes, you're taken to your new Foundry project. Your resource name, API endpoint, and existing configurations remain unchanged. You now have access to the broader model catalog, agent service, and Foundry Tools. 
+
+You can use this project in the Foundry (new) portal by switching the **New Foundry** toggle to **on**.
 
 # [Azure portal](#tab/azportal)
 
@@ -148,7 +151,7 @@ Finally, run `terraform apply` to complete the upgrade.
 
 ---
 
-## UX navigation differences after upgrading
+## Portal navigation differences after upgrading
 
 After upgrading from Azure OpenAI to Foundry, you'll notice updates to the portal's navigation and feature access:
 
@@ -163,7 +166,10 @@ After upgrading from Azure OpenAI to Foundry, you'll notice updates to the porta
 
 * **Your default view is now a project**
 
-   Projects are folders to organize your work in Foundry. They're also a container for access management and data isolation. You can create multiple projects as part of your Foundry resource, so you can separate your work between use cases that you're working on. Your first project after upgrade has access to your previous work in Azure OpenAI.
+   Projects are folders to organize your work in Foundry. They're also a container for access management and data isolation. You can create multiple projects as part of your Foundry resource, so you can separate your work between use cases that you're working on. Your first project after upgrade has access to your previous work in Azure OpenAI. 
+
+    This project may also be used in the Foundry (new) portal.
+
 
 * **Broader set of models in model catalog**
    
@@ -224,12 +230,13 @@ In case you run into any issues, a rollback option is available. As a prerequisi
 * Connections
 * Non-Azure OpenAI model deployments
 
-Then, use either the Foundry portal, Azure portal, or an ARM template to roll back:
+Then, use either the Foundry (classic) portal, Azure portal, or an ARM template to roll back:
 
 # [Foundry portal](#tab/portal)
 
 **Option 1: Use Foundry portal**
 
+1. Select the project in the Foundry (classic) portal.
 1. Navigate to management center in the left bottom of your screen.
 1. On your resource overview page, find the rollback option.
 1. Select **Rollback**.
