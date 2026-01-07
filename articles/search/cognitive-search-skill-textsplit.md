@@ -7,7 +7,7 @@ ms.author: gimondra
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: concept-article
+ms.topic: article
 ms.date: 09/19/2025
 ms.update-cycle: 365-days
 ---
