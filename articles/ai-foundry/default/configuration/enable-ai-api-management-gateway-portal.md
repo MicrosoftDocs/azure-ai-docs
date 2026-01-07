@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 
 # Configure AI Gateway in your Foundry resources
 
-Microsoft Foundry integrates with AI Gateway to enable advance management and governance capabilities. This integration uses Azure API Management behind the scenes.
+Microsoft Foundry integrates with AI Gateway to enable advanced management and governance capabilities. This integration uses Azure API Management behind the scenes.
 
 AI Gateway enables:
 

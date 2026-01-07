@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 
 # Enforce token limits for models
 
-Microsoft Foundry Control Plane enforce tokens-per-minute (TPM) rate limits and total token quotas for model deployments at the project scope to prevent runaway token consumption and align usage with organizational guardrails. Control Planes integrates with AI Gateway to provide advance policy enforcement for models.
+Microsoft Foundry Control Plane enforces tokens-per-minute (TPM) rate limits and total token quotas for model deployments at the project scope to prevent runaway token consumption and align usage with organizational guardrails. Control Planes integrates with AI Gateway to provide advance policy enforcement for models.
 
 This article explains how to configure token rate limiting and token quotas.
 
@@ -33,7 +33,7 @@ Before getting started, make sure you have:
 
 ## Understand AI Gateway
 
-Control Planes integrates with AI Gateway to provide advance policy enforcement for models. AI Gateway sits between clients and model deployments, making all requests flow through the API Management instance associated with it. Limits apply at the project level (each project can have its own TPM and quota settings).
+Control Planes integrates with AI Gateway to provide advanced policy enforcement for models. AI Gateway sits between clients and model deployments, making all requests flow through the API Management instance associated with it. Limits apply at the project level (each project can have its own TPM and quota settings).
 
 :::image type="content" source="..\media\enable-ai-api-management-gateway-portal\gateway-architecture-diagram.png" alt-text="Logical flow showing client requests passing through AI Gateway (APIM) before reaching model deployments within a project.":::
 
@@ -74,7 +74,7 @@ If you send many requests concurrently, token consumption can temporarily exceed
 
 Adjusting a quota or TPM value affects subsequent enforcement decisions.
 
-For more details, see [AI Gateway capabilities in Azure API Management](/azure/api-management/genai-gateway-capabilities) and [Limit large language model API token usage](/azure/api-management/llm-token-limit-policy).
+For more information, see [AI Gateway capabilities in Azure API Management](/azure/api-management/genai-gateway-capabilities) and [Limit large language model API token usage](/azure/api-management/llm-token-limit-policy).
 
 ## Verify enforcement
 
