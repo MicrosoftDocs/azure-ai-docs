@@ -5,7 +5,7 @@ description: Learn how to deploy and use Anthropic's Claude models including  Cl
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 12/02/2025
+ms.date: 01/07/2026
 ms.custom: ignite-2024
 author: msakande
 ms.author: mopeakande
@@ -419,7 +419,6 @@ For Messages API endpoints, use the deployed model's endpoint URI `https://<reso
 
 ## Agent support
 
-- [Foundry Agent Service](../../agents/concepts/model-region-support.md) supports Claude models.
 - [Microsoft Agent Framework](/agent-framework/user-guide/agents/agent-types/anthropic-agent) supports creating agents that use Claude models.
 - You can build custom AI agents with the [Claude Agent SDK](https://docs.claude.com/en/docs/agent-sdk/overview).
 
