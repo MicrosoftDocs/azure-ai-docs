@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 12/12/2025
+ms.date: 01/07/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: dev-focus
@@ -29,39 +29,39 @@ OpenAPI tools improve your agent's function calling capabilities by providing st
 
 ## Prerequisites
 
-Before you begin, ensure you have:
+Before you begin, make sure you have:
 
-- An Azure subscription with appropriate permissions
-- Azure RBAC role: Contributor or Owner on the Foundry project
-- A Foundry project created with an endpoint configured
-- An AI model deployed in your project
+- An Azure subscription with the right permissions.
+- Azure RBAC role: Contributor or Owner on the Foundry project.
+- A Foundry project created with an endpoint configured.
+- An AI model deployed in your project.
 - SDK installed for your preferred language:
   - Python: `azure-ai-projects` (latest prerelease version)
   - C#: `Azure.AI.Projects.OpenAI`
   - TypeScript/JavaScript: `@azure/ai-projects`
-- Environment variables configured:
-  - `AZURE_AI_PROJECT_ENDPOINT`: Your Foundry project endpoint URL
-  - `AZURE_AI_MODEL_DEPLOYMENT_NAME`: Your deployed model name
+- Environment variables set:
+  - `AZURE_AI_PROJECT_ENDPOINT`: Your Foundry project endpoint URL.
+  - `AZURE_AI_MODEL_DEPLOYMENT_NAME`: Your deployed model name.
 - OpenAPI 3.0 specification file that meets these requirements:
-  - Each function must have an `operationId` (required for the OpenAPI tool)
-  - `operationId` should only contain letters, `-`, and `_`
-  - Use descriptive names to help models efficiently decide which function to use
-- For managed identity authentication: Reader role or higher on target service resources
-- For API key authentication: A project connection configured with your API key
+  - Each function must have an `operationId` (required for the OpenAPI tool).
+  - `operationId` should only contain letters, `-`, and `_`.
+  - Use descriptive names to help models efficiently decide which function to use.
+- For managed identity authentication: Reader role or higher on target service resources.
+- For API key authentication: A project connection configured with your API key.
 
 ## Code example
 
 > [!NOTE]
 > - You need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
-> - If you use API key for authentication, your connection ID should be in the format of `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`
+> - If you use API key for authentication, your connection ID should be in the format of `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`.
 
 > [!IMPORTANT]
 > **For API key authentication to work**, your OpenAPI specification file must include:
-> 1. A `securitySchemes` section with your API key configuration (for example, header name, parameter name)
-> 2. A `security` section referencing the security scheme
-> 3. A project connection configured with the matching key name and value
+> 1. A `securitySchemes` section with your API key configuration, such as the header name and parameter name.
+> 1. A `security` section that references the security scheme.
+> 1. A project connection configured with the matching key name and value.
 >
-> Without these configurations, the API key won't be injected into requests. See the [Authenticate with API key](#authenticate-with-api-key) section for detailed setup instructions.
+> Without these configurations, the API key isn't included in requests. For detailed setup instructions, see the [Authenticate with API key](#authenticate-with-api-key) section.
 
 :::zone pivot="python"
 ### Quick verification
@@ -84,7 +84,7 @@ with DefaultAzureCredential() as credential, \
     print(f"Successfully connected to project")
 ```
 
-If this runs without errors, you're ready to create an agent with OpenAPI tools.
+If this command runs without errors, you're ready to create an agent with OpenAPI tools.
 
 ### Complete example
 
@@ -377,11 +377,11 @@ projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersi
 This C# example demonstrates using an OpenAPI tool with API key authentication through a project connection. When you run the code:
 
 1. It loads the TripAdvisor OpenAPI specification from a local file.
-1. Retrieves the `tripadvisor` project connection containing your API key
-1. Creates an agent with the TripAdvisor tool configured to use the connection for authentication
-1. Sends a request for hotel recommendations in Paris
-1. The agent calls the TripAdvisor API using your stored API key and returns results
-1. Cleans up by deleting the agent
+1. Retrieves the `tripadvisor` project connection containing your API key.
+1. Creates an agent with the TripAdvisor tool configured to use the connection for authentication.
+1. Sends a request for hotel recommendations in Paris.
+1. The agent calls the TripAdvisor API using your stored API key and returns results.
+1. Cleans up by deleting the agent.
 
 ### Required inputs
 
@@ -400,15 +400,15 @@ Here are 5 top hotels in Paris, France:
 
 ### Common errors
 
-- `ConnectionNotFoundException`: No project connection named `tripadvisor` found
-- `AuthenticationException`: Invalid API key in project connection, or missing/incorrect `securitySchemes` configuration in OpenAPI spec
-- Tool not used: Verify `ToolChoice = ResponseToolChoice.CreateRequiredChoice()` forces tool usage
-- **API key not passed to API**: Ensure the OpenAPI spec has proper `securitySchemes` and `security` sections configured
+- `ConnectionNotFoundException`: No project connection named `tripadvisor` found.
+- `AuthenticationException`: Invalid API key in project connection, or missing/incorrect `securitySchemes` configuration in OpenAPI spec.
+- Tool not used: Verify `ToolChoice = ResponseToolChoice.CreateRequiredChoice()` forces tool usage.
+- **API key not passed to API**: Ensure the OpenAPI spec has proper `securitySchemes` and `security` sections configured.
 
 :::zone-end
 
 :::zone pivot="rest"
-The following is an example of using the REST API to call an OpenAPI specified tool with different authentication methods.
+The following example shows how to use the REST API to call an OpenAPI specified tool by using different authentication methods.
 
 ```bash
 curl --request POST \
@@ -514,16 +514,16 @@ curl --request POST \
 
 This REST API example shows how to call an OpenAPI tool with different authentication methods. The request:
 
-1. Sends a query to the agent asking about Seattle's weather
-1. Includes the OpenAPI tool definition inline with the weather API specification
-1. Shows three authentication options (anonymous, API key via project connection, managed identity) as commented alternatives
-1. The agent uses the tool to call the weather API and returns formatted results
+1. Sends a query to the agent asking about Seattle's weather.
+1. Includes the OpenAPI tool definition inline with the weather API specification.
+1. Shows three authentication options (anonymous, API key via project connection, managed identity) as commented alternatives.
+1. The agent uses the tool to call the weather API and returns formatted results.
 
 ### Required inputs
 
-- Environment variables: `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT`, `API_VERSION`, `AGENT_TOKEN`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`
-- For API key auth: `WEATHER_APP_PROJECT_CONNECTION_ID`
-- Inline OpenAPI specification in request body
+- Environment variables: `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT`, `API_VERSION`, `AGENT_TOKEN`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`.
+- For API key auth: `WEATHER_APP_PROJECT_CONNECTION_ID`.
+- Inline OpenAPI specification in request body.
 
 ### Expected output
 
@@ -547,7 +547,7 @@ This REST API example shows how to call an OpenAPI tool with different authentic
 
 ### Common errors
 
-- `401 Unauthorized`: Invalid or missing `AGENT_TOKEN`, or API key not being injected due to missing `securitySchemes` in OpenAPI spec
+- `401 Unauthorized`: Invalid or missing `AGENT_TOKEN`, or API key not injected because `securitySchemes` is missing in OpenAPI spec
 - `404 Not Found`: Incorrect endpoint or model deployment name
 - `400 Bad Request`: Malformed OpenAPI specification or invalid auth configuration
 - **API key not sent with request**: Verify the `components.securitySchemes` section in your OpenAPI spec is properly configured (not empty) and matches your project connection key name
@@ -681,14 +681,14 @@ main().catch((err) => {
 
 ### What this code does
 
-This TypeScript example creates an agent with an OpenAPI tool for weather data using anonymous authentication. When you run the code:
+This TypeScript example creates an agent with an OpenAPI tool for weather data by using anonymous authentication. When you run the code:
 
 1. It loads the weather OpenAPI specification from a local JSON file.
 1. Creates an agent with the weather tool configured.
 1. Sends a streaming request asking about Seattle's weather and outfit planning.
 1. Processes the streaming response and displays deltas as they arrive.
-1. Forces tool usage with `tool_choice: "required"` to ensure the API is called.
-1. Cleans up by deleting the agent
+1. Forces tool usage by using `tool_choice: "required"` to ensure the API is called.
+1. Cleans up by deleting the agent.
 
 ## Required inputs
 
@@ -863,7 +863,7 @@ This TypeScript example demonstrates using an OpenAPI tool with API key authenti
 1. It configures authentication by using the `TRIPADVISOR_PROJECT_CONNECTION_ID` environment variable.
 1. It creates an agent with the TripAdvisor tool that uses the project connection for API key authentication.
 1. It sends a streaming request for TripAdvisor location details.
-1. Forces tool usage with `tool_choice: "required"` to ensure the API is called.
+1. Forces tool usage by using `tool_choice: "required"` to ensure the API is called.
 1. It processes and displays the streaming response.
 1. It cleans up by deleting the agent.
 
