@@ -47,9 +47,9 @@ Prompt flow uses a compute session to execute the flow. [Create and start the co
 
 ### Set up the GitHub repository
 
-To create a forked repo in your GitHub organization, follow the instructions at [Set up the GitHub repo](https://github.com/microsoft/genaiops-promptflow-template/blob/main/docs/github_workflows_how_to_setup.md#set-up-github-repo). This repo uses two branches, `main` and `development`, for code promotions and pipeline execution.
+To create a forked repo in your GitHub organization, follow the instructions to [set up the GitHub repo](https://github.com/microsoft/genaiops-promptflow-template/blob/main/docs/github_workflows_how_to_setup.md#set-up-github-repo). This repo uses two branches, `main` and `development`, for code promotions and pipeline execution.
 
-To create a new local repository, follow the instructions at [Clone the repo](https://github.com/microsoft/genaiops-promptflow-template/blob/main/docs/github_workflows_how_to_setup.md#cloning-the-repo). This clone helps you create a new feature branch from the development branch and incorporate changes.
+To create a new local repository, follow the instructions to [clone the repo](https://github.com/microsoft/genaiops-promptflow-template/blob/main/docs/github_workflows_how_to_setup.md#cloning-the-repo). This clone helps you create a new feature branch from the development branch and incorporate changes.
 
 ### Set up authentication between GitHub and Azure
 
