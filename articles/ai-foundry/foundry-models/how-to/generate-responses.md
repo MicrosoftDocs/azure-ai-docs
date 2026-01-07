@@ -5,7 +5,7 @@ description: Learn how to prompt Microsoft Foundry Models to generate text, usin
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 12/04/2025
+ms.date: 01/07/2026
 ms.author: mopeakande
 author: msakande
 ms.reviewer: achand
@@ -214,6 +214,13 @@ A selection of Foundry Models are supported for use with the Responses API.
 This section lists some of the Foundry Models that are supported for use with the Responses API. For the Azure OpenAI models that are supported, see [Available Azure OpenAI models](../../agents/concepts/model-region-support.md#available-models).
 
 [!INCLUDE [agent-service-models-support-list](../../agents/includes/agent-service-models-support-list.md)]
+
+**Models from partners and community:**
+
+- **Claude-Opus-4-5**: Best performance across coding, agents, computer use, and enterprise workflows.
+- **Claude-Opus-4-1**: Frontier reasoning for the most complex problem-solving.
+- **Claude-Sonnet-4-5**: Balanced performance for multimodal and agentic workflows.
+- **Claude-Haiku-4-5**: Lightweight, high-speed generation for interactive scenarios.
 
 ## Related content
 
