@@ -1,7 +1,7 @@
 ---
-title: Access data from Azure cloud storage during interactive development
+title: Access Data from Azure Cloud Storage During Interactive Development
 titleSuffix: Azure Machine Learning
-description: Access data from Azure cloud storage during interactive development
+description: Learn how to access data from Azure cloud storage during interactive development.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
@@ -9,11 +9,11 @@ ms.topic: how-to
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: samkemp
-ms.date: 07/24/2024
+ms.date: 01/07/2026
 ms.custom:
   - sdkv2
   - sfi-image-nochange
-#Customer intent: As a professional data scientist, I want to know how to build and deploy a model with Azure Machine Learning by using Python in a Jupyter Notebook.
+#Customer intent: As a professional data scientist, I want to know how to access data drom Azure cloud storage during interactive development.
 ---
 
 # Access data from Azure cloud storage during interactive development
