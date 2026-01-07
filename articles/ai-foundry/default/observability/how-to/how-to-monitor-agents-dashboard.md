@@ -70,12 +70,12 @@ The following table describes the monitoring features available in the Monitor S
 
 | Setting | Purpose | Configuration Options |
 |---------|---------|----------------------|
-| **Continuous Evaluation** | Runs real-time checks on agent responses for intent resolution, coherence, and reconciliation. | Enable/Disable toggle<br>Add evaluators by name or import from past evaluations<br>Set sample rate (for example, 10 runs/hour) |
+| **Continuous Evaluation** | Runs real-time checks on agent responses for runs real-time evaluations on agent responses. | Enable/Disable toggle<br>Add evaluators by name or import from past evaluations<br>Set sample rate (for example, 10 runs/hour) |
 | **Scheduled Evaluations** | Performs periodic evaluations to validate agent performance against benchmarks. | Enable/Disable toggle<br>Select evaluation template<br>Select evaluation run<br>Set schedule frequency (weekly recommended) |
 | **Red Team Scans** | Executes adversarial tests to identify vulnerabilities such as sensitive data leakage or prohibited actions. | Enable/Disable toggle<br>Select evaluation template<br>Select evaluation run<br>Set schedule frequency (weekly recommended) |
 | **Alerts** | Monitors for performance anomalies, evaluation failures, and security risks. Integrates with Azure Monitor for automated notifications. | Configure alerts for:<br>- Performance anomalies (latency spikes, token overuse)<br>- Evaluation failures (low coherence scores)<br>- Security risks detected during red-teaming |
 
-## Create and manage evaluation rules
+## Setup continuous evaluation
 
 ```python
  pip install "azure-ai-projects>=2.0.0b1" python-dotenv
@@ -85,7 +85,7 @@ The following table describes the monitoring features available in the Monitor S
 
 - `AZURE_AI_PROJECT_ENDPOINT`: The Azure AI Project endpoint, as found in the Overview page of your Microsoft Foundry portal.
 - `AZURE_AI_AGENT_NAME`: The name of the AI agent to use for evaluation.
-- `AZURE_AI_MODEL_DEPLOYMENT_NAME`: The deployment name of the AI model, as found under the "Name" column in the "Models + endpoints" tab in your Microsoft Foundry project.
+- `AZURE_AI_MODEL_DEPLOYMENT_NAME`: The deployment name of the AI model.
 
 ### Create agent
 
@@ -125,7 +125,7 @@ with (
     print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
 ```
 
-### Setup agent continuous evaluation
+### Setup continuous evaluation rule
 
 Next, you want to define the evaluation rule with an evaluation containing the evaluators you'd like to run continuously. To learn more about supported evaluators, see [What are evaluators?](../../../concepts/observability.md#what-are-evaluators)
 
@@ -157,44 +157,17 @@ Next, you want to define the evaluation rule with an evaluation containing the e
     )
 ```
 
-### Get the evaluation result using Application Insights
+### Get the evaluation result
 
-```python
+1. Invoke the agent.
+1. View results from the agent evaluation tab.
 
-from azure.core.exceptions import HttpResponseError
-from azure.identity import DefaultAzureCredential
-from azure.monitor.query import LogsQueryClient, LogsQueryStatus
-import pandas as pd
+## Full sample code
 
+To view the full sample code, see:
 
-credential = DefaultAzureCredential()
-client = LogsQueryClient(credential)
-
-query = f"""
-traces
-| where message == "gen_ai.evaluation.result"
-| where customDimensions["gen_ai.thread.run.id"] == "{run.id}"
-"""
-
-try:
-    response = client.query_workspace(os.environ["LOGS_WORKSPACE_ID"], query, timespan=timedelta(days=1))
-    if response.status == LogsQueryStatus.SUCCESS:
-        data = response.tables
-    else:
-        # LogsQueryPartialResult - handle error here
-        error = response.partial_error
-        data = response.partial_data
-        print(error)
-
-    for table in data:
-        df = pd.DataFrame(data=table.rows, columns=table.columns)
-        key_value = df.to_dict(orient="records")
-        pprint(key_value)
-except HttpResponseError as err:
-    print("something fatal happened")
-    print(err)
-
-```
+- [Continuous evaluation sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_continuous_evaluation_rule.py).
+- [Scheduled evaluation and Schedule AI red teaming evaluation sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_scheduled_evaluations.py).
 
 ## Next steps
 
