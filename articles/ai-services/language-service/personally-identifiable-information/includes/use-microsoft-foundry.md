@@ -6,5 +6,6 @@ ms.date: 12/11/2025
 ms.author: lajanuar
 ms.custom: include, ignite-2024
 ---
+<!-- markdownlint-disable MD041 -->
 > [!TIP]
-> You can use [**Microsoft Foundry**](https://ai.azure.com/) to try Azure Language features without needing to write code.
+> You can try the [**Microsoft Foundry**](https://ai.azure.com/) platform to perform Azure Language tasks without the need to write code.
