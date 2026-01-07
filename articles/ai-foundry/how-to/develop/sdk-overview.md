@@ -9,7 +9,7 @@ ms.custom:
   - dev-focus
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 12/18/2025
+ms.date: 01/07/2026
 ms.reviewer: dantaylo
 ms.author: johalexander
 author: ms-johnalex
