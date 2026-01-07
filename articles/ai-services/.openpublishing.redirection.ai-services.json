@@ -1371,6 +1371,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/ai-services/speech-service/how-to-custom-speech-transcription-editor.md",
+      "redirect_url": "/azure/ai-services/speech-service/how-to-custom-speech-create-project",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/content-understanding/concepts/capabilities.md",
       "redirect_url": "/azure/ai-services/content-understanding/concepts/analyzer-templates",
       "redirect_document_id": true
