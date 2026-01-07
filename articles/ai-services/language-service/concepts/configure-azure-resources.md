@@ -121,7 +121,7 @@ Foundry offers a unified platform where you can easily build, manage, and deploy
 
 Foundry allows you to connect to your existing Foundry Tools resources. This means you can establish a connection within your Foundry project to the Azure Language resource where your custom models are stored.
 
-To import an existing Foundry Tools project with Foundry, you need to create a connection to the Foundry Tools resource within your Foundry project. For more information, *see* [Connect Foundry Tools projects to Foundry](/azure/ai-services/connect-services-ai-foundry-portal)
+To import an existing Foundry Tools project with Foundry, you need to create a connection to the Foundry Tools resource within your Foundry project. For more information, *see* [Connect Foundry Tools projects to Foundry](/azure/ai-services/connect-services-foundry-portal)
 
 ## Export a project
 

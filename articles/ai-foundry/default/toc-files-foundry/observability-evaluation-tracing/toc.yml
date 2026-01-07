@@ -54,10 +54,8 @@ items:
 # Continuous Monitoring
 - name: Continuous monitoring and evaluation 
   items:
-   - name: Continuously evaluate your AI agents
-     href: ../../../how-to/continuous-evaluation-agents.md
    - name: Monitor agents in the dashboard
-     href: ../../agents/how-to/how-to-monitor-agents-dashboard.md
+     href: ../../observability/how-to/how-to-monitor-agents-dashboard.md
    - name: Monitoring dashboard insights with Foundry agent
      href: ../../observability/how-to/optimization-dashboard.md
    - name: Monitor model deployments

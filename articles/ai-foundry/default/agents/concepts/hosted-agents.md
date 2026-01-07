@@ -4,7 +4,7 @@ description: Learn how to deploy and manage containerized AI agents with zero in
 titleSuffix: Microsoft Foundry
 author: aahill
 ms.author: aahi
-ms.date: 12/11/2025
+ms.date: 01/06/2026
 ms.manager: nitinme
 ms.topic: concept-article
 ms.service: azure-ai-foundry
@@ -594,7 +594,7 @@ Choose your authentication method:
 
 To learn how to create the `RemoteMCPTool` connection, see [Connect to Model Context Protocol servers](../../../agents/how-to/tools/model-context-protocol.md).
 
-Reference the Foundry tool connection ID for Remote MCP servers within your agent code using an environment variable and wrap it with the Hosting adapter for testing locally. Build and push your Docker image to Azure Container Registry (ACR), configure image pull permissions on the ACR, create a capability host by following the instructions mentioned [above](#create-a-hosted-agent-by-using-the-foundry-sdk) and proceed to registering your agent on Foundry.
+Reference the Foundry tool connection ID for Remote MCP servers within your agent code using an environment variable and wrap it with the Hosting adapter for testing locally. Build and push your Docker image to Azure Container Registry (ACR), configure image pull permissions on the ACR, create a capability host by following the instructions mentioned [above](#create-a-hosted-agent) and proceed to registering your agent on Foundry.
 
 Create a hosted agents version with tools definition using the Foundry SDK:
 

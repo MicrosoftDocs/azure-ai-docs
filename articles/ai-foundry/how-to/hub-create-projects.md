@@ -24,7 +24,7 @@ ai-usage: ai-assisted
 
 This article describes how to create a hub-based project in Foundry. Use a hub project when you need prompt flow, managed compute, Azure Machine Learning compatibility, or advanced development features.
 
-For more information on the different project types, see [Types of projects](../what-is-azure-ai-foundry.md#types-of-projects).
+For more information on the different project types, see [Types of projects](../what-is-foundry.md#types-of-projects).
 
 ## Prerequisites
 
@@ -193,4 +193,4 @@ To delete a hub and all its projects, select **Delete hub** in **Hub properties*
 
 - [Create a Foundry project](create-projects.md).
 - [Quickstart: Get started with Foundry (Hub projects)](../quickstarts/hub-get-started-code.md).
-- [Learn more about Foundry](../what-is-azure-ai-foundry.md).
+- [Learn more about Foundry](../what-is-foundry.md).

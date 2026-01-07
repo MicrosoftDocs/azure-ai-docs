@@ -1,6 +1,36 @@
 {
     "redirections": [
         {
+          "source_path_from_root": "/articles/ai-foundry/foundry-agent/ask-foundry-agent.md",
+          "redirect_url": "/azure/ai-foundry/concepts/ask-ai",
+          "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/what-is-azure-ai-foundry.md",
+          "redirect_url": "/azure/ai-foundry/what-is-foundry",
+          "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/whats-new-azure-ai-foundry.md",
+          "redirect_url": "/azure/ai-foundry/whats-new-foundry",
+          "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/concepts/rbac-azure-ai-foundry.md",
+          "redirect_url": "/azure/ai-foundry/concepts/rbac-foundry",
+          "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/concepts/hub-rbac-azure-ai-foundry.md",
+          "redirect_url": "/azure/ai-foundry/concepts/hub-rbac-foundry",
+          "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/azure-ai-foundry-status-dashboard-documentation.md",
+          "redirect_url": "/azure/ai-foundry/foundry-status-dashboard-documentation",
+          "redirect_document_id": false
+        },
+        {
           "source_path_from_root": "/articles/ai-foundry/how-to/create-azure-ai-project-template.md",
           "redirect_url": "/azure/ai-foundry/how-to/create-resource-template",
           "redirect_document_id": false
@@ -12,7 +42,7 @@
         },
         {
           "source_path_from_root": "/articles/ai-foundry/what-is-ai-foundry.md",
-          "redirect_url": "/azure/ai-foundry/what-is-azure-ai-foundry",
+          "redirect_url": "/azure/ai-foundry/what-is-foundry",
           "redirect_document_id": false
         },
         {
@@ -27,7 +57,7 @@
         },
         {
           "source_path_from_root": "/articles/ai-foundry/whats-new-ai-foundry.md",
-          "redirect_url": "/azure/ai-foundry/whats-new-azure-ai-foundry",
+          "redirect_url": "/azure/ai-foundry/whats-new-foundry",
           "redirect_document_id": false
         },
         {
@@ -37,7 +67,7 @@
         },
         {
           "source_path_from_root": "/articles/ai-foundry/concepts/rbac-ai-foundry.md",
-          "redirect_url": "/azure/ai-foundry/concepts/rbac-azure-ai-foundry",
+          "redirect_url": "/azure/ai-foundry/concepts/rbac-foundry",
           "redirect_document_id": false
         },
         {
@@ -739,7 +769,7 @@
         },
         {
             "source_path_from_root": "/articles/ai-studio/concepts/rbac-ai-studio.md",
-            "redirect_url": "/azure/ai-foundry/concepts/rbac-azure-ai-foundry",
+            "redirect_url": "/azure/ai-foundry/concepts/rbac-foundry",
             "redirect_document_id": true
         },
         {
@@ -774,17 +804,17 @@
         },
         {
             "source_path_from_root": "/articles/ai-studio/ai-services/how-to/connect-ai-services.md",
-            "redirect_url": "/azure/ai-services/connect-services-ai-foundry-portal",
+            "redirect_url": "/azure/ai-services/connect-services-foundry-portal",
             "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/ai-foundry/ai-services/how-to/connect-azure-openai.md",
-            "redirect_url": "/azure/ai-services/connect-services-ai-foundry-portal",
+            "redirect_url": "/azure/ai-services/connect-services-foundry-portal",
             "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/ai-studio/ai-services/how-to/connect-azure-openai.md",
-            "redirect_url": "/azure/ai-services/connect-services-ai-foundry-portal",
+            "redirect_url": "/azure/ai-services/connect-services-foundry-portal",
             "redirect_document_id": false
         },
         {
@@ -849,12 +879,12 @@
         },
         {
             "source_path_from_root": "/articles/ai-studio/what-is-ai-studio.md",
-            "redirect_url": "/azure/ai-foundry/what-is-azure-ai-foundry",
+            "redirect_url": "/azure/ai-foundry/what-is-foundry",
             "redirect_document_id": true
         },
         {
             "source_path_from_root": "/articles/ai-studio/whats-new-ai-studio.md",
-            "redirect_url": "/azure/ai-foundry/whats-new-azure-ai-foundry",
+            "redirect_url": "/azure/ai-foundry/whats-new-foundry",
             "redirect_document_id": true
         },
         {
@@ -975,7 +1005,7 @@
         },
         {
             "source_path_from_root": "/articles/ai-studio/how-to/models-foundation-azure-ai.md",
-            "redirect_url": "/azure/ai-services/connect-services-ai-foundry-portal",
+            "redirect_url": "/azure/ai-services/connect-services-foundry-portal",
             "redirect_document_id": true
         },
         {
@@ -1055,17 +1085,17 @@
         },
         {
             "source_path_from_root": "/articles/ai-studio/ai-services/get-started.md",
-            "redirect_url": "/azure/ai-services/connect-services-ai-foundry-portal",
+            "redirect_url": "/azure/ai-services/connect-services-foundry-portal",
             "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/ai-studio/ai-services/where-to-use-ai-services.md",
-            "redirect_url": "/azure/ai-services/connect-services-ai-foundry-portal",
+            "redirect_url": "/azure/ai-services/connect-services-foundry-portal",
             "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/ai-studio/ai-services/connect-ai-services.md",
-            "redirect_url": "/azure/ai-services/connect-services-ai-foundry-portal",
+            "redirect_url": "/azure/ai-services/connect-services-foundry-portal",
             "redirect_document_id": false
         },
         {
@@ -1235,7 +1265,7 @@
         },
         {
           "source_path_from_root": "/articles/ai-foundry/ai-services/how-to/connect-ai-services.md",
-          "redirect_url": "/azure/ai-services/connect-services-ai-foundry-portal",
+          "redirect_url": "/azure/ai-services/connect-services-foundry-portal",
           "redirect_document_id": false
         },
         {
@@ -1517,6 +1547,11 @@
           "source_path_from_root": "/articles/ai-foundry/default/agents/concepts/agent-memory.md",
           "redirect_url": "/azure/ai-foundry/agents/concepts/what-is-memory",
           "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/default/agents/how-to/how-to-monitor-agents-dashboard.md",
+          "redirect_url": "/azure/ai-foundry/observability/how-to/how-to-monitor-agents-dashboard",
+          "redirect_document_id": true
         }
     ]
 }

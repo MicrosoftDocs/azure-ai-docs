@@ -45,7 +45,7 @@ Some highlights of the Foundry playgrounds experience include:
 :::image type="content" source="../media/concept-playgrounds/playground-landing-page.png" alt-text="Screenshot of the Foundry playground landing page showcasing features for rapid prototyping and experimentation. The left pane of the portal has been customized to show the Playgrounds tab." lightbox="../media/concept-playgrounds/playground-landing-page.png":::
 
 > [!TIP]
-> In the screenshot of the playground landing page, the left pane of the portal is customized to show the playgrounds tab. To learn more about seeing the other items in the left pane, see [Customize the left pane](../what-is-azure-ai-foundry.md#customize-the-left-pane).
+> In the screenshot of the playground landing page, the left pane of the portal is customized to show the playgrounds tab. To learn more about seeing the other items in the left pane, see [Customize the left pane](../what-is-foundry.md#customize-the-left-pane).
 
 ::: moniker-end
 
@@ -208,7 +208,7 @@ To try the transcription capability, follow these steps:
 
 ## Language playground
 
-The [Language playground](https://ai.azure.com/build/playground/language) provides a code-free environment for testing and validating Azure AI Language capabilities. Use it to experiment with natural language processing (NLP) features such as **key data extraction**, **information summarization**, **text classification**, and **custom model fine-tuning**.
+The [Language playground](https://ai.azure.com/build/playground/language) provides a code-free environment for testing and validating Azure Language in Foundry Tools capabilities. Use it to experiment with natural language processing (NLP) features such as **key data extraction**, **information summarization**, **text classification**, and **custom model fine-tuning**.
 
 The Language playground consists of four primary sections:
 

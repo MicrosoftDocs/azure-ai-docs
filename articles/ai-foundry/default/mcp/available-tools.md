@@ -239,4 +239,4 @@ Example prompts include:
 
 - Get started with [Foundry MCP Server](get-started.md)
 - Learn how to [build your own MCP server](build-your-own-mcp-server.md)
-- Try the example workflows above in your own Azure AI Foundry project
+- Try the example workflows above in your own Microsoft Foundry project

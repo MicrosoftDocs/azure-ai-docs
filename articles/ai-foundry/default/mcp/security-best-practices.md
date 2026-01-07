@@ -123,7 +123,7 @@ Check your permissions in Entra ID and confirm your access token is valid. Sign 
 
 ### Permission errors
 
-Check your resource role assignments in the Azure portal to make sure you have the permissions for the operations you need. For more information, see [Role-based access control for Microsoft Foundry](../../concepts/rbac-azure-ai-foundry.md).
+Check your resource role assignments in the Azure portal to make sure you have the permissions for the operations you need. For more information, see [Role-based access control for Microsoft Foundry](../../concepts/rbac-foundry.md).
 
 ### Server connectivity issues
 

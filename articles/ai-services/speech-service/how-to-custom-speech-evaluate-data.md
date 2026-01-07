@@ -631,4 +631,3 @@ Different scenarios produce different quality outcomes. The following table exam
 
 * [Train a model](how-to-custom-speech-train-model.md)
 * [Deploy a model](how-to-custom-speech-deploy-model.md)
-* [Use the online transcription editor](how-to-custom-speech-transcription-editor.md)

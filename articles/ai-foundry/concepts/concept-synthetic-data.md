@@ -38,7 +38,7 @@ To see how to generate synthetic data, you can use the [sample notebook](https:/
 
 ## Related content
 
-- [What is Foundry?](../what-is-azure-ai-foundry.md)
+- [What is Foundry?](../what-is-foundry.md)
 - [Deploy Meta Llama 3.1 models with Foundry](../how-to/deploy-models-llama.md)
 - [Foundry FAQ](../faq.yml)
 

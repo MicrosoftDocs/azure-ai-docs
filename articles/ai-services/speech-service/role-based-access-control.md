@@ -20,7 +20,7 @@ For example, you can assign a role to an AI Speech resource that should only be 
 Depending on who can access each Speech resource, you can effectively set a different level of access per application or user. For more information on Azure RBAC, see the [Azure RBAC documentation](/azure/role-based-access-control/overview).
 
 > [!NOTE]
-> This article describes how to assign access roles for an AI Speech resource. For information on how to assign access roles for Microsoft Foundry resources, see the [Microsoft Foundry documentation](../../ai-foundry/concepts/rbac-azure-ai-foundry.md).
+> This article describes how to assign access roles for an AI Speech resource. For information on how to assign access roles for Microsoft Foundry resources, see the [Microsoft Foundry documentation](../../ai-foundry/concepts/rbac-foundry.md).
 
 ## Roles for Speech resources
 

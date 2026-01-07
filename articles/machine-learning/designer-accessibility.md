@@ -5,7 +5,7 @@ description: Learn about the keyboard shortcuts and screen reader accessibility 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.topic: reference
+ms.topic: concept-article
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: keli19
