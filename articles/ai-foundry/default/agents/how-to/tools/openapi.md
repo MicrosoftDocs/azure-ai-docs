@@ -55,6 +55,14 @@ Before you begin, ensure you have:
 > - You need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
 > - If you use API key for authentication, your connection ID should be in the format of `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`
 
+> [!IMPORTANT]
+> **For API key authentication to work**, your OpenAPI specification file must include:
+> 1. A `securitySchemes` section with your API key configuration (for example, header name, parameter name)
+> 2. A `security` section referencing the security scheme
+> 3. A project connection configured with the matching key name and value
+>
+> Without these configurations, the API key won't be injected into requests. See the [Authenticate with API key](#authenticate-with-api-key) section for detailed setup instructions.
+
 :::zone pivot="python"
 ### Quick verification
 
@@ -118,6 +126,21 @@ with (
     }
 
     # If you want to use key-based authentication
+    # IMPORTANT: Your OpenAPI spec must include securitySchemes and security sections
+    # Example spec structure for API key auth:
+    # {
+    #   "components": {
+    #     "securitySchemes": {
+    #       "apiKeyHeader": {
+    #         "type": "apiKey",
+    #         "name": "x-api-key",  # This must match the key name in your project connection
+    #         "in": "header"
+    #       }
+    #     }
+    #   },
+    #   "security": [{"apiKeyHeader": []}]
+    # }
+    
     openapi_connection = project_client.connections.get(os.environ["OPENAPI_PROJECT_CONNECTION_NAME"])
     connection_id = openapi_connection.id
     print(f"OpenAPI connection ID: {connection_id}")
@@ -126,7 +149,7 @@ with (
         "type": "openapi",
         "openapi":{
             "name": "TOOL_NAME",
-            "spec": SPEC_NAME,
+            "spec": SPEC_NAME,  # Must include securitySchemes and security sections
             "auth": {
                   "type": "project_connection",
                   "security_scheme": {
@@ -203,8 +226,9 @@ Agent deleted
 
 - `FileNotFoundError`: OpenAPI specification file not found at specified path
 - `KeyError`: Missing required environment variables
-- `AuthenticationError`: Invalid credentials or insufficient permissions
+- `AuthenticationError`: Invalid credentials or insufficient permissions, or missing `securitySchemes` in OpenAPI spec for API key authentication
 - Invalid `operationId` format in OpenAPI spec causes tool registration failure
+- **API key not injected**: Verify your OpenAPI spec includes both `securitySchemes` and `security` sections, and that the key name matches your project connection
 
 :::zone-end
 
@@ -283,6 +307,7 @@ The weather in Seattle, WA today is cloudy with temperatures around 52°F...
 - `FileNotFoundException`: OpenAPI specification file not found in Assets folder
 - `ArgumentNullException`: Missing required environment variables
 - `UnauthorizedAccessException`: Invalid credentials or insufficient RBAC permissions
+- **API key not injected**: Verify your OpenAPI spec includes both `securitySchemes` (in `components`) and `security` sections with matching scheme names
 
 ## Sample of using Agents with OpenAPI tool on Web service, requiring authentication
 
@@ -376,8 +401,9 @@ Here are 5 top hotels in Paris, France:
 ### Common errors
 
 - `ConnectionNotFoundException`: No project connection named `tripadvisor` found
-- `AuthenticationException`: Invalid API key in project connection
+- `AuthenticationException`: Invalid API key in project connection, or missing/incorrect `securitySchemes` configuration in OpenAPI spec
 - Tool not used: Verify `ToolChoice = ResponseToolChoice.CreateRequiredChoice()` forces tool usage
+- **API key not passed to API**: Ensure the OpenAPI spec has proper `securitySchemes` and `security` sections configured
 
 :::zone-end
 
@@ -470,7 +496,13 @@ curl --request POST \
                 }
             },
             "components": {
-                "schemes": { }
+                "securitySchemes": {
+                    "apiKeyHeader": {
+                        "type": "apiKey",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                }
             }
             }
         }
@@ -515,9 +547,10 @@ This REST API example shows how to call an OpenAPI tool with different authentic
 
 ### Common errors
 
-- `401 Unauthorized`: Invalid or missing `AGENT_TOKEN`
+- `401 Unauthorized`: Invalid or missing `AGENT_TOKEN`, or API key not being injected due to missing `securitySchemes` in OpenAPI spec
 - `404 Not Found`: Incorrect endpoint or model deployment name
 - `400 Bad Request`: Malformed OpenAPI specification or invalid auth configuration
+- **API key not sent with request**: Verify the `components.securitySchemes` section in your OpenAPI spec is properly configured (not empty) and matches your project connection key name
 :::zone-end
 
 :::zone pivot="typescript"
@@ -687,6 +720,7 @@ OpenAPI agent sample completed!
 - `Error: OpenAPI specification not found`: File path incorrect or file missing
 - Missing environment variables causes initialization failure
 - `AuthenticationError`: Invalid Azure credentials
+- **API key not working**: If switching from anonymous to API key auth, ensure your OpenAPI spec has `securitySchemes` and `security` properly configured
 
 ## Create an agent that uses OpenAPI tools authenticated with a project connection
 
@@ -864,6 +898,7 @@ TripAdvisor OpenAPI agent sample completed!
 - `Error: OpenAPI specification not found`: Check file path
 - Connection not found: Verify `TRIPADVISOR_PROJECT_CONNECTION_ID` is correct and connection exists
 - `AuthenticationException`: Invalid API key in project connection
+- **API key not injected in requests**: Your OpenAPI spec must include proper `securitySchemes` (under `components`) and `security` sections. The key name in `securitySchemes` must match the key in your project connection
 :::zone-end
 
 ## Authenticate with API key
