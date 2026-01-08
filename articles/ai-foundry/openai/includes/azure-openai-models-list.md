@@ -22,8 +22,6 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 | [computer-use-preview](../concepts/models.md#computer-use-preview) | An experimental model trained for use with the Responses API computer use tool. |
 | [o-series models](../concepts/models.md#o-series-models) |[Reasoning models](../how-to/reasoning.md) with advanced problem solving and increased focus and capability. |
 | [GPT-4o, GPT-4o mini, and GPT-4 Turbo](../concepts/models.md#gpt-4o-and-gpt-4-turbo) | Capable Azure OpenAI models with multimodal versions, which can accept both text and images as input. |
-| [GPT-4](../concepts/models.md#gpt-4) | A set of models that improve on GPT-3.5 and can understand and generate natural language and code. |
-| [GPT-3.5](../concepts/models.md#gpt-35) | A set of models that improve on GPT-3 and can understand and generate natural language and code. |
 | [Embeddings](../concepts/models.md#embeddings) | A set of models that can convert text into numerical vector form to facilitate text similarity. |
 | [Image generation](../concepts/models.md#image-generation-models) | A series of models that can generate original images from natural language. |
 | [`Video generation`](../concepts/models.md#video-generation-models) | A model that can generate original video scenes from text instructions. |
