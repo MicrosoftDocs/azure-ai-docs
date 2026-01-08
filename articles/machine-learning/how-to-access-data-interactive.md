@@ -491,7 +491,7 @@ df.head()
 > To avoid needing to remember the datastore URI format, you can copy and paste the datastore URI in the studio UI by completing these steps:
 > 1. Select **Data** in the left menu, and then select the **Datastores** tab.
 > 1. Select your datastore name, and then select **Browse**.
-> 1. Find the file or folder you want to read into Pandas and select the ellipsis (**...**) next to it. Select **Copy URI** from the menu. You can select the **Datastore URI** to copy into your notebook or script.
+> 1. Find the file or folder you want to read into Pandas, select the ellipsis (**...**) next to it, and then select **Copy URI**. You can then select the datastore URI to copy into your notebook or script.
 > :::image type="content" source="media/how-to-access-data-interactive/datastore-uri-copy.png" alt-text="Screenshot that shows how to copy the datastore URI.":::
 
 ##### [HTTP server](#tab/http)
@@ -564,7 +564,7 @@ df.head()
 > To avoid needing to remember the datastore URI format, you can copy and paste the datastore URI in the studio UI by completing these steps:
 > 1. Select **Data** in the left menu, and then select the **Datastores** tab.
 > 1. Select your datastore name, and then select **Browse**.
-> 1. Find the file or folder you want to read into Pandas and select the ellipsis (**...**) next to it. Select **Copy URI** from the menu. You can select the **Datastore URI** to copy into your notebook or script.
+> 1. Find the file or folder you want to read into Pandas, select the ellipsis (**...**) next to it, and then select **Copy URI**. You can then select the datastore URI to copy into your notebook or script.
 > :::image type="content" source="media/how-to-access-data-interactive/datastore-uri-copy.png" alt-text="Screenshot that shows how to copy the datastore URI.":::
 
 ##### [HTTP server](#tab/http)
