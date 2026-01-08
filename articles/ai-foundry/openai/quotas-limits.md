@@ -349,9 +349,9 @@ If your Azure subscription is linked to certain [offer types](https://azure.micr
 |Tier| Quota limit in tokens per minute |
 |---|:---|
 |`Azure for Students` | 1K (all models) <br>Exception o-series, GPT-4.1, and GPT 4.5 Preview: 0|
-| `MSDN` | GPT-4o-mini: 200K <br> GPT 3.5 Turbo Series: 200K <br> GPT-4 series: 50K <br>computer-use-preview: 8K <br> gpt-4o-realtime-preview: 1K <br> o-series: 0 <br> GPT 4.5 Preview: 0 <br> GPT-4.1: 50K <br> GPT-4.1-nano: 200K  |
-|`Standard`& `Pay-as-you-go` | GPT-4o-mini: 200K <br> GPT 3.5 Turbo Series: 200K <br> GPT-4 series: 50K <br>computer-use-preview: 30K <br> o-series: 0 <br> GPT 4.5 Preview: 0  <br> GPT-4.1: 50K <br> GPT-4.1-nano: 200K  |
-| `Azure_MS-AZR-0111P`  <br> `Azure_MS-AZR-0035P` <br> `Azure_MS-AZR-0025P` <br> `Azure_MS-AZR-0052P` <br>| GPT-4o-mini: 200K <br> GPT 3.5 Turbo Series: 200K <br> GPT-4 series: 50K |
+| `MSDN` | GPT-4o-mini: 200K <br>computer-use-preview: 8K <br> gpt-4o-realtime-preview: 1K <br> o-series: 0 <br> GPT 4.5 Preview: 0 <br> GPT-4.1: 50K <br> GPT-4.1-nano: 200K  |
+|`Standard`& `Pay-as-you-go` | GPT-4o-mini: 200K <br>computer-use-preview: 30K <br> o-series: 0 <br> GPT 4.5 Preview: 0  <br> GPT-4.1: 50K <br> GPT-4.1-nano: 200K  |
+| `Azure_MS-AZR-0111P`  <br> `Azure_MS-AZR-0035P` <br> `Azure_MS-AZR-0025P` <br> `Azure_MS-AZR-0052P` <br>| GPT-4o-mini: 200K |
 | `CSP Integration Sandbox` <sup>*</sup> | All models: 0 |
 | `Lightweight trial`<br>`Free trials`<br>`Azure Pass`  | All models: 0 |
 
