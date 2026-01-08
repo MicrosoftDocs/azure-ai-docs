@@ -24,7 +24,7 @@ In this article, you learn how to create and run [machine learning pipelines](co
 
 - If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-- An Azure Machine Learning workspace [Create workspace resources](quickstart-create-resources.md).
+- An Azure Machine Learning workspace. [Create workspace resources](quickstart-create-resources.md).
 
 - [Install and set up the Azure CLI extension for Machine Learning](how-to-configure-cli.md).
 
@@ -48,15 +48,15 @@ In this article, you learn how to create and run [machine learning pipelines](co
 
 ## Register component in your workspace
 
-To build a pipeline using components in the Designer UI, you need to register components to your workspace first. You can use the UI, Azure CLI, or the SDK to register components to your workspace, so that you can share and reuse the component in the workspace. Registered components support automatic versioning so you can update the component but assure that pipelines that require an older version continue to work.
+To build a pipeline using components in the Designer UI, you need to first register components to your workspace. You can use the UI, Azure CLI, or the SDK to register components to your workspace, so that you can share and reuse the component in the workspace. Registered components support automatic versioning so you can update the component but assure that pipelines that require an older version continue to work.
 
 The following example uses the UI to register components. The [component source files](https://github.com/Azure/azureml-examples/tree/main/cli/jobs/pipelines-with-components/basics/1b_e2e_registered_components) are in the `cli/jobs/pipelines-with-components/basics/1b_e2e_registered_components` directory of the [`azureml-examples` repository](https://github.com/Azure/azureml-examples). You need to clone the repository.
 
 1. In your Azure Machine Learning workspace, navigate to **Components** page and select **New Component**. The **Components** page appearance differs depending on whether you previously created components.
 
-   :::image type="content" source="./media/how-to-create-component-pipelines-ui/register-component-entry-button-2.png" alt-text="Screenshot showing register entry button in component page." lightbox ="./media/how-to-create-component-pipelines-ui/register-component-entry-button-2.png":::
+   :::image type="content" source="./media/how-to-create-component-pipelines-ui/register-component-entry-button-2.png" alt-text="Screenshot showing register entry button in component page." lightbox="./media/how-to-create-component-pipelines-ui/register-component-entry-button-2.png":::
 
-   :::image type="content" source="./media/how-to-create-component-pipelines-ui/register-component-entry-button.png" alt-text="Screenshot showing register entry button in component page with can include archive." lightbox ="./media/how-to-create-component-pipelines-ui/register-component-entry-button.png":::
+   :::image type="content" source="./media/how-to-create-component-pipelines-ui/register-component-entry-button.png" alt-text="Screenshot showing register entry button in component page with can include archive." lightbox="./media/how-to-create-component-pipelines-ui/register-component-entry-button.png":::
 
    This example uses `train.yml` [in the 1b_e2e_registered_components directory](https://github.com/Azure/azureml-examples/tree/main/cli/jobs/pipelines-with-components/basics/1b_e2e_registered_components). The YAML file defines the name, type, interface including inputs and outputs, code, environment, and command of this component. The code of this component (`train.py`) is in `./train_src` folder. That code describes the execution logic of this component. To learn more about the component schema, see the [command component YAML schema reference](reference-yaml-component-command.md).
 
@@ -71,7 +71,7 @@ The following example uses the UI to register components. The [component source 
 
 1. Select `train.yml` from the **Yaml file name**.
 
-   :::image type="content" source="./media/how-to-create-component-pipelines-ui/upload-from-local-folder.png" alt-text="Screenshot showing upload from local folder." lightbox ="./media/how-to-create-component-pipelines-ui/upload-from-local-folder.png":::
+   :::image type="content" source="./media/how-to-create-component-pipelines-ui/upload-from-local-folder.png" alt-text="Screenshot showing upload from local folder." lightbox="./media/how-to-create-component-pipelines-ui/upload-from-local-folder.png":::
 
 1. Select **Next**, then confirm the details of this component. After you confirm, select **Create** to finish the registration process.
 
@@ -79,41 +79,41 @@ The following example uses the UI to register components. The [component source 
 
 1. After registering the three components successfully, you can see your components in the studio UI.
 
-:::image type="content" source="./media/how-to-create-component-pipelines-ui/component-page.png" alt-text="Screenshot showing registered component in component page." lightbox ="./media/how-to-create-component-pipelines-ui/component-page.png":::
+:::image type="content" source="./media/how-to-create-component-pipelines-ui/component-page.png" alt-text="Screenshot showing registered component in component page." lightbox="./media/how-to-create-component-pipelines-ui/component-page.png":::
 
 ## Create pipeline using registered component
 
 1. Create a new pipeline in Designer. Select the **Custom** option.
 
-   :::image type="content" source="./media/how-to-create-component-pipelines-ui/new-pipeline.png" alt-text="Screenshot showing creating new pipeline in the Designer homepage." lightbox ="./media/how-to-create-component-pipelines-ui/new-pipeline.png":::
+   :::image type="content" source="./media/how-to-create-component-pipelines-ui/new-pipeline.png" alt-text="Screenshot showing creating new pipeline in the Designer homepage." lightbox="./media/how-to-create-component-pipelines-ui/new-pipeline.png":::
 
 1. Select the pencil icon to give the pipeline a meaningful name.
 
-   :::image type="content" source="./media/how-to-create-component-pipelines-ui/rename-pipeline.png" alt-text="Screenshot showing rename the pipeline." lightbox ="./media/how-to-create-component-pipelines-ui/rename-pipeline.png":::
+   :::image type="content" source="./media/how-to-create-component-pipelines-ui/rename-pipeline.png" alt-text="Screenshot showing rename the pipeline." lightbox="./media/how-to-create-component-pipelines-ui/rename-pipeline.png":::
 
 1. In the Designer asset library, you can see **Data**, **Model**, and **Components** tabs. Select **Components**. You can see the components registered from previous section. If there are too many components, you can search with the component name.
 
-   :::image type="content" source="./media/how-to-create-component-pipelines-ui/asset-library.png" alt-text="Screenshot showing registered component in asset library." lightbox ="./media/how-to-create-component-pipelines-ui/asset-library.png":::
+   :::image type="content" source="./media/how-to-create-component-pipelines-ui/asset-library.png" alt-text="Screenshot showing registered component in asset library." lightbox="./media/how-to-create-component-pipelines-ui/asset-library.png":::
 
    Find the *train*, *score*, and *eval* components registered in previous section then drag them to the canvas. By default, Designer uses the default version of the component. To change to a specific version, double-click the component to open the component pane.
 
-   :::image type="content" source="./media/how-to-create-component-pipelines-ui/change-component-version.png" alt-text="Screenshot showing changing version of component." lightbox ="./media/how-to-create-component-pipelines-ui/change-component-version.png":::
+   :::image type="content" source="./media/how-to-create-component-pipelines-ui/change-component-version.png" alt-text="Screenshot showing changing version of component." lightbox="./media/how-to-create-component-pipelines-ui/change-component-version.png":::
 
 1. In this example, use [the sample data in the data folder](https://github.com/Azure/azureml-examples/tree/main/cli/jobs/pipelines-with-components/basics/1b_e2e_registered_components/data). To register the data into your workspace, select the add icon in the asset library, then follow the wizard to register the data. The data type needs to be `uri_folder` to align with the [train component definition](https://github.com/Azure/azureml-examples/blob/main/cli/jobs/pipelines-with-components/basics/1b_e2e_registered_components/train.yml).
 
-   :::image type="content" source="./media/how-to-create-component-pipelines-ui/add-data.png" alt-text="Screenshot showing add data." lightbox ="./media/how-to-create-component-pipelines-ui/add-data.png":::
+   :::image type="content" source="./media/how-to-create-component-pipelines-ui/add-data.png" alt-text="Screenshot showing add data." lightbox="./media/how-to-create-component-pipelines-ui/add-data.png":::
 
 1. Drag the data into the canvas. Your pipeline should look like the following screenshot.
 
-   :::image type="content" source="./media/how-to-create-component-pipelines-ui/pipeline-with-all-boxes.png" alt-text="Screenshot showing the pipeline draft." lightbox ="./media/how-to-create-component-pipelines-ui/pipeline-with-all-boxes.png":::
+   :::image type="content" source="./media/how-to-create-component-pipelines-ui/pipeline-with-all-boxes.png" alt-text="Screenshot showing the pipeline draft." lightbox="./media/how-to-create-component-pipelines-ui/pipeline-with-all-boxes.png":::
 
 1. Connect the data and components by dragging connections in the canvas.
   
-   :::image type="content" source="./media/how-to-create-component-pipelines-ui/connect.gif" alt-text="Gif showing connecting the pipeline." lightbox ="./media/how-to-create-component-pipelines-ui/connect.gif":::
+   :::image type="content" source="./media/how-to-create-component-pipelines-ui/connect.gif" alt-text="Animation showing connecting the pipeline." lightbox="./media/how-to-create-component-pipelines-ui/connect.gif":::
 
 1. Double-click one component. You see a right pane where you can configure the component.
 
-   :::image type="content" source="./media/how-to-create-component-pipelines-ui/component-parameter.png" alt-text="Screenshot showing component parameter settings." lightbox ="./media/how-to-create-component-pipelines-ui/component-parameter.png":::
+   :::image type="content" source="./media/how-to-create-component-pipelines-ui/component-parameter.png" alt-text="Screenshot showing component parameter settings." lightbox="./media/how-to-create-component-pipelines-ui/component-parameter.png":::
 
    For components with primitive type inputs like number, integer, string, and boolean, you can change values of such inputs in the component detailed pane, under **Inputs** section.
 
@@ -121,7 +121,7 @@ The following example uses the UI to register components. The [component source 
 
 1. Promote the *max_epocs* input of the *train* component to pipeline level input. By doing so, you can assign a different value to this input every time before submitting the pipeline.
 
-   :::image type="content" source="./media/how-to-create-component-pipelines-ui/promote-pipeline-input.png" alt-text="Screenshot showing how to promote component input to pipeline input." lightbox ="./media/how-to-create-component-pipelines-ui/promote-pipeline-input.png":::
+   :::image type="content" source="./media/how-to-create-component-pipelines-ui/promote-pipeline-input.png" alt-text="Screenshot showing how to promote component input to pipeline input." lightbox="./media/how-to-create-component-pipelines-ui/promote-pipeline-input.png":::
 
 > [!NOTE]
 > Custom components and the Designer classic prebuilt components can't be used together.
@@ -134,7 +134,7 @@ The following example uses the UI to register components. The [component source 
 
 1. There's a step-by-step dialog box. Follow the steps to submit the pipeline job.
 
-   :::image type="content" source="./media/how-to-create-component-pipelines-ui/submission-wizard.png" alt-text="Screenshot showing submission wizard." lightbox ="./media/how-to-create-component-pipelines-ui/submission-wizard.png":::
+   :::image type="content" source="./media/how-to-create-component-pipelines-ui/submission-wizard.png" alt-text="Screenshot showing submission wizard." lightbox="./media/how-to-create-component-pipelines-ui/submission-wizard.png":::
 
 1. In **Basics** step, you can configure the experiment, job display name, job description, and other values.
 
@@ -146,13 +146,13 @@ The following example uses the UI to register components. The [component source 
 
    After you submit the pipeline job, a message appears at the top with a link to the job detail. Select this link to review the job details.
 
-   :::image type="content" source="./media/how-to-create-component-pipelines-ui/submit-message.png" alt-text="Screenshot showing submission message." lightbox ="./media/how-to-create-component-pipelines-ui/submit-message.png":::
+   :::image type="content" source="./media/how-to-create-component-pipelines-ui/submit-message.png" alt-text="Screenshot showing submission message." lightbox="./media/how-to-create-component-pipelines-ui/submit-message.png":::
 
 ## Specify identity in pipeline job
 
 When you submit a pipeline job, you can specify the identity to access the data under `Run settings`. The default identity is `AMLToken`, which doesn't use any identity. A pipeline can also support `UserIdentity` and `Managed`. For `UserIdentity`, the identity of job submitter is used to access input data and write the result to the output folder. If you specify `Managed`, the system uses the managed identity to access the input data and write the result to the output folder.
 
-:::image type="content" source="./media/how-to-create-component-pipelines-ui/identity-in-pipeline.png" alt-text="Screenshot showing how to set identity in pipeline job." lightbox ="./media/how-to-create-component-pipelines-ui/identity-in-pipeline.png":::
+:::image type="content" source="./media/how-to-create-component-pipelines-ui/identity-in-pipeline.png" alt-text="Screenshot showing how to set identity in pipeline job." lightbox="./media/how-to-create-component-pipelines-ui/identity-in-pipeline.png":::
 
 ## Related content
 
