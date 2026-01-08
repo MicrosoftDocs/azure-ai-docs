@@ -13,7 +13,7 @@ ms.date: 01/07/2026
 ms.custom:
   - sdkv2
   - sfi-image-nochange
-#Customer intent: As a professional data scientist, I want to know how to access data drom Azure cloud storage during interactive development.
+#Customer intent: As a professional data scientist, I want to know how to access data from Azure cloud storage during interactive development.
 ---
 
 # Access data from Azure cloud storage during interactive development
