@@ -156,10 +156,14 @@ blob_datastore = Datastore.register_azure_blob_container(workspace=ws,
     
     ml_client = MLClient(credential=DefaultAzureCredential(),
                          subscription_id=subscription_id, 
-                         resource_group_name=resource_group)
+                         resource_group_name=resource_group,
+                         workspace_name=workspace_name)
     
     datastore = ml_client.datastores.get(name='your datastore name')
     ```
+
+    > [!NOTE]
+    > `DefaultAzureCredential` attempts multiple authentication methods in order, including environment variables, managed identity, Azure CLI, and more. For local development, sign in via Azure CLI (`az login`) or set the `AZURE_CLIENT_ID`, `AZURE_TENANT_ID`, and `AZURE_CLIENT_SECRET` environment variables for service principal authentication. For more information, see [Set up authentication for Azure Machine Learning resources and workflows](how-to-setup-authentication.md).
 
 ## Mapping of key functionality in SDK v1 and SDK v2
 
