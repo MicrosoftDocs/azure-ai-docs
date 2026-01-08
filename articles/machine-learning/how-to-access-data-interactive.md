@@ -276,7 +276,7 @@ with fs.open('/<folder>/<image.jpeg>') as f:
 
 In this example, you create a PyTorch custom dataset for processing images. In this scenario, an annotations file (in CSV format) exists, with this overall structure:
 
-```text
+```CSV
 image_path, label
 0/image0.png, label0
 0/image1.png, label0
