@@ -43,6 +43,15 @@ The [Azure AI Search](/azure/search/search-what-is-azure-search) tool in Microso
 - For keyless authentication, the following Azure role-based access control (RBAC) roles assigned to your project's managed identity:
   - **Search Index Data Contributor** - Allows reading and writing to search indexes
   - **Search Service Contributor** - Allows managing search service resources
+ 
+## Parameters in AI Search tool
+| Agents AI Search tool parameter | Status in Agents | Note | 
+|---|---|---|
+| `index_connection_id` | Required | Agents uses Connections to manage Search endpoints and authentication.
+| `index_name`| Required | Name of the index in your search resource.
+| `top_k` | Optional | Default value is 5.
+| `query_type` | Optional | The default value is `vector_sematic_hybrid`.
+| `filter` | Optional | Note that this filter will apply for all calls the agent makes to the search index, across all threads run by that agent.
 
 ## Code example
 
