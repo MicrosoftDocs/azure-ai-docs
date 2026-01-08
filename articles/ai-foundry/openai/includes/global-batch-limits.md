@@ -32,7 +32,6 @@ The table shows the batch quota limit. Quota values for global batch are represe
 | `gpt-4o-mini` | 15B | 1B | 50M | 90K | N/A |
 | `gpt-4-turbo` | 300M | 80M | 40M | 90K | N/A |
 | `gpt-4` | 150M | 30M | 5M | 100K | N/A |
-| `gpt-35-turbo` | 10B | 1B | 100M | 2M | 50K |
 | `o3-mini`| 15B | 1B | 50M | 90K | N/A |
 | `o4-mini` | 15B | 1B | 50M | 90K | N/A |
 | `gpt-5`| 5B | 200M | 50M | 90K | N/A |

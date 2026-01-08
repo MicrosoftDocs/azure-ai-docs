@@ -22,7 +22,7 @@ This guide walks you through some techniques in system message design.
 
 ## What is a system message?
 
-A system message is a feature-specific set of instructions or contextual frameworks given to a generative AI model (for example GPT-4o, GPT-3.5 Turbo, etc.) to direct and improve the quality and safety of a model’s output. This is particularly helpful in situations that need certain degrees of formality, technical language, or industry-specific terms.  
+A system message is a feature-specific set of instructions or contextual frameworks given to a generative AI model to direct and improve the quality and safety of a model’s output. This is particularly helpful in situations that need certain degrees of formality, technical language, or industry-specific terms.  
 
 
 There is no prescribed length. A system message can be one short sentence:  
