@@ -99,7 +99,7 @@ You can also instantiate an Azure Machine Learning filesystem, to handle filesys
 from azureml.fsspec import AzureMachineLearningFileSystem
 
 # Instantiate the filesystem by using the following URI.
-fs = AzureMachineLearningFileSystem('azureml://subscriptions/<subscriptionID>/resourcegroups/resource_group_name/workspaces/<workspace_name>/datastore*s*/datastorename')
+fs = AzureMachineLearningFileSystem('azureml://subscriptions/<subscriptionID>/resourcegroups/resource_group_name/workspaces/<workspace_name>/datastores/<datastore_name>')
 
 fs.ls() # List folders and files in datastore datastorename.
 
@@ -119,7 +119,7 @@ with fs.open('./folder1/file1.csv') as f:
 ```python
 from azureml.fsspec import AzureMachineLearningFileSystem
 # Instantiate the filesystem by using the following URI.
-fs = AzureMachineLearningFileSystem('azureml://subscriptions/<subscriptionID>/resourcegroups/<resource_group_name>/workspaces/<workspace_name>/datastores/<datastorename>/paths/')
+fs = AzureMachineLearningFileSystem('azureml://subscriptions/<subscriptionID>/resourcegroups/<resource_group_name>/workspaces/<workspace_name>/datastores/<datastore_name>/paths/')
 
 # You can set recursive to False to upload a file.
 fs.upload(lpath='data/upload_files/crime-spring.csv', rpath='data/fsspec', recursive=False, **{'overwrite': 'MERGE_WITH_OVERWRITE'})
@@ -139,7 +139,7 @@ Three 'overwrite' modes are supported:
 ```python
 # You can set recursive to False to download a file.
 # The downloading overwrite option is determined by the local system. It's MERGE_WITH_OVERWRITE.
-fs.download(rpath='data/fsspec/crime-spring.csv', lpath='data/download_files/, recursive=False)
+fs.download(rpath='data/fsspec/crime-spring.csv', lpath='data/download_files/', recursive=False)
 
 # You need to set recursive to True to download a folder.
 fs.download(rpath='data/fsspec_folder', lpath='data/download_folder/', recursive=True)
@@ -230,7 +230,7 @@ The Filesystem spec (`fsspec`) has a range of [known implementations](https://fi
 To access data from the `dbfs` resource, you need:
 
 - The instance name, in the form of `adb-<number>.<two digits>.azuredatabricks.net`. You can find this value in the URL of your Azure Databricks workspace.
-- A personal access token For more information about personal access token creation, see [Authorize access to Azure Databricks resources](/azure/databricks/dev-tools/api/latest/authentication).
+- A personal access token. For more information about personal access token creation, see [Authorize access to Azure Databricks resources](/azure/databricks/dev-tools/api/latest/authentication).
 
 First, create an environment variable for the personal access token token on your compute instance:
 
