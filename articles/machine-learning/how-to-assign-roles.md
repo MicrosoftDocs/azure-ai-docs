@@ -123,10 +123,10 @@ To convert workspaces created before 11/19/2024, use one of the following method
 
     ```bash
     curl -X PATCH \
-        "https://management.azure.com/subscriptions/<your-subscription>/resourceGroups/<resource-group-name>/providers/Microsoft.MachineLearningServices/workspaces/<workspace-name>?api-version=2024-07-01-preview" \
-        -H "Authorization: Bearer <YOUR-ACCESS-TOKEN>" \
-        -H "Content-Type: application/json" \
-        --data '{"properties":{"allowRoleAssignmentOnRG":true}}'
+    "https://management.azure.com/subscriptions/<your-subscription>/resourceGroups/<resource-group-name>/providers/Microsoft.MachineLearningServices/workspaces/<workspace-name>?api-version=2024-07-01-preview" \
+    -H "Authorization: Bearer <YOUR-ACCESS-TOKEN>" \
+    -H "Content-Type: application/json" \
+    --data '{"properties":{"allowRoleAssignmentOnRG":true}}'
     ```
 
         Reference: [Microsoft.MachineLearningServices/workspaces (2024-07-01-preview)](https://learn.microsoft.com/en-us/azure/templates/Microsoft.MachineLearningServices/2024-07-01-preview/workspaces)
