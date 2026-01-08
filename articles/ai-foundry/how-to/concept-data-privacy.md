@@ -3,6 +3,7 @@ title: Data, privacy, and security for use of models through the model catalog i
 titleSuffix: Microsoft Foundry
 description: Get details about how data that customers provide is processed, used, and stored when a user deploys a model from the model catalog.
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.custom: references_regions, build-2024
 ms.topic: concept-article
 ms.date: 07/07/2025
@@ -21,7 +22,7 @@ author: ssalgadodev
 This article describes how the data that you provide is processed, used, and stored when you deploy models from the model catalog. Also see the [Microsoft Products and Services Data Protection Addendum](https://aka.ms/DPA), which governs data processing by Azure services.
 
 > [!IMPORTANT]
-> For information about responsible AI in Azure OpenAI and AI services, see [Responsible use of AI](../../ai-services/responsible-use-of-ai-overview.md?context=/azure/ai-studio/context/context).
+> For information about responsible AI in Azure OpenAI and Foundry Tools, see [Responsible use of AI](../../ai-services/responsible-use-of-ai-overview.md?context=/azure/ai-studio/context/context).
 
 ## What data is processed for models deployed in Microsoft Foundry portal?
 

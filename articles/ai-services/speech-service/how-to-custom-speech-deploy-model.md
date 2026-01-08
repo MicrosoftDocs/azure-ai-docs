@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 5/19/2025
+ms.date: 12/29/2025
 ms.author: pafarley
 zone_pivot_groups: foundry-speech-studio-cli-rest
 #Customer intent: As a developer, I want to learn how to deploy a custom speech model so that I can use it in my applications.
@@ -17,7 +17,7 @@ zone_pivot_groups: foundry-speech-studio-cli-rest
 In this article, you learn how to deploy an endpoint for a custom speech model. Except for [batch transcription](batch-transcription.md), you must deploy a custom endpoint to use a custom speech model.
 
 > [!TIP]
-> A hosted deployment endpoint isn't required to use custom speech with the [Batch transcription API](batch-transcription.md). You can conserve resources if the [custom speech model](how-to-custom-speech-train-model.md) is only used for batch transcription. For more information, see [Speech service pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).
+> The [Batch transcription API](batch-transcription.md) doesn't require a hosted deployment endpoint for custom speech. You can conserve resources by only using the [custom speech model](how-to-custom-speech-train-model.md) for batch transcription. For more information, see [Speech service pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).
 
 You can deploy an endpoint for a base or custom model, and then [update](#change-model-and-redeploy-endpoint) the endpoint later to use a better trained model.
 
@@ -58,7 +58,7 @@ To create a custom endpoint, follow these steps:
 1. Sign in to the [Speech Studio](https://aka.ms/speechstudio/customspeech).
 1. Select **Custom speech** > Your project name > **Deploy models**.
 
-   If this is your first endpoint, you notice that there are no endpoints listed in the table. After you create an endpoint, you use this page to track each deployed endpoint.
+   If this is your first endpoint, notice that the table has no endpoints listed. After you create an endpoint, use this page to track each deployed endpoint.
 
 1. Select **Deploy model** to start the new endpoint wizard.
 
@@ -66,7 +66,7 @@ To create a custom endpoint, follow these steps:
 
 1. Select the custom model that you want to associate with the endpoint. 
 
-1. Optionally, you can check the box to enable audio and diagnostic [logging](#view-logging-data) of the endpoint's traffic.
+1. Optionally, check the box to enable audio and diagnostic [logging](#view-logging-data) of the endpoint's traffic.
 
     :::image type="content" source="./media/custom-speech/custom-speech-deploy-model.png" alt-text="Screenshot of the New endpoint page that shows the checkbox to enable logging.":::
 
@@ -75,7 +75,7 @@ To create a custom endpoint, follow these steps:
 On the main **Deploy models** page, details about the new endpoint are displayed in a table, such as name, description, status, and expiration date. It can take up to 30 minutes to instantiate a new endpoint that uses your custom models. When the status of the deployment changes to **Succeeded**, the endpoint is ready to use.
 
 > [!IMPORTANT]
-> Take note of the model expiration date. This is the last date that you can use your custom model for speech recognition. For more information, see [Model and endpoint lifecycle](./how-to-custom-speech-model-and-endpoint-lifecycle.md).
+> Take note of the model expiration date. This date is the last day that you can use your custom model for speech recognition. For more information, see [Model and endpoint lifecycle](./how-to-custom-speech-model-and-endpoint-lifecycle.md).
 
 Select the endpoint link to view information specific to it, such as the endpoint key, endpoint URL, and sample code. 
 
@@ -87,11 +87,11 @@ Before proceeding, make sure that you have the [Speech CLI](./spx-basics.md) ins
 
 To create an endpoint and deploy a model, use the `spx csr endpoint create` command. Construct the request parameters according to the following instructions:
 
-- Set the `project` property to the ID of an existing project. The `project` property is recommended so that you can also manage fine-tuning for custom speech in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). To get the project ID, see [Get the project ID for the REST API](./how-to-custom-speech-create-project.md#get-the-project-id-for-the-rest-api) documentation.
+- Set the `project` property to the ID of an existing project. Use the `project` property so you can manage fine-tuning for custom speech in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). To get the project ID, see [Get the project ID for the REST API](./how-to-custom-speech-create-project.md#get-the-project-id-for-the-rest-api).
 - Set the required `model` property to the ID of the model that you want deployed to the endpoint. 
-- Set the required `language` property. The endpoint locale must match the locale of the model. The locale can't be changed later. The Speech CLI `language` property corresponds to the `locale` property in the JSON request and response.
-- Set the required `name` property. This is the name that is displayed in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). The Speech CLI `name` property corresponds to the `displayName` property in the JSON request and response.
-- Optionally, you can set the `logging` property. Set this to `enabled` to enable audio and diagnostic [logging](#view-logging-data) of the endpoint's traffic. The default is `false`. 
+- Set the required `language` property. The endpoint locale must match the locale of the model. You can't change the locale later. The Speech CLI `language` property corresponds to the `locale` property in the JSON request and response.
+- Set the required `name` property. This name appears in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). The Speech CLI `name` property corresponds to the `displayName` property in the JSON request and response.
+- Optionally, set the `logging` property. Set this property to `enabled` to enable audio and diagnostic [logging](#view-logging-data) of the endpoint's traffic. The default is `false`. 
 
 Here's an example Speech CLI command to create an endpoint and deploy a model:
 
@@ -100,9 +100,9 @@ spx csr endpoint create --api-version v3.2 --project YourProjectId --model YourM
 ```
 
 > [!IMPORTANT]
-> You must set `--api-version v3.2`. The Speech CLI uses the REST API, but doesn't yet support versions later than `v3.2`.
+> You must set `--api-version v3.2`. The Speech CLI uses the REST API but doesn't yet support versions later than `v3.2`.
 
-You should receive a response body in the following format:
+You receive a response body in the following format:
 
 ```json
 {
@@ -148,11 +148,11 @@ spx help csr endpoint
 
 To create an endpoint and deploy a model, use the [Endpoints_Create](/rest/api/speechtotext/endpoints/create) operation of the [Speech to text REST API](rest-speech-to-text.md). Construct the request body according to the following instructions:
 
-- Set the `project` property to the URI of an existing project. This property is recommended so that you can also view and manage the endpoint in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). To get the project ID, see [Get the project ID for the REST API](./how-to-custom-speech-create-project.md#get-the-project-id-for-the-rest-api) documentation.
+- Set the `project` property to the URI of an existing project. Set this property so you can view and manage the endpoint in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). To get the project ID, see [Get the project ID for the REST API](./how-to-custom-speech-create-project.md#get-the-project-id-for-the-rest-api).
 - Set the required `model` property to the URI of the model that you want deployed to the endpoint. 
-- Set the required `locale` property. The endpoint locale must match the locale of the model. The locale can't be changed later.
-- Set the required `displayName` property. This is the name that is displayed in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
-- Optionally, you can set the `loggingEnabled` property within `properties`. Set this to `true` to enable audio and diagnostic [logging](#view-logging-data) of the endpoint's traffic. The default is `false`. 
+- Set the required `locale` property. The endpoint locale must match the locale of the model. You can't change the locale later.
+- Set the required `displayName` property. This name appears in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
+- Optionally, set the `loggingEnabled` property within `properties`. Set this property to `true` to enable audio and diagnostic [logging](#view-logging-data) of the endpoint's traffic. The default is `false`. 
 
 Make an HTTP POST request using the URI as shown in the following [Endpoints_Create](/rest/api/speechtotext/endpoints/create) example. Replace `YourSpeechResoureKey` with your Speech resource key, replace `YourServiceRegion` with your Speech resource region, and set the request body properties as previously described.
 
@@ -173,7 +173,7 @@ curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey" -H "Content
 }'  "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints"
 ```
 
-You should receive a response body in the following format:
+You receive a response body in the following format:
 
 ```json
 {
@@ -211,7 +211,7 @@ The top-level `self` property in the response body is the endpoint's URI. Use th
 
 ## Change model and redeploy endpoint
 
-An endpoint can be updated to use another model that was created by the same Speech resource. As previously mentioned, you must update the endpoint's model before the [model expires](./how-to-custom-speech-model-and-endpoint-lifecycle.md). 
+You can update an endpoint to use another model created by the same Speech resource. As previously mentioned, you must update the endpoint's model before the [model expires](./how-to-custom-speech-model-and-endpoint-lifecycle.md). 
 
 ::: zone pivot="ai-foundry-portal"
 
@@ -247,9 +247,9 @@ spx csr endpoint update --api-version v3.2 --endpoint YourEndpointId --model You
 ```
 
 > [!IMPORTANT]
-> You must set `--api-version v3.2`. The Speech CLI uses the REST API, but doesn't yet support versions later than `v3.2`.
+> You must set `--api-version v3.2`. The Speech CLI uses the REST API but doesn't yet support versions later than `v3.2`.
 
-You should receive a response body in the following format:
+You receive a response body in the following format:
 
 ```json
 {
@@ -305,7 +305,7 @@ curl -v -X PATCH -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey" -H "Conten
 }'  "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/YourEndpointId"
 ```
 
-You should receive a response body in the following format:
+You receive a response body in the following format:
 
 ```json
 {
@@ -343,7 +343,7 @@ The redeployment takes several minutes to complete. In the meantime, your endpoi
 
 ## View logging data
 
-Logging data is available for export if you configured it while creating the endpoint. 
+You can export logging data if you configured it when creating the endpoint. 
 
 ::: zone pivot="ai-foundry-portal"
 
@@ -377,9 +377,9 @@ spx csr endpoint list --api-version v3.2 --endpoint YourEndpointId
 ```
 
 > [!IMPORTANT]
-> You must set `--api-version v3.2`. The Speech CLI uses the REST API, but doesn't yet support versions later than `v3.2`.
+> You must set `--api-version v3.2`. The Speech CLI uses the REST API but doesn't yet support versions later than `v3.2`.
 
-The locations of each log file with more details are returned in the response body.
+The response body returns the locations of each log file with more details.
 
 ::: zone-end
 
@@ -393,7 +393,7 @@ Make an HTTP GET request using the URI as shown in the following example. Replac
 curl -v -X GET "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/YourEndpointId" -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey"
 ```
 
-You should receive a response body in the following format:
+You receive a response body in the following format:
 
 ```json
 {
@@ -432,11 +432,11 @@ Make an HTTP GET request using the "logs" URI from the previous response body. R
 curl -v -X GET "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/YourEndpointId/files/logs" -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey"
 ```
 
-The locations of each log file with more details are returned in the response body.
+The response body returns the locations of each log file with more details.
 
 ::: zone-end
 
-Logging data is available on Microsoft-owned storage for 30 days, and then it's removed. If your own storage account is linked to the Foundry Tools subscription, the logging data isn't automatically deleted.
+Microsoft-owned storage keeps logging data for 30 days, and then it removes the data. If you link your own storage account to the Foundry Tools subscription, the logging data isn't automatically deleted.
 
 ## Related content
 

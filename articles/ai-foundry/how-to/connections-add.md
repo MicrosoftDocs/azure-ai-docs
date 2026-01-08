@@ -31,7 +31,7 @@ ai-usage: ai-assisted
 
 In this article, you learn how to add a new connection in [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
-Connections are a way to authenticate and consume both Microsoft and other resources within your Foundry projects. They're required for scenarios such as building Standard Agents or building with Agent knowledge tools. Certain connections can be created in the Foundry UI while others require deployment through code in Bicep template. See our [foundry-samples on GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/01-connections). Read the table descriptions below to learn more. 
+Connections are a way to authenticate and consume both Microsoft and other resources within your Foundry projects. They're required for scenarios such as building Standard Agents or building with Agent knowledge tools. Certain connections can be created in the Foundry UI while others require deployment through code in Bicep template. See our [foundry-samples on GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/01-connections). Read the table descriptions below to learn more. 
 
 ## Prerequisites
 
@@ -131,7 +131,7 @@ Follow these steps to create a new connection that's available for the current p
 1. Browse for and select your Azure AI Search service from the list of available services and then select the type of __Authentication__ to use for the resource. Select __Add connection__.
 
     > [!TIP]
-    > Different connection types support different authentication methods. Using Microsoft Entra ID might require specific Azure role-based access permissions for your developers. For more information, visit [Role-based access control](../concepts/rbac-azure-ai-foundry.md).
+    > Different connection types support different authentication methods. Using Microsoft Entra ID might require specific Azure role-based access permissions for your developers. For more information, visit [Role-based access control](../concepts/rbac-foundry.md).
 
     :::image type="content" source="../media/data-connections/connection-add-azure-ai-search-connect-entra-id.png" alt-text="Screenshot of the page to select the Azure AI Search service that you want to connect to." lightbox="../media/data-connections/connection-add-azure-ai-search-connect-entra-id.png":::
 
@@ -150,13 +150,13 @@ Follow these steps to create a new connection that's available for the current p
 1. Browse for and select your Azure AI Search service from the list of available services and then select the type of __Authentication__ to use for the resource. Select __Add connection__.
 
     > [!TIP]
-    > Different connection types support different authentication methods. Using Microsoft Entra ID might require specific Azure role-based access permissions for your developers. For more information, visit [Role-based access control](../concepts/rbac-azure-ai-foundry.md).
+    > Different connection types support different authentication methods. Using Microsoft Entra ID might require specific Azure role-based access permissions for your developers. For more information, visit [Role-based access control](../concepts/rbac-foundry.md).
 
 ::: moniker-end
 
 # [Bicep](#tab/bicep)
 
-See [Connection templates](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/01-connections) for examples of common connection templates.
+See [Connection templates](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/01-connections) for examples of common connection templates.
 
 ---
 
@@ -180,4 +180,6 @@ For more on how to set private endpoints to your connected resources, see the fo
 ## Related content
 
 - [How to create vector indexes](../how-to/index-add.md)
+:::moniker range="foundry-classic"
 - [How to configure a managed network](configure-managed-network.md)
+:::moniker-end

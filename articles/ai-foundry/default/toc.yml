@@ -1,7 +1,7 @@
 monikerRange: 'foundry'
 items:
 - name: What is Microsoft Foundry (new)?
-  href: ../what-is-azure-ai-foundry.md
+  href: ../what-is-foundry.md
 
 - name: Get started
   href: toc-files-foundry/get-started/toc.yml
@@ -24,7 +24,7 @@ items:
 # - name: Integration & orchestration
 #   href: toc-files-foundry/integrations-orchestration/toc.yml
 
-- name: Manage agents, models, and tools
+- name: Manage agents, models, & tools
   href: toc-files-foundry/manage-agents-models-tools/toc.yml
 
 - name: Observability, evaluation, & tracing
@@ -45,7 +45,7 @@ items:
 - name: Best practices
   href: toc-files-foundry/best-practices/toc.yml
 
-- name: Setup and configure
+- name: Setup & configure
   href: toc-files-foundry/setup-configure/toc.yml
 
 - name: Security & governance

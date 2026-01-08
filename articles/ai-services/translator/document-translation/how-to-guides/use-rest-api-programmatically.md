@@ -15,7 +15,7 @@ ms.custom: mode-other, devx-track-extended-java, devx-track-python, ignite-2024
 
 # Use Document Translation APIs programmatically
 
- Document translation is a cloud-based feature of the [Azure Translator](../../overview.md) service. You can use the Document translation API to asynchronously translate whole documents in [supported languages](../../language-support.md) and various [file formats](../overview.md#batch-supported-document-formats) while preserving source document structure and text formatting. In this how-to guide, you learn to use Document translation APIs with a programming language of your choice and the HTTP REST API.
+ Document translation is a cloud-based feature of the [Azure Translator](../../overview.md) service. You can use the Document translation API to asynchronously translate whole documents in [supported languages](../../language-support.md) and various [file formats](../overview.md#supported-document-and-glossary-formats) while preserving source document structure and text formatting. In this how-to guide, you learn to use Document translation APIs with a programming language of your choice and the HTTP REST API.
 
 ## Prerequisites
 
@@ -133,7 +133,7 @@ The following headers are included with each Document translation API request:
 > If a file with the same name already exists in the destination, the job fails.
 
 <!-- markdownlint-disable MD024 -->
-### Translate all documents in a container
+## Translate all documents in a container
 
 ```json
 {
@@ -153,7 +153,7 @@ The following headers are included with each Document translation API request:
 }
 ```
 
-### Translate a specific document in a container
+## Translate a specific document in a container
 
 * Specify `"storageType": "File"`.
 * If you aren't using a [**system-assigned managed identity**](create-use-managed-identities.md) for authentication, make sure you created source URL & SAS tokens for the specific blob/document (not for the container).
@@ -183,15 +183,16 @@ The following headers are included with each Document translation API request:
 }
 ```
 
-### Translate text embedded within images in documents 🆕
+## Translate images in Word document files (.docx)
 
 > [!Note]
 >
+> * This feature requires API version 2024-11-01-preview
 > * This feature is optional and must be enabled for each translation request.
 > * Enabling this feature will incur additional costs based on usage. For more information, *see* [Azure Vision in Foundry Tools pricing](https://azure.microsoft.com/pricing/details/cognitive-services/computer-vision/)
 > * This feature is currently available only with the Batch Document translation API.
 > * The Supported file format is `.docx` only.
-> * A Foundry resource (not the standalone Translator resource) is required to use this feature.
+> * An Azure AI services multi-service resource (not the standalone Translator resource) is required to use this feature.
 
 ### Request configuration
 
@@ -253,7 +254,7 @@ The following headers are included with each Document translation API request:
     }
   ```
 
-### Translate documents using a custom glossary
+## Translate documents using a custom glossary
 
 ```json
 {

@@ -3,8 +3,8 @@ title: Set up AutoML with Python
 titleSuffix: Azure Machine Learning
 description: Learn how to set up an AutoML training run with the Azure Machine Learning Python SDK using Azure Machine Learning automated ML.
 author: CESARDELATORRE
-ms.author: cesardl
-ms.reviewer: nibaccam
+ms.author: scottpolly
+ms.reviewer: sooryar
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: automl

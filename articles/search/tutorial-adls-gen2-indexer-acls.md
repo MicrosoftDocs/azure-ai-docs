@@ -7,7 +7,7 @@ ms.update-cycle: 180-days
 ms.topic: tutorial  
 ms.date: 08/27/2025
 author: wlifuture
-ms.author: wli
+ms.author: haileytapia
 ---  
 
 # Tutorial: Index permission metadata from ADLS Gen2 and query with permission-filtered results
@@ -79,7 +79,7 @@ As a best practice, use [`Group` sets](search-indexer-access-control-lists-and-r
 
 [Create an index](search-how-to-create-search-index.md#create-an-index) that contains fields for content and [permission metadata](search-indexer-access-control-lists-and-role-based-access.md#create-permission-fields-in-the-index).
 
-Be sure to use the [latest preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or a prerelease Azure SDK that provides equivalent functionality. The permission filter properties are only available in the preview APIs.
+Be sure to use the [latest preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or a preview Azure SDK package that provides equivalent functionality. The permission filter properties are only available in the preview APIs.
 
 For demo purposes, the permission field has `retrievable` enabled so that you can check the values from the index. In a production environment, you should disable `retrievable` to avoid leaking sensitive information.
 
@@ -204,4 +204,4 @@ Content-Type: application/json
 
 ## Related content
 
-+ [https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-ACL](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-ACL)
++ [https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/acl](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/acl)

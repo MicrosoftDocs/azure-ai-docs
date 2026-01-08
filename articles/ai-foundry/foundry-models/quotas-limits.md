@@ -9,13 +9,15 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.custom: ignite-2024, github-universe-2024
 ms.topic: concept-article
-ms.date: 09/14/2025
+ms.date: 12/04/2025
 ms.author: mopeakande
 ms.reviewer: haakar
 reviewer: haakar
 ---
 
 # Microsoft Foundry Models quotas and limits
+
+[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 This article provides a quick reference and detailed description of the quotas and limits for Microsoft Foundry Models. For quotas and limits specific to the Azure OpenAI in Foundry Models, see [Quota and limits in Azure OpenAI](../openai/quotas-limits.md).
 
@@ -44,7 +46,8 @@ The following table lists limits for Foundry Models for the following rates:
 | Azure OpenAI models                                                    | Varies per model and SKU. See [limits for Azure OpenAI](../openai/quotas-limits.md). | Varies per model and SKU. See [limits for Azure OpenAI](../openai/quotas-limits.md). | not applicable       |
 | - DeepSeek-R1<br />- DeepSeek-V3-0324                                      | 5,000,000                                           | 5,000                                                 | 300                  |
 | - Llama 3.3 70B Instruct<br />- Llama-4-Maverick-17B-128E-Instruct-FP8<br />- Grok 3<br />- Grok 3 mini | 400,000                                             | 1,000                                                 | 300                  |
-| - Flux-Pro 1.1<br />- Flux.1-Kontext Pro                                   | not applicable                                      | 2 capacity units (6 requests per minute)              | not applicable       |
+| - Flux.2-Pro                                  | not applicable                                      | - Low (Default): 15 <br> - Medium: 30 <br> - High (Enterprise): 100              | not applicable       |
+|- Flux-Pro 1.1 <br />- Flux.1-Kontext Pro                                  | not applicable                                      | 2 capacity units (6 requests per minute)              | not applicable       |
 | Rest of models                                                         | 400,000                                             | 1,000                                                 | 300                  |
 
 To increase your quota:
@@ -80,6 +83,26 @@ To minimize issues related to rate limits, use the following techniques:
 - Avoid sharp changes in the workload. Increase the workload gradually.
 - Test different load increase patterns.
 - Increase the quota assigned to your deployment. Move quota from another deployment, if necessary.
+
+## Setting client side timeout
+
+We recommend explicitly setting the client side timeout as follows.
+
+> [!NOTE]
+> If not explicitly set, the client side timeout exists as per the library used, and may not be the same limits as above.
+
+- Reasoning models: up to 29 minutes. 
+- Non-reasoning models: 
+    - For streaming, up to 60 seconds.
+    - For non-streaming requests, up to 29 minutes.
+    
+29 minutes here does not mean all requests will take 29 minutes but rather depending on context tokens, generated tokens, and cache hit rates, requests can take up to 29 minutes.
+
+You will need to set a timeout less than the above tuned to your traffic patterns.
+
+For reasoning models including streaming requests, all the reasoning tokens are first generated and then summarized before sending the first response token back to the user.
+
+You can modify the [reasoning effort](../openai/how-to/reasoning.md) parameter to control the number of reasoning tokens generated in the process.
 
 ## Next steps
 

@@ -13,7 +13,7 @@ ms.date: 3/20/2025
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - <a href="https://www.python.org/" target="_blank">Python 3.8 or later version</a>. We recommend using Python 3.10 or later, but having at least Python 3.8 is required. If you don't have a suitable version of Python installed, you can follow the instructions in the [VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter) for the easiest way of installing Python on your operating system.
 - An Azure OpenAI resource created in one of the supported regions. For more information about region availability, see the [models and versions documentation](../concepts/models.md#global-standard-model-availability).
-- Then, you need to deploy a `gpt-realtime` or `gpt-realtime-mini` model with your Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
+- Then, you need to deploy a `gpt-realtime`, `gpt-realtime-mini`, or `gpt-realtime-mini-2025-12-15` model with your Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 
 ## Microsoft Entra ID prerequisites
 
@@ -111,13 +111,13 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     
         # The endpoint of your Azure OpenAI resource is required. You can set it in the AZURE_OPENAI_ENDPOINT
         # environment variable.
-        # You can find it in the Azure AI Foundry portal in the Overview page of your Azure OpenAI resource.
+        # You can find it in the Microsoft Foundry portal in the Overview page of your Azure OpenAI resource.
         # Example: https://{your-resource}.openai.azure.com
         endpoint = os.environ["AZURE_OPENAI_ENDPOINT"]
     
         # The deployment name of the model you want to use is required. You can set it in the AZURE_OPENAI_DEPLOYMENT_NAME
         # environment variable.
-        # You can find it in the Azure AI Foundry portal in the "Models + endpoints" page of your Azure OpenAI resource.
+        # You can find it in the Foundry portal in the "Models + endpoints" page of your Azure OpenAI resource.
         # Example: gpt-realtime
         deployment_name = os.environ["AZURE_OPENAI_DEPLOYMENT_NAME"]
     
@@ -238,20 +238,20 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     
         # The endpoint of your Azure OpenAI resource is required. You can set it in the AZURE_OPENAI_ENDPOINT
         # environment variable.
-        # You can find it in the Azure AI Foundry portal in the Overview page of your Azure OpenAI resource.
+        # You can find it in the Foundry portal in the Overview page of your Azure OpenAI resource.
         # Example: https://{your-resource}.openai.azure.com
         endpoint = os.environ["AZURE_OPENAI_ENDPOINT"]
         base_url = endpoint.replace("https://", "wss://").rstrip("/") + "/openai/v1"
     
         # The deployment name of the model you want to use is required. You can set it in the AZURE_OPENAI_DEPLOYMENT_NAME
         # environment variable.
-        # You can find it in the Azure AI Foundry portal in the "Models + endpoints" page of your Azure OpenAI resource.
+        # You can find it in the Foundry portal in the "Models + endpoints" page of your Azure OpenAI resource.
         # Example: gpt-realtime
         deployment_name = os.environ["AZURE_OPENAI_DEPLOYMENT_NAME"]
         
         # API Key of your Azure OpenAI resource is required. You can set it in the AZURE_OPENAI_API_KEY
         # environment variable.
-        # You can find it in the Azure AI Foundry portal in the Overview page of your Azure OpenAI resource.
+        # You can find it in the Foundry portal in the Overview page of your Azure OpenAI resource.
         token=os.environ["AZURE_OPENAI_API_KEY"]
     
         # The APIs are compatible with the OpenAI client library.

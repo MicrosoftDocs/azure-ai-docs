@@ -6,8 +6,8 @@ manager: nitinme
 ms.service: azure-ai-services
 ms.topic: reference
 ms.date: 9/26/2025
-author: goergenj
-ms.author: jagoerge
+author: PatrickFarley
+ms.author: pafarley
 ---
 
 # Voice live API Reference
@@ -2141,7 +2141,7 @@ Configuration for input audio transcription.
 
 | Field | Type | Description |
 |-------|------|-------------|
-| model | string | The transcription model. Supported: `whisper-1`, `gpt-4o-transcribe`, `gpt-4o-mini-transcribe`, `gpt-4o-transcribe-diarize`, `azure-speech` |
+| model | string | The transcription model.<br>Supported with `gpt-realtime` and `gpt-realtime-mini`:<br>`whisper-1`, `gpt-4o-transcribe`, `gpt-4o-mini-transcribe`, `gpt-4o-transcribe-diarize`.<br>Supported with **all other models** and **agents**: `azure-speech` |
 | language | string | Optional language code in BCP-47 (e.g., `en-US`), or ISO-639-1 (e.g., `en`), or multi languages with auto detection, (e.g., `en,zh`). |
 | custom_speech | object | Optional configuration for custom speech models, only valid for `azure-speech` model. |
 | phrase_list | string[] | Optional list of phrase hints to bias recognition, only valid for `azure-speech` model. |
@@ -2202,6 +2202,23 @@ OpenAI voice configuration with explicit type field.
 
 Base for Azure voice configurations. This is a discriminated union with different types:
 
+##### RealtimeAzureStandardVoice
+
+Azure standard voice configuration.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | Must be `"azure-standard"` |
+| name | string | Voice name (cannot be empty) |
+| temperature | number | Optional. Temperature between 0.0 and 1.0 |
+| custom_lexicon_url | string | Optional. URL to custom lexicon |
+| prefer_locales | string[] | Optional. Preferred locales<br/> Prefer locales will change the accents of languages. If the value is not set, TTS will use default accent of each language. e.g. When TTS speaking English, it will use the American English accent. And when speaking Spanish, it will use the Mexican Spanish accent. <br/>If set the prefer_locales to `["en-GB", "es-ES"]`, the English accent will be British English and the Spanish accent will be European Spanish. And TTS also able to speak other languages like French, Chinese, etc. |
+| locale | string | Optional. Locale specification<br/> Enforce The locale for TTS output. If not set, TTS will always use the given locale to speak. e.g. set locale to `en-US`, TTS will always use American English accent to speak the text content, even the text content is in another language. And TTS will output silence if the text content is in Chinese. |
+| style | string | Optional. Voice style |
+| pitch | string | Optional. Pitch adjustment |
+| rate | string | Optional. Speech rate adjustment |
+| volume | string | Optional. Volume adjustment |
+
 ##### RealtimeAzureCustomVoice
 
 Azure custom voice configuration (preferred for custom voices).
@@ -2232,23 +2249,6 @@ Example:
 }
 ```
 
-##### RealtimeAzureStandardVoice
-
-Azure standard voice configuration.
-
-| Field | Type | Description |
-|-------|------|-------------|
-| type | string | Must be `"azure-standard"` |
-| name | string | Voice name (cannot be empty) |
-| temperature | number | Optional. Temperature between 0.0 and 1.0 |
-| custom_lexicon_url | string | Optional. URL to custom lexicon |
-| prefer_locales | string[] | Optional. Preferred locales |
-| locale | string | Optional. Locale specification |
-| style | string | Optional. Voice style |
-| pitch | string | Optional. Pitch adjustment |
-| rate | string | Optional. Speech rate adjustment |
-| volume | string | Optional. Volume adjustment |
-
 ##### RealtimeAzurePersonalVoice
 
 Azure personal voice configuration.
@@ -2259,6 +2259,13 @@ Azure personal voice configuration.
 | name | string | Voice name (cannot be empty) |
 | temperature | number | Optional. Temperature between 0.0 and 1.0 |
 | model | string | Underlying neural model: `DragonLatestNeural`, `PhoenixLatestNeural`, `PhoenixV2Neural` |
+| custom_lexicon_url | string | Optional. URL to custom lexicon |
+| prefer_locales | string[] | Optional. Preferred locales<br/> Prefer locales will change the accents of languages. If the value is not set, TTS will use default accent of each language. e.g. When TTS speaking English, it will use the American English accent. And when speaking Spanish, it will use the Mexican Spanish accent. <br/>If set the prefer_locales to `["en-GB", "es-ES"]`, the English accent will be British English and the Spanish accent will be European Spanish. And TTS also able to speak other languages like French, Chinese, etc. |
+| locale | string | Optional. Locale specification<br/> Enforce The locale for TTS output. If not set, TTS will always use the given locale to speak. e.g. set locale to `en-US`, TTS will always use American English accent to speak the text content, even the text content is in another language. And TTS will output silence if the text content is in Chinese. |
+| pitch | string | Optional. Pitch adjustment |
+| rate | string | Optional. Speech rate adjustment |
+| volume | string | Optional. Volume adjustment |
+
 
 ### Turn Detection
 

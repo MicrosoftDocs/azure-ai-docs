@@ -7,7 +7,7 @@ ms.author: ssalgado
 manager: nitinme
 reviewer: santiagxf
 ms.reviewer: fasantia
-ms.date: 07/29/2025
+ms.date: 12/09/2025
 ms.service: azure-ai-foundry
 ms.topic: concept-article
 ms.custom:

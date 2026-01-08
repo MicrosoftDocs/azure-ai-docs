@@ -7,7 +7,7 @@ ms.subservice: mldata
 ms.custom: build-2023, ignite-2023
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: qiax
+ms.reviewer: soumyapatro
 ms.topic: troubleshooting-general 
 ms.date: 11/13/2025
 ai-usage: ai-assisted

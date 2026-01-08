@@ -10,7 +10,7 @@ ms.topic: how-to
 ms.author: jburchel 
 author: jonburchel 
 ms.reviewer: andyaviles
-ms.date: 09/29/2025
+ms.date: 01/06/2026
 ai-usage: ai-assisted
 ---
 
@@ -22,13 +22,13 @@ ai-usage: ai-assisted
 
 ::: moniker range="foundry-classic"
 
-Plan ahead to maintain business continuity and prepare for disaster recovery with [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Because Foundry builds on the [Azure Machine Learning architecture](/azure/machine-learning/concept-workspace), review the foundational architecture.
+To maintain business continuity and prepare for disaster recovery with [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs), plan ahead. Because Foundry builds on the [Azure Machine Learning architecture](/azure/machine-learning/concept-workspace), review the foundational architecture.
 
 ::: moniker-end
 
 ::: moniker range="foundry"
 
-Plan ahead to maintain business continuity and prepare for disaster recovery with [!INCLUDE [foundry-link](../default/includes/foundry-link.md)]. Because Foundry builds on the [Azure Machine Learning architecture](/azure/machine-learning/concept-workspace), review the foundational architecture.
+To maintain business continuity and prepare for disaster recovery with [!INCLUDE [foundry-link](../default/includes/foundry-link.md)], plan ahead. Because Foundry builds on the [Azure Machine Learning architecture](/azure/machine-learning/concept-workspace), review the foundational architecture.
 
 ::: moniker-end
 
@@ -47,13 +47,13 @@ Microsoft strives to ensure that Azure services are always available. However, u
 
 ## Understand Azure services for Foundry
 
-Foundry depends on multiple Azure services. Some of these services are set up in your subscription. You're responsible for the high availability configuration of these services. Microsoft manages some services that are created in a Microsoft subscription. 
+Foundry depends on multiple Azure services. You set up some of these services in your subscription, and you're responsible for their high availability configuration. Microsoft manages some services that are created in a Microsoft subscription. 
 
 Azure services include:
 
 * **Foundry infrastructure**: A Microsoft managed environment for the Foundry hub and project. Azure Machine Learning provides the [underlying architecture](../concepts/architecture.md).
 
-* **Required associated resources**: Resources set up in your subscription when you create a Foundry hub or project. These resources include Azure Storage and Azure Key Vault.
+* **Required associated resources**: Resources you set up in your subscription when you create a Foundry hub or project. These resources include Azure Storage and Azure Key Vault.
   * The default storage has models, training logs, and references to data assets.
   * Azure Key Vault stores credentials for Azure Storage and connections.
 
@@ -141,9 +141,9 @@ For more information, see [Availability zone service support](/azure/reliability
 
 Decide the level of business continuity you need. The level can differ between components of your solution. For example, you might use a hot/hot configuration for production pipelines or model deployments, and hot/cold for development.
 
-Foundry is a regional service and stores data both on the service side and in a storage account in your subscription. If a regional disaster occurs, service data can't be recovered. However, you can recover data that the service stores in the storage account in your subscription if storage redundancy is enabled. Service-side data is mostly metadata (tags, asset names, descriptions). Data in your storage account is typically not metadata, like uploaded data.
+Foundry is a regional service and stores data both on the service side and in a storage account in your subscription. If a regional disaster occurs, you can't recover service data. However, you can recover data that the service stores in the storage account in your subscription if storage redundancy is enabled. Service-side data is mostly metadata (tags, asset names, descriptions). Data in your storage account is typically not metadata, like uploaded data.
 
-For connections, create two separate resources in two distinct regions, and then create two connections for the hub. For example, if AI Services is critical for business continuity, create two AI Services resources and two hub connections. With this configuration, if one region goes down, the other region stays operational.
+For connections, create two separate resources in two distinct regions, and then create two connections for the hub. For example, if Foundry Tools is critical for business continuity, create two AI Services resources and two hub connections. With this configuration, if one region goes down, the other region stays operational.
 
 For any hubs that are essential to business continuity, deploy resources in two regions.
 
@@ -172,7 +172,7 @@ Foundry can't sync or recover artifacts or metadata between hubs. Depending on y
 
 ### Resource deletion
 
-If you delete a hub and its resources, some resources support soft delete and can be recovered. Hubs and projects don't support soft delete—if you delete them, you can't recover them. The following table shows which services support soft delete.
+If you delete a hub and its resources, some resources support soft delete and can be recovered. Hubs and projects don't support soft delete. If you delete them, you can't recover them. The following table shows which services support soft delete.
 
 | Service | Soft delete enabled |
 | ------- | ------------------- |
@@ -184,14 +184,14 @@ If you delete a hub and its resources, some resources support soft delete and ca
 
 ## Troubleshoot failover
 
-If you encounter issues during failover, check the following configurations:
+If you encounter problems during failover, check the following configurations:
 
-* **Role-based access control (RBAC)**: Ensure that users have the correct permissions in the secondary region. Role assignments are not automatically replicated.
+* **Role-based access control (RBAC)**: Ensure that users have the correct permissions in the secondary region. Role assignments don't automatically replicate.
 * **Networking**: Verify that the secondary region has the necessary network resources, such as virtual networks, private endpoints, and DNS configurations.
 * **Quota**: Check that the secondary region has sufficient quota for the compute resources you need to create.
 * **Storage**: Ensure that the storage account in the secondary region is accessible and has the necessary data.
 
 ## Related content
 
-* See [Create a secure hub](create-secure-ai-hub.md) to learn about secure infrastructure deployments in Foundry.
+* To learn about secure infrastructure deployments in Foundry, see [Create a secure hub](create-secure-ai-hub.md).
 * Review the [Azure service-level agreements](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services?lang=1).

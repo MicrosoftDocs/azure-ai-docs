@@ -5,7 +5,7 @@ description: Learn about agentic retrieval concepts, architecture, and use cases
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 11/03/2025
+ms.date: 12/04/2025
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.custom:
@@ -98,16 +98,14 @@ Your application drives the pipeline by calling the knowledge base and handling 
 
 ## How to get started
 
-To create an agentic retrieval solution, you must use a preview REST API version or a prerelease Azure SDK package that provides the functionality.
+To create an agentic retrieval solution, you can use the Azure portal, the latest preview REST APIs, or a preview Azure SDK package that provides the functionality.
 
-Currently, Azure portal support for agentic retrieval is limited to the 2025-08-01-preview. We recommend using a programmatic approach to access the latest features.
+Currently, the portal only supports creating search index and blob knowledge sources. Other types of knowledge sources must be created programmatically.
 
 ### [**Quickstarts**](#tab/quickstarts)
 
-+ [Quickstart: Use agentic retrieval in Azure AI Search](search-get-started-agentic-retrieval.md)
-  + This quickstart supports C#, Java, JavaScript, Python, TypeScript, and REST.
 + [Quickstart: Use agentic retrieval in the Azure portal](get-started-portal-agentic-retrieval.md)
-  + The portal uses the 2025-08-01-preview, which uses the previous "knowledge agent" terminology and doesn't support all 2025-11-01-preview features. Breaking changes apply to objects created in this quickstart.
++ [Quickstart: Use agentic retrieval in Azure AI Search](search-get-started-agentic-retrieval.md) (C#, Java, JavaScript, Python, TypeScript, REST)
 
 ### [**How-to guides**](#tab/how-to-guides)
 
@@ -206,6 +204,16 @@ To estimate agentic retrieval token counts, start with an idea of what an averag
 1. Estimate the output costs based on an average of 350 tokens. If we multiply 350 by 2,000 agentic retrievals, we get 700,000 output tokens total for a total of 42 cents.
 
 Putting it all together, you'd pay about $3.30 for agentic retrieval in Azure AI Search, 60 cents for input tokens in Azure OpenAI, and 42 cents for output tokens in Azure OpenAI, for $1.02 for query planning total. The combined cost for the full execution is $4.32.
+
+#### Tips for controlling costs
+
++ Review the activity log in the response to find out what queries were issued to which sources and the parameters used. You can reissue those queries against your indexes and use a public tokenizer to estimate tokens and compare to API-reported usage. Precise reconstruction of a query or response isn't guaranteed however. Factors include the type of knowledge source, such as public web data or a remote SharePoint knowledge source that's predicated on a user identity, which can affect query reproduction.
+
++ Reduce the number of knowledge sources (indexes); consolidating content can lower fan-out and token volume. 
+
++ Lower the reasoning effort to reduce LLM usage during query planning and query expansion (iterative search). 
+
++ Organize content so the most relevant information can be found with fewer sources and documents (For example, curated summaries or tables).
 
 <!-- 
 •Query Pipeline Recap: The query pipeline includes stages: Query Preprocessing (Query Rewriting, Vectorization, Text analysis), Ranking (Vector Search, Keyword Search, Fusion, Semantic Ranking), and Synthesis (Results for LLM, Extractive Answers, Contextualized Captions).

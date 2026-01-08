@@ -1,7 +1,7 @@
 ---
 title: Trigger a Microsoft Foundry Agent Using Logic Apps
 description: Use this article to learn how to trigger an AI agent when an event occurs. 
-ms.date: 11/20/2025
+ms.date: 01/06/2026
 ms.topic: how-to
 author: aahill
 ms.author: aahi
@@ -160,4 +160,4 @@ To get a response, you need a custom function to retrieve the exact response bod
 
     :::image type="content" source="../media\triggers\get-response.png" alt-text="Screenshot that shows the Compose connector." lightbox="../media\triggers\get-response.png":::
 
-1. Add other connectors if necessary. To check the status of your runs, select **Run** > **Run history**.
+1. Add other connectors if necessary. To check the status of your runs, select **Run** > **Run history**. You can also view the details of your runs and threads in the [Foundry portal](../../how-to/develop/trace-agents-sdk.md#view-traces-in-the-foundry-portal).

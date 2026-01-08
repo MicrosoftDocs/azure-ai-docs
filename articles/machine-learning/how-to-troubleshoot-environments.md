@@ -7,7 +7,7 @@ ms.service: azure-machine-learning
 ms.subservice: mlops
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: ericadebarge
+ms.reviewer: jturuk
 ms.date: 06/13/2025
 ms.topic: troubleshooting
 ms.custom: devx-track-python
@@ -66,7 +66,7 @@ Multiple environments with the same definition might result in the same cached i
 
 Running a training script remotely requires the creation of a Docker image.
 
-## Vulnerabilities in AzureML Environments
+## Vulnerabilities in Azure Machine Learning Environments
 
 You can address vulnerabilities by upgrading to a newer version of a dependency (base image, Python package, etc.) or by migrating to a different dependency that satisfies security
 requirements. Mitigating vulnerabilities is time consuming and costly since it can require refactoring of code and infrastructure. With the prevalence

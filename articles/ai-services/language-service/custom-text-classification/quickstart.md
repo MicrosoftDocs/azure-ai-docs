@@ -7,12 +7,11 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 12/05/2025
+ms.date: 12/15/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-classification, mode-other
-zone_pivot_groups: usage-custom-language-features
 ---
-# Quickstart: Custom text classification
+# Quickstart: Custom text classification REST API
 
 Use this article to get started with creating a custom text classification project where you can train custom models for text classification. A model is AI software trained to do a certain task. For this system, the models classify text, and are trained by learning from tagged data.
 
@@ -24,17 +23,7 @@ Custom text classification supports two types of projects:
 In this quickstart, you can use the sample datasets provided to build a multi label classification to classify movie scripts into one or more categories. Alternatively, you can use single label classification dataset to classify abstracts of scientific papers into one of the defined domains.
 
 
-::: zone pivot="language-studio"
-
-[!INCLUDE [Language Studio quickstart](includes/quickstarts/language-studio.md)]
-
-::: zone-end
-
-::: zone pivot="rest-api"
-
 [!INCLUDE [REST API quickstart](includes/quickstarts/rest-api.md)]
-
-::: zone-end
 
 ## Next steps
 

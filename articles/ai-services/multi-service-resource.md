@@ -33,6 +33,9 @@ A Foundry resource can organize the work for multiple use cases, and is [typical
 
 :::image type="content" source="../ai-foundry/media/how-to/projects/projects-multi-setup.png" alt-text="Diagram showing Foundry resource containing multiple projects, each with deployments and connections.":::
 
+> [!NOTE]
+> Only the default project is available in the Foundry (new) portal. Use the Foundry (classic) portal to interact with all other projects on a Foundry resource.
+
 Looking to configure Foundry with advanced security settings? See [advanced Foundry creation options](../ai-foundry/how-to/create-resource-template.md)
 
 ## Create your first resource
@@ -109,7 +112,7 @@ Built-in Azure RBAC developer roles for Foundry include:
 
 For larger enterprises with strict role based access requirements, we recommend utilizing the Azure AI User role the least  privilege developer permissions. For smaller enterprises wanting their developers to self-serve within their organization, we recommend utilizing the Azure AI Owner role for developer permissions as well as resource creation permissions. 
 
-Only authorized users, typically the Azure subscription or resource group owner, can assign a role via either [Azure portal](link to Azure portal) or [Foundry portal via Admin](Link to Foundry portal). [Learn more about role-based access control](../ai-foundry/concepts/rbac-azure-ai-foundry.md).
+Only authorized users, typically the Azure subscription or resource group owner, can assign a role via either [Azure portal](link to Azure portal) or [Foundry portal via Admin](Link to Foundry portal). [Learn more about role-based access control](../ai-foundry/concepts/rbac-foundry.md).
 
 > [!IMPORTANT]
 > Azure Owner and Contributor roles do only include management permissions, and not development permissions. Development permissions are required to build with all capabilities in Foundry.
@@ -125,7 +128,7 @@ Explore some of the services that come bundled with your resource:
 | ![Foundry icon](~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.svg) [Foundry Agent Service](./agents/index.yml) | Combine the power of generative AI models with tools that allow agents to access and interact with real-world data sources. |
 | ![Foundry icon](~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.svg) [Azure Model Inference](../ai-foundry/model-inference/index.yml) | Performs model inference for flagship models in the Foundry model catalog. |
 | ![Azure OpenAI in Foundry Models icon](~/reusable-content/ce-skilling/azure/media/ai-services/azure-openai.svg) [Azure OpenAI](../ai-foundry/openai/index.yml) | Perform a wide variety of natural language tasks. | 
-| ![Content Safety icon](~/reusable-content/ce-skilling/azure/media/ai-services/content-safety.svg) [Content Safety](./content-safety/index.yml) | An AI service that detects unwanted contents. | 
+| ![Content Safety icon](~/reusable-content/ce-skilling/azure/media/ai-services/content-safety.svg) [Content Safety](./content-safety/index.yml) | A Foundry Tool that detects unwanted contents. | 
 | ![Document Intelligence icon](~/reusable-content/ce-skilling/azure/media/ai-services/document-intelligence.svg) [Document Intelligence](./document-intelligence/index.yml) | Turn documents into intelligent data-driven solutions. |
 | ![Language icon](~/reusable-content/ce-skilling/azure/media/ai-services/language.svg) [Language](./language-service/index.yml) | Build apps with industry-leading natural language understanding capabilities. |
 | ![Speech icon](~/reusable-content/ce-skilling/azure/media/ai-services/speech.svg) [Speech](./speech-service/index.yml) | Speech to text, text to speech, translation, and speaker recognition. |
@@ -135,5 +138,5 @@ Explore some of the services that come bundled with your resource:
 
 - [Create a project](../ai-foundry/how-to/create-projects.md) to organize your work.
 - [Connect tools](../ai-foundry/how-to/connections-add.md) to build more rich applications.
-- Learn about [access control in Foundry](../ai-foundry/concepts/rbac-azure-ai-foundry.md) to invite others to your working environment.
+- Learn about [access control in Foundry](../ai-foundry/concepts/rbac-foundry.md) to invite others to your working environment.
 - [Secure your resource using private networking](../ai-foundry/how-to/configure-private-link.md)

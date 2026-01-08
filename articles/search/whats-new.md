@@ -4,7 +4,7 @@ description: Announcements of new and enhanced features, including a service ren
 author: haileytap
 ms.author: haileytapia
 manager: nitinme
-ms.date: 11/18/2025
+ms.date: 12/18/2025
 ms.service: azure-ai-search
 ms.topic: overview
 ms.custom:
@@ -19,6 +19,12 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 
 > [!NOTE]
 > Preview features are announced here, but we also maintain a [preview features list](search-api-preview.md) so you can find them in one place.
+
+## December 2025
+
+| Item | Description |
+|--|--|
+| [2025-11-01-preview portal migration for agentic retrieval](get-started-portal-agentic-retrieval.md) | [Knowledge bases](agentic-retrieval-how-to-create-knowledge-base.md) and [knowledge sources](agentic-knowledge-source-overview.md) in the Azure portal have been updated to use the 2025-11-01-preview REST APIs instead of the 2025-08-01-preview. Portal-created knowledge bases now support the [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md), and query-time properties (maximum runtime and maximum output size) have been removed from the UI. The portal continues to support search index and blob knowledge sources only; other knowledge source types must be created programmatically.<p>If you previously created knowledge bases or knowledge sources in the portal, those objects still use the 2025-08-01-preview schema. For help with breaking changes, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md). |
 
 ## November 2025
 
@@ -57,7 +63,7 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 | [Scoring profiles for semantically ranked results](semantic-how-to-enable-scoring-profiles.md) | Generally available. |
 | [Truncate dimensions](vector-search-how-to-truncate-dimensions.md) | Generally available. |
 | [Unpack `@search.score` to view subscores in hybrid search results](hybrid-search-ranking.md#unpack-a-search-score-into-subscores) | Generally available. |
-| [Updates to import wizards (Phase 1)](search-import-data-portal.md) | The Azure portal is undergoing a three-phase rollout to unify the two import wizards. For Phase 1, the **Import and vectorize data** wizard has been renamed to **Import data (new)** and redeveloped to support keyword search, modernizing the legacy **Import data** workflow with an improved interface and user experience.<p>**Import data (new)** isn't a direct replacement for the old wizard. For example, it supports fewer skills for keyword search and doesn't offer built-in sample data.<p>Both wizards are currently available, but **Import data** will be deprecated in a future phase. |
+| [Updates to import wizards (Phase 1)](search-import-data-portal.md) | The Azure portal is undergoing a three-phase rollout to unify the two import wizards. For Phase 1, the **Import and vectorize data** wizard has been renamed to **Import data (new)** and redeveloped to support keyword search, modernizing the legacy **Import data** workflow with an improved interface and user experience.<p>**Import data (new)** isn't a direct replacement for the old wizard. For example, it supports fewer skills for keyword search.<p>Both wizards are currently available, but **Import data** will be deprecated in a future phase. |
 | [Support for Azure confidential computing](search-security-overview.md#data-in-use) | Configure [confidential computing](/azure/confidential-computing/use-cases-scenarios) during service creation to process data in use on confidential VMs. This compute type isn't intended for general use, but rather for stringent regulatory, compliance, or security requirements.<p>Confidential computing adds a 10% surcharge to the base cost of billable tiers. For more information, see the [pricing page](https://azure.microsoft.com/pricing/details/search/).<p>Now generally available through the 2025-05-01 version of [Services - Create or Update (REST API)](/rest/api/searchmanagement/services/create-or-update?view=rest-searchservice-2025-05-01&preserve-view=true) and the [Azure portal](search-create-service-portal.md#choose-a-compute-type). |
 
 ## August 2025

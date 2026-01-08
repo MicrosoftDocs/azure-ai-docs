@@ -27,8 +27,10 @@ Use model router through the Chat Completions API like you'd use a single base m
 
 ::: moniker range="foundry-classic"
 > [!TIP]
-> The [Microsoft Foundry (new)](../../what-is-azure-ai-foundry.md#microsoft-foundry-portals) portal offers enhanced configuration options for model router. [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) to see the latest features.
+> The [Microsoft Foundry (new)](../../what-is-foundry.md#microsoft-foundry-portals) portal offers enhanced configuration options for model router. [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) to see the latest features.
 ::: moniker-end
+
+[!INCLUDE [model-router-supported](../includes/model-router-supported.md)]
 
 ## Deploy a model router model
 
@@ -49,7 +51,7 @@ In the model catalog, find `model-router` in the **Models** list and select it. 
 > Your deployment settings apply to all underlying chat models that model router uses.
 > - Don't deploy the underlying chat models separately. Model router works independently of your other deployed models.
 > - Select a content filter when you deploy the model router model or apply a filter later. The content filter applies to all content passed to and from the model router; don't set content filters for each underlying chat model.
-> - Your tokens-per-minute rate limit setting applies to all activity to and from the model router; don't set rate limits for each underlying chat model.## Use model router in chats
+> - Your tokens-per-minute rate limit setting applies to all activity to and from the model router; don't set rate limits for each underlying chat model.
 
 ::: moniker range="foundry"
 
@@ -74,7 +76,7 @@ In the model router deployment pane, select **Route to a subset of models**. The
 :::image type="content" source="media/working-with-models/model-router-model-subset.png" alt-text="Screenshot of model router subset selection.":::
 
 > [!IMPORTANT]
-> To include models by Anthropic (Claude) in your model router deployment, you need to deploy them yourself to your Foundry resource. See [Deploy and use Claude models](/azure/ai-foundry/foundry-models/how-to/use-foundry-models-claude?view=foundry&tabs=python).
+> To include models by Anthropic (Claude) in your model router deployment, you need to deploy them yourself to your Foundry resource. See [Deploy and use Claude models](/azure/ai-foundry/foundry-models/how-to/use-foundry-models-claude?view=foundry&preserve-view=true).
 
 New models introduced later are excluded by default until explicitly added.
 

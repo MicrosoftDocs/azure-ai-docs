@@ -3,9 +3,9 @@ title: "Best practices for using tools in foundry agent service"
 description: "Best practices for using tools in foundry agent service"
 author: aahill
 ms.author: aahi
-ms.date: 11/12/2025
+ms.date: 12/18/2025
 ms.manager: nitinme
-ms.topic: conceptual
+ms.topic: concept-article
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ai-usage: ai-assisted
@@ -25,7 +25,7 @@ Tools are available in the following [regions](../../../openai/how-to/responses.
 | Region Name        | Agent2Agent | Azure AI Search | Browser Automation | Code Interpreter | Computer Use | Fabric Data Agent | File Search | Function | Grounding with Bing Custom Search | Grounding with Bing Search | Image Generation | MCP | OpenAPI | SharePoint | Web Search |
 |---------------------|-----|-----------------|---------------------|-------------------|--------------|--------------------|-------------|----------|------------------------------------|-----------------------------|-------------------|-----|---------|------------|------------|
 | australiaeast       | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
-| brazilsouth         | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
+| brazilsouth         | yes | yes             | yes                 | yes               | no           | yes                | yes         | no      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | canadaeast          | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | eastus              | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | eastus2             | yes | yes             | yes                 | yes               | yes          | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
@@ -34,11 +34,11 @@ Tools are available in the following [regions](../../../openai/how-to/responses.
 | italynorth          | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | japaneast           | yes | yes             | yes                 | no                | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | koreacentral        | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
-| northcentralus      | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
+| northcentralus      | yes | yes             | yes                 | yes               | no           | yes                | yes         | no      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | norwayeast          | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | polandcentral       | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | southafricanorth    | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
-| southcentralus      | yes | yes             | yes                 | no                | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
+| southcentralus      | yes | yes             | yes                 | no                | no           | yes                | yes         | no      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | southeastasia       | yes | yes             | yes                 | no                | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | southindia          | yes | yes             | yes                 | yes               | yes          | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | spaincentral        | yes | yes             | yes                 | no                | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
@@ -46,7 +46,7 @@ Tools are available in the following [regions](../../../openai/how-to/responses.
 | switzerlandnorth    | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | uaenorth            | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | uksouth             | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
-| westus              | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
+| westus              | yes | yes             | yes                 | yes               | no           | yes                | yes         | no      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | westus3             | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 
 Tools are supported by the following models. 

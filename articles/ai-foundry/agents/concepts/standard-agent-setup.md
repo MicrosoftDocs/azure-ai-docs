@@ -8,12 +8,14 @@ ms.author: fosteramanda
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: conceptual
-ms.date: 05/05/2025
+ms.date: 12/19/2025
 ms.custom: azure-ai-agents
 monikerRange: 'foundry-classic || foundry'
 ---
 
 # Built-in enterprise readiness with standard agent setup 
+
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 Standard Agent Setup offers enterprise-grade security, compliance, and control. This configuration uses customer-managed, single-tenant resources to store agent state and ensures all data remains within your control.  
 
@@ -22,9 +24,9 @@ In this setup:
 
 ## Leveraging your own resources for storing customer data
 Both standard setup configurations are designed to give you complete control over sensitive data by requiring the use of your own Azure resources. The required Bring Your Own (BYO) resources include:   
-* BYO File Storage: All files uploaded by developers (during agent configuration) or end-users (during interactions) are stored directly in the customer’s Azure Storage account.   
-* BYO Search: All vector stores created by the agent leverage the customer’s Azure AI Search resource.   
-* BYO Thread Storage: All customer messages and conversation history will be stored in the customer’s own Azure Cosmos DB account.  
+* **BYO File Storage**: All files uploaded by developers (during agent configuration) or end-users (during interactions) are stored directly in the customer’s Azure Storage account.   
+* **BYO Search**: All vector stores created by the agent leverage the customer’s Azure AI Search resource.   
+* **BYO Thread Storage**: All customer messages and conversation history will be stored in the customer’s own Azure Cosmos DB account.  
 
 By bundling these BYO features (file storage, search, and thread storage), the standard setup guarantees that your deployment is secure by default. All data processed by Foundry Agent Service is automatically stored at rest in your own Azure resources, helping you meet internal policies, compliance requirements, and enterprise security standards. 
 
@@ -41,7 +43,7 @@ When you use standard setup, **three containers** will be provisioned in your ex
 Standard setup enforces project-level data isolation by default. Two blob storage containers will automatically be provisioned in your storage account, one for files and one for intermediate system data (chunks, embeddings) and three containers will be provisioned in your Cosmos DB, one for user systems, one for system messages, and one for user inputs related to created agents such as their instructions, tools, name, etc. This default behavior was chosen to reduce setup complexity while still enforcing strict data boundaries between projects.
 
 ## Capability hosts
-**Capability hosts** are sub-resources on both the Account and Project, enabling interaction with the Agent Service. 
+**[Capability hosts](./capability-hosts.md)** are sub-resources on both the Account and Project, enabling interaction with the Agent Service. 
 - **Account Capability Host**: The account capability host has an empty request body except for the parameter capabilityHostKind="Agents". 
 - **Project Capability Host**: Specifies resources for storing agent state, either managed multitenant (basic setup) or customer-owned (standard setup), single-tenant resource. Think of project capability host as the project settings.
 
@@ -89,11 +91,11 @@ Standard setup enforces project-level data isolation by default. Two blob storag
 
 ### Use Bicep template
 
-Use an existing Azure OpenAI, Azure Storage account, Azure Cosmos DB for NoSQL account and/or Azure AI Search resource by providing the full ARM resource ID in the [standard agent template file](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/infrastructure-setup/43-standard-agent-setup-with-customization/main.bicep).
+Use an existing Azure OpenAI, Azure Storage account, Azure Cosmos DB for NoSQL account and/or Azure AI Search resource by providing the full ARM resource ID in the [standard agent template file](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/43-standard-agent-setup-with-customization/main.bicep).
 
 #### Use an existing Azure OpenAI resource
 
-1. Follow the steps in basic agent setup to get the AI Services account resource ID.
+1. Follow the steps in basic agent setup to get the Foundry Tools account resource ID.
 2. In the standard agent template file, replace the following placeholders:
     
     ```console

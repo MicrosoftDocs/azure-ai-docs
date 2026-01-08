@@ -9,7 +9,7 @@ ms.topic: how-to
 author: s-polly
 ms.author: scottpolly
 ms.date: 10/10/2022
-ms.reviewer: fasantia
+ms.reviewer: jturuk
 ms.custom: devplatv2, update-code
 ---
 

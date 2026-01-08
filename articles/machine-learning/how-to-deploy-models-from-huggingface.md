@@ -7,7 +7,7 @@ ms.service: azure-machine-learning
 ms.subservice: training
 ms.custom: devx-track-python, update-code
 ms.topic: how-to
-ms.reviewer: None
+ms.reviewer: sooryar
 author: s-polly
 ms.author: scottpolly
 ms.date: 07/17/2025

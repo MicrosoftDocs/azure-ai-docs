@@ -8,7 +8,7 @@ ms.subservice: inferencing
 ms.date: 03/10/2025
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: sehan
+ms.reviewer: jturuk
 ms.topic: troubleshooting
 ms.custom: UpdateFrequency5, deploy, cliv1, sdkv1
 #Customer intent: As a data scientist, I want to figure out why my model deployment fails so that I can fix it.

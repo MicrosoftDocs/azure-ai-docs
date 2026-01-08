@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 5/19/2025
+ms.date: 12/19/2025
 ms.author: pafarley
 #Customer intent: As a developer, I need to understand the types of training and testing data that I can use for a custom speech project, along with how to use and manage that data.
 ---
@@ -315,7 +315,7 @@ fakeprofanity
 Mask the fakeprofanity word	Mask the ************* word
 ```
 
-## Next steps
+## Related content
 
 - [Upload your data](how-to-custom-speech-upload-data.md)
 - [Test model quantitatively](how-to-custom-speech-evaluate-data.md)

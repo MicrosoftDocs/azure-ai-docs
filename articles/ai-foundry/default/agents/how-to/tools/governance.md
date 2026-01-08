@@ -15,7 +15,7 @@ ms.custom: azure-ai-agents
 
 # Tools governance with AI Gateway (preview)
 
-AI Gateway in Microsoft Foundry provides a single, governed entry point for tools added to Azure AI Foundry projects. After a gateway is connected, all new MCP tools route through a secure gateway endpoint where authentication, policies, and usage limits are consistently enforced.
+AI Gateway in Microsoft Foundry provides a single, governed entry point for tools added to Microsoft Foundry projects. After a gateway is connected, all new MCP tools route through a secure gateway endpoint where authentication, policies, and usage limits are consistently enforced.
 
 > [!NOTE]
 > Only new MCP tools created in the Microsoft Foundry portal that don't use managed OAuth are routed through AI Gateway.

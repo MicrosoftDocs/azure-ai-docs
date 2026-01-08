@@ -363,7 +363,7 @@ After the function finishes running, you can verify that all of the documents we
 
 After the program finishes running, you can explore the populated search index either programmatically or using the [Search explorer](search-explorer.md) in the Azure portal.
 
-### Programatically
+### Programmatically
 
 There are two main options for checking the number of documents in an index: the [Count Documents API](/rest/api/searchservice/documents/count) and the [Get Index Statistics API](/rest/api/searchservice/indexes/get-statistics). Both paths require time to process, so don't be alarmed if the number of documents returned is initially lower than you expect.
 

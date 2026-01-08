@@ -195,8 +195,6 @@ To grant the required permissions in the Azure portal, follow these steps:
 
 1. For user-assigned identity, grant permissions to the hub container registry and storage account. You can find the container registry and storage account on the hub overview page in the Azure portal.
 
-    :::image type="content" source="../media/prompt-flow/how-to-deploy-for-real-time-inference/storage-container-registry.png" alt-text="Screenshot that shows the overview page with the storage and container registry." lightbox = "../media/prompt-flow/how-to-deploy-for-real-time-inference/storage-container-registry.png":::
-
     Go to the hub container registry overview page and select **Access control** > **Add role assignment**. Assign **ACR Pull** to the endpoint identity.
 
     Go to the hub default storage overview page and select **Access control** > **Add role assignment**. Assign **Storage Blob Data Reader** to the endpoint identity.
@@ -242,6 +240,6 @@ If you aren't going to use the endpoint after you finish this tutorial, delete t
 
 ## Related content
 
-- Learn more about what you can do in [Foundry](../what-is-azure-ai-foundry.md).
+- Learn more about what you can do in [Foundry](../what-is-foundry.md).
 - Get answers to frequently asked questions in the [Foundry FAQ](../faq.yml).
 - [Enable trace and collect feedback for your deployment](./develop/trace-production-sdk.md).

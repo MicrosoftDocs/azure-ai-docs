@@ -7,7 +7,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: tutorial
-ms.date: 11/18/2025
+ms.date: 12/15/2025
 ms.author: lajanuar
 ---
 # Tutorial: Triage incoming emails with Power Automate

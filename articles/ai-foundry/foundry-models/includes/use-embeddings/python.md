@@ -2,7 +2,7 @@
 title: How to generate embeddings with Microsoft Foundry Models
 titleSuffix: Microsoft Foundry
 description: Learn how to generate embeddings with Microsoft Foundry Models
-author: mopeakande
+author: msakande
 reviewer: santiagxf
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference

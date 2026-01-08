@@ -5,10 +5,10 @@ description: Learn how to use Azure OpenAI's new stateful Responses API.
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 10/10/2025
+ms.date: 12/09/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: include
+ms.topic: how-to
 ms.custom:
   - references_regions
   - build-2025
@@ -57,6 +57,9 @@ The responses API is currently available in the following regions:
 
 ### Model support
 
+- `gpt-5.2` (Version: `2025-12-11`)
+- `gpt-5.2-chat` (Version: `2025-12-11`)
+- `gpt-5.1-codex-max` (Version: `2025-12-04`)
 - `gpt-5.1` (Version: `2025-11-13`)
 - `gpt-5.1-chat` (Version: `2025-11-13`)
 - `gpt-5.1-codex` (Version: `2025-11-13`)
@@ -77,6 +80,7 @@ The responses API is currently available in the following regions:
 - `gpt-4.1-mini` (Version: `2025-04-14`)
 - `gpt-image-1` (Version: `2025-04-15`)
 - `gpt-image-1-mini` (Version: `2025-10-06`)
+- `gpt-image-1.5` (Version: `2025-12-16`)
 - `o1` (Version: `2024-12-17`)
 - `o3-mini` (Version: `2025-01-31`)
 - `o3` (Version: `2025-04-16`)
@@ -86,9 +90,9 @@ Not every model is available in the regions supported by the responses API. Chec
 
 > [!NOTE]
 > Not currently supported:
-> - The web search tool
-> - Image generation using multi-turn editing and streaming - coming soon
-> - Images can't be uploaded as a file and then referenced as input. Coming soon.
+> - Compaction with `/responses/compact` 
+> - Image generation using multi-turn editing and streaming.
+> - Images can't be uploaded as a file and then referenced as input.
 >
 > There's a known issue with the following:
 > - PDF as an input file [is now supported](#file-input), but setting file upload purpose to `user_data` is not currently supported.
@@ -704,6 +708,7 @@ print(response.model_dump_json(indent=2))
 ```
 
 ## Image input
+For vision-enabled models, images in PNG (.png), JPEG (.jpeg and .jpg), WEBP (.webp) are supported.
 
 ### Image url
 
@@ -1308,7 +1313,7 @@ token_provider = get_bearer_token_provider(
 client = OpenAI(  
   base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
   api_key=token_provider,
-  default_headers={"x-ms-oai-image-generation-deployment":"gpt-image-1", "api_version":"preview"}
+  default_headers={"x-ms-oai-image-generation-deployment":"gpt-image-1.5", "api_version":"preview"}
 )
 
 response = client.responses.create(
@@ -1336,4 +1341,4 @@ For examples of how to use reasoning models with the responses API see the [reas
 
 ## Computer use
 
-Computer use with Playwright has moved to the [dedicated computer use model guide](./computer-use.md#playwright-integration)
+Computer use with Playwright has moved to the [dedicated computer use model guide](computer-use.md#playwright-integration)

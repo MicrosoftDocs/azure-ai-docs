@@ -8,7 +8,7 @@ ms.custom:
   - ignite-2024
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 11/24/2025
+ms.date: 12/15/2025
 ms.reviewer: dantaylo
 ms.author: johalexander
 author: ms-johnalex
@@ -26,19 +26,19 @@ This article describes the SDKs and endpoints you can use with your Foundry reso
 The Microsoft Foundry SDK simplifies AI application development on Azure. It lets developers:
 
 - Access models from various providers through one interface
-- Combine models, data, and AI services to build AI-powered applications
+- Combine models, data, and Foundry Tools to build AI-powered applications
 - Evaluate, debug, and improve application quality and safety in development, testing, and production
 
 The Microsoft Foundry SDK integrates with other client libraries and services that work together. 
 
 ## Foundry SDK
 
-Developers working with Microsoft Foundry need flexibility to integrate multiple AI capabilities into unified workflows. These SDKs provide the building blocks for provisioning resources, orchestrating agents, and connecting to specialized AI services. By choosing the right library, you can streamline development, reduce complexity, and ensure your solutions scale across Foundry projects and external endpoints.
+Developers working with Microsoft Foundry need flexibility to integrate multiple AI capabilities into unified workflows. These SDKs provide the building blocks for provisioning resources, orchestrating agents, and connecting to specialized Foundry Tools. By choosing the right library, you can streamline development, reduce complexity, and ensure your solutions scale across Foundry projects and external endpoints.
 
 ::: moniker range="foundry-classic"
 
 > [!NOTE]
-> This article applies to a **[!INCLUDE [fdp](../../includes/fdp-project-name.md)]**. The code shown here doesn't work for a **[!INCLUDE [hub](../../includes/hub-project-name.md)]**. For more information, see [Types of projects](../../what-is-azure-ai-foundry.md#types-of-projects).
+> This article applies to a **[!INCLUDE [fdp](../../includes/fdp-project-name.md)]**. The code shown here doesn't work for a **[!INCLUDE [hub](../../includes/hub-project-name.md)]**. For more information, see [Types of projects](../../what-is-foundry.md#types-of-projects).
 
 ::: moniker-end
 
@@ -132,9 +132,17 @@ The [Azure AI Projects client library for JavaScript](/javascript/api/overview/a
 
 * Install dependencies (preview):
 
+
+    ::: moniker range="foundry-classic"
     ```bash
     npm install @azure/ai-projects @azure/identity
     ```
+    ::: moniker-end
+    ::: moniker range="foundry"
+    ```bash
+    npm install @azure/ai-projects@beta @azure/identity
+    ```
+    ::: moniker-end
 
 * Create a project client in code. **Copy** the Foundry project endpoint from the Overview page of the project and update the endpoint string value.
 
@@ -355,7 +363,7 @@ For more information on using the OpenAI SDK, see [Azure OpenAI supported progra
 
 ::: zone-end
 
-After you create a client, use it to access models, run evaluations, and connect to other AI services.
+After you create a client, use it to access models, run evaluations, and connect to other Foundry Tools.
 
 * Using the project endpoint, you can:
     - [Use Foundry Models](../../quickstarts/get-started-code.md), including Azure OpenAI
