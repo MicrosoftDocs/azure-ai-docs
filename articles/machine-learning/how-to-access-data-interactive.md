@@ -288,7 +288,7 @@ image_path, label
 
 Subfolders store these images, according to their labels:
 
-```text
+```
 /
 └── 📁images
     ├── 📁0
