@@ -9,9 +9,10 @@ ms.reviewer: fosteramanda
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 12/04/2025
+ms.date: 01/08/2026
 ms.custom: azure-ai-agents
 monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
 # Set up your environment
