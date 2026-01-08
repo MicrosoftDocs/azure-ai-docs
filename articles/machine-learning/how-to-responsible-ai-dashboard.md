@@ -162,13 +162,13 @@ Select **Feature list** to open **Feature List**. You can retrain the error tree
 
 :::image type="content" source="./media/how-to-responsible-ai-dashboard/error-analysis-feature-selection.png" alt-text="Screenshot of the dashboard side pane, which lists selectable features of an error analysis tree map." lightbox="./media/how-to-responsible-ai-dashboard/error-analysis-feature-selection.png":::
 
-1. **Search features**: Find specific features in the dataset.
-1. **Features**: Lists the name of the feature in the dataset.
-1. **Importances**: A guideline for how related the feature might be to the error. Calculated by using mutual information score between the feature and the error on the labels. Use this score to help you decide which features to choose in the error analysis.
-1. **Check mark**: Add or remove the feature from the tree map.
-1. **Maximum depth**: The maximum depth of the surrogate tree trained on errors.
-1. **Number of leaves**: The number of leaves of the surrogate tree trained on errors.
-1. **Minimum number of samples in one leaf**: The minimum amount of data required to create one leaf.
+- **Search features**: Find specific features in the dataset.
+- **Features**: Lists the name of the feature in the dataset.
+- **Importances**: A guideline for how related the feature might be to the error. Calculated by using mutual information score between the feature and the error on the labels. Use this score to help you decide which features to choose in the error analysis.
+- **Check mark**: Add or remove the feature from the tree map.
+- **Maximum depth**: The maximum depth of the surrogate tree trained on errors.
+- **Number of leaves**: The number of leaves of the surrogate tree trained on errors.
+- **Minimum number of samples in one leaf**: The minimum amount of data required to create one leaf.
 
 #### Error heat map
 
@@ -238,10 +238,10 @@ The **Chart view** shows aggregate and individual plots of data points. You can 
 
 :::image type="content" source="./media/how-to-responsible-ai-dashboard/data-analysis-table-view.png" alt-text="Screenshot of the dashboard, showing the data analysis." lightbox="./media/how-to-responsible-ai-dashboard/data-analysis-table-view.png":::
 
-1. **Select a dataset cohort to explore**: Specify which dataset cohort from your list of cohorts you want to view data statistics for.
-1. **X-axis**: Displays the type of value being plotted horizontally. Modify the values by selecting the button to open a side pane.
-1. **Y-axis**: Displays the type of value being plotted vertically. Modify the values by selecting the button to open a side pane.
-1. **Chart type**: Specifies the chart type. Choose between aggregate plots (bar charts) or individual data points (scatter plot).
+- **Select a dataset cohort to explore**: Specify which dataset cohort from your list of cohorts you want to view data statistics for.
+- **X-axis**: Displays the type of value being plotted horizontally. Modify the values by selecting the button to open a side pane.
+- **Y-axis**: Displays the type of value being plotted vertically. Modify the values by selecting the button to open a side pane.
+- **Chart type**: Specifies the chart type. Choose between aggregate plots (bar charts) or individual data points (scatter plot).
 
    By selecting the **Individual data points** option under **Chart type**, you can shift to a disaggregated view of the data with the availability of a color axis.
 
@@ -281,7 +281,7 @@ The following image illustrates how features influence the predictions that are 
 **Feature importance plot**: A bar plot of the importance of each feature for the model's prediction on the selected data points.
 
 1. **Top k features**: Specify the number of features to show importances for by using a slider.
-1. **Sort by**: Select the point of those points checked whose feature importances are displayed in descending order on the feature importance plot.
+1. **Sort by**: Select the point from the checked points whose feature importances are displayed in descending order on the feature importance plot.
 1. **View absolute values**: Toggle on to sort the bar plot by the absolute values. This setting allows you to see the most impactful features regardless of their positive or negative direction.
 1. **Bar plot**: Displays the importance of each feature in the dataset for the model prediction of the selected data points.
 
