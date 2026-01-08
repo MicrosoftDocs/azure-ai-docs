@@ -69,7 +69,7 @@ path_on_datastore = '<path>'
 uri = f'azureml://subscriptions/{subscription}/resourcegroups/{resource_group}/workspaces/{workspace}/datastores/{datastore_name}/paths/{path_on_datastore}'.
 ```
 
-These datastore URIs are a known implementation of the [Filesystem spec](https://filesystem-spec.readthedocs.io/en/latest/index.html) (fsspec): a unified Pythonic interface to local, remote, and embedded file systems and byte storage. First, use pip to install the `azureml-fsspec` package and its dependency `azureml-dataprep` package. You can then use the Azure Machine Learning datastore `fsspec` implementation.
+These datastore URIs are a known implementation of the [Filesystem spec](https://filesystem-spec.readthedocs.io/en/latest/index.html) (`fsspec`): a unified Pythonic interface to local, remote, and embedded file systems and byte storage. First, use pip to install the `azureml-fsspec` package and its dependency `azureml-dataprep` package. You can then use the Azure Machine Learning datastore `fsspec` implementation.
 
 The Azure Machine Learning datastore `fsspec` implementation automatically handles the credential/identity passthrough that the Azure Machine Learning datastore uses. You can avoid both account key exposure in your scripts and extra sign-in procedures on a compute instance.
 
@@ -78,7 +78,7 @@ For example, you can directly use datastore URIs in Pandas. This example shows h
 ```python
 import pandas as pd
 
-df = pd.read_csv("azureml://subscriptions/<subid>/resourcegroups/<rgname>/workspaces/<workspace_name>/datastores/<datastore_name>/paths/<folder>/<filename>.csv")
+df = pd.read_csv("azureml://subscriptions/<subscription_ID>/resourcegroups/<resource_group_name>/workspaces/<workspace_name>/datastores/<datastore_name>/paths/<folder>/<filename>.csv")
 df.head()
 ```
 
@@ -86,7 +86,7 @@ df.head()
 > To avoid needing to remember the datastore URI format, you can copy and paste the datastore URI in the studio UI by taking these steps:
 > 1. Select **Data** in the left menu, and then select the **Datastores** tab.
 > 1. Select your datastore name, and then select **Browse**.
-> 1. Find the file or folder you want to read into Pandas, and then select the ellipsis (**...**) next to it. Select **Copy URI** from the menu. You can select the **Datastore URI** to copy into your notebook or script.
+> 1. Find the file or folder you want to read into Pandas, select the ellipsis (**...**) next to it, and then select **Copy URI**. You can then select the datastore URI to copy into your notebook or script.
 > :::image type="content" source="media/how-to-access-data-interactive/datastore-uri-copy.png" alt-text="Screenshot that shows how to copy a datastore URI.":::
 
 You can also instantiate an Azure Machine Learning filesystem, to handle filesystem-like commands, like `ls`, `glob`, `exists`, and `open`.
