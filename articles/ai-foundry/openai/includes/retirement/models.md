@@ -87,9 +87,10 @@ ms.custom: references_regions, build-2025
 
 | Model Name | Model Version<sup>1</sup>  | Lifecycle Status | Deprecation Date (No New Customers) | Retirement Date | Replacement Model |
 |:--|:--|:--|:--|:--|:--|
-| `text-embedding-3-large` | 3-large | Generally Available | n/a | No earlier than 2026-10-30 | n/a |
-| `text-embedding-3-small` | 3-small | Generally Available | n/a | No earlier than 2026-10-30 | n/a |
-| `text-embedding-ada-002` | 002     | Generally Available | n/a | No earlier than 2026-10-30 | n/a |
+| `text-embedding-3-large` | 1 | Generally Available | n/a | No earlier than 2026-10-30 | n/a |
+| `text-embedding-3-small` | 1 | Generally Available | n/a | No earlier than 2026-10-30 | n/a |
+| `text-embedding-ada-002` | 2 | Generally Available | n/a | No earlier than 2026-10-30 | n/a |
+| `text-embedding-ada-002` | 1 | Generally Available | n/a | No earlier than 2026-10-30 | n/a |
 
 ---
 
