@@ -44,7 +44,7 @@ A machine learning project typically starts with exploratory data analysis (EDA)
 
 The latest `azure-fsspec` package version can potentially change over time. For more information about the `azure-fsspec` package, see [azureml-fsspec 1.3.1](https://pypi.org/project/azureml-fsspec/).
 
-## Access data from a datastore URI, as you would from a file system
+## Access data from a datastore URI, as you would from a filesystem
 
 An Azure Machine Learning datastore is a reference to an existing Azure storage account. The benefits of using datastores include:
 
