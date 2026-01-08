@@ -103,6 +103,8 @@ If you're following along with the example in the [Azure Machine Learning exampl
 
 #### Define component using a Python function
 
+In this section, you prepare all source files for the `Prep Data` component.
+
 Using the `command_component()` function as a decorator, you can define the component's interface, its metadata, and the code to run from a Python function. Each decorated Python function is transformed into a single static specification (YAML) that the pipeline service can process.
 
 :::code language="python" source="~/azureml-examples-main/sdk/python/jobs/pipelines/2e_image_classification_keras_minist_convnet/prep/prep_component.py":::
@@ -133,8 +135,6 @@ In the studio UI, a component appears as:
 
 :::image type="content" source="./media/how-to-create-component-pipeline-python/prep-data-component.png" alt-text="Screenshot of the Prep Data component in the UI and code." lightbox ="./media/how-to-create-component-pipeline-python/prep-data-component.png":::
 
-In this section, you prepared all source files for the `Prep Data` component.
-
 ### Create the model training component
 
 In this section, you create a component for training the image classification model using a Python function, as you did with the `Prep Data` component.
@@ -148,6 +148,8 @@ The source files for this component are in the `train` folder in the [Azure Mach
 - `conda.yaml` defines the runtime environment of the component
 
 #### Get a script that contains the logic
+
+In this section, you prepare all the source files for the `Train Image Classification Keras` component.
 
 The `train.py` file contains a normal Python function that performs the logic for training a Keras neural network for image classification. To view the code, see the [train.py file on GitHub](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/pipelines/2e_image_classification_keras_minist_convnet/train/train.py).
 
@@ -170,8 +172,6 @@ The default value of `epochs` is 10. The logic of this component comes from the 
 The train model component has a more complex configuration than the prepare data component. The `conda.yaml` looks like this:
 
 :::code language="yaml" source="~/azureml-examples-main/sdk/python/jobs/pipelines/2e_image_classification_keras_minist_convnet/train/conda.yaml":::
-
-In this section, you prepared all the source files for the `Train Image Classification Keras` component.
 
 ### Create the model scoring component
 
@@ -226,7 +226,7 @@ You can use the `load_component()` function to load the score component. It load
 > [!NOTE]
 > To load registered components from your workspace, first configure your workspace connection as described in the [Get access to your workspace](#get-access-to-your-workspace) section. The `ml_client` object is required for the following operations.
 
-If you have components that are already registered in your workspace, you can load them directly using the `ml_client.components.get()` method. This approach is useful when you want to reuse components that you previously registered or other team members shared.
+If you have components that are already registered in your workspace, you can load them directly using the `ml_client.components.get()` method. This approach is useful when you want to reuse components that you previously registered or that other team members shared.
 
 ```python
 # Load a registered component by name and version
