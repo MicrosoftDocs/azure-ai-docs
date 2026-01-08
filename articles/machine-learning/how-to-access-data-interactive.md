@@ -230,7 +230,7 @@ The Filesystem spec (`fsspec`) has a range of [known implementations](https://fi
 To access data from the `dbfs` resource, you need:
 
 - The instance name, in the form of `adb-<number>.<number>.azuredatabricks.net`. You can find this value in the URL of your Azure Databricks workspace.
-- A personal access token. For more information about personal access token creation, see [Authorize access to Azure Databricks resources](/azure/databricks/dev-tools/api/latest/authentication).
+- A personal access token. For more information about personal access token creation, see [Authenticate with Azure Databricks personal access tokens (legacy)](/azure/databricks/dev-tools/auth/pat).
 
 First, create an environment variable for the personal access token token on your compute instance:
 
