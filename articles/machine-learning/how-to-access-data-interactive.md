@@ -99,7 +99,7 @@ You can also instantiate an Azure Machine Learning filesystem, to handle filesys
 from azureml.fsspec import AzureMachineLearningFileSystem
 
 # Instantiate the filesystem by using the following URI.
-fs = AzureMachineLearningFileSystem('azureml://subscriptions/<subscriptionID>/resourcegroups/resource_group_name/workspaces/<workspace_name>/datastores/<datastore_name>')
+fs = AzureMachineLearningFileSystem('azureml://subscriptions/<subscriptionID>/resourcegroups/<resource_group_name>/workspaces/<workspace_name>/datastores/<datastore_name>')
 
 fs.ls() # List folders and files in datastore datastorename.
 
