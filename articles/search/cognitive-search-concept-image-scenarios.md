@@ -43,7 +43,7 @@ Image processing is indexer-driven, which means that the raw inputs must be in a
 + Image analysis supports JPEG, PNG, GIF, and BMP
 + OCR supports JPEG, PNG, BMP, and TIF
 
-Images are either standalone binary files or embedded in documents, such as PDF, RTF, or Microsoft application files. A maximum of 1,000 images can be extracted from a given document. If there are more than 1,000 images in a document, the first 1,000 are extracted and then a warning is generated.
+Images are either standalone binary files or embedded in documents, such as PDF, RTF, or Microsoft application files. A maximum of 500 images, or an aggregate image size of 75 MB, can be extracted from a given document. If a document exceeds either limit, extraction stops at 500 images or when the aggregate size reaches 75 MB, and a warning is generated.
 
 Azure Blob Storage is the most frequently used storage for image processing in Azure AI Search. There are three main tasks related to retrieving images from a blob container:
 
