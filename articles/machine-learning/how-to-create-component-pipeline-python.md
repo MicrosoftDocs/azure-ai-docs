@@ -23,9 +23,9 @@ ms.custom:
 
 [!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
 
-In this article, you learn how to build an [Azure Machine Learning pipeline](concept-ml-pipelines.md) using the Azure Machine Learning Python SDK v2 to complete an image classification task. This pipeline contains three steps: prepare data, train an image classification model, and score the model. Machine Learning pipelines optimize your workflow with speed, portability, and reuse, so you can focus on machine learning instead of infrastructure and automation.  
+In this article, you learn how to build an [Azure Machine Learning pipeline](concept-ml-pipelines.md) to complete an image classification task. This example uses the Azure Machine Learning Python SDK v2. Machine Learning pipelines optimize your workflow with speed, portability, and reuse, so you can focus on machine learning instead of infrastructure and automation.  
 
-The example pipeline trains a small [Keras](https://keras.io/) convolutional neural network to classify images in the [Fashion MNIST](https://github.com/zalandoresearch/fashion-mnist) dataset. The pipeline looks like this:
+The pipeline contains three steps: prepare data, train an image classification model, and score the model. The example pipeline trains a small [Keras](https://keras.io/) convolutional neural network to classify images in the [Fashion MNIST](https://github.com/zalandoresearch/fashion-mnist) dataset. The pipeline looks like this:
 
 :::image type="content" source="./media/how-to-create-component-pipeline-python/pipeline-graph.png" alt-text="Screenshot showing a pipeline graph of the image classification example." lightbox ="./media/how-to-create-component-pipeline-python/pipeline-graph.png":::
 
@@ -38,14 +38,14 @@ In this article, you complete the following tasks:
 > - Get access to a workspace that has compute
 > - Submit the pipeline job
 > - Review the output of the components and the trained neural network
-> - (Optional) Register the component for further reuse and sharing within the workspace
+> - (Optional) Register the component for further reuse and sharing in the workspace
 
 If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) today.
 
 ## Prerequisites
 
 - An Azure Machine Learning workspace. If you don't have one, complete the [Create resources tutorial](quickstart-create-resources.md).
-- A Python environment with Azure Machine Learning Python SDK v2 installed. For installation instructions, see [Getting started](https://github.com/Azure/azureml-examples/tree/sdk-preview/sdk#getting-started). This environment is for defining and controlling your Azure Machine Learning resources and is separate from the environment used at runtime for training.
+- A Python environment with Azure Machine Learning Python SDK v2 installed. For installation instructions, see [Getting started](https://github.com/Azure/azureml-examples/tree/sdk-preview/sdk#getting-started). This environment is for defining and controlling your Azure Machine Learning resources. It's separate from the environment used at runtime for training.
 - A clone of the examples repository.
 
 To run the training examples, first clone the examples repository and navigate to the `sdk` directory:
@@ -79,7 +79,7 @@ By defining an `Input`, you create a reference to the data source location. The 
 
 ## Create components for building the pipeline
 
-The image classification task can be split into three steps: prepare data, train the model, and score the model.
+The image classification task can be split into three steps: *prepare data*, *train the model*, and *score the model*.
 
 An [Azure Machine Learning component](concept-component.md) is a self-contained piece of code that completes one step in a machine learning pipeline. In this article, you create three components for the image classification task:
 
@@ -103,17 +103,17 @@ If you're following along with the example in the [Azure Machine Learning exampl
 
 #### Define component using a Python function
 
-Using the `command_component()` function as a decorator, you can easily define the component's interface, its metadata, and the code to run from a Python function. Each decorated Python function is transformed into a single static specification (YAML) that the pipeline service can process.
+Using the `command_component()` function as a decorator, you can define the component's interface, its metadata, and the code to run from a Python function. Each decorated Python function is transformed into a single static specification (YAML) that the pipeline service can process.
 
 :::code language="python" source="~/azureml-examples-main/sdk/python/jobs/pipelines/2e_image_classification_keras_minist_convnet/prep/prep_component.py":::
 
 The preceding code defines a component with display name `Prep Data` using the `@command_component` decorator:
 
 - `name` is the unique identifier of the component
-- `version` is the current version of the component. A component can have multiple versions
+- `version` is the current version of the component; a component can have multiple versions
 - `display_name` is a friendly display name of the component for the UI
 - `description` describes the task the component can complete
-- `environment` specifies the runtime environment for the component using a conda.yaml file
+- `environment` specifies the runtime environment for the component using a `conda.yaml` file
 
 The `conda.yaml` file contains all packages used for the component:
 
@@ -133,13 +133,13 @@ In the studio UI, a component appears as:
 
 :::image type="content" source="./media/how-to-create-component-pipeline-python/prep-data-component.png" alt-text="Screenshot of the Prep Data component in the UI and code." lightbox ="./media/how-to-create-component-pipeline-python/prep-data-component.png":::
 
-You've now prepared all source files for the `Prep Data` component.
+In this section, you prepared all source files for the `Prep Data` component.
 
 ### Create the model training component
 
 In this section, you create a component for training the image classification model using a Python function, as you did with the `Prep Data` component.
 
-Because the training logic is more complex, you put the training code in a separate Python file.
+Because the training logic is more complex, put the training code in a separate Python file.
 
 The source files for this component are in the `train` folder in the [Azure Machine Learning examples repo](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/pipelines/2e_image_classification_keras_minist_convnet). This folder contains three files to construct the component:
 
@@ -171,7 +171,7 @@ The train model component has a more complex configuration than the prepare data
 
 :::code language="yaml" source="~/azureml-examples-main/sdk/python/jobs/pipelines/2e_image_classification_keras_minist_convnet/train/conda.yaml":::
 
-You've now prepared all the source files for the `Train Image Classification Keras` component.
+In this section, you prepared all the source files for the `Train Image Classification Keras` component.
 
 ### Create the model scoring component
 
@@ -204,27 +204,27 @@ In this section, you learn how to create a component specification in the valid 
 - `name` is the unique identifier of the component. Its display name is `Score Image Classification Keras`
 - This component has two inputs and one output
 - The source code path is defined in the `code` section. When the component runs in the cloud, all files from that path are uploaded as the snapshot of the component
-- The `command` section specifies the command to execute when the component runs
+- The `command` section specifies the command to run when the component runs
 - The `environment` section contains a Docker image and a conda YAML file. The source file is in the [sample repository](https://github.com/Azure/azureml-examples/blob/v2samplesreorg/sdk/python/jobs/pipelines/2e_image_classification_keras_minist_convnet/score/conda.yaml)
 
 You now have all the source files for the model scoring component.
 
 ## Load the components to build a pipeline
 
-You can import the data preparation component and the model training component, which are defined by Python functions, just like normal Python functions. 
+You can import the data preparation component and the model training component, which are defined by Python functions, just like other Python functions. 
 
 The following code imports the `prepare_data_component()` and `keras_train_component()` functions from the `prep_component.py` file in the `prep` folder and the `train_component` file in the `train` folder, respectively.
 
 [!notebook-python[] (~/azureml-examples-main/sdk/python/jobs/pipelines/2e_image_classification_keras_minist_convnet/image_classification_keras_minist_convnet.ipynb?name=load-from-dsl-component)]
 
-You can use the `load_component()` function to load the score component, which is defined by YAML.
+You can use the `load_component()` function to load the score component. It loads a YAML file that defines the component.
 
 [!notebook-python[] (~/azureml-examples-main/sdk/python/jobs/pipelines/2e_image_classification_keras_minist_convnet/image_classification_keras_minist_convnet.ipynb?name=load-from-yaml)]
 
 ### Load registered components from the workspace
 
 > [!NOTE]
-> To load registered components from your workspace, you must first configure your workspace connection as described in the [Get access to your workspace](#get-access-to-your-workspace) section. The `ml_client` object is required for the following operations.
+> To load registered components from your workspace, first configure your workspace connection as described in the [Get access to your workspace](#get-access-to-your-workspace) section. The `ml_client` object is required for the following operations.
 
 If you have components that are already registered in your workspace, you can load them directly using the `ml_client.components.get()` method. This approach is useful when you want to reuse components that you previously registered or other team members shared.
 
@@ -250,11 +250,11 @@ for component in components:
     print(f"Name: {component.name}, Version: {component.version}")
 ```
 
-Once loaded, you can use registered components in your pipeline exactly like components loaded from local files or Python functions.
+After you load them, you can use registered components in your pipeline exactly like components loaded from local files or Python functions.
 
 ## Build your pipeline
 
-You've created and loaded all the components and input data to build the pipeline. You can now compose them into a pipeline:
+You created and loaded all the components and input data to build the pipeline. You can now compose them into a pipeline:
 
 > [!NOTE]
 > To use [serverless compute](how-to-use-serverless-compute.md), add `from azure.ai.ml.entities import ResourceConfiguration` to the top of the file. Then replace:
@@ -329,7 +329,7 @@ You can check the logs and outputs of each component by right-clicking the compo
 
 ## (Optional) Register components to the workspace
 
-In the previous sections, you built a pipeline using three components to complete an image classification task. You can also register components to your workspace so they can be shared and reused within the workspace. The following example shows how to register the data preparation component:
+In the previous sections, you built a pipeline using three components to complete an image classification task. You can also register components to your workspace so they can be shared and reused in the workspace. The following example shows how to register the data preparation component:
 
 [!notebook-python[] (~/azureml-examples-main/sdk/python/jobs/pipelines/2e_image_classification_keras_minist_convnet/image_classification_keras_minist_convnet.ipynb?name=register-component)]
 
