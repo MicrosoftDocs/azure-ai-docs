@@ -125,7 +125,7 @@ In the designer, creating and using a machine learning model is typically a thre
 
 ### Linearity
 
-Linearity in statistics and machine learning means that there's a linear relationship between a variable and a constant in your dataset. For example, linear classification algorithms assume that a straight line can separate classes, or its higher-dimensional analog.
+Linearity in statistics and machine learning means that there's a linear relationship between a variable and a constant in your dataset. For example, linear classification algorithms assume that a straight line or its higher-dimensional analog can separate classes.
 
 Lots of machine learning algorithms make use of linearity. In Azure Machine Learning designer, they include:
 
