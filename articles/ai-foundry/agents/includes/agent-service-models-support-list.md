@@ -5,7 +5,7 @@ ms.author: aahi
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: include
-ms.date: 12/04/2025
+ms.date: 01/07/2026
 ai-usage: ai-assisted
 ---
 
@@ -23,12 +23,3 @@ ai-usage: ai-assisted
 - **DeepSeek-V3.1**: Enhanced multimodal reasoning and grounded retrieval.
 - **DeepSeek-R1-0528**: Advanced long-form and multiple-step reasoning.
 - **gpt-oss-120b**: Open-ecosystem model that supports transparency and reproducibility.
-
-**Models from partners and community:**
-
-- **Claude-Opus-4-5**: Best performance across coding, agents, computer use, and enterprise workflows.
-- **Claude-Opus-4-1**: Frontier reasoning for the most complex problem-solving.
-- **Claude-Sonnet-4-5**: Balanced performance for multimodal and agentic workflows.
-- **Claude-Haiku-4-5**: Lightweight, high-speed generation for interactive scenarios.
- 
-

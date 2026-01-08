@@ -332,6 +332,9 @@ az cognitiveservices account project delete \
 
 ---
 
+> [!IMPORTANT]
+> Use with caution. You cannot recover a project after it has been deleted.
+
 ## Related content
 
 - [Quickstart: Get started with Foundry](../quickstarts/get-started-code.md)

@@ -19,6 +19,8 @@ author: sdgilley
 
 # Tutorial: Part 3 - Evaluate a custom chat application with the Microsoft Foundry SDK
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 In this tutorial, you evaluate the chat app you built in [Part 2 of the tutorial series](copilot-sdk-build-rag.md). You assess your app's quality across multiple metrics and then iterate on improvements. In this part, you:
 
 > [!div class="checklist"]
