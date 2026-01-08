@@ -59,7 +59,7 @@ A *Datastore URI* is a Uniform Resource Identifier, which is a reference to a st
 
 ```python
 # Azure Machine Learning workspace details:
-subscription = '<subscription_id>'
+subscription = '<subscription_ID>'
 resource_group = '<resource_group>'
 workspace = '<workspace>'
 datastore_name = '<datastore>'
@@ -99,7 +99,7 @@ You can also instantiate an Azure Machine Learning filesystem, to handle filesys
 from azureml.fsspec import AzureMachineLearningFileSystem
 
 # Instantiate the filesystem by using the following URI.
-fs = AzureMachineLearningFileSystem('azureml://subscriptions/<subid>/resourcegroups/<rgname>/workspaces/<workspace_name>/datastore*s*/datastorename')
+fs = AzureMachineLearningFileSystem('azureml://subscriptions/<subscriptionID>/resourcegroups/resource_group_name/workspaces/<workspace_name>/datastore*s*/datastorename')
 
 fs.ls() # List folders and files in datastore datastorename.
 
@@ -119,7 +119,7 @@ with fs.open('./folder1/file1.csv') as f:
 ```python
 from azureml.fsspec import AzureMachineLearningFileSystem
 # Instantiate the filesystem by using the following URI.
-fs = AzureMachineLearningFileSystem('azureml://subscriptions/<subid>/resourcegroups/<rgname>/workspaces/<workspace_name>/datastores/<datastorename>/paths/')
+fs = AzureMachineLearningFileSystem('azureml://subscriptions/<subscriptionID>/resourcegroups/<resource_group_name>/workspaces/<workspace_name>/datastores/<datastorename>/paths/')
 
 # You can set recursive to False to upload a file.
 fs.upload(lpath='data/upload_files/crime-spring.csv', rpath='data/fsspec', recursive=False, **{'overwrite': 'MERGE_WITH_OVERWRITE'})
