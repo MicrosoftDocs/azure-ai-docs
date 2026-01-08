@@ -42,7 +42,7 @@ In this article, you learn how to create and run [machine learning pipelines](co
 >
 > Custom components allow you to wrap your own code as a component. It supports sharing components across workspaces and seamless authoring across studio, CLI v2, and SDK v2 interfaces.
 >
-> For new projects, we highly recommend that you use custom components, which is compatible with AzureML V2 and receives new updates.
+> For new projects, we highly recommend that you use custom components, which is compatible with Azure Machine Learning V2 and receives new updates.
 >
 > This article applies to custom components.
 
