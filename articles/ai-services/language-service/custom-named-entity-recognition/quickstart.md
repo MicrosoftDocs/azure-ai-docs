@@ -24,7 +24,7 @@ To get start, [a sample loan agreement](https://go.microsoft.com/fwlink/?linkid=
 
 
 
-::: zone pivot="azure-ai-foundry"
+::: zone pivot="microsoft-foundry"
 
 [!INCLUDE [Foundry](includes/quickstarts/azure-ai-foundry.md)]
 
