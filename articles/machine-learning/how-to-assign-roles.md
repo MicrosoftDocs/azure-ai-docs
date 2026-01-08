@@ -128,8 +128,7 @@ To convert workspaces created before 11/19/2024, use one of the following method
     -H "Content-Type: application/json" \
     --data '{"properties":{"allowRoleAssignmentOnRG":true}}'
     ```
-
-        Reference: [Microsoft.MachineLearningServices/workspaces (2024-07-01-preview)](https://learn.microsoft.com/en-us/azure/templates/Microsoft.MachineLearningServices/2024-07-01-preview/workspaces)
+        Reference: [Microsoft.MachineLearningServices/workspaces (2024-07-01-preview)](/azure/templates/Microsoft.MachineLearningServices/2024-07-01-preview/workspaces)
 
 - Azure CLI: Use the `az ml workspace update` command with the `--allow-roleassignment-on-rg true` parameter. The following example updates a workspace named `myworkspace`. This command requires the Azure Machine Learning CLI extension version 2.27.0 or later.
 
