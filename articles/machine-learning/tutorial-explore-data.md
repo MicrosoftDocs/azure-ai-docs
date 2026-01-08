@@ -173,7 +173,7 @@ An Azure Machine Learning datastore is a *reference* to an *existing* storage ac
 
 ## Access your data in a notebook
 
-You want to create data assets for frequently accessed data. You can access the data using the URI as described in [Access data from a datastore URI, like a filesystem](how-to-access-data-interactive.md#access-data-from-a-datastore-uri-like-a-filesystem).  However, as mentioned previously, it can become difficult to remember these URIs. 
+You want to create data assets for frequently accessed data. You can access the data using the URI as described in [Access data from a datastore URI, like a filesystem](how-to-access-data-interactive.md#access-data-from-a-datastore-uri-as-you-would-from-a-filesystem).  However, as mentioned previously, it can become difficult to remember these URIs. 
 
  An alternative is to use the `azureml-fsspec` library, which provides a file system interface for Azure Machine Learning datastores. This is an easier way to access the CSV file in Pandas:
 
