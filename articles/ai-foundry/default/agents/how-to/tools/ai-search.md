@@ -50,7 +50,7 @@ The [Azure AI Search](/azure/search/search-what-is-azure-search) tool in Microso
 | `index_connection_id` | Required | Agents uses Connections to manage Search endpoints and authentication.
 | `index_name`| Required | Name of the index in your search resource.
 | `top_k` | Optional | Default value is 5.
-| `query_type` | Optional | The default value is `vector_sematic_hybrid`.
+| `query_type` | Optional | The default value is `vector_sematic_hybrid`. Other supported values: `simple`, `vector`, `semantic`, `vector_simple_hybrid`.
 | `filter` | Optional | Note that this filter will apply for all calls the agent makes to the search index, across all threads run by that agent.
 
 ## Code example
