@@ -204,8 +204,6 @@ To create an OAuth connection for Azure Machine Learning, you need the following
 
 To create the connection, first assemble a YAML file that defines the connection, and then run a command or script that calls the YAML file. For Python SDK, you can also specify the connection information directly without using a YAML file.
 
-# [Azure CLI / Python SDK](#tab/cli+python)
-
 Create the following YAML file to define a Snowflake connection that uses OAuth. Provide a `<connection-name>`, and replace the `<account>`, `<database>`, `<warehouse>`, and `<service-principal-scope>` placeholders with the values from your Snowflake account. For credentials, provide your `<client-id>`, `<client-secret>`, and `<tenant_id>`.
 
 ```yaml
