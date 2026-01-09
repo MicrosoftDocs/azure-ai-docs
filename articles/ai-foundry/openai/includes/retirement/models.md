@@ -113,8 +113,8 @@ At deployment retirement, inference and deployment return error responses.
 
 | Model            | Version     | Training retirement date  | Deployment retirement date       |
 | -----------------|-------------|---------------------------|----------------------------------|
-| `gpt-4o`         | 2024-08-06  | One year after training retirement | One year after training retirement |
-| `gpt-4o-mini`    | 2024-07-18  | One year after training retirement | One year after training retirement |
+| `gpt-4o`         | 2024-08-06  | One year after base model retirement | At training retirement |
+| `gpt-4o-mini`    | 2024-07-18  | One year after base model retirement | At training retirement |
 | `gpt-4.1`        | 2025-04-14  | At base model retirement  | One year after training retirement |
 | `gpt-4.1-mini`   | 2025-04-14  | At base model retirement  | One year after training retirement |
 | `gpt-4.1-nano`   | 2025-04-14  | At base model retirement  | One year after training retirement |
