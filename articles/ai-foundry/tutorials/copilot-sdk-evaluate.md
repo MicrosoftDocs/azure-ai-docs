@@ -32,7 +32,7 @@ This tutorial builds on [Part 2: Build a custom chat app with the Microsoft Foun
 
 ## Prerequisites
 
-[!INCLUDE [hub-only-tutorial](../includes/hub-only-tutorial.md)]
+[!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
 
 - Complete [Part 2 of the tutorial series](copilot-sdk-build-rag.md) to build the chat application.
 - Use the same **Microsoft Foundry** project you created in Part 1.

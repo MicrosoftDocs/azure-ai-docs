@@ -39,7 +39,7 @@ This tutorial builds on [Tutorial: Part 1 - Create resources for building a cust
 
 ## Prerequisites
 
-[!INCLUDE [hub-only-tutorial](../includes/hub-only-tutorial.md)]
+[!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
 
 * Complete [Tutorial: Part 1 - Create resources for building a custom chat application with the Microsoft Foundry SDK](copilot-sdk-create-resources.md) to:
     * Create a project with a connected Azure AI Search index.

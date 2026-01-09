@@ -36,7 +36,7 @@ If you completed other tutorials or quickstarts, you might have already created 
 
 ## Prerequisites
 
-[!INCLUDE [hub-only-tutorial](../includes/hub-only-tutorial.md)]
+[!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
 
 * An Azure account with an active subscription and **Owner** or **Contributor** role assigned. If you don't have one, [create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * **Microsoft Foundry**: Owner or Contributor role to create a project.
