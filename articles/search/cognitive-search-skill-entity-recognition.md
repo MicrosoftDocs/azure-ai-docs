@@ -7,8 +7,8 @@ ms.author: gimondra
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: concept-article
-ms.date: 08/17/2022
+ms.topic: article
+ms.date: 01/07/2026
 ms.update-cycle: 365-days
 ---
 
@@ -17,7 +17,7 @@ ms.update-cycle: 365-days
 The **Entity Recognition** skill (v2) extracts entities of different types from text. This skill uses the machine learning models provided by [Text Analytics](/azure/ai-services/language-service/overview) in Foundry Tools.
 
 > [!IMPORTANT]
-> The Entity Recognition skill (v2) (**Microsoft.Skills.Text.EntityRecognitionSkill**) is now discontinued replaced by [Microsoft.Skills.Text.V3.EntityRecognitionSkill](cognitive-search-skill-entity-recognition-v3.md). Follow the recommendations in [Deprecated skills](cognitive-search-skill-deprecated.md) to migrate to a supported skill.
+> The Entity Recognition skill (v2) (**Microsoft.Skills.Text.EntityRecognitionSkill**) is now discontinued and replaced by [Microsoft.Skills.Text.V3.EntityRecognitionSkill](cognitive-search-skill-entity-recognition-v3.md). Follow the recommendations in [Deprecated skills](cognitive-search-skill-deprecated.md) to migrate to a supported skill.
 
 > [!NOTE]
 > As you expand scope by increasing the frequency of processing, adding more documents, or adding more AI algorithms, you will need to [attach a billable Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md). Charges accrue when calling APIs in Foundry Tools, and for image extraction as part of the document-cracking stage in Azure AI Search. There are no charges for text extraction from documents.

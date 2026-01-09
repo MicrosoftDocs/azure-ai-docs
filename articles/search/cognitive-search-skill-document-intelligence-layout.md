@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - references_regions
   - ignite-2024
-ms.topic: concept-article
+ms.topic: article
 ms.date: 11/19/2025
 ms.update-cycle: 365-days
 ---

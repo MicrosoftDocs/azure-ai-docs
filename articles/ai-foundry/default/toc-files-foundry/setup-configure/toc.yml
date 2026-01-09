@@ -14,7 +14,8 @@ items:
     href: ../../../how-to/create-resource-terraform.md
   - name: Recover or purge deleted resources
     href: ../../../../ai-services/recover-purge-resources.md?context=/azure/ai-foundry/context/context
-
+  - name: Upgrade from Azure OpenAI Service
+    href: ../../../how-to/upgrade-azure-openai.md
 # Project Management
 - name: Create and manage projects
   href: ../../../how-to/create-projects.md

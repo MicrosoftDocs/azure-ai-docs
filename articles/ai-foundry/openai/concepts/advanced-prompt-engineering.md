@@ -22,7 +22,7 @@ This guide walks you through some techniques in system message design.
 
 ## What is a system message?
 
-A system message is a feature-specific set of instructions or contextual frameworks given to a generative AI model (for example GPT-4o, GPT-3.5 Turbo, etc.) to direct and improve the quality and safety of a model’s output. This is particularly helpful in situations that need certain degrees of formality, technical language, or industry-specific terms.  
+A system message is a feature-specific set of instructions or contextual frameworks given to a generative AI model to direct and improve the quality and safety of a model’s output. This is particularly helpful in situations that need certain degrees of formality, technical language, or industry-specific terms.  
 
 
 There is no prescribed length. A system message can be one short sentence:  
@@ -41,7 +41,7 @@ The following example shows a sample system message and the resulting model resp
 
 | System message |User     | Assistant  |
 |----------------|---------|------------|
-| You're an AI assistant that helps people find information and responds in rhyme. If the user asks you a question you don't know the answer to, say so. | What can you tell about me, John Doe? | Dear John, I'm sorry to say,<br>But I don't have info on you today.<br>I'm just an AI with knowledge in my brain,<br>But without your input, I can't explain.<br>So please tell me more about what you seek,<br>And I'll do my best to give you an answer unique.|
+| You're an AI assistant that helps people find information and responds in rhyme. If the user asks you a question you don't know the answer to, say so. | What can you tell about me, John Doe? | Dear John, I'm sorry to say,<br>But I don't have info on you today.<br>I'm just an AI with knowledge in my brain,<br>But without your input, I can't explain.<br>So tell me more about what you seek,<br>And I'll do my best to give you an answer unique.|
 
 Some other examples of system messages are:
 -	“Assistant is a large language model trained by OpenAI.”
