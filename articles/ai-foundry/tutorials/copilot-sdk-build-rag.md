@@ -45,7 +45,7 @@ This tutorial builds on [Tutorial: Part 1 - Create resources for building a cust
     * Create a project with a connected Azure AI Search index.
     * Install the Azure CLI, Python, and required packages.
     * Configure your environment variables.
-* Use the same **Microsoft Foundry** project you created in Part 1.
+* Use the same **hub-based** project you created in Part 1.
 * **Azure AI permissions**: Owner or Contributor role to create search indexes and deploy models; Cognitive Services Contributor or higher for AI Services resources. 
 
 ## Verify your setup
@@ -53,15 +53,24 @@ This tutorial builds on [Tutorial: Part 1 - Create resources for building a cust
 Before building the RAG app, confirm that your environment is properly configured by running a quick connection test:
 
 ```python
-from azure.ai.projects import AIProjectClient
+import os
 from azure.identity import DefaultAzureCredential
+import azure.ai.projects
+
+# Check the SDK version
+print(f"Azure AI Projects SDK version: {azure.ai.projects.__version__}")
 
 # Test that you can connect to your project
-client = AIProjectClient.from_config(credential=DefaultAzureCredential())
+project = AIProjectClient.from_connection_string(
+    conn_str=os.environ["AIPROJECT_CONNECTION_STRING"], credential=DefaultAzureCredential()
+)
 print("✓ Setup verified! Ready to build your RAG app.")
 ```
 
 If you see the success message, your Azure credentials and SDK are configured correctly. If you encounter authentication errors, verify your `FOUNDRY_*` environment variables are set correctly (see Part 1 prerequisites).
+
+> [!TIP]
+> This tutorial requires Azure AI Projects SDK version `1.0.0b10`. The SDK version displayed above helps you verify compatibility. If you have a different version, the `from_connection_string()` method may not be available. To install the required version, run `pip install azure-ai-projects==1.0.0b10`. 
 
 References: [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.AIProjectClient), [DefaultAzureCredential](/python/api/azure-identity/azure.identity.DefaultAzureCredential).
 
