@@ -39,7 +39,7 @@ This section describes Voice live quotas and limits per Speech resource. For inf
 
 Avatars used in Voice live follows the quota and limits described in [real-time text to speech avatar](#real-time-text-to-speech-avatar).
 
-### LLM Speech (Preview) quotas and limits per resource
+### LLM Speech (preview) quotas and limits per resource
 
 This section describes speech to text quotas and limits per Speech resource. At this time, these limits aren't adjustable.
 
