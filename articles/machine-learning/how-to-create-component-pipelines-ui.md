@@ -11,10 +11,11 @@ ms.reviewer: keli19
 ms.date: 01/08/2026
 ms.topic: how-to
 ms.custom: devplatv2, designer
+ai-usage: ai-assisted
 #customer intent: As a Machine Learning data scientist, I want to learn how to use Azure Machine Learning studio to create and run pipelines so that I can do ML experiments and reuse components.
 ---
 
-# Create and run machine learning pipelines using components with the Azure Machine Learning studio
+# Create and run machine learning pipelines by using components in Azure Machine Learning studio
 
 [!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
 
@@ -46,7 +47,7 @@ In this article, you learn how to create and run [machine learning pipelines](co
 >
 > This article applies to custom components.
 
-## Register component in your workspace
+## Register a component in your workspace
 
 To build a pipeline using components in the Designer UI, you need to first register components to your workspace. You can use the UI, Azure CLI, or the SDK to register components to your workspace, so that you can share and reuse the component in the workspace. Registered components support automatic versioning so you can update the component but assure that pipelines that require an older version continue to work.
 
@@ -81,7 +82,7 @@ The following example uses the UI to register components. The [component source 
 
 :::image type="content" source="./media/how-to-create-component-pipelines-ui/component-page.png" alt-text="Screenshot showing registered component in component page." lightbox="./media/how-to-create-component-pipelines-ui/component-page.png":::
 
-## Create pipeline using registered component
+## Create pipeline by using registered component
 
 1. Create a new pipeline in Designer. Select the **Custom** option.
 
@@ -111,9 +112,10 @@ The following example uses the UI to register components. The [component source 
   
    :::image type="content" source="./media/how-to-create-component-pipelines-ui/connect.gif" alt-text="Animation showing connecting the pipeline." lightbox="./media/how-to-create-component-pipelines-ui/connect.gif":::
 
-1. Double-click one component. You see a right pane where you can configure the component.
 
-   :::image type="content" source="./media/how-to-create-component-pipelines-ui/component-parameter.png" alt-text="Screenshot showing component parameter settings." lightbox="./media/how-to-create-component-pipelines-ui/component-parameter.png":::
+5. Double click one component, you'll see a right pane where you can configure the component.
+
+     :::image type="content" source="./media/how-to-create-component-pipelines-ui/component-parameter.png" alt-text="Screenshot showing component parameter settings." lightbox ="./media/how-to-create-component-pipelines-ui/component-parameter.png":::
 
    For components with primitive type inputs like number, integer, string, and boolean, you can change values of such inputs in the component detailed pane, under **Inputs** section.
 
@@ -132,19 +134,19 @@ The following example uses the UI to register components. The [component source 
 
    :::image type="content" source="./media/how-to-create-component-pipelines-ui/configure-submit.png" alt-text="Screenshot showing configure and submit button." border="false":::
 
-1. There's a step-by-step dialog box. Follow the steps to submit the pipeline job.
+1. Then you'll see a step-by-step wizard. Follow the wizard to submit the pipeline job.
 
-   :::image type="content" source="./media/how-to-create-component-pipelines-ui/submission-wizard.png" alt-text="Screenshot showing submission wizard." lightbox="./media/how-to-create-component-pipelines-ui/submission-wizard.png":::
+  :::image type="content" source="./media/how-to-create-component-pipelines-ui/submission-wizard.png" alt-text="Screenshot showing submission wizard." lightbox ="./media/how-to-create-component-pipelines-ui/submission-wizard.png":::
 
-1. In **Basics** step, you can configure the experiment, job display name, job description, and other values.
+In **Basics** step, you can configure the experiment, job display name, job description etc.
 
-1. In **Inputs & outputs** step, you can configure the inputs and outputs that are promoted to pipeline level. In previous section, you promoted the *max_epocs* of *train* component to pipeline input. You should be able to see and assign value to *max_epocs* here.
+In **Inputs & Outputs** step, you can configure the Inputs/Outputs that are promoted to pipeline level. In previous step, we promoted the *max_epocs* of *train* component to pipeline input, so you should be able to see and assign value to *max_epocs* here.
 
-1. In **Runtime settings**, you can configure the default datastore and default compute of the pipeline. These values are the default datastore and compute for all components in the pipeline. If you set a different compute or datastore for a component explicitly, the system respects the component level setting. Otherwise, it uses the pipeline default value. 
+In **Runtime settings**, you can configure the default datastore and default compute of the pipeline. It's the default datastore/compute for all components in the pipeline. But note if you set a different compute or datastore for a component explicitly, the system respects the component level setting. Otherwise, it uses the pipeline default value. 
 
-1. The **Review + Submit** step is the last step to review all configurations before submit. If you ever submitted the pipeline, the configuration process remembers your last configuration.
+The **Review + Submit** step is the last step to review all configurations before submit. The wizard remembers your last time's configuration if you ever submit the pipeline.
 
-   After you submit the pipeline job, a message appears at the top with a link to the job detail. Select this link to review the job details.
+After submitting the pipeline job, there will be a message on the top with a link to the job detail. You can select this link to review the job details.
 
    :::image type="content" source="./media/how-to-create-component-pipelines-ui/submit-message.png" alt-text="Screenshot showing submission message." lightbox="./media/how-to-create-component-pipelines-ui/submit-message.png":::
 
