@@ -156,7 +156,7 @@ You can read a single CSV file into Pandas by using this code:
 ```python
 import pandas as pd
 
-df = pd.read_csv("azureml://subscriptions/<subscription_ID>/resourcegroups/resource_group_name>/workspaces/<workspace_name>/datastores/<datastore_name>/paths/<folder>/<file_name>.csv")
+df = pd.read_csv("azureml://subscriptions/<subscription_ID>/resourcegroups/<resource_group_name>/workspaces/<workspace_name>/datastores/<datastore_name>/paths/<folder>/<file_name>.csv")
 ```
 
 #### Read a folder of CSV files into Pandas
