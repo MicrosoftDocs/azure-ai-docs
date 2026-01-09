@@ -51,6 +51,7 @@ To create a Foundry project that supports deployment for DeepSeek-R1, follow the
     :::image type="content" source="../media/quickstart-get-started-deepseek-r1/foundry-homepage-model-catalog-section.png" alt-text="A screenshot of the homepage of the Foundry portal showing the model catalog section." lightbox="../media/quickstart-get-started-deepseek-r1/foundry-homepage-model-catalog-section.png":::
 
 1. Use the search box on the screen to search for the **DeepSeek-R1** model and open its model card.
+
    Select **Use this model**. This action opens a wizard to create a Foundry project and resources for you to work in. You can keep the default name for the project or change it.
 
 
