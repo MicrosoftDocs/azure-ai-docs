@@ -129,7 +129,17 @@ Install the required packages.
     pip install -r requirements.txt
     ```
 
-### Verify your setup
+## Configure environment variables
+
+[!INCLUDE [create-env-file](../includes/create-env-file-tutorial.md)]
+
+## Install the Azure CLI and sign in 
+
+[!INCLUDE [Install the Azure CLI](../includes/install-cli.md)]
+
+Keep this terminal window open to run your python scripts from here as well, now that you signed in.
+
+## Verify your setup
 
 Verify that your environment is set up correctly by running a quick test:
 
@@ -148,11 +158,14 @@ project = AIProjectClient.from_connection_string(
 print("✓ Setup verified! Ready to build your RAG app.")
 ```
 
-If you see `"Setup successful!"`, your Azure credentials and SDK are configured correctly. Also verify that your Azure AI Projects SDK version is `1.0.0b10`.
+If you see `"Setup successful!"`, your Azure credentials and SDK are configured correctly. 
+
+> [!TIP]
+> This tutorial requires Azure AI Projects SDK version `1.0.0b10`. The SDK version displayed above helps you verify compatibility. If you have a different version, the `from_connection_string()` method may not be available. To install the required version, run `pip install azure-ai-projects==1.0.0b10`. 
 
 References: [Azure AI Projects client library](/python/api/azure-ai-projects/azure.ai.projects), [DefaultAzureCredential](/python/api/azure-identity/azure.identity.DefaultAzureCredential).
 
-### Create helper script
+## Create helper script
 
 Create a folder for your work. Create a file named **config.py** in this folder. You'll use this helper script in the next two parts of the tutorial series. The script loads your environment variables and initializes the Azure AI Projects client. Add the following code:
 
@@ -163,15 +176,6 @@ References: [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.AI
 > [!NOTE]
 > This script also uses a package you haven't installed yet, `azure.monitor.opentelemetry`.  You'll install this package in the next part of the tutorial series.
 
-## Configure environment variables
-
-[!INCLUDE [create-env-file](../includes/create-env-file-tutorial.md)]
-
-## Install the Azure CLI and sign in 
-
-[!INCLUDE [Install the Azure CLI](../includes/install-cli.md)]
-
-Keep this terminal window open to run your python scripts from here as well, now that you signed in.
 
 ## Clean up resources
 
