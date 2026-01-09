@@ -33,7 +33,7 @@ A machine learning project typically starts with exploratory data analysis (EDA)
 * An Azure Machine Learning datastore. For more information, see [Create datastores](how-to-datastore.md).
 
 > [!TIP]
-> The guidance in this article describes data access during interactive development. It applies to any host that can run a Python session. This can include your local machine, a cloud VM, a GitHub Codespace, and more. We recommend that you use an Azure Machine Learning compute instance - a fully managed and pre-configured cloud workstation. For more information, see [Create an Azure Machine Learning compute instance](how-to-create-compute-instance.md).
+> The guidance in this article describes data access during interactive development. It applies to any host that can run a Python session. This can include your local machine, a cloud VM, a GitHub Codespace, and more. We recommend that you use an Azure Machine Learning compute instance - a fully managed and preconfigured cloud workstation. For more information, see [Create an Azure Machine Learning compute instance](how-to-create-compute-instance.md).
 
 > [!IMPORTANT]
 > Ensure that you have the latest `azure-fsspec`, `mltable`, and `azure-ai-ml` Python libraries installed in your Python environment:
@@ -128,7 +128,7 @@ fs.upload(lpath='data/upload_files/crime-spring.csv', rpath='data/fsspec', recur
 fs.upload(lpath='data/upload_folder/', rpath='data/fsspec_folder', recursive=True, **{'overwrite': 'MERGE_WITH_OVERWRITE'})
 ```
 `lpath` is the local path, and `rpath` is the remote path.
-If the folders that you specify in `rpath` don't exist, they are created.
+If the folders that you specify in `rpath` don't exist, they're created.
 
 Three 'overwrite' modes are supported:
 - APPEND. If a file with the same name exists in the destination path, APPEND keeps the original file.
@@ -232,7 +232,7 @@ To access data from the `dbfs` resource, you need:
 - The instance name, in the form of `adb-<number>.<number>.azuredatabricks.net`. You can find this value in the URL of your Azure Databricks workspace.
 - A personal access token. For more information about personal access token creation, see [Authenticate with Azure Databricks personal access tokens (legacy)](/azure/databricks/dev-tools/auth/pat).
 
-First, create an environment variable for the personal access token token on your compute instance:
+First, create an environment variable for the personal access token on your compute instance:
 
 ```bash
 export ADB_PAT=<personal_access_token>
