@@ -203,7 +203,7 @@ RAG quality depends on how you prepare content for retrieval. Azure AI Search su
 | **Large documents** | Automatic chunking (built-in or via skills) |
 | **Multiple languages** | 50+ language analyzers for text, multilingual vectors |
 | **Images and PDFs** | OCR, image analysis, image verbalization, document extraction skills |
-| **Need for similarity search** | Integrated vectorization (Azure OpenAI, Azure AI Vision, custom) |
+| **Need for similarity search** | Integrated vectorization (Azure OpenAI, Azure Vision in Foundry Tools, custom) |
 | **Terminology mismatches** | Synonym maps, semantic ranking |
 
 **For agentic retrieval:** Use [knowledge sources](agentic-knowledge-source-overview.md) that auto-generate chunking and vectorization pipelines.

@@ -22,7 +22,7 @@ Tracing (preview) is a powerful tool to understand how your agent works. It help
 Microsoft Foundry stores traces in [Azure Application Insights](/azure/azure-monitor/app/app-insights-overview) using [OpenTelemetry Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/gen-ai/). To enable tracing and monitoring in your Foundry project, create or connect an Application Insights resource in monitor settings. After configuring the connection, tracing is ready to use for your Foundry project.
 
 > [!IMPORTANT]
-> Make sure you have the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader) assigned in your Application Insights resource. To learn more about assigning roles, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal), and use [Microsoft Entra groups](../../../concepts/rbac-azure-ai-foundry.md#use-microsoft-entra-groups-with-foundry) to manage user access more easily.
+> Make sure you have the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader) assigned in your Application Insights resource. To learn more about assigning roles, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal), and use [Microsoft Entra groups](../../../concepts/rbac-foundry.md#use-microsoft-entra-groups-with-foundry) to manage user access more easily.
 > Using a project's endpoint requires configuring Microsoft Entra ID in your application. If you don't configure Entra ID, use the Azure Application Insights connection string.
 
 ## Instrumenting AI Agents

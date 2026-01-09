@@ -5,7 +5,7 @@ description: Upgrade datastore management from v1 to v2 of Azure Machine Learnin
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.topic: reference
+ms.topic: how-to
 author: s-polly
 ms.author: scottpolly
 ms.date: 01/16/2025

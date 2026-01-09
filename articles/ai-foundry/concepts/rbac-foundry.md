@@ -22,7 +22,7 @@ ai.usage: ai-assisted
 
 ::: moniker range="foundry-classic"
 > [!TIP]
-> An alternate hub-focused RBAC article is available: [Role-based access control for Microsoft Foundry (Hubs and Projects)](hub-rbac-azure-ai-foundry.md).
+> An alternate hub-focused RBAC article is available: [Role-based access control for Microsoft Foundry (Hubs and Projects)](hub-rbac-foundry.md).
 
 In this article, you learn about role-based access control (RBAC) in your Microsoft Foundry resource. Use RBAC to manage access to resources, like creating new resources or using an existing one. Assign users roles that grant access to resources. This article dives into the details about RBAC in Microsoft Foundry and how to best utilize roles assignments for your enterprise. 
 
@@ -85,7 +85,7 @@ To relate these terms to each other, an identity is assigned a *role* with certa
 
 In Microsoft Foundry, consider two scopes when completing role assignments. 
 
-* **Foundry resource**: The top-level scope that defines the administrative, security, and monitoring boundary for an Azure AI Foundry environment.
+* **Foundry resource**: The top-level scope that defines the administrative, security, and monitoring boundary for a Microsoft Foundry environment.
 * **Foundry project**: A sub-scope within a Foundry resource used to organize work and enforce access control for Foundry APIs, tools, and developer workflows.
 
 

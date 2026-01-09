@@ -20,6 +20,9 @@ monikerRange: 'azureml-api-2 || azureml-api-1'
 
 The soft delete feature for Azure Machine Learning workspace provides a data protection capability that enables you to attempt recovery of workspace data after accidental deletion. Soft delete introduces a two-step approach in deleting a workspace. When you delete a workspace, you first soft delete it. While in soft-deleted state, you can choose to recover or permanently delete a workspace and its data during a data retention period.
 
+> [!NOTE]
+> Soft-deletion and recovery is not supported when a workspace uses only user-assigned managed identity. 
+
 ## How workspace soft delete works
 
 When you soft delete a workspace, the service soft deletes data and metadata stored service-side, but it hard deletes some configurations. The following table provides an overview of which configurations and objects get soft deleted, and which configurations and objects get hard deleted.

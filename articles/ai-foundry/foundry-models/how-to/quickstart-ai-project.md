@@ -56,7 +56,7 @@ To configure the project to use the Foundry Models capability in Foundry, follow
 
 1. If no resource is listed, your AI hub doesn't have a Foundry resource connected to it. Create a new connection.
 
-   1. Select **+New connection**, then choose **Azure AI foundry** from the tiles.
+   1. Select **+New connection**, then choose **Microsoft Foundry** from the tiles.
 
    1. In the window, look for an existing resource in your subscription and then select **Add connection**.
 
@@ -64,12 +64,12 @@ To configure the project to use the Foundry Models capability in Foundry, follow
 
 1. Return to the project's landing page.
 
-1. Under **Included capabilities**, ensure you select **Azure AI Inference**. The **Foundry Models endpoint** URI is displayed along with the credentials to get access to it.
+1. Under **Included capabilities**, ensure you select **Azure AI Inference**. The **Azure AI model inference endpoint** URI is displayed along with the credentials to get access to it.
 
     :::image type="content" source="../media/quickstart-ai-project/overview-endpoint-and-key.png" alt-text="Screenshot of the landing page for the project, highlighting the location of the connected resource and the associated inference endpoint." lightbox="../media/quickstart-ai-project/overview-endpoint-and-key.png":::
 
     > [!TIP]
-    > Each Foundry resource has a single **Foundry Models endpoint** that can be used to access any model deployment on it. The same endpoint serves multiple models depending on which ones are configured. To learn how the endpoint works, see [Azure OpenAI inference endpoint](inference.md#azure-openai-inference-endpoint).
+    > Each Foundry resource has a single **Azure AI model inference endpoint** that can be used to access any model deployment on it. The same endpoint serves multiple models depending on which ones are configured. To learn how the endpoint works, see [Azure OpenAI inference endpoint](inference.md#azure-openai-inference-endpoint).
 
 1. Take note of the endpoint URL and credentials.
 

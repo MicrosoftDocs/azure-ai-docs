@@ -5,7 +5,7 @@ description: Upgrade compute management from v1 to v2 of Azure Machine Learning 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mldata
-ms.topic: reference
+ms.topic: how-to
 author: s-polly
 ms.author: scottpolly
 ms.date: 04/15/2024

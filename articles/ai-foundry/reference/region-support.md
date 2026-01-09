@@ -194,7 +194,7 @@ Available to US government entities and their partners only. For more informatio
 
 ## Use AI to find the best region
 
-Use AI to help you find the right region for your needs.  Open [Ask AI](../foundry-agent/ask-foundry-agent.md) and customize this prompt for your specific case:
+Use AI to help you find the right region for your needs.  Open [Ask AI](../concepts/ask-ai.md) and customize this prompt for your specific case:
 
 ```copilot-prompt
    Based on the features I need for my Foundry project, which regions would you recommend to create the project? 

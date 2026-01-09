@@ -103,6 +103,10 @@ project_client = AIProjectClient(
 openai_client = project_client.get_openai_client()
 
 with project_client:
+    bing_grounding_connection = project_client.connections.get(os.environ["BING_PROJECT_CONNECTION_NAME"])
+    connection_id = bing_grounding_connection.id
+    print(f"Grounding with Bing Search connection ID: {connection_id}")
+
     agent = project_client.agents.create_version(
         agent_name="MyAgent",
         definition=PromptAgentDefinition(
@@ -113,7 +117,7 @@ with project_client:
                     bing_grounding=BingGroundingSearchToolParameters(
                         search_configurations=[
                             BingGroundingSearchConfiguration(
-                                project_connection_id=os.environ["BING_PROJECT_CONNECTION_ID"]
+                                project_connection_id=connection_id
                             )
                         ]
                     )
@@ -204,11 +208,15 @@ project_client = AIProjectClient(
 # Get the OpenAI client for responses and conversations
 openai_client = project_client.get_openai_client()
 
+bing_custom_search_connection = project_client.connections.get(os.environ["BING_CUSTOM_SEARCH_PROJECT_CONNECTION_NAME"])
+connection_id = bing_custom_search_connection.id
+print(f"Grounding with Bing Custom Search connection ID: {connection_id}")
+
 bing_custom_search_tool = BingCustomSearchAgentTool(
     bing_custom_search_preview=BingCustomSearchToolParameters(
         search_configurations=[
             BingCustomSearchConfiguration(
-                project_connection_id=os.environ["BING_CUSTOM_SEARCH_PROJECT_CONNECTION_ID"],
+                project_connection_id=connection_id,
                 instance_name=os.environ["BING_CUSTOM_SEARCH_INSTANCE_NAME"],
             )
         ]
@@ -960,6 +968,7 @@ Grounding with Bing Custom Search is a powerful tool that you can use to select 
 - Azure AI Agent service returns **AI model generated response** as output so end-to-end latency is impacted by pre-/post-processing of LLMs.
 - The Grounding with Bing Search and Grounding with Bing Custom Search tools don't return the tool output to developers and end users.
 - Grounding with Bing Search and Grounding with Bing Custom Search only works with agents that aren't using VPN or Private Endpoints. The agent must have normal network access.
+- Customers should leverage default citations pattern - the links sent in `annotation`- for links from the Grounding with Bing tools, not asking the model to generate.
 
 ## Troubleshooting
 

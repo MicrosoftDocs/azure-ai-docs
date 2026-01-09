@@ -1,6 +1,6 @@
 ---
  title: include file
- description: include file
+ description: tip
  #services: cognitive-services
  author: laujan
  ms.service: azure-ai-language

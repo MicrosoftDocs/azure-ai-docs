@@ -531,11 +531,6 @@ items:
           href: /rest/api/batchavatar/operation-groups
 - name: Retiring features and migration
   items:
-  - name: Retiring features
-    displayName: migrate,migration,deprecate,retire,sunset
-    items:
-      - name: Online transcription editor
-        href: how-to-custom-speech-transcription-editor.md
   - name: Speech to text REST API migration
     items:
     - name: From Speech to text 2024-11-15 to 2025-10-15
