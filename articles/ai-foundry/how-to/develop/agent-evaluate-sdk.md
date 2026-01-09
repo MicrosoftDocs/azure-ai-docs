@@ -593,11 +593,8 @@ For `ToolCallAccuracyEvaluator`, you must provide either `response` or `tool_cal
 
 The following examples show the two data formats: simple agent data and agent messages. However, due to the unique requirements of these evaluators, we recommend referring to the [Sample notebooks](#sample-notebooks), which illustrate the possible input paths for each evaluator.  
 
-Like other [built-in AI-assisted quality evaluators](../../concepts/evaluation-evaluators/agent-evaluators.md), `IntentResolutionEvaluator` outputs a Likert score (integer 1–5; higher scores are better). To further improve intelligibility, all evaluators accept a binary threshold and output two new keys. For the binarization threshold, a default is set and you can override it. The two new keys are:
-- `{metric_name}_result`: A "pass" or "fail" string based on a binarization threshold.
-- `{metric_name}_threshold`: A numerical binarization threshold set by default or by the user.
+All [built-in AI-assisted quality evaluators](../../concepts/evaluation-evaluators/agent-evaluators.md) output a pass or fail for each input. 
 
-`ToolCallAccuracyEvaluator` and `TaskAdherenceEvaluator` output binary scores.
 
 ::: moniker-end
 
