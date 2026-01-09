@@ -6,7 +6,7 @@ monikerRange: 'foundry-classic || foundry'
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: deeikele
-ms.date: 11/02/2025
+ms.date: 01/09/2026
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.custom:
@@ -33,26 +33,26 @@ This article describes how to create a Foundry project in [Microsoft Foundry](ht
 
     * Agents 
     * Foundry SDK and API to build agents and switch easily between models
-    * Models sold directly by Azure - Azure OpenAI, Mistral, xAI, DeepSeek, etc.
-    * Partner & Community Models sold through Marketplace - Stability, Cohere, etc. 
+    * Models sold directly by Azure - Azure OpenAI, Mistral, xAI, DeepSeek, and more.
+    * Partner and community models sold through Marketplace - Stability, Cohere, and more. 
     * Content understanding
     * Evaluations
     * Fine-tuning
     * OpenAI SDK and API including Batch and Stored Completions
     * Foundry Tools
 
-* Do you need access to open-source models or PromptFlow? [Create a hub project type](../how-to/hub-create-projects.md) instead.
+* If you need access to open-source models or PromptFlow, [create a hub project type](../how-to/hub-create-projects.md) instead.
 
-* See [Types of projects](../what-is-foundry.md#types-of-projects) for more information on the different project types.
+* For more information about the different project types, see [Types of projects](../what-is-foundry.md#types-of-projects).
 
 ::: moniker-end
 
-If your organization requires customized Azure configurations like alternative names, security controls or cost tags, you might need to use the [Azure portal](https://portal.azure.com) or [template options](create-resource-template.md) to comply with your organization's Azure Policy requirements.
+If your organization requires customized Azure configurations like alternative names, security controls, or cost tags, you might need to use the [Azure portal](https://portal.azure.com) or [template options](create-resource-template.md) to comply with your organization's Azure Policy requirements.
 
 ## Prerequisites
 
 
-Use the following tabs to select the method you'll use to create a Foundry project:
+Use the following tabs to select the method you want to use to create a Foundry project:
 
 # [Foundry portal](#tab/foundry)
 
@@ -69,7 +69,7 @@ Use the following tabs to select the method you'll use to create a Foundry proje
 # [Python SDK](#tab/python)
 
 - [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
-- You must be **Owner** of the subscription to get the appropriate access control needed to use the project.
+- You must be an **Owner** of the subscription to get the appropriate access control needed to use the project.
 - [Set up your development environment](develop/install-cli-sdk.md?tabs=python)
 - Run `az login` or `az login --use-device-code` in your environment before running code.
 
@@ -117,8 +117,8 @@ Use the following tabs to select the method you'll use to create a Foundry proje
 # [Azure CLI](#tab/azurecli)
 
 - [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
-- You must be **Owner** of the subscription to receive the appropriate access control needed to use the project.
-- Install the [Azure CLI](/cli/azure/install-azure-cli) 
+- You must be **Owner** of the subscription to get the access control needed to use the project.
+- Install the [Azure CLI](/cli/azure/install-azure-cli). 
 - Set default values for `subscription` and `resource group`.
 
   ```azurecli
@@ -166,28 +166,28 @@ To create a Foundry project, follow these steps:
 
 ### Advanced options
 
-1. A Foundry project is created on an `Foundry` resource. This resource is created for you automatically when you create the project. Select an existing **Resource group** you want to use, or leave the default to create a new resource group.
+1. You create a Foundry project on a `Foundry` resource. The portal automatically creates this resource when you create the project. Select an existing **Resource group** to use, or leave the default to create a new resource group.
 
     > [!TIP]
-    > Especially for getting started, we recommend you create a new resource group for your project. The resource group lets you easily manage the project and all its resources together.
+    > Especially for getting started, create a new resource group for your project. The resource group makes it easy to manage the project and all its resources together.
 
-1. Select a **Location** or use the default. The location is the region where the resources in the project are hosted. 
+1. Select a **Location** or use the default. The location is the region where the project resources are hosted. 
 
-1. Select **Create**. You see progress of resource creation. The project is created when the process is complete.
+1. Select **Create**. You see the progress of resource creation. The project is created when the process is complete.
 
 # [Python SDK](#tab/python)
 
 To create a Foundry project:
 
 
-- Add this code to create a Foundry project by using the variables and `client` connection from the [Prerequisites](#prerequisites).
+- Add the following code to create a Foundry project by using the variables and `client` connection from the [Prerequisites](#prerequisites).
 
     :::code language="python" source="~/foundry-samples-main/samples-classic/python/quickstart/create_project.py" id="create_resource_project":::
 
 
 # [Azure CLI](#tab/azurecli)
 
-1. Authenticate to your Azure subscription from the Azure CLI with the following command:
+1. Authenticate to your Azure subscription from the Azure CLI by using the following command:
 
     ```azurecli
     az login
@@ -232,9 +232,9 @@ To create a Foundry project:
 
 ::: moniker range="foundry-classic"
 
-On the project **Home** page, you find information about the project.
+On the **Home** project page, you find information about the project.
 
-- **Name**: The name of the project appears in the top left corner. 
+- **Name**: The name of the project appears in the upper left corner. 
 - **Subscription**: The subscription that hosts the hub that hosts the project.
 - **Resource group**: The resource group that hosts the hub that hosts the project.
 
@@ -242,7 +242,7 @@ On the project **Home** page, you find information about the project.
 
 ::: moniker range="foundry"
 
-On the **Home** page, you see the project endpoint and API key for the project. You don't need the API key if you use Microsoft Entra ID authentication.
+On the **Home** project page, you see the project endpoint and API key for the project. You don't need the API key if you use Microsoft Entra ID authentication.
 
 ::: moniker-end
 
@@ -295,7 +295,7 @@ To delete the Foundry resource and all its projects:
 
 # [Python SDK](#tab/python)
 
-This code uses the variables and `client connection` from the Prerequisites. First create the client connection:
+This code uses the variables and `client connection` from the Prerequisites. First, create the client connection:
 
 ```python
 client.projects.begin_delete(
@@ -333,10 +333,10 @@ az cognitiveservices account project delete \
 ---
 
 > [!IMPORTANT]
-> Use with caution. You cannot recover a project after it has been deleted.
+> Use with caution. You can't recover a project after it's deleted.
 
 ## Related content
 
-- [Quickstart: Get started with Foundry](../quickstarts/get-started-code.md)
+- [Quickstart: Get started with Foundry](../quickstarts-get-started-code.md)
 - [What is Foundry?](../what-is-foundry.md)
 
