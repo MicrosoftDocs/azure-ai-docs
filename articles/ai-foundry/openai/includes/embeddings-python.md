@@ -125,7 +125,7 @@ pd.options.mode.chained_assignment = None #https://pandas.pydata.org/pandas-docs
 # s is input text
 def normalize_text(s, sep_token = " \n "):
     s = re.sub(r'\s+',  ' ', s).strip()
-    s = re.sub(r". ,","",s)
+    s = re.sub(r"\. ,","",s) 
     # remove all instances of multiple spaces
     s = s.replace("..",".")
     s = s.replace(". .",".")
