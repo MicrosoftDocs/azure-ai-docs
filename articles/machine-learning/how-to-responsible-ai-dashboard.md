@@ -9,7 +9,7 @@ ms.topic:  how-to
 ms.reviewer: None
 ms.author: lagayhar
 author: lgayhardt
-ms.date: 01/08/2026
+ms.date: 01/09/2026
 ms.custom: responsible-ml
 ai-usage: ai-assisted
 #customer intent: As a data scientist, I need to understand the Responsible AI dashboard to use responsible AI practices in Azure Machine Learning.
@@ -21,7 +21,9 @@ Link Responsible AI dashboards to your registered models. To view your Responsib
 
 :::image type="content" source="./media/how-to-responsible-ai-dashboard/view-responsible-ai-model-page.png" alt-text="Screenshot of the model details pane in Azure Machine Learning studio, with the 'Responsible AI' tab highlighted." lightbox="./media/how-to-responsible-ai-dashboard/view-responsible-ai-model-page.png":::
 
-You can configure multiple dashboards and attach them to your registered model. Attach various combinations of components, such as interpretability, error analysis, and causal analysis, to each Responsible AI dashboard. The following image shows a dashboard's customization and the components that were generated in it. In each dashboard, you can view or hide various components in the dashboard UI itself.
+You can configure multiple dashboards and attach them to your registered model. Attach various combinations of components, such as interpretability, error analysis, and causal analysis, to each Responsible AI dashboard.
+
+The following image shows a dashboard's customization and the components that were generated in it. In each dashboard, you can view or hide various components in the dashboard UI itself.
 
 :::image type="content" source="./media/how-to-responsible-ai-dashboard/view-responsible-ai-dashboard.png" alt-text="Screenshot of Responsible AI tab with a dashboard name highlighted." lightbox="./media/how-to-responsible-ai-dashboard/view-responsible-ai-dashboard.png":::
 
@@ -37,7 +39,7 @@ Before you open the Responsible AI dashboard, make sure you have:
 - [!INCLUDE [workspace and compute instance](includes/prerequisite-workspace-compute-instance.md)]
 - A registered model with a generated Responsible AI dashboard. To create or update one, see [Generate Responsible AI insights in the studio UI](how-to-responsible-ai-insights-ui.md) or [Generate Responsible AI insights with the SDK or CLI](how-to-responsible-ai-insights-sdk-cli.md).
 - Permissions in the workspace to view models and start compute instances. For example, **Contributor** or **Owner** at the workspace scope can start compute instances. For least-privilege access, combine **Reader** (to view assets) with **AzureML Compute Operator** (to manage compute). For more information, see [Manage access to Azure Machine Learning workspaces](/azure/machine-learning/how-to-assign-roles?view=azureml-api-2&preserve-view=true).
-- Network access required by your organization to reach Azure Machine Learning studio and connect to a compute instance. If your workspace uses network isolation, for example, managed virtual network or virtual networks with private endpoints, make sure required inbound and outbound traffic is allowed. For more information, see [Plan for network isolation in Azure Machine Learning](/azure/machine-learning/how-to-network-isolation-planning?view=azureml-api-2&preserve-view=true) and [Secure an Azure Machine Learning workspace with virtual networks](/azure/machine-learning/how-to-secure-workspace-vnet?view=azureml-api-2&preserve-view=true).
+- Network access required by your organization to reach Azure Machine Learning studio and connect to a compute instance. If your workspace uses network isolation, for example, managed virtual network or virtual networks with private endpoints, make sure you allow required inbound and outbound traffic. For more information, see [Plan for network isolation in Azure Machine Learning](/azure/machine-learning/how-to-network-isolation-planning?view=azureml-api-2&preserve-view=true) and [Secure an Azure Machine Learning workspace with virtual networks](/azure/machine-learning/how-to-secure-workspace-vnet?view=azureml-api-2&preserve-view=true).
 
 ## Full functionality with an integrated compute resource
 
