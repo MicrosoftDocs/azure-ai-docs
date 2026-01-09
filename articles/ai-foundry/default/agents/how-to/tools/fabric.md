@@ -58,7 +58,20 @@ First, build and publish a Fabric data agent. Then, connect your Fabric data age
     ```azurecli
     az account get-access-token --scope https://ai.azure.com/.default
     ```
+## Troubleshooting
 
+**Create assistant failed**: {"requestId":"","errorCode":"BadRequest","message":"Artifact Id should not be empty and needs to be a valid GUID.","relatedResource":{"resourceId":"","resourceType":"MLModel"}} 
+- Please check if you have provided the right artifact id and workspace id when configuring the Fabric tool. The URL of the opened page looks like `https://msit.powerbi.com/groups/%workspace_id%/aiskills/%artifact_id%?experience=power-bi`, where `workspace_id` and `artifact_id` are GUIDs in a form like `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb`.
+
+**Add message failed with status BadRequest**:"Can't add messages to thread_ABC while a run run_123 is active.", 
+- Start a new response or conversation in Foundry Agent Service and try again.
+
+**unauthorized**
+- Make sure the end user has access to the Fabric Data Agent and its underlying data sources.
+
+**Cannot find the requested item/configuration not found**
+- Make sure your Fabric Data Agent is published and active and your data sources are still valid.
+    
 ## Code example
 
 > [!NOTE]
