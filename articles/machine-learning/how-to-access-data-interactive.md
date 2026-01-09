@@ -33,7 +33,7 @@ A machine learning project typically starts with exploratory data analysis (EDA)
 * An Azure Machine Learning datastore. For more information, see [Create datastores](how-to-datastore.md).
 
 > [!TIP]
-> The guidance in this article describes data access during interactive development. It applies to any host that can run a Python session. This host can include your local machine, a cloud VM, a GitHub Codespace, and more. Use an Azure Machine Learning compute instance - a fully managed and preconfigured cloud workstation. For more information, see [Create an Azure Machine Learning compute instance](how-to-create-compute-instance.md).
+> The guidance in this article describes data access during interactive development. It applies to any host that can run a Python session. This host can be your local machine, a cloud VM, a GitHub Codespace, or another host. Use an Azure Machine Learning compute instance - a fully managed and preconfigured cloud workstation. For more information, see [Create an Azure Machine Learning compute instance](how-to-create-compute-instance.md).
 
 > [!IMPORTANT]
 > Ensure you have the latest `azure-fsspec`, `mltable`, and `azure-ai-ml` Python libraries installed in your Python environment:
@@ -42,17 +42,17 @@ A machine learning project typically starts with exploratory data analysis (EDA)
 > pip install -U azureml-fsspec==1.3.1 mltable azure-ai-ml
 > ```
 
-The latest `azure-fsspec` package version can potentially change over time. For more information about the `azure-fsspec` package, see [azureml-fsspec 1.3.1](https://pypi.org/project/azureml-fsspec/).
+The latest `azure-fsspec` package version can change over time. For more information about the `azure-fsspec` package, see [azureml-fsspec 1.3.1](https://pypi.org/project/azureml-fsspec/).
 
-## Access data from a datastore URI, as you would from a filesystem
+## Access data from a datastore URI as you would from a filesystem
 
 An Azure Machine Learning datastore is a reference to an existing Azure storage account. The benefits of creating and using datastores include:
 
 > [!div class="checklist"]
-> * A common, easy-to-use API to interact with different storage types (blob/file/Azure Data Lake Storage).
+> * A common, easy-to-use API to interact with different storage types (blob, file, Azure Data Lake Storage).
 > * Easy discovery of useful datastores in team operations.
 > * Support for both credential-based (for example, SAS token) and identity-based (Microsoft Entra ID or managed identity) access to data.
-> * For credential-based access, the connection information is secured, to avoid key exposure in scripts.
+> * For credential-based access, the connection information is secured to avoid key exposure in scripts.
 > * You can browse data and copy and paste datastore URIs in the Azure Machine Learning studio UI.
 
 A *Datastore URI* is a Uniform Resource Identifier, which is a reference to a storage location (path) in your Azure storage account. A datastore URI has this format:
@@ -89,8 +89,8 @@ df.head()
 > 1. Find the file or folder you want to read into Pandas, select the ellipsis (**...**) next to it, and then select **Copy URI**. You can then select the datastore URI to copy into your notebook or script.
 > :::image type="content" source="media/how-to-access-data-interactive/datastore-uri-copy.png" alt-text="Screenshot that shows how to copy a datastore URI.":::
 
-You can also instantiate an Azure Machine Learning filesystem, to handle filesystem-like commands, like `ls`, `glob`, `exists`, and `open`.
-- The `ls()` method lists files in a specific directory. You can use `ls()`, `ls(.)`, `ls (<folder_level_1>/<folder_level_2>)` to list files. Both `.` and `..` are supported in relative paths.
+You can also instantiate an Azure Machine Learning filesystem to handle filesystem-like commands, like `ls`, `glob`, `exists`, and `open`.
+- The `ls()` method lists files in a specific directory. You can use `ls()`, `ls(.)`, and `ls (<folder_level_1>/<folder_level_2>)` to list files. Both `.` and `..` are supported in relative paths.
 - The `glob()` method supports `*` and `**` globbing.
 - The `exists()` method returns a Boolean value that indicates whether a specified file exists in the current root directory.
 - The `open()` method returns a file-like object that can be passed to any other library that expects to work with Python files. Your code can also use this object as if it were a normal Python file object. These file-like objects respect the use of `with` contexts, as shown in this example:
@@ -131,9 +131,9 @@ fs.upload(lpath='data/upload_folder/', rpath='data/fsspec_folder', recursive=Tru
 If the folders you specify in `rpath` don't exist, the method creates the folders for you.
 
 The method supports three `overwrite` modes:
-- APPEND: if a file with the same name exists in the destination path, APPEND keeps the original file
-- FAIL_ON_FILE_CONFLICT: if a file with the same name exists in the destination path, FAIL_ON_FILE_CONFLICT throws an error
-- MERGE_WITH_OVERWRITE: if a file with the same name exists in the destination path, MERGE_WITH_OVERWRITE overwrites that existing file with the new file
+- APPEND. If a file with the same name exists in the destination path, APPEND keeps the original file.
+- FAIL_ON_FILE_CONFLICT. If a file with the same name exists in the destination path, FAIL_ON_FILE_CONFLICT throws an error.
+- MERGE_WITH_OVERWRITE. If a file with the same name exists in the destination path, MERGE_WITH_OVERWRITE overwrites that existing file with the new file.
 
 ### Download files by using AzureMachineLearningFileSystem
 ```python
@@ -147,7 +147,7 @@ fs.download(rpath='data/fsspec_folder', lpath='data/download_folder/', recursive
 
 ### Examples
 
-These examples show use of the filesystem spec in common scenarios.
+These examples show how to use the filesystem spec in common scenarios.
 
 #### Read a single CSV file into Pandas
 
@@ -161,7 +161,7 @@ df = pd.read_csv("azureml://subscriptions/<subscription_ID>/resourcegroups/<reso
 
 #### Read a folder of CSV files into Pandas
 
-The Pandas `read_csv()` method doesn't support reading a folder of CSV files. To handle this limitation, use glob to get the CSV paths, and concatenate them to a data frame with the Pandas `concat()` method. The next code sample shows how to achieve this concatenation with the Azure Machine Learning filesystem:
+The Pandas `read_csv()` method doesn't support reading a folder of CSV files. To handle this limitation, use glob to get the CSV paths, and concatenate them to a data frame with the Pandas `concat()` method. The next code sample shows how to achieve this concatenation by using the Azure Machine Learning filesystem:
 
 ```python
 import pandas as pd
