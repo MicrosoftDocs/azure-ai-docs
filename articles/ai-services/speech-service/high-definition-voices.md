@@ -366,5 +366,5 @@ Both HD voice models deliver high-quality synthesis, but they serve different us
 - Need broad persona variety for different use cases
 
 ## Related content
-- [Try the text to speech quickstart in Azure Speech](get-started-text to speech.md)
+- [Try the text to speech quickstart in Azure Speech](get-started-text-to-speech.md)
 - [Learn more about how to use SSML and events](speech-synthesis-markup-structure.md)
