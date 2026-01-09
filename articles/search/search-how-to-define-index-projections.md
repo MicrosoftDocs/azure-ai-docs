@@ -221,9 +221,15 @@ For .NET developers, use the [IndexProjections Class](/dotnet/api/azure.search.d
 ### Parameter reference
 
 | Index projection parameters | Definition |
-|----------------------------|------------|
+|-----------------------------|------------|
 | `selectors` | Parameters for the main search corpus, usually the one designed around chunks. |
-| `projectionMode` | An optional parameter providing instructions to the indexer. The only valid value for this parameter is `skipIndexingParentDocuments`, and it's used when the chunk index is the primary search corpus and you need to specify whether parent fields are indexed as extra search documents within the chunked index. If you don't set `skipIndexingParentDocuments`, you get extra search documents in your index that are null for chunks, but populated with parent fields only. For example, if five documents contribute 100 chunks to the index, then the number of documents in the index is 105. The five documents created or parent fields have nulls for chunk (child) fields, making them substantially different from the bulk of the documents in the index. We recommend `projectionMode` set to `skipIndexingParentDocument`. |
+| `parameters` | A parameter dictionary of index projection-specific configuration properties. |
+
+Detailed configuration properties of an index projection:
+
+| Parameter keys | Definition |
+|----------------|------------|
+| `projectionMode` | An optional parameter providing instructions to the indexer. One of the valid values for this parameter is `skipIndexingParentDocuments`, and it's used when the chunk index is the primary search corpus and you need to specify whether parent fields are indexed as extra search documents within the chunked index. If you don't set `skipIndexingParentDocuments`, you get extra search documents in your index that are null for chunks, but populated with parent fields only. For example, if five documents contribute 100 chunks to the index, then the number of documents in the index is 105. The five documents created or parent fields have nulls for chunk (child) fields, making them substantially different from the bulk of the documents in the index. We recommend `projectionMode` set to `skipIndexingParentDocument`. |
 
 Selectors have the following parameters as part of their definition.
 
