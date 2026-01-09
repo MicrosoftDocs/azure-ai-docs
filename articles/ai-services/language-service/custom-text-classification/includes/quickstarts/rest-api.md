@@ -23,26 +23,26 @@ Before you can use custom text classification, you'll need to create a Language 
 > If you have a [pre-existing resource](../../how-to/create-project.md#using-a-preexisting-language-resource) that you'd like to use, you need to connect it to storage account.
 
 [!INCLUDE [create a new resource from the Azure portal](../resource-creation-azure-portal.md)]
-    
+
 
 
 ## Upload sample data to blob container
 
 [!INCLUDE [Uploading sample data for custom tex classification](blob-storage-upload.md)]
-    
+
 
 
 ### Get your resource keys and endpoint
 
 [!INCLUDE [Get keys and endpoint Azure portal](../get-keys-endpoint-azure.md)]
-    
+
 
 
 ## Create a custom text classification project
 
 Once your resource and storage container are configured, create a new custom text classification project. A project is a work area for building your custom ML models based on your data. Your project can only be accessed by you and others who have access to Azure Language resource being used.
 
-### Trigger import project job 
+### Trigger import project job
 
 [!INCLUDE [Import a project using the REST API](../rest-api/import-project.md)]
 
@@ -60,7 +60,7 @@ Typically after you create a project, you go ahead and start [tagging the docume
 
 ### Start training your model
 
-After your project has been imported, you can start training your model. 
+After your project has been imported, you can start training your model.
 
 [!INCLUDE [train model](../rest-api/train-model.md)]
 

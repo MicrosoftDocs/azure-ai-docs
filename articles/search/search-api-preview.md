@@ -10,7 +10,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: conceptual
-ms.date: 11/10/2025
+ms.date: 12/17/2025
 ---
 
 # Preview features in Azure AI Search
@@ -25,7 +25,7 @@ Preview features are removed from this list if they're retired or transition to 
 
 | Feature | Description | Availability |
 |--|--|--|
-| [**Agentic retrieval**](agentic-retrieval-overview.md) | Create a conversational search experience powered by large language models (LLMs). Agentic retrieval breaks down complex user queries into subqueries, runs the subqueries simultaneously, reranks the results for relevance, and either extracts grounding data or synthesizes answers into natural language. To get started, see [Quickstart: Agentic retrieval](search-get-started-agentic-retrieval.md).<p>The pipeline involves one or more [knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources) within a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), whose [response payload](agentic-retrieval-how-to-retrieve.md) provides full transparency into the query plan and reference data.<p>Knowledge sources and knowledge bases created in the Azure portal use the 2025-08-01-preview schema and aren't compatible with the latest 2025-11-01-preview. To get started, see [Quickstart: Agentic retrieval in the Azure portal](get-started-portal-agentic-retrieval.md). | [Knowledge Sources (preview)](/rest/api/searchservice/knowledge-sources?view=rest-searchservice-2025-11-01-preview&preserve-view=true), [Knowledge bases (preview)](/rest/api/searchservice/knowledge-bases?view=rest-searchservice-2025-11-01-preview&preserve-view=true), [Knowledge Retrieval (preview)](/rest/api/searchservice/knowledge-retrieval?view=rest-searchservice-2025-11-01-preview&preserve-view=true), and the Azure portal |
+| [**Agentic retrieval**](agentic-retrieval-overview.md) | Create a conversational search experience powered by large language models (LLMs). Agentic retrieval breaks down complex user queries into subqueries, runs the subqueries simultaneously, reranks the results for relevance, and either extracts grounding data or synthesizes answers into natural language.<p>The pipeline involves one or more [knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources) within a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), whose [response payload](agentic-retrieval-how-to-retrieve.md) provides full transparency into the query plan and reference data.<p>To get started, see [Quickstart: Use agentic retrieval in Azure AI Search](search-get-started-agentic-retrieval.md) (programmatic) or [Quickstart: Use agentic retrieval in the Azure portal](get-started-portal-agentic-retrieval.md). | [Knowledge Sources (preview)](/rest/api/searchservice/knowledge-sources?view=rest-searchservice-2025-11-01-preview&preserve-view=true), [Knowledge bases (preview)](/rest/api/searchservice/knowledge-bases?view=rest-searchservice-2025-11-01-preview&preserve-view=true), [Knowledge Retrieval (preview)](/rest/api/searchservice/knowledge-retrieval?view=rest-searchservice-2025-11-01-preview&preserve-view=true), and the Azure portal |
 | [**Purview index configuration**](search-indexer-sensitivity-labels.md) | Apply Microsoft Purview classifications and sensitivity labels to indexed content based on source metadata for enhanced data governance. | [Create or Update Index (preview)](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) |
 | [**Scoring function aggregation**](index-add-scoring-profiles.md#example-function-aggregation) | Combine and aggregate multiple scoring functions, enabling more sophisticated relevance customization and weighted signal combination. | [Create or Update Index (preview)](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) |
 | [**Facet aggregations**](search-faceted-navigation-examples.md#facet-aggregation-example) | Use sum, count, minimum, maximum, and other aggregate functions to provide enhanced analytics in faceted search experiences. | [Search Documents (preview)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-11-01-preview&preserve-view=true) |
@@ -63,7 +63,7 @@ Currently, there are no control plane features in preview.
 
 ## Preview features in Azure SDKs
 
-Each Azure SDK team releases beta packages on their own timeline. Check the change log for mentions of new features in beta packages:
+Preview features in Azure SDKs are available through preview packages. To determine which preview features are available in a specific package version, see the SDK's change log:
 
 + [Change log for Azure SDK for .NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md)
 + [Change log for Azure SDK for Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md)
@@ -72,7 +72,7 @@ Each Azure SDK team releases beta packages on their own timeline. Check the chan
 
 ## Using preview features
 
-Experimental features are available through the preview REST API first, followed by Azure portal, and then the Azure SDKs. 
+You can access experimental features through preview REST API versions or preview SDK packages. Some features might also be available in the Azure portal. For more information about availability, see [Data plane preview features](#data-plane-preview-features) and [Control plane preview features](#control-plane-preview-features).
 
 The following statements apply to preview features:
 

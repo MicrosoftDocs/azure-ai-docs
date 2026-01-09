@@ -509,8 +509,8 @@
         "articles/search/*.yml": "90-days",
         "articles/ai-services/content-understanding/**/*.md": "90-days",
         "articles/ai-services/content-understanding/**/*.yml": "90-days",
-        "articles/ai-services/content-safety/**/*.md": "90-days",
-        "articles/ai-services/content-safety/**/*.yml": "90-days",
+        "articles/ai-services/content-safety/**/*.md": "365-days",
+        "articles/ai-services/content-safety/**/*.yml": "365-days",
         "articles/ai-services/language-service/**/*.md": "180-days",
         "articles/ai-services/language-service/**/*.yml": "180-days",
         "articles/ai-services/speech-service/**/*.md": "180-days",
@@ -557,7 +557,7 @@
         "articles/machine-learning/component-reference-v2/*.yml": "365-days",
         "articles/open-datasets/**/*.md": "365-days", 
         "articles/open-datasets/**/*.yml": "365-days", 
-        "articles/machine-learning/v1/*.md": "365-days"
+        "articles/machine-learning/v1/*.md": "1095-days"
       },
       "ms.custom": {
         "articles/machine-learning/v1/*.md": "UpdateFrequency5"

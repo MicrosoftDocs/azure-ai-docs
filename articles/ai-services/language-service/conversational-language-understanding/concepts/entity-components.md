@@ -5,7 +5,7 @@ description: Learn how conversational language understanding extracts entities f
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-clu
@@ -98,7 +98,7 @@ Sometimes, you can define an entity using multiple components, but the entity re
 
 Required components are most frequently used with learned components because they can restrict the other component types to a specific context, which is commonly associated to *roles*. You can also require all components to make sure that every component is present for an entity.
 
-In Language Studio, every component in an entity has a toggle next to it that allows you to set it as required.
+In Microsoft Foundry, every component in an entity has a toggle next to it that allows you to set it as required.
 
 #### Example
 

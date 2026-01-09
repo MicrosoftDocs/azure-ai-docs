@@ -1,12 +1,60 @@
 ---
 ms.service: azure-ai-foundry
 ms.topic: include
-ms.date: 06/09/2025
+ms.date: 01/05/2026
 ms.author: samkemp
 author: samuel100
+ai-usage: ai-assisted
 ---
 
 ## C# SDK Reference
+
+### Project setup guide
+
+There are two NuGet packages for the Foundry Local SDK - a WinML and a cross-platform package - that have the same API surface but are optimized for different platforms:
+
+- **Windows**: Uses the `Microsoft.AI.Foundry.Local.WinML` package that's specific to Windows applications, which uses the Windows Machine Learning (WinML) framework.
+- **Cross-platform**: Uses the `Microsoft.AI.Foundry.Local` package that can be used for cross-platform applications (Windows, Linux, macOS).
+
+Depending on your target platform, follow these instructions to create a new C# application and add the necessary dependencies:
+
+[!INCLUDE [project-setup](./../csharp-project-setup.md)]
+
+### Quickstart
+
+Use this snippet to verify that the SDK can initialize and access the local model catalog.
+
+```csharp
+using Microsoft.AI.Foundry.Local;
+using Microsoft.Extensions.Logging;
+using System.Linq;
+
+var config = new Configuration
+{
+  AppName = "app-name",
+  LogLevel = Microsoft.AI.Foundry.Local.LogLevel.Information,
+};
+
+using var loggerFactory = LoggerFactory.Create(builder =>
+{
+  builder.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Information);
+});
+var logger = loggerFactory.CreateLogger<Program>();
+
+await FoundryLocalManager.CreateAsync(config, logger);
+var manager = FoundryLocalManager.Instance;
+
+var catalog = await manager.GetCatalogAsync();
+var models = await catalog.ListModelsAsync();
+
+Console.WriteLine($"Models available: {models.Count()}");
+```
+
+This example prints the number of models available for your hardware.
+
+References:
+
+- [Integrate with inference SDKs](../../how-to/how-to-integrate-with-inference-sdks.md)
 
 ### Redesign
 
@@ -14,8 +62,6 @@ To improve your ability to ship applications using on-device AI, there are subst
 
 > [!NOTE]
 > In the SDK version `0.8.0` and later, there are breaking changes in the API from previous versions.
-
-#### Architecture changes
 
 The following diagram shows how the previous architecture - for versions earlier than `0.8.0` - relied heavily on using a REST webserver to manage models and inference like chat completions:
 
@@ -43,24 +89,24 @@ In this new architecture:
 
 Version `0.8.0` and later provides a more object-orientated and composable API. The main entry point continues to be the `FoundryLocalManager` class, but instead of being a flat set of methods that operate via static calls to a stateless HTTP API, the SDK now exposes methods on the `FoundryLocalManager` instance that maintain state about the service and models.
 
-| Primitive           | Versions < 0.8.0 | Versions >= 0.8.0 |
-|---------------------|-------------------|-------------------|
-| **Configuration**    | N/A | `config = Configuration(...)` |
-| **Get Manager**     | `mgr = FoundryLocalManager();`| `await FoundryLocalManager.CreateAsync(config, logger);`<br>`var mgr = FoundryLocalManager.Instance;`  |
-| **Get Catalog**   | N/A | `catalog = await mgr.GetCatalogAsync();` |
-| **List Models**            | `mgr.ListCatalogModelsAsync();`| `catalog.ListModelsAsync();`                           |
-| **Get Model**  | `mgr.GetModelInfoAsync("aliasOrModelId");`| `catalog.GetModelAsync(alias: "alias");`     |
-| **Get Variant**| N/A  | `model.SelectedVariant;` |
-| **Set Variant**| N/A  | `model.SelectVariant();` |
-| **Download a model**| `mgr.DownloadModelAsync("aliasOrModelId");` | `model.DownloadAsync()`                                                               |
-| **Load a model**    | `mgr.LoadModelAsync("aliasOrModelId");`     | `model.LoadAsync()`                                                                   |
-| **Unload a Model**  | `mgr.UnloadModelAsync("aliasOrModelId");`   | `model.UnloadAsync()`                                                                 |
-| **List Loaded Models**   | `mgr.ListLoadedModelsAsync();`             | `catalog.GetLoadedModelsAsync();`                                                               |
-| **Get Model Path**  | N/A                                        | `model.GetPathAsync()`                                                                |
-| **Start service**   | `mgr.StartServiceAsync();`                 | `mgr.StartWebServerAsync();` |
-| **Stop Service**    | `mgr.StopServiceAsync();`                | `mgr.StopWebServerAsync();`      |
-| **Cache Location**  | `mgr.GetCacheLocationAsync();`        | `config.ModelCacheDir`                           |
-| **List Cached Models** | `mgr.ListCachedModelsAsync();`     | `catalog.GetCachedModelsAsync();`               |
+| Primitive | Versions < 0.8.0 | Versions >= 0.8.0 |
+| --- | --- | --- |
+| **Configuration** | N/A | `config = Configuration(...)` |
+| **Get Manager** | `mgr = FoundryLocalManager();` | `await FoundryLocalManager.CreateAsync(config, logger);`<br>`var mgr = FoundryLocalManager.Instance;` |
+| **Get Catalog** | N/A | `catalog = await mgr.GetCatalogAsync();` |
+| **List Models** | `mgr.ListCatalogModelsAsync();` | `catalog.ListModelsAsync();` |
+| **Get Model** | `mgr.GetModelInfoAsync("aliasOrModelId");` | `catalog.GetModelAsync(alias: "alias");` |
+| **Get Variant** | N/A | `model.SelectedVariant;` |
+| **Set Variant** | N/A | `model.SelectVariant();` |
+| **Download a model** | `mgr.DownloadModelAsync("aliasOrModelId");` | `model.DownloadAsync()` |
+| **Load a model** | `mgr.LoadModelAsync("aliasOrModelId");` | `model.LoadAsync()` |
+| **Unload a model** | `mgr.UnloadModelAsync("aliasOrModelId");` | `model.UnloadAsync()` |
+| **List loaded models** | `mgr.ListLoadedModelsAsync();` | `catalog.GetLoadedModelsAsync();` |
+| **Get model path** | N/A | `model.GetPathAsync()` |
+| **Start service** | `mgr.StartServiceAsync();` | `mgr.StartWebServerAsync();` |
+| **Stop service** | `mgr.StopServiceAsync();` | `mgr.StopWebServerAsync();` |
+| **Cache location** | `mgr.GetCacheLocationAsync();` | `config.ModelCacheDir` |
+| **List cached models** | `mgr.ListCachedModelsAsync();` | `catalog.GetCachedModelsAsync();` |
 
 The API allows Foundry Local to be more configurable over the web server, logging, cache location, and model variant selection. For example, the `Configuration` class allows you to set up the application name, logging level, web server URLs, and directories for application data, model cache, and logs:
 
@@ -79,18 +125,11 @@ var config = new Configuration
 };
 ```
 
+References:
+
+- [Integrate with inference SDKs](../../how-to/how-to-integrate-with-inference-sdks.md)
+
 In the previous version of the Foundry Local C# SDK, you couldn't configure these settings directly through the SDK, which limited your ability to customize the behavior of the service.
-
-### Project setup guide
-
-There are two NuGet packages for the Foundry Local SDK - a WinML and a cross-platform package - that have *the same API surface* but are optimized for different platforms: 
-
-- **Windows**: Uses the `Microsoft.AI.Foundry.Local.WinML` package that's specific to Windows applications, which uses the Windows Machine Learning (WinML) framework to deliver optimal performance and user experience on Windows devices.
-- **Cross-Platform**: Use the `Microsoft.AI.Foundry.Local` package that can be used for cross-platform applications (Windows, Linux, macOS).
-
-Depending on your target platform, follow these instructions to create a new C# application and add the necessary dependencies:
-
-[!INCLUDE [project-setup](./../csharp-project-setup.md)]
 
 ### Reduce application package size
 
@@ -108,7 +147,7 @@ The following table summarizes what EP and IHV libraries are bundled with your a
 
 ![Illustration of a table showing EP and IHV libraries.](../../media/execution-provider-bundle.png)
 
-In all platform/architecture, the CPU EPU is required. The WebGPU EP and IHV libraries are small in size (for example, WebGPU only adds ~7MB to your application package) and are required in Windows and macOS. However, the CUDA and QNN EPs are large in size (for example, CUDA adds ~1GB to your application package) so we recommend *excluding* these EPs from your application package. WinML will download/install CUDA and QNN at runtime if the end user has compatible hardware.
+In all platforms and architectures, the CPU EP is required. The WebGPU EP and IHV libraries are small in size (for example, WebGPU only adds ~7MB to your application package) and are required in Windows and macOS. However, the CUDA and QNN EPs are large in size (for example, CUDA adds ~1GB to your application package) so we recommend excluding these EPs from your application package. WinML will download/install CUDA and QNN at runtime if the end user has compatible hardware.
 
 > [!NOTE]
 > We're working on removing the CUDA and QNN EPs from the `Microsoft.ML.OnnxRuntime.Foundry` package in future releases so that you don't need to include an `ExcludeExtraLibs.props` file to remove them from your application package.
@@ -176,7 +215,7 @@ In your project file (`.csproj`), add the following line to import the `ExcludeE
 ```
 
 
-#### Linux: CUDA dependencies
+#### Windows: CUDA dependencies
 
 The CUDA EP is pulled into your Linux application via `Microsoft.ML.OnnxRuntime.Foundry`, but we don't include the IHV libraries. If you want to allow your end users with CUDA-enabled devices to benefit from higher performance, you need *add* the following CUDA IHV libraries to your application:
 

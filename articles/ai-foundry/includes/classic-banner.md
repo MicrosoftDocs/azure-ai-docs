@@ -11,7 +11,7 @@ ms.custom: include
 ---
 
 > [!NOTE]
-> This document refers to the [Microsoft Foundry (classic)](../what-is-azure-ai-foundry.md#microsoft-foundry-portals) portal. 
+> This document refers to the [Microsoft Foundry (classic)](../what-is-foundry.md#microsoft-foundry-portals) portal. 
 >
-> 🔍 [View the Microsoft Foundry (new) documentation](../what-is-azure-ai-foundry.md?view=foundry&preserve-view=true) to learn about the new portal.
+> 🔍 [View the Microsoft Foundry (new) documentation](../what-is-foundry.md?view=foundry&preserve-view=true) to learn about the new portal.
 >

@@ -4,7 +4,7 @@ titleSuffix: Azure Machine Learning
 description: Learn how to troubleshoot and resolve issues when creating your data labeling project.
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: vkann
+ms.reviewer: soumyapatro
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mldata

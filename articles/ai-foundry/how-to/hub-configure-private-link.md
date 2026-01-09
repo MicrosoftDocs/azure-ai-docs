@@ -398,6 +398,6 @@ To find the private IP addresses for your A records, see the [Azure Machine Lear
 
 - [Configure a private link for a Foundry project](configure-private-link.md)
 - [Create a Foundry project](create-projects.md)
-- [Learn more about Foundry](../what-is-azure-ai-foundry.md)
+- [Learn more about Foundry](../what-is-foundry.md)
 - [Learn more about Foundry hubs](../concepts/ai-resources.md)
 - [Troubleshoot secure connectivity to a project](troubleshoot-secure-connection-project.md)

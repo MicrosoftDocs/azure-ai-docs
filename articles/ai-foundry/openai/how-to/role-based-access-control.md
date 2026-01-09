@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 11/26/2025
+ms.date: 01/08/2025
 ms.author: mbullwin
 recommendations: false
 ---
@@ -65,7 +65,7 @@ A user with only this role assigned would be unable to:
 ❌ Upload datasets for fine-tuning <br>
 ❌ View, query, filter Stored completions data <br>
 ❌ Access quota <br>
-❌ Create customized content filters
+❌ Create customized guardrails 
 
 ### Cognitive Services OpenAI Contributor
 
@@ -83,7 +83,7 @@ A user with only this role assigned would be unable to:
 ❌ Create new Azure OpenAI resources <br>
 ❌ View/Copy/Regenerate keys under **Keys and Endpoint** <br>
 ❌ Access quota <br>
-❌ Create customized content filters <br>
+❌ Create customized guardrails <br>
 
 ### Cognitive Services Contributor
 
@@ -95,7 +95,7 @@ This role is typically granted access at the resource group level for a user in 
 ✅ View/Copy/Regenerate keys under **Keys and Endpoint** <br>
 ✅ Ability to view what models are available for deployment in [Foundry portal](https://ai.azure.com/?cid=learnDocs) <br>
 ✅ Use the Chat, Completions, and DALL-E (preview) playground experiences to generate text and images with any models that have already been deployed to this Azure OpenAI resource <br>
-✅ Create customized content filters <br>
+✅ Create customized guardrails <br>
 ✅ Add data sources to Azure OpenAI On Your Data. <br>
 ✅ Create new model deployments or edit existing model deployments (via API) <br>
 ✅ Create custom fine-tuned models **[Added Fall 2023]**<br>
@@ -152,7 +152,7 @@ All the capabilities of Cognitive Services Contributor plus the ability to:
 |View, query, filter Stored competions data|❌|✅|✅| ➖ |
 |Create new Azure OpenAI resources|❌|❌|✅| ➖ |
 |View/Copy/Regenerate keys under “Keys and Endpoint”|❌|❌|✅| ➖ |
-|Create customized content filters|❌|❌|✅| ➖ |
+|Create customized guardrails|❌|❌|✅| ➖ |
 |Add a data source for the "on your data" feature|✅|✅|✅| ➖ |
 |Access quota|❌|❌|❌|✅|
 |Make inference API calls with Microsoft Entra ID| ✅ | ✅ | ❌ |  ➖ | 

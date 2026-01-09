@@ -6,8 +6,8 @@ manager: heikora
 ms.service: azure-ai-speech
 ms.topic: reference
 ms.date: 10/31/2025
-author: goergenj
-ms.author: jagoerge
+author: PatrickFarley
+ms.author: pafarley
 ---
 
 # Azure Speech in Foundry Tools known issues

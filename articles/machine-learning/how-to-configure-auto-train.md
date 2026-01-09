@@ -4,7 +4,7 @@ titleSuffix: Azure Machine Learning
 description: Learn how to set up an AutoML training run for tabular data with the Azure Machine Learning CLI and Python SDK v2.
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: rasavage
+ms.reviewer: sooryar
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: automl

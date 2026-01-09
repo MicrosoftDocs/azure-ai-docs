@@ -8,7 +8,7 @@ ms.subservice: training
 ms.topic: how-to
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: timanghn
+ms.reviewer: sooryar
 ms.date: 12/15/2023
 ms.collection: ce-skilling-ai-copilot
 ---

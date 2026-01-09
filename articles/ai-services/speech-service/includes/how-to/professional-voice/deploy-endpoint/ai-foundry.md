@@ -5,7 +5,7 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 5/19/2025
+ms.date: 12/29/2025
 ms.custom: include
 ---
 
@@ -21,7 +21,7 @@ To use your fine-tuned professional voice, you must specify the voice model name
 To create a professional voice endpoint:
 
 To deploy an endpoint, follow these steps:
-1. Sign in to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
+1. Sign in to the [Microsoft Foundry (classic) portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
 1. Select the professional voice fine-tuning task (by model name) that you [started as described in the create professional voice article](/azure/ai-services/speech-service/professional-voice-create-project).
 1. Select **Deploy model** > **Deploy model**. 
@@ -65,14 +65,14 @@ Once you updated your voice model to the latest engine version, or if you want t
 You can suspend or resume an endpoint to limit spend and conserve resources that aren't in use. You aren't charged while the endpoint is suspended. When you resume an endpoint, you can continue to use the same endpoint URL in your application to synthesize speech. 
 
 > [!NOTE]
-> The suspend operation completes almost immediately. The resume operation completes in about the same amount of time as a new deployment. 
+> The Suspend operation completes almost immediately. The Resume operation completes in about the same amount of time as a new deployment. 
 
 This section describes how to suspend or resume a custom voice endpoint in the Microsoft Foundry portal.
 
 ### Suspend endpoint
 
 To suspend and deactivate your endpoint:
-1. Sign in to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
+1. Sign in to the [Microsoft Foundry (classic) portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
 1. Select the professional voice fine-tuning task (by model name) that you [started as described in the create professional voice article](/azure/ai-services/speech-service/professional-voice-create-project).
 1. Select **Deploy model**. 

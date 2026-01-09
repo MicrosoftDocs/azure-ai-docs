@@ -19,6 +19,8 @@ ai-usage: ai-assisted
 
 # Tutorial: Deploy an enterprise chat web app
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 In this article, you deploy an enterprise chat web app that uses your data with a large language model in Microsoft Foundry portal.
 
 Your data source grounds the model with specific data. Grounding means the model uses your data to understand the context of your question. You don't change the deployed model itself. Your data stays separate and secure in your original data source.
@@ -82,7 +84,7 @@ First, identify the resources you need to set up in the Foundry portal.
 
 In the browser tab for the **Search service** resource in the Azure portal, enable managed identity:
 
-1. In the left pane, under **Resource Management**, select **Identity**.
+1. In the left pane, under **Settings**, select **Identity**.
 1. Switch **Status** to **On**.
 1. Select **Save**.
 

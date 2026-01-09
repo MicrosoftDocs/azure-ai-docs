@@ -2,7 +2,6 @@
 title: 'Quickstart: Use vision-enabled chats with the Azure OpenAI in Microsoft Foundry Models'
 titleSuffix: Azure OpenAI
 description: Use this article to get started using Azure OpenAI to deploy and use the GPT-4 Turbo with Vision model or other vision-enabled models. 
-services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -20,6 +19,7 @@ monikerRange: 'foundry-classic || foundry'
 
 Get started using images in your chats with Azure OpenAI in Microsoft Foundry Models.
 
+[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 > [!IMPORTANT]
 > Extra usage fees might apply when using chat completion models with vision functionality.

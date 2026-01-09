@@ -10,7 +10,7 @@ ms.custom:
 ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
-ms.reviewer: ziqiwang
+ms.reviewer: sooryar
 ms.date: 10/28/2024
 ms.update-cycle: 365-days
 ---

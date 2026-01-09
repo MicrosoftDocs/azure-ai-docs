@@ -20,6 +20,13 @@ When you have critical applications and business processes that rely on Azure re
 
 This article explains how you can use metrics and logs to monitor model deployments in Foundry Models.
 
+::: moniker range="foundry-classic"
+
+> [!NOTE]
+> Monitoring is only supported for OpenAI, Globalbatch sku & non-whisper models.
+
+::: moniker-end
+
 ## Prerequisites
 
 To use monitoring capabilities for model deployments in Foundry Models, you need the following:

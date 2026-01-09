@@ -272,6 +272,58 @@ videoFormat.height = 1080;
 
 For further details, see the [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/0d852b2115e780cfb4b65343e6c23e67953e8f4e/samples/js/browser/avatar/js/basic.js#L224C1-L225C1).
 
+## Set avatar scene for photo avatar
+
+For photo avatars, you can configure the scene by adjusting zoom, position, and rotation parameters. This allows you to customize how the avatar appears in the video output.
+
+Create an `AvatarSceneConfig` object with the following parameters:
+- **zoom**: A value between 0 and 1, where 1.0 represents 100% zoom (default).
+- **positionX**: Horizontal position offset, ranging from -1 to 1, where 0 is centered.
+- **positionY**: Vertical position offset, ranging from -1 to 1, where 0 is centered.
+- **rotationX**: Rotation around the X-axis in radians.
+- **rotationY**: Rotation around the Y-axis in radians.
+- **rotationZ**: Rotation around the Z-axis in radians.
+
+Set the initial scene configuration when creating the avatar config:
+
+```JavaScript
+const avatarConfig = new SpeechSDK.AvatarConfig(
+    "anika", // Set photo avatar character here.
+);
+avatarConfig.photoAvatarBaseModel = "vasa-1";
+avatarConfig.scene = new SpeechSDK.AvatarSceneConfig(
+    1.0,  // zoom: 100%
+    0.0,  // positionX: centered
+    0.0,  // positionY: centered
+    0.0,  // rotationX: no rotation
+    0.0,  // rotationY: no rotation
+    0.0   // rotationZ: no rotation
+);
+```
+
+You can also update the scene dynamically after the avatar session has started using the `updateSceneAsync` method:
+
+```JavaScript
+// Convert percentage and degree values to normalized values
+const zoom = 0.85; // 85% zoom
+const positionX = 0.1; // 10% offset to the right
+const positionY = -0.05; // 5% offset upward
+const rotationX = 10 * Math.PI / 180; // 10 degrees in radians
+const rotationY = 0;
+const rotationZ = 0;
+
+const sceneConfig = new SpeechSDK.AvatarSceneConfig(
+    zoom,
+    positionX,
+    positionY,
+    rotationX,
+    rotationY,
+    rotationZ
+);
+```
+
+> [!NOTE]
+> The scene configuration is only available for photo avatars. Video avatars don't support this feature.
 
 ## Code samples
 
@@ -280,10 +332,13 @@ Find text to speech avatar code samples in the Speech SDK GitHub repository. The
 - **Server + client**
     - [Python (server) + JavaScript (client)](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/python/web/avatar)
     - [C# (server) + JavaScript (client)](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/csharp/web/avatar)
+    - [Node.js (server) + JavaScript (client)](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/node/web/avatar)
 - **Client only**
     - [JavaScript](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/browser/avatar)
     - [Android](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/java/android/avatar)
     - [iOS](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/swift/ios/avatar)
+- **Voice live**
+    - [Node.js](https://github.com/azure-ai-foundry/voicelive-samples/tree/main/javascript/voice-live-avatar)
 
 ## Next steps
 

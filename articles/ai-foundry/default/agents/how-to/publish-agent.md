@@ -5,28 +5,29 @@ description: Learn how to publish agents in Microsoft Foundry, configure authent
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: amandafoster
-ms.date: 10/23/2025
+ms.date: 12/11/2025
 ms.topic: how-to
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
+ai-usage: ai-assisted
 ---
 
 # Publish and share agents in Microsoft Foundry
 
 Publishing promotes an agent from a development asset into a managed Azure resource with a dedicated endpoint, independent identity, and governance capabilities. This article shows you how to publish an agent, configure its authentication and permissions, update published versions, and consume the agent through its stable endpoint. 
 
-When you publish an agent, Microsoft Foundry creates an Agent Application resource with a dedicated invocation URL and its own Entra agent identity blueprint and Entra agent identity. A deployment is created under the application that references your agent version and registers it in the Entra Agent Registry for discovery and governance. 
+When you publish an agent, Microsoft Foundry creates an Agent Application resource with a dedicated invocation URL and its own Entra agent identity blueprint and Entra agent identity. A deployment is created under the application that references your agent version and registers it in the [Entra Agent Registry](/entra/agent-id/identity-platform/what-is-agent-registry) for discovery and governance. 
 
 Publishing enables you to share agents with teammates, your organization, or customers without granting access to your Foundry project or source code. The stable endpoint remains consistent as you iterate and deploy new agent versions. 
 
 ## Prerequisites
 
 - A [Foundry project](../../../how-to/create-projects.md) with at least one agent version created
-- [Azure AI Project Manager role](../../../concepts/rbac-azure-ai-foundry.md) on the Foundry project scope to publish agents
-- [Azure AI User role](../../../concepts/rbac-azure-ai-foundry.md) on the Agent Application scope to chat with a published agent
+- [Azure AI Project Manager role](../../../concepts/rbac-foundry.md) on the Foundry project scope to publish agents
+- [Azure AI User role](../../../concepts/rbac-foundry.md) on the Agent Application scope to chat with a published agent
 - Familiarity with [Azure role-based access control (RBAC)](/azure/role-based-access-control/overview) for permission configuration
-- Familiarity with [Agent identity concepts in Foundry](../concepts/agent-identity.md) 
-- For tool authentication: Knowledge of which Azure resources your agent accesses
+- Familiarity with [Agent identity concepts in Foundry](../concepts/agent-identity.md)
+- Install the required language runtimes, global tools, and VS Code extensions as described in [Prepare your development environment](../../../how-to/develop/install-cli-sdk.md)
 
 [!INCLUDE [code-preview](../../includes/code-preview.md)]
 
@@ -274,7 +275,27 @@ To roll out an agent with a different name you must:
 
 ## Consume your published Agent Application
 
-After publishing, you invoke your agent through its endpoint using the responses protocol.
+After publishing, you invoke your agent through its endpoint using the responses protocol. Using the OpenAI-compatible API with Agent Applications provides a familiar interface while leveraging Microsoft Foundry's enterprise capabilities including authentication, governance, and user data isolation.
+
+### Prerequisites for consuming Agent Applications
+
+Before running the code sample, ensure you have:
+
+- Python 3.8 or later installed
+- [Azure CLI](/cli/azure/install-azure-cli) installed and configured
+- Required Python packages installed:
+  ```bash
+  pip install openai azure-identity
+  ```
+- Authenticated to Azure CLI:
+  ```bash
+  az login
+  ```
+- Azure AI User role on the Agent Application resource you want to invoke
+
+For more details on setting up your development environment, see [Prepare your development environment](../../../how-to/develop/install-cli-sdk.md).
+
+### Use OpenAI client with Agent Applications endpoint
 
 ```python
 # filepath: Direct OpenAI compatible approach
@@ -293,7 +314,7 @@ response = openai.responses.create(
 ) 
 print(f"Response output: {response.output_text}")
 ```
-This approach authenticates using Azure credentials and requires the caller to have the Azure AI User role on the Agent Application resource. 
+This approach authenticates using Azure credentials and requires the caller to have the Azure AI User role on the Agent Application resource.
 
 ## Related content
 

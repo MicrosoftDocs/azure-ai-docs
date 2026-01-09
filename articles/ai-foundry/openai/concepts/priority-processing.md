@@ -4,6 +4,7 @@ titleSuffix: Microsoft Foundry
 description: Learn how to enable priority processing for Microsoft Foundry models to achieve low latency and high availability for time-sensitive workloads.
 manager: nitinme
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: conceptual
 ms.date: 12/01/2025
 ms.author: mopeakande

@@ -6,7 +6,7 @@ services: machine-learning
 author: s-polly
 ms.author: scottpolly
 ms.service: azure-machine-learning
-ms.reviewer: kritifaujdar
+ms.reviewer: jturuk
 ms.subservice: mlops
 ms.date: 02/07/2025
 ms.topic: concept-article
@@ -230,7 +230,7 @@ This training pipeline contains the following steps:
    - This component uses the trained model to predict taxi fares on the test set.
    - Input: ML model and Test dataset
    - Output: Performance of model and a deploy flag whether to deploy or not.
-   - This component compares the performance of the model with all previous deployed models on the new test dataset and decides whether to promote or not model into production. Promoting model into production happens by registering the model in AML workspace.
+   - This component compares the performance of the model with all previous deployed models on the new test dataset and decides whether to promote or not model into production. Promoting model into production happens by registering the model in Azure Machine Learning workspace.
 
 **Register Model**
    - This component scores the model based on how accurate the predictions are in the test set.

@@ -7,7 +7,7 @@ ms.service: azure-machine-learning
 ms.subservice: training
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: balapv
+ms.reviewer: sooryar
 ms.date: 11/04/2022
 ms.topic: how-to
 ms.custom: UpdateFrequency5, sdkv1

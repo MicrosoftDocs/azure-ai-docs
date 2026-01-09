@@ -1,13 +1,37 @@
 ---
-author: goergenj
+author: PatrickFarley
 reviewer: patrickfarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 10/21/2025
-ms.author: jagoerge
+ms.author: pafarley
 ms.reviewer: pafarley
 ms.custom: references_regions
 ---
+
+### December 2025 release
+#### Public preview of new voice type Dragon HD Omni
+
+Dragon HD Omni unifies a broad range of prebuilt voices into one advanced voice model, improving contextual adaptation, prosody, expressiveness, and maintaining each voice’s unique character. It delivers more accurate, flexible, and lifelike speech for scenarios such as customer service, accessibility, and creative production.
+
+| **Locale (BCP‑47)** | **Voice name**                                     |
+| ------------------- | -------------------------------------------------- |
+| `en-US`             | `en-US-Ava-DragonHDOmniLatestNeural` (Female)     |
+| `en-US`             | `en-US-Andrew-DragonHDOmniLatestNeural` (Male)    |
+| `en-US`             | `en-US-Dana-DragonHDOmniLatestNeural` (Female)    |
+| `en-US`             | `en-US-Caleb-DragonHDOmniLatestNeural` (Male)     |
+| `en-US`             | `en-US-Phoebe-DragonHDOmniLatestNeural` (Female)  |
+| `en-US`             | `en-US-Lewis-DragonHDOmniLatestNeural` (Male)     |
+| `zh-CN`             | `zh-CN-Xiaoyue-DragonHDOmniLatestNeural` (Female) |
+| `zh-CN`             | `zh-CN-Yunqi-DragonHDOmniLatestNeural` (Female)   |
+
+You also can use this voice name format by adding the suffix `:DragonHDOmniLatestNeural` to try the Omni version of the given voice via direct SSML call
+
+For example
+| **Previous neural voice** | **Omni version voice name**                        |
+| ------------------------- | -------------------------------------------------- |
+| `de-DE-ConradNeural`      | `de-DE-Conrad:DragonHDOmniLatestNeural`            |
+
 
 ### November 2025 release
 

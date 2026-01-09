@@ -9,7 +9,7 @@ ms.reviewer: jinzhong
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.custom: devx-track-arm-template
-ms.topic: reference
+ms.topic: how-to
 ms.date: 02/10/2025
 ---
 
@@ -108,16 +108,16 @@ Some logs about Azure Machine Learning workloads in the cluster will be collecte
 
 |Pod  |Resource description |Detail logging info |
 |--|--|--|
-|amlarc-identity-controller	|Request and renew Azure Blob/Azure Container Registry token through managed identity.	|Only used when `enableInference=true` is set when installing the extension. It has trace logs for status on getting identity for endpoints to authenticate with Azure Machine Learning service.|
-|amlarc-identity-proxy	|Request and renew Azure Blob/Azure Container Registry token through managed identity.	|Only used when `enableInference=true` is set when installing the extension. It has trace logs for status on getting identity for the cluster to authenticate with Azure Machine Learning service.|
-|aml-operator	| Manage the lifecycle of training jobs.	|The logs contain Azure Machine Learning training job pod status in the cluster.|
-|azureml-fe-v2|	The front-end component that routes incoming inference requests to deployed services.	|Access logs at request level, including request ID, start time, response code, error details and durations for request latency. Trace logs for service metadata changes, service running healthy status, etc. for debugging purpose.|
-| gateway	| The gateway is used to communicate and send data back and forth.	| Trace logs on requests from Azure Machine Learning services to the clusters.|
-|healthcheck	|--| 	The logs contain `azureml` namespace resource (Azure Machine Learning extension) status to diagnose what make the extension not functional. |
-|inference-operator-controller-manager|	Manage the lifecycle of inference endpoints.	|The logs contain Azure Machine Learning inference endpoint and deployment pod status in the cluster.|
-| metrics-controller-manager	| Manage the configuration for Prometheus.|Trace logs for status of uploading training job and inference  deployment metrics on CPU utilization and memory utilization.|
-| relay server	| relay server is only needed in arc-connected cluster and won't be installed in AKS cluster.| Relay server works with Azure Relay to communicate with the cloud services.	The logs contain request level info from Azure relay.  |
- 	
+|amlarc-identity-controller    |Request and renew Azure Blob/Azure Container Registry token through managed identity.    |Only used when `enableInference=true` is set when installing the extension. It has trace logs for status on getting identity for endpoints to authenticate with Azure Machine Learning service.|
+|amlarc-identity-proxy    |Request and renew Azure Blob/Azure Container Registry token through managed identity.    |Only used when `enableInference=true` is set when installing the extension. It has trace logs for status on getting identity for the cluster to authenticate with Azure Machine Learning service.|
+|aml-operator    | Manage the lifecycle of training jobs.    |The logs contain Azure Machine Learning training job pod status in the cluster.|
+|azureml-fe-v2|    The front-end component that routes incoming inference requests to deployed services.    |Access logs at request level, including request ID, start time, response code, error details and durations for request latency. Trace logs for service metadata changes, service running healthy status, etc. for debugging purpose.|
+| gateway    | The gateway is used to communicate and send data back and forth.    | Trace logs on requests from Azure Machine Learning services to the clusters.|
+|healthcheck    |--|     The logs contain `azureml` namespace resource (Azure Machine Learning extension) status to diagnose what make the extension not functional. |
+|inference-operator-controller-manager|    Manage the lifecycle of inference endpoints.    |The logs contain Azure Machine Learning inference endpoint and deployment pod status in the cluster.|
+| metrics-controller-manager    | Manage the configuration for Prometheus.|Trace logs for status of uploading training job and inference  deployment metrics on CPU utilization and memory utilization.|
+| relay server    | relay server is only needed in arc-connected cluster and won't be installed in AKS cluster.| Relay server works with Azure Relay to communicate with the cloud services.    The logs contain request level info from Azure relay.  |
+     
 
 ## Azure Machine Learning jobs connect with custom data storage
 
@@ -179,12 +179,12 @@ We only support placing the amlarc-specific taints on your nodes, which are defi
 
 | Taint | Key | Value | Effect | Description |
 |--|--|--|--|--|
-| amlarc overall| ml.azure.com/amlarc	| true| `NoSchedule`, `NoExecute`  or `PreferNoSchedule`| All Azure Machine Learning workloads, including extension system service pods and machine learning workload pods would tolerate this `amlarc overall` taint.|
-| amlarc system | ml.azure.com/amlarc-system |true	| `NoSchedule`, `NoExecute`  or `PreferNoSchedule`| Only Azure Machine Learning extension system services pods would tolerate this `amlarc system` taint.|
-| amlarc workload| 	ml.azure.com/amlarc-workload |true| `NoSchedule`, `NoExecute`  or `PreferNoSchedule`| Only machine learning workload pods would tolerate this `amlarc workload` taint. |
-| amlarc resource group| 	ml.azure.com/resource-group | \<resource group name> | `NoSchedule`, `NoExecute`  or `PreferNoSchedule`| Only machine learning workload pods created from the specific resource group would tolerate this `amlarc resource group` taint.|
-| amlarc workspace | 	ml.azure.com/workspace |	\<workspace name>	| `NoSchedule`, `NoExecute`  or `PreferNoSchedule`|Only machine learning workload pods created from the specific workspace would tolerate this `amlarc workspace` taint. |
-| amlarc compute| 	ml.azure.com/compute| \<compute name>	| `NoSchedule`, `NoExecute`  or `PreferNoSchedule`| Only machine learning workload pods created with the specific compute target would tolerate this `amlarc compute` taint.|
+| amlarc overall| ml.azure.com/amlarc    | true| `NoSchedule`, `NoExecute`  or `PreferNoSchedule`| All Azure Machine Learning workloads, including extension system service pods and machine learning workload pods would tolerate this `amlarc overall` taint.|
+| amlarc system | ml.azure.com/amlarc-system |true    | `NoSchedule`, `NoExecute`  or `PreferNoSchedule`| Only Azure Machine Learning extension system services pods would tolerate this `amlarc system` taint.|
+| amlarc workload|     ml.azure.com/amlarc-workload |true| `NoSchedule`, `NoExecute`  or `PreferNoSchedule`| Only machine learning workload pods would tolerate this `amlarc workload` taint. |
+| amlarc resource group|     ml.azure.com/resource-group | \<resource group name> | `NoSchedule`, `NoExecute`  or `PreferNoSchedule`| Only machine learning workload pods created from the specific resource group would tolerate this `amlarc resource group` taint.|
+| amlarc workspace |     ml.azure.com/workspace |    \<workspace name>    | `NoSchedule`, `NoExecute`  or `PreferNoSchedule`|Only machine learning workload pods created from the specific workspace would tolerate this `amlarc workspace` taint. |
+| amlarc compute|     ml.azure.com/compute| \<compute name>    | `NoSchedule`, `NoExecute`  or `PreferNoSchedule`| Only machine learning workload pods created with the specific compute target would tolerate this `amlarc compute` taint.|
 
 > [!TIP]
 > 1. For Azure Kubernetes Service(AKS), you can follow the example in [Best practices for advanced scheduler features in Azure Kubernetes Service (AKS)](/azure/aks/operator-best-practices-advanced-scheduler#provide-dedicated-nodes-using-taints-and-tolerations) to apply taints to node pools.

@@ -5,7 +5,7 @@ description: See how to use MLflow with Azure Machine Learning to log metrics, s
 services: machine-learning
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: cacrest
+ms.reviewer: jturuk
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.date: 10/6/2025

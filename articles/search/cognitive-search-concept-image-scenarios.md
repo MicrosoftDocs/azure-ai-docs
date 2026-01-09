@@ -6,7 +6,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/21/2025
+ms.date: 01/08/2025
 ms.update-cycle: 180-days
 ms.custom:
   - devx-track-csharp

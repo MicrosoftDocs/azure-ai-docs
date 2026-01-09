@@ -7,7 +7,7 @@ ms.service: azure-machine-learning
 ms.subservice: mlops
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: kritifaujdar
+ms.reviewer: jturuk
 ms.date: 06/12/2024
 ms.topic: how-to
 ms.custom: devops-pipelines-deploy

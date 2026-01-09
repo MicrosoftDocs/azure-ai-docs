@@ -135,5 +135,5 @@ Foundry Tools provide several support options to help you move forward with crea
 ## Related content
 
 * Learn how to [get started with Azure](https://azure.microsoft.com/get-started/)
-* [Try Foundry Tools and more in the Foundry portal](../ai-foundry/what-is-azure-ai-foundry.md)
+* [Try Foundry Tools and more in the Foundry portal](../ai-foundry/what-is-foundry.md)
 * [Plan and manage costs for Foundry Tools](plan-manage-costs.md)

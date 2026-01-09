@@ -42,8 +42,6 @@ You can create a resource in the following ways:
 
 [!INCLUDE [create a new resource from the Azure portal](../includes/resource-creation-azure-portal.md)]
 
-[!INCLUDE [create a new resource from Language Studio](../includes/language-studio/resource-creation-language-studio.md)]
-
 [!INCLUDE [create a new resource with Azure PowerShell](../includes/resource-creation-powershell.md)]
 
 
@@ -55,57 +53,25 @@ You can create a resource in the following ways:
 
 [!INCLUDE [use an existing resource](../includes/use-pre-existing-resource.md)]
 
-## Create a custom named entity recognition project
+## Create a custom named entity recognition project (REST API)
 
-Once your resource and storage container are configured, create a new custom NER project. A project is a work area for building your custom AI models based on your data. Only you can access your project along with others who have access to the Azure resource being used. If you labeled data, you can use it to get started by [importing a project](#import-project).
-
-### [Language Studio](#tab/language-studio)
-
-[!INCLUDE [Language Studio project creation](../includes/language-studio/create-project.md)]
-
-### [REST APIs](#tab/rest-api)
+Once your resource and storage container are configured, create a new custom NER project. A project is a work area for building your custom AI models based on your data. Only you can access your project along with others who have access to the Azure resource being used. If you labeled data, you can use it to get started by [importing a project](#import-project-rest-api).
 
 [!INCLUDE [REST APIs project creation](../includes/rest-api/create-project.md)]
 
----
-
-## Import project
+## Import project (REST API)
 
 If you already labeled data, you can use it to get started with the service. Make sure that your labeled data follows the [accepted data formats](../concepts/data-formats.md).
 
-### [Language Studio](#tab/language-studio)
-
-[!INCLUDE [Import project](../includes/language-studio/import-project.md)]
-
-### [REST APIs](#tab/rest-api)
-
 [!INCLUDE [Import project](../includes/rest-api/import-project.md)]
 
----
-
-## Get project details
-
-### [Language Studio](#tab/language-studio)
-
-[!INCLUDE [Language Studio project details](../includes/language-studio/project-details.md)]
-
-### [REST APIs](#tab/rest-api)
+## Get project details (REST API)
 
 [!INCLUDE [REST APIs project details](../includes/rest-api/project-details.md)]
 
----
-
-## Delete project
-
-### [Language Studio](#tab/language-studio)
-
-[!INCLUDE [Delete project using Language studio](../includes/language-studio/delete-project.md)]
-
-### [REST APIs](#tab/rest-api)
+## Delete project (REST API)
 
 [!INCLUDE [Delete project using the REST API](../includes/rest-api/delete-project.md)]
-
----
 
 ## Next steps
 

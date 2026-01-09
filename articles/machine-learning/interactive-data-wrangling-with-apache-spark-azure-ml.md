@@ -4,7 +4,7 @@ titleSuffix: Azure Machine Learning
 description: Learn how to use Apache Spark to wrangle data with Azure Machine Learning
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: yogipandey
+ms.reviewer: soumyapatro
 ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.topic: how-to

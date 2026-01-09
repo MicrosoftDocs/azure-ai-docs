@@ -3,6 +3,7 @@ title: How to troubleshoot your deployments and monitors in Microsoft Foundry po
 titleSuffix: Microsoft Foundry
 description: Learn how to troubleshoot and monitor model deployments in Microsoft Foundry portal to quickly resolve errors and optimize performance.
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.custom:
   - ignite-2023
   - build-2024
@@ -121,5 +122,5 @@ The playground only supports select models, such as Azure OpenAI models and Llam
 
 ## Related content
 
-- [Foundry overview](../what-is-azure-ai-foundry.md)
+- [Foundry overview](../what-is-foundry.md)
 - [Azure AI FAQ](../faq.yml)

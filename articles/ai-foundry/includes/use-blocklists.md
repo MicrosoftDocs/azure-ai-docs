@@ -6,7 +6,7 @@ ms.reviewer: pafarley
 ms.author: pafarley
 ms.service: azure-ai-foundry
 ms.topic: include
-ms.date: 07/28/2025
+ms.date: 12/30/2025
 ms.custom: include
 monikerRange: 'foundry-classic || foundry'
 
@@ -42,6 +42,6 @@ monikerRange: 'foundry-classic || foundry'
 ::: moniker-end
 
 ::: moniker range="foundry"
-Go to [Foundry](https://ai.azure.com/) and navigate to your project. Then select the **Guardrails + controls** page in the left navigation. Select the **Create a custom blocklist** link, and follow the instructions
+Go to [Foundry](https://ai.azure.com/) and navigate to your project. Then select the **Guardrails + controls** page in the left navigation. Select the **Create a custom blocklist** link, and follow the instructions.
 
 ::: moniker-end

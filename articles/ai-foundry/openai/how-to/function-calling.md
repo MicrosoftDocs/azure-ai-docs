@@ -1,14 +1,14 @@
 ---
 title: How to use function calling with Azure OpenAI in Microsoft Foundry Models
 titleSuffix: Azure OpenAI
-description: Learn how to use function calling with the GPT-35-Turbo and GPT-4 models 
+description: Learn how to use function calling with OpenAI models 
 author: mrbullwinkle #dereklegenzoff
 ms.author: mbullwin #delegenz
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.custom: devx-track-python
 ms.topic: how-to
-ms.date: 12/04/2025
+ms.date: 12/10/2025
 manager: nitinme
 monikerRange: 'foundry-classic || foundry'
 ---
@@ -775,8 +775,6 @@ To learn more about our recommendations on how to use Azure OpenAI models respon
 
 ### Parallel function calling
 
-* `gpt-35-turbo` (`1106`)
-* `gpt-35-turbo` (`0125`)
 * `gpt-4` (`2024-04-09`)
 * `gpt-4o` (`2024-05-13`)
 * `gpt-4o` (`2024-08-06`)
@@ -793,6 +791,8 @@ To learn more about our recommendations on how to use Azure OpenAI models respon
 * `gpt-5.1-codex` (`2025-11-13`)
 * `gpt-5.1-codex-mini` (`2025-11-13`)
 * `gpt-5.1-codex-max` (`2025-12-04`)
+* `gpt-5.2` (`2025-12-11`)
+* `gpt-5.2-chat` (`2025-12-11`)
 
 Support for parallel function was first added in API version [`2023-12-01-preview`](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2023-12-01-preview/inference.json)
 
@@ -819,4 +819,4 @@ Support for parallel function was first added in API version [`2023-12-01-previe
 
 * [Learn more about Azure OpenAI](../overview.md).
 * For more examples on working with functions, check out the [Azure OpenAI Samples GitHub repository](https://aka.ms/oai/functions-samples)
-* Get started with the GPT-35-Turbo model with [the GPT-35-Turbo quickstart](../chatgpt-quickstart.md).
+

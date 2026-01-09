@@ -8,7 +8,7 @@ ms.topic: how-to
 ms.date: 5/21/2024
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: haelhamm
+ms.reviewer: jturuk
 reviewer: hazemelh
 ms.custom: [references_regions]
 ms.collection: ce-skilling-ai-copilot

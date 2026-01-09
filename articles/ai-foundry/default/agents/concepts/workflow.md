@@ -3,6 +3,7 @@ title: Build a Workflow in Microsoft Foundry
 titleSuffix: Microsoft Foundry
 description: This article explains how to build a workflow in Microsoft Foundry by using agents. 
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.custom:
   - build-2025
   - code01

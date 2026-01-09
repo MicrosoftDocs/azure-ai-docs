@@ -38,7 +38,7 @@ Customer-managed key (CMK) encryption in [!INCLUDE [foundry-link](../default/inc
 
 ::: moniker-end
 
-Microsoft Foundry provides robust encryption capabilities, including the ability to use **customer-managed keys (CMKs)** stored in **Azure Key Vault** to secure your sensitive data. This article explains the concept of encryption with CMKs and provides step-by-step guidance for configuring CMK using Azure Key Vault. It also discusses encryption models and access control methods like **Azure Role-Based Access Control (RBAC)** and **Vault Access Policies**, ensuring compatibility with **system-assigned managed identities**. Support for **user-assigned managed identities (UAI)** is currently available only via Bicep templates.
+Microsoft Foundry provides robust encryption capabilities, including the ability to use **customer-managed keys (CMKs)** stored in **Azure Key Vault** to secure your sensitive data. This article explains the concept of encryption with CMKs and provides step-by-step guidance for configuring CMK using Azure Key Vault. It also discusses encryption models and access control methods like **Azure Role-Based Access Control (RBAC)** and **Vault Access Policies** and ensuring compatibility with **system-assigned managed identities** and **user-assigned managed identities (UAI)**.
 
 ## Why use customer-managed keys?
 
@@ -63,44 +63,22 @@ To configure CMK for Microsoft Foundry, ensure the following prerequisites are m
 
     - You need an existing Azure Key Vault to store your keys.
     - You must deploy the Key Vault and the Microsoft Foundry resource in the same Azure region.
+    - Enable Soft Delete and Purge Protection on Key Vault to safeguard customer-managed keys from accidental or malicious deletion (required by Azure)
     - Follow this guide to create a Key Vault: [Quickstart: Create a Key Vault using Azure portal](/azure/key-vault/general/quick-create-portal).
 
 1.  **Managed Identity Configuration**:
 
     - **System-assigned managed identity**: Ensure your Microsoft Foundry resource has enabled a system-assigned managed identity.
-    - **User-assigned managed identity**: **Support for UAI is currently available only via Bicep templates.** Refer to the Bicep template example: [GitHub Repository: Customer-Managed Keys with User-Assigned Identity](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/32-customer-managed-keys-user-assigned-identity).
+    - **User-assigned managed identity**: You can use the following link to create a [User-Assigned Managed Identity](/entra/identity/managed-identities-azure-resources/manage-user-assigned-managed-identities-azure-portal?pivots=identity-mi-methods-azp#create-a-user-assigned-managed-identity)
+
 
 1.  **Key Vault Permissions**:
 
     - If you're using **Azure RBAC**, assign Key Vault Crypto User role to the managed identity.
     - If you're using **Vault Access Policies**, grant key-specific permissions to the managed identity, such as **unwrap key** and **wrap key**.
 
-## Regional availability note (UAI for CMK)
+Before configuring CMK, make sure you deploy your resources in a supported region. Refer to [Microsoft Foundry feature availability across cloud regions](../reference/region-support.md) for more details on regional support for Microsoft Foundry features.
 
-Support for **Customer-Managed Keys (CMK) with User-Assigned Managed Identities (UAI)** is currently available in **all Azure regions** except for the following regions:
-
-- **United States**:  
-  westus, centralus, southcentralus, westus2
-- **Europe**:  
-  westeurope, ukwest, switzerlandwest, germanywestcentral, francecentral, denmarkeast, polandcentral, swedencentral, norwayeast
-- **Asia-Pacific**:  
-  taiwannorthwest, australasia (australiaeast, newzealandnorth), southeastasia, japaneast, koreacentral, indonesiacentral, malaysiawest, centralindia
-- **Middle East**:  
-  israelcentral, qatarcentral
-- **Africa**:  
-  southafricanorth
-- **Canada**:  
-  canadaeast
-- **Latin America**:  
-  mexicocentral
-- **Azure China**:  
-  China East, China East 2, China North, China North 2
-:::moniker range="foundry-classic"
-- **Azure US Government**:  
-  US Gov Virginia, US Gov Arizona, US Gov Texas, US Gov Iowa
-:::moniker-end
-
-Before configuring CMK with UAI, make sure you deploy your resources in a supported region. Refer to [Microsoft Foundry feature availability across cloud regions](../reference/region-support.md) for more details on regional support for Microsoft Foundry features.
 
 ## Steps to Configure CMK
 
@@ -134,24 +112,20 @@ Configure appropriate permissions for the **system-assigned** or **user-assigned
 1. Go to the Key Vault in the Azure portal.
 1. Select **Access Control (IAM)**.
 1. Select **+ Add role assignment**.
-1. Assign the Key Vault Crypto User role to the **system-assigned managed identity** of the Microsoft Foundry resource.
+1. Assign the Key Vault Crypto User role to the **system-assigned managed identity** of the Microsoft Foundry resource or the **User-assigned managed identity**
 
-**User-assigned managed identity**
-
-> [!NOTE]  
-> Refer to the [GitHub Repository: Customer-Managed Keys with User-Assigned Identity](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/32-customer-managed-keys-user-assigned-identity).
-
-1. Use the provided Bicep templates to deploy a user-assigned identity and configure Key Vault permissions.
-
-1. After deployment, confirm the user-assigned identity has appropriate roles (such as Key Vault Crypto Officer) or permissions on the Key Vault.
 
 ### Step 3. Enable CMK in Microsoft Foundry
 
+You can enable Customer-Managed Keys (CMK) either during the creation of a Microsoft Foundry resource or by updating an existing resource. During resource creation, the wizard will guide you to use either user-assigned or system-assigned managed identity, select a user-assigned managed identity, and select a key vault where your key is stored.
+
+You can follow the steps below if you're updating an existing Microsoft Foundry resource to enable CMK:
+
 1. Open the Microsoft Foundry resource in the Azure portal.
-1. Go to the **Encryption Settings** section.
+1. Go to the **Encryption** under **Resource Management** section.
 1. Select **Customer-Managed Keys** as the encryption type.
 1. Enter the **Key Vault URL** and the key name.
-1. If you use **User-Assigned Managed Identity**, make sure the deployment through Bicep templates is complete, as the identity and associated permissions are already configured.
+
 
 **Key Vault Access Design: Azure RBAC vs. Vault Access Policies**
 

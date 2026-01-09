@@ -1,14 +1,16 @@
 ---
 ms.service: azure-ai-foundry
 ms.topic: include
-ms.date: 05/02/2025
+ms.date: 01/06/2026
 ms.author: samkemp
 author: samuel100
+ai-usage: ai-assisted
 ---
 
 ## Prerequisites
 
-- [.NET 8.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) or later installed.
+- Install Foundry Local. For setup steps, see [Get started with Foundry Local](../../get-started.md).
+- [.NET 9.0 SDK](https://dotnet.microsoft.com/download/dotnet/9.0) or later installed.
 
 ## Samples repository
 
@@ -114,6 +116,9 @@ await mgr.StopWebServiceAsync();
 await model.UnloadAsync();
 ```
 
+Reference: [Foundry Local SDK reference](../../reference/reference-sdk.md)
+Reference: [Foundry Local REST API reference](../../reference/reference-rest.md)
+
 Run the code using the following command:
 
 ### [Windows](#tab/windows)
@@ -121,13 +126,13 @@ Run the code using the following command:
 For x64 Windows, use the following command:
 
 ```bash
-dotnet run -r:win-x64
+dotnet run -r win-x64
 ```
 
 For arm64 Windows, use the following command:
 
 ```bash
-dotnet run -r:win-arm64
+dotnet run -r win-arm64
 ```
 
 
@@ -136,22 +141,24 @@ dotnet run -r:win-arm64
 For macOS, use the following command:
 
 ```bash
-dotnet run -r:osx-arm64
+dotnet run -r osx-arm64
 ```
 
 For Linux, use the following command:
 
 ```bash
-dotnet run -r:linux-x64
+dotnet run -r linux-x64
 ```
 
 For Windows, use the following command:
 
 ```bash
-dotnet run -r:win-x64
+dotnet run -r win-x64
 ```
 
 > [!NOTE]
 > If you are targeting Windows, we recommend using the Windows-specific instructions under the Windows tab for optimal performance and experience.
+
+You should see a streaming response printed to your console.
 
 ---

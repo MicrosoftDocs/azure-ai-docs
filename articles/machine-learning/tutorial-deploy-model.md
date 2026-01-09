@@ -8,7 +8,7 @@ ms.subservice: inferencing
 ms.topic: tutorial
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: sehan
+ms.reviewer: jturuk
 ms.date: 09/10/2025
 ms.custom:
   - mlops
