@@ -55,9 +55,6 @@ Input documents and intermediate representations are written to secure Microsoft
 
  
 
-### Regional Process 
-
-Based on OpenAI availability, we may route traffic to another region within the same geo. 
 
 
 ### Face 
