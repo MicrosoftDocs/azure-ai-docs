@@ -15,6 +15,7 @@ ms.custom:
   - ignite-2024
   - build-aifnd
   - build-2025
+  - dev-focus
 ai-usage: ai-assisted
 # customer intent: As a developer, I want to create a Microsoft Foundry project so I can work with generative AI.
 ---
@@ -59,11 +60,11 @@ Use the following tabs to select the method you want to use to create a Foundry 
 - [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 
 :::moniker range="foundry-classic"
-- You must be **Owner** of the subscription to have the appropriate access control necessary to create the Foundry resource that's the parent of the project. If you don't have this access, have your administrator [create a Foundry resource](../../ai-services/multi-service-resource.md) for you to use. Then skip to [Create multiple projects on the same resource](#create-multiple-projects-on-the-same-resource) to create your project.
+- **Owner role**: You must be **Owner** of the subscription to create a Foundry resource (the parent container for your project). The Owner role grants the necessary Azure Role-Based Access Control (RBAC) permissions. If you lack this role, request your subscription administrator to [create a Foundry resource](../../ai-services/multi-service-resource.md) and then skip to [Create multiple projects on the same resource](#create-multiple-projects-on-the-same-resource).
 :::moniker-end
 
 :::moniker range="foundry"
-- You must be **Owner** of the subscription to have the appropriate access control necessary to create the Foundry resource that's the parent of the project. If you don't have this access, have your administrator create a project for you.
+- **Owner role**: You must be **Owner** of the subscription to create a Foundry resource. If you lack this role, request your subscription administrator to create a project for you.
 :::moniker-end
 
 # [Python SDK](#tab/python)
@@ -72,6 +73,18 @@ Use the following tabs to select the method you want to use to create a Foundry 
 - You must be an **Owner** of the subscription to get the appropriate access control needed to use the project.
 - [Set up your development environment](develop/install-cli-sdk.md?tabs=python)
 - Run `az login` or `az login --use-device-code` in your environment before running code.
+- **Quick validation**: Before creating a project, verify your SDK and authentication are working by testing the client:
+
+  ```python
+  from azure.identity import DefaultAzureCredential
+  from azure.mgmt.cognitiveservices import CognitiveServicesManagementClient
+  
+  # Test authentication by instantiating the client
+  credential = DefaultAzureCredential()
+  subscription_id = "<your-subscription-id>"  # Replace with your subscription ID
+  client = CognitiveServicesManagementClient(credential, subscription_id)
+  print("✓ Authentication successful! Ready to create a project.")
+  ```
 
 ::: moniker range="foundry-classic"
 
@@ -184,6 +197,8 @@ To create a Foundry project:
 
     :::code language="python" source="~/foundry-samples-main/samples-classic/python/quickstart/create_project.py" id="create_resource_project":::
 
+    References: [CognitiveServicesManagementClient](/python/api/azure-mgmt-cognitiveservices/azure.mgmt.cognitiveservices.CognitiveServicesManagementClient).
+
 
 # [Azure CLI](#tab/azurecli)
 
@@ -250,6 +265,8 @@ On the **Home** project page, you see the project endpoint and API key for the p
 
 :::code language="python" source="~/foundry-samples-main/samples-classic/python/quickstart/create_project.py" id="show_project":::
 
+References: [CognitiveServicesManagementClient](/python/api/azure-mgmt-cognitiveservices/azure.mgmt.cognitiveservices.CognitiveServicesManagementClient).
+
 # [Azure CLI](#tab/azurecli)
 
 To view settings for the project, use the `az cognitiveservices account connection show` command. For example:
@@ -303,6 +320,8 @@ client.projects.begin_delete(
 )
 ```
 
+References: [CognitiveServicesManagementClient](/python/api/azure-mgmt-cognitiveservices/azure.mgmt.cognitiveservices.CognitiveServicesManagementClient).
+
 Delete a Foundry resource and all of its projects:
 
 ```python
@@ -320,6 +339,8 @@ print("Deleting resource:", foundry_resource_name)
 client.accounts.begin_delete(resource_group_name, foundry_resource_name).wait()
 ```
 
+References: [CognitiveServicesManagementClient](/python/api/azure-mgmt-cognitiveservices/azure.mgmt.cognitiveservices.CognitiveServicesManagementClient).
+
 # [Azure CLI](#tab/azurecli)
 
 Run the following command:
@@ -329,6 +350,8 @@ az cognitiveservices account project delete \
 --name {foundry_resource_name} \
 --project-name {my_project_name}
 ```
+
+References: [az cognitiveservices account project delete](/cli/azure/cognitiveservices/account/project#az-cognitiveservices-account-project-delete).
 
 ---
 
