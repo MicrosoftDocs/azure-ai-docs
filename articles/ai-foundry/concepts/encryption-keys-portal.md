@@ -69,7 +69,7 @@ To configure CMK for Microsoft Foundry, ensure the following prerequisites are m
 1.  **Managed Identity Configuration**:
 
     - **System-assigned managed identity**: Ensure your Microsoft Foundry resource has enabled a system-assigned managed identity.
-    - **User-assigned managed identity**: You can use the following link to create a [User-Assigned Managed Identity](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/manage-user-assigned-managed-identities-azure-portal?pivots=identity-mi-methods-azp#create-a-user-assigned-managed-identity)
+    - **User-assigned managed identity**: You can use the following link to create a [User-Assigned Managed Identity](/entra/identity/managed-identities-azure-resources/manage-user-assigned-managed-identities-azure-portal?pivots=identity-mi-methods-azp#create-a-user-assigned-managed-identity)
 
 
 1.  **Key Vault Permissions**:
