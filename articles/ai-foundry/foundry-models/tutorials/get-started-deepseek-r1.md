@@ -30,8 +30,9 @@ The steps you perform in this tutorial are:
 
 To complete this article, you need:
 
-- An Azure subscription. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Foundry Models](../../model-inference/how-to/quickstart-github-models.md) if that applies to you.
+- An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can [upgrade from GitHub Models to Microsoft Foundry Models](../how-to/quickstart-github-models.md) and create an Azure subscription in the process.
 
+- Access to Microsoft Foundry with appropriate permissions to create and manage resources.
 
 [!INCLUDE [about-reasoning](../../foundry-models/includes/use-chat-reasoning/about-reasoning.md)]
 
@@ -45,10 +46,11 @@ To create a Foundry project that supports deployment for DeepSeek-R1, follow the
 
 1. [!INCLUDE [version-sign-in](../../includes/version-sign-in.md)]
 
-1. On the landing page, go to the "Explore models and capabilities" section and select **Go to full model catalog** to open the model catalog.
+1. On the landing page, go to the "Explore models and capabilities" section.
+
     :::image type="content" source="../media/quickstart-get-started-deepseek-r1/foundry-homepage-model-catalog-section.png" alt-text="A screenshot of the homepage of the Foundry portal showing the model catalog section." lightbox="../media/quickstart-get-started-deepseek-r1/foundry-homepage-model-catalog-section.png":::
 
-1. Search for the **DeepSeek-R1** model and open its model card.
+1. Use the search box on the screen to search for the **DeepSeek-R1** model and open its model card.
     1. Select **Use this model**. This action opens a wizard to create a Foundry project and resources for you to work in. You can keep the default name for the project or change it.
 
 
@@ -119,7 +121,7 @@ Get started by using the model in the playground to get an idea of the model's c
 
 1. In the **Deployment** drop down of the chat playground, the deployment you created is already automatically selected.
 
-1. Configure the system prompt as needed. In general, reasoning models don't use system messages in the same way as other types of models.
+1. Configure the system prompt as needed.
 
    :::image type="content" source="../media/quickstart-get-started-deepseek-r1/playground-chat-models.png" alt-text="Screenshot showing how to select a model deployment to use in playground, configure the system message, and test it out." lightbox="../media/quickstart-get-started-deepseek-r1/playground-chat-models.png":::
 
