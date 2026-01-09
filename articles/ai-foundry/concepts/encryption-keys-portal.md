@@ -117,7 +117,7 @@ Configure appropriate permissions for the **system-assigned** or **user-assigned
 
 ### Step 3. Enable CMK in Microsoft Foundry
 
-You can enable Customer-Managed Keys (CMK) either during the creation of a Microsoft Foundry resource or by updating an existing resource. During resource creation, the wizard will guide you to use either user-assigned or system-assigned managed identity, select a user-assigned managed identity, and select a key vault where you key is stored.
+You can enable Customer-Managed Keys (CMK) either during the creation of a Microsoft Foundry resource or by updating an existing resource. During resource creation, the wizard will guide you to use either user-assigned or system-assigned managed identity, select a user-assigned managed identity, and select a key vault where your key is stored.
 
 You can follow the steps below if you're updating an existing Microsoft Foundry resource to enable CMK:
 
