@@ -16,12 +16,12 @@ ms.reviewer: sooryar
 ms.date: 01/09/2026
 ms.update-cycle: 365-days
 ai-usage: ai-assisted
-#customer intent: As a data scientist, I want to understand how Azure Machine Learning integrates with GitHub to automate the LLM-infused application development lifecycle by using a prompt flow in order to develop LLM-infused applications. 
+#customer intent: As a data scientist, I want to understand how Azure Machine Learning integrates with GitHub to automate the LLM-infused application development lifecycle by using a prompt flow in order to develop LLM-infused applications.
 ---
 
 # GenAIOps with prompt flow and GitHub
 
-As the demand for large language model infused (LLM-infused) applications soars, organizations need a cohesive and streamlined process to manage the end-to-end lifecycle of these apps. Generative Artificial Intelligence Operations (GenAIOps), sometimes called *LLMOps*, is a cornerstone of efficient prompt engineering and LLM-infused application development and deployment.
+As the demand for large language model (LLM)-infused applications soars, organizations need a cohesive and streamlined process to manage the end-to-end lifecycle of these apps. Generative Artificial Intelligence Operations (GenAIOps), sometimes called *LLMOps*, is a cornerstone of efficient prompt engineering and LLM-infused application development and deployment.
 
 This article shows how Azure Machine Learning lets you integrate with GitHub to automate the LLM-infused application development lifecycle by using *prompt flow*. Prompt flow provides a streamlined and structured approach to developing LLM-infused applications. Its well-defined process and lifecycle guide you through the process of building, testing, optimizing, and deploying flows, culminating in the creation of fully functional LLM-infused solutions.
 
