@@ -145,7 +145,9 @@ Linear regression algorithms assume that data trends follow a straight line. Thi
 
 ### Number of parameters
 
-Parameters are the knobs that a data scientist gets to turn when setting up an algorithm. They're numbers that affect the algorithm’s behavior. Examples include error tolerance or number of iterations, and options between variants of how the algorithm behaves. The training time and accuracy of the algorithm can be sensitive to getting just the right settings. Typically, algorithms with large numbers of parameters require the most trial and error to find a good combination.
+Parameters are the knobs that a data scientist gets to turn when setting up an algorithm. They're numbers that affect the algorithm’s behavior. Examples include error tolerance or number of iterations, and options between variants of how the algorithm behaves.
+
+The training time and accuracy of the algorithm can be sensitive to getting just the right settings. Typically, algorithms with large numbers of parameters require the most trial and error to find a good combination.
 
 Alternatively, there's the [Tune Model Hyperparameters component](../algorithm-module-reference/tune-model-hyperparameters.md?WT.mc_id=docs-article-lazzeri) in the designer. The goal of this component is to determine the optimum hyperparameters for a machine learning model. The component builds and tests multiple models by using different combinations of settings. It compares metrics over all models to get the combinations of settings.
 
