@@ -33,7 +33,7 @@ A machine learning project typically starts with exploratory data analysis (EDA)
 * An Azure Machine Learning datastore. For more information, see [Create datastores](how-to-datastore.md).
 
 > [!TIP]
-> The guidance in this article describes data access during interactive development. It applies to any host that can run a Python session. This host can include your local machine, a cloud VM, a GitHub Codespace, and more. Use an Azure Machine Learning compute instance - a fully managed and pre-configured cloud workstation. For more information, see [Create an Azure Machine Learning compute instance](how-to-create-compute-instance.md).
+> The guidance in this article describes data access during interactive development. It applies to any host that can run a Python session. This host can include your local machine, a cloud VM, a GitHub Codespace, and more. Use an Azure Machine Learning compute instance - a fully managed and preconfigured cloud workstation. For more information, see [Create an Azure Machine Learning compute instance](how-to-create-compute-instance.md).
 
 > [!IMPORTANT]
 > Ensure you have the latest `azure-fsspec`, `mltable`, and `azure-ai-ml` Python libraries installed in your Python environment:
