@@ -35,7 +35,7 @@ Offline evaluation involves testing AI models and agents by using test datasets 
 
 ::: moniker range="foundry"
 
-This GitHub Action enables offline evaluation of [Microsoft Foundry Agents](../agents/overview?view=foundry) within your CI/CD pipelines. It's designed to streamline the offline evaluation process, so you can identify potential problems and make improvements before releasing an update to production.
+This GitHub Action enables offline evaluation of [Microsoft Foundry Agents](../agents/overview.md) within your CI/CD pipelines. It's designed to streamline the offline evaluation process, so you can identify potential problems and make improvements before releasing an update to production.
 
 To use this action, provide a data set with test queries and a list of evaluators. This action invokes your agents with the queries, collects the performance data including latency and token counts, runs the evaluations, and generates a summary report.
 
@@ -60,6 +60,8 @@ Evaluator categories:
 
 You need a project. To learn more, see [Create a project](create-projects.md).
 
+::: moniker range="foundry-classic"
+
 Two GitHub Actions are available for evaluating AI applications: **ai-agent-evals** and **genai-evals**.
 
 - If your application already uses Foundry agents, **ai-agent-evals** is a good choice because it offers a simplified setup process and direct integration with agent-based workflows.
@@ -67,6 +69,8 @@ Two GitHub Actions are available for evaluating AI applications: **ai-agent-eval
 
 > [!NOTE]
 > The **ai-agent-evals** interface is more straightforward to configure. In contrast, **genai-evals** requires you to prepare structured evaluation input data. Code samples are provided to help with setup.
+
+::: moniker-end
 
 ## How to set up AI agent evaluations
 
