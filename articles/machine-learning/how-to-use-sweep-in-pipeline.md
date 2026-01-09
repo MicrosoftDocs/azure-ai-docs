@@ -17,7 +17,7 @@ ms.custom: devx-track-python, sdkv2, cliv2, update-code2
 
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
-In this article, you learn how to automate hyperparameter tuning in Azure Machine Learning pipelines by using Azure Machine Learning CLI v2 or Azure Machine Learning SDK for Python v2.
+In this article, you learn how to automate hyperparameter tuning in Azure Machine Learning pipelines. The article describes using both Azure Machine Learning CLI v2 or Azure Machine Learning SDK for Python v2.
 
 Hyperparameters are adjustable parameters that let you control the model training process. Hyperparameter tuning is the process of finding the configuration of hyperparameters that results in the best performance. Azure Machine Learning lets you automate hyperparameter tuning and [run experiments in parallel](how-to-use-parallel-job-in-pipeline.md) to efficiently optimize hyperparameters.
 
@@ -52,8 +52,8 @@ The source code for this example is a single *train.py* file. This code executes
 
 :::code language="python" source="~/azureml-examples-main/cli/jobs/pipelines-with-components/pipeline_with_hyperparameter_sweep/train-src/train.py" highlight="15":::
 
->[!NOTE]
->Make sure to log the metrics in the trial component source code with exactly the same name as the `primary_metric` value in the pipeline file. This example uses `mlflow.autolog()`, which is the recommended way to track machine learning experiments. For more information about MLflow, see [Track ML experiments and models with MLflow](./how-to-use-mlflow-cli-runs.md).
+> [!NOTE]
+> Make sure to log the metrics in the trial component source code with exactly the same name as the `primary_metric` value in the pipeline file. This example uses `mlflow.autolog()`, which is the recommended way to track machine learning experiments. For more information about MLflow, see [Track ML experiments and models with MLflow](./how-to-use-mlflow-cli-runs.md).
 
 ### Create a pipeline with a hyperparameter sweep step
 
@@ -87,15 +87,15 @@ After you submit a pipeline job, the SDK or CLI widget gives you a web URL link 
 
 To view hyperparameter tuning results, double-click the sweep step in the pipeline graph, select the **Child jobs** tab in the details panel, and then select the child job.
 
-:::image type="content" source="./media/how-to-use-sweep-in-pipeline/pipeline-view.png" alt-text="Screenshot of the pipeline with child job and the train_model node highlighted." lightbox= "./media/how-to-use-sweep-in-pipeline/pipeline-view.png":::
+:::image type="content" source="./media/how-to-use-sweep-in-pipeline/pipeline-view.png" alt-text="Screenshot of the pipeline with child job and the train_model node highlighted." lightbox="./media/how-to-use-sweep-in-pipeline/pipeline-view.png":::
 
-On the child job page, select the **Trials** tab to see and compare metrics for all the child runs. Select any of the child runs to see the details for that run.
+On the child job page, select the **Trials** tab to see and compare metrics for the child runs. Select any of the child runs to see the details for that run.
 
-:::image type="content" source="./media/how-to-use-sweep-in-pipeline/sweep-job.png" alt-text="Screenshot of the child job page with the Trials tab." lightbox= "./media/how-to-use-sweep-in-pipeline/sweep-job.png":::
+:::image type="content" source="./media/how-to-use-sweep-in-pipeline/sweep-job.png" alt-text="Screenshot of the child job page with the Trials tab." lightbox="./media/how-to-use-sweep-in-pipeline/sweep-job.png":::
 
 If a child run failed, you can select the **Outputs + logs** tab on the child run page to see useful debug information.
 
-:::image type="content" source="./media/how-to-use-sweep-in-pipeline/child-run.png" alt-text="Screenshot of the output and logs tab of a child run." lightbox= "./media/how-to-use-sweep-in-pipeline/child-run.png":::
+:::image type="content" source="./media/how-to-use-sweep-in-pipeline/child-run.png" alt-text="Screenshot of the output and logs tab of a child run." lightbox="./media/how-to-use-sweep-in-pipeline/child-run.png":::
 
 ## Related content
 
