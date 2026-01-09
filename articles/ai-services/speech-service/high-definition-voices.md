@@ -47,7 +47,7 @@ How do Azure Speech HD voices compare to other Azure text to speech voices? Here
 | **Region** | See [Speech service regions](regions.md?tabs=tts) | See [Speech service regions](regions.md?tabs=tts) | Available in dozens of regions. See the [Speech service regions](regions.md?tabs=tts).|
 | **Number of voices** | 30 | 6 | More than 500 |
 | **Multilingual**  | Yes | Yes  | Yes (applicable only to multilingual voices)  |
-| **SSML support** | Support for [a subset of SSML elements](#supported-and-unsupported-ssml-elements-for-azure-speech-hd-voices).|  Support for [a subset of SSML elements](openai-voices.md#ssml-elements-supported-by-openai-text to speech-voices-in-azure-speech).  | Support for the [full set of SSML](speech-synthesis-markup-structure.md) in Azure Speech.  |
+| **SSML support** | Support for [a subset of SSML elements](#supported-and-unsupported-ssml-elements-for-azure-speech-hd-voices).|  Support for [a subset of SSML elements](openai-voices.md#ssml-elements-supported-by-openai-text-to-speech-voices-in-azure-speech).  | Support for the [full set of SSML](speech-synthesis-markup-structure.md) in Azure Speech.  |
 | **Development options** | Speech SDK, Speech CLI, REST API  | Speech SDK, Speech CLI, REST API  | Speech SDK, Speech CLI, REST API  |
 | **Deployment options**  | Cloud only | Cloud only | Cloud, embedded, hybrid, and containers. |
 | **Real-time or batch synthesis**  | Real-time only  | Real-time and batch synthesis  | Real-time and batch synthesis |
