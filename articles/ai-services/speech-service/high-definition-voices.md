@@ -120,7 +120,7 @@ Dragon HD Omni supports a comprehensive set of 100+ speaking styles. Use the `st
 `angry`, `chill surfer`, `confused`, `curious`, `determined`, `disgusted`, `embarrassed`, `emo teenager`, `empathetic`, `encouraging`, `excited`, `fearful`, `friendly`, `grateful`, `joyful`, `mad scientist`, `meditative`, `narration`, `neutral`, `new yorker`, `news`, `reflective`, `regretful`, `relieved`, `sad`, `santa`, `shy`, `soft voice`, `surprised`
 
 > [!NOTE]
-> Styles are available on `en-US-Ava` and `en-US-Andrew` for this version, style results are strongly relevant to the input content. The model adapts style application based on the semantic meaning of the text.
+> Styles are available on `en-US-Ava` and `en-US-Andrew` for this version. Style results are strongly relevant to the input content: the model adapts style application based on the semantic meaning of the text.
 
 #### Dragon HD Omni Voice Naming Convention
 
