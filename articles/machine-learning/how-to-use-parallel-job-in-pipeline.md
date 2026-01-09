@@ -16,7 +16,7 @@ ms.custom:
   - cliv2
   - update-code1
   - sfi-image-nochange
-  - #customer intent: As a machine learning engineer, I need to learn how to run parallel jobs in Azure Machine Learning to distribute repeated tasks on multinode clusters.
+#customer intent: As a machine learning engineer, I need to learn how to run parallel jobs in Azure Machine Learning to distribute repeated tasks on multinode clusters.
 ---
 
 # Use parallel jobs in pipelines
