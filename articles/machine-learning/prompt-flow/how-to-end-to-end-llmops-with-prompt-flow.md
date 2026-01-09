@@ -13,14 +13,15 @@ ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: sooryar
-ms.date: 12/22/2025
+ms.date: 01/09/2026
 ms.update-cycle: 365-days
 ai-usage: ai-assisted
+#customer intent: As a data scientist, I want to understand how Azure Machine Learning integrates with GitHub to automate the LLM-infused application development lifecycle by using a prompt flow in order to develop LLM-infused applications. 
 ---
 
 # GenAIOps with prompt flow and GitHub
 
-As the demand for LLM-infused applications soars, organizations need a cohesive and streamlined process to manage the end-to-end lifecycle of these apps. Generative Artificial Intelligence Operations (GenAIOps), sometimes called *LLMOps*, is a cornerstone of efficient prompt engineering and LLM-infused application development and deployment.
+As the demand for large language model infused (LLM-infused) applications soars, organizations need a cohesive and streamlined process to manage the end-to-end lifecycle of these apps. Generative Artificial Intelligence Operations (GenAIOps), sometimes called *LLMOps*, is a cornerstone of efficient prompt engineering and LLM-infused application development and deployment.
 
 This article shows how Azure Machine Learning lets you integrate with GitHub to automate the LLM-infused application development lifecycle by using *prompt flow*. Prompt flow provides a streamlined and structured approach to developing LLM-infused applications. Its well-defined process and lifecycle guide you through the process of building, testing, optimizing, and deploying flows, culminating in the creation of fully functional LLM-infused solutions.
 
@@ -33,7 +34,7 @@ This article shows how Azure Machine Learning lets you integrate with GitHub to 
 
 ## Create a GenAIOps prompt flow
 
-The rest of this article shows you how to use GenAIOps with prompt flow by following the end-to-end sample in the [GenAIOps with prompt flow template repository](https://github.com/microsoft/genaiops-promptflow-template), which helps you build LLM-infused applications using prompt flow and GitHub. The primary objective is to provide assistance in the development of these applications by using the capabilities of prompt flow and GenAIOps.
+This article demonstrates how to use GenAIOps with prompt flow by following the end-to-end sample in the [GenAIOps with prompt flow template repository](https://github.com/microsoft/genaiops-promptflow-template). The primary objective is to provide assistance in the development of these applications by using the capabilities of prompt flow and GenAIOps.
 
 ### Set up a prompt flow connection
 
@@ -43,7 +44,7 @@ To create the connection, follow the instructions at [Set up connections for pro
 
 ### Set up a compute session
 
-Prompt flow uses a compute session to execute the flow. [Create and start the compute session](/azure/ai-studio/how-to/create-manage-compute-session) before you execute the prompt flow.
+Prompt flow uses a compute session to run the flow. [Create and manage prompt flow compute sessions](/azure/ai-studio/how-to/create-manage-compute-session) before you run the prompt flow.
 
 ### Set up the GitHub repository
 
@@ -62,10 +63,13 @@ This process configures a GitHub secret that stores service principal informatio
 
 To test the pipelines, follow the instructions at [Update test data](https://github.com/microsoft/genaiops-promptflow-template/blob/main/docs/github_workflows_how_to_setup.md#update-test-data). The complete process involves the following steps:
 
-1. Raise a PR from a feature branch to the development branch.
-1. The branch policy configuration automatically executes the PR pipeline.
-1. Merge the PR to the development branch.
-1. The associated `dev` pipeline executes, resulting in full CI and CD execution and provisioning or updating of the Azure Machine Learning endpoints.
+1. Raise a pull request from a feature branch to the development branch.
+
+   The branch policy configuration automatically runs the pull request pipeline.
+
+1. Merge the pull request to the development branch.
+
+   The associated `dev` pipeline runs, resulting in full continuous integration (CI) and continuous deployment (CD) execution and provisioning or updating of the Azure Machine Learning endpoints.
 
 The outputs should look similar to the examples at [Example prompt run, evaluation, and deployment scenario](https://github.com/microsoft/genaiops-promptflow-template/blob/main/docs/github_workflows_how_to_setup.md#example-prompt-run-evaluation-and-deployment-scenario).
 
@@ -105,11 +109,11 @@ The GenAIOps with prompt flow platform provides the following features:
 
 - **Lifecycle management**. Each flow has its own lifecycle, providing a smooth transition from local experimentation to production deployment.
 
-- **Variant and hyperparameter experimentation**. Variants and hyperparameters are like ingredients in a recipe. The platform allows you to experiment with different combinations of variants across multiple nodes in a flow. You can experiment with multiple variants and hyperparameters to easily evaluate flow variants.
+- **Variant and hyperparameter experimentation**. Variants and hyperparameters are like ingredients in a recipe. The platform allows you to experiment with different combinations of variants across multiple nodes in a flow. You can experiment with multiple variants and hyperparameters to evaluate flow variants.
 
-- **Multiple deployment targets**. The platform generates Docker images infused with your flow and compute session for deployment to any target platform and operating system that supports Docker. You can deploy flows to Azure App Service, Kubernetes, and Azure managed compute targets, and configure them to scale as needed.
+- **Multiple deployment targets**. The platform generates Docker images infused with your flow and compute session for deployment to any target platform and operating system that supports Docker. You can deploy flows to Azure App Service, Kubernetes, and Azure managed compute targets. You can configure them to scale as needed.
 
-- **A/B deployment**. GenAIOps with prompt flow seamlessly implements A/B deployments, letting you easily compare different flow versions. This platform facilitates A/B deployment for prompt flow the same way as in traditional website A/B testing. You can easily compare different versions of a flow in a real-world setting to determine which version performs best.
+- **A/B deployment**. GenAIOps with prompt flow seamlessly implements A/B deployments, letting you compare different flow versions. This platform facilitates A/B deployment for prompt flow the same way as in traditional website A/B testing. You can compare different versions of a flow in a real-world setting to determine which version performs best.
 
 - **Many-to-many dataset to flow relationships**. GenAIOps with prompt flow accommodates multiple datasets for each standard and evaluation flow, enabling versatility in flow test and evaluation.
 
@@ -147,13 +151,13 @@ The GenAIOps prompt flow template formalizes this structured methodology by usin
 :::image type="content" source="./media/how-to-end-to-end-llmops-with-prompt-flow/large-language-model-operations-prompt-flow-process.png" alt-text="Screenshot of GenAIOps prompt flow process." lightbox="./media/how-to-end-to-end-llmops-with-prompt-flow/large-language-model-operations-prompt-flow-process.png":::
 
 1. In the initialization stage, you develop flows, prepare and curate data, and update GenAIOps related configuration files.
-1. After local development using Visual Studio Code with the Prompt Flow extension, you raise a pull request (PR) from the feature branch to the development branch. The PR executes the build validation pipeline and the experimentation flows.
-1. You manually approve the PR and merge code to the development branch.
-1. After the PR merges to the development branch, the continuous integration (CI) pipeline for the dev environment executes. The CI pipeline executes both the experimentation and evaluation flows in sequence and registers the flows in the Azure Machine Learning Registry apart from other steps in the pipeline.
-1. After the CI pipeline execution completes, a continuous deployment (CD) trigger executes the CD pipeline, which deploys the standard flow from Azure Machine Learning Registry as an Azure Machine Learning online endpoint. The pipeline then runs integration and smoke tests on the deployed flow.
-1. You create a release branch from the development branch, or raise a PR from the development branch to the release branch.
-1. You manually approve the PR and merge code to the release branch. After the PR is merged to the release branch, the CI pipeline for the production environment executes. The pipeline executes both the experimentation and evaluation flows in sequence and registers the flows in the Azure Machine Learning Registry apart from other steps in the pipeline.
-1. After the CI pipeline execution completes, a CD trigger executes the CD pipeline, which deploys the standard flow from the Azure Machine Learning Registry as an Azure Machine Learning online endpoint. The pipeline then runs integration and smoke tests on the deployed flow.
+1. After local development using Visual Studio Code with the Prompt Flow extension, you raise a pull request from the feature branch to the development branch. The pull request runs the build validation pipeline and the experimentation flows.
+1. You manually approve the pull request and merge code to the development branch.
+1. After the pull request merges to the development branch, the continuous integration (CI) pipeline for the dev environment runs. The CI pipeline runs both the experimentation and evaluation flows in sequence and registers the flows in the Azure Machine Learning Registry apart from other steps in the pipeline.
+1. After the CI pipeline execution completes, a continuous deployment (CD) trigger runs the CD pipeline, which deploys the standard flow from Azure Machine Learning Registry as an Azure Machine Learning online endpoint. The pipeline then runs integration and smoke tests on the deployed flow.
+1. You create a release branch from the development branch, or raise a pull request from the development branch to the release branch.
+1. You manually approve the pull request and merge code to the release branch. After the pull request is merged to the release branch, the CI pipeline for the production environment runs. The pipeline runs both the experimentation and evaluation flows in sequence and registers the flows in the Azure Machine Learning Registry apart from other steps in the pipeline.
+1. After the CI pipeline execution completes, a CD trigger runs the CD pipeline, which deploys the standard flow from the Azure Machine Learning Registry as an Azure Machine Learning online endpoint. The pipeline then runs integration and smoke tests on the deployed flow.
 
 ## Related content
 
