@@ -134,15 +134,21 @@ Install the required packages.
 Verify that your environment is set up correctly by running a quick test:
 
 ```python
-from azure.ai.projects import AIProjectClient
+import os
 from azure.identity import DefaultAzureCredential
+import azure.ai.projects
 
-# This will fail if credentials aren't set up, confirming auth is working
-client = AIProjectClient.from_config(credential=DefaultAzureCredential())
-print("Setup successful! You're ready to build your RAG app.")
+# Check the SDK version
+print(f"Azure AI Projects SDK version: {azure.ai.projects.__version__}")
+
+# Test that you can connect to your project
+project = AIProjectClient.from_connection_string(
+    conn_str=os.environ["AIPROJECT_CONNECTION_STRING"], credential=DefaultAzureCredential()
+)
+print("✓ Setup verified! Ready to build your RAG app.")
 ```
 
-If you see `"Setup successful!"`, your Azure credentials and SDK are configured correctly.
+If you see `"Setup successful!"`, your Azure credentials and SDK are configured correctly. Also verify that your Azure AI Projects SDK version is `1.0.0b10`.
 
 References: [Azure AI Projects client library](/python/api/azure-ai-projects/azure.ai.projects), [DefaultAzureCredential](/python/api/azure-identity/azure.identity.DefaultAzureCredential).
 

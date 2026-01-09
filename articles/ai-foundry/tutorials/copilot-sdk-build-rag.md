@@ -53,15 +53,24 @@ This tutorial builds on [Tutorial: Part 1 - Create resources for building a cust
 Before building the RAG app, confirm that your environment is properly configured by running a quick connection test:
 
 ```python
-from azure.ai.projects import AIProjectClient
+import os
 from azure.identity import DefaultAzureCredential
+import azure.ai.projects
+
+# Check the SDK version
+print(f"Azure AI Projects SDK version: {azure.ai.projects.__version__}")
 
 # Test that you can connect to your project
-client = AIProjectClient.from_config(credential=DefaultAzureCredential())
+project = AIProjectClient.from_connection_string(
+    conn_str=os.environ["AIPROJECT_CONNECTION_STRING"], credential=DefaultAzureCredential()
+)
 print("✓ Setup verified! Ready to build your RAG app.")
 ```
 
 If you see the success message, your Azure credentials and SDK are configured correctly. If you encounter authentication errors, verify your `FOUNDRY_*` environment variables are set correctly (see Part 1 prerequisites).
+
+> [!TIP]
+> Make sure that the Azure AI Projects SDK version is 1.0.0b10, which is necessary for this article.
 
 References: [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.AIProjectClient), [DefaultAzureCredential](/python/api/azure-identity/azure.identity.DefaultAzureCredential).
 
