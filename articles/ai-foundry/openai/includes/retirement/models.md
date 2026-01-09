@@ -107,16 +107,14 @@ We notify all customers with these preview deployments at least 30 days before t
 
 Fine-tuned models retire in two phases: *training* and *deployment*.
 
-All fine-tuned models follow their equivalent base model for *training* retirement. After a model is retired, it's no longer available for fine-tuning.
+After a model is retired for training, it's no longer available for fine-tuning.
 
-For fine-tuned models made generally available since `gpt-4o-2024-08-06`, *deployment* retirement occurs 1 year after *training* retirement. At deployment retirement, inference and deployment return error responses.
+At deployment retirement, inference and deployment return error responses.
 
 | Model            | Version     | Training retirement date  | Deployment retirement date       |
 | -----------------|-------------|---------------------------|----------------------------------|
-| `gpt-35-turbo`   | 1106        | At base model retirement  | At training retirement           |
-| `gpt-35-turbo`   | 0125        | At base model retirement  | At training retirement           |
-| `gpt-4o`         | 2024-08-06  | At base model retirement  | One year after training retirement |
-| `gpt-4o-mini`    | 2024-07-18  | At base model retirement  | One year after training retirement |
+| `gpt-4o`         | 2024-08-06  | One year after training retirement | One year after training retirement |
+| `gpt-4o-mini`    | 2024-07-18  | One year after training retirement | One year after training retirement |
 | `gpt-4.1`        | 2025-04-14  | At base model retirement  | One year after training retirement |
 | `gpt-4.1-mini`   | 2025-04-14  | At base model retirement  | One year after training retirement |
 | `gpt-4.1-nano`   | 2025-04-14  | At base model retirement  | One year after training retirement |
