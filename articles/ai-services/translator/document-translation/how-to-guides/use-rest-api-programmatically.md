@@ -187,11 +187,12 @@ The following headers are included with each Document translation API request:
 
 > [!Note]
 >
+> * This feature requires API version 2024-11-01-preview
 > * This feature is optional and must be enabled for each translation request.
 > * Enabling this feature will incur additional costs based on usage. For more information, *see* [Azure Vision in Foundry Tools pricing](https://azure.microsoft.com/pricing/details/cognitive-services/computer-vision/)
 > * This feature is currently available only with the Batch Document translation API.
 > * The Supported file format is `.docx` only.
-> * A Foundry resource (not the standalone Translator resource) is required to use this feature.
+> * An Azure AI services multi-service resource (not the standalone Translator resource) is required to use this feature.
 
 ### Request configuration
 
