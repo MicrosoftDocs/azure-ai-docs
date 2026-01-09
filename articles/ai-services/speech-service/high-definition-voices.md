@@ -124,7 +124,7 @@ Dragon HD Omni supports a comprehensive set of 100+ speaking styles. Use the `st
 
 #### Dragon HD Omni Voice Naming Convention
 
-Dragon HD Omni voices follow the naming pattern: `languagelocale-voicename:DragonHDOmniLatestNeural`, you can use this voice name format by adding the suffix `:DragonHDOmniLatestNeural` to find the Omni version quickly:
+Dragon HD Omni voices follow the naming pattern: `languagelocale-voicename:DragonHDOmniLatestNeural`. You can use this voice name format by adding the suffix `:DragonHDOmniLatestNeural` to find the Omni version quickly:
 
 Example:
 | Previous neural voice | Omni version voice name                |
