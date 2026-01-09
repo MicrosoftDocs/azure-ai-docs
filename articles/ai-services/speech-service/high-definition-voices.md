@@ -38,7 +38,7 @@ The following are the key features of Azure Speech HD voices:
 | **Prosody variations** | Neural text to speech HD voices introduce slight variations in each output to enhance realism. These variations make the speech sound more natural, as human voices naturally exhibit variation. |
 | **High fidelity** | The primary objective of neural text to speech HD voices is to generate high-fidelity audio. The synthetic speech produced by our system can closely mimic human speech in both quality and naturalness. |
 
-## Comparison of Azure Speech HD Voices to Other Azure text to speech Voices
+## Comparison of Azure Speech HD voices to other Azure text to speech voices
 
 How do Azure Speech HD voices compare to other Azure text to speech voices? Here's a detailed comparison:
 
