@@ -360,6 +360,6 @@ References: [az cognitiveservices account project delete](/cli/azure/cognitivese
 
 ## Related content
 
-- [Quickstart: Get started with Foundry](../quickstarts-get-started-code.md)
+- [Microsoft Foundry Quickstart](../quickstarts/get-started-code.md)
 - [What is Foundry?](../what-is-foundry.md)
 
