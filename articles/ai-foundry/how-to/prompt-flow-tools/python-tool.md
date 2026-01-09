@@ -21,6 +21,8 @@ ms.update-cycle: 180-days
 
 # Python tool for flows in Microsoft Foundry portal
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 The prompt flow Python tool offers customized code snippets as self-contained executable nodes. You can quickly create Python tools, edit code, and verify results.
