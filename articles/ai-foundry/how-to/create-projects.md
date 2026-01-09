@@ -52,97 +52,95 @@ If your organization requires customized Azure configurations like alternative n
 
 ## Prerequisites
 
-
-Use the following tabs to select the method you want to use to create a Foundry project:
-
-# [Foundry portal](#tab/foundry)
-
-- [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
-
-:::moniker range="foundry-classic"
-- **Owner role**: You must be **Owner** of the subscription to create a Foundry resource (the parent container for your project). The Owner role grants the necessary Azure Role-Based Access Control (RBAC) permissions. If you lack this role, request your subscription administrator to [create a Foundry resource](../../ai-services/multi-service-resource.md) and then skip to [Create multiple projects on the same resource](#create-multiple-projects-on-the-same-resource).
-:::moniker-end
+* [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 
 :::moniker range="foundry"
 - **Owner role**: You must be **Owner** of the subscription to create a Foundry resource. If you lack this role, request your subscription administrator to create a project for you.
 :::moniker-end
 
-# [Python SDK](#tab/python)
+:::moniker range="foundry-classic"
+* - **Permissions**: You need access to a role that allows you to create a Foundry resource, such as **Azure Account AI Owner** or **Azure AI Owner** on the subscription or resource group. For more details about permissions, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md#permissions-for-each-built-in-role).
+    If you lack this role, request your subscription administrator to [create a Foundry resource](../../ai-services/multi-service-resource.md) and then skip to [Create multiple projects on the same resource](#create-multiple-projects-on-the-same-resource).
+:::moniker-end
 
-- [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
-- You must be an **Owner** of the subscription to get the appropriate access control needed to use the project.
-- [Set up your development environment](develop/install-cli-sdk.md?tabs=python)
-- Run `az login` or `az login --use-device-code` in your environment before running code.
-- **Quick validation**: Before creating a project, verify your SDK and authentication are working by testing the client:
+* Use the following tabs to select the method you want to use to create a Foundry project:
 
-  ```python
-  from azure.identity import DefaultAzureCredential
-  from azure.mgmt.cognitiveservices import CognitiveServicesManagementClient
-  
-  # Test authentication by instantiating the client
-  credential = DefaultAzureCredential()
-  subscription_id = "<your-subscription-id>"  # Replace with your subscription ID
-  client = CognitiveServicesManagementClient(credential, subscription_id)
-  print("✓ Authentication successful! Ready to create a project.")
-  ```
-
-::: moniker range="foundry-classic"
-
-- Complete these steps to start your Python script:
-    1. Install packages: `pip install azure-identity azure-mgmt-cognitiveservices~=13.7.0b1`. If you're in a notebook cell, use `%pip install` instead.
-    1. Use `pip show azure-mgmt-cognitiveservices` to check that your version is 13.7 or greater.
-    1. Start your script with the following code to create the `client` connection and variables used throughout this article. This example creates the project in East US:
+    # [Foundry portal](#tab/foundry)
     
-        :::code language="python" source="~/foundry-samples-main/samples-classic/python/quickstart/create_project.py" id="create_client":::
-
-    1. (Optional) If you have multiple accounts, add the tenant ID of the Microsoft Entra ID you want to use into the `DefaultAzureCredential`.
-            
-        ```python
-        DefaultAzureCredential(interactive_browser_tenant_id="<TENANT_ID>")
-        ```
-
-          
-    1. (Optional) If you're working in the [Azure Government - US](/azure/azure-government/documentation-government-welcome) or [Azure operated by 21Vianet](https://azure.microsoft.com/global-infrastructure/services/?regions=china-east-2%2cchina-non-regional&products=all) regions, specify the region you want to authenticate to. This example authenticates to the Azure Government - US region:
-            
-        ```python
-        from azure.identity import AzureAuthorityHosts
-        DefaultAzureCredential(authority=AzureAuthorityHosts.AZURE_GOVERNMENT)
-        ```
-::: moniker-end
-
-::: moniker range="foundry"
-
-- Complete these steps to start your Python script:
-    1. Install packages: `pip install azure-identity azure-mgmt-cognitiveservices~=13.7.0b1`. If you're in a notebook cell, use `%pip install` instead.
-    1. Use `pip show azure-mgmt-cognitiveservices` to check that your version is 13.7 or greater.
-    1. Start your script with the following code to create the `client` connection and variables used throughout this article. This example creates the project in East US:
+    - [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
     
-        :::code language="python" source="~/foundry-samples-main/samples-classic/python/quickstart/create_project.py" id="create_client":::
-
-    1. (Optional) If you have multiple accounts, add the tenant ID of the Microsoft Entra ID you want to use into the `DefaultAzureCredential`.
-            
-        ```python
-        DefaultAzureCredential(interactive_browser_tenant_id="<TENANT_ID>")
-        ```
-::: moniker-end
-
-
-# [Azure CLI](#tab/azurecli)
-
-- [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
-- You must be **Owner** of the subscription to get the access control needed to use the project.
-- Install the [Azure CLI](/cli/azure/install-azure-cli). 
-- Set default values for `subscription` and `resource group`.
-
-  ```azurecli
-    # Set your default subscription
-    az account set --subscription "{subscription-name}"
-
-    # Set default resource group
-    az config set defaults.group={resource-group-name}
-   ```
-
----
+    # [Python SDK](#tab/python)
+    
+    - [Set up your development environment](develop/install-cli-sdk.md?tabs=python)
+    - Run `az login` or `az login --use-device-code` in your environment before running code.
+    - **Quick validation**: Before creating a project, verify your SDK and authentication are working by testing the client:
+    
+      ```python
+      from azure.identity import DefaultAzureCredential
+      from azure.mgmt.cognitiveservices import CognitiveServicesManagementClient
+      
+      # Test authentication by instantiating the client
+      credential = DefaultAzureCredential()
+      subscription_id = "<your-subscription-id>"  # Replace with your subscription ID
+      client = CognitiveServicesManagementClient(credential, subscription_id)
+      print("✓ Authentication successful! Ready to create a project.")
+      ```
+    
+    ::: moniker range="foundry-classic"
+    
+    - Complete these steps to start your Python script:
+        1. Install packages: `pip install azure-identity azure-mgmt-cognitiveservices~=13.7.0b1`. If you're in a notebook cell, use `%pip install` instead.
+        1. Use `pip show azure-mgmt-cognitiveservices` to check that your version is 13.7 or greater.
+        1. Start your script with the following code to create the `client` connection and variables used throughout this article. This example creates the project in East US:
+        
+            :::code language="python" source="~/foundry-samples-main/samples-classic/python/quickstart/create_project.py" id="create_client":::
+    
+        1. (Optional) If you have multiple accounts, add the tenant ID of the Microsoft Entra ID you want to use into the `DefaultAzureCredential`.
+                
+            ```python
+            DefaultAzureCredential(interactive_browser_tenant_id="<TENANT_ID>")
+            ```
+    
+              
+        1. (Optional) If you're working in the [Azure Government - US](/azure/azure-government/documentation-government-welcome) or [Azure operated by 21Vianet](https://azure.microsoft.com/global-infrastructure/services/?regions=china-east-2%2cchina-non-regional&products=all) regions, specify the region you want to authenticate to. This example authenticates to the Azure Government - US region:
+                
+            ```python
+            from azure.identity import AzureAuthorityHosts
+            DefaultAzureCredential(authority=AzureAuthorityHosts.AZURE_GOVERNMENT)
+            ```
+    ::: moniker-end
+    
+    ::: moniker range="foundry"
+    
+    - Complete these steps to start your Python script:
+        1. Install packages: `pip install azure-identity azure-mgmt-cognitiveservices~=13.7.0b1`. If you're in a notebook cell, use `%pip install` instead.
+        1. Use `pip show azure-mgmt-cognitiveservices` to check that your version is 13.7 or greater.
+        1. Start your script with the following code to create the `client` connection and variables used throughout this article. This example creates the project in East US:
+        
+            :::code language="python" source="~/foundry-samples-main/samples-classic/python/quickstart/create_project.py" id="create_client":::
+    
+        1. (Optional) If you have multiple accounts, add the tenant ID of the Microsoft Entra ID you want to use into the `DefaultAzureCredential`.
+                
+            ```python
+            DefaultAzureCredential(interactive_browser_tenant_id="<TENANT_ID>")
+            ```
+    ::: moniker-end
+    
+    
+    # [Azure CLI](#tab/azurecli)
+    
+    - Install the [Azure CLI](/cli/azure/install-azure-cli). 
+    - Set default values for `subscription` and `resource group`.
+    
+      ```azurecli
+        # Set your default subscription
+        az account set --subscription "{subscription-name}"
+    
+        # Set default resource group
+        az config set defaults.group={resource-group-name}
+       ```
+    
+    ---
 
 ## Create a Foundry project
 
