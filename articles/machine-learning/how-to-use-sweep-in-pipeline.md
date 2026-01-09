@@ -9,8 +9,9 @@ ms.topic: how-to
 author: lgayhardt
 ms.author: scottpolly
 ms.reviewer: jturuk
-ms.date: 09/19/2024
+ms.date: 01/12/2026
 ms.custom: devx-track-python, sdkv2, cliv2, update-code2
+#customer intent: As a data scientist, I need to automate hyperparameter tuning to find the best performance and run experiments in parallel using Azure Machine Learning.
 ---
 
 # How to do hyperparameter tuning in pipelines
