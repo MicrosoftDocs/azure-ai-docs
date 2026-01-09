@@ -78,7 +78,7 @@ You can also use the Azure CLI or Python SDK to create a Snowflake connection th
 
 ### Create a connection that uses username/password authentication
 
-# [Azure CLI | Python SDK](#tab/cli+tab/python)
+# [Azure CLI / Python SDK](#tab/cli+python)
 
 To create the connection, first assemble a YAML file that defines the connection, and then run a command or script that calls the YAML file. For Python SDK, you can also specify the connection information directly without using a YAML file.
 
