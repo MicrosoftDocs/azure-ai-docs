@@ -37,7 +37,7 @@ This section describes Voice live quotas and limits per Speech resource. For inf
 | Maximum connection length | N/A | <= 60 minutes per session |
 | Tokens per minute | N/A | <= 120,000 |
 
-Avatars used in Voice live follows the quota and limits described in [real-time text to speech avatar](#real-time-text-to-speech-avatar).
+Avatars used in Voice live follow the quota and limits described in [real-time text to speech avatar](#real-time-text-to-speech-avatar).
 
 ### LLM Speech (preview) quotas and limits per resource
 
@@ -187,7 +187,7 @@ Some Speech service quotas are adjustable. This section provides more explanatio
 
 The following quotas are adjustable for Standard (S0) resources. The Free (F0) request limits aren't adjustable.
 
-- Voice live API [new connections per minute](#voice-live-quotas-and-limits-per-resource). Adjusting new connections will also adjusts the token limit.
+- Voice live API [new connections per minute](#voice-live-quotas-and-limits-per-resource). Adjusting new connections also adjusts the token limit.
 - Speech to text [concurrent request limit](#real-time-speech-to-text-and-speech-translation) for base model endpoint and custom endpoint
 - Fast Transcription [maximum number of requests per minute](#fast-transcription)
 - Speech translation [concurrent request limit](#real-time-speech-to-text-and-speech-translation)
@@ -326,7 +326,7 @@ Increasing the concurrent request limit does **not** directly affect your costs.
 You aren't able to see the existing value of the concurrent request limit parameter in the Azure portal, the command-line tools, or API requests. To verify the existing value, create an Azure support request.
 
 > [!NOTE]
->[Speech containers](speech-container-howto.md) don't require increases of the concurrent request limit, because containers are constrained only by the CPUs of the hardware they're hosted on.
+> [Speech containers](speech-container-howto.md) don't require increases of the concurrent request limit, because containers are constrained only by the CPUs of the hardware they're hosted on.
  
 #### Prepare the required information
 
@@ -389,11 +389,11 @@ Initiate the increase of the limit for concurrent requests for your resource, or
     1. First Name
     1. Last Name
     1. Your Work/Organization Email Address
-    > [!NOTE]
-    > Applications submitted with a personal email address (for example, hotmail.com, outlook.com, gmail.com, etc.) won't be accepted.
-    1. CompanyCompany/Organization Name
-    > [!NOTE]
-    > Note you can only request quota increases on behalf of your own organization!
+        > [!NOTE]
+        > Applications submitted with a personal email address (for example, hotmail.com, outlook.com, gmail.com, etc.) won't be accepted.
+    1. Company/Organization Name
+        > [!NOTE]
+        > You can only request quota increases on behalf of your own organization.
 1. Provide the resource information
     1. Azure Subscription ID
     1. Azure AI Service Resource ID
