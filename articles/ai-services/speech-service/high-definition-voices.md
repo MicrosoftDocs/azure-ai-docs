@@ -320,7 +320,7 @@ For detailed information on the supported and unsupported SSML elements for Azur
 | `<s>`  | Denotes sentences in SSML documents.  | Yes | Yes |
 
 > [!NOTE]
-> Although a [previous section in this guide](#comparison-of-azure-speech-hd-voices-to-other-azure-text to speech-voices) also compared Azure Speech HD voices to Azure OpenAI HD voices, the SSML elements supported by Azure Speech aren't applicable to Azure OpenAI voices.
+> Although a [previous section in this guide](#comparison-of-azure-speech-hd-voices-to-other-azure-text-to-speech-voices) also compared Azure Speech HD voices to Azure OpenAI HD voices, the SSML elements supported by Azure Speech aren't applicable to Azure OpenAI voices.
 
 ## HD Flash Voices
 
