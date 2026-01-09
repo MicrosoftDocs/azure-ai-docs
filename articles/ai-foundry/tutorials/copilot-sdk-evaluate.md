@@ -93,9 +93,10 @@ In Part 1 of this tutorial series, you created an **.env** file that specifies t
     az login
     ```
 
-1. Install the required package:
+1. Install the required packages:
 
     ```bash
+    pip install openai
     pip install azure-ai-evaluation[remote]
     ```
 
@@ -109,8 +110,10 @@ Before running the full evaluation (which takes 5–10 minutes), verify that the
 from azure.ai.projects import AIProjectClient
 from azure.identity import DefaultAzureCredential
 
-# Verify connection to project
-client = AIProjectClient.from_config(credential=DefaultAzureCredential())
+# Test that you can connect to your project
+project = AIProjectClient.from_connection_string(
+    conn_str=os.environ["AIPROJECT_CONNECTION_STRING"], credential=DefaultAzureCredential()
+)
 print("Evaluation SDK is ready! You can now run evaluate.py")
 ```
 
