@@ -36,7 +36,7 @@ To try out the voice live demo, follow these steps:
 1. When you're ready, select **Start** to start chatting with the voice agent using your device's microphone and speakers.
 1. Select **End** to end the chat session.
 
-[!INCLUDE [speech-in-foundry](../../../../../ai-foundry/default/includes/speech-in-foundry.md)]
+[!INCLUDE [speech-features-foundry](../../../../../ai-foundry/default/includes/speech-features-foundry.md)]
 
 #### [Foundry (classic) portal](#tab/foundry-classic)
 
