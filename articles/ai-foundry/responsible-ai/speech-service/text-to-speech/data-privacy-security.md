@@ -20,10 +20,9 @@ You are also responsible for obtaining any licenses, permissions, or other right
 
 ## What data do text to speech services process?
 
-**Prebuilt neural voice and prebuilt avatar process the following types of data:**
+#### [Prebuilt voice / avatar](#tab/prebuilt-voice)
 
 - **Text input for speech synthesis**. This is the text you select and send to the text to speech service to generate audio output using a set of prebuilt neural voices, or to generate a prebuilt avatar that utters audio generated from either prebuilt or custom neural voices.
-
 
 #### [Custom neural voice](#tab/custom-neural-voice)
 
@@ -47,6 +46,8 @@ You are also responsible for obtaining any licenses, permissions, or other right
 - **Training data (including audio files and image/video files).** This includes video and audio recordings from the avatar talent who has agreed to use their image and voice for model training. We don’t require a text transcription of the audio in the video.
 - **Text as the test script.** You can upload your own text-based scripts to evaluate and test the quality of the custom avatar model by generating synthetic avatar video samples.
 - **Text input for speech synthesis.** This is the text you select and send to the text to speech service to generate audio and video output using your custom avatar.
+
+
 
 ---
 
@@ -76,9 +77,11 @@ The diagram below illustrates how your data is processed with video translation.
 
 :::image type="content" source="media\video-translation-data-process.png" alt-text="Diagram of the video translation data flow.":::
 
+#### [Prebuilt voice / avatar](#tab/prebuilt-voice)
+
 #### [Custom neural voice](#tab/custom-neural-voice)
 
-### Recorded acknowledgement statement verification 
+## Recorded acknowledgement statement verification 
 
 Microsoft requires customers to upload an audio file to Speech Studio with a recorded statement of the voice talent acknowledging that the customer will use their voice to create a synthetic voice. Microsoft may use [Microsoft’s speech to text and speech recognition](/azure/ai-services/speech-service/speech-to-text) technology to transcribe this recorded acknowledgement statement to text and verify that the content in the recording matches the pre-defined script provided by Microsoft. This acknowledgement statement, along with the talent information you provide with the audio, is used to create a voice talent profile. You must associate training data with the relevant voice talent profile when initiating custom neural voice training. 
 
@@ -88,13 +91,13 @@ The voice signatures are used by Microsoft solely for the purposes of speaker ve
 
 The [Microsoft Products and Services Data Protection Addendum](https://aka.ms/dpa) (“DPA”) sets forth customers’ and Microsoft’s obligations with respect to the processing and security of Customer Data and Personal Data in connection with Azure and is incorporated by reference into customers’ enterprise agreement for Azure services. Microsoft’s data processing in this section is governed under the Legitimate Interest Business Operations section of the Data Protection Addendum.
 
-### Training a custom neural voice model
+## Training a custom neural voice model
 
 The training data (speech audio) customers submit to Speech Studio is pre-processed using automated tools for quality checking, including data format check, pronunciation scoring, noise detection, script mapping, etc. The training data is then imported to the model training component of the custom voice platform. During the training process, the training data (both voice audio and text transcriptions) are decomposed into fine-grained mappings of voice acoustics and text, such as a sequence of phonemes. Through further complex machine leaning modeling, the service builds a voice model, which then can be used to generate audio that sounds similar to the voice talent and can even be generated in different languages from the training data recording. The voice model is a text to speech computer model that can mimic unique vocal characteristics of a particular speaker. It represents a set of parameters in binary format that is not human readable and does not contain audio recordings.
 
 A customer’s training data is used only to develop that customer’s custom voice models and is not used by Microsoft to train or improve any Microsoft text to speech voice models.
 
-#### Speech synthesis/audio content generation
+### Speech synthesis/audio content generation
 
 Once the voice model is created, you can use it to create audio content through the text to speech service with two different options.
 
@@ -104,7 +107,7 @@ For asynchronous synthesis of long audio (batch synthesis), you submit the input
 
 You can also use your custom voice model to generate audio content through a no-code [Audio Content Creation tool](https://speech.microsoft.com/audiocontentcreation), and choose to save your text input or output audio content with the tool in Azure storage.
 
-### Data processing for custom neural voice lite (Preview)
+## Data processing for custom neural voice lite (Preview)
 
 Custom neural voice lite is a project type in public preview that allows you to record 20-50 voice samples on Speech Studio and create a lightweight custom neural voice model for demonstration and evaluation purposes. Both the recording script and the testing script are pre-defined by Microsoft. A synthetic voice model you create using custom neural voice lite may be deployed and used more broadly only if you apply for and receive full access to custom neural voice (subject to applicable terms).
 
@@ -112,7 +115,7 @@ The synthetic voice and related audio recording you submit via Speech Studio wil
 
 In addition, before you can deploy any synthetic voice model created using a custom neural voice lite project, the voice talent must provide an additional recording in which they acknowledge that the synthetic voice will be used for additional purposes beyond demonstration and evaluation.
 
-### Data processing for personal voice API (Preview)
+## Data processing for personal voice API (Preview)
 
 Personal voice allows customers to create a synthetic voice using a short human voice sample. The verbal acknowledgement statement file described above is required from each user who uses the integration in your application. Microsoft may process biometric voice signatures from the recorded voice statement file of each user and their recorded training sample (a.k.a the prompt) to confirm that the voice signature in the acknowledgement statement recording and the training data recording matches with reasonable confidence using Azure AI [Speaker Verification](/azure/ai-services/speech-service/speaker-recognition-overview#speaker-verification).
 
@@ -120,7 +123,7 @@ The training sample will be used to create the voice model. The voice model can 
 
 #### [Custom text to speech avatar](#tab/custom-avatar)
 
-### Video acknowledgement statement verification 
+## Video acknowledgement statement verification 
 
 Microsoft requires customers to provide a video file with a recorded acknowledgement statement from their avatar talent acknowledging that the customer will use the talent’s image and voice to create a custom avatar. Microsoft will verify that the content in the acknowledgement statement recording matches the pre-defined script provided by Microsoft.
 
@@ -128,23 +131,29 @@ Microsoft may compare the face and the voice of the avatar talent in the record
 
 Only when both the acknowledgement statement video recording file and video training data are provided and pass actor verification testing will Microsoft start to train the custom avatar model.
  
-### Training a custom text to speech avatar model 
+## Training a custom text to speech avatar model 
 
 Customers will submit their training data to Speech Studio via the custom avatar portal. The data is pre-processed using automated tools to check quality, including data format, file size and total volume. The training data is then imported to the model training component of the custom avatar portal. During the training process, the training data (both video image and the voice audio in the video file) are decomposed into fine-grained mappings of the lip movements and voice acoustics. Through further complex machine leaning modeling, the service builds an avatar model, which then can be used to generate video that looks similar to the avatar talent and can even be generated to match the voice in different languages from the training data recording. 
 
 A customer’s training data is used only to develop that customer’s custom avatar models and is not used by Microsoft to train or improve any Microsoft text to speech avatar models. 
 
+
+
 ---
 
 ## Data storage and retention
 
-**All text to speech services**
+#### [Prebuilt voice / avatar](#tab/prebuilt-voice)
 
 **Text input for speech synthesis:** Microsoft does not retain or store the text that you provide with the real-time synthesis text to speech API. Scripts provided via the [Long Audio API](/azure/ai-services/speech-service/batch-synthesis) for text to speech or via text to speech avatar batch API for text to speech avatar are stored in Azure storage to process the batch synthesis request. The input text can be deleted via the [delete](/azure/ai-services/speech-service/batch-synthesis#remove-previous-requests) API at any time. 
 
 **Output audio and video content:** Microsoft does not store audio or video content generated with the real-time synthesis API. If you are using Video translation or the [Long Audio API](/azure/ai-services/speech-service/batch-synthesis) for text to speech avatar batch API, the output audio or video content is stored in Azure storage. These audios or videos can be removed at any time via the [delete](/azure/ai-services/speech-service/batch-synthesis#remove-previous-requests) operation. 
 
 #### [Custom neural voice](#tab/custom-neural-voice)
+
+**Text input for speech synthesis:** Microsoft does not retain or store the text that you provide with the real-time synthesis text to speech API. Scripts provided via the [Long Audio API](/azure/ai-services/speech-service/batch-synthesis) for text to speech or via text to speech avatar batch API for text to speech avatar are stored in Azure storage to process the batch synthesis request. The input text can be deleted via the [delete](/azure/ai-services/speech-service/batch-synthesis#remove-previous-requests) API at any time. 
+
+**Output audio and video content:** Microsoft does not store audio or video content generated with the real-time synthesis API. If you are using Video translation or the [Long Audio API](/azure/ai-services/speech-service/batch-synthesis) for text to speech avatar batch API, the output audio or video content is stored in Azure storage. These audios or videos can be removed at any time via the [delete](/azure/ai-services/speech-service/batch-synthesis#remove-previous-requests) operation.
 
 **Recorded acknowledgement statement and Speaker Verification data**: The voice signatures are used by Microsoft solely for the purposes of speaker verification or as otherwise necessary to investigate misuse of the services. The voice signatures will be retained only for the time necessary to perform speaker verification, which may occur from time to time. Microsoft may require this verification before allowing you to train or retrain custom neural voice models in Speech Studio, or as otherwise necessary. Microsoft will retain the recorded acknowledgement statement file and voice talent profile data for as long as necessary to preserve the security and integrity of Azure Speech.
 
@@ -160,6 +169,10 @@ You can manage storage of your training data via [BYOS (Bring Your Own Storage)]
 > Personal voice does not support BYOS. Your data will be stored in Azure storage managed by Microsoft. You can access and delete any of the training data (prompt audio) used to build voice models via API. Microsoft may independently retain a copy of personal voice models for as long as necessary. Microsoft may use your personal voice model for the sole purpose of protecting the security and integrity of Foundry Tools.
 
 #### [Custom text to speech avatar](#tab/custom-avatar)
+
+**Text input for speech synthesis:** Microsoft does not retain or store the text that you provide with the real-time synthesis text to speech API. Scripts provided via the [Long Audio API](/azure/ai-services/speech-service/batch-synthesis) for text to speech or via text to speech avatar batch API for text to speech avatar are stored in Azure storage to process the batch synthesis request. The input text can be deleted via the [delete](/azure/ai-services/speech-service/batch-synthesis#remove-previous-requests) API at any time. 
+
+**Output audio and video content:** Microsoft does not store audio or video content generated with the real-time synthesis API. If you are using Video translation or the [Long Audio API](/azure/ai-services/speech-service/batch-synthesis) for text to speech avatar batch API, the output audio or video content is stored in Azure storage. These audios or videos can be removed at any time via the [delete](/azure/ai-services/speech-service/batch-synthesis#remove-previous-requests) operation.
 
 **Recorded acknowledgement statement data**: Microsoft may compare the acknowledgement statement video and training data before allowing you to train or retrain custom avatar models. Microsoft will retain the recorded acknowledgement statement file and avatar talent profile data for as long as necessary to preserve the security and integrity of Foundry Tools.
 
