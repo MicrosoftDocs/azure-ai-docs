@@ -166,7 +166,7 @@ To create a Foundry project, follow these steps:
 
 ### Advanced options
 
-1. A Foundry project is created on an `Foundry` resource. This resource is created for you automatically when you create the project. Select an existing **Resource group** you want to use, or leave the default to create a new resource group.
+1. A Foundry project is created on a `Foundry` resource. This resource is created for you automatically when you create the project. Select an existing **Resource group** you want to use, or leave the default to create a new resource group.
 
     > [!TIP]
     > Especially for getting started, we recommend you create a new resource group for your project. The resource group lets you easily manage the project and all its resources together.

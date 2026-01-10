@@ -12,12 +12,15 @@ In this quickstart, try out the text to speech model from Azure Speech in Foundr
 
 ## Prerequisites
 
-- An Azure subscription.
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A Foundry project. If you need to create a project, see [Create a Microsoft Foundry project](../../../../../ai-foundry/how-to/create-projects.md).
 
 ## Try text to speech
 
 Try text to speech in the Foundry portal by following these steps:
+
+#### [Foundry (new) portal](#tab/new-foundry)
+
 
 1. [!INCLUDE [foundry-sign-in](../../../../../ai-foundry/default/includes/foundry-sign-in.md)] 
 1. Select **Build** from the top right menu.
@@ -30,3 +33,17 @@ Try text to speech in the Foundry portal by following these steps:
 ## Other Foundry (new) features
 
 [!INCLUDE [speech-features-foundry](../../../../../ai-foundry/default/includes/speech-features-foundry.md)]
+
+#### [Foundry (classic) portal](#tab/classic-foundry)
+
+1. [!INCLUDE [classic-sign-in](../../../../../ai-foundry/includes/classic-sign-in.md)]
+1. Select **Playgrounds** from the left pane and then select a playground to use. In this example, select **Try the Speech playground**.
+
+1. Select **Voice gallery**.
+1. Select a voice from the gallery. Optionally filter voices by keyword or supported languages.
+
+1. On the right pane, select the **Try it out** tab. Enter sample text in the text box and select **Play** to hear the selected synthetic voice read your text.
+
+1. You can select **View code** to see an SDK code sample in your preferred language for calling the text to speech model.
+
+---
