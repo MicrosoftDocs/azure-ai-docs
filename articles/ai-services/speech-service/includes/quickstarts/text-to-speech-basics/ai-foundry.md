@@ -26,3 +26,5 @@ Try text to speech in the Foundry portal by following these steps:
 1. Choose a prebuilt voice from the dropdown menu, and optionally tune it with the provider parameter sliders.
 1. Enter your sample text in the text box.
 1. Select **Play** to hear the synthetic voice read your text.
+
+[!INCLUDE [speech-in-foundry](../../../../../ai-foundry/default/includes/speech-in-foundry.md)]

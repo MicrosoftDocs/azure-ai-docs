@@ -29,6 +29,8 @@ In this quickstart, you try real-time speech to text in [Microsoft Foundry](http
 1. View the transcription output in the **Transcript** tab. Optionally view the raw API response output in the **JSON** tab.
 1. Switch to the **Code** tab to get the sample code for using the speech to text feature in your application.
 
+[!INCLUDE [speech-in-foundry](../../../../../ai-foundry/default/includes/speech-in-foundry.md)]
+
 #### [Foundry (classic) portal](#tab/classic-foundry)
 
 1. [!INCLUDE [classic-sign-in](../../../../../ai-foundry/includes/classic-sign-in.md)]

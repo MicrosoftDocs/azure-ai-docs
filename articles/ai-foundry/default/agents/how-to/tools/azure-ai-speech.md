@@ -86,3 +86,6 @@ Start a new chat in the agent playground, and use one of the following example p
 - `Synthesize speech with voice en-US-JennyNeural from text <your text to speak>` 
 
 An audio link is displayed in the chat window (its source is in your blob storage container). Select it to listen to the output.
+
+
+[!INCLUDE [speech-in-foundry](../../../includes/speech-in-foundry.md)]
