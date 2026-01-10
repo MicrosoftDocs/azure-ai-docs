@@ -11,18 +11,17 @@ ms.author: lajanuar
 ms.custom: language-service-custom-ner, mode-other
 zone_pivot_groups: foundry-rest-api
 ---
+<!-- markdownlint-disable MD025 -->
 # Quickstart: Custom named entity recognition
 
 This guide provides step-by-step instructions for using custom named entity recognition (NER) with Microsoft Foundry or the REST API. NER lets you detect and categorize entities in unstructured text—like people, places, organizations, and numbers. With custom NER, you can train models to identify entities specific to your business and adapt them as needs evolve.
 
 To get start, [a sample loan agreement](https://go.microsoft.com/fwlink/?linkid=2175226) is provided as a dataset to build a custom NER model and extract these key entities:
 
-*    Date of the agreement
-*    Borrower's name, address, city, and state
-*    Lender's name, address, city, and state
-*    Loan and interest amounts
-
-
+* Date of the agreement
+* Borrower's name, address, city, and state
+* Lender's name, address, city, and state
+* Loan and interest amounts
 
 ::: zone pivot="microsoft-foundry"
 

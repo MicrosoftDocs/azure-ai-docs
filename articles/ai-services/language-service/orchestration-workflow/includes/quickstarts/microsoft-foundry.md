@@ -9,8 +9,6 @@ ms.author: lajanuar
 <!-- markdownlint-disable MD041 -->
 [!INCLUDE [Foundry introduction](../../../includes/microsoft-foundry/introduction.md)]
 
-## Prerequisites
-
 [!INCLUDE [Foundry prerequisites](../../../includes/microsoft-foundry/prerequisites.md)]
 
 * A [**Conversational language understanding (CQA)**](../../../conversational-language-understanding/overview.md) or [**Custom question answering (CQA)**](../../../question-answering/overview.md) project created in the Foundry.
