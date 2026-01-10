@@ -28,4 +28,6 @@ Try text to speech in the Foundry portal by following these steps:
 1. Switch to the **Generated video** tab to see the video output of the avatar speaking your text with natural face movement and gestures.
 1. Switch to the **Code** tab to get the sample code for using the text to speech avatar feature in your application.
 
+## Other Foundry (new) features
+
 [!INCLUDE [speech-features-foundry](../../../../../ai-foundry/default/includes/speech-features-foundry.md)]
