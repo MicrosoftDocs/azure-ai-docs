@@ -16,7 +16,7 @@ zone_pivot_groups: foundry-rest-api
 
 Orchestration workflow, offered by [Azure Language in Foundry Tools](../overview.md), enables you to integrate multiple language models—such as Conversational Language Understanding (CLU) and Custom question answering (CQA)—into a single project. This functionality intelligently routes user requests to the most suitable model via a unified endpoint, providing seamless and sophisticated conversational experiences across various language services tasks.
 
-This quickstart walks you through the essentials of working with orchestration workflow projects. By following each step via a sample project, youbuild a strong foundation in the core concepts. Completing this quickstart provides you with hands-on experience, preparing you to confidently tackle orchestration workflow projects in your own environment.
+This quickstart walks you through the essentials of working with orchestration workflow projects. By following each step via a sample project, you build a strong foundation in the core concepts. Completing this quickstart provides you with hands-on experience, preparing you to confidently tackle orchestration workflow projects in your own environment.
 
 ::: zone pivot="microsoft-foundry"
 [!INCLUDE [Microsoft Foundry quickstart](includes/quickstarts/microsoft-foundry.md)]
