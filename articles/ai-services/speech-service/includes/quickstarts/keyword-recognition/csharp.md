@@ -1,9 +1,9 @@
 ---
-author: goergenj
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 11/13/2025
-ms.author: jagoerge
+ms.author: pafarley
 ---
 
 [!INCLUDE [Header](../../common/csharp.md)]
