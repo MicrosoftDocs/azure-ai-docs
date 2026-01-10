@@ -12,6 +12,10 @@ ms.custom: references_regions
 ### November 2025 release
 
 #### Public preview of new HD voices
+
+Azure speech high definition (HD) voices are available in public preview. The HD voices can understand the content, automatically detect emotions in the input text, and adjust the speaking tone in real-time to match the sentiment. For more information, see [What are Azure Speech high definition (HD) voices?](../../high-definition-voices.md).
+
+
 | **Locale (BCP-47)** | **Voice name**                                      |
 | -------------------- | ---------------------------------------------------- |
 | `en-GB`             | `en-GB-Ada:DragonHDLatestNeural` (Female)           |
@@ -24,6 +28,7 @@ ms.custom: references_regions
 | `ko-KR`             | `ko-KR-SunHi:DragonHDLatestNeural` (Female)         |
 
 #### 33 previous HD voices have been updated to v2.0 with quality improved and bugs fixed
+
 | **Locale (BCP-47)** | **Voice name**                                      |
 | ------------------- | ----------------------------------------------------|
 | `de-DE`             | `de-DE-Florian:DragonHDLatestNeural` (Male)         |
