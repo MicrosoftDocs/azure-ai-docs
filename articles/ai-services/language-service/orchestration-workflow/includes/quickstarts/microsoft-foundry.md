@@ -37,7 +37,7 @@ Let's begin:
 
 1. From the window that appears, select the AI Service fine-tuning tab and then the + Fine-tune button.
 
-   :::image type="content" source="../../media/create-fine-tuning.png" alt-text="Screenshot of create fine-tuning button in the Foundry.":::
+   :::image type="content" source="../../media/select-fine-tuning.png" alt-text="Screenshot of create fine-tuning button in the Foundry.":::
 
 
 1. From the window that appears, select **Conversational Orchestration Workflow** as the task type, then select **Next**.
