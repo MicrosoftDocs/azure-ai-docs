@@ -6,10 +6,11 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 01/11/2026
 ms.author: lajanuar
 ms.custom: language-service-clu
 ---
+
 # Train a conversational language understanding model
 
 After you complete [labeling your utterances](tag-utterances.md), you can start training a model. Training is the process where the model learns from your [labeled utterances](tag-utterances.md). <!--After training is completed, you can [view model performance](view-model-evaluation.md).-->
@@ -105,7 +106,7 @@ Use the evaluation scores to guide your decisions. There may be times where a sp
 
 1. In **Create CLU fine tuning task** window, select your **Connected service** from the drop-down menu, then complete the **Name** and **Language** fields. If you're using the free **Standard Training** mode, select **English** for the language field.
 
-1. Select the  **Create** button. It may take a few minutes for the create operation to complete.
+1. Select the  **Create** button. It may take a few minutes for the operation to complete.
 
     > [!NOTE]
     >
