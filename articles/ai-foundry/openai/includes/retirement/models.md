@@ -17,6 +17,8 @@ ms.custom: references_regions, build-2025
 
 | Model Name | Model Version<sup>1</sup> | Lifecycle Status | Deprecation Date (No New Customers) | Retirement Date | Replacement Model |
 |:--|:--|:--|:--|:--|:--|
+| `gpt-5-chat` | 2025-08-07 | Preview | n/a | 2025-08-07 | `gpt-5.2-chat` |
+| `gpt-5-chat` | 2025-10-03 | Preview | n/a | 2025-08-07 | `gpt-5.2-chat` |
 | `gpt-4o` | 2024-05-13 | Generally Available | 2025-05-13 | 2026-03-31 | `gpt-5.1` |
 | `gpt-4o` | 2024-08-06 | Generally Available | 2025-08-06 | 2026-03-31 | `gpt-5.1` |
 | `gpt-4o` | 2024-11-20 | Generally Available | 2025-11-20 | 2026-06-05 | `gpt-5.1` |
@@ -42,6 +44,8 @@ ms.custom: references_regions, build-2025
 | `gpt-5.1-codex` | 2025-11-13 | Generally Available | 2026-11-13 | 2027-05-15 |  |
 | `gpt-5.1-codex-mini` | 2025-11-13 | Generally Available | 2026-11-13 | 2027-05-15 |  |
 | `gpt-5.1-chat` | 2025-11-13 | Preview | n/a | No earlier than 2026-03-31 |  |
+| `gpt-5.2` | 2025-12-11 | Generally Available | No earlier than 2026-12-12 | No earlier than 2026-05-12 | |
+| `gpt-5.2-chat` | 2025-12-11 | Preview | n/a | No earlier than 2026-04-01 | |
 
 
 # [Audio](#tab/audio)
