@@ -276,7 +276,7 @@ ml_client.connections.create_or_update(workspace_connection=wps_connection)
 
 # [Studio](#tab/azure-studio)
 
-You can create a connection with username/password authentication, or use Azure CLI or Python SDK to create the connection with OAuth authentication.
+You can create a Snowflake connection with username/password authentication, or use Azure CLI or Python SDK to create the connection with OAuth authentication.
 
 ---
 
@@ -378,18 +378,18 @@ ml_client.connections.create_or_update(workspace_connection=wps_connection)
 
 # [Studio](#tab/azure-studio)
 
-On the **Create connection** screen, complete the following information:
+3. On the **Create connection** screen, complete the following information:
 
-- **Service**: Select **AzureSqlDb**.
-- **Target**: Enter the following target, using the values from your Azure SQL database for the placeholders:<br>*Server=tcp:\<server>,\<port>;Database=\<database>;Trusted_Connection=False;Encrypt=True;Connection Timeout=30*
-- **Authentication type**: Select **Username password**.
-- **Username**: Enter your Azure SQL Database username.
-- **Password**: Enter your Azure SQL Database password.
-- **Connection name**: Enter a name for the Azure SQL Database connection.
+   - **Service**: Select **AzureSqlDb**.
+   - **Target**: Enter the following target, using the values from your Azure SQL database for the placeholders:<br>*Server=tcp:\<server>,\<port>;Database=\<database>;Trusted_Connection=False;Encrypt=True;Connection Timeout=30*
+   - **Authentication type**: Select **Username password**.
+   - **Username**: Enter your Azure SQL Database username.
+   - **Password**: Enter your Azure SQL Database password.
+   - **Connection name**: Enter a name for the Azure SQL Database connection.
 
-Optionally select **Test Connection** to test the connection, and then select **Save**.
+4. Optionally select **Test Connection** to test the connection, and then select **Save**.
 
-:::image type="content" source="media/how-to-connection/how-to-create-azuredb-connection.png" lightbox="media/how-to-connection/how-to-create-azuredb-connection.png" alt-text="Screenshot showing creation of a new Azure SQL Database connection in Azure Machine Learning studio UI.":::
+   :::image type="content" source="media/how-to-connection/how-to-create-azuredb-connection.png" lightbox="media/how-to-connection/how-to-create-azuredb-connection.png" alt-text="Screenshot showing creation of a new Azure SQL Database connection in Azure Machine Learning studio UI.":::
 
 ---
 
@@ -475,18 +475,18 @@ ml_client.connections.create_or_update(workspace_connection=wps_connection)
 
 # [Studio](#tab/azure-studio)
 
-On the **Create connection** screen, complete the following information:
+3. On the **Create connection** screen, complete the following information:
 
-- **Service**: Select **S3**.
-- **Target**: Enter your Amazon S3 bucket name.
-- **Authentication type**: Select **Access key**.
-- **Access key ID**: Enter your Amazon S3 access key ID.
-- **Secret Access Key**: Enter your Amazon S3 Secret Access Key.
-- **Connection name**: Enter a name for the Amazon S3 connection.
+   - **Service**: Select **S3**.
+   - **Target**: Enter your Amazon S3 bucket name.
+   - **Authentication type**: Select **Access key**.
+   - **Access key ID**: Enter your Amazon S3 access key ID.
+   - **Secret Access Key**: Enter your Amazon S3 Secret Access Key.
+   - **Connection name**: Enter a name for the Amazon S3 connection.
 
-Optionally select **Test Connection** to test the connection, and then select **Save**.
+4. Optionally select **Test Connection** to test the connection, and then select **Save**.
 
-:::image type="content" source="media/how-to-connection/how-to-create-amazon-s3-connection.png" lightbox="media/how-to-connection/how-to-create-amazon-s3-connection.png" alt-text="Screenshot showing creation of a new Amazon S3 connection in Azure Machine Learning studio UI.":::
+   :::image type="content" source="media/how-to-connection/how-to-create-amazon-s3-connection.png" lightbox="media/how-to-connection/how-to-create-amazon-s3-connection.png" alt-text="Screenshot showing creation of a new Amazon S3 connection in Azure Machine Learning studio UI.":::
 
 ---
 
