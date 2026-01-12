@@ -118,7 +118,7 @@ Foundry is currently available in the following Azure regions. You can [create e
 ## Foundry features
  
 
-For maximum feature availability, consider East US 2, Sweden Central, or West US 2 as your primary regions, as they offer the most comprehensive coverage across features.
+For maximum feature availability, consider East US 2 or Sweden Central as your primary regions, as they offer the most comprehensive coverage across features.
 
 Use the following table to investigate regional availability for specific features you plan to use.
 

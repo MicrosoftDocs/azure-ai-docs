@@ -1796,15 +1796,15 @@ groups:
     title: C#
   - id: rest
     title: REST
- # Owner: laujan
+ # Owner: laujan/lajanuar
 - id: foundry-rest-api
   title: API methods and platforms
-  prompt: Choose an API
+  prompt: Select the Foundry platform or REST API 
   pivots:
-  - id: azure-ai-foundry
-    title: Foundry portal
+  - id: microsoft-foundry
+    title: Microsoft Foundry
   - id: rest-api
-    title: REST API
+    title: Azure Language REST API
 # Owner: jburchel/jonburchel
 - id: set-up-key-vault
   title: Set up Key Vault

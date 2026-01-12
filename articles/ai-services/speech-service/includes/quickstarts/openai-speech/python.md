@@ -101,7 +101,7 @@ Follow these steps to create a new console application.
                 if chunk_message is not None:
                     collected_messages.append(chunk_message)  # save the message
                     if chunk_message in tts_sentence_end: # sentence end found
-                        text = ''.join(collected_messages).strip() # join the recieved message together to build a sentence
+                        text = ''.join(collected_messages).strip() # join the received message together to build a sentence
                         if text != '': # if sentence only have \n or space, we could skip
                             print(f"Speech synthesized to speaker for: {text}")
                             last_tts_request = speech_synthesizer.speak_text_async(text)

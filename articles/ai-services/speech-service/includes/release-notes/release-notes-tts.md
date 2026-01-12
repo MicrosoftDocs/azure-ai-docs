@@ -27,7 +27,8 @@ Dragon HD Omni unifies a broad range of prebuilt voices into one advanced voice 
 
 You also can use this voice name format by adding the suffix `:DragonHDOmniLatestNeural` to try the Omni version of the given voice via direct SSML call
 
-For example
+For example:
+
 | **Previous neural voice** | **Omni version voice name**                        |
 | ------------------------- | -------------------------------------------------- |
 | `de-DE-ConradNeural`      | `de-DE-Conrad:DragonHDOmniLatestNeural`            |
@@ -36,6 +37,10 @@ For example
 ### November 2025 release
 
 #### Public preview of new HD voices
+
+Azure speech high definition (HD) voices are available in public preview. The HD voices can understand the content, automatically detect emotions in the input text, and adjust the speaking tone in real-time to match the sentiment. For more information, see [What are Azure Speech high definition (HD) voices?](../../high-definition-voices.md).
+
+
 | **Locale (BCP-47)** | **Voice name**                                      |
 | -------------------- | ---------------------------------------------------- |
 | `en-GB`             | `en-GB-Ada:DragonHDLatestNeural` (Female)           |
@@ -48,6 +53,7 @@ For example
 | `ko-KR`             | `ko-KR-SunHi:DragonHDLatestNeural` (Female)         |
 
 #### 33 previous HD voices have been updated to v2.0 with quality improved and bugs fixed
+
 | **Locale (BCP-47)** | **Voice name**                                      |
 | ------------------- | ----------------------------------------------------|
 | `de-DE`             | `de-DE-Florian:DragonHDLatestNeural` (Male)         |
