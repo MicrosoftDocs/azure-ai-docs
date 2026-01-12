@@ -27,6 +27,8 @@ items:
     href: /azure/ai-foundry/agents/how-to/tools-classic/azure-ai-speech?view=foundry&context=/azure/ai-services/speech-service/context/context
   - name: Speech Studio
     href: speech-studio-overview.md
+  - name: Speech in Microsoft Foundry
+    href: speech-features-foundry.md
   - name: Speech CLI
     items:
       - name: Speech CLI overview

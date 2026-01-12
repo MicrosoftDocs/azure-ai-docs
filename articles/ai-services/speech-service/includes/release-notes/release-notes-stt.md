@@ -8,6 +8,18 @@ ms.author: pafarley
 ms.custom: references_regions
 ---
 
+### November 2025
+
+* LLM speech API is public preview now. It uses a large-language-model-enhanced speech model that delivers improved quality, deep contextual understanding, multilingual support, and prompt-tuning capabilities. It currently supports the following speech tasks:
+   - `transcribe`: Convert pre-recorded audio into text.
+   - `translate`: Convert pre-recorded audio into text in a specified target language.
+
+  For more information, see [LLM speech](../../llm-speech.md). 
+* Fast transcription is generally available. It can transcribe audio much faster than the actual audio duration. For more information, see the [fast transcription API guide](../../fast-transcription-create.md).
+* To transcribe multi-lingual contents continuously and accurately in an audio file, you can now use the latest multi-lingual model without specifying the locale codes via fast transcription API. For more information, see [multi-lingual transcription in fast transcription](../../fast-transcription-create.md?tabs=multilingual-transcription-on).
+* Video translation is now available in the Azure Speech service. For more information, see [What is video translation?](../../video-translation-overview.md)
+
+
 ### October 2025 release
 
 #### Speech to text REST API version 2025-10-15
