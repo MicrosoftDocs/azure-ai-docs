@@ -86,7 +86,7 @@ Foundry Agent Service handles:
 - Python: `azure-ai-agentserver-core`, `azure-ai-agentserver-agentframework`, `azure-ai-agentserver-langgraph`
 - .NET: `Azure.AI.AgentServer.Core`, `Azure.AI.AgentServer.AgentFramework`
 
-### Agent sizes
+### Agent replica sizes
 
 Only the following CPU and memory pairs are currently supported for hosted agents. These values define the replica size; an agent can run multiple replicas.
 
