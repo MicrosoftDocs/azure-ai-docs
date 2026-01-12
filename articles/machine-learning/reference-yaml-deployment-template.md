@@ -9,7 +9,7 @@ ms.topic: reference
 ms.custom: cliv2, update-code
 author: s-polly
 ms.author: scottpolly
-ms.date: 11/13/2025
+ms.date: 01/12/2026
 ms.reviewer: sehan
 ai-usage: ai-assisted
 ---
@@ -37,7 +37,7 @@ The source JSON schema can be found at https://azuremlschemas.azureedge.net/late
 | `environment_variables` | object | Dictionary of environment variable key-value pairs to set for the deployment. You can access these environment variables from your scoring scripts. | | |
 | `instance_count` | integer | The number of instances to use for the deployment. Specify the value based on the workload you expect. | | |
 | `default_instance_type` | string | The default instance type to use when deploying with this template. | | |
-| `allowed_instance_type` | string | The allowed instance type that can be used when deploying with this template. | | |
+| `allowed_instance_types` | string | The allowed instance type that can be used when deploying with this template. | | |
 | `model_mount_path` | string | The path to mount the model in the container. | | |
 | `scoring_path` | string | The path for the scoring endpoint. | | |
 | `scoring_port` | integer | The port for the scoring endpoint. | | |
@@ -128,7 +128,7 @@ description: Deployment template with instance type restrictions
 environment: azureml:my-environment:1
 instance_count: 1
 default_instance_type: Standard_DS3_v2
-allowed_instance_type: Standard_DS3_v2
+allowed_instance_types: Standard_DS3_v2
 ```
 
 ## YAML: with inline environment
