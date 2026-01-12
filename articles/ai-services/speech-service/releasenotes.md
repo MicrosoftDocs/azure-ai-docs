@@ -16,10 +16,6 @@ ms.custom: references_regions
 
 Azure Speech is updated on an ongoing basis. To stay up-to-date with recent developments, this article provides you with information about new releases and features.
 
-## Recent highlights
-
-* Azure Speech Toolkit extension is now available for Visual Studio Code users. It contains a list of speech quickstarts and scenario samples that can be easily built and run with simple clicks. For more information, see [Azure Speech Toolkit in Visual Studio Code Marketplace](https://aka.ms/speech-toolkit-vscode).
-
 ## Release notes
 
 **Choose a service or resource**
