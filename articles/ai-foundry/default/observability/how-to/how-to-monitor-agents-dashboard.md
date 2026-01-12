@@ -171,6 +171,6 @@ To view the full sample code, see:
 
 ## Related content
 
-- [Agent tracing](../../../concepts/trace-agent-concept.md)
+- [Agent tracing](../concepts/trace-agent-concept.md)
 - [Run AI Red Teaming Agent in the cloud](../../../how-to/develop/run-ai-red-teaming-cloud.md)
 
