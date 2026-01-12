@@ -18,7 +18,7 @@ ms.custom: devx-track-python, sdkv2, cliv2, update-code2
 
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
-In this article, you learn how to automate hyperparameter tuning in Azure Machine Learning pipelines. The article describes using both Azure Machine Learning CLI v2 or Azure Machine Learning SDK for Python v2.
+In this article, you learn how to automate hyperparameter tuning in Azure Machine Learning pipelines. The article describes using both Azure Machine Learning CLI v2 and Azure Machine Learning SDK for Python v2.
 
 *Hyperparameters* are adjustable parameters that let you control the model training process. Hyperparameter tuning is the process of finding the configuration of hyperparameters that results in the best performance. Azure Machine Learning lets you automate hyperparameter tuning and [run experiments in parallel](how-to-use-parallel-job-in-pipeline.md) to efficiently optimize hyperparameters.
 
@@ -86,7 +86,7 @@ After you submit this pipeline job, Azure Machine Learning runs the `trial` comp
 
 After you submit a pipeline job, the SDK or CLI widget gives you a web URL link to the pipeline graph in the Azure Machine Learning studio UI.
 
-To view hyperparameter tuning results, double-click the sweep step in the pipeline graph, In the details area, select **Child jobs**, and then select the child job.
+To view hyperparameter tuning results, double-click the sweep step in the pipeline graph. In the details area, select **Child jobs**, and then select the child job.
 
 :::image type="content" source="./media/how-to-use-sweep-in-pipeline/pipeline-view.png" alt-text="Screenshot of the pipeline with child job and the train_model node highlighted." lightbox="./media/how-to-use-sweep-in-pipeline/pipeline-view.png":::
 
