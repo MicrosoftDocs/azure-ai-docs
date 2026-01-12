@@ -20,7 +20,7 @@ ms.custom: devx-track-python, sdkv2, cliv2, update-code2
 
 In this article, you learn how to automate hyperparameter tuning in Azure Machine Learning pipelines. The article describes using both Azure Machine Learning CLI v2 or Azure Machine Learning SDK for Python v2.
 
-Hyperparameters are adjustable parameters that let you control the model training process. Hyperparameter tuning is the process of finding the configuration of hyperparameters that results in the best performance. Azure Machine Learning lets you automate hyperparameter tuning and [run experiments in parallel](how-to-use-parallel-job-in-pipeline.md) to efficiently optimize hyperparameters.
+*Hyperparameters* are adjustable parameters that let you control the model training process. Hyperparameter tuning is the process of finding the configuration of hyperparameters that results in the best performance. Azure Machine Learning lets you automate hyperparameter tuning and [run experiments in parallel](how-to-use-parallel-job-in-pipeline.md) to efficiently optimize hyperparameters.
 
 ## Prerequisites
 
@@ -43,18 +43,18 @@ For a related notebook, see [Run hyperparameter sweep on a command job](https://
 
 ### Create a command component with hyperparameter inputs
 
-The Azure Machine Learning pipeline must have a command component with hyperparameter inputs. The following *train.yml* file from the example projects defines a `trial` component that has the `c_value`, `kernel`, and `coef` hyperparameter inputs and runs the source code that's located in the *./train-src* folder.
+The Azure Machine Learning pipeline must have a command component with hyperparameter inputs. The following *train.yml* file from the example projects defines a `trial` component that has the `c_value`, `kernel`, and `coef` hyperparameter inputs. It runs the source code that's located in the *./train-src* folder.
 
 :::code language="yaml" source="~/azureml-examples-main/cli/jobs/pipelines-with-components/pipeline_with_hyperparameter_sweep/train.yml" highlight="11-16,23-25,60":::
 
 ### Create the trial component source code
 
-The source code for this example is a single *train.py* file. This code executes in every trial of the sweep job.
+The source code for this example is a single *train.py* file. This code runs in every trial of the sweep job.
 
 :::code language="python" source="~/azureml-examples-main/cli/jobs/pipelines-with-components/pipeline_with_hyperparameter_sweep/train-src/train.py" highlight="15":::
 
 > [!NOTE]
-> Make sure to log the metrics in the trial component source code with exactly the same name as the `primary_metric` value in the pipeline file. This example uses `mlflow.autolog()`, which is the recommended way to track machine learning experiments. For more information about MLflow, see [Track ML experiments and models with MLflow](./how-to-use-mlflow-cli-runs.md).
+> Make sure to log the metrics in the trial component source code with the same name as the `primary_metric` value in the pipeline file. This example uses `mlflow.autolog()`, which is the recommended way to track machine learning experiments. For more information about MLflow, see [Track ML experiments and models with MLflow](./how-to-use-mlflow-cli-runs.md).
 
 ### Create a pipeline with a hyperparameter sweep step
 
@@ -86,15 +86,15 @@ After you submit this pipeline job, Azure Machine Learning runs the `trial` comp
 
 After you submit a pipeline job, the SDK or CLI widget gives you a web URL link to the pipeline graph in the Azure Machine Learning studio UI.
 
-To view hyperparameter tuning results, double-click the sweep step in the pipeline graph, select the **Child jobs** tab in the details panel, and then select the child job.
+To view hyperparameter tuning results, double-click the sweep step in the pipeline graph, In the details area, select **Child jobs**, and then select the child job.
 
 :::image type="content" source="./media/how-to-use-sweep-in-pipeline/pipeline-view.png" alt-text="Screenshot of the pipeline with child job and the train_model node highlighted." lightbox="./media/how-to-use-sweep-in-pipeline/pipeline-view.png":::
 
-On the child job page, select the **Trials** tab to see and compare metrics for the child runs. Select any of the child runs to see the details for that run.
+On the child job page, select **Trials** to see and compare metrics for the child runs. Select any child run to see the details for that run.
 
 :::image type="content" source="./media/how-to-use-sweep-in-pipeline/sweep-job.png" alt-text="Screenshot of the child job page with the Trials tab." lightbox="./media/how-to-use-sweep-in-pipeline/sweep-job.png":::
 
-If a child run failed, you can select the **Outputs + logs** tab on the child run page to see useful debug information.
+If a child run failed, you can select **Outputs + logs** on the child run page to see useful debug information.
 
 :::image type="content" source="./media/how-to-use-sweep-in-pipeline/child-run.png" alt-text="Screenshot of the output and logs tab of a child run." lightbox="./media/how-to-use-sweep-in-pipeline/child-run.png":::
 
