@@ -725,7 +725,9 @@ To create a connection to Azure Container Registry in Machine Learning studio:
 
 1. On the **Add a connection to external assets** screen, scroll down to **Other resource types**, and select **Container Registry**.
 
-1. Input the path to your Azure container registry under **Endpoint**, select **None** or **Username password** for **Authentication** with appropriate values, enter a **Connection name**, and then select **Add connection**.
+1. Input the path to your Azure container registry under **Endpoint**, select **None** or **Username password** for **Authentication** with appropriate values, and enter a **Connection name**.
+
+1. Select **Add connection**.
 
 ---
 
@@ -846,13 +848,13 @@ returned_job = ml_client.create_or_update(job)
 
 # [Studio](#tab/azure-studio)
 
-On the **Connect a container registry** screen:
+3. On the **Connect a container registry** screen:
 
-- Input the path to your container registry under **Endpoint**.
-- Enter your **User name** and **Password**.
-- Provide a **Connection name**.
+   - Input the path to your container registry under **Endpoint**.
+   - Enter your **User name** and **Password**.
+   - Provide a **Connection name**.
 
-Select **Add connection**.
+4. Select **Add connection**.
 
 ---
 
