@@ -13,21 +13,17 @@ ms.author: lajanuar
 
 # Azure Translator in Foundry Tools 2025-10-01-preview
 
-> [!IMPORTANT]
->
-> * Azure AI text translation is available in preview. Public preview releases provide early access to features that are in active development.
-> * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
-> * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
-
 Azure Translator in Foundry Tools `2025-10-01-preview` is our latest cloud-based, multilingual, neural machine translation service. The Text translation API enables robust and scalable translation capabilities suitable for diverse applications.
 
-The Translator is an optimal solution for managing extensive multilingual content. It easily integrates with your applications and workflows through a single REST API call and supports multiple programming languages. Translator supports over 100 languages and dialects, making it ideal for businesses, developers, and organizations seeking to seamlessly integrate multilingual communication.
+Translator is an optimal solution for managing extensive multilingual content. It easily integrates with your applications and workflows through a single REST API call and supports multiple programming languages. Translator supports over 100 languages and dialects, making it ideal for businesses, developers, and organizations seeking to seamlessly integrate multilingual communication.
 
 
 >[!IMPORTANT]
 > * Azure Translator REST API `2025-10-01-preview` is new version of the Azure Translator REST API **with breaking changes**.
+> * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
 > * It's essential to thoroughly test your code against the new release before migrating any production applications from Azure Translator v3.0.
 > * Make sure to review your code and internal workflows for adherence to best practices and restrict your production code to versions that you fully test.
+> * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
 
 ## What's new for 2025-10-01-preview?
