@@ -5,7 +5,7 @@ description: Learn about the data formats accepted by conversational language un
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-clu
@@ -175,4 +175,4 @@ Conversational language understanding offers the option to upload your utterance
 ## Related content
 
 * For more information on importing your labeled data into your project directly, see [Import project](../how-to/create-project.md#import-an-existing-foundry-project).
-* For more information about labeling your data, see [Label your utterances in Language Studio](../how-to/tag-utterances.md). After you label your data, you can [train your model](../how-to/train-model.md).
+* For more information about labeling your data, see [Label your utterances](../how-to/tag-utterances.md). After you label your data, you can [train your model](../how-to/train-model.md).

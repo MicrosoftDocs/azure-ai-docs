@@ -5,7 +5,7 @@ description: Learn how to collect data from an Azure Machine Learning model depl
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.reviewer: None
+ms.reviewer: jturuk
 ms.author: scottpolly
 author: s-polly
 ms.date: 08/16/2022

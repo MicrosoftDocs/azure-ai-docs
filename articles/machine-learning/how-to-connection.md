@@ -8,7 +8,7 @@ ms.subservice: mldata
 ms.topic: how-to
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: ambadal
+ms.reviewer: soumyapatro
 ms.date: 11/19/2024
 ms.custom:
   - data4ml
@@ -736,7 +736,7 @@ from azure.ai.ml import command
 username = os.environ["REGISTRY_USERNAME"]
 password = os.environ["REGISTRY_PASSWORD"]
 
-# Enter details of AML workspace
+# Enter details of Azure Machine Learning workspace
 subscription_id = "<SUBSCRIPTION_ID>"
 resource_group = "<RESOURCE_GROUP>"
 workspace = "<AML_WORKSPACE_NAME>"

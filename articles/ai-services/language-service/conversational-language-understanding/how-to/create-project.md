@@ -16,7 +16,7 @@ A Conversational Language Understanding (CLU) fine-tuning task is a workspace pr
 
 > [!NOTE]
 >
-> * If you already have an Azure Language in Foundry Tools or multi-service resource—whether used on its own or through Language Studio—you can continue to use those existing Language resources within the Foundry portal. For more information, see [How to use Foundry Tools in the Foundry portal](../../../../ai-services/connect-services-ai-foundry-portal.md).
+> * If you already have an Azure Language in Foundry Tools or multi-service resource—whether used on its own or through Language Studio—you can continue to use those existing Language resources within the Foundry portal. For more information, see [How to use Foundry Tools in the Foundry portal](../../../../ai-services/connect-services-foundry-portal.md).
 > * In Foundry, a fine-tuning task serves as your workspace when customizing your CLU model. Previously, a **fine-tuning task** was referred to as a **CLU project**. You might encounter both terms used interchangeably in older CLU documentation.
 > * We highly recommend that you use a Foundry resource in the Foundry; however, you can also follow these instructions using a Language resource.
 >
@@ -60,7 +60,7 @@ A Conversational Language Understanding (CLU) fine-tuning task is a workspace pr
    > * **Advanced training** includes longer training durations and is supported for English, other languages, and multilingual projects.
    > * For more information, *see* [Training modes](train-model.md#training-modes).
 
-1. Once the task creation is complete, select the task from the AI Service fine-tuning window to arrive at the **Getting started with fine-tuning** page.
+1. Once the task creation is complete, select the task from the Foundry Tool fine-tuning window to arrive at the **Getting started with fine-tuning** page.
 
    :::image type="content" source="../media/create-project/getting-started-fine-tuning.png" alt-text="Screenshot of the getting started with fine-tuning page in the Foundry." lightbox="../media/create-project/getting-started-fine-tuning.png":::
 
@@ -104,7 +104,7 @@ Importing the configuration file allows you to bring your existing settings dire
 
 ### [Foundry](#tab/azure-ai-foundry)
 
-To import an existing Foundry Tools project with Foundry, you need to create a connection to the Foundry Tools resource within your Foundry project. For more information, *see* [Connect Foundry Tools projects to Foundry](../../../../ai-services/connect-services-ai-foundry-portal.md)
+To import an existing Foundry Tools project with Foundry, you need to create a connection to the Foundry Tools resource within your Foundry project. For more information, *see* [Connect Foundry Tools projects to Foundry](../../../../ai-services/connect-services-foundry-portal.md)
 
 ### [REST APIs](#tab/rest-api)
 

@@ -3,7 +3,7 @@ title: 'Document Analysis: Extract Structured Content with Azure Content Underst
 titleSuffix: Foundry Tools
 description: Learn about Azure Content Understanding in Foundry Tools document layout analysis and data extraction capabilities.
 author: PatrickFarley 
-ms.author: jppark
+ms.author: pafarley
 manager: nitinme
 ms.date: 10/19/2025
 ms.service: azure-ai-content-understanding
@@ -28,7 +28,7 @@ The document content kind includes output for input files like:
 - **Structured content**: XML, JSON, CSV, and TSV files
 - **Email**: EML and MSG message formats
 
-For more information about supported file types, file size limits, and other constraints, see [Service quotas and limits](../service-limits.md#analyzers).
+For more information about supported file types, file size limits, and other constraints, see [Service quotas and limits](../service-limits.md).
 
 ## JSON response structure
 

@@ -4,6 +4,7 @@ titleSuffix: Microsoft Foundry
 description: Learn how to generate synthetic data using the Microsoft Foundry portal. Create high-quality training datasets for fine-tuning models (Preview).
 manager: nitinme
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.custom: ignite-2025
 ms.topic: how-to
 ms.date: 10/08/2025
@@ -41,9 +42,23 @@ This article covers:
 
 ## Prerequisites
 
-- An Azure subscription. <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 - A Foundry project. For more information, see [create a project with Foundry](../../how-to/create-projects.md)
-- A minimum role assignment of `Azure AI User` or optionally `Azure AI Project Manager` on the Foundry resource. For more information, see [Manage access with role-based access control (RBAC)](../../concepts/rbac-azure-ai-foundry.md)
+- A minimum role assignment of `Azure AI User` or optionally `Azure AI Project Manager` on the Foundry resource. For more information, see [Manage access with role-based access control (RBAC)](../../concepts/rbac-foundry.md)
+
+- Use one of the **supported regions** for synthetic data generation:
+  - `eastus2`
+  - `eastus`
+  - `westus`
+  - `northcentralus`
+  - `southcentralus`
+  - `swedencentral`
+  - `germanywestcentral`
+  - `francecentral`
+  - `uksouth`
+  - `uaenorth`
+  - `japaneast`
+  - `australiaeast`
 
 ## Generate synthetic data for fine-tuning
 

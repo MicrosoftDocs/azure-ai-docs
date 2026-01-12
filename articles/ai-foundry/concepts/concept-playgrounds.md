@@ -5,6 +5,7 @@ description: Learn how to use Microsoft Foundry playgrounds for rapid prototypin
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: concept-article
 ms.date: 11/06/2025
 ms.author: mopeakande
@@ -30,7 +31,7 @@ Some highlights of the Foundry playgrounds experience include:
 
 - **AgentOps support** for evaluations and tracing in the **Agents playground.**
 - **Open in VS Code** for Chat and Agents playground. This feature saves you time by automatically importing your endpoint and key from Foundry to VS Code for multilingual code samples.
-- **Images Playground 2.0** for models such as [gpt-image-1](https://ai.azure.com/explore/models/gpt-image-1/version/2025-04-15/registry/azure-openai/?cid=learnDocs), [Stable Diffusion 3.5 Large](https://ai.azure.com/explore/models/Stable-Diffusion-3.5-Large/version/1/registry/azureml-stabilityai/?cid=learnDocs), and [FLUX.1-Kontext-pro](https://ai.azure.com/resource/models/Flux.1-Kontext-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs) models.
+- **Images playground 2.0** for models such as [gpt-image-1](https://ai.azure.com/explore/models/gpt-image-1/version/2025-04-15/registry/azure-openai/?cid=learnDocs), [Stable Diffusion 3.5 Large](https://ai.azure.com/explore/models/Stable-Diffusion-3.5-Large/version/1/registry/azureml-stabilityai/?cid=learnDocs), and [FLUX.1-Kontext-pro](https://ai.azure.com/resource/models/Flux.1-Kontext-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs) models.
 - **Video playground** for Azure OpenAI Sora-2.
 
 ::: moniker range="foundry-classic"
@@ -44,7 +45,7 @@ Some highlights of the Foundry playgrounds experience include:
 :::image type="content" source="../media/concept-playgrounds/playground-landing-page.png" alt-text="Screenshot of the Foundry playground landing page showcasing features for rapid prototyping and experimentation. The left pane of the portal has been customized to show the Playgrounds tab." lightbox="../media/concept-playgrounds/playground-landing-page.png":::
 
 > [!TIP]
-> In the screenshot of the playground landing page, the left pane of the portal is customized to show the Playgrounds tab. To learn more about seeing the other items in the left pane, see [Customize the left pane](../what-is-azure-ai-foundry.md#left-pane).
+> In the screenshot of the playground landing page, the left pane of the portal is customized to show the playgrounds tab. To learn more about seeing the other items in the left pane, see [Customize the left pane](../what-is-foundry.md#customize-the-left-pane).
 
 ::: moniker-end
 
@@ -205,6 +206,92 @@ To try the transcription capability, follow these steps:
 
 1. Select **Generate transcription** to send the audio input to the model and receive a transcribed output in both text and JSON formats.
 
+## Language playground
+
+The [Language playground](https://ai.azure.com/build/playground/language) provides a code-free environment for testing and validating Azure Language in Foundry Tools capabilities. Use it to experiment with natural language processing (NLP) features such as **key data extraction**, **information summarization**, **text classification**, and **custom model fine-tuning**.
+
+The Language playground consists of four primary sections:
+
+- **Top banner**: Select from the available Language capabilities including language detection, entity recognition, sentiment analysis, PII detection, summarization, and conversational language understanding.
+- **Left pane**: Configure service options such as API version, model version, and capability-specific parameters.
+- **Center pane**: Enter or upload text for processing. Results display here after you execute the operation.
+- **Right pane**: View detailed operation results including entity categories, confidence scores, offsets, and JSON-formatted responses.
+
+To use the Language playground:
+
+1. Select **playgrounds** from the left pane.
+
+1. Select **Try Azure Language Playground**.
+
+1. Choose a Language capability from the top banner, such as:
+
+   - [**Analyze sentiment**](/azure/ai-services/language-service/sentiment-opinion-mining/overview)
+   - [**Conversational language understanding**](/azure/ai-services/language-service/conversational-language-understanding/overview)
+   - [**Custom named entity recognition**](/azure/ai-services/language-service/custom-named-entity-recognition/overview)
+   - [**Custom question answering**](/azure/ai-services/language-service/question-answering/overview)
+   - [**Detect language**](/azure/ai-services/language-service/language-detection/overview)
+   - [**Extract health information**](/azure/ai-services/language-service/text-analytics-for-health/overview)
+   - [**Extract key phrases**](/azure/ai-services/language-service/key-phrase-extraction/overview)
+   - [**Extract named entities**](/azure/ai-services/language-service/named-entity-recognition/overview)
+   - [**Extract PII from conversation or text**](/azure/ai-services/language-service/personally-identifiable-information/overview)
+   - [**Summarize conversation, call center transcripts, or text**](/azure/ai-services/language-service/summarization/overview)
+
+1. Select **Configure** to specify API version, model version, and capability-specific options such as language selection, entity types to include, or redaction policies for PII.
+
+1. Enter text directly in the sample window, select a pre-loaded text sample from the drop-down menu, or upload your own text file using the paperclip icon.
+
+1. Select the appropriate action button (for example, **Detect**, **Extract**, **Analyze**, or **Summarize**) to process the text.
+
+1. Review the results that display in the center pane and examine detailed output information in the **Details** section on the right pane, including confidence scores, entity categories, character offsets, and lengths.
+
+1. Select **View code** to access multilingual code samples in Python, C#, JavaScript, and other languages for integration into your applications.
+
+The Language playground accelerates development and enables rapid prototyping and validation of NLP capabilities before production implementation. It also supports training, deployment, testing, and fine-tuning of custom named entity recognition (NER) models with real-time debugging.
+
+## Translator playground
+
+The [Translator playground](https://ai.azure.com/build/playground/translator) provides a code-free environment for testing and validating Azure Translator capabilities. It supports both text translation and document translation workflows and enables developers to experiment with neural machine translation (NMT) and large language model (LLM)-based translation using GPT-4o and GPT-4o-mini.
+
+To use the Translator playground:
+
+1. Select **Playgrounds** from the left pane.
+
+1. Select **Try the Translator playground**.
+
+1. **For text translation:**
+
+   1. Enter or paste the text you want to translate in the input field.
+
+   1. Select the source language or enable automatic language detection.
+
+   1. Select one or more target languages for translation output.
+
+   1. Choose the translation model: Azure-MT (neural machine translation), GPT-4o, or GPT-4o-mini. LLM models enable translation with specific gender or tone adjustments and can be refined using domain-specific terminology.
+
+   1. (Optional) Configure advanced options such as profanity handling, text type, or custom glossaries.
+
+   1. Select **Translate** to generate the translation.
+
+   1. Review the translated output and compare results across different model selections.
+
+1. **For document translation:**
+
+   1. Select the **Document translation** option.
+
+   1. Upload your source document or select a pre-loaded document sample.
+
+   1. Specify the target language for translation.
+
+   1. (Optional) Apply custom translation models or custom glossaries to maintain domain-specific terminology consistency.
+
+   1. Select **Translate** to process the document. This preserves the original layout and formatting.
+
+   1. Download the translated document to your local computer.
+
+1. Select **View code** to access REST API examples and SDK code samples in multiple programming languages for integrating Translator capabilities into your applications.
+
+The Translator playground enables real-time validation of translation quality, prompt structures, and custom glossary effectiveness before production implementation. Use it to compare model outputs and optimize translation configurations for your specific use cases.
+
 ::: moniker-end
 
 ## Video playground
@@ -311,7 +398,7 @@ The images playground is ideal for developers who build image generation flows. 
 ::: moniker range="foundry-classic"
 
 > [!TIP]  
-> See the [60-second reel of the Images playground for gpt-image-1](https://youtu.be/btA8njJjLXY) and our DevBlog for [Images Playground in Foundry.](https://devblogs.microsoft.com/foundry/images-playground-may-2025/)
+> See the [60-second reel of the Images playground for gpt-image-1](https://youtu.be/btA8njJjLXY) and our DevBlog for [Images playground in Foundry.](https://devblogs.microsoft.com/foundry/images-playground-may-2025/)
 
 You can use the images playground with these models:
 

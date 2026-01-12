@@ -4,7 +4,7 @@ description: Learn how to use reinforcement fine-tuning with reasoning models
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 08/29/2025
+ms.date: 11/26/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
@@ -167,21 +167,6 @@ Score model graders output a numeric score based on their given input and prompt
     "pass_threshold": number,
     "range": number[],
     "sampling_params": object
-}
-```
-
-### Label model
-
-Label model graders output a label from a given list of labels based on their input and prompt. Similar to score model graders, `sampling_params` controls the behavior of the scoring model.
-
-```json
-{
-    "type": "label_model",
-    "name": string,
-    "input": Message[],
-    "model": string,
-    "labels": string[],
-    "passing_labels": string[]
 }
 ```
 

@@ -55,11 +55,7 @@ Input documents and intermediate representations are written to secure Microsoft
 
  
 
-### Regional Process 
 
-Data doesn't get stored outside the designated region that the user selected for the Content Understanding resource, even temporarily. However, based on OpenAI availability, we may route traffic to another region within the same geo moving forward. 
-
- 
 
 ### Face 
 
@@ -69,4 +65,4 @@ Face is a gated feature as it processes biometric data. We detect faces in the i
 
 ### Azure OpenAI 
 
-Content Understanding also utilizes Azure OpenAI model once each modality input is processed through the underlying AI services. Refer to the [Azure OpenAI Data, privacy, and security documentation](/azure/ai-foundry/responsible-ai/openai/data-privacy) for more information. 
+Content Understanding also utilizes Azure OpenAI model once each modality input is processed through the underlying Foundry Tools. Refer to the [Azure OpenAI Data, privacy, and security documentation](/azure/ai-foundry/responsible-ai/openai/data-privacy) for more information. 

@@ -20,9 +20,9 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
 
 + An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-+ An [Azure AI Search service](../../search-create-service-portal.md), in any [region that provides agentic retrieval](../../search-region-support.md).
++ An [Azure AI Search service](../../search-create-service-portal.md) in any [region that provides agentic retrieval](../../search-region-support.md).
 
-+ A [Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects). You get a Foundry resource (that you need for model deployments) when you create a Foundry project.
++ A [Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects) and resource. When you create a project, the resource is automatically created.
 
 + The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
 
@@ -805,7 +805,7 @@ The sample in this quickstart works with the Java Runtime. Install a Java Develo
 
 ### Output
 
-The output of the application should look similar to the following:
+The output of the application should be similar to the following:
 
 ```
 Starting Azure AI Search agentic retrieval quickstart...

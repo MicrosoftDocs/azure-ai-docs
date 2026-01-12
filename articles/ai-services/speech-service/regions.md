@@ -2,12 +2,12 @@
 title: Regions - Speech service
 titleSuffix: Foundry Tools
 description: A list of available regions and endpoints for the Speech service, including speech to text, text to speech, and speech translation.
-author: goergenj
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: conceptual
+ms.topic: article
 ms.date: 11/09/2025
-ms.author: jagoerge
+ms.author: pafarley
 ms.custom: references_regions
 #Customer intent: As a developer, I want to learn about the available regions and endpoints for the Speech service.
 ---
@@ -76,7 +76,7 @@ The regions in these tables support most of the core features of the Speech serv
 |-----|-----|-----|-----|-----|-----|-----|
 | australiaeast | ✅ | ✅ | ✅ | ✅ |   | ✅ |
 | brazilsouth | ✅ | ✅ | ✅ |   |   |   |
-| canadacentral | ✅ |   | ✅ |   |   | ✅ |
+| canadacentral | ✅ | ✅ | ✅ |   |   | ✅ |
 | canadaeast | ✅ |   | ✅ |   |   |   |
 | centralindia | ✅ | ✅ | ✅ |   | ✅ | ✅ |
 | centralus  | ✅ |   | ✅ |   |   |   |
@@ -213,18 +213,18 @@ The regions in these tables support most of the core features of the Speech serv
 
 # [Voice live](#tab/voice-live)
 
-| **Region** | **gpt-realtime** | **gpt-realtime-mini** | **gpt-4o** | **gpt-4o-mini**  | **gpt-4.1** | **gpt-4.1-mini** | **gpt-5** (Preview) | **gpt-5-mini** (Preview) | **gpt-5-nano** (Preview) | **gpt-5-chat** (Preview) | **phi4-mm-realtime** (Preview) | **phi4-mini** (Preview) | **Agent V1 API** |
-|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
-|australiaeast| - | - | Global standard | Global standard | Global standard | Global standard | - | - | - | - | - | - | - |
-| centralindia   | Cross-region<sup>1</sup> | Cross-region<sup>1</sup> | Global standard | Global standard | Global standard | Global standard | - | - | - | - | - | - | - |
-|eastus| - | - | Data zone standard | Data zone standard | Data zone standard | Data zone standard | - | - | - | - | - | - | - |
-| eastus2   | Global standard | Global standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Global standard | Regional | Regional | ✅ |
-|japaneast| - | - | Global standard | Global standard | Global standard | Global standard | - | - | - | - | Regional | Regional | - |
-| southeastasia   | - | - | - | - | Global standard | Global standard | - | - | - | - | Regional | Regional | ✅ |
-| swedencentral   | Global standard | Global standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Global standard | Regional | Regional | ✅ |
-|uksouth| - | - | Global standard | Global standard | Global standard | Global standard | - | - | - | - | - | - | - |
-|westeurope| - | - | Data zone standard | Data zone standard | Data zone standard | Data zone standard | - | - | - | - | - | - | - |
-| westus2 | Cross-region<sup>2</sup> | Cross-region<sup>2</sup> | Data zone standard | Data zone standard | Data zone standard | Data zone standard | - | - | - | - | Regional | Regional | ✅ |
+| **Region** | **gpt-realtime** | **gpt-realtime-mini** | **gpt-4o** | **gpt-4o-mini**  | **gpt-4.1** | **gpt-4.1-mini** | **gpt-5.1** | **gpt-5.1-chat** | **gpt-5** | **gpt-5-mini** | **gpt-5-nano** | **gpt-5-chat** | **phi4-mm-realtime** (Preview) | **phi4-mini** (Preview) | **Agent V1 API** |
+|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
+|australiaeast| - | - | Global standard | Global standard | Global standard | Global standard | - | - | - | - | - | - | - | - | - |
+| centralindia   | Cross-region<sup>1</sup> | Cross-region<sup>1</sup> | Global standard | Global standard | Global standard | Global standard | - | - | - | - | - | - | - | - | - |
+|eastus| - | - | Data zone standard | Data zone standard | Data zone standard | Data zone standard | - | - | - | - | - | - | - | - | - |
+| eastus2   | Global standard | Global standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Global standard | Data zone standard | Data zone standard | Data zone standard | Global standard | Regional | Regional | ✅ |
+|japaneast| - | - | Global standard | Global standard | Global standard | Global standard | - | - | - | - | - | - | Regional | Regional | - |
+| southeastasia   | - | - | - | - | Global standard | Global standard | - | - | - | - | - | - | Regional | Regional | ✅ |
+| swedencentral   | Global standard | Global standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Global standard | Data zone standard | Data zone standard | Data zone standard | Global standard | Regional | Regional | ✅ |
+|uksouth| - | - | Global standard | Global standard | Global standard | Global standard | - | - | - | - | - | - | - | - | - |
+|westeurope| - | - | Data zone standard | Data zone standard | Data zone standard | Data zone standard | - | - | - | - | - | - | - | - | - |
+| westus2 | Cross-region<sup>2</sup> | Cross-region<sup>2</sup> | Data zone standard | Data zone standard | Data zone standard | Data zone standard | - | - | - | - | - | - | Regional | Regional | ✅ |
 
 <sup>1</sup> The Microsoft Foundry resource must be in Central India. Azure Speech in Foundry Tools features remain in Central India. The Voice live API uses Sweden Central as needed for generative AI load balancing.
 
@@ -250,12 +250,12 @@ The regions in these tables support most of the core features of the Speech serv
 | westus |  | ✅ |
 | westus2  | ✅ | ✅ |
 
-Verify and check actions taken: Computer Use might make mistakes and perform unintended actions. This behavior can be due to the model not fully understanding the GUI, having unclear instructions or encountering an unexpected scenario. 
+Verify and check actions taken: Computer Use might make mistakes and perform unintended actions. This behavior can be due to the model not fully understanding the GUI, having unclear instructions or encountering an unexpected scenario.
 
 # [Speech MCP server](#tab/mcp)
 
 
-| **Region** | **Speech MCP server agent tool** | 
+| **Region** | **Speech MCP server agent tool** |
 |-----|-----|
 | australiaeast | ✅ |
 | brazilsouth | ✅ |

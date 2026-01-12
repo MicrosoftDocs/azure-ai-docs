@@ -7,7 +7,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
-ms.topic: conceptual
+ms.topic: article
 ms.date: 11/06/2025
 ms.custom: references_regions
 ---
@@ -35,11 +35,11 @@ After you sign up, you can immediately use either of these links to access Azure
 
 ## Step two: "Day One" tasks
 
-In the *new* Foundry portal, you can create an end-to-end solution that integrates Azure AI Search and Foundry Agent Service for knowledge retrieval.
+In the Foundry (new) portal, you can create an end-to-end solution that integrates Azure AI Search and Foundry Agent Service for knowledge retrieval.
 
 The portal supports creating *knowledge sources* that map to your indexed content in Azure AI Search and *knowledge bases* that orchestrate retrieval operations, including query decomposition, hybrid search, and result reranking. You can then configure a Foundry agent to use this knowledge base as a Model Context Protocol (MCP) tool, allowing the agent to retrieve relevant information and provide grounded, citation-backed responses.
 
-For more information about the programmatic experience, see [Use knowledge to improve retrieval quality in Foundry Agent Service](/azure/ai-foundry/agents/how-to/tools/knowledge-retrieval).
+For more information about the programmatic experience, see [Connect a Foundry IQ knowledge base to Foundry Agent Service](/azure/ai-foundry/agents/how-to/tools/knowledge-retrieval).
 
 ## Step three: Have a plan for next steps
 
@@ -49,7 +49,7 @@ For a next step evaluation of [RAG scenarios](retrieval-augmented-generation-ove
 
 - Storing data
 - Deploying embedding and chat models (**Azure OpenAI**)
-- Applying AI services for creating AI-generated content during indexing (optional)
+- Applying Foundry Tools for creating AI-generated content during indexing (optional)
 - Adding information retrieval (**Azure AI Search**)
 - Adding a frontend app (optional)
 
@@ -94,7 +94,7 @@ Try the Azure portal quickstarts for Azure AI Search or quickstarts that use Vis
 - [Quickstart: Vector search in the Azure portal](search-get-started-portal-import-vectors.md)
 - [Quickstart: Image search in the Azure portal](search-get-started-portal-image-search.md)
 - [Quickstart: Keyword in the Azure portal](search-get-started-portal.md)
-- [Quickstart: Generative search (RAG) using a Python client](search-get-started-rag.md)
+- [Quickstart: Agentic retrieval](search-get-started-agentic-retrieval.md)
 - [Quickstart: Vector search using a REST client](search-get-started-vector.md)
 
 Foundry supports connecting to content in Azure AI Search.

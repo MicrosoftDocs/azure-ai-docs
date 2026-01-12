@@ -5,7 +5,7 @@ description: Use studio to manage training and deployment compute resources (com
 services: machine-learning
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: vijetaj
+ms.reviewer: jturuk
 ms.service: azure-machine-learning
 ms.subservice: compute
 ms.date: 09/17/2024

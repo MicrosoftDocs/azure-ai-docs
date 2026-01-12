@@ -3,15 +3,15 @@ title: Query-Time ACL and RBAC Enforcement
 titleSuffix: Azure AI Search  
 description: Learn how query-time ACL and RBAC enforcement ensures secure document retrieval in Azure AI Search for indexes containing permission filters from data sources such as Azure Data Lake Storage (ADLS) Gen2 and SharePoint in Microsoft 365.  
 ms.service: azure-ai-search  
-ms.topic: conceptual  
-ms.date: 11/10/2025  
+ms.topic: article  
+ms.date: 12/01/2025  
 author: mattgotteiner  
 ms.author: magottei 
 ---  
 
-# Query-Time ACL and RBAC enforcement in Azure AI Search  
+# Query-time ACL and RBAC enforcement in Azure AI Search
 
-Query-time access control ensures that users only retrieve search results they're authorized to access, based on their identity, group memberships, roles, or attributes. This functionality is essential for secure enterprise search and compliance-driven workflows. 
+Query-time access control ensures that users only retrieve search results they're authorized to access, based on their identity, group memberships, roles, or attributes. This functionality is essential for secure enterprise search and compliance-driven workflows.
 
 Authorized access depends on permission metadata that's ingested during indexing. For indexer data sources that have built-in access models, such as Azure Data Lake Storage (ADLS) Gen2 and SharePoint in Microsoft 365, an indexer can pull in the permission metadata for each document automatically. For other data sources, you must assemble the document payload yourself, and the payload must include both content and the associated permission metadata. You then use the [push APIs](search-index-access-control-lists-and-rbac-push-api.md) to load the index.
 
@@ -81,7 +81,7 @@ The security filter efficiently matches the userIds, groupIds, and rbacScope fro
 
 ## Query example
 
-Here's an example of a query request from [sample code](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-ACL). The query token is passed in the request header. The query token is the personal access token of a user or a group identity behind the request.
+Here's an example of a query request from [sample code](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/acl). The query token is passed in the request header. The query token is the personal access token of a user or a group identity behind the request.
 
 ```http
 POST  {{endpoint}}/indexes/stateparks/docs/search?api-version=2025-11-01-preview
@@ -115,7 +115,7 @@ You can accomplish these tasks by adding a custom header, `x-ms-enable-elevated-
 
 ### Permissions for elevated-read requests
 
-You must be a **Search Index Data Contributor** on the search service. You must have access to the index and its data (**Search Index Data Reader**). If you're creating a custom role, add the `Microsoft.Search/searchServices/indexes/contentSecurity/elevatedOperations/read` permission.
+Currently, you must [create a custom role](search-security-rbac.md#create-a-custom-role) to run queries with elevated permissions. Add the `Microsoft.Search/searchServices/indexes/contentSecurity/elevatedOperations/read` permission to run the queries.
 
 ### Add an elevated-read header to a query
 
@@ -134,8 +134,21 @@ x-ms-enable-elevated-read: true
 }
 ```
 
-> [!NOTE]
+> [!IMPORTANT]
 > The `x-ms-enable-elevated-read` header only works on Search POST actions. You can't perform an elevated read query on a [knowledge base retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true) action.
+
+
+### Important ACL functionality behavior change in specific preview API versions
+
+Before REST API version `2025-11-01-preview`, earlier preview versions `2025-05-01-preview` and `2025-08-01-preview` returned all documents when using a service API key or authorized Entra roles, even if no user token was provided. Applications that didn’t validate the presence of a user token could inadvertently expose results to end users if not implemented correctly or following best practices.
+
+Starting in November 2025, this behavior changed:
+
+- ACL permission filters now apply even when using only service API keys or Entra authentication across all versions that support ACL.
+- If the user token is omitted, ACL-protected content isn't returned.
+- To view all documents for troubleshooting, you must explicitly include the elevated-read header when using REST API version `2025-11-01-preview`.
+
+This update helps keep content protected when applications don’t enforce best practices for token validation.
 
 ## See also
 

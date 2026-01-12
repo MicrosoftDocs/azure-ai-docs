@@ -3,6 +3,7 @@ title: Deployment options for Microsoft Foundry Models
 titleSuffix: Microsoft Foundry
 description: Learn about deployment options for Microsoft Foundry Models including standard, serverless API, and managed compute deployments.
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: concept-article
 ms.date: 09/22/2025
 ms.author: mopeakande
@@ -12,6 +13,8 @@ manager: nitinme
 ---
 
 # Deployment overview for Microsoft Foundry Models
+
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 The model catalog in Microsoft Foundry is the hub to discover and use a wide range of Foundry Models for building generative AI applications. You need to deploy models to make them available for receiving inference requests. Foundry offers a comprehensive suite of deployment options for Foundry Models, depending on your needs and model requirements.
 

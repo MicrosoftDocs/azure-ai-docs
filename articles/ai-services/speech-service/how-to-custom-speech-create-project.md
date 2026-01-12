@@ -24,7 +24,7 @@ You create a custom speech model by fine-tuning an Azure Speech in Foundry Tools
 This article shows you how to use fine-tuning to create a custom speech model. For more information about custom speech, see the [custom speech overview](./custom-speech-overview.md) documentation.
 
 > [!TIP]
-> You can bring your custom speech models from [Speech Studio](https://speech.microsoft.com) to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). In Microsoft Foundry, you can pick up where you left off by connecting to your existing Speech resource. For more information about connecting to an existing Speech resource, see [Connect to an existing Speech resource](../../ai-services/connect-services-ai-foundry-portal.md).
+> You can bring your custom speech models from [Speech Studio](https://speech.microsoft.com) to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). In Microsoft Foundry, you can pick up where you left off by connecting to your existing Speech resource. For more information about connecting to an existing Speech resource, see [Connect to an existing Speech resource](../../ai-services/connect-services-foundry-portal.md).
 
 ## Start fine-tuning
 
@@ -60,7 +60,7 @@ After fine-tuning, you can access your custom speech models and deployments from
 1. Select **Fine-tuning** from the left pane.
 1. Select **AI Service fine-tuning**.
 
-    :::image type="content" source="./media/custom-speech/ai-foundry/fine-tune-succeeded-list.png" alt-text="Screenshot of the page where you can view fine-tuned AI services models." lightbox="./media/custom-speech/ai-foundry/fine-tune-succeeded-list.png":::
+    :::image type="content" source="./media/custom-speech/ai-foundry/fine-tune-succeeded-list.png" alt-text="Screenshot of the page where you can view fine-tuned Foundry Tools models." lightbox="./media/custom-speech/ai-foundry/fine-tune-succeeded-list.png":::
 
 ::: zone-end
 

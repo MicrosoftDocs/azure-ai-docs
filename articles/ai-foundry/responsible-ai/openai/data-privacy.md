@@ -5,7 +5,8 @@ description: This document details issues for data, privacy, and security for Az
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: article
 monikerRange: 'foundry-classic || foundry'
 ms.date: 10/01/2025
@@ -24,6 +25,7 @@ This article provides details regarding how data provided by you to Azure Direct
 > - are NOT available to OpenAI or other Azure Direct Model providers. 
 > - are NOT used by Azure Direct Model providers to improve their models or services. 
 > - are NOT used to train any generative AI foundation models without your permission or instruction. 
+> - Customer Data, Prompts, and Completions are NOT used to improve Microsoft or third-party products or services without your explicit permission or instruction.
 >
 > Your fine-tuned Azure Direct Models are available exclusively for your use.
 >

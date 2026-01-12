@@ -11,6 +11,6 @@ To use sentiment analysis, you submit raw unstructured text for analysis and han
 
 |Development option  |Description  |
 |---------|---------|
-|Microsoft Foundry     | Foundry is a web-based platform that lets you use entity linking with text examples with your own data when you sign up. For more information, see the [Foundry website](https://ai.azure.com/?cid=learnDocs) or [Foundry documentation](../../../../ai-foundry/what-is-azure-ai-foundry.md).         |
+|Microsoft Foundry     | Foundry is a web-based platform that lets you use entity linking with text examples with your own data when you sign up. For more information, see the [Foundry website](https://ai.azure.com/?cid=learnDocs) or [Foundry documentation](../../../../ai-foundry/what-is-foundry.md).         |
 |REST API or Client library (Azure SDK)      | Integrate sentiment analysis into your applications using the REST API, or the client library available in a variety of languages. For more information, see the [sentiment analysis quickstart](../quickstart.md).        |
 | Docker container | Use the available Docker container to [deploy this feature on-premises](../how-to/use-containers.md). These docker containers enable you to bring the service closer to your data for compliance, security, or other operational reasons. |

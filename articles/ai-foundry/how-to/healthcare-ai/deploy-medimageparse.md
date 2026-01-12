@@ -3,6 +3,7 @@ title: MedImageParse and MedImageParse 3D healthcare AI models with Microsoft Fo
 titleSuffix: Microsoft Foundry
 description: Learn how to use MedImageParse and MedImageParse 3D Healthcare AI models with Microsoft Foundry.
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
 ms.date: 09/15/2025
 ms.reviewer: itarapov
@@ -15,6 +16,8 @@ author: msakande
 ---
 
 # How to use MedImageParse healthcare AI models for segmentation of medical images
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 [!INCLUDE [health-ai-models-meddev-disclaimer](../../includes/health-ai-models-meddev-disclaimer.md)]
 

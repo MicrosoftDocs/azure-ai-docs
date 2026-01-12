@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 11/10/2025
+ms.date: 11/14/2025
 ---
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]
@@ -22,7 +22,7 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
 
 + An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-+ An [Azure AI Search service](../../search-create-service-portal.md), in any [region that provides agentic retrieval](../../search-region-support.md).
++ An [Azure AI Search service](../../search-create-service-portal.md) in any [region that provides agentic retrieval](../../search-region-support.md).
 
 + A [Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects) and resource. When you create a project, the resource is automatically created.
 
@@ -46,7 +46,7 @@ To set up the console application for this quickstart:
     dotnet new console
     ```
 
-1. Install the [Azure AI Search client library](/dotnet/api/overview/azure/search.documents-readme) for .NET.
+1. Install the [Azure AI Search client library for .NET](/dotnet/api/overview/azure/search.documents-readme).
 
     ```console
     dotnet add package Azure.Search.Documents --version 11.8.0-beta.1
@@ -64,7 +64,7 @@ To set up the console application for this quickstart:
     dotnet add package Azure.Identity
     ```
 
-1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service and Foundry project.
+1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service and Microsoft Foundry project.
 
     ```console
     az login
@@ -268,13 +268,16 @@ To create and run the agentic retrieval pipeline:
                     knowledgeBaseName: knowledgeBaseName,
                     tokenCredential: new DefaultAzureCredential()
                 );
-    
+
+                string query = @"Why do suburban belts display larger December brightening than urban cores even though absolute light levels are higher downtown? Why is the Phoenix nighttime street grid is so sharply visible from space, whereas large stretches of the interstate between midwestern cities remain comparatively dim?";
+
                 messages.Add(new Dictionary<string, string>
                 {
                     { "role", "user" },
-                    { "content", @"Why do suburban belts display larger December brightening than urban cores even though absolute light levels are higher downtown? Why is the Phoenix nighttime street grid is so sharply visible from space, whereas large stretches of the interstate between midwestern cities remain comparatively dim?" }
+                    { "content", query }
                 });
-    
+
+                Console.WriteLine($"Running the query...{query}");
                 var retrievalRequest = new KnowledgeBaseRetrievalRequest();
                 foreach (Dictionary<string, string> message in messages) {
                     if (message["role"] != "system") {
@@ -287,12 +290,12 @@ To create and run the agentic retrieval pipeline:
                 messages.Add(new Dictionary<string, string>
                 {
                     { "role", "assistant" },
-                    { "content", (retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent).Text }
+                    { "content", (retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent)!.Text }
                 });
     
                 // Print the response, activity, and references
                 Console.WriteLine("Response:");
-                Console.WriteLine((retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent).Text);
+                Console.WriteLine((retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent)!.Text);
     
                 Console.WriteLine("Activity:");
                 foreach (var activity in retrievalResult.Value.Activity)
@@ -319,10 +322,12 @@ To create and run the agentic retrieval pipeline:
                 }
     
                 // Continue the conversation
+                string nextQuery = "How do I find lava at night?";
+                Console.WriteLine($"Continue the conversation with this query: {nextQuery}");
                 messages.Add(new Dictionary<string, string>
                 {
                     { "role", "user" },
-                    { "content", "How do I find lava at night?" }
+                    { "content", nextQuery }
                 });
     
                 retrievalRequest = new KnowledgeBaseRetrievalRequest();
@@ -337,12 +342,12 @@ To create and run the agentic retrieval pipeline:
                 messages.Add(new Dictionary<string, string>
                 {
                     { "role", "assistant" },
-                    { "content", (retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent).Text }
+                    { "content", (retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent)!.Text }
                 });
     
                 // Print the new response, activity, and references
                 Console.WriteLine("Response:");
-                Console.WriteLine((retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent).Text);
+                Console.WriteLine((retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent)!.Text);
     
                 Console.WriteLine("Activity:");
                 foreach (var activity in retrievalResult.Value.Activity)
@@ -677,7 +682,7 @@ Console.WriteLine($"Documents uploaded to index '{indexName}' successfully.");
 
 A knowledge source is a reusable reference to source data. The following code defines a knowledge source named `earth-knowledge-source` that targets the `earth-at-night` index.
 
-`SourceDataFields` specifies which index fields are accessible for retrieval and citations. Our example includes only human-readable fields to avoid lengthy, uninterpretable embeddings in responses.
+`SourceDataFields` specifies which index fields are included in citation references. Our example includes only human-readable fields to avoid lengthy, uninterpretable embeddings in responses.
 
 ```csharp
 // Create a knowledge source
@@ -892,7 +897,7 @@ foreach (var reference in retrievalResult.Value.References)
 
 When you work in your own subscription, it's a good idea to finish a project by determining whether you still need the resources you created. Resources that are left running can cost you money.
 
-In the Azure portal, you can manage your Azure AI Search and Foundry resources by selecting **All resources** or **Resource groups** from the left pane.
+In the Azure portal, you can manage your Azure AI Search and Microsoft Foundry resources by selecting **All resources** or **Resource groups** from the left pane.
 
 Otherwise, the following code from `Program.cs` deleted the objects you created in this quickstart.
 

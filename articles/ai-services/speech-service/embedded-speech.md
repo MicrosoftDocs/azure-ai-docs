@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java
 ms.topic: how-to
-ms.date: 08/07/2025
+ms.date: 12/30/2025
 ms.author: pafarley
 zone_pivot_groups: programming-languages-set-thirteen
 ---
@@ -23,6 +23,10 @@ Embedded Speech is designed for on-device [speech to text](speech-to-text.md) an
 
 Embedded speech is included with the Speech SDK (version 1.24.1 and higher) for C#, C++, and Java. Refer to the general [Speech SDK installation requirements](quickstarts/setup-platform.md#platform-requirements) for programming language and target platform specific details.
 
+The following are general estimates of memory consumption with embedded speech. The final numbers depend on feature configuration.
+* Speech recognition or translation: Total size of the files of a model + 200 MB.
+* Speech synthesis: 100-200 MB depending on the locale.
+
 **Choose your target environment**
 
 # [Android](#tab/android-target)
@@ -33,7 +37,7 @@ Requires Android 8.0 (API level 26) or higher on Arm64 (`arm64-v8a`) or Arm32 (`
 
 Requires Linux on x64, Arm64, or Arm32 hardware with [supported Linux distributions](quickstarts/setup-platform.md?tabs=linux).
 
-Embedded TTS with neural voices isn't supported on Arm32.
+Embedded TTS with neural voices isn't supported on Linux Arm32.
 
 # [macOS](#tab/macos-target)
 
@@ -41,7 +45,7 @@ Requires 10.14 or newer on x64 or Arm64 hardware.
 
 # [Windows](#tab/windows-target)
 
-Requires Windows 10 or newer on x64 or Arm64 hardware.
+Requires Windows 11 or newer on x64 or Arm64 hardware.
 
 The latest [Microsoft Visual C++ Redistributable for Visual Studio 2015-2022](/cpp/windows/latest-supported-vc-redist?view=msvc-170&preserve-view=true) must be installed regardless of the programming language used with the Speech SDK.
 
@@ -49,13 +53,12 @@ The Speech SDK for Java doesn't support Windows on Arm64.
 
 ---
 
+
 ## Limitations
 
-Embedded speech is only available with C#, C++, and Java SDKs. The other Speech SDKs, Speech CLI, and REST APIs don't support embedded speech.
-
-Embedded speech recognition only supports mono 16 bit, 8-kHz or 16-kHz PCM-encoded WAV audio formats.
-
-Embedded neural voices support 24 kHz RIFF/RAW, with a RAM requirement of 100 MB.
+- Embedded speech is only available with C#, C++, and Java SDKs. The other Speech SDKs, Speech CLI, and REST APIs don't support embedded speech.
+- Embedded speech recognition only supports mono 16 bit, 8-kHz or 16-kHz PCM-encoded WAV audio formats.
+- Embedded neural voices support 16 or 24 kHz RIFF/RAW.
 
 ## Embedded speech SDK packages
 
@@ -248,7 +251,6 @@ You can find ready to use embedded speech samples at [GitHub](https://aka.ms/emb
 
 - [C# (.NET 8.0)](https://aka.ms/embedded-speech-samples-csharp)
 - [C# (.NET MAUI)](https://aka.ms/embedded-speech-samples-csharp-maui)
-- [C# for Unity](https://aka.ms/embedded-speech-samples-csharp-unity)
 ::: zone-end
 
 ::: zone pivot="programming-language-cpp"

@@ -5,7 +5,8 @@ description: This document details the limited access policy for Azure OpenAI
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: article
 monikerRange: 'foundry-classic || foundry'
 ms.date: 11/03/2023
@@ -36,7 +37,7 @@ Some advanced models from Azure Direct Models may have more stringent criteria f
 
 ## Help and support
 
-Frequently asked questions about Limited Access can be found on the [Foundry Tools Limited Access](/azure/ai-services/cognitive-services-limited-access) page. If you need help with Azure OpenAI, see the [AI Services support options](/azure/ai-services/cognitive-services-support-options) page. Report abuse of Azure OpenAI [here](https://aka.ms/reportabuse).
+Frequently asked questions about Limited Access can be found on the [Foundry Tools Limited Access](/azure/ai-services/cognitive-services-limited-access) page. If you need help with Azure OpenAI, see the [Foundry Tools support options](/azure/ai-services/cognitive-services-support-options) page. Report abuse of Azure OpenAI [here](https://aka.ms/reportabuse).
 
 ## See also
 

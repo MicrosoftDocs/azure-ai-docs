@@ -31,9 +31,9 @@ Like any other knowledge source, you specify a remote SharePoint knowledge sourc
 
 + The latest preview version of the [`azure-search-documents` client library](https://pypi.org/project/azure-search-documents/11.7.0b2/) for Python.
 
-For local development, the agentic retrieval engine uses your access token to call SharePoint on your behalf. For more information about using a personal access token on requests, see [Connect to Azure AI Search](../../search-get-started-rbac.md).
++ Permission to create and use objects on Azure AI Search. We recommend [role-based access](../../search-security-rbac.md), but you can use [API keys](../../search-security-api-keys.md) if a role assignment isn't feasible.
 
-<!-- invalid filter expression will return a 400 soon, so we should be able to remove this limitation -->
+For local development, the agentic retrieval engine uses your access token to call SharePoint on your behalf. For more information about using a personal access token on requests, see [Connect to Azure AI Search](../../search-get-started-rbac.md).
 
 ## Limitations
 
@@ -147,36 +147,41 @@ After the knowledge base is configured, use the [retrieve action](../../agentic-
 
 ## Query a knowledge base
 
-The [retrieve action](../../agentic-retrieval-how-to-retrieve.md) on the knowledge base provides the user identity that authorizes access to content in Microsoft 365. 
+The [retrieve action](../../agentic-retrieval-how-to-retrieve.md) on the knowledge base provides the user identity that authorizes access to content in Microsoft 365.
 
 Azure AI Search uses the access token to call the Copilot Retrieval API on behalf of the user identity. The access token is provided in the retrieve endpoint as a `x-ms-query-source-authorization` HTTP header.
 
-Make sure that you [generate an access token](../../search-get-started-rbac.md?pivots=rest#get-token) for the tenant that has your search service.
-
 ```python
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 from azure.core.credentials import AzureKeyCredential
 from azure.search.documents.knowledgebases import KnowledgeBaseRetrievalClient
 from azure.search.documents.knowledgebases.models import KnowledgeBaseMessage, KnowledgeBaseMessageTextContent, KnowledgeBaseRetrievalRequest, RemoteSharePointKnowledgeSourceParams
 
+# Get access token
+identity_token_provider = get_bearer_token_provider(DefaultAzureCredential(), "https://search.azure.com/.default")
+token = identity_token_provider()
+
+# Create knowledge base retrieval client
 kb_client = KnowledgeBaseRetrievalClient(endpoint = "search_url", knowledge_base_name = "knowledge_base_name", credential = AzureKeyCredential("api_key"))
 
-sharepoint_ks_params = RemoteSharePointKnowledgeSourceParams(
-    knowledge_source_name = "my-remote-sharepoint-ks",
-    filter_expression_add_on = "ModifiedBy:\"Adele Vance\"",
-    include_references = True,
-    include_reference_source_data = True
-)
-
+# Create retrieval request
 request = KnowledgeBaseRetrievalRequest(
+    include_activity = True,
     messages = [
-        KnowledgeBaseMessage(role = "user", content = [KnowledgeBaseMessageTextContent(text="What was covered in the keynote doc for Ignite 2024?")])
+        KnowledgeBaseMessage(role = "user", content = [KnowledgeBaseMessageTextContent(text = "What was covered in the keynote doc for Ignite 2024?")])
     ],
     knowledge_source_params = [
-        sharepoint_ks_params
+        RemoteSharePointKnowledgeSourceParams(
+            knowledge_source_name = "my-remote-sharepoint-ks",
+            filter_expression_add_on = "ModifiedBy:\"Adele Vance\"",
+            include_references = True,
+            include_reference_source_data = True
+        )
     ]
 )
 
-result = kb_client.retrieve(request)
+# Pass access token to retrieve from knowledge base
+result = kb_client.retrieve(retrieval_request = request, x_ms_query_source_authorization = token)
 print(result.response[0].content[0].text)
 ```
 

@@ -6,13 +6,13 @@ items:
 - name: Manage Foundry resources
   items:
   - name: Create your first resource
-    href: ../../../ai-services/multi-service-resource.md?context=/azure/ai-foundry/context/context
+    href: ../../../ai-services/multi-service-resource.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
   - name: Create using Bicep template
     href: ../../how-to/create-resource-template.md
   - name: Create using Terraform template
     href: ../../how-to/create-resource-terraform.md
   - name: Recover or purge deleted resources
-    href: ../../../ai-services/recover-purge-resources.md?context=/azure/ai-foundry/context/context
+    href: ../../../ai-services/recover-purge-resources.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
 - name: Manage AI Hub resources
   items:
   - name: Hubs overview
@@ -44,7 +44,7 @@ items:
   - name: Create and manage compute
     href: ../../how-to/create-manage-compute.md
   - name: Role-based access control for Microsoft Foundry
-    href: ../../concepts/hub-rbac-azure-ai-foundry.md
+    href: ../../concepts/hub-rbac-foundry.md
   - name: Customer-managed keys
     href: ../../concepts/hub-encryption-keys-portal.md
   - name: How to configure a private link
@@ -62,13 +62,13 @@ items:
   - name: Migrate from hub-based to Foundry project
     href: ../../how-to/migrate-project.md
   - name: Create a project using a Bicep template
-    href: ../../how-to/create-azure-ai-project-template.md
+    href: ../../how-to/create-resource-template.md
 - name: Management center
   href: ../../concepts/management-center.md
 - name: Consolidated view
   href: ../../concepts/ai-foundry-consolidated-view.md
 - name: Status dashboard
-  href: ../../azure-ai-foundry-status-dashboard-documentation.md  
+  href: ../../foundry-status-dashboard-documentation.md  
 - name: Connect to other services
   items:
   - name: Create a connection
@@ -89,9 +89,9 @@ items:
     - name: Manage quotas for Foundry resources
       href: ../../how-to/quota.md
     - name: Increase rate limit
-      href: ../../../ai-services/autoscale.md?context=/azure/ai-foundry/context/context
+      href: ../../../ai-services/autoscale.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
     - name: Azure OpenAI quotas and limits
-      href: ../../../ai-services/openai/quotas-limits.md?context=/azure/ai-foundry/context/context
+      href: ../../../ai-services/openai/quotas-limits.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
     - name: Manage quotas and limits for Foundry Models
       href: ../../foundry-models/quotas-limits.md
     - name: Cost management
@@ -102,16 +102,16 @@ items:
       - name: Priority processing
         href: ../../openai/concepts/priority-processing.md
       - name: What is the Provisioned Throughput offering (PTU)?
-        href: ../../openai/concepts/provisioned-throughput.md?context=/azure/ai-foundry/context/context
+        href: ../../openai/concepts/provisioned-throughput.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
         displayName: PTU, provisioned, provisioned throughput units
       - name: Understanding and calculating PTU costs
-        href: ../../openai/how-to/provisioned-throughput-onboarding.md?context=/azure/ai-foundry/context/context
+        href: ../../openai/how-to/provisioned-throughput-onboarding.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
         displayName: PTU, provisioned, provisioned throughput units
       - name: Get started with Provisioned Deployments
-        href: ../../openai/how-to/provisioned-get-started.md?context=/azure/ai-foundry/context/context
+        href: ../../openai/how-to/provisioned-get-started.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
         displayName: PTU, provisioned, provisioned throughput units
       - name: Provisioned spillover
-        href: ../../openai/how-to/spillover-traffic-management.md?context=/azure/ai-foundry/context/context
+        href: ../../openai/how-to/spillover-traffic-management.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
       - name: Azure OpenAI PTU updates
         href: ../../openai/concepts/provisioned-migration.md    
 - name: Integrate Foundry with other apps

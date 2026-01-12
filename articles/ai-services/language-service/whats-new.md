@@ -1,17 +1,27 @@
 ---
 title: What's new in Azure Language in Foundry Tools?
 titleSuffix: Foundry Tools
-description: Find out about new releases and features for Azure Language in Foundry Tools.
+description: Stay informed about recent releases and enhancements designed to help you get the most out of Azure Language capabilities.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: whats-new
-ms.date: 11/18/2025
+ms.date: 12/08/2025
 ms.author: lajanuar
 ---
 # What's new in Azure Language in Foundry Tools?
 
-Azure Language in Foundry Tools is updated on an ongoing basis. Bookmark this page to stay up to date with release notes, feature enhancements, and our newest documentation.
+Stay informed about recent releases and enhancements designed to help you get the most out of Azure Language capabilities. Azure Language in Foundry Tools is updated on an ongoing basis. Bookmark this page and stay up to date with release notes, feature enhancements, and our newest documentation.
+
+## December 2025
+
+* **Azure Language .NET SDK preview release**. New `.NET` SDK packages with support for the 2025-11-15-preview API are now available:
+
+  * [Azure.AI.Language.Text 1.0.0-beta.4](https://www.nuget.org/packages/Azure.AI.Language.Text/1.0.0-beta.4)
+
+  * [Azure.AI.Language.Conversation.Authoring 2.0.0-beta.5](https://www.nuget.org/packages/Azure.AI.Language.Conversations/2.0.0-beta.5)
+
+* **Language Studio deprecation**. Azure Language Studio is scheduled for deprecation in the near future. All existing features, along with upcoming enhancements, will be accessible through Microsoft Foundry. If you need guidance on exporting your projects from Language Studio, *see* [Export project](question-answering/how-to/migrate-knowledge-base.md#export-a-project). 
 
 ## November 2025
 
@@ -24,7 +34,7 @@ Azure Language in Foundry Tools is updated on an ongoing basis. Bookmark this pa
 * [Conversational Language Understanding multi-turn conversations](conversational-language-understanding/concepts/multi-turn-conversations.md). Enable natural, context-aware dialogues through entity slot filling → Microsoft Foundry (new).
 * [Language detection](conversational-language-understanding/concepts/multiple-languages.md). Automatically detect the language of user utterances in conversational applications → Microsoft Foundry (new).
  * [PII detection for text](personally-identifiable-information/how-to/redact-text-pii.md). Detect and redact personally identifiable information in text documents → Microsoft Foundry (new).
-* [Custom Named Entity Recognition](custom-named-entity-recognition/quickstart.md). Test, train, and deploy custom NER models directly in the Foundry playground → Microsoft Foundry (classic).
+* [Custom Named Entity Recognition](custom-named-entity-recognition/quickstart.md). You can test, train, and deploy custom NER models directly in the Foundry playground → Microsoft Foundry (classic).
 * [PII detection for conversations](personally-identifiable-information/how-to/redact-conversation-pii.md). Identify and redact personally identifiable information in conversations → Microsoft Foundry (classic).
 
 **Text PII detection enhancements (2025-11-15-preview API)**. The preview API introduces several new feature parameters for [PII detection](personally-identifiable-information/overview.md):
@@ -421,7 +431,7 @@ Azure Language in Foundry Tools is updated on an ongoing basis. Bookmark this pa
     ```
 
 ## June 2022
-* v1.0 client libraries for [conversational language understanding](./conversational-language-understanding/how-to/call-api.md?tabs=azure-sdk#send-a-conversational-language-understanding-request) and [orchestration workflow](./orchestration-workflow/how-to/call-api.md?tabs=azure-sdk#send-an-orchestration-workflow-request) are Generally Available for the following languages:
+* v1.0 client libraries for [conversational language understanding](./conversational-language-understanding/how-to/call-api.md#send-a-conversational-language-understanding-request) and [orchestration workflow](orchestration-workflow/how-to/call-api.md) are Generally Available for the following languages:
     * [C#](https://github.com/Azure/azure-sdk-for-net/tree/Azure.AI.Language.Conversations_1.0.0/sdk/cognitivelanguage/Azure.AI.Language.Conversations)
     * [Python](https://github.com/Azure/azure-sdk-for-python/tree/azure-ai-language-conversations_1.0.0/sdk/cognitivelanguage/azure-ai-language-conversations)
 * v1.1.0b1 client library for [conversation summarization](summarization/quickstart.md?tabs=conversation-summarization&pivots=programming-language-python) is available as a preview for:

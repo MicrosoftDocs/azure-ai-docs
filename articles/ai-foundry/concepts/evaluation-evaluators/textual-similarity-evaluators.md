@@ -476,7 +476,7 @@ with DefaultAzureCredential() as credential:
 
 ::: moniker range="foundry"
 
-- [Complete working sample.](https://github.com/Azure/azure-sdk-for-python/blob/evaluation_samples_graders/sdk/ai/azure-ai-projects/samples/evaluation/sample_evaluations_ai_assisted.py)
+- [Complete working sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_evaluations_ai_assisted.py)
 - [How to run agent evaluation](../../how-to/develop/agent-evaluate-sdk.md)
 - [How to run cloud evaluation](../../how-to/develop/cloud-evaluation.md)
 

@@ -2,12 +2,12 @@
 title: Speech service quotas and limits
 titleSuffix: Foundry Tools
 description: Quick reference, detailed description, and best practices on the quotas and limits for the Speech service in Foundry Tools.
-author: PatrickFarley
-ms.author: pafarley
+author: goergenj
+ms.author: jagoerge
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: conceptual
-ms.date: 7/15/2025
+ms.topic: article
+ms.date: 12/08/2025
 ms.reviewer: jagoerge
 #Customer intent: As a developer, I want to learn about the quotas and limits for the Speech service in Foundry Tools.
 ---
@@ -27,16 +27,38 @@ For information about adjustable quotas for Standard (S0) Speech resources, see 
 > [!IMPORTANT]
 > If you switch a Foundry resource for Speech from Free (F0) to Standard (S0) pricing tier, the change of the corresponding quotas may take up to several hours.
 
+### Voice live quotas and limits per resource
+
+This section describes Voice live quotas and limits per Speech resource. For information about adjustable quotas, see [Detailed description, quota adjustment, and best practices](#detailed-description-quota-adjustment-and-best-practices).
+
+| Quota | Free (F0) | Standard (S0) |
+|-----|-----|-----|
+| New connections per minute | N/A | 30  |
+| Maximum connection length | N/A | <= 60 minutes per session |
+| Tokens per minute | N/A | <= 120,000 |
+
+Avatars used in Voice live follow the quota and limits described in [real-time text to speech avatar](#real-time-text-to-speech-avatar).
+
+### LLM Speech (preview) quotas and limits per resource
+
+This section describes speech to text quotas and limits per Speech resource. At this time, these limits aren't adjustable.
+
+| Quota | Free (F0) | Standard (S0) |
+|-----|-----|-----|
+| Maximum audio input file size | N/A | < 300 MB |
+| Maximum audio length | N/A | < 120 minutes per file  |
+| Maximum requests per minute | N/A | 600  |
+
 ### Speech to text quotas and limits per resource
 
-This section describes speech to text quotas and limits per Speech resource. Unless otherwise specified, the limits aren't adjustable.
+This section describes speech to text quotas and limits per Speech resource. For information about adjustable quotas, see [Detailed description, quota adjustment, and best practices](#detailed-description-quota-adjustment-and-best-practices).
 
 #### Real-time speech to text and speech translation
 
 You can use real-time speech to text with the [Speech SDK](speech-sdk.md) or the [Speech to text REST API for short audio](rest-speech-to-text-short.md).
 
 > [!IMPORTANT]
-> These limits apply to concurrent real-time speech to text requests and speech translation requests combined. For example, if you have 60 concurrent speech to text requests and 40 concurrent speech translation requests, you'll reach the limit of 100 concurrent requests.
+> These limits apply to concurrent real-time speech to text requests and speech translation requests combined. For example, if you have 60 concurrent speech to text requests and 40 concurrent speech translation requests, you reach the limit of 100 concurrent requests.
 
 | Quota | Free (F0) | Standard (S0) |
 |-----|-----|-----|
@@ -78,7 +100,7 @@ The limits in this table apply per Speech resource when you create a custom spee
 
 ### Text to speech quotas and limits per resource
 
-This section describes text to speech quotas and limits per Speech resource. 
+This section describes text to speech quotas and limits per Speech resource. For information about adjustable quotas, see [Detailed description, quota adjustment, and best practices](#detailed-description-quota-adjustment-and-best-practices).
 
 #### Real-time text to speech
 
@@ -150,7 +172,7 @@ The limits in this table apply per Speech resource when you create a personal vo
 | Quota | Free (F0)| Standard (S0) |
 |-----|-----|-----|
 | File size (plain text in SSML)<sup>1</sup>  | 3,000 characters per file | 20,000 characters per file |
-| File size (lexicon file)<sup>2</sup> | 30KB per file | 100KB per file|
+| File size (lexicon file)<sup>2</sup> | 30 KB per file | 100 KB per file|
 | Billable characters in SSML| 15,000 characters per file | 100,000 characters per file |
 | Export to audio library | 1 concurrent task | N/A |
 
@@ -161,28 +183,35 @@ The limits in this table apply per Speech resource when you create a personal vo
 
 ## Detailed description, quota adjustment, and best practices
 
-Some of the Speech service quotas are adjustable. This section provides more explanations, best practices, and adjustment instructions. 
+Some Speech service quotas are adjustable. This section provides more explanations, best practices, and adjustment instructions. 
 
 The following quotas are adjustable for Standard (S0) resources. The Free (F0) request limits aren't adjustable.
 
+- Voice live API [new connections per minute](#voice-live-quotas-and-limits-per-resource). Adjusting new connections also adjusts the token limit.
 - Speech to text [concurrent request limit](#real-time-speech-to-text-and-speech-translation) for base model endpoint and custom endpoint
-- Text to speech [maximum number of transactions per time period](#text-to-speech-quotas-and-limits-per-resource) for standard voices and custom voices
+- Fast Transcription [maximum number of requests per minute](#fast-transcription)
 - Speech translation [concurrent request limit](#real-time-speech-to-text-and-speech-translation)
+- Text to speech [maximum number of transactions per time period](#text-to-speech-quotas-and-limits-per-resource) for standard voices and custom voices
+- Batch text to speech avatar [maximum requests per minute](#batch-text-to-speech-avatar)
+- Real-time text to speech avatar [new connections per minute](#real-time-text-to-speech-avatar)
 
-Before requesting a quota increase (where applicable), check your current TPS (transactions per second) and ensure that you need to increase the quota.
+Before requesting a quota increase (where applicable), check your current TPS (transactions per second) or TPM (tokens per minute) and ensure that you need to increase the quota.
 
 > [!NOTE]
-> Batch transcription is an asynchronous process, and jobs are processed one-by-one in a queue. So, increasing the quota won't improve transcription performance. For performance improvements, see [Batch transcription best practices](./batch-transcription.md#best-practices-for-improving-performance).
+> Batch transcription and Batch synthesis are asynchronous processes, and jobs are processed one-by-one in a queue. So, increasing the quota won't improve transcription performance. For performance improvements, see [Batch transcription best practices](./batch-transcription.md#best-practices-for-improving-performance) or [Batch synthesis latency and best practices](./batch-synthesis.md#batch-synthesis-latency-and-best-practices).
 
 Speech service uses autoscaling technologies to bring the required computational resources in on-demand mode. At the same time, Speech service tries to keep your costs low by not maintaining an excessive amount of hardware capacity.
 
 Let's look at an example. Suppose that your application receives response code 429, which indicates that there are too many requests. Your application receives this response even though your workload is within the limits defined by the [Quotas and limits reference](#quotas-and-limits-reference). The most likely explanation is that Speech service is scaling up to your demand and didn't reach the required scale yet. Therefore the service doesn't immediately have enough resources to serve the request. In such cases, increasing the quota won’t help. In most cases, the Speech service will scale up soon, and the issue causing response code 429 will be resolved.
 
+> [!NOTE]
+> As a best practice every implementation should gracefully handle 429 errors with retry logic to ensure best performance and to handle autoscaling. Please consider this before requesting additional quota. See general best practices for additional details.
+
 ### General best practices to mitigate throttling during autoscaling
 
 To minimize issues related to throttling, it's a good idea to use the following techniques:
 
-- Implement retry logic in your application.
+- Implement retry logic in your application to handle 429 errors.
 - Avoid sharp changes in the workload. Increase the workload gradually. For example, let's say your application is using text to speech, and your current workload is 5 TPS. The next second, you increase the load to 20 TPS (that is, four times more). Speech service immediately starts scaling up to fulfill the new load, but is unable to scale as needed within one second. Some of the requests get response code 429 (too many requests).
 - Test different load increase patterns. For more information, see the [workload pattern example](#example-of-a-workload-pattern-best-practice).
 - Create more Speech service resources in *different* regions, and distribute the workload among them. (Creating multiple Speech service resources in the same region won't affect the performance, because all resources are served by the same backend cluster).
@@ -197,6 +226,20 @@ Suppose that a Speech service resource has the concurrent request limit set to 3
 
 Generally, it's a good idea to test the workload and the workload patterns before going to production.
 
+### Voice live: increase real-time speech to text concurrent request limit
+
+#### Prepare the required information
+
+Instructions on how to get the general resource information required is described in [create and submit a quota increase request](#create-and-submit-a-quota-increase-request).
+
+> [!NOTE]
+> The token per minute (TPM) limit is dependent on the new connections per minute (NCPM) limit. It will always be automatically increased with an increase of the new connections per minute.
+> The formula is: TPM = NCPM * 4000 tokens. Example: 30 NCPM * 4000 tokens = 120,000 TPM.
+
+#### Create the quota increase request
+
+Follow the steps described in [create and submit a quota increase request](#create-and-submit-a-quota-increase-request) with the information collected to create the request.
+
 ### Speech to text: increase real-time speech to text concurrent request limit
 
 By default, the number of concurrent real-time speech to text and speech translation [requests combined](#real-time-speech-to-text-and-speech-translation) is limited to 100 per resource in the base model, and 100 per custom endpoint in the custom model. For the standard pricing tier, you can increase this amount. Before submitting the request, ensure that you're familiar with the material discussed earlier in this article, such as the best practices to mitigate throttling.
@@ -209,58 +252,44 @@ Increasing the limit of concurrent requests doesn't directly affect your costs. 
 You aren't able to see the existing value of the concurrent request limit parameter in the Azure portal, the command-line tools, or API requests. To verify the existing value, create an Azure support request.
 
 > [!NOTE]
->[Speech containers](speech-container-howto.md) don't require increases of the concurrent request limit, because containers are constrained only by the CPUs of the hardware they are hosted on. Speech containers do, however, have their own capacity limitations that should be taken into account. For more information, see the [Speech containers FAQ](./speech-container-howto.md).
+>[Speech containers](speech-container-howto.md) don't require increases of the concurrent request limit, because containers are constrained only by the CPUs of the hardware they're hosted on. Speech containers do, however, have their own capacity limitations that should be taken into account. For more information, see the [Speech containers FAQ](./speech-container-howto.md).
 
-#### Have the required information ready
+#### Prepare the required information
 
-- For the base model:
-  - Speech resource ID
-  - Region
-- For the custom model:
-  - Region
-  - Custom endpoint ID
+Instructions on how to get the general resource information required is described in [create and submit a quota increase request](#create-and-submit-a-quota-increase-request).
 
-How to get information for the base model:
+To create an increase request for custom speech, you need to provide the following additional information: 
 
-1. Go to the [Azure portal](https://portal.azure.com/).
-1. Select the Speech service resource for which you would like to increase the concurrency request limit.
-1. From the **Resource Management** group, select **Properties**.
-1. Copy and save the values of the following fields:
-   - **Resource ID**
-   - **Location** (your endpoint region)
+- **Custom endpoint ID**
 
-How to get information for the custom model:
+How to get information for the custom speech endpoint:
 
 1. Go to the [Speech Studio](https://aka.ms/speechstudio/customspeech) portal.
 1. Sign in if necessary, and go to **Custom speech**.
 1. Select your project, and go to **Deployment**.
 1. Select the required endpoint.
 1. Copy and save the values of the following fields:
-   - **Service Region** (your endpoint region)
    - **Endpoint ID**
 
-#### Create and submit a support request
+#### Create the quota increase request
 
-Initiate the increase of the limit for concurrent requests for your resource, or if necessary check the current limit, by submitting a support request. Here's how:
+Follow the steps described in [create and submit a quota increase request](#create-and-submit-a-quota-increase-request) with the information collected to create the request.
 
-1. Ensure you have the required information listed in the previous section.
-1. Go to the [Azure portal](https://portal.azure.com/).
-1. Select the Speech service resource for which you would like to increase (or to check) the concurrency request limit.
-1. In the **Support + troubleshooting** group, select **New support request**. A new window appears, with auto-populated information about your Azure subscription and Azure resource.
-1. In **Summary**, describe what you want (for example, "Increase speech to text concurrency request limit").
-1. In **Problem type**, select **Quota or Subscription issues**.
-1. In **Problem subtype**, select either:
-   - **Quota or concurrent requests increase** for an increase request.
-   - **Quota or usage validation** to check the existing limit.
-1. Select **Next: Solutions**. Proceed further with the request creation.
-1. On the **Details** tab, in the **Description** field, enter the following:
-   - A note that the request is about the speech to text quota.
-   - Choose either the base or custom model.
-   - The Azure resource information you [collected previously](#have-the-required-information-ready).
-   - Any other required information.
-1. On the **Review + create** tab, select **Create**.
-1. Note the support request number in Azure portal notifications. You're contacted shortly about your request.
+### Fast transcription: increase maximum requests per minute limit
 
+#### Prepare the required information
+
+Instructions on how to get the general resource information required is described in [create and submit a quota increase request](#create-and-submit-a-quota-increase-request).
+
+To create an increase request for fast transcription, you need to provide the following additional information: 
+
+- **Average Audio Length per API request**
+
+The average audio length of each request sent to the API. Example: `5 minutes/request`. Provide an estimate based on the workload you're aiming to process.
+
+#### Create the quota increase request
+
+Follow the steps described in [create and submit a quota increase request](#create-and-submit-a-quota-increase-request) with the information collected to create the request.
 
 ### Text to speech: increase real-time TPS limit
 
@@ -294,31 +323,24 @@ Multiply the result with unit price $15 per million characters to estimate the m
 **Cost Considerations**  
 Increasing the concurrent request limit does **not** directly affect your costs. You only pay for what you use. The limit simply defines how much the service can scale before throttling begins.
 
-
 You aren't able to see the existing value of the concurrent request limit parameter in the Azure portal, the command-line tools, or API requests. To verify the existing value, create an Azure support request.
 
 > [!NOTE]
->[Speech containers](speech-container-howto.md) don't require increases of the concurrent request limit, because containers are constrained only by the CPUs of the hardware they are hosted on.
+> [Speech containers](speech-container-howto.md) don't require increases of the concurrent request limit, because containers are constrained only by the CPUs of the hardware they're hosted on.
  
 #### Prepare the required information
 
-To create an increase request, you need to provide your information. 
+Instructions on how to get the general resource information required is described in [create and submit a quota increase request](#create-and-submit-a-quota-increase-request).
 
-- For the standard voice:
-  - Speech resource ID
-  - Region
-- For the custom voice:
-  - Deployment region
-  - Custom endpoint ID
+To create an increase request for standard voice, you need to provide the following additional information:
 
-How to get information for the standard voice:
+- **Voice names you are requesting the increase for**
 
-1. Go to the [Azure portal](https://portal.azure.com/).
-1. Select the Speech service resource for which you would like to increase the concurrency request limit.
-1. From the **Resource Management** group, select **Properties**.
-1. Copy and save the values of the following fields:
-   - **Resource ID**
-   - **Location** (your endpoint region)
+You can find a list of all voice names here: [Text to speech languages](./language-support.md?tabs=tts)
+
+To create an increase request for custom voice, you need to provide the following additional information: 
+
+- **Custom endpoint ID**
 
 How to get information for the custom voice:
 
@@ -327,38 +349,72 @@ How to get information for the custom voice:
 1. Select your project, and go to **Deploy model**.
 1. Select the required endpoint.
 1. Copy and save the values of the following fields:
-   - **Service Region** (your endpoint region)
    - **Endpoint ID**
+
+#### Create the quota increase request
+
+Follow the steps described in [create and submit a quota increase request](#create-and-submit-a-quota-increase-request) with the information collected to create the request.
    
-#### Create and submit a support request
+### Text to speech avatar: increase new connections limit
+
+#### Prepare the required information
+
+Instructions on how to get the general resource information required is described in [create and submit a quota increase request](#create-and-submit-a-quota-increase-request).
+
+To create an increase request for custom voice, you need to provide the following additional information: 
+
+- **Standard avatar or custom avatar**
+
+#### Create the quota increase request
+
+Follow the steps described in [create and submit a quota increase request](#create-and-submit-a-quota-increase-request) with the information collected to create the request.
+
+### Create and submit a quota increase request
+
+To get the resource information needed for the quota increase request follow these steps:
+
+1. Go to the [Azure portal](https://portal.azure.com/).
+1. Select the resource for which you would like to increase the concurrency request limit.
+1. From the **Resource Management** group, select **Properties**.
+1. Copy and save the values of the following fields:
+   - **Subscription ID**
+   - **Resource ID**
+   - **Location** (your endpoint region)
 
 Initiate the increase of the limit for concurrent requests for your resource, or if necessary check the current limit, by submitting a support request. Here's how:
 
-1. Ensure you have the required information listed in the previous section.
-1. Go to the [Azure portal](https://portal.azure.com/).
-1. Select the Speech service resource for which you would like to increase (or to check) the concurrency request limit.
-1. In the **Support + troubleshooting** group, select **New support request**. A new window appears, with auto-populated information about your Azure subscription and Azure resource.
-1. In **Summary**, describe what you want (for example, "Increase text to speech concurrency request limit").
-1. In **Problem type**, select **Quota or Subscription issues**.
-1. In **Problem subtype**, select either:
-   - **Quota or concurrent requests increase** for an increase request.
-   - **Quota or usage validation** to check the existing limit.
-1. On the **Recommended solution** tab, select **Next**. 
-1. On the **Additional details** tab, fill in all the required items. And in the **Details** field, enter the following:
-   - A note that the request is about the text to speech quota.
-   - Choose either the standard voice or custom voice.
-   - The Azure resource information you [collected previously](#prepare-the-required-information).
-   - Any other required information.
-1. On the **Review + create** tab, select **Create**.
+1. Ensure you have the required information listed in the previous sections.
+1. Go to the [Foundry Tools Quota Increase Request](https://aka.ms/foundry-tools-quota-increase) form.
+1. Provide the requestor details
+    1. First Name
+    1. Last Name
+    1. Your Work/Organization Email Address
+        > [!NOTE]
+        > Applications submitted with a personal email address (for example, hotmail.com, outlook.com, gmail.com, etc.) won't be accepted.
+    1. Company/Organization Name
+        > [!NOTE]
+        > You can only request quota increases on behalf of your own organization.
+1. Provide the resource information
+    1. Azure Subscription ID
+    1. Azure AI Service Resource ID
+    1. Azure AI Service Resource Region
+1. Provide the quota increase requested
+    1. New Quota Limit requested (limit value you're requesting as integer only, for example, 300, 500, 1000, etc.)
+    1. Justification (business justification for the limit increase)
+1. Select the Foundry Tools service **Azure Speech** and click `Next`
+1. On the next page, select the **Azure Speech** feature you're requesting the increase for. Options are:
+    - Speech to text concurrent request limit base model endpoint
+    - Speech to text concurrent request limit custom endpoint
+    - Fast transcription maximum requests per minute
+    - Text to speech maximum number of transactions per time period standard voices
+    - Text to speech maximum number of transactions per time period custom voices
+    - Speech translation concurrent request limit
+    - Batch text to speech avatar maximum requests per minute
+    - Real-time text to speech avatar new connections per minute
+    - Voice Live API tokens per minute
+1. Add the additional feature specific information requested in the form and click `Next`
+1. On the final page, provide additional contact information of your account or partner contact name and e-mail address
+1. Check the two confirmation questions and click `Submit`
 1. Note the support request number in Azure portal notifications. You're contacted shortly about your request.
 
-### Text to speech avatar: increase new connections limit
-
-To increase the limit of new connections per minute for text to speech avatar, contact your sales representative to create a [ticket](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/overview) with the following information:
-
-- Speech resource URI
-- Requested new limitation to increase to
-- Justification for the increase
-- Starting date for the increase
-- Ending date for the increase
-- Standard avatar or custom avatar
+You'll receive a confirmation e-mail including your application ID. Check your spam folder in case you didn't receive the confirmation e-mail and ensure you're able to receive follow-up communication on your case.

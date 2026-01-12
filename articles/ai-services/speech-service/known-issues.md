@@ -6,8 +6,8 @@ manager: heikora
 ms.service: azure-ai-speech
 ms.topic: reference
 ms.date: 10/31/2025
-author: goergenj
-ms.author: jagoerge
+author: PatrickFarley
+ms.author: pafarley
 ---
 
 # Azure Speech in Foundry Tools known issues
@@ -43,6 +43,7 @@ This table lists the current known issues for the Text-to-Speech feature.
 | 2005   | Service | DNS cache refresh before end of July 2025  | Due to compliance reasons, the legacy Speech TTS clusters in Asia are removed on July 31, 2025. All traffic is migrated from the old IPs to the new ones.<br>Some customers are still accessing the old clusters even after DNS redirection was completed. This indicates that some customers may have persistent local or secondary DNS caches. | To avoid service downtime, refresh the DNS cache before the end of July 2025. | July 24, 2025 |
 | 2006  | TTS | Word boundary duplication in output | Azure TTS sometimes returns duplicated word boundary entries in the synthesis output, particularly when using certain SSML configurations. This can lead to inaccurate timing data and misalignment in downstream applications. | Post-process the output to filter out duplicate word boundaries based on timestamp and word content. | August 8, 2025 |
 | 2007  | TTS | Partially generated words in Arabic voices | Arabic voice outputs only contain partially generated words in cases of unclear or incomplete pronunciation, especially for words ending with ة or ت. This problem is reproducible across multiple voices. The issue is acknowledged as a known problem without an immediate solution available. | To mitigate the issue consider re-phrasing the voice output, if the issue occurs. | September 16, 2025 |
+| 2008  | Service | 503 errors for streaming requests (WebSocket) | When a user starts a text stream request but does not send any text for a long time (e.g., 30 seconds), TTS returns 503 errors. | To mitigate the issue, please start the text streaming call only after receiving the first text token from the LLM. If all text from the LLM has been received but the text streaming call fails, please build an SSML with all the text and send it to TTS with a non-streaming call. | November 10, 2025 |
 
 ## Active known issues speech SDK/Runtime
 

@@ -3,7 +3,7 @@ title: Microsoft Foundry known issues
 titlesuffix: Microsoft Foundry
 description: Known and common issues with Microsoft Foundry.
 ms.service: azure-ai-foundry
-ms.topic: reference
+ms.topic: troubleshooting-known-issue
 ms.date: 11/07/2025
 author: s-polly
 ms.author: scottpolly
@@ -11,6 +11,8 @@ ms.reviewer: bgilmore
 ---
 
 # Microsoft Foundry known issues
+
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 Microsoft Foundry is updated regularly and we're continually improving and enhancing its features and capabilities. This page details known issues related to Foundry and provides steps to resolve them. Before submitting a support request, review the following list to see if your problem is already being addressed and to find a possible solution.
 
@@ -22,7 +24,7 @@ Microsoft Foundry is updated regularly and we're continually improving and enhan
 
 No current active known issues
 
-## AI Services
+## Foundry Tools
 
 ### AI Content Safety
 

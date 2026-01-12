@@ -1,22 +1,22 @@
 ---
-title: Agent Evaluation with the Azure AI Evaluation SDK
+title: Agent Evaluation with the Microsoft Foundry SDK
 titleSuffix: Microsoft Foundry
-description: This article provides instructions on how to evaluate an AI agent with the Azure AI Evaluation SDK.
+description: This article provides instructions on how to evaluate an AI agent with the Microsoft Foundry SDK
 monikerRange: 'foundry-classic || foundry'
 ms.service: azure-ai-foundry
 ms.custom: 
 - build-2025
 - references_regions
 ms.topic: how-to
-ms.date: 09/15/2025
+ms.date: 11/25/2025
 ms.reviewer: changliu2
 ms.author: lagayhar
 author: lgayhardt
-# customer intent: As a developer, I want to evaluate my AI agents locally using the Azure AI Evaluation SDK so I can assess the quality, safety, and efficiency of agentic workflows.
+# customer intent: As a developer, I want to evaluate my AI agents locally using the Microsoft Foundry SDK so I can assess the quality, safety, and efficiency of agentic workflows.
 ai-usage: ai-assisted
 ---
 
-# Evaluate your AI agents locally with the Azure AI Evaluation SDK (preview)
+# Evaluate your AI agents locally (preview)
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
@@ -37,7 +37,7 @@ We formulate these evaluation aspects into the following evaluators for agents:
 - [Tool call accuracy](https://aka.ms/toolcallaccuracy-sample): Measures whether the agent made the correct function tool calls to a user's request.
 - [Task adherence](https://aka.ms/taskadherence-sample): Measures whether the agent's final response adheres to its assigned tasks, according to its system message and prior steps.
 
-Assess other quality and safety aspects of your agentic workflows using our comprehensive suite of built-in evaluators. In general, agents emit agent messages. Transforming agent messages into the correct evaluation data for our evaluators can be challenging. If you build your agent using [Foundry Agent Service](../../../ai-services/agents/overview.md), you can [seamlessly evaluate it via our converter support](#evaluate-azure-ai-agents). If you build your agent outside of Foundry Agent Service, you can still use our evaluators as appropriate to your agentic workflow, by parsing your agent messages into the [required data formats](./evaluate-sdk.md#data-requirements-for-built-in-evaluators). See examples in [evaluating other agents](#evaluating-other-agents).
+Assess other quality and safety aspects of your agentic workflows using our comprehensive suite of built-in evaluators. In general, agents emit agent messages. Transforming agent messages into the correct evaluation data for our evaluators can be challenging. If you build your agent using [Foundry Agent Service](../../../ai-services/agents/overview.md), you can [seamlessly evaluate it via our converter support](#evaluate-microsoft-foundry-agents). If you build your agent outside of Foundry Agent Service, you can still use our evaluators as appropriate to your agentic workflow, by parsing your agent messages into the [required data formats](./evaluate-sdk.md#data-requirements-for-built-in-evaluators). See examples in [evaluating other agents](#evaluating-other-agents).
 
 ::: moniker-end
 
@@ -52,9 +52,9 @@ See [agent evaluators](../../concepts/evaluation-evaluators/agent-evaluators.md)
 
 You can also assess other quality and safety aspects of your agentic workflows, using our [comprehensive suite of built-in evaluators](../../concepts/observability.md#what-are-evaluators) or write [custom evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md).
 
-If you are building Foundry Agents, you can [seamlessly evaluate them](#evaluate-azure-ai-agents).
+If you're building Foundry Agents, you can [seamlessly evaluate them](#evaluate-microsoft-foundry-agents).
 
-If you build your agents outside of Foundry, you can still use our evaluators as appropriate to your agentic workflow, by parsing your agent messages into the [required data formats](./evaluate-sdk.md#data-requirements-for-built-in-evaluators). See details in [Evaluating other agents](#evaluating-other-agents).
+If you build your agents outside of Foundry, you can still use our evaluators as appropriate to your agentic workflow, by parsing your agent messages into the required data formats. See details in [Evaluating other agents](#evaluating-other-agents).
 
 ::: moniker-end
 
@@ -62,7 +62,7 @@ If you build your agents outside of Foundry, you can still use our evaluators as
 
 ::: moniker range="foundry-classic"
 
-Install the evaluators package from the Azure AI Evaluation SDK:
+Install the evaluators package from the Azure AI evaluation SDK:
 
 ```python
 pip install azure-ai-evaluation
@@ -72,45 +72,45 @@ pip install azure-ai-evaluation
 
 ::: moniker range="foundry"
 
-Install the package from the Microsoft Foundry SDK:
+Install the package from the Azure AI evaluation SDK:
 
 ```python
-    pip install "azure-ai-projects>=2.0.0b1" azure-identity python-dotenv
+pip install "azure-ai-projects>=2.0.0b1" azure-identity python-dotenv
 ```
 
 Set these environment variables with your values in a `.env` file:
 
 ```python
-AZURE_AI_PROJECT_ENDPOINT="<your-endpoint>" # The Azure AI Project endpoint, as found in the Home page of your Microsoft Foundry portal.
+AZURE_AI_PROJECT_ENDPOINT="<your-endpoint>" # The Azure AI Project project endpoint, as found in the Home page of your Microsoft Foundry portal.
 AZURE_AI_MODEL_DEPLOYMENT_NAME="<your-model-deployment-name>" # The deployment name of the AI model, as found under the "Build" page in the "Models" tab in your Foundry project.
 ```
 
 ::: moniker-end
 
+## Evaluate Microsoft Foundry agents
+
 ::: moniker range="foundry-classic"
 
-## Evaluate Azure AI agents
-
-If you use [Foundry Agent Service](../../../ai-services/agents/overview.md), you can seamlessly evaluate your agents using our converter support for Azure AI agents and Semantic Kernel agents. The following evaluators are supported for evaluation data returned by the converter: `IntentResolution`, `ToolCallAccuracy`, `TaskAdherence`, `Relevance`, and `Groundedness`.
+If you use [Foundry Agent Service](../../../ai-services/agents/overview.md), you can seamlessly evaluate your agents by using our converter support for Microsoft Foundry agents and Semantic Kernel agents. The following evaluators support evaluation data returned by the converter: `IntentResolution`, `ToolCallAccuracy`, `TaskAdherence`, `Relevance`, and `Groundedness`.
 
 > [!NOTE]
-> If you're building other agents that output a different schema, convert them into the general OpenAI-style [agent message schema](#agent-message-schema) and use the above evaluators.
-> More generally, if you can parse the agent messages into the [required data formats](./evaluate-sdk.md#data-requirements-for-built-in-evaluators), you can also all of our evaluators.
+> If you're building other agents that output a different schema, convert them into the general OpenAI-style [agent message schema](#agent-message-schema) and use the preceding evaluators.
+> More generally, if you can parse the agent messages into the [required data formats](./evaluate-sdk.md#data-requirements-for-built-in-evaluators), you can also use all of our evaluators.
 
 ### Model support for AI-assisted evaluators
 
-AzureOpenAI and OpenAI [reasoning models](../../../ai-services/openai/how-to/reasoning.md) and non-reasoning models are supported for the LLM-judge depending on the evaluators:
+AzureOpenAI and OpenAI [reasoning models](../../../ai-services/openai/how-to/reasoning.md) and non-reasoning models support the LLM-judge depending on the evaluators:
 
 | Evaluators | Reasoning Models as Judge (example: o-series models from Azure OpenAI / OpenAI) | Non-reasoning models as Judge (example: gpt-4.1, gpt-4o, etc.) | To enable |
 |--|--|--|--|
 | `IntentResolution`, `TaskAdherence`, `ToolCallAccuracy`, `ResponseCompleteness`, `Coherence`, `Fluency`, `Similarity`, `Groundedness`, `Retrieval`, `Relevance`  | Supported | Supported | Set additional parameter `is_reasoning_model=True` in initializing evaluators |
-| Other evaluators| Not Supported | Supported | -- |
+| Other evaluators| Not Supported | Supported |--|
 
 For complex evaluation that requires refined reasoning, use a strong reasoning model like `4.1-mini` for a balance of reasoning performance and cost efficiency.
 
 #### Tool call evaluation support
 
-`ToolCallAccuracyEvaluator` supports evaluation in Azure AI Agent for the following tools:
+`ToolCallAccuracyEvaluator` supports evaluation in Microsoft Foundry Agent for the following tools:
 
 - File Search
 - Azure AI Search
@@ -118,13 +118,13 @@ For complex evaluation that requires refined reasoning, use a strong reasoning m
 - Bing Custom Search
 - SharePoint Grounding
 - Code Interpreter
-- Fabric Data Agent 
-- OpenAPI 
+- Fabric Data Agent
+- OpenAPI
 - Function Tool (user-defined tools)
 
-However, if a non-supported tool is used in the agent run, it outputs a "pass" and a reason that evaluating the invoked tool(s) isn't supported, for ease of filtering out these cases. It is recommended that you wrap non-supported tools as user-defined tools to enable evaluation.
+However, if you use a non-supported tool in the agent run, the evaluator outputs a "pass" and a reason that evaluating the invoked tools isn't supported, for ease of filtering out these cases. To enable evaluation, wrap non-supported tools as user-defined tools.
 
-This example shows how to build and evaluate an Azure AI agent. Separately from evaluation, Foundry Agent Service requires `pip install azure-ai-projects azure-identity`, a Foundry project connection string, and the supported models.
+This example shows how to build and evaluate a Microsoft Foundry agent. Separately from evaluation, Foundry Agent Service requires `pip install azure-ai-projects azure-identity`, a Foundry project connection string, and the supported models.
 
 ### Create agent threads and runs
 
@@ -229,13 +229,13 @@ for message in messages:
 
 ### Evaluate a single agent run
 
-After you create agent runs, you can easily use our converter to transform the Azure AI agent thread data into the required evaluation data that the evaluators can understand.
+After you create agent runs, you can use our converter to transform the Microsoft Foundry agent thread data into the required evaluation data that evaluators can understand.
 
 ```python
 import json, os
 from azure.ai.evaluation import AIAgentConverter, IntentResolutionEvaluator
 
-# Initialize the converter for Azure AI agents.
+# Initialize the converter for Microsoft Foundry agents.
 converter = AIAgentConverter(project_client)
 
 # Specify the thread and run ID.
@@ -245,14 +245,14 @@ run_id = run.id
 converted_data = converter.convert(thread_id, run_id)
 ```
 
-And that's it! `converted_data` contains all inputs required for [these evaluators](#evaluate-azure-ai-agents). You don't need to read the input requirements for each evaluator and do any work to parse the inputs. Select your evaluator and call the evaluator on this single run. We support AzureOpenAI or OpenAI [reasoning models](../../../ai-services/openai/how-to/reasoning.md) and non-reasoning models for the judge depending on the evaluators:
+That's it! `converted_data` contains all inputs required for these evaluators. You don't need to read the input requirements for each evaluator or do any work to parse the inputs. Select your evaluator and call the evaluator on this single run. We support Azure OpenAI or OpenAI [reasoning models](../../../ai-services/openai/how-to/reasoning.md) and non-reasoning models for the judge depending on the evaluators:
 
 | Evaluators | Reasoning Models as Judge (example: o-series models from Azure OpenAI / OpenAI) | Non-reasoning models as Judge (example: gpt-4.1, gpt-4o, etc.) | To enable |
 |--|--|--|--|
 | All quality evaluators except for `GroundednessProEvaluator` | Supported | Supported | Set additional parameter `is_reasoning_model=True` in initializing evaluators |
-| `GroundednessProEvaluator` | User does not need to support model | User does not need to support model | -- |
+| `GroundednessProEvaluator` | User doesn't need to support model | User doesn't need to support model |--|
 
-For complex tasks that require refined reasoning for the evaluation, we recommend a strong reasoning model like `o3-mini` or the o-series mini models released afterwards with a balance of reasoning performance and cost efficiency.
+For complex tasks that require refined reasoning for the evaluation, we recommend a strong reasoning model like `o3-mini` or the o-series mini models released afterward with a balance of reasoning performance and cost efficiency.
 
 We set up a list of quality and safety evaluators in `quality_evaluators` and `safety_evaluators` and reference them in [evaluating multiples agent runs or a thread](#evaluate-multiple-agent-runs-or-threads).
 
@@ -342,7 +342,7 @@ See the following example output for some evaluators:
 
 ### Evaluate multiple agent runs or threads
 
-To evaluate multiple agent runs or threads, use the batch `evaluate()` API for asynchronous evaluation. First, convert your agent thread data into a file via our converter support:
+To evaluate multiple agent runs or threads, use the batch `evaluate()` API for asynchronous evaluation. First, convert your agent thread data into a file by using our converter support:
 
 ```python
 import json
@@ -383,21 +383,19 @@ print(response["metrics"])
 print(f'Foundry URL: {response.get("studio_url")}')
 ```
 
-After selecting the URL, you are redirected to Foundry. View your evaluation results in your Foundry project and debug your application. Use reason fields and pass/fail results to assess the quality and safety performance of your applications. You can run and compare multiple runs to test for regression or improvements.  
+After selecting the URL, you're redirected to Foundry. View your evaluation results in your Foundry project and debug your application. Use reason fields and pass/fail results to assess the quality and safety performance of your applications. You can run and compare multiple runs to test for regression or improvements.  
 
-Use the Azure AI Evaluation SDK client library to evaluate your Azure AI agents with converter support, enabling observability and transparency into agent workflows.
+Use the Azure AI Evaluation SDK client library to evaluate your Microsoft Foundry agents with converter support, enabling observability and transparency into agent workflows.
 
 ::: moniker-end
 
 ::: moniker range="foundry"
 
-## Evaluate Foundry agents
-
-You can seamlessly evaluate Foundry agents using evaluators in [Agent Evaluators](../../concepts/evaluation-evaluators/agent-evaluators.md) and [RAG evaluators](../../concepts/evaluation-evaluators/rag-evaluators.md). This section walks you through creating an agent and evaluating it.
+You can seamlessly evaluate Foundry agents by using evaluators in [Agent Evaluators](../../concepts/evaluation-evaluators/agent-evaluators.md) and [RAG evaluators](../../concepts/evaluation-evaluators/rag-evaluators.md). This section walks you through creating an agent and evaluating it.
 
 > [!NOTE]
-> If you're building other agents that output a different schema, convert them into the general OpenAI-style [agent message schema](#agent-message-schema) and use the above evaluators.
-> More generally, if you can parse the agent messages into the [required data formats](./evaluate-sdk.md#data-requirements-for-built-in-evaluators), you can also all of our evaluators.
+> If you're building other agents that output a different schema, convert them into the general OpenAI-style [agent message schema](#agent-message-schema) and use the preceding evaluators.
+> More generally, if you can parse the agent messages into the required data formats, you can also use all of our evaluators.
 
 ### Prerequisites
 
@@ -543,22 +541,18 @@ with project_client:
 
 ### Interpretation of results
 
-AI-assisted quality evaluators provide a dictionary result that contains:
+For a single data example, all evaluators always output the following schema:  
 
-- Metric name: Provides a numerical score, on a Likert scale (integer 1 to 5) or a float between 0 and 1.
-- `{metric_name}_label`: Provides a binary label (if the metric naturally outputs a binary score).
-- `{metric_name}_reason`: Explains why a certain score or label was given for each data point.
-- `details`: Optional output containing debugging information about the quality of a single agent run.
+- **Label**: a binary "pass" or "fail" label, similar to a unit test's output. Use this result to facilitate comparisons across evaluators.
+- **Score**: a score from the natural scale of each evaluator. Some evaluators use a fine-grained rubric, scoring on a 5-point scale (quality evaluators) or a 7-point scale (content safety evaluators). Others, like textual similarity evaluators, use F1 scores, which are floats between 0 and 1. The "label" field binarizes any non-binary "score" to "pass" or "fail" based on the "threshold".
+- **Threshold**: any non-binary scores are binarized to "pass" or "fail" based on a default threshold, which you can override in the SDK experience.
+- **Reason**: To improve intelligibility, all LLM-judge evaluators also output a reasoning field to explain why a certain score is given.
+- **Details**: (optional) For some evaluators, such as tool_call_accuracy, there might be a "details" field or flags that contain additional information to help users debug their applications.
+For aggregate results over multiple data examples (a dataset), the average rate of the examples with a "pass" forms the passing rate for that dataset.
 
-To further improve intelligibility, all evaluators accept a binary threshold (unless their outputs are already binary) and output two new keys. For the binarization threshold, a default is set, which the user can override. The two new keys are:
+After the URL, you're redirected to Foundry. You can view your evaluation results in your Foundry project and debug your application. Use "reason" fields and pass/fail to assess the quality and safety performance of your applications. You can run and compare multiple runs to test for regression or improvements.  
 
-- `{metric_name}_result`: A "pass" or "fail" string based on a binarization threshold.
-- `{metric_name}_threshold`: A numerical binarization threshold set by default or by the user.
-
-
-After the URL, you'll be redirected to Foundry. You can view your evaluation results in your Foundry project and debug your application. Use "reason" fields and pass/fail to assess the quality and safety performance of your applications. You can run and compare multiple runs to test for regression or improvements.  
-
-Use the Microsoft Foundry SDK Python client library to evaluate your Azure AI agents, enabling observability and transparency in agent workflows.
+Use the Microsoft Foundry SDK Python client library to evaluate your Microsoft Foundry agents, enabling observability and transparency in agent workflows.
 
 ::: moniker-end
 
@@ -566,11 +560,11 @@ Use the Microsoft Foundry SDK Python client library to evaluate your Azure AI ag
 
 ::: moniker range="foundry-classic"
 
-If you're using agents outside Agent Service, you can still evaluate them by preparing the right data for the evaluators of your choice.
-
-::: moniker-end
+If you use agents outside Agent Service, you can still evaluate them by preparing the right data for the evaluators of your choice.
 
 Agents typically emit messages to interact with a user or other agents. Built-in evaluators accept simple data types such as strings in `query`, `response`, and `ground_truth` according to the [single-turn data input requirements](./evaluate-sdk.md#data-requirements-for-built-in-evaluators). However, extracting these simple data types from agent messages can be challenging due to the complex interaction patterns of agents and framework differences. For example, a single user query can trigger a long list of agent messages, typically with multiple tool calls invoked.
+
+::: moniker-end
 
 ::: moniker range="foundry"
 
@@ -580,7 +574,7 @@ Agents typically emit messages to interact with a user or other agents. Our buil
 
 ::: moniker range="foundry-classic"
 
-As illustrated in the following example, we enable agent message support for the following built-in evaluators to evaluate these aspects of agentic workflow. These evaluators may take `tool_calls` or `tool_definitions` as parameters unique to agents when evaluating agents.
+As illustrated in the following example, we enable agent message support for the following built-in evaluators to evaluate these aspects of agentic workflow. These evaluators might take `tool_calls` or `tool_definitions` as parameters unique to agents when evaluating agents.
 
 | Evaluator       | `query`      | `response`      | `tool_calls`       | `tool_definitions`  |
 |----------------|---------------|---------------|---------------|---------------|
@@ -593,13 +587,13 @@ As illustrated in the following example, we enable agent message support for the
 - `ToolCall`: `dict` that specifies tool calls invoked during agent interactions with a user.
 - `ToolDefinition`: `dict` that describes the tools available to an agent.
 
-For `ToolCallAccuracyEvaluator`, either `response` or `tool_calls` must be provided.
+For `ToolCallAccuracyEvaluator`, you must provide either `response` or `tool_calls`.
 
-`GroundednessEvaluator` requires `tool_definitions` to be provided to evaluate the groundedness of the agent's responses with respect to the tool outputs the agent receives.
+`GroundednessEvaluator` requires `tool_definitions` to evaluate the groundedness of the agent's responses with respect to the tool outputs the agent receives.
 
-The following are examples of the two data formats: simple agent data and agent messages. However, due to the unique requirements of these evaluators, we recommend referring to the [Sample notebooks](#sample-notebooks), which illustrate the possible input paths for each evaluator.  
+The following examples show the two data formats: simple agent data and agent messages. However, due to the unique requirements of these evaluators, we recommend referring to the [Sample notebooks](#sample-notebooks), which illustrate the possible input paths for each evaluator.  
 
-Like other [built-in AI-assisted quality evaluators](../../concepts/evaluation-evaluators/agent-evaluators.md), `IntentResolutionEvaluator` and `TaskAdherenceEvaluator` output a Likert score (integer 1–5; higher scores are better). `ToolCallAccuracyEvaluator` outputs the passing rate of all tool calls made (a float between 0 and 1) based on user query. To further improve intelligibility, all evaluators accept a binary threshold and output two new keys. For the binarization threshold, a default is set and the user can override it. The two new keys are:
+Like other [built-in AI-assisted quality evaluators](../../concepts/evaluation-evaluators/agent-evaluators.md), `IntentResolutionEvaluator` and `TaskAdherenceEvaluator` output a Likert score (integer 1–5; higher scores are better). `ToolCallAccuracyEvaluator` outputs the passing rate of all tool calls made (a float between 0 and 1) based on user query. To further improve intelligibility, all evaluators accept a binary threshold and output two new keys. For the binarization threshold, a default is set and you can override it. The two new keys are:
 
 - `{metric_name}_result`: A "pass" or "fail" string based on a binarization threshold.
 - `{metric_name}_threshold`: A numerical binarization threshold set by default or by the user.
@@ -651,7 +645,6 @@ See the following output (refer to [Output format](#output-format) for details):
 ```
 
 ::: moniker-end
-
 
 
 ### Agent tool calls and definitions
@@ -759,7 +752,7 @@ tool_definitions = [{
 
 ### Agent message schema
 
-In agent message format, `query` and `response` are a list of OpenAI-style messages. Specifically, `query` carries the past agent-user interactions leading up to the last user query and requires the system message (of the agent) on top of the list; and `response` carries the last message of the agent in response to the last user query. 
+In agent message format, `query` and `response` are a list of OpenAI-style messages. Specifically, `query` carries the past agent-user interactions leading up to the last user query and requires the system message (of the agent) at the top of the list. `response` carries the last message of the agent in response to the last user query. 
 
 The expected input format for the evaluators is a Python list of messages as follows:
 
@@ -1147,7 +1140,7 @@ response = [
 ```
 
 > [!NOTE]
-> The evaluator throws a warning that query (the conversation history till the current run) or agent response (the response to the query) can't be parsed when their format isn't the expected one.
+> The evaluator throws a warning that it can't parse the query (the conversation history up to the current run) or agent response (the response to the query) when their format isn't the expected one.
 
 More examples of agent messages:
 
@@ -1252,13 +1245,13 @@ Try a sample for each of these evaluators:
 - [Tool call accuracy](https://aka.ms/toolcallaccuracy-sample)
 - [Task adherence](https://aka.ms/taskadherence-sample)
 - [Response completeness](https://aka.ms/rescompleteness-sample)
-- [End-to-end Azure AI agent evaluation](https://aka.ms/e2e-agent-eval-sample)
+- [End-to-end Microsoft Foundry agent evaluation](https://aka.ms/e2e-agent-eval-sample)
 
 ::: moniker-end
 
 ::: moniker range="foundry"
 
-Try a sample for each of these evaluators in the [sample repository](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluation/agentic_evaluators/).
+Try a sample for each of these evaluators in the [sample repository](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators).
 
 ::: moniker-end
 

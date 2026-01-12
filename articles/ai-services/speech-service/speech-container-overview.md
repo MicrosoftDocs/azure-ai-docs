@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 7/1/2025
+ms.date: 12/19/2025
 ms.author: pafarley
 keywords: on-premises, Docker, container
 # Customer intent: As a developer, I want to learn about the Speech containers available in the Microsoft Container Registry (MCR).
@@ -43,7 +43,7 @@ The form requests information about you, your company, and the user scenario for
 
 After you submit the form, the Foundry Tools team reviews it and emails you with a decision within 10 business days.
 
-## Billing
+## Billing information
 
 The Speech containers send billing information to Azure by using a Foundry resource for Speech on your Azure account. 
 
@@ -65,7 +65,7 @@ For information about other container services, see the following Foundry Tools 
 - [Quickstart: Create a private container registry using the Azure CLI](/azure/container-registry/container-registry-get-started-azure-cli)
 - [Tutorial: Prepare an application for Azure Kubernetes Service (AKS)](/azure/aks/tutorial-kubernetes-prepare-app)
 
-## Next steps
+## Next step
 
 * [Install and run Speech containers](speech-container-howto.md)
 

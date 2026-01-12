@@ -153,11 +153,11 @@ To learn more about input data formats for evaluating generative AI applications
 
 - [Single-turn data](./evaluate-sdk.md#single-turn-support-for-text)
 - [Conversation data](./evaluate-sdk.md#conversation-support-for-text)
-- [Conversation data for images and multi-modalities](./evaluate-sdk.md#conversation-support-for-images-and-multi-modal-text-and-image)
+- [Conversation data for images and multi-modalities](./evaluate-sdk.md#conversation-support-for-images-and-multimodal-text-and-image)
 
 ::: moniker-end
 
-To learn more about input data formats for evaluating agents, see [Evaluate Azure AI agents](./agent-evaluate-sdk.md#evaluate-azure-ai-agents) and [Evaluate other agents](./agent-evaluate-sdk.md#evaluating-other-agents).
+To learn more about input data formats for evaluating agents, see [Evaluate Azure AI agents](./agent-evaluate-sdk.md#evaluate-microsoft-foundry-agents) and [Evaluate other agents](./agent-evaluate-sdk.md#evaluating-other-agents).
 
 ::: moniker range="foundry-classic"
 
@@ -916,7 +916,7 @@ Your evaluation job might remain in the **Running** state for an extended period
 
 ::: moniker range="foundry"
 
-- [Complete working samples](https://github.com/Azure/azure-sdk-for-python/tree/evaluation_samples_graders/sdk/ai/azure-ai-projects/samples/evaluation/agentic_evaluators)
+- [Complete working samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations)
 - [Evaluate your AI agents continuously](../continuous-evaluation-agents.md)
 - [See evaluation results in the Foundry portal](../../how-to/evaluate-results.md)
 - [Get started with Foundry](../../quickstarts/get-started-code.md)

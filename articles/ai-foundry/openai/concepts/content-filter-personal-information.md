@@ -3,9 +3,10 @@ title: Personally Identifiable Information (PII) Filter
 description: Learn about the Personally Identifiable Information (PII) filter for identifying and flagging known personal information in large language model outputs.
 author: ssalgadodev
 ms.author: ssalgado
-ms.date: 07/03/2025
-ms.topic: conceptual
-ms.service: azure-ai-openai
+ms.date: 11/21/2025
+ms.topic: article
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 monikerRange: 'foundry-classic || foundry'
 ---
 
@@ -24,4 +25,6 @@ There are many different types of PII, and you can specify which types you want 
 
 ## Filtering modes
 
-The PII filter can be configured to operate in two modes. **Annotate** mode flags PII that's returned in the model output. **Annotate and Block** mode blocks the entire output if PII is detected. The filtering mode can be set for each PII category individually.
+The PII filter can be configured to operate in two modes. 
+- **Annotate** mode flags PII that's returned in the model output. 
+- **Annotate and Block** mode blocks the entire output if PII is detected. The filtering mode can be set for each PII category individually.

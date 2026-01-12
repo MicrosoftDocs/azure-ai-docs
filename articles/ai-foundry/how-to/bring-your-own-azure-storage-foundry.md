@@ -9,7 +9,7 @@ ms.author: jburchel
 ms.service: azure-ai-foundry
 ms.custom: ignite-2024, build-2025
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 12/05/2025
 ai-usage: ai-assisted
 monikerRange: 'foundry-classic || foundry'
 ---
@@ -24,10 +24,9 @@ Microsoft Foundry brings Agents, Azure OpenAI, Speech, and Language services tog
 
 This article shows you how to connect your storage to Foundry by using two overarching approaches:
 
-- Connections + (optional) capability hosts (recommended baseline for most features)
-- userOwnedStorage field (Speech and Language only)
-
-Connections provide the shared data pointer; capability hosts optionally override/explicitly bind a specific feature (for example, Agents standard setup) to one connection among several. The userOwnedStorage field is a resource-level binding used only by Speech and Language.
+- Connections: recommended baseline for most features. Connections provide the shared data pointer.
+- Capability hosts: optionally override/explicitly bind a specific feature (for example, Agents standard setup) to one connection among several.
+- userOwnedStorage field: a resource-level binding used only by Speech and Language.
 
 ## Prerequisites
 
@@ -47,15 +46,9 @@ Before connecting your storage, ensure you have:
 
 | Approach | What it is | Features supported | Scope | When to use |
 |----------|------------|--------------------|-------|-------------|
-| Connections (shared data pointer) | Sub-resource holding endpoint + auth; grants project users indirect access | Agents, Evaluations, Datasets, Content Understanding | Resource or project level | Default pattern for most scenarios |
+| Foundry connections (shared data pointer) | Sub-resource holding endpoint + auth; grants project users indirect access | Agents, Evaluations, Datasets, Content Understanding | Resource or project level | Default pattern for most scenarios |
 | Capability hosts (feature override binding) | Explicit per-feature binding selecting which connection a feature uses | Agents (standard setup) | Resource and project level | When multiple connections exist and you must force one for Agents |
 | userOwnedStorage field (resource storage binding) | Resource property assigning one storage account for Speech & Language (shared) | Speech, Language | Resource level only | To enable customer-managed storage for Speech & Language at creation time |
-
-| **Approach** | **Features Supported** | **Scope** |
-|-------------|------------------------|-----------|
-| Foundry connections (shared data pointer) | Agents, Evaluations, Datasets, Content Understanding | Resource or project level |
-| Capability hosts (feature override binding) | Agents standard setup (explicit assignment) | Resource and project level |
-| userOwnedStorage field (resource storage binding) | Speech, Language | Resource level only |
 
 ### Foundry connections
 
@@ -83,7 +76,7 @@ If strict data isolation is required between Speech and Language scenarios, crea
 ::: moniker range="foundry-classic"
 
 1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)]
-1. Open your Foundry resource or project.
+1. Select your project.
 1. In the left pane, select **Connections** (or **Connected resources**).
 1. Select **+ New connection**.
 1. Choose **Azure Blob Storage**.
@@ -116,6 +109,8 @@ The connection is now available to Agents (when not overridden), Evaluations, Da
 You create two capability hosts—one at the resource level and one at the project level—each referencing the same connection chain so Agents route to your storage.
 
 1. Create a resource-level connection (as above) if not already present.
+   > [!NOTE]
+   > As described in the previous section, select the **Catalog** tab and look for **Azure Blob Storage**.
 1. Create a resource-level capability host referencing that connection.
 1. Create (or open) a project under the resource.
 1. Create a project-level capability host referencing the resource-level capability host.
@@ -155,7 +150,7 @@ Set up [capability hosts](/azure/ai-foundry/agents/concepts/capability-hosts) to
 
 ### Create resource-level capability host
 
-1. Use the [Azure CLI](/cli/azure/ml/capability-host) or [Azure REST API](/rest/api/azureml/capability-hosts/create-or-update) to create a resource-level capability host.
+1. Use the [Azure CLI](/cli/azure/ml/capability-host) or [Azure REST API](/rest/api/azureml/capability-hosts/create-or-update) sample to create a resource-level capability host.
 
 1. Reference your previously created storage connection in the capability host configuration.
 
@@ -169,7 +164,7 @@ After creating your Foundry project:
 
 1. Configure the capability host to enable agents functionality.
 
-1. Verify the capability host is properly linked to your storage connection as demonstrated in this [code sample for Standard agent setup](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup#41-standard-agent-setup).
+1. Verify the capability host is properly linked to your storage connection as demonstrated in this [code sample for Standard agent setup](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/41-standard-agent-setup).
 
 Your agents standard setup now uses your own storage account instead of Microsoft-managed storage.
 
@@ -210,7 +205,7 @@ resource "azurerm_cognitive_account" "foundry" {
 
 ### Role assignment
 
-Create the role assignment on the Azure Storage account for the Foundry resource (account) managed identity—not the project managed identity. Assign `Storage Blob Data Contributor`.
+Create the role assignment on the Azure Storage account for the Foundry resource managed identity, not the project managed identity. Assign `Storage Blob Data Contributor`.
 
 
 ::: moniker range="foundry-classic"

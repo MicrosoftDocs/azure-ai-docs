@@ -16,6 +16,8 @@ ai-usage: ai-assisted
 
 # Manage projects and resources
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 The management center is part of the Microsoft Foundry portal that streamlines governance and management activities. From the management center, you can manage:
 
 - Foundry hubs and [!INCLUDE [hub](../includes/hub-project-name.md)]s
@@ -62,7 +64,7 @@ With a project selected, use the __Users__ entry in the left menu to view and ma
 > [!NOTE]
 > You can only assign built-in roles for Foundry here.
 
-For more information, see [Role-based access control](rbac-azure-ai-foundry.md#foundry-project-roles).
+For more information, see [Role-based access control](rbac-foundry.md#built-in-roles).
 
 ## Connect resources
 

@@ -15,29 +15,29 @@ Interacting with a model is the basic building block of AI applications.  Send a
 
 [!INCLUDE [agent-v2-switch](agent-v2-switch.md)]
 
-# [Python](#tab/python2)
+# [Python](#tab/python)
 
-:::code language="python" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/python/quickstart/quickstart-responses.py":::
+:::code language="python" source="~/foundry-samples-main/samples/python/quickstart/quickstart-responses.py":::
 
- # [C#](#tab/csharp2)
+ # [C#](#tab/csharp)
 
-:::code language="python" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/csharp/quickstart/quickstart-responses.cs":::
+:::code language="csharp" source="~/foundry-samples-main/samples/csharp/quickstart/quickstart-responses.cs":::
 
-<!-- # [TypeScript](#tab/typescript)
+# [TypeScript](#tab/typescript)
 
-Not yet available
+:::code language="typescript" source="~/foundry-samples-main/samples/typescript/quickstart/src/quickstart-responses.ts":::
 
 # [Java](#tab/java)
 
-Not yet available -->
+:::code language="java" source="~/foundry-samples-main/samples/java/quickstart/src/main/java/com/microsoft/foundry/samples/CreateResponses.java":::
 
-# [REST API](#tab/rest2)
+# [REST API](#tab/rest)
 
 Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 
-:::code language="console" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/REST/quickstart/quickstart-responses.sh":::
+:::code language="console" source="~/foundry-samples-main/samples/REST/quickstart/quickstart-responses.sh":::
 
-# [Microsoft Foundry portal](#tab/portal)
+# [Foundry portal](#tab/portal)
 
 1. After the model deploys, you're automatically moved from **Home** to the **Build** section. Your new model is selected and ready for you to try out.
 

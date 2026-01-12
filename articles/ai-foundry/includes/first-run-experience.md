@@ -28,7 +28,7 @@ You'll start in Microsoft Foundry portal to create a project and deploy a model.
     1. Select **Discover** in the upper-right navigation.
     1. Select **Models**.
     1. Search for the **gpt-4.1-mini** model.
-    1. Select **Deploy** > **Quick deploy** to add it to your project.
+    1. Select **Deploy** > **Default settings** to add it to your project.
 
 Foundry Models allows customers to consume the most powerful models from flagship model providers using a single endpoint and credentials. This means that you can switch between models and consume them from your application without changing a single line of code.
 

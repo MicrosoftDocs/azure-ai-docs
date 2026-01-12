@@ -9,7 +9,7 @@ ms.custom: build-2023
 ms.topic: concept-article
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: meerakurup
+ms.reviewer: shshubhe
 ms.date: 10/30/2025
 # Customer Intent: As an admin, I want to understand how to secure Azure Machine Learning resources and workflows so that I can comply with my organization's security policies.
 ---

@@ -19,6 +19,8 @@ ai-usage: ai-assisted
 
 # Tutorial: Deploy an enterprise chat web app
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 In this article, you deploy an enterprise chat web app that uses your data with a large language model in Microsoft Foundry portal.
 
 Your data source grounds the model with specific data. Grounding means the model uses your data to understand the context of your question. You don't change the deployed model itself. Your data stays separate and secure in your original data source.
@@ -37,7 +39,7 @@ The steps in this tutorial are:
 
 - A [deployed Azure OpenAI](../how-to/deploy-models-openai.md) chat model. Finish the [Foundry playground quickstart](../quickstarts/get-started-playground.md) to create this resource if you don't have one.
 
-- A Search service connection to index the sample product data. If you don't have one, follow the steps to [create](copilot-sdk-create-resources.md#create-search) and [connect](copilot-sdk-create-resources.md#connect) a search service.
+- A Search service connection to index the sample product data. If you don't have one, follow the steps to [create](copilot-sdk-create-resources.md#create-an-azure-ai-search-service) and [connect](copilot-sdk-create-resources.md#connect-the-azure-ai-search-to-your-project) a search service.
 
 - A local copy of product data. The [Azure-Samples/rag-data-openai-python-promptflow repository on GitHub](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/) has sample retail product information for this tutorial scenario. The `product_info_11.md` file has product information about the TrailWalker hiking shoes for this tutorial example. [Download the example Contoso Trek retail product data in a ZIP file](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/raw/refs/heads/main/tutorial/data/product-info.zip) to your local machine.
 
@@ -82,7 +84,7 @@ First, identify the resources you need to set up in the Foundry portal.
 
 In the browser tab for the **Search service** resource in the Azure portal, enable managed identity:
 
-1. In the left pane, under **Resource Management**, select **Identity**.
+1. In the left pane, under **Settings**, select **Identity**.
 1. Switch **Status** to **On**.
 1. Select **Save**.
 

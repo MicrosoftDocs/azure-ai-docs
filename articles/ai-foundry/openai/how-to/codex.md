@@ -5,7 +5,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 11/13/2025
+ms.date: 12/04/2025
 author: mrbullwinkle    
 ms.author: mbullwin
 monikerRange: 'foundry-classic || foundry'
@@ -31,7 +31,7 @@ OpenAI’s [Codex CLI](https://github.com/openai/codex) is the same coding agent
 ## Deploy a model in Foundry
 
 1. Go to [Foundry](https://ai.azure.com) and create a new project.
-2. From the [model catalog](https://ai.azure.com/catalog/) select a [reasoning model](./reasoning.md) such as `gpt-5.1-codex`, `gpt-5.1-codex-mini`, [`gpt-5-codex`](https://ai.azure.com/catalog/models/gpt-5-codex), [`gpt-5`](https://ai.azure.com/catalog/models/gpt-5), [`gpt-5-mini`](https://ai.azure.com/catalog/models/gpt-5-mini), or [`gpt-5-nano`](https://ai.azure.com/catalog/models/gpt-5-nano).
+2. From the [model catalog](https://ai.azure.com/catalog/) select a [reasoning model](./reasoning.md) such as `gpt-5.1-codex-max`, `gpt-5.1-codex`, `gpt-5.1-codex-mini`, [`gpt-5-codex`](https://ai.azure.com/catalog/models/gpt-5-codex), [`gpt-5`](https://ai.azure.com/catalog/models/gpt-5), [`gpt-5-mini`](https://ai.azure.com/catalog/models/gpt-5-mini), or [`gpt-5-nano`](https://ai.azure.com/catalog/models/gpt-5-nano).
 3. To deploy the model from the model catalog select **Use this model**, or if using the Azure OpenAI **Deployments** pane select **deploy model**.
 4. Copy the endpoint **URL** and the **API Key**.
 
@@ -226,5 +226,5 @@ jobs:
 | `401 Unauthorized` or `403 Forbidden` | Export your AZURE_OPENAI_API_KEY environment variable correctly. Confirm that your key has project/deployment access. <br> Make sure you aren't passing the API Key as a string directly to the `env_key` in the `config.toml` file. You must pass a valid environment variable.    |
 | `ENOTFOUND`, `DNS error`, or `404 Not Found` |Verify `base_url` in `config.toml` uses your resource name, correct domain, and contains `/v1`. <br> For example, `base_url = "https://<your-resource>.openai.azure.com/openai/v1"`.|
 | CLI ignores Azure settings | Open `~/.codex/config.toml` and ensure: <br> - `model_provider = "azure"` is set. <br> - The `[model_providers.azure]` section exists. <br> - `env_key = "AZURE_OPENAI_API_KEY"` matches your environment variable name. |
-| Entra ID support | Entra ID support is currently not available for Codex. To track the status of this feature refer to this [pull request which adds support](https://github.com/openai/codex/pull/1778).|
+| Entra ID support | Entra ID support is currently not available for Codex. |
 | `401 Unauthorized` only with the WSL + VS Code Codex extension | When running VS Code from inside WSL with the Codex extension the extension may check for the API key environment variable on the local windows host rather than within the terminal shell that launched VS Code. To mitigate this issue, set the environment variable on the local windows host as well, then launch a new terminal from WSL and launch VS Code with `code .`.|

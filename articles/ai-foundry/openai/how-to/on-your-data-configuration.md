@@ -8,11 +8,13 @@ ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 author: aahill
 ms.author: aahi
-ms.date: 08/15/2025
+ms.date: 11/20/2025
 recommendations: false
 ---
 
 # Network and access configuration for Azure OpenAI On Your Data
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 Use this article to learn how to configure networking and access when using Azure OpenAI On Your Data with Microsoft Entra ID role-based access control, virtual networks, and private endpoints.
 

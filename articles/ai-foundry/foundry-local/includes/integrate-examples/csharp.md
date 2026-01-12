@@ -1,68 +1,24 @@
 ---
 ms.service: azure-ai-foundry
 ms.topic: include
-ms.date: 05/02/2025
+ms.date: 01/06/2026
 ms.author: samkemp
 author: samuel100
+ai-usage: ai-assisted
 ---
 
 ## Prerequisites
 
-- [.NET 8.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) or later installed.
+- Install Foundry Local. For setup steps, see [Get started with Foundry Local](../../get-started.md).
+- [.NET 9.0 SDK](https://dotnet.microsoft.com/download/dotnet/9.0) or later installed.
+
+## Samples repository
+
+The sample in this article can be found in the [Foundry Local C# SDK Samples GitHub repository](https://aka.ms/foundrylocalSDK).
 
 ## Set up project
 
-To use Foundry Local in your C# project, you need to set up your project with the appropriate NuGet packages. Depending on your target platform, follow the instructions below to create a new C# console application and add the necessary dependencies.
-
-### [Windows](#tab/windows)
-
-First, create a new C# project and navigate into it:
-
-```bash
-dotnet new console -n hello-foundry-local
-cd hello-foundry-local
-```
-
-Next, open the `hello-foundry-local.csproj` file and modify to the following:
-
-```xml
-<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0-windows10.0.26100</TargetFramework>
-    <RootNamespace>hello-foundry-local</RootNamespace>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AI.Foundry.Local.WinML" Version="0.8.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.10" />
-    <PackageReference Include="OpenAI" Version="2.5.0" />
-  </ItemGroup>
-
-</Project>
-```
-
-### [macOS/Linux](#tab/xplatform)
-
-First, create a new C# project and navigate into it:
-
-```bash
-dotnet new console -n hello-foundry-local
-cd hello-foundry-local
-```
-
-Next, add the required NuGet packages for Foundry Local and OpenAI SDK:
-
-```bash
-dotnet add package Microsoft.AI.Foundry.Local --version 0.8.0
-dotnet add package OpenAI --version 2.5.0
-```
-
----
+[!INCLUDE [project-setup](./../csharp-project-setup.md)]
 
 ## Use OpenAI SDK with Foundry Local
 
@@ -89,7 +45,7 @@ using System.ClientModel;
 
 var config = new Configuration
 {
-    AppName = "my-app-name",
+    AppName = "app-name",
     LogLevel = Microsoft.AI.Foundry.Local.LogLevel.Information,
     Web = new Configuration.WebService
     {
@@ -160,6 +116,9 @@ await mgr.StopWebServiceAsync();
 await model.UnloadAsync();
 ```
 
+Reference: [Foundry Local SDK reference](../../reference/reference-sdk.md)
+Reference: [Foundry Local REST API reference](../../reference/reference-rest.md)
+
 Run the code using the following command:
 
 ### [Windows](#tab/windows)
@@ -167,28 +126,39 @@ Run the code using the following command:
 For x64 Windows, use the following command:
 
 ```bash
-dotnet run -r:win-x64
+dotnet run -r win-x64
 ```
 
 For arm64 Windows, use the following command:
 
 ```bash
-dotnet run -r:win-arm64
+dotnet run -r win-arm64
 ```
 
 
-### [macOS/Linux](#tab/xplatform)
+### [Cross-Platform](#tab/xplatform)
 
 For macOS, use the following command:
 
 ```bash
-dotnet run -r:osx-arm64
+dotnet run -r osx-arm64
 ```
 
 For Linux, use the following command:
 
 ```bash
-dotnet run -r:linux-x64
+dotnet run -r linux-x64
 ```
+
+For Windows, use the following command:
+
+```bash
+dotnet run -r win-x64
+```
+
+> [!NOTE]
+> If you are targeting Windows, we recommend using the Windows-specific instructions under the Windows tab for optimal performance and experience.
+
+You should see a streaming response printed to your console.
 
 ---

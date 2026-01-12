@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI
 description: Learn how to use Azure OpenAI in the Azure Government cloud.
 author: challenp
 ms.author: chaparker
-ms.date: 8/19/2025
+ms.date: 11/26/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
@@ -15,6 +15,8 @@ ms.custom:
 ---
 
 # Azure OpenAI and features in Azure Government
+
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 This article highlights the differences when using Azure OpenAI in Azure Government as compared to the commercial cloud offering. Learn more about the Azure OpenAI itself in [Azure OpenAI documentation](/azure/ai-foundry/openai/).
 <br><br>
@@ -37,11 +39,11 @@ Data zone deployments are available in the same Azure OpenAI resource as all oth
 <br>
 
 ### Standard deployment model availability
-|   **Region**   | **o3-mini** | **gpt-4o**, **2024-11-20** | **gpt-4o**, **2024-05-13** | **gpt-4o-mini**, **2024-07-18** | **gpt-35-turbo**, **0125** | **text-embedding-3-large**, **1** | **text-embedding-3-small**, **1** | **text-embedding-ada-002**, **2** |
-|:---------------|:--------------------------:|:--------------------------:|:--------------------------:|:-------------------------------:|:--------------------------:|:---------------------------------:|:---------------------------------:|:---------------------------------:|
-| usgovarizona   | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| usgovvirginia  | - | ✅ | ✅ | -  | ✅ | - | - | ✅ |
-| USGov DataZone |✅| ✅ | - | ✅  | - | - | - | - |
+|   **Region**   | **gpt-4.1**, **2025-04-14** | **gpt-4.1-mini**, **2025-04-14** | **o3-mini** | **gpt-4o**, **2024-11-20** | **gpt-4o**, **2024-05-13** | **gpt-4o-mini**, **2024-07-18** | **gpt-35-turbo**, **0125** | **text-embedding-3-large**, **1** | **text-embedding-3-small**, **1** | **text-embedding-ada-002**, **2** |
+|:---------------|:---------------------------:|:--------------------------------:|:-----------:|:--------------------------:|:--------------------------:|:-------------------------------:|:--------------------------:|:---------------------------------:|:---------------------------------:|:---------------------------------:|
+| usgovarizona   | - | - | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| usgovvirginia  | - | - | - | ✅ | ✅ | -  | ✅ | - | - | ✅ |
+| USGov DataZone |✅|✅|✅| ✅ | - | ✅  | - | - | - | - |
 
 To request quota increases for these models, submit a request at [https://aka.ms/AOAIGovQuota](https://aka.ms/AOAIGovQuota). 
 
@@ -57,12 +59,18 @@ To request quota increases for these models, submit a request at [https://aka.ms
 <br>
 
 ### Model Retirements
-In some cases, models are retired in Azure Governmen ahead of dates in the commercial cloud. General information on model retirement policies, dates, and other details can be found at [Azure OpenAI in Microsoft Foundry model deprecations and retirements](/azure/ai-foundry/openai/concepts/model-retirements). The following shows model retirement differences in Azure Government. 
+In some cases, models are retired in Azure Governmen earlier or later than in the commercial cloud. General information on model retirement policies, dates, and other details can be found at [Azure OpenAI in Microsoft Foundry model deprecations and retirements](/azure/ai-foundry/openai/concepts/model-retirements). The following shows model retirement differences in Azure Government. 
 
-| Model                     | Version			      | Azure Government Status	  | Public Retirement date             |
-| --------------------------|-------------------|:--------------------------|------------------------------------|
-| `gpt-35-turbo`            | 1106				      | Retired                   | November 11, 2025                  |
-| `gpt-4`                   | turbo-2024-04-09	| Retired                   | November 11, 2025                  |
+#### Early Model Retirements
+| Model                     | Version			      | Azure Government Status	  | Public Retirement date  |
+| --------------------------|-------------------|---------------------------|-------------------------|
+| `gpt-35-turbo`            | 1106				      | Retired                   | November 14, 2025       |
+| `gpt-4`                   | turbo-2024-04-09	| Retired                   | November 14, 2025       |
+
+#### Late Model Retirements
+| Model                     | Version			      | Azure Government Status	  | Public Retirement date  | Replacement Model   | Estimated Target   |
+| --------------------------|-------------------|---------------------------|-------------------------|---------------------|--------------------|
+| `gpt-35-turbo`            | 0125 				      | Active                    | November 14, 2025       | gpt-4.1-mini        | ~January 2026      |
 
 <br>
 

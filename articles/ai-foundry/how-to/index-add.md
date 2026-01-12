@@ -3,12 +3,13 @@ title: Build and Consume Vector Indexes
 titleSuffix: Microsoft Foundry
 description: Learn how to create and use a vector index for performing retrieval-augmented generation (RAG) by using Microsoft Foundry portal.
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 10/10/2025
+ms.date: 11/21/2025
 ms.reviewer: estraight
 ms.author: ssalgado
 manager: nitinme
@@ -16,6 +17,8 @@ author: ssalgadodev
 ---
 
 # Build and consume vector indexes in Microsoft Foundry portal
+
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 

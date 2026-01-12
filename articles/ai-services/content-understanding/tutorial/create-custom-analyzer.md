@@ -5,7 +5,7 @@ description: Learn to create a custom analyzer with Azure Content Understanding 
 author: PatrickFarley 
 ms.author: paulhsu
 manager: nitinme
-ms.date: 05/19/2025
+ms.date: 12/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: overview
 ms.custom:
@@ -13,18 +13,18 @@ ms.custom:
 ai-usage: ai-assisted
 ---
 
-# Create a custom analyzer via REST APIs
+# Create a custom analyzer using REST APIs
 
 Content Understanding analyzers define how to process and extract insights from your content. They ensure uniform processing and output structure across all your content to deliver reliable and predictable results. We offer [prebuilt analyzers](../concepts/prebuilt-analyzers.md) for common use cases. This guide shows how these analyzers can be customized to better fit your needs.
 
-In this guide, we use the cURL command line tool. If it isn't installed, you can [download](https://everything.curl.dev/install/index.html) the appropriate version for your dev environment.
+In this guide, we use the cURL command line tool. If it isn't installed, you can [download](https://everything.curl.dev/install/index.html) the appropriate version for your developer environment.
 
-## Prerequisite
+## Prerequisites
 To get started, make sure you have the following resources and permissions:
 * An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * Once you have your Azure subscription, create a [Microsoft Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal. Be sure to create it in a [supported region](/azure/ai-services/content-understanding/language-region-support).
    * This resource is listed under **Foundry** > **Foundry** in the portal.
-* A Foundry Model deployment of GPT-4.1 completion model and a text-embedding-3-large embedding model in your Foundry resource. For directions on how to deploy models, see [Create model deployments in Foundry portal](/articles/ai-foundry/foundry-models/how-to/create-model-deployments.md?pivots=ai-foundry-portal).
+* [!INCLUDE [foundry-model-deployment-setup](../includes/foundry-model-deployment-setup.md)]
 
 ## Define an analyzer schema
 
@@ -252,7 +252,7 @@ Create a JSON file named `request_body.json` with the following content:
 
 ---
 
-## Create analyzer
+## Create an analyzer
 
 ### PUT request
 
@@ -312,9 +312,9 @@ curl -i -X GET "{endpoint}/contentunderstanding/analyzers/{analyzerId}/operation
   -H "Ocp-Apim-Subscription-Key: {key}"
 ```
 
-## Analyze file
+## Analyze a file
 
-### Send file
+### Submit the file
 
 You can now use the custom analyzer you created to process files and extract the fields you defined in the schema.
 
@@ -362,11 +362,7 @@ curl -i -X POST "{endpoint}/contentunderstanding/analyzers/{analyzerId}:analyze?
           {
             "url": "https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/receipt.png"
           }          
-        ],
-        "modelDeployments": {
-          "gpt-4.1": "{CompletionDeploymentName}",
-          "text-embedding-3-large": "{embeddingDeploymentName}"
-        }
+        ]
       }'  
 ```
 
@@ -383,11 +379,7 @@ curl -i -X POST "{endpoint}/contentunderstanding/analyzers/{analyzerId}:analyze?
           {
             "url": "https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/pieChart.jpg"
           }          
-        ],
-        "modelDeployments": {
-          "gpt-4.1": "{CompletionDeploymentName}",
-          "text-embedding-3-large": "{embeddingDeploymentName}"
-        }
+        ]
       }'  
 ```
 
@@ -404,11 +396,7 @@ curl -i -X POST "{endpoint}/contentunderstanding/analyzers/{analyzerId}:analyze?
           {
             "url": "https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/audio.wav"
           }          
-        ],
-        "modelDeployments": {
-          "gpt-4.1": "{CompletionDeploymentName}",
-          "text-embedding-3-large": "{embeddingDeploymentName}"
-        }
+        ]
       }'  
 ```
 
@@ -425,11 +413,7 @@ curl -i -X POST "{endpoint}/contentunderstanding/analyzers/{analyzerId}:analyze?
           {
             "url": "https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/FlightSimulator.mp4"
           }          
-        ],
-        "modelDeployments": {
-          "gpt-4.1": "{CompletionDeploymentName}",
-          "text-embedding-3-large": "{embeddingDeploymentName}"
-        }
+        ]
       }'  
 ```
 
@@ -469,7 +453,7 @@ A `200 OK` response includes a `status` field that shows the operation's progres
 - `status` is `Succeeded` if the operation is completed successfully.  
 - If it's `running` or `notStarted`, call the API again manually or with a script: wait at least one second between requests.
 
-##### Sample Response
+##### Sample response
 
 # [Document](#tab/document)
 
@@ -741,7 +725,7 @@ A `200 OK` response includes a `status` field that shows the operation's progres
 
 ---
 
-## Next steps
+## Related content
 
 * Review code samples: [**visual document search**](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python/blob/main/notebooks/search_with_visual_document.ipynb).
 * Review code sample: [**analyzer templates**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).

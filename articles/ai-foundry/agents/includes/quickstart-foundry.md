@@ -9,9 +9,9 @@ ms.date: 07/11/2025
 ---
 
 ## Prerequisites
-- An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
+- An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Ensure that the individual creating the account and project has the **Azure AI Account Owner** role at the subscription scope, which will grant the necessary permissions for creating the project
-    * Alternatively, having the **Contributor** or **Cognitive Services Contributor** role at the subscription level will allow the creation of the project
+    * Alternatively, having the **Contributor** or **Owner** role at the subscription level will allow the creation of the project
 - Once the project is created, ensure that the individual creating the agent within the project has the **Azure AI User** role at the project level
 
 

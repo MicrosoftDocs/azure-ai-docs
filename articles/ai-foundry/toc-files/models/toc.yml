@@ -17,7 +17,7 @@ items:
   items:
   - name: Model leaderboards
     href: ../../concepts/model-benchmarks.md
-  - name: Compare models in leaderboards
+  - name: Compare models
     href: ../../how-to/benchmark-model-in-catalog.md
   - name: Explore the model playgrounds
     href: ../../concepts/concept-playgrounds.md
@@ -40,10 +40,10 @@ items:
     href: ../../foundry-models/concepts/deployment-types.md   
   - name: Configure Models from Partners and Community
     href: ../../foundry-models/how-to/configure-marketplace.md
-  - name: Deploy Foundry Models
+  - name: Deploy Foundry Models using the Foundry portal
+    href: ../../foundry-models/how-to/deploy-foundry-models.md
+  - name: Deploy Foundry Models using code
     href: ../../foundry-models/how-to/create-model-deployments.md
-  - name: Deploy Azure OpenAI in Foundry Models
-    href: ../../how-to/deploy-models-openai.md
   - name: Upgrade from GitHub Models to Microsoft Foundry Models
     href: ../../foundry-models/how-to/quickstart-github-models.md
   - name: Troubleshoot deployments and monitoring
@@ -120,8 +120,6 @@ items:
       href: ../../concepts/models-inference-examples.md
 - name: Azure OpenAI in Foundry Models
   items:
-  - name: Azure OpenAI 
-    href: ../../openai/overview.md
   - name: Upgrade from Azure OpenAI Service
     href: ../../how-to/upgrade-azure-openai.md
   - name: Quotas and limits

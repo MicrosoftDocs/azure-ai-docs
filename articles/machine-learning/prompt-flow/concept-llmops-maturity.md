@@ -6,9 +6,9 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
 ms.topic: concept-article
-author: s-polly
-ms.author: scottpolly
-ms.reviewer: sasahami
+author: lgayhardt
+ms.author: lagayhar
+ms.reviewer: sooryar
 ms.date: 08/28/2025
 ms.update-cycle: 365-days
 ---

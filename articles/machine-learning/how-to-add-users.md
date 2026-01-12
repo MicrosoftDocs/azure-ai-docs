@@ -4,7 +4,7 @@ title.suffix: Azure Machine Learning
 description: Add users to your data labeling project so that they can label data, but not see the rest of your workspace.
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: vkann
+ms.reviewer: soumyapatro
 ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.topic: how-to
@@ -19,7 +19,7 @@ This article shows how to add users to your data labeling project so that they c
   
 ## Prerequisites
 
-* An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free) before you begin.
+* An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 * An Azure Machine Learning workspace. See [Create workspace resources](quickstart-create-resources.md).
 
 You need certain permission levels to follow the steps in this article. If you can't follow one of the steps because of a permissions issue, contact your administrator to request the appropriate permissions.

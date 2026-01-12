@@ -52,7 +52,7 @@ sections:
       - question: |
           What is the billing model for serverless API deployments? 
         answer: |
-          Microsoft Foundry offers serverless API deployment models and hosted fine-tuning for [Llama 2 family models](how-to/deploy-models-llama.md). Currently, there's no extra charge for Microsoft Foundry outside of typical AI services and other Azure resource charges.
+          Microsoft Foundry offers serverless API deployment models and hosted fine-tuning for [Llama 2 family models](how-to/deploy-models-llama.md). Currently, there's no extra charge for Microsoft Foundry outside of typical Foundry Tools and other Azure resource charges.
       - question: |
           Can all models be secured with content filtering? 
         answer: |
@@ -81,5 +81,5 @@ sections:
 additionalContent: |
 
   ## Next steps
-  - [Microsoft Foundry](what-is-azure-ai-foundry.md)
+  - [Microsoft Foundry](what-is-foundry.md)
   - [Plan and manage costs](./how-to/costs-plan-manage.md)

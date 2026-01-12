@@ -1,8 +1,8 @@
 ---
 title: include file for voice live proactive and pregenerated messages with ai foundry
 description: Learn how to enable a proactive greeting with the Voice live API
-author: goergenj
-ms.author: jagoerge
+author: PatrickFarley
+ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 11/05/2025
@@ -15,7 +15,7 @@ In this article, you learn how to use voice live with generative AI and Azure Sp
 
 ### Prerequisites
 
-- An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see the [voice live overview documentation](../../../voice-live.md).
 
 > [!TIP]

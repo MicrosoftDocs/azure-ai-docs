@@ -7,7 +7,7 @@ ms.author: ssalgado
 manager: nitinme
 reviewer: santiagxf
 ms.reviewer: fasantia
-ms.date: 07/29/2025
+ms.date: 12/09/2025
 ms.service: azure-ai-foundry
 ms.topic: concept-article
 ms.custom:
@@ -17,6 +17,8 @@ ms.custom:
 ---
 
 # Serverless API inference examples for Foundry Models
+
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 The Foundry model catalog offers a large selection of Microsoft Foundry Models from a wide range of providers. You have various options for deploying models from the model catalog. This article lists inference examples for serverless API deployments.
 

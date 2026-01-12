@@ -5,7 +5,7 @@ description: Set up Azure Machine Learning automated ML to train computer vision
 services: machine-learning
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: swatig
+ms.reviewer: sooryar
 ms.service: azure-machine-learning
 ms.subservice: automl
 ms.custom: devx-track-azurecli, update-code, devx-track-python

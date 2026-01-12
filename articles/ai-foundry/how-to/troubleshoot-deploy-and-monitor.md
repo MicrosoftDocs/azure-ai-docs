@@ -3,6 +3,7 @@ title: How to troubleshoot your deployments and monitors in Microsoft Foundry po
 titleSuffix: Microsoft Foundry
 description: Learn how to troubleshoot and monitor model deployments in Microsoft Foundry portal to quickly resolve errors and optimize performance.
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.custom:
   - ignite-2023
   - build-2024
@@ -35,7 +36,7 @@ For general deployment error code reference, see [Troubleshooting online endpoin
 
 The full error message states: "Use of Azure OpenAI models in Azure Machine Learning requires Azure OpenAI in Foundry Models resources. This subscription or region doesn't have access to this model."
 
-This error means that you might not have access to the particular Azure OpenAI model. For example, your subscription might not have access to the latest GPT model yet or this model isn't offered in the region you want to deploy to. You can learn more about it on [Azure OpenAI in Foundry Models](../../ai-services/openai/concepts/models.md?context=/azure/ai-foundry/context/context).
+This error means that you might not have access to the particular Azure OpenAI model. For example, your subscription might not have access to the latest GPT model yet or this model isn't offered in the region you want to deploy to. You can learn more about it on [Azure OpenAI in Foundry Models](../../ai-services/openai/concepts/models.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json).
 
 ### Error: Out of quota
 
@@ -121,5 +122,5 @@ The playground only supports select models, such as Azure OpenAI models and Llam
 
 ## Related content
 
-- [Foundry overview](../what-is-azure-ai-foundry.md)
+- [Foundry overview](../what-is-foundry.md)
 - [Azure AI FAQ](../faq.yml)

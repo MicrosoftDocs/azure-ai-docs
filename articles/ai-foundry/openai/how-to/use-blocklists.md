@@ -15,6 +15,8 @@ ai-usage: ai-assisted
 
 # How to use block lists in Microsoft Foundry models
 
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
+
 ::: moniker range="foundry"
 
 The [configurable Guardrails and controls](/azure/ai-foundry/openai/how-to/content-filters) available in Microsoft Foundry are sufficient for most content moderation needs. However, you might need to filter terms specific to your use case. For this, you can use custom block lists.
@@ -29,7 +31,7 @@ The [configurable content filters](/azure/ai-foundry/openai/how-to/content-filte
 
 ## Prerequisites
 
-- An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Once you have your Azure subscription, create an Azure OpenAI resource in the Azure portal to get your token, key, and endpoint. Enter a unique name for your resource, select the subscription you entered on the application form, select a resource group, supported region, and supported pricing tier. Then select **Create**.
     - The resource takes a few minutes to deploy. After it finishes, select **go to resource**. In the left pane, under **Resource Management**, select **Subscription Key and Endpoint**. The endpoint and either of the keys are used to call APIs.
 - [Azure CLI](/cli/azure/install-azure-cli) installed

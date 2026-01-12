@@ -18,4 +18,7 @@ ms.author: scottpolly
 >
 > These series retired on August 31, 2024:
 > * [Azure Av1-series](/azure/virtual-machines/av1-series-retirement)
-> * [Azure HB-series](/azure/virtual-machines/sizes/overview) 
+> * [Azure HB-series](/azure/virtual-machines/sizes/overview)
+>
+> These series retired on September 30, 2025:
+> * [Azure NCv3-series](/azure/virtual-machines/ncv3-retirement)

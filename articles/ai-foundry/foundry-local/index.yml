@@ -14,7 +14,7 @@ metadata:
   ms.author: jburchel
   reviewer: samuel100
   author: jonburchel
-  ms.date: 09/15/2025
+  ms.date: 01/05/2026
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
 
 landingContent:
@@ -64,6 +64,8 @@ landingContent:
             url: reference/reference-rest.md
           - text: Catalog API reference
             url: reference/reference-catalog-api.md
+          - text: Foundry Local on Windows Server 2025
+            url: reference/windows-server-frequently-asked-questions.md            
           - text: Best practice and troubleshooting
             url: reference/reference-best-practice.md
   

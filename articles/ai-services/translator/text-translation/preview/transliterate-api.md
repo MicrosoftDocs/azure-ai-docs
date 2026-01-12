@@ -26,22 +26,36 @@ The Text transliteration API maps your source language script or alphabet to a t
 
 **Send a `POST` request to**:
 
-```bash
-curl -X POST https://api.cognitive.microsofttranslator.com/transliterate?api-version=2025-10-01-preview
- -H "Ocp-Apim-Subscription-Key:<your-key>" ^
- -H "Ocp-Apim-Subscription-Region:<your-resource-region>" ^
- -H "Content-Type: application/json" ^
- -d "<your-request-body>"
+***Windows***
+
+```cmd
+curl -X POST 'https://api.cognitive.microsofttranslator.com/transliterate?api-version=2025-10-01-preview&fromScript=Cyrl&toScript=Latn' ^
+  --header 'Content-Type: application/json' ^
+  --header 'Ocp-Apim-Subscription-Key: <your-resource-key>' ^
+  --header 'Ocp-Apim-Subscription-Region: <your-resource-region>' ^
+  --data '{
+    "inputs": [
+      {
+        "text": "пример текста"
+      }
+    ]
+}'
 ```
 
 ***Linux or macOS***
 
 ```bash
-curl -X POST "https://api.cognitive.microsofttranslator.com/transliterate?api-version=2025-10-01-preview" \
--H "Ocp-Apim-Subscription-Key:<your-key>" \
--H "Ocp-Apim-Subscription-Region:<your-resource-region>" \
--H "Content-Type: application/json" \
--d "<your-request-body>"
+curl -X POST 'https://api.cognitive.microsofttranslator.com/transliterate?api-version=2025-10-01-preview&fromScript=Cyrl&toScript=Latn' \
+  --header 'Content-Type: application/json' \
+  --header 'Ocp-Apim-Subscription-Key: <your-resource-key>' \
+  --header 'Ocp-Apim-Subscription-Region: <your-resource-region>' \
+  --data '{
+    "inputs": [
+      {
+        "text": "пример текста"
+      }
+    ]
+}'
 ```
 ### Custom endpoint configuration
 
@@ -51,21 +65,31 @@ curl -X POST "https://api.cognitive.microsofttranslator.com/transliterate?api-ve
 
 ***Windows***
 
-```bash
-curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com//transliterate?api-version=2025-10-01-preview"^
-    -H "Ocp-Apim-Subscription-Key:<your-key>"^
-    -H "Ocp-Apim-Subscription-Region:<your-resource-region>"^
-    -H "Content-Type: application/json"^
-    -d "<your-request-body>"
+```cmd
+curl -X POST 'https://<your-resource-name>.cognitiveservices.azure.com/translator/text/transliterate?api-version=2025-10-01-preview&fromScript=Cyrl&toScript=Latn&language=ru' ^
+  --header 'content-type: application/json' ^
+  --header 'ocp-apim-subscription-key: <your-resource-key>' ^
+  --data '{
+  "inputs": [
+    {
+      "Text": "пример текста"
+    }
+  ]
+}'
 ```
 ***Linux or macOS***
 
 ```bash
-curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com//transliterate?api-version=2025-10-01-preview" \
-    -H "Ocp-Apim-Subscription-Key:<your-key>" \
-    -H "Ocp-Apim-Subscription-Region:<your-resource-region>" \
-    -H "Content-Type: application/json" \
-    -d "<your-request-body>"
+curl -X POST 'https://<your-resource-name>.cognitiveservices.azure.com/translator/text/transliterate?api-version=2025-10-01-preview&fromScript=Cyrl&toScript=Latn&language=ru' \
+  --header 'content-type: application/json' \
+  --header 'ocp-apim-subscription-key: <your-resource-key>' \
+  --data '{
+  "inputs": [
+    {
+      "Text": "пример текста"
+    }
+  ]
+}'
 ```
 
 ### Private endpoint
@@ -90,19 +114,19 @@ Request parameters passed on the query string areas are as follows:
 |**api-version**|string|**True**|Version of the API requested by the client. Accepted value is 2025-10-01-preview.|
 | **fromScript**| string|**True**| Specifies the script used by the input text. Look up [supported languages](get-languages.md) using the `transliteration` scope, to find input scripts available for the selected language. |
 | **toScript** |string| **True**| Specifies the output script. Look up [supported languages](get-languages.md) using the `transliteration` scope, to find output scripts available for the selected combination of input language and input script. |
-|**language** | string | False | Specifies the language code for the `source` text. If not specified, the system autodetects the language of the source text. Accepted values are list of language code supported by the specified model. |
+|**language** | string | **True** | Specifies the output script. Refer to the [supported languages](get-languages.md) documentation (transliteration scope) to find output scripts corresponding to your chosen input language and input script combinations. |
 
 ## Request body
 
 The body of the request is a JSON array named `inputs`. Each array element is a JSON object with a string property named `Text`, which represents the string to convert.
 
 ```json
-
 {
-    "inputs": [
-        {"text":"こんにちは"},
-        {"text":"さようなら"}
-    ]
+  "inputs": [
+    {
+      "Text": "пример текста"
+    }
+  ]
 }
 ```
 
@@ -125,8 +149,10 @@ An example JSON response is:
 ```json
 {
   "value": [
-      {"text":"konnnichiha","script":"Latn"},
-      {"text":"sayounara","script":"Latn"}
+    {
+      "text": "primer teksta",
+      "script": "Latn"
+    }
   ]
 }
 ```

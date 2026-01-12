@@ -22,6 +22,8 @@ ms.update-cycle: 180-days
 
 # Create and manage prompt flow compute sessions in Microsoft Foundry portal
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 You need a compute session to run [prompt flows](prompt-flow.md). Use [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) to create and manage prompt flow compute sessions.

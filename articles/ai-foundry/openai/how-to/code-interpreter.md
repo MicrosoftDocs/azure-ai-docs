@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 09/24/2025
+ms.date: 11/20/2025
 author: aahill
 ms.author: aahi
 recommendations: false
@@ -15,6 +15,8 @@ recommendations: false
 ---
 
 # Azure OpenAI Assistants Code Interpreter (Preview)
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 [!INCLUDE [agent-service](../includes/agent-service.md)]
 

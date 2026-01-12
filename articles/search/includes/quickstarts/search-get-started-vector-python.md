@@ -4,7 +4,7 @@ author: rotabor
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 06/19/2025
+ms.date: 11/20/2025
 ---
 
 In this quickstart, you use a Jupyter notebook to create, load, and query vectors. The code examples perform these operations by using the [Azure AI Search client library](/python/api/overview/azure/search-documents-readme). The library provides an abstraction over the REST API for access to index operations such as data ingestion, search operations, and index management operations.
@@ -26,9 +26,7 @@ In Azure AI Search, a [vector store](../../vector-store.md) has an index schema 
 
 - [Git](https://git-scm.com/downloads) to clone the repo containing the Jupyter notebook and other related files.
 
----
-
-## Retrieve resource information
+## Get service information
 
 Requests to the search endpoint must be authenticated and authorized. While it's possible to use API keys or roles for this task, we recommend [using a keyless connection via Microsoft Entra ID](../../search-get-started-rbac.md).
 
@@ -603,7 +601,7 @@ Hybrid search consists of keyword queries and vector queries in a single search 
      Tags: ['pool', 'free wifi', 'air conditioning', 'concierge']
    ```
 
-   Because Reciprocal Rank Fusion (RRF) merges results, it helps to review the inputs. The following results are from only the full-text query. The top two results are Sublime Palace Hotel and History Lion Resort. The Sublime Palace Hotel has a stronger BM25 relevance score.
+   Because Reciprocal Rank Fusion (RRF) merges results, it helps to review the inputs. The following results are from only the full-text query. The top two results are Sublime Palace Hotel and Luxury Lion Resort. The Sublime Palace Hotel has a stronger BM25 relevance score.
 
    ```json
    {
@@ -618,7 +616,7 @@ Hybrid search consists of keyword queries and vector queries in a single search 
    },
    ```
 
-   In the vector-only query, which uses HNSW for finding matches, the Sublime Palace Hotel drops to fourth position. Historic Lion, which was second in the full-text search and third in the vector search, doesn't experience the same range of fluctuation, so it appears as a top match in a homogenized result set.
+   In the vector-only query, which uses HNSW for finding matches, the Sublime Palace Hotel drops to fourth position. Luxury Lion, which was second in the full-text search and third in the vector search, doesn't experience the same range of fluctuation, so it appears as a top match in a homogenized result set.
    
    ```json
    "value": [

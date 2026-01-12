@@ -41,7 +41,7 @@ You can continue to run older code with no updates if you retain the API version
 
 ### [**2025-11-01-preview**](#tab/migrate-11-01)
 
-If you're migrating from [2025-08-01-preview](#2025-08-01-preview-1), *knowledge agent* is renamed to *knowledge base*, and multiple properties are relocated to different objects and levels within an object definition.
+If you're migrating from [2025-08-01-preview](#2025-08-01-preview-1), "knowledge agent" is renamed to "knowledge base," and multiple properties are relocated to different objects and levels within an object definition.
 
 1. [Update searchIndex knowledge sources](#update-a-searchindex-knowledge-source).
 1. [Update azureBlob knowledge sources](#update-an-azureblob-knowledge-source).
@@ -353,7 +353,7 @@ The response includes the full definition of the new object. For more informatio
     }
     ```
 
-1. Formulate a [Create Knowledge Base](/rest/api/searchservice/knowledgebases/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) request as the basis for your migration.
+1. Formulate a [Create Knowledge Base](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) request as the basis for your migration.
 
     Start with the 08-01-preview JSON.
 
@@ -688,7 +688,7 @@ To review the [REST API reference documentation](/rest/api/searchservice/operati
 
 #### [**Nonbreaking changes**](#tab/nonbreaking-1)
 
-+ Adds knowledge sources for OneLake, SharePoint (local), SharePoint (remote) that retrieves content directly from Sharepoint, Web (Bing) that pulls from the Bing indexes.
++ Adds knowledge sources for OneLake, SharePoint (local), SharePoint (remote) that retrieves content directly from SharePoint, Web (Bing) that pulls from the Bing indexes.
 
 + All knowledge sources that pull from a search index have new ingestion options: `ingestionPermissionOptions` to support source-specific access models, `contentExtractionMode` that enables Azure Content Understanding in Foundry Tools integration, `aiServices` endpoint for Azure Content Understanding when `"contentExtractionMode": "minimal"`.
 

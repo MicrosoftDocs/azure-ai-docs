@@ -1,6 +1,11 @@
 items:
+# Fundamentals
 - name: Observability basics
   href: ../../../concepts/observability.md
+- name: Transparency Note for safety evaluations
+  href: ../../../concepts/safety-evaluations-transparency-note.md
+
+# Evaluation Types and Tools
 - name: Supported evaluators
   items:
    - name: General purpose evaluators 
@@ -17,6 +22,8 @@ items:
      href: ../../../concepts/evaluation-evaluators/azure-openai-graders.md
    - name: Custom evaluators
      href: ../../../concepts/evaluation-evaluators/custom-evaluators.md
+
+# Batch Evaluations
 - name: Batch evaluations
   items:
    - name: Run evaluations in the cloud (Microsoft Foundry SDK)
@@ -33,6 +40,8 @@ items:
      href: ../../observability/how-to/cluster-analysis.md
    - name: Human evaluation for agents
      href: ../../observability/how-to/human-evaluation.md
+
+# Security Testing
 - name: AI red teaming
   items:
    - name: AI red teaming agent overview
@@ -41,23 +50,23 @@ items:
      href: ../../../how-to/develop/run-scans-ai-red-teaming-agent.md
    - name: Run red teaming scans in the cloud (Microsoft Foundry SDK)
      href: ../../../how-to/develop/run-ai-red-teaming-cloud.md
+
+# Continuous Monitoring
 - name: Continuous monitoring and evaluation 
   items:
-   - name: Continuously evaluate your AI agents
-     href: ../../../how-to/continuous-evaluation-agents.md
    - name: Monitor agents in the dashboard
-     href: ../../agents/how-to/how-to-monitor-agents-dashboard.md
+     href: ../../observability/how-to/how-to-monitor-agents-dashboard.md
    - name: Monitoring dashboard insights with Foundry agent
      href: ../../observability/how-to/optimization-dashboard.md
    - name: Monitor model deployments
      href: ../../../foundry-models/how-to/monitor-models.md
+
+# Tracing and Debugging
 - name: Tracing
   items:
-   - name: Trace agent overview
+   - name: Agent tracing overview
      href: ../../observability/concepts/trace-agent-concept.md
    - name: Set up tracing
      href: ../../observability/how-to/trace-agent-setup.md
    - name: Tracing integrations
      href: ../../observability/how-to/trace-agent-framework.md
-- name: Transparency Note for safety evaluations
-  href: ../../../concepts/safety-evaluations-transparency-note.md

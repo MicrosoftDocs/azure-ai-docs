@@ -9,7 +9,7 @@ ms.topic: how-to
 author: s-polly
 ms.author: scottpolly
 ms.date: 04/15/2024
-ms.reviewer: alehughes
+ms.reviewer: jturuk
 ms.custom: devplatv2, build-2023
 ---
 
@@ -469,7 +469,7 @@ To view the collected data in Blob Storage from the studio UI:
 
 1. Navigate to **Datastores** and select your **workspaceblobstore (Default)**:
 
-    :::image type="content" source="./media/how-to-collect-production-data/workspace-blob-store.png" alt-text="Screenshot highlights Datastores page in AzureML workspace" lightbox="media/how-to-collect-production-data/workspace-blob-store.png":::
+    :::image type="content" source="./media/how-to-collect-production-data/workspace-blob-store.png" alt-text="Screenshot highlights Datastores page in Azure Machine Learning workspace" lightbox="media/how-to-collect-production-data/workspace-blob-store.png":::
 
 1. Use the **Browse** menu to view the collected production data:
 

@@ -1,5 +1,5 @@
 ---
-title: 'CLI (v2) AI Services connection YAML schema'
+title: 'CLI (v2) Foundry Tools connection YAML schema'
 titleSuffix: Azure Machine Learning
 description: Reference documentation for the CLI (v2) Foundry Tools connections YAML schema.
 services: machine-learning

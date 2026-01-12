@@ -7,7 +7,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.custom: build-2023, build-2023-dataai, devx-track-python, references_regions
 ms.topic: how-to
-ms.date: 09/30/2025
+ms.date: 12/01/2025
 author: mrbullwinkle
 ms.author: mbullwin
 zone_pivot_groups: openai-fine-tuning
@@ -39,13 +39,19 @@ In this article, you will learn how to:
 
 ::: zone pivot="programming-language-studio"
 
-[!INCLUDE [Foundry portal fine-tuning](../../includes/fine-tuning-foundry.md)]
+[!INCLUDE [Microsoft Foundry portal fine-tuning](../../includes/fine-tuning-foundry.md)]
 
 ::: zone-end
 
 ::: zone pivot="programming-language-python"
 
-[!INCLUDE [Foundry portal fine-tuning](../../includes/fine-tune-foundry-python.md)]
+# [OpenAI SDK](#tab/oai-sdk)
+
+[!INCLUDE [Microsoft Foundry fine-tuning OAI SDK](../includes/fine-tuning-oai-sdk.md)]
+
+# [Foundry SDK](#tab/foundry-sdk)
+
+[!INCLUDE [Microsoft Foundry fine-tuning Foundry SDK](../includes/fine-tuning-foundry-sdk.md)]
 
 ::: zone-end
 
@@ -61,13 +67,13 @@ In this article, you will learn how to:
 
 ::: zone pivot="programming-language-studio"
 
-[!INCLUDE [Foundry portal fine-tuning](../includes/fine-tuning-unified.md)]
+[!INCLUDE [Microsoft Foundry portal fine-tuning](../includes/fine-tuning-unified.md)]
 
 ::: zone-end
 
 ::: zone pivot="programming-language-python"
 
-[!INCLUDE [Python SDK fine-tuning](../includes/fine-tuning-python.md)]
+[!INCLUDE [Python SDK fine-tuning](../includes/fine-tuning-oai-sdk.md)]
 
 ::: zone-end
 
