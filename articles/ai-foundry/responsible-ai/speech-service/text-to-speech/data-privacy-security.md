@@ -26,10 +26,10 @@ You are also responsible for obtaining any licenses, permissions, or other right
 
 #### [Custom neural voice](#tab/custom-neural-voice)
 
-- **Recorded voice talent acknowledgement statement file**. Customers are required to upload a specific recorded statement spoken by the voice talent in which they acknowledge that you will use their voice to create synthetic voice(s).
+- **Recorded voice talent acknowledgment statement file**. Customers are required to upload a specific recorded statement spoken by the voice talent in which they acknowledge that you will use their voice to create synthetic voice(s).
 
     > [!NOTE]
-    > When preparing your recording script, make sure you include the required acknowledgement statement for the voice talent to record. You can find the statement in multiple languages [here](https://github.com/Azure-Samples/Cognitive-Speech-TTS/blob/master/CustomVoice/script/verbal-statement-all-locales.txt). The language of the acknowledgement statement must be the same as the language of the audio recording training data.
+    > When preparing your recording script, make sure you include the required acknowledgment statement for the voice talent to record. You can find the statement in multiple languages [here](https://github.com/Azure-Samples/Cognitive-Speech-TTS/blob/master/CustomVoice/script/verbal-statement-all-locales.txt). The language of the acknowledgment statement must be the same as the language of the audio recording training data.
 
 - **Training data (including audio files and related text transcripts).** This includes audio recordings from the voice talent who has agreed to use their voice for model training and the related text transcripts. In a custom neural voice pro project, you can provide your own text transcriptions of audio or use the automated speech recognition transcription feature available within Speech Studio to generate a text transcription of the audio. Both the audio recordings and the text transcription files will be used as voice model training data. In a custom neural voice lite project, you will be asked to record the voice speaking the Microsoft defined script in Speech Studio. Text transcripts are not required for personal voice features.
 - **Text as the test script.** You can upload your own text-based scripts to evaluate and test the quality of the custom neural voice model by generating speech synthesis audio samples. This does not apply to personal voice features.
@@ -37,12 +37,12 @@ You are also responsible for obtaining any licenses, permissions, or other right
 
 #### [Custom text to speech avatar](#tab/custom-avatar)
 
-- **Recorded avatar talent acknowledgement statement file.** Customers are required to upload a specific, video-recorded statement spoken by the avatar talent in which they acknowledge that you will use their voice and image to create avatar model(s).
+- **Recorded avatar talent acknowledgment statement file.** Customers are required to upload a specific, video-recorded statement spoken by the avatar talent in which they acknowledge that you will use their voice and image to create avatar model(s).
 
     > [!NOTE]
-    > When making your video recording plan, make sure you include the required acknowledgement statement for the avatar talent to record. You can find the statement in multiple languages [here](https://github.com/Azure-Samples/Cognitive-Speech-TTS/blob/master/CustomVoice/script/verbal-statement-all-locales.txt). The language of the acknowledgement statement must be the same as the language of the video recording training data.  
+    > When making your video recording plan, make sure you include the required acknowledgment statement for the avatar talent to record. You can find the statement in multiple languages [here](https://github.com/Azure-Samples/Cognitive-Speech-TTS/blob/master/CustomVoice/script/verbal-statement-all-locales.txt). The language of the acknowledgment statement must be the same as the language of the video recording training data.  
     > 
-    > The acknowledgement statement video is not required to be in the same condition (such as recording environment, avatar talent clothes) as the video recording training data, but the actor’s face should be fully exposed and without any occlusion.
+    > The acknowledgment statement video is not required to be in the same condition (such as recording environment, avatar talent clothes) as the video recording training data, but the actor’s face should be fully exposed and without any occlusion.
 - **Training data (including audio files and image/video files).** This includes video and audio recordings from the avatar talent who has agreed to use their image and voice for model training. We don’t require a text transcription of the audio in the video.
 - **Text as the test script.** You can upload your own text-based scripts to evaluate and test the quality of the custom avatar model by generating synthetic avatar video samples.
 - **Text input for speech synthesis.** This is the text you select and send to the text to speech service to generate audio and video output using your custom avatar.
@@ -61,7 +61,7 @@ The diagram below illustrates how your data is processed for synthesis with preb
 
 ### Custom neural voice
 
-The diagram below illustrates how your data is processed for custom neural voice. This diagram covers three different types of processing: how Microsoft verifies recorded acknowledgement statement files of voice talent prior to custom neural voice model training, how Microsoft creates a custom neural voice model with your training data, and how text to speech processes your text input to generate audio content.
+The diagram below illustrates how your data is processed for custom neural voice. This diagram covers three different types of processing: how Microsoft verifies recorded acknowledgment statement files of voice talent prior to custom neural voice model training, how Microsoft creates a custom neural voice model with your training data, and how text to speech processes your text input to generate audio content.
 
 :::image type="content" source="media\data-privacy-image.png" alt-text="How custom neural voice processes data":::
 
@@ -79,13 +79,15 @@ The diagram below illustrates how your data is processed with video translation.
 
 #### [Prebuilt voice / avatar](#tab/prebuilt-voice)
 
+There aren't any additional sections for prebuilt voice or avatar.
+
 #### [Custom neural voice](#tab/custom-neural-voice)
 
-## Recorded acknowledgement statement verification 
+## Recorded acknowledgment statement verification 
 
-Microsoft requires customers to upload an audio file to Speech Studio with a recorded statement of the voice talent acknowledging that the customer will use their voice to create a synthetic voice. Microsoft may use [Microsoft’s speech to text and speech recognition](/azure/ai-services/speech-service/speech-to-text) technology to transcribe this recorded acknowledgement statement to text and verify that the content in the recording matches the pre-defined script provided by Microsoft. This acknowledgement statement, along with the talent information you provide with the audio, is used to create a voice talent profile. You must associate training data with the relevant voice talent profile when initiating custom neural voice training. 
+Microsoft requires customers to upload an audio file to Speech Studio with a recorded statement of the voice talent acknowledging that the customer will use their voice to create a synthetic voice. Microsoft may use [Microsoft’s speech to text and speech recognition](/azure/ai-services/speech-service/speech-to-text) technology to transcribe this recorded acknowledgment statement to text and verify that the content in the recording matches the pre-defined script provided by Microsoft. This acknowledgment statement, along with the talent information you provide with the audio, is used to create a voice talent profile. You must associate training data with the relevant voice talent profile when initiating custom neural voice training. 
 
-Microsoft may also process biometric voice signatures from the recorded acknowledgement statement file of the voice talent and from randomized audio from the training dataset(s) to confirm that the voice signature in the acknowledgement statement recording and the training data recordings match with reasonable confidence using Azure AI [Speaker Verification](/azure/ai-services/speech-service/speaker-recognition-overview#speaker-verification). A voice signature may also be called a “voice template” or “voiceprint” and is a numeric vector that represents an individual’s voice characteristics that is extracted from audio recordings of a person speaking. This technical safeguard is intended to help prevent misuse of custom neural voice, by, for example, preventing customers from training voice models with audio recordings and using the models to spoof a person’s voice without their knowledge or consent.
+Microsoft may also process biometric voice signatures from the recorded acknowledgment statement file of the voice talent and from randomized audio from the training dataset(s) to confirm that the voice signature in the acknowledgment statement recording and the training data recordings match with reasonable confidence using Azure AI [Speaker Verification](/azure/ai-services/speech-service/speaker-recognition-overview#speaker-verification). A voice signature may also be called a “voice template” or “voiceprint” and is a numeric vector that represents an individual’s voice characteristics that is extracted from audio recordings of a person speaking. This technical safeguard is intended to help prevent misuse of custom neural voice, by, for example, preventing customers from training voice models with audio recordings and using the models to spoof a person’s voice without their knowledge or consent.
 
 The voice signatures are used by Microsoft solely for the purposes of speaker verification or as otherwise necessary to investigate misuse of the services. 
 
@@ -117,19 +119,19 @@ In addition, before you can deploy any synthetic voice model created using a cus
 
 ## Data processing for personal voice API (Preview)
 
-Personal voice allows customers to create a synthetic voice using a short human voice sample. The verbal acknowledgement statement file described above is required from each user who uses the integration in your application. Microsoft may process biometric voice signatures from the recorded voice statement file of each user and their recorded training sample (a.k.a the prompt) to confirm that the voice signature in the acknowledgement statement recording and the training data recording matches with reasonable confidence using Azure AI [Speaker Verification](/azure/ai-services/speech-service/speaker-recognition-overview#speaker-verification).
+Personal voice allows customers to create a synthetic voice using a short human voice sample. The verbal acknowledgment statement file described above is required from each user who uses the integration in your application. Microsoft may process biometric voice signatures from the recorded voice statement file of each user and their recorded training sample (a.k.a the prompt) to confirm that the voice signature in the acknowledgment statement recording and the training data recording matches with reasonable confidence using Azure AI [Speaker Verification](/azure/ai-services/speech-service/speaker-recognition-overview#speaker-verification).
 
 The training sample will be used to create the voice model. The voice model can then be used to generate speech with text input provided to the service via the API, with no additional deployment required.
 
 #### [Custom text to speech avatar](#tab/custom-avatar)
 
-## Video acknowledgement statement verification 
+## Video acknowledgment statement verification 
 
-Microsoft requires customers to provide a video file with a recorded acknowledgement statement from their avatar talent acknowledging that the customer will use the talent’s image and voice to create a custom avatar. Microsoft will verify that the content in the acknowledgement statement recording matches the pre-defined script provided by Microsoft.
+Microsoft requires customers to provide a video file with a recorded acknowledgment statement from their avatar talent acknowledging that the customer will use the talent’s image and voice to create a custom avatar. Microsoft will verify that the content in the acknowledgment statement recording matches the pre-defined script provided by Microsoft.
 
-Microsoft may compare the face and the voice of the avatar talent in the recorded acknowledgement video statement file with randomized videos from the relevant training datasets to confirm that the person in the training dataset video recordings and the person in the acknowledgment video statement file match.
+Microsoft may compare the face and the voice of the avatar talent in the recorded acknowledgment video statement file with randomized videos from the relevant training datasets to confirm that the person in the training dataset video recordings and the person in the acknowledgment video statement file match.
 
-Only when both the acknowledgement statement video recording file and video training data are provided and pass actor verification testing will Microsoft start to train the custom avatar model.
+Only when both the acknowledgment statement video recording file and video training data are provided and pass actor verification testing will Microsoft start to train the custom avatar model.
  
 ## Training a custom text to speech avatar model 
 
@@ -155,11 +157,11 @@ A customer’s training data is used only to develop that customer’s custom av
 
 **Output audio and video content:** Microsoft does not store audio or video content generated with the real-time synthesis API. If you are using Video translation or the [Long Audio API](/azure/ai-services/speech-service/batch-synthesis) for text to speech avatar batch API, the output audio or video content is stored in Azure storage. These audios or videos can be removed at any time via the [delete](/azure/ai-services/speech-service/batch-synthesis#remove-previous-requests) operation.
 
-**Recorded acknowledgement statement and Speaker Verification data**: The voice signatures are used by Microsoft solely for the purposes of speaker verification or as otherwise necessary to investigate misuse of the services. The voice signatures will be retained only for the time necessary to perform speaker verification, which may occur from time to time. Microsoft may require this verification before allowing you to train or retrain custom neural voice models in Speech Studio, or as otherwise necessary. Microsoft will retain the recorded acknowledgement statement file and voice talent profile data for as long as necessary to preserve the security and integrity of Azure Speech.
+**Recorded acknowledgment statement and Speaker Verification data**: The voice signatures are used by Microsoft solely for the purposes of speaker verification or as otherwise necessary to investigate misuse of the services. The voice signatures will be retained only for the time necessary to perform speaker verification, which may occur from time to time. Microsoft may require this verification before allowing you to train or retrain custom neural voice models in Speech Studio, or as otherwise necessary. Microsoft will retain the recorded acknowledgment statement file and voice talent profile data for as long as necessary to preserve the security and integrity of Azure Speech.
 
 **Custom neural voice models**: While you maintain the exclusive usage rights to your custom neural voice model, Microsoft may independently retain a copy of custom neural voice models for as long as necessary. Microsoft may use your custom neural voice model for the sole purpose of protecting the security and integrity of Foundry Tools. 
 
-Microsoft will secure and store copies of each voice talent's recorded acknowledgement statement and custom neural voice models with the same high-level security that it uses for its other Azure Services. Learn more at [Microsoft Trust Center](https://www.microsoft.com/TrustCenter/CloudServices/Azure/default.aspx). 
+Microsoft will secure and store copies of each voice talent's recorded acknowledgment statement and custom neural voice models with the same high-level security that it uses for its other Azure Services. Learn more at [Microsoft Trust Center](https://www.microsoft.com/TrustCenter/CloudServices/Azure/default.aspx). 
 
 **Training data:** You submit voice training data of voice talent to generate voice models via [Speech Studio](https://speech.microsoft.com/), which will be retained and stored by default in Azure storage (See [Azure Storage encryption for data at REST](/azure/storage/common/storage-service-encryption) for details). You can access and delete any of the training data used to build voice models via Speech Studio.
 
@@ -174,17 +176,19 @@ You can manage storage of your training data via [BYOS (Bring Your Own Storage)]
 
 **Output audio and video content:** Microsoft does not store audio or video content generated with the real-time synthesis API. If you are using Video translation or the [Long Audio API](/azure/ai-services/speech-service/batch-synthesis) for text to speech avatar batch API, the output audio or video content is stored in Azure storage. These audios or videos can be removed at any time via the [delete](/azure/ai-services/speech-service/batch-synthesis#remove-previous-requests) operation.
 
-**Recorded acknowledgement statement data**: Microsoft may compare the acknowledgement statement video and training data before allowing you to train or retrain custom avatar models. Microsoft will retain the recorded acknowledgement statement file and avatar talent profile data for as long as necessary to preserve the security and integrity of Foundry Tools.
+**Recorded acknowledgment statement data**: Microsoft may compare the acknowledgment statement video and training data before allowing you to train or retrain custom avatar models. Microsoft will retain the recorded acknowledgment statement file and avatar talent profile data for as long as necessary to preserve the security and integrity of Foundry Tools.
 
 **Custom text to speech avatar models:** While you maintain the exclusive usage rights to your custom avatar model, Microsoft may independently retain a copy of custom avatar models for as long as necessary. Microsoft may use your custom avatar model for the sole purpose of protecting the security and integrity of Foundry Tools.
 
-Microsoft will secure and store a copy of avatar talent’s recorded acknowledgement statement and custom avatar models with the same high-level security that it uses for its other Azure Services. Learn more at [Microsoft Trust Center](https://www.microsoft.com/TrustCenter/CloudServices/Azure/default.aspx). 
+Microsoft will secure and store a copy of avatar talent’s recorded acknowledgment statement and custom avatar models with the same high-level security that it uses for its other Azure Services. Learn more at [Microsoft Trust Center](https://www.microsoft.com/TrustCenter/CloudServices/Azure/default.aspx). 
 
 **Training data**: Training data submitted via [Speech Studio](https://speech.microsoft.com/portal) will be retained and stored in Azure storage by default (See [Azure Storage encryption for data at ](/azure/storage/common/storage-service-encryption)REST for details). You can access and delete any of your training data used to build avatar models via Speech Studio. 
 
+---
+
 ## Preventing abuse and harmful content generation (preview)
 
-To reduce the risk of harmful use of the Azure text to speech avatar services, the Azure text to speech avatar includes content safety features. Content safety occurs synchronously as the service processes text to generate audio. No text or generated results are stored in the content classifier models, and text and results are not used to train, retrain, or improve the classifier models. To learn more about the harm categories of content safety features click [here](/azure/ai-services/content-safety/concepts/harm-categories?tabs=warning).
+To reduce the risk of harmful use of the Azure text to speech avatar services, the Azure text to speech avatar includes content safety features. Content safety occurs synchronously as the service processes text to generate audio. No text or generated results are stored in the content classifier models, and text and results are not used to train, retrain, or improve the classifier models. To learn more about the harm categories of content safety features, see [Harm categories](/azure/ai-services/content-safety/concepts/harm-categories?tabs=warning).
 
 ## See also
 
