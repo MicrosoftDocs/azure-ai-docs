@@ -127,9 +127,29 @@ Dragon HD Omni supports a comprehensive set of 100+ speaking styles. Use the `st
 Dragon HD Omni voices follow the naming pattern: `languagelocale-voicename:DragonHDOmniLatestNeural`. You can use this voice name format by adding the suffix `:DragonHDOmniLatestNeural` to find the Omni version quickly:
 
 Example:
+
 | Previous neural voice | Omni version voice name                |
 |------------------------|----------------------------------------|
 | de-DE-ConradNeural     | de-DE-Conrad:DragonHDOmniLatestNeural  |
+
+### Dragon HD Flash voices
+
+HD Flash voices are optimized variants of selected DragonHD voices, currently supporting Chinese (`zh-CN`) and English (`en-US`) text. These voices deliver enhanced naturalness and are available in standard Azure regions (`eastus`, `westeurope`, `southeastasia`) as well as China regions (`chinaeast2`, `chinanorth2`, `chinanorth3`).
+
+Below is the complete list of available HD Flash voices:
+
+| Voice Name                                 | Gender |
+|-------------------------------------------|--------|
+| zh-CN-Xiaochen:DragonHDFlashLatestNeural  | Female |
+| zh-CN-Xiaoxiao:DragonHDFlashLatestNeural  | Female |
+| zh-CN-Xiaoxiao2:DragonHDFlashLatestNeural | Female |
+| zh-CN-Yunxia:DragonHDFlashLatestNeural    | Male   |
+| zh-CN-Yunxiao:DragonHDFlashLatestNeural   | Male   |
+| zh-CN-Yunye:DragonHDFlashLatestNeural     | Male   |
+| zh-CN-Yunyi:DragonHDFlashLatestNeural     | Male   |
+
+> [!NOTE]
+> HD Flash only supports text in `zh-CN` and `en-US`.
 
 ## How to use Azure Speech HD voices
 
@@ -322,25 +342,6 @@ For detailed information on the supported and unsupported SSML elements for Azur
 > [!NOTE]
 > Although a [previous section in this guide](#comparison-of-azure-speech-hd-voices-to-other-azure-text-to-speech-voices) also compared Azure Speech HD voices to Azure OpenAI HD voices, the SSML elements supported by Azure Speech aren't applicable to Azure OpenAI voices.
 
-## HD Flash voices
-
-HD Flash voices are optimized variants of selected DragonHD voices, currently supporting Chinese (`zh-CN`) and English (`en-US`) text. These voices deliver enhanced naturalness and are available in standard Azure regions (`eastus`, `westeurope`, `southeastasia`) as well as China regions (`chinaeast2`, `chinanorth2`, `chinanorth3`).
-
-Below is the complete list of available HD Flash voices:
-
-| Voice Name                                 | Gender |
-|-------------------------------------------|--------|
-| zh-CN-Xiaochen:DragonHDFlashLatestNeural  | Female |
-| zh-CN-Xiaoxiao:DragonHDFlashLatestNeural  | Female |
-| zh-CN-Xiaoxiao2:DragonHDFlashLatestNeural | Female |
-| zh-CN-Yunxia:DragonHDFlashLatestNeural    | Male   |
-| zh-CN-Yunxiao:DragonHDFlashLatestNeural   | Male   |
-| zh-CN-Yunye:DragonHDFlashLatestNeural     | Male   |
-| zh-CN-Yunyi:DragonHDFlashLatestNeural     | Male   |
-
-> [!NOTE]
-> HD Flash only supports text in `zh-CN` and `en-US`.
-
 ## Choosing between DragonHD and Dragon HD Omni
 
 Both HD voice models deliver high-quality synthesis, but they serve different use cases:
@@ -354,7 +355,7 @@ Both HD voice models deliver high-quality synthesis, but they serve different us
 
 ### When to use each model
 
-**Choose DragonHD if you:**
+**Choose Dragon HD if you:**
 - Need a specific voice persona for specific languages to be high quality
 - Building enterprise customer service applications
 - Want fine-tuned control via temperature and advanced parameters
