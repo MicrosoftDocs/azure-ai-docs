@@ -27,7 +27,8 @@ Dragon HD Omni unifies a broad range of prebuilt voices into one advanced voice 
 
 You also can use this voice name format by adding the suffix `:DragonHDOmniLatestNeural` to try the Omni version of the given voice via direct SSML call
 
-For example
+For example:
+
 | **Previous neural voice** | **Omni version voice name**                        |
 | ------------------------- | -------------------------------------------------- |
 | `de-DE-ConradNeural`      | `de-DE-Conrad:DragonHDOmniLatestNeural`            |
