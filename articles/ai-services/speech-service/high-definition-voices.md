@@ -132,7 +132,7 @@ Example:
 |------------------------|----------------------------------------|
 | de-DE-ConradNeural     | de-DE-Conrad:DragonHDOmniLatestNeural  |
 
-Check the full Dragon HD Omni voice list [here](https://github.com/Azure-Samples/Cognitive-Speech-TTS/blob/master/Blog-Samples/Introducing-Dragon-HD-Omni/dragonhdomni_voice_list.json).
+Check out the full [Dragon HD Omni voice list](https://github.com/Azure-Samples/Cognitive-Speech-TTS/blob/master/Blog-Samples/Introducing-Dragon-HD-Omni/dragonhdomni_voice_list.json).
 
 
 ### Dragon HD Flash voices
