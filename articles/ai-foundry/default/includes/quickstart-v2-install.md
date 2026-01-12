@@ -81,7 +81,7 @@ Follow along below or get the code:
 
 Follow along below or get the code:
 > [!div class="nextstepaction"]
-> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/REST/mslearn-resources/quickstart).
+> [Get the code](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/REST/quickstart).
 
 
 # [Foundry portal](#tab/portal)

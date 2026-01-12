@@ -131,4 +131,4 @@ Reference: [Remove-AzResourceGroup](/powershell/module/az.resources/remove-azres
 ## Related content
 
 - [Get started with the SDK](../quickstarts//get-started-code.md)
-- [Security configurations samples](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup) — See example Bicep template configurations for enterprise security configurations, including network isolation, customer-managed key encryption, advanced identity options, and Agents standard setup.
+- [Security configurations samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples) — See example Bicep template configurations for enterprise security configurations, including network isolation, customer-managed key encryption, advanced identity options, and Agents standard setup.
