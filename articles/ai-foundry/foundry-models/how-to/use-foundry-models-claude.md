@@ -5,7 +5,7 @@ description: Learn how to deploy and use Anthropic's Claude models including  Cl
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 12/02/2025
+ms.date: 01/07/2026
 ms.custom: ignite-2024
 author: msakande
 ms.author: mopeakande
@@ -74,8 +74,6 @@ Once deployed, you have some options for interacting with Claude models to gener
     - [Token Count API](https://docs.claude.com/en/api/messages-count-tokens) to count the number of tokens in a message.
     - [Files API](https://docs.claude.com/en/api/files-create) to upload and manage files to use with the Claude API without having to re-upload content with each request.
     - [Skills API](https://docs.claude.com/en/api/skills/create-skill) to create custom skills for Claude AI.
-
-- Use the [Responses API to generate text responses](generate-responses.md) with Claude models in Microsoft Foundry. For multi-language code samples that demonstrate this usage, see [Use Claude Models with OpenAI Responses API in Microsoft Foundry](https://github.com/Azure-Samples/claude-with-openai-responses).
 
 ### Use the Messages API to work with Claude models
 
@@ -325,7 +323,7 @@ For a list of supported runtimes, see [Requirements to use Anthropic TypeScript 
 
 For Messages API endpoints, use the deployed model's endpoint URI `https://<resource-name>.services.ai.azure.com/anthropic/v1/messages` with Microsoft Entra ID authentication.
 
-If you configure the resource with Microsoft Entra ID support, pass your token in the Authorization header with the format `Bearer $AZURE_AUTH_TOKEN`. Use scope `https://cognitiveservices.azure.com/.default`. Using Microsoft Entra ID might require additional configuration in your resource to grant access. For more information, see [configure authentication with Microsoft Entra ID](https://learn.microsoft.com/azure/ai-foundry/foundry-models/how-to/configure-entra-id?tabs=rest&pivots=programming-language-cli#use-microsoft-entra-id-in-your-code).
+If you configure the resource with Microsoft Entra ID support, pass your token in the Authorization header with the format `Bearer $AZURE_AUTH_TOKEN`. Use scope `https://cognitiveservices.azure.com/.default`. Using Microsoft Entra ID might require additional configuration in your resource to grant access. For more information, see [configure authentication with Microsoft Entra ID](/azure/ai-foundry/foundry-models/how-to/configure-entra-id?tabs=rest#use-microsoft-entra-id-in-your-code).
 
 1. Export your Microsoft Entra ID token to an environment variable:
 
@@ -419,7 +417,6 @@ For Messages API endpoints, use the deployed model's endpoint URI `https://<reso
 
 ## Agent support
 
-- [Foundry Agent Service](../../agents/concepts/model-region-support.md) supports Claude models.
 - [Microsoft Agent Framework](/agent-framework/user-guide/agents/agent-types/anthropic-agent) supports creating agents that use Claude models.
 - You can build custom AI agents with the [Claude Agent SDK](https://docs.claude.com/en/docs/agent-sdk/overview).
 

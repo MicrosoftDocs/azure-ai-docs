@@ -6,7 +6,7 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.topic: how-to
-ms.reviewer: None
+ms.reviewer: shshubhe
 author: s-polly
 ms.author: scottpolly
 ms.date: 03/31/2025

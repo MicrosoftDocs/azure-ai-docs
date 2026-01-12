@@ -19,6 +19,8 @@ author: sdgilley
 
 # Tutorial: Part 3 - Evaluate a custom chat application with the Microsoft Foundry SDK
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 In this tutorial, you evaluate the chat app you built in [Part 2 of the tutorial series](copilot-sdk-build-rag.md). You assess your app's quality across multiple metrics and then iterate on improvements. In this part, you:
 
 > [!div class="checklist"]
@@ -30,10 +32,10 @@ This tutorial builds on [Part 2: Build a custom chat app with the Microsoft Foun
 
 ## Prerequisites
 
-[!INCLUDE [hub-only-tutorial](../includes/hub-only-tutorial.md)]
+[!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
 
 - Complete [Part 2 of the tutorial series](copilot-sdk-build-rag.md) to build the chat application.
-- Use the same **Microsoft Foundry** project you created in Part 1.
+- Use the same **hub-based** project you created in Part 1.
 - **Azure AI permissions**: Owner or Contributor role to modify model endpoint rate limits and run evaluation jobs.
 - Make sure you complete the steps to [add telemetry logging](copilot-sdk-build-rag.md#add-telemetry-logging) from Part 2.
 
@@ -91,9 +93,10 @@ In Part 1 of this tutorial series, you created an **.env** file that specifies t
     az login
     ```
 
-1. Install the required package:
+1. Install the required packages:
 
     ```bash
+    pip install openai
     pip install azure-ai-evaluation[remote]
     ```
 
@@ -107,8 +110,10 @@ Before running the full evaluation (which takes 5–10 minutes), verify that the
 from azure.ai.projects import AIProjectClient
 from azure.identity import DefaultAzureCredential
 
-# Verify connection to project
-client = AIProjectClient.from_config(credential=DefaultAzureCredential())
+# Test that you can connect to your project
+project = AIProjectClient.from_connection_string(
+    conn_str=os.environ["AIPROJECT_CONNECTION_STRING"], credential=DefaultAzureCredential()
+)
 print("Evaluation SDK is ready! You can now run evaluate.py")
 ```
 

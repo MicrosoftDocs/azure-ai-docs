@@ -8,7 +8,7 @@ ms.subservice: mldata
 ms.topic: reference
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: qiax
+ms.reviewer: soumyapatro
 ms.date: 05/23/2023
 ms.custom: cliv2, build-2023
 ---

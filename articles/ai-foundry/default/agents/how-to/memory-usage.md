@@ -33,7 +33,7 @@ This article explains how to create, manage, and use memory stores. For conceptu
 
 ### Authorization and permissions
 
-We recommend [role-based access control](../../../concepts/rbac-azure-ai-foundry.md) for production deployments. If roles aren't feasible, skip this section and use key-based authentication instead.
+We recommend [role-based access control](../../../concepts/rbac-foundry.md) for production deployments. If roles aren't feasible, skip this section and use key-based authentication instead.
 
 To configure role-based access:
 

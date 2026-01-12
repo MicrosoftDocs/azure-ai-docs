@@ -20,6 +20,8 @@ author: sdgilley
 
 # Tutorial:  Part 1 - Set up project and development environment to build a custom knowledge retrieval (RAG) app with the Microsoft Foundry SDK
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 In this tutorial, you set up the resources needed to build a custom knowledge retrieval (RAG) chat app with the Microsoft Foundry SDK. This is part one of a three-part tutorial series. You create the resources here, build the app in part two, and evaluate it in part three. In this part, you:
 
 > [!div class="checklist"]
@@ -34,7 +36,7 @@ If you completed other tutorials or quickstarts, you might have already created 
 
 ## Prerequisites
 
-[!INCLUDE [hub-only-tutorial](../includes/hub-only-tutorial.md)]
+[!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
 
 * An Azure account with an active subscription and **Owner** or **Contributor** role assigned. If you don't have one, [create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * **Microsoft Foundry**: Owner or Contributor role to create a project.
@@ -127,24 +129,43 @@ Install the required packages.
     pip install -r requirements.txt
     ```
 
-### Verify your setup
+## Configure environment variables
+
+[!INCLUDE [create-env-file](../includes/create-env-file-tutorial.md)]
+
+## Install the Azure CLI and sign in 
+
+[!INCLUDE [Install the Azure CLI](../includes/install-cli.md)]
+
+Keep this terminal window open to run your python scripts from here as well, now that you signed in.
+
+## Verify your setup
 
 Verify that your environment is set up correctly by running a quick test:
 
 ```python
-from azure.ai.projects import AIProjectClient
+import os
 from azure.identity import DefaultAzureCredential
+import azure.ai.projects
 
-# This will fail if credentials aren't set up, confirming auth is working
-client = AIProjectClient.from_config(credential=DefaultAzureCredential())
-print("Setup successful! You're ready to build your RAG app.")
+# Check the SDK version
+print(f"Azure AI Projects SDK version: {azure.ai.projects.__version__}")
+
+# Test that you can connect to your project
+project = AIProjectClient.from_connection_string(
+    conn_str=os.environ["AIPROJECT_CONNECTION_STRING"], credential=DefaultAzureCredential()
+)
+print("✓ Setup verified! Ready to build your RAG app.")
 ```
 
-If you see `"Setup successful!"`, your Azure credentials and SDK are configured correctly.
+If you see `"Setup successful!"`, your Azure credentials and SDK are configured correctly. 
+
+> [!TIP]
+> This tutorial requires Azure AI Projects SDK version `1.0.0b10`. The SDK version displayed above helps you verify compatibility. If you have a different version, the `from_connection_string()` method may not be available. To install the required version, run `pip install azure-ai-projects==1.0.0b10`. 
 
 References: [Azure AI Projects client library](/python/api/azure-ai-projects/azure.ai.projects), [DefaultAzureCredential](/python/api/azure-identity/azure.identity.DefaultAzureCredential).
 
-### Create helper script
+## Create helper script
 
 Create a folder for your work. Create a file named **config.py** in this folder. You'll use this helper script in the next two parts of the tutorial series. The script loads your environment variables and initializes the Azure AI Projects client. Add the following code:
 
@@ -155,15 +176,6 @@ References: [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.AI
 > [!NOTE]
 > This script also uses a package you haven't installed yet, `azure.monitor.opentelemetry`.  You'll install this package in the next part of the tutorial series.
 
-## Configure environment variables
-
-[!INCLUDE [create-env-file](../includes/create-env-file-tutorial.md)]
-
-## Install the Azure CLI and sign in 
-
-[!INCLUDE [Install the Azure CLI](../includes/install-cli.md)]
-
-Keep this terminal window open to run your python scripts from here as well, now that you signed in.
 
 ## Clean up resources
 

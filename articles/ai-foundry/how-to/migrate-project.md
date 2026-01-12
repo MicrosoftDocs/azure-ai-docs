@@ -23,7 +23,7 @@ ai-usage: ai-assisted
 
 **Prerequisites**: 
 - An existing hub-based project
-- **Azure role**: Contributor or Owner role on the subscription or resource group to create resources and projects
+- **Azure role**: **Owner** role on the subscription or resource group to create resources and projects and assign roles to the new project.
 
 This guide helps existing customers with [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]s migrate to the new [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]s to access the latest platform capabilities.
 
@@ -36,7 +36,7 @@ Microsoft Foundry is transitioning to a unified platform as a service, replacing
 [Learn more](https://techcommunity.microsoft.com/blog/AIPlatformBlog/build-recap-new-azure-ai-foundry-resource-developer-apis-and-tools/4427241).
 
 > [!IMPORTANT]
-> New generative AI and model-centric features are available only through the Foundry resource and its Foundry projects. Currently, some capabilities still require a hub next to your Foundry resource.  For a comparison of capabilities, see [What type of project do I need?](../what-is-azure-ai-foundry.md#which-type-of-project-do-i-need)
+> New generative AI and model-centric features are available only through the Foundry resource and its Foundry projects. Currently, some capabilities still require a hub next to your Foundry resource.  For a comparison of capabilities, see [What type of project do I need?](../what-is-foundry.md#which-type-of-project-do-i-need)
 
 ## New Foundry projects overview
 
@@ -61,7 +61,7 @@ New capabilities include:
 - **Projects are now child resources**; they might be assigned their own admin controls like Azure RBAC, but by default share common settings from their parent resource. This principle aims to take IT admins out of the day-to-day loop. Once security, resource connectivity and governance are established at the resource level, as developer you can create your own project as a folder to organize your work.
 
 > [!IMPORTANT]
-> Foundry projects feature set aren't yet on full parity with [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]s. For an up-to-date view on supported features, see [this support matrix](/azure/ai-foundry/what-is-azure-ai-foundry#which-type-of-project-do-i-need).
+> Foundry projects feature set aren't yet on full parity with [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]s. For an up-to-date view on supported features, see [this support matrix](../what-is-foundry.md#types-of-projects).
 
 ## How to switch to Foundry project
 
@@ -176,7 +176,7 @@ You can create a new project in one of two ways:
 
 ---
 
-You're now ready to start building agents in general availability and with the latest capabilities. [Get started](/azure/ai-foundry/agents/quickstart?pivots=ai-foundry-portal) using SDK or Agent playground.
+You're now ready to start building agents in general availability and with the latest capabilities. [Get started](../agents/quickstart.md?pivots=ai-foundry-portal) using SDK or Agent playground.
 
 :::image type="content" source="../media/migrate-project/agent-playground.png" alt-text="Screenshot of agent building interface.":::
 
@@ -186,7 +186,7 @@ If your [!INCLUDE [hub-project-name](../includes/hub-project-name.md)] used conn
 
 # [Foundry portal](#tab/azure-ai-foundry)
 
- In the **Management center**, [add any connections](/azure/ai-foundry/how-to/connections-add) to tools and data you used before in your initial [!INCLUDE [hub-project-name](../includes/hub-project-name.md)].
+ In the **Management center**, [add any connections](./connections-add.md) to tools and data you used before in your initial [!INCLUDE [hub-project-name](../includes/hub-project-name.md)].
 
 # [Azure portal](#tab/azure)
 
@@ -204,7 +204,7 @@ You define connections as instances of type *CognitiveServices/account/connectio
 
 To move from the preview of Agent service to Agent service in general availability on Foundry projects, upgrade your code agents by making the following changes:
 
-1. Install the [latest version](/azure/ai-foundry/agents/quickstart?pivots=programming-language-python-azure) of your preferred SDK client.
+1. Install the [latest version](../agents/quickstart.md?pivots=programming-language-python-azure) of your preferred SDK client.
 
 1. Update your project client to use the Foundry API. Instead of a connection string, you now use the Foundry project endpoint. For example, in Python:
 
@@ -231,7 +231,7 @@ If you no longer need access to your [!INCLUDE [hub-project-name](../includes/hu
 
 You might want to keep hubs and [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]s in your subscription for some reasons:
 
-- Access to select features that aren't supported yet in [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]s. See [this support matrix](/azure/ai-foundry/what-is-azure-ai-foundry#which-type-of-project-do-i-need).
+- Access to select features that aren't supported yet in [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]s. See [this support matrix](../what-is-foundry.md#types-of-projects).
 
 - Use cases that focus on custom machine learning model training. A [!INCLUDE [hub-project-name](../includes/hub-project-name.md)] is built on the Azure Machine Learning stack and stays accessible through Azure Machine Learning Studio, CLI, or SDK.
 
@@ -269,7 +269,7 @@ You might want to keep hubs and [!INCLUDE [hub-project-name](../includes/hub-pro
 
 ## Learn more
 
-- [Foundry rollout across my organization](/azure/ai-foundry/concepts/planning)
+- [Foundry rollout across my organization](../concepts/planning.md)
 
 - [Sample Bicep templates](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/01-connections)
 

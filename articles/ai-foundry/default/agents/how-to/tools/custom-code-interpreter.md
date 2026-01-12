@@ -25,7 +25,7 @@ To use the preview feature, you need the following prerequisites:
 - The [Azure CLI](/cli/azure/install-azure-cli).
 - Optionally install `uv` as an alternative to `pip`. `uv` is a fast package and project manager for Python projects. You can install it by following the instructions at [Installing uv](https://docs.astral.sh/uv/getting-started/installation/) in the official documentation.
 - An Azure subscription and resource group with the following permissions:
-  - [Cognitive Services OpenAI Contributor](/azure/role-based-access-control/built-in-roles/ai-machine-learning#cognitive-services-openai-contributor)
+  - [Azure AI Owner](/azure/role-based-access-control/built-in-roles/ai-machine-learning#azure-ai-owner)
   - [Container Apps ManagedEnvironment Contributor](/azure/role-based-access-control/built-in-roles/containers#container-apps-managedenvironments-contributor)
 - The latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
 

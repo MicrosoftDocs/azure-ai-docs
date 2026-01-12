@@ -122,7 +122,7 @@ You can customize the left pane for each project or resource.
 * At the top of the **More** list is a shortcut to **Pin all**. If all items are already pinned, the option changes to **Unpin all**.
 * The **Management center** is always available at the bottom of the left pane and can't be unpinned.
 
-For more information about the navigation, see [What is Foundry](../what-is-azure-ai-foundry.md).
+For more information about the navigation, see [What is Foundry](../what-is-foundry.md).
 
 ## Projects 
 
@@ -156,7 +156,7 @@ The chat session pane is where you can chat with the model and test out your ass
 
 ## Distinguishing project types
 
-Foundry has two different project types—see [What is Foundry?](../what-is-azure-ai-foundry.md#types-of-projects). The **Type** column in the **All resources** view shows the project type. In the recent resources picker, the type appears on a second line under the project name.
+Foundry has two different project types—see [What is Foundry?](../what-is-foundry.md#types-of-projects). The **Type** column in the **All resources** view shows the project type. In the recent resources picker, the type appears on a second line under the project name.
 
 - Look for either **(Foundry)** or **Foundry project** for a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]. 
 - Look for **(Hub)** for a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)].
@@ -223,5 +223,5 @@ If you're a government, commercial, or enterprise customer, contact the Enterpri
 
 ## Related content
 
-* Learn how to build generative AI applications in the [Foundry](../what-is-azure-ai-foundry.md).
+* Learn how to build generative AI applications in the [Foundry](../what-is-foundry.md).
 * Get answers to frequently asked questions in the [Azure AI FAQ article](../faq.yml).

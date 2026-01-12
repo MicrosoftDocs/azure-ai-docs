@@ -45,7 +45,7 @@ We recommend role-based access control for production deployments. If roles aren
 
 #### [Microsoft Foundry](#tab/foundry)
 
-- On the parent resource of your project, you need the **Azure AI User** role to access model deployments and create agents. **Owners** automatically get this role when they create the resource. Other users need a specific role assignment. For more information, see [Role-based access control in Foundry portal](/azure/ai-foundry/concepts/rbac-azure-ai-foundry).
+- On the parent resource of your project, you need the **Azure AI User** role to access model deployments and create agents. **Owners** automatically get this role when they create the resource. Other users need a specific role assignment. For more information, see [Role-based access control in Foundry portal](/azure/ai-foundry/concepts/rbac-foundry).
 - On the parent resource of your project, you need the **Azure AI Project Manager** role to create a project connection for MCP authentication and either **Azure AI User** or **Azure AI Project Manager** to use the MCP tool in agents.
 - On your project, create a system-assigned managed identity for interactions with Azure AI Search.
 

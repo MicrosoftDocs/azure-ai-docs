@@ -3,7 +3,7 @@ title: Microsoft Foundry known issues
 titlesuffix: Microsoft Foundry
 description: Known and common issues with Microsoft Foundry.
 ms.service: azure-ai-foundry
-ms.topic: reference
+ms.topic: troubleshooting-known-issue
 ms.date: 11/07/2025
 author: s-polly
 ms.author: scottpolly

@@ -9,19 +9,19 @@ ms.custom:
   - ignite-2024
   - hub-only
 ms.topic: concept-article
-ms.date: 09/12/2025
+ms.date: 12/31/2025
 ms.reviewer: deeikele
-ms.author: jburchel 
-author: jonburchel 
+ms.author: sgilley 
+author: sdgilley 
 ai-usage: ai-assisted
-# Hub-focused copy of RBAC article. Project-only content remains in rbac-azure-ai-foundry.md
+# Hub-focused copy of RBAC article. Project-only content remains in rbac-foundry.md
 ---
 # Role-based access control for Microsoft Foundry (hub-focused)
 
 [!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
 
 > [!TIP]
-> An alternate Foundry project-focused RBAC article is available: [Role-based access control for Microsoft Foundry](rbac-azure-ai-foundry.md).
+> An alternate Foundry project-focused RBAC article is available: [Role-based access control for Microsoft Foundry](rbac-foundry.md).
 
 In this article, you learn how to manage access at the hub and project levels of Foundry. Use Azure role-based access control (Azure RBAC) to manage access to Azure resources. Azure provides built-in roles and lets you create custom roles.
 

@@ -7,7 +7,7 @@ ms.service: azure-machine-learning
 ms.subservice: mlops
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: sehan
+ms.reviewer: jturuk
 ms.date: 03/05/2025
 ms.topic: how-to
 ms.custom: how-to, devplatv2, cliv2, sdkv2, update-code

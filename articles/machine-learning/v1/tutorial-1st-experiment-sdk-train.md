@@ -8,7 +8,7 @@ ms.subservice: training
 ms.topic: tutorial
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: amsaied
+ms.reviewer: sooryar
 ms.date: 04/03/2024
 ms.custom:
   - UpdateFrequency5

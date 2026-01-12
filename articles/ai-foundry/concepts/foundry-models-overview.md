@@ -250,5 +250,5 @@ To set the public network access flag for the Foundry hub:
   
 ## Related content
 
-* [Explore foundation models in Foundry portal](../../ai-services/connect-services-ai-foundry-portal.md)
+* [Explore foundation models in Foundry portal](../../ai-services/connect-services-foundry-portal.md)
 * [Model deprecation and retirement in Foundry model catalog](../concepts/model-lifecycle-retirement.md)

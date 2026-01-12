@@ -9,7 +9,7 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.topic: how-to
-ms.reviewer: jhirono
+ms.reviewer: shshubhe
 ms.custom: FY25Q1-Linter
 # Customer Intent: As an admin, I want to understand how I can use Azure Policy to audit and manage Azure Machine Learning resources so that I can ensure compliance with my organization's requirements.
 ---

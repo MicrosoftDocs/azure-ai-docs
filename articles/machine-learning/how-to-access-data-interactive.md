@@ -9,7 +9,7 @@ ms.topic: how-to
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: samkemp
-ms.date: 07/24/2024
+ms.date: 01/08/2026
 ms.custom:
   - sdkv2
   - sfi-image-nochange
@@ -20,7 +20,7 @@ ms.custom:
 
 [!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
 
-A machine learning project typically starts with exploratory data analysis (EDA), data-preprocessing (cleaning, feature engineering), and it includes building ML model prototypes to validate hypotheses. This *prototyping* project phase is highly interactive in nature, and it lends itself to development in a Jupyter notebook, or in an IDE with a *Python interactive console*. In this article, learn how to:
+A machine learning project typically starts with exploratory data analysis (EDA) and data preprocessing (cleaning, feature engineering). It also includes building ML model prototypes to validate hypotheses. This *prototyping* project phase is highly interactive, and it lends itself to development in a Jupyter notebook or in an IDE with a *Python interactive console*. In this article, you learn how to:
 
 > [!div class="checklist"]
 > * Access data from an Azure Machine Learning Datastores URI as if it were a file system.
@@ -34,10 +34,10 @@ A machine learning project typically starts with exploratory data analysis (EDA)
 * An Azure Machine Learning Datastore. For more information, visit [Create datastores](how-to-datastore.md).
 
 > [!TIP]
-> The guidance in this article describes data access during interactive development. It applies to any host that can run a Python session. This can include your local machine, a cloud VM, a GitHub Codespace, etc. We recommend use of an Azure Machine Learning compute instance - a fully managed and pre-configured cloud workstation. For more information, visit [Create an Azure Machine Learning compute instance](how-to-create-compute-instance.md).
+> The guidance in this article describes data access during interactive development. It applies to any host that can run a Python session. This host can include your local machine, a cloud VM, a GitHub Codespace, and more. Use an Azure Machine Learning compute instance - a fully managed and pre-configured cloud workstation. For more information, visit [Create an Azure Machine Learning compute instance](how-to-create-compute-instance.md).
 
 > [!IMPORTANT]
-> Ensure you have the latest `azure-fsspec`, `mltable`, and `azure-ai-ml` python libraries installed in your Python environment:
+> Ensure you have the latest `azure-fsspec`, `mltable`, and `azure-ai-ml` Python libraries installed in your Python environment:
 >
 > ```bash
 > pip install -U azureml-fsspec==1.3.1 mltable azure-ai-ml
@@ -47,7 +47,7 @@ The latest `azure-fsspec` package version can potentially change over time. For 
 
 ## Access data from a datastore URI, like a filesystem
 
-An Azure Machine Learning datastore is a *reference* to an *existing* Azure storage account. The benefits of datastore creation and use include:
+An Azure Machine Learning datastore is a *reference* to an *existing* Azure storage account. The benefits of creating and using datastores include:
 
 > [!div class="checklist"]
 > * A common, easy-to-use API to interact with different storage types (Blob/Files/ADLS).
@@ -84,17 +84,17 @@ df.head()
 ```
 
 > [!TIP]
-> To avoid remembering the datastore URI format, you can copy-and-paste the datastore URI from the Studio UI with these steps:
-> 1. Select **Data** from the left-hand menu, then select the **Datastores** tab.
-> 1. Select your datastore name, and then **Browse**.
-> 1. Find the file/folder you want to read into Pandas, and select the ellipsis (**...**) next to it. Select **Copy URI** from the menu. You can select the **Datastore URI** to copy into your notebook/script.
+> To avoid remembering the datastore URI format, you can copy and paste the datastore URI from the Studio UI by using these steps:
+> 1. Select **Data** from the left-hand menu, and then select the **Datastores** tab.
+> 1. Select your datastore name, and then select **Browse**.
+> 1. Find the file or folder you want to read into Pandas, and select the ellipsis (**...**) next to it. Select **Copy URI** from the menu. You can select the **Datastore URI** to copy into your notebook or script.
 > :::image type="content" source="media/how-to-access-data-interactive/datastore-uri-copy.png" alt-text="Screenshot highlighting the copy of the datastore URI.":::
 
-You can also instantiate an Azure Machine Learning filesystem, to handle filesystem-like commands - for example `ls`, `glob`, `exists`, `open`.
-- The `ls()` method lists files in a specific directory. You can use ls(), ls(.), ls (<<folder_level_1>/<folder_level_2>) to list files. We support both '.' and '..', in relative paths.
-- The `glob()` method supports '*' and '**' globbing.
+You can also instantiate an Azure Machine Learning filesystem to handle filesystem-like commands - for example `ls`, `glob`, `exists`, and `open`.
+- The `ls()` method lists files in a specific directory. You can use `ls()`, `ls(.)`, `ls(<folder_level_1>/<folder_level_2>)` to list files. The implementation supports both `.` and `..` in relative paths.
+- The `glob()` method supports `*` and `**` globbing.
 - The `exists()` method returns a Boolean value that indicates whether a specified file exists in current root directory.
-- The `open()` method returns a file-like object, which can be passed to any other library that expects to work with python files. Your code can also use this object, as if it were a normal python file object. These file-like objects respect the use of `with` contexts, as shown in this example:
+- The `open()` method returns a file-like object, which you can pass to any other library that expects to work with Python files. Your code can also use this object as if it were a normal Python file object. These file-like objects respect the use of `with` contexts, as shown in this example:
 
 ```python
 from azureml.fsspec import AzureMachineLearningFileSystem
@@ -115,7 +115,7 @@ with fs.open('./folder1/file1.csv') as f:
     process_file(f)
 ```
 
-### Upload files via AzureMachineLearningFileSystem
+### Upload files by using AzureMachineLearningFileSystem
 
 ```python
 from azureml.fsspec import AzureMachineLearningFileSystem
@@ -129,18 +129,18 @@ fs.upload(lpath='data/upload_files/crime-spring.csv', rpath='data/fsspec', recur
 fs.upload(lpath='data/upload_folder/', rpath='data/fsspec_folder', recursive=True, **{'overwrite': 'MERGE_WITH_OVERWRITE'})
 ```
 `lpath` is the local path, and `rpath` is the remote path.
-If the folders you specify in `rpath` don't yet exist, we create the folders for you.
+If the folders you specify in `rpath` don't exist, the method creates the folders for you.
 
-We support three 'overwrite' modes:
+The method supports three `overwrite` modes:
 - APPEND: if a file with the same name exists in the destination path, APPEND keeps the original file
 - FAIL_ON_FILE_CONFLICT: if a file with the same name exists in the destination path, FAIL_ON_FILE_CONFLICT throws an error
 - MERGE_WITH_OVERWRITE: if a file with the same name exists in the destination path, MERGE_WITH_OVERWRITE overwrites that existing file with the new file
 
-### Download files via AzureMachineLearningFileSystem
+### Download files by using AzureMachineLearningFileSystem
 ```python
 # you can specify recursive as False to download a file
 # downloading overwrite option is determined by local system, and it is MERGE_WITH_OVERWRITE
-fs.download(rpath='data/fsspec/crime-spring.csv', lpath='data/download_files/, recursive=False)
+fs.download(rpath='data/fsspec/crime-spring.csv', lpath='data/download_files/', recursive=False)
 
 # you need to specify recursive as True to download a folder
 fs.download(rpath='data/fsspec_folder', lpath='data/download_folder/', recursive=True)
@@ -148,7 +148,7 @@ fs.download(rpath='data/fsspec_folder', lpath='data/download_folder/', recursive
 
 ### Examples
 
-These examples show use of the filesystem spec use in common scenarios.
+These examples show use of the filesystem spec in common scenarios.
 
 #### Read a single CSV file into Pandas
 
@@ -162,7 +162,7 @@ df = pd.read_csv("azureml://subscriptions/<subid>/resourcegroups/<rgname>/worksp
 
 #### Read a folder of CSV files into Pandas
 
-The Pandas `read_csv()` method doesn't support reading a folder of CSV files. To handle this, glob the csv paths, and concatenate them to a data frame with the Pandas `concat()` method. The next code sample shows how to achieve this concatenation with the Azure Machine Learning filesystem:
+The Pandas `read_csv()` method doesn't support reading a folder of CSV files. To handle this limitation, use glob to get the CSV paths, and concatenate them to a data frame with the Pandas `concat()` method. The next code sample shows how to achieve this concatenation with the Azure Machine Learning filesystem:
 
 ```python
 import pandas as pd
@@ -197,7 +197,7 @@ df.head()
 ```
 
 #### Read a folder of parquet files into Pandas
-As part of an ETL process, Parquet files are typically written to a folder, which can then emit files relevant to the ETL such as progress, commits, etc. This example shows files created from an ETL process (files beginning with `_`) which then produce a parquet file of data.
+As part of an ETL process, Parquet files are typically written to a folder. The process can then emit files relevant to the ETL such as progress, commits, and other metadata. This example shows files created from an ETL process (files beginning with `_`) which then produce a parquet file of data.
 
 :::image type="content" source="media/how-to-access-data-interactive/parquet-auxillary.png" alt-text="Screenshot showing the parquet ETL process.":::
 
@@ -233,7 +233,7 @@ To access data from the `dbfs` resource, you need:
 - **Instance name**, in the form of `adb-<some-number>.<two digits>.azuredatabricks.net`. You can find this value in the URL of your Azure Databricks workspace.
 - **Personal Access Token (PAT)**; for more information about PAT creation, visit [Authentication using Azure Databricks personal access tokens](/azure/databricks/dev-tools/api/latest/authentication)
 
-With these values, you must create an environment variable for the PAT token on your compute instance:
+With these values, create an environment variable for the PAT token on your compute instance:
 
 ```bash
 export ADB_PAT=<pat_token>
@@ -275,7 +275,7 @@ with fs.open('/<folder>/<image.jpeg>') as f:
 
 #### PyTorch custom dataset example
 
-In this example, you create a PyTorch custom dataset for processing images. We assume that an annotations file (in CSV format) exists, with this overall structure:
+In this example, you create a PyTorch custom dataset for processing images. This example assumes that an annotations file (in CSV format) exists, with this overall structure:
 
 ```text
 image_path, label
@@ -360,9 +360,9 @@ training_data = CustomImageDataset(
 train_dataloader = DataLoader(training_data, batch_size=64, shuffle=True)
 ```
 
-## Materialize data into Pandas using `mltable` library
+## Materialize data into Pandas by using `mltable` library
 
-The `mltable` library can also help access data in cloud storage. Reading data into Pandas with `mltable` has this general format:
+The `mltable` library can also help you access data in cloud storage. To read data into Pandas by using `mltable`, use the following general format:
 
 ```python
 import mltable
@@ -399,18 +399,18 @@ The `mltable` library supports reading of tabular data from different path types
 |A long-form Azure Machine Learning datastore  |   `azureml://subscriptions/<subid>/resourcegroups/<rgname>/workspaces/<wsname>/datastores/<name>/paths/<path>`      |
 
 > [!NOTE]
-> `mltable` does user credential passthrough for paths on Azure Storage and Azure Machine Learning datastores. If you do not have permission to access the data on the underlying storage, you cannot access the data.
+> For paths on Azure Storage and Azure Machine Learning datastores, `mltable` uses credential passthrough. If you don't have permission to access the data on the underlying storage, you can't access the data.
 
 ### Files, folders, and globs
 
 `mltable` supports reading from:
 
-- file(s) - for example: `abfss://<file_system>@<account_name>.dfs.core.windows.net/my-csv.csv`
-- folder(s) - for example `abfss://<file_system>@<account_name>.dfs.core.windows.net/my-folder/`
-- [glob](https://en.wikipedia.org/wiki/Glob_(programming)) pattern(s) - for example `abfss://<file_system>@<account_name>.dfs.core.windows.net/my-folder/*.csv`
-- a combination of files, folders, and/or globbing patterns
+- files - for example: `abfss://<file_system>@<account_name>.dfs.core.windows.net/my-csv.csv`
+- folders - for example `abfss://<file_system>@<account_name>.dfs.core.windows.net/my-folder/`
+- [glob](https://en.wikipedia.org/wiki/Glob_(programming)) patterns - for example `abfss://<file_system>@<account_name>.dfs.core.windows.net/my-folder/*.csv`
+- a combination of files, folders, and globbing patterns
 
-`mltable` flexibility allows data materialization, into a single dataframe, from a combination of local and cloud storage resources, and combinations of files/folder/globs. For example:
+The flexibility of `mltable` means you can materialize data into a single dataframe from a combination of local and cloud storage resources, and combinations of files, folders, and globs. For example:
 
 ```python
 path1 = {
@@ -431,7 +431,7 @@ tbl = mltable.from_delimited_files(paths=[path1, path2, path3])
 ### Supported file formats
 `mltable` supports the following file formats:
 
-- Delimited Text (for example: CSV files): `mltable.from_delimited_files(paths=[path])`
+- Delimited text (for example: CSV files): `mltable.from_delimited_files(paths=[path])`
 - Parquet: `mltable.from_parquet_files(paths=[path])`
 - Delta: `mltable.from_delta_lake(paths=[path])`
 - JSON lines format: `mltable.from_json_lines_files(paths=[path])`
@@ -489,10 +489,10 @@ df.head()
 ```
 
 > [!TIP]
-> To avoid remembering the datastore URI format, you can copy-and-paste the datastore URI from the Studio UI with these steps:
-> 1. Select **Data** from the left-hand menu, then select the **Datastores** tab.
-> 1. Select your datastore name, and then **Browse**.
-> 1. Find the file/folder you want to read into Pandas, and select the ellipsis (**...**) next to it. Select **Copy URI** from the menu. You can select the **Datastore URI** to copy into your notebook/script.
+> To avoid remembering the datastore URI format, you can copy and paste the datastore URI from the Studio UI by using these steps:
+> 1. Select **Data** from the left-hand menu, and then select the **Datastores** tab.
+> 1. Select your datastore name, and then select **Browse**.
+> 1. Find the file or folder you want to read into Pandas, and select the ellipsis (**...**) next to it. Select **Copy URI** from the menu. You can select the **Datastore URI** to copy into your notebook or script.
 > :::image type="content" source="media/how-to-access-data-interactive/datastore-uri-copy.png" alt-text="Screenshot highlighting the copy of the datastore URI.":::
 
 ##### [HTTP Server](#tab/http)
@@ -562,10 +562,10 @@ df.head()
 ```
 
 > [!TIP]
-> To avoid remembering the datastore URI format, you can copy-and-paste the datastore URI from the Studio UI with these steps:
-> 1. Select **Data** from the left-hand menu, then select the **Datastores** tab.
-> 1. Select your datastore name, and then **Browse**.
-> 1. Find the file/folder you want to read into Pandas, and select the ellipsis (**...**) next to it. Select **Copy URI** from the menu. You can select the **Datastore URI** to copy into your notebook/script.
+> To avoid remembering the datastore URI format, you can copy and paste the datastore URI from the Studio UI by using these steps:
+> 1. Select **Data** from the left-hand menu, and then select the **Datastores** tab.
+> 1. Select your datastore name, and then select **Browse**.
+> 1. Find the file or folder you want to read into Pandas, and select the ellipsis (**...**) next to it. Select **Copy URI** from the menu. You can select the **Datastore URI** to copy into your notebook or script.
 > :::image type="content" source="media/how-to-access-data-interactive/datastore-uri-copy.png" alt-text="Screenshot highlighting the copy of the datastore URI.":::
 
 ##### [HTTP Server](#tab/http)
@@ -651,11 +651,11 @@ df = tbl.to_pandas_dataframe()
 df.head()
 ```
 
-## A note on reading and processing large data volumes with Pandas
+## Reading and processing large data volumes by using Pandas
 > [!TIP]
-> Pandas is not designed to handle large datasets. Pandas can only process data that can fit into the memory of the compute instance.
+> Pandas isn't designed to handle large datasets. Pandas can only process data that fits into the memory of the compute instance.
 >
-> For large datasets, we recommend use of Azure Machine Learning managed Spark. This provides the [PySpark Pandas API](https://spark.apache.org/docs/latest/api/python/tutorial/pandas_on_spark/index.html).
+> For large datasets, use Azure Machine Learning managed Spark. This service provides the [PySpark Pandas API](https://spark.apache.org/docs/latest/api/python/tutorial/pandas_on_spark/index.html).
 
 You might want to iterate quickly on a smaller subset of a large dataset before scaling up to a remote asynchronous job. `mltable` provides in-built functionality to get samples of large data using the [take_random_sample](/python/api/mltable/mltable.mltable.mltable#mltable-mltable-mltable-take-random-sample) method:
 
@@ -673,18 +673,18 @@ df = tbl.to_pandas_dataframe()
 df.head()
 ```
 
-You can also take subsets of large data with these operations:
+You can also take subsets of large data by using these operations:
 
 - [filter](/python/api/mltable/mltable.mltable.mltable#mltable-mltable-mltable-filter)
 - [keep_columns](/python/api/mltable/mltable.mltable.mltable#mltable-mltable-mltable-keep-columns)
 - [drop_columns](/python/api/mltable/mltable.mltable.mltable#mltable-mltable-mltable-drop-columns)
 
-## Downloading data using the `azcopy` utility
+## Download data by using the `azcopy` utility
 
-Use the `azcopy` utility to download the data to the local SSD of your host (local machine, cloud VM, Azure Machine Learning Compute Instance, etc.), into the local filesystem. The `azcopy` utility, which is preinstalled on an Azure Machine Learning compute instance, handles the data download. If you **don't** use an Azure Machine Learning compute instance or a Data Science Virtual Machine (DSVM), you might need to install `azcopy`. For more information, visit [azcopy](/azure/storage/common/storage-ref-azcopy).
+Use the `azcopy` utility to download data to the local SSD of your host (local machine, cloud VM, Azure Machine Learning Compute Instance, and so on), into the local filesystem. The `azcopy` utility, which is preinstalled on an Azure Machine Learning compute instance, handles the data download. If you **don't** use an Azure Machine Learning compute instance or a Data Science Virtual Machine (DSVM), you might need to install `azcopy`. For more information, see [azcopy](/azure/storage/common/storage-ref-azcopy).
 
 > [!CAUTION]
-> We don't recommend data downloads into the `/home/azureuser/cloudfiles/code` location on a compute instance. This location is designed to store notebook and code artifacts, **not** data. Reading data from this location will incur significant performance overhead when training. Instead, we recommend data storage in the `home/azureuser`, which is the local SSD of the compute node.
+> Don't download data into the `/home/azureuser/cloudfiles/code` location on a compute instance. This location is designed to store notebook and code artifacts, **not** data. Reading data from this location incurs significant performance overhead when training. Instead, store data in the `home/azureuser` location, which is the local SSD of the compute node.
 
 Open a terminal and create a new directory, for example:
 
@@ -692,13 +692,13 @@ Open a terminal and create a new directory, for example:
 mkdir /home/azureuser/data
 ```
 
-Sign-in to azcopy using:
+Sign in to azcopy by using:
 
 ```bash
 azcopy login
 ```
 
-Next, you can copy data using a storage URI
+Next, you can copy data by using a storage URI
 
 ```bash
 SOURCE=https://<account_name>.blob.core.windows.net/<container>/<path>

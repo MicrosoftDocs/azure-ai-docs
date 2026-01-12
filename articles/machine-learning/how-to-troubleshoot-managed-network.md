@@ -5,7 +5,7 @@ description: Learn how to troubleshoot Azure Machine Learning managed virtual ne
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
-ms.reviewer: None
+ms.reviewer: shshubhe
 ms.author: scottpolly
 author: s-polly
 ms.topic: troubleshooting

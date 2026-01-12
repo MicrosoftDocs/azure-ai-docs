@@ -8,7 +8,7 @@ ms.subservice: compute
 ms.topic: concept-article
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: vijetaj
+ms.reviewer: jturuk
 ms.date: 11/13/2025
 ms.custom:
   - cliv2

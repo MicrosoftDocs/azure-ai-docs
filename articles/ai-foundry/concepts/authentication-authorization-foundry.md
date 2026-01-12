@@ -67,7 +67,7 @@ Use Microsoft Entra ID for:
 
 Advantages: Fine-grained role assignments, per-principal auditing, controllable token lifetimes, automatic secret hygiene, and managed identities for services.
 
-Limitations: Higher initial setup complexity. Requires understanding of Role-based access control (RBAC). For more on RBAC in Foundry, see [Role-based access control for Microsoft Foundry](rbac-azure-ai-foundry.md).
+Limitations: Higher initial setup complexity. Requires understanding of Role-based access control (RBAC). For more on RBAC in Foundry, see [Role-based access control for Microsoft Foundry](rbac-foundry.md).
 
 ### API keys
 
@@ -142,15 +142,15 @@ To understand the breakdown of built-in roles and the control and data plane act
 ## Set up Microsoft Entra ID
 
 For high-level guidance on setting up Entra ID authentication in Foundry, see [Configure key-less authentication](../foundry-models/how-to/configure-entra-id.md).
-1. Ensure your Azure AI Foundry resource has a custom subdomain configured. See [Custom subdomains](/azure/ai-services/cognitive-services-custom-subdomains).
+1. Ensure your Microsoft Foundry resource has a custom subdomain configured. See [Custom subdomains](/azure/ai-services/cognitive-services-custom-subdomains).
 1. Assign the needed built-in or custom role, such as Azure AI User, to each principal user, service principal, or managed identity at the resource or project scope.
 1. (Optional) For a service principal, create an app registration, add a client secret or certificate, and note the tenant ID, client ID, and secret or certificate.
-1. (Optional) For a managed identity, enable the system-assigned identity on the calling service or attach a user-assigned identity, then assign a role to it on the Azure AI Foundry resource.
+1. (Optional) For a managed identity, enable the system-assigned identity on the calling service or attach a user-assigned identity, then assign a role to it on the Foundry resource.
 1. Remove key-based authentication after all callers use token authentication. Optionally disable local authentication in deployment templates.
 
 ## Related content
 
-- [Role-based access control for Foundry](rbac-azure-ai-foundry.md)
+- [Role-based access control for Foundry](rbac-foundry.md)
 - [Configure key-less authentication with Microsoft Entra ID](../foundry-models/how-to/configure-entra-id.md)
 - [Rotate API access keys](../../ai-services/rotate-keys.md?context=/azure/ai-foundry/context/context)
 - [Azure built-in roles (AI + machine learning)](/azure/role-based-access-control/built-in-roles#ai-+-machine-learning)

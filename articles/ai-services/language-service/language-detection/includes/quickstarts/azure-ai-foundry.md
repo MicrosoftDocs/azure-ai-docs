@@ -67,7 +67,7 @@ After your operation is completed, the **Details** section contains the followin
 ### [Foundry (new)](#tab/foundry-new)
 
 > [!NOTE]
-> This content refers to the [Foundry (new)](https://ai.azure.com/) portal, which supports only [Foundry projects](/azure/ai-foundry/what-is-azure-ai-foundry) and provides streamlined access to models, agents, and tools. To confirm that you're using Foundry (new), make sure the version toggle in the portal banner is in the **on** position. :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/new-foundry.png" border="false":::
+> This content refers to the [Foundry (new)](https://ai.azure.com/) portal, which supports only [Foundry projects](/azure/ai-foundry/what-is-foundry) and provides streamlined access to models, agents, and tools. To confirm that you're using Foundry (new), make sure the version toggle in the portal banner is in the **on** position. :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/new-foundry.png" border="false":::
 
 You can use [Foundry (new)](https://ai.azure.com/) to:
 
