@@ -24,7 +24,7 @@ Most implementations are a single index organized around chunks with parent fiel
 
 An index projection is defined in a [skillset](cognitive-search-working-with-skillsets.md). It's responsible for coordinating the indexing process that sends chunks of content to a search index, along with the parent content associated with each chunk. It improves how native data chunking works by giving your more options for controlling how parent-child content is indexed.
 
-This article explains how to create the index schema and indexer projection patterns for one-to-many indexing.
+This article explains how to create a single index schema and indexer projection patterns for one-to-many indexing.
 
 ## Prerequisites
 
