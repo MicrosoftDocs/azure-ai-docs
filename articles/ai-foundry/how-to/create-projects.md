@@ -55,7 +55,7 @@ If your organization requires customized Azure configurations like alternative n
 * [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 
 :::moniker range="foundry"
-- **Owner role**: You must be **Owner** of the subscription to create a Foundry resource. If you lack this role, request your subscription administrator to create a project for you.
+* **Permissions**: You need access to a role that allows you to create a Foundry resource, such as **Azure Account AI Owner** or **Azure AI Owner** on the subscription or resource group. For more details about permissions, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md#permissions-for-each-built-in-role).
 :::moniker-end
 
 :::moniker range="foundry-classic"
