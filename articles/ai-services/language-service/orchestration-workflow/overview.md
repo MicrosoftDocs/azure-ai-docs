@@ -59,8 +59,8 @@ Follow these steps to get the most out of your model:
 As you use orchestration workflow, see the following reference documentation and samples for Azure Language in Foundry Tools:
 
 | Development option / language | Reference documentation | Samples |
-| -- | -- | -- |
-| REST APIs (Authoring) | [REST API documentation](https://aka.ms/clu-authoring-apis) |  |
+| --- | --- | --- |
+| REST APIs (Authoring) | [REST API documentation](https://aka.ms/clu-authoring-apis)| |
 | REST APIs (Runtime) | [REST API documentation](/rest/api/language/2023-04-01/conversation-analysis-runtime/analyze-conversation) |  |
 | C#  (Runtime) | [C# documentation](/dotnet/api/overview/azure/ai.language.conversations-readme) | [C# samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/cognitivelanguage/Azure.AI.Language.Conversations/samples) |
 | Python (Runtime) | [Python documentation](/python/api/overview/azure/ai-language-conversations-readme?view=azure-python-preview&preserve-view=true) | [Python samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/cognitivelanguage/azure-ai-language-conversations/samples) |
