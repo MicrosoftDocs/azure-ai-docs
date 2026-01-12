@@ -118,7 +118,7 @@ workspace = client.workspaces.begin_create(workspace=wps).result()
 
 Not supported currently.
 
----
+***
 
 #### To update user assigned identities for a workspace, includes adding a new one or deleting the existing ones, use one of the following methods:
 
@@ -163,7 +163,7 @@ workspace = client.workspaces.begin_update(workspace=wps).result()
 
 Not supported currently.
 
----
+***
 
 > [!TIP]
 > To add a new UAI, you can specify the new UAI ID under the section user_assigned_identities in addition to the existing UAIs, it's required to pass all the existing UAI IDs.<br>
@@ -290,7 +290,7 @@ ml_client.workspaces.begin_create(workspace).result()
 
 Data isolation is automatically enabled when creating hub or project workspaces through Azure Machine Learning studio. For default workspaces, this setting isn't available in the studio interface. Use the Azure CLI or Python SDK to create a default workspace with data isolation enabled.
 
----
+***
 
 ### Compute cluster
 
@@ -376,7 +376,7 @@ except Exception:
 
 During cluster creation or when editing compute cluster details, in the **Advanced settings**, toggle **Assign a managed identity** and specify a system-assigned identity or user-assigned identity.
 
----
+***
 
 ### Kubernetes Cluster Compute
 
@@ -663,7 +663,7 @@ az ml compute create --name cpu-cluster --type <cluster name>  --identity-type s
 
 For information on configuring managed identity when creating a compute cluster in studio, see [Set up managed identity](how-to-create-attach-compute-cluster.md#set-up-managed-identity).
 
----
+***
 
 A managed identity is automatically granted ACRPull role on workspace ACR to enable pulling Docker images for training.
 
