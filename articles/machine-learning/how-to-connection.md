@@ -9,7 +9,7 @@ ms.topic: how-to
 ms.author: scottpolly
 author: s-polly
 ms.reviewer: soumyapatro
-ms.date: 01/09/2026
+ms.date: 01/12/2026
 ms.custom:
   - data4ml
   - devx-track-azurecli
@@ -171,18 +171,18 @@ ml_client.connections.create_or_update(workspace_connection=wps_connection)
 
 # [Studio](#tab/azure-studio)
 
-On the **Create connection** screen, complete the following information:
+3. On the **Create connection** screen, complete the following information:
 
-- **Service**: Select **Snowflake**.
-- **Target**: Enter the following target, using the values from your Snowflake account for the placeholders:<br>*jdbc:snowflake://\<account>.snowflakecomputing.com/?db=\<database>&warehouse=\<warehouse>&role=\<role>*
-- **Authentication type**: Select **Username password**.
-- **Username**: Enter your Snowflake user name.
-- **Password**: Enter your Snowflake password.
-- **Connection name**: Enter a name for the Snowflake connection.
+   - **Service**: Select **Snowflake**.
+   - **Target**: Enter the following target, using the values from your Snowflake account for the placeholders:<br>*jdbc:snowflake://\<account>.snowflakecomputing.com/?db=\<database>&warehouse=\<warehouse>&role=\<role>*
+   - **Authentication type**: Select **Username password**.
+   - **Username**: Enter your Snowflake user name.
+   - **Password**: Enter your Snowflake password.
+   - **Connection name**: Enter a name for the Snowflake connection.
 
-Optionally select **Test Connection** to test the connection, and then select **Save**.
+4. Optionally select **Test Connection** to test the connection, and then select **Save**.
 
-:::image type="content" source="media/how-to-connection/create-snowflake-connection.png" lightbox="media/how-to-connection/create-snowflake-connection.png" alt-text="Screenshot showing creation of a new Snowflake connection in Azure Machine Learning studio.":::
+   :::image type="content" source="media/how-to-connection/create-snowflake-connection.png" lightbox="media/how-to-connection/create-snowflake-connection.png" alt-text="Screenshot showing creation of a new Snowflake connection in Azure Machine Learning studio.":::
 
 ---
 
