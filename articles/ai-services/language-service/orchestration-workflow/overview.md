@@ -1,20 +1,21 @@
 ---
 title: Orchestration workflows - Foundry Tools
 titleSuffix: Foundry Tools
-description: Customize an AI model to connect your Conversational Language Understanding, question answering and LUIS applications.
+description: Customize an AI model to connect your Conversational Language Understanding and Custon question answering applications.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 12/17/2025
+ms.date: 01/17/2026
 ms.author: lajanuar
 ms.custom: language-service-orchestration
 ---
 # What is orchestration workflow?
 
 
-Orchestration workflow is one of the features offered by [Azure Language in Foundry Tools](../overview.md). It is a cloud-based API service that applies machine-learning intelligence to enable you to build orchestration models to connect [Conversational Language Understanding (CLU)](../conversational-language-understanding/overview.md), [Question Answering](../question-answering/overview.md) projects and [LUIS](../../luis/what-is-luis.md) applications.
+Orchestration workflow is one of the features offered by [Azure Language in Foundry Tools](../overview.md). It is a cloud-based API service that applies machine-learning intelligence to enable you to build orchestration models to connect [Conversational Language Understanding (CLU)](../conversational-language-understanding/overview.md) and [Custom question Answering](../question-answering/overview.md) projects applications.
 By creating an orchestration workflow, developers can iteratively tag utterances, train and evaluate model performance before making it available for consumption. 
+
 To simplify building and customizing your model, the service offers a custom playground that can be accessed through the [Microsoft Foundry](https://ai.azure.com/). You can easily get started with the service by following the steps in this [quickstart](quickstart.md). 
 
 
@@ -31,7 +32,7 @@ Orchestration workflow can be used in multiple scenarios across a variety of ind
 
 ### Enterprise chat bot
 
-In a large corporation, an enterprise chat bot might handle a variety of employee affairs. It might be able to handle frequently asked questions served by a custom question answering knowledge base, a calendar specific skill served by conversational language understanding, and an interview feedback skill served by LUIS. The bot needs to be able to appropriately route incoming requests to the correct service. Orchestration workflow allows you to connect those skills to one project that handles the routing of incoming requests appropriately to power the enterprise bot.
+In a large corporation, an enterprise chat bot might handle a variety of employee affairs. It might be able to handle frequently asked questions served by a custom question answering knowledge base, a calendar specific skill served by conversational language understanding, and an interview feedback skill. The bot needs to be able to appropriately route incoming requests to the correct service. Orchestration workflow allows you to connect those skills to one project that handles the routing of incoming requests appropriately to power the enterprise bot.
 
 ## Project development lifecycle
 
