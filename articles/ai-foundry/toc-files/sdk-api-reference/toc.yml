@@ -29,12 +29,12 @@ items:
   href: /python/api/overview/azure/ai-ml-readme
 - name: Azure Machine Learning REST API
   href: /rest/api/azureml
-- name: Azure AI services SDKs
+- name: Foundry Tools SDKs
   displayName: client library libraries development kit
-  href: ../../../ai-services/reference/sdk-package-resources.md?context=/azure/ai-foundry/context/context
-- name: Azure AI services REST APIs
+  href: ../../../ai-services/reference/sdk-package-resources.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+- name: Foundry Tools REST APIs
   displayName: swagger http
-  href: ../../../ai-services/reference/rest-api-resources.md?context=/azure/ai-foundry/context/context
+  href: ../../../ai-services/reference/rest-api-resources.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
 - name: Azure OpenAI
   items:
   - name: v1 API

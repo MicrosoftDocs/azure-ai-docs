@@ -4,7 +4,7 @@ titleSuffix: Azure Machine Learning
 description: Learn how to troubleshoot and resolve data access issues.
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: mafong
+ms.reviewer: soumyapatro
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mldata

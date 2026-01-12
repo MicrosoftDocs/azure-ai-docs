@@ -1,28 +1,27 @@
 ---
-title: Use the Language SDK and REST API
-titleSuffix: Azure AI services
-description: Learn about how to integrate the Language service SDK and REST API into your applications.
+title: Use Azure Language SDK and REST API
+titleSuffix: Foundry Tools
+description: Learn about how to integrate Azure Language service SDK and REST API into your applications.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
-ms.date: 06/04/2025
+ms.topic: concept-article
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
+# SDK and REST developer guide for Azure Language
 
-# SDK and REST developer guide for the Language service
-
-Use this article to find information on integrating the Language service SDK and REST API into your applications. 
+Use this article to find information on integrating Azure Language SDK and REST API into your applications. 
 
 ## Development options
 
-The Language service provides support through a REST API, and client libraries in several languages.
+The Language provides support through a REST API, and client libraries in several languages.
 
 # [Client library (Azure SDK)](#tab/language-studio)
 
 ## Client libraries (Azure SDK)
 
-The Language service provides three namespaces for using the available features. Depending on which features and programming language you're using, you need to download one or more of the following packages, and have the following framework/language version support:
+The Language provides three namespaces for using the available features. Depending on which features and programming language you're using, you need to download one or more of the following packages, and have the following framework/language version support:
 
 |Framework/Language  | Minimum supported version  |
 |---------|---------|
@@ -41,7 +40,7 @@ The Language service provides three namespaces for using the available features.
 The `Azure.AI.TextAnalytics` namespace enables you to use the following Language features. Use the following links for articles to help you send API requests using the SDK.
 
 * [Custom named entity recognition](../custom-named-entity-recognition/how-to/call-api.md?tabs=client)
-* [Custom text classification](../custom-text-classification/how-to/call-api.md?tabs=client-libraries#send-a-text-classification-request-to-your-model)
+* [Custom text classification](../custom-text-classification/how-to/call-api.md#send-a-text-classification-request-to-your-model-rest-api)
 * [Document summarization](../summarization/quickstart.md)
 * [Entity linking](../entity-linking/quickstart.md)
 * [Key phrase extraction](../key-phrase-extraction/quickstart.md)
@@ -70,7 +69,7 @@ As you use these features in your application, use the following documentation a
 The `Azure.AI.Language.Conversations` namespace enables you to use the following Language features. Use the following links for articles to help you send API requests using the SDK.
 
 * [Conversational language understanding](../conversational-language-understanding/how-to/call-api.md?tabs=azure-sdk#send-a-conversational-language-understanding-request)
-* [Orchestration workflow](../orchestration-workflow/how-to/call-api.md?tabs=azure-sdk#send-an-orchestration-workflow-request)
+* [Orchestration workflow](../orchestration-workflow/how-to/call-api.md)
 * [Conversation summarization (Python only)](../summarization/quickstart.md?tabs=conversation-summarization&pivots=programming-language-python)
 * [Personally Identifying Information (PII) detection for conversations](../personally-identifiable-information/how-to-call-for-conversations.md?tabs=client-libraries#examples)
 
@@ -100,7 +99,7 @@ As you use these features in your application, use the following documentation a
 
 ## REST API
 
-The Language service provides multiple API endpoints depending on which feature you wish to use.
+The Language provides multiple API endpoints depending on which feature you wish to use.
 
 ### Conversation analysis authoring API
 
@@ -108,13 +107,13 @@ The conversation analysis authoring API enables you to author custom models and 
 * [Conversational language understanding](../conversational-language-understanding/quickstart.md?pivots=rest-api)
 * [Orchestration workflow](../orchestration-workflow/quickstart.md?pivots=rest-api)
 
-For more information, *see* the [reference documentation](/rest/api/language/2023-04-01/conversational-analysis-authoring).
+For more information, *see* the [reference documentation](/rest/api/language/).
 
 ### Conversation analysis runtime API
 
 The conversation analysis runtime API enables you to send requests to custom models you create for the following features:
 * [Conversational language understanding](../conversational-language-understanding/how-to/call-api.md?tabs=REST-APIs#send-a-conversational-language-understanding-request)
-* [Orchestration workflow](../orchestration-workflow/how-to/call-api.md?tabs=REST-APIs#send-an-orchestration-workflow-request)
+* [Orchestration workflow](../orchestration-workflow/how-to/call-api.md)
 
 It additionally enables you to use the following features, without creating any models:
 * [Conversation summarization](../summarization/quickstart.md?pivots=rest-api&tabs=conversation-summarization)
@@ -129,7 +128,7 @@ The text analysis authoring API enables you to author custom models and create/m
 * [Custom named entity recognition](../custom-named-entity-recognition/quickstart.md?pivots=rest-api)
 * [Custom text classification](../custom-text-classification/quickstart.md?pivots=rest-api)
 
-For more information, *see* the [reference documentation](/rest/api/language/2023-04-01/text-analysis-authoring).
+For more information, *see* the [reference documentation](/rest/api/language/).
 ### Text analysis runtime API
 
 The text analysis runtime API enables you to send requests to custom models you create for the following features:
@@ -165,4 +164,4 @@ For more information, *see* the following reference documentation:
 
 ## See also 
 
-[Azure AI Language overview](../overview.md)
+[Azure Language in Foundry Tools overview](../overview.md)

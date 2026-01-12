@@ -11,8 +11,8 @@ ms.author: mbullwin
 ## Prerequisites
 
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
-* An Azure OpenAI resource with the **text-embedding-ada-002 (Version 2)** model deployed. This model is currently only available in [certain regions](../concepts/models.md#model-summary-table-and-region-availability). If you don't have a resource the process of creating one is documented in our [resource deployment guide](../how-to/create-resource.md).
-* <a href="https://www.python.org/" target="_blank">Python 3.8 or later version</a>
+* A Microsoft Foundry or Azure OpenAI resource with the **text-embedding-ada-002 (Version 2)** model deployed. This model is currently only available in [certain regions](../concepts/models.md#model-summary-table-and-region-availability).
+* <a href="https://www.python.org/" target="_blank">Python 3.10 or later version</a>
 * The following Python libraries: `openai`, `num2words`, `matplotlib`, `plotly`, `scipy`, `scikit-learn`, `pandas`, `tiktoken`.
 * [Jupyter Notebooks](https://jupyter.org/)
 
@@ -40,6 +40,9 @@ You can also download the sample data by running the following command on your l
 ```cmd
 curl "https://raw.githubusercontent.com/Azure-Samples/Azure-OpenAI-Docs-Samples/main/Samples/Tutorials/Embeddings/data/bill_sum_data.csv" --output bill_sum_data.csv
 ```
+
+ > [!NOTE]
+ > Microsoft Entra ID based authentication is currently not supported for embeddings with the v1 API.
 
 [!INCLUDE [get-key-endpoint](../includes/get-key-endpoint.md)]
 
@@ -79,8 +82,6 @@ Run the following code in your preferred Python IDE:
 
 ## Import libraries
 
-# [OpenAI Python 1.x](#tab/python-new)
-
 ```python
 import os
 import re
@@ -91,7 +92,7 @@ import os
 import pandas as pd
 import numpy as np
 import tiktoken
-from openai import AzureOpenAI
+from openai import OpenAI
 ```
 
 Now we need to read our csv file and create a pandas DataFrame. After the initial DataFrame is created, we can view the contents of the table by running `df`.
@@ -124,7 +125,7 @@ pd.options.mode.chained_assignment = None #https://pandas.pydata.org/pandas-docs
 # s is input text
 def normalize_text(s, sep_token = " \n "):
     s = re.sub(r'\s+',  ' ', s).strip()
-    s = re.sub(r". ,","",s)
+    s = re.sub(r"\. ,","",s) 
     # remove all instances of multiple spaces
     s = s.replace("..",".")
     s = s.replace(". .",".")

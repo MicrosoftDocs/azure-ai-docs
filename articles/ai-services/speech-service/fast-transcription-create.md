@@ -1,11 +1,11 @@
 ---
 title: Use the fast transcription API - Speech service
-titleSuffix: Azure AI services
-description: Learn how to use Azure AI Speech for fast transcriptions, where you submit audio get the transcription results faster than real-time.
+titleSuffix: Foundry Tools
+description: Learn how to use Azure Speech in Foundry Tools for fast transcriptions, where you submit audio get the transcription results faster than real-time.
 manager: nitinme
-author: goergenj
+author: PatrickFarley
 reviewer: patrickfarley
-ms.author: jagoerge
+ms.author: pafarley
 ms.reviewer: pafarley
 ms.service: azure-ai-speech
 ms.topic: how-to
@@ -13,7 +13,7 @@ ms.date: 10/21/2025
 # Customer intent: As a user who implements audio transcription, I want create transcriptions as quickly as possible.
 ---
 
-# Use the fast transcription API with Azure AI Speech 
+# Use the fast transcription API with Azure Speech in Foundry Tools 
 
 Fast transcription API is used to transcribe audio files with returning results synchronously and faster than real-time. Use fast transcription in the scenarios that you need the transcript of an audio recording as quickly as possible with predictable latency, such as: 
 
@@ -28,9 +28,9 @@ Unlike the batch transcription API, fast transcription API only produces transcr
 
 ## Prerequisites
 
-- An Azure AI Speech resource in one of the regions where the fast transcription API is available. For the current list of supported regions, see the [Speech service regions table](./regions.md?tabs=stt).
+- An Azure Speech resource in one of the regions where the fast transcription API is available. For the current list of supported regions, see the [Speech service regions table](./regions.md?tabs=stt).
   
-- An audio file (less than 2 hours long and less than 300 MB in size) in one of the formats and codecs supported by the batch transcription API: WAV, MP3, OPUS/OGG, FLAC, WMA, AAC, ALAW in WAV container, MULAW in WAV container, AMR, WebM, and SPEEX. For more information about supported audio formats, see [supported audio formats](./batch-transcription-audio-data.md#supported-audio-formats-and-codecs).
+- An audio file (less than 2 hours long and less than 300 MB in size) in one of the formats and codecs supported by the batch transcription API: WAV, MP3, OPUS/OGG, FLAC, WMA, AAC, ALAW in WAV container, MULAW in WAV container, AMR, WebM, and SPEEX. For more information about supported audio formats, see [supported audio formats](./batch-transcription-audio-data.md#supported-input-formats-and-codecs).
 
 
 ## Upload audio
@@ -53,7 +53,8 @@ In the sections below, inline audio upload is used as an example.
 ## Use the fast transcription API
 
 > [!TIP]
-> Try out fast transcription in the [Azure AI Foundry portal](https://aka.ms/fasttranscription/studio).
+> Try out fast transcription in the [Microsoft Foundry portal](https://aka.ms/fasttranscription/studio).
+
 We learn how to use the fast transcription API (via [Transcriptions - Transcribe](/rest/api/speechtotext/transcriptions/transcribe)) with the following scenarios:
 - [Known locale specified](?tabs=locale-specified): Transcribe an audio file with a specified locale. If you know the locale of the audio file, you can specify it to improve transcription accuracy and minimize the latency.
 - [Language identification on](?tabs=language-identification-on): Transcribe an audio file with language identification on. If you're not sure about the locale of the audio file, you can turn on language identification to let the Speech service identify the locale (one locale per audio).
@@ -67,17 +68,17 @@ Make a multipart/form-data POST request to the `transcriptions` endpoint with th
 
 The following example shows how to transcribe an audio file with a specified locale. If you know the locale of the audio file, you can specify it to improve transcription accuracy and minimize the latency.
 
-- Replace `YourSpeechResoureKey` with your Speech resource key.
+- Replace `YourSpeechResourceKey` with your Speech resource key.
 - Replace `YourServiceRegion` with your Speech resource region.
 - Replace `YourAudioFile` with the path to your audio file.
 
 > [!IMPORTANT]
-> For the recommended keyless authentication with Microsoft Entra ID, replace `--header 'Ocp-Apim-Subscription-Key: YourSpeechResoureKey'` with `--header "Authorization: Bearer YourAccessToken"`. For more information about keyless authentication, see the [role-based access control](./role-based-access-control.md#authentication-with-keys-and-tokens) how-to guide.
+> For the recommended keyless authentication with Microsoft Entra ID, replace `--header 'Ocp-Apim-Subscription-Key: YourSpeechResourceKey'` with `--header "Authorization: Bearer YourAccessToken"`. For more information about keyless authentication, see the [role-based access control](./role-based-access-control.md#authentication-with-keys-and-tokens) how-to guide.
 
 ```azurecli-interactive
 curl --location 'https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
 --header 'Content-Type: multipart/form-data' \
---header 'Ocp-Apim-Subscription-Key: YourSpeechResoureKey' \
+--header 'Ocp-Apim-Subscription-Key: YourSpeechResourceKey' \
 --form 'audio=@"YourAudioFile"' \
 --form 'definition="{
     "locales":["en-US"]}"'

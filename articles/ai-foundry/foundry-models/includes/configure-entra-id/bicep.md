@@ -36,12 +36,12 @@ cd azureai-model-inference-bicep/infra
 In this tutorial, you create the following resources:
 
 
-* An Azure AI Foundry resource (formerly known as Azure AI Services resource) with key access disabled. For simplicity, this template doesn't deploy models.
+* A Microsoft Foundry resource (formerly known as Azure AI Services resource) with key access disabled. For simplicity, this template doesn't deploy models.
 * A role-assignment for a given security principal with the role **Cognitive Services User**.
 
 To create these resources, use the following assets:
 
-1. Use the template `modules/ai-services-template.bicep` to describe your Azure AI Foundry resource:
+1. Use the template `modules/ai-services-template.bicep` to describe your Foundry resource:
 
     __modules/ai-services-template.bicep__
 
@@ -90,7 +90,7 @@ In your console, follow these steps:
       --template-file deploy-entra-id.bicep
     ```
 
-1. The template outputs the Azure AI Foundry Models endpoint that you can use to consume any of the model deployments you created.
+1. The template outputs the Foundry Models endpoint that you can use to consume any of the model deployments you created.
 
 
 ## Use Microsoft Entra ID in your code
@@ -107,7 +107,9 @@ After you configure Microsoft Entra ID in your resource, update your code to use
 
 ## Disable key-based authentication in the resource
 
-Disable key-based authentication when you implement Microsoft Entra ID and fully address compatibility or fallback concerns in all the applications that consume the service. Change the `disableLocalAuth` property to disable key-based authentication:
+Disable key-based authentication when you implement Microsoft Entra ID and fully address compatibility or fallback concerns in all the applications that consume the service. Change the `disableLocalAuth` property to disable key-based authentication.
+
+For more details on how to disable local authentication when you're using a Bicep or ARM template, see [How to disable local authentication](../../../../ai-services/disable-local-auth.md#how-to-disable-local-authentication).
 
 __modules/ai-services-template.bicep__
 

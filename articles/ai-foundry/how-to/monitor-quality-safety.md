@@ -1,7 +1,7 @@
 ---
 title: Monitor Quality and Token Usage of Deployed Prompt Flow Applications (Preview)
-titleSuffix: Azure AI Foundry
-description: Learn how to monitor quality and token usage of deployed prompt flow applications with Azure AI Foundry.
+titleSuffix: Microsoft Foundry
+description: Learn how to monitor quality and token usage of deployed prompt flow applications with Microsoft Foundry.
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
@@ -17,6 +17,8 @@ author: lgayhardt
 ---
 
 # Monitor quality and token usage of deployed prompt flow applications
+
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
@@ -34,7 +36,7 @@ Integrations for monitoring a prompt flow deployment allow you to:
 - Monitor prompts, completion, and total token usage across each model deployment in your prompt flow.
 - Monitor operational metrics, such as request count, latency, and error rate.
 - Use preconfigured alerts and defaults to run monitoring on a recurring basis.
-- Consume data visualizations and configure advanced behavior in the Azure AI Foundry portal.
+- Consume data visualizations and configure advanced behavior in the Microsoft Foundry portal.
 
 ## Prerequisites
 
@@ -42,7 +44,7 @@ Integrations for monitoring a prompt flow deployment allow you to:
 
 [!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
 - A prompt flow ready for deployment. If you don't have one, see [Develop a prompt flow](flow-develop.md).
-- Azure role-based access controls are used to grant access to operations in the Azure AI Foundry portal. For this article, your user account must be assigned the Azure AI Developer role on the resource group. For more information, see [Role-based access control for Azure AI Foundry](../concepts/rbac-azure-ai-foundry.md).
+- Azure role-based access controls are used to grant access to operations in the Foundry portal. For this article, your user account must be assigned the Azure AI Developer role on the resource group. For more information, see [Role-based access control for Foundry](../concepts/rbac-foundry.md).
 
 # [Python SDK](#tab/python)
 
@@ -110,7 +112,7 @@ In this section, you learn how to deploy your prompt flow with inferencing data 
 
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
-1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
+1. [!INCLUDE [classic-sign-in](../includes/classic-sign-in.md)]
 1. If you're not already in your project, select it.
    [!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
 
@@ -202,7 +204,7 @@ credential = DefaultAzureCredential()
 # Update your Azure resources details
 subscription_id = "INSERT YOUR SUBSCRIPTION ID"
 resource_group = "INSERT YOUR RESOURCE GROUP NAME"
-project_name = "INSERT YOUR PROJECT NAME" # This is the same as your Azure AI Foundry project name
+project_name = "INSERT YOUR PROJECT NAME" # This is the same as your Foundry project name
 endpoint_name = "INSERT YOUR ENDPOINT NAME" # This is your deployment name without the suffix (e.g., deployment is "contoso-chatbot-1", endpoint is "contoso-chatbot")
 deployment_name = "INSERT YOUR DEPLOYMENT NAME"
 aoai_deployment_name ="INSERT YOUR AOAI DEPLOYMENT NAME"
@@ -368,7 +370,7 @@ credential = DefaultAzureCredential()
 # Update your Azure resources details
 subscription_id = "INSERT YOUR SUBSCRIPTION ID"
 resource_group = "INSERT YOUR RESOURCE GROUP NAME"
-project_name = "INSERT YOUR PROJECT NAME" # This is the same as your Azure AI Foundry project name
+project_name = "INSERT YOUR PROJECT NAME" # This is the same as your Foundry project name
 endpoint_name = "INSERT YOUR ENDPOINT NAME" # This is your deployment name without the suffix (e.g., deployment is "contoso-chatbot-1", endpoint is "contoso-chatbot")
 deployment_name = "INSERT YOUR DEPLOYMENT NAME"
 
@@ -445,7 +447,7 @@ credential = DefaultAzureCredential()
 # Update your Azure resources details
 subscription_id = "INSERT YOUR SUBSCRIPTION ID"
 resource_group = "INSERT YOUR RESOURCE GROUP NAME"
-project_name = "INSERT YOUR PROJECT NAME" # This is the same as your Azure AI Foundry project name
+project_name = "INSERT YOUR PROJECT NAME" # This is the same as your Foundry project name
 endpoint_name = "INSERT YOUR ENDPOINT NAME" # This is your deployment name without the suffix (e.g., deployment is "contoso-chatbot-1", endpoint is "contoso-chatbot")
 deployment_name = "INSERT YOUR DEPLOYMENT NAME"
 aoai_deployment_name ="INSERT YOUR AOAI DEPLOYMENT NAME"
@@ -530,9 +532,9 @@ model_monitor = MonitorSchedule(
 ml_client.schedules.begin_create_or_update(model_monitor)
 ```
 
-After you create your monitor from the SDK, you can [consume the monitoring results](#consume-monitoring-results) in the Azure AI Foundry portal.
+After you create your monitor from the SDK, you can [consume the monitoring results](#consume-monitoring-results) in the Foundry portal.
 
 ## Related content
 
-- Learn more about what you can do in [Azure AI Foundry](../what-is-azure-ai-foundry.md).
-- Get answers to frequently asked questions in the [Azure AI Foundry FAQ](../faq.yml).
+- Learn more about what you can do in [Foundry](../what-is-foundry.md).
+- Get answers to frequently asked questions in the [Foundry FAQ](../faq.yml).

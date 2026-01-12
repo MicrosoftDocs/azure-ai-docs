@@ -5,7 +5,8 @@ ms.author: mbullwin
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
-ms.date: 3/19/2024
+ms.date: 11/21/2025
+ai-usage: ai-assisted
 ---
 
 ## Prerequisites
@@ -13,9 +14,10 @@ ms.date: 3/19/2024
 - An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - An Azure OpenAI resource with a speech to text model deployed in a [supported region](../concepts/models.md?tabs=standard-audio#standard-deployment-regional-models-by-endpoint). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 - [Python 3.8 or later](https://www.python.org)
-- The `os` Python library.
+- The [Azure CLI](/cli/azure/install-azure-cli).
+- A sample audio file. You can get sample audio, such as *wikipediaOcelot.wav*, from the [Azure Speech in Foundry Tools SDK repository at GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/sampledata/audiofiles).
 
-## Set up
+## Setup
 
 ### Retrieve key and endpoint
 
@@ -23,7 +25,7 @@ To successfully make a call against Azure OpenAI, you need an *endpoint* and a *
 
 |Variable name | Value |
 |--------------------------|-------------|
-| `AZURE_OPENAI_ENDPOINT`               | The service endpoint can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. Alternatively, you can find the endpoint via the **Deployments** page in Azure AI Foundry portal. An example endpoint is: `https://docs-test-001.openai.azure.com/`.|
+| `AZURE_OPENAI_ENDPOINT`               | The service endpoint can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. Alternatively, you can find the endpoint via the **Deployments** page in Microsoft Foundry portal. An example endpoint is: `https://docs-test-001.openai.azure.com/`.|
 | `AZURE_OPENAI_API_KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either `KEY1` or `KEY2`.|
 
 Go to your resource in the Azure portal. The **Endpoint and Keys** can be found in the **Resource Management** section. Copy your endpoint and access key as you'll need both for authenticating your API calls. You can use either `KEY1` or `KEY2`. Always having two keys allows you to securely rotate and regenerate keys without causing a service disruption.
@@ -43,7 +45,7 @@ setx AZURE_OPENAI_API_KEY "REPLACE_WITH_YOUR_KEY_VALUE_HERE"
 ```
 
 ```CMD
-setx AZURE_OPENAI_ENDPOINT "REPLACE_WITH_YOUR_ENDPOINT_HERE" 
+setx AZURE_OPENAI_ENDPOINT "REPLACE_WITH_YOUR_ENDPOINT_HERE"
 ```
 
 # [PowerShell](#tab/powershell)
@@ -67,16 +69,41 @@ echo export AZURE_OPENAI_ENDPOINT="REPLACE_WITH_YOUR_ENDPOINT_HERE" >> /etc/envi
 ```
 ---
 
-## Passwordless authentication is recommended
-
-For passwordless authentication, you need to:
-
-1. Use the `@azure/identity` package.
-1. Assign the `Cognitive Services User` role to your user account. This can be done in the Azure portal under **Access control (IAM)** > **Add role assignment**.
-1. Sign in with the Azure CLI such as `az login`.
+> [!IMPORTANT]
+> **Passwordless authentication is recommended**
+>
+> For passwordless authentication, you need to:
+> 
+> 1. Use the `azure-identity` package (`pip install azure-identity`).
+> 1. Assign the `Cognitive Services User` role to your user account. This can be done in the Azure portal under **Access control (IAM)** > **Add role assignment**.
+> 1. Sign in with the Azure CLI such as `az login`.
 
 
 ## Create a Python environment
+
+Create a new directory for your project and navigate to it from a terminal or command prompt.
+
+```Bash
+mkdir whisper-quickstart; cd whisper-quickstart
+```
+
+Create and activate a virtual environment for this project.
+
+# [Windows](#tab/windows)
+
+```powershell
+python -m venv .venv
+.venv\Scripts\activate
+```
+
+# [macOS/Linux](#tab/unix)
+
+```Bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+---
 
 Install the OpenAI Python client library with:
 
@@ -159,8 +186,6 @@ Run the application using the `python` command on your quickstart file:
 ```python
 python quickstart.py
 ```
-
-You can get sample audio files, such as *wikipediaOcelot.wav*, from the [Azure AI Speech SDK repository at GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/sampledata/audiofiles).
 
 > [!IMPORTANT]
 > For production, store and access your credentials using a secure method, such as [Azure Key Vault](/azure/key-vault/general/overview). For more information, see [credential security](../../../ai-services/security-features.md).

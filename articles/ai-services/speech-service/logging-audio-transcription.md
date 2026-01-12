@@ -1,9 +1,9 @@
 ---
 title: How to log audio and transcriptions for speech recognition
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to use audio and transcription logging for speech to text and speech translation.
-author: goergenj
-ms.author: jagoerge
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java, devx-track-js, devx-track-python

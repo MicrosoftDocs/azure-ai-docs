@@ -1,9 +1,9 @@
 ---
-title: "AudioVisual analysis: extracting structured content with Azure AI Content Understanding"
-titleSuffix: Azure AI services
-description: Learn about Azure AI Content Understanding's audiovisual analysis and content extraction capabilities for both audio and video inputs
-author: laujan
-ms.author: paulhsu
+title: "AudioVisual analysis: extracting structured content with Azure Content Understanding in Foundry Tools"
+titleSuffix: Foundry Tools
+description: Learn about Azure Content Understanding in Foundry Tools's audiovisual analysis and content extraction capabilities for both audio and video inputs
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.date: 06/19/2025
 ms.service: azure-ai-content-understanding
@@ -16,13 +16,13 @@ ms.custom:
 
 > [!IMPORTANT]
 >
-> * Azure AI Content Understanding is available in preview. Public preview releases provide early access to features that are in active development.
+> * Azure Content Understanding in Foundry Tools is available in preview. Public preview releases provide early access to features that are in active development.
 > * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
 ## Overview
 
-Azure AI Content Understanding's multimodal analysis capabilities help you transform unstructured audio and video data into structured, machine-readable information. By precisely identifying and extracting audiovisual elements while preserving their temporal relationships, you can build powerful media processing workflows for a wide range of applications.
+Azure Content Understanding's multimodal analysis capabilities help you transform unstructured audio and video data into structured, machine-readable information. By precisely identifying and extracting audiovisual elements while preserving their temporal relationships, you can build powerful media processing workflows for a wide range of applications.
 
 The `contents` object with `kind: "audioVisual"` supports both audio-only and video inputs, with different capabilities available depending on the input type.
 
@@ -30,7 +30,7 @@ The `contents` object with `kind: "audioVisual"` supports both audio-only and vi
 - **Audio files**: Common audio formats
 - **Video files**: Common video formats
 
-For complete details about supported file types, file size limits, and other constraints, see [service quotas and limits](../service-limits.md#analyzers).
+For complete details about supported file types, file size limits, and other constraints, see [service quotas and limits](../service-limits.md).
 
 ## JSON response structure
 
@@ -59,7 +59,6 @@ The Content Understanding API returns analysis results in a structured JSON form
         "height": 480, 
         "keyFrameTimesMs": [/* ... */], 
         "cameraShotTimesMs": [/* ... */], 
-        "segments": [/* ... */] 
       }
     ]
   }
@@ -73,22 +72,20 @@ The following audiovisual elements can be extracted:
 | Element | Audio Support | Video Support | Requires returnDetails |
 |---------|---------------|---------------|------------------------|
 | [**Markdown content**](#markdown-content-elements) | ✓ | ✓ | No |
-| **Content extraction elements** | | | |
+| [**Contents collection**](#contents-collection)| ✓ | ✓ | No |
 | [**Transcript phrases**](#transcript-phrases) | ✓ | ✓ | Yes |
 | [**Timing information**](#timing-information) | ✓ | ✓ | No |
 | [**Key frames**](#key-frames) | ✗ | ✓ | No |
 | [**Camera shots**](#camera-shots) | ✗ | ✓ | Yes |
-| [**Faces and persons**](#faces-and-persons) | ✗ | ✓ | Yes* |
-| **Custom elements** | | | |
 | [**Field extraction**](#field-extraction) | ✓ | ✓ | No |
-| [**Segments**](#segments) | ✗ | ✓ | Yes |
 
 Face also requires `enableFace: true` in analyzer configuration and limited access registration.
 
 ### Markdown content elements
 For details on the markdown format for audiovisual content see [AudioVisual Markdown](markdown.md).
 
-### Content extraction elements
+### Contents collection
+The contents collection contains one or more content objects that contain the data extracted from the file. When segmentation is enabled (`enableSegment = true`) then a content object is returned for each segment found in the content. 
 
 #### Transcript phrases
 
@@ -139,6 +136,13 @@ Timing information provides the overall temporal bounds of the audiovisual conte
 
 A `keyFrameTimesMs` element represents the timestamps for the visual frames extracted from the video at key moments. Timestamps are represented in milliseconds from the beginning of the video. These frames are intelligently selected based on signals like shot detection. These frames are used as input to generate custom fields.
 
+**Keyframe sampling behavior:**
+
+- Keyframes are uniformly selected from each camera shot
+- Each shot includes at least one sampled keyframe, even for short shots (less than one second)
+- The number of keyframes is consistent across multiple runs
+- Timestamp values can have minor numerical differences between runs, but these differences are minimal and shouldn't significantly affect the content of the selected frames
+
 **JSON example:**
 ```json
 {
@@ -161,6 +165,13 @@ A `keyFrameTimesMs` element represents the timestamps for the visual frames extr
 
 A `cameraShotTimesMs` element identifies points in the video where camera shots change, indicating cuts, transitions, or significant changes in camera angle or perspective. This helps in understanding the video's editing structure. The values are timestamps in milliseconds from the beginning of the video. This output is included when the user sets  `"returnDetails": true` in the analyzer definition.
 
+**Camera shot detection behavior:**
+
+- `cameraShotTimesMs` stores the timestamps of cuts between camera shots
+- The array values indicate the starting time of all camera shots, excluding the first shot (which always starts at 0 ms)
+- The output is deterministic and consistent across multiple runs
+- This model may miss transitions that are visually gradual
+
 **JSON example:**
 ```json
 {
@@ -179,89 +190,6 @@ A `cameraShotTimesMs` element identifies points in the video where camera shots 
 }
 ```
 
-#### Faces and persons
-
-When face detection is enabled through analyzer configuration, Content Understanding can identify and track faces throughout the video. It also can optionally identify specific individuals when a person directory is provided. The face add-on is limited access and involves face identification and grouping; customers need to register for access at [Face Recognition](https://aka.ms/facerecognition). Face features incur added costs.
-
-##### Configuration
-
-To enable face capabilities, you need to configure your analyzer with the appropriate settings:
-
-**Enable face detection and tracking:**
-```json
-{
-  "config": {
-    "enableFace": true,
-    "returnDetails": true
-  }
-}
-```
-
-**Enable face identification with person directory:**
-```json
-{
-  "config": {
-    "enableFace": true,
-    "personDirectoryId": "your-person-directory-name",
-    "returnDetails": true
-  }
-}
-```
-
-For face identification, you must first create a person directory and reference it in the analyzer. For details on how to create a person directory, see [How to build a person directory](../tutorial/build-person-directory.md).
-
-##### Person properties
-
-The `persons` array contains identified individuals detected throughout the video:
-
-- **`personId`**: A unique identifier for the person. The identifier can be:
-  - A default identifier like "Person-1," "Person-2," etc. when no person directory is used
-  - A GUID that corresponds to a person ID in the person directory when identification is enabled
-- **`confidence`**: A decimal value between 0 and 1 indicating the confidence level of person identification
-- **`source`**: A string containing temporal and spatial information about where the person appears in the video. The output is formatted as `AV(startTimeMs,x,y,width,height)-AV(endTimeMs,x,y,width,height)` where:
-  - `startTimeMs`, `endTimeMs`: Timestamp in milliseconds for the start and end of the appearance of the person 
-  - `x,y`: Top-left corner coordinates of the bounding box
-  - `width,height`: Dimensions of the bounding box
-- **Multiple appearances**: Separated by semicolons (`;`) for different time periods
-- **Continuous tracking**: Connected by hyphens (`-`) for start and end of the same appearance
-
-
-**JSON example (default person identification):**
-```json
-{
-  "persons": [
-    {
-      "personId": "Person-1",
-      "confidence": 1,
-      "source": "AV(0,176,12,392,589)-AV(2433,192,56,374,561);AV(2933,185,29,380,576)-AV(6400,199,29,384,588)"
-    },
-    {
-      "personId": "Person-2", 
-      "confidence": 1,
-      "source": "AV(2467,201,143,348,562)-AV(2900,192,125,369,594);AV(6433,40,0,630,858)-AV(31467,426,152,294,531)"
-    }
-  ]
-}
-```
-
-**JSON example (with person directory identification):**
-```json
-{
-  "persons": [
-    {
-      "personId": "a7784fd0-a24e-47d7-b125-351fe1d61f21",
-      "confidence": 1,
-      "source": "AV(160,150,120,200,300)-AV(5000,155,125,195,295);AV(8000,160,130,190,290)-AV(12000,165,135,185,285)"
-    },
-    {
-      "personId": "0a9bc856-487a-4ce8-82dd-34db13d5e1a4",
-      "confidence": 1, 
-      "source": "AV(3000,300,200,180,250)-AV(7500,305,205,175,245);AV(15000,310,210,170,240)-AV(20000,315,215,165,235)"
-    }
-  ]
-}
-```
-
 ### Custom elements
 
 #### Field extraction
@@ -274,138 +202,11 @@ Custom field extraction allows you to define and extract specific information fr
   "fields": {
     "Summary": {
       "type": "string",
-      "valueString": "The conversation revolves around an introduction to Azure AI Foundry's latest features."
+      "valueString": "The conversation revolves around an introduction to Microsoft Foundry's latest features."
     },
     "Sentiment": {
       "type": "string",
       "valueString": "Positive"
-    }
-  }
-}
-```
-
-#### Segments
-
-A `segments` collection is a grouping of video content that represents a logical temporal unit within the video. Segments can be created automatically based on scene detection or defined using custom segmentation definition provided by the user. Each segment contains timing information, descriptions, and optionally custom field extractions.
-
-When `"returnDetails": true` is set in the analyzer definition, the segments object is returned. When segmentation is enabled, fields are always returned in the `valueArray` format for segment-based field extraction.
-
-##### Configuration
-
-Content Understanding offers three ways to slice a video, letting you get the output you need for whole videos or short clips. You can use these options by setting the `segmentationMode` property on a custom analyzer:
-
-**Whole-video segmentation:**
-```json
-{
-  "config": {
-    "segmentationMode": "noSegmentation"
-  }
-}
-```
-The service treats the entire video file as a single segment and extracts metadata across its full duration.
-
-**Use cases:**
-- Compliance checks that look for specific brand-safety issues anywhere in an ad
-- Full-length descriptive summaries
-
-**Automatic segmentation:**
-```json
-{
-  "config": {
-    "segmentationMode": "auto"
-  }
-}
-```
-The service analyzes the timeline and breaks it up for you. Groups successive shots into coherent scenes, capped at one minute each.
-
-**Use cases:**
-- Create storyboards from a show
-- Inserting mid-roll ads at logical pauses
-
-**Custom segmentation:**
-```json
-{
-  "config": {
-    "segmentationMode": "custom",
-    "segmentationDefinition": "news broadcasts divided by individual stories"
-  }
-}
-```
-You describe the logic in natural language and the model creates segments to match. Set `segmentationDefinition` with a string describing how you'd like the video to be segmented. Custom allows segments of varying length from seconds to minutes depending on the prompt.
-
-**Use cases:**
-- Break a news broadcast up into stories
-- Segment educational content by topics
-- Divide sports broadcasts by plays or events
-
-##### Segment properties
-
-- `startTimeMs`: The start time of the segment in milliseconds
-- `endTimeMs`: The end time of the segment in milliseconds  
-- `segmentId`: A unique identifier for the segment
-- `description`: A natural language description of what happens in the segment
-
-##### JSON examples
-
-**Basic segments output:**
-```json
-{
-  "segments": [
-    {
-      "startTimeMs": 2001,
-      "endTimeMs": 22356,
-      "description": "The segment transitions to a sports montage with the 'CTN SPORTS' logo appearing prominently. Various sports clips are shown, including volleyball, softball, football, basketball, golf, hockey, swimming, and track events.",
-      "segmentId": "2"
-    },
-    {
-      "startTimeMs": 26960,
-      "endTimeMs": 53353,
-      "description": "The video opens with a wide view of the soccer field at the Cardinals Sports Complex. Players from both teams are positioned on the field, preparing for the start of the game.",
-      "segmentId": "4"
-    }
-  ]
-}
-```
-
-**Field extraction with segments:**
-When segmentation is enabled, custom field extraction returns results in a structured array format for each segment:
-
-```json
-{
-  "fields": {
-    "Segments": {
-      "type": "array",
-      "valueArray": [
-        {
-          "type": "object",
-          "valueObject": {
-            "SegmentType": {
-              "type": "string",
-              "valueString": "SportsBroadcast"
-            },
-            "PlayEvent": {
-               "type": "string", 
-              "valueString": "FreeKick"
-            },
-            "GameClock": {
-              "type": "string",
-              "valueString": "25:46"
-            },
-            "SegmentId": {
-              "type": "string",
-              "valueString": "4"
-            },
-            "StartTimeMs": {
-              "type": "integer",
-              "valueInteger": 26960
-            },
-            "EndTimeMs": {
-              "type": "integer",
-              "valueInteger": 53353
-            }
-          }
-        }
-      ]
     }
   }
 }
@@ -559,7 +360,8 @@ This complete example demonstrates how Content Understanding extracts and struct
 
 ## Next steps
 
-* Try processing your video content using Content Understanding in [Azure AI Foundry](https://aka.ms/cu-landing).
-* Learn to analyze video content [**analyzer templates**](../quickstart/use-ai-foundry.md).
-* Review code samples: [**video analysis with segments**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).
-* Review code sample: [**video analyzer templates**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).
+* Try out analyzing videos in the [Content Understanding Studio](https://aka.ms/cu-studio).
+* Check out the [Content Understanding Studio quickstart](../quickstart/content-understanding-studio.md).
+* Learn more about analyzing video content using [analyzer templates](../concepts/analyzer-templates.md).
+* Review code sample: [video analysis with segments](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).
+* Review code sample: [video analyzer templates](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).

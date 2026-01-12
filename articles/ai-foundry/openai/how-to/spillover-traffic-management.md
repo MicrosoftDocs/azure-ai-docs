@@ -1,20 +1,24 @@
 ---
 title: Manage traffic with spillover for Provisioned deployments
-description: Article outlining how to use the spillover feature to manage traffic bursts for Azure OpenAI in Azure AI Foundry Models provisioned deployments
+description: Article outlining how to use the spillover feature to manage traffic bursts for Azure OpenAI in Microsoft Foundry Models provisioned deployments
 author: msakande
 ms.author: mopeakande
 ms.service: azure-ai-foundry
+ms.reviewer: seramasu
+reviewer: rsethur
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ms.date: 10/02/2025
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
+#CustomerIntent: As a developer, I want to manage traffic bursts on my provisioned deployments by routing overage traffic to standard deployments using spillover.
 ---
 
 # Manage traffic with spillover for provisioned deployments
 
-Spillover manages traffic fluctuations on provisioned deployments by routing overage traffic to a corresponding standard deployment. Spillover is an optional capability that can be set for all requests on a given deployment or can be managed on a per-request basis. When spillover is enabled, Azure OpenAI in Azure AI Foundry Models sends any overage traffic from your provisioned deployment to a standard deployment for processing.
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-> [!NOTE]
-> Spillover is currently not available for the [responses API](./responses.md).
+Spillover manages traffic fluctuations on provisioned deployments by routing overage traffic to a corresponding standard deployment. Spillover is an optional capability that can be set for all requests on a given deployment or can be managed on a per-request basis. When spillover is enabled, Azure OpenAI in Microsoft Foundry Models sends any overage traffic from your provisioned deployment to a standard deployment for processing.
 
 ## Prerequisites
 - You need to have a provisioned managed deployment and a standard deployment.
@@ -24,7 +28,7 @@ Spillover manages traffic fluctuations on provisioned deployments by routing ove
 - The data processing level of your standard deployment must match your provisioned deployment (for example, a global provisioned deployment must be used with a global standard spillover deployment).
 
 ## When to enable spillover on provisioned deployments
-To maximize the utilization of your provisioned deployment, you can enable spillover for all global and data zone provisioned deployments. With spillover, bursts or fluctuations in traffic can be automatically managed by the service. This capability reduces the risk of experiencing disruptions when a provisioned deployment is fully utilized. Alternatively, spillover is configurable per-request to provide flexibility across different scenarios and workloads. Spillover can also now be used for the [Azure AI Foundry Agent Service](../../agents/overview.md).  
+To maximize the utilization of your provisioned deployment, you can enable spillover for all global and data zone provisioned deployments. With spillover, bursts or fluctuations in traffic can be automatically managed by the service. This capability reduces the risk of experiencing disruptions when a provisioned deployment is fully utilized. Alternatively, spillover is configurable per-request to provide flexibility across different scenarios and workloads. Spillover can also now be used for the [Foundry Agent Service](../../agents/overview.md).  
 
 ## When does spillover come into effect?
 When you enable spillover for a deployment or configure it for a given inference request, spillover initiates when a specific non-`200` response code is received for a given inference request as a result of one of these scenarios:
@@ -59,9 +63,11 @@ Since spillover uses a combination of provisioned and standard deployments to ma
 
 ## Enable spillover for all requests on a provisioned deployment
 
-# [Azure AI Foundry portal](#tab/portal)
+# [Foundry portal](#tab/portal)
 
-To deploy a model with the spillover capability, navigate to the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). On the left navigation menu, then select **Deployments**.
+::: moniker range="foundry-classic"
+
+To deploy a model with the spillover capability, navigate to the [Foundry](https://ai.azure.com/?cid=learnDocs). On the left navigation menu, then select **Deployments**.
 
 
 Select **Deploy model**. In the menu that appears, select **Customize**.
@@ -75,6 +81,14 @@ Specify one the provisioned options as the **Deployment type**, for example **Gl
 > * To see how to enable spillover for select inference requests, click the **REST API** tab above.
 
 :::image type="content" source="../media/provisioned/spillover.png" alt-text="A screenshot showing the spillover option." lightbox="../media/provisioned/spillover.png":::
+
+::: moniker-end
+
+::: moniker range="foundry-classic"
+
+See the REST API tab to learn how to enable spillover.
+
+::: moniker-end
 
 # [REST API](#tab/rest-api)
 
@@ -105,11 +119,17 @@ curl $AZURE_OPENAI_ENDPOINT/openai/deployments/spillover-ptu-deployment/chat/com
 ---
 
 ## How do I monitor my spillover usage?
-Since the spillover capability relies on a combination of provisioned and standard deployments to manage traffic overages, monitoring can be conducted at the deployment level for each deployment. To view how many requests were processed on the primary provisioned deployment versus the spillover standard deployment, apply the splitting feature within Azure Monitor metrics to view the requests processed by each deployment and their respective status codes. Similarly, the splitting feature can be used to view how many tokens were processed on the primary provisioned deployment versus the spillover standard deployment for a given time period. For more information on observability within Azure OpenAI, review the [Monitor Azure OpenAI](./monitor-openai.md) documentation. 
+Since the spillover capability relies on a combination of provisioned and standard deployments to manage traffic overages, monitoring can be conducted at the deployment level for each deployment. To view how many requests were processed on the primary provisioned deployment versus the spillover standard deployment, apply the splitting feature within Azure Monitor metrics to view the requests processed by each deployment and their respective status codes. Similarly, the splitting feature can be used to view how many tokens were processed on the primary provisioned deployment versus the spillover standard deployment for a given time period. 
+
+::: moniker range="foundry-classic"
+
+For more information on observability within Azure OpenAI, review the [Monitor Azure OpenAI](./monitor-openai.md) documentation. 
+
+::: moniker-end
 
 ## Monitor metrics in the Azure portal
 
-The following Azure Monitor metrics chart provides an example of the split of requests between the primary provisioned deployment and the spillover standard deployment when spillover is initiated. To create a chart, navigate to your resource in the [Azure portal](https://ai.azure.com/?cid=learnDocs). 
+The following Azure Monitor metrics chart provides an example of the split of requests between the primary provisioned deployment and the spillover standard deployment when spillover is initiated. To create a chart, navigate to your resource in the [Azure portal](https://portal.azure.com). 
 
 1.  Select **Monitoring** > **metrics** from the left navigation menu.
 

@@ -8,8 +8,8 @@ ms.service: azure-ai-search
 ms.custom:
   - references_regions
   - ignite-2024
-ms.topic: reference
-ms.date: 10/21/2025
+ms.topic: article
+ms.date: 11/19/2025
 ms.update-cycle: 365-days
 ---
 
@@ -17,11 +17,11 @@ ms.update-cycle: 365-days
 
 The **Document Layout** skill analyzes a document to detect structure and characteristics, and produces a syntactical representation of the document in Markdown or Text format. You can use it to extract text and images, where image extraction includes location metadata that preserves image position within the document. Image proximity to related content is beneficial in Retrieval Augmented Generation (RAG) workloads and [multimodal search](multimodal-search-overview.md) scenarios.
 
-This article is the reference documentation for the Document Layout skill. For usage information, see [How to chunk and vectorize by document layout](search-how-to-semantic-chunking.md). 
+This article is the reference documentation for the Document Layout skill. For usage information, see [How to chunk and vectorize by document layout](search-how-to-semantic-chunking.md).
 
-This skill uses the [Document Intelligence layout model](/azure/ai-services/document-intelligence/concept-layout) provided in [Azure AI Document Intelligence](/azure/ai-services/document-intelligence/overview).
+This skill uses the [layout model](/azure/ai-services/document-intelligence/concept-layout) from [Azure Document Intelligence in Foundry Tools](/azure/ai-services/document-intelligence/overview).
 
-This skill is bound to a [billable Azure AI multi-service resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Azure AI services Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/).
+This skill is bound to a [billable Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Foundry Tools Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/).
 
 > [!TIP]
 > It's common to use this skill on content such as PDFs that have structure and images. The following tutorials demonstrate image verbalization with two different data chunking techniques:
@@ -34,21 +34,23 @@ This skill is bound to a [billable Azure AI multi-service resource](cognitive-se
 
 This skill has the following limitations:
 
-+ The skill isn't suitable for large documents requiring more than 5 minutes of processing in the AI Document Intelligence layout model. The skill times out, but charges still apply to the AI Services multi-services resource if it attaches to the skillset for billing purposes. Ensure documents are optimized to stay within processing limits to avoid unnecessary costs.
++ The skill isn't suitable for large documents requiring more than 5 minutes of processing in the Azure Document Intelligence layout model. The skill times out, but charges still apply to the Foundry resource if it's attached to the skillset for billing purposes. Ensure documents are optimized to stay within processing limits to avoid unnecessary costs.
 
-+ Since this skill calls the Azure AI Document Intelligence layout model, all documented [service behaviors for different document types](/azure/ai-services/document-intelligence/prebuilt/layout#pages) for different file types apply to its output. For example, Word (DOCX) and PDF files may produce different results due to differences in how images are handled. If consistent image behavior across DOCX and PDF is required, consider converting documents to PDF or reviewing the [multimodal search documentation](multimodal-search-overview.md) for alternative approaches.
++ Since this skill calls the Azure Document Intelligence layout model, all documented [service behaviors for different document types](/azure/ai-services/document-intelligence/prebuilt/layout#pages) for different file types apply to its output. For example, Word (DOCX) and PDF files may produce different results due to differences in how images are handled. If consistent image behavior across DOCX and PDF is required, consider converting documents to PDF or reviewing the [multimodal search documentation](multimodal-search-overview.md) for alternative approaches.
 
 ## Supported regions
 
-The Document Layout skill calls the [Document Intelligence 2024-11-30 API](/rest/api/aiservices/operation-groups). 
+The Document Layout skill calls the [Azure Document Intelligence 2024-11-30 API version V4.0](/rest/api/aiservices/operation-groups).
 
-Supported regions vary by modality and how the skill connects to the Document Intelligence layout model.
+Supported regions vary by modality and how the skill connects to the Azure Document Intelligence layout model. 
 
 | Approach | Requirement |
 |----------|-------------|
-| [**Import data (new)** wizard](search-import-data-portal.md) | Create an Azure AI multi-service resource in one of these regions to get the portal experience: **East US**, **West Europe**, **North Central US**. | 
-| Programmatic, using [Microsoft Entra ID authentication (preview)](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) for billing |  Create Azure AI Search in one of the regions where the service is supported, according to [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table). <br>Create the Azure AI multi-service resource in any region listed in the [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table) table.|
-| Programmatic, using a [multi-service resource API key](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) for billing | Create your Azure AI Search service and AI multi-service resource in the same region. This means that the region chosen must have support for both [Azure AI Search and Azure Document Intelligence services](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table). |
+| [**Import data (new)** wizard](search-import-data-portal.md) | Create a Foundry resource in one of these regions to get the portal experience: **East US**, **West Europe**, **North Central US**. | 
+| Programmatic, using [Microsoft Entra ID authentication (preview)](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) for billing |  Create Azure AI Search in one of the regions where the service is supported, according to [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table). <br>Create the Foundry resource in any region listed in the [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table) table.|
+| Programmatic, using a [Foundry resource key](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) for billing | Create your Azure AI Search service and Foundry resource in the same region. This means that the region chosen must have support for both [Azure AI Search and Azure Document Intelligence services](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table). |
+
+The implemented version of Document Layout model doesn't have support for [21Vianet](/azure/china/overview-operations) regions at this time.
 
 ## Supported file formats
 
@@ -67,7 +69,7 @@ This skill recognizes the following file formats.
 
 ## Supported languages
 
-Refer to [Azure AI Document Intelligence layout model supported languages](/azure/ai-services/document-intelligence/language-support/ocr?view=doc-intel-3.1.0&tabs=read-print%2Clayout-print%2Cgeneral#layout&preserve-view=true) for printed text.
+Refer to [Azure Document Intelligence layout model supported languages](/azure/ai-services/document-intelligence/language-support/ocr?view=doc-intel-3.1.0&tabs=read-print%2Clayout-print%2Cgeneral#layout&preserve-view=true) for printed text.
 
 ## @odata.type
 
@@ -76,13 +78,13 @@ Microsoft.Skills.Util.DocumentIntelligenceLayoutSkill
 ## Data limits
 
 + For PDF and TIFF, up to 2,000 pages can be processed (with a free tier subscription, only the first two pages are processed).
-+ Even if the file size for analyzing documents is 500 MB for [Azure AI Document Intelligence paid (S0) tier](https://azure.microsoft.com/pricing/details/cognitive-services/) and 4 MB for [Azure AI Document Intelligence free (F0) tier](https://azure.microsoft.com/pricing/details/cognitive-services/), indexing is subject to the [indexer limits](search-limits-quotas-capacity.md#indexer-limits) of your search service tier.
++ Even if the file size for analyzing documents is 500 MB for [Azure Document Intelligence paid (S0) tier](https://azure.microsoft.com/pricing/details/cognitive-services/) and 4 MB for [Azure Document Intelligence free (F0) tier](https://azure.microsoft.com/pricing/details/cognitive-services/), indexing is subject to the [indexer limits](search-limits-quotas-capacity.md#indexer-limits) of your search service tier.
 + Image dimensions must be between 50 pixels x 50 pixels or 10,000 pixels x 10,000 pixels.
 + If your PDFs are password-locked, remove the lock before running the indexer.
   
 ## Skill parameters
 
-Parameters are case-sensitive. Several parameters were introduced in specific preview versions of the REST API. We recommend using the generally available version (2025-09-01) or the latest preview (2025-08-01-preview) for full access to all parameters.
+Parameters are case sensitive. Several parameters were introduced in specific preview versions of the REST API. We recommend using the generally available version (2025-09-01) or the latest preview (2025-11-01-preview) for full access to all parameters.
 
 | Parameter name     | Allowed Values | Description |
 |--------------------|----------------|-------------|
@@ -288,13 +290,13 @@ This example demonstrates how to output text content in fixed-sized chunks and e
 ```
 Note that the `“sections”` in the sample output above appear blank. To populate them, you’ll need to add an additional skill configured with `outputFormat` set to `markdown`to ensure the sections are properly filled.
 
-The skill uses [Azure AI Document Intelligence](/azure/ai-services/document-intelligence/overview) to compute locationMetadata. Refer to [Document Intelligence layout model](/azure/ai-services/document-intelligence/concept-layout) for details on how pages and bounding polygon coordinates are defined.
+The skill uses [Azure Document Intelligence](/azure/ai-services/document-intelligence/overview) to compute locationMetadata. Refer to [Azure Document Intelligence layout model](/azure/ai-services/document-intelligence/concept-layout) for details on how pages and bounding polygon coordinates are defined.
 
 The `imagePath` represents the relative path of a stored image. If the knowledge store file projection is configured in the skillset, this path matches the relative path of the image stored in the knowledge store.
 
 ## See also
 
-+ [What is document intelligence layout model](/azure/ai-services/document-intelligence/concept-layout)
++ [What is the Azure Document Intelligence layout model](/azure/ai-services/document-intelligence/concept-layout)
 + [Built-in skills](cognitive-search-predefined-skills.md)
 + [How to define a skill set](cognitive-search-defining-skillset.md)
 + [Create Indexer (REST API)](/rest/api/searchservice/indexers/create)

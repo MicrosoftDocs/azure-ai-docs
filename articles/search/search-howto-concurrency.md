@@ -25,7 +25,7 @@ When managing Azure AI Search resources such as indexes and data sources, it's i
 
 ## How it works
 
-Optimistic concurrency is implemented through access condition checks in API calls writing to indexes, indexers, data sources, skillsets, knowledge agents, and synonymMap resources.
+Optimistic concurrency is implemented through access condition checks in API calls writing to indexes, indexers, data sources, skillsets, knowledge bases, and synonymMap resources.
 
 All resources have an [*entity tag (ETag)*](https://en.wikipedia.org/wiki/HTTP_ETag) that provides object version information. By checking the ETag first, you can avoid concurrent updates in a typical workflow (get, modify locally, update) by ensuring the resource's ETag matches your local copy.
 
@@ -152,7 +152,7 @@ A design pattern for implementing optimistic concurrency should include a loop t
 
 This code snippet illustrates the addition of a synonymMap to an index that already exists.
 
-The snippet gets the hotels-sample-index index, checks the object version on an update operation, throws an exception if the condition fails, and then retries the operation (up to three times), starting with index retrieval from the server to get the latest version.
+The snippet gets the [hotels-sample-index](search-get-started-portal.md), checks the object version on an update operation, throws an exception if the condition fails, and then retries the operation (up to three times), starting with index retrieval from the server to get the latest version.
 
 ```csharp
 private static void EnableSynonymsInHotelsIndexSafely(SearchIndexClient indexClient)

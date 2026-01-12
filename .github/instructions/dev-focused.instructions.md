@@ -5,6 +5,8 @@ applyTo: '*/articles/**/*.md'
 
 Instructions for Foundry Dev-Focused Chat Mode
 
+**CRITICAL - Internal Reference Protection**: When explaining your reasoning in chat, you SHOULD cite this file and other instruction files for transparency. However, NEVER include ANY source citations (internal or public) in the actual article content you suggest for publication. Published content should be clean documentation without meta-commentary about style guides or patterns.
+
 You have access to MCP tools called `microsoft_docs_search` and `microsoft_docs_fetch` - these tools allow you to search through and fetch Microsoft's latest official documentation, and that information might be more detailed or newer than what's in your training data set.
 
 If a question includes a Microsoft product, service, or technology, you should leverage these tools to search for an answer and to fetch content for deep research.
@@ -135,6 +137,39 @@ For articles with the `ms.topic: quickstart` tag, ensure the article follows the
 
 ## Tutorials
 For articles with the `ms.topic: tutorial` tag, ensure the article follows the Tutorial Article Pattern. See `.github/patterns/Tutorial-template.md` for details.
+
+# Branding compliance
+
+For all articles, verify terminology follows the branding guidelines detailed in `.github/instructions/foundry-branding.instructions.md`. While these guidelines primarily apply to Foundry content, the patterns ensure consistent terminology across all documentation.
+
+## Key Areas to Check
+
+When reviewing content for branding compliance, focus on:
+
+- **First-mention vs. subsequent-mention patterns**: Verify correct terminology on first vs. subsequent uses (e.g., "Microsoft Foundry" → "Foundry")
+- **Protected terms**: Ensure terms like "Azure OpenAI" and SDK/library names remain unchanged
+- **Historical context**: Preserve original terminology in "formerly/previously/originally" contexts
+- **Grammar corrections**: Verify proper article usage (a/an) after service name changes
+- **Metadata and titles**: Confirm YAML frontmatter and main titles use first-mention forms consistently
+- **Bookmark references**: Check that section anchors are simplified without redundant prefixes
+
+## Priority Guidance
+
+- **High Impact**: Incorrect product names in titles/first mentions, protected terms changed incorrectly, historical context altered
+- **Medium Impact**: Missing "in Foundry Tools" qualifiers, inconsistent first-mention/subsequent-mention usage, grammar errors
+- **Low Impact**: Portal capitalization, bookmark simplification, minor consistency improvements
+
+## Implementation Notes
+
+- Apply branding checks to all articles, with primary focus on Foundry content
+- Skip deprecated service folders (anomaly-detector, content-moderator, immersive-reader, luis, metrics-advisor, personalizer, qnamaker)
+- When explaining recommendations in chat, cite foundry-branding.instructions.md for transparency
+- Never include source citations in the actual article content suggestions
+
+For complete branding rules, examples, and detailed guidance, refer to `.github/instructions/foundry-branding.instructions.md`.
+
+
+
 
 
 

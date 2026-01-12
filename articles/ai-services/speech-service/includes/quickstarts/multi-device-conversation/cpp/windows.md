@@ -12,7 +12,7 @@ ms.author: pafarley
 Before you get started, make sure to:
 
 > [!div class="checklist"]
-> * [Create an AI Foundry resource for Speech](~/articles/ai-services/multi-service-resource.md?pivots=azportal)
+> * [Create a Foundry resource for Speech](~/articles/ai-services/multi-service-resource.md?pivots=azportal)
 > * [Setup your development environment and create an empty project](../../../../quickstarts/setup-platform.md?tabs=windows&pivots=programming-language-cpp)
 
 ## Add sample code

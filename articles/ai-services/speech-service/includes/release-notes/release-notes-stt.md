@@ -1,15 +1,31 @@
-﻿---
-author: goergenj
+---
+author: PatrickFarley
 reviewer: patrickfarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 10/21/2025
-ms.author: jagoerge
-ms.reviewer: pafarley
+ms.date: 10/28/2025
+ms.author: pafarley
 ms.custom: references_regions
 ---
 
+### November 2025
+
+* LLM speech API is public preview now. It uses a large-language-model-enhanced speech model that delivers improved quality, deep contextual understanding, multilingual support, and prompt-tuning capabilities. It currently supports the following speech tasks:
+   - `transcribe`: Convert pre-recorded audio into text.
+   - `translate`: Convert pre-recorded audio into text in a specified target language.
+
+  For more information, see [LLM speech](../../llm-speech.md). 
+* Fast transcription is generally available. It can transcribe audio much faster than the actual audio duration. For more information, see the [fast transcription API guide](../../fast-transcription-create.md).
+* To transcribe multi-lingual contents continuously and accurately in an audio file, you can now use the latest multi-lingual model without specifying the locale codes via fast transcription API. For more information, see [multi-lingual transcription in fast transcription](../../fast-transcription-create.md?tabs=multilingual-transcription-on).
+* Video translation is now available in the Azure Speech service. For more information, see [What is video translation?](../../video-translation-overview.md)
+
+
 ### October 2025 release
+
+#### Speech to text REST API version 2025-10-15
+
+The speech to text REST API version 2025-10-15 is released for general availability. For more information, see the [speech to text REST API reference documentation](https://go.microsoft.com/fwlink/?linkid=2296107) and the [Speech to text REST API guide](../../rest-speech-to-text.md).
+
 
 #### Phrase list weight control for Speech SDK
 
@@ -32,7 +48,7 @@ The English models (all `en-*` models except for `en-IN`) were updated to incorp
 
 We rolled out significant upgrades to the pronunciation assessment models for `ta-IN` and `ms-MY`. You're seeing a noticeable jump in Pearson Correlation Coefficients (PCC), which means more precise and dependable evaluations.
 
-These updated models are ready to use through the API and the Azure AI Foundry playground, just like before.
+These updated models are ready to use through the API and the Microsoft Foundry playground, just like before.
 
 #### Improved speech to text models
 Accuracy of speech to text models in [fast transcription](../../fast-transcription-create.md) for `de-DE`, `en-US`, `en-GB`, `es-ES`, `es-MX`,  `fr-FR`, `it-IT`, `ja-JP`, `ko-KR`, `pt-BR`, and `zh-CN` locales improving by 10%-25% percent respectively, particularly with improved readability and recognition on entities.
@@ -55,7 +71,7 @@ Fast transcription now supports additional locales including fi-FI, he-IL, id-ID
 
 We are excited to announce substantial improvements to our pronunciation assessment models for these locales: `de-DE`, `es-MX`, `it-IT`, `ja-JP`, `ko-KR`, and `pt-BR`. These enhancements bring significant advancements in Pearson Correlation Coefficients (PCC), ensuring more accurate and reliable assessments.
 
-As before, the models are available through the API and Azure AI Foundry playground.
+As before, the models are available through the API and Microsoft Foundry playground.
 
 ### March 2025 release
 
@@ -106,7 +122,7 @@ Announcing the release of the latest English speech model (en-US, en-CA), which 
 
 The new model also improved the overall performance, including entity recognition and better recognition of spelled-out letters.
 
-These advancements are expected to provide a more accurate, efficient, and satisfying experience for all users. The new model is available through the API and Azure AI Foundry playground. Feedback is encouraged to further refine its capabilities.
+These advancements are expected to provide a more accurate, efficient, and satisfying experience for all users. The new model is available through the API and Microsoft Foundry playground. Feedback is encouraged to further refine its capabilities.
 
 ### November 2024 release
 
@@ -197,7 +213,7 @@ Speech [pronunciation assessment](../../how-to-pronunciation-assessment.md) now
 Fast transcription is now available in public preview. Fast transcription allows you to transcribe audio file to text accurately and synchronously, with a high speed factor. It can transcribe audio faster than the actual audio duration. For more information, see the [fast transcription API guide](../../fast-transcription-create.md).
 
 > [!TIP]
-> Try out fast transcription in the [Azure AI Foundry portal](https://aka.ms/fasttranscription/studio).
+> Try out fast transcription in the [Microsoft Foundry portal](https://aka.ms/fasttranscription/studio).
 
 ### June 2024 release
 
@@ -215,7 +231,7 @@ The Speech to text REST API version 3.2 is now generally available. For more inf
 
 #### Video translation (Preview)
 
-Video translation is now available in public preview. Video translation is a feature in Azure AI Speech that enables you to seamlessly translate and generate videos in multiple languages automatically. This feature is designed to help you localize your video content to cater to diverse audiences around the globe. You can efficiently create immersive, localized videos across various use cases such as vlogs, education, news, enterprise training, advertising, film, TV shows, and more. For more information, see the [video translation overview](../../video-translation-overview.md).
+Video translation is now available in public preview. Video translation is a feature in Azure Speech in Foundry Tools that enables you to seamlessly translate and generate videos in multiple languages automatically. This feature is designed to help you localize your video content to cater to diverse audiences around the globe. You can efficiently create immersive, localized videos across various use cases such as vlogs, education, news, enterprise training, advertising, film, TV shows, and more. For more information, see the [video translation overview](../../video-translation-overview.md).
 
 #### Pronunciation Assessment
 
@@ -258,9 +274,9 @@ You can create speech to text applications that use diarization to distinguish b
 
 #### Whisper general availability (GA)
 
-The Whisper speech to text model with Azure AI Speech is now generally available.
+The Whisper speech to text model with Azure Speech is now generally available.
 
-Check out [What is the Whisper model?](../../whisper-overview.md) to learn more about when to use Azure AI Speech vs. Azure OpenAI in Azure AI Foundry Models.
+Check out [What is the Whisper model?](../../whisper-overview.md) to learn more about when to use Azure Speech vs. Azure OpenAI in Microsoft Foundry Models.
 
 ### February 2024 release
 
@@ -316,12 +332,12 @@ We encourage you to explore these improvements and consider potential issues for
 
 #### Whisper public preview
 
-Azure AI Speech now supports OpenAI's Whisper model via the batch transcription API. To learn more, check out the [Create a batch transcription](../../batch-transcription-create.md#use-a-whisper-model) guide.
+Azure Speech now supports OpenAI's Whisper model via the batch transcription API. To learn more, check out the [Create a batch transcription](../../batch-transcription-create.md#use-a-whisper-model) guide.
 
 > [!NOTE]
 > Azure OpenAI also supports OpenAI's Whisper model for speech to text with a synchronous REST API. To learn more, check out the [quickstart](../../../../ai-foundry/openai/whisper-quickstart.md).
 
-Check out [What is the Whisper model?](../../whisper-overview.md) to learn more about when to use Azure AI Speech vs. Azure OpenAI.
+Check out [What is the Whisper model?](../../whisper-overview.md) to learn more about when to use Azure Speech vs. Azure OpenAI.
 
 #### Speech to text REST API v3.2 public preview
 

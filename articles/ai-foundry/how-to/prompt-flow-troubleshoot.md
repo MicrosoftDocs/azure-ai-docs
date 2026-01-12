@@ -1,6 +1,6 @@
-﻿---
+---
 title: Troubleshoot Guidance for Prompt Flow
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: This article addresses frequently asked questions about prompt flow usage. Learn how to deal with compute session related issues.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-prompt-flow
@@ -16,6 +16,8 @@ ms.update-cycle: 180-days
 ---
 
 # Troubleshoot guidance for prompt flow
+
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 This article addresses frequently asked questions about prompt flow usage.
 
@@ -43,7 +45,7 @@ The **Trace** section includes each request and response to the language model t
 
 ### How do I fix a 429 error from Azure OpenAI?
 
-You might encounter a 429 error from Azure OpenAI. This error means that you reached the rate limit of Azure OpenAI. You can check the error message in the output section of the language model node. To learn more about the rate limit, see [Azure OpenAI in Azure AI Foundry Models quotas and limits](../openai/quotas-limits.md).
+You might encounter a 429 error from Azure OpenAI. This error means that you reached the rate limit of Azure OpenAI. You can check the error message in the output section of the language model node. To learn more about the rate limit, see [Azure OpenAI in Microsoft Foundry Models quotas and limits](../openai/quotas-limits.md).
 
 :::image type="content" source="../media/prompt-flow/429-rate-limit.png" alt-text="Screenshot that shows a 429 rate limit error from Azure OpenAI." lightbox = "../media/prompt-flow/429-rate-limit.png":::
 
@@ -90,7 +92,7 @@ If you regenerate your Azure OpenAI key and manually update the connection used 
 
 This error occurs because the connections used in the endpoints/deployments aren't automatically updated. You should manually update any change for a key or secrets in deployments, which aims to avoid affecting online production deployment because of unintentional offline operation.
 
-- If you deployed the endpoint in the Azure AI Foundry portal, redeploy the flow to the existing endpoint by using the same deployment name.
+- If you deployed the endpoint in the Foundry portal, redeploy the flow to the existing endpoint by using the same deployment name.
 - If you deployed by using the SDK or the Azure CLI, make a modification to the deployment definition, such as adding a dummy environment variable. Then use `az ml online-deployment update` to update your deployment.
 
 ### How do I resolve vulnerability issues in prompt flow deployments?

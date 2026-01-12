@@ -5,12 +5,12 @@ description: Learn about different ways to scale forecasting model training
 services: machine-learning
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: erwright
+ms.reviewer: sooryar
 ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: concept-article
 ms.custom: automl, sdkv2
-ms.date: 10/31/2025
+ms.date: 11/14/2025
 show_latex: true
 ---
 
@@ -28,7 +28,7 @@ The many models [components](concept-component.md) in AutoML enable you to train
 
 The many models training component applies AutoML's [model sweeping and selection](concept-automl-forecasting-sweeping.md) independently to each store in this example. This model independence aids scalability and can benefit model accuracy, especially when the stores have diverging sales dynamics. However, a single model approach might yield more accurate forecasts when there are common sales dynamics. For more information, see the [distributed DNN training](#distributed-dnn-training-preview) section.
 
-You can configure the data partitioning, the [AutoML settings](how-to-auto-train-forecast.md#configure-experiment) for the models, and the degree of parallelism for many models training jobs. For examples, see our guide section on [many models components](how-to-auto-train-forecast.md#forecast-at-scale-many-models).        
+You can configure the data partitioning, the [AutoML settings](how-to-auto-train-forecast.md#configure-the-experiment) for the models, and the degree of parallelism for many models training jobs. For examples, see our guide section on [many models components](how-to-auto-train-forecast.md#forecast-at-scale-many-models).        
 
 ## Hierarchical time series forecasting
 

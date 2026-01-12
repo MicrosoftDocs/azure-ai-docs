@@ -4,14 +4,12 @@ titleSuffix: Foundry Local
 description: Complete reference guide for the Foundry Local REST API.
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
-ms.custom: build-2025
-ms.author: jburchel
-ms.reviewer: samkemp
-author: jonburchel
-reviewer: samuel100
-ms.topic: concept-article
-ms.date: 10/01/2025
-ai-usage: ai-assisted
+ms.author: nakersha
+ms.reviewer: jonburchel
+author: natke
+reviewer: jonburchel
+ms.topic: reference
+ms.date: 11/24/2025
 ---
 
 # Foundry Local REST API Reference
@@ -19,11 +17,9 @@ ai-usage: ai-assisted
 [!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 
 > [!CAUTION]
-> This API is under active development and may include breaking changes without notice. We strongly recommend monitoring the changelog before building production applications.
+> This API refers to the REST API available in the Foundry Local CLI. This API is under active development and may include breaking changes without notice. We strongly recommend monitoring the changelog before building production applications.
 
-## OpenAI v1 compatibility
-
-### POST /v1/chat/completions
+## POST /v1/chat/completions
 
 This endpoint processes chat completion requests.  
 It's fully compatible with the [OpenAI Chat Completions API](https://platform.openai.com/docs/api-reference/chat/create).
@@ -125,8 +121,8 @@ _---Standard OpenAI Properties---_
 
 **Example:**
 
-- Request body
-  ```json
+Request body
+```json
   {
     "model": "qwen2.5-0.5b-instruct-generic-cpu",
     "messages": [
@@ -149,9 +145,11 @@ _---Standard OpenAI Properties---_
     "function_call": null,
     "metadata": {}
   }
-  ```
-- Response body
-  ```json
+```
+
+Response body
+
+```json
   {
     "id": "chatcmpl-1234567890",
     "object": "chat.completion",
@@ -173,11 +171,34 @@ _---Standard OpenAI Properties---_
       "total_tokens": 30
     }
   }
-  ```
+```
 
-## Custom API
 
-### GET /foundry/list
+## GET /openai/status
+
+Get server status information.
+
+**Response body:**
+
+- `Endpoints` (array of strings)  
+  The HTTP server binding endpoints.
+- `ModelDirPath` (string)  
+  Directory where local models are stored.
+- `PipeName` (string)  
+  The current NamedPipe server name.
+
+**Example:**
+
+Response body
+```json
+  {
+    "Endpoints": ["http://localhost:5272"],
+    "ModelDirPath": "/path/to/models",
+    "PipeName": "inference_agent"
+  }
+```
+
+## GET /foundry/list
 
 Get a list of available Foundry Local models in the catalog.
 
@@ -208,38 +229,10 @@ Get a list of available Foundry Local models in the catalog.
   - `licenseDescription`: A detailed description or link to the license terms.
   - `parentModelUri`: The URI of the parent model from which this model is derived.
 
-### POST /openai/register
 
-Registers an external model provider for use with Foundry Local.
+## GET /openai/models
 
-**Request Body:**
-
-- `TypeName` (string)  
-  Provider name (e.g., `"deepseek"`)
-- `ModelName` (string)  
-  Model name to register (e.g., `"deepseek-chat"`)
-- `BaseUri` (string)  
-  The OpenAI-compatible base URI for the provider
-
-**Response:**
-
-- 200 OK  
-  Empty response body
-
-**Example:**
-
-- Request body
-  ```json
-  {
-    "TypeName": "deepseek",
-    "ModelName": "deepseek-chat",
-    "BaseUri": "https://api.deepseek.com/v1"
-  }
-  ```
-
-### GET /openai/models
-
-Get all available models, including local and registered external models.
+Get a list of cached models, including local and registered external models.
 
 **Response:**
 
@@ -248,126 +241,15 @@ Get all available models, including local and registered external models.
 
 **Example:**
 
-- Response body
-  ```json
+Response body
+
+```json
   ["Phi-4-mini-instruct-generic-cpu", "phi-3.5-mini-instruct-generic-cpu"]
-  ```
-
-### GET /openai/load/{name}
-
-Load a model into memory for faster inference.
-
-**URI Parameters:**
-
-- `name` (string)  
-  The model name to load.
-
-**Query Parameters:**
-
-- `unload` (boolean, optional)  
-  Whether to automatically unload the model after idle time. Defaults to `true`.
-- `ttl` (integer, optional)  
-  Time to live in seconds. If it's greater than 0, this value overrides the `unload` parameter.
-- `ep` (string, optional)  
-  Execution provider to run this model. Supports: `"dml"`, `"cuda"`, `"qnn"`, `"cpu"`, `"webgpu"`.  
-  If not specified, uses settings from `genai_config.json`.
-
-**Response:**
-
-- 200 OK  
-  Empty response body
-
-**Example:**
-
-- Request URI
-  ```http
-GET /openai/load/Phi-4-mini-instruct-generic-cpu?ttl=3600&ep=dml
 ```
 
-### GET /openai/unload/{name}
+## POST /openai/download
 
-Unload a model from memory.
-
-**URI Parameters:**
-
-- `name` (string)  
-  The model name to unload.
-
-**Query Parameters:**
-
-- `force` (boolean, optional)  
-  If `true`, ignores TTL settings and unloads immediately.
-
-**Response:**
-
-- 200 OK  
-  Empty response body
-
-**Example:**
-
-- Request URI
-  ```http
-GET /openai/unload/Phi-4-mini-instruct-generic-cpu?force=true
-```
-
-### GET /openai/unloadall
-
-Unloads all models from memory.
-
-**Response:**
-
-- 200 OK  
-  Empty response body
-
-### GET /openai/loadedmodels
-
-Get the list of currently loaded models.
-
-**Response:**
-
-- 200 OK  
-  An array of model names as strings.
-
-**Example:**
-
-- Response body
-  ```json
-  ["Phi-4-mini-instruct-generic-cpu", "phi-3.5-mini-instruct-generic-cpu"]
-  ```
-
-### GET /openai/getgpudevice
-
-Get the current GPU device ID.
-
-**Response:**
-
-- 200 OK  
-  An integer representing the current GPU device ID.
-
-### GET /openai/setgpudevice/{deviceId}
-
-Set the active GPU device.
-
-**URI Parameters:**
-
-- `deviceId` (integer)  
-  The GPU device ID to use.
-
-**Response:**
-
-- 200 OK  
-  Empty response body
-
-**Example:**
-
-- Request URI
-  ```http
-GET /openai/setgpudevice/1
-```
-
-### POST /openai/download
-
-Download a model to local storage.
+Download a model from the catalog to local storage.
 
 > [!NOTE]
 > Large model downloads can take a long time. Set a high timeout for this request to avoid early termination.
@@ -424,16 +306,24 @@ During download, the server streams progress updates in the format:
 
 **Example:**
 
-- Request body
+Request URI
+
+```http
+POST /openai/download
+```
+
+Request body
+
+Note that the version suffix must be supplied in the model name.
 
 ```json
 {
   "model": {
     "Uri": "azureml://registries/azureml/models/Phi-4-mini-instruct-generic-cpu/versions/4",
     "ProviderType": "AzureFoundryLocal",
-    "Name": "Phi-4-mini-instruct-generic-cpu",
+    "Name": "Phi-4-mini-instruct-generic-cpu:4",
     "Publisher": "",
-    "promptTemplate": {
+    "PromptTemplate": {
       "system": "<|system|>{Content}<|end|>",
       "user": "<|user|>{Content}<|end|>",
       "assistant": "<|assistant|>{Content}<|end|>",
@@ -443,50 +333,141 @@ During download, the server streams progress updates in the format:
 }
 ```
 
-- Response stream
+Response stream
 
-  ```text
-("genai_config.json", 0.01)
-("genai_config.json", 0.2)
-("model.onnx.data", 0.5)
-("model.onnx.data", 0.78)
-...
-("", 1)
+```text
+  ("genai_config.json", 0.01)
+  ("genai_config.json", 0.2)
+  ("model.onnx.data", 0.5)
+  ("model.onnx.data", 0.78)
+  ...
+  ("", 1)
 ```
 
-- Final response
-  ```json
+Final response
+```json
   {
     "Success": true,
     "ErrorMessage": null
   }
-  ```
+```
 
-### GET /openai/status
+## GET /openai/load/{name}
 
-Get server status information.
+Load a model into memory for faster inference.
 
-**Response body:**
+**URI Parameters:**
 
-- `Endpoints` (array of strings)  
-  The HTTP server binding endpoints.
-- `ModelDirPath` (string)  
-  Directory where local models are stored.
-- `PipeName` (string)  
-  The current NamedPipe server name.
+- `name` (string)  
+  The model name to load.
+
+**Query Parameters:**
+
+- `unload` (boolean, optional)  
+  Whether to automatically unload the model after idle time. Defaults to `true`.
+- `ttl` (integer, optional)  
+  Time to live in seconds. If it's greater than 0, this value overrides the `unload` parameter.
+- `ep` (string, optional)  
+  Execution provider to run this model. Supports: `"dml"`, `"cuda"`, `"qnn"`, `"cpu"`, `"webgpu"`.  
+  If not specified, uses settings from `genai_config.json`.
+
+**Response:**
+
+- 200 OK  
+  Empty response body
 
 **Example:**
 
-- Response body
-  ```json
-  {
-    "Endpoints": ["http://localhost:5272"],
-    "ModelDirPath": "/path/to/models",
-    "PipeName": "inference_agent"
-  }
+Request URI
+
+```http
+  GET /openai/load/Phi-4-mini-instruct-generic-cpu?ttl=3600&ep=dml
+```
+
+## GET /openai/unload/{name}
+
+Unload a model from memory.
+
+**URI Parameters:**
+
+- `name` (string)  
+  The model name to unload.
+
+**Query Parameters:**
+
+- `force` (boolean, optional)  
+  If `true`, ignores TTL settings and unloads immediately.
+
+**Response:**
+
+- 200 OK  
+  Empty response body
+
+**Example:**
+
+Request URI
+
+```http
+GET /openai/unload/Phi-4-mini-instruct-generic-cpu?force=true
+```
+
+## GET /openai/unloadall
+
+Unloads all models from memory.
+
+**Response:**
+
+- 200 OK  
+  Empty response body
+
+## GET /openai/loadedmodels
+
+Get the list of currently loaded models.
+
+**Response:**
+
+- 200 OK  
+  An array of model names as strings.
+
+**Example:**
+
+Response body
+
+```json
+["Phi-4-mini-instruct-generic-cpu", "phi-3.5-mini-instruct-generic-cpu"]
+```
+
+## GET /openai/getgpudevice
+
+Get the current GPU device ID.
+
+**Response:**
+
+- 200 OK  
+  An integer representing the current GPU device ID.
+
+## GET /openai/setgpudevice/{deviceId}
+
+Set the active GPU device.
+
+**URI Parameters:**
+
+- `deviceId` (integer)  
+  The GPU device ID to use.
+
+**Response:**
+
+- 200 OK  
+  Empty response body
+
+**Example:**
+
+- Request URI
+  ```http
+  GET /openai/setgpudevice/1
   ```
 
-### POST /v1/chat/completions/tokenizer/encode/count
+## POST /v1/chat/completions/tokenizer/encode/count
 
 Counts tokens for a given chat completion request without performing inference.
 
@@ -508,8 +489,9 @@ Counts tokens for a given chat completion request without performing inference.
 
 **Example:**
 
-- Request body
-  ```json
+Request body
+
+```json
   {
     "messages": [
       {
@@ -523,10 +505,12 @@ Counts tokens for a given chat completion request without performing inference.
     ],
     "model": "Phi-4-mini-instruct-cuda-gpu"
   }
-  ```
-- Response body
-  ```json
+```
+
+Response body
+
+```json
   {
     "tokenCount": 23
   }
-  ```
+```

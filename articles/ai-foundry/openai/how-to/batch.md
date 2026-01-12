@@ -1,11 +1,11 @@
 ---
-title: "How to use global batch processing with Azure OpenAI in Azure AI Foundry Models"
+title: "How to use global batch processing with Azure OpenAI in Microsoft Foundry Models"
 titleSuffix: Azure OpenAI
 description: Learn how to use global batch with Azure OpenAI
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 11/05/2025
+ms.date: 11/26/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
@@ -13,6 +13,7 @@ ms.custom:
   - references_regions
   - build-2025
 zone_pivot_groups: openai-fine-tuning-batch
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Getting started with Azure OpenAI batch deployments
@@ -90,16 +91,14 @@ The following aren't currently supported:
 ### Batch deployment
 
 > [!NOTE]
-> In the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) the batch deployment types will appear as `Global-Batch` and `Data Zone Batch`. To learn more about Azure OpenAI deployment types, see our [deployment types guide](../../foundry-models/concepts/deployment-types.md).
-
-:::image type="content" source="../media/how-to/global-batch/global-batch.png" alt-text="Screenshot that shows the model deployment dialog in Azure AI Foundry portal with Global-Batch deployment type highlighted." lightbox="../media/how-to/global-batch/global-batch.png":::
+> In the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) the batch deployment types will appear as `Global-Batch` and `Data Zone Batch`. To learn more about Azure OpenAI deployment types, see our [deployment types guide](../../foundry-models/concepts/deployment-types.md).
 
 > [!TIP]
 > We recommend enabling **dynamic quota** for all global batch model deployments to help avoid job failures due to insufficient enqueued token quota. Using dynamic quota allows your deployment to opportunistically take advantage of more quota when extra capacity is available. When dynamic quota is set to off, your deployment will only be able to process requests up to the enqueued token limit that was defined when you created the deployment.
 
 ::: zone pivot="ai-foundry-portal"
 
-[!INCLUDE [Azure AI Foundry portal](../includes/batch/batch-studio.md)]
+[!INCLUDE [Foundry portal](../includes/batch/batch-studio.md)]
 
 ::: zone-end
 
@@ -162,7 +161,7 @@ Yes. Similar to other deployment types, you can create content filters and assoc
 
 ### Can I request additional quota?
 
-Yes, from the quota page in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). Default quota allocation can be found in the [quota and limits article](../quotas-limits.md#batch-quota).
+Yes, from the quota page in the [Foundry portal](https://ai.azure.com/?cid=learnDocs). Default quota allocation can be found in the [quota and limits article](../quotas-limits.md#batch-quota).
 
 ### What happens if the API doesn't complete my request within the 24 hour time frame?
 
@@ -229,10 +228,10 @@ When a job failure occurs, you'll find details about the failure in the `errors`
 |`model_not_found`|The Azure OpenAI model deployment name that was specified in the `model` property of the input file wasn't found.<br><br> Please ensure this name points to a valid Azure OpenAI model deployment.|
 | `duplicate_custom_id` | The custom ID for this request is a duplicate of the custom ID in another request. |
 |`empty_batch` | Please check your input file to ensure that the custom ID parameter is unique for each request in the batch.|
-|`model_mismatch`| The Azure OpenAI model deployment name that was specified in the `model` property of this request in the input file doesn't match the rest of the file.<br><br>Please ensure that all requests in the batch point to the same Azure OpenAI in Azure AI Foundry Models model deployment in the `model` property of the request.|
+|`model_mismatch`| The Azure OpenAI model deployment name that was specified in the `model` property of this request in the input file doesn't match the rest of the file.<br><br>Please ensure that all requests in the batch point to the same Azure OpenAI in Foundry Models model deployment in the `model` property of the request.|
 |`invalid_request`| The schema of the input line is invalid or the deployment SKU is invalid. <br><br>Please ensure the properties of the request in your input file match the expected input properties, and that the Azure OpenAI deployment SKU is `globalbatch` for batch API requests.|
 | `input_modified` |Blob input has been modified after the batch job has been submitted. |
-| `input_no_permissions` | It's not possible to access the input blob. Please check [permissions](./role-based-access-control.md) and network access between the Azure OpenAI account and Azure Storage account.  |
+| `input_no_permissions` | It's not possible to access the input blob. Please check [permissions](/azure/ai-foundry/openai/how-to/role-based-access-control) and network access between the Azure OpenAI account and Azure Storage account.  |
 
 ### Known issues
 
@@ -240,7 +239,7 @@ When a job failure occurs, you'll find details about the failure in the `errors`
 
 - UTF-8-BOM encoded `jsonl` files aren't supported. JSON lines files should be encoded using UTF-8. Use of Byte-Order-Mark (BOM) encoded files isn't officially supported by the JSON RFC spec, and Azure OpenAI will currently treat BOM encoded files as invalid. A UTF-8-BOM encoded file will currently return the generic error message: "Validation failed: A valid model deployment name couldn't be extracted from the input file. Please ensure that each row in the input file has a valid deployment name specified in the 'model' field, and that the deployment name is consistent across all rows."
 
-- When using [your own storage for batch input data](./batch-blob-storage.md), once the batch job is submitted, if the input blob is modified the scoring job will be failed by the service.
+- When using [your own storage for batch input data](batch-blob-storage.md), once the batch job is submitted, if the input blob is modified the scoring job will be failed by the service.
 
 ## See also
 

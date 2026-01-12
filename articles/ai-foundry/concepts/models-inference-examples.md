@@ -1,13 +1,13 @@
 ---
 title: Serverless API inference examples for Foundry Models
-titleSuffix: Azure AI Foundry
-description: Inference examples for Foundry Models that support deployment to serverless APIs in Azure AI Foundry.
+titleSuffix: Microsoft Foundry
+description: Inference examples for Foundry Models that support deployment to serverless APIs in Microsoft Foundry.
 author: ssalgadodev
 ms.author: ssalgado
 manager: nitinme
 reviewer: santiagxf
 ms.reviewer: fasantia
-ms.date: 07/29/2025
+ms.date: 12/09/2025
 ms.service: azure-ai-foundry
 ms.topic: concept-article
 ms.custom:
@@ -18,11 +18,13 @@ ms.custom:
 
 # Serverless API inference examples for Foundry Models
 
-The Azure AI model catalog offers a large selection of Azure AI Foundry Models from a wide range of providers. You have various options for deploying models from the model catalog. This article lists inference examples for serverless API deployments.
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
+The Foundry model catalog offers a large selection of Microsoft Foundry Models from a wide range of providers. You have various options for deploying models from the model catalog. This article lists inference examples for serverless API deployments.
 
 [!INCLUDE [models-preview](../includes/models-preview.md)]
 
-To perform inferencing with the models, some models such as [Nixtla's TimeGEN-1](#nixtla) and [Cohere rerank](#cohere-rerank) require you to use custom APIs from the model providers. Others support inferencing using the [Model Inference API](../model-inference/overview.md). You can find more details about individual models by reviewing their model cards in the [model catalog for Azure AI Foundry portal](https://ai.azure.com/explore/models).
+To perform inferencing with the models, some models such as [Nixtla's TimeGEN-1](#nixtla) and [Cohere rerank](#cohere-rerank) require you to use custom APIs from the model providers. Others support inferencing using the [Model Inference API](../model-inference/overview.md). You can find more details about individual models by reviewing their model cards in the [model catalog for Foundry portal](https://ai.azure.com/explore/models).
 
 
 ## Cohere
@@ -64,7 +66,7 @@ To perform inferencing with Cohere rerank models, you're required to use Cohere'
 
 *Queries*, not to be confused with a user's query, is a pricing meter that refers to the cost associated with the tokens used as input for inference of a Cohere Rerank model. Cohere counts a single search unit as a query with up to 100 documents to be ranked. Documents longer than 500 tokens (for Cohere-rerank-v3.5) or longer than 4096 tokens (for Cohere-rerank-v3-English and Cohere-rerank-v3-multilingual) when including the length of the search query are split up into multiple chunks, where each chunk counts as a single document.
 
-See the [Cohere model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Cohere).
+See the [Cohere model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Cohere).
 
 ## Core42
 
@@ -119,7 +121,7 @@ The following table provides links to examples of how to use Meta Llama models.
 
 ## Microsoft
 
-Microsoft models include various model groups such as MAI models, Phi models, healthcare AI models, and more. To see all the available Microsoft models, view [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Microsoft).
+Microsoft models include various model groups such as MAI models, Phi models, healthcare AI models, and more. To see all the available Microsoft models, view [the Microsoft model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Microsoft).
 
 The following table provides links to examples of how to use Microsoft models.
  
@@ -133,7 +135,7 @@ The following table provides links to examples of how to use Microsoft models.
 | Llama-Index                               | Python            | [Link](https://aka.ms/azureai/llamaindex)             |  
 
 
-See [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Microsoft).
+See [the Microsoft model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Microsoft).
 
 
 ## Mistral AI
@@ -199,7 +201,7 @@ There are four pricing meters that determine the price you pay. These meters are
 | paygo-finetuned-model-inference-input-tokens | Costs associated with the tokens used as input for inference when *finetune_steps* > 0 |
 | paygo-finetuned-model-inference-output-tokens | Costs associated with the tokens used as output for inference when *finetune_steps* > 0 |
 
-See the [Nixtla model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Nixtla).
+See the [Nixtla model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Nixtla).
 
 ## Stability AI
 
@@ -224,7 +226,7 @@ Gretel Navigator employs a compound AI architecture specifically engineered for 
 ## Related content
 
 - [Deploy models as serverless API deployments](../how-to/deploy-models-serverless.md)
-- [Explore Azure AI Foundry Models](foundry-models-overview.md)
+- [Explore Foundry Models](foundry-models-overview.md)
 - [Foundry Models and their capabilities](../foundry-models/concepts/models.md)
 - [Region availability for models in serverless API deployments](../how-to/deploy-models-serverless-availability.md)
 - [Content safety for  Models Sold Directly by Azure ](model-catalog-content-safety.md)

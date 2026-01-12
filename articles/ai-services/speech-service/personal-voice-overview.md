@@ -1,14 +1,14 @@
 ---
 title: What is personal voice?
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: With personal voice, you can get AI generated replication of your voice (or users of your application) in a few seconds.
-author: goergenj
+author: PatrickFarley
 reviewer: patrickfarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
 ms.date: 10/21/2025
-ms.author: jagoerge
+ms.author: pafarley
 ms.reviewer: pafarley
 ms.custom: references_regions, build-2024
 #Customer intent: As a developer, I want to learn about personal voice for text to speech.
@@ -56,7 +56,7 @@ If you have an S0 resource, you can access the personal voice demo in Speech Stu
 
 To get started, here's a summary of the steps to create a personal voice:
 1. [Create a project](./personal-voice-create-project.md). 
-1. [Upload consent file](./personal-voice-create-consent.md). With the personal voice feature, it's required that every voice be created with explicit consent from the user. A recorded statement from the user is required acknowledging that the customer (Azure AI Speech resource owner) will create and use their voice.
+1. [Upload consent file](./personal-voice-create-consent.md). With the personal voice feature, it's required that every voice be created with explicit consent from the user. A recorded statement from the user is required acknowledging that the customer (Azure Speech in Foundry Tools resource owner) will create and use their voice.
 1. [Get a speaker profile ID](./personal-voice-create-voice.md) for the personal voice. You get a speaker profile ID based on the speaker's verbal consent statement and an audio prompt. The user's voice characteristics are encoded in the `speakerProfileId` property that's used for text to speech. 
 
 Once you have a personal voice, you can [use it](./personal-voice-how-to-use.md) to synthesize speech in any of the 91 languages supported across 100+ locales. A locale tag isn't required. Personal voice uses automatic language detection at the sentence level. For more information, see [use personal voice in your application](./personal-voice-how-to-use.md).

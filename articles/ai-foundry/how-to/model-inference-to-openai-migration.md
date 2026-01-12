@@ -1,7 +1,7 @@
 ---
 title: How to migrate from Azure AI Inference SDK to OpenAI SDK
-titleSuffix: Azure AI Foundry
-description: Learn how to migrate to OpenAI SDK from Azure AI Inference SDK for enhanced compatibility and unified APIs when working with Azure AI Foundry Models.
+titleSuffix: Microsoft Foundry
+description: Learn how to migrate to OpenAI SDK from Azure AI Inference SDK for enhanced compatibility and unified APIs when working with Microsoft Foundry Models.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
@@ -17,6 +17,8 @@ ai-usage: ai-assisted
 ---
 
 # Migrate from Azure AI Inference SDK to OpenAI SDK
+
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 This article provides guidance on migrating your applications from the Azure AI Inference SDK to the OpenAI SDK. The OpenAI SDK offers broader compatibility, access to the latest OpenAI features, and simplified code with unified patterns across Azure OpenAI and Foundry Models.
 
@@ -141,13 +143,13 @@ If you receive endpoint errors:
 If you receive "model not found" errors:
 
 - Verify you're using your deployment name, not the model name.
-- Check that the deployment is active in your Azure AI Foundry resource.
+- Check that the deployment is active in your Microsoft Foundry resource.
 - Ensure the deployment name matches exactly (case-sensitive).
 
 ## Related content
 
 - [Azure OpenAI supported programming languages](../openai/supported-languages.md)
-- [How to generate chat completions with Azure AI Foundry Models](../foundry-models/how-to/use-chat-completions.md)
+- [How to generate chat completions with Foundry Models](../foundry-models/how-to/use-chat-completions.md)
 - [API evolution and version lifecycle](../openai/api-version-lifecycle.md)
 - [Switch between OpenAI and Azure OpenAI endpoints](/azure/developer/ai/how-to/switching-endpoints)
 

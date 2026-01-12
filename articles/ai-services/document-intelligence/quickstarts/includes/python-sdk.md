@@ -1,12 +1,12 @@
 ---
 title: "Quickstart: Document Intelligence Python SDK (beta) | v3.1 | v3.0"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Form and document processing, data extraction, and analysis using Document Intelligence Python client library.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: include
-ms.date: 02/10/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD025 -->
@@ -39,10 +39,10 @@ In this quickstart, use the following features to analyze and extract data from 
 
 * The latest version of [Visual Studio Code](https://code.visualstudio.com/) or your preferred IDE. For more information, *see* [Getting Started with Python in Visual Studio Code](https://code.visualstudio.com/docs/python/python-tutorial).
 
-* An Azure AI services or Document Intelligence resource. Once you have your Azure subscription, create a [single-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) or [multi-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) Document Intelligence resource, in the Azure portal, to get your key and endpoint. You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
+* A Foundry Tools or Document Intelligence resource. Once you have your Azure subscription, create a [single-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) or [multi-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) Document Intelligence resource, in the Azure portal, to get your key and endpoint. You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 
 > [!TIP]
-> Create an Azure AI Foundry resource if you plan to access multiple Azure AI services under a single endpoint/key. For Document Intelligence access only, create a Document Intelligence resource. You  need a single-service resource if you intend to use [Microsoft Entra authentication](/azure/active-directory/authentication/overview-authentication).
+> Create a Microsoft Foundry resource if you plan to access multiple Foundry Tools under a single endpoint/key. For Document Intelligence access only, create a Document Intelligence resource. You  need a single-service resource if you intend to use [Microsoft Entra authentication](/azure/active-directory/authentication/overview-authentication).
 
 * After your resource deploys, select **Go to resource**. You need the key and endpoint from the resource you create to connect your application to the Document Intelligence API. You paste your key and endpoint into the code later in the quickstart:
 
@@ -50,7 +50,7 @@ In this quickstart, use the following features to analyze and extract data from 
 
 ## Set up
 
-Open a terminal window in your local environment and install the Azure AI Document Intelligence client library for Python with pip:
+Open a terminal window in your local environment and install the Azure Document Intelligence in Foundry Tools client library for Python with pip:
 
 :::moniker range="doc-intel-4.0.0"
 

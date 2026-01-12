@@ -4,7 +4,7 @@ ms.author: karler
 ms.service: azure-ai-search
 ms.custom: devx-track-java
 ms.topic: include
-ms.date: 09/08/2025
+ms.date: 12/15/2025
 ai-usage: ai-assisted
 ---
 
@@ -22,13 +22,11 @@ In Azure AI Search, a [vector store](../../vector-store.md) has an index schema 
 - An Azure AI Search service. [Create a service](../../search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/CognitiveSearch) in your current subscription.
     - The `Search Index Data Contributor` role assigned at the scope of the service.
     - You can use a free search service for most of this quickstart, but we recommend the Basic tier or higher for larger data files.
-    - To run the query example that invokes [semantic reranking](../../semantic-search-overview.md), your search service must be at the Basic tier or higher with [semantic ranker enabled](../../semantic-how-to-enable-disable.md).
+    - To run the query example that invokes [semantic reranking](../../semantic-search-overview.md), your search service must have [semantic ranker enabled](../../semantic-how-to-enable-disable.md).
 
 - [Java 21 (LTS)](/java/openjdk/install).
 
 - [Maven](https://maven.apache.org/download.cgi).
-
----
 
 ## Get service endpoints
 
@@ -38,7 +36,7 @@ In the remaining sections, you set up API calls to Azure OpenAI and Azure AI Sea
 
 1. [Find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 
-1. On the **Overview** home page, copy the URL. An example endpoint might look like `https://example.search.windows.net`. 
+1. On the **Overview** home page, copy the URL. An example endpoint might look like `https://example.search.windows.net`.
 
 ## Set up the Java project
 
@@ -52,7 +50,7 @@ In the remaining sections, you set up API calls to Azure OpenAI and Azure AI Sea
 
    :::code language="xml" source="~/azure-search-java-samples/vector-quickstart/pom.xml" :::
 
-1. Compile the project to resolve the dependencies:
+1. Compile the project to resolve the dependencies.
 
     ```bash
     mvn compile
@@ -65,7 +63,7 @@ In the remaining sections, you set up API calls to Azure OpenAI and Azure AI Sea
    mkdir -p src/main/resources
    ```
 
-1. Create `src/main/resources/application.properties` and provide your search service endpoint.
+1. Create an `application.properties` file in the `src/main/resources` directory and provide your search service endpoint.
 
     ```properties
     azure.search.endpoint=<YOUR AZURE AI SEARCH ENDPOINT>
@@ -74,11 +72,11 @@ In the remaining sections, you set up API calls to Azure OpenAI and Azure AI Sea
 
 ## Sign in to Azure
 
-You're using Microsoft Entra ID and role assignments for the connection. Make sure you're logged in to the same tenant and subscription as Azure AI Search and Azure OpenAI. You can use the Azure CLI on the command line to show current properties, change properties, and to sign in. For more information, see [Connect without keys](../../search-get-started-rbac.md). 
+You're using Microsoft Entra ID and role assignments for the connection. Make sure you're logged in to the same tenant and subscription as Azure AI Search and Azure OpenAI. You can use the Azure CLI on the command line to show current properties, change properties, and to sign in. For more information, see [Connect without keys](../../search-get-started-rbac.md).
 
 Run each of the following commands in sequence.
 
-```azure-cli
+```azurecli
 az account show
 
 az account set --subscription <PUT YOUR SUBSCRIPTION ID HERE>
@@ -88,19 +86,19 @@ az login --tenant <PUT YOUR TENANT ID HERE>
 
 You should now be logged in to Azure from your local device.
 
-## Create the vector index 
+## Create the vector index
 
-In this section, you create a vector index in Azure AI Search with [SearchIndexClient](/java/api/com.azure.search.documents.indexes.searchindexclient).[createOrUpdateIndex](/java/api/com.azure.search.documents.indexes.searchindexclient#com-azure-search-documents-indexes-searchindexclient-createorupdateindex(com-azure-search-documents-indexes-models-searchindex)). The index schema defines the fields, including the vector field `DescriptionVector`. 
+In this section, you create a vector index in Azure AI Search with [SearchIndexClient](/java/api/com.azure.search.documents.indexes.searchindexclient).[createOrUpdateIndex](/java/api/com.azure.search.documents.indexes.searchindexclient#com-azure-search-documents-indexes-searchindexclient-createorupdateindex(com-azure-search-documents-indexes-models-searchindex)). The index schema defines the fields, including the vector field `DescriptionVector`.
 
-1. Create a `CreateIndex.java` file in the `src/main/java/com/example/search` directory.
+1. Create a `CreateIndex.java` file in the the `src/main/java/com/example/search` directory.
 
-1. Copy the following code into the file. 
+1. Copy the following code into the file.
 
    :::code language="java" source="~/azure-search-java-samples/vector-quickstart/src/main/java/com/example/search/CreateIndex.java" :::
 
    The code file creates the index and defines the index schema, including the vector field `DescriptionVector`.
 
-1. Run the file:
+1. Run the file.
 
     ```bash
     mvn compile exec:java -Dexec.mainClass="com.example.search.CreateIndex"
@@ -117,7 +115,7 @@ In this section, you create a vector index in Azure AI Search with [SearchIndexC
 
    Key takeaways when creating vector index with the `azure-search-documents` library:
 
-   - You define an index by creating a list of fields. 
+   - You define an index by creating a list of fields.
 
    - This particular index supports multiple search capabilities, such as:
       - Full-text keyword search (`setSearchable`)
@@ -129,7 +127,7 @@ In this section, you create a vector index in Azure AI Search with [SearchIndexC
 
 ## Upload documents to the index
 
-Creating and loading the index are separate steps. You created the index schema [in the previous step](#create-the-vector-index). Now you need to load documents into the index with [SearchClient](/java/api/com.azure.search.documents.searchclient).[uploadDocuments](/java/api/com.azure.search.documents.searchclient#com-azure-search-documents-searchclient-uploaddocuments(java-lang-iterable(-))). The documents contain the vectorized version of the article's description, which enables similarity search based on meaning rather than exact keywords.
+Creating and loading the index are separate steps. You created the index schema in the [previous step](#create-the-vector-index). Now you need to load documents into the index with [SearchClient](/java/api/com.azure.search.documents.searchclient).[uploadDocuments](/java/api/com.azure.search.documents.searchclient#com-azure-search-documents-searchclient-uploaddocuments(java-lang-iterable(-))). The documents contain the vectorized version of the article's description, which enables similarity search based on meaning rather than exact keywords.
 
 In Azure AI Search, the index stores all searchable content, while the search engine executes queries against that index.
 
@@ -143,7 +141,7 @@ In Azure AI Search, the index stores all searchable content, while the search en
 
     Because this quickstart article searches the index immediately, the `waitUntilIndexed` method waits until the index is ready for search operations. This is important because the index needs to be fully populated with documents before you can perform searches.
 
-1. Build and run the file:
+1. Build and run the file.
 
     ```bash
     mvn compile exec:java -Dexec.mainClass="com.example.search.UploadDocuments"
@@ -167,7 +165,7 @@ In Azure AI Search, the index stores all searchable content, while the search en
     ```
 
     Key takeaways about the `uploadDocuments` method and this example:
-    
+
     * Your code interacts with a specific search index hosted in your Azure AI Search service through the `SearchClient`. The `SearchClient` provides access to operations such as:
         * Data ingestion - `uploadDocuments`, `mergeDocuments`, `deleteDocuments`, and so on.
         * Search operations - `search`, `autocomplete`, `suggest`
@@ -202,13 +200,13 @@ The first example demonstrates a basic scenario where you want to find document 
 
     The vector query string is `quintessential lodging near running trails, eateries, retail`, which is vectorized into 1,536 embeddings for this query.
 
-1. Build and run the file:
+1. Build and run the file.
 
     ```bash
     mvn compile exec:java -Dexec.mainClass="com.example.search.SearchSingle"
     ```
 
-1. The output of this code shows the relevant docs for the query `quintessential lodging near running trails, eateries, retail`. 
+1. The output of this code shows the relevant docs for the query `quintessential lodging near running trails, eateries, retail`.
 
     ```output
     Using Azure Search endpoint: https://<search-service-name>.search.windows.net
@@ -224,7 +222,6 @@ The first example demonstrates a basic scenario where you want to find document 
 
     The response for the vector equivalent of `quintessential lodging near running trails, eateries, retail` consists of 5 results with only the fields specified by the select returned.
 
-
 ## Create a single vector search with a filter
 
 You can add filters, but the filters are applied to the nonvector content in your index. In this example, the filter applies to the `Tags` field to filter out any hotels that don't provide free Wi-Fi. This search uses [SearchClient](/java/api/com.azure.search.documents.searchclient).[SearchClient](/java/api/com.azure.search.documents.searchclient) and [SearchOptions](/java/api/com.azure.search.documents.models.searchoptions). 
@@ -235,9 +232,9 @@ You can add filters, but the filters are applied to the nonvector content in you
 
     :::code language="java" source="~/azure-search-java-samples/vector-quickstart/src/main/java/com/example/search/SearchSingleWithFilter.java" :::
 
-    This code has the same search functionality as the previous search with a post-processing exclusion filter added for hotels with `free wifi`.
+    This code has the same search functionality as the previous search, but it adds a post-processing exclusion filter for hotels with `free wifi`.
 
-1. Build and run the file:
+1. Build and run the file.
 
     ```bash
     mvn compile exec:java -Dexec.mainClass="com.example.search.SearchSingleWithFilter"
@@ -254,9 +251,9 @@ You can add filters, but the filters are applied to the nonvector content in you
     - HotelId: 2, HotelName: Old Century Hotel, Tags: ["pool","free wifi","air conditioning","concierge"], Score 0.57902366
     ```
 
-## Create a search with a geospatial filter    
+## Create a search with a geospatial filter
 
-You can specify a geospatial filter to limit results to a specific geographic area. In this example, the filter limits results to hotels within 300 kilometers of Washington D.C. (coordinates: `-77.03241 38.90166`). Geospatial distances are always in kilometers. This search uses [SearchClient](/java/api/com.azure.search.documents.searchclient).[SearchClient](/java/api/com.azure.search.documents.searchclient) and [SearchOptions](/java/api/com.azure.search.documents.models.searchoptions). 
+You can specify a geospatial filter to limit results to a specific geographic area. In this example, the filter limits results to hotels within 300 kilometers of Washington D.C. (coordinates: `-77.03241 38.90166`). Geospatial distances are always in kilometers. This search uses [SearchClient](/java/api/com.azure.search.documents.searchclient).[SearchClient](/java/api/com.azure.search.documents.searchclient) and [SearchOptions](/java/api/com.azure.search.documents.models.searchoptions).
 
 1. Create a `SearchSingleWithFilterGeo.java` file in the `src/main/java/com/example/search` directory.
 
@@ -264,13 +261,13 @@ You can specify a geospatial filter to limit results to a specific geographic ar
 
     :::code language="java" source="~/azure-search-java-samples/vector-quickstart/src/main/java/com/example/search/SearchSingleWithFilterGeo.java" :::
 
-1. Build and run the file:
+1. Build and run the file.
 
     ```bash
     mvn compile exec:java -Dexec.mainClass="com.example.search.SearchSingleWithFilterGeo"
     ```
 
-1. The output of this code shows the relevant documents for the query with the geospatial post-processing exclusion filter applied:
+1. The output of this code shows the relevant documents for the query with the geospatial post-processing exclusion filter applied.
 
     ```output
     Using Azure Search endpoint: https://<search-service-name>.search.windows.net
@@ -288,7 +285,7 @@ Hybrid search consists of keyword queries and vector queries in a single search 
 - **Search string**: `historic hotel walk to restaurants and shopping`
 - **Vector query string** (vectorized into a mathematical representation): `quintessential lodging near running trails, eateries, retail`
 
-This search uses [SearchClient](/java/api/com.azure.search.documents.searchclient).[SearchClient](/java/api/com.azure.search.documents.searchclient) and [SearchOptions](/java/api/com.azure.search.documents.models.searchoptions). 
+This search uses [SearchClient](/java/api/com.azure.search.documents.searchclient).[SearchClient](/java/api/com.azure.search.documents.searchclient) and [SearchOptions](/java/api/com.azure.search.documents.models.searchoptions).
 
 1. Create a `SearchHybrid.java` file in the `src/main/java/com/example/search` directory.
 
@@ -296,13 +293,13 @@ This search uses [SearchClient](/java/api/com.azure.search.documents.searchclien
 
     :::code language="java" source="~/azure-search-java-samples/vector-quickstart/src/main/java/com/example/search/SearchHybrid.java" :::
 
-1. Build and run the file:
+1. Build and run the file.
 
     ```bash
     mvn compile exec:java -Dexec.mainClass="com.example.search.SearchHybrid"
     ```
 
-1. The output of this code shows the relevant documents for the hybrid search:
+1. The output of this code shows the relevant documents for the hybrid search.
 
     ```output
     Using Azure Search endpoint: https://<search-service-name>.search.windows.net
@@ -345,7 +342,7 @@ This search uses [SearchClient](/java/api/com.azure.search.documents.searchclien
       Tags: ["pool","free wifi","air conditioning","concierge"]
     ```
 
-    Because Reciprocal Rank Fusion (RRF) merges results, it helps to review the inputs. The following results are from only the full-text query. The top two results are Sublime Palace Hotel and History Lion Resort. The Sublime Palace Hotel has a stronger BM25 relevance score.
+    Because Reciprocal Rank Fusion (RRF) merges results, it helps to review the inputs. The following results are from only the full-text query. The top two results are Sublime Palace Hotel and Luxury Lion Resort. The Sublime Palace Hotel has a stronger BM25 relevance score.
 
     ```json
        {
@@ -360,7 +357,7 @@ This search uses [SearchClient](/java/api/com.azure.search.documents.searchclien
        },
     ```
 
-    In the vector-only query, which uses HNSW for finding matches, the Sublime Palace Hotel drops to fourth position. Historic Lion, which was second in the full-text search and third in the vector search, doesn't experience the same range of fluctuation, so it appears as a top match in a homogenized result set.
+    In the vector-only query, which uses HNSW for finding matches, the Sublime Palace Hotel drops to fourth position. Luxury Lion, which was second in the full-text search and third in the vector search, doesn't experience the same range of fluctuation, so it appears as a top match in a homogenized result set.
 
    ```json
    "value": [
@@ -428,13 +425,13 @@ This search uses [SearchClient](/java/api/com.azure.search.documents.searchclien
 
     :::code language="java" source="~/azure-search-java-samples/vector-quickstart/src/main/java/com/example/search/SearchSemanticHybrid.java" :::
 
-1. Build and run the file:
+1. Build and run the file.
 
     ```bash
     mvn compile exec:java -Dexec.mainClass="com.example.search.SearchSemanticHybrid"
     ```
 
-1. The output of this code shows the relevant documents for the semantic hybrid search:
+1. The output of this code shows the relevant documents for the semantic hybrid search.
 
     ```output
     Using Azure Search endpoint: https://<search-service-name>.search.windows.net
@@ -478,8 +475,8 @@ This search uses [SearchClient](/java/api/com.azure.search.documents.searchclien
     ```
 
     You can think of the semantic ranking as a way to improve the relevance of search results by understanding the meaning behind the words in the query and the content of the documents. In this case, the semantic ranking helps to identify hotels that are not only relevant to the keywords but also match the intent of the query:
-    
-    Key takeaways: 
+
+    Key takeaways:
 
     - Vector search is specified through the `VectorSearchOptions` class. Keyword search is specified through the `SemanticSearchOptions` class.
 
@@ -493,15 +490,15 @@ When you're working in your own subscription, it's a good idea at the end of a p
 
 You can find and manage resources in the Azure portal by using the **All resources** or **Resource groups** link in the leftmost pane.
 
-If you want to keep the search service, but delete the index and documents, you can delete the index programmatically.
+If you want to keep your search service but delete the index and its documents, you can delete the index programmatically.
 
 1. Create a `DeleteIndex.java` file in the `src/main/java/com/example/search` directory.
 
-1. Add the code to delete the index.
+1. Add the following code to the file.
 
     :::code language="java" source="~/azure-search-java-samples/vector-quickstart/src/main/java/com/example/search/DeleteIndex.java" :::
 
-1. Build and run the file:
+1. Build and run the file.
 
     ```bash
     mvn compile exec:java -Dexec.mainClass="com.example.search.DeleteIndex"

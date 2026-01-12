@@ -19,6 +19,46 @@ ms.custom:
 
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI.
 
+## December 2025
+
+### GPT-image-1.5 model is now available
+
+GPT-image-1.5 is OpenAI's latest cutting-edge image generation model. It features improved performance, quality, editing controls, and face preservation. In editing mode, the model supports high *input_fidelity* and adding/removing one aspect of the input image while retaining others.
+
+Request access: [limited access model application](https://aka.ms/oai/gptimage1.5access)
+
+Key model capabilities:
+- Includes all capabilities of GPT-image-1:
+    - Text to image generation  
+    - Image to image generation (editing)
+- Inpainting  
+- High quality image generations, up to 1024x1536 and 1536x1024 pixels 
+- Face preservation
+
+Follow the [image generation how-to guide](/en-us/azure/ai-foundry/openai/how-to/dall-e) to get started with this model.
+
+
+### Automatic speech recognition (ASR) model update
+
+`gpt-4o-mini-transcribe-2025-12-15`
+- Improved transcription accuracy and robustness for real-time scenarios. ~50% lower word error rate (WER) than previous gpt-4o-transcribe-mini on English benchmarks
+- Improves multilingual performance across Japanese, Indic, and other languages. 
+- Reduced hallucinations on silence by up to 4×, making it a more reliable choice for noisy environments and real-world audio streams. 
+- Input remains audio, with text as output, and deployment is API-only.  
+
+### Realtime-mini (speech-to-speech) model update
+
+`gpt-realtime-mini-2025-12-15`
+- Feature parity with full gpt-realtime model in instruction-following and function-calling.
+- Input and output are both audio, and is be API-only.  
+
+### Text to speech model update
+
+`gpt-4o-mini-tts-2025-12-15`
+- New benchmark for multilingual speech synthesis, 
+- More natural, human-like speech with fewer artifacts and improved speaker similarity. 
+- Input is text, output is audio, and deployment is API-only.  
+
 ## October 2025
 
 
@@ -213,7 +253,7 @@ Spillover manages traffic fluctuations on provisioned deployments by routing ove
 
 ### Specify content filtering configurations 
 
-In addition to the deployment-level content filtering configuration, we now also provide a request header that allows you specify your custom configuration at request time for every API call. For more information, see [Use content filters (preview)](./how-to/content-filters.md#specify-a-content-filtering-configuration-at-request-time-preview).
+In addition to the deployment-level content filtering configuration, we now also provide a request header that allows you specify your custom configuration at request time for every API call. For more information, see [Use content filters (preview)](./how-to/content-filters.md#specify-a-content-filtering-configuration-at-request-time).
 
 ## February 2025
 
@@ -251,7 +291,7 @@ For more information about available models, see the [models and versions docume
 
 The `gpt-4o-audio-preview` model is now available for global deployments in [East US 2 and Sweden Central regions](./concepts/models.md#global-standard-model-availability). Use the `gpt-4o-audio-preview` model for audio generation.
 
-The `gpt-4o-audio-preview` model introduces the audio modality into the existing `/chat/completions` API. The audio model expands the potential for AI applications in text and voice-based interactions and audio analysis. Modalities supported in `gpt-4o-audio-preview` model include:  text, audio, and text + audio. For more information, see the [audio generation quickstart](./audio-completions-quickstart.md).
+The `gpt-4o-audio-preview` model introduces the audio modality into the existing `/chat/completions` API. The audio model expands the potential for AI applications in text and voice-based interactions and audio analysis. Modalities supported in `gpt-4o-audio-preview` model include:  text, audio, and text + audio. For more information, see the [audio generation quickstart](./audio-completions-quickstart.md).
 
 > [!NOTE]
 > The [Realtime API](./realtime-audio-quickstart.md) uses the same underlying GPT-4o audio model as the completions API, but is optimized for low-latency, real-time audio interactions.

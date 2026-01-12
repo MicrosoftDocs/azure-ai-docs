@@ -1,26 +1,26 @@
 ---
-title: Azure AI Content Understanding image overview
-titleSuffix: Azure AI services
-description: Learn how to use Azure AI Content Understanding image solutions
+title: Azure Content Understanding in Foundry Tools image overview
+titleSuffix: Foundry Tools
+description: Learn how to use Azure Content Understanding in Foundry Tools image solutions
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
-ms.date: 09/16/2025
+ms.date: 12/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: how-to
 ms.custom:
   - build-2025
 ---
 
-# Azure AI Content Understanding image solutions (preview)
+# Azure Content Understanding in Foundry Tools image solutions (preview)
 
 > [!IMPORTANT]
 >
-> * Azure AI Content Understanding is available in preview. Public preview releases provide early access to features that are in active development.
+> * This feature is available in preview. Public preview releases provide early access to features that are in active development.
 > * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
-Azure AI Content Understanding standardizes the extraction of data from images, making it easier to analyze large volumes of unstructured image data. Standardized extraction speeds up time-to-value and simplifies integration into downstream analytical workflows. With the Content Understanding APIs, you can define schemas to specify the fields, descriptions, and output types for extraction. The service then analyzes your images and provides structured data that can be applied in various use cases, such as:
+Azure Content Understanding standardizes the extraction of data from images, making it easier to analyze large volumes of unstructured image data. Standardized extraction speeds up time-to-value and simplifies integration into downstream analytical workflows. With the Content Understanding APIs, you can define schemas to specify the fields, descriptions, and output types for extraction. The service then analyzes your images and provides structured data that can be applied in various use cases, such as:
 
 * **Retrieval-augmented generation (RAG) applications:** Extract key details from your images to build a robust index that powers user-facing chat experiences. This index enables users to ask questions and receive accurate answers based on the content of your images.
 
@@ -42,9 +42,23 @@ Content Understanding offers several key benefits for extracting information fro
 
 :::image type="content" source="../media/image/image-flow-diagram.jpg" alt-text="Screenshot of a data flow diagram for image processing in content understanding.":::
 
+## Face description fields
+
+> [!NOTE]
+>
+>  This feature is limited access; customers need to request to disable face blur for Azure OpenAI models with an Azure support request. Learn more [Manage an Azure support request](https://learn.microsoft.com/azure/azure-portal/supportability/how-to-manage-azure-support-request).
+
+The field extraction capability can optionally be enhanced to provide detailed descriptions of faces in the images. This capability includes attributes such as facial hair, facial expression, and the presence of celebrities, which can be crucial for various analytical and indexing purposes. To enable face description capabilities set `disableFaceBlurring : true` in the analyzer configuration.
+
+**Examples:**
+
+* **Example field: facialHairDescription:** Describes the type of facial hair (for example, `beard`, `mustache`, `clean-shaven`)
+* **Example field: nameOfProminentPerson:** Provides a name if possible of a celebrity in the image (for example, `Satya Nadella`)
+* **Example field: faceSmilingFrowning:** Provides a description of whether a person is smiling or frowning
+
 ## Get started
 
-Get started with processing images with Content Understanding by following our [REST API quickstart](../quickstart/use-rest-api.md?tabs=image) or visiting [Azure AI Foundry](https://aka.ms/cu-landing) for a no-code experience. 
+Get started with processing images with Content Understanding by following our [REST API quickstart](../quickstart/use-rest-api.md?tabs=image) or visiting [Microsoft Foundry](https://aka.ms/cu-landing) for a no-code experience. 
 
 > [!NOTE]
 > Image analyzers are not optimized for scenarios where analysis is based primarily on extracted text. If your main goal is to extract and analyze text from images, consider using a document field extraction schema instead.

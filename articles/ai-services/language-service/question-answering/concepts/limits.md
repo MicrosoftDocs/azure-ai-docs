@@ -4,8 +4,8 @@ description: Custom question answering has meta-limits for parts of the knowledg
 ms.service: azure-ai-language
 author: laujan
 ms.author: lajanuar
-ms.topic: conceptual
-ms.date: 07/22/2025
+ms.topic: limits-and-quotas
+ms.date: 12/11/2025
 ---
 
 # Project limits and boundaries
@@ -18,8 +18,7 @@ The maximum number of projects is based on [Azure AI Search tier limits](/azure/
 
 Choose the appropriate [Azure search SKU](https://azure.microsoft.com/pricing/details/search/) for your scenario. Typically, you decide the number of projects you need based on number of different subject domains. One subject domain (for a single language) should be in one project.
 
-With custom question answering, you have a choice to set up your language resource in a single language or multiple languages. You can make this selection when you create your first project in the [Language Studio](https://language.azure.com/).
-
+With custom question answering, you have a choice to set up your language resource in a single language or multiple languages. 
   > [!IMPORTANT]
   > You can publish N-1 projects with a single language resource or N-2 projects with multiple language resources in a single tier. The `N` notation is the maximum indexes allowed in the tier.
   > Also check the maximum size and the number of documents allowed per tier.
@@ -62,17 +61,17 @@ The maximum number of deep-links that can be crawled for extraction of question 
 
 Metadata is presented as a text-based `key:value` pair, such as `product:windows 10`. Metadata is stored and compared in lower case. The maximum number of metadata fields is based on your **[Azure AI Search tier limits](/azure/search/search-limits-quotas-capacity)**.
 
-If you choose to projects with multiple languages in a single language resource, there's a dedicated test index per project. So the limit is applied per project in the language service.
+If you choose to projects with multiple languages in a single language resource, there's a dedicated test index per project. So the limit is applied per project in Azure Language.
 
 |**Azure AI Search tier** | **Free** | **Basic** |**S1** | **S2**| **S3** |**S3 HD**|
 |---|---|---|---|---|---|----|
-|Maximum metadata fields per language service (per project)|1,000|100*|1,000|1,000|1,000|1,000|
+|Maximum metadata fields per Language (per project)|1,000|100*|1,000|1,000|1,000|1,000|
 
-If you don't choose the option to have projects with multiple different languages, then the limits are applied across all projects in the language service.
+If you don't choose the option to have projects with multiple different languages, then the limits are applied across all projects in Azure Language.
 
 |**Azure AI Search tier** | **Free** | **Basic** |**S1** | **S2**| **S3** |**S3 HD**|
 |---|---|---|---|---|---|----|
-|Maximum metadata fields per Language service (across all projects)|1,000|100*|1,000|1,000|1,000|1,000|
+|Maximum metadata fields per Language (across all projects)|1,000|100*|1,000|1,000|1,000|1,000|
 
 ### By name and value
 

@@ -6,9 +6,9 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.topic: how-to
-ms.author: meerakurup 
-author: meerakurup 
-ms.reviewer: franksolomon
+ms.author: scottpolly
+author: s-polly
+ms.reviewer: soumyapatro 
 ms.date: 03/07/2025
 ms.custom: UpdateFrequency5, devx-track-python, data4ml, synapse-azureml, sdkv1
 #Customer intent: As a workspace administrator, I want to link Azure Synapse workspaces and Azure Machine Learning workspaces and attach Apache Spark pools for a unified data wrangling experience.

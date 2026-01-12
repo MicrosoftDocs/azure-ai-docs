@@ -9,24 +9,24 @@ ms.date: 07/11/2025
 ---
 
 ## Prerequisites
-- An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
+- An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Ensure that the individual creating the account and project has the **Azure AI Account Owner** role at the subscription scope, which will grant the necessary permissions for creating the project
-    * Alternatively, having the **Contributor** or **Cognitive Services Contributor** role at the subscription level will allow the creation of the project
+    * Alternatively, having the **Contributor** or **Owner** role at the subscription level will allow the creation of the project
 - Once the project is created, ensure that the individual creating the agent within the project has the **Azure AI User** role at the project level
 
 
 > [!IMPORTANT]
-> The Azure AI Foundry portal only supports basic agent setup at this time. If you want to perform a standard agent setup, see the [Environment setup](../environment-setup.md) article to learn about more.
+> The Microsoft Foundry portal only supports basic agent setup at this time. If you want to perform a standard agent setup, see the [Environment setup](../environment-setup.md) article to learn about more.
 
-## Create a Foundry account and project in Azure AI Foundry portal
+## Create a Foundry account and project in Foundry portal
 
-To create an account and project in Azure AI Foundry, follow these steps:
+To create an account and project in Foundry, follow these steps:
 
-1. Go to Azure AI Foundry. If you are in a project, select Azure AI Foundry at the top left of the page to go to the Home page.
+1. Go to Foundry. If you are in a project, select Foundry at the top left of the page to go to the Home page.
 
 1. Use the Agent getting started creation flow for the fastest experience. Click **Create an agent**.
 
-    :::image type="content" source="../media\quickstart\foundry-landing-page.png" alt-text="A screenshot of the Azure AI Foundry portal." lightbox="../media\quickstart\foundry-landing-page.png":::
+    :::image type="content" source="../media\quickstart\foundry-landing-page.png" alt-text="A screenshot of the Foundry portal." lightbox="../media\quickstart\foundry-landing-page.png":::
 
 
 1. Enter a name for the project. If you want to customize the default values, select **Advanced options**.

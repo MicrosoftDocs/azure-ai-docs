@@ -5,7 +5,7 @@ ms.author: pafarley
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
-ms.date: 3/11/2025
+ms.date: 11/21/2025
 ---
 
 ## Prerequisites
@@ -20,7 +20,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 - Install the [Azure CLI](/cli/azure/install-azure-cli) used for keyless authentication with Microsoft Entra ID.
 - Assign the `Cognitive Services User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
 
-## Set up
+## Setup
 
 1. Create a new folder `whisper-quickstart` and go to the quickstart folder with the following command:
 
@@ -74,7 +74,7 @@ AzureOpenAIClient openAIClient = new AzureOpenAIClient(new Uri(endpoint), new Az
 ---
 
 > [!NOTE]
-> You can get sample audio files, such as *wikipediaOcelot.wav*, from the [Azure AI Speech SDK repository at GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/sampledata/audiofiles).
+> You can get sample audio files, such as *wikipediaOcelot.wav*, from the [Azure Speech in Foundry Tools SDK repository at GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/sampledata/audiofiles).
 
 To run the quickstart, follow these steps:
 

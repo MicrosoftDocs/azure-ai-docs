@@ -1,5 +1,5 @@
 ---
-title: 'How to generate embeddings with Azure OpenAI in Azure AI Foundry Models'
+title: 'How to generate embeddings with Azure OpenAI in Microsoft Foundry Models'
 titleSuffix: Azure OpenAI
 description: Learn how to generate embeddings with Azure OpenAI
 manager: nitinme
@@ -7,45 +7,23 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.custom: devx-track-python
 ms.topic: how-to
-ms.date: 08/28/2025
+ms.date: 11/26/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
+monikerRange: 'foundry-classic || foundry'
 ---
-# Learn how to generate embeddings with Azure OpenAI
+
+# Learn how to generate embeddings
 
 An embedding is a special format of data representation that can be easily utilized by machine learning models and algorithms. The embedding is an information dense representation of the semantic meaning of a piece of text. Each embedding is a vector of floating point numbers, such that the distance between two embeddings in the vector space is correlated with semantic similarity between two inputs in the original format. For example, if two texts are similar, then their vector representations should also be similar. Embeddings power vector similarity search in Azure Databases such as [Azure Cosmos DB for NoSQL](/azure/cosmos-db/nosql/vector-search), [Azure Cosmos DB for MongoDB vCore](/azure/cosmos-db/mongodb/vcore/vector-search), [Azure SQL Database](/azure/azure-sql/database/ai-artificial-intelligence-intelligent-applications?view=azuresql&preserve-view=true#vector-search) or [Azure Database for PostgreSQL - Flexible Server](/azure/postgresql/flexible-server/how-to-use-pgvector).
 
 ## How to get embeddings
 
-To obtain an embedding vector for a piece of text, we make a request to the embeddings endpoint as shown in the following code snippets:
+To obtain an embedding vector for a piece of text, make a request to the embeddings endpoint as shown in the following code snippets:
 
-# [REST](#tab/console)
-```console
-curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/v1/embeddings \
-  -H 'Content-Type: application/json' \
-  -H 'api-key: YOUR_API_KEY' \
-  -d '{"input": "Sample Document goes here"}'
-```
-
-# [Python](#tab/python-new)
-
-```python
-import os
-from openai import OpenAI
-
-client = OpenAI(
-  api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
-  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
-)
-
-response = client.embeddings.create(
-    input = "Your text string goes here",
-    model= "text-embedding-3-large"
-)
-
-print(response.model_dump_json(indent=2))
-```
+> [!NOTE]
+> The Azure OpenAI embeddings API does not currently support Microsoft Entra ID with the v1 API.
 
 # [C#](#tab/csharp)
 
@@ -121,6 +99,42 @@ func main() {
 }
 ```
 
+# [JavaScript](#tab/javascript)
+
+```javascript
+import OpenAI from "openai";
+const client = new OpenAI({
+    baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    apiKey: process.env['OPENAI_API_KEY'] //Your Azure OpenAI API key
+});
+
+const embedding = await client.embeddings.create({
+  model: "text-embedding-3-small",
+  input: "Your text string goes here",
+});
+
+console.log(embedding);
+```
+
+
+# [Python](#tab/python-new)
+
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+  api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
+)
+
+response = client.embeddings.create(
+    input = "Your text string goes here",
+    model= "text-embedding-3-large"
+)
+
+print(response.model_dump_json(indent=2))
+```
 
 # [PowerShell](#tab/PowerShell)
 
@@ -146,6 +160,15 @@ $url = "$($openai.api_base)/openai/v1/embeddings"
 
 $response = Invoke-RestMethod -Uri $url -Headers $headers -Body $body -Method Post -ContentType 'application/json'
 return $response.data.embedding
+```
+
+# [REST](#tab/console)
+
+```console
+curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/v1/embeddings \
+  -H 'Content-Type: application/json' \
+  -H 'api-key: YOUR_API_KEY' \
+  -d '{"input": "Sample Document goes here"}'
 ```
 
 ---

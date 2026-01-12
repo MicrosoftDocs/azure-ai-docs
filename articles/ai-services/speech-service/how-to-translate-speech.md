@@ -1,6 +1,6 @@
 ---
 title: "How to translate speech - Speech service"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to translate speech from one language to text in another language, including object construction and supported audio input formats.
 author: PatrickFarley
 manager: nitinme

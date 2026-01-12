@@ -6,12 +6,18 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: conceptual 
+ms.topic: article 
 ms.date: 09/16/2025
 manager: nitinme
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
+
+
 ---
 
 # Image prompt engineering techniques
+
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 To unlock the full potential of vision-enabled chat models, it's essential to tailor the prompts to your specific needs. Here are some guidelines to enhance the accuracy and efficiency of your prompts.
 
@@ -29,7 +35,7 @@ To unlock the full potential of vision-enabled chat models, it's essential to ta
 
 ## Example prompt inputs and outputs
 
-There are many ways to craft system prompts to tailor the output specifically to your needs. The following sample inputs and outputs showcase how adjusting your prompts can give you different results. Try out the model for yourself using these images and adjusting the system prompt in the [Azure AI Foundry playground](https://ai.azure.com/?cid=learnDocs).
+There are many ways to craft system prompts to tailor the output specifically to your needs. The following sample inputs and outputs showcase how adjusting your prompts can give you different results. Try out the model for yourself using these images and adjusting the system prompt in the [Microsoft Foundry playground](https://ai.azure.com/?cid=learnDocs).
 
 ### Contextual specificity
 

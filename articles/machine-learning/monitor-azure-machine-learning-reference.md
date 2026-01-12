@@ -4,7 +4,8 @@ description: This article contains important reference material you need when yo
 ms.date: 03/21/2024
 ms.custom: horz-monitor
 ms.topic: reference
-ms.author: aashishb
+ms.author: scottpolly
+ms.reviewer: jturuk
 author: aashishb
 ms.service: azure-machine-learning
 ms.subservice: mlops

@@ -1,7 +1,7 @@
 ---
-title: Trigger an Azure AI Foundry Agent Using Logic Apps
+title: Trigger a Microsoft Foundry Agent Using Logic Apps
 description: Use this article to learn how to trigger an AI agent when an event occurs. 
-ms.date: 06/30/2025
+ms.date: 01/06/2026
 ms.topic: how-to
 author: aahill
 ms.author: aahi
@@ -11,9 +11,11 @@ ms.subservice: azure-ai-foundry-agent-service
 
 # Trigger an agent by using Logic Apps (preview)
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 To streamline your workflow, you might want to automatically invoke your AI agent when an event occurs. The event might be receiving a new email. Or it might be getting a new customer ticket so that your AI agent can immediately respond to the new event without manual invocation.
 
-To automatically invoke an agent, you can select among hundreds of [triggers](/azure/logic-apps/logic-apps-workflow-actions-triggers) in Azure Logic Apps, along with using the Azure AI Foundry Agent Service connector.
+To automatically invoke an agent, you can select among hundreds of [triggers](/azure/logic-apps/logic-apps-workflow-actions-triggers) in Azure Logic Apps, along with using the Foundry Agent Service connector.
 
 ## What is a trigger?
 
@@ -40,9 +42,9 @@ For a Logic Apps resource:
 1. Enable a system-assigned managed identity.
 1. Copy the object (principal) ID.
 
-For an Azure AI Foundry project:
+For a Microsoft Foundry project:
 
-1. In the Azure portal, go to the Azure AI Foundry project that has the AI agent that you want to use.
+1. In the Azure portal, go to the Foundry project that has the AI agent that you want to use.
 1. Select **Access control** > **Add role assignment**.
 1. Select at least **Azure AI Project Manager**, and then select **Next**.
 1. Select **User, group, or service principal**, and then select members.
@@ -52,7 +54,7 @@ After you assign the role-based access control (RBAC) roles, go back to the Logi
 
 ## Add Foundry Agent Service connectors to your workflow
 
-1. Select **Add an action**, and then search for **Azure AI Foundry Agent Service**.
+1. Select **Add an action**, and then search for **Agent Service**.
 
     :::image type="content" source="../media\triggers\connectors.png" alt-text="Screenshot of actions added to a workflow." lightbox="../media\triggers\connectors.png":::
 
@@ -80,7 +82,7 @@ After you assign the role-based access control (RBAC) roles, go back to the Logi
 To create a connection, provide the following information:
 
 * **Connection name**: The name of your connection.
-* **Project name**: Your Azure AI Foundry project endpoint. The format is `http://<aiservicename>.services.ai.azure.com/api/projects/<project name>`.
+* **Project name**: Your Foundry project endpoint. The format is `http://<aiservicename>.services.ai.azure.com/api/projects/<project name>`.
 
 ## Configure the List Agents connector
 
@@ -158,4 +160,4 @@ To get a response, you need a custom function to retrieve the exact response bod
 
     :::image type="content" source="../media\triggers\get-response.png" alt-text="Screenshot that shows the Compose connector." lightbox="../media\triggers\get-response.png":::
 
-1. Add other connectors if necessary. To check the status of your runs, select **Run** > **Run history**.
+1. Add other connectors if necessary. To check the status of your runs, select **Run** > **Run history**. You can also view the details of your runs and threads in the [Foundry portal](../../how-to/develop/trace-agents-sdk.md#view-traces-in-the-foundry-portal).

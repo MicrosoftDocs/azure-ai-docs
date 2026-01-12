@@ -1,20 +1,24 @@
 ---
 title: Continuously Evaluate your AI agents
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: This article provides instructions on how to continuously evaluate AI agents.
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 07/31/2025
-ms.reviewer: amibp
+ms.date: 01/08/2026
+ms.reviewer: sonalimalik
 ms.author: lagayhar  
 author: lgayhardt
+ai-usage: ai-assisted
 ---
 
 # Continuously evaluate your AI agents (preview)
 
+> [!NOTE]
+> This document refers to the Microsoft Foundry (classic) portal. To continuously evaluate using the Microsoft Foundry (new) portal, see [Setup continuous evaluation](../default/observability/how-to/how-to-monitor-agents-dashboard.md#setup-continuous-evaluation).
+
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-Continuous evaluation for Agents provides near real-time observability and monitoring for your AI application. Once enabled, this feature continuously evaluates agent interactions at a set sampling rate to provide insights into quality, safety, and performance with metrics surfaced in the Foundry Observability dashboard. By using continuous evaluation, you're able to identify and troubleshoot issues early, optimize agent performance, and maintain safety. Evaluations are also connected to [traces](./develop/trace-application.md) to enable detailed debugging and root cause analysis.
+Continuous evaluation for Agents provides near real-time observability and monitoring for your AI application. Once enabled, this feature continuously evaluates agent interactions at a set sampling rate to provide insights into quality, safety, and performance with metrics surfaced in the Foundry Observability dashboard. By using continuous evaluation, you're able to identify and troubleshoot issues early, optimize agent performance, and maintain safety. Evaluations are also connected to traces. to enable detailed debugging and root cause analysis.
 
 ## Prerequisites
 
@@ -25,27 +29,14 @@ Continuous evaluation for Agents provides near real-time observability and monit
 
 ### Steps to connect Application Insights
 
-1. Navigate to your project in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
-2. Select **Monitoring** on the left-hand menu and go to **Application Analytics**.
-3. Connect your Application Insights resource to the project.
+1. [!INCLUDE [classic-sign-in](../includes/classic-sign-in.md)]
 
-## Azure AI Foundry project configuration and region support
+1. Select **Monitoring** on the left-hand menu and go to **Application Analytics**.
 
-Since the evaluators use hosted evaluation LLMs in the Azure AI Foundry evaluation service, they require your Azure AI project information to be instantiated. The Azure AI project must be in a supported region:
+1. Connect your Application Insights resource to the project.
 
-> [!div class="mx-tdCol2BreakAll"]
-> | Region | Code Vulnerability, Coherence, Fluency, Hate/Unfairness, Indirect Attack, Intent Resolution, Relevance, Self-Harm, Sexual, Task Adherence, Tool Call Accuracy, Violence |
-> |--|--|
-> | East US | Supported | 
-> | East US 2 | Supported  | 
-> | West US | Supported |
-> | West US 2 | Supported | 
-> | West US 3 | Supported |
-> | France Central | Supported | 
-> | Norway East | Supported  |
-> | Sweden Central| Supported  | 
 
-## Set up continuous evaluations with Azure AI projects client library
+## Set up continuous evaluations with Azure AI Projects client library
 
 ```python
 pip install azure-ai-projects azure-identity
@@ -113,9 +104,6 @@ project_client.evaluation.create_agent_evaluation(
 )
 
 ```
-
-> [!NOTE]
-> Application Insights must be connected to your project otherwise the service won't run. To connect an Application Insights resource, see to [Steps to connect Application Insights](#steps-to-connect-application-insights).
 
 ### Get the evaluation result using Application Insights
 
@@ -212,7 +200,7 @@ project_client.evaluation.create_agent_evaluation(
 
 ## Viewing continuous evaluation results
 
-After you deploy your application to production with continuous evaluation setup, you can [monitor the quality and safety of your agent with Azure AI Foundry and Azure Monitor](./monitor-applications.md).
+After you deploy your application to production with continuous evaluation setup, you can [monitor the quality and safety of your agent with Foundry and Azure Monitor](./monitor-applications.md).
 
 ## Related content
 

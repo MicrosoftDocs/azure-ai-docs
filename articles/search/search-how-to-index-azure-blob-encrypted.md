@@ -44,7 +44,7 @@ Starting with previously encrypted whole documents (unstructured text) such as P
 Custom skill deployment creates an Azure Function app and an Azure Storage account. These resources are created for you, so they aren't listed as a prerequisite. When you finish this tutorial, remember to clean up the resources so that you aren't billed for services you're not using.
 
 > [!NOTE]
-> Skillsets often require [attaching an Azure AI services multi-service resource](cognitive-search-attach-cognitive-services.md). As written, this skillset has no dependency on Azure AI services, so no key is required. If you later add enrichments that invoke built-in skills, remember to update your skillset accordingly.
+> Skillsets often require [attaching a Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md). As written, this skillset has no dependency on Foundry, so no key is required. If you later add enrichments that invoke built-in skills, remember to update your skillset accordingly.
 
 ## Deploy the custom skill
 
@@ -102,7 +102,7 @@ You should have an Azure Function app that contains the decryption logic and an 
 
 1. On your search service **Overview** page, get the name of your search service. You can confirm your service name by reviewing the endpoint URL. For example, if your endpoint URL is `https://mydemo.search.windows.net`, your service name is `mydemo`.
 
-1. In **Settings** > **Keys**, get an admin key for full rights on the service. There are two interchangeable admin keys, provided for business continuity in case you need to roll one over. You can use either the primary or secondary key on requests for adding, modifying, and deleting objects.
+1. In **Settings** > **Keys**, get an admin key for full rights on the service. There are two interchangeable admin keys, provided for business continuity in case you need to roll one over. You can use either key on requests to add, modify, or delete objects.
 
 An API key is required in the header of every request sent to your service. A valid key establishes trust, on a per-request basis, between the application sending the request and the service that handles it.
 

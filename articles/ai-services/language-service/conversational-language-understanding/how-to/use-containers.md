@@ -1,15 +1,14 @@
 ---
 title: Use conversational language understanding (CLU) Docker containers on-premises
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Use Docker containers for the conversational language understanding (CLU) API to determine the language of written text, on-premises.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 07/17/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 # Install and run Conversational Language Understanding (CLU) containers
 
 > [!NOTE]
@@ -53,8 +52,8 @@ Before you proceed with running the docker image, you need to export your own tr
 |------------|-----|-----------------|
 |**{API_KEY}** |The key for your Language resource. You can find it on your resource's **Key and endpoint** page, on the Azure portal.|xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx|
 |**{ENDPOINT_URI}**|The endpoint for accessing the Conversational Language Understanding API. You can find it on your resource's **Key and endpoint** page, on the Azure portal.|`https://<your-custom-subdomain>.cognitiveservices.azure.com`|
-|**{PROJECT_NAME}**|The name of the project containing the model that you want to export. You can find it on your projects tab in the Language Studio portal.|myProject|
-|**{TRAINED_MODEL_NAME}** |The name of the trained model you want to export. You can find your trained models on your model evaluation tab under your project in the Language Studio portal|myTrainedModel|
+|**{PROJECT_NAME}**|The name of the project containing the model that you want to export. You can find it on your projects tab in Azure Language Studio portal.|myProject|
+|**{TRAINED_MODEL_NAME}** |The name of the trained model you want to export. You can find your trained models on your model evaluation tab under your project in Azure Language Studio portal|myTrainedModel|
 |**{EXPORTED_MODEL_NAME}** |The name to assign for the new exported model created.|myExportedModel |
 
 ```bash
@@ -180,7 +179,7 @@ For information on how to call CLU see [our guide](call-api.md).
 
 If you run the container with both an output [mount](../../concepts/configure-containers.md#mount-settings) and logging enabled, the container generates log files. The log files can help you troubleshoot any issues that occur during startup or while the container is running.
 
-[!INCLUDE [Azure AI services FAQ note](../../../containers/includes/cognitive-services-faq-note.md)]
+[!INCLUDE [Foundry Tools FAQ note](../../../containers/includes/cognitive-services-faq-note.md)]
 
 ## Billing
 

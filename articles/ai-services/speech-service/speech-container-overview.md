@@ -1,12 +1,12 @@
 ---
 title: Speech containers overview - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Use the Docker containers for the Speech service to perform speech recognition, transcription, generation, and more on-premises.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 7/1/2025
+ms.date: 12/19/2025
 ms.author: pafarley
 keywords: on-premises, Docker, container
 # Customer intent: As a developer, I want to learn about the Speech containers available in the Microsoft Container Registry (MCR).
@@ -33,7 +33,7 @@ The following table lists the Speech containers available in the Microsoft Conta
 
 ## Request approval to run containers disconnected from the internet
 
-To use the Speech containers in environments that are disconnected from the internet, you must submit a [request form](https://aka.ms/csdisconnectedcontainers) and wait for approval. For more information about applying and purchasing a commitment plan to use containers in disconnected environments, see [Use containers in disconnected environments](../containers/disconnected-containers.md) in the Azure AI services documentation.
+To use the Speech containers in environments that are disconnected from the internet, you must submit a [request form](https://aka.ms/csdisconnectedcontainers) and wait for approval. For more information about applying and purchasing a commitment plan to use containers in disconnected environments, see [Use containers in disconnected environments](../containers/disconnected-containers.md) in the Foundry Tools documentation.
 
 The form requests information about you, your company, and the user scenario for which you use the container. 
 
@@ -41,11 +41,11 @@ The form requests information about you, your company, and the user scenario for
 * The Azure resource you use to run the container must be created with the approved Azure subscription ID.
 * Check your email for updates on the status of your application from Microsoft.
 
-After you submit the form, the Azure AI services team reviews it and emails you with a decision within 10 business days.
+After you submit the form, the Foundry Tools team reviews it and emails you with a decision within 10 business days.
 
-## Billing
+## Billing information
 
-The Speech containers send billing information to Azure by using an AI Foundry resource for Speech on your Azure account. 
+The Speech containers send billing information to Azure by using a Foundry resource for Speech on your Azure account. 
 
 > [!NOTE]
 > Connected and disconnected container pricing and commitment tiers vary. For more information, see [Speech service pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).
@@ -54,18 +54,18 @@ Speech containers aren't licensed to run without being connected to Azure for me
 
 ## Container recipes and other container services
 
-You can use container recipes to create containers that can be reused. Containers can be built with some or all configuration settings so that they aren't needed when the container is started. For container recipes see the following Azure AI services articles:
+You can use container recipes to create containers that can be reused. Containers can be built with some or all configuration settings so that they aren't needed when the container is started. For container recipes see the following Foundry Tools articles:
 - [Create containers for reuse](../containers/container-reuse-recipe.md)
 - [Deploy and run container on Azure Container Instance](../containers/azure-container-instance-recipe.md)
 - [Deploy a language detection container to Azure Kubernetes Service](../containers/azure-kubernetes-recipe.md)
 - [Use Docker Compose to deploy multiple containers](../containers/docker-compose-recipe.md)
 
-For information about other container services, see the following Azure AI services articles:
+For information about other container services, see the following Foundry Tools articles:
 - [Tutorial: Create a container image for deployment to Azure Container Instances](/azure/container-instances/container-instances-tutorial-prepare-app)
 - [Quickstart: Create a private container registry using the Azure CLI](/azure/container-registry/container-registry-get-started-azure-cli)
 - [Tutorial: Prepare an application for Azure Kubernetes Service (AKS)](/azure/aks/tutorial-kubernetes-prepare-app)
 
-## Next steps
+## Next step
 
 * [Install and run Speech containers](speech-container-howto.md)
 

@@ -2,7 +2,7 @@
 author: laujan
 ms.author: lajanuar
 manager: nitinme
-ms.date: 06/30/2025
+ms.date: 12/11/2025
 ms.service: azure-ai-language
 ms.topic: include
 ms.custom:
@@ -10,18 +10,17 @@ ms.custom:
   - ignite-2024
   - build-2025
 ---
-
+<!-- markdownlint-disable MD041 -->
 [Reference documentation](/dotnet/api/azure.ai.textanalytics?preserve-view=true&view=azure-dotnet) | [More samples](https://github.com/Azure/azure-sdk-for-net/tree/master/sdk/textanalytics/Azure.AI.TextAnalytics/samples) | [Package (NuGet)](https://www.nuget.org/packages/Azure.AI.TextAnalytics/5.2.0) | [Library source code](https://github.com/Azure/azure-sdk-for-net/tree/master/sdk/textanalytics/Azure.AI.TextAnalytics)
 
 Use this quickstart to create a Personally Identifiable Information (PII) detection application with the client library for .NET. In the following example, you create a C# application that can identify [recognized sensitive information](../../concepts/entity-categories.md) in text.
 
-[!INCLUDE [Use Language Studio](../use-language-studio.md)]
-
+[!INCLUDE [Tip: use Microsoft Foundry](../use-microsoft-foundry.md)]
 
 ## Prerequisites
 
 * Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
-* Once you have your Azure subscription, [create an AI Foundry resource](../../../../../ai-services/multi-service-resource.md?pivots=azportal).
+* Once you have your Azure subscription, [create a Foundry resource](../../../../../ai-services/multi-service-resource.md?pivots=azportal).
 * The [Visual Studio IDE](https://visualstudio.microsoft.com/vs/)
 
 ## Setting up
@@ -30,11 +29,9 @@ Use this quickstart to create a Personally Identifiable Information (PII) detect
 
 ### Create a new .NET Core application
 
-Using the Visual Studio IDE, create a new .NET Core console app. This creates a "Hello World" project with a single C# source file: *program.cs*.
+Using the Visual Studio IDE, create a new .NET Core console app. This step creates a "Hello World" project with a single C# source file: *program.cs*.
 
-Install the client library by right-clicking on the solution in the **Solution Explorer** and selecting **Manage NuGet Packages**. In the package manager that opens select **Browse** and search for `Azure.AI.TextAnalytics`. Select version `5.2.0`, and then **Install**. You can also use the [Package Manager Console](/nuget/consume-packages/install-use-packages-powershell#find-and-install-a-package).
-
-
+Install the client library by right-clicking the solution in the **Solution Explorer** and selecting **Manage NuGet Packages**. In the package manager that opens select **Browse** and search for `Azure.AI.TextAnalytics`. Select version `5.2.0`, and then **Install**. You can also use the [Package Manager Console](/nuget/consume-packages/install-use-packages-powershell#find-and-install-a-package).
 
 ## Code example
 
@@ -90,8 +87,6 @@ namespace Example
     }
 }
 ```
-
-
 
 ## Output
 

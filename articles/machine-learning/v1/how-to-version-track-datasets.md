@@ -5,9 +5,9 @@ description: Learn how to version machine learning datasets and how versioning w
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mldata
-ms.author: samkemp
-ms.reviewer: franksolomon
-author: samuel100
+ms.author: scottpolly
+author: s-polly
+ms.reviewer: soumyapatro 
 ms.date: 03/07/2025
 ms.topic: how-to
 ms.custom:

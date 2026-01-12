@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: quickstart
-ms.date: 10/24/2025
+ms.date: 12/16/2025
 ---
 
 # Quickstart: Vectorize text in the Azure portal
@@ -42,24 +42,24 @@ The wizard [supports a wide range of Azure data sources](search-import-data-port
 
 ### Supported embedding models
 
-For integrated vectorization, use one of the following embedding models. Deployment instructions are provided in a [later section](#prepare-embedding-model).
+The portal supports the following embedding models for integrated vectorization. Deployment instructions are provided in a [later section](#prepare-embedding-model).
 
 | Provider | Supported models |
 |--|--|
-| [Azure OpenAI in Azure AI Foundry Models resource](/azure/ai-services/openai/how-to/create-resource) <sup>1, 2</sup> | For text:<br>text-embedding-ada-002<br>text-embedding-3-small<br>text-embedding-3-large |
-| [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects) | For text:<br>text-embedding-ada-002<br>text-embedding-3-small<br>text-embedding-3-large |
-| [Azure AI Foundry hub-based project](/azure/ai-foundry/how-to/hub-create-projects) | For text:<br>text-embedding-ada-002<br>text-embedding-3-small<br>text-embedding-3-large<br><br>For text and images:<br>Cohere-embed-v3-english <sup>3</sup><br>Cohere-embed-v3-multilingual <sup>3</sup> |
-| [Azure AI services multi-service resource](/azure/ai-services/multi-service-resource#azure-ai-multi-services-resource-for-azure-ai-search-skills) <sup>4</sup> | For text and images: [Azure AI Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) <sup>5</sup></li> |
+| [Microsoft Foundry resource](/azure/ai-services/multi-service-resource) <sup>1</sup> | For text and images: [Azure Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) <sup>2</sup> |
+| [Microsoft Foundry hub-based project](/azure/ai-foundry/how-to/hub-create-projects) | For text:<br>text-embedding-ada-002<br>text-embedding-3-small<br>text-embedding-3-large<br><br>For text and images:<br>Cohere-embed-v3-english <sup>3</sup><br>Cohere-embed-v3-multilingual <sup>3</sup> |
+| [Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects) | For text:<br>text-embedding-ada-002<br>text-embedding-3-small<br>text-embedding-3-large |
+| [Azure OpenAI resource](/azure/ai-services/openai/how-to/create-resource) <sup>4, 5</sup> | For text:<br>text-embedding-ada-002<br>text-embedding-3-small<br>text-embedding-3-large |
 
-<sup>1</sup> The endpoint of your Azure OpenAI resource must have a [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains), such as `https://my-unique-name.openai.azure.com`. If you created your resource in the [Azure portal](https://portal.azure.com/), this subdomain was automatically generated during resource setup.
+<sup>1</sup> For billing purposes, you must [attach your Foundry resource](cognitive-search-attach-cognitive-services.md) to the skillset in your Azure AI Search service. Unless you use a [keyless connection (preview)](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) to create the skillset, both resources must be in the same region.
 
-<sup>2</sup> Azure OpenAI resources (with access to embedding models) that were created in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) aren't supported. You must create an Azure OpenAI resource in the Azure portal.
+<sup>2</sup> The Azure Vision multimodal embeddings APIs are available in [select regions](/azure/ai-services/computer-vision/overview-image-analysis#region-availability).
 
-<sup>3</sup> To use this model in the wizard, you must [deploy it as a serverless API deployment](/azure/ai-foundry/how-to/deploy-models-serverless).
+<sup>3</sup> To use this model in the wizard, you must provision it as a serverless API deployment. You can use an [ARM/Bicep template](https://github.com/Azure-Samples/azure-ai-search-multimodal-sample/blob/42b4d07f2dd9f7720fdc0b0788bf107bdac5eecb/infra/ai/modules/project.bicep#L37C1-L38C1) for this task.
 
-<sup>4</sup> For billing purposes, you must [attach your Azure AI multi-service resource](cognitive-search-attach-cognitive-services.md) to the skillset in your Azure AI Search service. Unless you use a [keyless connection (preview)](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) to create the skillset, both resources must be in the same region.
+<sup>4</sup> The endpoint of your Azure OpenAI resource must have a [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains), such as `https://my-unique-name.openai.azure.com`. If you created your resource in the [Azure portal](https://portal.azure.com/), this subdomain was automatically generated during resource setup.
 
-<sup>5</sup> The Azure AI Vision multimodal embeddings APIs are available in [select regions](/azure/ai-services/computer-vision/overview-image-analysis#region-availability).
+<sup>5</sup> Azure OpenAI resources (with access to embedding models) that were created in the [Foundry portal](https://ai.azure.com/?cid=learnDocs) aren't supported. You must create an Azure OpenAI resource in the Azure portal.
 
 ### Public endpoint requirements
 
@@ -71,7 +71,7 @@ If private endpoints are already present and you can't disable them, the alterna
 
 You can use Microsoft Entra ID with role assignments or key-based authentication with full-access connection strings. For Azure AI Search connections to other resources, we recommend role assignments. This quickstart assumes roles.
 
-Free search services support role-based connections to Azure AI Search. However, they don't support managed identities on outbound connections to Azure Storage or Azure AI Vision. This lack of support requires key-based authentication on connections between free search services and other Azure resources. For more secure connections, use the Basic tier or higher, and then enable roles and configure a managed identity.
+Free search services support role-based connections to Azure AI Search. However, they don't support managed identities on outbound connections to Azure Storage or Azure Vision. This lack of support requires key-based authentication on connections between free search services and other Azure resources. For more secure connections, use the Basic tier or higher, and then enable roles and configure a managed identity.
 
 To configure the recommended role-based access:
 
@@ -207,21 +207,19 @@ The wizard supports several embedding models. Internally, the wizard calls the [
 
 1. To deploy an embedding model:
 
-   1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and select your Azure OpenAI resource.
-
-   1. From the left pane, select **Model catalog**.
+   1. Sign in to the [Foundry portal](https://ai.azure.com/?cid=learnDocs) and select your Azure OpenAI resource.
 
    1. Deploy a [supported embedding model](#supported-embedding-models).
 
-### [Azure AI Foundry](#tab/model-catalog)
+### [Microsoft Foundry](#tab/model-catalog)
 
-The wizard supports several embedding models in the Azure AI Foundry model catalog. Internally, the wizard calls the [AML skill](cognitive-search-aml-skill.md) to connect to the model catalog.
+The wizard supports several embedding models in the Foundry model catalog. Internally, the wizard calls the [AML skill](cognitive-search-aml-skill.md) to connect to the model catalog.
 
-To complete these steps, you must have an [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects) or [Azure AI Foundry hub-based project](/azure/ai-foundry/how-to/hub-create-projects). If you're using a hub-based project, skip the role assignment step. Hub-based projects support API keys instead of managed identities for authentication.
+To complete these steps, you must have a [Foundry project](/azure/ai-foundry/how-to/create-projects) or [Foundry hub-based project](/azure/ai-foundry/how-to/hub-create-projects). If you're using a hub-based project, skip the role assignment step. Hub-based projects support API keys instead of managed identities for authentication.
 
 1. To assign roles:
 
-   1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure AI Foundry resource.
+   1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Foundry resource.
 
    1. From the left pane, select **Access control (IAM)**.
 
@@ -235,21 +233,19 @@ To complete these steps, you must have an [Azure AI Foundry project](/azure/ai-f
 
 1. To deploy an embedding model:
 
-   1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and select your resource.
-
-   1. From the left pane, select **Model catalog**.
+   1. Sign in to the [Foundry portal](https://ai.azure.com/?cid=learnDocs) and select your resource.
 
    1. Deploy a [supported embedding model](#supported-embedding-models).
 
-### [Azure AI Vision](#tab/model-ai-vision)
+### [Azure Vision](#tab/model-vision)
 
-The wizard supports text and image retrieval through the Azure AI Vision multimodal embeddings APIs, which are built into your Azure AI multi-service resource. Internally, the wizard calls the [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) to make the connection.
+The wizard supports text and image retrieval through the Azure Vision multimodal embeddings APIs, which are built into your Foundry resource. Internally, the wizard calls the [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) to make the connection.
 
 Since no model deployment is required, you only need to assign roles to your search service identity.
 
 To assign roles:
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and select your multi-service resource.
+1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Foundry resource.
 
 1. From the left pane, select **Access control (IAM)**.
 
@@ -371,9 +367,9 @@ During this step, the wizard uses your chosen [embedding model](#supported-embed
 
 1. Select **Next**.
 
-### [Azure AI Foundry](#tab/vectorize-text-catalog)
+### [Microsoft Foundry](#tab/vectorize-text-catalog)
 
-1. On the **Vectorize your text** page, select **AI Foundry Hub catalog models** for the kind.
+1. On the **Vectorize your text** page, select **Azure AI Foundry** for the kind.
 
 1. Select your Azure subscription.
 
@@ -383,21 +379,21 @@ During this step, the wizard uses your chosen [embedding model](#supported-embed
 
 1. Select the checkbox that acknowledges the billing effects of using these resources.
 
-   :::image type="content" source="media/search-get-started-portal-import-vectors/vectorize-text-catalog.png" alt-text="Screenshot of the Vectorize your text page with the Azure AI Foundry model catalog in the wizard." lightbox="media/search-get-started-portal-import-vectors/vectorize-text-catalog.png":::
+   :::image type="content" source="media/search-get-started-portal-import-vectors/vectorize-text-catalog.png" alt-text="Screenshot of the Vectorize your text page with the Foundry model catalog in the wizard." lightbox="media/search-get-started-portal-import-vectors/vectorize-text-catalog.png":::
 
 1. Select **Next**.
 
-### [Azure AI Vision](#tab/vectorize-text-ai-vision)
+### [Azure Vision](#tab/vectorize-text-vision)
 
 1. On the **Vectorize your text** page, select **AI Vision vectorization** for the kind.
 
-1. Select your Azure subscription and Azure AI multi-service resource.
+1. Select your Azure subscription and Foundry resource.
 
 1. For the authentication type, select **System assigned identity**.
 
 1. Select the checkbox that acknowledges the billing effects of using these resources.
 
-   :::image type="content" source="media/search-get-started-portal-import-vectors/vectorize-text-ai-vision.png" alt-text="Screenshot of the Vectorize your text page with Azure AI Vision in the wizard." lightbox="media/search-get-started-portal-import-vectors/vectorize-text-ai-vision.png":::
+   :::image type="content" source="media/search-get-started-portal-import-vectors/vectorize-text-ai-vision.png" alt-text="Screenshot of the Vectorize your text page with Azure Vision in the wizard." lightbox="media/search-get-started-portal-import-vectors/vectorize-text-ai-vision.png":::
 
 1. Select **Next**.
 
@@ -409,7 +405,7 @@ The health-plan PDFs include a corporate logo, but otherwise, there are no image
 
 However, if your content includes useful images, you can apply AI in one or both of the following ways:
 
-+ Use a supported image embedding model from the Azure AI Foundry model catalog or the Azure AI Vision multimodal embeddings API (via an Azure AI multi-service resource) to vectorize images.
++ Use a supported image embedding model from the Foundry model catalog or the Azure Vision multimodal embeddings API (via a Foundry resource) to vectorize images.
 
 + Use optical character recognition (OCR) to extract text from images. This option invokes the [OCR skill](cognitive-search-skill-ocr.md).
 
@@ -417,9 +413,9 @@ However, if your content includes useful images, you can apply AI in one or both
 
 1. On the **Vectorize and enrich your images** page, select the **Vectorize images** checkbox.
 
-1. For the kind, select your model provider: **AI Foundry Hub catalog models** or **AI Vision vectorization**.
+1. For the kind, select your model provider: **Azure AI Foundry** or **AI Vision vectorization**.
 
-   If Azure AI Vision is unavailable, make sure your search service and multi-service resource are both in a [region that supports the Azure AI Vision multimodal APIs](/azure/ai-services/computer-vision/how-to/image-retrieval).
+   If Azure Vision is unavailable, make sure your search service and Foundry resource are both in a [region that supports the Azure Vision multimodal APIs](/azure/ai-services/computer-vision/how-to/image-retrieval).
 
 1. Select your Azure subscription, resource, and embedding model deployment (if applicable).
 
@@ -435,7 +431,7 @@ However, if your content includes useful images, you can apply AI in one or both
 
 1. On the **Vectorize and enrich your images** page, select the **Extract text from images** checkbox.
 
-1. Select your Azure subscription and multi-service resource.
+1. Select your Azure subscription and Foundry resource.
 
 1. For the authentication type, select **System assigned identity**.
 
@@ -498,7 +494,7 @@ When the wizard completes the configuration, it creates the following objects:
 
 + An index with vector fields, vectorizers, vector profiles, and vector algorithms. You can't design or modify the default index during the wizard workflow. Indexes conform to the [2024-05-01-preview REST API](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-05-01-preview&preserve-view=true).
 
-+ A skillset with the [Text Split skill](cognitive-search-skill-textsplit.md) for chunking and an embedding skill for vectorization. The embedding skill is either the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md), [AML skill](cognitive-search-aml-skill.md), or [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md). The skillset also has the [index projections](index-projections-concept-intro.md) configuration, which maps data from one document in the data source to its corresponding chunks in a "child" index.
++ A skillset with the [Text Split skill](cognitive-search-skill-textsplit.md) for chunking and an embedding skill for vectorization. The embedding skill is either the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md), [AML skill](cognitive-search-aml-skill.md), or [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md). The skillset also has the [index projections](index-projections-concept-intro.md) configuration, which maps data from one document in the data source to its corresponding chunks in a "child" index.
 
 + An indexer with field mappings and output field mappings (if applicable).
 

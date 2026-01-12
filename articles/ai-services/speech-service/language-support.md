@@ -1,12 +1,12 @@
 ---
 title: Language support - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: The Speech service supports numerous languages for speech to text and text to speech conversion, along with speech translation. This article provides a comprehensive list of language support by service feature.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: conceptual
-ms.date: 6/5/2025
+ms.topic: article
+ms.date: 12/19/2025
 ms.author: pafarley
 ms.custom: references_regions, build-2024
 #Customer intent: As a developer, I want to learn about the languages supported by the Speech service.
@@ -16,7 +16,7 @@ ms.custom: references_regions, build-2024
 
 The following tables summarize language support for [speech to text](speech-to-text.md), [text to speech](text-to-speech.md), [pronunciation assessment](how-to-pronunciation-assessment.md), [speech translation](speech-translation.md), and more service features.
 
-You can also get a list of locales and voices supported for each specific region or endpoint via:
+You can also see the list of locales and voices supported for each specific region or endpoint:
 - [Speech SDK](speech-sdk.md)
 - [Speech to text REST API](rest-speech-to-text.md)
 - [Speech to text REST API for short audio](rest-speech-to-text-short.md)
@@ -27,7 +27,7 @@ You can also get a list of locales and voices supported for each specific region
 Language support varies by Speech service functionality. 
 
 > [!NOTE]
-> See [speech containers](speech-container-overview.md#available-speech-containers) and [embedded speech](embedded-speech.md#models-and-voices) documentation for their supported languages.
+> See the [speech containers](speech-container-overview.md#available-speech-containers) and [embedded speech](embedded-speech.md#models-and-voices) documentation for their supported languages.
 
 **Choose a Speech feature**
 
@@ -38,7 +38,7 @@ The table in this section summarizes the locales supported for [real-time transc
 More remarks for speech to text locales are included in the [custom speech](#custom-speech) section of this article. 
 
 > [!TIP]
-> Try out the [Azure AI Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit) to easily build and run samples on Visual Studio Code.
+> Try out the [Azure Speech in Foundry Tools Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit) to easily build and run samples on Visual Studio Code.
 
 [!INCLUDE [Language support include](includes/language-support/stt.md)]
 
@@ -59,7 +59,7 @@ More remarks for text to speech locales are included in the [voice styles and ro
 > Check the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery) and determine the right voice for your business needs.
 
 > [!TIP]
-> Try out the [Azure AI Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit) to easily build and run samples on Visual Studio Code.
+> Try out the [Azure Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit) to easily build and run samples on Visual Studio Code.
 
 [!INCLUDE [Language support include](includes/language-support/tts.md)]
 
@@ -100,7 +100,7 @@ Use the following table to determine supported styles and roles for each voice.
 
 ### Viseme
 
-This table lists all the locales supported for [Viseme](speech-synthesis-markup-voice.md#viseme-element). For more information about Viseme, see [Get facial position with viseme](how-to-speech-synthesis-viseme.md) and [Viseme element](speech-synthesis-markup-voice.md#viseme-element). 
+This table lists all the locales supported for [viseme](speech-synthesis-markup-voice.md#viseme-element). For more information about Viseme, see [Get facial position with viseme](how-to-speech-synthesis-viseme.md) and [Viseme element](speech-synthesis-markup-voice.md#viseme-element). 
 
 [!INCLUDE [Language support include](includes/language-support/viseme.md)]
 
@@ -147,7 +147,7 @@ The table in this section summarizes the 33 locales supported for pronunciation 
 # [Speech translation](#tab/speech-translation)
 
 > [!TIP]
-> Try out the [Azure AI Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit) to easily build and run samples on Visual Studio Code.
+> Try out the [Azure Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit) to easily build and run samples on Visual Studio Code.
 
 ### Real-time speech translation
 
@@ -185,9 +185,8 @@ The table in this section summarizes the locales supported for custom keyword an
 
 [!INCLUDE [Language support include](includes/language-support/custom-keyword.md)]
 
+---
 
-***
-
-## Next steps
+## Next step
 
 * [Region support](regions.md)

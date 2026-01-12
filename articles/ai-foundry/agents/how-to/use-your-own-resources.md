@@ -1,36 +1,39 @@
 ---
-title: 'Use your own resources in the Azure AI Foundry Agent Service'
-titleSuffix: Azure AI Foundry
-description: Learn how to use resources that you already have with the Azure AI Foundry Agent Service. 
+title: 'Use your own resources in the Foundry Agent Service'
+titleSuffix: Microsoft Foundry
+description: Learn how to use resources that you already have with the Foundry Agent Service. 
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 07/23/2025
+ms.date: 12/05/2025
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
 ms.custom: azure-ai-agents
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Use your own resources
+
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 Use this article if you want to set up your Foundry project with your own resources.
 
 ## Limitations
 
-There are some limitations you should be aware of when you plan to use existing resources with the Azure AI Foundry Agent Service.
+There are some limitations you should be aware of when you plan to use existing resources with the Foundry Agent Service.
 
 ### If you are using a hub-based project or Azure OpenAI Assistants
 
-At this time, there is no direct upgrade path to migrate existing agents or their associated data assets such as files, threads, or vector stores from a hub-based project to an Azure AI Foundry project. There is also no upgrade path to convert existing Azure OpenAI Assistants into Foundry Agents, nor a way to automatically migrate Assistants' files, threads, or vector stores.
+At this time, there is no direct upgrade path to migrate existing agents or their associated data assets such as files, conversations, or vector stores from a hub-based project to a Microsoft Foundry project. There is also no upgrade path to convert existing Azure OpenAI Assistants into Foundry Agents, nor a way to automatically migrate Assistants' files, conversations, or vector stores.
 
-You can reuse your existing model deployments and quota from Azure AI Services or Azure OpenAI resources within a Foundry project.
+You can reuse your existing model deployments and quota from Foundry Tools or Azure OpenAI resources within a Foundry project.
 
 ### SDK usage with hub-based projects
 
-Starting in May 2025, the Azure AI Agent Service uses an endpoint for [Foundry projects](../../what-is-azure-ai-foundry.md#project-types) instead of the connection string that was used for hub-based projects before this time. Connection strings are no longer supported in current versions of the SDKs and REST API. We recommend creating a new foundry project.
+Starting in May 2025, the Azure AI Agent Service uses an endpoint for [Foundry projects](../../what-is-foundry.md#types-of-projects) instead of the connection string that was used for hub-based projects before this time. Connection strings are no longer supported in current versions of the SDKs and REST API. We recommend creating a new foundry project.
 
 If you want to continue using your hub-based project and connection string, you will need to: 
 * Use the connection string for your project located under **Connection string** in the overview of your project. 
@@ -41,18 +44,18 @@ If you want to continue using your hub-based project and connection string, you 
     * [C#](https://github.com/Azure/azure-sdk-for-net/tree/feature/azure-ai-agents/sdk/ai/Azure.AI.Projects/samples): `1.0.0-beta.2` or earlier
     * [Python](https://github.com/Azure/azure-sdk-for-python/tree/feature/azure-ai-projects-beta10/sdk/ai/azure-ai-projects/samples/agents): `1.0.0b10` or earlier
 
-### Azure Cosmos DB for NoSQL to store threads 
+### Azure Cosmos DB for NoSQL to store conversations
 
 - Your existing Azure Cosmos DB for NoSQL account used in a [standard setup](#choose-basic-or-standard-agent-setup) must have a total throughput limit of at least 3000 RU/s. Both provisioned throughput and serverless are supported.
 - Three containers will be provisioned in your existing Cosmos DB account, each requiring 1000 RU/s
 
 > [!NOTE]
-> * Make sure your Azure OpenAI resource and Azure AI Foundry account and project are in the same region. 
+> * Make sure your Azure OpenAI resource and Foundry account and project are in the same region. 
 
 ## Prerequisites
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * Ensure that the individual creating the account and project has the **Azure AI Account Owner** role at the subscription scope
-* If configuring a [standard setup](#choose-basic-or-standard-agent-setup), the same individual must also have permissions to assign roles to required resources (Cosmos DB, Search, Storage). For more information about RBAC in Azure AI Foundry, see [RBAC in Azure AI Foundry](../../../ai-foundry/concepts/rbac-azure-ai-foundry.md).
+* If configuring a [standard setup](#choose-basic-or-standard-agent-setup), the same individual must also have permissions to assign roles to required resources (Cosmos DB, Search, Storage). For more information about RBAC in Foundry, see [RBAC in Foundry](../../../ai-foundry/concepts/rbac-foundry.md).
     * The built-in role needed is **Role Based Access Administrator**.
     * Alternatively, having the **Owner** role at the subscription level also satisfies this requirement.
     * The key permission needed is: `Microsoft.Authorization/roleAssignments/write`
@@ -65,7 +68,7 @@ If you want to continue using your hub-based project and connection string, you 
     * `Microsoft.Search`
     * `Microsoft.App`
     * `Microsoft.ContainerService`
-    * To use the [Grounding with Bing Search tool](./tools/bing-grounding.md): `Microsoft.Bing`
+    * To use the [Grounding with Bing Search tool](../../default/agents/how-to/tools/bing-tools.md): `Microsoft.Bing`
 
     ```console
        az provider register --namespace 'Microsoft.KeyVault'
@@ -81,7 +84,7 @@ If you want to continue using your hub-based project and connection string, you 
 
 ## Choose basic or standard agent setup
 
-To use your own resources, you can edit the parameters in the provided deployment templates. To start, determine if you want to edit the [basic agent setup template](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/42-basic-agent-setup-with-customization), or the [standard agent setup template](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/43-standard-agent-setup-with-customization).
+To use your own resources, you can edit the parameters in the provided deployment templates. To start, determine if you want to edit the [basic agent setup template](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/42-basic-agent-setup-with-customization), or the [standard agent setup template](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/43-standard-agent-setup-with-customization).
    
 **Basic Setup**
 
@@ -89,13 +92,13 @@ This setup is compatible with OpenAI Assistants and manages agent states using t
 
 **Standard Setup**
 
-Includes everything in the basic setup and fine-grained control over your data by allowing you to use your own Azure resources. All customer data—including files, threads, and vector stores are stored in your own Azure resources, giving you full ownership and control.
+Includes everything in the basic setup and fine-grained control over your data by allowing you to use your own Azure resources. All customer data—including files, conversations, and vector stores are stored in your own Azure resources, giving you full ownership and control.
 
 ## Basic agent setup: Use an existing Azure OpenAI resource 
 
-Replace the parameter value for `existingAoaiResourceId`in the [template](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/42-basic-agent-setup-with-customization) with the full arm resource ID of the Azure OpenAI resource you want to use.
+Replace the parameter value for `existingAoaiResourceId`in the [template](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/42-basic-agent-setup-with-customization) with the full arm resource ID of the Azure OpenAI resource you want to use.
 
-1. To get the Azure OpenAI account resource ID, sign in to the Azure CLI and select the subscription with your AI Services account:
+1. To get the Azure OpenAI account resource ID, sign in to the Azure CLI and select the subscription with your Foundry Tools account:
        
     ```console
     az login
@@ -109,7 +112,7 @@ Replace the parameter value for `existingAoaiResourceId`in the [template](https:
 
     The value returned is the `existingAoaiResourceId` you need to use in the template.
 
-3. In the [basic agent template file](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/infrastructure-setup/42-basic-agent-setup-with-customization/main.bicep), replace the following placeholder:
+3. In the [basic agent template file](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/42-basic-agent-setup-with-customization/main.bicep), replace the following placeholder:
     
     ```console
     existingAoaiResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{serviceName}
@@ -117,11 +120,11 @@ Replace the parameter value for `existingAoaiResourceId`in the [template](https:
 
 ## Standard agent setup: Use existing service resources and storage accounts 
 
-Use an existing Azure OpenAI, Azure Storage account, Azure Cosmos DB for NoSQL account and/or Azure AI Search resource by providing the full ARM resource ID in the [standard agent template file](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/infrastructure-setup/43-standard-agent-setup-with-customization/main.bicep).
+Use an existing Azure OpenAI, Azure Storage account, Azure Cosmos DB for NoSQL account and/or Azure AI Search resource by providing the full ARM resource ID in the [standard agent template file](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/43-standard-agent-setup-with-customization/main.bicep).
 
 ### Use an existing Azure OpenAI resource
 
-1. Follow the steps in basic agent setup to get the AI Services account resource ID.
+1. Follow the steps in basic agent setup to get the Foundry Tools account resource ID.
 2. In the standard agent template file, replace the following placeholders:
     
     ```console
@@ -146,7 +149,7 @@ Use an existing Azure OpenAI, Azure Storage account, Azure Cosmos DB for NoSQL a
     aiStorageAccountResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{storageAccountName}
     ```
 
-### Use an existing Azure Cosmos DB for NoSQL account for thread storage
+### Use an existing Azure Cosmos DB for NoSQL account for conversation storage
 
 An Azure Cosmos DB for NoSQL account is created for each Foundry account.
 
@@ -192,4 +195,14 @@ Both provisioned throughput and serverless modes are supported.
 
 ## See also
 
+:::moniker range="foundry-classic"
+
 * Learn about the different [tools](tools\overview.md) agents can use. 
+
+:::moniker-end
+
+:::moniker range="foundry"
+
+* Learn about the different [tools](../../default/agents/concepts/tool-catalog.md) agents can use. 
+
+:::moniker-end

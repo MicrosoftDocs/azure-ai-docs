@@ -1,10 +1,10 @@
 ---
 title: Voice live API overview
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about the Voice live API for real-time voice agents.
 manager: nitinme
-author: goergenj
-ms.author: jagoerge
+author: PatrickFarley
+ms.author: pafarley
 reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.service: azure-ai-speech
@@ -59,7 +59,7 @@ The Voice live API is fully managed, eliminating the need for customers to handl
 
 The Voice live API is designed for compatibility with the Azure OpenAI Realtime API. The supported real-time events are mostly in parity with the [Azure OpenAI Realtime API events](/azure/ai-foundry/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context), with some exceptions as described in the [Voice live API how to guide](./voice-live-how-to.md).
 
-Features that are unique to the Voice live API are designed to be optional and additive. You can add Azure AI Speech capabilities such as noise suppression, echo cancellation, and advanced end-of-turn detection to your existing applications without needing to change your existing architecture.
+Features that are unique to the Voice live API are designed to be optional and additive. You can add Azure Speech in Foundry Tools capabilities such as noise suppression, echo cancellation, and advanced end-of-turn detection to your existing applications without needing to change your existing architecture.
 
 The API is supported through WebSocket events, allowing for an easy server-to-server integration. Your backend or middle-tier service connects to the Voice live API via WebSockets. You can use the WebSocket messages directly to interact with the API.
 
@@ -69,7 +69,7 @@ To power the intelligence of your voice agent, you have flexibility and choice i
 
 All natively supported models are fully managed, meaning you don’t have to deploy models, worry about capacity planning, or provisioning throughput. You can use the model you need, and the Voice live API takes care of the rest.
 
-The Voice live API supports the following models. For supported regions, see the [Azure AI Speech service regions](./regions.md?tabs=voice-live#regions).
+The Voice live API supports the following models. For supported regions, see the [Azure Speech service regions](./regions.md?tabs=voice-live#regions).
 
 | Model | Description |
 | ------------------------------ | ----------- |
@@ -130,12 +130,12 @@ Here are some example pricing scenarios to help you understand how the Voice liv
 
 #### Scenario 1
 
-A customer service agent built with standard Azure AI Speech input, GPT-4.1, custom Azure AI Speech output, and a custom avatar.
+A customer service agent built with standard Azure Speech input, GPT-4.1, custom Azure Speech output, and a custom avatar.
 
 You're charged at the voice live pro rate for:
 - Text
-- Audio with Azure AI Speech - Standard
-- Audio with Azure AI Speech - Custom
+- Audio with Azure Speech - Standard
+- Audio with Azure Speech - Custom
 
 You're charged separately for the training and model hosting of:
 - Custom voice – professional
@@ -143,21 +143,21 @@ You're charged separately for the training and model hosting of:
 
 #### Scenario 2
 
-A learning agent built with `gpt-realtime` native audio input and standard Azure AI Speech output.
+A learning agent built with `gpt-realtime` native audio input and standard Azure Speech output.
 
 You're charged at the voice live pro rate for:
 - Text
 - Native audio with `gpt-realtime`
-- Audio with Azure AI Speech - Standard
+- Audio with Azure Speech - Standard
 
 #### Scenario 3
 
-A talent interview agent built with `gpt-realtime-mini` native audio input, and standard Azure AI Speech output and standard avatar.
+A talent interview agent built with `gpt-realtime-mini` native audio input, and standard Azure Speech output and standard avatar.
 
 You're charged at the voice live basic rate for:
 - Text
 - Native audio with `gpt-realtime-mini`
-- Audio with Azure AI Speech - Standard
+- Audio with Azure Speech - Standard
 
 You're charged separately for:
 - Text to speech avatar (standard)
@@ -171,7 +171,7 @@ You're charged at the voice live lite rate for:
 - Native audio with `phi4-mm-realtime`
 
 You're charged at the voice live pro rate for:
-- Audio with Azure AI Speech - Custom
+- Audio with Azure Speech - Custom
 
 You're charged separately for the training and model hosting of:
 - Custom voice – professional

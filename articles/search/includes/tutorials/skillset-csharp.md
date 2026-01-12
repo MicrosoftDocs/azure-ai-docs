@@ -4,7 +4,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 07/11/2025
+ms.date: 11/21/2025
 ms.custom:
   - devx-track-csharp
   - devx-track-dotnet
@@ -65,21 +65,21 @@ Once content is extracted, the [skillset](../../cognitive-search-working-with-sk
 
    1. Copy the connection string for either key one or key two. The connection string is similar to the following example:
 
-      ```http
-      DefaultEndpointsProtocol=https;AccountName=<your account name>;AccountKey=<your account key>;EndpointSuffix=core.windows.net
-      ```
+      `DefaultEndpointsProtocol=https;AccountName=<your account name>;AccountKey=<your account key>;EndpointSuffix=core.windows.net`
 
-### Azure AI services
+### Foundry Tools
 
-Built-in AI enrichment is backed by Azure AI services, including Language service and Azure AI Vision for natural language and image processing. For small workloads like this tutorial, you can use the free allocation of 20 transactions per indexer. For larger workloads, [attach an Azure AI Services multi-region resource to a skillset](../../cognitive-search-attach-cognitive-services.md) for Standard pricing.
+Built-in AI enrichment is backed by Foundry Tools, including Azure Language and Azure Vision for natural language and image processing. For small workloads like this tutorial, you can use the free allocation of 20 transactions per indexer. For larger workloads, [attach a Microsoft Foundry resource to a skillset](../../cognitive-search-attach-cognitive-services.md) for Standard pricing.
 
 ### Copy a search service URL and API key
 
 For this tutorial, connections to Azure AI Search require an endpoint and an API key. You can get these values from the Azure portal.
 
-1. Sign in to the [Azure portal](https://portal.azure.com), navigate to the search service **Overview** page, and copy the URL. An example endpoint might look like `https://mydemo.search.windows.net`.
+1. Sign in to the [Azure portal](https://portal.azure.com) and select your search service.
 
-1. Under **Settings** > **Keys**, copy an admin key. Admin keys are used to add, modify, and delete objects. There are two interchangeable admin keys. Copy either one.
+1. From the left pane, select **Overview** and copy the endpoint. It should be in this format: `https://my-service.search.windows.net`
+
+1. From the left pane, select **Settings** > **Keys** and copy an admin key for full rights on the service. There are two interchangeable admin keys, provided for business continuity in case you need to roll one over. You can use either key on requests to add, modify, or delete objects.
 
 ## Set up your environment
 
@@ -468,7 +468,7 @@ private static SearchIndexerSkillset CreateOrUpdateDemoSkillSet(SearchIndexerCli
 {
     SearchIndexerSkillset skillset = new SearchIndexerSkillset("demoskillset", skills)
     {
-        // Azure AI services was formerly known as Cognitive Services.
+        // Foundry Tools was formerly known as Cognitive Services.
         // The APIs still use the old name, so we need to create a CognitiveServicesAccountKey object.
         Description = "Demo skillset",
         CognitiveServicesAccount = new CognitiveServicesAccountKey(azureAiServicesKey)
@@ -742,7 +742,7 @@ private static void CheckIndexerOverallStatus(SearchIndexerClient indexerClient,
         switch (demoIndexerExecutionInfo.Value.Status)
         {
             case IndexerStatus.Error:
-                ExitProgram("Indexer has error status. Check the Azure Portal to further understand the error.");
+                ExitProgram("Indexer has error status. Check the Azure portal to further understand the error.");
                 break;
             case IndexerStatus.Running:
                 Console.WriteLine("Indexer is running");

@@ -5,7 +5,7 @@ description: Learn about the Azure portal wizards that create and load an index 
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 09/16/2025
+ms.date: 12/05/2025
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.custom:
@@ -39,13 +39,15 @@ Despite their differences, the wizards follow similar workflows for content inge
 | Index creation | ✅ | ✅ |
 | Indexer pipeline creation | ✅ | ✅ |
 | Azure Logic Apps connectors | ❌ | ✅ |
-| Sample data | ✅ | ❌ |
+| Built-in sample data | ❌ | ❌ |
 | Skills-based enrichment | ✅ | ✅ |
 | Vector and multimodal support | ❌ | ✅ |
 | Semantic ranking support | ❌ | ✅ |
 | Knowledge store support | ✅ | ❌ |
 
-This article explains how the wizards work to help you with proof-of-concept testing. For step-by-step instructions using sample data, see [Try the wizards](#try-the-wizards).
+Built-in sample data for the hotels sample index is no longer provided, but you can create an identical index by following the [Quickstart: Create an index for keyword search](search-get-started-portal.md).
+
+This article explains how the wizards work to help you with proof-of-concept testing. For step-by-step instructions, see [Try the wizards](#try-the-wizards).
 
 ## Supported data sources and scenarios
 
@@ -78,15 +80,6 @@ The wizards support the following data sources, most of which use [built-in inde
 
 <sup>2</sup> Instead of using a Logic Apps connector, you can use the Search Service REST APIs to programmatically index data from [Azure File Storage](search-file-storage-integration.md) or [SharePoint](search-how-to-index-sharepoint-online.md).
 
-### Sample data
-
-Microsoft hosts the following sample data so that you can skip the wizard step for data source configuration.
-
-| Sample data | Import data wizard | Import data (new) wizard |
-|--|--|--|
-| Hotels      | ✅ | ❌ |
-| Real estate | ✅ | ❌ |
-
 ### Skills
 
 Each wizard generates a skillset and outputs field mappings based on options you select. After the skillset is created, you can modify its JSON definition to add or remove skills.
@@ -95,9 +88,9 @@ The following skills might appear in a wizard-generated skillset.
 
 | Skill | Import data wizard | Import data (new) wizard |
 |--|--|--|
-| [Azure AI Vision multimodal](cognitive-search-skill-vision-vectorize.md)  | ❌ | ✅ <sup>1</sup> |
+| [Azure Vision multimodal](cognitive-search-skill-vision-vectorize.md)  | ❌ | ✅ <sup>1</sup> |
 | [Azure OpenAI embedding](cognitive-search-skill-azure-openai-embedding.md)  | ❌ | ✅ <sup>1</sup> |
-| [Azure Machine Learning (Azure AI Foundry model catalog)](cognitive-search-aml-skill.md)  | ❌ | ✅ <sup>1</sup> |
+| [Azure Machine Learning (Microsoft Foundry model catalog)](cognitive-search-aml-skill.md)  | ❌ | ✅ <sup>1</sup> |
 | [Document layout](cognitive-search-skill-document-intelligence-layout.md)  | ❌ | ✅ <sup>1</sup> |
 | [Entity recognition](cognitive-search-skill-entity-recognition-v3.md)  | ✅ | ✅ |
 | [Image analysis](cognitive-search-skill-image-analysis.md) <sup>2</sup> | ✅ | ✅ |
@@ -144,7 +137,7 @@ The following table lists the objects created by the wizards. After the objects 
 | [Indexer](/rest/api/searchservice/indexers/create) | Configuration object that specifies a data source, target index, optional skillset, optional schedule, and optional configuration settings for error handling and base-64 encoding. |
 | [Data source](/rest/api/searchservice/data-sources/create)  | Persists connection information to a [supported data source](search-indexer-overview.md#supported-data-sources) on Azure. A data source object is used exclusively with indexers. |
 | [Index](/rest/api/searchservice/indexes/create) | Physical data structure for full-text search, vector search, and other queries. |
-| [Skillset](/rest/api/searchservice/skillsets/create) | (Optional) Complete set of instructions for manipulating, transforming, and shaping content, including analyzing and extracting information from image files. Skillsets are also used for integrated vectorization. If the volume of work exceeds 20 transactions per indexer per day, the skillset must include a reference to an Azure AI services multi-service resource that provides enrichment. For integrated vectorization, you can use either Azure AI Vision or an embedding model in the Azure AI Foundry model catalog. |
+| [Skillset](/rest/api/searchservice/skillsets/create) | (Optional) Complete set of instructions for manipulating, transforming, and shaping content, including analyzing and extracting information from image files. Skillsets are also used for integrated vectorization. If the volume of work exceeds 20 transactions per indexer per day, the skillset must include a reference to a Foundry resource that provides enrichment. For integrated vectorization, you can use either Azure Vision or an embedding model in the Foundry model catalog. |
 | [Knowledge store](knowledge-store-concept-intro.md) | (Optional) Stores enriched skillset output from tables and blobs in Azure Storage for independent analysis or downstream processing in nonsearch scenarios. Available only in the **Import data** wizard. |
 
 To view these objects after the wizards run:
@@ -182,17 +175,13 @@ The wizards use the Azure portal controller and public endpoints to make outboun
 
 You can use the wizards over restricted public connections, but not all functionality is available.
 
-+ On a search service, importing the built-in sample data requires a public endpoint and no firewall rules.
-
-  Microsoft hosts the sample data on specific Azure resources. The Azure portal controller connects to these resources over a public endpoint. If your search service is behind a firewall, you get the following error when you attempt to retrieve the sample data: `Import configuration failed, error creating Data Source`, followed by `"An error has occured."`.
-
 + On supported Azure data sources protected by firewalls, you can retrieve data if you have the right firewall rules in place.
 
   The Azure resource must admit network requests from the IP address of the device used on the connection. You should also list Azure AI Search as a trusted service on the resource's network configuration. For example, in Azure Storage, you can list `Microsoft.Search/searchServices` as a trusted service.
 
-+ On connections to an Azure AI services multi-service account that you provide, or on connections to embedding models deployed in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) or Azure OpenAI, public internet access must be enabled unless your search service meets the creation date, tier, and region requirements for private connections. For more information, see [Make outbound connections through a shared private link](search-indexer-howto-access-private.md).
++ On connections to a Foundry resource for AI enrichment, or on connections to embedding models deployed in the [Foundry portal](https://ai.azure.com/?cid=learnDocs) or Azure OpenAI, public internet access must be enabled unless your search service meets the creation date, tier, and region requirements for private connections. For more information, see [Make outbound connections through a shared private link](search-indexer-howto-access-private.md).
 
-  Connections to Azure AI services multi-service accounts are for [billing purposes](cognitive-search-attach-cognitive-services.md). You're billed when API calls for built-in skills (in the **Import data** wizard or the keyword search workflow in the **Import data (new)** wizard) and integrated vectorization (in the **Import data (new)** wizard) exceed the free transaction count (20 per indexer run).
+  For AI enrichment, connections to Foundry resources are for [billing purposes](cognitive-search-attach-cognitive-services.md). You're billed when API calls for built-in skills (in the **Import data** wizard or the keyword search workflow in the **Import data (new)** wizard) and integrated vectorization (in the **Import data (new)** wizard) exceed the free transaction count (20 per indexer run).
 
   If Azure AI Search can't connect:
 
@@ -227,10 +216,6 @@ To start the wizards:
     :::image type="content" source="media/search-import-data-portal/import-wizards.png" alt-text="Screenshot of the import wizard options." border="true":::
 
     The wizards open fully expanded in the browser window, giving you more room to work.
-
-1. If you selected **Import data**, you can select **Samples** to index a Microsoft-hosted dataset from a supported data source.
-
-    :::image type="content" source="media/search-what-is-an-index/add-index-import-samples.png" alt-text="Screenshot of the import data page with the samples option selected." border="true":::
 
 1. Follow the remaining steps to create the index, indexer, and other applicable objects.
 

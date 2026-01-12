@@ -5,7 +5,7 @@ description: Learn how to configure Azure Blob Storage with Azure OpenAI Batch
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 11/06/2025
+ms.date: 11/26/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
@@ -15,6 +15,8 @@ ms.custom:
 ---
 
 # Configuring Azure Blob Storage for Azure OpenAI
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 Azure OpenAI now supports using [Azure Blob Storage](/azure/storage/blobs/storage-blobs-introduction) for Azure OpenAI Batch input and output files. By using your own storage, you aren't subject to the batch restrictions on the number of files.
 

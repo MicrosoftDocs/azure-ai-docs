@@ -1,19 +1,18 @@
 ---
 title: "Quickstart: Use Summarization"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Use this quickstart to start using Summarization.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python
 ms.custom: language-service-summarization, mode-api, devx-track-extended-java, devx-track-js, devx-track-python, build-2024
 zone_pivot_groups: programming-languages-text-analytics
 ---
-
 # Quickstart: using text, document and conversation summarization
 
 [!INCLUDE [availability](includes/regional-availability.md)]
@@ -50,7 +49,7 @@ zone_pivot_groups: programming-languages-text-analytics
 
 ::: zone pivot="ai-foundry-portal"
 
-[!INCLUDE [Azure AI Foundry quickstart](includes/quickstarts/azure-ai-foundry.md)]
+[!INCLUDE [Microsoft Foundry quickstart](includes/quickstarts/azure-ai-foundry.md)]
 
 ::: zone-end
 
