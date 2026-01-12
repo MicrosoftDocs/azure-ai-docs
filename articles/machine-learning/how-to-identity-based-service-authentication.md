@@ -408,8 +408,6 @@ To configure a kubernetes cluster compute, make sure that it has the [necessary 
 > [!IMPORTANT] 
 > For Training purposes (Machine Learning Jobs), the identity that is used is the one assigned to the Kubernetes Cluster Compute. However, in the case of inferencing (Managed Online Endpoints), the identity that is used is the one assigned to the endpoint. For more information, see [How to Access Azure Resources from an Online Endpoint](how-to-access-resources-from-endpoints-managed-identities.md?view=azureml-api-2&preserve-view=true&tabs=system-identity-cli).
 
----
-
 ### Data storage
 
 When you create a datastore that uses **identity-based data access**, your Azure account ([Microsoft Entra token](/azure/active-directory/fundamentals/active-directory-whatis)) is used to confirm you have permission to access the storage service. In the **identity-based data access** scenario, no authentication credentials are saved. Only the storage account information is stored in the datastore.
@@ -713,10 +711,6 @@ To use a custom base image internal to your enterprise, you can use managed iden
 
 3. Create an environment and specify the base image location in the [environment YAML file](reference-yaml-environment.md). The following YAML file demonstrates how to define an environment that references the private ACR. Replace the `<acr-url>` with the URL of your private ACR, such as `myregistry.azurecr.io`. Replace the `<image-path>` with the path to your image in the private ACR, such as `pytorch/pytorch:latest`:
 
-    [!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
-
-    <!-- :::code language="yaml" source="~/azureml-examples-main/cli/assets/environment/docker-image.yml"::: -->
-    
     ```yml
     $schema: https://azuremlschemas.azureedge.net/latest/environment.schema.json
     name: docker-image-example
@@ -725,8 +719,6 @@ To use a custom base image internal to your enterprise, you can use managed iden
     ```
     
 4. The following command demonstrates how to create the environment from the YAML file. Replace `<yaml file>` with the path to your YAML file:
-
-    [!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
 
     ```azurecli
     az ml environment create --file <yaml file>
