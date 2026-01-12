@@ -8,7 +8,7 @@ ms.date: 11/05/2025
 ms.author: pafarley
 ---
 
-In this quickstart, try out the text to speech model from Azure Speech in Foundry Tools in Foundry Tools, using [!INCLUDE [foundry-link](../../../../../ai-foundry/default/includes/foundry-link.md)]. 
+In this quickstart, try out the text to speech model from Azure Speech in Foundry Tools, using [!INCLUDE [foundry-link](../../../../../ai-foundry/default/includes/foundry-link.md)]. 
 
 ## Prerequisites
 

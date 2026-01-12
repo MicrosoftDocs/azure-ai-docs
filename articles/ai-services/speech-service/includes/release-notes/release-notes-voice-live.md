@@ -5,7 +5,6 @@ ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 01/09/2026
 ms.author: pafarley
-ms.custom: references_regions
 ---
 
 ### November 2025
