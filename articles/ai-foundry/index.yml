@@ -50,7 +50,7 @@ productDirectory:
           text: Start with an AI template
     # Card
     - title: Microsoft Foundry Models
-      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry-models.png
+      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/azure-foundry-models.png
       links:
         - url: foundry-models/concepts/models.md
           text: Foundry Models sold directly by Azure
@@ -128,7 +128,7 @@ productDirectory:
           text: What is automated machine learning (AutoML)?
     # Card
     - title: Foundry Local
-      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry-local.png
+      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/azure-foundry-local.png
       links:
         - url: ./foundry-local/get-started.md
           text: Run LLMs on your device for free
