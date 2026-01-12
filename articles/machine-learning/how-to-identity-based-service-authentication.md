@@ -114,6 +114,7 @@ wps = load_workspace("workspace_creation_with_multiple_UAIs.yml")
 workspace = client.workspaces.begin_create(workspace=wps).result()
 ```
 
+
 # [Studio](#tab/azure-studio)
 
 Not supported currently.
@@ -142,6 +143,7 @@ identity:
 primary_user_assigned_identity: <one of the UAI resource IDs in the above list>
 ```
 
+
 # [Python SDK](#tab/python)
 
 [!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
@@ -159,6 +161,7 @@ wps = load_workspace("workspace_update_with_multiple_UAIs.yml")
 
 workspace = client.workspaces.begin_update(workspace=wps).result()
 ```
+
 
 # [Studio](#tab/azure-studio)
 
@@ -288,6 +291,7 @@ workspace = Workspace(
 ml_client.workspaces.begin_create(workspace).result()
 ```
 
+
 # [Studio](#tab/azure-studio)
 
 Data isolation is automatically enabled when creating hub or project workspaces through Azure Machine Learning studio. For default workspaces, this setting isn't available in the studio interface. Use the Azure CLI or Python SDK to create a default workspace with data isolation enabled.
@@ -374,6 +378,7 @@ except Exception:
     )
     ml_client.compute.begin_create_or_update(compute)
 ```
+
 
 # [Studio](#tab/azure-studio)
 
