@@ -44,7 +44,7 @@ ms.custom: references_regions, build-2025
 | `gpt-5.1-codex` | 2025-11-13 | Generally Available | 2026-11-13 | 2027-05-15 |  |
 | `gpt-5.1-codex-mini` | 2025-11-13 | Generally Available | 2026-11-13 | 2027-05-15 |  |
 | `gpt-5.1-chat` | 2025-11-13 | Preview | n/a | No earlier than 2026-03-31 |  |
-| `gpt-5.2` | 2025-12-11 | Generally Available | No earlier than 2026-12-12 | No earlier than 2026-05-12 | |
+| `gpt-5.2` | 2025-12-11 | Generally Available | No earlier than 2026-12-12 | No earlier than 2027-05-12 | |
 | `gpt-5.2-chat` | 2025-12-11 | Preview | n/a | No earlier than 2026-04-01 | |
 
 
