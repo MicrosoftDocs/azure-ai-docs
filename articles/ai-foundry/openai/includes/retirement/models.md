@@ -17,8 +17,8 @@ ms.custom: references_regions, build-2025
 
 | Model Name | Model Version<sup>1</sup> | Lifecycle Status | Deprecation Date (No New Customers) | Retirement Date | Replacement Model |
 |:--|:--|:--|:--|:--|:--|
-| `gpt-5-chat` | 2025-08-07 | Preview | n/a | 2025-08-07 | `gpt-5.2-chat` |
-| `gpt-5-chat` | 2025-10-03 | Preview | n/a | 2025-08-07 | `gpt-5.2-chat` |
+| `gpt-5-chat` | 2025-08-07 | Preview | n/a | 2026-03-01 | `gpt-5.2-chat` |
+| `gpt-5-chat` | 2025-10-03 | Preview | n/a | 2026-03-01 | `gpt-5.2-chat` |
 | `gpt-4o` | 2024-05-13 | Generally Available | 2025-05-13 | 2026-03-31 | `gpt-5.1` |
 | `gpt-4o` | 2024-08-06 | Generally Available | 2025-08-06 | 2026-03-31 | `gpt-5.1` |
 | `gpt-4o` | 2024-11-20 | Generally Available | 2025-11-20 | 2026-06-05 | `gpt-5.1` |
