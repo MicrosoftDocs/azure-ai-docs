@@ -11,7 +11,7 @@ ms.custom:
   - devx-track-js
   - ignite-2023
 ms.topic: concept-article
-ms.date: 12/12/2025
+ms.date: 01/13/2026
 ---
 
 # JavaScript samples for Azure AI Search
@@ -60,7 +60,7 @@ Code samples from the Azure AI Search team demonstrate features and workflows. T
 
 | Sample | Article | Description |
 |--|--|--|
-| [quickstart](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart) | [Quickstart: Full-text search](search-get-started-text.md) | Create, load, and query a search index using sample data. |
+| [quickstart-keyword-search](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart-keyword-search) | [Quickstart: Full-text search](search-get-started-text.md) | Create, load, and query a search index using sample data. |
 | [quickstart-semantic-ranking-js](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart-semantic-ranking-js) | [Quickstart: Semantic ranking](search-get-started-semantic.md) | Add semantic ranking to an index schema and run semantic queries. |
 | [quickstart-vector-js](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart-vector-js) | [Quickstart: Vector search](search-get-started-vector.md) | Index and query vector content. |
 

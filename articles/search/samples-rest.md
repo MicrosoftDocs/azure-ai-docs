@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 12/17/2025
+ms.date: 01/13/2026
 ---
 
 # REST samples for Azure AI Search
@@ -26,8 +26,8 @@ Code samples from the Azure AI Search team demonstrate features and workflows. T
 
 | Sample | Article | Description |
 |--|--|--|
-| [quickstart](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart) | [Quickstart: Full-text search](search-get-started-text.md) | Create, load, and query a search index using sample data. |
 | [quickstart-agentic-retrieval](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-agentic-retrieval) | [Quickstart: Agentic retrieval](search-get-started-agentic-retrieval.md) | Integrate semantic ranking with LLM-powered query planning and answer generation. |
+| [quickstart-keyword-search](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-keyword-search) | [Quickstart: Full-text search](search-get-started-text.md) | Create, load, and query a search index using sample data. |
 | [quickstart-semantic-search](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-semantic-search) | [Quickstart: Semantic ranking](search-get-started-semantic.md) | Add semantic ranking to an index schema and run semantic queries. |
 | [quickstart-vectors](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-vectors) | [Quickstart: Vector search](search-get-started-vector.md) | Index and query vector content. |
 | [acl](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/acl) | [Query-time ACL and RBAC enforcement](search-query-access-control-rbac-enforcement.md) | Implement query-time access control using role-based access control (RBAC) and access control lists (ACLs). |
