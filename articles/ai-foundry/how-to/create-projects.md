@@ -55,11 +55,12 @@ If your organization requires customized Azure configurations like alternative n
 * [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 
 :::moniker range="foundry"
-* **Permissions**: You need access to a role that allows you to create a Foundry resource, such as **Azure Account AI Owner** or **Azure AI Owner** on the subscription or resource group. For more details about permissions, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md#permissions-for-each-built-in-role).
+* [!INCLUDE [rbac-create](../includes/rbac-create.md)]
 :::moniker-end
 
 :::moniker range="foundry-classic"
-* **Permissions**: You need access to a role that allows you to create a Foundry resource, such as **Azure Account AI Owner** or **Azure AI Owner** on the subscription or resource group. For more details about permissions, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md#permissions-for-each-built-in-role).
+* [!INCLUDE [rbac-create](../includes/rbac-create.md)]
+
     If you lack this role, request your subscription administrator to [create a Foundry resource](../../ai-services/multi-service-resource.md) and then skip to [Create multiple projects on the same resource](#create-multiple-projects-on-the-same-resource).
 :::moniker-end
 
