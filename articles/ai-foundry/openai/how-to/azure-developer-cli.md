@@ -1,23 +1,26 @@
 ---
 title: 'Use the Azure Developer CLI to deploy resources for Azure OpenAI On Your Data'
-titleSuffix: Azure OpenAI in Azure AI Foundry Models
+titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Use this article to learn how to automate resource deployment for Azure OpenAI On Your Data.
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: quickstart
 author: aahill
 ms.author: aahi
-ms.date: 05/20/2025
+ms.date: 11/20/2025
 recommendations: false
 ---
 
 # Use the Azure Developer CLI to deploy resources for Azure OpenAI On Your Data 
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 Use this article to learn how to automate resource deployment for Azure OpenAI On Your Data. The Azure Developer CLI (`azd`) is an open-source command-line tool that streamlines provisioning and deploying resources to Azure by using a template system. The template contains infrastructure files to provision the necessary Azure OpenAI resources and configurations. The source code for the template can be found on [GitHub](https://github.com/Azure-Samples/openai-chat-your-own-data/tree/main).
 
 ## Prerequisites
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/cognitive-services).
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - The Azure Developer CLI [installed](/azure/developer/azure-developer-cli/install-azd) on your machine.
 - Ability to assign permissions at the Subscription level (Owner or User Access Administrator).
 
@@ -55,7 +58,7 @@ Use this article to learn how to automate resource deployment for Azure OpenAI O
     - `Location`: The Azure region where your resources are deployed.
 
     > [!NOTE]
-    > * The sample `azd` template deploys a `gpt-4o-mini` model. A recommended region for this template is East US, because different Azure regions support different OpenAI models. For more details about model support by region, go to the [Azure OpenAI Models](/azure/ai-services/openai/concepts/models) support page.
+    > * The sample `azd` template deploys a `gpt-4o-mini` model. A recommended region for this template is East US, because different Azure regions support different OpenAI models. For more details about model support by region, go to the [Azure OpenAI Models](/azure/ai-foundry/openai/concepts/models) support page.
     > * If you want to deploy a different model, you can edit the variables in the `infra/main.bicep` file.
 
     The provisioning process might take several minutes. Wait for the task to finish before you proceed to the next steps.
@@ -68,7 +71,7 @@ Use this article to learn how to automate resource deployment for Azure OpenAI O
 
 ## Upload data to the storage account
 
-The `azd` template provisioned all of the required resources for you to chat with your own data, but you still need to upload the data files that you want to make available to your AI service:
+The `azd` template provisioned all of the required resources for you to chat with your own data, but you still need to upload the data files that you want to make available to your Foundry Tool:
 
 1. Go to the new storage account in the Azure portal.
 1. On the left menu, select **Storage browser**.

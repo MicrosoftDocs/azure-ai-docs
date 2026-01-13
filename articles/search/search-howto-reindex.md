@@ -2,16 +2,15 @@
 title: Update or rebuild an index
 titleSuffix: Azure AI Search
 description: Update or rebuild an index to update the schema or clean out obsolete documents. You can fully rebuild or do partial indexing.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 05/19/2025
+ms.date: 09/28/2025
+ms.update-cycle: 180-days
 ---
 
 # Update or rebuild an index in Azure AI Search
@@ -162,12 +161,12 @@ Here's a [REST API example](search-get-started-text.md) demonstrating these tips
 
 ```rest
 ### Get Stay-Kay City Hotel by ID
-GET  {{baseUrl}}/indexes/hotels-vector-quickstart/docs('1')?api-version=2024-07-01  HTTP/1.1
+GET  {{baseUrl}}/indexes/hotels-vector-quickstart/docs('1')?api-version=2025-09-01  HTTP/1.1
     Content-Type: application/json
     api-key: {{apiKey}}
 
 ### Change the description, city, and tags for Stay-Kay City Hotel
-POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search.index?api-version=2024-07-01  HTTP/1.1
+POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search.index?api-version=2025-09-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
 
@@ -186,7 +185,7 @@ POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search.index?api-version=
     }
        
 ### Retrieve the same document, confirm the overwrites and retention of all other values
-GET  {{baseUrl}}/indexes/hotels-vector-quickstart/docs('1')?api-version=2024-07-01  HTTP/1.1
+GET  {{baseUrl}}/indexes/hotels-vector-quickstart/docs('1')?api-version=2025-09-01  HTTP/1.1
     Content-Type: application/json
     api-key: {{apiKey}}
 ```
@@ -254,9 +253,9 @@ When you create the index, physical storage is allocated for each field in the i
 
 To minimize disruption to application code, consider [creating an index alias](search-how-to-alias.md). Application code references the alias, but you can update the name of the index that the alias points to.
 
-## Add an index description (preview)
+## Add an index description
 
-Beginning with REST API version 2025-05-01-preview, a `ddescription` is now supported. This human-readable text is invaluable when a system must access several indexes and make a decision based on the description. Consider a Model Context Protocol (MCP) server that must pick the correct index at run time. The decision can be  based on the description rather than on the index name alone.
+An index has a `description` property that you can specify and use when a system must access several indexes and make a decision based on the description. Consider a Model Context Protocol (MCP) server that must pick the correct index at run time. The decision can be based on the description rather than on the index name alone.
 
 An index description is a schema update, and you can add it without having to rebuild the entire index.
 
@@ -287,11 +286,11 @@ The Azure portal supports the latest preview API.
 
 1. Copy the JSON so that you can use it as the basis of a new request.
 
-1. [Formulate an index update using a PUT request](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true) and the preview API.
+1. [Formulate an index update using a PUT request](/rest/api/searchservice/indexes/create-or-update).
 
 1. Provide the *full* JSON of the existing schema, plus the new `description` field. The field must be a top-level field, on the same level as `name` or `fields`. The value must be less than 4,000 characters and in Unicode.
 
-1. To confirm the change, issue another [GET using the 2025-05-01-preview REST API](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true).
+1. To confirm the change, issue another [GET](/rest/api/searchservice/indexes/get).
 
 ---
 
@@ -330,17 +329,17 @@ Deleting a document doesn't immediately free up space in the index. Every few mi
 1. [Look up the document](/rest/api/searchservice/documents/get) to verify the value of the document ID and to review its content before deleting it. Specify the key or document ID in the request. The following examples illustrate a simple string for the [Hotels sample index](search-get-started-portal.md) and a base-64 encoded string for the metadata_storage_path key of the [cog-search-demo index](tutorial-skillset.md).
 
     ```http
-    GET https://[service name].search.windows.net/indexes/hotel-sample-index/docs/1111?api-version=2024-07-01
+    GET https://[service name].search.windows.net/indexes/hotel-sample-index/docs/1111?api-version=2025-09-01
     ```
 
     ```http
-    GET https://[service name].search.windows.net/indexes/cog-search-demo/docs/aHR0cHM6Ly9oZWlkaWJsb2JzdG9yYWdlMi5ibG9iLmNvcmUud2luZG93cy5uZXQvY29nLXNlYXJjaC1kZW1vL2d1dGhyaWUuanBn0?api-version=2024-07-01
+    GET https://[service name].search.windows.net/indexes/cog-search-demo/docs/aHR0cHM6Ly9oZWlkaWJsb2JzdG9yYWdlMi5ibG9iLmNvcmUud2luZG93cy5uZXQvY29nLXNlYXJjaC1kZW1vL2d1dGhyaWUuanBn0?api-version=2025-09-01
     ```
 
 1. [Delete the document](/rest/api/searchservice/documents) using a delete `@search.action` to remove it from the search index.
 
     ```http
-    POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/index?api-version=2024-07-01
+    POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/index?api-version=2025-09-01
     Content-Type: application/json   
     api-key: [admin key] 
     {  
@@ -359,7 +358,7 @@ Deleting a document doesn't immediately free up space in the index. Every few mi
 + [Index large data sets at scale](search-howto-large-index.md)
 + [Indexing in the Azure portal](search-import-data-portal.md)
 + [Azure SQL Database indexer](search-how-to-index-sql-database.md)
-+ [Azure Cosmos DB for NoSQL indexer](search-howto-index-cosmosdb.md)
-+ [Azure blob indexer](search-howto-indexing-azure-blob-storage.md)
-+ [Azure tables indexer](search-howto-indexing-azure-tables.md)
++ [Azure Cosmos DB for NoSQL indexer](search-how-to-index-cosmosdb-sql.md)
++ [Azure blob indexer](search-how-to-index-azure-blob-storage.md)
++ [Azure tables indexer](search-how-to-index-azure-tables.md)
 + [Security in Azure AI Search](search-security-overview.md)

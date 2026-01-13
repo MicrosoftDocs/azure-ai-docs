@@ -1,15 +1,16 @@
 ---
 manager: nitinme
-author: santiagxf
-ms.author: fasantia 
-ms.service: azure-ai-model-inference
-ms.date: 1/21/2025
+author: msakande
+ms.author: mopeakande
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
+ms.date: 08/29/2025
 ms.topic: include
 ---
 
 ## Account for content filtering in your code
 
-Once content filtering has been applied to your model deployment, requests can be intercepted by the service depending on the inputs and outputs. When a content filter is triggered, a 400 error code is returned with the description of the rule triggered.
+When you apply content filtering to your model deployment, the service can intercept requests based on the inputs and outputs. If a content filter triggers, the service returns a 400 error code with a description of the rule that triggered the error.
 
 [!INCLUDE [code-create-chat-client](../code-create-chat-client.md)]
 
@@ -17,6 +18,6 @@ Once content filtering has been applied to your model deployment, requests can b
 
 ## Follow best practices
 
-We recommend informing your content filtering configuration decisions through an iterative identification (for example, red team testing, stress-testing, and analysis) and measurement process to address the potential harms that are relevant for a specific model, application, and deployment scenario. After you implement mitigations such as content filtering, repeat measurement to test effectiveness.
+To address potential harms that are relevant for a specific model, application, and deployment scenario, use an iterative identification process (such as red team testing, stress-testing, and analysis) and a measurement process to inform your content filtering configuration decisions. After you implement mitigations like content filtering, repeat measurement to test effectiveness.
 
-Recommendations and best practices for Responsible AI for Azure OpenAI, grounded in the [Microsoft Responsible AI Standard](https://aka.ms/RAI) can be found in the [Responsible AI Overview for Azure OpenAI](/azure/ai-foundry/responsible-ai/openai/overview).
+For recommendations and best practices on Responsible AI for Azure OpenAI, grounded in the [Microsoft Responsible AI Standard](https://aka.ms/RAI), see the [Responsible AI Overview for Azure OpenAI](/azure/ai-foundry/responsible-ai/openai/overview).

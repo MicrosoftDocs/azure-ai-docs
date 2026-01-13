@@ -1,17 +1,16 @@
 ---
-title: Native document support for Azure AI Language (preview)
-titleSuffix: Azure AI services
-description: How to use native document with Azure AI Languages Personally Identifiable Information and Summarization capabilities.
+title: Native document support for Azure Language in Foundry Tools (preview)
+titleSuffix: Foundry Tools
+description: How to use native document with Azure Language Personally Identifiable Information and Summarization capabilities.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 02/19/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 <!-- markdownlint-disable MD033 -->
 <!-- markdownlint-disable MD051 -->
 <!-- markdownlint-disable MD024 -->
@@ -19,16 +18,16 @@ ms.author: lajanuar
 <!-- markdownlint-disable MD049 -->
 <!-- markdownlint-disable MD001 -->
 
-# Native document support for Azure AI Language (preview)
+# Native document support for Azure Language in Foundry Tools (preview)
 
 > [!IMPORTANT]
 >
-> * Azure AI Language public preview releases provide early access to features that are in active development.
+> * Azure Language in Foundry Tools public preview releases provide early access to features that are in active development.
 > * Features, approaches, and processes can change, before General Availability (GA), based on user feedback.
 
-Azure AI Language is a cloud-based service that applies Natural Language Processing (NLP) features to text-based data. The native document support capability enables you to send API requests asynchronously, using an HTTP POST request body to send your data and HTTP GET request query string to retrieve the status results. Your processed documents are located in your Azure Blob Storage target container.
+Language is a cloud-based service that applies Natural Language Processing (NLP) features to text-based data. The native document support capability enables you to send API requests asynchronously, using an HTTP POST request body to send your data and HTTP GET request query string to retrieve the status results. Your processed documents are located in your Azure Blob Storage target container.
 
-A native document refers to the file format used to create the original document such as Microsoft Word (docx) or a portable document file (pdf). Native document support eliminates the need for text preprocessing before using Azure AI Language resource capabilities. Currently, native document support is available for the following capabilities:
+A native document refers to the file format used to create the original document such as Microsoft Word (docx) or a portable document file (pdf). Native document support eliminates the need for text preprocessing before using Language resource capabilities. Currently, native document support is available for the following capabilities:
 
 * [Personally Identifiable Information (PII)](../personally-identifiable-information/overview.md). The PII detection feature can identify, categorize, and redact sensitive information in unstructured text. The `PiiEntityRecognition` API supports native document processing.
 
@@ -67,7 +66,7 @@ A native document refers to the file format used to create the original document
 |---------|---------|
 |`-X POST <endpoint>`     | Specifies your Language resource endpoint for accessing the API.        |
 |`--header Content-Type: application/json`     | The content type for sending JSON data.          |
-|`--header "Ocp-Apim-Subscription-Key:<key>`    | Specifies the Language resource key for accessing the API.        |
+|`--header "Ocp-Apim-Subscription-Key:<key>`    | Specifies Azure Language resource key for accessing the API.        |
 |`-data`     | The JSON file containing the data you want to pass with your request.         |
 
 ## Related content

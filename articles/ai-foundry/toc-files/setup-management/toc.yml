@@ -1,0 +1,120 @@
+items:
+- name: Plan rollout 
+  href: ../../concepts/planning.md
+- name: Choose a resource type
+  href: ../../concepts/resource-types.md
+- name: Manage Foundry resources
+  items:
+  - name: Create your first resource
+    href: ../../../ai-services/multi-service-resource.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+  - name: Create using Bicep template
+    href: ../../how-to/create-resource-template.md
+  - name: Create using Terraform template
+    href: ../../how-to/create-resource-terraform.md
+  - name: Recover or purge deleted resources
+    href: ../../../ai-services/recover-purge-resources.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+- name: Manage AI Hub resources
+  items:
+  - name: Hubs overview
+    href: ../../concepts/ai-resources.md
+  - name: Create your first hub
+    href: ../../how-to/create-azure-ai-resource.md
+  - name: Advanced hub creation options
+    items:
+    - name: Create a hub in the Azure portal
+      href: ../../how-to/create-secure-ai-hub.md
+    - name: Create a hub from template
+      href: ../../how-to/create-azure-ai-hub-template.md
+      displayName: code
+    - name: Create a hub using the Azure Machine Learning SDK and CLI
+      href: ../../how-to/develop/create-hub-project-sdk.md
+    - name: Create a hub using Terraform
+      href: ../../how-to/create-hub-terraform.md
+    - name: Vulnerability management
+      href: ../../concepts/vulnerability-management.md     
+  - name: Connect and manage data
+    href: ../../how-to/data-add.md
+  - name: Costs and quotas for hubs
+    items:
+    - name: Plan and manage costs for hubs
+      href: ../../how-to/costs-plan-manage.md
+      displayName: pricing, budget, estimate, hub
+    - name: Manage and increase quotas
+      href: ../../how-to/hub-quota.md      
+  - name: Create and manage compute
+    href: ../../how-to/create-manage-compute.md
+  - name: Role-based access control for Microsoft Foundry
+    href: ../../concepts/hub-rbac-foundry.md
+  - name: Customer-managed keys
+    href: ../../concepts/hub-encryption-keys-portal.md
+  - name: How to configure a private link
+    href: ../../how-to/hub-configure-private-link.md
+  - name: Create and manage connections
+    href: ../../how-to/hub-connections-add.md
+  - name: Create a hub project
+    href: ../../how-to/hub-create-projects.md
+  - name: "Quickstart: Get started with Microsoft Foundry using a hub"
+    href: ../../quickstarts/hub-get-started-code.md
+- name: Manage projects
+  items:
+  - name: Create a project
+    href: ../../how-to/create-projects.md
+  - name: Migrate from hub-based to Foundry project
+    href: ../../how-to/migrate-project.md
+  - name: Create a project using a Bicep template
+    href: ../../how-to/create-resource-template.md
+- name: Management center
+  href: ../../concepts/management-center.md
+- name: Consolidated view
+  href: ../../concepts/ai-foundry-consolidated-view.md
+- name: Status dashboard
+  href: ../../foundry-status-dashboard-documentation.md  
+- name: Connect to other services
+  items:
+  - name: Create a connection
+    href: ../../how-to/connections-add.md
+    displayName: code
+  - name: Create a Key Vault
+    href: ../../how-to/set-up-key-vault-connection.md
+  - name: Connect to your own storage
+    items:
+    - name: Overview
+      href: ../../how-to/bring-your-own-azure-storage-foundry.md
+    - name: For Speech/Language
+      href: ../../how-to/bring-your-own-azure-storage-speech-language-services.md
+- name: Costs and quotas
+  items:
+  - name: Managing quotas and limits
+    items:
+    - name: Manage quotas for Foundry resources
+      href: ../../how-to/quota.md
+    - name: Increase rate limit
+      href: ../../../ai-services/autoscale.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+    - name: Azure OpenAI quotas and limits
+      href: ../../../ai-services/openai/quotas-limits.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+    - name: Manage quotas and limits for Foundry Models
+      href: ../../foundry-models/quotas-limits.md
+    - name: Cost management
+      items:
+      - name: Manage costs
+        href: ../../concepts/manage-costs.md
+        displayName: pricing, budget, estimate
+      - name: Priority processing
+        href: ../../openai/concepts/priority-processing.md
+      - name: What is the Provisioned Throughput offering (PTU)?
+        href: ../../openai/concepts/provisioned-throughput.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+        displayName: PTU, provisioned, provisioned throughput units
+      - name: Understanding and calculating PTU costs
+        href: ../../openai/how-to/provisioned-throughput-onboarding.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+        displayName: PTU, provisioned, provisioned throughput units
+      - name: Get started with Provisioned Deployments
+        href: ../../openai/how-to/provisioned-get-started.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+        displayName: PTU, provisioned, provisioned throughput units
+      - name: Provisioned spillover
+        href: ../../openai/how-to/spillover-traffic-management.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+      - name: Azure OpenAI PTU updates
+        href: ../../openai/concepts/provisioned-migration.md    
+- name: Integrate Foundry with other apps
+  href: ../../how-to/integrate-with-other-apps.md
+- name: Service architecture
+  href: ../../concepts/architecture.md

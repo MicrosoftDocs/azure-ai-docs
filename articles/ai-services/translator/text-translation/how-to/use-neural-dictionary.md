@@ -1,18 +1,18 @@
 ---
-title: Neural dictionary - Azure AI Translator
-titleSuffix: Azure AI services
-description: How to use the Azure AI Translator neural dictionary feature.
+title: Azure Translator neural dictionary
+titleSuffix: Foundry Tools
+description: How to use the Azure Translator neural dictionary feature.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: how-to
-ms.date: 05/19/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
-# Azure AI Translator neural dictionary
+# Azure Translator in Foundry Tools neural dictionary
 
-The Azure AI Translator neural dictionary is an extension to our [dynamic dictionary](use-dynamic-dictionary.md) and [phrase dictionary](../../custom-translator/concepts/dictionaries.md#phrase-dictionary) capabilities. Both dynamic and phrase dictionaries allow you to customize the translation output by providing your own translations for specific terms or phrases. The neural dictionary improves translation quality for sentences that include one or more term translations by letting the machine translation model adjust both the term and the context.
+The Azure Translator neural dictionary is an extension to our [dynamic dictionary](use-dynamic-dictionary.md) and [phrase dictionary](../../custom-translator/concepts/dictionaries.md#phrase-dictionary) capabilities. Both dynamic and phrase dictionaries allow you to customize the translation output by providing your own translations for specific terms or phrases. The neural dictionary improves translation quality for sentences that include one or more term translations by letting the machine translation model adjust both the term and the context.
 
 ## Neural dictionary key features
 
@@ -83,4 +83,4 @@ Neural dictionary is available using [Custom Translator](https://portal.customtr
 
 ## Next steps
 
-To learn more, start with the [Azure AI Custom Translator beginner's guide](../../custom-translator/beginners-guide.md).
+To learn more, start with the [Custom Translator beginner's guide](../../custom-translator/beginners-guide.md).

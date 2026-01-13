@@ -1,23 +1,19 @@
 ---
 title: Azure OpenAI JavaScript support
-titleSuffix: Azure OpenAI in Azure AI Foundry Models
+titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Azure OpenAI JavaScript support
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: include
-ms.date: 03/27/2025
+ms.date: 09/15/2025
 ---
 
 [Source code](https://github.com/openai/openai-node) | [Package (npm)](https://www.npmjs.com/package/openai) | [Reference](../../reference.md) |
 
-
 ## Azure OpenAI API version support
 
-Feature availability in Azure OpenAI is dependent on what version of the REST API you target. For the newest features, target the latest preview API.
-
-| Latest GA API | Latest Preview API|
-|:-----|:------|
-|`2024-10-21` |`2025-03-01-preview`|
+- v1 Generally Available (GA) API now allows access to both GA and Preview operations. To learn more, see the [API version lifecycle guide](../../api-version-lifecycle.md).
 
 ## Installation
 
@@ -29,94 +25,124 @@ npm install openai
 
 # [Microsoft Entra ID](#tab/secure)
 
-There are several ways to authenticate with the Azure OpenAI using Microsoft Entra ID tokens. The default way is to use the `DefaultAzureCredential` class from the `@azure/identity` package.
-
-```typescript
-import { DefaultAzureCredential } from "@azure/identity";
-const credential = new DefaultAzureCredential();
+```cmd
+npm install @azure/identity
 ```
 
-This object is then passed as part of the [`AzureClientOptions`](#configuration) object to the `AzureOpenAI` and `AssistantsClient` client constructors.
-
-In order to authenticate the `AzureOpenAI` client, however, we need to use the `getBearerTokenProvider` function from the `@azure/identity` package. This function creates a token provider that `AzureOpenAI` uses internally to obtain tokens for each request. The token provider is created as follows:
+In order to authenticate the `OpenAI` client, however, we need to use the `getBearerTokenProvider` function from the `@azure/identity` package. This function creates a token provider that `OpenAI` uses internally to obtain tokens for each request. The token provider is created as follows:
 
 ```typescript
-import { AzureOpenAI } from 'openai';
 import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
-const credential = new DefaultAzureCredential();
-const endpoint = "https://your-azure-openai-resource.com";
-const apiVersion = "2024-10-21"
-const scope = "https://cognitiveservices.azure.com/.default";
-const azureADTokenProvider = getBearerTokenProvider(credential, scope);
-const deployment = "gpt-35-turbo";
+import { OpenAI } from "openai";
 
-const client = new AzureOpenAI({ 
-    endpoint, 
-    apiVersion,
-    deployment,
-    azureADTokenProvider
+const tokenProvider = getBearerTokenProvider(
+    new DefaultAzureCredential(),
+    'https://cognitiveservices.azure.com/.default');
+const client = new OpenAI({
+    baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    apiKey: tokenProvider
 });
 ```
 
 For more information about Azure OpenAI keyless authentication, see the "[Get started with the Azure OpenAI security building block](/azure/developer/ai/get-started-securing-your-ai-app?tabs=github-codespaces&pivots=typescript)" QuickStart article. 
 
-
-### Configuration
-
-The `AzureClientOptions` object extends the OpenAI `ClientOptions` object. This Azure-specific client object is used to configure the connection and behavior of the Azure OpenAI client. It includes properties for specifying the properties unique to Azure.
-
-| Property | Details |
-|--|--|
-| apiVersion: `string` | Specifies the API version to use. |
-| azureADTokenProvider: `(() => Promise<string>)` | A function that returns an access token for Microsoft Entra (formerly known as Azure Active Directory), invoked on every request.|
-| deployment: `string` | A model deployment. If provided, sets the base client URL to include `/deployments/{deployment}`. Non-deployment endpoints can't be used (not supported with Assistants APIs).|
-| endpoint: `string` | Your Azure OpenAI endpoint with the following format: `https://RESOURCE-NAME.azure.openai.com/`.|
-
 # [API Key](#tab/api-key)
 
-API keys aren't recommended for production use because they're less secure than other authentication methods. 
+API keys aren't recommended for production use because they're less secure than other authentication methods.
 
 ```typescript
-import { AzureKeyCredential } from "@azure/openai";
-const apiKey = new AzureKeyCredential("your API key");
-const endpoint = "https://your-azure-openai-resource.com";
-const apiVersion = "2024-10-21"
-const deployment = "gpt-35-turbo";
+import { OpenAI } from "openai";
 
-const client = new AzureOpenAI({ 
-    apiKey, 
-    endpoint, 
-    apiVersion, 
-    deployment 
+const client = new OpenAI({
+    baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    apiKey: process.env['OPENAI_API_KEY'] //Your Azure OpenAI API key
 });
 ```
-
-### Configuration
-
-The `AzureClientOptions` object extends the OpenAI `ClientOptions` object. This Azure-specific client object is used to configure the connection and behavior of the Azure OpenAI client. It includes properties for specifying the properties unique to Azure.
-
-| Property | Details |
-|--|--|
-| apiKey: `string` | Your API key for authenticating requests. |
-| apiVersion: `string` | Specifies the API version to use. |
-| deployment: `string` | A model deployment. If provided, sets the base client URL to include `/deployments/{deployment}`. Non-deployment endpoints can't be used (not supported with Assistants APIs).|
-| endpoint: `string` | Your Azure OpenAI endpoint with the following format: `https://RESOURCE-NAME.azure.openai.com/`.|
 
 [!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 ---
 
+## Responses
 
-## Audio
-
-### Transcription
+`responses.create`
 
 ```typescript
-import { createReadStream } from "fs";
+import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
+import { OpenAI } from "openai";
 
-const result = await client.audio.transcriptions.create({
-  model: '',
-  file: createReadStream(audioFilePath),
+const tokenProvider = getBearerTokenProvider(
+    new DefaultAzureCredential(),
+    'https://cognitiveservices.azure.com/.default');
+const client = new OpenAI({
+    baseURL: "https://YOUR-RESORCE-NAME.openai.azure.com/openai/v1/",
+    apiKey: tokenProvider
 });
+
+const response = await client.responses.create({
+  model: 'gpt-4.1-nano', //model deployment name
+  instructions: 'You are a helpful AI agent',
+  input: 'Tell me about the bitter lesson?',
+});
+
+console.log(response.output_text);
+```
+
+### Streaming
+
+```typescript
+import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
+import { OpenAI } from "openai";
+
+const tokenProvider = getBearerTokenProvider(
+    new DefaultAzureCredential(),
+    'https://cognitiveservices.azure.com/.default');
+const client = new OpenAI({
+    baseURL: "https://YOUR-RESORCE-NAME.openai.azure.com/openai/v1/",
+    apiKey: tokenProvider
+});
+
+const stream = await client.responses.create({
+  model: 'gpt-4.1-nano', // model deployment name
+  input: 'Provide a brief history of the attention is all you need paper.',
+  stream: true,
+});
+
+for await (const event of stream) {
+  if (event.type === 'response.output_text.delta' && event.delta) {
+    process.stdout.write(event.delta);
+  }
+}
+```
+
+### MCP Server
+
+```javascript
+import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
+import { OpenAI } from "openai";
+
+const tokenProvider = getBearerTokenProvider(
+    new DefaultAzureCredential(),
+    'https://cognitiveservices.azure.com/.default');
+const client = new OpenAI({
+    baseURL: "https://YOUR-RESORCE-NAME.openai.azure.com/openai/v1/",
+    apiKey: tokenProvider
+});
+
+const resp = await client.responses.create({
+  model: "gpt-5",
+  tools: [
+    {
+      type: "mcp",
+      server_label: "microsoft_learn",
+      server_description: "Microsoft Learn MCP server for searching and fetching Microsoft documentation.",
+      server_url: "https://learn.microsoft.com/api/mcp",
+      require_approval: "never",
+    },
+  ],
+  input: "Search for information about Azure Functions",
+});
+
+console.log(resp.output_text);
 ```
 
 ## Chat
@@ -124,25 +150,34 @@ const result = await client.audio.transcriptions.create({
 `chat.completions.create`
 
 ```typescript
-const result = await client.chat.completions.create({ messages, model: '', max_tokens: 100 });
-```
+import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
+import { OpenAI } from "openai";
 
-### Streaming
+const tokenProvider = getBearerTokenProvider(
+    new DefaultAzureCredential(),
+    'https://cognitiveservices.azure.com/.default');
+const client = new OpenAI({
+    baseURL: "https://france-central-test-001.openai.azure.com/openai/v1/",
+    apiKey: tokenProvider
+});
 
-```typescript
-const stream = await client.chat.completions.create({ model: '', messages, max_tokens: 100, stream: true });
-```
+const messages = [
+    { role: 'system', content: 'You are a helpful assistant.' },
+    { role: 'user', content: 'Tell me about the attention is all you need paper' }
+];
 
-## Embeddings
+// Make the API request with top-level await
+const result = await client.chat.completions.create({ 
+    messages, 
+    model: 'gpt-4.1-nano', // model deployment name
+    max_tokens: 100 
+});
 
-```typescript
-const embeddings = await client.embeddings.create({ input, model: '' });
-```
+// Print the full response
+console.log('Full response:', result);
 
-## Image generation
-
-```typescript
-  const results = await client.images.generate({ prompt, model: '', n, size });
+// Print just the message content from the response
+console.log('Response content:', result.choices[0].message.content);
 ```
 
 ## Error handling
@@ -174,7 +209,7 @@ Use `maxRetries` to set/disable the retry behavior:
 
 ```typescript
 // Configure the default for all requests:
-const client = new AzureOpenAI({
+const client = new OpenAI({
   maxRetries: 0, // default is 2
 });
 

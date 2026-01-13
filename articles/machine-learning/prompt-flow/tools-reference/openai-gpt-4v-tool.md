@@ -6,10 +6,11 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
 ms.topic: reference
-author: s-polly
-ms.author: scottpolly
-ms.reviewer: jinzhong
+author: lgayhardt
+ms.author: lagayhar
+ms.reviewer: sooryar
 ms.date: 12/18/2023
+ms.update-cycle: 365-days
 ---
 
 # OpenAI GPT-4V (preview)
@@ -28,7 +29,7 @@ OpenAI GPT-4V tool enables you to use OpenAI's GPT-4 with vision, also referred 
 
 - Get Access to GPT-4 API
 
-    To use GPT-4 with vision, you need access to GPT-4 API. To learn more, see [how to get access to GPT-4 API](https://help.openai.com/en/articles/7102672-how-can-i-access-gpt-4)
+    To use GPT-4 with vision, you need access to GPT-4 API.
 
 ## Connection
 

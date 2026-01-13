@@ -1,13 +1,13 @@
 ---
 title: "Configure the Speech CLI datastore - Speech service"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to configure the Speech CLI datastore.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 3/10/2025
-ms.author: eur
+ms.date: 08/07/2025
+ms.author: pafarley
 ms.custom: mode-api
 # Customer intent: As a developer, I want to learn how to configure the Speech CLI datastore.
 ---

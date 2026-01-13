@@ -1,27 +1,25 @@
 ---
 title: "Quickstart: Optical character recognition (OCR)"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to use Optical character recognition (OCR) in your application through a native client library in the language of your choice.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: quickstart
-ms.date: 10/16/2024
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
+ms.date: 11/21/2025
 ms.author: pafarley
 ms.devlang: csharp
 # ms.devlang: csharp, golang, java, javascript, python
 ms.custom: devx-track-python, devx-track-js, devx-track-csharp, mode-api, devx-track-dotnet, devx-track-extended-java
 zone_pivot_groups: programming-languages-ocr
-keywords: Azure AI Vision, Azure AI Vision service
+keywords: Azure Vision in Foundry Tools, Azure Vision in Foundry Tools
 ---
 
-# Quickstart: Azure AI Vision v3.2 GA Read
+# Quickstart: Azure Vision v3.2 GA Read
 
 [!INCLUDE [read-editions](../includes/read-editions.md)]
 
-Get started with the Azure AI Vision Read REST API or client libraries. The Read API provides you with AI algorithms for extracting text from images and returning it as structured strings. Follow these steps to install a package to your application and try out the sample code for basic tasks.
+Get started with Azure Vision in Foundry Tools Read REST API or client libraries. The Read API provides you with AI algorithms for extracting text from images and returning it as structured strings. Follow these steps to install a package to your application and try out the sample code for basic tasks.
 
 ::: zone pivot="programming-language-csharp"
 

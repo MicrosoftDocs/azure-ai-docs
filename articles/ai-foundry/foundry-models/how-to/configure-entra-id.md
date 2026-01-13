@@ -1,21 +1,28 @@
 ---
 title: Configure key-less authentication with Microsoft Entra ID
-titleSuffix: Azure AI Foundry
-description: Learn how to configure key-less authorization to use Azure AI Foundry Models with Microsoft Entra ID.
-ms.service: azure-ai-model-inference
+titleSuffix: Microsoft Foundry
+description: Learn how to configure key-less authorization to use Microsoft Foundry Models with Microsoft Entra ID and enhance security.
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 05/19/2025
+ms.date: 09/26/2025
 ms.custom: ignite-2024, github-universe-2024
-manager: scottpolly
 author: msakande
 ms.author: mopeakande
 recommendations: false
 zone_pivot_groups: azure-ai-models-deployment
 ms.reviewer: fasantia
 reviewer: santiagxf
+ai-usage: ai-assisted
+
+#CustomerIntent: As a developer, I want to configure keyless authentication with Microsoft Entra ID for Microsoft Foundry Models so that I can secure my AI model deployments without relying on API keys and leverage role-based access control for better security and compliance.
 ---
 
 # Configure key-less authentication with Microsoft Entra ID
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
+[!INCLUDE [migrate-model-inference-to-v1-openai](../../includes/migrate-model-inference-to-v1-openai.md)]
 
 ::: zone pivot="ai-foundry-portal"
 [!INCLUDE [portal](../../foundry-models/includes/configure-entra-id/portal.md)]
@@ -29,6 +36,6 @@ reviewer: santiagxf
 [!INCLUDE [bicep](../../foundry-models/includes/configure-entra-id/bicep.md)]
 ::: zone-end
 
-## Next steps
+## Next step
 
-* [Develop applications using Azure AI Foundry Models](../../model-inference/supported-languages.md)
+* [Develop applications using Microsoft Foundry Models](../../model-inference/supported-languages.md)

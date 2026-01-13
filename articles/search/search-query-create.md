@@ -2,7 +2,6 @@
 title: Create a full text query 
 titleSuffix: Azure AI Search
 description: Learn how to construct a query request for full text search in Azure AI Search.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
@@ -10,7 +9,8 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 04/14/2025
+ms.date: 10/02/2025
+ms.update-cycle: 180-days
 ---
 
 # Create a full text query in Azure AI Search
@@ -19,7 +19,7 @@ If you're building a query for [full text search](search-lucene-query-architectu
 
 ## Prerequisites
 
-+ A [search index](search-how-to-create-search-index.md) with string fields attributed as *searchable*.
++ A [search index](search-how-to-create-search-index.md) with string fields attributed as *searchable*. You can also use an [index alias](search-how-to-alias.md) as the endpoint of your query request.
 
 + Read permissions on the search index. For read access, include a [query API key](search-security-api-keys.md) on the request, or give the caller [Search Index Data Reader](search-security-rbac.md) permissions.
 
@@ -32,7 +32,7 @@ A full text query is specified in a `search` parameter and consists of terms, qu
 The following [Search POST REST API](/rest/api/searchservice/documents/search-post) call illustrates a query request using `search` and other parameters.
 
 ```http
-POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2024-07-01
+POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2025-09-01
 {
     "search": "NY +view",
     "queryType": "simple",
@@ -60,7 +60,7 @@ Parameters used to shape the response:
 
 + **`top`** returns the specified number of best-matching documents. In this example, only 10 hits are returned. You can use top and skip (not shown) to page the results.
 
-+ **`count`** tells you how many documents in the entire index match overall, which can be more than what are returned. 
++ **`count`** tells you how many documents in the entire index match overall, which can be more than what are returned. Valid values are "true" or "false". Defaults to "false". Count is accurate if the index is stable, but will under or over-report any documents that are actively added, updated, or deleted. If you’d like to get only the count without any documents, you can use $top=0.
 
 + **`orderby`** is used if you want to sort results by a value, such as a rating or location. Otherwise, the default is to use the relevance score to rank results. A field must be attributed as *sortable* to be a candidate for this parameter.
 
@@ -100,12 +100,16 @@ In the Azure portal, when you open an index, you can work with Search Explorer a
 
 ### [**REST API**](#tab/rest-text-query)
 
+When called with GET, the length of the request URL can't exceed 8 KB. This length is enough for most applications. However, some applications produce large queries, specifically when OData filter expressions are used. For these applications, HTTP POST is a better choice because it allows larger filters than GET.
+
+With POST, the number of clauses in a filter is the limiting factor, not the size of the raw filter string since the request size limit for POST is approximately 16 MB. Even though the POST request size limit is large, filter expressions can't be arbitrarily complex. For more information about filter complexity limitations, see [OData Expression Syntax](query-odata-filter-orderby-syntax.md).
+
 Use a REST client to set up a request. If you need help with getting started, see [Quickstart: Full-text search using REST](search-get-started-text.md).
 
 The following example calls the REST API for full text search:
 
 ```http
-POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2024-07-01
+POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2025-09-01
 {
     "search": "NY +view",
     "queryType": "simple",
@@ -115,6 +119,15 @@ POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/
     "count": true
 }
 ```
+
+**Continuation of Partial Search Responses**
+
+Sometimes Azure AI Search can't return all the requested results in a single Search response. A partial response can happen for different reasons, such as when the query returns too many documents by not specifying $top, or by specifying a value for $ top that's too large. In such cases, Azure AI Search includes the @odata.nextLink annotation in the response body, and also @search.nextPageParameters if it was a POST request. You can use the values of these annotations to formulate another Search request to get the next part of the search response. This behavior is called a *continuation* of the original Search request, and the annotations are called *continuation tokens*. See the example in the Response section for details on the syntax of these annotations and where they appear in the response body.  
+
+The reasons why Azure AI Search might return continuation tokens are implementation-specific and subject to change. Robust clients should always be ready to handle cases where fewer documents than expected are returned and a continuation token is included to continue retrieving documents. Also note that you must use the same HTTP method as the original request in order to continue. For example, if you sent a GET request, any continuation requests you send must also use GET (and likewise for POST).
+
+> [!NOTE]
+> The purpose of @odata.nextLink and @search.nextPageParameters is to protect the service from queries that request too many results, not to provide a general mechanism for paging. If you want to page through results, use $top and $skip together. For example, if you want pages of size 10, your first request should have $top=10 and $skip=0, the second request should have $top=10 and $skip=10, the third request should have $top=10 and $skip=20, and so on.
 
 ### [**Azure SDKs**](#tab/sdk-text-query)
 

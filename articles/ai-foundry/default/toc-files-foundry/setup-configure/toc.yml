@@ -1,0 +1,60 @@
+items:
+# Planning and Preparation
+- name: Plan rollout
+  href: ../../../concepts/planning.md
+
+# Resource Management
+- name: Manage Foundry resources
+  items:
+  - name: Create your first resource
+    href: ../../../../ai-services/multi-service-resource.md?context=/azure/ai-foundry/context/context
+  - name: Create resources using Bicep template
+    href: ../../../how-to/create-resource-template.md
+  - name: Manage resources using Terraform
+    href: ../../../how-to/create-resource-terraform.md
+  - name: Recover or purge deleted resources
+    href: ../../../../ai-services/recover-purge-resources.md?context=/azure/ai-foundry/context/context
+  - name: Upgrade from Azure OpenAI Service
+    href: ../../../how-to/upgrade-azure-openai.md
+# Project Management
+- name: Create and manage projects
+  href: ../../../how-to/create-projects.md
+
+# Agent configuration
+- name: Agent configuration
+  items:
+  - name: Set up your agent resources
+    href: ../../../agents/environment-setup.md
+  - name: Standard agent setup
+    href: ../../../agents/concepts/standard-agent-setup.md
+  - name: Use your own Azure resources
+    href: ../../../agents/how-to/use-your-own-resources.md
+  - name: Migrate agents
+    href: ../../agents/how-to/migrate.md
+  - name: Virtual networks
+    href: ../../../agents/how-to/virtual-networks.md
+  - name: Use an AI Gateway
+    href: ../../agents/how-to/ai-gateway.md
+
+# Connections and Integration
+- name: Connect services and tools
+  items: 
+  - name: Create a connection
+    href: ../../../how-to/connections-add.md
+  - name: Connect to your own storage in Foundry
+    href: ../../../how-to/bring-your-own-azure-storage-foundry.md
+  - name: Connect to your own storage for Speech/Language
+    href: ../../../how-to/bring-your-own-azure-storage-speech-language-services.md 
+  - name: Manage Grounding with Bing
+    href: ../../agents/how-to/manage-grounding-with-bing.md
+
+# Quota and Limits
+- name: Quota and service limits
+  items: 
+  - name: Manage quotas for Foundry resources
+    href: ../../../how-to/quota.md
+  - name: Foundry Models quotas and limits
+    href: ../../../foundry-models/quotas-limits.md
+  - name: Azure OpenAI quotas and limits
+    href: ../../../openai/quotas-limits.md
+  

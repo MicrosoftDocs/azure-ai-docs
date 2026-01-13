@@ -4,8 +4,8 @@ description: Use example Jupyter notebooks for Azure Open Datasets to learn how 
 ms.service: azure-open-datasets
 ms.topic: sample
 author: fbsolo-ms1
-ms.author: franksolomon
-ms.date: 07/29/2024
+ms.author: scottpolly
+ms.date: 10/28/2025
 ---
 
 # Example Jupyter notebooks show how to enrich data with Open Datasets 

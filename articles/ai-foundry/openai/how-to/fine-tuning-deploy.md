@@ -1,23 +1,25 @@
 ---
 title: 'Deploy a fine-tuned model'
 titleSuffix: Azure OpenAI
-description: Learn how to deploy your fine-tuned model with Azure OpenAI in Azure AI Foundry Models by using Python, the REST APIs, or Azure AI Foundry portal.
+description: Learn how to deploy your fine-tuned model with Azure OpenAI in Microsoft Foundry Models by using Python, the REST APIs, or Microsoft Foundry portal.
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.custom: build-2023, build-2023-dataai, devx-track-python, references_regions
 ms.topic: how-to
-ms.date: 07/02/2025
+ms.date: 11/26/2025
 author: mrbullwinkle
 ms.author: mbullwin
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Deploy a fine-tuned model for inferencing
 
 Once your model is fine-tuned, you can deploy the model and can use it in your own application.
 
-When you deploy the model, you make the model available for inferencing, and that incurs an hourly hosting charge. Fine-tuned models, however, can be stored in Azure AI Foundry at no cost until you're ready to use them.
+When you deploy the model, you make the model available for inferencing, and that incurs an hourly hosting charge. Fine-tuned models, however, can be stored in Microsoft Foundry at no cost until you're ready to use them.
 
-Azure OpenAI provides choices of deployment types for fine-tuned models on the hosting structure that fits different business and usage patterns: **Standard**, **Global Standard** (preview) and **Provisioned Throughput** (preview). Learn more about [deployment types for fine-tuned models](#deployment-types) and the [concepts of all deployment types](./deployment-types.md).
+Azure OpenAI provides choices of deployment types for fine-tuned models on the hosting structure that fits different business and usage patterns: **Standard**, **Global Standard** (preview) and **Provisioned Throughput** (preview). Learn more about [deployment types for fine-tuned models](#deployment-types) and the [concepts of all deployment types](../../foundry-models/concepts/deployment-types.md).
 
 ## Deploy your fine-tuned model
 
@@ -27,11 +29,12 @@ To deploy your custom model, select the custom model to deploy, and then select 
 
 The **Deploy model** dialog box opens. In the dialog box, enter your **Deployment name** and then select **Create** to start the deployment of your custom model.
 
-:::image type="content" source="../media/fine-tuning/fine-tuning-deploy/deploy-dialogue.png" alt-text="Screenshot that shows how to deploy a custom model in Azure AI Foundry portal." lightbox="../media/fine-tuning/fine-tuning-deploy/deploy-dialogue.png":::
+:::image type="content" source="../media/fine-tuning/fine-tuning-deploy/deploy-dialogue.png" alt-text="Screenshot that shows how to deploy a custom model in Foundry portal." lightbox="../media/fine-tuning/fine-tuning-deploy/deploy-dialogue.png":::
 
-You can monitor the progress of your deployment on the **Deployments** pane in Azure AI Foundry portal.
+You can monitor the progress of your deployment on the **Deployments** pane in Foundry portal.
 
 The UI does not support cross region deployment, while Python SDK or REST supports.
+
 
 ## [Python](#tab/python)
 
@@ -45,7 +48,7 @@ token = os.getenv("<TOKEN>")
 subscription = "<YOUR_SUBSCRIPTION_ID>"  
 resource_group = "<YOUR_RESOURCE_GROUP_NAME>"
 resource_name = "<YOUR_AZURE_OPENAI_RESOURCE_NAME>"
-model_deployment_name = "gpt-35-turbo-ft" # custom deployment name that you will use to reference the model when making inference calls.
+model_deployment_name = "gpt-4.1-mini-ft" # custom deployment name that you will use to reference the model when making inference calls.
 
 deploy_params = {'api-version': "2024-10-21"} 
 deploy_headers = {'Authorization': 'Bearer {}'.format(token), 'Content-Type': 'application/json'}
@@ -55,7 +58,7 @@ deploy_data = {
     "properties": {
         "model": {
             "format": "OpenAI",
-            "name": <"fine_tuned_model">, #retrieve this value from the previous call, it will look like gpt-35-turbo-0125.ft-b044a9d3cf9c4228b5d393567f693b83
+            "name": <"fine_tuned_model">, #retrieve this value from the previous call, it will look like gpt-4.1-mini-2025-04-14.ft-b044a9d3cf9c4228b5d393567f693b83
             "version": "1"
         }
     }
@@ -81,7 +84,7 @@ print(r.json())
 | resource_group | The resource group name for your Azure OpenAI resource. |
 | resource_name | The Azure OpenAI resource name. |
 | model_deployment_name | The custom name for your new fine-tuned model deployment. This is the name that will be referenced in your code when making chat completion calls. |
-| fine_tuned_model | Retrieve this value from your fine-tuning job results in the previous step. It will look like `gpt-35-turbo-0125.ft-b044a9d3cf9c4228b5d393567f693b83`. You will need to add that value to the deploy_data json. Alternatively you can also deploy a checkpoint, by passing the checkpoint ID which will appear in the format `ftchkpt-e559c011ecc04fc68eaa339d8227d02d` |
+| fine_tuned_model | Retrieve this value from your fine-tuning job results in the previous step. It will look like `gpt-4.1-mini-2025-04-14.ft-b044a9d3cf9c4228b5d393567f693b83`. You will need to add that value to the deploy_data json. Alternatively you can also deploy a checkpoint, by passing the checkpoint ID which will appear in the format `ftchkpt-e559c011ecc04fc68eaa339d8227d02d` |
 
 ### Cross region deployment
 
@@ -109,7 +112,7 @@ source_resource = "<SOURCE_RESOURCE>"
 
 source = f'/subscriptions/{source_subscription}/resourceGroups/{source_resource_group}/providers/Microsoft.CognitiveServices/accounts/{source_resource}'
 
-model_deployment_name = "gpt-35-turbo-ft" # custom deployment name that you will use to reference the model when making inference calls.
+model_deployment_name = "gpt-4.1-mini-ft" # custom deployment name that you will use to reference the model when making inference calls.
 
 deploy_params = {'api-version': "2024-10-21"} 
 deploy_headers = {'Authorization': 'Bearer {}'.format(token), 'Content-Type': 'application/json'}
@@ -121,7 +124,7 @@ deploy_data = {
     "properties": {
         "model": {
             "format": "OpenAI",
-            "name": <"FINE_TUNED_MODEL_NAME">, # This value will look like gpt-35-turbo-0125.ft-0ab3f80e4f2242929258fff45b56a9ce 
+            "name": <"FINE_TUNED_MODEL_NAME">, # This value will look like gpt-4.1-mini-2025-04-14.ft-0ab3f80e4f2242929258fff45b56a9ce
             "version": "1",
             "source": source
         }
@@ -197,7 +200,7 @@ The following example shows how to use the REST API to create a model deployment
 
 
 ```bash
-curl -X POST "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.CognitiveServices/accounts/<RESOURCE_NAME>/deployments/<MODEL_DEPLOYMENT_NAME>api-version=2024-10-21" \
+curl -X POST "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.CognitiveServices/accounts/<RESOURCE_NAME>/deployments/<MODEL_DEPLOYMENT_NAME>?api-version=2024-10-21" \
   -H "Authorization: Bearer <TOKEN>" \
   -H "Content-Type: application/json" \
   -d '{
@@ -219,7 +222,7 @@ curl -X POST "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resource
 | resource_group | The resource group name for your Azure OpenAI resource. |
 | resource_name | The Azure OpenAI resource name. |
 | model_deployment_name | The custom name for your new fine-tuned model deployment. This is the name that will be referenced in your code when making chat completion calls. |
-| fine_tuned_model | Retrieve this value from your fine-tuning job results in the previous step. It will look like `gpt-35-turbo-0125.ft-b044a9d3cf9c4228b5d393567f693b83`. You'll need to add that value to the deploy_data json. Alternatively you can also deploy a checkpoint, by passing the checkpoint ID which will appear in the format `ftchkpt-e559c011ecc04fc68eaa339d8227d02d` |
+| fine_tuned_model | Retrieve this value from your fine-tuning job results in the previous step. It will look like `gpt-4.1-mini-2025-04-14.ft-b044a9d3cf9c4228b5d393567f693b83`. You'll need to add that value to the deploy_data json. Alternatively you can also deploy a checkpoint, by passing the checkpoint ID which will appear in the format `ftchkpt-e559c011ecc04fc68eaa339d8227d02d` |
 
 
 ### Cross region deployment
@@ -231,7 +234,7 @@ The only limitations are that the new region must also support fine-tuning and w
 Below is an example of deploying a model that was fine-tuned in one subscription/region to another.
 
 ```bash
-curl -X PUT "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.CognitiveServices/accounts/<RESOURCE_NAME>/deployments/<MODEL_DEPLOYMENT_NAME>api-version=2024-10-21" \
+curl -X PUT "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.CognitiveServices/accounts/<RESOURCE_NAME>/deployments/<MODEL_DEPLOYMENT_NAME>?api-version=2024-10-21" \
   -H "Authorization: Bearer <TOKEN>" \
   -H "Content-Type: application/json" \
   -d '{
@@ -272,7 +275,7 @@ curl -X PUT "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resourceG
 }'
 ```
 
-### Deploy a model with Azure CLI
+## [CLI](#tab/cli)
 
 The following example shows how to use the Azure CLI to deploy your customized model. With the Azure CLI, you must specify a name for the deployment of your customized model. For more information about how to use the Azure CLI to deploy customized models, see [`az cognitiveservices account deployment`](/cli/azure/cognitiveservices/account/deployment).
 
@@ -297,6 +300,7 @@ az cognitiveservices account deployment create
     --sku-capacity "1" 
     --sku-name "Standard"
 ```
+
 ---
 
 [!INCLUDE [Fine-tuning deletion](../includes/fine-tune.md)]
@@ -305,9 +309,9 @@ az cognitiveservices account deployment create
 
 ## [Portal](#tab/portal)
 
-After your custom model deploys, you can use it like any other deployed model. You can use the **Playgrounds** in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) to experiment with your new deployment. You can continue to use the same parameters with your custom model, such as `temperature` and `max_tokens`, as you can with other deployed models.
+After your custom model deploys, you can use it like any other deployed model. You can use the **Playgrounds** in the [Foundry portal](https://ai.azure.com/?cid=learnDocs) to experiment with your new deployment. You can continue to use the same parameters with your custom model, such as `temperature` and `max_tokens`, as you can with other deployed models.
 
-:::image type="content" source="../media/quickstarts/playground-load-new.png" alt-text="Screenshot of the Playground pane in Azure AI Foundry portal, with sections highlighted." lightbox="../media/quickstarts/playground-load-new.png":::
+:::image type="content" source="../media/quickstarts/playground-load-new.png" alt-text="Screenshot of the Playground pane in Foundry portal, with sections highlighted." lightbox="../media/quickstarts/playground-load-new.png":::
 
 
 ## [Python](#tab/python)
@@ -323,7 +327,7 @@ client = AzureOpenAI(
 )
 
 response = client.chat.completions.create(
-    model="gpt-35-turbo-ft", # model = "Custom deployment name you chose for your fine-tuning model"
+    model="gpt-4.1-mini-ft", # model = "Custom deployment name you chose for your fine-tuning model"
     messages=[
         {"role": "system", "content": "You are a helpful assistant."},
         {"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},
@@ -343,6 +347,11 @@ curl $AZURE_OPENAI_ENDPOINT/openai/deployments/<deployment_name>/chat/completion
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -d '{"messages":[{"role": "system", "content": "You are a helpful assistant."},{"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},{"role": "assistant", "content": "Yes, customer managed keys are supported by Azure OpenAI."},{"role": "user", "content": "Do other Azure services support this too?"}]}'
 ```
+
+## [CLI](#tab/cli)
+
+Azure CLI is only for control plane operations such as resource creation and [model deployment](/cli/azure/cognitiveservices/account/deployment). For inference operations, use the [REST API](/azure/ai-foundry/openai/reference-preview-latest), or the [language based SDKs](../supported-languages.md).
+
 ---
 
 ### Prompt caching
@@ -355,39 +364,53 @@ Azure OpenAI fine-tuning supports the following deployment types.
 
 ### Standard
 
-[Standard deployments](./deployment-types.md#standard) provides a pay-per-call billing model, and the model available in each region as well as throughput may be limited.
+[Standard deployments](../../foundry-models/concepts/deployment-types.md) provide a pay-per-token billing model with data residency confined to the deployed region.
 
-| Models | Region |
-|--|--|
-|GPT-4o-finetune|East US2, North Central US, Sweden Central|
-|gpt-4o-mini-2024-07-18|North Central US, Sweden Central|
-|GPT-4-finetune|North Central US, Sweden Central|
-|GPT-35-Turbo-finetune|East US2, North Central US, Sweden Central, Switzerland West|
-|GPT-35-Turbo-1106-finetune|East US2, North Central US, Sweden Central, Switzerland West|
-|GPT-35-Turbo-0125-finetune|East US2, North Central US, Sweden Central, Switzerland West|
+| Models             | East US2 | North Central US | Sweden Central |
+|--------------------|:--------:|:----------------:|:--------------:|
+|o4-mini             | ✅       |                  | ✅             |
+|GPT-4.1             |          | ✅               | ✅             |
+|GPT-4.1-mini        |          | ✅               | ✅             |
+|GPT-4.1-nano        |          | ✅               | ✅             |
+|GPT-4o              | ✅       |                  | ✅             |
+|GPT-4o-mini         |          | ✅               | ✅             |
 
 ### Global Standard
 
-[Global standard](./deployment-types.md#global-standard) fine-tuned deployments offer [cost savings](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/), but custom model weights may temporarily be stored outside the geography of your Azure OpenAI resource.
+[Global standard](../../foundry-models/concepts/deployment-types.md) fine-tuned deployments offer [cost savings](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/), but custom model weights may temporarily be stored outside the geography of your Azure OpenAI resource.
 
-| Models | Region |
-|--|--|
-|GPT-4.1-finetune|East US2, North Central US, and Sweden Central|
-|GPT-4.1-mini-finetune|East US2, North Central US, and Sweden Central|
-|GPT-4.1-nano-finetune|East US2, North Central US, and Sweden Central|
-|GPT-4o-finetune|East US2, North Central US, and Sweden Central|
-|GPT-4o-mini-finetune|East US2, North Central US, and Sweden Central|
+Global standard deployments are available from all Azure OpenAI regions for the following models:
+
+* o4-mini
+* GPT-4.1
+* GPT-4.1-mini
+* GPT-4.1-nano
+* GPT-4o
+* GPT-4o-mini
 
 :::image type="content" source="../media/fine-tuning/global-standard.png" alt-text="Screenshot of the global standard deployment user experience with a fine-tuned model." lightbox="../media/fine-tuning/global-standard.png":::
 
+### Developer Tier
+
+[Developer](../../foundry-models/concepts/deployment-types.md) fine-tuned deployments offer a similar experience as [Global Standard](#global-standard) without an hourly hosting fee, but do not offer an availability SLA. Developer deployments are designed for model candidate evaluation and not for production use.
+
+Developer deployments are available from all Azure OpenAI regions for the following models:
+
+* GPT-4.1
+* GPT-4.1-mini
+* GPT-4.1-nano
+* o4-mini
+
+
 ### Provisioned Throughput
 
-| Models | Region |
-|--|--|
-|GPT-4o-finetune|North Central US, Sweden Central|
-|GPT-4o-mini-finetune|North Central US, Sweden Central|
+| Models       | North Central US | Sweden Central |
+|--------------|:----------------:|:--------------:|
+| GPT-4.1      |                  | ✅             |
+| GPT-4o       | ✅               | ✅             |
+| GPT-4o-mini  | ✅               | ✅             |
 
-[Provisioned throughput](./deployment-types.md#regional-provisioned) fine-tuned deployments offer [predictable performance](../concepts/provisioned-throughput.md) for latency-sensitive agents and applications. They use the same regional provisioned throughput (PTU) capacity as base models, so if you already have regional PTU quota you can deploy your fine-tuned model in support regions.
+[Provisioned throughput](../../foundry-models/concepts/deployment-types.md) fine-tuned deployments offer [predictable performance](../concepts/provisioned-throughput.md) for latency-sensitive agents and applications. They use the same regional provisioned throughput (PTU) capacity as base models, so if you already have regional PTU quota you can deploy your fine-tuned model in support regions.
 
 ## Clean up your deployment
 
@@ -401,14 +424,13 @@ To delete a deployment, use the [Deployments - Delete REST API](/rest/api/aiserv
 Below is the REST API example to delete a deployment:
 
 ```bash
-curl -X DELETE "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.CognitiveServices/accounts/<RESOURCE_NAME>/deployments/<MODEL_DEPLOYMENT_NAME>api-version=2024-10-21" \
+curl -X DELETE "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.CognitiveServices/accounts/<RESOURCE_NAME>/deployments/<MODEL_DEPLOYMENT_NAME>?api-version=2024-10-21" \
   -H "Authorization: Bearer <TOKEN>"
 ```
 
-You can also delete a deployment in Azure AI Foundry portal, or use [Azure CLI](/cli/azure/cognitiveservices/account/deployment?preserve-view=true#az-cognitiveservices-account-deployment-delete).
+You can also delete a deployment in Foundry portal, or use [Azure CLI](/cli/azure/cognitiveservices/account/deployment?preserve-view=true#az-cognitiveservices-account-deployment-delete).
 
 
 ## Next steps
 
-- [Azure OpenAI Quotas & limits](./quota.md)
-- [Azure OpenAI deployment types](./deployment-types.md)
+- [Azure OpenAI deployment types](../../foundry-models/concepts/deployment-types.md)

@@ -3,21 +3,26 @@ title: Quickstart - Getting started with Azure OpenAI audio generation
 titleSuffix: Azure OpenAI
 description: Walkthrough on how to get started with audio generation using Azure OpenAI.
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 5/23/2025
-author: eric-urban
-ms.author: eur
+ms.date: 8/13/2025
+author: PatrickFarley
+ms.author: pafarley
 ms.custom: references_regions
 zone_pivot_groups: audio-completions-quickstart
 recommendations: false
+monikerRange: 'foundry-classic || foundry'
+
 ---
 
 # Quickstart: Get started using Azure OpenAI audio generation
 
+[!INCLUDE [version-banner](../includes/version-banner.md)]
+
 ::: zone pivot="ai-foundry-portal"
 
-[!INCLUDE [AI Foundry](includes/audio-completions-ai-foundry.md)]
+[!INCLUDE [Foundry](includes/audio-completions-foundry.md)]
 
 ::: zone-end
 
@@ -59,5 +64,5 @@ If you want to clean up and remove an Azure OpenAI resource, you can delete the 
 
 ## Related content
 
-* Learn more about Azure OpenAI [deployment types](./how-to/deployment-types.md).
+* Learn more about Azure OpenAI [deployment types](../foundry-models/concepts/deployment-types.md).
 * Learn more about Azure OpenAI [quotas and limits](quotas-limits.md).

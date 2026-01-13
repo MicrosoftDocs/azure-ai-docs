@@ -1,47 +1,114 @@
 ---
-title: How to use model router for Azure AI Foundry (preview)
+title: How to use model router for Microsoft Foundry
 description: Learn how to use the model router in Azure OpenAI to select the best model for your task.
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
-ms.date: 04/17/2025
-ms.service: azure-ai-openai
+ms.date: 09/02/2025
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
 ms.custom:
   - build-2025
 # customer intent:
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
+
+
 ---
 
-# Use model router for Azure AI Foundry (preview)
+# Use model router for Microsoft Foundry
 
-Model router for Azure AI Foundry is a deployable AI chat model that is trained to select the best large language model (LLM) to respond to a given prompt in real time. It uses a combination of preexisting models to provide high performance while saving on compute costs where possible, all packaged as a single model deployment. For more information on how model router works and its advantages and limitations, see the [Model router concepts guide](../concepts/model-router.md).
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-You can access model router through the Completions API just as you would use a single base model like GPT-4. The steps are the same as in the [Chat completions guide](/azure/ai-services/openai/how-to/chatgpt).
+Model router for Microsoft Foundry is a deployable AI chat model that selects the best large language model (LLM) to respond to a prompt in real time. It uses different preexisting models to deliver high performance and save on compute costs, all in one model deployment. To learn more about how model router works, its advantages, and limitations, see the [Model router concepts guide](../concepts/model-router.md).
+
+Use model router through the Chat Completions API like you'd use a single base model such as GPT-4. Follow the same steps as in the [Chat completions guide](/azure/ai-foundry/openai/how-to/chatgpt).
+
+::: moniker range="foundry-classic"
+> [!TIP]
+> The [Microsoft Foundry (new)](../../what-is-foundry.md#microsoft-foundry-portals) portal offers enhanced configuration options for model router. [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) to see the latest features.
+::: moniker-end
+
+[!INCLUDE [model-router-supported](../includes/model-router-supported.md)]
 
 ## Deploy a model router model
 
-Model router is packaged as a single Azure AI Foundry model that you deploy. Follow the steps in the [resource deployment guide](/azure/ai-services/openai/how-to/create-resource). In the **Create new deployment** step, find `model-router` in the **Models** list. Select it, and then complete the rest of the deployment steps.
+Model router is packaged as a single Foundry model that you deploy. Start by following the steps in the [resource deployment guide](/azure/ai-foundry/openai/how-to/create-resource). 
+
+::: moniker range="foundry-classic"
+In the **Create new deployment**, find `model-router` in the **Models** list and select it.
+::: moniker-end
+
+::: moniker range="foundry"
+In the model catalog, find `model-router` in the **Models** list and select it. Choose **Default settings"* for the **balanced** routing mode and route between all supported models. To enable more configuration options, choose the **Custom settings* option.
+
+:::image type="content" source="media/working-with-models/model-router-deploy.png" alt-text="Screenshot of model router deploy screen.":::
+
+::: moniker-end
 
 > [!NOTE]
-> Consider that your deployment settings apply to all underlying chat models that model router uses.
-> - You don't need to deploy the underlying chat models separately. Model router works independently of your other deployed models.
-> - You select a content filter when you deploy the model router model (or you can apply a filter later). The content filter is applied to all content passed to and from the model router: you don't set content filters for each of the underlying chat models.
-> - Your tokens-per-minute rate limit setting is applied to all activity to and from the model router: you don't set rate limits for each of the underlying chat models.
+> Your deployment settings apply to all underlying chat models that model router uses.
+> - Don't deploy the underlying chat models separately. Model router works independently of your other deployed models.
+> - Select a content filter when you deploy the model router model or apply a filter later. The content filter applies to all content passed to and from the model router; don't set content filters for each underlying chat model.
+> - Your tokens-per-minute rate limit setting applies to all activity to and from the model router; don't set rate limits for each underlying chat model.
 
-## Use model router in chats
+::: moniker range="foundry"
 
-You can use model router through the [chat completions API](/azure/ai-services/openai/chatgpt-quickstart) in the same way you'd use other OpenAI chat models. Set the `model` parameter to the name of our model router deployment, and set the `messages` parameter to the messages you want to send to the model.
+### Select a routing mode
 
-In the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), you can navigate to your model router deployment on the **Models + endpoints** page and select it to enter the model playground. In the playground experience, you can enter messages and see the model's responses. Each response message shows which underlying model was selected to respond.
+> [!NOTE]
+> Changes to the routing mode can take up to five minutes to take effect.
 
+Use the **Routing mode** dropdown to select a routing profile. This sets the routing logic for your deployment.
+
+:::image type="content" source="media/working-with-models/model-router-routing-mode.png" alt-text="Screenshot of model router routing mode selection.":::
+
+### Select your model subset
+
+> [!NOTE]
+> Changes to the model subset can take up to five minutes to take effect.
+
+The latest version of model router supports custom subsets: you can specify which underlying models to include in routing decisions. This gives you more control over cost, compliance, and performance characteristics. 
+
+In the model router deployment pane, select **Route to a subset of models**. Then select the underlying models you want to enable.
+
+:::image type="content" source="media/working-with-models/model-router-model-subset.png" alt-text="Screenshot of model router subset selection.":::
 
 > [!IMPORTANT]
-> You can set the `Temperature` and `Top_P` parameters to the values you prefer (see the [concepts guide](/azure/ai-services/openai/concepts/prompt-engineering?tabs=chat#temperature-and-top_p-parameters)), but note that reasoning models (o-series) don't support these parameters. If model router selects a reasoning model for your prompt, it ignores the `Temperature` and `Top_P` input parameters.
+> To include models by Anthropic (Claude) in your model router deployment, you need to deploy them yourself to your Foundry resource. See [Deploy and use Claude models](/azure/ai-foundry/foundry-models/how-to/use-foundry-models-claude?view=foundry&preserve-view=true).
+
+New models introduced later are excluded by default until explicitly added.
+
+::: moniker-end
+
+## Test model router with the Completions API
+
+You can use model router through the [chat completions API](/azure/ai-foundry/openai/chatgpt-quickstart) in the same way you'd use other OpenAI chat models. Set the `model` parameter to the name of our model router deployment, and set the `messages` parameter to the messages you want to send to the model.
+
+## Test model router in the playground
+
+In the [Foundry portal](https://ai.azure.com/?cid=learnDocs), go to your model router deployment on the **Models + endpoints** page and select it to open the model playground. In the playground, enter messages and see the model's responses. Each response shows which underlying model the router selected.
+
+> [!IMPORTANT]
+> You can set the `Temperature` and `Top_P` parameters to the values you prefer (see the [concepts guide](/azure/ai-foundry/openai/concepts/prompt-engineering?tabs=chat#temperature-and-top_p-parameters)), but note that reasoning models (o-series) don't support these parameters. If model router selects a reasoning model for your prompt, it ignores the `Temperature` and `Top_P` input parameters.
 >
 > The parameters `stop`, `presence_penalty`, `frequency_penalty`, `logit_bias`, and `logprobs` are similarly dropped for o-series models but used otherwise.
 
 > [!IMPORTANT]
-> The `reasoning_effort` parameter (see the [Reasoning models guide](/azure/ai-services/openai/how-to/reasoning?tabs=python-secure#reasoning-effort)) isn't supported in model router. If the model router selects a reasoning model for your prompt, it also selects a `reasoning_effort` input value based on the complexity of the prompt.
+> Starting with the `2025-11-18` version, the `reasoning_effort` parameter (see the [Reasoning models guide](/azure/ai-foundry/openai/how-to/reasoning?tabs=python-secure#reasoning-effort)) is now **supported** in model router. If the model router selects a reasoning model for your prompt, it will use your `reasoning_effort` input value with the underlying model.
+
+::: moniker range="foundry"
+
+## Connect model router to a Foundry agent
+
+If you've created an AI agent in Foundry, you can connect your model router deployment to be used as the agent's base model. Select it from the **model** dropdown menu in the agent playground. Your agent will have all the tools and instructions you've configured for it, but the underlying model that processes its responses will be selected by model router.
+
+> [!IMPORTANT]
+> If you use Agent service tools in your flows, only OpenAI models will be used for routing.
+
+::: moniker-end
+
 
 ### Output format 
 
@@ -142,12 +209,11 @@ The JSON response you receive from a model router model is identical to the stan
 
 ### Monitor performance
 
-You can monitor the performance of your model router deployment in Azure monitor (AzMon) in the Azure portal. 
+Monitor the performance of your model router deployment in Azure Monitor (AzMon) in the Azure portal.
 
-1. Go to the **Monitoring** -> **Metrics** page for your Azure OpenAI resource in the Azure portal. 
+1. Go to the **Monitoring** > **Metrics** page for your Azure OpenAI resource in the Azure portal.
 1. Filter by the deployment name of your model router model.
-1. Optionally, split up the metrics by underlying models.
-
+1. Split the metrics by underlying models if needed.
 
 ### Monitor costs
 

@@ -1,25 +1,27 @@
 ---
 title: How to migrate from Azure.AI.OpenAI 1.0 Beta to 2.0
-titleSuffix: Azure OpenAI in Azure AI Foundry Models
+titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Learn about migrating to the latest release of the Azure OpenAI package for .NET.
 author: mrbullwinkle 
 ms.author: mbullwin 
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.custom: devx-track-dotnet
 ms.topic: how-to
-ms.date: 07/02/2025
+ms.date: 11/6/2025
 manager: nitinme
 ---
 
 # Migrate from 1.0 beta to 2.0 (`Azure.AI.OpenAI`)
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 > [!NOTE]
-> This guide describes how to migrate an application that previously used a 1.0 beta version of the `Azure.AI.OpenAI` library to use the new 2.0 library.
-> For general guidance on using `OpenAI` and `Azure.AI.OpenAI` features, see [the OpenAI README](https://github.com/openai/openai-dotnet/blob/main/README.md) or [the Azure.AI.OpenAI README](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/openai/Azure.AI.OpenAI/README.md).
+> This guidance is no longer recommended. To take advantage of the latest v1 API refer to the [.NET programming language guide](../supported-languages.md).
 
 ## Setup
 
-Stable releases of `Azure.AI.OpenAI` are associated with a corresponding stable Azure OpenAI in Azure AI Foundry Models API version label, for example, `2024-10-21`.
+Stable releases of `Azure.AI.OpenAI` are associated with a corresponding stable Azure OpenAI in Microsoft Foundry Models API version label, for example, `2024-10-21`.
 
 ```dotnetcli
 dotnet add package Azure.AI.OpenAI

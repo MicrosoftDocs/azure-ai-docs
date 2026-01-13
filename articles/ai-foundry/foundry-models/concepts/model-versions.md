@@ -1,22 +1,24 @@
-﻿---
-title: Model versions in Azure AI Foundry Models
-titleSuffix: Azure AI Foundry
+---
+title: Model versions in Microsoft Foundry Models
+titleSuffix: Microsoft Foundry
 description: Learn about model versions in Foundry Models.
-ms.service: azure-ai-model-inference
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: concept-article
 ms.custom: ignite-2024, github-universe-2024
-ms.date: 05/19/2025
-manager: scottpolly
+ms.date: 11/21/2025
 author: msakande
 ms.author: mopeakande
 recommendations: false
-ms.reviewer: fasantia
-reviewer: santiagxf
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
+# customer intent: As a developer, I want to understand how model versions work in Microsoft Foundry Models so I can manage deployments and updates effectively.
 ---
 
-# Model versions in Azure AI Foundry Models
+# Model versions in Microsoft Foundry Models
 
-Azure AI Foundry Models are committed to providing the best generative AI models for customers. As part of this commitment, Azure AI Foundry Models regularly releases new model versions to incorporate the latest features and improvements from key model providers in the industry.
+
+Microsoft Foundry Models are committed to providing the best generative AI models for customers. As part of this commitment, Foundry Models regularly releases new model versions to incorporate the latest features and improvements from key model providers in the industry.
 
 ## How model versions work
 
@@ -38,7 +40,7 @@ The version of a model is decided when you deploy it. You can choose an update p
 > [!NOTE]
 > Update policies are configured per deployment and **vary** by model and provider.
 
-The API version indicated the contract that you use to interface with the model in code. When using REST APIs, you indicate the API version using the query parameter `api-version`. Azure SDKs versions are usually paired with specific APIs versions but you can indicate the API version you want to use. A given model deployment might support multiple API versions. The release of a new model version might not require you to upgrade to a new API version, as is the case when there's an update to the model's weights.
+The API version indicates the contract that you use to interface with the model in code. When using REST APIs, you indicate the API version using the query parameter `api-version`. Azure SDKs versions are usually paired with specific APIs versions but you can indicate the API version you want to use. A given model deployment might support multiple API versions. The release of a new model version might not require you to upgrade to a new API version, as is the case when there's an update to the model's weights.
 
 ## Azure OpenAI model updates
 
@@ -48,7 +50,7 @@ Azure works closely with OpenAI to release new model versions. When a new versio
 
 As a customer of Azure OpenAI models, you might notice some changes in the model behavior and compatibility after a version upgrade.  These changes might affect your applications and workflows that rely on the models.  Here are some tips to help you prepare for version upgrades and minimize the impact:
 
-* Read [what's new](../../openai/whats-new.md) and [models](../../openai/concepts/models.md) to understand the changes and new features.
+* Read [what's new](../../openai/whats-new.md) and [models](models-sold-directly-by-azure.md) to understand the changes and new features.
 * Read the documentation on [model deployments](../../openai/how-to/create-resource.md) and [version upgrades](../../openai/how-to/working-with-models.md) to understand how to work with model versions.
 * Test your applications and workflows with the new model version after release.
 * Update your code and configuration to use the new features and capabilities of the new model version.

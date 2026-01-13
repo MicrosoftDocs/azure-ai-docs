@@ -5,14 +5,15 @@ description: Integrate prompt flow with DevOps to enhance your LLM-based applica
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
 ms.topic: how-to
-author: s-polly
-ms.author: scottpolly
-ms.reviewer: chenlujiao
+author: lgayhardt
+ms.author: lagayhar
+ms.reviewer: sooryar
 ms.date: 11/01/2024
 ms.custom:
   - ignite-2023
   - build-2024
   - sfi-image-nochange
+ms.update-cycle: 365-days
 ---
 
 # Integrate prompt flow with DevOps for LLM-based applications

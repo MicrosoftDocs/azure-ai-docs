@@ -1,25 +1,24 @@
 ---
-title: 'Quickstart: Generate images with Azure OpenAI in Azure AI Foundry Models'
+title: 'Quickstart: Generate images with Azure OpenAI in Microsoft Foundry Models'
 titleSuffix: Azure OpenAI
-description: Learn how to get started generating images with Azure OpenAI by using the Python SDK, the REST APIs, or Azure AI Foundry portal.
+description: Learn how to get started generating images with Azure OpenAI by using the Python SDK, the REST APIs, or Microsoft Foundry portal.
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.custom: devx-track-python, devx-track-dotnet, devx-track-extended-java, devx-track-go, devx-track-js, devx-track-ts
 ms.topic: quickstart
 author: PatrickFarley
 ms.author: pafarley
-ms.date: 05/31/2025
+ms.date: 09/16/2025
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 zone_pivot_groups: openai-quickstart-dall-e
 ---
 
-# Quickstart: Generate images with Azure OpenAI in Azure AI Foundry Models
+# Quickstart: Generate images with Azure OpenAI in Microsoft Foundry Models
 
+[!INCLUDE [version-banner](../includes/version-banner.md)]
 
-::: zone pivot="programming-language-studio"
-
-[!INCLUDE [Portal quickstart](includes/dall-e-studio.md)]
-
-::: zone-end
 
 ::: zone pivot="rest-api"
 
@@ -67,6 +66,12 @@ zone_pivot_groups: openai-quickstart-dall-e
 ::: zone pivot="programming-language-powershell"
 
 [!INCLUDE [PowerShell quickstart](includes/dall-e-powershell.md)]
+
+::: zone-end
+
+::: zone pivot="programming-language-studio"
+
+[!INCLUDE [Portal quickstart](includes/dall-e-studio.md)]
 
 ::: zone-end
 

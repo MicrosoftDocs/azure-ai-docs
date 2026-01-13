@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-content-safety
 ms.custom: build-2023
 ms.topic: overview
-ms.date: 02/21/2025
+ms.date: 09/16/2025
 ms.author: pafarley
 ---
 
@@ -15,6 +15,13 @@ ms.author: pafarley
 
 Learn what's new in the service. These items might be release notes, videos, blog posts, and other types of information. Bookmark this page to stay up to date with new features, enhancements, fixes, and documentation updates.
 
+## November 2025
+
+### Task Adherence public preview
+
+The Task Adherence feature identifies discrepancies between an LLM's behavior and its given task, such as misaligned tool invocations, improper tool input or output relative to user intent, and inconsistencies between responses and customer input. This feature lets system developers proactively mitigate misaligned actions by blocking them or escalating the issue for human intervention.
+
+Learn more on the [Task Adherence concepts](./concepts/task-adherence.md) page, and get started with the [quickstart](./quickstart-task-adherence.md).
 
 ## October 2024
 

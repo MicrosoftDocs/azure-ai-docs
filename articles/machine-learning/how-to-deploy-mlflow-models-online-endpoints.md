@@ -7,7 +7,7 @@ ms.service: azure-machine-learning
 ms.subservice: inferencing
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: fasantia
+ms.reviewer: jturuk
 ms.date: 03/31/2025
 ms.topic: how-to
 ms.custom:
@@ -33,12 +33,12 @@ For no-code-deployment, Azure Machine Learning:
 * Dynamically installs Python packages that you list in a conda.yaml file. As a result, dependencies are installed during container runtime.
 * Provides an MLflow base image, or curated environment, that contains the following items:
     * The [`azureml-inference-server-http`](how-to-inference-server-http.md) package
-    * The [`mlflow-skinny`](https://github.com/mlflow/mlflow/blob/master/skinny/README_SKINNY.md) package
+    * The [`mlflow-skinny`](https://github.com/mlflow/mlflow/blob/master/libs/skinny/README_SKINNY.md) package
     * A scoring script for inferencing
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/) before you begin.
+- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 - A user account that has at least one of the following Azure role-based access control (Azure RBAC) roles:
   - An Owner role for the Azure Machine Learning workspace

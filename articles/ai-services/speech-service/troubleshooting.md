@@ -1,13 +1,13 @@
 ---
 title: Troubleshoot the Speech SDK - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This article provides information to help you solve issues you might encounter when you use the Speech SDK.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: troubleshooting
-ms.date: 3/10/2025
-ms.author: eur
+ms.date: 08/07/2025
+ms.author: pafarley
 #Customer intent: As a developer, I want to learn how to troubleshoot issues with the Speech SDK.
 ---
 

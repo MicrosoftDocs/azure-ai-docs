@@ -3,14 +3,14 @@
 title: Text to speech documentation
 summary: Text to speech from the Speech service enables your applications, tools, or devices to convert text into human-like synthesized speech.
 metadata:
-  title: Text to speech documentation - Tutorials, API Reference - Azure AI services | Microsoft Docs
-  titleSuffix: Azure AI services
-  author: eric-urban
+  title: Text to speech documentation - Tutorials, API Reference - Foundry Tools | Microsoft Docs
+  titleSuffix: Foundry Tools
+  author: PatrickFarley
   manager: nitinme
   ms.service: azure-ai-speech
   ms.topic: landing-page
-  ms.date: 3/10/2025
-  ms.author: eur
+  ms.date: 08/07/2025
+  ms.author: pafarley
 
 landingContent:
 - title: About text to speech

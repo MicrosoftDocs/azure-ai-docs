@@ -6,14 +6,15 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
 ms.topic: how-to
-author: s-polly
-ms.author: scottpolly
-ms.reviewer: keli19
+author: lgayhardt
+ms.author: lagayhar
+ms.reviewer: sooryar
 ms.date: 05/08/2024
 ms.custom:
   - devx-track-azurecli
   - ignite-2023
   - sfi-ropc-nochange
+ms.update-cycle: 365-days
 ---
 
 # Deploy a flow to online endpoint for real-time inference with CLI

@@ -1,13 +1,13 @@
 ---
 title: "Professional voice fine-tuning data - Speech service"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: "Learn about the data types that you can use for professional voice fine-tuning."
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 3/10/2025
-ms.author: eur
+ms.date: 08/07/2025
+ms.author: pafarley
 #Customer intent: As a developer, I want to learn about the data types that I can use for professional voice fine-tuning.
 ---
 
@@ -29,8 +29,8 @@ This table lists data types and how each is used for professional voice fine-tun
 | Data type | Description | When to use | Extra processing required | Processed as |
 | --------- | ----------- | ----------- | ------------------------------ | ---------------- |
 | [Individual utterances + matching transcript](#individual-utterances--matching-transcript) | A collection (.zip) of audio files (.wav) as individual utterances. Each audio file should be 15 seconds or less in length, paired with a formatted transcript (.txt). | Professional recordings with matching transcripts | Ready for fine-tuning. | Segmented |
-| [Long audio + transcript](#long-audio--transcript-preview) | A collection (.zip) of long, unsegmented audio files (.wav or .mp3, longer than 20 seconds, at most 1,000 audio files), paired with a collection (.zip) of transcripts that contains all spoken words. | You have audio files and matching transcripts, but they aren't segmented into utterances. | Segmentation (using batch transcription).<br>Audio format transformation wherever required. | Segmented, Contextual |
-| [Audio only (Preview)](#audio-only-preview) | A collection (.zip) of audio files (.wav or .mp3, at most 1,000 audio files) without a transcript. | You only have audio files available, without transcripts. | Segmentation + transcript generation (using batch transcription).<br>Audio format transformation wherever required.| Segmented, Contextual |
+| [Long audio + transcript](#long-audio--transcript) | A collection (.zip) of long, unsegmented audio files (.wav or .mp3, longer than 20 seconds, at most 1,000 audio files), paired with a collection (.zip) of transcripts that contains all spoken words. | You have audio files and matching transcripts, but they aren't segmented into utterances. | Segmentation (using batch transcription).<br>Audio format transformation wherever required. | Segmented, Contextual |
+| [Audio only](#audio-only) | A collection (.zip) of audio files (.wav or .mp3, at most 1,000 audio files) without a transcript. | You only have audio files available, without transcripts. | Segmentation + transcript generation (using batch transcription).<br>Audio format transformation wherever required.| Segmented, Contextual |
 
 Files should be grouped by type into a dataset and uploaded as a zip file. Each dataset can only contain a single data type.
 
@@ -86,12 +86,12 @@ Here's an example of how the transcripts are organized utterance by utterance in
 ```
 It's important that the transcripts are 100% accurate transcriptions of the corresponding audio. Errors in the transcripts introduce quality loss during the fine-tuning process.
 
-## Long audio + transcript (Preview)
+## Long audio + transcript
 
 > [!NOTE]
-> For **Long audio + transcript (Preview)**, only these languages are supported: Chinese (Mandarin, Simplified), Chinese (Cantonese, Traditional), Chinese (Taiwanese Mandarin), English (India), English (United Kingdom), English (United States), French (France), German (Germany), Hindi (India), Italian (Italy), Japanese (Japan), Portuguese (Brazil), Spanish (Spain) and Spanish (Mexico).
+> For **Long audio + transcript**, only these languages are supported: Chinese (Mandarin, Simplified), Chinese (Cantonese, Traditional), Chinese (Taiwanese Mandarin), English (India), English (United Kingdom), English (United States), French (France), German (Germany), Hindi (India), Italian (Italy), Japanese (Japan), Portuguese (Brazil), Spanish (Spain) and Spanish (Mexico).
 >
-> Processed as Contextual is currently only available for Chinese (Mandarin, Simplified) and English (United States).
+> Processed as Contextual is currently only available for English, Chinese (Mandarin, Simplified), French, Italian, German, Spanish, Portuguese (Brazil), Japanese, Korean and Czech.
 
 In some cases, you might not have segmented audio available. The Speech Studio can help you segment long audio files and create transcriptions. The long-audio segmentation service uses the [Batch Transcription API](batch-transcription.md) feature of speech to text.
 
@@ -138,12 +138,12 @@ All transcripts files in this data type should be grouped into a zip file. For e
 
 After your dataset is successfully uploaded, we'll help you segment the audio file into utterances based on the transcript provided. You can check the segmented utterances and the matching transcripts by downloading the dataset. Unique IDs are assigned to the segmented utterances automatically. It's important that you make sure the transcripts you provide are 100% accurate. Errors in the transcripts can reduce the accuracy during the audio segmentation and further introduce quality loss in the fine-tuning phase that comes later.
 
-## Audio only (Preview)
+## Audio only
 
 > [!NOTE]
-> For **Audio only (Preview)**, only these languages are supported: Chinese (Mandarin, Simplified), Chinese (Cantonese, Traditional), Chinese (Taiwanese Mandarin), English (India), English (United Kingdom), English (United States), French (France), German (Germany), Hindi (India), Italian (Italy), Japanese (Japan), Portuguese (Brazil), Spanish (Spain) and Spanish (Mexico).
+> For **Audio only**, only these languages are supported: Chinese (Mandarin, Simplified), Chinese (Cantonese, Traditional), Chinese (Taiwanese Mandarin), English (India), English (United Kingdom), English (United States), French (France), German (Germany), Hindi (India), Italian (Italy), Japanese (Japan), Portuguese (Brazil), Spanish (Spain) and Spanish (Mexico).
 >
-> Processed as Contextual is currently only available for Chinese (Mandarin, Simplified) and English (United States).
+> Processed as Contextual is currently only available for English, Chinese (Mandarin, Simplified), French, Italian, German, Spanish, Portuguese (Brazil), Japanese, Korean and Czech.
 
 If you don't have transcriptions for your audio recordings, use the **Audio only** option to upload your data. Our system can help you segment and transcribe your audio files.
 

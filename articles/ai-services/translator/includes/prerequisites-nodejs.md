@@ -2,7 +2,7 @@
 author: laujan
 ms.service: azure-ai-translator
 ms.topic: include
-ms.date: 07/18/2023
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
@@ -11,4 +11,4 @@ ms.author: lajanuar
 This quickstart requires:
 
 * [Node 8.12.x or later](https://nodejs.org/en/)
-* An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
+* An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)

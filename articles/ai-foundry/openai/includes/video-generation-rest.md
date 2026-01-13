@@ -1,19 +1,20 @@
 ---
 manager: nitinme
-author: eric-urban
-ms.author: eur
-ms.service: azure-ai-openai
+author: PatrickFarley
+ms.author: pafarley
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.date: 5/29/2025
 ---
 
-[!INCLUDE [Video generation introduction](video-generation-intro.md)]
+
 
 ## Prerequisites
 
-- An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - <a href="https://www.python.org/" target="_blank">Python 3.8 or later version</a>. We recommend using Python 3.10 or later, but having at least Python 3.8 is required. If you don't have a suitable version of Python installed, you can follow the instructions in the [VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter) for the easiest way of installing Python on your operating system.
-- An Azure OpenAI resource created in one of the supported regions. For more information about region availability, see the [models and versions documentation](/azure/ai-services/openai/concepts/models#video-generation-models).
+- An Azure OpenAI resource created in one of the supported regions. For more information about region availability, see the [models and versions documentation](/azure/ai-foundry/openai/concepts/models#video-generation-models).
 - Then, you need to deploy a `sora` model with your Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 
 ## Microsoft Entra ID prerequisites
@@ -71,13 +72,13 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 [!INCLUDE [resource authentication](resource-authentication.md)]
 
-
 ## Generate video with Sora
+
 You can generate a video with the Sora model by creating a video generation job, polling for its status, and retrieving the generated video. The following code shows how to do this via the REST API using Python.
 
-## [Microsoft Entra ID](#tab/keyless)
+1. Create the `sora-quickstart.py` file and add the following code to authenticate your resource:
 
-1. Create the `sora-quickstart.py` file with the following code:
+    ## [Microsoft Entra ID](#tab/keyless)
 
     ```python
     import requests
@@ -91,75 +92,33 @@ You can generate a video with the Sora model by creating a video generation job,
     # Keyless authentication
     credential = DefaultAzureCredential()
     token = credential.get_token("https://cognitiveservices.azure.com/.default")
-    
+
     api_version = 'preview'
     headers= { "Authorization": f"Bearer {token.token}", "Content-Type": "application/json" }
-        
-    # 1. Create a video generation job
-    create_url = f"{endpoint}/openai/v1/video/generations/jobs?api-version={api_version}"
-    body = {
-        "prompt": "A cat playing piano in a jazz bar.",
-        "width": 480,
-        "height": 480,
-        "n_seconds": 5,
-        "model": "sora"
-    }
-    response = requests.post(create_url, headers=headers, json=body)
-    response.raise_for_status()
-    print("Full response JSON:", response.json())
-    job_id = response.json()["id"]
-    print(f"Job created: {job_id}")
-    
-    # 2. Poll for job status
-    status_url = f"{endpoint}/openai/v1/video/generations/jobs/{job_id}?api-version={api_version}"
-    status=None
-    while status not in ("succeeded", "failed", "cancelled"):
-        time.sleep(5)  # Wait before polling again
-        status_response = requests.get(status_url, headers=headers).json()
-        status = status_response.get("status")
-        print(f"Job status: {status}")
-        
-    # 3. Retrieve generated video 
-    if status == "succeeded":
-        generations = status_response.get("generations", [])
-        if generations:
-            print(f"✅ Video generation succeeded.")
-            generation_id = generations[0].get("id")
-            video_url = f"{endpoint}/openai/v1/video/generations/{generation_id}/content/video?api-version={api_version}"
-            video_response = requests.get(video_url, headers=headers)
-            if video_response.ok:
-                output_filename = "output.mp4"
-                with open(output_filename, "wb") as file:
-                    file.write(video_response.content)
-                    print(f'Generated video saved as "{output_filename}"')
-        else:
-            raise Exception("No generations found in job result.")
-    else:
-        raise Exception(f"Job didn't succeed. Status: {status}")
     ```
 
-1. Run the Python file.
-
-    ```shell
-    python sora-quickstart.py
-    ```
-
-## [API key](#tab/api-key)
-
-1. Create the `sora-quickstart.py` file with the following code:
+    ## [API key](#tab/api-key)
 
     ```python
     import requests
     import base64 
     import os
+    from azure.identity import DefaultAzureCredential
     
     # Set environment variables or edit the corresponding values here.
     endpoint = os.environ['AZURE_OPENAI_ENDPOINT']
     api_key = os.environ['AZURE_OPENAI_API_KEY']
-    
+
     api_version = 'preview'
     headers= { "api-key": api_key, "Content-Type": "application/json" }
+    ```
+    ---
 
+1. Create the video generation job. You can create it from a text prompt only, or from an input image and text prompt.
+
+    ## [Text prompt](#tab/text-prompt)
+
+    ```python
     # 1. Create a video generation job
     create_url = f"{endpoint}/openai/v1/video/generations/jobs?api-version={api_version}"
     body = {
@@ -203,21 +162,190 @@ You can generate a video with the Sora model by creating a video generation job,
         raise Exception(f"Job didn't succeed. Status: {status}")
     ```
 
+    ## [Image prompt](#tab/image-prompt)
+
+    Replace the `"file_name"` field in `"inpaint_items"` with the name of your input image file. Also replace the construction of the `files` array, which associates the path to the actual file with the filename that the API uses.
+
+    Use the `"crop_bounds"` data (image crop distances, from each direction, as a fraction of the total image dimensions) to specify which part of the image should be used in video generation.
+
+    You can optionally set the `"frame_index"` to the frame in the generated video where your image should appear (the default is 0, the start of the video).
+
+
+    ```python
+    # 1. Create a video generation job with image inpainting (multipart upload)
+    create_url = f"{endpoint}/openai/v1/video/generations/jobs?api-version=preview"
+    
+    # Flatten the body for multipart/form-data
+    data = {
+        "prompt": "A serene forest scene transitioning into autumn",
+        "height": str(1080),
+        "width": str(1920),
+        "n_seconds": str(10),
+        "n_variants": str(1),
+        "model": "sora",
+        # inpaint_items must be JSON string
+        "inpaint_items": json.dumps([
+            {
+                "frame_index": 0,
+                "type": "image",
+                "file_name": "dog_swimming.jpg",
+                "crop_bounds": {
+                    "left_fraction": 0.1,
+                    "top_fraction": 0.1,
+                    "right_fraction": 0.9,
+                    "bottom_fraction": 0.9
+                }
+            }
+        ])
+    }
+    
+    # Replace with your own image file path
+    with open("dog_swimming.jpg", "rb") as image_file:
+        files = [
+            ("files", ("dog_swimming.jpg", image_file, "image/jpeg"))
+        ]
+        multipart_headers = {k: v for k, v in headers.items() if k.lower() != "content-type"}
+        response = requests.post(
+            create_url,
+            headers=multipart_headers,
+            data=data,
+            files=files
+        )
+    
+    if not response.ok:
+        print("Error response:", response.status_code, response.text)
+        response.raise_for_status()
+    print("Full response JSON:", response.json())
+    job_id = response.json()["id"]
+    print(f"Job created: {job_id}")
+    
+    # 2. Poll for job status
+    status_url = f"{endpoint}/openai/v1/video/generations/jobs/{job_id}?api-version=preview"
+    status = None
+    while status not in ("succeeded", "failed", "cancelled"):
+        time.sleep(5)
+        status_response = requests.get(status_url, headers=headers).json()
+        status = status_response.get("status")
+        print(f"Job status: {status}")
+    
+    # 3. Retrieve generated video
+    if status == "succeeded":
+        generations = status_response.get("generations", [])
+        if generations:
+            generation_id = generations[0].get("id")
+            video_url = f"{endpoint}/openai/v1/video/generations/{generation_id}/content/video?api-version=preview"
+            video_response = requests.get(video_url, headers=headers)
+            if video_response.ok:
+                output_filename = "output.mp4"
+                with open(output_filename, "wb") as file:
+                    file.write(video_response.content)
+                    print(f'✅ Generated video saved as "{output_filename}"')
+        else:
+            raise Exception("No generations found in job result.")
+    else:
+        raise Exception(f"Job didn't succeed. Status: {status}")
+    ```
+
+
+
+    ## [Video prompt](#tab/video-prompt)
+
+    Replace the `"file_name"` field in `"inpaint_items"` with the name of your input video file. Also replace the construction of the `files` array, which associates the path to the actual file with the filename that the API uses.
+
+    Use the `"crop_bounds"` data (image crop distances, from each direction, as a fraction of the total frame dimensions) to specify which part of the video frame should be used in video generation.
+
+    You can optionally set the `"frame_index"` to the frame in the generated video where your input video should start (the default is 0, the beginning).
+
+
+    ```python
+    # 1. Create a video generation job with video inpainting (multipart upload)
+    create_url = f"{endpoint}/openai/v1/video/generations/jobs?api-version=preview"
+    
+    # Flatten the body for multipart/form-data
+    data = {
+        "prompt": "A serene forest scene transitioning into autumn",
+        "height": str(1080),
+        "width": str(1920),
+        "n_seconds": str(10),
+        "n_variants": str(1),
+        "model": "sora",
+        # inpaint_items must be JSON string
+        "inpaint_items": json.dumps([
+            {
+                "frame_index": 0,
+                "type": "video",
+                "file_name": "dog_swimming.mp4",
+                "crop_bounds": {
+                    "left_fraction": 0.1,
+                    "top_fraction": 0.1,
+                    "right_fraction": 0.9,
+                    "bottom_fraction": 0.9
+                }
+            }
+        ])
+    }
+    
+    # Replace with your own video file path
+    with open("dog_swimming.mp4", "rb") as video_file:
+        files = [
+            ("files", ("dog_swimming.mp4", video_file, "video/mp4"))
+        ]
+        multipart_headers = {k: v for k, v in headers.items() if k.lower() != "content-type"}
+        response = requests.post(
+            create_url,
+            headers=multipart_headers,
+            data=data,
+            files=files
+        )
+    
+    if not response.ok:
+        print("Error response:", response.status_code, response.text)
+        response.raise_for_status()
+    print("Full response JSON:", response.json())
+    job_id = response.json()["id"]
+    print(f"Job created: {job_id}")
+    
+    # 2. Poll for job status
+    status_url = f"{endpoint}/openai/v1/video/generations/jobs/{job_id}?api-version=preview"
+    status = None
+    while status not in ("succeeded", "failed", "cancelled"):
+        time.sleep(5)
+        status_response = requests.get(status_url, headers=headers).json()
+        status = status_response.get("status")
+        print(f"Job status: {status}")
+    
+    # 3. Retrieve generated video
+    if status == "succeeded":
+        generations = status_response.get("generations", [])
+        if generations:
+            generation_id = generations[0].get("id")
+            video_url = f"{endpoint}/openai/v1/video/generations/{generation_id}/content/video?api-version=preview"
+            video_response = requests.get(video_url, headers=headers)
+            if video_response.ok:
+                output_filename = "output.mp4"
+                with open(output_filename, "wb") as file:
+                    file.write(video_response.content)
+                    print(f'✅ Generated video saved as "{output_filename}"')
+        else:
+            raise Exception("No generations found in job result.")
+    else:
+        raise Exception(f"Job didn't succeed. Status: {status}")
+    ```
+    ---
+
+
 1. Run the Python file.
 
     ```shell
     python sora-quickstart.py
     ```
 
----
-
-Wait a few moments to get the response.
+    Wait a few moments to get the response.
 
 ### Output
 
 The output will show the full response JSON from the video generation job creation request, including the job ID and status. 
 
-```json
 ```json
 {
     "object": "video.generation.job",

@@ -1,9 +1,10 @@
 ---
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: include
-ms.date: 12/05/2023
+ms.date: 09/30/2025
 author: mrbullwinkle #noabenefraim
 ms.author: mbullwin
 ---
@@ -35,15 +36,10 @@ Create and assign persistent environment variables for your key and endpoint.
 setx AZURE_OPENAI_API_KEY "REPLACE_WITH_YOUR_KEY_VALUE_HERE" 
 ```
 
-```CMD
-setx AZURE_OPENAI_ENDPOINT "REPLACE_WITH_YOUR_ENDPOINT_HERE" 
-```
-
 # [PowerShell](#tab/powershell)
 
 ```powershell-interactive
 $Env:AZURE_OPENAI_API_KEY = '<YOUR_KEY_VALUE>'
-$Env:AZURE_OPENAI_ENDPOINT = '<YOUR_ENDPOINT>'
 $Env:AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT = '<YOUR_DEPLOYMENT_NAME>'
 ```
 
@@ -51,7 +47,6 @@ $Env:AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT = '<YOUR_DEPLOYMENT_NAME>'
 
 ```Bash
 echo export AZURE_OPENAI_API_KEY="<YOUR_KEY_VALUE>" >> /etc/environment
-echo export AZURE_OPENAI_ENDPOINT="<YOUR_ENDPOINT>" >> /etc/environment
 echo export AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT="<YOUR_DEPLOYMENT_NAME>" >> /etc/environment
 source /etc/environment
 ```
@@ -193,8 +188,7 @@ the token count is more than the prompt limit for the model.
 # Azure OpenAI metadata variables
 $openai = @{
     api_key     = $Env:AZURE_OPENAI_API_KEY 
-    api_base    = $Env:AZURE_OPENAI_ENDPOINT # should look like 'https://<YOUR_RESOURCE_NAME>.openai.azure.com/'
-    api_version = '2024-02-01' # may change in the future
+    api_base    = 'https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/'
     name        = $Env:AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT # custom name you chose for your deployment
 }
 
@@ -202,7 +196,7 @@ $headers = [ordered]@{
     'api-key' = $openai.api_key
 }
 
-$url = "$($openai.api_base)/openai/deployments/$($openai.name)/embeddings?api-version=$($openai.api_version)"
+$url = "$($openai.api_base)/embeddings"
 
 $Datatable | ForEach-Object {
     $doc = $_
@@ -399,7 +393,7 @@ the entire datatable). As a learning exercise, try creating a PowerShell script 
 `Invoke-RestMethod` command with the search string as a parameter.
 
 <!-- Reference link definitions -->
-[01]: https://azure.microsoft.com/free/cognitive-services?azure-portal=true
+[01]: https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn
 
 [03]: ../concepts/models.md#model-summary-table-and-region-availability
 [04]: ../how-to/create-resource.md

@@ -1,12 +1,12 @@
 ---
 title: Recipes for Docker containers
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to build, test, and store containers with some or all of your configuration settings for deployment and reuse.
 author: aahill
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: how-to
-ms.date: 01/31/2025
+ms.date: 10/02/2025
 ms.author: aahi
 #Customer intent: As a potential customer, I want to know how to configure containers so I can reuse them.
 ---
@@ -22,7 +22,7 @@ Once you have this new layer of container (with settings), and you have tested i
 Any `docker run` examples in this document assume a Windows console with a `^` line continuation character. Consider the following for your own use:
 
 * Do not change the order of the arguments unless you are very familiar with docker containers.
-* If you are using an operating system other than Windows, or a console other than Windows console, use the correct console/terminal, folder syntax for mounts, and line continuation character for your console and system. Because the Azure AI services container is a Linux operating system, the target mount uses a Linux-style folder syntax.
+* If you are using an operating system other than Windows, or a console other than Windows console, use the correct console/terminal, folder syntax for mounts, and line continuation character for your console and system. Because the Foundry Tools container is a Linux operating system, the target mount uses a Linux-style folder syntax.
 * `docker run` examples use the directory off the `c:` drive to avoid any permission conflicts on Windows. If you need to use a specific directory as the input directory, you might need to grant the docker service permission.
 
 ## Store no configuration settings in image
@@ -37,10 +37,10 @@ Issues with this approach:
 
 * The new container has a separate name and tag from the original container.
 * In order to change these settings, you will have to change the values of the Dockerfile, rebuild the image, and republish to your registry.
-* If someone gets access to your container registry or your local host, they can run the container and use the Azure AI services endpoints.
-* If the Azure AI service that you're using doesn't require input mounts, don't add the `COPY` lines to your Dockerfile.
+* If someone gets access to your container registry or your local host, they can run the container and use the Foundry Tools endpoints.
+* If the Foundry Tool that you're using doesn't require input mounts, don't add the `COPY` lines to your Dockerfile.
 
-Create Dockerfile, pulling from the existing Azure AI services container you want to use, then use docker commands in the Dockerfile to set or pull in information the container needs.
+Create Dockerfile, pulling from the existing Foundry Tools container you want to use, then use docker commands in the Dockerfile to set or pull in information the container needs.
 
 This example:
 
@@ -49,7 +49,7 @@ This example:
 
 ### Reuse recipe: store billing settings with container
 
-This example shows how to build the Language service's sentiment container from a Dockerfile.
+This example shows how to build Azure Language service's sentiment container from a Dockerfile.
 
 ```Dockerfile
 FROM mcr.microsoft.com/azure-cognitive-services/sentiment:latest
@@ -64,7 +64,7 @@ Build and run the container [locally](#how-to-use-container-on-your-local-host) 
 
 This example shows how to use Language Understanding, saving billing and models from the Dockerfile.
 
-* Copies the Language Understanding (LUIS) model file from the host's file system using `COPY`.
+* Copies Azure Language Understanding (LUIS) model file from the host's file system using `COPY`.
 * The LUIS container supports more than one model. If all models are stored in the same folder, you all need one `COPY` statement.
 * Run the docker file from the relative parent of the model input directory. For the following example, run the `docker build` and `docker run` commands from the relative parent of `/input`. The first `/input` on the `COPY` command is the host computer's directory. The second `/input` is the container's directory.
 
@@ -102,7 +102,7 @@ Follow these steps to use the Dockerfile and place the new image in your private
 
 1. Build the file into an image at the command line or terminal, using the following command. Replace the values in the angle brackets, `<>`, with your own container name and tag.  
 
-    The tag option, `-t`, is a way to add information about what you have changed for the container. For example, a container name of `modified-LUIS` indicates the original container has been layered. A tag name of `with-billing-and-model` indicates how the Language Understanding (LUIS) container has been modified.
+    The tag option, `-t`, is a way to add information about what you have changed for the container. For example, a container name of `modified-LUIS` indicates the original container has been layered. A tag name of `with-billing-and-model` indicates how Azure Language Understanding (LUIS) container has been modified.
 
     ```Bash
     docker build -t <your-new-container-name>:<your-new-tag-name> .
@@ -122,7 +122,7 @@ Follow these steps to use the Dockerfile and place the new image in your private
     az acr login --name <my-registry>
     ```
 
-    You can also sign in with `docker login` if you are assigned a service principal.
+    You can also sign in with `docker login` if you are assigned to a service principal.
 
     ```Bash
     docker login <my-registry>.azurecr.io
@@ -162,7 +162,7 @@ If you are a single manager of the container, you might want to store all settin
 Issues with this approach:
 
 * In order to change these settings, you will have to change the values of the Dockerfile and rebuild the file. 
-* If someone gets access to your container registry or your local host, they can run the container and use the Azure AI services endpoints. 
+* If someone gets access to your container registry or your local host, they can run the container and use the Foundry Tools endpoints. 
 
 The following _partial_ Dockerfile shows how to statically set the values for billing and model. This example uses the 
 

@@ -4,9 +4,10 @@ titleSuffix: Azure OpenAI
 description: Learn how to use Assistants function calling
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 05/20/2025
+ms.date: 09/24/2025
 author: aahill
 ms.author: aahi
 recommendations: false
@@ -14,6 +15,8 @@ recommendations: false
 ---
 
 # Azure OpenAI Assistants function calling
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 [!INCLUDE [agent-service](../includes/agent-service.md)]
 
@@ -38,7 +41,7 @@ API versions starting with `2024-02-15-preview`.
 > * Runs expire ten minutes after creation. Be sure to submit your tool outputs before this expiration.
 > * You can also perform function calling [with Azure Logic apps](./assistants-logic-apps.md)
 
-# [Python 1.x](#tab/python)
+# [Python](#tab/python)
 
 ```python
 from openai import AzureOpenAI
@@ -135,7 +138,7 @@ When you initiate a **Run** with a user Message that triggers the function, the 
 You can then complete the **Run** by submitting the tool output from the function(s) you call. Pass the `tool_call_id` referenced in the `required_action` object to match output to each function call.
 
 
-# [Python 1.x](#tab/python)
+# [Python](#tab/python)
 
 ```python
 
@@ -187,7 +190,7 @@ In the following example, replace `output` with the output of the function you w
 ```console
 curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/thread_abc123/runs/run_123/submit_tool_outputs?api-version=2024-07-01-preview \
   -H "Content-Type: application/json" \
-  -H "api-key: 851c6e0b83744d8c8fc2a07eab098376" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
   -d '{
     "tool_outputs": [{
       "tool_call_id": "call_123",

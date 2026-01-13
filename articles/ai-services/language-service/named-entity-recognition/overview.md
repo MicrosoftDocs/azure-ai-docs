@@ -1,19 +1,18 @@
 ---
-title: What is the Named Entity Recognition (NER) feature in Azure AI Language?
-titleSuffix: Azure AI services
-description: An overview of the Named Entity Recognition feature in Azure AI services, which helps you extract categories of entities in text.
+title: What is the Named Entity Recognition (NER) feature in Azure Language in Foundry Tools?
+titleSuffix: Foundry Tools
+description: An overview of the Named Entity Recognition feature in Azure Language, which helps you extract categories of entities in text.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 07/14/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-ner
 ---
+# What is Named Entity Recognition (NER) in Azure Language in Foundry Tools?
 
-# What is Named Entity Recognition (NER) in Azure AI Language?
-
-Named Entity Recognition (NER) is one of the features offered by [Azure AI Language](../overview.md), a collection of machine learning and AI algorithms in the cloud for developing intelligent applications that involve written language. The NER feature can identify and categorize entities in unstructured text. For example: people, places, organizations, and quantities. The prebuilt NER feature has a preset list of [recognized entities](concepts/named-entity-categories.md). The custom NER feature allows you to train the model to recognize specialized entities specific to your use case.
+Named Entity Recognition (NER) is one of the features offered by [Azure Language in Foundry Tools](../overview.md), a collection of machine learning and AI algorithms in the cloud for developing intelligent applications that involve written language. The NER feature can identify and categorize entities in unstructured text. For example: people, places, organizations, and quantities. The prebuilt NER feature has a preset list of [recognized entities](concepts/named-entity-categories.md). The custom NER feature allows you to train the model to recognize specialized entities specific to your use case.
 
 * [**Quickstarts**](quickstart.md) are getting-started instructions to guide you through making requests to the service.
 * [**How-to guides**](how-to-call.md) contain instructions for using the service in more specific or customized ways.
@@ -43,5 +42,5 @@ All these interconnected elements shape the effectiveness and outcomes of AI. Re
 ## Next steps
 
 There are two ways to get started using the Named Entity Recognition (NER) feature:
-* [Azure AI Foundry](../../../ai-foundry/what-is-azure-ai-foundry.md) is a web-based platform that lets you use several Language service features without needing to write code.
+* [Microsoft Foundry](../../../ai-foundry/what-is-foundry.md) is a web-based platform that lets you use several Language features without needing to write code.
 * The [quickstart article](quickstart.md) for instructions on making requests to the service using the REST API and client library SDK.

@@ -1,0 +1,77 @@
+items:
+- name: Identity & access management
+  items:
+  - name: Authentication and authorization
+    href: ../../concepts/authentication-authorization-foundry.md
+  - name: Role-based access control
+    href: ../../concepts/rbac-foundry.md
+  - name: Disable preview features with RBAC
+    href: ../../concepts/disable-preview-features-with-rbac.md    
+  - name: Rotate API access keys
+    href: ../../../ai-services/rotate-keys.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+  - name: Configure key-less authentication
+    href: ../../foundry-models/how-to/configure-entra-id.md
+- name: Network security
+  items:
+  - name: Configure private link
+    displayName: custom dns
+    href: ../../how-to/configure-private-link.md
+  - name: Managed virtual network
+    href: ../../how-to/managed-virtual-network.md
+  - name: Network security perimeter
+    href: ../../how-to/add-foundry-to-network-security-perimeter.md
+- name: Use customer-managed encryption keys
+  href: ../../concepts/encryption-keys-portal.md
+- name: Policy management
+  items:
+  - name: Built-in policy definitions
+    displayName: samples, policies, definitions, Azure Policy
+    href: ../../../ai-services/policy-reference.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+  - name: Built-in policy for model deployment
+    href: ../../how-to/model-deployment-policy.md
+  - name: Create custom policy definitions
+    href: ../../how-to/custom-policy-definition.md
+- name: High availability and disaster recovery
+  items:
+  - name: High availability and resiliency
+    href: ../../how-to/high-availability-resiliency.md
+  - name: Disaster recovery
+    items:
+    - name: Disaster recovery for agent services
+      href: ../../how-to/agent-service-disaster-recovery.md
+    - name: Recover from a platform outage
+      href: ../../how-to/agent-service-platform-disaster-recovery.md
+    - name: Recover from resource and data loss
+      href: ../../how-to/agent-service-operator-disaster-recovery.md
+- name: Security baseline
+  href: /security/benchmark/azure/baselines/azure-ai-foundry-security-baseline
+- name: Hub Security & Governance
+  items:
+  - name: Disable shared key access to storage
+    href: ../../how-to/disable-local-auth.md
+  - name: Azure policies
+    items: 
+    - name: Audit and manage hubs
+      href: ../../how-to/azure-policy.md
+    - name: Built-in policies for model deployment
+      href: ../../how-to/built-in-policy-model-deployment.md
+      displayName: Azure Policy
+    - name: Custom policies for model deployment
+      href: ../../foundry-models/how-to/configure-deployment-policies.md
+      displayName: Azure Policy
+  - name: Network security
+    items:
+    - name: Managed network for hubs
+      href: ../../how-to/configure-managed-network.md
+    - name: Secure playground chat
+      href: ../../how-to/secure-data-playground.md
+    - name: Securely access on-premises resources
+      href: ../../how-to/access-on-premises-resources.md
+    - name: Troubleshoot secure project connectivity
+      href: ../../how-to/troubleshoot-secure-connection-project.md
+  - name: High availability and disaster recovery for hubs
+    href: ../../how-to/hub-disaster-recovery.md
+- name: Data, privacy, and security for Foundry Models sold directly by Azure
+  href: ../../responsible-ai/openai/data-privacy.md
+- name: Data, privacy, and security for Claude models in Microsoft Foundry
+  href: ../../responsible-ai/claude-models/data-privacy.md

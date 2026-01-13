@@ -7,7 +7,7 @@ ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: soumyapatro
+ms.reviewer: jturuk
 ms.date: 04/07/2025
 ms.topic: how-to
 ms.custom: devx-track-azurecli, build-2023
@@ -33,7 +33,7 @@ In this article, you learn how to:
 
 Before following the steps in this article, make sure you have the following prerequisites:
 
-* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
+* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - An Azure Machine Learning registry to share models, components, and environments. To create a registry, see [Learn how to create a registry](how-to-manage-registries.md).
 

@@ -1,37 +1,36 @@
 ---
 title: Speech to text overview - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Get an overview of the benefits and capabilities of the speech to text feature of the Speech service.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 3/10/2025
-ms.author: eur
+ms.date: 08/07/2025
+ms.author: pafarley
 #Customer intent: As a developer, I want to learn about the benefits and capabilities of the speech to text feature of the Speech service.
 ---
 
 # What is speech to text?
 
-Azure AI Speech service offers advanced speech to text capabilities. This feature supports both real-time and batch transcription, providing versatile solutions for converting audio streams into text. 
+Azure Speech in Foundry Tools service offers advanced speech to text capabilities. This feature supports both real-time and batch transcription, providing versatile solutions for converting audio streams into text. 
 
 ## Core Features 
 
 The speech to text service offers the following core features: 
-- [Real-time](#real-time-speech-to-text) transcription: Instant transcription with intermediate results for live audio inputs. 
+- [Real-time transcription](#real-time-transcription): Instant transcription with intermediate results for live audio inputs. 
 - [Fast transcription](#fast-transcription): Fastest synchronous output for situations with predictable latency. 
-- [Batch transcription](#batch-transcription-api): Efficient processing for large volumes of prerecorded audio. 
+- [Batch transcription](#batch-transcription): Efficient processing for large volumes of prerecorded audio. 
 - [Custom speech](#custom-speech): Models with enhanced accuracy for specific domains and conditions. 
 
-## Real-time speech to text
+## Real-time transcription
 
 Real-time speech to text transcribes audio as it's recognized from a microphone or file. It's ideal for applications requiring immediate transcription, such as: 
-- **Transcriptions, captions, or subtitles for live meetings**: Real-time audio transcription for accessibility and record-keeping. 
-- **Diarization**: Identifying and distinguishing between different speakers in the audio. 
-- **Pronunciation assessment**: Evaluating and providing feedback on pronunciation accuracy. 
-- **Call center agents assist**: Providing real-time transcription to assist customer service representatives. 
-- **Dictation**: Transcribing spoken words into written text for documentation purposes. 
-- **Voice agents**: Enabling interactive voice response systems to transcribe user queries and commands. 
+- Real-time audio transcription for accessibility and record-keeping. 
+- Evaluating and providing feedback on pronunciation accuracy. 
+- Providing real-time transcription to assist customer service representatives. 
+- Transcribing spoken words into written text for documentation purposes. 
+- Enabling interactive voice response systems to transcribe user queries and commands. 
 
 Real-time speech to text can be accessed via the Speech SDK, Speech CLI, and REST API, allowing integration into various applications and workflows. 
 Real-time speech to text is available via the [Speech SDK](speech-sdk.md), the [Speech CLI](spx-overview.md), and [Speech to text REST API for short audio](rest-speech-to-text-short.md). 
@@ -40,17 +39,17 @@ Real-time speech to text is available via the [Speech SDK](speech-sdk.md), the [
 
 Fast transcription API is used to transcribe audio files with returning results synchronously and faster than real-time audio. Use fast transcription in the scenarios that you need the transcript of an audio recording as quickly as possible with predictable latency, such as: 
 
-- **Quick audio or video transcription and subtitles**: Quickly get a transcription of an entire video or audio file in one go.
-- **Video translation**: Immediately get new subtitles for a video if you have audio in different languages. 
+- Quick audio file transcription, captions, and edit
+- Meeting notes
+- Voicemail
 
 To get started with fast transcription, see [use the fast transcription API](fast-transcription-create.md).
 
-## Batch transcription API
+## Batch transcription
 
 [Batch transcription](batch-transcription.md) is designed for transcribing large amounts of audio stored in files. This method processes audio asynchronously and is suited for: 
-- **Transcriptions, captions, or subtitles for prerecorded audio**: Converting stored audio content into text. 
-- **Contact center post-call analytics**: Analyzing recorded calls to extract valuable insights.
-- **Diarization**: Differentiating between speakers in recorded audio. 
+- Transcriptions, captions, or subtitles for large volumes of audio files
+- Analyzing call center recorded calls to extract valuable insights.
 
 Batch transcription is available via:
 - [Speech to text REST API](rest-speech-to-text.md): Facilitates batch processing with the flexibility of RESTful calls. To get started, see [How to use batch transcription](batch-transcription.md) and [Batch transcription samples](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/batch).
@@ -79,7 +78,7 @@ For details about customization options per language and locale, see the [langua
 
 ## Usage Examples 
 
-Here are some practical examples of how you can utilize Azure AI speech to text: 
+Here are some practical examples of how you can utilize Azure Speech to text: 
 
 | Use case | Scenario | Solution |
 | --- | --- | --- |

@@ -1,29 +1,27 @@
-﻿---
-title: "Azure AI Services docs: What's new for July 2025"
-description: Discover key changes and updates in Azure AI Services documentation for July 2025.
+---
+title: "Foundry Tools docs: What's new for November 2025"
+description: Discover key changes and updates in Foundry Tools documentation for November 2025.
 ms.author: smcdowell
 author: skpmcdowell
 ms.topic: whats-new
 ms.subject: ai-services
-ms.custom: July-2025
-ms.date: 07/02/2025
+ms.custom: November-2025
+ms.date: 11/04/2025
 ---
 
-# What's new in Azure AI Services documentation?
+# What's new in Foundry Tools documentation?
 
-Welcome! This article highlights key changes and updates in Azure AI Services documentation for July 2025.
+Welcome! This article highlights key changes and updates in Foundry Tools documentation for November 2025.
 
 ## New articles
+- [Adaptive custom translation v1.0 (preview)](../ai-services/translator/custom-translator/azure-ai-foundry/concepts/adaptive-custom-translation.md)
+- [Migrate from retired intent recognition](../ai-services/speech-service/migrate-intent-recognition.md)
+- [Recognized PII entities list](../ai-services/language-service/personally-identifiable-information/concepts/entity-categories-list.md)
+- [Use the Call Center Voice Agent Accelerator](../ai-services/speech-service/voice-live-telephony.md)
+- [Voice live FAQ](../ai-services/speech-service/voice-live-faq.yml)
 
-- [Azure AI Speech known issues](../ai-services/speech-service/known-issues.md)
-- [Configure your environment for Azure AI resources](../ai-services/language-service/question-answering/how-to/configure-azure-resources.md)
-- [Configure your environment for Azure AI resources and permissions](../ai-services/language-service/conversational-language-understanding/how-to/configure-azure-resources.md)
+### Updated articles
 
-## Updated articles
-
-- [Use the Voice Live API (Preview)](../ai-services/speech-service/voice-live-how-to.md)
-- [Label your utterances in Azure AI Foundry](../ai-services/language-service/conversational-language-understanding/how-to/tag-utterances.md) 
-- [Supported PII entities](../ai-services/language-service/personally-identifiable-information/concepts/entity-categories.md)
-- [Train a conversational language understanding model](../ai-services/language-service/conversational-language-understanding/how-to/train-model.md)
-- [Use voice Live API for real-time voice agents (Preview)](../ai-services/speech-service/voice-live.md) 
-- [Learn what's new in Azure AI Language?](../ai-services/language-service/whats-new.md) 
+- [Recognized **PII** and **PHI** entities](../ai-services/language-service/personally-identifiable-information/concepts/entity-categories.md)
+- [Speech service supported regions](../ai-services/speech-service/regions.md)
+- [Synchronous document translation](../ai-services/translator/document-translation/reference/translate-document.md)

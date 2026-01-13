@@ -1,17 +1,16 @@
 ---
 title: Translator BreakSentence Method
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: The Translator BreakSentence method identifies the positioning of sentence boundaries in a piece of text.
 author: laujan
 manager: nitinme
-
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 05/19/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
-# Translator 3.0: BreakSentence
+# Azure Translator in Foundry Tools 3.0: BreakSentence
 
 Identifies the positioning of sentence boundaries in a piece of text.
 
@@ -24,7 +23,7 @@ https://api.cognitive.microsofttranslator.com/breaksentence?api-version=3.0
 
 ```
 
-_See_ [**Virtual Network Support**](reference.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
+_See_ [**Virtual Network Support**](reference.md#virtual-network-support) for Translator selected network and private endpoint configuration and support.
 
 ## Request parameters
 
@@ -40,7 +39,7 @@ Request headers include:
 
 | Headers | Description |
 | ------- | ----------- |
-| Authentication headers <img width=200/>  | **Required request header**.<br/>See <a href="reference.md#authentication">available options for authentication</a>. |
+| Authentication headers <img width=200/>  | **Required request header**.<br/>See <a href="../../reference/authentication.md">available options for authentication</a>. |
 | Content-Type | **Required request header**.<br/>Specifies the content type of the payload. Possible values are: `application/json`. |
 | Content-Length    | **Optional**.<br/>The length of the request body.  |
 | X-ClientTraceId   | **Optional**.<br/>A client-generated GUID to uniquely identify the request. You can omit this header if you include the trace ID in the query string using a query parameter named `ClientTraceId`.  |
@@ -51,7 +50,7 @@ The body of the request is a JSON array. Each array element is a JSON object wit
 
 ```json
 [
-    { "Text": "How are you? I am fine. What did you do today?" }
+    { "text": "How are you? I am fine. What did you do today?" }
 ]
 ```
 
@@ -115,7 +114,7 @@ The following are the possible HTTP status codes that a request returns.
 |503|Server temporarily unavailable. Retry the request. If the error persists, report it with: date and time of the failure, request identifier from response header `X-RequestId`, and client identifier from request header `X-ClientTraceId`.|
 
 
-If an error occurs, the request returns a JSON error response. The error code is a 6-digit number combining the 3-digit HTTP status code followed by a 3-digit number to further categorize the error. Common error codes can be found on the [v3 Translator reference page](reference.md#errors).
+If an error occurs, the request returns a JSON error response. The error code is a 6-digit number combining the 3-digit HTTP status code followed by a 3-digit number to further categorize the error. Common error codes can be found on the [v3 Translator reference page](../status-response-codes.md)
 
 ## Examples
 

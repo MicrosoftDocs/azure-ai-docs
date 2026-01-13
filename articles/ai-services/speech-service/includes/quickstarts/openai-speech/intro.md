@@ -1,12 +1,12 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 9/5/2024
-ms.author: eur
+ms.author: pafarley
 ---
 
-In this how-to guide, you can use Azure AI Speech to converse with Azure OpenAI in Azure AI Foundry Models. The text recognized by the Speech service is sent to Azure OpenAI. The Speech service synthesizes speech from the text response from Azure OpenAI.
+In this how-to guide, you can use Azure Speech in Foundry Tools to converse with Azure OpenAI in Microsoft Foundry Models. The text recognized by the Speech service is sent to Azure OpenAI. The Speech service synthesizes speech from the text response from Azure OpenAI.
 
 Speak into the microphone to start a conversation with Azure OpenAI.
 

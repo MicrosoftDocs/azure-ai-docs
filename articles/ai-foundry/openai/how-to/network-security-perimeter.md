@@ -1,14 +1,17 @@
 ---
 title: Add an Azure OpenAI network security perimeter
 description: Use this article to learn about adding Azure OpenAI to your network security perimeter.
-ms.date: 06/12/2025
+ms.date: 11/20/2025
 ms.topic: how-to
 author: aahill
 ms.author: aahi
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ---
 
 # Add an Azure OpenAI service to a network security perimeter (preview)
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 > [!IMPORTANT]
 > * Azure OpenAI service support for network security perimeter is in public preview under supplemental terms of use. It's available in regions providing the feature. This preview version is provided without a service level agreement, and it's not recommended for production workloads. Certain features might not be supported or might have constrained capabilities.
@@ -236,7 +239,7 @@ To test your connection through network security perimeter, you need access to a
 
 3. Using the IP address, you can create an __inbound access rule__ for that IP address to allow access. You can skip this step if you're using private link.
 
-4. Finally, try navigating to the Azure OpenAI service in the Azure portal. Open Azure OpenAI service in Azure AI Foundry. Deploy a model and chat with the model in the Chat Playground. If you receive a response, then the network security perimeter is configured correctly.
+4. Finally, try navigating to the Azure OpenAI service in the Azure portal. Open Azure OpenAI service in Microsoft Foundry. Deploy a model and chat with the model in the Chat Playground. If you receive a response, then the network security perimeter is configured correctly.
 
 ## View and manage network security perimeter configuration
 

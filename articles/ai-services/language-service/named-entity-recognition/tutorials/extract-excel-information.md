@@ -1,49 +1,48 @@
 ---
 title: Extract information in Excel using Power Automate
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to Extract Excel text without having to write code, using Named Entity Recognition and Power Automate.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: tutorial
-ms.date: 03/24/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-ner, cogserv-non-critical-language
 ---
-
 # Extract information in Excel using Named Entity Recognition(NER) and Power Automate 
 
 In this tutorial, you create a Power Automate flow to extract text in an Excel spreadsheet without having to write code. 
 
-This flow takes a spreadsheet of issues reported about an apartment complex, and classify them into two categories: plumbing and other. It also extracts the names and phone numbers of the tenants who sent them. Lastly, the flow appends this information to the Excel sheet. 
+This flow uses a spreadsheet consisting of issues reported about an apartment complex, and classifies them into two categories: plumbing and other. It also extracts the names and phone numbers of the tenants who sent them. Lastly, the flow appends this information to the Excel sheet. 
 
 In this tutorial, you learn how to:
 
 > [!div class="checklist"]
 > * Use Power Automate to create a flow
-> * Upload Excel data from OneDrive for Business
+> * Upload Excel data from OneDrive
 > * Extract text from Excel, and send it for Named Entity Recognition(NER) 
 > * Use the information from the API to update an Excel sheet.
 
 ## Prerequisites
 
-- A Microsoft Azure account. [Create a free account](https://azure.microsoft.com/free/cognitive-services/) or [sign in](https://portal.azure.com/).
+- A Microsoft Azure account. [Create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) or [sign in](https://portal.azure.com/).
 - A Language resource. If you don't have one, you can [create one in the Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextAnalytics) and use the free tier to complete this tutorial.
 - The key and endpoint that was generated for you when you created the resource.
 - A spreadsheet containing tenant issues. Example data for this tutorial is [available on GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/TextAnalytics/sample-data/ReportedIssues.xlsx).
-- Microsoft 365, with [OneDrive for business](https://www.microsoft.com/microsoft-365/onedrive/onedrive-for-business).
+- Microsoft 365, with [OneDrive](https://www.microsoft.com/microsoft-365/onedrive/onedrive-for-business).
 
-## Add the Excel file to OneDrive for Business
+## Add the Excel file to OneDrive
 
-Download the example Excel file from [GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/TextAnalytics/sample-data/ReportedIssues.xlsx). This file must be stored in your OneDrive for Business account.
+Download the example Excel file from [GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/TextAnalytics/sample-data/ReportedIssues.xlsx). This file must be stored in your OneDrive account.
 
 :::image type="content" source="../media/tutorials/excel/example-data.png" alt-text="Examples from the Excel file" lightbox="../media/tutorials/excel/example-data.png":::
 
-The issues are reported in raw text. We use the NER feature to extract the person name and phone number. Then the flow looks for the word "plumbing" in the description to categorize the issues. 
+The issues are reported in raw text. We use the Named Entity Recognition (NER) feature to extract the person name and phone number. Then the flow looks for the word "plumbing" in the description to categorize the issues. 
 
 ## Create a new Power Automate workflow
 
-Go to the [Power Automate site](https://make.powerautomate.com/), and log in. Then select **Create** and **Scheduled flow**.
+Go to the [Power Automate site](https://make.powerautomate.com/), and sign in. Then select **Create** and **Scheduled flow**.
 
 :::image type="content" source="../media/tutorials/excel/flow-creation.png" alt-text="The workflow creation screen" lightbox="../media/tutorials/excel/flow-creation.png":::
 
@@ -57,7 +56,7 @@ On the **Build a scheduled cloud flow** page, initialize your flow with the foll
 
 ## Add variables to the flow
 
-Create variables representing the information that is added to the Excel file. Select **New Step** and search for **Initialize variable**. Do this four times, to create four variables.
+Create variables representing the information added to the Excel file. Select **New Step** and search for **Initialize variable**. Do this four times and create four variables.
 
 :::image type="content" source="../media/tutorials/excel/initialize-variables.png" alt-text="The step for initializing variables" lightbox="../media/tutorials/excel/initialize-variables.png":::
 
@@ -79,7 +78,7 @@ Select **New Step** and type **Excel**, then select **List rows present in a tab
 
 :::image type="content" source="../media/tutorials/excel/list-excel-rows.png" alt-text="Add excel rows into the flow" lightbox="../media/tutorials/excel/list-excel-rows.png":::
 
-Add the Excel file to the flow by filling in the fields in this action. This tutorial requires the file to have been uploaded to OneDrive for Business.
+Add the Excel file to the flow by filling in the fields in this action. This tutorial requires that you upload the file to OneDrive.
 
 :::image type="content" source="../media/tutorials/excel/list-excel-rows-options.png" alt-text="Fill the excel rows in the flow" lightbox="../media/tutorials/excel/list-excel-rows-options.png":::
 
@@ -95,14 +94,14 @@ Select **Select an output from previous step**. In the Dynamic content box that 
 
 If you haven't already, you need to create a [Language resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextAnalytics) in the Azure portal.
 
-### Create a Language service connection
+### Create a Language connection
 
 In the **Apply to each**, select **Add an action**. Go to your Language resource's **key and endpoint** page in the Azure portal, and get the key and endpoint for your Language resource.
 
 In your flow, enter the following information to create a new Language connection.
 
 > [!NOTE]
-> If you already have created a Language connection and want to change your connection details, Select the ellipsis on the top right corner, and select **+ Add new connection**.
+> If you already created a Language connection and want to change your connection details, Select the ellipsis on the top right corner, and select **+ Add new connection**.
 
 | Field           | Value                                                                                                             |
 |-----------------|-------------------------------------------------------------------------------------------------------------------|
@@ -113,7 +112,7 @@ In your flow, enter the following information to create a new Language connectio
 :::image type="content" source="../media/tutorials/excel/add-credentials.png" alt-text="Add Language resource credentials to the flow" lightbox="../media/tutorials/excel/add-credentials.png":::
 
 
-## Extract the excel content 
+## Extract the Excel content 
 
 After the connection is created, search for **Text Analytics** and select **Named Entity Recognition**. This extracts information from the description column of the issue.
 
@@ -155,39 +154,39 @@ In the **If yes** condition, type in Excel then select **Update a Row**.
 
 :::image type="content" source="../media/tutorials/excel/yes-column-action.png" alt-text="Update the yes condition" lightbox="../media/tutorials/excel/yes-column-action.png":::
 
-Enter the Excel information, and update the **Key Column**, **Key Value** and **PersonName** fields. This appends the name detected by the API to the Excel sheet. 
+Enter the Excel information, and update the **Key Column**, **Key Value**, and **PersonName** fields. This step appends the name detected by the API to the Excel sheet. 
 
 :::image type="content" source="../media/tutorials/excel/yes-column-action-options.png" alt-text="Add the excel information" lightbox="../media/tutorials/excel/yes-column-action-options.png":::
 
 ## Get the phone number
 
-Minimize the **Apply to each 3** action by clicking on the name. Then add another **Apply to each** action to **Apply to each 2**, like before. its named **Apply to each 4**. Select the text box, and add **entities** as the output for this action. 
+Minimize the **Apply to each 3** action by selecting the name. Then add another **Apply to each** action to **Apply to each 2**, like before, action is named **Apply to each 4**. Select the text box, and add **entities** as the output for this action. 
 
 :::image type="content" source="../media/tutorials/excel/add-apply-action-phone.png" alt-text="Add the entities from the NER output to another apply to each action." lightbox="../media/tutorials/excel/add-apply-action-phone.png":::
 
-Within **Apply to each 4**, add a **Condition** control. Its be named **Condition 2**. In the first text box, search for, and add **categories** from the Dynamic content window. Be sure the center box is set to **is equal to**. Then, in the right text box, enter `var_phone`. 
+Within **Apply to each 4**, add a **Condition** control. This control is named **Condition 2**. In the first text box, search for, and add **categories** from the Dynamic content window. Be sure the center box is set to **is equal to**. Then, in the right text box, enter `var_phone`. 
 
 :::image type="content" source="../media/tutorials/excel/condition-2-options.png" alt-text="Add a second condition control" lightbox="../media/tutorials/excel/condition-2-options.png":::
 
-In the **If yes** condition, add an **Update a row** action. Then enter the information like we did above, for the phone numbers column of the Excel sheet. This appends the phone number detected by the API to the Excel sheet. 
+In the **If yes** condition, add an **Update a row** action. Then enter the information like we did before, for the phone numbers column of the Excel sheet. This step appends the phone number detected by the API to the Excel sheet. 
 
 :::image type="content" source="../media/tutorials/excel/condition-2-yes-column.png" alt-text="Add the excel information to the second if yes condition" lightbox="../media/tutorials/excel/condition-2-yes-column.png":::
 
 ## Get the plumbing issues
 
-Minimize **Apply to each 4** by clicking on the name. Then create another **Apply to each** in the parent action. Select the text box, and add **Entities** as the output for this action from the Dynamic content window. 
+Minimize **Apply to each 4** by selecting the name. Then create another **Apply to each** in the parent action. Select the text box, and add **Entities** as the output for this action from the Dynamic content window. 
 
 :::image type="content" source="../media/tutorials/excel/add-apply-action-plumbing.png" alt-text="Create another apply to each action" lightbox="../media/tutorials/excel/add-apply-action-plumbing.png":::
 
-Next, the flow checks if the issue description from the Excel table row contains the word "plumbing". If yes, it adds "plumbing" in the IssueType column. If not, we enter "other."
+Next, the flow checks if the issue description from the Excel table row contains the word "plumbing." If yes, it adds "plumbing" in the IssueType column. If not, we enter "other."
 
 Inside the **Apply to each 4** action, add a **Condition** Control. Its named **Condition 3**. In the first text box, search for, and add **Description** from the Excel file, using the Dynamic content window. Be sure the center box says **contains**. Then, in the right text box, find and select `var_plumbing`. 
 
 :::image type="content" source="../media/tutorials/excel/condition-3-options.png" alt-text="Create a new condition control" lightbox="../media/tutorials/excel/condition-3-options.png":::
 
-In the **If yes** condition, select **Add an action**, and select **Update a row**. Then enter the information like before. In the IssueType column, select `var_plumbing`. This applies a "plumbing" label to the row.
+In the **If yes** condition, select **Add an action**, and select **Update a row**. Then enter the information like before. In the IssueType column, select `var_plumbing`. This step applies a "plumbing" label to the row.
 
-In the **If no** condition, select **Add an action**, and select **Update a row**. Then enter the information like before. In the IssueType column, select `var_other`. This applies an "other" label to the row.
+In the **If no** condition, select **Add an action**, and select **Update a row**. Then enter the information like before. In the IssueType column, select `var_other`. This step applies an "other" label to the row.
 
 :::image type="content" source="../media/tutorials/excel/plumbing-issue-condition.png" alt-text="Add information to both conditions" lightbox="../media/tutorials/excel/plumbing-issue-condition.png":::
 
@@ -195,7 +194,7 @@ In the **If no** condition, select **Add an action**, and select **Update a row*
 
 In the top-right corner of the screen, select **Save**, then **Test**. Under **Test Flow**, select **manually**. Then select **Test**, and **Run flow**.
 
-The Excel file gets updated in your OneDrive account. It looks like the below.
+The Excel file gets updated in your OneDrive account. It looks like the following example:
 
 :::image type="content" source="../media/tutorials/excel/updated-excel-sheet.png" alt-text="Test the workflow and view the output" lightbox="../media/tutorials/excel/updated-excel-sheet.png":::
 

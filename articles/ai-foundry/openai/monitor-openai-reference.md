@@ -1,19 +1,21 @@
 ---
 title: Monitoring data reference for Azure OpenAI
-description: This article contains important reference material you need when you monitor Azure OpenAI in Azure AI Foundry Models by using Azure Monitor.
-ms.date: 05/25/2025
+description: This article contains important reference material you need when you monitor Azure OpenAI in Microsoft Foundry Models by using Azure Monitor.
+ms.date: 11/26/2025
 ms.custom: horz-monitor, subject-monitoring
 ms.topic: reference
 author: mrbullwinkle
 ms.author: mbullwin
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+monikerRange: 'foundry-classic || foundry'
+ms.subservice: azure-ai-foundry-openai
 ---
 
 # Azure OpenAI monitoring data reference
 
 [!INCLUDE [horz-monitor-ref-intro](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-intro.md)]
 
-See [Monitor Azure OpenAI](./how-to/monitor-openai.md) for details on the data you can collect for Azure OpenAI in Azure AI Foundry Models and how to use it.
+See [Monitor Azure OpenAI](./how-to/monitor-openai.md) for details on the data you can collect for Azure OpenAI in Microsoft Foundry Models and how to use it.
 
 [!INCLUDE [horz-monitor-ref-metrics-intro](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-metrics-intro.md)]
 

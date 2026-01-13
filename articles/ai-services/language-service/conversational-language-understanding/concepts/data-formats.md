@@ -1,23 +1,22 @@
 ---
 title: Conversational language understanding data formats
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about the data formats accepted by conversational language understanding.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
-ms.date: 06/05/2025
+ms.topic: concept-article
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-clu
 ---
-
 # Data formats accepted by conversational language understanding
 
 If you're uploading your data into conversational language understanding, it must follow a specific format. Use this article to learn more about accepted data formats.
 
 ## Import project file format
 
-If you're [importing a project](../how-to/create-project.md#import-a-project) into conversational language understanding, the file uploaded must be in the following format:
+If you're [importing a project](../how-to/create-project.md#import-an-existing-foundry-project) into conversational language understanding, the file uploaded must be in the following format:
 
 ```json
 {
@@ -101,7 +100,7 @@ If you're [importing a project](../how-to/create-project.md#import-a-project) in
 |Key  |Placeholder  |Value  | Example |
 |---------|---------|----------|--|
 |`{API-VERSION}`     | The [version](../../concepts/model-lifecycle.md#api-versions) of the API you're calling. | `2023-04-01` |
-|`confidenceThreshold`|`{CONFIDENCE-THRESHOLD}`|This is the threshold score below which the intent is predicted as [None intent](none-intent.md). Values are from `0` to `1`.|`0.7`|
+|`confidenceThreshold`|`{CONFIDENCE-THRESHOLD}`|The threshold score for which the intent is predicted as [None intent](none-intent.md). Values are from `0` to `1`.|`0.7`|
 | `projectName` | `{PROJECT-NAME}` | The name of your project. This value is case sensitive. | `EmailApp` |
 | `multilingual` | `true`| A Boolean value that enables you to have utterances in multiple languages in your dataset. When your model is deployed, you can query the model in any supported language (not necessarily included in your training documents. For more information about supported language codes, see [Language support](../language-support.md#multi-lingual-option). | `true`|
 |`sublists`|`[]`|Array that contains sublists. Each sublist is a key and its associated values.|`[]`|
@@ -110,7 +109,7 @@ If you're [importing a project](../how-to/create-project.md#import-a-project) in
 | `language` | `{LANGUAGE-CODE}` |  A string specifying the language code for the utterances, synonyms, and regular expressions used in your project. If your project is a multilingual project, choose the [language code](../language-support.md) of most the utterances. |`en-us`|
 | `intents` | `[]` | Array that contains all the intents you have in the project. These intents are classified from your utterances.| `[]` |
 | `entities` | `[]` | Array that contains all the entities in your project. These entities are extracted from your utterances. Every entity can have other optional components defined with them: list, prebuilt, or regex. | `[]` |
-| `dataset` | `{DATASET}` |  The test set to which this utterance goes to when it's split before training. To learn more about data splitting, see [Train your conversational language understanding model](../how-to/train-model.md#data-splitting). Possible values for this field are `Train` and `Test`.      |`Train`|
+| `dataset` | `{DATASET}` |  The test set that this utterance is assigned to when the data is split before training. To learn more about data splitting, see [Train your conversational language understanding model](../how-to/train-model.md#data-splitting). Possible values for this field are `Train` and `Test`.      |`Train`|
 | `category` | ` ` |  The type of entity associated with the span of text specified. | `Entity1`|
 | `offset` | ` ` |  The inclusive character position of the start of the entity.      |`5`|
 | `length` | ` ` |  The character length of the entity.      |`5`|
@@ -166,7 +165,7 @@ Conversational language understanding offers the option to upload your utterance
 |---------|---------|----------|--|
 |`text`|`{Utterance-Text}`|Your utterance text.|Testing|
 | `language` | `{LANGUAGE-CODE}` |  A string that specifies the language code for the utterances used in your project. If your project is a multilingual project, choose the language code of most of the utterances. For more information about supported language codes, see [Language support](../language-support.md). |`en-us`|
-| `dataset` | `{DATASET}` |  The test set to which this utterance goes to when it's split before training. To learn more about data splitting, see [Train your conversational language understanding model](../how-to/train-model.md#data-splitting). Possible values for this field are `Train` and `Test`.      |`Train`|
+| `dataset` | `{DATASET}` |  The test set that this utterance is assigned to when the data is split before training. To learn more about data splitting, see [Train your conversational language understanding model](../how-to/train-model.md#data-splitting). Possible values for this field are `Train` and `Test`.      |`Train`|
 |`intent`|`{intent}`|The assigned intent.| intent1|
 |`entity`|`{entity}`|The entity to be extracted.| entity1|
 | `category` | ` ` |  The type of entity associated with the span of text specified. | `Entity1`|
@@ -175,5 +174,5 @@ Conversational language understanding offers the option to upload your utterance
 
 ## Related content
 
-* For more information on importing your labeled data into your project directly, see [Import project](../how-to/create-project.md#import-a-project).
-* For more information about labeling your data, see [Label your utterances in Language Studio](../how-to/tag-utterances.md). After you label your data, you can [train your model](../how-to/train-model.md).
+* For more information on importing your labeled data into your project directly, see [Import project](../how-to/create-project.md#import-an-existing-foundry-project).
+* For more information about labeling your data, see [Label your utterances](../how-to/tag-utterances.md). After you label your data, you can [train your model](../how-to/train-model.md).

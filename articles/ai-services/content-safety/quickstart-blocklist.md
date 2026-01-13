@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-content-safety
 ms.custom: devx-track-python, devx-track-dotnet
 ms.topic: quickstart
-ms.date: 02/22/2025
+ms.date: 09/16/2025
 ms.author: pafarley
 zone_pivot_groups: programming-languages-content-safety-3
 ---
@@ -34,6 +34,12 @@ Get started using Azure AI Content Safety to create a custom text blocklist and 
 ::: zone pivot="programming-language-csharp"
 
 [!INCLUDE [.NET SDK quickstart](./includes/quickstarts/csharp-quickstart-blocklist.md)]
+
+::: zone-end
+
+::: zone pivot="programming-language-java"
+
+[!INCLUDE [Java SDK quickstart](./includes/quickstarts/java-quickstart-blocklist.md)]
 
 ::: zone-end
 

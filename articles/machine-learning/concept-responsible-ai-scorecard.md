@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: responsible-ai
 ms.topic:  conceptual
-ms.author: scottpolly
-author: s-polly
+ms.author: lagayhar
+author: lgayhardt
 ms.reviewer: mesameki
 ms.date: 03/31/2025
 ms.custom: responsible-ml, build-2023, build-2023-dataai

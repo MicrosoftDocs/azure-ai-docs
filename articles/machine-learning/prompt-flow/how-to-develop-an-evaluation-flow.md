@@ -8,10 +8,11 @@ ms.subservice: prompt-flow
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-author: s-polly
-ms.author: scottpolly
-ms.reviewer: ziqiwang
+author: lgayhardt
+ms.author: lagayhar
+ms.reviewer: sooryar
 ms.date: 10/28/2024
+ms.update-cycle: 365-days
 ---
 
 # Evaluation flows and metrics

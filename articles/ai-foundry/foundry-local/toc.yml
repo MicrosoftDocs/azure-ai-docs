@@ -1,7 +1,7 @@
 items:
-- name: Foundry Local documentation
+- name: Foundry Local (preview) documentation
   href: index.yml
-- name: What is Foundry Local?
+- name: What is Foundry Local (preview)?
   href: what-is-foundry-local.md
 - name: Get Started
   href: get-started.md
@@ -13,14 +13,20 @@ items:
 - name: How-to guides
   expanded: true
   items:
-  - name: Integrate with Inferencing SDKs
+  - name: Use native chat completions API
+    href: how-to/how-to-use-native-chat-completions.md
+  - name: Use chat completions via REST server
     href: how-to/how-to-integrate-with-inference-sdks.md
+  - name: Transcribe recorded audio files
+    href: how-to/how-to-transcribe-audio.md
   - name: Integrate with LangChain
     href: how-to/how-to-use-langchain-with-foundry-local.md
-  - name: Integrate with Open Web UI
+  - name: Integrate with Open WebUI
     href: how-to/how-to-chat-application-with-open-web-ui.md
   - name: Compile Hugging Face models to run on Foundry Local
     href: how-to/how-to-compile-hugging-face-models.md
+  - name: Use tool calling
+    href: how-to/how-to-use-tool-calling-with-foundry-local.md  
 - name: Reference
   expanded: true
   items:
@@ -28,10 +34,14 @@ items:
     href: reference/reference-cli.md
   - name: Foundry Local SDK
     href: reference/reference-sdk.md
-  - name: REST API
-    href: reference/reference-rest.md
-  - name: Catalog API
-    href: reference/reference-catalog-api.md
+  - name: APIs
+    items:
+    - name: REST API
+      href: reference/reference-rest.md
+    - name: Catalog API
+      href: reference/reference-catalog-api.md
+  - name: Foundry Local on Windows Server 2025
+    href: reference/windows-server-frequently-asked-questions.md      
   - name: Best practice and troubleshooting
     href: reference/reference-best-practice.md
  

@@ -1,13 +1,13 @@
 ---
 title: How to back up and recover speech customer resources
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to prepare for service outages with custom speech and custom voice.
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 3/10/2025
+ms.date: 08/07/2025
 #Customer intent: As a developer, I want to learn how to back up and recover speech customer resources.
 ---
 
@@ -15,7 +15,7 @@ ms.date: 3/10/2025
 
 The Speech service is [available in various regions](./regions.md). Speech resource keys are tied to a single region. When you acquire a key, you select a specific region, where your data, model and deployments reside.
 
-Datasets for customer-created data assets, such as customized speech models, custom voice fonts and speaker recognition voice profiles, are also **available only within the service-deployed region**. Such assets are:
+Datasets for customer-created data assets, such as customized speech models and custom voice fonts, are also **available only within the service-deployed region**. Such assets are:
 
 **Custom speech**
 -   Training audio/text data
@@ -28,9 +28,7 @@ Datasets for customer-created data assets, such as customized speech models, cus
 -   Test audio/text data
 -   Custom voice fonts
 
-**Speaker Recognition**
-- Speaker enrollment audio
-- Speaker voice signature
+
 
 While some customers use our default endpoints to transcribe audio or standard voices for speech synthesis, other customers create assets for customization.
 
@@ -38,7 +36,7 @@ These assets are backed up regularly and automatically by the repositories thems
 
 ## How to monitor service availability
 
-If you use the default endpoints, you should configure your client code to monitor for errors. If errors persist, be prepared to redirect to another region where you have an AI Foundry resource for Speech.
+If you use the default endpoints, you should configure your client code to monitor for errors. If errors persist, be prepared to redirect to another region where you have a Foundry resource for Speech.
 
 Follow these steps to configure your client to monitor for errors:
 
@@ -112,9 +110,3 @@ Check the [public voices available](language-support.md?tabs=tts). You can also 
     -   Each endpoint is subject to extra charges. [Check the pricing for model hosting here](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).
 
 4.  Configure your client to fail over to the secondary region. See sample code in C#: [GitHub: custom voice failover to secondary region](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/csharp/sharedcontent/console/speech_synthesis_samples.cs#L920).
-
-### Speaker recognition
-
-Speaker recognition uses [Azure paired regions](/azure/reliability/cross-region-replication-azure) to automatically fail over operations. Speaker enrollments and voice signatures are backed up regularly to prevent data loss and to be used if there's an outage.
-
-During an outage, the speaker recognition service automatically fails over to a paired region and use the backed-up data to continue processing requests until the main region is back online.

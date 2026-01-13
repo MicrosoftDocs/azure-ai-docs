@@ -1,25 +1,25 @@
 ---
-title: Call the Azure AI Vision v3.2 GA Read API
-titleSuffix: Azure AI services
-description: Learn how to call the Azure AI Vision v3.2 GA Read API and configure its behavior in detail.
+title: Call Azure Vision v3.2 GA Read API
+titleSuffix: Foundry Tools
+description: Learn how to call Azure Vision v3.2 GA Read API and configure its behavior in detail.
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: how-to
-ms.date: 09/23/2024
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
+ms.date: 09/26/2025
 ms.author: pafarley
 ---
 
-# Call the Azure AI Vision v3.2 GA Read API
+# Call Azure Vision v3.2 GA Read API
+
+[!INCLUDE [read-editions](../includes/read-editions.md)]
+
 
 This guide shows you how to call the v3.2 GA Read API to extract text from images. You'll learn the different ways you can configure the behavior of this API to meet your needs.
 
 The following steps assume that you've already created a [Computer Vision resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision) and obtained a key and endpoint URL. If you haven't, see the [quickstart](../quickstarts-sdk/client-library.md) to get started.
 
-[!INCLUDE [read-editions](../includes/read-editions.md)]
 
 
 ## Determine how to process the data (optional)
@@ -74,7 +74,7 @@ The call returns with a response header field called `Operation-Location`. The `
 > [!NOTE]
 > **Billing** 
 >
-> The [Azure AI Vision pricing](https://azure.microsoft.com/pricing/details/cognitive-services/computer-vision/) page includes the pricing tier for Read operations. Each analyzed image or page is one transaction. If you call the operation with a PDF or TIFF document containing 100 pages, the Read operation will count it as 100 transactions and you will be billed for 100 transactions. If you made 50 calls to the operation and each call submitted a document with 100 pages, you will be billed for 50 X 100 = 5000 transactions.
+> The [Azure Vision pricing](https://azure.microsoft.com/pricing/details/cognitive-services/computer-vision/) page includes the pricing tier for Read operations. Each analyzed image or page is one transaction. If you call the operation with a PDF or TIFF document containing 100 pages, the Read operation will count it as 100 transactions and you will be billed for 100 transactions. If you made 50 calls to the operation and each call submitted a document with 100 pages, you will be billed for 50 X 100 = 5000 transactions.
 
 
 ## Get results from the service
@@ -95,7 +95,7 @@ It returns a JSON response that contains a **status** field with the following p
 You call this operation iteratively until it returns with the **succeeded** value. Use an interval of 1-to-2 seconds to avoid exceeding the requests per second (RPS) rate.
 
 > [!NOTE]
-> The free tier limits the request rate to 20 calls per minute. The paid tier allows 30 RPS that can be increased upon request. Note your Azure resource identfier and region, and open an Azure support ticket or contact your account team to request a higher RPS rate.
+> The free tier limits the request rate to 20 calls per minute. The paid tier allows 30 RPS that can be increased upon request. Note your Azure resource identifier and region, and open an Azure support ticket or contact your account team to request a higher RPS rate.
 
 When the **status** field has the `succeeded` value, the JSON response contains the extracted text content from your image or document. The JSON response maintains the original line groupings of recognized words. It includes the extracted text lines and their bounding box coordinates. Each text line includes all extracted words with their coordinates and confidence scores.
 
@@ -185,5 +185,5 @@ The response includes a classification of whether each line of text is in handwr
 
 ## Related content
 
-- [Quickstart: Azure AI Vision v3.2 GA Read](../quickstarts-sdk/client-library.md)
+- [Quickstart: Azure Vision v3.2 GA Read](../quickstarts-sdk/client-library.md)
 - [Read 3.2 REST API reference](/rest/api/computervision/read/read?view=rest-computervision-v3.2-preview&preserve-view=true)

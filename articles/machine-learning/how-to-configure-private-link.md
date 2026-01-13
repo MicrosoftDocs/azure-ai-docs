@@ -8,7 +8,7 @@ ms.subservice: enterprise-readiness
 ms.topic: how-to
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: meerakurup
+ms.reviewer: shshubhe
 ms.date: 05/22/2025
 ms.custom:
   - devx-track-azurecli
@@ -310,6 +310,10 @@ You can also enable public network access by using a YAML file. For more informa
 
 You can use IP network rules to allow access to your workspace and endpoint from specific public internet IP address ranges by creating IP network rules. Each Azure Machine Learning workspace supports up to 200 rules. These rules grant access to specific internet-based services and on-premises networks and block general internet traffic.
 
+> [!IMPORTANT]
+> * Before creating a compute instance in an Azure Machine Learning workspace with a selected IP address, ensure that your workspace has network isolation configured using a [workspace-managed virtual network](how-to-managed-network.md) OR [Add a private endpoint to your workspace in your own virtual network](how-to-configure-private-link.md#add-a-private-endpoint-to-a-workspace).
+> * Configuring only the selected IP without enabling a managed virtual network or a Private endpoint for the workspace can lead to failures while provisioning the compute instance.
+
 > [!WARNING]
 > * Enable your endpoint's [public network access flag](concept-secure-online-endpoint.md#secure-inbound-scoring-requests) if you want to allow access to your endpoint from specific public internet IP address ranges.
 > * You can only use IPv4 addresses.
@@ -369,6 +373,8 @@ The following restrictions apply to IP address ranges:
 - When this feature is enabled, you can test public endpoints using any client tool such as Curl, but the Endpoint Test tool in the portal isn't supported.
 
 - You can only set the IP addresses for the workspace after the workspace has been created.
+
+- Managed online endpoint deployments will fail if the workspace managed virtual network is not enabled on the workspace, alongside enable from selected IPs workspace. Training compute targets, including compute clusters, comptue instance, and serverless compute, in the workspace without end-to-end network isolation will not work alongside enable from selected IPs workspace. Network isolated training the previously mentioned computes require a private endpoint from compute network to the workspace with the enable from selected IPs workspace. 
 
 ## Securely connect to your workspace
 

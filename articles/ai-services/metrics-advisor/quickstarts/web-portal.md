@@ -19,7 +19,7 @@ When you provision an instance of Azure AI Metrics Advisor, you can use the APIs
 
 ## Prerequisites
 
-* An Azure subscription. [Create one for free](https://azure.microsoft.com/free/cognitive-services).
+* An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * When you have your Azure subscription, <a href="https://go.microsoft.com/fwlink/?linkid=2142156"  title="Create a Metrics Advisor resource"  target="_blank">create a Metrics Advisor resource </a> in the Azure portal to deploy your instance of Metrics Advisor.  
 
     

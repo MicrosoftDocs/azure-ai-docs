@@ -1,15 +1,18 @@
 ---
 manager: nitinme
-ms.service: azure-ai-model-inference
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: include
-ms.date: 05/29/2025
-ms.author: fasantia
-author: santiagxf
+ms.date: 08/27/2025
+ms.author: mopeakande
+author: msakande
+ms.reviewer: balapv
+reviewer: balapv
 ---
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-This article explains how to use the reasoning capabilities of chat completions models deployed in Azure AI Foundry Models.
+This article explains how to use the reasoning capabilities of chat completions models deployed in Microsoft Foundry Models.
 
 [!INCLUDE [about-reasoning](about-reasoning.md)]
 
@@ -92,6 +95,9 @@ Usage:
 ```
 
 ### Reasoning content
+
+> [!NOTE]
+> This information on reasoning content does not apply to Azure OpenAI models. Azure OpenAI reasoning models use the [reasoning summaries feature](../../../openai/how-to/reasoning.md#reasoning-summary).
 
 Some reasoning models, like DeepSeek-R1, generate completions and include the reasoning behind it. The reasoning associated with the completion is included in the response's content within the tags `<think>` and `</think>`. The model may select on which scenarios to generate reasoning content. You can extract the reasoning content from the response to understand the model's thought process as follows:
 

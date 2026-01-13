@@ -1,18 +1,18 @@
 ### YamlMime:Landing
 
 title: Azure Machine Learning documentation
-summary: Learn how to train and deploy models and manage the ML lifecycle (MLOps) with Azure Machine Learning. Tutorials, code examples, API references, and more. 
+summary: Train and deploy machine learning models with Azure Machine Learning. Get started with quickstarts, explore tutorials, and manage your ML lifecycle with MLOps best practices.
 
 metadata:
   title: Azure Machine Learning documentation
-  description: Learn how to train and deploy models and manage the ML lifecycle (MLOps) with Azure Machine Learning. Tutorials, code examples, API references, and more.
+  description: Train and deploy machine learning models with Azure Machine Learning. Get started with quickstarts, explore tutorials, and manage your ML lifecycle with MLOps best practices.
   ms.service: azure-machine-learning
   ms.subservice: core
   ms.topic: landing-page
-  ms.author: sgilley
-  author: sdgilley
-  ms.reviewer: sgilley
-  ms.date: 08/21/2024
+  ms.author: scottpolly
+  ms.reviewer: scottpolly
+  ms.date: 08/08/2025
+  ms.update-cycle: 365-days
   ms.custom: jordan-changes
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
 

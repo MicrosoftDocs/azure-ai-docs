@@ -1,13 +1,13 @@
 ---
 title: Get batch transcription results - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: With batch transcription, the Speech service transcribes the audio data and stores the results in a storage container. You can then retrieve the results from the storage container.
 manager: nitinme
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 5/25/2025
+ms.date: 12/19/2025
 zone_pivot_groups: speech-cli-rest
 ms.custom: devx-track-csharp
 ---
@@ -23,7 +23,7 @@ To get transcription results, first check the [status](#get-transcription-status
 To get the status of the transcription job, call the [Transcriptions - Get](/rest/api/speechtotext/transcriptions/get) operation of the [Speech to text REST API](rest-speech-to-text.md).
 
 > [!IMPORTANT]
-> Batch transcription jobs are scheduled on a best-effort basis. At peak hours, it might take up to 30 minutes or longer for a transcription job to start processing. Most of the time during the execution the transcription status is `Running`. The reason is because the job is assigned the `Running` status the moment it moves to the batch transcription backend system. When the base model is used, this assignment happens almost immediately; it's slightly slower for custom models. Thus, the amount of time a transcription job spends in the `Running` state doesn't correspond to the actual transcription time but also includes waiting time in the internal queues.
+> Batch transcription jobs are scheduled on a best-effort basis. At peak hours, it might take up to 30 minutes for a transcription job to start processing and up to 24 hours to complete. Most of the time during the execution the transcription status is `Running`. The reason is because the job has the `Running` status the moment it moves to the batch transcription backend system. When the base model is used, this assignment happens almost immediately; it's slightly slower for custom models. Thus, the amount of time a transcription job spends in the `Running` state doesn't correspond to the actual transcription time but also includes waiting time in the internal queues.
 
 Make an HTTP GET request using the URI as shown in the following example. Replace `YourTranscriptionId` with your transcription ID, replace `YourSpeechResoureKey` with your Speech resource key, and replace `YourServiceRegion` with your Speech resource region.
 
@@ -75,7 +75,7 @@ The `status` property indicates the current status of the transcriptions. The tr
 ::: zone pivot="speech-cli"
 
 > [!IMPORTANT]
-> Batch transcription jobs are scheduled on a best-effort basis. At peak hours, it might take up to 30 minutes or longer for a transcription job to start processing. Most of the time during the execution the transcription status is `Running`. The reason is because the job is assigned the `Running` status the moment it moves to the batch transcription backend system. When the base model is used, this assignment happens almost immediately; it's slightly slower for custom models. Thus, the amount of time a transcription job spends in the `Running` state doesn't correspond to the actual transcription time but also includes waiting time in the internal queues.
+> Batch transcription jobs are scheduled on a best-effort basis. At peak hours, it might take up to 30 minutes or longer for a transcription job to start processing. Most of the time during the execution the transcription status is `Running`. The reason is because the job has the `Running` status the moment it moves to the batch transcription backend system. When the base model is used, this assignment happens almost immediately; it's slightly slower for custom models. Thus, the amount of time a transcription job spends in the `Running` state doesn't correspond to the actual transcription time but also includes waiting time in the internal queues.
 
 To get the status of the transcription job, use the `spx batch transcription status` command. Construct the request parameters according to the following instructions:
 
@@ -380,14 +380,14 @@ Depending in part on the request parameters set when you created the transcripti
 |`duration`|The audio duration. The value is an ISO 8601 encoded duration.|
 |`durationInTicks`|The audio duration in ticks (one tick is 100 nanoseconds).|
 |`durationMilliseconds`|The audio duration in milliseconds.|
-|`itn`|The inverse text normalized (ITN) form of the recognized text. Abbreviations such as "Doctor Smith" to "Dr Smith", phone numbers, and other transformations are applied.|
+|`itn`|The inverse text normalized (ITN) form of the recognized text. Abbreviations such as "Doctor Smith" to "Dr Smith," phone numbers, and other transformations are applied.|
 |`lexical`|The actual words recognized.|
 |`locale`|The locale identified from the input the audio. The `languageIdentification` request property must be set. Otherwise this property isn't present.|
 |`maskedITN`|The ITN form with profanity masking applied.|
 |`nBest`|A list of possible transcriptions for the current phrase with confidences.|
 |`offset`|The offset in audio of this phrase. The value is an ISO 8601 encoded duration.|
 |`offsetInTicks`|The offset in audio of this phrase in ticks (one tick is 100 nanoseconds).|
-|`recognitionStatus`|The recognition state. For example: "Success" or "Failure".|
+|`recognitionStatus`|The recognition state. For example: "Success" or "Failure."|
 |`recognizedPhrases`|The list of results for each phrase.|
 |`source`|The URL that was provided as the input audio source. The source corresponds to the `contentUrls` or `contentContainerUrl` request property. The `source` property is the only way to confirm the audio input for a transcription.|
 |`speaker`|The identified speaker. The `diarization` and `diarizationEnabled` request properties must be set. Otherwise this property isn't present.|

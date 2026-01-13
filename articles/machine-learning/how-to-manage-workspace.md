@@ -31,7 +31,7 @@ As your needs change or your automation requirements increase, you can manage wo
 
 ## Prerequisites
 
-* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/) today.
+* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) today.
 * With the Python SDK:
    1. [Install the SDK v2](https://aka.ms/sdk-v2-install).
    1. Install azure-identity: `pip install azure-identity`. If in a notebook cell, use `%pip install azure-identity`.
@@ -193,7 +193,7 @@ This class requires an existing virtual network.
 
 # [Studio](#tab/studio)
 
-1. To create a workspace with disabled internet connectivity via Studio, you should specify a hub workspace that has public network access disabled. Workspaces created without a hub in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), have public internet access enabled. A private hub has a 'lock' icon.
+1. To create a workspace with disabled internet connectivity via Studio, you should specify a hub workspace that has public network access disabled. Workspaces created without a hub in [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs), have public internet access enabled. A private hub has a 'lock' icon.
 
    :::image type="content" source="media/how-to-manage-workspace/studio-private-hub-selection.png" alt-text="Screenshot of the private hub with the 'lock' icon.":::
  

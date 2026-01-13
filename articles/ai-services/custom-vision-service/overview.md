@@ -1,6 +1,6 @@
 ---
 title: What is Custom Vision?
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to use the Azure AI Custom Vision service to build custom AI models to detect objects or classify images.
 author: PatrickFarley
 manager: nitinme
@@ -15,6 +15,8 @@ ms.custom: FY25Q1-Linter
 ---
 
 # What is Custom Vision?
+
+[!INCLUDE [Retirement notice](./includes/custom-vision-retirement.md)]
 
 Azure AI Custom Vision is an image recognition service that lets you build, deploy, and improve your own **image identifier** models. An image identifier applies labels to images according to their visual characteristics. Each label represents a classification or object. Custom Vision allows you to specify your own labels and train custom models to detect them.
 
@@ -70,7 +72,7 @@ See [Limits and quotas](./limits-and-quotas.md) for image input limitations.
 
 ## Data privacy and security
 
-As with all of the Azure AI services, developers using the Custom Vision service should be aware of Microsoft's policies on customer data. See the [Azure AI services page](https://www.microsoft.com/trustcenter/cloudservices/cognitiveservices) on the Microsoft Trust Center to learn more.
+As with all of the Foundry Tools, developers using the Custom Vision service should be aware of Microsoft's policies on customer data. See the [Foundry Tools page](https://www.microsoft.com/trustcenter/cloudservices/cognitiveservices) on the Microsoft Trust Center to learn more.
 
 ### Data residency
 

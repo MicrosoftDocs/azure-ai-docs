@@ -1,0 +1,55 @@
+monikerRange: 'foundry'
+items:
+- name: What is Microsoft Foundry (new)?
+  href: ../what-is-foundry.md
+
+- name: Get started
+  href: toc-files-foundry/get-started/toc.yml
+  
+- name: Agent development
+  href: toc-files-foundry/agent-development/toc.yml
+
+- name: Agent tools & integration
+  href: toc-files-foundry/agent-tools/toc.yml
+
+- name: Model catalog
+  href: toc-files-foundry/model-catalog/toc.yml
+
+- name: Model capabilities
+  href: toc-files-foundry/model-capabilities/toc.yml
+
+- name: Fine-tuning
+  href: toc-files-foundry/fine-tuning/toc.yml
+
+# - name: Integration & orchestration
+#   href: toc-files-foundry/integrations-orchestration/toc.yml
+
+- name: Manage agents, models, & tools
+  href: toc-files-foundry/manage-agents-models-tools/toc.yml
+
+- name: Observability, evaluation, & tracing
+  href: toc-files-foundry/observability-evaluation-tracing/toc.yml
+
+- name: Developer experience 
+  href: toc-files-foundry/developer-environment/toc.yml
+
+- name: API & SDK
+  href: toc-files-foundry/api-sdk/toc.yml
+
+- name: Guardrails and controls
+  href: toc-files-foundry/guardrails/toc.yml
+
+- name: Responsible AI
+  href: toc-files-foundry/responsible-ai/toc.yml
+
+- name: Best practices
+  href: toc-files-foundry/best-practices/toc.yml
+
+- name: Setup & configure
+  href: toc-files-foundry/setup-configure/toc.yml
+
+- name: Security & governance
+  href: toc-files-foundry/security-governance/toc.yml
+
+- name: Operate & support
+  href: toc-files-foundry/operate-support/toc.yml

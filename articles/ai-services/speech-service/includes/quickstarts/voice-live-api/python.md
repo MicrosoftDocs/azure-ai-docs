@@ -1,20 +1,29 @@
 ---
 manager: nitinme
-author: eric-urban
-ms.author: eur
-ms.service: azure-ai-openai
+author: PatrickFarley
+ms.author: pafarley
+reviewer: patrickfarley
+ms.reviewer: pafarley
+ms.service: azure-ai-foundry
 ms.topic: include
-ms.date: 7/1/2025
+ms.date: 11/06/2025
+ms.subservice: azure-ai-foundry-openai
 ---
+
+In this article, you learn how to use voice live with [Microsoft Foundry models](/azure/ai-foundry/concepts/foundry-models-overview) using the VoiceLive SDK for Python.
+
+[!INCLUDE [Header](../../common/voice-live-python.md)]
+
+[!INCLUDE [Introduction](intro.md)]
 
 ## Prerequisites
 
-- An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
-- <a href="https://www.python.org/" target="_blank">Python 3.8 or later version</a>. We recommend using Python 3.10 or later, but having at least Python 3.8 is required. If you don't have a suitable version of Python installed, you can follow the instructions in the [VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter) for the easiest way of installing Python on your operating system.
-- An [Azure AI Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see the [Voice Live API overview documentation](../../../voice-live.md).
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- <a href="https://www.python.org/" target="_blank">Python 3.10 or later version</a>. If you don't have a suitable version of Python installed, you can follow the instructions in the [VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter) for the easiest way of installing Python on your operating system.
+- A [Microsoft Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see [Region support](/azure/ai-services/speech-service/regions).
 
 > [!TIP]
-> To use the Voice Live API, you don't need to deploy an audio model with your Azure AI Foundry resource. The Voice Live API is fully managed, and the model is automatically deployed for you. For more information about models availability, see the [Voice Live API overview documentation](../../../voice-live.md).
+> To use voice live, you don't need to deploy an audio model with your Microsoft Foundry resource. Voice live is fully managed, and the model is automatically deployed for you. For more information about models availability, see the [voice live overview documentation](../../../voice-live.md).
 
 ## Microsoft Entra ID prerequisites
 
@@ -63,20 +72,10 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 1. Create a file named **requirements.txt**. Add the following packages to the file:
 
     ```txt
-    aiohttp==3.11.18
-    azure-core==1.34.0
-    azure-identity==1.22.0
-    certifi==2025.4.26
-    cffi==1.17.1
-    cryptography==44.0.3
-    numpy==2.2.5
-    pycparser==2.22
-    python-dotenv==1.1.0
-    requests==2.32.3
-    sounddevice==0.5.1
-    typing_extensions==4.13.2
-    urllib3==2.4.0
-    websockets==15.0.1
+    azure-ai-voicelive[aiohttp]
+    pyaudio
+    python-dotenv
+    azure-identity
     ```
 
 1. Install the packages:
@@ -85,318 +84,560 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     pip install -r requirements.txt
     ```
 
-1. For the **recommended** keyless authentication with Microsoft Entra ID, install the `azure-identity` package with:
-
-    ```console
-    pip install azure-identity
-    ```
-
 ## Retrieve resource information
 
 [!INCLUDE [resource authentication](resource-authentication.md)]
 
-
 ## Start a conversation
+
+The sample code in this quickstart uses either Microsoft Entra ID or an API key for authentication. You can set the script argument to be either your API key or your access token.
 
 1. Create the `voice-live-quickstart.py` file with the following code:
 
     ```python
+    # -------------------------------------------------------------------------
+    # Copyright (c) Microsoft Corporation. All rights reserved.
+    # Licensed under the MIT License.
+    # -------------------------------------------------------------------------
     from __future__ import annotations
-
     import os
-    import uuid
-    import json
+    import sys
+    import argparse
     import asyncio
     import base64
+    from datetime import datetime
     import logging
-    import threading
-    import numpy as np
-    import sounddevice as sd
+    import queue
+    import signal
+    from typing import Union, Optional, TYPE_CHECKING, cast
 
-    from collections import deque
-    from dotenv import load_dotenv
-    from azure.identity import DefaultAzureCredential
+    from azure.core.credentials import AzureKeyCredential
     from azure.core.credentials_async import AsyncTokenCredential
-    from azure.identity.aio import DefaultAzureCredential, get_bearer_token_provider
-    from typing import Dict, Union, Literal, Set
-    from typing_extensions import AsyncIterator, TypedDict, Required
-    from websockets.asyncio.client import connect as ws_connect
-    from websockets.asyncio.client import ClientConnection as AsyncWebsocket
-    from websockets.asyncio.client import HeadersLike
-    from websockets.typing import Data
-    from websockets.exceptions import WebSocketException
+    from azure.identity.aio import AzureCliCredential, DefaultAzureCredential
 
-    # This is the main function to run the Voice Live API client.
+    from azure.ai.voicelive.aio import connect
+    from azure.ai.voicelive.models import (
+        AudioEchoCancellation,
+        AudioNoiseReduction,
+        AzureStandardVoice,
+        InputAudioFormat,
+        Modality,
+        OutputAudioFormat,
+        RequestSession,
+        ServerEventType,
+        ServerVad
+    )
+    from dotenv import load_dotenv
+    import pyaudio
 
-    async def main() -> None:
-        # Set environment variables or edit the corresponding values here.
-        endpoint = os.environ.get("AZURE_VOICE_LIVE_ENDPOINT") or "https://your-endpoint.azure.com/"
-        model = os.environ.get("VOICE_LIVE_MODEL") or "gpt-4o"
-        api_version = os.environ.get("AZURE_VOICE_LIVE_API_VERSION") or "2025-05-01-preview"
-        api_key = os.environ.get("AZURE_VOICE_LIVE_API_KEY") or "your_api_key"
+    if TYPE_CHECKING:
+        # Only needed for type checking; avoids runtime import issues
+        from azure.ai.voicelive.aio import VoiceLiveConnection
 
-        # For the recommended keyless authentication, get and
-        # use the Microsoft Entra token instead of api_key:
-        scopes = "https://cognitiveservices.azure.com/.default"
-        credential = DefaultAzureCredential()
-        token = await credential.get_token(scopes)
+    ## Change to the directory where this script is located
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
-        client = AsyncAzureVoiceLive(
-            azure_endpoint = endpoint,
-            api_version = api_version,
-            token = token.token,
-            #api_key = api_key,
-        )
-        async with client.connect(model = model) as connection:
-            session_update = {
-                "type": "session.update",
-                "session": {
-                    "instructions": "You are a helpful AI assistant responding in natural, engaging language.",
-                    "turn_detection": {
-                        "type": "azure_semantic_vad",
-                        "threshold": 0.3,
-                        "prefix_padding_ms": 200,
-                        "silence_duration_ms": 200,
-                        "remove_filler_words": False,
-                        "end_of_utterance_detection": {
-                            "model": "semantic_detection_v1",
-                            "threshold": 0.01,
-                            "timeout": 2,
-                        },
-                    },
-                    "input_audio_noise_reduction": {
-                        "type": "azure_deep_noise_suppression"
-                    },
-                    "input_audio_echo_cancellation": {
-                        "type": "server_echo_cancellation"
-                    },
-                    "voice": {
-                        "name": "en-US-Ava:DragonHDLatestNeural",
-                        "type": "azure-standard",
-                        "temperature": 0.8,
-                    },
-                },
-                "event_id": ""
-            }
-            await connection.send(json.dumps(session_update))
-            print("Session created: ", json.dumps(session_update))
+    # Environment variable loading
+    load_dotenv('./.env', override=True)
 
-            send_task = asyncio.create_task(listen_and_send_audio(connection))
-            receive_task = asyncio.create_task(receive_audio_and_playback(connection))
-            keyboard_task = asyncio.create_task(read_keyboard_and_quit())
+    # Set up logging
+    ## Add folder for logging
+    if not os.path.exists('logs'):
+        os.makedirs('logs')
 
-            print("Starting the chat ...")
-            await asyncio.wait([send_task, receive_task, keyboard_task], return_when=asyncio.FIRST_COMPLETED)
+    ## Add timestamp for logfiles
+    timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
-            send_task.cancel()
-            receive_task.cancel()
-            print("Chat done.")
-
-    # --- End of Main Function ---
-
+    ## Set up logging
+    logging.basicConfig(
+        filename=f'logs/{timestamp}_voicelive.log',
+        filemode="w",
+        format='%(asctime)s:%(name)s:%(levelname)s:%(message)s',
+        level=logging.INFO
+    )
     logger = logging.getLogger(__name__)
-    AUDIO_SAMPLE_RATE = 24000
 
-    class AsyncVoiceLiveConnection:
-        _connection: AsyncWebsocket
+    class AudioProcessor:
+        """
+        Handles real-time audio capture and playback for the voice assistant.
 
-        def __init__(self, url: str, additional_headers: HeadersLike) -> None:
-            self._url = url
-            self._additional_headers = additional_headers
-            self._connection = None
+        Threading Architecture:
+        - Main thread: Event loop and UI
+        - Capture thread: PyAudio input stream reading
+        - Send thread: Async audio data transmission to VoiceLive
+        - Playback thread: PyAudio output stream writing
+        """
 
-        async def __aenter__(self) -> AsyncVoiceLiveConnection:
+        loop: asyncio.AbstractEventLoop
+
+        class AudioPlaybackPacket:
+            """Represents a packet that can be sent to the audio playback queue."""
+            def __init__(self, seq_num: int, data: Optional[bytes]):
+                self.seq_num = seq_num
+                self.data = data
+
+        def __init__(self, connection):
+            self.connection = connection
+            self.audio = pyaudio.PyAudio()
+
+            # Audio configuration - PCM16, 24kHz, mono as specified
+            self.format = pyaudio.paInt16
+            self.channels = 1
+            self.rate = 24000
+            self.chunk_size = 1200 # 50ms
+
+            # Capture and playback state
+            self.input_stream = None
+
+            self.playback_queue: queue.Queue[AudioProcessor.AudioPlaybackPacket] = queue.Queue()
+            self.playback_base = 0
+            self.next_seq_num = 0
+            self.output_stream: Optional[pyaudio.Stream] = None
+
+            logger.info("AudioProcessor initialized with 24kHz PCM16 mono audio")
+
+        def start_capture(self):
+            """Start capturing audio from microphone."""
+            def _capture_callback(
+                in_data,      # data
+                _frame_count,  # number of frames
+                _time_info,    # dictionary
+                _status_flags):
+                """Audio capture thread - runs in background."""
+                audio_base64 = base64.b64encode(in_data).decode("utf-8")
+                asyncio.run_coroutine_threadsafe(
+                    self.connection.input_audio_buffer.append(audio=audio_base64), self.loop
+                )
+                return (None, pyaudio.paContinue)
+
+            if self.input_stream:
+                return
+
+            # Store the current event loop for use in threads
+            self.loop = asyncio.get_event_loop()
+
             try:
-                self._connection = await ws_connect(self._url, additional_headers=self._additional_headers)
-            except WebSocketException as e:
-                raise ValueError(f"Failed to establish a WebSocket connection: {e}")
-            return self
+                self.input_stream = self.audio.open(
+                    format=self.format,
+                    channels=self.channels,
+                    rate=self.rate,
+                    input=True,
+                    frames_per_buffer=self.chunk_size,
+                    stream_callback=_capture_callback,
+                )
+                logger.info("Started audio capture")
 
-        async def __aexit__(self, exc_type, exc_value, traceback) -> None:
-            if self._connection:
-                await self._connection.close()
-                self._connection = None
+            except Exception:
+                logger.exception("Failed to start audio capture")
+                raise
 
-        enter = __aenter__
-        close = __aexit__
+        def start_playback(self):
+            """Initialize audio playback system."""
+            if self.output_stream:
+                return
 
-        async def __aiter__(self) -> AsyncIterator[Data]:
-             async for data in self._connection:
-                 yield data
+            remaining = bytes()
+            def _playback_callback(
+                _in_data,
+                frame_count,  # number of frames
+                _time_info,
+                _status_flags):
 
-        async def recv(self) -> Data:
-            return await self._connection.recv()
+                nonlocal remaining
+                frame_count *= pyaudio.get_sample_size(pyaudio.paInt16)
 
-        async def recv_bytes(self) -> bytes:
-            return await self._connection.recv()
+                out = remaining[:frame_count]
+                remaining = remaining[frame_count:]
 
-        async def send(self, message: Data) -> None:
-            await self._connection.send(message)
+                while len(out) < frame_count:
+                    try:
+                        packet = self.playback_queue.get_nowait()
+                    except queue.Empty:
+                        out = out + bytes(frame_count - len(out))
+                        continue
+                    except Exception:
+                        logger.exception("Error in audio playback")
+                        raise
 
-    class AsyncAzureVoiceLive:
+                    if not packet or not packet.data:
+                        # None packet indicates end of stream
+                        logger.info("End of playback queue.")
+                        break
+
+                    if packet.seq_num < self.playback_base:
+                        # skip requested
+                        # ignore skipped packet and clear remaining
+                        if len(remaining) > 0:
+                            remaining = bytes()
+                        continue
+
+                    num_to_take = frame_count - len(out)
+                    out = out + packet.data[:num_to_take]
+                    remaining = packet.data[num_to_take:]
+
+                if len(out) >= frame_count:
+                    return (out, pyaudio.paContinue)
+                else:
+                    return (out, pyaudio.paComplete)
+
+            try:
+                self.output_stream = self.audio.open(
+                    format=self.format,
+                    channels=self.channels,
+                    rate=self.rate,
+                    output=True,
+                    frames_per_buffer=self.chunk_size,
+                    stream_callback=_playback_callback
+                )
+                logger.info("Audio playback system ready")
+            except Exception:
+                logger.exception("Failed to initialize audio playback")
+                raise
+
+        def _get_and_increase_seq_num(self):
+            seq = self.next_seq_num
+            self.next_seq_num += 1
+            return seq
+
+        def queue_audio(self, audio_data: Optional[bytes]) -> None:
+            """Queue audio data for playback."""
+            self.playback_queue.put(
+                AudioProcessor.AudioPlaybackPacket(
+                    seq_num=self._get_and_increase_seq_num(),
+                    data=audio_data))
+
+        def skip_pending_audio(self):
+            """Skip current audio in playback queue."""
+            self.playback_base = self._get_and_increase_seq_num()
+
+        def shutdown(self):
+            """Clean up audio resources."""
+            if self.input_stream:
+                self.input_stream.stop_stream()
+                self.input_stream.close()
+                self.input_stream = None
+
+            logger.info("Stopped audio capture")
+
+            # Inform thread to complete
+            if self.output_stream:
+                self.skip_pending_audio()
+                self.queue_audio(None)
+                self.output_stream.stop_stream()
+                self.output_stream.close()
+                self.output_stream = None
+
+            logger.info("Stopped audio playback")
+
+            if self.audio:
+                self.audio.terminate()
+
+            logger.info("Audio processor cleaned up")
+
+    class BasicVoiceAssistant:
+        """Basic voice assistant implementing the VoiceLive SDK patterns."""
+
         def __init__(
             self,
-            *,
-            azure_endpoint: str | None = None,
-            api_version: str | None = None,
-            token: str | None = None,
-            api_key: str | None = None,
-        ) -> None:
+            endpoint: str,
+            credential: Union[AzureKeyCredential, AsyncTokenCredential],
+            model: str,
+            voice: str,
+            instructions: str,
+        ):
 
-            self._azure_endpoint = azure_endpoint
-            self._api_version = api_version
-            self._token = token
-            self._api_key = api_key
-            self._connection = None
+            self.endpoint = endpoint
+            self.credential = credential
+            self.model = model
+            self.voice = voice
+            self.instructions = instructions
+            self.connection: Optional["VoiceLiveConnection"] = None
+            self.audio_processor: Optional[AudioProcessor] = None
+            self.session_ready = False
+            self._active_response = False
+            self._response_api_done = False
 
-        def connect(self, model: str) -> AsyncVoiceLiveConnection:
-            if self._connection is not None:
-                raise ValueError("Already connected to the Voice Live API.")
-            if not model:
-                raise ValueError("Model name is required.")
+        async def start(self):
+            """Start the voice assistant session."""
+            try:
+                logger.info("Connecting to VoiceLive API with model %s", self.model)
 
-            url = f"{self._azure_endpoint.rstrip('/')}/voice-live/realtime?api-version={self._api_version}&model={model}"
-            url = url.replace("https://", "wss://")
+                # Connect to VoiceLive WebSocket API
+                async with connect(
+                    endpoint=self.endpoint,
+                    credential=self.credential,
+                    model=self.model,
+                ) as connection:
+                    conn = connection
+                    self.connection = conn
 
-            auth_header = {"Authorization": f"Bearer {self._token}"} if self._token else {"api-key": self._api_key}
-            request_id = uuid.uuid4()
-            headers = {"x-ms-client-request-id": str(request_id), **auth_header}
+                    # Initialize audio processor
+                    ap = AudioProcessor(conn)
+                    self.audio_processor = ap
 
-            self._connection = AsyncVoiceLiveConnection(
-                url,
-                additional_headers=headers,
+                    # Configure session for voice conversation
+                    await self._setup_session()
+
+                    # Start audio systems
+                    ap.start_playback()
+
+                    logger.info("Voice assistant ready! Start speaking...")
+                    print("\n" + "=" * 60)
+                    print("🎤 VOICE ASSISTANT READY")
+                    print("Start speaking to begin conversation")
+                    print("Press Ctrl+C to exit")
+                    print("=" * 60 + "\n")
+
+                    # Process events
+                    await self._process_events()
+            finally:
+                if self.audio_processor:
+                    self.audio_processor.shutdown()
+
+        async def _setup_session(self):
+            """Configure the VoiceLive session for audio conversation."""
+            logger.info("Setting up voice conversation session...")
+
+            # Create voice configuration
+            voice_config: Union[AzureStandardVoice, str]
+            if self.voice.startswith("en-US-") or self.voice.startswith("en-CA-") or "-" in self.voice:
+                # Azure voice
+                voice_config = AzureStandardVoice(name=self.voice)
+            else:
+                # OpenAI voice (alloy, echo, fable, onyx, nova, shimmer)
+                voice_config = self.voice
+
+            # Create turn detection configuration
+            turn_detection_config = ServerVad(
+                threshold=0.5,
+                prefix_padding_ms=300,
+                silence_duration_ms=500)
+
+            # Create session configuration
+            session_config = RequestSession(
+                modalities=[Modality.TEXT, Modality.AUDIO],
+                instructions=self.instructions,
+                voice=voice_config,
+                input_audio_format=InputAudioFormat.PCM16,
+                output_audio_format=OutputAudioFormat.PCM16,
+                turn_detection=turn_detection_config,
+                input_audio_echo_cancellation=AudioEchoCancellation(),
+                input_audio_noise_reduction=AudioNoiseReduction(type="azure_deep_noise_suppression"),
             )
-            return self._connection
 
-    class AudioPlayerAsync:
-        def __init__(self):
-            self.queue = deque()
-            self.lock = threading.Lock()
-            self.stream = sd.OutputStream(
-                callback=self.callback,
-                samplerate=AUDIO_SAMPLE_RATE,
-                channels=1,
-                dtype=np.int16,
-                blocksize=2400,
-            )
-            self.playing = False
+            conn = self.connection
+            assert conn is not None, "Connection must be established before setting up session"
+            await conn.session.update(session=session_config)
 
-        def callback(self, outdata, frames, time, status):
-            if status:
-                logger.warning(f"Stream status: {status}")
-            with self.lock:
-                data = np.empty(0, dtype=np.int16)
-                while len(data) < frames and len(self.queue) > 0:
-                    item = self.queue.popleft()
-                    frames_needed = frames - len(data)
-                    data = np.concatenate((data, item[:frames_needed]))
-                    if len(item) > frames_needed:
-                        self.queue.appendleft(item[frames_needed:])
-                if len(data) < frames:
-                    data = np.concatenate((data, np.zeros(frames - len(data), dtype=np.int16)))
-            outdata[:] = data.reshape(-1, 1)
+            logger.info("Session configuration sent")
 
-        def add_data(self, data: bytes):
-            with self.lock:
-                np_data = np.frombuffer(data, dtype=np.int16)
-                self.queue.append(np_data)
-                if not self.playing and len(self.queue) > 10:
-                    self.start()
+        async def _process_events(self):
+            """Process events from the VoiceLive connection."""
+            try:
+                conn = self.connection
+                assert conn is not None, "Connection must be established before processing events"
+                async for event in conn:
+                    await self._handle_event(event)
+            except Exception:
+                logger.exception("Error processing events")
+                raise
 
-        def start(self):
-            if not self.playing:
-                self.playing = True
-                self.stream.start()
+        async def _handle_event(self, event):
+            """Handle different types of events from VoiceLive."""
+            logger.debug("Received event: %s", event.type)
+            ap = self.audio_processor
+            conn = self.connection
+            assert ap is not None, "AudioProcessor must be initialized"
+            assert conn is not None, "Connection must be established"
 
-        def stop(self):
-            with self.lock:
-                self.queue.clear()
-            self.playing = False
-            self.stream.stop()
+            if event.type == ServerEventType.SESSION_UPDATED:
+                logger.info("Session ready: %s", event.session.id)
+                self.session_ready = True
 
-        def terminate(self):
-            with self.lock:
-                self.queue.clear()
-            self.stream.stop()
-            self.stream.close()
+                # Start audio capture once session is ready
+                ap.start_capture()
 
-    async def listen_and_send_audio(connection: AsyncVoiceLiveConnection) -> None:
-        logger.info("Starting audio stream ...")
+            elif event.type == ServerEventType.INPUT_AUDIO_BUFFER_SPEECH_STARTED:
+                logger.info("User started speaking - stopping playback")
+                print("🎤 Listening...")
 
-        stream = sd.InputStream(channels=1, samplerate=AUDIO_SAMPLE_RATE, dtype="int16")
+                ap.skip_pending_audio()
+
+            elif event.type == ServerEventType.INPUT_AUDIO_BUFFER_SPEECH_STOPPED:
+                logger.info("🎤 User stopped speaking")
+                print("🤔 Processing...")
+
+            elif event.type == ServerEventType.RESPONSE_CREATED:
+                logger.info("🤖 Assistant response created")
+                self._active_response = True
+                self._response_api_done = False
+
+            elif event.type == ServerEventType.RESPONSE_AUDIO_DELTA:
+                logger.debug("Received audio delta")
+                ap.queue_audio(event.delta)
+
+            elif event.type == ServerEventType.RESPONSE_AUDIO_DONE:
+                logger.info("🤖 Assistant finished speaking")
+                print("🎤 Ready for next input...")
+
+            elif event.type == ServerEventType.RESPONSE_DONE:
+                logger.info("✅ Response complete")
+                self._active_response = False
+                self._response_api_done = True
+
+            elif event.type == ServerEventType.ERROR:
+                msg = event.error.message
+                if "Cancellation failed: no active response" in msg:
+                    logger.debug("Benign cancellation error: %s", msg)
+                else:
+                    logger.error("❌ VoiceLive error: %s", msg)
+                    print(f"Error: {msg}")
+
+            elif event.type == ServerEventType.CONVERSATION_ITEM_CREATED:
+                logger.debug("Conversation item created: %s", event.item.id)
+
+            else:
+                logger.debug("Unhandled event type: %s", event.type)
+
+
+    def parse_arguments():
+        """Parse command line arguments."""
+        parser = argparse.ArgumentParser(
+            description="Basic Voice Assistant using Azure VoiceLive SDK",
+            formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+        )
+
+        parser.add_argument(
+            "--api-key",
+            help="Azure VoiceLive API key. If not provided, will use AZURE_VOICELIVE_API_KEY environment variable.",
+            type=str,
+            default=os.environ.get("AZURE_VOICELIVE_API_KEY"),
+        )
+
+        parser.add_argument(
+            "--endpoint",
+            help="Azure VoiceLive endpoint",
+            type=str,
+            default=os.environ.get("AZURE_VOICELIVE_ENDPOINT", "https://your-resource-name.services.ai.azure.com/"),
+        )
+
+        parser.add_argument(
+            "--model",
+            help="VoiceLive model to use",
+            type=str,
+            default=os.environ.get("AZURE_VOICELIVE_MODEL", "gpt-realtime"),
+        )
+
+        parser.add_argument(
+            "--voice",
+            help="Voice to use for the assistant. E.g. alloy, echo, fable, en-US-AvaNeural, en-US-GuyNeural",
+            type=str,
+            default=os.environ.get("AZURE_VOICELIVE_VOICE", "en-US-Ava:DragonHDLatestNeural"),
+        )
+
+        parser.add_argument(
+            "--instructions",
+            help="System instructions for the AI assistant",
+            type=str,
+            default=os.environ.get(
+                "AZURE_VOICELIVE_INSTRUCTIONS",
+                "You are a helpful AI assistant. Respond naturally and conversationally. "
+                "Keep your responses concise but engaging.",
+            ),
+        )
+
+        parser.add_argument(
+            "--use-token-credential", help="Use Azure token credential instead of API key", action="store_true", default=False
+        )
+
+        parser.add_argument("--verbose", help="Enable verbose logging", action="store_true")
+
+        return parser.parse_args()
+
+
+    def main():
+        """Main function."""
+        args = parse_arguments()
+
+        # Set logging level
+        if args.verbose:
+            logging.getLogger().setLevel(logging.DEBUG)
+
+        # Validate credentials
+        if not args.api_key and not args.use_token_credential:
+            print("❌ Error: No authentication provided")
+            print("Please provide an API key using --api-key or set AZURE_VOICELIVE_API_KEY environment variable,")
+            print("or use --use-token-credential for Azure authentication.")
+            sys.exit(1)
+
+        # Create client with appropriate credential
+        credential: Union[AzureKeyCredential, AsyncTokenCredential]
+        if args.use_token_credential:
+            credential = AzureCliCredential()  # or DefaultAzureCredential() if needed
+            logger.info("Using Azure token credential")
+        else:
+            credential = AzureKeyCredential(args.api_key)
+            logger.info("Using API key credential")
+
+        # Create and start voice assistant
+        assistant = BasicVoiceAssistant(
+            endpoint=args.endpoint,
+            credential=credential,
+            model=args.model,
+            voice=args.voice,
+            instructions=args.instructions,
+        )
+
+        # Setup signal handlers for graceful shutdown
+        def signal_handler(_sig, _frame):
+            logger.info("Received shutdown signal")
+            raise KeyboardInterrupt()
+
+        signal.signal(signal.SIGINT, signal_handler)
+        signal.signal(signal.SIGTERM, signal_handler)
+
+        # Start the assistant
         try:
-            stream.start()
-            read_size = int(AUDIO_SAMPLE_RATE * 0.02)
-            while True:
-                if stream.read_available >= read_size:
-                    data, _ = stream.read(read_size)
-                    audio = base64.b64encode(data).decode("utf-8")
-                    param = {"type": "input_audio_buffer.append", "audio": audio, "event_id": ""}
-                    data_json = json.dumps(param)
-                    await connection.send(data_json)
+            asyncio.run(assistant.start())
+        except KeyboardInterrupt:
+            print("\n👋 Voice assistant shut down. Goodbye!")
         except Exception as e:
-            logger.error(f"Audio stream interrupted. {e}")
-        finally:
-            stream.stop()
-            stream.close()
-            logger.info("Audio stream closed.")
-
-    async def receive_audio_and_playback(connection: AsyncVoiceLiveConnection) -> None:
-        last_audio_item_id = None
-        audio_player = AudioPlayerAsync()
-
-        logger.info("Starting audio playback ...")
-        try:
-            while True:
-                async for raw_event in connection:
-                    event = json.loads(raw_event)
-                    print(f"Received event:", {event.get("type")})
-
-                    if event.get("type") == "session.created":
-                        session = event.get("session")
-                        logger.info(f"Session created: {session.get('id')}")
-
-                    elif event.get("type") == "response.audio.delta":
-                        if event.get("item_id") != last_audio_item_id:
-                            last_audio_item_id = event.get("item_id")
-
-                        bytes_data = base64.b64decode(event.get("delta", ""))
-                        audio_player.add_data(bytes_data)
-
-                    elif event.get("type") == "error":
-                        error_details = event.get("error", {})
-                        error_type = error_details.get("type", "Unknown")
-                        error_code = error_details.get("code", "Unknown")
-                        error_message = error_details.get("message", "No message provided")
-                        raise ValueError(f"Error received: Type={error_type}, Code={error_code}, Message={error_message}")
-
-        except Exception as e:
-            logger.error(f"Error in audio playback: {e}")
-        finally:
-            audio_player.terminate()
-            logger.info("Playback done.")
-
-    async def read_keyboard_and_quit() -> None:
-        print("Press 'q' and Enter to quit the chat.")
-        while True:
-            # Run input() in a thread to avoid blocking the event loop
-            user_input = await asyncio.to_thread(input)
-            if user_input.strip().lower() == 'q':
-                print("Quitting the chat...")
-                break
+            print("Fatal Error: ", e)
 
     if __name__ == "__main__":
+        # Check audio system
         try:
-            logging.basicConfig(
-                filename='voicelive.log',
-                filemode="w",
-                level=logging.DEBUG,
-                format='%(asctime)s:%(name)s:%(levelname)s:%(message)s'
-            )
-            load_dotenv()
-            asyncio.run(main())
+            p = pyaudio.PyAudio()
+            # Check for input devices
+            input_devices = [
+                i
+                for i in range(p.get_device_count())
+                if cast(Union[int, float], p.get_device_info_by_index(i).get("maxInputChannels", 0) or 0) > 0
+            ]
+            # Check for output devices
+            output_devices = [
+                i
+                for i in range(p.get_device_count())
+                if cast(Union[int, float], p.get_device_info_by_index(i).get("maxOutputChannels", 0) or 0) > 0
+            ]
+            p.terminate()
+
+            if not input_devices:
+                print("❌ No audio input devices found. Please check your microphone.")
+                sys.exit(1)
+            if not output_devices:
+                print("❌ No audio output devices found. Please check your speakers.")
+                sys.exit(1)
+
         except Exception as e:
-            print(f"Error: {e}")
+            print(f"❌ Audio system check failed: {e}")
+            sys.exit(1)
+
+        print("🎙️  Basic Voice Assistant with Azure VoiceLive SDK")
+        print("=" * 50)
+
+        # Run the assistant
+        main()
     ```
 
 1. Sign in to Azure with the following command:
@@ -408,113 +649,134 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 1. Run the Python file.
 
     ```shell
-    python voice-live-quickstart.py
+    python voice-live-quickstart.py --use-token-credential
     ```
 
-1. The Voice Live API starts to return audio with the model's initial response. You can interrupt the model by speaking. Enter "q" to quit the conversation.
+1. The Voice Live API starts to return audio with the model's initial response. You can interrupt the model by speaking. Enter "Ctrl+C" to quit the conversation.
 
 ## Output
 
-The output of the script is printed to the console. You see messages indicating the status of the connection, audio stream, and playback. The audio is played back through your speakers or headphones.
+The output of the script is printed to the console. You see messages indicating the status of system. The audio is played back through your speakers or headphones.
 
-```text
-Session created:  {"type": "session.update", "session": {"instructions": "You are a helpful AI assistant responding in natural, engaging language.","turn_detection": {"type": "azure_semantic_vad", "threshold": 0.3, "prefix_padding_ms": 200, "silence_duration_ms": 200, "remove_filler_words": false, "end_of_utterance_detection": {"model": "semantic_detection_v1", "threshold": 0.1, "timeout": 4}}, "input_audio_noise_reduction": {"type": "azure_deep_noise_suppression"}, "input_audio_echo_cancellation": {"type": "server_echo_cancellation"}, "voice": {"name": "en-US-Ava:DragonHDLatestNeural", "type": "azure-standard", "temperature": 0.8}}, "event_id": ""}
-Starting the chat ...
-Received event: {'session.created'}
-Press 'q' and Enter to quit the chat.
-Received event: {'session.updated'}
-Received event: {'input_audio_buffer.speech_started'}
-Received event: {'input_audio_buffer.speech_stopped'}
-Received event: {'input_audio_buffer.committed'}
-Received event: {'conversation.item.input_audio_transcription.completed'}
-Received event: {'conversation.item.created'}
-Received event: {'response.created'}
-Received event: {'response.output_item.added'}
-Received event: {'conversation.item.created'}
-Received event: {'response.content_part.added'}
-Received event: {'response.audio_transcript.delta'}
-Received event: {'response.audio_transcript.delta'}
-Received event: {'response.audio_transcript.delta'}
-REDACTED FOR BREVITY
-Received event: {'response.audio.delta'}
-Received event: {'response.audio.delta'}
-Received event: {'response.audio.delta'}
-q
-Received event: {'response.audio.delta'}
-Received event: {'response.audio.delta'}
-Received event: {'response.audio.delta'}
-Received event: {'response.audio.delta'}
-Received event: {'response.audio.delta'}
-Quitting the chat...
-Received event: {'response.audio.delta'}
-Received event: {'response.audio.delta'}
-REDACTED FOR BREVITY
-Received event: {'response.audio.delta'}
-Received event: {'response.audio.delta'}
-Chat done.
+```console
+============================================================
+🎤 VOICE ASSISTANT READY
+Start speaking to begin conversation
+Press Ctrl+C to exit
+============================================================
+
+🎤 Listening...
+🤔 Processing...
+🎤 Ready for next input...
+🎤 Listening...
+🤔 Processing...
+🎤 Ready for next input...
+🎤 Listening...
+🤔 Processing...
+🎤 Ready for next input...
+🎤 Listening...
+🤔 Processing...
+🎤 Listening...
+🎤 Ready for next input...
+🤔 Processing...
+🎤 Ready for next input...
 ```
 
-The script that you ran creates a log file named `voicelive.log` in the same directory as the script.
+The script that you ran creates a log file named `<timestamp>_voicelive.log` in the `logs` folder.
+
+The default loglevel is set to **INFO** but you can change it by running the quickstart with the command line parameter `--verbose` or by changing the logging config within the code as follows:
 
 ```python
 logging.basicConfig(
-    filename='voicelive.log',
+    filename=f'logs/{timestamp}_voicelive.log',
     filemode="w",
-    level=logging.DEBUG,
-    format='%(asctime)s:%(name)s:%(levelname)s:%(message)s'
+    format='%(asctime)s:%(name)s:%(levelname)s:%(message)s',
+    level=logging.INFO
 )
 ```
 
 The log file contains information about the connection to the Voice Live API, including the request and response data. You can view the log file to see the details of the conversation.
 
 ```text
-2025-05-09 06:56:06,821:websockets.client:DEBUG:= connection is CONNECTING
-2025-05-09 06:56:07,101:websockets.client:DEBUG:> GET /voice-live/realtime?api-version=2025-05-01-preview&model=gpt-4o HTTP/1.1
-<REDACTED FOR BREVITY>
-2025-05-09 06:56:07,551:websockets.client:DEBUG:= connection is OPEN
-2025-05-09 06:56:07,551:websockets.client:DEBUG:< TEXT '{"event_id":"event_5a7NVdtNBVX9JZVuPc9nYK","typ...es":null,"agent":null}}' [1475 bytes]
-2025-05-09 06:56:07,552:websockets.client:DEBUG:> TEXT '{"type": "session.update", "session": {"turn_de....8}}, "event_id": null}' [551 bytes]
-2025-05-09 06:56:07,557:__main__:INFO:Starting audio stream ...
-2025-05-09 06:56:07,810:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...AAAEA", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:07,824:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...AAAAA", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:07,844:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...AAAAA", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:07,874:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...AAAAA", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:07,874:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...AAAEA", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:07,905:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...BAAAA", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:07,926:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...AAAAA", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:07,954:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...AAAAA", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:07,954:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...///7/", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:07,974:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...BAAAA", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:08,004:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...AAAAA", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:08,035:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...AAAAA", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:08,035:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...AAAAA", "event_id": ""}' [1346 bytes]
-<REDACTED FOR BREVITY>
-2025-05-09 06:56:42,957:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...AAP//", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:42,984:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...+/wAA", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:43,005:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": .../////", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:43,034:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...+////", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:43,034:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...CAAMA", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:43,055:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...CAAIA", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:43,084:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...BAAEA", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:43,114:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...9//3/", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:43,114:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...DAAMA", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:43,134:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...BAAIA", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:43,165:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...AAAAA", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:43,184:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...+//7/", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:43,214:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": .../////", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:43,214:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...+/wAA", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:43,245:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...BAAIA", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:43,264:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...AAP//", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:43,295:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...BAAEA", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:43,295:websockets.client:DEBUG:> CLOSE 1000 (OK) [2 bytes]
-2025-05-09 06:56:43,297:websockets.client:DEBUG:= connection is CLOSING
-2025-05-09 06:56:43,346:__main__:INFO:Audio stream closed.
-2025-05-09 06:56:43,388:__main__:INFO:Playback done.
-2025-05-09 06:56:44,512:websockets.client:DEBUG:< CLOSE 1000 (OK) [2 bytes]
-2025-05-09 06:56:44,514:websockets.client:DEBUG:< EOF
-2025-05-09 06:56:44,514:websockets.client:DEBUG:> EOF
-2025-05-09 06:56:44,514:websockets.client:DEBUG:= connection is CLOSED
-2025-05-09 06:56:44,514:websockets.client:DEBUG:x closing TCP connection
-2025-05-09 06:56:44,514:asyncio:ERROR:Unclosed client session
-client_session: <aiohttp.client.ClientSession object at 0x00000266DD8E5400>
+2025-10-02 14:47:37,901:__main__:INFO:Using Azure token credential
+2025-10-02 14:47:37,901:__main__:INFO:Connecting to VoiceLive API with model gpt-realtime
+2025-10-02 14:47:37,901:azure.core.pipeline.policies.http_logging_policy:INFO:Request URL: 'https://login.microsoftonline.com/organizations/v2.0/.well-known/openid-configuration'
+Request method: 'GET'
+Request headers:
+    'User-Agent': 'azsdk-python-identity/1.22.0 Python/3.11.9 (Windows-10-10.0.26200-SP0)'
+No body was attached to the request
+2025-10-02 14:47:38,057:azure.core.pipeline.policies.http_logging_policy:INFO:Response status: 200
+Response headers:
+    'Date': 'Thu, 02 Oct 2025 21:47:37 GMT'
+    'Content-Type': 'application/json; charset=utf-8'
+    'Content-Length': '1641'
+    'Connection': 'keep-alive'
+    'Cache-Control': 'max-age=86400, private'
+    'Strict-Transport-Security': 'REDACTED'
+    'X-Content-Type-Options': 'REDACTED'
+    'Access-Control-Allow-Origin': 'REDACTED'
+    'Access-Control-Allow-Methods': 'REDACTED'
+    'P3P': 'REDACTED'
+    'x-ms-request-id': 'f81adfa1-8aa3-4ab6-a7b8-908f411e0d00'
+    'x-ms-ests-server': 'REDACTED'
+    'x-ms-srs': 'REDACTED'
+    'Content-Security-Policy-Report-Only': 'REDACTED'
+    'Cross-Origin-Opener-Policy-Report-Only': 'REDACTED'
+    'Reporting-Endpoints': 'REDACTED'
+    'X-XSS-Protection': 'REDACTED'
+    'Set-Cookie': 'REDACTED'
+    'X-Cache': 'REDACTED'
+2025-10-02 14:47:42,105:azure.core.pipeline.policies.http_logging_policy:INFO:Request URL: 'https://login.microsoftonline.com/organizations/oauth2/v2.0/token'
+Request method: 'POST'
+Request headers:
+    'Accept': 'application/json'
+    'x-client-sku': 'REDACTED'
+    'x-client-ver': 'REDACTED'
+    'x-client-os': 'REDACTED'
+    'x-ms-lib-capability': 'REDACTED'
+    'client-request-id': 'REDACTED'
+    'x-client-current-telemetry': 'REDACTED'
+    'x-client-last-telemetry': 'REDACTED'
+    'X-AnchorMailbox': 'REDACTED'
+    'User-Agent': 'azsdk-python-identity/1.22.0 Python/3.11.9 (Windows-10-10.0.26200-SP0)'
+A body is sent with the request
+2025-10-02 14:47:42,466:azure.core.pipeline.policies.http_logging_policy:INFO:Response status: 200
+Response headers:
+    'Date': 'Thu, 02 Oct 2025 21:47:42 GMT'
+    'Content-Type': 'application/json; charset=utf-8'
+    'Content-Length': '6587'
+    'Connection': 'keep-alive'
+    'Cache-Control': 'no-store, no-cache'
+    'Pragma': 'no-cache'
+    'Expires': '-1'
+    'Strict-Transport-Security': 'REDACTED'
+    'X-Content-Type-Options': 'REDACTED'
+    'P3P': 'REDACTED'
+    'client-request-id': 'REDACTED'
+    'x-ms-request-id': '2e82e728-22c0-4568-b3ed-f00ec79a2500'
+    'x-ms-ests-server': 'REDACTED'
+    'x-ms-clitelem': 'REDACTED'
+    'x-ms-srs': 'REDACTED'
+    'Content-Security-Policy-Report-Only': 'REDACTED'
+    'Cross-Origin-Opener-Policy-Report-Only': 'REDACTED'
+    'Reporting-Endpoints': 'REDACTED'
+    'X-XSS-Protection': 'REDACTED'
+    'Set-Cookie': 'REDACTED'
+    'X-Cache': 'REDACTED'
+2025-10-02 14:47:42,467:azure.identity._internal.interactive:INFO:InteractiveBrowserCredential.get_token succeeded
+2025-10-02 14:47:42,884:__main__:INFO:AudioProcessor initialized with 24kHz PCM16 mono audio
+2025-10-02 14:47:42,884:__main__:INFO:Setting up voice conversation session...
+2025-10-02 14:47:42,887:__main__:INFO:Session configuration sent
+2025-10-02 14:47:42,943:__main__:INFO:Audio playback system ready
+2025-10-02 14:47:42,943:__main__:INFO:Voice assistant ready! Start speaking...
+2025-10-02 14:47:42,975:__main__:INFO:Session ready: sess_CMLRGjWnakODcHn583fXf
+2025-10-02 14:47:42,994:__main__:INFO:Started audio capture
+2025-10-02 14:47:47,513:__main__:INFO:\U0001f3a4 User started speaking - stopping playback
+2025-10-02 14:47:47,593:__main__:INFO:Stopped audio playback
+2025-10-02 14:47:51,757:__main__:INFO:\U0001f3a4 User stopped speaking
+2025-10-02 14:47:51,813:__main__:INFO:Audio playback system ready
+2025-10-02 14:47:51,816:__main__:INFO:\U0001f916 Assistant response created
+2025-10-02 14:47:58,009:__main__:INFO:\U0001f916 Assistant finished speaking
+2025-10-02 14:47:58,009:__main__:INFO:\u2705 Response complete
+2025-10-02 14:48:07,309:__main__:INFO:Received shutdown signal
 ```

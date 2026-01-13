@@ -1,52 +1,57 @@
 ---
-title: Management center overview
-titleSuffix: Azure AI Foundry
-description: "The management center in Azure AI Foundry portal provides a centralized hub for governance and management activities."
+title: Manage projects and resources
+titleSuffix: Microsoft Foundry
+description: "The management center in Microsoft Foundry portal provides a centralized hub for governance and management activities."
 ms.author: sgilley
 author: sdgilley
+ms.reviewer: aashishb
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
-ms.topic: concept-article #Don't change.
-ms.date: 07/01/2025
+ms.topic: how-to
+ms.date: 10/31/2025
+ai-usage: ai-assisted
 #customer intent: As an admin, I want a central location where I can perform governance and management activities.
 ---
 
-# Management center overview
+# Manage projects and resources
 
-The management center is a part of the Azure AI Foundry portal that streamlines governance and management activities. From the management center, you can manage:
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
-- Azure AI Foundry hubs and [!INCLUDE [hub](../includes/hub-project-name.md)]s
+The management center is part of the Microsoft Foundry portal that streamlines governance and management activities. From the management center, you can manage:
+
+- Foundry hubs and [!INCLUDE [hub](../includes/hub-project-name.md)]s
 - Azure AI [!INCLUDE [FDP](../includes/fdp-project-name.md)]s
 - Quotas for models and virtual machines (VMs)
 
     > [!NOTE]
-    > VM quotas are only available for [!INCLUDE [hub](../includes/hub-project-name.md)]s.
+    > VMs and VM quotas are only available for [!INCLUDE [hub](../includes/hub-project-name.md)]s.
 
 - User management and role assignment
 
-To access the management center, sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs), select a project, and then select **Management center** from the bottom of left menu.
+To access the management center, sign in to [Foundry](https://ai.azure.com/?cid=learnDocs), select a project, then select **Management center** from the bottom of left menu. (You might have to scroll down to find it.)
 
-:::image type="content" source="../media/management-center/management-center.png" alt-text="Screenshot of the left menu of Azure AI Foundry with the management center selected." :::
+:::image type="content" source="../media/management-center/management-center.png" alt-text="Screenshot of the left menu of Foundry with the management center selected." :::
+
 
 ## Manage Foundry projects
 
-Use the management center to create and configure [!INCLUDE [FDP](../includes/fdp-project-name.md)]s. Use __All resources__ to view all [!INCLUDE [FDP](../includes/fdp-project-name.md)]s that you have access to, or to create new projects. Use the __Project__ section of the left menu to manage individual [!INCLUDE [FDP](../includes/fdp-project-name.md)].
+Use the management center to create and configure [!INCLUDE [FDP](../includes/fdp-project-name.md)]s. Use **All resources** to view all [!INCLUDE [FDP](../includes/fdp-project-name.md)]s that you have access to, or to create new projects. Use the **Project** section of the left menu to manage and create individual [!INCLUDE [FDP](../includes/fdp-project-name.md)] on the Foundry resource.
 
 :::image type="content" source="../media/management-center/project-management.png" alt-text="Screenshot of the all resources, hub, and project sections of the management studio selected." lightbox="../media/management-center/project-management.png":::
 
-For more information, see [Create a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]](../how-to/create-projects.md?pivots=fdp-project)
+For more information, see [Create a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]](../how-to/create-projects.md).
 
 
-### Manage Azure AI Foundry hubs and hub based projects
+### Manage Foundry hubs and hub-based projects
 
-You can also manage [!INCLUDE [hub](../includes/hub-project-name.md)]s from the management center. They're listed in the __All resources__ section, and when selected are displayed in the left menu.
+You can also manage [!INCLUDE [hub](../includes/hub-project-name.md)]s from the management center. The management center lists them in the **All resources** section. When you select a hub, the portal displays it in the left menu.
 
-For more information, see [Create a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]](../how-to/create-projects.md?pivots=hub-project).
+For more information, see [Create a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]](../how-to/hub-create-projects.md).
 
 ## Manage resource utilization
 
-View and manage quotas and usage metrics across multiple projects and Azure subscriptions. Use the __Quota__ link from the left menu to view and manage quotas.
+View and manage quotas and usage metrics across multiple projects and Azure subscriptions. Use the **Quota** link from the left menu to view and manage quotas.
 
 :::image type="content" source="../media/management-center/quotas.png" alt-text="Screenshot of the quotas section of the management center." lightbox="../media/management-center/quotas.png":::
 
@@ -54,15 +59,19 @@ For more information, see [Manage and increase quotas for resources](../how-to/q
 
 ## Govern access
 
-With a project selected, you can use the __Users__ entry in the left menu to view and manage users and their roles.
+With a project selected, use the __Users__ entry in the left menu to view and manage users and their roles.
 
 > [!NOTE]
-> You can only assign built-in roles for Azure AI Foundry in the management center.
+> You can only assign built-in roles for Foundry here.
 
-For more information, see [Role-based access control](rbac-azure-ai-foundry.md#assigning-roles-in-azure-ai-foundry-portal).
+For more information, see [Role-based access control](rbac-foundry.md#built-in-roles).
+
+## Connect resources
+
+For more information about connections, see [Add a new connection to your project](../how-to/connections-add.md).
 
 ## Related content
 
-- [Security baseline](/security/benchmark/azure/baselines/azure-ai-studio-security-baseline)
+- [Security baseline](/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline)
 - [Built-in policy to allow specific models](../how-to/built-in-policy-model-deployment.md)
 - [Custom policy to allow specific models](../model-inference/how-to/configure-deployment-policies.md)

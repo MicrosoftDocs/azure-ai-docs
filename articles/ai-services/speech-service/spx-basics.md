@@ -1,20 +1,20 @@
 ---
 title: "Quickstart: The Speech CLI - Speech service"
-titleSuffix: Azure AI services
-description: In this Azure AI Speech CLI quickstart, you interact with speech to text, text to speech, and speech translation without having to write code.
-author: eric-urban
+titleSuffix: Foundry Tools
+description: In this Azure Speech in Foundry Tools CLI quickstart, you interact with speech to text, text to speech, and speech translation without having to write code.
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: quickstart
-ms.date: 3/10/2025
-ms.author: eur
+ms.date: 08/07/2025
+ms.author: pafarley
 ms.custom: mode-api
-# Customer intent: As a developer, I want to learn how to use the Azure AI Speech CLI to interact with speech to text, text to speech, and speech translation without writing code.
+# Customer intent: As a developer, I want to learn how to use the Azure Speech in Foundry Tools CLI to interact with speech to text, text to speech, and speech translation without writing code.
 ---
 
-# Quickstart: Get started with the Azure AI Speech CLI
+# Quickstart: Get started with the Azure Speech in Foundry Tools CLI
 
-In this article, you learn how to use the Azure AI Speech CLI (also called SPX) to access Speech services such as speech to text, text to speech, and speech translation, without having to write any code. The Speech CLI is production ready, and you can use it to automate simple workflows in the Speech service by using `.bat` or shell scripts.
+In this article, you learn how to use the Azure Speech CLI (also called SPX) to access Speech services such as speech to text, text to speech, and speech translation, without having to write any code. The Speech CLI is production ready, and you can use it to automate simple workflows in the Speech service by using `.bat` or shell scripts.
 
 This article assumes that you have working knowledge of the Command Prompt window, terminal, or PowerShell.
 
@@ -29,7 +29,7 @@ This article assumes that you have working knowledge of the Command Prompt windo
 
 # [Terminal](#tab/terminal)
 
-To get started, you need an API key and region identifier (for example, `eastus`, `westus`). Create an AI Foundry resource for Speech on the [Azure portal](https://portal.azure.com). For more information, see [Create an AI Foundry resource](../../ai-services/multi-service-resource.md?pivots=azportal).
+To get started, you need an API key and region identifier (for example, `eastus`, `westus`). Create a Foundry resource for Speech on the [Azure portal](https://portal.azure.com). For more information, see [Create a Foundry resource](../../ai-services/multi-service-resource.md?pivots=azportal).
 
 To configure your resource key and region identifier, run the following commands:  
 
@@ -54,7 +54,7 @@ spx config @region --clear
 
 # [PowerShell](#tab/powershell)
 
-To get started, you need an API key and region identifier (for example, `eastus`, `westus`). Create an AI Foundry resource for Speech on the [Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry). 
+To get started, you need an API key and region identifier (for example, `eastus`, `westus`). Create a Foundry resource for Speech on the [Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry). 
 
 To configure your Speech resource key and region identifier, run the following commands in PowerShell: 
 

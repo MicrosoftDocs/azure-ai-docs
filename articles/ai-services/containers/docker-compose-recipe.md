@@ -1,12 +1,12 @@
 ---
 title: Use Docker Compose to deploy multiple containers
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to deploy multiple Azure AI containers. This article shows you how to orchestrate multiple Docker container images by using Docker Compose.
 author: aahill
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: how-to
-ms.date: 02/12/2025
+ms.date: 10/02/2025
 ms.author: aahi
 
 # SME: Brendan Walsh
@@ -24,17 +24,17 @@ This article shows you how to deploy multiple Azure AI containers. Specifically,
 
 This procedure requires several tools that must be installed and run locally:
 
-* An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/cognitive-services) before you begin.
+* An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 * [Docker Engine](https://www.docker.com/products/docker-engine). Confirm that the Docker CLI works in a console window.
 * An Azure resource with the correct pricing tier. Only the following pricing tiers work with this container:
-  * **Azure AI Vision** resource with F0 or Standard pricing tier only.
+  * **Azure Vision in Foundry Tools** resource with F0 or Standard pricing tier only.
   * **Document Intelligence** resource with F0 or Standard pricing tier only.
-  * **Azure AI services** resource with the S0 pricing tier.
+  * **Foundry Tools** resource with the S0 pricing tier.
 * If you're using a gated preview container, You will need to complete the [online request form](https://aka.ms/csgate/) to use it.
 
 ## Docker Compose file
 
-The YAML file defines all the Azure AI services containers to be deployed. These services rely on either a `DockerFile` or an existing container image. In this case, we'll use two images. Copy and paste the following YAML file, and save it as *docker-compose.yaml*. Provide the appropriate **apikey**, **billing**, and **EndpointUri** values in the file.
+The YAML file defines all the Foundry Tools containers to be deployed. These services rely on either a `DockerFile` or an existing container image. In this case, we'll use two images. Copy and paste the following YAML file, and save it as *docker-compose.yaml*. Provide the appropriate **apikey**, **billing**, and **EndpointUri** values in the file.
 
 > [!IMPORTANT]
 > Be sure to create the directories on the host machine that are specified under the `volumes` node, or provide ones that exist on your machine. These directories must exist before you try to mount an image by using volume bindings.
@@ -64,8 +64,8 @@ services:
     image: "mcr.microsoft.com/azure-cognitive-services/vision/read:latest"
     environment:
       eula: accept
-      apikey: # < Your Azure AI Vision API key >
-      billing: # < Your Azure AI Vision billing URL >
+      apikey: # < Your Vision API key >
+      billing: # < Your Vision billing URL >
     ports:
       - "5021:5000"
 ```

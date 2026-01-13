@@ -5,9 +5,9 @@ description: Learn how to index Access Control Lists (ACLs) and Azure Role-Based
 ms.service: azure-ai-search  
 ms.update-cycle: 180-days
 ms.topic: tutorial  
-ms.date: 05/20/2025
+ms.date: 08/27/2025
 author: wlifuture
-ms.author: wli
+ms.author: haileytapia
 ---  
 
 # Tutorial: Index permission metadata from ADLS Gen2 and query with permission-filtered results
@@ -27,11 +27,11 @@ In this tutorial, you learn how to:
 > + Create and run an indexer to ingest permission information into an index from a data source
 > + Search the index you just created
 
-Use a REST client to complete this tutorial and the [2025-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) REST API. There's no currently no support for ACL indexing in the Azure portal.
+Use a REST client to complete this tutorial and the [latest preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true). Currently, there's no support for ACL indexing in the Azure portal.
 
 ## Prerequisites
 
-+ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
++ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 + Microsoft Entra ID authentication and authorization. Services and apps must be in the same tenant. Role assignments are used for each authenticated connection. Users and groups must be in the same tenant. You should have user and groups to work with. Creating tenants and security principals is out-of-scope for this tutorial.
 
@@ -53,7 +53,7 @@ You search service must be configured for Microsoft Entra ID authentication and 
 
 + [Enable role-based access](search-security-enable-roles.md)
 
-+ [Configure a system-assigned managed identity](search-howto-managed-identities-data-sources.md).
++ [Configure a system-assigned managed identity](search-how-to-managed-identities.md).
 
 ## Get a personal identity token for local testing
 
@@ -79,7 +79,7 @@ As a best practice, use [`Group` sets](search-indexer-access-control-lists-and-r
 
 [Create an index](search-how-to-create-search-index.md#create-an-index) that contains fields for content and [permission metadata](search-indexer-access-control-lists-and-role-based-access.md#create-permission-fields-in-the-index).
 
-Be sure to use [2025-05-01-preview data plane REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) or a prerelease Azure SDK that provides equivalent functionality. The permission filter properties are only available in the preview APIs.
+Be sure to use the [latest preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or a preview Azure SDK package that provides equivalent functionality. The permission filter properties are only available in the preview APIs.
 
 For demo purposes, the permission field has `retrievable` enabled so that you can check the values from the index. In a production environment, you should disable `retrievable` to avoid leaking sensitive information.
 
@@ -187,10 +187,10 @@ After indexer creation and immediate run, the file content along with permission
 
 Now that documents are loaded, you can issue queries against them by using [Documents - Search Post (REST)](/rest/api/searchservice/documents/search-post).
 
-The URI is extended to include a query input, which is specified by using the `/docs/search` operator. The query token is passed in the request header. For more information, see [Query-Time ACL and RBAC enforcement](search-query-access-control-rbac-enforcement.md).
+The URI is extended to include a query input, which is specified by using the `/docs/search` operator. The query token is passed in the request header. For more information, see [Query-time ACL and RBAC enforcement](search-query-access-control-rbac-enforcement.md).
 
 ```http
-POST  {{endpoint}}/indexes/stateparks/docs/search?api-version=2025-05-01-preview
+POST  {{endpoint}}/indexes/stateparks/docs/search?api-version=2025-11-01-preview
 Authorization: Bearer {{search-token}}
 x-ms-query-source-authorization: {{search-token}}
 Content-Type: application/json
@@ -204,4 +204,4 @@ Content-Type: application/json
 
 ## Related content
 
-+ [https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-ACL](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-ACL)
++ [https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/acl](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/acl)

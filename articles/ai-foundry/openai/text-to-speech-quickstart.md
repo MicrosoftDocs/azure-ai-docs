@@ -1,21 +1,25 @@
 ---
-title: 'Text to speech with Azure OpenAI in Azure AI Foundry Models'
+title: 'Text to speech with Azure OpenAI in Microsoft Foundry Models'
 titleSuffix: Azure OpenAI
-description: Use the Azure OpenAI for text to speech with OpenAI voices.
+description: Use Azure OpenAI for text to speech with OpenAI voices.
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: quickstart
-ms.date: 5/23/2025
-ms.reviewer: eur
-ms.author: eur
-author: eric-urban
+ms.date: 8/13/2025
+ms.author: pafarley
+author: PatrickFarley
 recommendations: false
 zone_pivot_groups: programming-languages-rest-js-cs
+monikerRange: 'foundry-classic || foundry'
+
 ---
 
-# Quickstart: Text to speech with the Azure OpenAI in Azure AI Foundry Models
+# Quickstart: Text to speech with Azure OpenAI in Microsoft Foundry Models
 
-In this quickstart, you use the Azure OpenAI for text to speech with OpenAI voices.  
+[!INCLUDE [version-banner](../includes/version-banner.md)]
+
+In this quickstart, you use Azure OpenAI for text to speech with OpenAI voices.  
 
 The available voices are: `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. For more information, see [Azure OpenAI reference documentation for text to speech](./reference.md#text-to-speech-preview).
 

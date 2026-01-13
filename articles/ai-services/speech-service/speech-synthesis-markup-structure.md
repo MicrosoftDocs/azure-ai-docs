@@ -1,13 +1,13 @@
 ---
 title: Speech Synthesis Markup Language (SSML) document structure and events - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about the Speech Synthesis Markup Language (SSML) document structure.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 3/10/2025
-ms.author: eur
+ms.date: 08/07/2025
+ms.author: pafarley
 #Customer intent: As a developer, I want to learn about the Speech Synthesis Markup Language (SSML) document structure.
 ---
 
@@ -18,10 +18,10 @@ The Speech Synthesis Markup Language (SSML) with input text determines the struc
 Refer to the sections below for details about how to structure elements in the SSML document. 
 
 > [!NOTE]
-> In addition to Azure AI Speech neural (non HD) voices, you can also use [Azure AI Speech high definition (HD) voices](high-definition-voices.md) and [Azure OpenAI neural (HD and non HD) voices](openai-voices.md). The HD voices provide a higher quality for more versatile scenarios.
+> In addition to Azure Speech in Foundry Tools neural (non HD) voices, you can also use [Azure Speech in Foundry Tools high definition (HD) voices](high-definition-voices.md) and [Azure OpenAI neural (HD and non HD) voices](openai-voices.md). The HD voices provide a higher quality for more versatile scenarios.
 > 
 > Some voices don't support all [Speech Synthesis Markup Language (SSML)](speech-synthesis-markup-structure.md) tags. This includes neural text to speech HD voices, personal voices, and embedded voices. 
-- For Azure AI Speech high definition (HD) voices, check the SSML support [here](high-definition-voices.md#supported-and-unsupported-ssml-elements-for-azure-ai-speech-hd-voices). 
+- For Azure Speech high definition (HD) voices, check the SSML support [here](high-definition-voices.md#supported-and-unsupported-ssml-elements-for-azure-speech-hd-voices). 
 - For personal voice, you can find the SSML support [here](personal-voice-how-to-use.md#supported-and-unsupported-ssml-elements-for-personal-voice). 
 - For embedded voices, check the SSML support [here](embedded-speech.md#embedded-voices-capabilities).
 
@@ -94,7 +94,7 @@ For example, specify `green &amp; yellow` instead of `green & yellow`. The follo
 
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-US">
-    <voice name="en-US-AvaNeural">
+    <voice name="en-US-Ava:DragonHDLatestNeural">
         My favorite colors are green &amp; yellow.
     </voice>
 </speak>
@@ -128,11 +128,11 @@ The supported values for attributes of the `speak` element were [described previ
 
 #### Single voice example
 
-This example uses the `en-US-AvaNeural` voice. For more examples, see [voice examples](speech-synthesis-markup-voice.md#voice-examples).
+This example uses the `en-US-Ava:DragonHDLatestNeural` voice. For more examples, see [voice examples](speech-synthesis-markup-voice.md#voice-examples).
 
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-US">
-    <voice name="en-US-AvaNeural">
+    <voice name="en-US-Ava:DragonHDLatestNeural">
         This is the text that is spoken.
     </voice>
 </speak>
@@ -165,7 +165,7 @@ The supported values for attributes of the `break` element were [described previ
 
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-US">
-    <voice name="en-US-AvaNeural">
+    <voice name="en-US-Ava:DragonHDLatestNeural">
         Welcome <break /> to text to speech.
         Welcome <break strength="medium" /> to text to speech.
         Welcome <break time="750ms" /> to text to speech.
@@ -196,7 +196,7 @@ In this example, `mstts:silence` is used to add 200 ms of silence between two se
 
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="http://www.w3.org/2001/mstts" xml:lang="en-US">
-<voice name="en-US-AvaNeural">
+<voice name="en-US-Ava:DragonHDLatestNeural">
 <mstts:silence  type="Sentenceboundary" value="200ms"/>
 If we're home schooling, the best we can do is roll with what each day brings and try to have fun along the way.
 A good place to start is by trying out the slew of educational apps that are helping children stay happy and smash their schooling at the same time.
@@ -224,7 +224,7 @@ The following example defines two paragraphs that each contain sentences. In the
 
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-US">
-    <voice name="en-US-AvaNeural">
+    <voice name="en-US-Ava:DragonHDLatestNeural">
         <p>
             <s>Introducing the sentence element.</s>
             <s>Used to mark individual sentences.</s>

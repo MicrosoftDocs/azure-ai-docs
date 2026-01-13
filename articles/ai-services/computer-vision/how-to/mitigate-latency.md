@@ -1,18 +1,16 @@
 ---
 title: Mitigate latency and improve Face service performance
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to mitigate network latency and improve service performance when using the Azure AI Face service to enhance user experience.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
+ms.update-cycle: 90-days
 ms.topic: how-to
-ms.date: 01/22/2025
+ms.date: 08/21/2025
 ms.author: pafarley
 ms.devlang: csharp
-ms.custom:
-  - cogserv-non-critical-vision
-  - ignite-2023
 feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 #customer intent: As a developer, I want to mitigate latency and improve performance when using the Face service so that my application provides a better user experience.
 ---
@@ -33,7 +31,7 @@ You may encounter latency when using the Face service. Latency refers to any kin
 This section describes how you can mitigate various causes of latency specific to the Azure AI Face service.
 
 > [!NOTE]
-> Azure AI services do not provide any Service Level Agreement (SLA) regarding latency.
+> Foundry Tools do not provide any Service Level Agreement (SLA) regarding latency.
 
 ### Choose the appropriate region for your Face resource
 

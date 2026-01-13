@@ -1,60 +1,56 @@
 ---
-title: Azure OpenAI in Azure AI Foundry Models API version lifecycle
+title: Azure OpenAI in Microsoft Foundry Models API version lifecycle
 description: Learn more about API version retirement in Azure OpenAI.
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual 
-ms.date: 05/25/2025
+ms.date: 10/06/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
-ms.custom:
+monikerRange: 'foundry-classic || foundry'
 ---
 
-# Azure OpenAI in Azure AI Foundry Models API lifecycle
+# Azure OpenAI in Microsoft Foundry Models API lifecycle
 
 This article is to help you understand the support lifecycle for Azure OpenAI APIs.
 
 > [!NOTE]
-> New API response objects may be added to the API response without version changes. We recommend you only parse the response objects you require.
+> New API response objects may be added to the API response at any time. We recommend you only parse the response objects you require.
 >
-> The `2025-04-01-preview` Azure OpenAI spec uses OpenAPI 3.1, is a known issue that this is currently not fully supported by [Azure API Management](/azure/api-management/api-management-key-concepts)
 
 ## API evolution
 
-Historically, Azure OpenAI received monthly updates of new API versions. Taking advantage of new features required constantly updating code and environment variables with each new API release. Azure OpenAI also required the extra step of using Azure specific clients which created overhead when migrating code between OpenAI and Azure OpenAI. Starting in May 2025, you can now opt in to our next generation of v1 Azure OpenAI APIs which add support for:
+Previously, Azure OpenAI received monthly updates of new API versions. Taking advantage of new features required constantly updating code and environment variables with each new API release. Azure OpenAI also required the extra step of using Azure specific clients which created overhead when migrating code between OpenAI and Azure OpenAI.
 
-- Ongoing access to the latest features with no need to update `api-version` each month.
+Starting in August 2025, you can now opt in to our next generation v1 Azure OpenAI APIs which add support for:
+
+- Ongoing access to the latest features with no need to specify new `api-version`'s each month.
+- Faster API release cycle with new features launching more frequently.
 - OpenAI client support with minimal code changes to swap between OpenAI and Azure OpenAI when using key-based authentication.
+- OpenAI client support for token based authentication and automatic token refresh without the need to take a dependency on a separate Azure OpenAI client.
+- Make chat completions calls with models from other providers like DeepSeek and Grok which support the v1 chat completions syntax.
 
-For the initial preview launch we are only supporting a subset of the inference API. While in preview, operations may have incomplete functionality that will be continually expanded.
+Access to new API calls that are still in preview will be controlled by passing feature specific preview headers allowing you to opt in to the features you want, without having to swap API versions. Alternatively, some features will indicate preview status through their API path and don't require an additional header.
+
+Examples:
+
+- `/openai/v1/evals` is in preview and requires passing an `"aoai-evals":"preview"` header.
+- `/openai/v1/fine_tuning/alpha/graders/` is in preview and requires no custom header due to the presence of `alpha` in the API path.
+
+For the initial v1 Generally Available (GA) API launch we're only supporting a subset of the inference and authoring API capabilities. All GA features are supported for use in production. We'll be rapidly adding support for more capabilities soon.  
 
 ## Code changes
 
-# [API Key](#tab/key)
+# [Python](#tab/python)
 
-### Last generation API 
+### v1 API
 
-```python
-import os
-from openai import AzureOpenAI
+[Python v1 examples](./supported-languages.md)
 
-client = AzureOpenAI(
-    api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2025-04-01-preview",
-    azure_endpoint="https://YOUR-RESOURCE-NAME.openai.azure.com")
-    )
-
-response = client.responses.create(
-    model="gpt-4.1-nano", # Replace with your model deployment name 
-    input="This is a test."
-)
-
-print(response.model_dump_json(indent=2)) 
-```
-
-### Next generation API
+**API Key**:
 
 ```python
 import os
@@ -62,8 +58,7 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),
-    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-    default_query={"api-version": "preview"}, 
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
 )
 
 response = client.responses.create(   
@@ -76,51 +71,30 @@ print(response.model_dump_json(indent=2))
 
 - `OpenAI()` client is used instead of `AzureOpenAI()`.
 - `base_url` passes the Azure OpenAI endpoint and `/openai/v1` is appended to the endpoint address.
-- `default_query={"api-version": "preview"}` indicates that the version-less always up-to-date preview API is being used.
+- `api-version` is no longer a required parameter with the v1 GA API.
 
-Once we release the GA next generation v1 API, we will support two values: `latest` and `preview`. If `api-version` is not passed traffic is automatically routed to the `latest` GA version. Currently only `preview` is supported.
-
-# [Microsoft Entra ID](#tab/entra)
-
-### Last generation API 
+**API Key** with environment variables set for `OPENAI_BASE_URL` and `OPENAI_API_KEY`:
 
 ```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(
-  azure_endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/", 
-  azure_ad_token_provider=token_provider,
-  api_version="2025-04-01-preview"
-)
-
-response = client.responses.create(
-    model="gpt-4.1-nano", # Replace with your model deployment name 
-    input="This is a test."
-)
-
-print(response.model_dump_json(indent=2)) 
+client = OpenAI()
 ```
 
-### Next generation API
+**Microsoft Entra ID**:
 
+> [!IMPORTANT]
+> Handling automatic token refresh was previously handled through use of the `AzureOpenAI()` client. The v1 API removes this dependency, by adding automatic token refresh support to the `OpenAI()` client.
 
 ```python
-from openai import AzureOpenAI
+from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
 )
 
-client = AzureOpenAI(  
+client = OpenAI(  
   base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
+  api_key = token_provider  
 )
 
 response = client.responses.create(
@@ -131,20 +105,153 @@ response = client.responses.create(
 print(response.model_dump_json(indent=2)) 
 ```
 
-- `AzureOpenAI()` is used to take advantage of automatic token refresh provided by `azure_ad_token_provider`.
 - `base_url` passes the Azure OpenAI endpoint and `/openai/v1` is appended to the endpoint address.
-- `api-version="preview"` indicates that the version-less always up-to-date preview API is being used.
+- `api_key` parameter is set to `token_provider`, enabling automatic retrieval and refresh of an authentication token instead of using a static API key.
 
-Once we release the GA next generation v1 API, we will support two values: `latest` and `preview`. If `api-version` is not passed traffic is automatically routed to the `latest` GA version. Currently only `preview` is supported.
+# [C#](#tab/dotnet)
+
+### v1 API
+
+[C# v1 examples](./supported-languages.md)
+
+**API Key**:
+
+```csharp
+OpenAIClient client = new(
+    new ApiKeyCredential("{your-api-key}"),
+    new OpenAIClientOptions()
+    {
+        Endpoint = new("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"),
+    })
+```
+
+**Microsoft Entra ID**:
+
+```csharp
+#pragma warning disable OPENAI001
+
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://cognitiveservices.azure.com/.default");
+OpenAIClient client = new(
+    authenticationPolicy: tokenPolicy,
+    options: new OpenAIClientOptions()
+    {
+        Endpoint = new("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"),
+    })
+```
+
+# [JavaScript](#tab/javascript)
+
+### v1 API
+
+[JavaScript v1 examples](./supported-languages.md)
+
+**API Key**:
+
+```javascript
+const client = new OpenAI({
+    baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    apiKey: "{your-api-key}" 
+});
+```
+
+**API Key** with environment variables set for `OPENAI_BASE_URL` and `OPENAI_API_KEY`:
+
+```javascript
+const client = new OpenAI();
+```
+
+**Microsoft Entra ID**:
+
+```javascript
+const tokenProvider = getBearerTokenProvider(
+    new DefaultAzureCredential(),
+    'https://cognitiveservices.azure.com/.default');
+const client = new OpenAI({
+    baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    apiKey: tokenProvider
+});
+```
+
+# [Go](#tab/go)
+
+### v1 API
+
+[Go v1 examples](./supported-languages.md)
+
+**API Key**:
+
+```go
+client := openai.NewClient(
+    option.WithBaseURL("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"),
+    option.WithAPIKey("{your-api-key}")
+)
+```
+
+**API Key** with environment variables set for `OPENAI_BASE_URL` and `OPENAI_API_KEY`:
+
+```go
+client := openai.NewClient()
+```
+
+
+**Microsoft Entra ID**:
+
+```go
+tokenCredential, err := azidentity.NewDefaultAzureCredential(nil)
+
+client := openai.NewClient(
+    option.WithBaseURL("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"),
+    azure.WithTokenCredential(tokenCredential)
+)
+```
+
+# [Java](#tab/Java)
+
+[Java v1 examples](./supported-languages.md)
+
+### v1 API
+
+**API Key**:
+
+```java
+
+OpenAIClient client = OpenAIOkHttpClient.builder()
+                .baseUrl("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/")
+                .apiKey(apiKey)
+                .build();
+```
+
+**API Key** with environment variables set for `OPENAI_BASE_URL` and `OPENAI_API_KEY`:
+
+```java
+OpenAIClient client = OpenAIOkHttpClient.builder()
+                .fromEnv()
+                .build();
+```
+
+**Microsoft Entra ID**:
+
+```java
+Credential tokenCredential = BearerTokenCredential.create(
+        AuthenticationUtil.getBearerTokenSupplier(
+                new DefaultAzureCredentialBuilder().build(),
+                "https://cognitiveservices.azure.com/.default"));
+OpenAIClient client = OpenAIOkHttpClient.builder()
+        .baseUrl("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/")
+        .credential(tokenCredential)
+        .build();
+```
 
 # [REST](#tab/rest)
 
-### Last generation API 
+### v1 API
 
 **API Key**:
 
 ```bash
-curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/responses?api-version=2025-04-01-preview \
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -d '{
@@ -156,33 +263,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/responses?api-ve
 **Microsoft Entra ID**:
 
 ```bash
-curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/responses?api-version=2025-04-01-preview \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
-  -d '{
-     "model": "gpt-4.1-nano",
-     "input": "This is a test"
-    }'
-```
-
-### Next generation API
-
-**API Key**:
-
-```bash
-curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version=preview \
-  -H "Content-Type: application/json" \
-  -H "api-key: $AZURE_OPENAI_API_KEY" \
-  -d '{
-     "model": "gpt-4.1-nano",
-     "input": "This is a test"
-    }'
-```
-
-**Microsoft Entra ID**:
-
-```bash
-curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version=preview \
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
   -d '{
@@ -191,79 +272,233 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api
     }'
 ```
 
-# [Output](#tab/output)
+---
 
-```json
-{
-  "id": "resp_682f7eb5dc408190b491cbbe57be2fbf0f98d661c3dc276d",
-  "created_at": 1747943093.0,
-  "error": null,
-  "incomplete_details": null,
-  "instructions": null,
-  "metadata": {},
-  "model": "gpt-4.1-nano",
-  "object": "response",
-  "output": [
-    {
-      "id": "msg_682f7eb61d908190926a004c15c5ddd00f98d661c3dc276d",
-      "content": [
-        {
-          "annotations": [],
-          "text": "Hello! It looks like you've sent a test message. How can I assist you today?",
-          "type": "output_text"
-        }
-      ],
-      "role": "assistant",
-      "status": "completed",
-      "type": "message"
-    }
-  ],
-  "parallel_tool_calls": true,
-  "temperature": 1.0,
-  "tool_choice": "auto",
-  "tools": [],
-  "top_p": 1.0,
-  "background": null,
-  "max_output_tokens": null,
-  "previous_response_id": null,
-  "reasoning": {
-    "effort": null,
-    "generate_summary": null,
-    "summary": null
-  },
-  "service_tier": "default",
-  "status": "completed",
-  "text": {
-    "format": {
-      "type": "text"
-    }
-  },
-  "truncation": "disabled",
-  "usage": {
-    "input_tokens": 12,
-    "input_tokens_details": {
-      "cached_tokens": 0
-    },
-    "output_tokens": 19,
-    "output_tokens_details": {
-      "reasoning_tokens": 0
-    },
-    "total_tokens": 31
-  },
-  "user": null,
-  "store": true
+## Model support
+
+For Azure OpenAI models we recommend using the [Responses API](./supported-languages.md), however, the v1 API also allows you to make chat completions calls with models from other providers like DeepSeek and Grok which support the OpenAI v1 chat completions syntax.
+
+`base_url` will accept both `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/` and `https://YOUR-RESOURCE-NAME.services.ai.azure.com/openai/v1/` formats.
+
+> [!NOTE]
+> Responses API also works with Foundry Models sold directly by Azure, such as Microsoft AI, DeepSeek, and Grok models. To learn how to use the Responses API with these models, see [How to generate text responses with Microsoft Foundry Models](../foundry-models/how-to/generate-responses.md).
+
+# [Python](#tab/python)
+
+```python
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key=token_provider,
+)
+completion = client.chat.completions.create(
+  model="MAI-DS-R1", # Replace with your model deployment name.
+  messages=[
+    {"role": "system", "content": "You are a helpful assistant."},
+    {"role": "user", "content": "Tell me about the attention is all you need paper"}
+  ]
+)
+
+#print(completion.choices[0].message)
+print(completion.model_dump_json(indent=2))
+```
+
+# [C#](#tab/dotnet)
+
+```csharp
+using Azure.Identity;
+using OpenAI;
+using OpenAI.Chat;
+using System.ClientModel.Primitives;
+
+#pragma warning disable OPENAI001
+
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://cognitiveservices.azure.com/.default");
+
+ChatClient client = new(
+    model: "MAI-DS-R1", // Replace with your model deployment name.
+    authenticationPolicy: tokenPolicy,
+    options: new OpenAIClientOptions() { 
+    
+        Endpoint = new Uri("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1")
+   }
+);
+
+ChatCompletion completion = client.CompleteChat("Tell me about the attention is all you need paper");
+
+Console.WriteLine($"[ASSISTANT]: {completion.Content[0].Text}");
+```
+
+# [JavaScript](#tab/javascript)
+
+```javascript
+import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
+import { OpenAI } from "openai";
+
+const tokenProvider = getBearerTokenProvider(
+    new DefaultAzureCredential(),
+    'https://cognitiveservices.azure.com/.default');
+const client = new OpenAI({
+    baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    apiKey: tokenProvider
+});
+
+const messages = [
+    { role: 'system', content: 'You are a helpful assistant.' },
+    { role: 'user', content: 'Tell me about the attention is all you need paper' }
+];
+
+// Make the API request with top-level await
+const result = await client.chat.completions.create({ 
+    messages, 
+    model: 'MAI-DS-R1', // model deployment name
+    max_tokens: 100 
+});
+
+// Print the full response
+console.log('Full response:', result);
+
+// Print just the message content from the response
+console.log('Response content:', result.choices[0].message.content);
+```
+
+# [Go](#tab/go)
+
+```go
+
+package main
+
+import (
+	"context"
+	"fmt"
+	"log"
+
+	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
+	"github.com/openai/openai-go/v3"
+	"github.com/openai/openai-go/v3/azure"
+	"github.com/openai/openai-go/v3/option"
+)
+
+func main() {
+	// Create an Azure credential
+	tokenCredential, err := azidentity.NewDefaultAzureCredential(nil)
+	if err != nil {
+		log.Fatalf("Failed to create credential: %s", err)
+	}
+
+	// Create a client with Azure OpenAI endpoint and token credential
+	client := openai.NewClient(
+		option.WithBaseURL("https://YOUR-RESOURCE_NAME.openai.azure.com/openai/v1/"),
+		azure.WithTokenCredential(tokenCredential),
+	)
+
+	// Make a completion request
+	chatCompletion, err := client.Chat.Completions.New(context.TODO(), openai.ChatCompletionNewParams{
+		Messages: []openai.ChatCompletionMessageParamUnion{
+			openai.UserMessage("Explain what the bitter lesson is?"),
+		},
+		Model: "MAI-DS-R1", // Use your deployed model name on Azure
+	})
+	if err != nil {
+		log.Fatalf("Failed to get chat completions: %s", err)
+	}
+
+	fmt.Println(chatCompletion.Choices[0].Message.Content)
 }
+```
+
+# [Java](#tab/Java)
+
+```java
+package com.example;
+
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.models.ChatModel;
+import com.openai.models.chat.completions.ChatCompletion;
+import com.openai.models.chat.completions.ChatCompletionCreateParams;
+
+public class OpenAITest {
+    public static void main(String[] args) {
+        // Get API key from environment variable for security
+        String apiKey = System.getenv("OPENAI_API_KEY");
+        String resourceName = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+        String modelDeploymentName = "MAI-DS-R1"; //replace with you model deployment name
+
+        try {
+            OpenAIClient client = OpenAIOkHttpClient.builder()
+                    .baseUrl(resourceName)
+                    .apiKey(apiKey)
+                    .build();
+
+           ChatCompletionCreateParams params = ChatCompletionCreateParams.builder()
+              .addUserMessage("Explain what the bitter lesson is?")
+              .model(modelDeploymentName)
+              .build();
+           ChatCompletion chatCompletion = client.chat().completions().create(params);
+        }
+    }
+}
+```
+
+# [REST](#tab/rest)
+
+```bash
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
+  -d '{
+      "model": "MAI-DS-R1",
+      "messages": [
+      {
+        "role": "developer",
+        "content": "You are a helpful assistant."
+      },
+      {
+        "role": "user",
+        "content": "Explain what the bitter lesson is?"
+      }
+    ]
+  }'
 ```
 
 ---
 
-## Preview API releases
+## v1 API support
 
-Azure OpenAI API latest releases:
+- [v1 OpenAPI 3.0 spec](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/ai/data-plane/OpenAI.v1/azure-v1-v1-generated.json)
 
-- [**NEW** v1 Preview API](reference-preview-latest.md)
-- Inference: [2025-04-01-preview](reference-preview.md)
-- Authoring: [2025-04-01-preview](authoring-reference-preview.md)
+### Status
+
+Generally Available features are supported for use in production.
+
+| API Path                               | Status              |
+|----------------------------------------|---------------------|
+| `/openai/v1/chat/completions`          | Generally Available |
+| `/openai/v1/embeddings`                | Generally Available |
+| `/openai/v1/evals`                     | Preview             |
+| `/openai/v1/files`                     | Generally Available |
+| `/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints/{fine_tuning_checkpoint_id}/copy` | Preview |
+| `/openai/v1/fine_tuning/alpha/graders/`| Preview             |
+| `/openai/v1/fine_tuning/`              | Generally Available |
+| `/openai/v1/models`                    | Generally Available |
+| `/openai/v1/responses`                 | Generally Available |
+| `/openai/v1/vector_stores`             | Generally Available |
+
+### Preview headers
+
+| API Path                              | Header                   |
+|---------------------------------------|:-------------------------|
+| `/openai/v1/evals`                    | `"aoai-evals":"preview"` |
+| `/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints/{fine_tuning_checkpoint_id}/copy` | `"aoai-copy-ft-checkpoints" : "preview"` |
 
 ## Changes between v1 preview release and 2025-04-01-preview
 
@@ -277,18 +512,18 @@ Azure OpenAI API latest releases:
 
 ## Changes between 2025-04-01-preview and 2025-03-01-preview
 
-- [`GPT-image-1` support](/azure/ai-services/openai/how-to/dall-e)
-- [Reasoning summary for `o3` and `o4-mini`](/azure/ai-services/openai/how-to/reasoning)
-- [Evaluation API](/azure/ai-services/openai/authoring-reference-preview#evaluation---create)
+- [`GPT-image-1` support](/azure/ai-foundry/openai/how-to/dall-e)
+- [Reasoning summary for `o3` and `o4-mini`](/azure/ai-foundry/openai/how-to/reasoning)
+- [Evaluation API](/azure/ai-foundry/openai/authoring-reference-preview#evaluation---create)
 
 ## Changes between 2025-03-01-preview and 2025-02-01-preview
 
 - [Responses API](./how-to/responses.md)
-- [Computer use](./how-to/computer-use.md)
+- Computer use
 
 ## Changes between 2025-02-01-preview and 2025-01-01-preview
 
-- [Stored completions (distillation)](./how-to/stored-completions.md#stored-completions-api) API support.
+- Stored completions (distillation API support).
 
 ## Changes between 2025-01-01-preview and 2024-12-01-preview
 
@@ -297,13 +532,13 @@ Azure OpenAI API latest releases:
 
 ## Changes between 2024-12-01-preview and 2024-10-01-preview
 
-- `store`, and `metadata` parameters added for [stored completions support](./how-to/stored-completions.md).
+- `store`, and `metadata` parameters added for stored completions support.
 - `reasoning_effort` added for latest [reasoning models](./how-to/reasoning.md).
 - `user_security_context` added for [Microsoft Defender for Cloud integration](https://aka.ms/TP4AI/Documentation/EndUserContext).
 
 ## Changes between 2024-09-01-preview and 2024-08-01-preview
 
-- `max_completion_tokens` added to support `o1-preview` and `o1-mini` models. `max_tokens` does not work with the **o1 series** models.
+- `max_completion_tokens` added to support `o1-preview` and `o1-mini` models. `max_tokens` doesn't work with the **o1 series** models.
 - `parallel_tool_calls` added.
 - `completion_tokens_details` & `reasoning_tokens` added.
 - `stream_options` & `include_usage` added.
@@ -313,7 +548,7 @@ Azure OpenAI API latest releases:
 - [Structured outputs support](./how-to/structured-outputs.md).
 - Large file upload API added.
 - On your data changes:
-    * [Mongo DB integration](./reference-preview.md#example-7).
+    * Mongo DB integration.
     * `role_information` parameter removed.
     *  [`rerank_score`](https://github.com/Azure/azure-rest-api-specs/blob/2b700e5e84d4a95880d373e6a4bce5d16882e4b5/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2024-08-01-preview/inference.json#L5532) added to citation object.
     * AML datasource removed.
@@ -322,7 +557,7 @@ Azure OpenAI API latest releases:
 ## Changes between 2024-5-01-preview and 2024-07-01-preview API specification
 
 - [Batch API support added](./how-to/batch.md)
-- [Vector store chunking strategy parameters](/azure/ai-services/openai/reference-preview?#request-body-17)
+- [Vector store chunking strategy parameters](/azure/ai-foundry/openai/reference-preview?#request-body-17)
 - `max_num_results` that the file search tool should output.
 
 ## Changes between 2024-04-01-preview and 2024-05-01-preview API specification
@@ -340,17 +575,11 @@ Azure OpenAI API latest releases:
 - [`audioWord`](https://github.com/Azure/azure-rest-api-specs/blob/fbc90d63f236986f7eddfffe3dca6d9d734da0b2/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2024-04-01-preview/inference.json#L5286) object added.
 - Additional TTS [`response_formats: wav & pcm`](https://github.com/Azure/azure-rest-api-specs/blob/fbc90d63f236986f7eddfffe3dca6d9d734da0b2/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2024-04-01-preview/inference.json#L5333).
 
-## Latest GA API release
 
-Azure OpenAI API version [2024-10-21](./reference.md) is currently the latest GA API release. This API version is the replacement for the previous `2024-06-01` GA API release.
+## Known issues
 
-## Updating API versions
+- The `2025-04-01-preview` Azure OpenAI spec uses OpenAPI 3.1, is a known issue that this is currently not fully supported by [Azure API Management](/azure/api-management/api-management-key-concepts)
 
-We recommend first testing the upgrade to new API versions to confirm there's no impact to your application from the API update before making the change globally across your environment.
-
-If you're using the OpenAI Python or JavaScript client libraries, or the REST API, you'll need to update your code directly to the latest preview API version.
-
-If you're using one of the Azure OpenAI SDKs for C#, Go, or Java, you'll instead need to update to the latest version of the SDK. Each SDK release is hardcoded to work with specific versions of the Azure OpenAI API.
 
 ## Next steps
 

@@ -6,14 +6,15 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
 ms.topic: how-to
-author: s-polly
-ms.author: scottpolly
-ms.reviewer: ziqiwang
+author: lgayhardt
+ms.author: lagayhar
+ms.reviewer: sooryar
 ms.date: 10/28/2024
 ms.custom:
   - ignite-2023
   - build-2024
   - sfi-image-nochange
+ms.update-cycle: 365-days
 ---
 
 # Submit a batch run to evaluate a flow

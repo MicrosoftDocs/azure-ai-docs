@@ -4,8 +4,8 @@ title: Azure AI Metrics Advisor documentation
 summary: Starting on the 20th of September, 2023 you won’t be able to create new Metrics Advisor resources. The Metrics Advisor service is being retired on the 1st of October, 2026.
 
 metadata:
-  title: Azure AI Metrics Advisor documentation - Tutorials, API reference - Azure AI services  | Microsoft Docs
-  titleSuffix: Azure AI services
+  title: Azure AI Metrics Advisor documentation - Tutorials, API reference - Foundry Tools  | Microsoft Docs
+  titleSuffix: Foundry Tools
   description: 'Metrics Advisor is a time series monitoring platform that provides a set of APIs for data ingestion, anomaly detection, and diagnostics, without needing to know machine learning.'
   author: mrbullwinkle
   manager: nitinme
@@ -21,7 +21,7 @@ landingContent:
       links:
         - text: What is Metrics Advisor?
           url: overview.md
-        - text: What are Azure AI services?
+        - text: What are Foundry Tools?
           url: ../../ai-services/what-are-ai-services.md
     - linkListType: quickstart
       links:  
@@ -33,7 +33,7 @@ landingContent:
       links:
         - text: Introducing Metrics Advisor
           url: https://www.youtube.com/watch?v=0Y26cJqZMIM
-        - text: New to Azure AI services
+        - text: New to Foundry Tools
           url: https://www.youtube.com/watch?v=7tCLJHdBZgM
 - title: How-to articles
   linkLists:
@@ -81,7 +81,7 @@ landingContent:
   linkLists:
     - linkListType: reference
       links:
-        - text: Introducing Metrics Advisor - A new Azure AI service
+        - text: Introducing Metrics Advisor - A new Foundry Tool
           url: https://techcommunity.microsoft.com/t5/azure-ai/introducing-metrics-advisor-a-new-cognitive-service/ba-p/1668025
         - text: Protect your organization's growth by using Azure AI Metrics Advisor
           url: https://techcommunity.microsoft.com/t5/azure-ai/protect-your-organization-s-growth-by-using-azure-metrics/ba-p/2564682

@@ -1,15 +1,18 @@
 ---
-title: Monitor Azure OpenAI in Azure AI Foundry Models
+title: Monitor Azure OpenAI in Microsoft Foundry Models
 description: Start here to learn how to use Azure Monitor tools like Log Analytics to capture and analyze metrics and data logs for your Azure OpenAI.
-ms.date: 07/02/2025
+ms.date: 11/6/2025
 ms.custom: horz-monitor, subject-monitoring
 ms.topic: conceptual
 author: mrbullwinkle
 ms.author: mbullwin
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ---
 
 # Monitor Azure OpenAI
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 [!INCLUDE [horz-monitor-intro](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-intro.md)]
 
@@ -17,12 +20,14 @@ ms.service: azure-ai-openai
 
 Azure OpenAI provides out-of-box dashboards for each of your Azure OpenAI resources. There are two key dashboards to monitor your resource: 
 
-- The metrics dashboard in the AI Foundry Azure OpenAI resource view 
+- The metrics dashboard in the Foundry Azure OpenAI resource view 
 - The dashboard in the overview pane within the Azure portal 
 
-To access the monitoring dashboards, sign in to the [Azure portal](https://portal.azure.com) and then select the overview pane for one of your Azure OpenAI resources. To see the AI Foundry metrics dashboard from the Azure portal, select the overview pane and **Go to Azure AI Foundry portal**. Under tools, select the metrics dashboard.   
+To access the monitoring dashboards, sign in to the [Azure portal](https://portal.azure.com) and then select the overview pane for one of your Azure OpenAI resources. To see the Foundry metrics dashboard from the Azure portal, select the overview pane and **Go to Microsoft Foundry portal**. Under tools, select the metrics dashboard.   
 
 :::image type="content" source="../media/monitoring/dashboard.png" alt-text="Screenshot that shows out-of-box dashboards for an Azure OpenAI resource in the Azure portal." lightbox="../media/monitoring/dashboard.png" border="false":::
+
+
 
 The dashboards are grouped into four categories: **HTTP Requests**, **Tokens-Based Usage**, **PTU Utilization**, and **Fine-tuning**.
 
@@ -46,7 +51,7 @@ For more information about the resource types for Azure OpenAI, see [Azure OpenA
 
 [!INCLUDE [horz-monitor-platform-metrics](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-platform-metrics.md)]
 
-Azure OpenAI has commonality with a subset of Azure AI services. For a list of available metrics for Azure OpenAI, see [Azure OpenAI monitoring data reference](../monitor-openai-reference.md#metrics).
+Azure OpenAI has commonality with a subset of Foundry Tools. For a list of available metrics for Azure OpenAI, see [Azure OpenAI monitoring data reference](../monitor-openai-reference.md#metrics).
 
 <!-- ## OPTIONAL [TODO-replace-with-service-name] metrics
 If your service uses any non-Azure Monitor based metrics, add the following include and more information.
@@ -74,7 +79,7 @@ After you configure the diagnostic settings, you can work with metrics and log d
 
 [!INCLUDE [horz-monitor-kusto-queries](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-kusto-queries.md)]
 
-After you deploy an Azure OpenAI model, you can send some completions calls by using the **playground** environment in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
+After you deploy an Azure OpenAI model, you can send some completions calls by using the **playground** environment in [Foundry](https://ai.azure.com/?cid=learnDocs).
 
 Any text that you enter in the **Completions playground** or the **Chat completions playground** generates metrics and log data for your Azure OpenAI resource. In the Log Analytics workspace for your resource, you can query the monitoring data by using the [Kusto](/azure/data-explorer/kusto/query/) query language.
 

@@ -2,8 +2,9 @@
 manager: nitinme
 author: santiagxf
 ms.author: fasantia 
-ms.service: azure-ai-model-inference
-ms.date: 12/15/2024
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
+ms.date: 09/26/2025
 ms.topic: include
 zone_pivot_groups: azure-ai-models-deployment
 ---
@@ -18,7 +19,7 @@ zone_pivot_groups: azure-ai-models-deployment
 
 ## About this tutorial
 
-The example in this article is based on code samples contained in the [Azure-Samples/azureai-model-inference-bicep](https://github.com/Azure-Samples/azureai-model-inference-bicep) repository. To run the commands locally without having to copy or paste file content, use the following commands to clone the repository and go to the folder for your coding language:
+The example in this article is based on code samples in the [Azure-Samples/azureai-model-inference-bicep](https://github.com/Azure-Samples/azureai-model-inference-bicep) repository. To run the commands locally without copying or pasting file content, use the following commands to clone the repository and go to the folder for your coding language:
 
 ```azurecli
 git clone https://github.com/Azure-Samples/azureai-model-inference-bicep
@@ -32,24 +33,24 @@ cd azureai-model-inference-bicep/infra
 
 ## Understand the resources
 
-The tutorial helps you create:
+In this tutorial, you create the following resources:
 
-> [!div class="checklist"]
-> * An Azure AI Foundry (formerly known Azure AI Services) resource with key access disabled. For simplicity, this template doesn't deploy models.
-> * A role-assignment for a given security principal with the role **Cognitive Services User**.
 
-You are using the following assets to create those resources:
+* A Microsoft Foundry resource (formerly known as Azure AI Services resource) with key access disabled. For simplicity, this template doesn't deploy models.
+* A role-assignment for a given security principal with the role **Cognitive Services User**.
 
-1. Use the template `modules/ai-services-template.bicep` to describe your Azure AI Foundry (formerly known Azure AI Services) resource:
+To create these resources, use the following assets:
+
+1. Use the template `modules/ai-services-template.bicep` to describe your Foundry resource:
 
     __modules/ai-services-template.bicep__
 
     :::code language="bicep" source="~/azureai-model-inference-bicep/infra/modules/ai-services-template.bicep":::
 
     > [!TIP]
-    > Notice that this template can take the parameter `allowKeys` which, when `false` will disable the use of keys in the resource. This configuration is optional.
+    > This template accepts the `allowKeys` parameter. Set it to `false` to disable key access in the resource. This configuration is optional.
 
-2. Use the template `modules/role-assignment-template.bicep` to describe a role assignment in Azure:
+1. Use the template `modules/role-assignment-template.bicep` to describe a role assignment in Azure:
 
     __modules/role-assignment-template.bicep__
 
@@ -65,19 +66,19 @@ In your console, follow these steps:
 
     :::code language="bicep" source="~/azureai-model-inference-bicep/infra/deploy-entra-id.bicep":::
 
-2. Log into Azure:
+1. Sign in to Azure:
 
     ```azurecli
     az login
     ```
 
-3. Ensure you are in the right subscription:
+1. Make sure you're in the right subscription:
 
     ```azurecli
     az account set --subscription "<subscription-id>"
     ```
 
-4. Run the deployment:
+1. Run the deployment:
 
     ```azurecli
     RESOURCE_GROUP="<resource-group-name>"
@@ -85,16 +86,16 @@ In your console, follow these steps:
     
     az deployment group create \
       --resource-group $RESOURCE_GROUP \
-      --securityPrincipalId $SECURITY_PRINCIPAL_ID
+      --parameters securityPrincipalId=$SECURITY_PRINCIPAL_ID \
       --template-file deploy-entra-id.bicep
     ```
 
-7. The template outputs the Azure AI Foundry Models endpoint that you can use to consume any of the model deployments you have created.
+1. The template outputs the Foundry Models endpoint that you can use to consume any of the model deployments you created.
 
 
 ## Use Microsoft Entra ID in your code
 
-Once you configured Microsoft Entra ID in your resource, you need to update your code to use it when consuming the inference endpoint. The following example shows how to use a chat completions model:
+After you configure Microsoft Entra ID in your resource, update your code to use it when consuming the inference endpoint. The following example shows how to use a chat completions model:
 
 [!INCLUDE [code](../code-create-chat-client-entra.md)]
 
@@ -106,7 +107,9 @@ Once you configured Microsoft Entra ID in your resource, you need to update your
 
 ## Disable key-based authentication in the resource
 
-Disabling key-based authentication is advisable when you implemented Microsoft Entra ID and fully addressed compatibility or fallback concerns in all the applications that consume the service. You can achieve it by changing the property `disableLocalAuth`:
+Disable key-based authentication when you implement Microsoft Entra ID and fully address compatibility or fallback concerns in all the applications that consume the service. Change the `disableLocalAuth` property to disable key-based authentication.
+
+For more details on how to disable local authentication when you're using a Bicep or ARM template, see [How to disable local authentication](../../../../ai-services/disable-local-auth.md#how-to-disable-local-authentication).
 
 __modules/ai-services-template.bicep__
 

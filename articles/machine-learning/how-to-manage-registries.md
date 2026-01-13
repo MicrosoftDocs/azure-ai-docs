@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: kritifaujdar
-ms.date: 10/10/2024
+ms.reviewer: jturuk
+ms.date: 12/18/2025
 ms.topic: how-to
 ms.custom: build-2023
 # Customer intent: As an admin, I want to understand how to create and manage Azure Machine Learning registries so that I can share assets across workspaces.
@@ -78,11 +78,11 @@ replication_locations:
 For more information on the structure of the YAML file, see the [registry YAML reference](reference-yaml-registry.md) article.
 
 > [!TIP]
-> You typically see display names of Azure regions such as 'East US' in the Azure Portal but the registry creation YAML needs names of regions without spaces and lower case letters. Use `az account list-locations -o table` to find the mapping of region display names to the name of the region that can be specified in YAML.
+> You typically see display names of Azure regions such as 'East US' in the Azure portal but the registry creation YAML needs names of regions without spaces and lower case letters. Use `az account list-locations -o table` to find the mapping of region display names to the name of the region that can be specified in YAML.
 
 Run the registry create command.
 
-`az ml registry create --file registry.yml`
+`az ml registry create --file registry.yml --resource-group <resource-group-name>`
 
 # [Azure Machine Learning studio](#tab/studio)
 

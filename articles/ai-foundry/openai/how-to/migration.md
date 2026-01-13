@@ -1,19 +1,28 @@
 ---
 title: How to migrate to OpenAI Python v1.x
-titleSuffix: Azure OpenAI in Azure AI Foundry Models
+titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Learn about migrating to the latest release of the OpenAI Python library with Azure OpenAI.
 author: mrbullwinkle 
 ms.author: mbullwin 
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.custom: devx-track-python
 ms.topic: how-to
-ms.date: 07/02/2025
+ms.date: 11/26/2025
 manager: nitinme
 ---
 
 # Migrating to the OpenAI Python API library 1.x
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
+> [!IMPORTANT]
+> For the latest API examples refer to the [API lifecycle article](../api-version-lifecycle.md).
+
 OpenAI released a new version of the [OpenAI Python API library](https://github.com/openai/openai-python/). This guide is supplemental to [OpenAI's migration guide](https://github.com/openai/openai-python/discussions/742) and will help bring you up to speed on the changes specific to Azure OpenAI.
+
+> [!NOTE]
+> This guidance is no longer recommended. To take advantage of the latest v1 API refer to the [Python programming language guide](../supported-languages.md).
 
 ## Updates
 
@@ -35,7 +44,7 @@ OpenAI released a new version of the [OpenAI Python API library](https://github.
 ## Test before you migrate
 
 > [!IMPORTANT]
-> Automatic migration of your code using `openai migrate` is not supported with Azure OpenAI.
+> Automatic migration of your code using `openai migrate` isn't supported with Azure OpenAI.
 
 As this is a new version of the library with breaking changes, you should test your code extensively against the new release before migrating any production applications to rely on version 1.x. You should also review your code and internal processes to make sure that you're following best practices and pinning your production code to only versions that you have fully tested.
 
@@ -61,7 +70,7 @@ This provides context for what has changed and allows you to test the new librar
 
 # [OpenAI Python 1.x](#tab/python-new)
 
-You need to set the `model` variable to the deployment name you chose when you deployed the GPT-3.5-Turbo or GPT-4 models. Entering the model name results in an error unless you chose a deployment name that is identical to the underlying model name.
+You need to set the `model` variable to the deployment name you chose when you deployed the GPT-3.5-Turbo or GPT-4 models. Entering the model name results in an error unless you chose a deployment name that's identical to the underlying model name.
 
 ```python
 import os
@@ -90,7 +99,7 @@ Additional examples can be found in our [in-depth Chat Completion article](chatg
 
 # [OpenAI Python 0.28.1](#tab/python)
 
-You need to set the `engine` variable to the deployment name you chose when you deployed the GPT-3.5-Turbo or GPT-4 models. Entering the model name will result in an error unless you chose a deployment name that is identical to the underlying model name.
+You need to set the `engine` variable to the deployment name you chose when you deployed the GPT-3.5-Turbo or GPT-4 models. Entering the model name will result in an error unless you chose a deployment name that's identical to the underlying model name.
 
 ```python
 import os
@@ -349,7 +358,7 @@ aoai_deployment_id = os.environ.get("AZURE_OPEN_AI_DEPLOYMENT_ID")
 setup_byod(aoai_deployment_id)
 
 completion = openai.ChatCompletion.create(
-    messages=[{"role": "user", "content": "What are the differences between Azure Machine Learning and Azure AI services?"}],
+    messages=[{"role": "user", "content": "What are the differences between Azure Machine Learning and Foundry Tools?"}],
     deployment_id=os.environ.get("AZURE_OPEN_AI_DEPLOYMENT_ID"),
     dataSources=[  # camelCase is intentional, as this is the format the API expects
         {
@@ -536,7 +545,7 @@ asyncio.run(dall_e())
 ## Name changes
 
 > [!NOTE]
-> All a* methods have been removed; the async client must be used instead.
+> All `a*` methods have been removed; the async client must be used instead.
 
 | OpenAI Python 0.28.1 | OpenAI Python 1.x |
 | --------------- | --------------- |

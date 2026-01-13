@@ -1,9 +1,9 @@
 ---
 title: Limited Access
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This article explains why custom neural voice is available as Limited Access feature and how to request access.
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: article

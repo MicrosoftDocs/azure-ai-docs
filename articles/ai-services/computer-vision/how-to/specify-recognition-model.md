@@ -1,13 +1,14 @@
 ---
 title: How to specify a recognition model - Face
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This article shows you how to choose which recognition model to use with your Azure AI Face application.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
+ms.update-cycle: 90-days
 ms.topic: how-to
-ms.date: 01/22/2025
+ms.date: 08/21/2025
 ms.author: pafarley
 ms.devlang: csharp
 ms.custom: devx-track-csharp

@@ -5,7 +5,7 @@ description: Learn how to use the terminal on a compute instance for Git operati
 services: machine-learning
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: kritifaujdar
+ms.reviewer: jturuk
 ms.service: azure-machine-learning
 ms.subservice: compute
 ms.topic: how-to
@@ -25,7 +25,7 @@ Access the terminal of a compute instance in your workspace to:
 
 ## Prerequisites
 
-* An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/) before you begin.
+* An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 * A Machine Learning workspace. See [Create workspace resources](quickstart-create-resources.md).
 
 ## Access a terminal

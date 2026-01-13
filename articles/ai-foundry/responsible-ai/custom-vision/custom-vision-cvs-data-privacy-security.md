@@ -1,9 +1,9 @@
 ---
 title: Data and privacy for Custom Vision
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Data and privacy for Custom Vision
-author: adinatru
-ms.author: adinatru
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-custom-vision
 ms.topic: article

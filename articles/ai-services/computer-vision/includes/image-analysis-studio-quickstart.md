@@ -1,6 +1,6 @@
 ---
 title: "Quickstart: Image Analysis 4.0 using Vision Studio"
-titleSuffix: "Azure AI services"
+titleSuffix: "Foundry Tools"
 description: In this quickstart, get started with the Image Analysis service using Vision Studio.
 author: PatrickFarley
 manager: nitinme
@@ -8,14 +8,12 @@ manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: include
 ms.date: 02/27/2024
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
 ms.author: pafarley
 ---
 
 ## Prerequisites
 
-* Sign in to [Vision Studio](https://portal.vision.cognitive.azure.com/) with your Azure subscription and Azure AI Foundry resource. See the [Get started section](../overview-vision-studio.md#get-started-using-vision-studio) of the overview if you need help with this step.
+* Sign in to [Vision Studio](https://portal.vision.cognitive.azure.com/) with your Azure subscription and Microsoft Foundry resource. See the [Get started section](../overview-vision-studio.md#get-started-using-vision-studio) of the overview if you need help with this step.
 
 
 ## Analyze an image

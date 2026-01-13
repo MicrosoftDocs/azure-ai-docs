@@ -1,28 +1,30 @@
 ---
-title: How to use pronunciation assessment in the Azure AI Foundry portal
-titleSuffix: Azure AI services
-description: The pronunciation assessment tool in the Azure AI Foundry portal gives you feedback on the accuracy and fluency of your speech, no coding required.
-author: eric-urban
+title: How to use pronunciation assessment in the Microsoft Foundry portal
+titleSuffix: Foundry Tools
+description: The pronunciation assessment tool in the Microsoft Foundry portal gives you feedback on the accuracy and fluency of your speech, no coding required.
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 3/10/2025
-ms.author: eur
-# Customer intent: As a language learner, I want to use the pronunciation assessment tool in the Azure AI Foundry portal to get feedback on my speech.
+ms.date: 09/16/2025
+ms.author: pafarley
+# Customer intent: As a language learner, I want to use the pronunciation assessment tool in the Microsoft Foundry portal to get feedback on my speech.
 ---
 
-# Pronunciation assessment in the Azure AI Foundry portal
+# Pronunciation assessment in the Microsoft Foundry portal
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-Pronunciation assessment uses the speech to text capability to provide subjective and objective feedback for language learners. Practicing pronunciation and getting timely feedback are essential for improving language skills. Assessments driven by experienced teachers can take much time and effort and makes a high-quality assessment expensive for learners. Pronunciation assessment can help make the language assessment more engaging and accessible to learners of all backgrounds.
+Pronunciation assessment uses the speech-to-text capability to provide subjective and objective feedback for language learners. Practicing pronunciation and getting timely feedback are essential for improving language skills. Assessments conducted by experienced teachers can take much time and can be expensive for learners. Pronunciation assessment can help make the process more engaging and accessible to learners of all backgrounds.
+
+This article describes how to use the pronunciation assessment tool without writing any code through the [Microsoft Foundry portal](https://ai.azure.com/explore/models/aiservices/Azure-AI-Speech/version/1/registry/azureml-cogsvc/tryout#pronunciationassessment). For information about how to integrate pronunciation assessment in your speech applications, see [How to use pronunciation assessment](how-to-pronunciation-assessment.md).
+
 
 > [!NOTE]
 > For information about availability of pronunciation assessment, see [supported languages](language-support.md?tabs=pronunciation-assessment) and [available regions](regions.md#regions).
 
-This article describes how to use the pronunciation assessment tool without writing any code through the [Azure AI Foundry portal](https://ai.azure.com/explore/models/aiservices/Azure-AI-Speech/version/1/registry/azureml-cogsvc/tryout#pronunciationassessment). For information about how to integrate pronunciation assessment in your speech applications, see [How to use pronunciation assessment](how-to-pronunciation-assessment.md).
 
 
 ## Reading, speaking and gaming scenarios
@@ -36,9 +38,9 @@ For pronunciation assessment, there are three scenarios: Reading, Speaking and G
 
 Follow these steps to assess your pronunciation of the reference text:
 
-1. Go to **Pronunciation assessment** in the [Azure AI Foundry portal](https://ai.azure.com/explore/aiservices/speech).
+1. Go to **Pronunciation assessment** in the [Microsoft Foundry portal](https://ai.azure.com/explore/aiservices/speech).
 
-   :::image type="content" source="media/pronunciation-assessment/pronunciation-assessment-select.png" alt-text="Screenshot of how to go to Pronunciation assessment in Azure AI Foundry.":::
+   :::image type="content" source="media/pronunciation-assessment/pronunciation-assessment-select.png" alt-text="Screenshot of how to go to Pronunciation assessment in Microsoft Foundry.":::
 
 1. On the Reading tab, choose a supported [language](language-support.md?tabs=pronunciation-assessment) that you want to evaluate the pronunciation.
 
@@ -58,7 +60,7 @@ Follow these steps to assess your pronunciation of the reference text:
 
 If you want to conduct an unscripted assessment, select the Speaking tab. This feature allows you to conduct unscripted assessment without providing reference text in advance. Here's how to proceed:
 
-1. Go to **Pronunciation assessment** in the [Azure AI Foundry portal](https://ai.azure.com/explore/aiservices/speech).
+1. Go to **Pronunciation assessment** in the [Microsoft Foundry portal](https://ai.azure.com/explore/aiservices/speech).
 
 1. On the Speaking tab, choose a supported [language](language-support.md?tabs=pronunciation-assessment) that you want to evaluate the pronunciation.
 
@@ -76,7 +78,7 @@ If you want to conduct an unscripted assessment, select the Speaking tab. This f
 
 If you want to practice language learning through a game, follow these steps:
 
-1. Go to **Pronunciation assessment** in the [Azure AI Foundry portal](https://ai.azure.com/explore/aiservices/speech).
+1. Go to **Pronunciation assessment** in the [Microsoft Foundry portal](https://ai.azure.com/explore/aiservices/speech).
 
 1. On the Gaming tab, choose a supported [language](language-support.md?tabs=pronunciation-assessment) that you want to evaluate the pronunciation and generate new twister you want to practice.
 
@@ -258,9 +260,9 @@ Pronunciation assessment provides various assessment results in different granul
 - Syllable-level accuracy scores are currently available via the [JSON file](?tabs=json#pronunciation-assessment-results) or [Speech SDK](how-to-pronunciation-assessment.md).
 - At the phoneme level, pronunciation assessment provides accuracy scores of each phoneme, helping learners to better understand the pronunciation details of their speech.
 
-In addition to the baseline scores of accuracy, fluency, and completeness, the pronunciation assessment feature in the Azure AI Foundry includes more comprehensive scores to provide detailed feedback on various aspects of speech performance and understanding. The enhanced scores are as follows: Prosody score, Vocabulary score, Grammar score, and Topic score. These scores offer valuable insights into speech prosody, vocabulary usage, grammar correctness, and topic understanding.
+In addition to the baseline scores of accuracy, fluency, and completeness, the pronunciation assessment feature in the Microsoft Foundry includes more comprehensive scores to provide detailed feedback on various aspects of speech performance and understanding. The enhanced scores are as follows: Prosody score, Vocabulary score, Grammar score, and Topic score. These scores offer valuable insights into speech prosody, vocabulary usage, grammar correctness, and topic understanding.
 
-:::image type="content" source="media/pronunciation-assessment/speaking-score.png" alt-text="Screenshot of overall pronunciation score and overall content score in Azure AI Foundry.":::
+:::image type="content" source="media/pronunciation-assessment/speaking-score.png" alt-text="Screenshot of overall pronunciation score and overall content score in Microsoft Foundry.":::
 
 At the bottom of the Assessment result, two overall scores are displayed: Pronunciation score and Content score. In the Reading tab, you find the Pronunciation score displayed. In the Speaking tab, both the Pronunciation score and the Content score are displayed.
 
@@ -283,9 +285,9 @@ These overall scores offer a comprehensive assessment of both pronunciation and 
 
 ## Assessment scores in streaming mode
 
-Pronunciation assessment supports uninterrupted streaming mode. The Azure AI Foundry demo allows for up to 60 minutes of recording in streaming mode for evaluation. As long as you don't press the stop recording button, the evaluation process doesn't finish and you can pause and resume evaluation conveniently.
+Pronunciation assessment supports uninterrupted streaming mode. The Microsoft Foundry demo allows for up to 60 minutes of recording in streaming mode for evaluation. As long as you don't press the stop recording button, the evaluation process doesn't finish and you can pause and resume evaluation conveniently.
 
-Pronunciation assessment evaluates several aspects of pronunciation. At the bottom of **Assessment result**, you can see **Pronunciation score** as aggregated overall score, which includes 4 sub aspects: **Accuracy score**, **Fluency score**, **Completeness score**, and **Prosody score**. In streaming mode, since the **Accuracy score**, **Fluency score**, and **Prosody score** will vary over time throughout the recording process, we demonstrate an approach in Azure AI Foundry to display approximate overall score incrementally before the end of the evaluation, which weighted only with Accuracy score, Fluency score, and Prosody score. The **Completeness score** is only calculated at the end of the evaluation after you press the stop button, so the final pronunciation overall score is aggregated from **Accuracy score**, **Fluency score**, **Completeness score**, and **Prosody score** with weight.
+Pronunciation assessment evaluates several aspects of pronunciation. At the bottom of **Assessment result**, you can see **Pronunciation score** as aggregated overall score, which includes 4 sub aspects: **Accuracy score**, **Fluency score**, **Completeness score**, and **Prosody score**. In streaming mode, since the **Accuracy score**, **Fluency score**, and **Prosody score** will vary over time throughout the recording process, we demonstrate an approach in Microsoft Foundry to display approximate overall score incrementally before the end of the evaluation, which weighted only with Accuracy score, Fluency score, and Prosody score. The **Completeness score** is only calculated at the end of the evaluation after you press the stop button, so the final pronunciation overall score is aggregated from **Accuracy score**, **Fluency score**, **Completeness score**, and **Prosody score** with weight.
 
 Refer to the demo examples below for the whole process of evaluating pronunciation in streaming mode.
 
@@ -309,9 +311,9 @@ After you press the stop button, you can see **Pronunciation score**, **Accuracy
 
 ## Pricing
 
-As a baseline, usage of pronunciation assessment costs the same as speech to text for Standard or commitment tier [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services). If you [purchase a commitment tier](../commitment-tier.md) for speech to text, the spend for pronunciation assessment goes towards meeting the commitment. 
+As a baseline, usage of pronunciation assessment costs the same as speech to text for Standard or commitment tier [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services). If you [purchase a commitment tier](../commitment-tier.md) for speech to text, the spend for pronunciation assessment goes towards meeting the commitment.
 
-The pronunciation assessment feature also offers other scores that aren't included in the baseline speech to text price: prosody, grammar, topic, and vocabulary. These scores are available as an add-on charge above the baseline speech to text price. For information about pricing, see [speech to text pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services).
+The pronunciation assessment feature also offers other scores that aren't included in the baseline speech to text price, such as the prosody score. These scores are available as an add-on charge above the baseline speech to text price. For information about pricing, see [speech to text pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services).
 
 Here's a table of available pronunciation assessment scores, whether it's available in the [scripted](#conduct-a-reading-assessment) or [unscripted](#conduct-a-speaking-assessment) assessments, and whether it's included in the baseline speech to text price or the add-on price.
 
@@ -322,9 +324,6 @@ Here's a table of available pronunciation assessment scores, whether it's availa
 | Completeness | Scripted | Yes |
 | Miscue | Scripted and unscripted | Yes |
 | Prosody | Scripted and unscripted | No |
-| Grammar | Unscripted only | No |
-| Topic | Unscripted only | No |
-| Vocabulary | Unscripted only | No |
 
 ## Responsible AI
 

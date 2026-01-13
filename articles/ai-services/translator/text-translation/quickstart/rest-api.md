@@ -1,12 +1,12 @@
 ---
-title: "Quickstart: Azure AI Translator REST APIs"
-titleSuffix: Azure AI services
-description: "Learn to translate text with the Translator service REST APIs. Examples are provided in C#, Go, Java, JavaScript, and Python."
+title: "Quickstart: translate text programmatically"
+titleSuffix: Foundry Tools
+description: "Learn to translate text programmatically with Azure Translator in Foundry Tools service and a programming language of your choice: C#, Java, JavaScript, or Python."
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: quickstart
-ms.date: 05/19/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, golang, java, javascript, python
@@ -19,19 +19,19 @@ ms.custom: devx-track-python
 <!-- markdownlint-disable MD036 -->
 <!-- markdownlint-disable MD049 -->
 
-# Quickstart: Azure AI Translator REST APIs
+# Quickstart: translate text programmatically
 
-Try the latest version of Azure AI Translator. In this quickstart, get started using the Translator service to [translate text](../reference/v3/translate.md) using a programming language of your choice or the REST API. For this project, we recommend using the free pricing tier (F0), while you're learning the technology, and later upgrading to a paid tier for production.
+In this quickstart, get started using the Translator service programmatically to [translate text](../reference/v3/translate.md) using a programming language of your choice. For this project, we recommend using the free pricing tier (F0), while you're learning the technology, and later upgrading to a paid tier for production.
 
 ## Prerequisites
 
-You need an active Azure subscription. If you don't have an Azure subscription, you can [create one for free](https://azure.microsoft.com/free/cognitive-services/).
+You need an active Azure subscription. If you don't have an Azure subscription, you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * Once you have your Azure subscription, create a [Translator resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) in the Azure portal.
 
 * After your resource deploys, select **Go to resource** and retrieve your key and endpoint.
 
-  * You need the key and endpoint from the resource to connect your application to the Translator service. You paste your key and endpoint into the code later in the quickstart. You can find these values on the Azure portal **Keys and Endpoint** page:
+  * You need the key and endpoint from the resource to connect your application to the Translator. You paste your key and endpoint into the code later in the quickstart. You can find these values on the Azure portal **Keys and Endpoint** page:
 
     :::image type="content" source="../../media/quickstarts/keys-and-endpoint-portal.png" alt-text="Screenshot: Azure portal keys and endpoint page.":::
     > [!NOTE]
@@ -43,26 +43,26 @@ You need an active Azure subscription. If you don't have an Azure subscription, 
 
 ## Headers
 
-To call the Translator service via the [REST API](../reference/rest-api-guide.md), you need to include the following headers with each request. Don't worry, we include the headers for you in the sample code for each programming language.
+To call the Translator via the [REST API](../reference/rest-api-guide.md), you need to include the following headers with each request. Don't worry, we include the headers for you in the sample code for each programming language.
 
-For more information on Translator authentication options, _see_ the [Translator v3 reference](..//reference/v3/reference.md#authentication) guide.
+For more information on Translator authentication options, _see_ the [Translator v3 reference](..//reference/authentication.md) guide.
 
 Header|Value| Condition  |
 |--- |:--- |:---|
-|**Ocp-Apim-Subscription-Key** |Your Translator service key from the Azure portal.|&bullet; ***Required***|
+|**Ocp-Apim-Subscription-Key** |Your Translator key from the Azure portal.|&bullet; ***Required***|
 |**Ocp-Apim-Subscription-Region**|The region where your resource was created. |&bullet; ***Required*** when using an Azure AI multi-service or regional (geographic) resource like **West US**.</br>&bullet; ***Optional*** when using a single-service global Translator Resource.
 |**Content-Type**|The content type of the payload. The accepted value is **application/json** or **charset=UTF-8**.|&bullet; **Required**|
 |**Content-Length**|The **length of the request** body.|&bullet; ***Optional***|
 
 > [!IMPORTANT]
 >
-> Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information, _see_ the Azure AI services [security](../../../security-features.md) article.
+> Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information, _see_ the Foundry Tools [security](../../../security-features.md) article.
 
 ## Translate text
 
-The core operation of the Translator service is translating text. In this quickstart, you build a request using a programming language of your choice that takes a single source (`from`) and provides two outputs (`to`). Then we review some parameters that can be used to adjust both the request and the response.
+The core operation of the Translator is translating text. In this quickstart, you build a request using a programming language of your choice that takes a single source (`from`) and provides two outputs (`to`). Then we review some parameters that can be used to adjust both the request and the response.
 
-For detailed information regarding Azure AI Translator service request limits, *see* [**Text translation request limits**](../../service-limits.md#text-translation).
+For detailed information regarding Azure Translator request limits, *see* [**Text translation request limits**](../../service-limits.md#text-translation).
 
 ### [C#: Visual Studio](#tab/csharp)
 
@@ -788,7 +788,7 @@ After a successful call, you should see the following response:
 
 ## Next steps
 
-That's it, congratulations! You just learned to use the Translator service to translate text.
+That's it, congratulations! You just learned to use the Translator to translate text.
 
  Explore our how-to documentation and take a deeper dive into Translation service capabilities:
 

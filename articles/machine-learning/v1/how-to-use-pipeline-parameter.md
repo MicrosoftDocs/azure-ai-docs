@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.author: scottpolly
-author: s-polly
-ms.reviewer: keli19
+author: lgayhardt
+ms.reviewer: jturuk
 ms.date: 06/12/2025
 ms.topic: how-to
 ms.custom: UpdateFrequency5, designer

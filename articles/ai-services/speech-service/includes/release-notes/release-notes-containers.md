@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 7/1/2025
-ms.author: eur
+ms.author: pafarley
 ---
 
 ### 2025-June release

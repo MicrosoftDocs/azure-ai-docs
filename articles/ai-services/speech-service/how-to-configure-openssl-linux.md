@@ -1,14 +1,14 @@
 ---
 title: How to configure OpenSSL for Linux
-titleSuffix: Azure AI services
-description: In this guide, you learn how to configure OpenSSL for Linux with the Azure AI Speech SDK.
-author: eric-urban
-ms.author: eur
+titleSuffix: Foundry Tools
+description: In this guide, you learn how to configure OpenSSL for Linux with the Azure Speech in Foundry Tools SDK.
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-python, linux-related-content
 ms.topic: how-to
-ms.date: 3/10/2025
+ms.date: 08/07/2025
 ms.reviewer: jhakulin
 zone_pivot_groups: programming-languages-set-three
 #Customer intent: As a developer, I want to learn how to configure OpenSSL for Linux so that I can use the Speech SDK on my Linux system.
@@ -61,16 +61,16 @@ If a destination posing as the Speech service reports a revoked certificate in a
 > [!WARNING]
 > If your solution uses proxy or firewall it should be configured to allow access to all certificate revocation list URLs used by Azure. Note that many of these URLs are outside of `microsoft.com` domain, so allowing access to `*.microsoft.com` is not enough. See [this document](/azure/security/fundamentals/tls-certificate-changes) for details. In exceptional cases you may ignore CRL failures (see [the correspondent section](#bypassing-or-ignoring-crl-failures)), but such configuration is strongly not recommended, especially for production scenarios.
 
-### Large CRL files (>10 MB)
+### Large CRL files
 
 One cause of CRL-related failures is the use of large CRL files. This class of error is typically only applicable to special environments with extended CA chains. Standard public endpoints shouldn't encounter this class of issue.
 
-The default maximum CRL size used by the Speech SDK (10 MB) can be adjusted per config object. The property key for this adjustment is `CONFIG_MAX_CRL_SIZE_KB` and the value, specified as a string, is by default "10000" (10 MB). For example, when creating a `SpeechRecognizer` object (that manages a connection to the Speech service), you can set this property in its `SpeechConfig`. In the following code snippet, the configuration is adjusted to permit a CRL file size up to 15 MB.
+The default maximum CRL size used by the Speech SDK can be adjusted per config object. The property key for this adjustment is `CONFIG_MAX_CRL_SIZE_KB` and the value, specified as a string, is currently by default "100000" (100 MB). For example, when creating a `SpeechRecognizer` object (that manages a connection to the Speech service), you can set this property in its `SpeechConfig`. In the following code snippet, the configuration is adjusted to permit a CRL file size up to 150 MB.
 
 ::: zone pivot="programming-language-csharp"
 
 ```csharp
-config.SetProperty("CONFIG_MAX_CRL_SIZE_KB"", "15000");
+config.SetProperty("CONFIG_MAX_CRL_SIZE_KB"", "150000");
 ```
 
 ::: zone-end
@@ -78,7 +78,7 @@ config.SetProperty("CONFIG_MAX_CRL_SIZE_KB"", "15000");
 ::: zone pivot="programming-language-cpp"
 
 ```cpp
-config->SetProperty("CONFIG_MAX_CRL_SIZE_KB"", "15000");
+config->SetProperty("CONFIG_MAX_CRL_SIZE_KB"", "150000");
 ```
 
 ::: zone-end
@@ -86,7 +86,7 @@ config->SetProperty("CONFIG_MAX_CRL_SIZE_KB"", "15000");
 ::: zone pivot="programming-language-java"
 
 ```java
-config.setProperty("CONFIG_MAX_CRL_SIZE_KB"", "15000");
+config.setProperty("CONFIG_MAX_CRL_SIZE_KB"", "150000");
 ```
 
 ::: zone-end
@@ -94,7 +94,7 @@ config.setProperty("CONFIG_MAX_CRL_SIZE_KB"", "15000");
 ::: zone pivot="programming-language-python"
 
 ```python
-speech_config.set_property_by_name("CONFIG_MAX_CRL_SIZE_KB"", "15000")
+speech_config.set_property_by_name("CONFIG_MAX_CRL_SIZE_KB"", "150000")
 ```
 
 ::: zone-end
@@ -102,7 +102,7 @@ speech_config.set_property_by_name("CONFIG_MAX_CRL_SIZE_KB"", "15000")
 ::: zone pivot="programming-language-go"
 
 ```go
-speechConfig.properties.SetPropertyByString("CONFIG_MAX_CRL_SIZE_KB", "15000")
+speechConfig.properties.SetPropertyByString("CONFIG_MAX_CRL_SIZE_KB", "150000")
 ```
 
 ::: zone-end

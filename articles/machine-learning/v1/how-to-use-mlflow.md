@@ -3,8 +3,9 @@ title: MLflow Tracking for models
 titleSuffix: Azure Machine Learning
 description:  Set up MLflow Tracking with Azure Machine Learning to log metrics and artifacts from ML models.
 services: machine-learning
-author: s-polly
+author: lgayhardt
 ms.author: scottpolly
+ms.reviewer: jturuk
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.date: 10/21/2021
@@ -37,7 +38,7 @@ See [MLflow and Azure Machine Learning](../concept-mlflow.md) for all supported 
 ## Prerequisites
 
 * Install the `mlflow` package. 
-    * You can use the [MLflow Skinny](https://github.com/mlflow/mlflow/blob/master/skinny/README_SKINNY.md) which is a lightweight MLflow package without SQL storage, server, UI, or data science dependencies. This is recommended for users who primarily need the tracking and logging capabilities without importing the full suite of MLflow features including deployments.
+    * You can use the [MLflow Skinny](https://github.com/mlflow/mlflow/blob/master/libs/skinny/README_SKINNY.md) which is a lightweight MLflow package without SQL storage, server, UI, or data science dependencies. This is recommended for users who primarily need the tracking and logging capabilities without importing the full suite of MLflow features including deployments.
 
 * Install the `azureml-mlflow` package. 
 * [Create an Azure Machine Learning Workspace](../quickstart-create-resources.md).
@@ -132,7 +133,7 @@ mlflow.set_tracking_uri(azureml_mlflow_uri)
 > [!NOTE]
 > You can also get this URL by: 
 > 1. Navigate to [Azure Machine Learning studio](https://ml.azure.com)
-> 2. Click on the uper-right corner of the page -> View all properties in Azure Portal -> MLflow tracking URI.
+> 2. Click on the uper-right corner of the page -> View all properties in Azure portal -> MLflow tracking URI.
 > 3. Copy the URI and use it with the method `mlflow.set_tracking_uri`.
 
 ---

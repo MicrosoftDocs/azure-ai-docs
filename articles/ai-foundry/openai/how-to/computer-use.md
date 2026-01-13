@@ -3,14 +3,17 @@ title: 'Computer Use (preview) in Azure OpenAI'
 titleSuffix: Azure OpenAI
 description: Learn about Computer Use in Azure OpenAI, which allows AI to interact with computer applications.
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 06/30/2025
+ms.date: 11/26/2025
 author: aahill
 ms.author: aahi
 ---
 
 # Computer Use (preview) in Azure OpenAI
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 Use this article to learn how to work with Computer Use in Azure OpenAI. Computer Use is a specialized AI tool that uses a specialized model that can perform tasks by interacting with computer systems and applications through their UIs. With Computer Use, you can create an agent that can handle complex tasks and make decisions by interpreting visual elements and taking action based on on-screen content. 
 
@@ -59,15 +62,14 @@ pip install azure-identity
 ```python
 import os
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-from openai import AzureOpenAI
+from openai import OpenAI
 
 #from openai import OpenAI
 token_provider = get_bearer_token_provider(DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default")
 
-client = AzureOpenAI(  
+client = OpenAI(  
   base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
+  api_key=token_provider,
 )
 
 response = client.responses.create(
@@ -108,7 +110,7 @@ print(response.output)
 ## [REST API](#tab/rest-api)
 
 ```bash
-curl ${MY_ENDPOINT}/openai/v1/responses?api-version=preview \ 
+curl ${MY_ENDPOINT}/openai/v1/responses \ 
   -H "Content-Type: application/json" \ 
   -H "api-key: $MY_API_KEY" \ 
   -d '{ 
@@ -244,7 +246,7 @@ response_2 = client.responses.create(
 ## [REST API](#tab/rest-api)
 
 ```bash
-curl ${MY_ENDPOINT}/openai/v1/responses?api-version=preview \ 
+curl ${MY_ENDPOINT}/openai/v1/responses \ 
   -H "Content-Type: application/json" \ 
   -H "api-key: $MY_API_KEY" \ 
   -d '{ 
@@ -385,7 +387,7 @@ First, we import the necessary libraries and define our configuration parameters
 import os
 import asyncio
 import base64
-from openai import AzureOpenAI
+from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 from playwright.async_api import async_playwright, TimeoutError
 
@@ -400,7 +402,6 @@ BASE_URL = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
 MODEL = "computer-use-preview" # Set to model deployment name
 DISPLAY_WIDTH = 1024
 DISPLAY_HEIGHT = 768
-API_VERSION = "preview" #Use this API version or later
 ITERATIONS = 5 # Max number of iterations before returning control to human supervisor
 ```
 
@@ -521,15 +522,15 @@ async def handle_action(page, action):
 
 This function attempts to handle various types of actions. We need to translate between the commands that the `computer-use-preview` will generate and the Playwright library which will execute the actions. For more information refer to the reference documentation for `ComputerAction`.
 
-- [Click](/azure/ai-services/openai/reference-preview#click)
-- [DoubleClick](/azure/ai-services/openai/reference-preview#doubleclick)
-- [Drag](/azure/ai-services/openai/reference-preview#drag)
-- [KeyPress](/azure/ai-services/openai/reference-preview#keypress)
-- [Move](/azure/ai-services/openai/reference-preview#move)
-- [Screenshot](/azure/ai-services/openai/reference-preview#screenshot)
-- [Scroll](/azure/ai-services/openai/reference-preview#scroll)
-- [Type](/azure/ai-services/openai/reference-preview#type)
-- [Wait](/azure/ai-services/openai/reference-preview#wait)
+- [Click](/azure/ai-foundry/openai/reference-preview#click)
+- [DoubleClick](/azure/ai-foundry/openai/reference-preview#doubleclick)
+- [Drag](/azure/ai-foundry/openai/reference-preview#drag)
+- [KeyPress](/azure/ai-foundry/openai/reference-preview#keypress)
+- [Move](/azure/ai-foundry/openai/reference-preview#move)
+- [Screenshot](/azure/ai-foundry/openai/reference-preview#screenshot)
+- [Scroll](/azure/ai-foundry/openai/reference-preview#scroll)
+- [Type](/azure/ai-foundry/openai/reference-preview#type)
+- [Wait](/azure/ai-foundry/openai/reference-preview#wait)
 
 ### Screenshot capture
 
@@ -717,7 +718,7 @@ In this section we have added code that:
 - Handles potential safety checks requiring user confirmation.
 - Executes the requested action.
 - Captures a new screenshot.
-- Sends the updated state back to the model and defines the [`ComputerTool`](/azure/ai-services/openai/reference-preview#computertool).
+- Sends the updated state back to the model and defines the [`ComputerTool`](/azure/ai-foundry/openai/reference-preview#computertool).
 - Repeats this process for multiple iterations.
 
 ### Main function
@@ -726,10 +727,9 @@ The main function coordinates the entire process:
 
 ```python
     # Initialize OpenAI client
-    client = AzureOpenAI(
+    client = OpenAI(
         base_url=BASE_URL,
-        azure_ad_token_provider=token_provider,
-        api_version=API_VERSION
+        api_key=token_provider,
     )
     
     # Initialize Playwright
@@ -811,7 +811,7 @@ if __name__ == "__main__":
 
 The main function:
 
-- Initializes the AzureOpenAI client.
+- Initializes the OpenAI client.
 - Sets up the Playwright browser.
 - Starts at Bing.com.
 - Enters a loop to accept user tasks.
@@ -830,7 +830,7 @@ The main function:
 import os
 import asyncio
 import base64
-from openai import AzureOpenAI
+from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 from playwright.async_api import async_playwright, TimeoutError
 
@@ -845,7 +845,6 @@ BASE_URL = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
 MODEL = "computer-use-preview"
 DISPLAY_WIDTH = 1024
 DISPLAY_HEIGHT = 768
-API_VERSION = "preview"
 ITERATIONS = 5 # Max number of iterations before forcing the model to return control to the human supervisor
 
 # Key mapping for special keys in Playwright
@@ -1107,10 +1106,9 @@ async def process_model_response(client, response, page, max_iterations=ITERATIO
         
 async def main():    
     # Initialize OpenAI client
-    client = AzureOpenAI(
+    client = OpenAI(
         base_url=BASE_URL,
-        azure_ad_token_provider=token_provider,
-        api_version=API_VERSION
+        api_key=token_provider
     )
     
     # Initialize Playwright

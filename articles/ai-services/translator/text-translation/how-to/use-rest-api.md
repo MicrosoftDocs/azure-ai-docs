@@ -1,12 +1,12 @@
 ---
-title: "Use Azure AI Translator APIs"
-titleSuffix: Azure AI services
+title: "Use Azure Translator in Foundry Tools APIs"
+titleSuffix: Foundry Tools
 description: "Learn to translate text, transliterate text, detect language, and more with the Translator service. Examples are provided in C#, Java, JavaScript, and Python."
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: how-to
-ms.date: 05/19/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, golang, java, javascript, python
@@ -18,9 +18,9 @@ keywords: translator, translator service, translate text, transliterate text, la
 <!-- markdownlint-disable MD001 -->
 <!-- markdownlint-disable MD024 -->
 
-# Use Azure AI Translator APIs
+# Use Azure Translator APIs
 
-In this how-to guide, you learn to use the [Translator service REST APIs](../reference/rest-api-guide.md). You start with basic examples and move onto some core configuration options that are commonly used during development, including:
+In this how-to guide, you learn to use the [Translator REST APIs](../reference/rest-api-guide.md). You start with basic examples and move onto some core configuration options that are commonly used during development, including:
 
 * [Language Translation](#translate-text)
 * [Language Transliteration](#transliterate-text)
@@ -30,26 +30,26 @@ In this how-to guide, you learn to use the [Translator service REST APIs](../ref
 
 ## Prerequisites
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/)
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 
 * An Azure AI multi-service or Translator resource. Once you have your Azure subscription, create a [single-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) or a [multi-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) resource, in the Azure portal, to get your key and endpoint. After it deploys, select **Go to resource**.
 
 * You can use the free pricing tier (F0) to try the service, and upgrade later to a paid tier for production.
 
-* You need the key and endpoint from the resource to connect your application to the Translator service. Later, you paste your key and endpoint into the code samples. You can find these values on the Azure portal **Keys and Endpoint** page:
+* You need the key and endpoint from the resource to connect your application to the Translator. Later, you paste your key and endpoint into the code samples. You can find these values on the Azure portal **Keys and Endpoint** page:
 
     :::image type="content" source="../../media/keys-and-endpoint-portal.png" alt-text="Screenshot: Azure portal keys and endpoint page.":::
 
 > [!IMPORTANT]
-> Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information, *see* the Azure AI services [security](../../../security-features.md).
+> Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information, *see* the Foundry Tools [security](../../../security-features.md).
 
 ## Headers
 
-To call the Translator service via the [REST API](../reference/rest-api-guide.md), you need to make sure the following headers are included with each request. Don't worry, we include the headers in the sample code in the following sections.
+To call the Translator via the [REST API](../reference/rest-api-guide.md), you need to make sure the following headers are included with each request. Don't worry, we include the headers in the sample code in the following sections.
 
 |Header|Value| Condition  |
 |--- |:--- |:---|
-|**Ocp-Apim-Subscription-Key** |Your Translator service key from the Azure portal.|<ul><li>***Required***</li></ul> |
+|**Ocp-Apim-Subscription-Key** |Your Translator key from the Azure portal.|<ul><li>***Required***</li></ul> |
 |**Ocp-Apim-Subscription-Region**|The region where your resource was created. |<ul><li>***Required*** when using an Azure AI multi-service or regional (geographic) resource like **West US**.</li><li> ***Optional*** when using a single-service Translator Resource.</li></ul>|
 |**Content-Type**|The content type of the payload. The accepted value is **application/json** or **charset=UTF-8**.|<ul><li>***Required***</li></ul>|
 |**Content-Length**|The **length of the request** body.|<ul><li>***Optional***</li></ul> |
@@ -336,11 +336,11 @@ You can use any text editor to write `Go` applications. We recommend using the l
 > [!IMPORTANT]
 > The samples in this guide require hard-coded keys and endpoints.
 > Remember to **remove the key from your code when you're done**, and **never post it publicly**.
-> For production, consider using a secure way of storing and accessing your credentials. For more information, *see* [Azure AI services security](../../../security-features.md).
+> For production, consider using a secure way of storing and accessing your credentials. For more information, *see* [Foundry Tools security](../../../security-features.md).
 
 ## Translate text
 
-The core operation of the Translator service is to translate text. In this section, you build a request that takes a single source (`from`) and provides two outputs (`to`). Then we review some parameters that can be used to adjust both the request and the response.
+The core operation of the Translator is to translate text. In this section, you build a request that takes a single source (`from`) and provides two outputs (`to`). Then we review some parameters that can be used to adjust both the request and the response.
 
 ### [C#](#tab/csharp)
 
@@ -625,7 +625,7 @@ If you need translation, but don't know the language of the text, you can use th
 
 ### Detect source language during translation
 
-If you don't include the `from` parameter in your translation request, the Translator service attempts to detect the source text's language. In the response, you get the detected language (`language`) and a confidence score (`score`). The closer the `score` is to `1.0`, means that there's increased confidence that the detection is correct.
+If you don't include the `from` parameter in your translation request, the Translator attempts to detect the source text's language. In the response, you get the detected language (`language`) and a confidence score (`score`). The closer the `score` is to `1.0`, means that there's increased confidence that the detection is correct.
 
 ### [C#](#tab/csharp)
 
@@ -906,7 +906,7 @@ After a successful call, you should see the following response:
 
 ### Detect source language without translation
 
-It's possible to use the Translator service to detect the language of source text without performing a translation. To do so, you use the [`/detect`](../reference/v3/detect.md) endpoint.
+It's possible to use the Translator to detect the language of source text without performing a translation. To do so, you use the [`/detect`](../reference/v3/detect.md) endpoint.
 
 ### [C#](#tab/csharp)
 
@@ -1742,7 +1742,7 @@ After a successful call, you should see the following response. Unlike the call 
 
 ## Get sentence length
 
-With the Translator service, you can get the character count for a sentence or series of sentences. The response is returned as an array, with character counts for each sentence detected. You can get sentence lengths with the `translate` and `breaksentence` endpoints.
+With the Translator, you can get the character count for a sentence or series of sentences. The response is returned as an array, with character counts for each sentence detected. You can get sentence lengths with the `translate` and `breaksentence` endpoints.
 
 ### Get sentence length during translation
 
@@ -2035,7 +2035,7 @@ After a successful call, you should see the following response. In addition to t
 
 ### Get sentence length without translation
 
-The Translator service also lets you request sentence length without translation using the `breaksentence` endpoint.
+The Translator also lets you request sentence length without translation using the `breaksentence` endpoint.
 
 ### [C#](#tab/csharp)
 
@@ -3122,8 +3122,8 @@ After a successful call, you should see the following response. For more informa
 | HTTP status code | Description | Possible reason |
 |------------------|-------------|-----------------|
 | 200 | OK | The request was successful. |
-| 400 | Bad Request | A required parameter is missing, empty, or null. Or, the value passed to either a required or optional parameter is invalid. A common issue is a header that is too long. |
-| 401 | Unauthorized | The request isn't authorized. Check to make sure your key or token is valid and in the correct region. *See also* [Authentication](../reference/v3/reference.md#authentication).|
+| 400 | Bad Request | A required parameter is missing, empty, or null. Or, the value passed to either a required or optional parameter is invalid. A common issue is a header that's too long. |
+| 401 | Unauthorized | The request isn't authorized. Check to make sure your key or token is valid and in the correct region. *See also* [Authentication](../reference/authentication.md).|
 | 429 | Too Many Requests | You exceeded the quota or rate of requests allowed for your subscription. |
 | 502 | Bad Gateway    | Network or server-side issue. May also indicate invalid headers. |
 

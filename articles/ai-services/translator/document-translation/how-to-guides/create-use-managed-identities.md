@@ -1,17 +1,17 @@
 ---
 title: Create and use managed identities
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Understand how to create and use managed identities in the Azure portal.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.custom: build-2023
 ms.topic: how-to
-ms.date: 04/14/2025
+ms.date: 12/05/2025
 ms.author: lajanuar
 ---
 
-# Managed identities for Azure AI Document translation
+# Managed identities: role-based access control (RBAC)
 
 Managed identities for Azure resources are service principals that create a Microsoft Entra identity and specific permissions for Azure managed resources. Managed identities are a safer way to grant access to storage data and replace the requirement for you to include shared access signature tokens (SAS) with your [source and target URLs](#post-request-body).
 
@@ -29,16 +29,16 @@ Managed identities for Azure resources are service principals that create a Micr
 >
 > * To use managed identities for Azure AI Document translation operations, you must [create your Translator resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) in a specific geographic Azure region such as **East US**. If your Translator resource region is set to **Global**, then you can't use managed identity for Azure AI Document translation. You can still use [Shared Access Signature (SAS) tokens](create-sas-tokens.md) for Azure AI Document translation.
 >
-> * Azure AI Document translation is supported in the S1 Standard Service Plan and C2, C3, C4, and D3 Volume Discount Plans. _See_ [Azure AI services pricing—Translator](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
+> * Azure AI Document translation is supported in the S1 Standard Service Plan and C2, C3, C4, and D3 Volume Discount Plans. _See_ [Foundry Tools pricing—Translator](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
 >
 
 ## Prerequisites
 
 To get started, you need:
 
-* An active [**Azure account**](https://azure.microsoft.com/free/cognitive-services/)—if you don't have one, you can [**create a free account**](https://azure.microsoft.com/free/).
+* An active [**Azure account**](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)—if you don't have one, you can [**create a free account**](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-* A [**single-service Translator**](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) (not a multi-service Azure AI services) resource assigned to a **geographical** region such as **West US**. For detailed steps, _see_ [Create an Azure AI Foundry resource](../../../multi-service-resource.md).
+* A [**single-service Translator**](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) (not a multi-service Foundry Tools) resource assigned to a **geographical** region such as **West US**. For detailed steps, _see_ [Create a Microsoft Foundry resource](../../../multi-service-resource.md).
 
 * A brief understanding of [**Azure role-based access control (`Azure RBAC`)**](/azure/role-based-access-control/role-assignments-portal) using the Azure portal.
 
@@ -108,7 +108,7 @@ You must grant the Translator resource access to your storage account before it 
 
     :::image type="content" source="../../media/managed-identities/azure-role-assignments-page-portal.png" alt-text="Screenshot: Azure role assignments page in the Azure portal.":::
 
-1. Next, assign a **Storage Blob Data Contributor** role to your Translator service resource. The **Storage Blob Data Contributor** role gives Translator (represented by the system-assigned managed identity) read, write, and delete access to the blob container and data. In the **`Add role assignment`** pop-up window, complete the fields as follows and select **Save**:
+1. Next, assign a **Storage Blob Data Contributor** role to your Translator resource. The **Storage Blob Data Contributor** role gives Translator (represented by the system-assigned managed identity) read, write, and delete access to the blob container and data. In the **`Add role assignment`** pop-up window, complete the fields as follows and select **Save**:
 
     | Field | Value|
     |------|--------|
@@ -129,7 +129,7 @@ You must grant the Translator resource access to your storage account before it 
 
 ## HTTP requests
 
-* An asynchronous batch translation request is submitted to your Translator service endpoint via a POST request.
+* An asynchronous batch translation request is submitted to your Translator endpoint via a POST request.
 
 * With managed identity and `Azure RBAC`, you no longer need to include SAS URLs.
 
@@ -143,7 +143,7 @@ The following headers are included with each Azure AI Document translation API r
 
 |HTTP header|Description|
 |---|--|
-|Ocp-Apim-Subscription-Key|**Required**: The value is the Azure key for your Translator or Azure AI Foundry resource.|
+|Ocp-Apim-Subscription-Key|**Required**: The value is the Azure key for your Translator or Foundry resource.|
 |Content-Type|**Required**: Specifies the content type of the payload. Accepted values are application/json or charset=UTF-8.|
 
 ### POST request body

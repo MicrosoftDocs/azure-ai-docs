@@ -1,12 +1,13 @@
 ---
-title: 'How to generate reproducible output with Azure OpenAI in Azure AI Foundry Models'
+title: 'How to generate reproducible output with Azure OpenAI in Microsoft Foundry Models'
 titleSuffix: Azure OpenAI
 description: Learn how to generate reproducible output (preview) with Azure OpenAI.
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 07/02/2025
+ms.date: 11/26/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -15,23 +16,11 @@ recommendations: false
 
 # Learn how to use reproducible output (preview)
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 By default if you ask an Azure OpenAI Chat Completion model the same question multiple times you're likely to get a different response. The responses are therefore considered to be nondeterministic. Reproducible output is a new  preview feature that allows you to selectively change the default behavior to help product more deterministic outputs.
 
 ## Reproducible output support
-
-Reproducible output is only currently supported with the following:
-
-### Supported models
-
-* `gpt-35-turbo` (1106)
-* `gpt-35-turbo` (0125)
-* `gpt-4` (1106-Preview)
-* `gpt-4` (0125-Preview)
-* `gpt-4` (turbo-2024-04-09)
-* `gpt-4o-mini` (2024-07-18)
-* `gpt-4o` (2024-05-13)
-
-Consult the [models page](../concepts/models.md) for the latest information on model regional availability.
 
 ### API Version
 
@@ -45,19 +34,18 @@ First we'll generate three responses to the same question to demonstrate the var
 
 ```python
 import os
-from openai import AzureOpenAI
+from openai import OpenAI
 
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
-  api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version="2024-10-21"
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
 )
 
 for i in range(3):
   print(f'Story Version {i + 1}\n---')
     
   response = client.chat.completions.create(
-    model="gpt-35-turbo-0125", # Model = should match the deployment name you chose for your 0125-preview model deployment
+    model="gpt-4o", # Model = should match the deployment name you chose for your 0125-preview model deployment
     #seed=42,
     temperature=0.7,
     max_tokens =50, 
@@ -78,9 +66,7 @@ for i in range(3):
 ```powershell-interactive
 $openai = @{
    api_key     = $Env:AZURE_OPENAI_API_KEY
-   api_base    = $Env:AZURE_OPENAI_ENDPOINT # like the following https://YOUR_RESOURCE_NAME.openai.azure.com/
-   api_version = '2024-10-21' # may change in the future
-   name        = 'YOUR-DEPLOYMENT-NAME-HERE' # name you chose for your deployment
+   api_base    = $Env:AZURE_OPENAI_ENDPOINT # like the following https://YOUR_RESOURCE_NAME.openai.azure.com
 }
 
 $headers = @{
@@ -99,12 +85,13 @@ $messages += @{
 
 $body         = @{
   #seed       = 42
+  model       = 'YOUR-MODEL-DEPLOYMENT-NAME' 
   temperature = 0.7
   max_tokens  = 50
   messages    = $messages
 } | ConvertTo-Json
 
-$url = "$($openai.api_base)/openai/deployments/$($openai.name)/chat/completions?api-version=$($openai.api_version)"
+$url = "$($openai.api_base)/openai/v1/chat/completions"
 
 for ($i=0; $i -le 2; $i++) {
   $response = Invoke-RestMethod -Uri $url -Headers $headers -Body $body -Method Post -ContentType 'application/json'
@@ -140,19 +127,19 @@ Now we'll run the same code as before but this time uncomment the line for the p
 
 ```python
 import os
-from openai import AzureOpenAI
+from openai import OpenAI
 
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
-  api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version="2024-10-21"
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
 )
+
 
 for i in range(3):
   print(f'Story Version {i + 1}\n---')
     
   response = client.chat.completions.create(
-    model="gpt-35-turbo-0125", # Model = should match the deployment name you chose for your 0125-preview model deployment
+    model="gpt-4o", # Model = should match the deployment name you chose for your 0125-preview model deployment
     seed=42,
     temperature=0.7,
     max_tokens =50, 
@@ -173,9 +160,8 @@ for i in range(3):
 ```powershell-interactive
 $openai = @{
    api_key     = $Env:AZURE_OPENAI_API_KEY
-   api_base    = $Env:AZURE_OPENAI_ENDPOINT # like the following https://YOUR_RESOURCE_NAME.openai.azure.com/
-   api_version = '2024-10-21' # may change in the future
-   name        = 'YOUR-DEPLOYMENT-NAME-HERE' # name you chose for your deployment
+   api_base    = $Env:AZURE_OPENAI_ENDPOINT # like the following https://YOUR_RESOURCE_NAME.openai.azure.com
+
 }
 
 $headers = @{
@@ -193,13 +179,14 @@ $messages += @{
 }
 
 $body         = @{
+  model       = 'YOUR-MODEL-DEPLOYMENT-NAME' 
   seed        = 42
   temperature = 0.7
   max_tokens  = 50
   messages    = $messages
 } | ConvertTo-Json
 
-$url = "$($openai.api_base)/openai/deployments/$($openai.name)/chat/completions?api-version=$($openai.api_version)"
+$url = "$($openai.api_base)/openai/v1/chat/completions"
 
 for ($i=0; $i -le 2; $i++) {
   $response = Invoke-RestMethod -Uri $url -Headers $headers -Body $body -Method Post -ContentType 'application/json'

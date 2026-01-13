@@ -1,26 +1,31 @@
 ---
-title: Content Filter Annotations
+title: Guardrail annotations 
 description: Learn about annotations for content filtering in Azure OpenAI, including severity levels and optional models.
-author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
-ms.date: 05/07/2025
-ms.author: pafarley
+ms.date: 09/16/2025
+author: ssalgadodev
+ms.author: ssalgado
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
-# Content filtering annotations
+# Guardrail annotations
 
-Azure OpenAI in Azure AI Foundry Models provides content filtering annotations to help you understand the content filtering results for your requests. Annotations can be enabled even for filters and severity levels that have been disabled from blocking requests.
+Microsoft Foundry Models provide annotations to help you understand the Guardrail (previously content filtering) results for your requests. Annotations can be enabled even for filters and severity levels that have been disabled from blocking content. 
 
-## Standard content filters
+## Standard guardrail annotations 
 
-When annotations are enabled as shown in the code snippets below, the following information is returned via the API for the categories hate and fairness, sexual, violence, and self-harm:
-- content filtering category (hate, sexual, violence, self_harm)
-- the severity level (safe, low, medium, or high) within each content category
+When annotations are enabled as shown in the code snippets below, the following information is returned via the API for the categories hate and fairness, sexual, violence, and self-harm: 
+- risk category (hate, sexual, violence, self_harm) 
+- the severity level (safe, low, medium, or high) within each content category 
 - filtering status (true or false).
 
-## Optional models
+Azure OpenAI in Foundry Models provides content filtering annotations to help you understand the content filtering results for your requests. Annotations can be enabled even for filters and severity levels that have been disabled from blocking content.
+
+## Optional model annotations
 
 Optional models can be set to annotate mode (returns information when content is flagged, but not filtered) or filter mode (returns information when content is flagged and filtered).  
 
@@ -32,25 +37,27 @@ When annotations are enabled as shown in the code snippets below, the following 
 |indirect attacks|detected (true or false), </br>filtered (true or false)|
 |protected material text|detected (true or false), </br>filtered (true or false)|
 |protected material code|detected (true or false), </br>filtered (true or false), </br>Example citation of public GitHub repository where code snippet was found, </br>The license of the repository|
-|Groundedness | detected (true or false)</br>filtered (true or false) </br>details (`completion_end_offset`, `completion_start_offset`) |
+|Personally identifiable information (PII)|detected (true or false)</br>filtered (true or false) </br>redacted (true or false) |
+|Groundedness | detected (true or false)</br>filtered (true or false, with details) </br>(Annotate mode only) details:(`completion_end_offset`, `completion_start_offset`) |
 
 When displaying code in your application, we strongly recommend that the application also displays the example citation from the annotations. Compliance with the cited license may also be required for Customer Copyright Commitment coverage.
 
 See the following table for the annotation mode availability in each API version:
 
-|Filter category |2024-10-01-preview|2024-02-01 GA| 2024-04-01-preview | 2023-10-01-preview | 2023-06-01-preview| 
-|--|--|--|--|
-| Hate | ✅|✅ |✅ |✅ |✅ |
-| Violence | ✅|✅ |✅ |✅ |✅ |
-| Sexual |✅ |✅|✅ |✅ |✅ |
-| Self-harm |✅|✅|✅ |✅ |✅ |
-| Prompt Shield for user prompt attacks|✅|✅|✅ |✅ |✅ |
-|Prompt Shield for indirect attacks|   | | ✅ | | |
-|Protected material text|✅|✅ |✅ |✅ |✅ |
-|Protected material code|✅|✅ |✅ |✅ |✅ |
-|Profanity blocklist|✅|✅ |✅ |✅ |✅ |
-|Custom blocklist|✅| | ✅ |✅ |✅ |
-|Groundedness<sup>1</sup>|✅| |  | |  |
+|Filter category |2024-10-01-preview|2024-02-01 GA| 2024-04-01-preview | 2023-10-01-preview | 2023-06-01-preview| 2025-01-01-preview |
+|--|--|--|--|--|
+| Hate | ✅|✅ |✅ |✅ |✅ |✅ |
+| Violence | ✅|✅ |✅ |✅ |✅ |✅ |
+| Sexual |✅ |✅|✅ |✅ |✅ |✅ |
+| Self-harm |✅|✅|✅ |✅ |✅ |✅ |
+| Prompt Shield for user prompt attacks|✅|✅|✅ |✅ |✅ |✅ |
+|Prompt Shield for indirect attacks|   | | ✅ | | |✅ |
+|Protected material text|✅|✅ |✅ |✅ |✅ |✅ |
+|Protected material code|✅|✅ |✅ |✅ |✅ |✅ |
+|Personally identifiable information (PII)| |  |  |  |  |✅ |
+|Profanity blocklist|✅|✅ |✅ |✅ |✅ |✅ |
+|Custom blocklist|✅| | ✅ |✅ |✅ |✅ |
+|Groundedness<sup>1</sup>|✅| |  | |  |✅ |
 
 <sup>1</sup> Not available in non-streaming scenarios; only available for streaming scenarios. The following regions support Groundedness Detection: Central US, East US, France Central, and Canada East 
 
@@ -421,38 +428,6 @@ violence  : @{filtered=False; severity=safe}
 
 For details on the inference REST API endpoints for Azure OpenAI and how to create Chat and Completions, follow [Azure OpenAI REST API reference guidance](../reference.md). Annotations are returned for all scenarios when using any preview API version starting from `2023-06-01-preview`, as well as the GA API version `2024-02-01`.
 
-## Groundedness
-
-### Annotate mode 
-
-Returns offsets referencing the ungrounded completion content. 
-
-```json
-{ 
-  "ungrounded_material": { 
-    "details": [ 
-       { 
-         "completion_end_offset": 127, 
-         "completion_start_offset": 27 
-       } 
-   ], 
-    "detected": true, 
-    "filtered": false 
- } 
-} 
-```
-
-### Filter mode 
-
-Blocks completion content when ungrounded completion content was detected. 
-
-```json
-{ "ungrounded_material": { 
-    "detected": true, 
-    "filtered": true 
-  } 
-} 
-```
 
 <!--
 ### Example scenario: An input prompt containing content that is classified at a filtered category and severity level is sent to the completions API

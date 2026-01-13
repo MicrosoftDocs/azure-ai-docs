@@ -1,13 +1,13 @@
 ---
 title: Multi-device Conversation overview - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Multi-device conversation makes it easy to create a speech or text conversation between multiple clients and coordinate the messages that are sent between them.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 3/10/2025
-ms.author: eur
+ms.date: 08/07/2025
+ms.author: pafarley
 ms.custom: cogserv-non-critical-speech
 #Customer intent: As a developer, I want to learn about multi-device conversation in the Speech service.
 ---

@@ -31,7 +31,7 @@ Use this component to measure the accuracy of a trained model. You provide a dat
 ## How to use Evaluate Model
 1. Connect the **Scored dataset** output of the [Score Model](./score-model.md) or Result dataset output of the [Assign Data to Clusters](./assign-data-to-clusters.md) to the left input port of **Evaluate Model**. 
     > [!NOTE] 
-    > If use components like "Select Columns in Dataset" to select part of input dataset, please ensure
+    > If you use components like "Select Columns in Dataset" to select part of input dataset, please ensure
     > Actual label column (used in training), 'Scored Probabilities' column and 'Scored Labels' column exist to calculate metrics like AUC, Accuracy for binary classification/anomaly detection.
     > Actual label column, 'Scored Labels' column exist to calculate metrics for multi-class classification/regression.
     > 'Assignments' column, columns 'DistancesToClusterCenter no.X' (X is centroid index, ranging from 0, ..., Number of centroids-1)     exist to calculate metrics for clustering.

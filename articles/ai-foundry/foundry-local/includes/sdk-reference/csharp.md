@@ -1,279 +1,243 @@
 ---
 ms.service: azure-ai-foundry
 ms.topic: include
-ms.date: 06/09/2025
+ms.date: 01/05/2026
 ms.author: samkemp
 author: samuel100
+ai-usage: ai-assisted
 ---
 
 ## C# SDK Reference
 
-### Installation
+### Project setup guide
 
-To use the Foundry Local C# SDK, you need to install the NuGet package:
+There are two NuGet packages for the Foundry Local SDK - a WinML and a cross-platform package - that have the same API surface but are optimized for different platforms:
 
-```bash
-dotnet add package Microsoft.AI.Foundry.Local
-```
+- **Windows**: Uses the `Microsoft.AI.Foundry.Local.WinML` package that's specific to Windows applications, which uses the Windows Machine Learning (WinML) framework.
+- **Cross-platform**: Uses the `Microsoft.AI.Foundry.Local` package that can be used for cross-platform applications (Windows, Linux, macOS).
 
-### A note on aliases
+Depending on your target platform, follow these instructions to create a new C# application and add the necessary dependencies:
 
-Many methods outlined in this reference have an `aliasOrModelId` parameter in the signature. You can pass into the method either an **alias** or **model ID** as a value. Using an alias will:
+[!INCLUDE [project-setup](./../csharp-project-setup.md)]
 
-- Select the *best model* for the available hardware. For example, if a Nvidia CUDA GPU is available, Foundry Local selects the CUDA model. If a supported NPU is available, Foundry Local selects the NPU model.
-- Allow you to use a shorter name without needing to remember the model ID.
+### Quickstart
 
-> [!TIP]
-> We recommend passing into the `aliasOrModelId` parameter an **alias** because when you deploy your application, Foundry Local acquires the best model for the end user's machine at run-time.
-
-### Enumerations
-
-#### `DeviceType`
-
-Represents the type of device used for model execution.
-
-| Value   | Description        |
-|---------|--------------------|
-| CPU     | CPU device         |
-| GPU     | GPU device         |
-| NPU     | NPU device         |
-| Invalid | Invalid/unknown    |
-
-#### `ExecutionProvider`
-
-Represents the execution provider for model inference.
-
-| Value                  | Description                  |
-|------------------------|-----------------------------|
-| Invalid                | Invalid provider            |
-| CPUExecutionProvider   | CPU execution               |
-| WebGpuExecutionProvider| WebGPU execution            |
-| CUDAExecutionProvider  | CUDA GPU execution          |
-| QNNExecutionProvider   | Qualcomm NPU execution      |
-
-### `FoundryLocalManager` Class
-
-The main entry point for managing models, cache, and the Foundry Local service.
-
-#### Construction
-
-```csharp
-var manager = new FoundryLocalManager();
-```
-
-#### Properties
-
-| Property         | Type      | Description                                                      |
-|------------------|-----------|------------------------------------------------------------------|
-| ServiceUri       | `Uri`     | The base URI of the Foundry Local service.                       |
-| Endpoint         | `Uri`     | The API endpoint (`ServiceUri` + `/v1`).                         |
-| ApiKey           | `string`  | The API key (default: `"OPENAI_API_KEY"`).                       |
-| IsServiceRunning | `bool`    | Indicates if the service is running.                             |
-
-
-#### Service Management
-
-##### Start the service
-
-```csharp
-await manager.StartServiceAsync(CancellationToken.None);
-```
-Starts the Foundry Local service if not already running.
-
-##### Stop the service
-
-```csharp
-await manager.StopServiceAsync(CancellationToken.None);
-```
-Stops the Foundry Local service.
-
-##### Start and load a model (static helper)
-
-```csharp
-var manager = await FoundryLocalManager.StartModelAsync("aliasOrModelId");
-```
-
-Starts the service and loads the specified model.
-
-#### Catalog Management
-
-##### List all catalog models
-
-```csharp
-List<ModelInfo> models = await manager.ListCatalogModelsAsync();
-```
-Returns all available models in the catalog.
-
-##### Refresh the catalog
-
-```csharp
-manager.RefreshCatalog();
-```
-Clears the cached catalog so it will be reloaded on next access.
-
-##### Get model info by alias or ID
-
-```csharp
-ModelInfo? info = await manager.GetModelInfoAsync("aliasOrModelId");
-```
-Returns model info or `null` if not found.
-
-#### Cache Management
-
-##### Get cache location
-
-```csharp
-string cachePath = await manager.GetCacheLocationAsync();
-```
-Returns the directory path where models are cached.
-
-##### List cached models
-
-```csharp
-List<ModelInfo> cached = await manager.ListCachedModelsAsync();
-```
-Returns models downloaded to the local cache.
-
-#### Model Management
-
-##### Download a model
-
-```csharp
-ModelInfo? model = await manager.DownloadModelAsync("aliasOrModelId");
-```
-Downloads a model to the local cache.
-
-##### Download a model with progress
-
-```csharp
-await foreach (var progress in manager.DownloadModelWithProgressAsync("aliasOrModelId"))
-{
-    // progress.Percentage, progress.Status, etc.
-}
-```
-Streams download progress updates.
-
-##### Load a model
-
-```csharp
-ModelInfo loaded = await manager.LoadModelAsync("aliasOrModelId");
-```
-Loads a model into the inference server.
-
-##### List loaded models
-
-```csharp
-List<ModelInfo> loaded = await manager.ListLoadedModelsAsync();
-```
-Lists all models currently loaded in the service.
-
-##### Unload a model
-
-```csharp
-await manager.UnloadModelAsync("aliasOrModelId");
-```
-Unloads a model from the inference server.
-
-#### Disposal
-
-Implements both `IDisposable` and `IAsyncDisposable` for proper cleanup.
-
-```csharp
-manager.Dispose();
-// or
-await manager.DisposeAsync();
-```
-
-### Model Types
-
-This page documents the key data types used by the Foundry Local C# SDK for describing models, downloads, and runtime information.
-
-
-#### `PromptTemplate`
-
-Represents the prompt template for a model.
-
-| Property   | Type    | Description                        |
-|------------|---------|------------------------------------|
-| Assistant  | string  | The assistant's prompt template.   |
-| Prompt     | string  | The user prompt template.          |
-
-#### `Runtime`
-
-Describes the runtime environment for a model.
-
-| Property          | Type           | Description                       |
-|-------------------|----------------|-----------------------------------|
-| DeviceType        | `DeviceType`   | The device type (CPU, GPU, etc).  |
-| ExecutionProvider | `ExecutionProvider` | The execution provider (CUDA, CPU, etc). |
-
-
-#### `ModelSettings`
-
-Represents model-specific parameters.
-
-| Property   | Type                | Description                |
-|------------|---------------------|----------------------------|
-| Parameters | List\<JsonElement\> | Model parameter collection |
-
-### `ModelInfo`
-
-Describes a model in the Foundry Local catalog or cache.
-
-| Property             | Type            | Description                                   |
-|----------------------|-----------------|-----------------------------------------------|
-| ModelId              | string          | Unique model identifier.                      |
-| DisplayName          | string          | Human-readable model name.                    |
-| ProviderType         | string          | Provider type (e.g., "CUDA", "CPU").          |
-| Uri                  | string          | Download URI for the model.                   |
-| Version              | string          | Model version.                                |
-| ModelType            | string          | Model type (e.g., "llm", "embedding").        |
-| PromptTemplate       | PromptTemplate  | Prompt template for the model.                |
-| Publisher            | string          | Publisher of the model.                       |
-| Task                 | string          | Task type (e.g., "chat", "completion").       |
-| Runtime              | Runtime         | Runtime environment info.                     |
-| FileSizeMb           | long            | Model file size in MB.                        |
-| ModelSettings        | ModelSettings   | Model-specific settings.                      |
-| Alias                | string          | Alias for the model.                          |
-| SupportsToolCalling  | bool            | Whether tool-calling is supported.            |
-| License              | string          | License identifier.                           |
-| LicenseDescription   | string          | License description.                          |
-| ParentModelUri       | string          | URI of the parent model, if any.              |
-
-
-#### `ModelDownloadProgress`
-
-Represents the progress of a model download operation.
-
-| Property     | Type        | Description                                 |
-|--------------|-------------|---------------------------------------------|
-| Percentage   | double      | Download completion percentage (0-100).     |
-| IsCompleted  | bool        | Whether the download is complete.           |
-| ModelInfo    | ModelInfo?  | Model info if download completed.           |
-| ErrorMessage | string?     | Error message if download failed.           |
-
-**Static methods:**
-- `Progress(double percentage)`: Create a progress update.
-- `Completed(ModelInfo modelInfo)`: Create a completed progress result.
-- `Error(string errorMessage)`: Create an error result.
-
-### Example Usage
+Use this snippet to verify that the SDK can initialize and access the local model catalog.
 
 ```csharp
 using Microsoft.AI.Foundry.Local;
+using Microsoft.Extensions.Logging;
+using System.Linq;
 
-var manager = new FoundryLocalManager();
-await manager.StartServiceAsync();
+var config = new Configuration
+{
+  AppName = "app-name",
+  LogLevel = Microsoft.AI.Foundry.Local.LogLevel.Information,
+};
 
-var models = await manager.ListCatalogModelsAsync();
-var alias = "phi-3.5-mini";
+using var loggerFactory = LoggerFactory.Create(builder =>
+{
+  builder.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Information);
+});
+var logger = loggerFactory.CreateLogger<Program>();
 
-await manager.DownloadModelAsync(alias);
-await manager.LoadModelAsync(alias);
+await FoundryLocalManager.CreateAsync(config, logger);
+var manager = FoundryLocalManager.Instance;
 
-var loaded = await manager.ListLoadedModelsAsync();
+var catalog = await manager.GetCatalogAsync();
+var models = await catalog.ListModelsAsync();
 
-await manager.UnloadModelAsync(alias);
-
-manager.Dispose();
+Console.WriteLine($"Models available: {models.Count()}");
 ```
+
+This example prints the number of models available for your hardware.
+
+References:
+
+- [Integrate with inference SDKs](../../how-to/how-to-integrate-with-inference-sdks.md)
+
+### Redesign
+
+To improve your ability to ship applications using on-device AI, there are substantial changes to the architecture of the C# SDK in version `0.8.0` and later. In this section, we outline the key changes to help you migrate your applications to the latest version of the SDK.
+
+> [!NOTE]
+> In the SDK version `0.8.0` and later, there are breaking changes in the API from previous versions.
+
+The following diagram shows how the previous architecture - for versions earlier than `0.8.0` - relied heavily on using a REST webserver to manage models and inference like chat completions:
+
+:::image type="content" source="../../media/architecture/current-sdk-architecture.png" alt-text="Diagram of the previous architecture for Foundry Local." lightbox="../../media/architecture/current-sdk-architecture.png":::
+
+The SDK would use a Remote Procedural Call (RPC) to find Foundry Local CLI executable on the machine, start the webserver, and then communicate with it over HTTP. This architecture had several limitations, including:
+
+- Complexity in managing the webserver lifecycle.
+- Challenging deployment: End users needed to have the Foundry Local CLI installed on their machines *and* your application.
+- Version management of the CLI and SDK could lead to compatibility issues.
+
+To address these issues, the redesigned architecture in version `0.8.0` and later uses a more streamlined approach. The new architecture is as follows:
+
+:::image type="content" source="../../media/architecture/new-sdk-architecture.png" alt-text="Diagram of the new architecture for Foundry Local." lightbox="../../media/architecture/new-sdk-architecture.png":::
+
+In this new architecture:
+
+- Your application is **self-contained**. It doesn't require the Foundry Local CLI to be installed separately on the end user's machine making it easier for you to deploy applications.
+- The REST **web server is *optional***. You can still use the web server if you want to integrate with other tools that communicate over HTTP. Read [Use chat completions via REST server with Foundry Local](../../how-to/how-to-integrate-with-inference-sdks.md) for details on how to use this feature.
+- The SDK has **native support for chat completions and audio transcriptions**, allowing you to build conversational AI applications with fewer dependencies. Read [Use Foundry Local native chat completions API](../../how-to/how-to-use-native-chat-completions.md) for details on how to use this feature.
+- On Windows devices, you can use a Windows ML build that handles **hardware acceleration** for models on the device by pulling in the right runtime and drivers.
+
+
+#### API changes
+
+Version `0.8.0` and later provides a more object-orientated and composable API. The main entry point continues to be the `FoundryLocalManager` class, but instead of being a flat set of methods that operate via static calls to a stateless HTTP API, the SDK now exposes methods on the `FoundryLocalManager` instance that maintain state about the service and models.
+
+| Primitive | Versions < 0.8.0 | Versions >= 0.8.0 |
+| --- | --- | --- |
+| **Configuration** | N/A | `config = Configuration(...)` |
+| **Get Manager** | `mgr = FoundryLocalManager();` | `await FoundryLocalManager.CreateAsync(config, logger);`<br>`var mgr = FoundryLocalManager.Instance;` |
+| **Get Catalog** | N/A | `catalog = await mgr.GetCatalogAsync();` |
+| **List Models** | `mgr.ListCatalogModelsAsync();` | `catalog.ListModelsAsync();` |
+| **Get Model** | `mgr.GetModelInfoAsync("aliasOrModelId");` | `catalog.GetModelAsync(alias: "alias");` |
+| **Get Variant** | N/A | `model.SelectedVariant;` |
+| **Set Variant** | N/A | `model.SelectVariant();` |
+| **Download a model** | `mgr.DownloadModelAsync("aliasOrModelId");` | `model.DownloadAsync()` |
+| **Load a model** | `mgr.LoadModelAsync("aliasOrModelId");` | `model.LoadAsync()` |
+| **Unload a model** | `mgr.UnloadModelAsync("aliasOrModelId");` | `model.UnloadAsync()` |
+| **List loaded models** | `mgr.ListLoadedModelsAsync();` | `catalog.GetLoadedModelsAsync();` |
+| **Get model path** | N/A | `model.GetPathAsync()` |
+| **Start service** | `mgr.StartServiceAsync();` | `mgr.StartWebServerAsync();` |
+| **Stop service** | `mgr.StopServiceAsync();` | `mgr.StopWebServerAsync();` |
+| **Cache location** | `mgr.GetCacheLocationAsync();` | `config.ModelCacheDir` |
+| **List cached models** | `mgr.ListCachedModelsAsync();` | `catalog.GetCachedModelsAsync();` |
+
+The API allows Foundry Local to be more configurable over the web server, logging, cache location, and model variant selection. For example, the `Configuration` class allows you to set up the application name, logging level, web server URLs, and directories for application data, model cache, and logs:
+
+```csharp
+var config = new Configuration
+{
+    AppName = "app-name",
+    LogLevel = Microsoft.AI.Foundry.Local.LogLevel.Information,
+    Web = new Configuration.WebService
+    {
+        Urls = "http://127.0.0.1:55588"
+    },
+    AppDataDir = "./foundry_local_data",
+    ModelCacheDir = "{AppDataDir}/model_cache",
+    LogsDir = "{AppDataDir}/logs"
+};
+```
+
+References:
+
+- [Integrate with inference SDKs](../../how-to/how-to-integrate-with-inference-sdks.md)
+
+In the previous version of the Foundry Local C# SDK, you couldn't configure these settings directly through the SDK, which limited your ability to customize the behavior of the service.
+
+### Reduce application package size
+
+The Foundry Local SDK pulls in `Microsoft.ML.OnnxRuntime.Foundry` NuGet package as a dependency. The `Microsoft.ML.OnnxRuntime.Foundry` package provides the *inference runtime bundle*, which is the set of libraries required to efficiently run inference on specific vendor hardware devices. The inference runtime bundle includes the following components:
+
+- **ONNX Runtime library**: The core inference engine (`onnxruntime.dll`).
+- **ONNX Runtime Execution Provider (EP) library**. A hardware-specific backend in ONNX Runtime that optimizes and executes parts of a machine learning model a hardware accelerator. For example:
+    - CUDA EP: `onnxruntime_providers_cuda.dll`
+    - QNN EP: `onnxruntime_providers_qnn.dll`
+- **Independent Hardware Vendor (IHV) libraries**. For example:
+    - WebGPU: DirectX dependencies (`dxcompiler.dll`, `dxil.dll`)
+    - QNN: Qualcomm QNN dependencies (`QnnSystem.dll`, etc.)
+
+The following table summarizes what EP and IHV libraries are bundled with your application and what WinML will download/install at runtime:
+
+![Illustration of a table showing EP and IHV libraries.](../../media/execution-provider-bundle.png)
+
+In all platforms and architectures, the CPU EP is required. The WebGPU EP and IHV libraries are small in size (for example, WebGPU only adds ~7MB to your application package) and are required in Windows and macOS. However, the CUDA and QNN EPs are large in size (for example, CUDA adds ~1GB to your application package) so we recommend excluding these EPs from your application package. WinML will download/install CUDA and QNN at runtime if the end user has compatible hardware.
+
+> [!NOTE]
+> We're working on removing the CUDA and QNN EPs from the `Microsoft.ML.OnnxRuntime.Foundry` package in future releases so that you don't need to include an `ExcludeExtraLibs.props` file to remove them from your application package.
+
+To reduce the size of your application package, you can create an `ExcludeExtraLibs.props` file in your project directory with the following content, which excludes the CUDA and QNN EP and IHV libraries when you publish your application:
+
+```xml
+<Project>
+  <!-- we want to ensure we're using the onnxruntime libraries from Foundry Local Core so 
+  we delete the WindowsAppSdk versions once they're unzipped. -->
+  <Target Name="ExcludeOnnxRuntimeLibs" AfterTargets="ExtractMicrosoftWindowsAppSDKMsixFiles">
+    <Delete Files="$(MicrosoftWindowsAppSDKMsixContent)\onnxruntime.dll"/>
+    <Delete Files="$(MicrosoftWindowsAppSDKMsixContent)\onnxruntime_providers_shared.dll"/>
+    <Message Importance="Normal" Text="Deleted onnxruntime libraries from $(MicrosoftWindowsAppSDKMsixContent)." />
+  </Target>
+
+  <!-- Remove CUDA EP and IHV libraries on Windows x64 -->
+  <Target Name="ExcludeCudaLibs" Condition="'$(RuntimeIdentifier)'=='win-x64'" AfterTargets="ResolvePackageAssets">
+    <ItemGroup>
+      <!-- match onnxruntime*cuda.* (we're matching %(Filename) which excludes the extension) -->
+      <NativeCopyLocalItems Remove="@(NativeCopyLocalItems)"
+                            Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('%(Filename)', 
+                                      '^onnxruntime.*cuda.*', RegexOptions.IgnoreCase))" />
+    </ItemGroup>
+    <Message Importance="Normal" Text="Excluded onnxruntime CUDA libraries from package." />
+  </Target>
+
+  <!-- Remove QNN EP and IHV libraries on Windows arm64 -->
+  <Target Name="ExcludeQnnLibs" Condition="'$(RuntimeIdentifier)'=='win-arm64'" AfterTargets="ResolvePackageAssets">
+    <ItemGroup>
+      <NativeCopyLocalItems Remove="@(NativeCopyLocalItems)"
+                            Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('%(Filename)%(Extension)', 
+                                      '^QNN.*\.dll', RegexOptions.IgnoreCase))" />
+      <NativeCopyLocalItems Remove="@(NativeCopyLocalItems)"
+                            Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('%(Filename)', 
+                                      '^libQNNhtp.*', RegexOptions.IgnoreCase))" />
+      <NativeCopyLocalItems Remove="@(NativeCopyLocalItems)"
+                            Condition="'%(FileName)%(Extension)' == 'onnxruntime_providers_qnn.dll'" />
+    </ItemGroup>
+    <Message Importance="Normal" Text="Excluded onnxruntime QNN libraries from package." />
+  </Target>
+
+  <!-- need to manually copy on linux-x64 due to the nuget packages not having the correct props file setup -->
+  <ItemGroup Condition="'$(RuntimeIdentifier)' == 'linux-x64'">
+    <!-- 'Update' as the Core package will add these dependencies, but we want to be explicit about the version -->
+    <PackageReference Update="Microsoft.ML.OnnxRuntime.Gpu" />
+    <PackageReference Update="Microsoft.ML.OnnxRuntimeGenAI.Cuda" />
+    <OrtNativeLibs Include="$(NuGetPackageRoot)microsoft.ml.onnxruntime.gpu.linux/$(OnnxRuntimeVersion)/runtimes/$(RuntimeIdentifier)/native/*" />
+    <OrtGenAINativeLibs Include="$(NuGetPackageRoot)microsoft.ml.onnxruntimegenai.cuda/$(OnnxRuntimeGenAIVersion)/runtimes/$(RuntimeIdentifier)/native/*" />
+  </ItemGroup>
+
+  <Target Name="CopyOrtNativeLibs" AfterTargets="Build" Condition=" '$(RuntimeIdentifier)' == 'linux-x64'">
+    <Copy SourceFiles="@(OrtNativeLibs)" DestinationFolder="$(OutputPath)"></Copy>
+    <Copy SourceFiles="@(OrtGenAINativeLibs)" DestinationFolder="$(OutputPath)"></Copy>
+  </Target>
+</Project>
+```
+
+In your project file (`.csproj`), add the following line to import the `ExcludeExtraLibs.props` file:
+
+```xml
+<!-- other project file content -->
+  
+<Import Project="ExcludeExtraLibs.props" />
+```
+
+
+#### Windows: CUDA dependencies
+
+The CUDA EP is pulled into your Linux application via `Microsoft.ML.OnnxRuntime.Foundry`, but we don't include the IHV libraries. If you want to allow your end users with CUDA-enabled devices to benefit from higher performance, you need *add* the following CUDA IHV libraries to your application:
+
+- CUBLAS v12.8.4 ([download from NVIDIA Developer](https://developer.download.nvidia.com/compute/cuda/redist/libcublas/windows-x86_64/libcublas-windows-x86_64-12.8.4.1-archive.zip))
+    - cublas64_12.dll
+    - cublasLt64_12.dll
+- CUDA RT v12.8.90 ([download from NVIDIA Developer](https://developer.download.nvidia.com/compute/cuda/redist/cuda_cudart/windows-x86_64/cuda_cudart-windows-x86_64-12.8.90-archive.zip))
+    - cudart64_12.dll
+- CUDNN v9.8.0 ([download from NVIDIA Developer](https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/windows-x86_64/cudnn-windows-x86_64-9.8.0.87_cuda12-archive.zip))
+    - cudnn_graph64_9.dll
+    - cudnn_ops64_9.dll
+    - cudnn64_9.dll
+- CUDA FFT v11.3.3.83 ([download from NVIDIA Developer](https://developer.download.nvidia.com/compute/cuda/redist/libcufft/windows-x86_64/libcufft-windows-x86_64-11.3.3.83-archive.zip))
+    - cufft64_11.dll
+
+> [!WARNING]
+> Adding the CUDA EP and IHV libraries to your application increase the size of your application package by 1GB.
+
+### Samples
+
+- For sample applications that demonstrate how to use the Foundry Local C# SDK, see the [Foundry Local C# SDK Samples GitHub repository](https://aka.ms/foundrylocalSDK).
+
+### API reference
+
+- For more details on the Foundry Local C# SDK read [Foundry Local C# SDK API Reference](https://aka.ms/fl-csharp-api-ref).

@@ -3,9 +3,9 @@ title: Use private Python packages
 titleSuffix: Azure Machine Learning
 description: Learn how to securely work with private Python packages from your Azure Machine Learning environments.
 services: machine-learning
-author: rastala
-ms.author: roastala
-ms.reviewer: laobri
+ms.author: scottpolly
+author: s-polly
+ms.reviewer: jturuk
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: how-to

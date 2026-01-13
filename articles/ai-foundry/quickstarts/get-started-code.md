@@ -1,12 +1,11 @@
 ---
-title: "Quickstart: Get started with Azure AI Foundry"
-titleSuffix: Azure AI Foundry
-description: This article provides instructions on how to start using the Azure AI Foundry portal and the Azure AI Foundry SDK.
+title: "Microsoft Foundry Quickstart"
+titleSuffix: Microsoft Foundry
+description: Get started with Microsoft Foundry SDK to build AI applications. 
 author: sdgilley
 ms.author: sgilley
-manager: scottpolly
 ms.reviewer: dantaylo
-ms.date: 07/03/2025
+ms.date: 12/16/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.custom:
@@ -14,125 +13,354 @@ ms.custom:
   - devx-track-azurecli
   - devx-track-python
   - ignite-2024
-  - update-code5
+  - update-code7
   - build-aifnd
   - build-2025
-zone_pivot_groups: project-type
-# customer intent: As a developer, I want to start using the Azure AI Foundry portal and client libraries.
+  - peer-review-program
+ai-usage: ai-assisted
+monikerRange: 'foundry-classic || foundry'
+# customer intent: As a developer, I want to start using the Microsoft Foundry portal and client libraries.
 ---
 
+# Microsoft Foundry Quickstart
 
-# Quickstart: Get started with Azure AI Foundry
+[!INCLUDE [version-banner](../includes/version-banner.md)]
 
-::: zone pivot="hub-project"
+::: moniker range="foundry-classic"
 
-In this quickstart, we walk you through setting up your local development environment with the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) SDK. We write a prompt, run it as part of your app code, trace the LLM calls being made, and run a basic evaluation on the outputs of the LLM.
+In this quickstart, you use [!INCLUDE [classic-link](../includes/classic-link.md)] to:
 
+> [!div class="checklist"]
+> * Create a project
+> * Deploy a model
+> * Run a chat completion
+> * Create and run an agent
+> * Upload files to the agent
+::: moniker-end
+
+::: moniker range="foundry"
+In this quickstart, you use [!INCLUDE [foundry-link](../default/includes/foundry-link.md)] to:
+
+> [!div class="checklist"]
+> * Create a project 
+> * Deploy a model
+> * Get ready to code - install necessary packages and authenticate
+> * Chat with a model
+> * Create an agent
+> * Chat with an agent
+::: moniker-end
+
+The Microsoft Foundry SDK is available in multiple languages, including Python, Java, TypeScript, and C#. This quickstart provides instructions for each of these languages.
+
+::: moniker range="foundry-classic"
 > [!TIP]
-> The rest of this article shows how to use a **[!INCLUDE [hub](../includes/hub-project-name.md)]**.  Select **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** at the top of this article if you want to use a [!INCLUDE [fdp](../includes/fdp-project-name.md)] instead.  [Which type of project do I need?](../what-is-azure-ai-foundry.md#which-type-of-project-do-i-need)
+> The rest of this article shows how to create and use a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**. See [Quickstart: Get started with Microsoft Foundry (Hub projects)](hub-get-started-code.md) if you want to use a [!INCLUDE [hub](../includes/hub-project-name.md)] instead. [Which type of project do I need?](../what-is-foundry.md#which-type-of-project-do-i-need)
+::: moniker-end
+
 
 ## Prerequisites
 
-- An [Azure subscription](https://azure.microsoft.com/free/). If you don't have an Azure subscription, create a free account before you begin.
-- A [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]. If you're new to Azure AI Foundry and don't have a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)], select **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** at the top of this article to use a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)] instead.
+- [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
+- You must be **Owner** of the subscription to get the appropriate access control needed to use your project.
+- Install the required language runtimes, global tools, and VS Code extensions as described in [Prepare your development environment](../how-to/develop/install-cli-sdk.md).
 
-## Set up your development environment
+> [!IMPORTANT]
+> Before starting, make sure your development environment is ready.  
+> This Quickstart focuses on **scenario-specific steps** like SDK installation, authentication, and running sample code.
+>
 
-1. [Set up your development environment](../how-to/develop/install-cli-sdk.md?pivots=programming-language-python)
+[!INCLUDE [first-run](../includes/first-run-experience.md)]
 
-1. Install these packages.
+## Get ready to code
 
-    ```bash
-    pip install azure-ai-inference azure-identity azure-ai-projects==1.0.0b10
+::: moniker range="foundry-classic"
+
+[!INCLUDE [agent-v1-switch](../includes/agent-v1-switch.md)]
+
+# [Python](#tab/python)
+
+1. Install these packages:
+
+    ```
+    pip install openai azure-identity azure-ai-projects==1.0.0
     ```
 
-    > [!NOTE]
-    > Different project types require different versions of the `azure-ai-projects` package. To avoid conflicts, create separate Python environments: use version `1.0.0b10` for [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]s and the latest version for [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]s.
+1. [!INCLUDE [find-endpoint](../includes/find-endpoint.md)]
+1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Python scripts.
 
-## Deploy a model
+Follow along below or get the code:
+> [!div class="nextstepaction"]
+> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/python/quickstart)
 
-[!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
+# [C#](#tab/csharp)
 
-1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
-1. Select a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]. If you don't have a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)], select **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** at the top of this article to use a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)] instead.
+1. Install packages:
 
-1. Select **Model catalog** from the left pane.
+    [!INCLUDE [install-csharp-packages](../includes/install-csharp-packages.md)]
 
-1. Select the **gpt-4o-mini** model from the list of models. You can use the search bar to find it. 
+1. [!INCLUDE [find-endpoint](../includes/find-endpoint.md)]
 
-1. On the model details page, select **Deploy**.
+1. Set these environment variables to use in your scripts.  The `AZURE_AI_ENDPOINT` is the project endpoint you copied earlier.  Remove everything after `.com/` in that endpoint to form `AZURE_AI_INFERENCE`.
 
-    :::image type="content" source="../media/tutorials/chat/deploy-model.png" alt-text="Screenshot of the model details page with a button to deploy the model." lightbox="../media/tutorials/chat/deploy-model.png":::
+    :::code language="plaintext" source="~/foundry-samples-main/samples-classic/csharp/quickstart/Samples/.env.example":::
+
+    > [!TIP]
+    > The agent samples require the `AZURE_AI_MODEL` environment variable to be set to an OpenAI-compatible model, e.g. `gpt-4.1`, as not all models are supported for agent use cases, including tooling.
+
+1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your C# scripts.
+
+Follow along below or get the code:
+> [!div class="nextstepaction"]
+> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/csharp/quickstart)
+
+# [TypeScript](#tab/typescript)
+
+1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your TypeScript scripts.
+1. Download [package.json](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples-classic/typescript/quickstart/package.json).
+1. Install packages with `npm install`
+1. [!INCLUDE [find-endpoint](../includes/find-endpoint.md)]
+1. Set these environment variables to use in your scripts:
+
+    :::code language="plaintext" source="~/foundry-samples-main/samples-classic/typescript/quickstart/.env.template":::
+1. Start your code with these imports:
+    
+    :::code language="typescript" source="~/foundry-samples-main/samples-classic/typescript/quickstart/src/quickstart.ts" id="imports":::
+
+Follow along below or get the code:
+> [!div class="nextstepaction"]
+> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/typescript/quickstart)
+
+# [Java](#tab/java)
+
+[!INCLUDE [code-preview](../default/includes/code-preview.md)]
+
+1. [!INCLUDE [find-endpoint](../includes/find-endpoint.md)]
+1. Set these environment variables to use in your scripts:
+
+    ```txt
+    MODEL_DEPLOYMENT_NAME=gpt-4o
+    PROJECT_ENDPOINT=https://<your-foundry-resource-name>.services.ai.azure.com/api/projects/<your-foundry-project-name>
+    ```
+
+1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Java scripts.
+1. Download [POM.XML](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples-classic/java/quickstart/pom.xml) to your Java IDE.
+
+Follow along below or get the code:
+> [!div class="nextstepaction"]
+> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples-classic/java/quickstart)
+
+# [REST API](#tab/rest)
+
+1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running the next command.
+1. Get a temporary access token. It will expire in 60-90 minutes, you'll need to refresh after that.
+
+    ```azurecli
+    az account get-access-token --scope https://ai.azure.com/.default
+    ```
+    
+1. Save the results as the environment variable `AZURE_AI_AUTH_TOKEN`.  
+
+Follow along below or get the code:
+> [!div class="nextstepaction"]
+> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/REST/quickstart).
 
 
-1. Leave the default **Deployment name**. Select **Deploy**.
+# [Foundry portal](#tab/portal)
 
-1. Once the model is deployed, select **Open in playground** to test your model.
+No installation is necessary to use the Foundry portal.
 
-## Build your chat app
+---
 
-Create a file named **chat.py**.  Copy and paste the following code into it.
+::: moniker-end
 
-:::code language="python" source="~/azureai-samples-main/scenarios/projects/basic/chat-simple.py":::
+::: moniker range="foundry"
 
-## Insert your connection string
+[!INCLUDE [code-preview](../default/includes/code-preview.md)] 
 
-Your project connection string is required to call the Azure OpenAI in Azure AI Foundry Models from your code. 
+### Set environment variables
 
-Find your connection string in the Azure AI Foundry project you created in the [Azure AI Foundry playground quickstart](../quickstarts/get-started-playground.md).  Open the project, then find the connection string on the **Overview** page.  
+Store the endpoint as an environment variable.  Also set these values for use in your scripts.
 
-:::image type="content" source="../media/quickstarts/azure-ai-sdk/connection-string.png" alt-text="Screenshot shows the overview page of a project and the location of the connection string.":::
+1. [!INCLUDE [find-endpoint](../default/includes/find-endpoint.md)]
+1. Set these environment variables to use in your scripts:
 
-Copy the connection string and replace `<your-connection-string-goes-here>` in the **chat.py** file.
+    ```plaintext
+    PROJECT_ENDPOINT=<endpoint copied from welcome screen>
+    AGENT_NAME="MyAgent"
+    MODEL_DEPLOYMENT_NAME="gpt-4.1-mini"
+    ```
+### Install and authenticate
 
-## Run your chat script
+[!INCLUDE [quickstart-v2-install](../default/includes/quickstart-v2-install.md)]
 
-Run the script to see the response from the model.
+::: moniker-end
 
-```bash
-python chat.py
-```
+## Chat with a model
 
-## Generate prompt from user input and a prompt template
+::: moniker range="foundry-classic"
 
-The script uses hardcoded input and output messages. In a real app you'd take input from a client application, generate a system message with internal instructions to the model, and then call the LLM with all of the messages.
+Chat completions are the basic building block of AI applications. Using chat completions you can send a list of messages and get a response from the model.
 
-Let's change the script to take input from a client application and generate a system message using a prompt template.
+[!INCLUDE [agent-v1-switch](../includes/agent-v1-switch.md)]
 
-1. Remove the last line of the script that prints a response.
+# [Python](#tab/python)
 
-1. Now define a `get_chat_response` function that takes messages and context, generates a system message using a prompt template, and calls a model.  Add this code to your  existing **chat.py** file:
+Substitute your endpoint for the `endpoint` in this code:
 
-    :::code language="python" source="~/azureai-samples-main/scenarios/projects/basic/chat-template.py" id="chat_function":::
+:::code language="python" source="~/foundry-samples-main/samples-classic/python/quickstart/quickstart.py" id="chat_completion":::
 
-    > [!NOTE]
-    > The prompt template uses mustache format.
+# [C#](#tab/csharp)
 
-    The get_chat_response function could be easily added as a route to a FastAPI or Flask app to enable calling this function from a front-end web application.
+:::code language="csharp" source="~/foundry-samples-main/samples-classic/csharp/quickstart/Samples/SimpleInference.cs" id="chat_completion":::
 
-1. Now simulate passing information from a frontend application to this function.  Add the following code to the end of your **chat.py** file.  Feel free to play with the message and add your own name.
+# [TypeScript](#tab/typescript)
 
-    :::code language="python" source="~/azureai-samples-main/scenarios/projects/basic/chat-template.py" id="create_response":::
+:::code language="typescript" source="~/foundry-samples-main/samples-classic/typescript/quickstart/src/quickstart.ts" id="chat_completion":::
 
-Run the revised script to see the response from the model with this new input.
+# [Java (preview)](#tab/java)
 
-```bash
-python chat.py
-```
+:::code language="java" source="~/foundry-samples-main/samples-classic/java/quickstart/src/main/java/com/azure/ai/foundry/samples/ChatCompletionSample.java" :::
+
+# [REST API](#tab/rest)
+
+Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
+
+:::code language="console" source="~/foundry-samples-main/samples-classic/REST/quickstart/quickstart.sh" id="chat_completion":::
+
+# [Foundry portal](#tab/portal)
+
+1. In the chat playground, fill in the prompt and select **Send**.
+1. The model returns a response in the **Response** pane.
+
+---
+
+::: moniker-end
+
+:::moniker range="foundry"
+
+[!INCLUDE [quickstart-v2-chat](../default/includes/quickstart-v2-chat.md)]
+
+## Create an agent
+
+[!INCLUDE [quickstart-v2-create-agent](../default/includes/quickstart-v2-create-agent.md)]
+
+:::moniker-end
+
+## Chat with an agent
+
+::: moniker range="foundry-classic"
+
+Create an agent and chat with it.
+
+[!INCLUDE [agent-v1-switch](../includes/agent-v1-switch.md)]
+
+# [Python](#tab/python)
+
+Substitute your endpoint for the `endpoint` in this code:
+
+:::code language="python" source="~/foundry-samples-main/samples-classic/python/quickstart/quickstart.py" id="create_and_run_agent":::
+
+# [C#](#tab/csharp)
+
+:::code language="csharp" source="~/foundry-samples-main/samples-classic/csharp/quickstart/Samples/AgentService.cs" id="create_and_run_agent" :::
+
+# [TypeScript](#tab/typescript)
+
+:::code language="typescript" source="~/foundry-samples-main/samples-classic/typescript/quickstart/src/quickstart.ts" id="create_and_run_agent" :::
+
+# [Java (preview)](#tab/java)
+
+:::code language="java" source="~/foundry-samples-main/samples-classic/java/quickstart/src/main/java/com/azure/ai/foundry/samples/AgentSample.java" :::
+
+# [REST API](#tab/rest)
+
+Replace `YOUR-FOUNDRY-RESOURCE-NAME` and `YOUR-PROJECT-NAME` with your values:
+
+:::code language="console" source="~/foundry-samples-main/samples-classic/REST/quickstart/quickstart.sh" id="create_and_run_agent":::
+
+# [Foundry portal](#tab/portal)
+
+When you're ready to try an agent, a default agent is created for you. To chat with this agent:
+
+1. In the left pane, select **Playgrounds**.
+1. In the **Agents playground** card, select **Let's go**.
+1. Add instructions, such as, "You are a helpful writing assistant."
+1. Start chatting with your agent, for example, "Write me a poem about flowers."
+
+---
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+[!INCLUDE [quickstart-v2-agent-chat](../default/includes/quickstart-v2-agent-chat.md)]
+
+::: moniker-end
+
+---
+
+::: moniker range="foundry-classic"
+## Add files to the agent
+
+Agents have powerful capabilities through the use of tools. Let's add a file search tool that enables us to do knowledge retrieval.
+
+* Download [product_info_1.md](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples-classic/data/product_info_1.md) to give to your agent.
+
+[!INCLUDE [agent-v1-switch](../includes/agent-v1-switch.md)]
+
+# [Python](#tab/python)
+
+Substitute your endpoint for the `endpoint` in this code:
+
+:::code language="python" source="~/foundry-samples-main/samples-classic/python/quickstart/quickstart.py" id="create_filesearch_agent":::
+
+# [C#](#tab/csharp)
+
+:::code language="csharp" source="~/foundry-samples-main/samples-classic/csharp/quickstart/Samples/AgentFileSearch.cs" id="create_filesearch_agent":::
+
+# [TypeScript](#tab/typescript)
+
+:::code language="typescript" source="~/foundry-samples-main/samples-classic/typescript/quickstart/src/quickstart.ts" id="create_filesearch_agent":::
+
+# [Java (preview)](#tab/java)
+
+:::code language="java" source="~/foundry-samples-main/samples-classic/java/quickstart/src/main/java/com/azure/ai/foundry/samples/FileSearchAgentSample.java" :::
+
+# [REST API](#tab/rest)
+
+Replace `YOUR-FOUNDRY-RESOURCE-NAME` and `YOUR-PROJECT-NAME` with your values:
+
+:::code language="console" source="~/foundry-samples-main/samples-classic/REST/quickstart/quickstart.sh" id="create_filesearch_agent":::
+
+# [Foundry portal](#tab/portal)
+
+1. In your agent's **Setup** pane, scroll down if necessary to find **Knowledge**.
+1. Select **Add**.
+1. Select **Files** to upload the product_info_1.md file.
+1. Select **Select local files** under **Add files**.
+1. Select **Upload and save**.
+1. Change your agents instructions, such as, "You are a helpful assistant and can search information from uploaded files."
+1. Ask a question, such as, "Hello, what Contoso products do you know?"
+1. To add more files, select the **...** on the AgentVectorStore, then select **Manage**.
+
+---
+::: moniker-end
 
 ## Clean up resources
 
 [!INCLUDE [clean-up-resources](../includes/clean-up-resources.md)]
 
+::: moniker range="foundry-classic"
+## Related content
+
+* [Quickstart: Create a new agent](../agents/quickstart.md)
+* [Client library overview](../how-to/develop/sdk-overview.md)
+::: moniker-end
+
+::: moniker range="foundry"
 ## Next step
-
+ 
 > [!div class="nextstepaction"]
-> [Add data and use retrieval augmented generation (RAG) to build a custom chat app](../tutorials/copilot-sdk-create-resources.md)
+> [Idea to prototype - Build and evaluate an enterprise agent](../default/tutorials/developer-journey-idea-to-prototype.md)
 
-::: zone-end
-
-::: zone pivot="fdp-project"
-
-[!INCLUDE [get-started-fdp](../includes/get-started-fdp.md)]
-
-::: zone-end
+::: moniker-end

@@ -4,13 +4,20 @@ titleSuffix: Azure OpenAI
 description: Learn how to better engineer image prompts for vision-enabled chat models.
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-openai
-ms.topic: conceptual 
-ms.date: 05/31/2025
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
+ms.topic: article 
+ms.date: 09/16/2025
 manager: nitinme
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
+
+
 ---
 
 # Image prompt engineering techniques
+
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 To unlock the full potential of vision-enabled chat models, it's essential to tailor the prompts to your specific needs. Here are some guidelines to enhance the accuracy and efficiency of your prompts.
 
@@ -27,9 +34,11 @@ To unlock the full potential of vision-enabled chat models, it's essential to ta
 - **Define output format:** Clearly mention the desired format for the output, such as markdown, JSON, HTML, etc. You can also suggest a specific structure, length, or specific attributes about the response.
 
 ## Example prompt inputs and outputs
-There are many ways to craft system prompts to tailor the output specifically to your needs. The following sample inputs and outputs showcase how adjusting your prompts can give you different results. Try out the model for yourself using these images and adjusting the system prompt in the [Azure AI Foundry playground](https://ai.azure.com/?cid=learnDocs).
 
-### Contextual specificity  
+There are many ways to craft system prompts to tailor the output specifically to your needs. The following sample inputs and outputs showcase how adjusting your prompts can give you different results. Try out the model for yourself using these images and adjusting the system prompt in the [Microsoft Foundry playground](https://ai.azure.com/?cid=learnDocs).
+
+### Contextual specificity
+
 Context can help improve feedback from the model. For example, if you're working on image descriptions for a product catalog, ensure your prompt reflects that in a clear and concise way. A prompt like “Describe images for an outdoor hiking product catalog, focusing on enthusiasm and professionalism” guides the model to generate responses that are both accurate and contextually rich.
 
 |Basic prompt|Model output|
@@ -42,6 +51,7 @@ Context can help improve feedback from the model. For example, if you're working
 
 
 ### Task-oriented prompts
+
 Giving the model a specific task to follow is one way of sharpening the response. In this example, this prompt steers the model to concentrate on elements crucial for insurance assessments, thereby improving accuracy and relevancy.
 
 |Basic prompt|Model output|
@@ -53,6 +63,7 @@ Giving the model a specific task to follow is one way of sharpening the response
 | :::image type="content" source="../media/concepts/gpt-v/car-crash.jpg" lightbox="../media/concepts/gpt-v/car-crash.jpg" alt-text="Photograph of a car crashed into a pole."::: Analyze this car damage video for an auto insurance report, focusing on identifying and detailing damage | `In the image provided, we observe a silver sedan that has sustained significant front-end damage. The vehicle's hood is notably crumpled, and the front bumper has suffered substantial deformation, partially detaching from the chassis. The right headlamp assembly appears to be damaged or dislodged. There is also visible damage to the front grille area. The car is in contact with a utility pole, suggesting a frontal collision with the pole at a relatively low or moderate speed. Smoke is emanating from the engine compartment, suggesting potential mechanical or electrical damage that may need further inspection for a comprehensive assessment. The airbags do not appear to be deployed in this image. The vehicle will require a detailed inspection to evaluate the full extent of structural and mechanical damage for a complete insurance report.` |
 
 ### Handling refusals
+
 When you receive a refusal output from a model, there are several ways you can tweak input to generate a more appropriate response. Below is one example of how to handle a refusal and progress. 
 
 |Basic prompt|Model output|

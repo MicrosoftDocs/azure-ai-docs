@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 01/25/2022
-ms.author: eur
+ms.author: pafarley
 ---
 
-You can use the [Azure portal](~/articles/ai-services/multi-service-resource.md?pivots=azportal#clean-up-resources) or [Azure Command Line Interface (CLI)](~/articles/ai-services/multi-service-resource.md?pivots=azcli#clean-up-resources) to remove the Language and Speech resources you created.
+You can use the [Azure portal](~/articles/ai-services/multi-service-resource.md?pivots=azportal#clean-up-resources) or [Azure Command Line Interface (CLI)](~/articles/ai-services/multi-service-resource.md?pivots=azcli#clean-up-resources) to remove Azure Language and Speech resources you created.

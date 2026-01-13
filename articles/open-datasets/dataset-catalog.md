@@ -3,8 +3,9 @@ title: Datasets in Azure Open Datasets
 description: Explore the datasets in Azure Open Datasets.
 ms.service: azure-open-datasets
 ms.topic: sample
-ms.reviewer: franksolomon
-ms.date: 06/13/2024
+ms.author: scottpolly   
+ms.reviewer: shubhiraj
+ms.date: 09/12/2025
 ---
 # Azure Open Datasets
 

@@ -1,94 +1,118 @@
 ### YamlMime:Landing
 
 title: Azure AI Search documentation # < 60 chars
-summary: Information retrieval at scale for agentic retrieval, with vector and text content in traditional or generative search scenarios.
+summary: Learn how to use Azure AI Search for information retrieval at scale, with support for text, vector, and multimodal content in traditional and generative search scenarios.
 metadata:
   title: Azure AI Search documentation
-  description: Information retrieval at scale for agentic retrieval, with vector and text content in traditional or generative search scenarios.
+  description: Learn how to use Azure AI Search for information retrieval at scale, with support for text, vector, and multimodal content in traditional and generative search scenarios.
   author: HeidiSteen
   ms.author: heidist
-  ms.date: 05/12/2025
+  ms.date: 12/12/2025
   ms.service: azure-ai-search
   ms.topic: landing-page
   ms.custom:
     - ignite-2023
     - ignite-2024
     - build-2025
-# linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
+# linkListType: architecture | concept | deploy | download | get-started | how-to-guide | tutorial | overview | quickstart | reference | sample | tutorial | video | whats-new
 
 landingContent:
 # Cards and links should be based on top customer tasks or top subjects
 # Start card title with a verb
   # Card
-  - title: About Azure AI Search
+  - title: Get started
     linkLists:
-      - linkListType: concept
+      - linkListType: overview
         links:
-          - text: What is Azure AI Search?
+          - text: What's Azure AI Search?
             url: search-what-is-azure-search.md
-          - text: AI enrichment
-            url: cognitive-search-concept-intro.md
-          - text: Semantic ranking
-            url: semantic-search-overview.md
+          - text: Features
+            url: search-features-list.md
+          - text: FAQ
+            url: search-faq-frequently-asked-questions.yml
       - linkListType: how-to-guide
         links:
           - text: Create a search service
             url: search-create-service-portal.md
           - text: Configure a search service
             url: search-manage.md
-          - text: Create a search index
-            url: search-get-started-portal.md
-          - text: Add vectors to an index
+
+  # Card
+  - title: Agentic retrieval (RAG)
+    linkLists:
+      - linkListType: concept
+        links:
+          - text: Agentic retrieval
+            url: agentic-retrieval-overview.md
+      - linkListType: quickstart
+        links:
+          - text: Use agentic retrieval
+            url: search-get-started-agentic-retrieval.md
+      - linkListType: how-to-guide
+        links:
+          - text: Create a knowledge base
+            url: agentic-retrieval-how-to-create-knowledge-base.md
+          - text: Retrieve from a knowledge base
+            url: agentic-retrieval-how-to-retrieve.md
+
+  # Card
+  - title: Classic search
+    linkLists:
+      - linkListType: concept
+        links:
+          - text: Full-text search
+            url: search-lucene-query-architecture.md
+          - text: Vector search
+            url: vector-search-overview.md
+          - text: Hybrid search
+            url: hybrid-search-overview.md
+          - text: Multimodal search
+            url: multimodal-search-overview.md
+      - linkListType: quickstart
+        links:
+          - text: Use full-text search
+            url: search-get-started-text.md
+          - text: Use vector search
             url: search-get-started-vector.md
+      - linkListType: how-to-guide
+        links:
+          - text: Create a search index
+            url: search-how-to-create-search-index.md
+          - text: Create a vector index
+            url: vector-search-how-to-create-index.md
           - text: Query a vector index
             url: vector-search-how-to-query.md
 
   # Card
-  - title: Agentic retrieval and vectors
+  - title: Code samples
     linkLists:
-      - linkListType: concept
+      - linkListType: sample
         links:
-          - text: Retrieval Augmented Generation (RAG)
-            url: retrieval-augmented-generation-overview.md
-          - text: Agentic retrieval
-            url: search-agentic-retrieval-concept.md        
-          - text: Vector search
-            url: vector-search-overview.md
-          - text: Multimodal search
-            url: multimodal-search-overview.md
-          - text: Built-in vectorization
-            url: vector-search-integrated-vectorization.md
-          - text: Built-in compression
-            url: vector-search-how-to-quantization.md
-      - linkListType: quickstart
-        links:
-          - text: 'Classic RAG'
-            url: search-get-started-agentic-retrieval.md
-          - text: 'Agentic retrieval'
-            url: search-get-started-agentic-retrieval.md
-
-
-
-  # Card
-  - title: Code
-    linkLists:
-      - linkListType: get-started
-        links:
-          - text: Python samples
-            url: samples-python.md
           - text: .NET samples
             url: samples-dotnet.md
+          - text: Java samples
+            url: samples-java.md
+          - text: JavaScript samples
+            url: samples-javascript.md
+          - text: Python samples
+            url: samples-python.md
+          - text: REST samples
+            url: samples-rest.md
           - text: Vector samples
             url: https://github.com/Azure/azure-search-vector-samples
+
+  # Card
+  - title: References
+    linkLists:
       - linkListType: reference
         links:
-          - text: Azure REST API Reference
-            url: /rest/api/searchservice/
           - text: Azure SDK for .NET
             url: /dotnet/api/overview/azure/search.documents-readme
-          - text: Azure SDK for Python
-            url: /python/api/overview/azure/search-documents-readme
           - text: Azure SDK for Java
             url: /java/api/overview/azure/search-documents-readme
           - text: Azure SDK for JavaScript
             url: /javascript/api/overview/azure/search-documents-readme
+          - text: Azure SDK for Python
+            url: /python/api/overview/azure/search-documents-readme
+          - text: Azure REST API
+            url: /rest/api/searchservice/

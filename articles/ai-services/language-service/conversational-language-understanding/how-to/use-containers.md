@@ -1,15 +1,14 @@
 ---
 title: Use conversational language understanding (CLU) Docker containers on-premises
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Use Docker containers for the conversational language understanding (CLU) API to determine the language of written text, on-premises.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 07/17/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 # Install and run Conversational Language Understanding (CLU) containers
 
 > [!NOTE]
@@ -17,13 +16,13 @@ ms.author: lajanuar
 
 Containers enable you to host the CLU API on your own infrastructure. If you have security or data governance requirements that can't be fulfilled by calling CLU remotely, then containers might be a good option.
 
-If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/cognitive-services/) before you begin.
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 ## Prerequisites
 
 You must meet the following prerequisites before using CLU containers.
 
-* An active Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/cognitive-services/).
+* An active Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * [Docker](https://docs.docker.com/) installed on a host computer. Docker must be configured to allow the containers to connect with and send billing data to Azure.
     * On Windows, Docker must also be configured to support Linux containers.
     * You should have a basic understanding of [Docker concepts](https://docs.docker.com/get-started/overview/).
@@ -39,9 +38,9 @@ The following table describes the minimum and recommended specifications for the
 
 We recommended that you have a CPU with AVX-512 instruction set, for the best experience (performance and accuracy).
 
-|     | Minimum host specs     | Recommended host specs |
+|  Processor   | Minimum host specs     | Recommended host specs |
 |---------------------|------------------------|------------------------|
-| **CLU**     | `1 core`, `2-GB memory`     | `4 cores`, `8-GB memory`    |
+| **CPU**     | 1-core, 2-GB memory     | 4-cores, 8-GB memory    |
 
 CPU core and memory correspond to the `--cpus` and `--memory` settings, which are used as part of the `docker run` command.
 
@@ -53,8 +52,8 @@ Before you proceed with running the docker image, you need to export your own tr
 |------------|-----|-----------------|
 |**{API_KEY}** |The key for your Language resource. You can find it on your resource's **Key and endpoint** page, on the Azure portal.|xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx|
 |**{ENDPOINT_URI}**|The endpoint for accessing the Conversational Language Understanding API. You can find it on your resource's **Key and endpoint** page, on the Azure portal.|`https://<your-custom-subdomain>.cognitiveservices.azure.com`|
-|**{PROJECT_NAME}**|The name of the project containing the model that you want to export. You can find it on your projects tab in the Language Studio portal.|myProject|
-|**{TRAINED_MODEL_NAME}** |The name of the trained model you want to export. You can find your trained models on your model evaluation tab under your project in the Language Studio portal|myTrainedModel
+|**{PROJECT_NAME}**|The name of the project containing the model that you want to export. You can find it on your projects tab in Azure Language Studio portal.|myProject|
+|**{TRAINED_MODEL_NAME}** |The name of the trained model you want to export. You can find your trained models on your model evaluation tab under your project in Azure Language Studio portal|myTrainedModel|
 |**{EXPORTED_MODEL_NAME}** |The name to assign for the new exported model created.|myExportedModel |
 
 ```bash
@@ -74,8 +73,8 @@ The CLU container image can be found on the `mcr.microsoft.com` container regist
 
 The latest CLU container is available in several languages. To download the container for the English container, use the following command:
 
-```
-docker pull mcr.microsoft.com/azure-cognitive-services/language/clu:latest
+```bash
+  docker pull mcr.microsoft.com/azure-cognitive-services/language/clu:latest
 ```
 
 [!INCLUDE [Tip for using docker list](../../../includes/cognitive-services-containers-docker-list-tip.md)]
@@ -94,16 +93,18 @@ After the exported model is created, users have to run the container to download
 | **{PROJECT_NAME}**| Name of the project that the exported model belongs to  | myProject  |
 | **{EXPORTED_MODEL_NAME}**   | Exported model to be downloaded | myExportedModel   |
 
-```bash
-docker run --rm -it -p {LOCAL_CLU_PORT}:80 \
-mcr.microsoft.com/azure-cognitive-services/language/clu:{IMAGE_TAG} \ 
--v {LOCAL_MODEL_DIRECTORY}:/DeploymentPackage \
-Billing={ENDPOINT_URI} \ 
-ApiKey={API_KEY} \
-downloadmodel \
-projectName={PROJECT_NAME} \
-exportedModelName={EXPORTED_MODEL_NAME}
-```
+
+  
+  ```bash
+    docker run --rm -it -p {LOCAL_CLU_PORT}:80 \
+    mcr.microsoft.com/azure-cognitive-services/language/clu:{IMAGE_TAG} \ 
+    -v {LOCAL_MODEL_DIRECTORY}:/DeploymentPackage \
+    Billing={ENDPOINT_URI} \ 
+    ApiKey={API_KEY} \
+    downloadmodel \
+    projectName={PROJECT_NAME} \
+    exportedModelName={EXPORTED_MODEL_NAME}
+  ```
 
 DO NOT alter the downloaded files. Even altering the name or folder structure can affect the integrity of the container and might break it.
 
@@ -178,7 +179,7 @@ For information on how to call CLU see [our guide](call-api.md).
 
 If you run the container with both an output [mount](../../concepts/configure-containers.md#mount-settings) and logging enabled, the container generates log files. The log files can help you troubleshoot any issues that occur during startup or while the container is running.
 
-[!INCLUDE [Azure AI services FAQ note](../../../containers/includes/cognitive-services-faq-note.md)]
+[!INCLUDE [Foundry Tools FAQ note](../../../containers/includes/cognitive-services-faq-note.md)]
 
 ## Billing
 

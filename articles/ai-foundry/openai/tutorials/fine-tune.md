@@ -1,11 +1,12 @@
 ---
-title: Azure OpenAI in Azure AI Foundry Models fine-tuning gpt-4o-mini
+title: Azure OpenAI in Microsoft Foundry Models fine-tuning gpt-4o-mini
 titleSuffix: Azure OpenAI
 description: Learn how to use Azure OpenAI's latest fine-tuning capabilities with gpt-4o-mini-2024-07-18
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: tutorial
-ms.date: 07/02/2025
+ms.date: 11/26/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -13,6 +14,8 @@ ms.custom: "devx-track-python,ai-learning-hub"
 ---
 
 # Azure OpenAI GPT-4o-mini fine-tuning tutorial
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 This tutorial walks you through fine-tuning a `gpt-4o-mini-2024-07-18` model.
 
@@ -28,13 +31,13 @@ In this tutorial you learn how to:
 
 ## Prerequisites
 
-- An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true).
+- An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Python 3.8 or later version
 - The following Python libraries: `json`, `requests`, `os`, `tiktoken`, `time`, `openai`, `numpy`.
 - [Jupyter Notebooks](https://jupyter.org/)
 - An Azure OpenAI resource in a [region where `gpt-4o-mini-2024-07-18` fine-tuning is available](../concepts/models.md). If you don't have a resource the process of creating one is documented in our resource [deployment guide](../how-to/create-resource.md).
-- Fine-tuning access requires **Cognitive Services OpenAI Contributor**.
-- If you don't already have access to view quota and deploy models in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), then you need [more permissions](../how-to/role-based-access-control.md).
+- Fine-tuning access requires **Azure AI User** role.
+- If you don't already have access to view quota and deploy models in [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs), then you need [more permissions](../how-to/role-based-access-control.md).
 
 > [!IMPORTANT]
 > We recommend reviewing the [pricing information](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/#pricing) for fine-tuning to familiarize yourself with the associated costs. Testing of this tutorial resulted in 48,000 tokens being billed (4,800 training tokens * 10 epochs of training). Training costs are in addition to the costs that are associated with fine-tuning inference, and the hourly hosting costs of having a fine-tuned model deployed. Once you have completed the tutorial, you should delete your fine-tuned model deployment otherwise you continue to incur the hourly hosting cost.
@@ -63,9 +66,6 @@ Create and assign persistent environment variables for your key and endpoint.
 setx AZURE_OPENAI_API_KEY "REPLACE_WITH_YOUR_KEY_VALUE_HERE"
 ```
 
-```CMD
-setx AZURE_OPENAI_ENDPOINT "REPLACE_WITH_YOUR_ENDPOINT_HERE"
-```
 
 # [PowerShell](#tab/powershell)
 
@@ -73,15 +73,10 @@ setx AZURE_OPENAI_ENDPOINT "REPLACE_WITH_YOUR_ENDPOINT_HERE"
 [System.Environment]::SetEnvironmentVariable('AZURE_OPENAI_API_KEY', 'REPLACE_WITH_YOUR_KEY_VALUE_HERE', 'User')
 ```
 
-```powershell
-[System.Environment]::SetEnvironmentVariable('AZURE_OPENAI_ENDPOINT', 'REPLACE_WITH_YOUR_ENDPOINT_HERE', 'User')
-```
-
 # [Bash](#tab/bash)
 
 ```Bash
 echo export AZURE_OPENAI_API_KEY="REPLACE_WITH_YOUR_KEY_VALUE_HERE" >> /etc/environment
-echo export AZURE_OPENAI_ENDPOINT="REPLACE_WITH_YOUR_ENDPOINT_HERE" >> /etc/environment
 
 source /etc/environment
 ```
@@ -284,12 +279,11 @@ p5 / p95: 10.7, 19.999999999999996
 # Upload fine-tuning files
 
 import os
-from openai import AzureOpenAI
+from openai import OpenAI
 
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"),
-  api_key = os.getenv("AZURE_OPENAI_API_KEY"),
-  api_version = "2025-02-01-preview"  
+client = OpenAI(
+  api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
 )
 
 training_file_name = 'training_set.jsonl'
@@ -694,7 +688,7 @@ fine_tuned_model = response.fine_tuned_model
 
 Unlike the previous Python SDK commands in this tutorial, since the introduction of the quota feature, model deployment must be done using the [REST API](/rest/api/aiservices/accountmanagement/deployments/create-or-update?tabs=HTTP), which requires separate authorization, a different API path, and a different API version.
 
-Alternatively, you can deploy your fine-tuned model using any of the other common deployment methods like [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), or [Azure CLI](/cli/azure/cognitiveservices/account/deployment#az-cognitiveservices-account-deployment-create()).
+Alternatively, you can deploy your fine-tuned model using any of the other common deployment methods like [Foundry portal](https://ai.azure.com/?cid=learnDocs), or [Azure CLI](/cli/azure/cognitiveservices/account/deployment#az-cognitiveservices-account-deployment-create()).
 
 |variable      | Definition|
 |--------------|-----------|
@@ -745,24 +739,23 @@ print(r.reason)
 print(r.json())
 ```
 
-You can check on your deployment progress in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+You can check on your deployment progress in the [Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 It isn't uncommon for this process to take some time to complete when dealing with deploying fine-tuned models.
 
 ## Use a deployed customized model
 
-After your fine-tuned model is deployed, you can use it like any other deployed model in either the [Chat Playground of Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), or via the chat completion API. For example, you can send a chat completion call to your deployed model, as shown in the following Python example. You can continue to use the same parameters with your customized model, such as temperature and max_tokens, as you can with other deployed models.
+After your fine-tuned model is deployed, you can use it like any other deployed model in either the [Chat Playground of Foundry portal](https://ai.azure.com/?cid=learnDocs), or via the chat completion API. For example, you can send a chat completion call to your deployed model, as shown in the following Python example. You can continue to use the same parameters with your customized model, such as temperature and max_tokens, as you can with other deployed models.
 
 ```python
 # Use the deployed customized model
 
 import os
-from openai import AzureOpenAI
+from openai import OpenAI
 
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"),
-  api_key = os.getenv("AZURE_OPENAI_API_KEY"),
-  api_version = "2024-10-21"
+client = OpenAI(
+  api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
 )
 
 response = client.chat.completions.create(
@@ -784,13 +777,13 @@ Unlike other types of Azure OpenAI models, fine-tuned/customized models have [an
 
 Deleting the deployment won't affect the model itself, so you can re-deploy the fine-tuned model that you trained for this tutorial at any time.
 
-You can delete the deployment in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), via [REST API](/rest/api/aiservices/accountmanagement/deployments/delete?tabs=HTTP), [Azure CLI](/cli/azure/cognitiveservices/account/deployment#az-cognitiveservices-account-deployment-delete()), or other supported deployment methods.
+You can delete the deployment in [Foundry portal](https://ai.azure.com/?cid=learnDocs), via [REST API](/rest/api/aiservices/accountmanagement/deployments/delete?tabs=HTTP), [Azure CLI](/cli/azure/cognitiveservices/account/deployment#az-cognitiveservices-account-deployment-delete()), or other supported deployment methods.
 
 ## Troubleshooting
 
 ### How do I enable fine-tuning? Create a custom model is grayed out.
 
-In order to successfully access fine-tuning you need **Cognitive Services OpenAI Contributor assigned**. Even someone with high-level Service Administrator permissions would still need this account explicitly set in order to access fine-tuning. For more information please review the [role-based access control guidance](/azure/ai-services/openai/how-to/role-based-access-control#cognitive-services-openai-contributor).
+In order to successfully access fine-tuning you need **Azure AI User** role assigned. Even someone with high-level Service Administrator permissions would still need this account explicitly set in order to access fine-tuning. For more information please review the [role-based access control guidance](../../../ai-foundry/concepts/rbac-foundry.md).
 
 ## Next steps
 

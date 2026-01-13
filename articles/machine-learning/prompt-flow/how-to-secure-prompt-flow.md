@@ -6,13 +6,14 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
 ms.topic: how-to
-author: s-polly
-ms.author: scottpolly
+author: lgayhardt
+ms.author: lagayhar
 ms.reviewer: sooryar 
 ms.date: 7/10/2025
 ms.custom:
   - ignite-2023
   - sfi-image-nochange
+ms.update-cycle: 365-days
 ---
 
 # Network isolation in prompt flow 
@@ -31,7 +32,7 @@ When you develop AI applications using prompt flow, you need a secured environme
 - **Container registry**: Secure your container registry using virtual network configuration.
 - **Endpoint**: Control which Azure services or IP addresses can access your deployed endpoints.
 
-### Azure AI Services
+### Foundry Tools
 
 - **Azure OpenAI**: Use network configuration to make Azure OpenAI private, then use private endpoints for Azure Machine Learning communication.
 - **Azure Content Safety**: Configure private network access and establish private endpoints for secure communication.
@@ -97,9 +98,9 @@ A workspace-managed virtual network is the recommended way to support network is
     > [!NOTE]
     > This operation might take several minutes to take effect.
 
-3. If you want to communicate with [private Azure AI Services](/azure/ai-services/cognitive-services-virtual-networks), you need to add related user-defined outbound rules to the related resource. The Azure Machine Learning workspace creates a private endpoint in the related resource with autoapproval. If the status is stuck in pending, go to the related resource to approve the private endpoint manually.
+3. If you want to communicate with [private Foundry Tools](/azure/ai-services/cognitive-services-virtual-networks), you need to add related user-defined outbound rules to the related resource. The Azure Machine Learning workspace creates a private endpoint in the related resource with autoapproval. If the status is stuck in pending, go to the related resource to approve the private endpoint manually.
 
-    :::image type="content" source="./media/how-to-secure-prompt-flow/outbound-rule-cognitive-services.png" alt-text="Screenshot of user defined outbound rule for Azure AI Services." lightbox = "./media/how-to-secure-prompt-flow/outbound-rule-cognitive-services.png":::
+    :::image type="content" source="./media/how-to-secure-prompt-flow/outbound-rule-cognitive-services.png" alt-text="Screenshot of user defined outbound rule for Foundry Tools." lightbox = "./media/how-to-secure-prompt-flow/outbound-rule-cognitive-services.png":::
 
     :::image type="content" source="./media/how-to-secure-prompt-flow/outbound-private-endpoint-approve.png" alt-text="Screenshot of user approve private endpoint." lightbox = "./media/how-to-secure-prompt-flow/outbound-private-endpoint-approve.png":::
 
@@ -122,7 +123,7 @@ A workspace-managed virtual network is the recommended way to support network is
       no_public_ip: false # Set to true if you don't want to assign public IP to the compute
     ```
 
-- Meanwhile, you can follow [private Azure AI Services](/azure/ai-services/cognitive-services-virtual-networks) to make them private.
+- Meanwhile, you can follow [private Foundry Tools](/azure/ai-services/cognitive-services-virtual-networks) to make them private.
 - If you want to deploy prompt flow in a workspace that is secured by your own virtual network, you can deploy it to an AKS cluster that is in the same virtual network. You can follow [Secure Azure Kubernetes Service inferencing environment](../how-to-secure-kubernetes-inferencing-environment.md) to secure your AKS cluster. Learn more about [How to deploy prompt flow to AKS cluster via code](./how-to-deploy-to-code.md).
 - You can either create a private endpoint to the same virtual network or use virtual network peering to make them communicate with each other.
 

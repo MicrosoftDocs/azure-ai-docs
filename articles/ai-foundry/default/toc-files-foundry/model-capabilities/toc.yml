@@ -1,0 +1,116 @@
+items:
+# Model Deployment
+- name: Model deployment
+  items:
+  - name: Deploy Foundry Models in the portal
+    href: ../../../foundry-models/how-to/deploy-foundry-models.md
+  - name: Deploy Foundry Models using code
+    href: ../../../foundry-models/how-to/create-model-deployments.md
+  - name: Deployment types
+    href: ../../../foundry-models/concepts/deployment-types.md
+  - name: Upgrade GitHub Models to Foundry Models
+    href: ../../../foundry-models/how-to/quickstart-github-models.md
+
+# Model Support
+- name: Model support
+  items:
+  - name: Azure OpenAI in Foundry Models
+    href: ../../../openai/supported-languages.md
+  - name: Claude in Foundry Models
+    href: ../../../foundry-models/how-to/use-foundry-models-claude.md
+
+# Performance and Throughput
+- name: Performance and throughput
+  items:
+  - name: Priority processing
+    href: ../../../openai/concepts/priority-processing.md
+  - name: Provisioned throughput
+    items:
+    - name: Provisioned Throughput offering (PTU)
+      href: ../../../openai/concepts/provisioned-throughput.md
+    - name: Understanding and calculating PTU costs
+      href: ../../../openai/how-to/provisioned-throughput-onboarding.md
+    - name: Get started with Provisioned Deployments
+      href: ../../../openai/how-to/provisioned-get-started.md
+    - name: Provisioned spillover
+      href: ../../../openai/how-to/spillover-traffic-management.md
+
+# Core APIs and Capabilities
+- name: Chat completions & Responses APIs
+  items:
+  - name: Chat completions API
+    href: ../../../openai/how-to/chatgpt.md
+  - name: Responses API 
+    href: ../../../openai/how-to/responses.md
+  - name: Reasoning models
+    href: ../../../openai/how-to/reasoning.md
+  - name: Batch processing
+    href:  ../../../openai/how-to/batch.md
+  - name: Deep research
+    href: ../../../openai/how-to/deep-research.md
+  - name: Function calling
+    href: ../../../openai/how-to/function-calling.md 
+  - name: Structured outputs
+    href: ../../../openai/how-to/structured-outputs.md
+  - name: JSON mode
+    href: ../../../openai/how-to/json-mode.md
+  - name: Web search
+    href: ../../../openai/how-to/web-search.md 
+  - name: Predicted outputs
+    href: ../../../openai/how-to/predicted-outputs.md
+  - name: Prompt caching
+    href: ../../../openai/how-to/prompt-caching.md   
+
+# Embeddings
+- name: Embeddings
+  items:
+  - name: Embeddings
+    href: ../../../openai/how-to/embeddings.md
+  - name: Embeddings tutorial
+    href: ../../../openai/tutorials/embeddings.md
+
+# Multimodal Capabilities
+- name: Audio and speech
+  items:
+  - name: Audio generation
+    href: ../../../openai/audio-completions-quickstart.md
+  - name: Speech to text
+    href: ../../../../ai-services/speech-service/get-started-speech-to-text.md?context=/azure/ai-foundry/context/context
+  - name: Text to speech
+    href: ../../../../ai-services/speech-service/get-started-text-to-speech.md?context=/azure/ai-foundry/context/context
+  - name: Text to speech avatar
+    href: ../../../../ai-services/speech-service/text-to-speech-avatar/batch-synthesis-avatar.md?context=/azure/ai-foundry/context/context
+  - name: Voice Live
+    href: ../../../../ai-services/speech-service/voice-live-quickstart.md?context=/azure/ai-foundry/context/context
+
+- name: Vision and video
+  items:
+  - name: Vision-enabled chats
+    href: ../../../openai/gpt-v-quickstart.md
+  - name: Image prompt engineering techniques
+    href: ../../../openai/concepts/gpt-4-v-prompt-engineering.md
+  - name: Image prompt transformation
+    href: ../../../openai/concepts/prompt-transformation.md
+  - name: Video generation (preview)
+    href: ../../../openai/concepts/video-generation.md
+  - name: Video translation (preview)
+    href: ../../../../ai-services/speech-service/video-translation-get-started.md?context=/azure/ai-foundry/context/context
+
+# Development Tools
+- name: Development and integration
+  items:
+  - name: Codex
+    href: ../../../openai/how-to/codex.md
+  - name: Webhooks
+    href: ../../../openai/how-to/webhooks.md
+  - name: Playgrounds and quick evaluation
+    href: ../../../concepts/concept-playgrounds.md
+
+# Model Comparison and Optimization
+- name: Model leaderboards
+  href: ../../../concepts/model-benchmarks.md
+- name: Compare models
+  href: ../../../how-to/benchmark-model-in-catalog.md
+- name:  Upgrade/Switch Models with Ask AI
+  href: ../../observability/how-to/optimization-model-upgrade.md
+

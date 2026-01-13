@@ -2,7 +2,7 @@
 author: laujan
 ms.author: lajanuar
 manager: nitinme
-ms.date: 06/30/2025
+ms.date: 01/07/2026
 ms.service: azure-ai-language
 ms.topic: include
 ms.custom:
@@ -10,16 +10,16 @@ ms.custom:
   - ignite-2024
   - build-2025
 ---
-
-[Reference documentation](/javascript/api/overview/azure/ai-language-text-readme) | [More samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/cognitivelanguage/ai-language-text/samples/v1) | [Package (npm)](https://www.npmjs.com/package/@azure/ai-language-text) | [Library source code](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/cognitivelanguage/ai-language-text) 
+<!-- markdownlint-disable MD041 -->
+[Reference documentation](/javascript/api/overview/azure/ai-language-text-readme) | [More samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/cognitivelanguage/ai-language-text/samples/v1) | [Package (npm)](https://www.npmjs.com/package/@azure/ai-language-text) | [Library source code](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/cognitivelanguage/ai-language-text)
 
 Use this quickstart to create a Personally Identifiable Information (PII) detection application with the client library for Node.js. In the following example, you create a JavaScript application that can identify [recognized sensitive information](../../concepts/entity-categories.md) in text.
 
 ## Prerequisites
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
-* Once you have your Azure subscription, [create an AI Foundry resource](../../../../../ai-services/multi-service-resource.md?pivots=azportal).
-* [Node.js](https://nodejs.org/) v14 LTS or later
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
+* Once you have your Azure subscription, [create a Foundry resource](../../../../../ai-services/multi-service-resource.md?pivots=azportal).
+* [Node.js](https://nodejs.org/) v14 `LTS` or later
 
 ## Setting up
 
@@ -27,15 +27,15 @@ Use this quickstart to create a Personally Identifiable Information (PII) detect
 
 ### Create a new Node.js application
 
-In a console window (such as cmd, PowerShell, or Bash), create a new directory for your app, and navigate to it. 
+In a console window (such as cmd, PowerShell, or Bash), create a new directory for your app, and navigate to it.
 
 ```console
-mkdir myapp 
+mkdir myapp
 
 cd myapp
 ```
 
-Run the `npm init` command to create a node application with a `package.json` file. 
+Run the `npm init` command to create a node application with a `package.json` file.
 
 ```console
 npm init
@@ -49,11 +49,9 @@ Install the npm package:
 npm install @azure/ai-text-analytics
 ```
 
-
-
 ## Code example
 
-Open the file and copy the below code. Then run the code.
+Open the file and copy the following sample and run the code.
 
 ```javascript
 "use strict";
@@ -69,13 +67,13 @@ const documents = [ "The employee's phone number is (555) 555-5555." ];
 
 async function main() {
     console.log(`PII recognition sample`);
-  
+
     const client = new TextAnalyticsClient(endpoint, new AzureKeyCredential(key));
-  
+
     const documents = ["My phone number is 555-555-5555"];
-  
+
     const [result] = await client.analyze("PiiEntityRecognition", documents, "en");
-  
+
     if (!result.error) {
       console.log(`Redacted text: "${result.redactedText}"`);
       console.log("Pii Entities: ");
@@ -89,8 +87,6 @@ main().catch((err) => {
 console.error("The sample encountered an error:", err);
 });
 ```
-
-
 
 ## Output
 

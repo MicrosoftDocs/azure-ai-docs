@@ -3,7 +3,8 @@ title: Azure OpenAI on your Azure Cosmos DB data Python & REST API reference
 titleSuffix: Azure OpenAI
 description: Learn how to use Azure OpenAI on your Azure Cosmos DB data Python & REST API.
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: reference
 ms.date: 02/27/2025
 author: aahill
@@ -13,6 +14,8 @@ ms.custom: devx-track-python
 ---
 
 # Data source - Azure Cosmos DB for MongoDB vCore
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 The configurable options of Azure Cosmos DB for MongoDB vCore when using Azure OpenAI On Your Data. This data source is supported in API version `2024-02-01`.
 

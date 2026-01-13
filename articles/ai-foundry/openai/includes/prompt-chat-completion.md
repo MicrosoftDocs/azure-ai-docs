@@ -4,7 +4,8 @@ titleSuffix: Azure OpenAI
 description: Learn how to work with the Chat Completion API for prompt engineering.
 author: mrbullwinkle 
 ms.author: mbullwin 
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.date: 03/26/2025
 manager: nitinme
@@ -98,6 +99,10 @@ One simple way to use an affordance is to stop generation once the affordance ca
 
 ## Chain of thought prompting
 
+> [!IMPORTANT]
+> This technique is only applicable non-reasoning models. Attempting to extract model reasoning through methods other than the reasoning summary parameter are not supported, may violate the Acceptable Use Policy, and may result in throttling or suspension when detected.
+
+
 This is a variation on the **break the task down** technique. Instead of splitting a task into smaller steps, in this approach, the model response is instructed to proceed step-by-step and present all the steps involved. Doing so reduces the possibility of inaccuracy of outcomes and makes assessing the model response easier.
 
 | System message |User     | Assistant  |
@@ -130,7 +135,7 @@ Top_probability is another parameter and is similar to Temperature in that it al
 ## Provide grounding context
 
 One of the most effective ways to provide reliable answers is to give the model data to draw its responses from (grounding data). If your use case relies on up-to-date, reliable information and isn't purely a creative scenario, we strongly recommend providing grounding data. In general, the closer you can get your source material to the final form of the answer you want, the less work the model needs to do, which means there's less opportunity for error.
-Here's an example where the system is provided a [recent blog describing the launch of GPT-4 in Azure OpenAI in Azure AI Foundry Models](https://azure.microsoft.com/blog/introducing-gpt4-in-azure-openai-service/), and asked to name some of its early customers.
+Here's an example where the system is provided a [recent blog describing the launch of GPT-4 in Azure OpenAI in Microsoft Foundry Models](https://azure.microsoft.com/blog/introducing-gpt4-in-azure-openai-service/), and asked to name some of its early customers.
 
 | System message | User     | Assistant  |
 |----------------|---------|-------------|

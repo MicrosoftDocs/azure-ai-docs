@@ -1,9 +1,10 @@
 ---
 title: GPT-4 Turbo general availability
-titleSuffix: Azure OpenAI in Azure AI Foundry Models
+titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Information on GPT-4 Turbo model behavior and limitations
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.date: 04/29/2024
 ---
@@ -36,4 +37,4 @@ This is the replacement for the following preview models:
 
 ### Deploying GPT-4 Turbo with Vision GA
 
-To deploy the GA model from the Azure AI Foundry portal, select `GPT-4` and then choose the `turbo-2024-04-09` version from the dropdown menu. The default quota for the `gpt-4-turbo-2024-04-09` model will be the same as current quota for GPT-4-Turbo. See the [regional quota limits.](../quotas-limits.md)
+To deploy the GA model from the Microsoft Foundry portal, select `GPT-4` and then choose the `turbo-2024-04-09` version from the dropdown menu. The default quota for the `gpt-4-turbo-2024-04-09` model will be the same as current quota for GPT-4-Turbo. See the [regional quota limits.](../quotas-limits.md)

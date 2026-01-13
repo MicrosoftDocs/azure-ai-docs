@@ -3,13 +3,13 @@
 title: Faceted navigation examples
 titleSuffix: Azure AI Search
 description: Examples that demonstrate query syntax for facet hierarchies, distinct counts, facet aggregations, and facet filters.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 04/04/2025
+ms.date: 11/10/2025
+ms.update-cycle: 365-days
 ---
 
 # Faceted navigation examples
@@ -49,7 +49,7 @@ The following facet queries work against the [hotels sample index](search-get-st
 This first query retrieves facets for Categories, Ratings, Tags, and rooms with baseRate values in specific ranges. Notice the last facet is on a subfield of the Rooms collection. Facets count the parent document (Hotels) and not intermediate subdocuments (Rooms), so the response determines the number of *hotels* that have any rooms in each pricing category.
 
 ```rest
-POST /indexes/hotels-sample-index/docs/search?api-version=2025-03-01-Preview
+POST /indexes/hotels-sample-index/docs/search?api-version={{api_version}}
 {  
   "search": "ocean view",  
   "facets": [ "Category", "Rating", "Tags", "Rooms/BaseRate,values:80|150|220" ],
@@ -60,7 +60,7 @@ POST /indexes/hotels-sample-index/docs/search?api-version=2025-03-01-Preview
 This second example uses a filter to narrow down the previous faceted query result after the user selects Rating 3 and category "Motel".
 
 ```rest
-POST /indexes/hotels-sample-index/docs/search?api-version=2025-03-01-Preview
+POST /indexes/hotels-sample-index/docs/search?api-version={{api_version}}
 {  
   "search": "water view",  
   "facets": [ "Tags", "Rooms/BaseRate,values:80|150|220" ],
@@ -72,7 +72,7 @@ POST /indexes/hotels-sample-index/docs/search?api-version=2025-03-01-Preview
 The third example sets an upper limit on unique terms returned in a query. The default is 10, but you can increase or decrease this value using the count parameter on the facet attribute. This example returns facets for city, limited to 5.
 
 ```rest
-POST /indexes/hotels-sample-index/docs/search?api-version=2025-03-01-Preview
+POST /indexes/hotels-sample-index/docs/search?api-version={{api_version}}
 {  
   "search": "view",  
   "facets": [ "Address/City,count:5" ],
@@ -202,21 +202,26 @@ Results from this query are as follows:
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-Starting in [2025-03-01-preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-03-01-preview&preserve-view=true) and available in the Azure portal, you can configure a facet hierarchy using the `>` and `;` operators.
+Using the [latest preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or the Azure portal, you can configure a facet hierarchy using the `>` and `;` operators.
 
-The nesting (hierarchical) operator `>` denotes a parent–child relationship, and the semicolon operator `;` denotes multiple fields at the same nesting level, which are all children of the same parent. The parent must contain only one field. Both the parent and child fields must be `facetable`. 
+| Operator | Description |
+|-|-|
+| `>` | Nesting (hierarchical) operator denotes a parent–child relationship. |
+| `;` | Semicolon operator  denotes multiple fields at the same nesting level, which are all children of the same parent. The parent must contain only one field. Both the parent and child fields must be `facetable`. |
 
 The order of operations in a facet expression that includes facet hierarchies are:
 
-* options operator (comma `,`) that separates facet parameters for the facet field, such as the comma in `Rooms/BaseRate,values`
-* parentheses, such as the ones enclosing `(Rooms/BaseRate,values:50 ; Rooms/Type)`.
-* nesting operator (angled bracket `>`)
-* append operator (semicolon `;`), demonstrated in a second example `"Tags>(Rooms/BaseRate,values:50 ; Rooms/Type)"` in this section, where two child facets are peers under the Tags parent.
++ The options operator (comma `,`) that separates facet parameters for the facet field, such as the comma in `Rooms/BaseRate,values`
++ The parentheses, such as the ones enclosing `(Rooms/BaseRate,values:50 ; Rooms/Type)`.
++ The nesting operator (angled bracket `>`)
++ The append operator (semicolon `;`), demonstrated in a second example `"Tags>(Rooms/BaseRate,values:50 ; Rooms/Type)"` in this section, where two child facets are peers under the Tags parent.
+
+Notice that parentheses are processed before nesting and append operations: `A > B ; C` would be different than `A > (B ; C)`.
 
 There are several examples for facet hierarchies. The first example is a query that returns just a few documents, which is helpful for viewing a full response. Facets count the parent document (Hotels) and not intermediate subdocuments (Rooms), so the response determines the number of *hotels* that have any rooms in each facet bucket.
 
 ```rest
-POST /indexes/hotels-sample-index/docs/search?api-version=2025-03-01-Preview
+POST /indexes/hotels-sample-index/docs/search?api-version=2025-11-01-Preview
 {
   "search": "ocean",  
   "facets": ["Address/StateProvince>Address/City", "Tags>Rooms/BaseRate,values:50"],
@@ -376,7 +381,7 @@ Results from this query are as follows. Both hotels have pools. For other tags, 
 This second example extends the previous one, demonstrating multiple top-level facets with multiple children. Notice the semicolon (`;`) operator separates each child.
 
 ```rest
-POST /indexes/hotels-sample-index/docs/search?api-version=2025-03-01-Preview
+POST /indexes/hotels-sample-index/docs/search?api-version=2025-11-01-Preview
 {  
   "search": "+ocean",  
   "facets": ["Address/StateProvince > Address/City", "Tags > (Rooms/BaseRate,values:50 ; Rooms/Type)"],
@@ -477,12 +482,12 @@ Address/StateProvince
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-Starting in [2025-03-01-preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-03-01-preview&preserve-view=true) and available in the Azure portal, you can configure facet filters.
+Using the [latest preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or the Azure portal, you can configure facet filters.
 
 Facet filtering enables you to constrain the facet values returned to those matching a specified regular expression. Two new parameters accept a regular expression that is applied to the facet field:
 
-* `includeTermFilter` filters the facet values to those that match the regular expression
-* `excludeTermFilter` filters the facet values to those that don't match the regular expression 
++ `includeTermFilter` filters the facet values to those that match the regular expression
++ `excludeTermFilter` filters the facet values to those that don't match the regular expression 
 
 If a facet string satisfies both conditions, the `excludeTermFilter` takes precedence because the set of bucket strings is first evaluated with `includeTermFilter` and then excluded with `excludeTermFilter`.
 
@@ -502,7 +507,7 @@ The following example shows how to escape special characters in your regular exp
 Here's an example of a facet filter that matches on Budget and Extended-Stay hotels, with Rating as a child of each hotel category.
 
 ```http
-POST /indexes/hotels-sample-index/docs/search?api-version=2025-03-01-Preview
+POST /indexes/hotels-sample-index/docs/search?api-version=2025-11-01-Preview
 { 
     "search": "*", 
     "facets": ["(Category,includeTermFilter:/(Budget|Extended-Stay)/)>Rating,values:1|2|3|4|5"],
@@ -600,18 +605,32 @@ The following example is an abbreviated response (hotel documents are omitted fo
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-Starting in [2025-03-01-preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-03-01-preview&preserve-view=true) and available in the Azure portal, you can aggregate facets.
+Using the [latest preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or the Azure portal, you can aggregate facets.
 
-Facet aggregations allow you to compute metrics from facet values. The aggregation capability works alongside the existing faceting options. The only supported metric is `sum`. Adding `metric: sum` to a numeric facet aggregates all the values of each bucket. 
+Facet aggregations allow you to compute metrics from facet values. The aggregation capability works alongside the existing faceting options.
 
-You can add a default value to use if a document contains a null for that field: `"facets": [ "Rooms/SleepsCount, metric: sum, default:2"]`. If a room has a null value for the Rooms/SleepsCount field, the default substitutes for the missing value.
+| Aggregator | Description |
+|------------|-------------|
+| Sum | Returns the total accumulated value from the field across all documents. Applies to numeric types only. Supported in earlier preview releases. |
+| Min | Returns the minimum value from the field across all documents. Applies to numeric types only. |
+| Max | Returns the maximum value from the field across all documents. Applies to numeric types only.|
+| Avg | Returns the average value from the field across all documents. Applies to numeric types only. |
+| Cardinality | Returns the approximate count of distinct values from the field across all documents using the [HyperLogLog algorithm](https://en.wikipedia.org/wiki/HyperLogLog). You can request `cardinality` on facetable fields, including string and datetime fields (along with their corresponding collection forms). |
+
+### Setting precision thresholds for cardinality aggregation
+
+On a cardinality aggregation, you can set a `precisionThreshold` option as a demarcation between counts that are expected to be close to accurate, and counts that can be less accurate. The maximum value is 40,000. The default value is 3,000.
+
+Faceting is performed in memory. Increasing `precisionThreshold` results in more memory consumption (the `precisionThreshold` value multiplied by 8 bytes).
+
+### Example: Sum facet aggregation
 
 You can sum any facetable field of a numeric data type (except vectors and geographic coordinates). 
 
 Here's an example using the hotels-sample-index. The Rooms/SleepsCount field is facetable and numeric, so we choose this field to demonstrate sum. If we sum that field, we get the sleep count for the entire hotel. Recall that facets count the parent document (Hotels) and not intermediate subdocuments (Rooms), so the response sums the SleepsCount of all rooms for the entire hotel. In this query, we add a filter to sum the SleepsCount for just one hotel.
 
 ```rest
-POST /indexes/hotels-sample-index/docs/search?api-version=2025-03-01-Preview
+POST /indexes/hotels-sample-index/docs/search?api-version=2025-11-01-Preview
 
 { 
       "search": "*",
@@ -711,6 +730,138 @@ A response for the query might look like the following example. Windy Ocean Mode
       ]
     }
   ]
+}
+```
+
+### Example: A composite of all aggregations
+
+Here's an example using a hypothetical 'facets' index that shows the syntax for each aggregation. Notice that cardinality has an extra `precisionThreshold` option (default is 3,000) set to 40,000 in this example.
+
+```http
+POST https://search-service.search.windows.net/indexes/facets/docs/search?api-version=2025-11-01-Preview 
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "search": "*",
+    "facets": [// field names are named <something>Value in this example 
+        "cardinalityValue, metric: cardinality,precisionThreshold: 40000", 
+        "sumValue,metric: sum", 
+        "avgValue,metric: avg", 
+        "minValue,metric: min", 
+        "maxValue,metric: max" 
+    ] 
+}
+```
+
+A response for the query might look like the following example.
+
+```json
+{ 
+    "@search.facets": { 
+        "cardinalityValue": [ 
+            { 
+                "cardinality": 24000 // Number of distinct values in "cardinalityValue" field 
+            } 
+        ], 
+        "sumValue": [ 
+            { 
+                "sum": 1200000 // Sum of all values in "sumValue" field 
+            } 
+        ], 
+        "avgValue": [ 
+            { 
+                "avg": 50 // Average of all values in "avgValue" field 
+            } 
+        ], 
+        "minValue": [ 
+            { 
+                "min": 1 // Minimum value in "minValue" field 
+            } 
+        ], 
+        "maxValue": [ 
+            { 
+                "max": 100 // Maximum value in "maxValue" field 
+            } 
+        ] 
+    } 
+}
+```
+
+### Example: Specify a default to substitute for missing values
+
+All metrics support specifying a default value when a document doesn't contain a value. 
+
++ For nonstring types (numeric, datetime, boolean), set the `default` parameter to a specific value: `"default: 42" `.
+
++ For string types, set the `default` parameter to a string, delimited using the single apostrophe delimiter: `"default: 'mystringhere'"`.
+
+You can add a default value to use if a document contains a null for that field: `"facets": [ "Rooms/SleepsCount, metric: sum, default:2"]`. If a room has a null value for the Rooms/SleepsCount field, the default substitutes for the missing value.
+
+Here's a request that illustrates the default specification for each field type.
+
+```http
+POST https://search-service.search.windows.net/indexes/facets/docs/search?api-version=2025-11-01-Preview 
+Authorization: Bearer {{token}} 
+Content-Type: application/json 
+
+{ 
+    "search": "*", 
+    "facets": [// field names are named <datatype>Value in this example 
+        "stringfield, metric: cardinality, default: 'my string goes here'", 
+        "doubleField,metric: sum, default: 5.0", 
+        "intField,metric: sum, default: 5", 
+        "longField,metric: sum, default: 5" 
+    ] 
+} 
+```
+
+For string fields, a default value is delimited using the single quote character. To escape the character, prefix it with the backslash "\'". All characters are valid within the string delimiters. The terminating character can't be a backslash.
+
+### Example: Multiple metrics on the same field
+
+If the underlying data supports the use case, you can specify multiple metrics on the same field.
+
+```http
+POST https://search-service.search.windows.net/indexes/facets/docs/search?api-version=2025-11-01-Preview 
+Authorization: Bearer {{token}} 
+Content-Type: application/json 
+
+{ 
+    "search": "*", 
+    "facets": [ 
+        "fieldA, metric: cardinality, precisionThreshold: 40000", 
+        "fieldA, metric: sum", 
+        "fieldA, metric: avg", 
+        "fieldA, metric: min", 
+        "fieldA, metric: max" 
+    ] 
+}
+```
+ 
+A response for the query might look like the following example.
+
+```json
+{ 
+    "@search.facets": { 
+        "fieldA": [ 
+            { 
+                "cardinality": 24000 // Number of distinct values in "fieldA" field 
+            }, 
+            { 
+                "sum": 1200000 // Sum of all values in " fieldA " field 
+            }, 
+            { 
+                "avg": 5 // Avg of all values in " fieldA " field
+            }, 
+            { 
+                "min": 0 // Min of all values in " fieldA " field 
+            }, 
+            { 
+                "max": 1200 // Max of all values in " fieldA " field 
+            } 
+        ] 
+    } 
 }
 ```
 

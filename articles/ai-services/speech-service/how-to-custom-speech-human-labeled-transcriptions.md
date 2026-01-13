@@ -1,13 +1,13 @@
 ---
 title: Human-labeled transcriptions guidelines - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: You use human-labeled transcriptions with your audio data to improve speech recognition accuracy. This kind of transcription is especially helpful when words are deleted or incorrectly replaced. 
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 5/19/2025
-ms.author: eur
+ms.date: 12/29/2025
+ms.author: pafarley
 #Customer intent: As a developer, I need to understand how to create human-labeled transcriptions for my audio data so that I can improve speech recognition accuracy.
 ---
 
@@ -35,7 +35,7 @@ The transcriptions are text-normalized so the system can process them. However, 
 
 Human-labeled transcriptions for languages other than English and Mandarin Chinese, must be UTF-8 encoded with a byte-order marker. For other locales transcription requirements, see the following sections.
 
-## en-US
+## US English
 
 Human-labeled transcriptions for English audio must be provided as plain text, only using ASCII characters. Avoid the use of Latin-1 or Unicode punctuation characters. These characters are often inadvertently added when copying text from a word-processing application or scraping data from web pages. If these characters are present, make sure to update them with the appropriate ASCII substitution.
 
@@ -92,7 +92,7 @@ Here are a few examples of normalization automatically performed on the transcri
 | Tune to 102.7                          | tune to one oh two point seven    |
 | Pi is about 3.14                       | pi is about three point one four  |
 
-## de-DE
+## German
 
 Human-labeled transcriptions for German audio must be UTF-8 encoded with a byte-order marker. 
 
@@ -132,13 +132,13 @@ Here are a few examples of normalization automatically performed on the transcri
 | ¡Eine Frage!     | eine frage               |
 | Wir, haben       | wir haben                |
 
-## ja-JP
+## Japanese
 
 In Japanese (ja-JP), there's a maximum length of 90 characters for each sentence. Lines with longer sentences are discarded. To add longer text, insert a period in between.
 
-## zh-CN
+## Mandarin Chinese
 
-Human-labeled transcriptions for Mandarin Chinese audio must be UTF-8 encoded with a byte-order marker. Avoid the use of half-width punctuation characters. These characters can be included inadvertently when you prepare the data in a word-processing program or scrape data from web pages. If these characters are present, make sure to update them with the appropriate full-width substitution.
+Human-labeled transcriptions for Mandarin Chinese (zh-CN) audio must be UTF-8 encoded with a byte-order marker. Avoid the use of half-width punctuation characters. These characters can be included inadvertently when you prepare the data in a word-processing program or scrape data from web pages. If these characters are present, make sure to update them with the appropriate full-width substitution.
 
 Here are a few examples:
 
@@ -180,7 +180,7 @@ Here are some examples of automatic transcription normalization:
 | 下午 5:00 的航班 | 下午 五点 的 航班 |
 | 我今年 21 岁 | 我 今年 二十 一 岁 |
 
-## Next Steps
+## Next steps
 
 - [Test model quantitatively](how-to-custom-speech-evaluate-data.md)
 - [Test recognition quality](how-to-custom-speech-inspect-data.md)

@@ -1,8 +1,8 @@
 ---
 title: include file
 description: include file
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 5/19/2025
@@ -13,9 +13,9 @@ ms.custom: include
 In this article, you learn how to fine-tune a professional voice through the custom voice API.
 
 > [!IMPORTANT]
-> Professional voice fine-tuning is currently only available in some regions. After your voice model is trained in a supported region, you can copy it to an AI Foundry resource in another region as needed. For more information, see the footnotes in the [Speech service table](../../../../regions.md#regions).
+> Professional voice fine-tuning is currently only available in some regions. After your voice model is trained in a supported region, you can copy it to a Foundry resource in another region as needed. For more information, see the footnotes in the [Speech service table](../../../../regions.md#regions).
 
-Training duration varies depending on how much data you use. It takes about 40 compute hours on average to fine-tune a professional voice. Standard subscription (S0) users can train four voices simultaneously. If you reach the limit, wait until at least one of your voice models finishes training, and then try again.
+Training duration varies depending on how much data you use. It takes about 10 compute hours on average to fine-tune a professional voice. Standard subscription (S0) users can train four voices simultaneously. If you reach the limit, wait until at least one of your voice models finishes training, and then try again.
 
 > [!NOTE]
 > Although the total number of hours required per [training method](#choose-a-training-method) varies, the same unit price applies to each. For more information, see the [custom neural training pricing details](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).
@@ -26,15 +26,15 @@ After you validate your data files, use them to build your custom voice model. W
 
 - [Neural](?tabs=neural#create-a-voice-model): Create a voice in the same language of your training data.
 
-- [Neural - cross lingual](?tabs=crosslingual#create-a-voice-model): Create a voice that speaks a different language from your training data. For example, with the `fr-FR` training data, you can create a voice that speaks `en-US`.
-
-  The language of the training data and the target language must both be one of the [languages that are supported](../../../../language-support.md?tabs=tts#professional-voice) for cross lingual voice training. You don't need to prepare training data in the target language, but your test script must be in the target language.
+- [Neural - HD Voice](?tabs=hdvoice#create-a-voice-model): Create a HD voice in the same language of your training data. Azure neural HD voices are LLM-based, optimized for dynamic conversations. Learn more about neural HD voices [here](../../../../high-definition-voices.md).
 
 - [Neural - multi style](?tabs=multistyle#create-a-voice-model): Create a custom voice that speaks in multiple styles and emotions, without adding new training data. Multiple style voices are useful for video game characters, conversational chatbots, audiobooks, content readers, and more.
 
   To create a multiple style voice, you need to prepare a set of general training data, at least 300 utterances. Select one or more of the preset target speaking styles. You can also create multiple custom styles by providing style samples, of at least 100 utterances per style, as extra training data for the same voice. The supported preset styles vary according to different languages. See [available preset styles across different languages](?tabs=multistyle#available-preset-styles-across-different-languages).
 
-  - [Neural - HD Voice (preview)](?tabs=hdvoice#create-a-voice-model): Create a HD voice in the same language of your training data. Azure neural HD voices are LLM-based, optimized for dynamic conversations. Learn more about neural HD voices [here](../../../../high-definition-voices.md).
+- [Neural - cross lingual](?tabs=crosslingual#create-a-voice-model): Create a voice that speaks a different language from your training data. For example, with the `fr-FR` training data, you can create a voice that speaks `en-US`.
+
+  The language of the training data and the target language must both be one of the [languages that are supported](../../../../language-support.md?tabs=tts#professional-voice) for cross lingual voice training. You don't need to prepare training data in the target language, but your test script must be in the target language.
 
 The language of the training data must be one of the [languages that are supported](../../../../language-support.md?tabs=tts) for custom voice, cross lingual, or multiple style or HD voice training.
 
@@ -47,7 +47,7 @@ To create a neural voice, use the [Models_Create](/rest/api/aiservices/speechapi
 - Set the required `projectId` property. See [create a project](../../../../professional-voice-create-project.md).
 - Set the required `consentId` property. See [add voice talent consent](../../../../professional-voice-create-consent.md).
 - Set the required `trainingSetId` property. See [create a training set](../../../../professional-voice-create-training-set.md).
-- Set the required recipe `kind` property to `Default` for neural voice training. The recipe kind indicates the training method and can't be changed later. To use a different training method, see [Neural - cross lingual](?tabs=crosslingual#create-a-voice-model) or [Neural - multi style](?tabs=multistyle#create-a-voice-model) or [Neural - HD Voice (preview)](?tabs=hdvoice#create-a-voice-model). See [Bilingual training](#bilingual-training) for more information about bilingual training and differences between locales.
+- Set the required recipe `kind` property to `Default` for neural voice training. The recipe kind indicates the training method and can't be changed later. To use a different training method, see [Neural - cross lingual](?tabs=crosslingual#create-a-voice-model) or [Neural - multi style](?tabs=multistyle#create-a-voice-model) or [Neural - HD Voice](?tabs=hdvoice#create-a-voice-model). See [Bilingual training](#bilingual-training) for more information about bilingual training and differences between locales.
 - Set the required `voiceName` property. Choose a name carefully. The voice name is used in your [speech synthesis request](../../../../professional-voice-deploy-endpoint.md#use-your-custom-voice) by the SDK and SSML input. Only letters, numbers, and a few punctuation characters are allowed. Use different names for different neural voice models.
 - Optionally, set the `description` property for the voice description. The voice description can be changed later.
 
@@ -91,18 +91,15 @@ You should receive a response body in the following format:
 }
 ```
 
+# [Neural - HD Voice](#tab/hdvoice)
 
-
-# [Neural - cross lingual](#tab/crosslingual)
-
-To create a cross lingual neural voice, use the [Models_Create](/rest/api/aiservices/speechapi/models/create) operation of the custom voice API. Construct the request body according to the following instructions:
+To create a HD voice, use the [Models_Create](/rest/api/aiservices/speechapi/models/create) operation of the custom voice API. Construct the request body according to the following instructions:
 
 - Set the required `projectId` property. See [create a project](../../../../professional-voice-create-project.md).
 - Set the required `consentId` property. See [add voice talent consent](../../../../professional-voice-create-consent.md).
 - Set the required `trainingSetId` property. See [create a training set](../../../../professional-voice-create-training-set.md).
-- Set the required recipe `kind` property to `CrossLingual` for cross lingual voice training. The recipe kind indicates the training method and can't be changed later. To use a different training method, see [Neural](?tabs=neural#create-a-voice-model) or [Neural - multi style](?tabs=multistyle#create-a-voice-model) or [Neural - HD Voice (preview)](?tabs=hdvoice#create-a-voice-model).
-- Set the required `voiceName` property. Choose a name carefully. The voice name is used in your [speech synthesis request](../../../../professional-voice-deploy-endpoint.md#use-your-custom-voice) by the SDK and SSML input. Only letters, numbers, and a few punctuation characters are allowed. Use different names for different neural voice models.
-- Set the required `locale` property for the language that your voice speaks. The voice speaks a different language from your training data. You can specify only one target language for a voice model.
+- Set the required recipe `kind` property to `HD` for neural voice training. The recipe kind indicates the training method and can't be changed later. To use a different training method, see [Neural](?tabs=neural#create-a-voice-model) or [Neural - cross lingual](?tabs=crosslingual#create-a-voice-model) or [Neural - multi style](?tabs=multistyle#create-a-voice-model). See [Bilingual training](#bilingual-training) for more information about bilingual training and differences between locales.
+- Set the required `voiceName` property. The voice name must end with ":DragonHDLatestNeural" and can't be changed later. Choose a name carefully. The voice name is used in your [speech synthesis request](../../../../professional-voice-deploy-endpoint.md#use-your-custom-voice) by the SDK and SSML input. Only letters, numbers, and a few punctuation characters are allowed before the specific suffix. Use different names for different neural voice models.
 - Optionally, set the `description` property for the voice description. The voice description can be changed later.
 
 Make an HTTP PUT request using the URI as shown in the following [Models_Create](/rest/api/aiservices/speechapi/models/create) example. 
@@ -112,15 +109,14 @@ Make an HTTP PUT request using the URI as shown in the following [Models_Create]
 
 ```azurecli-interactive
 curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourResourceKey" -H "Content-Type: application/json" -d '{
-  "voiceName": "JessicaCrossLingualNeural",
-  "description": "Jessica cross lingual voice",
+  "voiceName": "Jessica:DragonHDLatestNeural",
+  "description": "Jessica HD voice",
   "recipe": {
-    "kind": "CrossLingual"
+    "kind": "HD"
   },
   "projectId": "ProjectId",
   "consentId": "JessicaConsentId",
-  "trainingSetId": "Jessica-en-US-TrainingSetId",
-  "locale": "fr-FR"
+  "trainingSetId": "JessicaTrainingSetId"
 } '  "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/models/JessicaModelId?api-version=2024-02-01-preview"
 ```
 
@@ -129,17 +125,17 @@ You should receive a response body in the following format:
 ```json
 {
   "id": "JessicaModelId",
-  "voiceName": "JessicaNeuralCrossLingual",
-  "description": "Jessica cross lingual voice",
+  "voiceName": "Jessica:DragonHDLatestNeural",
+  "description": "Jessica HD voice",
   "recipe": {
-    "kind": "CrossLingual",
-    "version": "V5.0"
+    "kind": "HD",
+    "version": "V1.0"
   },
   "projectId": "ProjectId",
   "consentId": "JessicaConsentId",
-  "trainingSetId": "Jessica-en-US-TrainingSetId",
-  "locale": "fr-FR",
-  "engineVersion": "2023.11.14.0",
+  "trainingSetId": "JessicaTrainingSetId",
+  "locale": "en-US",
+  "engineVersion": "2023.07.04.0",
   "status": "NotStarted",
   "createdDateTime": "2023-04-01T05:30:00.000Z",
   "lastActionDateTime": "2023-04-02T10:15:30.000Z"
@@ -153,7 +149,7 @@ To create a multi-style neural voice, use the [Models_Create](/rest/api/aiservic
 - Set the required `projectId` property. See [create a project](../../../../professional-voice-create-project.md).
 - Set the required `consentId` property. See [add voice talent consent](../../../../professional-voice-create-consent.md).
 - Set the required `trainingSetId` property. See [create a training set](../../../../professional-voice-create-training-set.md).
-- Set the required recipe `kind` property to `MultiStyle` for multiple style voice training. The recipe kind indicates the training method and can't be changed later. To use a different training method, see [Neural](?tabs=neural#create-a-voice-model) or [Neural - cross lingual](?tabs=crosslingual#create-a-voice-model) or [Neural - HD Voice (preview)](?tabs=hdvoice#create-a-voice-model).
+- Set the required recipe `kind` property to `MultiStyle` for multiple style voice training. The recipe kind indicates the training method and can't be changed later. To use a different training method, see [Neural](?tabs=neural#create-a-voice-model) or [Neural - cross lingual](?tabs=crosslingual#create-a-voice-model) or [Neural - HD Voice](?tabs=hdvoice#create-a-voice-model).
 - Set the required `voiceName` property. Choose a name carefully. The voice name is used in your [speech synthesis request](../../../../professional-voice-deploy-endpoint.md#use-your-custom-voice) by the SDK and SSML input. Only letters, numbers, and a few punctuation characters are allowed. Use different names for different neural voice models.
 - Set the required `locale` property for the language for your voice model. 
 - Set the required `presetStyles` property to one or more of the [available preset styles](#available-preset-styles-across-different-languages) for the target language. 
@@ -229,20 +225,16 @@ You should receive a response body in the following format:
 }
 ```
 
-# [Neural - multi lingual (preview)](#tab/multilingual)
+# [Neural - cross lingual](#tab/crosslingual)
 
-Not currently supported via the REST API.
-
-
-# [Neural - HD Voice (preview)](#tab/hdvoice)
-
-To create a HD voice, use the [Models_Create](/rest/api/aiservices/speechapi/models/create) operation of the custom voice API. Construct the request body according to the following instructions:
+To create a cross lingual neural voice, use the [Models_Create](/rest/api/aiservices/speechapi/models/create) operation of the custom voice API. Construct the request body according to the following instructions:
 
 - Set the required `projectId` property. See [create a project](../../../../professional-voice-create-project.md).
 - Set the required `consentId` property. See [add voice talent consent](../../../../professional-voice-create-consent.md).
 - Set the required `trainingSetId` property. See [create a training set](../../../../professional-voice-create-training-set.md).
-- Set the required recipe `kind` property to `HD` for neural voice training. The recipe kind indicates the training method and can't be changed later. To use a different training method, see [Neural](?tabs=neural#create-a-voice-model) or [Neural - cross lingual](?tabs=crosslingual#create-a-voice-model) or [Neural - multi style](?tabs=multistyle#create-a-voice-model). See [Bilingual training](#bilingual-training) for more information about bilingual training and differences between locales.
-- Set the required `voiceName` property. The voice name must end with ":DragonHDLatestNeural" and can't be changed later. Choose a name carefully. The voice name is used in your [speech synthesis request](../../../../professional-voice-deploy-endpoint.md#use-your-custom-voice) by the SDK and SSML input. Only letters, numbers, and a few punctuation characters are allowed before the specific suffix. Use different names for different neural voice models.
+- Set the required recipe `kind` property to `CrossLingual` for cross lingual voice training. The recipe kind indicates the training method and can't be changed later. To use a different training method, see [Neural](?tabs=neural#create-a-voice-model) or [Neural - multi style](?tabs=multistyle#create-a-voice-model) or [Neural - HD Voice](?tabs=hdvoice#create-a-voice-model).
+- Set the required `voiceName` property. Choose a name carefully. The voice name is used in your [speech synthesis request](../../../../professional-voice-deploy-endpoint.md#use-your-custom-voice) by the SDK and SSML input. Only letters, numbers, and a few punctuation characters are allowed. Use different names for different neural voice models.
+- Set the required `locale` property for the language that your voice speaks. The voice speaks a different language from your training data. You can specify only one target language for a voice model.
 - Optionally, set the `description` property for the voice description. The voice description can be changed later.
 
 Make an HTTP PUT request using the URI as shown in the following [Models_Create](/rest/api/aiservices/speechapi/models/create) example. 
@@ -252,14 +244,15 @@ Make an HTTP PUT request using the URI as shown in the following [Models_Create]
 
 ```azurecli-interactive
 curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourResourceKey" -H "Content-Type: application/json" -d '{
-  "voiceName": "Jessica:DragonHDLatestNeural",
-  "description": "Jessica HD voice",
+  "voiceName": "JessicaCrossLingualNeural",
+  "description": "Jessica cross lingual voice",
   "recipe": {
-    "kind": "HD"
+    "kind": "CrossLingual"
   },
   "projectId": "ProjectId",
   "consentId": "JessicaConsentId",
-  "trainingSetId": "JessicaTrainingSetId"
+  "trainingSetId": "Jessica-en-US-TrainingSetId",
+  "locale": "fr-FR"
 } '  "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/models/JessicaModelId?api-version=2024-02-01-preview"
 ```
 
@@ -268,22 +261,26 @@ You should receive a response body in the following format:
 ```json
 {
   "id": "JessicaModelId",
-  "voiceName": "Jessica:DragonHDLatestNeural",
-  "description": "Jessica HD voice",
+  "voiceName": "JessicaNeuralCrossLingual",
+  "description": "Jessica cross lingual voice",
   "recipe": {
-    "kind": "HD",
-    "version": "V1.0"
+    "kind": "CrossLingual",
+    "version": "V5.0"
   },
   "projectId": "ProjectId",
   "consentId": "JessicaConsentId",
-  "trainingSetId": "JessicaTrainingSetId",
-  "locale": "en-US",
-  "engineVersion": "2023.07.04.0",
+  "trainingSetId": "Jessica-en-US-TrainingSetId",
+  "locale": "fr-FR",
+  "engineVersion": "2023.11.14.0",
   "status": "NotStarted",
   "createdDateTime": "2023-04-01T05:30:00.000Z",
   "lastActionDateTime": "2023-04-02T10:15:30.000Z"
 }
 ```
+
+# [Neural - multi lingual](#tab/multilingual)
+
+Not currently supported via the REST API.
 
 ---
 

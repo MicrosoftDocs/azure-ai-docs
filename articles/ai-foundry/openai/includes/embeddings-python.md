@@ -1,18 +1,19 @@
 ---
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: include
-ms.date: 03/26/2025
+ms.date: 09/30/2025
 author: mrbullwinkle #noabenefraim
 ms.author: mbullwin
 ---
 ## Prerequisites
 
-* An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
-* An Azure OpenAI resource with the **text-embedding-ada-002 (Version 2)** model deployed. This model is currently only available in [certain regions](../concepts/models.md#model-summary-table-and-region-availability).  If you don't have a resource the process of creating one is documented in our [resource deployment guide](../how-to/create-resource.md).
-* <a href="https://www.python.org/" target="_blank">Python 3.8 or later version</a>
-* The following Python libraries: openai, num2words, matplotlib, plotly, scipy, scikit-learn, pandas, tiktoken.
+* An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
+* A Microsoft Foundry or Azure OpenAI resource with the **text-embedding-ada-002 (Version 2)** model deployed. This model is currently only available in [certain regions](../concepts/models.md#model-summary-table-and-region-availability).
+* <a href="https://www.python.org/" target="_blank">Python 3.10 or later version</a>
+* The following Python libraries: `openai`, `num2words`, `matplotlib`, `plotly`, `scipy`, `scikit-learn`, `pandas`, `tiktoken`.
 * [Jupyter Notebooks](https://jupyter.org/)
 
 ## Set up
@@ -21,21 +22,10 @@ ms.author: mbullwin
 
 If you haven't already, you need to install the following libraries:
 
-# [OpenAI Python 1.x](#tab/python-new)
 
 ```console
 pip install openai num2words matplotlib plotly scipy scikit-learn pandas tiktoken
 ```
-
-# [OpenAI Python 0.28.1](#tab/python)
-
-[!INCLUDE [Deprecation](../includes/deprecation.md)]
-
-```cmd
-pip install "openai==0.28.1" num2words matplotlib plotly scipy scikit-learn pandas tiktoken
-```
-
----
 
 <!--Alternatively, you can use our [requirements.txt file](https://github.com/Azure-Samples/Azure-OpenAI-Docs-Samples/blob/main/Samples/Tutorials/Embeddings/requirements.txt).-->
 
@@ -51,11 +41,14 @@ You can also download the sample data by running the following command on your l
 curl "https://raw.githubusercontent.com/Azure-Samples/Azure-OpenAI-Docs-Samples/main/Samples/Tutorials/Embeddings/data/bill_sum_data.csv" --output bill_sum_data.csv
 ```
 
+ > [!NOTE]
+ > Microsoft Entra ID based authentication is currently not supported for embeddings with the v1 API.
+
 [!INCLUDE [get-key-endpoint](../includes/get-key-endpoint.md)]
 
 ### Environment variables
 
-Create and assign persistent environment variables for your key and endpoint.
+Create and assign persistent environment variables for your API key.
 
 [!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 
@@ -65,26 +58,17 @@ Create and assign persistent environment variables for your key and endpoint.
 setx AZURE_OPENAI_API_KEY "REPLACE_WITH_YOUR_KEY_VALUE_HERE" 
 ```
 
-```CMD
-setx AZURE_OPENAI_ENDPOINT "REPLACE_WITH_YOUR_ENDPOINT_HERE" 
-```
-
 # [PowerShell](#tab/powershell)
 
 ```powershell
 [System.Environment]::SetEnvironmentVariable('AZURE_OPENAI_API_KEY', 'REPLACE_WITH_YOUR_KEY_VALUE_HERE', 'User')
 ```
 
-```powershell
-[System.Environment]::SetEnvironmentVariable('AZURE_OPENAI_ENDPOINT', 'REPLACE_WITH_YOUR_ENDPOINT_HERE', 'User')
-```
 
 # [Bash](#tab/bash)
 
 ```Bash
 echo export AZURE_OPENAI_API_KEY="REPLACE_WITH_YOUR_KEY_VALUE_HERE" >> /etc/environment
-echo export AZURE_OPENAI_ENDPOINT="REPLACE_WITH_YOUR_ENDPOINT_HERE" >> /etc/environment
-
 source /etc/environment
 ```
 
@@ -98,8 +82,6 @@ Run the following code in your preferred Python IDE:
 
 ## Import libraries
 
-# [OpenAI Python 1.x](#tab/python-new)
-
 ```python
 import os
 import re
@@ -110,99 +92,8 @@ import os
 import pandas as pd
 import numpy as np
 import tiktoken
-from openai import AzureOpenAI
+from openai import OpenAI
 ```
-
-
-# [OpenAI Python 0.28.1](#tab/python)
-
-```python
-import openai
-import os
-import re
-import requests
-import sys
-from num2words import num2words
-import os
-import pandas as pd
-import numpy as np
-from openai.embeddings_utils import get_embedding, cosine_similarity
-import tiktoken
-
-API_KEY = os.getenv("AZURE_OPENAI_API_KEY") 
-RESOURCE_ENDPOINT = os.getenv("AZURE_OPENAI_ENDPOINT") 
-
-openai.api_type = "azure"
-openai.api_key = API_KEY
-openai.api_base = RESOURCE_ENDPOINT
-openai.api_version = "2024-10-21"
-
-url = openai.api_base + "/openai/deployments?api-version=2024-10-21" 
-
-r = requests.get(url, headers={"api-key": API_KEY})
-
-print(r.text)
-```
-
-```output
-{
-  "data": [
-    {
-      "scale_settings": {
-        "scale_type": "standard"
-      },
-      "model": "text-embedding-ada-002",
-      "owner": "organization-owner",
-      "id": "text-embedding-ada-002",
-      "status": "succeeded",
-      "created_at": 1657572678,
-      "updated_at": 1657572678,
-      "object": "deployment"
-    },
-    {
-      "scale_settings": {
-        "scale_type": "standard"
-      },
-      "model": "code-cushman-001",
-      "owner": "organization-owner",
-      "id": "code-cushman-001",
-      "status": "succeeded",
-      "created_at": 1657572712,
-      "updated_at": 1657572712,
-      "object": "deployment"
-    },
-    {
-      "scale_settings": {
-        "scale_type": "standard"
-      },
-      "model": "text-search-curie-doc-001",
-      "owner": "organization-owner",
-      "id": "text-search-curie-doc-001",
-      "status": "succeeded",
-      "created_at": 1668620345,
-      "updated_at": 1668620345,
-      "object": "deployment"
-    },
-    {
-      "scale_settings": {
-        "scale_type": "standard"
-      },
-      "model": "text-search-curie-query-001",
-      "owner": "organization-owner",
-      "id": "text-search-curie-query-001",
-      "status": "succeeded",
-      "created_at": 1669048765,
-      "updated_at": 1669048765,
-      "object": "deployment"
-    }
-  ],
-  "object": "list"
-}
-```
-
-The output of this command will vary based on the number and type of models you've deployed. In this case, we need to confirm that we have an entry for **text-embedding-ada-002**. If you find that you're missing this model, you'll need to [deploy the model](../how-to/create-resource.md#deploy-a-model) to your resource before proceeding.
-
----
 
 Now we need to read our csv file and create a pandas DataFrame. After the initial DataFrame is created, we can view the contents of the table by running `df`.
 
@@ -224,7 +115,7 @@ df_bills
 
 **Output:**
 
-:::image type="content" source="../media/tutorials/cleanup-dataframe.png" alt-text="Screenshot of the smaller DataFrame table results with only text, summary and title columns displayed." lightbox="../media/tutorials/cleanup-dataframe.png":::
+:::image type="content" source="../media/tutorials/cleanup-dataframe.png" alt-text="Screenshot of the smaller DataFrame table results with only text, summary, and title columns displayed." lightbox="../media/tutorials/cleanup-dataframe.png":::
 
 Next we'll perform some light data cleaning by removing redundant whitespace and cleaning up the punctuation to prepare the data for tokenization.
 
@@ -234,7 +125,7 @@ pd.options.mode.chained_assignment = None #https://pandas.pydata.org/pandas-docs
 # s is input text
 def normalize_text(s, sep_token = " \n "):
     s = re.sub(r'\s+',  ' ', s).strip()
-    s = re.sub(r". ,","",s)
+    s = re.sub(r"\. ,","",s) 
     # remove all instances of multiple spaces
     s = s.replace("..",".")
     s = s.replace(". .",".")
@@ -246,7 +137,7 @@ def normalize_text(s, sep_token = " \n "):
 df_bills['text']= df_bills["text"].apply(lambda x : normalize_text(x))
 ```
 
-Now we need to remove any bills that are too long for the token limit (8192 tokens).
+Now we need to remove any bills that are too long for the token limit (8,192 tokens).
 
 ```python
 tokenizer = tiktoken.get_encoding("cl100k_base")
@@ -260,7 +151,7 @@ len(df_bills)
 ```
 
 >[!NOTE]
->In this case all bills are under the embedding model input token limit, but you can use the technique above to remove entries that would otherwise cause embedding to fail. When faced with content that exceeds the embedding limit, you can also chunk the content into smaller pieces and then embed those one at a time.
+>In this case all bills are under the embedding model input token limit, but you can use the technique above to remove entries that would otherwise cause embedding to fail. When faced with content that exceeds the embedding limit, you can also chunk the content into smaller pieces and then embed the chunks one at a time.
 
 We'll once again examine **df_bills**.
 
@@ -347,13 +238,10 @@ Now that we understand more about how tokenization works we can move on to embed
 
 In the example below we're calling the embedding model once per every item that we want to embed. When working with large embedding projects you can alternatively pass the model an array of inputs to embed rather than one input at a time. When you pass the model an array of inputs the max number of input items per call to the embedding endpoint is 2048.
 
-# [OpenAI Python 1.x](#tab/python-new)
-
 ```python
-client = AzureOpenAI(
+client = OpenAI(
   api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version = "2024-02-01",
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
 )
 
 def generate_embeddings(text, model="text-embedding-ada-002"): # model = "deployment_name"
@@ -362,13 +250,6 @@ def generate_embeddings(text, model="text-embedding-ada-002"): # model = "deploy
 df_bills['ada_v2'] = df_bills["text"].apply(lambda x : generate_embeddings (x, model = 'text-embedding-ada-002')) # model should be set to the deployment name you chose when you deployed the text-embedding-ada-002 (Version 2) model
 ```
 
-# [OpenAI Python 0.28.1](#tab/python)
-
-```python
-df_bills['ada_v2'] = df_bills["text"].apply(lambda x : get_embedding(x, engine = 'text-embedding-ada-002')) # engine should be set to the deployment name you chose when you deployed the text-embedding-ada-002 (Version 2) model
-```
-
----
 
 ```python
 df_bills
@@ -379,8 +260,6 @@ df_bills
 :::image type="content" source="../media/tutorials/embed-text-documents.png" alt-text="Screenshot of the formatted results from df_bills command." lightbox="../media/tutorials/embed-text-documents.png":::
 
 As we run the search code block below, we'll embed the search query *"Can I get information on cable company tax revenue?"* with the same **text-embedding-ada-002 (Version 2)** model. Next we'll find the closest bill embedding to the newly embedded text from our query ranked by [cosine similarity](../concepts/understand-embeddings.md).
-
-# [OpenAI Python 1.x](#tab/python-new)
 
 ```python
 def cosine_similarity(a, b):
@@ -408,36 +287,11 @@ def search_docs(df, user_query, top_n=4, to_print=True):
 res = search_docs(df_bills, "Can I get information on cable company tax revenue?", top_n=4)
 ```
 
-# [OpenAI Python 0.28.1](#tab/python)
-
-```python
-# search through the reviews for a specific product
-def search_docs(df, user_query, top_n=3, to_print=True):
-    embedding = get_embedding(
-        user_query,
-        engine="text-embedding-ada-002" # engine should be set to the deployment name you chose when you deployed the text-embedding-ada-002 (Version 2) model
-    )
-    df["similarities"] = df.ada_v2.apply(lambda x: cosine_similarity(x, embedding))
-
-    res = (
-        df.sort_values("similarities", ascending=False)
-        .head(top_n)
-    )
-    if to_print:
-        display(res)
-    return res
-
-
-res = search_docs(df_bills, "Can I get information on cable company tax revenue?", top_n=4)
-```
-
----
-
 **Output**:
 
 :::image type="content" source="../media/tutorials/query-result.png" alt-text="Screenshot of the formatted results of res once the search query has been run." lightbox="../media/tutorials/query-result.png":::
 
-Finally, we'll show the top result from document search based on user query against the entire knowledge base. This returns the top result of the "Taxpayer's Right to View Act of 1993". This document has a cosine similarity score of 0.76 between the query and the document:
+Finally, we'll show the top result from document search based on user query against the entire knowledge base. This returns the top result of the "Taxpayer's Right to View Act of 1993." This document has a cosine similarity score of 0.76 between the query and the document:
 
 ```python
 res["summary"][9]

@@ -1,9 +1,9 @@
 ---
 title: include file
 description: include file
-author: eur
-ms.reviewer: eur
-ms.author: eric-urban
+author: nitinme
+ms.reviewer: nitinme
+ms.author: nitinme
 ms.service: azure-ai-services
 ms.topic: include
 ms.date: 2/22/2024

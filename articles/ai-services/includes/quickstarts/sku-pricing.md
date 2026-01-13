@@ -1,11 +1,9 @@
 ---
-title: "Azure AI services products and pricing"
-author: eric-urban
+title: "Foundry Tools products and pricing"
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: include
 ms.date: 8/1/2024
-ms.author: eur
 ---
 
 Pricing tiers (and the amount you're billed) are based on the number of transactions that you send by using your authentication information. Each pricing tier specifies the:

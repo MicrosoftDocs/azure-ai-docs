@@ -5,9 +5,9 @@ description: Learn how to set up data drift detection in Azure Learning. Create 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mldata
-ms.reviewer: franksolomon
-ms.author: xunwan
-author: SturgeonMi
+ms.reviewer: soumyapatro 
+ms.author: scottpolly
+author: s-polly
 ms.date: 02/04/2025
 ms.topic: how-to
 ms.custom:
@@ -54,7 +54,7 @@ You can view data drift metrics with the Python SDK or in Azure Machine Learning
 ## Prerequisites
 
 To create and work with dataset monitors, you need:
-* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/) today.
+* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) today.
 * An [Azure Machine Learning workspace](../quickstart-create-resources.md).
 * The [Azure Machine Learning SDK for Python installed](/python/api/overview/azure/ml/install), which includes the azureml-datasets package.
 * Structured (tabular) data with a timestamp specified in the file path, file name, or column in the data.
@@ -118,8 +118,8 @@ The monitor compares the baseline and target datasets.
 
 ### Migrate to Model Monitor
 In Model Monitor, you can find corresponding concepts as following, and you can find more details in this article [Set up model monitoring by bringing in your production data to Azure Machine Learning](../how-to-monitor-model-performance.md#set-up-out-of-box-model-monitoring):
-*	Reference dataset: similar to your baseline dataset for data drift detection, it is set as the recent past production inference dataset.
-*	Production inference data: similar to your target dataset in data drift detection, the production inference data can be collected automatically from models deployed in production. It can also be inference data you store.
+*    Reference dataset: similar to your baseline dataset for data drift detection, it is set as the recent past production inference dataset.
+*    Production inference data: similar to your target dataset in data drift detection, the production inference data can be collected automatically from models deployed in production. It can also be inference data you store.
 
 ## Create target dataset
 

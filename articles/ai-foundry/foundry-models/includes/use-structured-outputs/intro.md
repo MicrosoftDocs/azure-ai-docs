@@ -1,6 +1,6 @@
 ---
-manager: scottpolly
-ms.service: azure-ai-model-inference
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: include
 ms.date: 05/29/2025
 ms.reviewer: fasantia
@@ -12,7 +12,7 @@ ms.custom: include
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-Free-form outputs of language models can be difficult to parse by software applications. Structured outputs, like JSON, provide a clear format that software applications can read and process. This article explains how to use structured outputs to generate specific JSON schemas with the chat completions API for models deployed in Azure AI Foundry Models.
+Free-form outputs of language models can be difficult to parse by software applications. Structured outputs, like JSON, provide a clear format that software applications can read and process. This article explains how to use structured outputs to generate specific JSON schemas with the chat completions API for models deployed in Microsoft Foundry Models.
 
 The following list describes typical scenarios where structured outputs are useful:
 

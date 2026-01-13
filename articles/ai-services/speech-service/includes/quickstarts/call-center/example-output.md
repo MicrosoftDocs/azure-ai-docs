@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.date: 09/29/2022
 ms.topic: include
-ms.author: eur
+ms.author: pafarley
 ---
 
 The console output shows the full conversation and summary. Here's an example of the overall summary, with redactions for brevity:

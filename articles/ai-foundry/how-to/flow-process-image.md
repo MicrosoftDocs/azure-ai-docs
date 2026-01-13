@@ -1,11 +1,12 @@
 ---
 title: Process images in prompt flow
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: Learn how to use images in prompt flow.
-manager: scottpolly
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-prompt-flow
 ms.custom:
   - build-2024
+  - hub-only
 ms.topic: how-to
 ms.date: 06/30/2025
 ms.reviewer: none
@@ -28,6 +29,8 @@ In this article, you learn:
 > - How to build a chatbot that can process image and text inputs.
 > - How to create a batch run using image data.  
 > - How to consume online endpoint with image data.
+
+[!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
 
 ## Image type in prompt flow
 

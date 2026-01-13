@@ -1,14 +1,13 @@
 ---
 title: Disclosure Design Patterns
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Design patterns and best practices for disclosure.
-services: ai-services
-author: eric-urban
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: article
-ms.date: 12/03/2019
-ms.author: eur
+ms.date: 11/21/2025
 ---
 
 # Disclosure design patterns for synthetic voices
@@ -17,7 +16,7 @@ ms.author: eur
 
 Now that you've determined the right level of disclosure for your text to speech avatar experience, it's a good time to explore potential design patterns.
 
-## Overview
+## Design pattern overview
 
 There's a spectrum of disclosure design patterns you can apply to your synthetic voice experience. If the outcome of your disclosure assessment was 'High Disclosure', we recommend [explicit disclosure](#explicit-disclosure), which means communicating the origins of the synthetic voice outright. [Implicit disclosure](#implicit-disclosure) includes cues and interaction patterns that benefit voice experiences whether required disclosure levels are high or low.
 

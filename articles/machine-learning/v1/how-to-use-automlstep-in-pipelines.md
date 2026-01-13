@@ -5,9 +5,9 @@ description: Learn how to use AutoMLStep to set up automated machine learning in
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: automl
-author: manashgoswami
-ms.author: manashg
-ms.reviewer: ssalgado
+ms.author: scottpolly
+author: s-polly
+ms.reviewer: sooryar
 ms.date: 04/04/2025
 ms.topic: how-to
 ms.custom: UpdateFrequency5, devx-track-python, automl, sdkv1
@@ -25,7 +25,7 @@ This article explains how to efficiently join a data preparation step to an auto
 
 ## Prerequisites
 
-* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/) today.
+* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) today.
 
 * An Azure Machine Learning workspace. See [Create resources you need to get started](../quickstart-create-resources.md).  
 

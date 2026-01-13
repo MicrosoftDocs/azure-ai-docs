@@ -1,10 +1,10 @@
 ---
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 04/18/2023
-ms.author: eur
+ms.author: pafarley
 ---
 
 The following table represents the various `docker run` parameters and their corresponding descriptions:

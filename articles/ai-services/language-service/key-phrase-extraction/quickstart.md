@@ -1,12 +1,12 @@
 ---
 title: "Quickstart: Use the Key Phrase Extraction client library"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Use this quickstart to start using the Key Phrase Extraction API.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 02/17/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python
@@ -14,7 +14,6 @@ ms.custom: language-service-key-phrase, mode-api, devx-track-extended-java, devx
 keywords: text mining, key phrase
 zone_pivot_groups: programming-languages-text-analytics
 ---
-
 # Quickstart: using the Key Phrase Extraction client library and REST API
 
 ::: zone pivot="programming-language-csharp"
@@ -49,13 +48,13 @@ zone_pivot_groups: programming-languages-text-analytics
 
 ::: zone pivot="ai-foundry-portal"
 
-[!INCLUDE [Azure AI Foundry quickstart](includes/quickstarts/azure-ai-foundry.md)]
+[!INCLUDE [Microsoft Foundry quickstart](includes/quickstarts/azure-ai-foundry.md)]
 
 ::: zone-end
 
 ## Clean up resources
 
-If you want to clean up and remove an Azure AI services subscription, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it.
+To clean up and remove an Azure AI resource, you can delete either the individual resource or the entire resource group. If you delete the resource group, all resources contained within are also deleted.
 
 * [Azure portal](../../multi-service-resource.md?pivots=azportal#clean-up-resources)
 * [Azure CLI](../../multi-service-resource.md?pivots=azcli#clean-up-resources)

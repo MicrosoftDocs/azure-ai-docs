@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 01/30/2024
-ms.author: eur
+ms.author: pafarley
 ---
 
 [!INCLUDE [Header](../../common/javascript.md)]
@@ -49,8 +49,8 @@ To transcribe speech from a file:
     ```javascript
     import { readFileSync, createReadStream } from "fs";
     import { SpeechConfig, AudioConfig, ConversationTranscriber, AudioInputStream } from "microsoft-cognitiveservices-speech-sdk";
-    // This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
-    const speechConfig = SpeechConfig.fromSubscription(process.env.SPEECH_KEY, process.env.SPEECH_REGION);
+    // This example requires environment variables named "ENDPOINT" and "SPEECH_KEY"
+    const speechConfig = SpeechConfig.fromEndpoint(new URL(process.env.ENDPOINT), process.env.SPEECH_KEY);
     function fromFile() {
         const filename = "katiesteve.wav";
         const audioConfig = AudioConfig.fromWavFileInput(readFileSync(filename));

@@ -4,7 +4,8 @@ titleSuffix: Azure OpenAI
 description: Learn how to use Assistants file search.
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ms.date: 05/20/2025
 author: aahill
@@ -13,6 +14,8 @@ recommendations: false
 ---
 
 # Azure OpenAI Assistants file search tool (Preview)
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 [!INCLUDE [agent-service](../includes/agent-service.md)]
 
@@ -62,7 +65,7 @@ File search is available in [regions](../concepts/models.md#assistants-preview) 
 
 ## Enable file search
 
-# [Python 1.x](#tab/python)
+# [Python](#tab/python)
 
 ```python
 from openai import AzureOpenAI

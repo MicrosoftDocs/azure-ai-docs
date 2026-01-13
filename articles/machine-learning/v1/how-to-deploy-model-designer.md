@@ -5,8 +5,8 @@ description: Use Azure Machine Learning studio to deploy machine learning models
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.author: scottpolly
-author: s-polly
+ms.author: lagayhar
+author: lgayhardt
 ms.reviewer: keli19
 ms.date: 06/13/2025
 ms.topic: how-to

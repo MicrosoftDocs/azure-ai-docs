@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 08/13/2024
-ms.author: eur
+ms.author: pafarley
 ms.custom: devx-track-js
 ---
 
@@ -15,11 +15,11 @@ ms.custom: devx-track-js
 
 To call the Speech service by using the Speech SDK, you need to create a [`SpeechConfig`](/javascript/api/microsoft-cognitiveservices-speech-sdk/speechconfig) instance. This class includes information about your Speech resource, like your key and associated region, endpoint, host, or authorization token.
 
-1. Create an AI Foundry resource for Speech in the [Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry). Get the Speech resource key and region.
-1. Create a `SpeechConfig` instance by using the following code. Replace `YourSpeechKey` and `YourSpeechRegion` with your Speech resource key and region.
+1. Create a Foundry resource for Speech in the [Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry). Get the Speech resource key and endpoint.
+1. Create a `SpeechConfig` instance by using the following code. Replace `YourSpeechEndpoint` and `YourSpeechKey` with your Speech resource endpoint and key.
 
 ```javascript
-const speechConfig = sdk.SpeechConfig.fromSubscription("YourSpeechKey", "YourSpeechRegion");
+const speechConfig = sdk.SpeechConfig.fromEndpoint(new URL("YourSpeechEndpoint"), "YourSpeechKey");
 ```
 
 You can initialize `SpeechConfig` in a few other ways:
@@ -45,7 +45,7 @@ To recognize speech from an audio file, create an `AudioConfig` instance by usin
 ```javascript
 const fs = require('fs');
 const sdk = require("microsoft-cognitiveservices-speech-sdk");
-const speechConfig = sdk.SpeechConfig.fromSubscription("YourSpeechKey", "YourSpeechRegion");
+const speechConfig = sdk.SpeechConfig.fromEndpoint("YourSpeechEndpoint", "YourSpeechKey");
 
 function fromFile() {
     let audioConfig = sdk.AudioConfig.fromWavFileInput(fs.readFileSync("YourAudioFile.wav"));
@@ -70,7 +70,7 @@ For many use cases, your audio data likely comes from Azure Blob Storage. Or it'
 ```javascript
 const fs = require('fs');
 const sdk = require("microsoft-cognitiveservices-speech-sdk");
-const speechConfig = sdk.SpeechConfig.fromSubscription("YourSpeechKey", "YourSpeechRegion");
+const speechConfig = sdk.SpeechConfig.fromEndpoint("YourSpeechEndpoint", "YourSpeechKey");
 
 function fromStream() {
     let pushStream = sdk.AudioInputStream.createPushStream();
@@ -116,7 +116,7 @@ switch (result.reason) {
         if (cancellation.reason == sdk.CancellationReason.Error) {
             console.log(`CANCELED: ErrorCode=${cancellation.ErrorCode}`);
             console.log(`CANCELED: ErrorDetails=${cancellation.errorDetails}`);
-            console.log("CANCELED: Did you set the speech resource key and region values?");
+            console.log("CANCELED: Did you set the speech resource key and endpoint values?");
         }
         break;
     }
@@ -140,7 +140,7 @@ Next, subscribe to the events sent from [`SpeechRecognizer`](/javascript/api/mic
 * [`recognizing`](/javascript/api/microsoft-cognitiveservices-speech-sdk/speechrecognizer#recognizing): Signal for events that contain intermediate recognition results.
 * [`recognized`](/javascript/api/microsoft-cognitiveservices-speech-sdk/speechrecognizer#recognized): Signal for events that contain final recognition results, which indicate a successful recognition attempt.
 * [`sessionStopped`](/javascript/api/microsoft-cognitiveservices-speech-sdk/speechrecognizer#sessionstopped): Signal for events that indicate the end of a recognition session (operation).
-* [`canceled`](/javascript/api/microsoft-cognitiveservices-speech-sdk/speechrecognizer#canceled): Signal for events that contain canceled recognition results. These results indicate a recognition attempt that was canceled as a result of a direct cancelation request. Alternatively, they indicate a transport or protocol failure.
+* [`canceled`](/javascript/api/microsoft-cognitiveservices-speech-sdk/speechrecognizer#canceled): Signal for events that contain canceled recognition results. These results indicate a recognition attempt that was canceled as a result of a direct cancellation request. Alternatively, they indicate a transport or protocol failure.
 
 ```javascript
 speechRecognizer.recognizing = (s, e) => {
@@ -162,7 +162,7 @@ speechRecognizer.canceled = (s, e) => {
     if (e.reason == sdk.CancellationReason.Error) {
         console.log(`"CANCELED: ErrorCode=${e.errorCode}`);
         console.log(`"CANCELED: ErrorDetails=${e.errorDetails}`);
-        console.log("CANCELED: Did you set the speech resource key and region values?");
+        console.log("CANCELED: Did you set the speech resource key and endpoint values?");
     }
 
     speechRecognizer.stopContinuousRecognitionAsync();

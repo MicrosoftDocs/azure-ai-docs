@@ -1,12 +1,13 @@
 ---
-title: "Use your own data with Azure OpenAI in Azure AI Foundry Models"
+title: "Use your own data with Azure OpenAI in Microsoft Foundry Models"
 titleSuffix: Azure OpenAI
 description: Use this article to import and use your data in Azure OpenAI.
 author: aahill
 ms.author: aahi
 manager: nitinme
-ms.date: 04/29/2025
-ms.service: azure-ai-openai
+ms.date: 09/22/2025
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: quickstart
 ms.custom:
   - devx-track-dotnet
@@ -21,16 +22,18 @@ zone_pivot_groups: openai-use-your-data
 
 # Quickstart: Chat with Azure OpenAI models using your own data
 
-In this quickstart, you can use your own data with Azure OpenAI models. Using Azure OpenAI's models on your data can provide you with a powerful conversational AI platform that enables faster and more accurate communication.
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
+In this quickstart, you use your own data with Azure OpenAI models to create a powerful, conversational AI platform that enables faster and more accurate communication.
+
+> [!IMPORTANT]
+> There are new ways to build conversational solutions with your own data. For the latest recommended approach, see [Quickstart: Use agentic retrieval in Azure AI Search](../../search/search-get-started-agentic-retrieval.md).
 
 ::: zone pivot="ai-foundry-portal"
 
 ## Prerequisites
 
-The following resources: 
-- 
 - Download the example data from [GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/openai/contoso_benefits_document_example.pdf) if you don't have your own data.
-
 
 [!INCLUDE [Connect your data to OpenAI](includes/connect-your-data-studio.md)]
 
@@ -42,8 +45,7 @@ The following resources:
 
 ## Prerequisites
 
-The following resources: 
-- An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
+- An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Download the example data from [GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/openai/contoso_benefits_document_example.pdf) if you don't have your own data.
 - The [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
 
@@ -59,11 +61,10 @@ The following resources:
 
 ## Prerequisites
 
-The following resources: 
 - [Azure OpenAI](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)
 - [Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)
 - [Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)
-- An [Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI) deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
+- An [Azure OpenAI](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI) or  deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
     - Be sure that you're assigned at least the [Cognitive Services Contributor](./how-to/role-based-access-control.md#cognitive-services-contributor) role for the Azure OpenAI resource.
 - Download the example data from [GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/openai/contoso_benefits_document_example.pdf) if you don't have your own data.
     
@@ -79,7 +80,7 @@ The following resources:
 
 ## Prerequisites
 
-- An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
+- An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
 - [Azure CLI](/cli/azure/install-azure-cli) used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI.
 - An Azure OpenAI resource deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
@@ -106,8 +107,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 ## Prerequisites
 
-- An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
-
+- An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
 - [TypeScript](https://www.typescriptlang.org/download/)
 - [Azure CLI](/cli/azure/install-azure-cli) used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI.
@@ -133,7 +133,6 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 ## Prerequisites
 
-The following resources: 
 - [Azure OpenAI](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)
 - [Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)
 - [Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)
@@ -143,7 +142,7 @@ The following resources:
 
 [Reference](https://platform.openai.com/docs/api-reference?lang=python) | [Source code](https://github.com/openai/openai-python) | [Package (pypi)](https://pypi.org/project/openai/) | [Samples](https://github.com/openai/openai-cookbook/)
 
-These links reference the OpenAI API for Python. There's no Azure-specific OpenAI Python SDK. [Learn how to switch between the OpenAI services and Azure OpenA](/azure/ai-services/openai/how-to/switching-endpoints).
+These links reference the OpenAI API for Python. There's no Azure-specific OpenAI Python SDK. [Learn how to switch between the OpenAI services and Azure OpenAI](/azure/ai-foundry/openai/how-to/switching-endpoints).
 
 [!INCLUDE [Connect your data to OpenAI](includes/connect-your-data-studio.md)]
 
@@ -156,7 +155,6 @@ These links reference the OpenAI API for Python. There's no Azure-specific OpenA
 
 ## Prerequisites
 
-The following resources: 
 - [Azure OpenAI](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)
 - [Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)
 - [Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)
@@ -175,7 +173,6 @@ The following resources:
 
 ## Prerequisites
 
-The following resources: 
 - [Azure OpenAI](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)
 - [Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)
 - [Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)
@@ -196,7 +193,6 @@ The following resources:
 
 ## Prerequisites
 
-The following resources: 
 - [Azure OpenAI](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)
 - [Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)
 - [Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)
@@ -219,5 +215,5 @@ If you want to clean up and remove an Azure OpenAI or Azure AI Search resource, 
 
 ## Next steps
 
-- Learn more about [using your data in Azure OpenAI in Azure AI Foundry Models](./concepts/use-your-data.md)
+- Learn more about [using your data in Azure OpenAI in Microsoft Foundry Models](./concepts/use-your-data.md)
 - [Chat app sample code on GitHub](https://go.microsoft.com/fwlink/?linkid=2244395).

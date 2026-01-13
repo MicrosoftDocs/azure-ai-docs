@@ -1,12 +1,12 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 8/11/2024
-ms.author: eur
+ms.author: pafarley
 ---
 
-You need to authenticate your application to access Azure AI services. This article shows you how to use environment variables to store your credentials. You can then access the environment variables from your code to authenticate your application. For production, use a more secure way to store and access your credentials. 
+You need to authenticate your application to access Foundry Tools. This article shows you how to use environment variables to store your credentials. You can then access the environment variables from your code to authenticate your application. For production, use a more secure way to store and access your credentials. 
 
 [!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv-expanded.md)]
 
@@ -14,12 +14,14 @@ To set the environment variables for your Speech resource key and region, open a
 
 - To set the `SPEECH_KEY` environment variable, replace *your-key* with one of the keys for your resource.
 - To set the `SPEECH_REGION` environment variable, replace *your-region* with one of the regions for your resource.
+- To set the `ENDPOINT` environment variable, replace `your-endpoint` with the actual endpoint of your Speech resource.
 
 #### [Windows](#tab/windows)
 
 ```console
 setx SPEECH_KEY your-key
 setx SPEECH_REGION your-region
+setx ENDPOINT your-endpoint
 ```
 
 > [!NOTE]
@@ -36,6 +38,7 @@ Edit your *.bashrc* file, and add the environment variables:
 ```bash
 export SPEECH_KEY=your-key
 export SPEECH_REGION=your-region
+export ENDPOINT=your-endpoint
 ```
 
 After you add the environment variables, run `source ~/.bashrc` from your console window to make the changes effective.
@@ -49,6 +52,7 @@ Edit your *.bash_profile* file, and add the environment variables:
 ```bash
 export SPEECH_KEY=your-key
 export SPEECH_REGION=your-region
+export ENDPOINT=your-endpoint
 ```
 
 After you add the environment variables, run `source ~/.bash_profile` from your console window to make the changes effective.
@@ -62,7 +66,7 @@ For iOS and macOS development, you set the environment variables in Xcode. For e
 1. Under **Environment Variables** select the plus (+) sign to add a new environment variable.
 1. Enter `SPEECH_KEY` for the **Name** and enter your Speech resource key for the **Value**.
 
-To set the environment variable for your Speech resource region, follow the same steps. Set `SPEECH_REGION` to the region of your resource. For example, `westus`.
+To set the environment variable for your Speech resource region, follow the same steps. Set `SPEECH_REGION` to the region of your resource. For example, `westus`. Set `ENDPOINT` to the endpoint of your resource
 
 For more configuration options, see [the Xcode documentation](https://help.apple.com/xcode/#/dev745c5c974).
 

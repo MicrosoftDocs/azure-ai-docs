@@ -1,13 +1,13 @@
 ---
 title: Use personal voice in your application
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to integrate personal voice in your application.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 3/10/2025
-ms.author: eur
+ms.date: 08/07/2025
+ms.author: pafarley
 ms.custom: references_regions, build-2024
 #Customer intent: As a developer, I want to learn how to integrate personal voice in my application.
 ---

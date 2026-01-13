@@ -3,7 +3,8 @@ title: Azure OpenAI On Your Data Python & REST API reference
 titleSuffix: Azure OpenAI
 description: Learn how to use Azure OpenAI On Your Data Python & REST API.
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: reference
 ms.date: 02/27/2025
 author: aahill
@@ -13,6 +14,8 @@ ms.custom: devx-track-python
 ---
 
 # Azure OpenAI On Your Data API Reference
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 This article provides reference documentation for Python and REST for the new Azure OpenAI On Your Data API. The latest API version is `2024-05-01-preview` [Swagger spec](https://github.com/Azure/azure-rest-api-specs/tree/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2024-05-01-preview).
 

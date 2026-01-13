@@ -1,29 +1,28 @@
 ---
 title: Translator Transliterate Method
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Convert text in one language from one script to another script with the Translator Transliterate method.
 author: laujan
 manager: nitinme
-
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 05/19/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
-# Translator 3.0: Transliterate
+# Azure Translator in Foundry Tools 3.0: Transliterate
 
-Converts text in one language from one script to another script.
+The Text transliteration API maps your source language script or alphabet to a target language script or alphabet.
 
 ## Request URL
 
 Send a `POST` request to:
 
-```HTTP
+```bash
 https://api.cognitive.microsofttranslator.com/transliterate?api-version=3.0
 ```
 
-_See_ [**Virtual Network Support**](reference.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
+_See_ [**Virtual Network Support**](reference.md#virtual-network-support) for Translator selected network and private endpoint configuration and support.
 
 ## Request parameters
 
@@ -36,11 +35,11 @@ Request parameters passed on the query string are:
 | fromScript | *Required parameter*.<br/>Specifies the script used by the input text. Look up [supported languages](languages.md) using the `transliteration` scope, to find input scripts available for the selected language. |
 | toScript | *Required parameter*.<br/>Specifies the output script. Look up [supported languages](languages.md) using the `transliteration` scope, to find output scripts available for the selected combination of input language and input script. |
 
-Request headers include:
+## Request headers 
 
 | Headers | Description |
 | --- | --- |
-| Authentication headers | _Required request header_.<br/>See [available options for authentication](reference.md#authentication). |
+| Authentication headers | _Required request header_.<br/>See [available options for authentication](../authentication.md). |
 | Content-Type | _Required request header_.<br/>Specifies the content type of the payload. Possible values are: `application/json` |
 | Content-Length | _Optional_.<br/>The length of the request body. |
 | X-ClientTraceId | _Optional_.<br/>A client-generated GUID to uniquely identify the request. You can omit this header if you include the trace ID in the query string using a query parameter named `ClientTraceId`. |
@@ -51,8 +50,8 @@ The body of the request is a JSON array. Each array element is a JSON object wit
 
 ```json
 [
-    {"Text":"こんにちは"},
-    {"Text":"さようなら"}
+    {"text":"こんにちは"},
+    {"text":"さようなら"}
 ]
 ```
 
@@ -99,7 +98,7 @@ The following are the possible HTTP status codes that a request returns.
 | 500 | An unexpected error occurred. If the error persists, report it with: date and time of the failure, request identifier from response header `X-RequestId`, and client identifier from request header `X-ClientTraceId`. |
 | 503 | Server temporarily unavailable. Retry the request. If the error persists, report it with: date and time of the failure, request identifier from response header `X-RequestId`, and client identifier from request header `X-ClientTraceId`. |
 
-If an error occurs, the request also returns a JSON error response. The error code is a 6-digit number combining the 3-digit HTTP status code followed by a 3-digit number to further categorize the error. Common error codes can be found on the [v3 Translator reference page](reference.md#errors).
+If an error occurs, the request also returns a JSON error response. The error code is a 6-digit number combining the 3-digit HTTP status code followed by a 3-digit number to further categorize the error. Common error codes can be found on the [v3 Translator reference page](../status-response-codes.md).
 
 ## Examples
 

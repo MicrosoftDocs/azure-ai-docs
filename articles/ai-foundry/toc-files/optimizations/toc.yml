@@ -1,0 +1,108 @@
+items:
+- name: Prompt engineering
+  items:
+  - name: Prompt engineering techniques
+    href: ../../openai/concepts/prompt-engineering.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+  - name: Image prompt engineering
+    href: ../../openai/concepts/gpt-4-v-prompt-engineering.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+  - name: Synthetic Data Generation
+    href: ../../concepts/concept-synthetic-data.md
+- name: Fine-tuning
+  items:
+  - name: Fine-tuning in Microsoft Foundry
+    href: ../../concepts/fine-tuning-overview.md
+  - name: Fine-tune Microsoft Foundry models
+    items: 
+    - name: Fine-tune models deployed via serverless API
+      href: ../../how-to/fine-tune-serverless.md
+    - name: Fine-tune models deployed via managed compute
+      href: ../../how-to/fine-tune-managed-compute.md
+  - name: Fine-tune Azure OpenAI models
+    items:
+    - name: Fine-tune Azure OpenAI models
+      href: ../../openai/how-to/fine-tuning.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+      displayName: finetuning, fine-tuning 
+    - name: When to use Azure OpenAI fine-tuning
+      href: ../../openai/concepts/fine-tuning-considerations.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+      displayName: finetuning, fine-tuning 
+    - name: Deploy for testing
+      href: ../../openai/how-to/fine-tune-test.md
+    - name: Deploy your Azure OpenAI fine-tuned model
+      href: ../../openai/how-to/fine-tuning-deploy.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+      displayName: finetuning, fine-tuning         
+    - name: Vision fine-tuning
+      href: ../../openai/how-to/fine-tuning-vision.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+      displayName: finetuning, fine-tuning 
+    - name: Reinforcement fine-tuning
+      href: ../../openai/how-to/reinforcement-fine-tuning.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+    - name: Preference fine-tuning
+      href: ../../openai/how-to/fine-tuning-direct-preference-optimization.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+      displayName: finetuning, fine-tuning 
+    - name: Safety evaluation
+      href: ../../openai/how-to/fine-tuning-safety-evaluation.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+      displayName: finetuning, fine-tuning 
+    - name: Tool calling
+      href: ../../openai/how-to/fine-tuning-functions.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+      displayName: finetuning, fine-tuning       
+    - name: Fine-tuning cost management
+      href: ../../openai/how-to/fine-tuning-cost-management.md
+    - name: Weights & Biases integration (preview)
+      href: ../../openai/how-to/weights-and-biases-integration.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+      displayName: finetuning, fine-tuning 
+    - name: Troubleshooting guidance
+      href: ../../openai/how-to/fine-tuning-troubleshoot.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+      displayName: finetuning, fine-tuning 
+- name: Build apps with prompt flow
+  items:
+  - name: Prompt flow overview
+    href: ../../concepts/prompt-flow.md
+  - name: Develop flows
+    items:
+    - name: Create and manage compute session
+      href: ../../how-to/create-manage-compute-session.md
+    - name: Create a flow
+      href: ../../how-to/flow-develop.md
+    - name: Tune prompts using variants
+      href: ../../how-to/flow-tune-prompts-using-variants.md
+    - name: Process images in a flow
+      href: ../../how-to/flow-process-image.md
+    - name: Evaluate flows in the portal
+      items:
+      - name: Submit batch run and evaluate a flow
+        href: ../../how-to/flow-bulk-test-evaluation.md
+      - name: Develop an evaluation flow in Prompt flow
+        href: ../../how-to/flow-develop-evaluation.md
+    - name: Use prompt flow tools
+      items:
+      - name: Prompt flow tools overview
+        href: ../../how-to/prompt-flow-tools/prompt-flow-tools-overview.md
+      - name: LLM tool
+        href: ../../how-to/prompt-flow-tools/llm-tool.md
+      - name: Prompt tool
+        href: ../../how-to/prompt-flow-tools/prompt-tool.md
+      - name: Python tool
+        href: ../../how-to/prompt-flow-tools/python-tool.md
+      - name: Azure OpenAI GPT-4 Turbo with Vision tool
+        href: ../../how-to/prompt-flow-tools/azure-open-ai-gpt-4v-tool.md
+      - name: Index Lookup tool
+        href: ../../how-to/prompt-flow-tools/index-lookup-tool.md
+      - name: Rerank tool
+        href: ../../how-to/prompt-flow-tools/rerank-tool.md
+      - name: Content Safety tool
+        href: ../../how-to/prompt-flow-tools/content-safety-tool.md
+      - name: Embedding tool
+        href: ../../how-to/prompt-flow-tools/embedding-tool.md
+      - name: Serp API tool
+        href: ../../how-to/prompt-flow-tools/serp-api-tool.md
+    - name: Deploy and monitor flows
+      items:
+      - name: Deploy a flow for real-time inference
+        href: ../../how-to/flow-deploy.md
+        displayName: endpoint
+      - name: Enable tracing and collect feedback for a flow deployment
+        href: ../../how-to/develop/trace-production-sdk.md
+        displayName: code
+      - name: Monitor prompt flow deployments
+        href: ../../how-to/monitor-quality-safety.md
+      - name: Troubleshoot prompt flow
+        href: ../../how-to/prompt-flow-troubleshoot.md

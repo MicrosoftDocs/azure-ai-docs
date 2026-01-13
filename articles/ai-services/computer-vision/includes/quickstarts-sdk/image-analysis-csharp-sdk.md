@@ -6,8 +6,6 @@ manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: include
 ms.date: 09/26/2024
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
 ms.author: pafarley
 ---
  
@@ -25,10 +23,10 @@ Use the Image Analysis client library for C# to analyze an image for content tag
 
 ## Prerequisites
 
-* An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=ai-services).
+* An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * The [Visual Studio IDE](https://visualstudio.microsoft.com/vs/) or current version of [.NET Core](https://dotnet.microsoft.com/en-us/download/dotnet).
 * Once you have your Azure subscription, create a [Computer Vision resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision) in the Azure portal to get your key and endpoint. After it deploys, select **Go to resource**.
-    * You need the key and endpoint from the resource you create to connect your application to the Azure AI Vision service.
+    * You need the key and endpoint from the resource you create to connect your application to Azure Vision in Foundry Tools.
     * You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 
 [!INCLUDE [create environment variables](../environment-variables.md)]
@@ -71,7 +69,7 @@ Use the Image Analysis client library for C# to analyze an image for content tag
 
     ### Install the client library
 
-    Within the application directory, install the Azure AI Vision client library for .NET with the following command:
+    Within the application directory, install Azure Vision client library for .NET with the following command:
 
     ```console
     dotnet add package Microsoft.Azure.CognitiveServices.Vision.ComputerVision --version 7.0.0
@@ -134,7 +132,7 @@ brown 0.6581960916519165
 
 ## Clean up resources
 
-If you want to clean up and remove an Azure AI services subscription, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it.
+If you want to clean up and remove a Foundry Tools subscription, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it.
 
 * [Azure portal](../../../multi-service-resource.md?pivots=azportal#clean-up-resources)
 * [Azure CLI](../../../multi-service-resource.md?pivots=azcli#clean-up-resources)

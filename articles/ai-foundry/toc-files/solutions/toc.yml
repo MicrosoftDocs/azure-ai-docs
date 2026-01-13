@@ -1,0 +1,52 @@
+items:
+- name: Azure AI Search for RAG
+  items:
+  - name: Retrieval Augmented Generation (RAG) overview
+    href: ../../concepts/retrieval-augmented-generation.md
+  - name: Use Azure AI Search
+    href: /azure/search/search-what-is-azure-search?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+  - name: Build and consume vector indexes (portal)
+    href: ../../how-to/index-add.md
+  - name: Build a RAG solution using Azure AI Search
+    href: /azure/search/tutorial-rag-build-solution?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+- name: Develop with code
+  items:
+  - name: Set up your development environment
+    href: ../../how-to/develop/install-cli-sdk.md
+  - name: Work in VS Code (Preview)
+    href: ../../how-to/develop/get-started-projects-vs-code.md
+  - name: Use the Microsoft Foundry Agent Service in VS Code (Preview)
+    href: ../../how-to/develop/vs-code-agents.md
+  - name: Use MCP tools with the Microsoft Foundry Agent Service in VS Code (Preview)
+    href: ../../how-to/develop/vs-code-agents-mcp.md
+  - name: Start with an AI template
+    href: ../../how-to/develop/ai-template-get-started.md
+  - name: Develop with LangChain
+    href: ../../how-to/develop/langchain.md
+  - name: Develop with LlamaIndex
+    href: ../../how-to/develop/llama-index.md
+    displayName: code,sdk
+  - name: Develop with Semantic Kernel
+    href: ../../how-to/develop/semantic-kernel.md
+  - name: Quickstarts
+    items:
+    - name: Use the chat playground
+      href: ../../quickstarts/get-started-playground.md
+  - name: In-depth tutorials
+    items:
+    - name: Build custom app with Microsoft Foundry SDK
+      items:
+        - name: "Part 1: Set up project and install SDK"
+          href: ../../tutorials/copilot-sdk-create-resources.md
+        - name: "Part 2: Build with data retrieval"
+          href: ../../tutorials/copilot-sdk-build-rag.md
+          displayName: code,sdk
+        - name: "Part 3: Evaluate the chat app"
+          href: ../../tutorials/copilot-sdk-evaluate.md
+          displayName: code,sdk
+    - name: Get started with DeepSeek-R1 reasoning model
+      href: ../../foundry-models/tutorials/get-started-deepseek-r1.md
+    - name: Deploy an enterprise chat web app
+      href: ../../tutorials/deploy-chat-web-app.md
+    - name: Build a RAG solution using Azure AI Search
+      href: /azure/search/tutorial-rag-build-solution?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true

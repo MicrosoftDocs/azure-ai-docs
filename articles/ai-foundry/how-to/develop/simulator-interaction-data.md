@@ -1,21 +1,24 @@
 ---
 title: Generate Synthetic and Simulated Data for Evaluation
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: This article provides instructions on how to generate synthetic data to run simulations to evaluate the performance and safety of your generative AI application.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
   - references_regions
 ms.topic: how-to
-ms.date: 06/30/2025
+ms.date: 12/23/2025
 ms.reviewer: minthigpen
 ms.author: lagayhar
 author: lgayhardt
+# customer intent: As a developer or evaluator, I want to generate synthetic and adversarial datasets so I can assess quality, safety, and robustness of my generative AI application.
+ai-usage: ai-assisted
 ---
 
 # Generate synthetic and simulated data for evaluation (preview)
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -26,12 +29,61 @@ Large language models (LLMs) are known for their few-shot and zero-shot learning
 
 In this article, you learn how to holistically generate high-quality datasets. You can use these datasets to evaluate the quality and safety of your application by using LLMs and Azure AI safety evaluators.
 
+## Prerequisites
+
+[!INCLUDE [hub-only-prereq](../../includes/hub-only-prereq.md)]
+
 ## Get started
+
+To run the full example, see [Simulate Queries and Responses from input text notebook](https://github.com/Azure-Samples/azureai-samples/blob/main/scenarios/evaluate/Simulators/Simulate_Context-Relevant_Data/Simulate_From_Input_Text/Simulate_From_Input_Text.ipynb).
 
 Install and import the simulator package (preview) from the Azure AI Evaluation SDK:
 
 ```python
-pip install azure-ai-evaluation
+pip install azure-identity azure-ai-evaluation
+```
+
+You'll also need the following packages:
+
+```python
+pip install promptflow-azure
+pip install wikipedia openai
+```
+
+### Connect to your project
+
+Initialize variables to connect to an LLM and create a config file with your project details.
+
+```python
+
+import os
+import json
+from pathlib import Path
+
+# project details
+azure_openai_api_version = "<your-api-version>"
+azure_openai_endpoint = "<your-endpoint>"
+azure_openai_deployment = "gpt-4o-mini"  # replace with your deployment name, if different
+
+# Optionally set the azure_ai_project to upload the evaluation results to Azure AI Studio.
+azure_ai_project = {
+    "subscription_id": "<your-subscription-id>",
+    "resource_group": "<your-resource-group>",
+    "workspace_name": "<your-workspace-name>",
+}
+
+os.environ["AZURE_OPENAI_ENDPOINT"] = azure_openai_endpoint
+os.environ["AZURE_OPENAI_DEPLOYMENT"] = azure_openai_deployment
+os.environ["AZURE_OPENAI_API_VERSION"] = azure_openai_api_version
+
+# Creates config file with project details
+model_config = {
+    "azure_endpoint": azure_openai_endpoint,
+    "azure_deployment": azure_openai_deployment,
+    "api_version": azure_openai_api_version,
+}
+
+# JSON mode supported model preferred to avoid errors ex. gpt-4o-mini, gpt-4o, gpt-4 (1106)
 ```
 
 ## Generate synthetic data and simulate non-adversarial tasks
@@ -46,6 +98,8 @@ The `Simulator` class automates the creation of synthetic data to help streamlin
 
 ```python
 from azure.ai.evaluation.simulator import Simulator
+
+simulator = Simulator(model_config=model_config)
 ```
 
 ### Generate text or index-based synthetic data as input
@@ -53,11 +107,8 @@ from azure.ai.evaluation.simulator import Simulator
 You can generate query response pairs from a text blob like the following Wikipedia example:
 
 ```python
-import asyncio
-from azure.identity import DefaultAzureCredential
 import wikipedia
-import os
-from typing import List, Dict, Any, Optional
+
 # Prepare the text to send to the simulator.
 wiki_search_term = "Leonardo da vinci"
 wiki_title = wikipedia.search(wiki_search_term)[0]
@@ -73,12 +124,12 @@ Prepare the text for generating the input to the simulator:
 
 ### Specify the application Prompty file
 
-The following `application.prompty` file specifies how a chat application behaves:
+The following `user_override.prompty` file specifies how a chat application behaves:
 
 ```yaml
 ---
-name: ApplicationPrompty
-description: Chat RAG application
+name: TaskSimulatorWithPersona
+description: Simulates a user to complete a conversation
 model:
   api: chat
   parameters:
@@ -87,90 +138,123 @@ model:
     presence_penalty: 0
     frequency_penalty: 0
     response_format:
-      type: text
- 
+        type: json_object
+
 inputs:
+  task:
+    type: string
   conversation_history:
     type: dict
-  context:
+  mood:
     type: string
-  query:
-    type: string
- 
+    default: neutral
+
 ---
 system:
-You are a helpful assistant and you're helping with the user's query. Keep the conversation engaging and interesting.
+You must behave as a user who wants accomplish this task: {{ task }} and you continue to interact with a system that responds to your queries. If there is a message in the conversation history from the assistant, make sure you read the content of the message and include it your first response. Your mood is {{ mood }}
+Make sure your conversation is engaging and interactive.
+Output must be in JSON format
+Here's a sample output:
+{
+  "content": "Here is my follow-up question.",
+  "role": "user"
+}
 
-Keep your conversation grounded in the provided context: 
-{{ context }}
-
-Output with a string that continues the conversation, responding to the latest message from the user query:
-{{ query }}
-
-given the conversation history:
+Output with a json object that continues the conversation, given the conversation history:
 {{ conversation_history }}
 ```
 
 ### Specify the target callback to simulate against
 
-You can bring any application endpoint to simulate against by specifying a target callback function. The following example shows an application that's an LLM with a Prompty file (`application.prompty`):
+You can bring any application endpoint to simulate against by specifying a target callback function. The following example uses an application that calls Azure OpenAI's chat completion endpoint.
 
 ```python
+from typing import List, Dict, Any, Optional
+from openai import AzureOpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+
+def call_to_your_ai_application(query: str) -> str:
+    # logic to call your application
+    # use a try except block to catch any errors
+    token_provider = get_bearer_token_provider(DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default")
+
+    deployment = os.environ.get("AZURE_OPENAI_DEPLOYMENT")
+    endpoint = os.environ.get("AZURE_OPENAI_ENDPOINT")
+    client = AzureOpenAI(
+        azure_endpoint=endpoint,
+        api_version=os.environ.get("AZURE_OPENAI_API_VERSION"),
+        azure_ad_token_provider=token_provider,
+    )
+    completion = client.chat.completions.create(
+        model=deployment,
+        messages=[
+            {
+                "role": "user",
+                "content": query,
+            }
+        ],
+        max_tokens=800,
+        temperature=0.7,
+        top_p=0.95,
+        frequency_penalty=0,
+        presence_penalty=0,
+        stop=None,
+        stream=False,
+    )
+    message = completion.to_dict()["choices"][0]["message"]
+    # change this to return the response from your application
+    return message["content"]
+
+
 async def callback(
-    messages: Dict,
+    messages: List[Dict],
     stream: bool = False,
     session_state: Any = None,  # noqa: ANN401
     context: Optional[Dict[str, Any]] = None,
 ) -> dict:
     messages_list = messages["messages"]
-    # Get the last message.
+    # get last message
     latest_message = messages_list[-1]
     query = latest_message["content"]
-    context = latest_message.get("context", None) # Looks for context. The default is None.
-    # Call your endpoint or AI application here:
-    current_dir = os.path.dirname(__file__)
-    prompty_path = os.path.join(current_dir, "application.prompty")
-    _flow = load_flow(source=prompty_path, model={"configuration": azure_ai_project})
-    response = _flow(query=query, context=context, conversation_history=messages_list)
-    # Format the response so that it follows the OpenAI chat protocol.
+    context = None
+    # call your endpoint or ai application here
+    response = call_to_your_ai_application(query)
+    # we are formatting the response to follow the openAI chat protocol format
     formatted_response = {
         "content": response,
         "role": "assistant",
-        "context": context,
+        "context": {
+            "citations": None,
+        },
     }
     messages["messages"].append(formatted_response)
-    return {
-        "messages": messages["messages"],
-        "stream": stream,
-        "session_state": session_state,
-        "context": context
-    }
+    return {"messages": messages["messages"], "stream": stream, "session_state": session_state, "context": context}
+    
 ```
 
 The preceding callback function processes each message that the simulator generates.
 
 ### Functionality
 
-- Retrieves the latest user message
-- Loads a prompt flow from `application.prompty`
-- Generates a response by using the prompt flow
-- Formats the response to adhere to the OpenAI chat protocol
-- Appends the assistant's response to the messages list
+With the simulator initialized, you can now run it to generate synthetic conversations based on the provided text. This call to the simulator generates four query response pairs in its first pass. In the second pass, it picks up one task, pairs it with a query (generated in previous pass) and sends it to the configured LLM to build the first user turn. This user turn is then passed to the `callback` method. The conversation continues till the `max_conversation_turns` turns.
 
-With the simulator initialized, you can now run it to generate synthetic conversations based on the provided text:
+The output of the simulator has the original task, original query, the original query and the response generated from the first turn as expected response. You can find them in the context key of the conversation.
 
 ```python
-    model_config = {
-        "azure_endpoint": "<your_azure_endpoint>",
-        "azure_deployment": "<deployment_name>"
-    }
-    simulator = Simulator(model_config=model_config)
     
-    outputs = await simulator(
-        target=callback,
-        text=text,
-        num_queries=1,  # Minimal number of queries.
-    )
+outputs = await simulator(
+    target=callback,
+    text=text,
+    num_queries=4,
+    max_conversation_turns=3,
+    tasks=[
+        f"I am a student and I want to learn more about {wiki_search_term}",
+        f"I am a teacher and I want to teach my students about {wiki_search_term}",
+        f"I am a researcher and I want to do a detailed research on {wiki_search_term}",
+        f"I am a statistician and I want to do a detailed table of factual data concerning {wiki_search_term}",
+    ],
+)
     
 ```
 
@@ -260,63 +344,35 @@ print(json.dumps(outputs, indent=2))
 
 We provide a dataset of 287 query/context pairs in the SDK. To use this dataset as the conversation starter with your `Simulator`, use the previous `callback` function defined previously.
 
-```python
-import importlib.resources as pkg_resources
-
-grounding_simulator = Simulator(model_config=model_config)
-
-package = "azure.ai.evaluation.simulator._data_sources"
-resource_name = "grounding.json"
-conversation_turns = []
-
-with pkg_resources.path(package, resource_name) as grounding_file:
-    with open(grounding_file, "r") as file:
-        data = json.load(file)
-
-for item in data:
-    conversation_turns.append([item])
-
-outputs = asyncio.run(grounding_simulator(
-    target=callback,
-    conversation_turns=conversation_turns, # This generates 287 rows of data.
-    max_conversation_turns=1,
-))
-
-output_file = "grounding_simulation_output.jsonl"
-with open(output_file, "w") as file:
-    for output in outputs:
-        file.write(output.to_eval_qr_json_lines())
-
-# Then, you can pass it into our Groundedness evaluator to evaluate it for groundedness:
-groundedness_evaluator = GroundednessEvaluator(model_config=model_config)
-eval_output = evaluate(
-    data=output_file,
-    evaluators={
-        "groundedness": groundedness_evaluator
-    },
-    output_path="groundedness_eval_output.json",
-    azure_ai_project=project_scope # This is an optional step used for uploading to your Azure AI Project.
-)
-```
+To run a full example, see [Evaluating Model Groundedness notebook](https://github.com/Azure-Samples/azureai-samples/blob/main/scenarios/evaluate/Simulators/Simulate_Evaluate_Groundedness/Simulate_Evaluate_Groundedness.ipynb).
 
 ## Generate adversarial simulations for safety evaluation
 
-Augment and accelerate your red-teaming operation by using Azure AI Foundry safety evaluations to generate an adversarial dataset against your application. We provide adversarial scenarios along with configured access to a service-side Azure OpenAI GPT-4 model with safety behaviors turned off to enable the adversarial simulation.
+Augment and accelerate your red-teaming operation by using Microsoft Foundry safety evaluations to generate an adversarial dataset against your application. We provide adversarial scenarios along with configured access to a service-side Azure OpenAI GPT-4 model with safety behaviors turned off to enable the adversarial simulation.
 
 ```python
-from azure.ai.evaluation.simulator import AdversarialSimulator
+from azure.ai.evaluation.simulator import  AdversarialSimulator, AdversarialScenario
 ```
 
-The adversarial simulator works by setting up a service-hosted GPT LLM to simulate an adversarial user and interact with your application. An Azure AI Foundry project is required to run the adversarial simulator:
+The adversarial simulator works by setting up a service-hosted GPT LLM to simulate an adversarial user and interact with your application. A Foundry project is required to run the adversarial simulator:
 
 ```python
-from azure.identity import DefaultAzureCredential
+import os
 
+# Use the following code to set the variables with your values.
 azure_ai_project = {
-    "subscription_id": <sub_ID>,
-    "resource_group_name": <resource_group_name>,
-    "project_name": <project_name>
+    "subscription_id": "<your-subscription-id>",
+    "resource_group_name": "<your-resource-group-name>",
+    "project_name": "<your-project-name>",
 }
+
+azure_openai_api_version = "<your-api-version>"
+azure_openai_deployment = "<your-deployment>"
+azure_openai_endpoint = "<your-endpoint>"
+
+os.environ["AZURE_OPENAI_API_VERSION"] = azure_openai_api_version
+os.environ["AZURE_OPENAI_DEPLOYMENT"] = azure_openai_deployment
+os.environ["AZURE_OPENAI_ENDPOINT"] = azure_openai_endpoint
 ```
 
 > [!NOTE]
@@ -359,20 +415,39 @@ async def callback(
 
 ## Run an adversarial simulation
 
+To run the full example, see the [Adversarial Simulator for an online endpoint notebook](https://github.com/Azure-Samples/azureai-samples/blob/main/scenarios/evaluate/Simulators/Simulate_Adversarial_Data/Simulate_Adversarial.ipynb).
+
 ```python
-from azure.ai.evaluation.simulator import AdversarialScenario
-from azure.identity import DefaultAzureCredential
-credential = DefaultAzureCredential()
+# Initialize the simulator
+simulator = AdversarialSimulator(credential=DefaultAzureCredential(), azure_ai_project=azure_ai_project)
 
-scenario = AdversarialScenario.ADVERSARIAL_QA
-adversarial_simulator = AdversarialSimulator(azure_ai_project=azure_ai_project, credential=credential)
+#Run the simulator
+async def callback(
+    messages: List[Dict],
+    stream: bool = False,
+    session_state: Any = None,  # noqa: ANN401
+    context: Optional[Dict[str, Any]] = None,
+) -> dict:
+    messages_list = messages["messages"]
+    query = messages_list[-1]["content"]
+    context = None
+    try:
+        response = call_endpoint(query)
+        # We are formatting the response to follow the openAI chat protocol format
+        formatted_response = {
+            "content": response["choices"][0]["message"]["content"],
+            "role": "assistant",
+            "context": {context},
+        }
+    except Exception as e:
+        response = f"Something went wrong {e!s}"
+        formatted_response = None
+    messages["messages"].append(formatted_response)
+    return {"messages": messages_list, "stream": stream, "session_state": session_state, "context": context}
 
-outputs = await adversarial_simulator(
-        scenario=scenario, # Required: Adversarial scenario to simulate.
-        target=callback, # Callback function to simulate against.
-        max_conversation_turns=1, # Optional: Applicable only to the conversation scenario.
-        max_simulation_results=3, #optional
-    )
+outputs = await simulator(
+    scenario=AdversarialScenario.ADVERSARIAL_QA, max_conversation_turns=1, max_simulation_results=1, target=callback
+)
 
 # By default, the simulator outputs in JSON format. Use the following helper function to convert to QA pairs in JSONL format:
 print(outputs.to_eval_qa_json_lines())

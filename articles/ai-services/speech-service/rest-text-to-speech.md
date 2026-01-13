@@ -1,13 +1,15 @@
 ---
 title: Text to speech API reference (REST) - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to use the REST API to convert text into synthesized speech.
-author: eric-urban
+author: PatrickFarley
+reviewer: patrickfarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 3/10/2025
-ms.author: eur
+ms.date: 10/21/2025
+ms.author: pafarley
+ms.reviewer: pafarley
 ms.custom: references_regions
 # Customer intent: As a developer, I want to learn how to use the REST API to convert text into synthesized speech.
 ---
@@ -35,7 +37,7 @@ Before you use the text to speech REST API, understand that you need to complete
 You can use the `tts.speech.microsoft.com/cognitiveservices/voices/list` endpoint to get a full list of voices for a specific region or endpoint. Prefix the voices list endpoint with a region to get a list of voices for that region. For example, to get a list of voices for the `westus` region, use the `https://westus.tts.speech.microsoft.com/cognitiveservices/voices/list` endpoint. For a list of all supported regions, see the [regions](regions.md) documentation.
 
 > [!NOTE]
-> [Voices and styles in preview](language-support.md?tabs=tts) are only available in three service regions: East US, West Europe, and Southeast Asia.
+> [Voices and styles in preview](language-support.md?tabs=tts) are only available in a subset of regions. For the current list of regions that support voices and styles in public preview, see the [Speech service regions table](./regions.md?tabs=tts).
 
 ### Request headers
 
@@ -325,6 +327,6 @@ riff-48khz-16bit-mono-pcm
 
 ## Next steps
 
-- [Create a free Azure account](https://azure.microsoft.com/free/cognitive-services/)
+- [Create a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 - [Get started with custom voice](professional-voice-create-project.md)
 - [Batch synthesis](batch-synthesis.md)

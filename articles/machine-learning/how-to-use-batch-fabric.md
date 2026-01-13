@@ -9,7 +9,7 @@ ms.topic: how-to
 author: s-polly
 ms.author: scottpolly
 ms.date: 10/10/2023
-ms.reviewer: cacrest
+ms.reviewer: jturuk
 ms.custom:
   - devplatv2
   - ignite-2023
@@ -28,13 +28,13 @@ In this article, you learn how to consume Azure Machine Learning batch deploymen
 
 - Get a [Microsoft Fabric subscription](/fabric/enterprise/licenses). Or sign up for a free [Microsoft Fabric trial](/fabric/get-started/fabric-trial).
 - Sign in to Microsoft Fabric.
-- An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
+- An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - An Azure Machine Learning workspace. If you don't have one, use the steps in [How to manage workspaces](how-to-manage-workspace.md) to create one.
     - Ensure that you have the following permissions in the workspace:
         - Create/manage batch endpoints and deployments: Use roles Owner, contributor, or custom role allowing `Microsoft.MachineLearningServices/workspaces/batchEndpoints/*`.
         - Create ARM deployments in the workspace resource group: Use roles Owner, contributor, or custom role allowing `Microsoft.Resources/deployments/write` in the resource group where the workspace is deployed.
 - A model deployed to a batch endpoint. If you don't have one, use the steps in [Deploy models for scoring in batch endpoints](how-to-use-batch-model-deployments.md) to create one.
-- Download the [_heart-unlabeled.csv_](https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci-unlabeled/heart-unlabeled.csv) sample dataset to use for scoring.
+- Download the `https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci-unlabeled/heart-unlabeled.csv` sample dataset to use for scoring.
 
 ## Architecture
 

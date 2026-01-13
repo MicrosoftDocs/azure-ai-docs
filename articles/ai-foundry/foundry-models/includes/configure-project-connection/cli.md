@@ -2,7 +2,8 @@
 manager: nitinme
 author: santiagxf
 ms.author: fasantia 
-ms.service: azure-ai-model-inference
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.date: 1/21/2025
 ms.topic: include
 zone_pivot_groups: azure-ai-models-deployment
@@ -10,7 +11,7 @@ zone_pivot_groups: azure-ai-models-deployment
 
 [!INCLUDE [Header](intro.md)]
 
-* Install the [Azure CLI](/cli/azure/) and the `ml` extension for Azure AI Foundry:
+* Install the [Azure CLI](/cli/azure/) and the `ml` extension for Microsoft Foundry:
 
     ```azurecli
     az extension add -n ml
@@ -20,9 +21,9 @@ zone_pivot_groups: azure-ai-models-deployment
 
   * Your Azure subscription ID.
 
-  * Your Azure AI Services resource name.
+  * Your Foundry Tools resource name.
 
-  * The resource group where the Azure AI Services resource is deployed.
+  * The resource group where the Foundry Tools resource is deployed.
     
     
 ### Add a connection

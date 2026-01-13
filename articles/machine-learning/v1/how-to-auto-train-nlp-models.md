@@ -4,7 +4,8 @@ titleSuffix: Azure Machine Learning
 description: Set up Azure Machine Learning automated ML to train natural language processing models with the Azure Machine Learning Python SDK v1.
 services: machine-learning
 author: wenxwei
-ms.author: wenxwei
+ms.author: scottpolly
+ms.reviewer: sooryar
 ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: how-to
@@ -29,7 +30,7 @@ You can seamlessly integrate with the [Azure Machine Learning data labeling](../
 
 ## Prerequisites
 
-* Azure subscription. If you don't have an Azure subscription, sign up to try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/) today.
+* Azure subscription. If you don't have an Azure subscription, sign up to try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) today.
 
 * An Azure Machine Learning workspace with a GPU training compute. To create the workspace, see [Create workspace resources](../quickstart-create-resources.md). See [GPU optimized virtual machine sizes](/azure/virtual-machines/sizes-gpu) for more details of GPU instances provided by Azure.
 

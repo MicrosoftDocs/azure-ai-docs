@@ -1,6 +1,6 @@
 ---
-title: Rotate keys in Azure AI services
-titleSuffix: Azure AI services
+title: Rotate keys in Foundry Tools
+titleSuffix: Foundry Tools
 description: "Learn how to rotate API keys for better security, without interrupting service"
 author: PatrickFarley
 manager: nitinme
@@ -8,13 +8,13 @@ ms.service: azure-ai-services
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 5/19/2025
+ms.date: 10/02/2025
 ms.author: pafarley
 ---
 
-# Rotate keys in Azure AI services
+# Rotate API keys
 
-Each Azure AI Foundry resource has two API keys to enable secret rotation. This is a security precaution that lets you regularly change the keys that can be used to access your service, protecting the privacy of your resource if a key gets leaked.
+Each resource has two API keys to enable secret rotation. This is a security precaution that lets you regularly change the keys that can be used to access your service, protecting the privacy of your resource if a key gets leaked.
 
 ## How to rotate keys
 
@@ -32,5 +32,4 @@ You can rotate keys using the following procedure:
 
 ## See also
 
-* [What are Azure AI services?](./what-are-ai-services.md)
-* [Azure AI services security features](./security-features.md)
+* [Configure key-less authentication](../ai-foundry/foundry-models/how-to/configure-entra-id.md)

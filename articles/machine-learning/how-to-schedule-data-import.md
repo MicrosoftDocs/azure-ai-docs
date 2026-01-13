@@ -8,7 +8,7 @@ ms.subservice: mldata
 ms.topic: how-to
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: ambadal
+ms.reviewer: soumyapatro
 ms.date: 07/28/2024
 ms.custom: data4ml, devx-track-azurecli
 ---
@@ -21,7 +21,7 @@ In this article, you'll learn how to programmatically schedule data imports, usi
 
 ## Prerequisites
 
-- You need an Azure subscription to use Azure Machine Learning. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/) today.
+- You need an Azure subscription to use Azure Machine Learning. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) today.
 
 # [Azure CLI](#tab/cli)
 

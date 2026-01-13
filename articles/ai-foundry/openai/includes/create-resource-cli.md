@@ -1,9 +1,10 @@
 ---
-title: 'Create and manage Azure OpenAI in Azure AI Foundry Models deployments with the Azure CLI'
+title: 'Create and manage Azure OpenAI in Microsoft Foundry Models deployments with the Azure CLI'
 titleSuffix: Azure OpenAI
 description: Learn how to use the Azure CLI to create an Azure OpenAI resource and manage deployments with the Azure OpenAI.
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.custom: devx-track-azurecli
 ms.topic: include
 ms.date: 05/20/2024
@@ -11,7 +12,7 @@ ms.date: 05/20/2024
 
 ## Prerequisites
 
-- An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Access permissions to [create Azure OpenAI resources and to deploy models](../how-to/role-based-access-control.md).
 - The Azure CLI. For more information, see [How to install the Azure CLI](/cli/azure/install-azure-cli).
 
@@ -43,11 +44,13 @@ az cognitiveservices account create \
 --kind OpenAI \
 --sku s0 \
 --subscription <subscriptionID>
+--custom-domain MyOpenAIResource
+--yes
 ```
 
 ## Retrieve information about the resource
 
-After you create the resource, you can use different commands to find useful information about your Azure OpenAI in Azure AI Foundry Models instance. The following examples demonstrate how to retrieve the REST API endpoint base URL and the access keys for the new resource.
+After you create the resource, you can use different commands to find useful information about your Azure OpenAI in Microsoft Foundry Models instance. The following examples demonstrate how to retrieve the REST API endpoint base URL and the access keys for the new resource.
 
 ### Get the endpoint URL
 
@@ -91,7 +94,7 @@ az cognitiveservices account deployment create \
 --sku-name "Standard"
 ```
 
-`--sku-name` accepts the following deployment types: `Standard`, `GlobalBatch`, `GlobalStandard`, and `ProvisionedManaged`.  Learn more about [deployment type options](../how-to/deployment-types.md).
+`--sku-name` accepts the following deployment types: `Standard`, `GlobalBatch`, `GlobalStandard`, and `ProvisionedManaged`.  Learn more about [deployment type options](../../foundry-models/concepts/deployment-types.md).
 
 
 > [!IMPORTANT]

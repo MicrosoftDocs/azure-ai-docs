@@ -8,8 +8,8 @@ ms.subservice: core
 ms.topic: reference
 ms.custom: cliv2
 
-author: jesscioffi
-ms.author: jcioffi
+author: s-polly
+ms.author: scottpolly
 ms.date: 10/21/2021
 ms.reviewer: scottpolly
 ---

@@ -6,9 +6,9 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: sample
-ms.reviewer: lgayhardt
-author: likebupt
-ms.author: keli19
+ms.reviewer: sooryar
+ms.author: lagayhar
+author: lgayhardt
 ms.date: 06/25/2025
 ms.custom: UpdateFrequency5, designer
 ---
@@ -21,7 +21,7 @@ You can use the built-in examples in Azure Machine Learning designer to quickly 
 
 ## Prerequisites
 
-* An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
+* An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * An Azure Machine Learning workspace.
 
 > [!IMPORTANT]

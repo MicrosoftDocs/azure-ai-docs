@@ -29,7 +29,7 @@ Read about [Offline Evaluations](concepts-offline-evaluation.md) to learn more.
 
 ## Run an offline evaluation
 
-1. In the [Azure portal](https://azure.microsoft.com/free/cognitive-services), locate your Personalizer resource.
+1. In the [Azure portal](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn), locate your Personalizer resource.
 1. In the Azure portal, go to the **Evaluations** section and select **Create Evaluation**.
     ![In the Azure portal, go to the **Evaluations** section and select **Create Evaluation**.](./media/offline-evaluation/create-new-offline-evaluation.png)
 1. Fill out the options in the _Create an evaluation_ window:

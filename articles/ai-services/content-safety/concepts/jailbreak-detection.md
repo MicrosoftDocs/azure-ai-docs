@@ -7,16 +7,15 @@ manager: nitinme
 ms.service: azure-ai-content-safety
 ms.custom: build-2023
 ms.topic: conceptual
-ms.date: 04/29/2025
+ms.date: 11/21/2025
 ms.author: pafarley
 ---
 
 # Prompt Shields
 
-Generative AI models can pose risks of exploitation by malicious actors. To mitigate these risks, we integrate safety mechanisms to restrict the behavior of large language models (LLMs) within a safe operational scope. However, despite these safeguards, LLMs can still be vulnerable to adversarial inputs that bypass the integrated safety protocols.
+Prompt Shields is a unified API in Azure AI Content Safety that detects and blocks adversarial user input attacks on large language models (LLMs). It helps prevent harmful, unsafe, or policy-violating AI outputs by analyzing prompts and documents before content is generated.
 
-Prompt Shields is a unified API that analyzes inputs to LLMs and detects adversarial user input attacks.
-
+Generative AI models can pose risks of exploitation by malicious actors. To mitigate these risks, we integrate safety mechanisms to restrict the behavior of large language models (LLMs) within a safe operational scope. However, despite these safeguards, LLMs can still be vulnerable to adversarial inputs that bypass the integrated safety protocols. In these cases, specialized filters like Prompt Shields are effective.
 
 ## User scenarios
 

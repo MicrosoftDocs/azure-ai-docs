@@ -5,7 +5,7 @@ description: Learn how to set up and configure authentication for various resour
 services: machine-learning
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: meyetman
+ms.reviewer: shshubhe
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.date: 01/21/2025
@@ -334,7 +334,7 @@ can require two-factor authentication, or allow sign in only from managed device
 | Application ID | Name | Note |
 | ----- | ----- | ----- |
 | d7304df8-741f-47d3-9bc2-df0e24e2071f | Azure Machine Learning Workbench Web App | Azure Machine Learning studio |
-| cb2ff863-7f30-4ced-ab89-a00194bcf6d9 | Azure AI Foundry App | Azure AI Foundry |
+| cb2ff863-7f30-4ced-ab89-a00194bcf6d9 | Microsoft Foundry App | Foundry |
 
 ### Check for service principal
 

@@ -1,18 +1,20 @@
 ---
-title: Azure OpenAI in Azure AI Foundry Models retired models
+title: Azure OpenAI in Microsoft Foundry Models retired models
 titleSuffix: Azure OpenAI
 description: Learn about the deprecated models in Azure OpenAI.
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
-ms.date: 06/18/2025
+ms.date: 11/6/2025
 ms.custom: references_regions, build-2023, build-2023-dataai
 manager: nitinme
 author: mrbullwinkle 
 ms.author: mbullwin 
 recommendations: false
+monikerRange: 'foundry-classic || foundry'
 ---
 
-# Azure OpenAI in Azure AI Foundry Models retired models
+# Azure OpenAI in Microsoft Foundry Models retired models
 
 Azure OpenAI offers a variety of models for different use cases. The following models are no longer available for deployment.
 
@@ -22,6 +24,7 @@ Azure OpenAI offers a variety of models for different use cases. The following m
 
 | Model | Deprecation date | Retirement date | Suggested replacement |
 | --------- | --------------------- | ------------------- | -------------------- |
+| `o1-preview`  | |  July 28, 2025                       | `o1`                                 |
 | `gpt-4.5-preview`         |       |  July 14, 2025 | `gpt-4.1` version: `2025-04-14`      |
 | `gpt-4o-realtime-preview` - 2024-10-01 | February 25, 2025 | March 26, 2025 | `gpt-4o-realtime-preview` (version 2024-12-17) or `gpt-4o-mini-realtime-preview` (version 2024-12-17) |
 | `gpt-35-turbo` - 0301 | | February 13, 2025   | `gpt-35-turbo` (0125) <br><br> `gpt-4o-mini`  |

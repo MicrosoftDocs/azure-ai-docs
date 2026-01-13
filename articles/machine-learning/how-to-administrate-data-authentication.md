@@ -8,7 +8,7 @@ ms.subservice: enterprise-readiness
 ms.topic: how-to
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: xunwan
+ms.reviewer: shshubhe
 ms.date: 09/06/2024
 ms.custom: engagement-fy23
 

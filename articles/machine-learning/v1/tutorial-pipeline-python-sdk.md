@@ -6,8 +6,9 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.topic: tutorial
-author: s-polly
+author: lgayhardt
 ms.author: scottpolly
+ms.reviewer: jturuk
 ms.date: 01/28/2022
 ms.custom: UpdateFrequency5, devx-track-python, sdkv1
 ---
@@ -40,7 +41,7 @@ In this tutorial, you complete the following tasks:
 > * Review the output of the steps and the trained neural network
 > * Register the model for further use
 
-If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/) today.
+If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) today.
 
 ## Prerequisites
 

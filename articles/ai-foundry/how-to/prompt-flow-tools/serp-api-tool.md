@@ -1,12 +1,13 @@
 ---
-title: Serp API tool for flows in Azure AI Foundry portal
-titleSuffix: Azure AI Foundry
-description: This article introduces you to the Serp API tool for flows in Azure AI Foundry portal.
-manager: scottpolly
+title: Serp API tool for flows in Microsoft Foundry portal
+titleSuffix: Microsoft Foundry
+description: This article introduces you to the Serp API tool for flows in Microsoft Foundry portal.
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-prompt-flow
 ms.custom:
   - ignite-2023
   - build-2024
+  - hub-only
 ms.topic: reference
 ms.date: 6/30/2025
 ms.reviewer: none
@@ -16,7 +17,9 @@ ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ms.update-cycle: 180-days
 ---
 
-# Serp API tool for flows in Azure AI Foundry portal
+# Serp API tool for flows in Microsoft Foundry portal
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -32,13 +35,13 @@ Sign up on the [Serp API home page](https://serpapi.com/).
 
 To create a Serp connection:
 
-1. Sign in to [Azure AI Foundry](https://ml.azure.com/).
+1. [!INCLUDE [classic-sign-in](../../includes/classic-sign-in.md)]
 1. Go to project settings by selecting  **Management Center** > **Overview**
 1. Under *Connected resources*, select **+ New connection**.
 1. Under *Other resource types*, select **Serp**.
 1. Add your API key for Serp and make a connection name. Then select **Add connection**.
 
-    :::image type="content" source="../../media/prompt-flow/serp-connection-keys.png" alt-text="Screenshot that shows adding Serp connection in Azure AI Foundry portal." lightbox = "../../media/prompt-flow/serp-connection-keys.png":::
+    :::image type="content" source="../../media/prompt-flow/serp-connection-keys.png" alt-text="Screenshot that shows adding Serp connection in Microsoft Foundry portal." lightbox = "../../media/prompt-flow/serp-connection-keys.png":::
 
 The connection is the model used to establish connections with the Serp API. Get your API key from the Serp API account dashboard.
 
@@ -48,10 +51,10 @@ The connection is the model used to establish connections with the Serp API. Get
 
 ## Build with the Serp API tool
 
-1. Create or open a flow in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). For more information, see [Create a flow](../flow-develop.md).
+1. Create or open a flow in [Foundry](https://ai.azure.com/?cid=learnDocs). For more information, see [Create a flow](../flow-develop.md).
 1. Select **+ More tools** > **Serp API** to add the Serp API tool to your flow.
 
-    :::image type="content" source="../../media/prompt-flow/serp-api-tool.png" alt-text="Screenshot that shows the Serp API tool added to a flow in Azure AI Foundry portal." lightbox="../../media/prompt-flow/serp-api-tool.png":::
+    :::image type="content" source="../../media/prompt-flow/serp-api-tool.png" alt-text="Screenshot that shows the Serp API tool added to a flow in Foundry portal." lightbox="../../media/prompt-flow/serp-api-tool.png":::
 
 1. Select the connection to one of your provisioned resources. For example, select "Serp Connection" if you created a connection with that name. For more information, see [Prerequisites](#prerequisites).
 1. Enter values for the Serp API tool input parameters described in the [Inputs table](#inputs).

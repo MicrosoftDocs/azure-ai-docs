@@ -4,7 +4,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 07/11/2025
+ms.date: 11/21/2025
 ms.custom:
   - ignite-2023
   - sfi-ropc-nochange
@@ -32,7 +32,7 @@ Once content is extracted, the [skillset](../../cognitive-search-working-with-sk
 
 ## Prerequisites
 
-+ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
++ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 + [Azure Storage](/azure/storage/common/storage-account-create)
 
@@ -63,21 +63,21 @@ Download a zip file of the sample data repository and extract the contents. [Lea
 
    1. Copy the connection string for either key one or key two. The connection string is similar to the following example:
 
-      ```http
-      DefaultEndpointsProtocol=https;AccountName=<your account name>;AccountKey=<your account key>;EndpointSuffix=core.windows.net
-      ```
+      `DefaultEndpointsProtocol=https;AccountName=<your account name>;AccountKey=<your account key>;EndpointSuffix=core.windows.net`
 
-### Azure AI services
+### Foundry Tools
 
-Built-in AI enrichment is backed by Azure AI services, including Language service and Azure AI Vision for natural language and image processing. For small workloads like this tutorial, you can use the free allocation of twenty transactions per indexer. For larger workloads, [attach an Azure AI Services multi-region resource to a skillset](../../cognitive-search-attach-cognitive-services.md) for Standard pricing.
+Built-in AI enrichment is backed by Foundry Tools, including Azure Language and Azure Vision for natural language and image processing. For small workloads like this tutorial, you can use the free allocation of twenty transactions per indexer. For larger workloads, [attach a Microsoft Foundry resource to a skillset](../../cognitive-search-attach-cognitive-services.md) for Standard pricing.
 
 ### Copy a search service URL and API key
 
 For this tutorial, connections to Azure AI Search require an endpoint and an API key. You can get these values from the Azure portal.
 
-1. Sign in to the [Azure portal](https://portal.azure.com), navigate to the search service **Overview** page, and copy the URL. An example endpoint might look like `https://mydemo.search.windows.net`.
+1. Sign in to the [Azure portal](https://portal.azure.com) and select your search service.
 
-1. Under **Settings** > **Keys**, copy an admin key. Admin keys are used to add, modify, and delete objects. There are two interchangeable admin keys. Copy either one.
+1. From the left pane, select **Overview** and copy the endpoint. It should be in this format: `https://my-service.search.windows.net`
+
+1. From the left pane, select **Settings** > **Keys** and copy an admin key for full rights on the service. There are two interchangeable admin keys, provided for business continuity in case you need to roll one over. You can use either key on requests to add, modify, or delete objects.
 
    :::image type="content" source="../../media/search-get-started-rest/get-url-key.png" alt-text="Screenshot of the URL and API keys in the Azure portal.":::
 
@@ -97,7 +97,7 @@ Call [Create Data Source](/rest/api/searchservice/data-sources/create) to set th
 
 ```http
 ### Create a data source
-POST {{baseUrl}}/datasources?api-version=2024-07-01  HTTP/1.1
+POST {{baseUrl}}/datasources?api-version=2025-09-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
 
@@ -124,7 +124,7 @@ Call [Create Skillset](/rest/api/searchservice/skillsets/create) to specify whic
 
 ```http
 ### Create a skillset
-POST {{baseUrl}}/skillsets?api-version=2024-07-01  HTTP/1.1
+POST {{baseUrl}}/skillsets?api-version=2025-09-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
 
@@ -313,7 +313,7 @@ The largest component of an index is the fields collection, where data type and 
 
 ```http
 ### Create an index
-POST {{baseUrl}}/indexes?api-version=2024-07-01  HTTP/1.1
+POST {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
 
@@ -406,7 +406,7 @@ Expect this step to take several minutes to complete. Even though the data set i
 
 ```http
 ### Create and run an indexer
-POST {{baseUrl}}/indexers?api-version=2024-07-01  HTTP/1.1
+POST {{baseUrl}}/indexers?api-version=2025-09-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
 
@@ -497,7 +497,7 @@ To find out whether the indexer is still running, call [Get Indexer Status](/res
 
 ```http
 ### Get Indexer Status (wait several minutes for the indexer to complete)
-GET {{baseUrl}}/indexers/cog-search-demo-idxr/status?api-version=2024-07-01  HTTP/1.1
+GET {{baseUrl}}/indexers/cog-search-demo-idxr/status?api-version=2025-09-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
 ```
@@ -514,7 +514,7 @@ Now that you've created an index that contains AI-generated content, call [Searc
 
 ```http
 ### Query the index\
-POST {{baseUrl}}/indexes/cog-search-demo-idx/docs/search?api-version=2024-07-01  HTTP/1.1
+POST {{baseUrl}}/indexes/cog-search-demo-idx/docs/search?api-version=2025-09-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
   
@@ -529,7 +529,7 @@ Filters can help you narrow results to items of interest:
 
 ```http
 ### Filter by organization
-POST {{baseUrl}}/indexes/cog-search-demo-idx/docs/search?api-version=2024-07-01  HTTP/1.1
+POST {{baseUrl}}/indexes/cog-search-demo-idx/docs/search?api-version=2025-09-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
   

@@ -1,52 +1,163 @@
-﻿---
-title: Supported models in Azure AI Foundry Agent Service
-titleSuffix: Azure AI Foundry
-description: Learn about the models you can use with Azure AI Foundry Agent Service.
+---
+title: Supported Models in Foundry Agent Service
+titleSuffix: Microsoft Foundry
+description: Learn about the models that you can use with Foundry Agent Service.
 manager: nitinme
 author: aahill
 ms.author: aahi
-ms.service: azure-ai-agent-service
-ms.topic: conceptual
-ms.date: 07/14/2025
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
+ms.topic: concept-article
+ms.date: 01/08/2026
 ms.custom: azure-ai-agents, references_regions
+monikerRange: 'foundry-classic || foundry'
 ---
 
-# Models supported by Azure AI Foundry Agent Service
+# Supported models in Foundry Agent Service
 
-Agents are powered by a diverse set of models with different capabilities and price points. Model availability varies by region and cloud. Certain tools and capabilities require the latest models. The following models are available in the REST API and SDKs. 
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-## Azure OpenAI models
+In this article, you learn about the diverse set of Azure OpenAI models that agents use in Microsoft Foundry Agent Service. These models have various capabilities and price points.
 
-Azure OpenAI provides customers with choices on the hosting structure that fits their business and usage patterns. The service offers two main types of deployment: 
+Microsoft Foundry offers two main types of deployments:
 
-- **Standard** is offered with a global deployment option, routing traffic globally to provide higher throughput.
-- **Provisioned** is also offered with a global deployment option, allowing customers to purchase and deploy provisioned throughput units across Azure global infrastructure.
+- *Standard* includes a global deployment option that routes traffic globally to provide higher throughput.
+- *Provisioned* also includes a global deployment option. You can purchase and deploy provisioned throughput units across the Azure global infrastructure.
 
-All deployments can perform the exact same inference operations, however the billing, scale, and performance are substantially different. To learn more about Azure OpenAI deployment types see [deployment types guide](../../openai/how-to/deployment-types.md).
+All deployments can perform the same inference operations. However, the billing, scale, and performance are substantially different. To learn more about Azure OpenAI deployment types, see [Deployment types for Microsoft Foundry Models](../../foundry-models/concepts/deployment-types.md).
 
-Azure AI Foundry Agent Service supports the following Azure OpenAI models in the listed regions.
+## Available models
 
+Foundry Agent Service supports the following Azure OpenAI models in the listed regions.
+
+Keep in mind that model availability varies by region and cloud. Certain tools and capabilities require the latest models. The following models are available in the REST API and SDKs.
+
+::: moniker range="foundry-classic"
 > [!NOTE]
-> * The following table is for serverless API deployment availability. For information on Provisioned Throughput Unit (PTU) availability, see [provisioned throughput](../../openai/concepts/provisioned-throughput.md) in the Azure OpenAI documentation. `GlobalStandard` customers also have access to [global standard models](../../openai/concepts/models.md#global-standard-model-availability). 
-> * [Hub based projects](../../what-is-azure-ai-foundry.md#project-types) are limited to the following models: gpt-4o, gpt-4o-mini, gpt-4, gpt-35-turbo
+>
+> - [Hub-based projects](../../what-is-foundry.md#types-of-projects) are limited to the following models: gpt-4o, gpt-4o-mini, gpt-4, gpt-35-turbo.
+> - [Spillover traffic management](../../openai/how-to/spillover-traffic-management.md) for [provisioned throughput](../../openai/concepts/provisioned-throughput.md) is compatible with agents.
+> - For information on Class A subnet support, see the [setup guide on GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15-private-network-standard-agent-setup).
+> - The [file search tool](../how-to/tools/file-search.md) is currently unavailable in the Italy North and Brazil South regions.
+> - The gpt-5 models can use only the [code interpreter](../how-to/tools/code-interpreter.md) and [file search](../how-to/tools/file-search.md) tools.
+> - [Registration](https://aka.ms/openai/gpt-5/2025-08-07) is required to use the gpt-5 models. Access is granted according to Microsoft's eligibility criteria.
+::: moniker-end
 
-| REGION           | o3-deep-research, 2025-06-26 | gpt-4o, 2024-05-13 | gpt-4o, 2024-08-06 | gpt-4o, 2024-11-20 | gpt-4o-mini, 2024-07-18 | gpt-4, 0613 | gpt-4, turbo-2024-04-09 | gpt-4-32k, 0613 | gpt-35-turbo, 1106 | gpt-35-turbo, 0125 |
+::: moniker range="foundry"
+> [!NOTE]
+>
+> - [Spillover traffic management](../../openai/how-to/spillover-traffic-management.md) for [provisioned throughput](../../openai/concepts/provisioned-throughput.md) is compatible with agents.
+> - For information on Class A subnet support, see the [setup guide on GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15-private-network-standard-agent-setup).
+> - The [file search tool](../how-to/tools/file-search.md) is currently unavailable in the Italy North and Brazil South regions.
+> - The gpt-5 models are available for the [code interpreter](../how-to/tools/code-interpreter.md) and [file search](../how-to/tools/file-search.md) tools.
+> - [Registration](https://aka.ms/openai/gpt-5/2025-08-07) is required to use the gpt-5 models. Access is granted according to Microsoft's eligibility criteria.
+::: moniker-end
+
+# [Global standard](#tab/global-standard)
+
+| Region         | gpt-5.2, 2025-12-11 | gpt-5.1, 2025-11-13 | gpt-5, 2025-08-07 | gpt-5-mini, 2025-08-07 | gpt-5-nano, 2025-08-07 | gpt-5-chat, 2025-08-07 | gpt-4.1, 2025-04-14 | gpt-4.1-nano, 2025-04-14 | gpt-4.1-mini, 2025-04-14 | gpt-4o, 2024-05-13 | gpt-4o, 2024-08-06 | gpt-4o, 2024-11-20 | gpt-4o-mini, 2024-07-18 | gpt-4, 0613 | gpt-4, turbo-2024-04-09 |
+|:-------------------|:-------:|:-------:|:-------------------------:|:------------------------------:|:------------------------------:|:------------------------------:|:---------------------------:|:--------------------------------:|:--------------------------------:|:--------------------------:|:--------------------------:|:--------------------------:|:-------------------------------:|:-------------------:|:-------------------------------:|
+| `australiaeast`      |         |   ✅    | ✅                        | ✅                              |                                |                                | ✅                          | ✅                               | ✅                               | ✅                         | ✅                          | ✅                         | ✅                               | ✅                  | ✅                               |
+| `brazilsouth`        |         |         |                           |                                |                                |                                | ✅                          | ✅                               | ✅                               | ✅                         | ✅                          | ✅                         | ✅                               | -                   | ✅                              |
+| `canadaeast`         |         |   ✅    |                           |                                |                                |                                | ✅                          | ✅                               | ✅                               | ✅                         | ✅                          | ✅                         | ✅                               | ✅                  | ✅                               |
+| `eastus`             |         |         | ✅                        | ✅                              |                                |                                | ✅                          |                                | ✅                               | ✅                         | ✅                          | ✅                         | ✅                               | ✅                  | ✅                               |
+| `eastus2`            |  ✅    |    ✅   | ✅                        | ✅                              | ✅                             |        ✅                        | ✅                          | ✅                               | ✅                               | ✅                          | ✅                         | ✅                          | ✅                              | ✅                   | ✅                              |
+| `francecentral`      |         |         |                           |                                |                                |                                | ✅                          | ✅                               | ✅                               | ✅                         | ✅                          | ✅                         | ✅                               | ✅                  | ✅                               |
+| `germanywestcentral` |         |         |                           |                                |                                |                                | ✅                          | ✅                               | ✅                               | ✅                         | ✅                          | ✅                         | ✅                               | ✅                  | ✅                               |
+| `italynorth`         |         |         |                           |                                |                                |                                | ✅                          | ✅                               | ✅                               | -                          | -                          | ✅                         | ✅                               | -                   | -                               |
+| `japaneast`          |         |  ✅     | ✅                        | ✅                              |                                |                                | ✅                          | ✅                               | ✅                               | ✅                         | ✅                          | ✅                         | ✅                               | ✅                  | ✅                               |
+| `norwayeast`         |         |         |                           |                                |                                |                                | ✅                          | ✅                               | ✅                               | ✅                         | ✅                          | ✅                         | ✅                               | ✅                  | ✅                               |
+| `southafricanorth`   |         |         |                           |                                |                                |                                | ✅                          | ✅                               | ✅                               | ✅                         | ✅                          | ✅                         | ✅                               | -                   | ✅                              |
+| `southcentralus`     |  ✅    |         |                           |                                |                                |                                | ✅                          | ✅                               | ✅                               | ✅                         | ✅                          | ✅                         | ✅                               | ✅                  | ✅                               |
+| `southindia`         |         |         | ✅                        | ✅                              |                                |                                | ✅                          | ✅                               | ✅                               | ✅                         | ✅                          | ✅                         | ✅                               | ✅                  | ✅                               |
+| `swedencentral`      |  ✅    |  ✅     | ✅                        | ✅                              | ✅                             |      ✅                          | ✅                          | ✅                               | ✅                               | ✅                          | ✅                         | ✅                          | ✅                              | ✅                   | ✅                              |
+| `switzerlandnorth`   |         |  ✅       | ✅                        | ✅                              |                                |                                | ✅                          | ✅                               | ✅                               | ✅                         | ✅                          | ✅                         | ✅                               | ✅                  | ✅                               |
+| `uksouth`            |         |  ✅       | ✅                        | ✅                              |                                |                                | ✅                          | ✅                               | ✅                               | ✅                         | ✅                          | ✅                         | ✅                               | ✅                  | ✅                               |
+| `westeurope`         |         |         |                           |                                |                                |                                | ✅                          | ✅                               | ✅                               | ✅                         | ✅                          | ✅                         | ✅                               | -                   | ✅                              |
+| `westus`             |         |         |                           |                                |                                |                                | ✅                          | ✅                               | ✅                               | ✅                         | ✅                          | ✅                         | ✅                               | ✅                  | ✅                               |
+| `westus3`            |         |         |                           |                                |                                |                                | ✅                          | ✅                               | ✅                               | ✅                         | ✅                          | ✅                         | ✅                               | ✅                  | ✅                               |
+
+# [Global provisioned managed](#tab/ptu-global)
+
+| Region     | gpt-5.2, 2025-12-11 | gpt-5.1, 2025-12-13 | gpt-5, 2025-08-07 | gpt-5-mini, 2025-08-07 | gpt-4.1, 2025-04-14 | gpt-4.1-nano, 2025-04-14 | gpt-4.1-mini, 2025-04-14 | gpt-4o, 2024-05-13 | gpt-4o, 2024-08-06 | gpt-4o, 2024-11-20 | gpt-4o-mini, 2024-07-18 |
+|:-------------------|:-------------------:|:-------------------:|:--------------------------:|:------------------------------:|:---------------------------:|:--------------------------------:|:--------------------------------:|:--------------------------:|:--------------------------:|:--------------------------:|:-------------------------------:|
+| `australiaeast`      |     ✅             | ✅                  | ✅                        | ✅                             | ✅                          | ✅                               | ✅                               | ✅                       | ✅                       | ✅                       | ✅                            |
+| `brazilsouth`        |                     | ✅                  | ✅                        |                                | ✅                          | ✅                               | ✅                               | ✅                       | ✅                       | ✅                       | ✅                            |
+| `canadaeast`         |                     | ✅                  | ✅                        |                                | ✅                          | ✅                               | ✅                               | ✅                       | ✅                       | ✅                       | ✅                            |
+| `eastus`             |                     | ✅                  | ✅                        |  ✅                            | ✅                          | ✅                               | ✅                               | ✅                       | ✅                       | ✅                       | ✅                            |
+| `eastus2`            |     ✅             | ✅                  | ✅                        | ✅                             | ✅                          | ✅                               | ✅                               | ✅                       | ✅                       | ✅                       | ✅                            |
+| `francecentral`      |                     | ✅                  | ✅                        |                                | ✅                          | ✅                               | ✅                               | ✅                       | ✅                       | ✅                       | ✅                            |
+| `germanywestcentral` |                     | ✅                  | ✅                        |                                | ✅                          | ✅                               | ✅                               | ✅                       | ✅                       | ✅                       | ✅                            |
+| `italynorth`         |                     | ✅                  | ✅                        |                                | ✅                          | ✅                               | ✅                               | ✅                       | ✅                       | ✅                       | ✅                            |
+| `japaneast`          |                     | ✅                  | ✅                        |                                | ✅                          | ✅                               | ✅                               | ✅                       | ✅                       | ✅                       | ✅                            |
+| `norwayeast`         |                     | ✅                  | ✅                        |                                | ✅                          | ✅                               | ✅                               | ✅                       | ✅                       | ✅                       | ✅                            |
+| `polandcentral`      |                     | ✅                  | ✅                        |                                | ✅                          | ✅                               | ✅                               | ✅                       | ✅                       | ✅                       | ✅                            |
+| `southafricanorth`   |                     | ✅                  | ✅                        |                                | ✅                          | ✅                               | ✅                               | ✅                       | ✅                       | ✅                       | ✅                            |
+| `southcentralus`     |                     | ✅                  | ✅                        |                                | ✅                          | ✅                               | ✅                               | ✅                       | ✅                       | ✅                       | ✅                            |
+| `southeastasia`      |                     | ✅                  | ✅                        |                                | ✅                          | ✅                               | ✅                               | ✅                       | ✅                       | ✅                       | ✅                            |
+| `southindia`         |                     | ✅                  | ✅                        |                                | ✅                          | ✅                               | ✅                               | ✅                       | ✅                       | ✅                       | ✅                            |
+| `swedencentral`      |                     | ✅                  | ✅                        |  ✅                            | ✅                          | ✅                               | ✅                               | ✅                       | ✅                       | ✅                       | ✅                            |
+| `switzerlandnorth`   |                     | ✅                  | ✅                        |                                | ✅                          | ✅                               | ✅                               | ✅                       | ✅                       | ✅                       | ✅                            |
+| `uksouth`            |    ✅              | ✅                  | ✅                        |                                | ✅                          | ✅                               | ✅                               | ✅                       | ✅                       | ✅                       | ✅                            |
+| `westeurope`         |                     | ✅                  | ✅                        |                                | ✅                          | ✅                               | ✅                               | ✅                       | ✅                       | ✅                       | ✅                            |
+| `westus`             |                     | ✅                  | ✅                        |                                | ✅                          | ✅                               | ✅                               | ✅                       | ✅                       | ✅                       | ✅                            |
+| `westus3`            |                     | ✅                  | ✅                        |                                | ✅                          | ✅                               | ✅                               | ✅                       | ✅                       | ✅                       | ✅                            |
+
+# [Standard](#tab/standard)
+
+| Region           | o3-deep-research, 2025-06-26 | gpt-4o, 2024-05-13 | gpt-4o, 2024-08-06 | gpt-4o, 2024-11-20 | gpt-4o-mini, 2024-07-18 | gpt-4, 0613 | gpt-4, turbo-2024-04-09 | gpt-4-32k, 0613 | gpt-35-turbo, 1106 | gpt-35-turbo, 0125 |
 |------------------|------------------------------|--------------------|--------------------|--------------------|-------------------------|-------------|-------------------------|-----------------|--------------------|--------------------|
-| australiaeast    |                              |                    |                    | X                  |                         | X           |                         | X               | X                  | X                  |  
-| canadaeast       |                              |                    |                    | X                  |                         | X           |                         | X               | X                  | X                  |  
-| eastus           |                              | X                  | X                  | X                  | X                       | X           | X                       |                 |                    | X                  |
-| eastus2          |                              | X                  | X                  | X                  | X                       | X           | X                       |                 |                    | X                  |
-| francecentral    |                              |                    |                    | X                  |                         | X           |                         | X               | X                  | X                  |
-| japaneast        |                              |                    |                    | X                  |                         |             |                         |                 |                    | X                  |
-| norwayeast       | X                            |                    |                    | X                  |                         |             |                         |                 |                    |                    |  
-| southindia       |                              |                    |                    | X                  |                         |             |                         |                 | X                  |                    |  
-| swedencentral    |                              | X                  | X                  | X                  | X                       | X           | X                       | X               | X                  | X                  |  
-| switzerlandnorth |                              |                    |                    | X                  |                         | X           |                         | X               |                    | X                  |  
-| uksouth          |                              |                    |                    | X                  |                         |             |                         |                 | X                  | X                  |  
-| westus           | X                            | X                  | X                  | X                  | X                       |             | X                       |                 | X                  |                    |
-| westus3          |                              | X                  | X                  | X                  | X                       |             | X                       |                 |                    |                    |
+| `australiaeast`    | -                            | -                  | -                  | ✅                  | -                       | ✅           | -                       | ✅               | ✅                  | ✅                  |  
+| `canadaeast`       | -                            | -                  | -                  | ✅                  | -                       | ✅           | -                       | ✅               | ✅                  | ✅                  |  
+| `eastus`           | -                            | ✅                  | ✅                  | ✅                  | ✅                       | ✅           | ✅                       | -               | -                  | ✅                  |
+| `eastus2`          | -                            | ✅                  | ✅                  | ✅                  | ✅                       | ✅           | ✅                       | -               | -                  | ✅                  |
+| `francecentral`    | -                            | -                  | -                  | ✅                  | -                       | ✅           | -                       | ✅               | ✅                  | ✅                  |
+| `japaneast`        | -                            | -                  | -                  | ✅                  | -                       | -           | -                       | -               | -                  | ✅                  |
+| `norwayeast`       | ✅                            | -                  | -                  | ✅                  | -                       | -           | -                       | -               | -                  | -                  |  
+| `southcentralus`   | ✅                           | ✅                | ✅                 | ✅                  | ✅                     | ✅          | ✅                      | -             | -                  | ✅                |
+| `southindia`       | -                            | -                  | -                  | ✅                  | -                       | -           | -                       | -               | ✅                  | ✅                  |  
+| `swedencentral`    | -                            | ✅                  | ✅                  | ✅                  | ✅                       | ✅           | ✅                       | ✅               | ✅                  | ✅                  |  
+| `switzerlandnorth` | -                            | -                  | -                  | ✅                  | -                       | ✅           | -                       | ✅               | -                  | ✅                  |  
+| `uksouth`          | -                            | -                  | -                  | ✅                  | -                       | -           | -                       | -               | ✅                  | ✅                  |  
+| `westeurope`       | -                            | -                  | -                  | -                    | -                       | -            | -                      | -              | -                     | ✅                  |  
+| `westus`           | ✅                            | ✅                  | ✅                  | ✅                  | ✅                       | -           | ✅                       | -               | ✅                  | ✅                  |
+| `westus3`          | -                            | ✅                  | ✅                  | ✅                  | ✅                       | -           | ✅                       | -               | -                  | ✅                  |
 
+# [Provisioned managed](#tab/ptu)
 
-## Next steps
+| Region           | gpt-5, 2025-08-07 | gpt-5-mini, 2025-08-07 | gpt-4.1, 2025-04-14 | gpt-4.1-nano, 2025-04-14 | gpt-4.1-mini, 2025-04-14 | gpt-4o, 2024-05-13 | gpt-4o, 2024-08-06 | gpt-4o, 2024-11-20 | gpt-4o-mini, 2024-07-18 | gpt-4, 0613 | gpt-4, turbo-2024-04-09 | gpt-4-32k, 0613 | gpt-35-turbo, 1106 | gpt-35-turbo, 0125 |
+|------------------|-------------------|------------------------|---------------------|--------------------------|--------------------------|--------------------|--------------------|--------------------|--------------------------|-----------|-----------------------|-----------------|--------------------|--------------------|
+| `australiaeast`    | -                | -                      | ✅                   | -                        | ✅                        | ✅                  | ✅                  | ✅                  | ✅                       | ✅           | ✅                       | ✅               | ✅                  | ✅                  |  
+| `brazilsouth`      | -                | -                      | -                   | -                        | -                        | ✅                  | ✅                  | ✅                  | ✅                       | ✅           | ✅                       | ✅               | ✅                  | -                  |
+| `canadaeast`       | -                | -                      | -                   | -                        | -                        | ✅                  | ✅                  | ✅                  | ✅                       | ✅           | ✅                       | ✅               | ✅                  | -                  |  
+| `eastus`           | ✅                | -                    | ✅                   | ✅                        |✅                        | ✅                  | ✅                  | ✅                  | ✅                       | ✅           | ✅                       | ✅               | ✅                  | ✅                  |
+| `eastus2`          | ✅                | ✅                    | ✅                   | ✅                        | ✅                        | ✅                  | ✅                  | ✅                  | ✅                       | ✅           | ✅                       | ✅               | ✅                  | ✅                  |
+| `francecentral`    | -                | -                      | -                   | -                        | -                        | ✅                  | ✅                  | -                  | ✅                       | ✅           | -                       | ✅               | -                  | ✅                  |
+| `germanywestcentral`| -               | -                      | -                   | -                        | -                        | ✅                  | ✅                  | ✅                  |  -                      |✅             | -                      | ✅                | ✅                | -              |
+| `japaneast`        | -                | -                      | ✅                 | -                        | ✅                        | ✅                  | ✅                  | ✅                  | ✅                       | -           | ✅                       | -               | -                  | ✅                  |
+| `southafricanorth` | -                | -                      | -                   | -                        | -                        | ✅                  | -                   | -                    | -                        | ✅          | ✅                      | ✅               | ✅                 | -                     |
+| `southcentralus`   | ✅                | -                      | ✅                   | ✅                     | ✅                        | -                   | ✅                  | ✅                  | ✅                       | ✅          | ✅                      | ✅                 | ✅                | ✅                  |
+| `southeastasia`    | -                | -                      | -                   | -                        | -                        | -                   | ✅                  | ✅                  | ✅                       | -           | -                       | -               | -                  | -                  |
+| `southindia`       | -                | -                      | -                   | -                        | ✅                        | ✅                  | ✅                  | ✅                  | ✅                       | ✅           | -                       | ✅               | ✅                  | ✅                  |  
+| `swedencentral`    | -                | -                    | ✅                  | ✅                      | ✅                        | ✅                  | ✅                  | ✅                  | ✅                       | ✅           | ✅                       | ✅               | ✅                  | ✅                  |  
+| `switzerlandnorth` | -                | -                      | -                   | -                        | -                        | ✅                  | ✅                  | ✅                  | ✅                       | ✅           | ✅                       | ✅               | ✅                  | ✅                  |  
+| `uksouth`          | -                | -                      | ✅                  | -                        | ✅                        | ✅                  | ✅                  | ✅                  | ✅                       | ✅           | ✅                       | ✅               | ✅                  | ✅                  |  
+| `westeurope`       | -                | -                      | -                   | -                        | -                        | -                   | -                    | ✅                  | -                        | -             | -                         | -                | -                   | -                    |
+| `westus`           | ✅                | -                      | ✅                   | ✅                        | ✅                        | ✅                  | ✅                  | ✅                  | ✅                       | ✅           | ✅                       | ✅               | ✅                  | ✅                  |
+| `westus3`          | ✅                | -                    | ✅                   | ✅                        | ✅                        | ✅                  | ✅                  | ✅                  | ✅                       | ✅           | ✅                       | ✅               | ✅                  | ✅                  |
 
-[Create a new Agent project](../quickstart.md)
+---
+
+## Other model collections
+
+The following lists of Foundry Models are also available for your agents to use.
+
+[!INCLUDE [agent-service-models-support-list](../includes/agent-service-models-support-list.md)]
+
+## View all agent-supported models in the Foundry portal
+
+[!INCLUDE [agent-service-view-models-in portal](../includes/agent-service-view-models-in-portal.md)]
+
+## Related content
+
+- [Create a new agent](../quickstart.md)

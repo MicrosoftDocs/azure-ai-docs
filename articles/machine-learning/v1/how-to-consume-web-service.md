@@ -7,7 +7,7 @@ ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: aashishb
+ms.reviewer: jturuk
 ms.date: 03/11/2025
 ms.topic: how-to
 ms.devlang: csharp

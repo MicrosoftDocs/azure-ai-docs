@@ -6,7 +6,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 06/11/2025
+ms.date: 09/28/2025
 ms.custom:
   - references_regions
   - ignite-2024
@@ -14,13 +14,9 @@ ms.custom:
 
 # Chunk and vectorize by document layout or structure
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+Text data chunking strategies play a key role in optimizing RAG responses and performance. By using the **Document Layout** skill, you can chunk content based on document structure, capturing headings and chunking the content body based on semantic coherence, such as paragraphs and sentences. Chunks are processed independently. Because LLMs work with multiple chunks, when those chunks are of higher quality and semantically coherent, the overall relevance of the query is improved.
 
-Text data chunking strategies play a key role in optimizing RAG responses and performance. By using the new **Document Layout** skill that's currently in preview, you can chunk content based on document structure, capturing headings and chunking the content body based on semantic coherence, such as paragraphs and sentences. Chunks are processed independently. Because LLMs work with multiple chunks, when those chunks are of higher quality and semantically coherent, the overall relevance of the query is improved.
-
-<!-- Text data chunking strategies play a key role in optimizing RAG responses and performance. By using the new **Document Layout** skill that's currently in preview, you can chunk content based on document structure, capturing headings and chunking the content body based on semantic coherence, such as paragraphs and sentences. Chunks are processed independently and recombined as semantic representations. The inherent meaning of the text is used as a guide for the chunking process.  -->
-
-The Document Layout skill calls the [layout model](/azure/ai-services/document-intelligence/prebuilt/layout) in Document Intelligence. The model articulates content structure in JSON using Markdown syntax (headings and content), with fields for headings and content stored in a search index on Azure AI Search. The searchable content produced from the Document Layout skill is plain text but you can apply integrated vectorization to generate embeddings for any field in your source documents, including images.
+The Document Layout skill calls the [layout model](/azure/ai-services/document-intelligence/prebuilt/layout) from Azure Document Intelligence in Foundry Tools. The model articulates content structure in JSON using Markdown syntax (headings and content), with fields for headings and content stored in a search index on Azure AI Search. The searchable content produced from the Document Layout skill is plain text but you can apply integrated vectorization to generate embeddings for any field in your source documents, including images.
 
 In this article, learn how to:
 
@@ -30,7 +26,7 @@ In this article, learn how to:
 > + Generate embeddings for each chunk
 > + Use index projections to map embeddings to fields in a search index
 
-For illustration purposes, this article uses the [sample health plan PDFs](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/health-plan) uploaded to Azure Blob Storage and then indexed using the **Import and vectorize data wizard**.
+For illustration purposes, this article uses the [sample health plan PDFs](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/health-plan) uploaded to Azure Blob Storage and then indexed using the **Import data (new)** wizard.
 
 ## Prerequisites
 
@@ -42,7 +38,7 @@ For illustration purposes, this article uses the [sample health plan PDFs](https
 
 + A skillset with these two skills:
 
-  + [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) that splits documents based on paragraph boundaries. This skill has region requirements. An Azure AI multi-service resource must be in the same region as Azure AI Search with AI enrichment.
+  + [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) that splits documents based on paragraph boundaries. If you use [key-based billing](cognitive-search-attach-cognitive-services.md), this skill requires Microsoft Foundry to be in the same region as Azure AI Search for AI enrichment. Region requirements are relaxed for keyless billing (preview).
 
   + [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md) that generates vector embeddings. This skill *doesn't* have region requirements.
 
@@ -52,14 +48,14 @@ The raw inputs must be in a [supported data source](search-indexer-overview.md#s
 
 + Supported file formats include: PDF, JPEG, JPG, PNG, BMP, TIFF, DOCX, XLSX, PPTX, HTML.
 
-+ Supported indexers can be any indexer that can handle the supported file formats. These indexers include [Blob indexers](search-howto-indexing-azure-blob-storage.md), [OneLake indexers](search-how-to-index-onelake-files.md), [File indexers](search-file-storage-integration.md).
++ Supported indexers can be any indexer that can handle the supported file formats. These indexers include [Blob indexers](search-how-to-index-azure-blob-storage.md), [Microsoft OneLake indexers](search-how-to-index-onelake-files.md), [File indexers](search-file-storage-integration.md).
 
-+ Supported regions for the portal experience of this feature include: East US, West Europe, North Central US. If you're setting up your skillset programmatically, you can use any Document Intelligence region that also provides the AI enrichment feature of Azure AI Search. For more information, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).
++ Supported regions for the portal experience of this feature include: East US, West Europe, North Central US. If you're setting up your skillset programmatically, you can use any Azure Document Intelligence region that also provides the AI enrichment feature of Azure AI Search. For more information, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).
 
-You can use the Azure portal, REST APIs, or an Azure SDK package to [create a data source](search-howto-indexing-azure-blob-storage.md).
+You can use the Azure portal, REST APIs, or an Azure SDK package to [create a data source](search-how-to-index-azure-blob-storage.md).
 
 > [!TIP]
-> Upload the [health plan PDF](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/health-plan) sample files to your supported data source to try out the Document Layout skill and structure-aware chunking on your own search service. The [Import and vectorize data wizard](search-get-started-portal-import-vectors.md) is an easy code-free approach for trying out this skill. Be sure to select the **default parsing mode** to use structure-aware chunking. Otherwise, the [Markdown parsing mode](search-how-to-index-markdown-blobs.md) is used.
+> Upload the [health plan PDF](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/health-plan) sample files to your supported data source to try out the Document Layout skill and structure-aware chunking on your own search service. The [**Import data (new)** wizard](search-get-started-portal-import-vectors.md) is an easy code-free approach for trying out this skill. Be sure to select the **default parsing mode** to use structure-aware chunking. Otherwise, the [Markdown parsing mode](search-how-to-index-azure-blob-markdown.md) is used.
 
 ## Create an index for one-to-many indexing
 
@@ -67,7 +63,7 @@ Here's an example payload of a single search document designed around chunks. Wh
 
 The Document Layout skill outputs headings and content. In this example, `header_1` through `header_3` store document headings, as detected by the skill. Other content, such as paragraphs, is stored in `chunk`. The `text_vector` field is a vector representation of the chunk field content.
 
-You can use the **Import and vectorize data wizard** in the Azure portal, REST APIs, or an Azure SDK to [create an index](search-how-to-load-search-index.md). The following index is very similar to what the wizard creates by default. You might have more fields if you add image vectorization.
+You can use the **Import data (new)** wizard in the Azure portal, REST APIs, or an Azure SDK to [create an index](search-how-to-load-search-index.md). The following index is very similar to what the wizard creates by default. You might have more fields if you add image vectorization.
 
 If you aren't using the wizard, the index must exist on the search service before you create the skillset or run the indexer.
 
@@ -187,18 +183,16 @@ If you aren't using the wizard, the index must exist on the search service befor
 
 ## Define a skillset for structure-aware chunking and vectorization
 
-Because the Document Layout skill is in preview, you must use the [Create Skillset 2024-11-01-preview](/rest/api/searchservice/skillsets/create?view=rest-searchservice-2024-11-01-preview&preserve-view=true) REST API for this step. You can also use the Azure portal.
-
 This section shows an example of a skillset definition that projects individual markdown sections, chunks, and their vector equivalents as fields in the search index. It uses the [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) to detect headings and populate a content field based on semantically coherent paragraphs and sentences in the source document. It uses the [Text Split skill](cognitive-search-skill-textsplit.md) to split the Markdown content into chunks. It uses the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md) to vectorize chunks and any other field for which you want embeddings.
 
 Besides skills, the skillset includes `indexProjections` and `cognitiveServices`:
 
 + `indexProjections` are used for indexes containing chunked documents. The projections specify how parent-child content is mapped to fields in a search index for one-to-many indexing. For more information, see [Define an index projection](search-how-to-define-index-projections.md).
 
-+ `cognitiveServices` [attaches an Azure AI services multi-service account](cognitive-search-attach-cognitive-services.md) for billing purposes (the Document Layout skill is available through [Standard pricing](https://azure.microsoft.com/pricing/details/ai-document-intelligence/)).
++ `cognitiveServices` [attaches a Foundry resource](cognitive-search-attach-cognitive-services.md) for billing purposes (the Document Layout skill is available through [Standard pricing](https://azure.microsoft.com/pricing/details/ai-document-intelligence/)).
 
 ```https
-POST {endpoint}/skillsets?api-version=2024-11-01-preview
+POST {endpoint}/skillsets?api-version=2025-09-01
 
 {
   "name": "my_skillset",
@@ -330,7 +324,7 @@ When using the [Document Layout skill](cognitive-search-skill-document-intellige
 Here's an example of an indexer creation request.
 
 ```https
-POST {endpoint}/indexers?api-version=2024-11-01-preview
+POST {endpoint}/indexers?api-version=2025-09-01
 
 {
   "name": "my_indexer",
@@ -400,9 +394,9 @@ If you used the health plan PDFs to test this skill, Search Explorer results for
 ## See also
 
 + [Create or update a skill set](cognitive-search-defining-skillset.md).
-+ [Create a data source](search-howto-indexing-azure-blob-storage.md)
++ [Create a data source](search-how-to-index-azure-blob-storage.md)
 + [Define an index projection](search-how-to-define-index-projections.md)
-+ [Attach an Azure AI services multi-service account](cognitive-search-attach-cognitive-services.md)
++ [Attach a Foundry resource](cognitive-search-attach-cognitive-services.md)
 + [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md)
 + [Text Split skill](cognitive-search-skill-textsplit.md)
 + [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md)

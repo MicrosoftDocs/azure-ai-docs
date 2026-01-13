@@ -4,14 +4,14 @@ title: Azure AI Content Safety documentation # < 60 chars
 summary: The cloud-based Azure AI Content Safety API provides developers with access to advanced algorithms for processing images and text and flagging content that is potentially offensive, risky, or otherwise undesirable. # < 160 chars
 
 metadata:
-  title: Azure AI Content Safety documentation - Quickstarts, Tutorials, API Reference - Azure AI services | Microsoft Docs # Required; page title displayed in search results. Include the brand. < 60 chars.
+  title: Azure AI Content Safety documentation - Quickstarts, Tutorials, API Reference - Foundry Tools | Microsoft Docs # Required; page title displayed in search results. Include the brand. < 60 chars.
   description: The cloud-based Azure AI Content Safety API provides developers with access to advanced algorithms for processing images and text and flagging content that is potentially offensive, risky, or otherwise undesirable. # Required; article description that is displayed in search results. < 160 chars.
   ms.service: azure-ai-content-safety
   ms.custom: build-2023
   ms.topic: landing-page # Required
   author: PatrickFarley #Required; your GitHub user alias, with correct capitalization.
   ms.author: pafarley #Required; microsoft alias of author; optional team alias.
-  ms.date: 03/26/2025 #Required; mm/dd/yyyy format.
+  ms.date: 09/16/2025 #Required; mm/dd/yyyy format.
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
 
 
@@ -52,6 +52,8 @@ landingContent:
             url: studio-quickstart.md?pivots=content-safety-studio
           - text: Using the REST API or client SDKs
             url: quickstart-image.md?pivots=programming-language-rest
+          - text: multimodal (/azure/machine-learning/concept-retrieval-augmented-generation
+            url: /azure/ai-services/content-safety/quickstart-multimodal
       - linkListType: how-to-guide
         links:
           - text: Use custom categories (standard) (preview)
@@ -98,6 +100,19 @@ landingContent:
           - text: Using the REST API
             url: quickstart-jailbreak.md
 
+
+  - title: Protected material detection
+    linkLists:
+      - linkListType: concept
+        links:
+          - text: Protected material detection
+            url: /azure/ai-services/content-safety/concepts/protected-material
+      - linkListType: quickstart
+        links:
+          - text: Protected material for text
+            url: /azure/ai-services/content-safety/quickstart-protected-material
+          - text: Protected material for code
+            url: /azure/ai-services/content-safety/quickstart-protected-material-code
 
   - title: Reference
     linkLists:

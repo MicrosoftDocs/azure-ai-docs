@@ -1,12 +1,12 @@
 ---
 title: "Use Microsoft Azure v3 connector to build a Document translation flow"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Use Microsoft Azure Translator v3 connector and Power Automate to create a Document translation flow.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: tutorial
-ms.date: 04/14/2025
+ms.date: 12/05/2025
 ms.author: lajanuar
 ---
 
@@ -16,15 +16,15 @@ ms.author: lajanuar
 <!-- markdownlint-disable MD036 -->
 <!-- markdownlint-disable MD001 -->
 
-# Create an Azure AI Translator Document translation flow (preview)
+# Create an Azure Translator Document translation flow (preview)
 
 > [!IMPORTANT]
 >
 > The Microsoft Azure Translator connector is currently available in public preview. Features, approaches, and processes may change, before General Availability (GA) release, based on user feedback.
 
-This tutorial guides you through configuring a Microsoft Azure Translator v3 connector cloud flow that supports document translation. The Translator v3 connector creates a connection between your Translator Service instance and Microsoft Power Automate enabling you to use one or more prebuilt operations as steps in your apps and workflows.
+This tutorial guides you through configuring a Microsoft Azure Translator v3 connector cloud flow that supports document translation. The Translator v3 connector creates a connection between your Translator instance and Microsoft Power Automate enabling you to use one or more prebuilt operations as steps in your apps and workflows.
 
-Document translation is a cloud-based REST API feature of the Azure AI Translator service. The Document translation API enables multiple and complex document translations while preserving original document structure and data format.
+Document translation is a cloud-based REST API feature of the Azure Translator. The Document translation API enables multiple and complex document translations while preserving original document structure and data format.
 
 In this tutorial:
 
@@ -37,13 +37,13 @@ In this tutorial:
 
 ## Prerequisites
 
-Here's what you need to get started: [**Translator resource**](#translator-resource), [**Azure storage account**](#azure-storage) with at least two containers, and a [**system-assigned managed identity**](#managed-identity-with-rbac) with role-based access.
+Here's what you need to get started: [**Translator resource**](#azure-translator-in-foundry-tools-resource), [**Azure storage account**](#azure-storage) with at least two containers, and a [**system-assigned managed identity**](#managed-identity-with-rbac) with role-based access.
 
-### Translator resource
+### Azure Translator in Foundry Tools resource
 
-* If you don't have an active [**Azure account**](https://azure.microsoft.com/free/cognitive-services/), you can [**create one for free**](https://azure.microsoft.com/free/).
+* If you don't have an active [**Azure account**](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn), you can [**create one for free**](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-* Create a [**single-service Translator resource**](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) (**not** a multi-service Azure AI Foundry resource). As you complete the Translator project and instance details fields, pay special attention to the following entries:
+* Create a [**single-service Translator resource**](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) (**not** a multi-service Microsoft Foundry resource). As you complete the Translator project and instance details fields, pay special attention to the following entries:
 
   * **Resource Region**. Choose  a **geographic** region like **West US** (**not** the *Global* region).
 
@@ -113,7 +113,7 @@ Next, assign a **`Storage Blob Data Contributor`** role to the managed identity 
 
     :::image type="content" source="../../media/managed-identities/azure-role-assignments-page-portal.png" alt-text="Screenshot: Azure role assignments page in the Azure portal.":::
 
-1. Finally, assign a **Storage Blob Data Contributor** role to your Translator service resource. The **Storage Blob Data Contributor** role gives Translator (represented by the system-assigned managed identity) read, write, and delete access to the blob container and data. In the **`Add role assignment`** pop-up window, complete the fields as follows and select **Save**:
+1. Finally, assign a **Storage Blob Data Contributor** role to your Translator resource. The **Storage Blob Data Contributor** role gives Translator (represented by the system-assigned managed identity) read, write, and delete access to the blob container and data. In the **`Add role assignment`** pop-up window, complete the fields as follows and select **Save**:
 
     | Field | Value|
     |------|--------|

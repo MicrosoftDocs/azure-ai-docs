@@ -4,9 +4,10 @@ metadata:
   description: Get answers to the most popular questions about Azure OpenAI
   #services: cognitive-services
   manager: nitinme
-  ms.service: azure-ai-openai
+  ms.service: azure-ai-foundry
+  ms.subservice: azure-ai-foundry-openai
   ms.topic: faq
-  ms.date: 07/02/2025
+  ms.date: 09/30/2025
   ms.author: mbullwin
   author: mrbullwinkle
 title: Azure OpenAI frequently asked questions
@@ -29,14 +30,6 @@ sections:
         answer: |
           Azure OpenAI is supported by the latest release of the [OpenAI Python library (version>=1.0)](https://pypi.org/project/openai/). However, it's important to note migration of your codebase using `openai migrate` is not supported and will not work with code that targets Azure OpenAI.  
       - question: |
-          I can't find GPT-4 Turbo Preview, where is it?
-        answer:
-          GPT-4 Turbo Preview is the `gpt-4` (1106-preview) model. To deploy this model, under **Deployments** select model **gpt-4**. For **Model version** select **1106-preview**. To check which regions this model is available, refer to the [models page](./concepts/models.md).
-      - question: |
-          Does Azure OpenAI support GPT-4?
-        answer: |
-          Azure OpenAI supports the latest GPT-4 models.  It supports both GPT-4 and GPT-4-32K.
-      - question: |
           How do the capabilities of Azure OpenAI compare to OpenAI?
         answer: | 
           Azure OpenAI gives customers advanced language AI with the latest OpenAI models with the security and enterprise promise of Azure. Azure OpenAI codevelops the APIs with OpenAI, ensuring compatibility and a smooth transition from one to the other.
@@ -45,11 +38,7 @@ sections:
       - question: |
           Does Azure OpenAI support VNETs and Private Endpoints?
         answer: | 
-          Yes, Azure OpenAI supports VNETs and Private Endpoints. To learn more, consult the [virtual networking guidance](../../ai-services/cognitive-services-virtual-networks.md?context=/azure/ai-services/openai/context/context). 
-      - question: |
-          Do the GPT-4 models currently support image input?
-        answer: | 
-          No, GPT-4 is designed by OpenAI to be multimodal, but currently only text input and output are supported.
+          Yes, Azure OpenAI supports VNETs and Private Endpoints. To learn more, consult the [virtual networking guidance](../../ai-services/cognitive-services-virtual-networks.md?context=/azure/ai-foundry/openai/context/context). 
       - question: |
           How do I apply for new use cases?
         answer: |
@@ -59,22 +48,17 @@ sections:
         answer: | 
           This error typically occurs when you try to send a batch of text to embed in a single API request as an array. Currently Azure OpenAI only supports arrays of embeddings with multiple inputs for the `text-embedding-ada-002` Version 2 model. This model version supports an array consisting of up to 16 inputs per API request. The array can be up to 8,191 tokens in length when using the text-embedding-ada-002 (Version 2) model.
       - question: |
-          Where can I read about better ways to use Azure OpenAI to get the responses I want from the service?
+          When I ask the which model it's running, it tells me it's running a different version. Why does this happen?
         answer: | 
-          Check out our [introduction to prompt engineering](./concepts/prompt-engineering.md). While these models are powerful, their behavior is also very sensitive to the prompts they receive from the user. This makes prompt construction an important skill to develop. After you've completed the introduction, check out our article on [system messages](./concepts/advanced-prompt-engineering.md).
-      
-      - question: |
-          When I ask GPT-4 which model it's running, it tells me it's running GPT-3. Why does this happen?
-        answer: | 
-          Azure OpenAI models (including GPT-4) being unable to correctly identify what model is running is expected behavior. 
+          Azure OpenAI models being unable to correctly identify what model is running is expected behavior. 
 
           **Why does this happen?**
 
-          Ultimately, the model is performing next [token](/semantic-kernel/prompt-engineering/tokens) prediction in response to your question. The model doesn't have any native ability to query what model version is currently being run to answer your question. To answer this question, you can always go to **Azure AI Foundry** > **Management** > **Deployments** > and consult the model name column to confirm what model is currently associated with a given deployment name.
+          Ultimately, the model is performing next token prediction in response to your question. The model doesn't have any native ability to query what model version is currently being run to answer your question. To answer this question, you can always go to **Microsoft Foundry** > **Deployments** or **Models + endpoints** > and consult the model name column to confirm what model is currently associated with a given deployment name.
 
           The questions, "What model are you running?" or "What is the latest model from OpenAI?" produce similar quality results to asking the model what the weather will be today. It might return the correct result, but purely by chance. On its own, the model has no real-world information other than what was part of its training/training data. In the case of GPT-4, as of August 2023 the underlying training data goes only up to September 2021. GPT-4 wasn't released until March 2023, so barring OpenAI releasing a new version with updated training data, or a new version that is fine-tuned to answer those specific questions, it's expected behavior for GPT-4 to respond that GPT-3 is the latest model release from OpenAI.
 
-          If you wanted to help a GPT based model to accurately respond to the question "what model are you running?", you would need to provide that information to the model through techniques like [prompt engineering of the model's system message](/azure/ai-services/openai/concepts/advanced-prompt-engineering?pivots=programming-language-chat-completions), [Retrieval Augmented Generation (RAG)](/azure/machine-learning/concept-retrieval-augmented-generation?view=azureml-api-2) which is the technique used by [Azure OpenAI on your data](/azure/ai-services/openai/concepts/use-your-data) where up-to-date information is injected to the system message at query time, or via [fine-tuning](/azure/ai-services/openai/how-to/fine-tuning?pivots=programming-language-studio) where you could fine-tune specific versions of the model to answer that question in a certain way based on model version. 
+          If you wanted to help a GPT based model to accurately respond to the question "what model are you running?", you would need to provide that information to the model through techniques like [prompt engineering of the model's system message](/azure/ai-foundry/openai/concepts/advanced-prompt-engineering?pivots=programming-language-chat-completions), [Retrieval Augmented Generation (RAG)](/azure/machine-learning/concept-retrieval-augmented-generation?view=azureml-api-2) which is the technique used by [Azure OpenAI on your data](/azure/ai-foundry/openai/concepts/use-your-data) where up-to-date information is injected to the system message at query time, or via [fine-tuning](/azure/ai-foundry/openai/how-to/fine-tuning?pivots=programming-language-studio) where you could fine-tune specific versions of the model to answer that question in a certain way based on model version. 
 
           To learn more about how GPT models are trained and work we recommend watching [Andrej Apathy's talk from Build 2023 on the state of GPT](https://www.youtube.com/watch?v=bZQun8Y4L2A).
       
@@ -98,7 +82,7 @@ sections:
           
           The frequency that a given piece of information appeared in the training data can also impact the likelihood that the model will respond in a certain way. 
 
-          Asking the latest GPT-4 Turbo Preview model about something that changed more recently like "Who is the prime minister of New Zealand?", is likely to result in the fabricated response `Jacinda Ardern`. However, asking the model "When did `Jacinda Ardern` step down as prime minister?" Tends to yield an accurate response which demonstrates training data knowledge going to at least January of 2023.   
+          Asking the model about something that changed more recently like "Who is the prime minister of New Zealand?", is likely to result in the fabricated response `Jacinda Ardern`. However, asking the model "When did `Jacinda Ardern` step down as prime minister?" Tends to yield an accurate response which demonstrates training data knowledge going to at least January of 2023.   
                     
           So while it is possible to probe the model with questions to guess its training data knowledge cutoff, the [model's page](./concepts/models.md) is the best place to check a model's knowledge cutoff.       
       - question: |
@@ -125,6 +109,11 @@ sections:
 
           If the service doesn't perform processing, you won't be charged.
           For example, a 401 error due to authentication or a 429 error due to exceeding the Rate Limit.
+      - question: |
+          Do all Azure OpenAI models support `max_completion_tokens` with the chat completions API?
+        answer:
+          No, all Azure OpenAI models do not support `max_completion_tokens`. This parameter is not supported with older models like gpt-4 (turbo-2024-04-09).
+
   - name: Getting access to Azure OpenAI Service
     questions:
       - question: |
@@ -132,11 +121,11 @@ sections:
         answer: |
           A Limited Access registration form is not required to access most Azure OpenAI models. Learn more on the [Azure OpenAI Limited Access page](/azure/ai-foundry/responsible-ai/openai/limited-access).
       - question: |
-          My guest account has been given access to an Azure OpenAI resource, but I'm unable to access that resource in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). How do I enable access?
+          My guest account has been given access to an Azure OpenAI resource, but I'm unable to access that resource in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). How do I enable access?
         answer: | 
-          This is expected behavior when using the default sign-in experience for the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
+          This is expected behavior when using the default sign-in experience for the [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs).
           
-          To access Azure AI Foundry from a guest account that has been granted access to an Azure OpenAI resource:
+          To access Microsoft Foundry from a guest account that has been granted access to an Azure OpenAI resource:
           
           1. Open a private browser session and then navigate to [https://ai.azure.com](https://ai.azure.com/?cid=learnDocs).
           2. Rather than immediately entering your guest account credentials instead select `Sign-in options` 
@@ -144,9 +133,9 @@ sections:
           4. Enter the domain name of the organization that granted your guest account access to the Azure OpenAI resource. 
           5. Now sign-in with your guest account credentials. 
           
-          You should now be able to access the resource via the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+          You should now be able to access the resource via the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
           
-          Alternatively if you're signed into the [Azure portal](https://portal.azure.com) from the Azure OpenAI resource's Overview pane you can select **Go to Azure AI Foundry** to automatically sign in with the appropriate organizational context.   
+          Alternatively if you're signed into the [Azure portal](https://portal.azure.com) from the Azure OpenAI resource's Overview pane you can select **Go to Microsoft Foundry** to automatically sign in with the appropriate organizational context.   
   
   - name: Learning more and where to ask questions
     questions:
@@ -182,9 +171,9 @@ sections:
         answer:
           We do offer an Availability SLA for all resources and a Latency SLA for Provisioned-Managed Deployments. For more information about the SLA for Azure OpenAI Service, see the [Service Level Agreements (SLA) for Online Services page](https://azure.microsoft.com/support/legal/sla/cognitive-services/v1_1/). 
       - question: |
-          How do I enable fine-tuning? Create a custom model is greyed out in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).  
+          How do I enable fine-tuning? Create a custom model is greyed out in [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).  
         answer: |
-          In order to successfully access fine-tuning, you need Cognitive Services OpenAI Contributor assigned. Even someone with high-level Service Administrator permissions would still need this account explicitly set in order to access fine-tuning. For more information, please review the [role-based access control guidance](/azure/ai-services/openai/how-to/role-based-access-control#cognitive-services-openai-contributor).
+          In order to successfully access fine-tuning, you need Azure AI User role assigned. Even someone with high-level Service Administrator permissions would still need this account explicitly set in order to access fine-tuning. For more information, please review the [role-based access control guidance](../concepts/rbac-foundry.md).
       - question: |
           What is the difference between a base model and a fine-tuned model?
         answer:
@@ -196,7 +185,7 @@ sections:
       - question: |
           Why was my fine-tuned model deployment deleted? 
         answer:
-          If a customized (fine-tuned) model is deployed for more than 15 days during which no completions or chat completions calls are made to it, the deployment is automatically deleted (and no further hosting charges are incurred for that deployment). The underlying customized model remains available and can be redeployed at any time. To learn more, check out the [how-to-article](/azure/ai-services/openai/how-to/fine-tuning?tabs=turbo%2Cpython-new&pivots=programming-language-studio#deploy-a-custom-model).  
+          If a customized (fine-tuned) model is deployed for more than 15 days during which no completions or chat completions calls are made to it, the deployment is automatically deleted (and no further hosting charges are incurred for that deployment). The underlying customized model remains available and can be redeployed at any time. To learn more, check out the [how-to-article](/azure/ai-foundry/openai/how-to/fine-tuning?tabs=turbo%2Cpython-new&pivots=programming-language-studio#deploy-a-custom-model).  
       - question: |
           How do I deploy a model with the REST API? 
         answer:
@@ -208,21 +197,13 @@ sections:
   - name: GPT-4 Turbo with Vision
     questions:
       - question: |
-          Can I fine-tune the image capabilities in GPT-4?
-        answer: |
-          No, we don't support fine-tuning the image capabilities of GPT-4 at this time.
-      - question: |
-          Can I use GPT-4 to generate images?
-        answer: |
-          No, you can use `dall-e-3` to generate images and `gpt-4-vision-preview` to understand images.
-      - question: |
           What type of files can I upload?
         answer: |
           We currently support PNG (.png), JPEG (.jpeg and .jpg), WEBP (.webp), and nonanimated GIF (.gif).
       - question: |
           Is there a limit to the size of the image I can upload?
         answer: |
-          Yes, we restrict image uploads to 20 MB per image.
+          Yes, we restrict image uploads to 50 MB per image.
       - question: |
           Can I delete an image I uploaded?
         answer: |
@@ -271,7 +252,7 @@ sections:
       - question: | 
           Does the Assistants feature support customer-managed key encryption (CMK)?
         answer: |
-          Today we support CMK for Threads and Files in Assistants. See the [What's new page](./whats-new.md#customer-managed-key-cmk-support-for-assistants) for available regions for this feature.
+          Today we support CMK for Threads and Files in Assistants. 
       - question: |
           Is my data used by Microsoft for training models? 
         answer: |
@@ -311,9 +292,9 @@ sections:
         answer:
           You can customize your published web app in the Azure portal. The source code for the published web app is [available on GitHub](https://go.microsoft.com/fwlink/?linkid=2244395), where you can find information on changing the app frontend, as well as instructions for building and deploying the app.
       - question: |
-          Will my web app be overwritten when I deploy the app again from the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs)?
+          Will my web app be overwritten when I deploy the app again from the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs)?
         answer:
-          Your app code won't be overwritten when you update your app. The app will be updated to use the Azure OpenAI resource, Azure AI Search index (if you're using Azure OpenAI on your data), and model settings selected in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) without any change to the appearance or functionality. 
+          Your app code won't be overwritten when you update your app. The app will be updated to use the Azure OpenAI resource, Azure AI Search index (if you're using Azure OpenAI on your data), and model settings selected in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) without any change to the appearance or functionality. 
   - name: Using your data
     questions:
       - question: |
@@ -323,7 +304,7 @@ sections:
       - question: |
           How can I access Azure OpenAI on your data?  
         answer:
-          All Azure OpenAI customers can use Azure OpenAI on your data via the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and Rest API.
+          All Azure OpenAI customers can use Azure OpenAI on your data via the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) and Rest API.
       - question: |
           What data sources does Azure OpenAI on your data support?
         answer:
@@ -331,7 +312,7 @@ sections:
       - question: |
           How much does it cost to use Azure OpenAI on your data?
         answer:
-          When using Azure OpenAI on your data, you incur costs when you use Azure AI Search, Azure Blob Storage, Azure Web App Service, semantic search and OpenAI models. There's no additional cost for using the "your data" feature in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+          When using Azure OpenAI on your data, you incur costs when you use Azure AI Search, Azure Blob Storage, Azure Web App Service, semantic search and OpenAI models. There's no additional cost for using the "your data" feature in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
       - question: |
           How can I customize or automate the index creation process?
         answer:
@@ -351,7 +332,7 @@ sections:
       - question: |
           Is there a token limit on the system message? 
         answer: 
-          Yes, the token limit on the system message is 400. If the system message is more than 400 tokens, the rest of the tokens beyond the first 400 will be ignored. This limitation only applies to the Azure OpenAI [on your data feature](/azure/ai-services/openai/concepts/use-your-data).
+          Yes, the token limit on the system message is 400. If the system message is more than 400 tokens, the rest of the tokens beyond the first 400 will be ignored. This limitation only applies to the Azure OpenAI [on your data feature](/azure/ai-foundry/openai/concepts/use-your-data).
       - question: |
           Does Azure OpenAI on your data support function calling?
         answer:
@@ -361,7 +342,7 @@ sections:
         answer:
           You must send queries in the same language of your data. Your data can be in any of the languages supported by [Azure AI Search](/azure/search/search-language-support).
       - question: |
-          If Semantic Search is enabled for my Azure AI Search resource, will it be automatically applied to Azure OpenAI on your data in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs)?
+          If Semantic Search is enabled for my Azure AI Search resource, will it be automatically applied to Azure OpenAI on your data in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs)?
         answer:
           When you select "Azure AI Search" as the data source, you can choose to apply semantic search. 
           If you select "Azure Blob Container" or "Upload files" as the data source, you can create the index as usual. Afterwards you would reingest the data using the "Azure AI Search" option to select the same index and apply Semantic Search. You will then be ready to chat on your data with semantic search applied.

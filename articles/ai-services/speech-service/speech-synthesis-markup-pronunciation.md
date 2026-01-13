@@ -1,13 +1,13 @@
 ---
 title: Pronunciation with Speech Synthesis Markup Language (SSML) - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about Speech Synthesis Markup Language (SSML) elements and improve pronunciation.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 3/10/2025
-ms.author: eur
+ms.date: 08/07/2025
+ms.author: pafarley
 #Customer intent: As a developer, I want to learn about Speech Synthesis Markup Language (SSML) elements and improve pronunciation.
 ---
 
@@ -31,7 +31,7 @@ Usage of the `phoneme` element's attributes are described in the following table
 | Attribute | Description | Required or optional |
 | ---------- | ---------- | ---------- |
 | `alphabet` | The phonetic alphabet to use when you synthesize the pronunciation of the string in the `ph` attribute. The string that specifies the alphabet must be specified in lowercase letters. The following options are the possible alphabets that you can specify:<ul><li>`ipa` &ndash; See [SSML phonetic alphabets](speech-ssml-phonetic-sets.md)</li><li>`sapi` &ndash; See [SSML phonetic alphabets](speech-ssml-phonetic-sets.md)</li><li>`ups` &ndash; See [Universal Phone Set](https://documentation.help/Microsoft-Speech-Platform-SDK-11/17509a49-cae7-41f5-b61d-07beaae872ea.htm)</li><li>`x-sampa` &ndash; See [SSML phonetic alphabets](speech-ssml-phonetic-sets.md#map-x-sampa-to-ipa)</li></ul><br>The alphabet applies only to the `phoneme` in the element. | Optional |
-| `ph` | A string containing phones that specify the pronunciation of the word in the `phoneme` element. If the specified string contains unrecognized phones, text to speech rejects the entire SSML document and produces none of the speech output specified in the document.<br/><br/>For `ipa`, to stress one syllable by placing stress symbol before this syllable, you need to mark all syllables for the word. Or else, the syllable before this stress symbol is stressed. For `sapi`, if you want to stress one syllable, you need to place the stress symbol after this syllable, whether or not all syllables of the word are marked.| Required |
+| `ph` | A string containing phones that specify the pronunciation of the word in the `phoneme` element. **Each locale supports a specific phone set**. See [SSML phonetic alphabets](speech-ssml-phonetic-sets.md). If the specified string contains unrecognized phones, text to speech service will return http 400 error for invalid SSML.<br/><br/>For `ipa`, to stress one syllable by placing stress symbol before this syllable, you need to mark all syllables for the word. Or else, the syllable before this stress symbol is stressed. For `sapi`, if you want to stress one syllable, you need to place the stress symbol after this syllable, whether or not all syllables of the word are marked.| Required |
 
 ### phoneme examples
 
@@ -82,13 +82,13 @@ You can define how single entities (such as company, a medical term, or an emoji
 > [!NOTE]
 > For a list of locales that support custom lexicon, see footnotes in the [language support](language-support.md?tabs=tts) table.
 > 
-> The `lexicon` element is not supported by the [Long Audio API](migrate-to-batch-synthesis.md#text-inputs). For long-form text to speech, use the [batch synthesis API](batch-synthesis.md) (Preview) instead.
+> The `lexicon` element isn't supported by the [Long Audio API](migrate-to-batch-synthesis.md#text-inputs). For long-form text to speech, use the [batch synthesis API](batch-synthesis.md) (Preview) instead.
 
 Usage of the `lexicon` element's attributes are described in the following table.
 
 | Attribute | Description | Required or optional |
 | --------- | ---------- | ---------- |
-| `uri`     | The URI of the publicly accessible custom lexicon XML file with either the `.xml` or `.pls` file extension. Using [Azure Blob Storage](/azure/storage/blobs/storage-quickstart-blobs-portal) is recommended but not required. For more information about the custom lexicon file, see [Pronunciation Lexicon Specification (PLS) Version 1.0](https://www.w3.org/TR/pronunciation-lexicon/).| Required |
+| `uri`     | The URI of the publicly accessible custom lexicon XML file with either the `.xml` or `.pls` file extension. Using [Azure Blob Storage](/azure/storage/blobs/storage-quickstart-blobs-portal) is recommended but not required, GitHub URIs and other publicly accessible links are also supported. For more information about the custom lexicon file, see [Pronunciation Lexicon Specification (PLS) Version 1.0](https://www.w3.org/TR/pronunciation-lexicon/).| Required |
 
 ### Custom lexicon examples
 
@@ -113,7 +113,7 @@ After you publish your custom lexicon, you can reference it from your SSML. The 
 To define how multiple entities are read, you can define them in a custom lexicon XML file with either the `.xml` or `.pls` file extension.
 
 > [!NOTE]
-> The custom lexicon file is a valid XML document, but it cannot be used as an SSML document. 
+> The custom lexicon file is a valid XML document, but it can't be used as an SSML document. 
 
 Here are some limitations of the custom lexicon file:
 
@@ -190,7 +190,7 @@ You could also directly provide your expected `alias` for the acronym or abbrevi
 
 The preceding custom lexicon XML file examples use the IPA alphabet, which is also known as the IPA phone set. We suggest that you use the IPA because it's the international standard. For some IPA characters, they're the "precomposed" and "decomposed" version when they're being represented with Unicode. The custom lexicon only supports the decomposed Unicode.
 
-The Speech service defines a phonetic set for these locales: `en-US`, `fr-FR`, `de-DE`, `es-ES`, `ja-JP`, `zh-CN`, `zh-HK`, and `zh-TW`. For more information on the detailed Speech service phonetic alphabet, see the [Speech service phonetic sets](speech-ssml-phonetic-sets.md).
+The Speech service defines sapi phonetic set for these locales: `en-US`, `en-CA`, `fr-FR`, `fr-CA`,`fr-BE`, `fr-CH`, `de-DE`, `de-AT`, `de-CH`, `es-ES`, `ja-JP`, `zh-CN`, `zh-HK`, `yue-CN`, and `zh-TW`. For more information on the detailed Speech service phonetic alphabet, see the [Speech service phonetic sets](speech-ssml-phonetic-sets.md).
 
 You can use the `x-microsoft-sapi` as the value for the `alphabet` attribute with custom lexicons as demonstrated here:
 
@@ -254,7 +254,7 @@ The speech synthesis engine speaks the following example as "Your first request 
 
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-US">
-    <voice name="en-US-AvaMultilingualNeural">
+    <voice name="en-US-Ava:DragonHDLatestNeural">
         <p>
         Your <say-as interpret-as="ordinal"> 1st </say-as> request was for <say-as interpret-as="cardinal"> 1 </say-as> room
         on <say-as interpret-as="date" format="mdy"> 10/19/2010 </say-as>, with early arrival at <say-as interpret-as="time" format="hms12"> 12:35pm </say-as>.
@@ -281,29 +281,77 @@ The speech synthesis engine speaks the following example as "World Wide Web Cons
 
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-US">
-    <voice name="en-US-AvaMultilingualNeural">
+    <voice name="en-US-Ava:DragonHDLatestNeural">
         <sub alias="World Wide Web Consortium">W3C</sub>
     </voice>
 </speak>
 ```
 
-## Pronunciation with MathML
+## Mathematical expressions reading
+There are two ways to read a mathematical expression:
+- With Math domain element,
 
-The Mathematical Markup Language (MathML) is an XML-compliant markup language that describes mathematical content and structure. The Speech service can use the MathML as input text to properly pronounce mathematical notations in the output audio.
+    Embed the plain text mathematical expression directly in SSML and specify the math domain using `<mstts:prompt domain="Math" />`.
+
+    See the section: [Reading plain text mathematical expressions](#reading-plain-text-mathematical-expressions)
+- With MathML elements
+
+    Represent the mathematical expression with MathML elements.
+
+    See the section: [Reading mathematical expressions with MathML](#reading-mathematical-expressions-with-mathml)
+
 
 > [!NOTE]
-> The MathML elements (tags) are currently supported in the following locales: `de-DE`, `en-AU`, `en-GB`, `en-US`, `es-ES`, `es-MX`, `fr-CA`, `fr-FR`, `it-IT`, `ja-JP`, `ko-KR`, `pt-BR`, and `zh-CN`.
+> The two features are currently supported in the following locales: de-DE, en-AU, en-GB, en-US, all the sibling locales of English, es-ES, es-MX, all the sibling locales of Spanish, fr-CA, fr-FR, it-IT, ja-JP, ko-KR, pt-BR, and zh-CN. 
+
+### Reading plain text mathematical expressions
+To enable complex mathematical expression reading, you can add `<mstts:prompt domain="Math" />` element to enable math-specific pronunciation rules.
+
+```xml
+<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="https://www.w3.org/2001/mstts" xml:lang="en-US">
+    <voice name="en-US-AvaMultilingualNeural">
+       <mstts:prompt domain="Math" />
+       x = (-b ± √(b² - 4ac)) / 2a
+    </voice>
+</speak>
+```
+
+By default, parentheses aren't read out in mathematical expressions.
+If you'd like the parentheses read out, you can specify `<mstts:mathspeechverbosity level="verbose" />` in SSML
+
+```xml
+<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="https://www.w3.org/2001/mstts" xml:lang="en-US">
+    <voice name="en-US-AvaMultilingualNeural">
+       <mstts:prompt domain="Math" /><mstts:mathspeechverbosity level="verbose" />
+       x = (-b ± √(b² - 4ac)) / 2a
+    </voice>
+</speak>
+```
+
+If you'd like the expression read out in other language with a multilingual voice, specify lang element in SSML.
+```xml
+<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="https://www.w3.org/2001/mstts" xml:lang="en-US"> 
+   <voice name="en-US-AvaMultilingualNeural"> 
+      <mstts:prompt domain="Math" /> 
+      <lang xml:lang="es-ES">x = (-b ± √(b² - 4ac)) / 2a</lang>
+    </voice>
+ </speak>
+```
+
+### Reading mathematical expressions with MathML
+
+The Mathematical Markup Language (MathML) is an XML-compliant markup language that describes mathematical content and structure. The Speech service can use the MathML as input text to properly pronounce mathematical notations in the output audio.
 
 All elements from the [MathML 2.0](https://www.w3.org/TR/MathML2/) and [MathML 3.0](https://www.w3.org/TR/MathML3/) specifications are supported, except the MathML 3.0 [Elementary Math](https://www.w3.org/TR/MathML3/chapter3.html#presm.elementary) elements. 
 
 Take note of these MathML elements and attributes:
 - The `xmlns` attribute in `<math xmlns="http://www.w3.org/1998/Math/MathML">` is optional.
 - The `semantics`, `annotation`, and `annotation-xml` elements don't output speech, so they're ignored.
-- If an element isn't recognized, it's ignored, and the child elements within it are still processed.
+- If an element isn't recognized, it'll be ignored, but the child elements within it will still be processed.
 
 The XML syntax doesn't support the MathML entities, so you must use the corresponding [unicode characters](https://www.w3.org/2003/entities/2007/htmlmathml.json) to represent the entities, for example, the entity `&copy;` should be represented by its unicode characters `&#x00A9;`, otherwise an error occurs.
 
-### MathML examples
+#### MathML examples
 
 The text to speech output for this example is "a squared plus b squared equals c squared".
 
@@ -329,6 +377,7 @@ The text to speech output for this example is "a squared plus b squared equals c
     </voice>
 </speak>
 ```
+
 
 ## Next steps
 

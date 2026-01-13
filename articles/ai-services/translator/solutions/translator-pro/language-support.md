@@ -1,12 +1,12 @@
 ---
 title: Language support - Microsoft Translator Pro
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Language support for Microsoft Translator Pro speech-to-speech application.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 01/21/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
@@ -50,6 +50,7 @@ Microsoft Translator Pro provides real-time multilingual speech-to-speech suppor
 | Danish (Denmark) | ✔️ | ✔️|
 | Dutch (Belgium) | ✔️ |  |
 | Dutch (Netherlands) | ✔️ | ✔️|
+| English (United States) | ✔️ | ✔️|
 | Estonian (Estonia) | ✔️ | ✔️|
 | Filipino (Philippines) | ✔️ |  |
 | Finnish (Finland) | ✔️ |  |

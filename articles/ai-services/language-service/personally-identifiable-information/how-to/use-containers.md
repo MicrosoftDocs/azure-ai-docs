@@ -1,17 +1,16 @@
 ---
 title: Use personally identifiable information (PII) detection Docker containers on-premises
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Use Docker containers for the Personally Identifiable Information (PII) detection API to determine the language of written text, on-premises.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.custom:
 ms.topic: how-to
-ms.date: 04/29/2025
+ms.date: 12/05/2025
 ms.author: lajanuar
 keywords: on-premises, Docker, container
 ---
-
 # Install and run Personally Identifiable Information (PII) Detection containers
 
 > [!NOTE]
@@ -19,13 +18,13 @@ keywords: on-premises, Docker, container
 
 Containers enable you to host the PII detection API on your own infrastructure. If you have security or data governance requirements that can't be fulfilled by calling PII detection remotely, then containers might be a good option.
 
-If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/cognitive-services/) before you begin.
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 ## Prerequisites
 
 You must meet the following prerequisites before using PII detection containers. 
 
-* If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/cognitive-services/).
+* If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * [Docker](https://docs.docker.com/) installed on a host computer. Docker must be configured to allow the containers to connect with and send billing data to Azure. 
     * On Windows, Docker must also be configured to support Linux containers.
     * You should have a basic understanding of [Docker concepts](https://docs.docker.com/get-started/overview/). 
@@ -39,11 +38,11 @@ You must meet the following prerequisites before using PII detection containers.
 
 The following table describes the minimum and recommended specifications for the available container. Each CPU core must be at least 2.6 gigahertz (GHz) or faster.
 
-It's recommended to have a CPU with AVX-512 instruction set, for the best experience (performance and accuracy).
+We recommend that you have a CPU with AVX-512 instruction set, for the best experience (performance and accuracy).
 
 |                     | Minimum host specs     | Recommended host specs |
 |---------------------|------------------------|------------------------|
-| **PII detection**   | 1 core, 2 GB memory     | 4 cores, 8 GB memory    |
+| **PII detection**   | 1-core, 2-GB memory     | 4-cores, 8-GB memory    |
 
 CPU core and memory correspond to the `--cpus` and `--memory` settings, which are used as part of the `docker run` command.
 
@@ -53,7 +52,7 @@ The PII detection container image can be found on the `mcr.microsoft.com` contai
 
  To use the latest version of the container, you can use the `latest` tag, which is for English. You can also find a full list of containers for supported languages using the [tags on the MCR](https://mcr.microsoft.com/product/azure-cognitive-services/textanalytics/pii/tags).
 
-The latest PII detection container is available in several languages. To download the container for the English container, use the command below. 
+The latest PII detection container is available in several languages. To download the container for the English container, use the following command.
 
 ```
 docker pull mcr.microsoft.com/azure-cognitive-services/textanalytics/pii:latest
@@ -63,20 +62,20 @@ docker pull mcr.microsoft.com/azure-cognitive-services/textanalytics/pii:latest
 
 ## Run the container with `docker run`
 
-Once the container is on the host computer, use the [docker run](https://docs.docker.com/engine/reference/commandline/run/) command to run the containers. The container continues to run until you stop it. Replace the placeholders below with your own values:
+Once the container is on the host computer, use the [docker run](https://docs.docker.com/engine/reference/commandline/run/) command to run the containers. The container continues to run until you stop it. Replace the placeholders with your own values:
 
 
 > [!IMPORTANT]
-> * The docker commands in the following sections use the back slash, `\`, as a line continuation character. Replace or remove this based on your host operating system's requirements. 
-> * The `Eula`, `Billing`, and `ApiKey` options must be specified to run the container; otherwise, the container won't start.  For more information, see [Billing](#billing).
+> * The docker commands in the following sections use the back slash, `\`, as a line continuation character. Replace or remove this character based on your host operating system's requirements. 
+> * The `Eula`, `Billing`, and `ApiKey` options must be specified to run the container; otherwise, the container doesn't start. For more information, see [Billing](#billing).
 
-To run the PII detection container, execute the following `docker run` command. Replace the placeholders below with your own values:
+To run the PII detection container, execute the following `docker run` command. Replace the placeholders with your own values:
 
 | Placeholder | Value | Format or example |
 |-------------|-------|---|
 | **{API_KEY}** | The key for your Language resource. You can find it on your resource's **Key and endpoint** page, on the Azure portal. |`xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`|
 | **{ENDPOINT_URI}** | The endpoint for accessing the API. You can find it on your resource's **Key and endpoint** page, on the Azure portal. | `https://<your-custom-subdomain>.cognitiveservices.azure.com` |
-| **{IMAGE_TAG}** | The image tag representing the language of the container you want to run. Make sure this matches the `docker pull` command you used. | `latest` |
+| **{IMAGE_TAG}** | The image tag representing the language of the container you want to run. Make sure it matches the `docker pull` command you used. | `latest` |
 
 ```bash
 docker run --rm -it -p 5000:5000 --memory 8g --cpus 1 \
@@ -89,8 +88,8 @@ ApiKey={API_KEY}
 This command:
 
 * Runs a *PII detection* container from the container image
-* Allocates one CPU core and 8 gigabytes (GB) of memory
-* Exposes TCP port 5000 and allocates a pseudo-TTY for the container
+* Allocates one `CPU` core and 8 gigabytes (GB) of memory
+* Exposes `TCP` port 5000 and allocates a pseudo-TTY for the container
 * Automatically removes the container after it exits. The container image is still available on the host computer.
 
 [!INCLUDE [Running multiple containers on the same host](../../../includes/cognitive-services-containers-run-multiple-same-host.md)]
@@ -117,9 +116,9 @@ For information on how to call PII see [our guide](../how-to-call.md).
 
 ## Troubleshooting
 
-If you run the container with an output [mount](../../concepts/configure-containers.md#mount-settings) and logging enabled, the container generates log files that are helpful to troubleshoot issues that happen while starting or running the container.
+If you run the container with an output [mount](../../concepts/configure-containers.md#mount-settings) and logging enabled, the container generates log files. These files are helpful to troubleshoot issues that happen while starting or running the container.
 
-[!INCLUDE [Azure AI services FAQ note](../../../containers/includes/cognitive-services-faq-note.md)]
+[!INCLUDE [Foundry Tools FAQ note](../../../containers/includes/cognitive-services-faq-note.md)]
 
 ## Billing
 
@@ -139,7 +138,7 @@ In this article, you learned concepts and workflow for downloading, installing, 
 * You must specify billing information when instantiating a container.
 
 > [!IMPORTANT]
-> Azure AI containers aren't licensed to run without being connected to Azure for metering. Customers need to enable the containers to communicate billing information with the metering service at all times. Azure AI containers don't send customer data (for example, text that is being analyzed) to Microsoft.
+> Azure AI containers aren't licensed to run without being connected to Azure for metering. Customers need to enable the containers to communicate billing information with the metering service always. Azure AI containers don't send customer data (for example, text that's being analyzed) to Microsoft.
 
 ## Next steps
 

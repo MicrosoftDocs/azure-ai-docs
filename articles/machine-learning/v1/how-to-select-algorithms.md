@@ -6,9 +6,9 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: training
 ms.topic: how-to
-author: s-polly
+author: lgayhardt
 ms.author: scottpolly
-ms.reviewer: lagayhar
+ms.reviewer: sooryar
 ms.date: 09/30/2024
 ---
 

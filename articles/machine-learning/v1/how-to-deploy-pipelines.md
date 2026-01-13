@@ -5,9 +5,9 @@ description: Run machine learning workflows with machine learning pipelines and 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-author: s-polly
+author: lgayhardt
 ms.author: scottpolly
-ms.reviewer: zhanxia
+ms.reviewer: jturuk
 ms.date: 06/18/2025
 ms.topic: how-to
 ms.custom:

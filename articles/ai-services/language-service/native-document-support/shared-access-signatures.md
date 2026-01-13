@@ -6,9 +6,8 @@ ms.topic: how-to
 manager: nitinme
 ms.author: lajanuar
 author: laujan
-ms.date: 03/05/2025
+ms.date: 11/18/2025
 ---
-
 # SAS tokens for your storage containers
 
 Learn to create user delegation, shared access signature (SAS) tokens, using the Azure portal. User delegation SAS tokens are secured with Microsoft Entra credentials. SAS tokens provide secure, delegated access to resources in your Azure storage account.
@@ -45,9 +44,9 @@ Azure Blob Storage offers three resource types:
 
 To get started, you need the following resources:
 
-* An active [Azure account](https://azure.microsoft.com/free/cognitive-services/). If you don't have one, you can [create a free account](https://azure.microsoft.com/free/).
+* An active [Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). If you don't have one, you can [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-* An [Azure AI Language](https://ms.portal.azure.com/#create/Microsoft.CognitiveServicesTextAnalytics) resource.
+* An [Azure Language in Foundry Tools](https://ms.portal.azure.com/#create/Microsoft.CognitiveServicesTextAnalytics) resource.
 
 * A **standard performance** [Azure Blob Storage account](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM). You also need to create containers to store and organize your files within your storage account. If you don't know how to create an Azure storage account with a storage container, follow these quickstarts:
 
@@ -75,7 +74,7 @@ Workflow: **Your storage account** → **containers** → **your container** →
 1. Specify the signed key **Start** and **Expiry** times.
 
     * When you create a shared access signature (SAS), the default duration is 48 hours. After 48 hours, you'll need to create a new token.
-    * Consider setting a longer duration period for the time you're using your storage account for Language Service operations.
+    * Consider setting a longer duration period for the time you're using your storage account for Language operations.
     * The value of the expiry time is determined by whether you're using an **Account key** or **User delegation key** **Signing method**:
        * **Account key**: No imposed maximum time limit; however, best practices recommended that you configure an expiration policy to limit the interval and minimize compromise. [Configure an expiration policy for shared access signatures](/azure/storage/common/sas-expiration-policy).
        * **User delegation key**: The value for the expiry time is a maximum of seven days from the creation of the SAS token. The SAS is invalid after the user delegation key expires, so a SAS with an expiry time of greater than seven days will still only be valid for seven days. For more information, *see* [Use Microsoft Entra credentials to secure a SAS](/azure/storage/blobs/storage-blob-user-delegation-sas-create-cli#use-azure-ad-credentials-to-secure-a-sas).
@@ -125,7 +124,7 @@ Here's a sample REST API request:
 
 That's it! You learned how to create SAS tokens to authorize how clients access your data.
 
-## Next steps
+## Next step
 
 > [!div class="nextstepaction"]
 > [Learn more about native document support](overview.md "Learn how to process and analyze native documents.") [Learn more about granting access with SAS ](/azure/storage/common/storage-sas-overview "Grant limited access to Azure Storage resources using shared access SAS.")

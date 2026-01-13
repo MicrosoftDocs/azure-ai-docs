@@ -1,16 +1,17 @@
 ---
-title: Retrieval augmented generation in Azure AI Foundry portal
-titleSuffix: Azure AI Foundry
+title: Retrieval augmented generation in Microsoft Foundry portal
+titleSuffix: Microsoft Foundry
 description: This article introduces retrieval augmented generation for use in generative AI applications.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: concept-article
-ms.date: 06/09/2025
+ms.date: 11/03/2025
 ms.reviewer: sgilley
 ms.author: sgilley
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 author: sdgilley
 ---
 
@@ -28,6 +29,19 @@ RAG is a pattern that uses your data with an LLM to generate answers specific to
 
 :::image type="content" source="../media/index-retrieve/rag-pattern.png" alt-text="Screenshot of the RAG pattern." lightbox="../media/index-retrieve/rag-pattern.png":::
 
+## Agentic RAG: Modern approach to retrieval
+
+Traditional RAG patterns use a single query to retrieve information from your data. However, modern **agentic retrieval** represents an evolution in RAG architecture that uses large language models to intelligently break down complex user queries into multiple focused subqueries, executes them in parallel, and returns structured responses optimized for chat completion models.
+
+Agentic retrieval provides several advantages over classic RAG:
+
+* **Context-aware query planning** - Uses conversation history to understand context and intent
+* **Parallel execution** - Runs multiple focused subqueries simultaneously for better coverage
+* **Structured responses** - Returns grounding data, citations, and execution metadata along with results
+* **Built-in semantic ranking** - Ensures optimal relevance of results
+* **Optional answer synthesis** - Can include LLM-formulated answers directly in the query response
+
+Agents use [agentic retrieval](/azure/search/agentic-retrieval-overview) to take advantage of improved accuracy and context understanding. 
 
 ## What is an index and why do I need it?
 
@@ -43,8 +57,8 @@ Azure AI provides an index asset to use with RAG pattern. The index asset contai
 * Does your index have vectors?
 * What is the embedding model used for vectors?
 
-The Azure AI index uses [Azure AI Search](/azure/search/search-what-is-azure-search) as the primary and recommended index store. Azure AI Search is an Azure resource that supports information retrieval over your vector and textual data stored in search indexes.
+The Azure AI index uses [Azure AI Search](/azure/search/search-what-is-azure-search) as the primary and recommended index store. Azure AI Search is an Azure resource that supports information retrieval over your vector and textual data stored in search indexes and other query targets if you use agentic retrieval.
 
-## Next steps
+## Related content
 
-- [Create a vector index](../how-to/index-add.md)
+- [Foundry Agent Service file search tool](../agents/how-to/tools/file-search.md)

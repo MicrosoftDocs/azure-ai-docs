@@ -1,6 +1,7 @@
 ---
 manager: nitinme
-ms.service: azure-ai-model-inference
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: include
 ms.date: 1/21/2025
 ms.author: fasantia
@@ -65,7 +66,7 @@ for (ChatChoice choice : chatCompletions.getChoices()) {
 }
 ```
 
-Here, `deepseek-v3-0324` is the name of a model deployment in the Azure AI Foundry resource.
+Here, `deepseek-v3-0324` is the name of a model deployment in the Microsoft Foundry resource.
 
 # [REST](#tab/rest)
 
@@ -92,6 +93,6 @@ Content-Type: application/json
 }
 ```
 
-Here, `deepseek-v3-0324` is the name of a model deployment in the Azure AI Foundry resource.
+Here, `deepseek-v3-0324` is the name of a model deployment in the Foundry resource.
 
 ---

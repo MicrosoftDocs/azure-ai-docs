@@ -4,7 +4,8 @@ titleSuffix: Azure OpenAI
 description: Learn how to work with the Completion API for prompt engineering.
 author: mrbullwinkle 
 ms.author: mbullwin 
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.date: 03/26/2025
 manager: nitinme

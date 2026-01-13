@@ -1,17 +1,16 @@
 ---
 title: Summarize text with the conversation summarization API
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This article shows you how to summarize chat logs with the conversation summarization API.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 03/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom:
   - language-service-pii
 ---
-
 # How to use conversation summarization
 
 [!INCLUDE [availability](../includes/regional-availability.md)]
@@ -45,7 +44,7 @@ For easier navigation, here are links to the corresponding sections for each ser
 
 The conversation summarization API uses natural language processing techniques to summarize conversations into shorter summaries per request. Conversation summarization can summarize for issues and resolutions discussed in a two-party conversation or summarize a long conversation into chapters and a short narrative for each chapter.
 
-There's another feature in Azure AI Language named [text summarization](../overview.md?tabs=text-summarization) that is more suitable to summarize documents into concise summaries. When you're deciding between text summarization and conversation summarization, consider the following points:
+There's another feature in Azure Language in Foundry Tools named [text summarization](../overview.md?tabs=text-summarization) that is more suitable to summarize documents into concise summaries. When you're deciding between text summarization and conversation summarization, consider the following points:
 * Input format: Conversation summarization can operate on both chat text and speech transcripts, which have speakers and their utterances. Text summarization operates using simple text, or Word, PDF, or PowerPoint formats.
 * Purpose of summarization: for example, `conversation issue and resolution summarization` returns a reason and the resolution for a chat between a customer and a customer service agent.
 

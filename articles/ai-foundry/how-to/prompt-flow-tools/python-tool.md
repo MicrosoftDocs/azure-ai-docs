@@ -1,10 +1,15 @@
 ---
-title: Python tool for flows in Azure AI Foundry portal
-titleSuffix: Azure AI Foundry
-description: This article introduces you to the Python tool for flows in Azure AI Foundry portal.
-manager: scottpolly
+title: Python tool for flows in Microsoft Foundry portal
+titleSuffix: Microsoft Foundry
+description: This article introduces you to the Python tool for flows in Microsoft Foundry portal.
 ms.service: azure-ai-foundry
-ms.custom: ignite-2023, devx-track-python, build-2024, ignite-2024
+ms.subservice: azure-ai-prompt-flow
+ms.custom: 
+  - ignite-2023
+  - devx-track-python
+  - build-2024
+  - ignite-2024
+  - hub-only
 ms.topic: reference
 ms.date: 6/30/2025
 ms.reviewer: none
@@ -14,18 +19,24 @@ ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ms.update-cycle: 180-days
 ---
 
-# Python tool for flows in Azure AI Foundry portal
+# Python tool for flows in Microsoft Foundry portal
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 The prompt flow Python tool offers customized code snippets as self-contained executable nodes. You can quickly create Python tools, edit code, and verify results.
 
+## Prerequisites
+
+[!INCLUDE [hub-only-prereq](../../includes/hub-only-prereq.md)]
+
 ## Build with the Python tool
 
-1. Create or open a flow in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). For more information, see [Create a flow](../flow-develop.md).
+1. Create or open a flow in [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). For more information, see [Create a flow](../flow-develop.md).
 1. Select **+ Python** to add the Python tool to your flow.
 
-    :::image type="content" source="../../media/prompt-flow/python-tool.png" alt-text="Screenshot that shows the Python tool added to a flow in Azure AI Foundry portal." lightbox="../../media/prompt-flow/python-tool.png":::
+    :::image type="content" source="../../media/prompt-flow/python-tool.png" alt-text="Screenshot that shows the Python tool added to a flow in Foundry portal." lightbox="../../media/prompt-flow/python-tool.png":::
 
 1. Enter values for the Python tool input parameters that are described in the [Inputs table](#inputs). For example, in the **Code** input text box, you can enter the following Python code:
 

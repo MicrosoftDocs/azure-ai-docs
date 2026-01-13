@@ -24,7 +24,7 @@ Reference documentation for [(training)](https://pkg.go.dev/github.com/Azure/azu
 
 ## Prerequisites
 
-* An Azure subscription. You can [create one for free](https://azure.microsoft.com/free/cognitive-services/).
+* An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * [Go 1.8 or later](https://go.dev/doc/install).
 * Once you have your Azure subscription, create a [Custom Vision resource](https://portal.azure.com/?microsoft_azure_marketplace_ItemHideKey=microsoft_azure_cognitiveservices_customvision#create/Microsoft.CognitiveServicesCustomVision) in the Azure portal to create a training and prediction resource.
     * You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
@@ -109,7 +109,7 @@ cherryTag, _ := trainer.CreateTag(ctx, *project.ID, "Japanese Cherry", "Japanese
 To add the sample images to the project, insert the following code after the tag creation. This code uploads each image with its corresponding tag. You can upload up to 64 images in a single batch.
 
 > [!NOTE]
-> You'll need to change the path to the images based on where you downloaded the Azure AI services Go SDK Samples project earlier.
+> You'll need to change the path to the images based on where you downloaded the Foundry Tools Go SDK Samples project earlier.
 
 ```go
 fmt.Println("Adding images...")

@@ -1,25 +1,28 @@
 ---
 title: 'Troubleshooting for Azure OpenAI fine-tuning'
 titleSuffix: Azure OpenAI
-description: Learn how to troubleshoot Azure OpenAI in Azure AI Foundry Models fine-tuning.
+description: Learn how to troubleshoot Azure OpenAI in Microsoft Foundry Models fine-tuning.
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.custom: build-2023, build-2023-dataai, devx-track-python, references_regions
 ms.topic: how-to
-ms.date: 05/25/2025
+ms.date: 11/26/2025
 author: mrbullwinkle
 ms.author: mbullwin
 ---
 
 # Troubleshooting for Azure OpenAI fine-tuning
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 ## How do I enable fine-tuning?
 
-In order to successfully access fine-tuning, you need **Cognitive Services OpenAI Contributor assigned**. Even someone with high-level Service Administrator permissions would still need this account explicitly set in order to access fine-tuning. For more information, please review the [role-based access control guidance](/azure/ai-services/openai/how-to/role-based-access-control#cognitive-services-openai-contributor).
+In order to successfully access fine-tuning, you need **Azure AI User** role assigned. Even someone with high-level Service Administrator permissions would still need this account explicitly set in order to access fine-tuning. For more information, please review the [role-based access control guidance](../../../ai-foundry/concepts/rbac-foundry.md).
 
 ## Why did my upload fail?
 
-If your file upload fails in Azure AI Foundry portal, you can view the error message under **Data files** in Azure AI Foundry portal. Hover your mouse over where it says **error** (under the status column) and an explanation of the failure will be displayed.
+If your file upload fails in Microsoft Foundry portal, you can view the error message under **Data files** in Foundry portal. Hover your mouse over where it says **error** (under the status column) and an explanation of the failure will be displayed.
 
 :::image type="content" source="../media/fine-tuning/error.png" alt-text="Screenshot of fine-tuning error message." lightbox="../media/fine-tuning/error.png":::
 

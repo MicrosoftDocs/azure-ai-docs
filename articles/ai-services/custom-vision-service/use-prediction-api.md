@@ -1,6 +1,6 @@
 ---
 title: "Use prediction endpoint to programmatically test images with classifier - Custom Vision"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to use the API to programmatically test images with your Custom Vision Service classifier.
 author: PatrickFarley
 manager: nitinme
@@ -13,6 +13,8 @@ ms.custom: devx-track-csharp
 ---
 
 # Call the Prediction API
+
+[!INCLUDE [custom-vision-retirement](includes/custom-vision-retirement.md)]
 
 After you train your model, you can test it programmatically by submitting images to the Prediction API endpoint. In this guide, you'll learn how to call the Prediction API to score an image. You'll learn the different ways you can configure the behavior of this API to meet your needs.
 

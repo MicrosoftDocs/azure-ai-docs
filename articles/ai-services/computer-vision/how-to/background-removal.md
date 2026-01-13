@@ -1,11 +1,9 @@
 ---
 title: Remove the background in images
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to call the Segment API to isolate and remove the background from images.
 manager: nitinme
 author: PatrickFarley
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
 ms.author: pafarley
 ms.service: azure-ai-vision
 ms.topic: how-to
@@ -38,7 +36,7 @@ The [quickstart](../quickstarts-sdk/image-analysis-client-library-40.md) shows y
 To authenticate to the Image Analysis service, you need a Computer Vision key and endpoint URL.
 
 > [!TIP]
-> Don't include the key directly in your code, and never post it publicly. See the Azure AI services [security](../../security-features.md) article for more authentication options like [Azure Key Vault](../../use-key-vault.md). 
+> Don't include the key directly in your code, and never post it publicly. See the Foundry Tools [security](../../security-features.md) article for more authentication options like [Azure Key Vault](../../use-key-vault.md). 
 
 <!--
 #### [C#](#tab/csharp)

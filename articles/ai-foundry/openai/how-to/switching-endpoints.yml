@@ -7,8 +7,9 @@ metadata:
   author: mrbullwinkle
   ms.author: mbullwin
   manager: nitinme
-  ms.date: 07/02/2025
-  ms.service: azure-ai-openai
+  ms.date: 09/30/2025
+  ms.service: azure-ai-foundry
+  ms.subservice: azure-ai-foundry-openai
   ms.topic: how-to
   ms.custom:
     - devx-track-python
@@ -18,13 +19,11 @@ title: |
 introduction: | 
   While OpenAI and Azure OpenAI rely on a [common Python client library](https://github.com/openai/openai-python), there are small changes you need to make to your code in order to swap back and forth between endpoints. This article walks you through the common changes and differences you'll experience when working across OpenAI and Azure OpenAI.
 
-  This article only shows examples with the new OpenAI Python 1.x API library. For information on migrating from `0.28.1` to `1.x` refer to our [migration guide](./migration.md).
 procedureSection:
   - title: |
       Authentication
     summary: |
-      We recommend using Microsoft Entra ID or Azure Key Vault. You can use environment variables for testing outside of your production environment. If you haven't done this before, our [Python quickstarts](../quickstart.md) walks you through this configuration.
-    
+      We recommend using Microsoft Entra ID or Azure Key Vault. You can use environment variables for testing outside of your production environment.     
       ### API key
     code: |
       <table>
@@ -51,12 +50,11 @@ procedureSection:
 
       ```python
       import os
-      from openai import AzureOpenAI
+      from openai import OpenAI
           
-      client = AzureOpenAI(
+      client = OpenAI(
           api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-          api_version="2024-07-01-preview",
-          azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT")
+          base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
       )
       ```
 
@@ -64,7 +62,7 @@ procedureSection:
       </tr>
       </table>
 
-      <a name='azure-active-directory-authentication'></a>
+
 
       ### Microsoft Entra ID authentication
 
@@ -97,19 +95,15 @@ procedureSection:
 
       ```python
       from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-      from openai import AzureOpenAI
+      from openai import OpenAI
 
       token_provider = get_bearer_token_provider(
           DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
       )
 
-      api_version = "2024-07-01-preview"
-      endpoint = "https://my-resource.openai.azure.com"
-
-      client = AzureOpenAI(
-          api_version=api_version,
-          azure_endpoint=endpoint,
-          azure_ad_token_provider=token_provider,
+      client = OpenAI(
+          base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/", 
+          api_key = token_provider,
       )
       ```
 
@@ -133,9 +127,9 @@ procedureSection:
       <td>
 
       ```python
-      completion = client.completions.create(
-          model="gpt-3.5-turbo-instruct",
-          prompt="<prompt>"
+      response = client.responses.create(   
+          model="gpt-4.1-nano", # Replace with your model deployment name 
+          input="This is a test."
       )
 
       chat_completion = client.chat.completions.create(
@@ -153,9 +147,9 @@ procedureSection:
       <td>
 
       ```python
-      completion = client.completions.create(
-          model="gpt-35-turbo-instruct", # This must match the custom deployment name you chose for your model.
-          prompt="<prompt>"
+      response = client.responses.create(   
+          model="gpt-4.1-nano", # Replace with your model deployment name 
+          input="This is a test."
       )
 
       chat_completion = client.chat.completions.create(
@@ -215,11 +209,5 @@ procedureSection:
       </table>
 
 relatedContent:
-  - text: Learn more about how to work with chat completions models with our how-to guide
-    url: ../how-to/chatgpt.md
-  - text: For more examples, check out the Azure OpenAI Samples GitHub repository
-    url: https://github.com/Azure-Samples/openai
-
-
-# Learn more about how to work with GPT-35-Turbo and the GPT-4 models with [our how-to guide](../how-to/chatgpt.md).
-# For more examples, check out the [Azure OpenAI Samples GitHub repository](https://github.com/Azure-Samples/openai)
+  - text: Learn more about how to work the Responses API with our how-to guide
+    url: ../how-to/responses.md

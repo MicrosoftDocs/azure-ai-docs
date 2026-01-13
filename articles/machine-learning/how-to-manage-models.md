@@ -5,10 +5,10 @@ description: Learn how to use the Azure Machine Learning CLI or Python SDK to cr
 services: machine-learning
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: kritifaujdar
+ms.reviewer: jturuk
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.date: 01/07/2025
+ms.date: 12/12/2025
 ms.topic: how-to
 ms.custom: cli-v2, sdk-v2, devx-track-azurecli, update-code2, devx-track-python
 ---
@@ -69,7 +69,7 @@ The following table shows the available mode options for different model type in
 
 ## Prerequisites
 
-- An Azure subscription with a free or paid version of Azure Machine Learning. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free/) before you begin.
+- An Azure subscription with a free or paid version of Azure Machine Learning. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 - An [Azure Machine Learning workspace](quickstart-create-resources.md#create-the-workspace).
 
 To run the code samples in this article and work with the Azure Machine Learning V2 CLI or Python Azure Machine Learning V2 SDK, you also need:

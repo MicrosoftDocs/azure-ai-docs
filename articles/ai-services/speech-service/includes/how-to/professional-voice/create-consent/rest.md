@@ -1,15 +1,15 @@
 ---
 title: include file
 description: include file
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 5/19/2025
 ms.custom: include
 ---
 
-With the professional voice feature, it's required that every voice be created with explicit consent from the user. A recorded statement from the user is required acknowledging that the customer (Azure AI Speech resource owner) will create and use their voice.
+With the professional voice feature, it's required that every voice be created with explicit consent from the user. A recorded statement from the user is required acknowledging that the customer (Azure Speech in Foundry Tools resource owner) will create and use their voice.
 
 To add voice talent consent to the professional voice project, you get the prerecorded consent audio file from a publicly accessible URL ([Consents_Create](/rest/api/aiservices/speechapi/consents/create)) or upload the audio file ([Consents_Post](/rest/api/aiservices/speechapi/consents/post)). In this article, you add consent from a URL. 
 
@@ -68,8 +68,8 @@ You should receive a response body in the following format:
 The response header contains the `Operation-Location` property. Use this URI to get details about the [Consents_Create](/rest/api/aiservices/speechapi/consents/create) operation. Here's an example of the response header:
 
 ```HTTP 201
-Operation-Location: https://eastus.api.cognitive.microsoft.com/customvoice/operations/070f7986-ef17-41d0-ba2b-907f0f28e314?api-version=2024-02-01-preview
-Operation-Id: 070f7986-ef17-41d0-ba2b-907f0f28e314
+Operation-Location: https://eastus.api.cognitive.microsoft.com/customvoice/operations/aaaabbbb-0000-cccc-1111-dddd2222eeee?api-version=2024-02-01-preview
+Operation-Id: aaaabbbb-0000-cccc-1111-dddd2222eeee
 ```
 
 
@@ -77,4 +77,3 @@ Operation-Id: 070f7986-ef17-41d0-ba2b-907f0f28e314
 
 > [!div class="nextstepaction"]
 > [Add training data to the professional voice project](../../../../professional-voice-create-training-set.md)
-

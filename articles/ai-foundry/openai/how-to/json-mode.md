@@ -1,15 +1,17 @@
 ---
-title: 'How to use JSON mode with Azure OpenAI in Azure AI Foundry Models'
+title: 'How to use JSON mode with Azure OpenAI in Microsoft Foundry Models'
 titleSuffix: Azure OpenAI
 description: Learn how to improve your chat completions with Azure OpenAI JSON mode
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 07/02/2025
+ms.date: 12/6/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
+monikerRange: 'foundry-classic || foundry'
 
 ---
 
@@ -18,23 +20,14 @@ recommendations: false
 JSON mode allows you to set the models response format to return a valid JSON object as part of a chat completion. While generating valid JSON was possible previously, there could be issues with response consistency that would lead to invalid JSON objects being generated.
 
 > [!NOTE]
-> While JSON mode is still supported, when possible we recommend using [structured outputs](./structured-outputs.md). Like JSON mode structured outputs generates valid JSON, but with the added benefit that you can constrain the model to use a specific JSON schema.
+> While JSON mode is still supported, when possible we recommend using [structured outputs](./structured-outputs.md). Like JSON mode structured outputs generate valid JSON, but with the added benefit that you can constrain the model to use a specific JSON schema.
 
 >[!NOTE]
-> Currently Structured outputs is not supported on [bring your own data](../concepts/use-your-data.md) scenario.
+> Currently Structured outputs are not supported on [bring your own data](../concepts/use-your-data.md) scenario.
 
 ## JSON mode support
 
 JSON mode is only currently supported with the following models:
-
-### Supported models
-
-* `gpt-35-turbo` (1106)
-* `gpt-35-turbo` (0125)
-* `gpt-4` (1106-Preview)
-* `gpt-4` (0125-Preview)
-* `gpt-4o`
-* `gpt-4o-mini`
 
 ### API support
 
@@ -46,12 +39,11 @@ Support for JSON mode was first added in API version [`2023-12-01-preview`](http
 
 ```python
 import os
-from openai import AzureOpenAI
+from openai import OpenAI
 
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
-  api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version="2025-03-01-preview"
+client = OpenAI(
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")
 )
 
 response = client.chat.completions.create(
@@ -83,8 +75,7 @@ because they plan to use the output for further scripting.
 ```powershell-interactive
 $openai = @{
    api_key     = $Env:AZURE_OPENAI_API_KEY
-   api_base    = $Env:AZURE_OPENAI_ENDPOINT # like the following https://YOUR_RESOURCE_NAME.openai.azure.com/
-   api_version = '2024-03-01-preview' # may change in the future
+   api_base    = 'https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/'
    name        = 'YOUR-DEPLOYMENT-NAME-HERE' # name you chose for your deployment
 }
 
@@ -111,7 +102,7 @@ $body      = @{
   messages = $messages
 } | ConvertTo-Json
 
-$url = "$($openai.api_base)/openai/deployments/$($openai.name)/chat/completions?api-version=$($openai.api_version)"
+$url = "$($openai.api_base)/chat/completions"
 
 $response = Invoke-RestMethod -Uri $url -Headers $headers -Body $body -Method Post -ContentType 'application/json'
 $response.choices[0].message.content

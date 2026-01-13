@@ -9,10 +9,11 @@ ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: how-to
-author: s-polly
-ms.author: scottpolly
-ms.reviewer: keli19
+author: lgayhardt
+ms.author: lagayhar
+ms.reviewer: sooryar
 ms.date: 11/26/2024
+ms.update-cycle: 365-days
 ---
 
 # Custom tool package creation and usage

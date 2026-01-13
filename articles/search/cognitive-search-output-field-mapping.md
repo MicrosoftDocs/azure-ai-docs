@@ -9,9 +9,10 @@ ms.custom:
   - ignite-2023
 ms.topic: how-to
 ms.date: 04/14/2025
+ms.update-cycle: 365-days
 ---
 
-# Map enriched output to fields in a search index in Azure AI Search
+# Map enriched output to fields in a search index (output field mappings)
 
 :::image type="content" source="media/cognitive-search-output-field-mapping/indexer-stages-output-field-mapping.png" alt-text="Diagram of the Indexer Stages with Output Field Mappings highlighted.":::
 
@@ -182,7 +183,7 @@ The source field path is skill output. In this example, the output is *text_vect
 ```json
 {
   "name": "test-vector-size-ss",  
-  "description": "Generate embeddings using Azure OpenAI in Azure AI Foundry Models",
+  "description": "Generate embeddings using Azure OpenAI in Foundry Models",
   "skills": [
     {
       "@odata.type": "#Microsoft.Skills.Text.AzureOpenAIEmbeddingSkill",

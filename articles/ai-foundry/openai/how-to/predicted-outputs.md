@@ -1,14 +1,15 @@
 ---
-title: 'How to use predicted outputs with Azure OpenAI in Azure AI Foundry Models'
+title: 'How to use predicted outputs with Azure OpenAI in Microsoft Foundry Models'
 titleSuffix: Azure OpenAI
 description: Learn how to improve your model response latency with predicted outputs
-services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 06/17/2025
+ms.date: 12/6/2025
 author: mrbullwinkle
 ms.author: mbullwin
+monikerRange: 'foundry-classic || foundry'
 recommendations: false
 ---
 
@@ -27,7 +28,7 @@ Predicted outputs can improve model response latency for chat completions calls 
 
 ## API support
 
-First introduced in `2025-01-01-preview`. Supported in all subsequent releases. 
+First introduced in `2025-01-01-preview`. Supported in all subsequent releases.
 
 ## Unsupported features
 
@@ -48,7 +49,7 @@ Predicted outputs is currently text-only. These features can't be used in conjun
 
 To demonstrate the basics of predicted outputs, we'll start by asking a model to refactor the code from the common programming `FizzBuzz` problem to replace the instance of `FizzBuzz` with `MSFTBuzz`. We'll pass our example code to the model in two places. First as part of a user message in the `messages` array/list, and a second time as part of the content of the new `prediction` parameter.
 
-# [Python (Microsoft Entra ID)](#tab/python-secure)
+# [Microsoft Entra ID](#tab/python-secure)
 
 You might need to upgrade your OpenAI client library to access the `prediction` parameter.
 
@@ -58,17 +59,16 @@ pip install openai --upgrade
 
 ```python
 import os
-from openai import AzureOpenAI
+from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
 )
 
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
-  azure_ad_token_provider=token_provider,
-  api_version="2025-01-01-preview"
+client = OpenAI(
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=token_provider,
 )
 
 code = """
@@ -110,7 +110,7 @@ completion = client.chat.completions.create(
 print(completion.model_dump_json(indent=2))
 ```
 
-# [Python (key-based auth)](#tab/python)
+# [API key](#tab/python)
 
 You might need to upgrade your OpenAI client library to access the `prediction` parameter.
 
@@ -120,12 +120,11 @@ pip install openai --upgrade
 
 ```python
 import os
-from openai import AzureOpenAI
+from openai import OpenAI
 
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
-  api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version="2025-01-01-preview"
+client = OpenAI(
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")
 )
 
 code = """
@@ -291,7 +290,7 @@ It's also important to understand, that using predictive outputs doesn't guarant
 
 Predicted outputs performance boost is often most obvious if you're returning your responses with streaming enabled.
 
-# [Python (Microsoft Entra ID)](#tab/python-secure)
+# [Microsoft Entra ID](#tab/python-secure)
 
 You might need to upgrade your OpenAI client library to access the `prediction` parameter.
 
@@ -301,17 +300,16 @@ pip install openai --upgrade
 
 ```python
 import os
-from openai import AzureOpenAI
+from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
 )
 
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
-  azure_ad_token_provider=token_provider,
-  api_version="2025-01-01-preview"
+client = OpenAI(
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=token_provider,
 )
 
 code = """
@@ -357,7 +355,7 @@ for chunk in completion:
 
 ```
 
-# [Python (key-based auth)](#tab/python)
+# [API Key](#tab/python)
 
 You might need to upgrade your OpenAI client library to access the `prediction` parameter.
 
@@ -367,12 +365,11 @@ pip install openai --upgrade
 
 ```python
 import os
-from openai import AzureOpenAI
+from openai import OpenAI
 
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
+client = OpenAI(
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
   api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version="2025-01-01-preview"
 )
 
 code = """

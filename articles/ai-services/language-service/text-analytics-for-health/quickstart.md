@@ -1,13 +1,13 @@
 ---
 title: "Quickstart: Use the Text Analytics for health REST API and client library"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Use this quickstart to start using Text Analytics for health.
 #services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 02/16/2025
+ms.date: 12/15/2025
 ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python
@@ -15,12 +15,12 @@ ms.custom: language-service-health, mode-api, devx-track-extended-java, devx-tra
 keywords: text mining, health, text analytics for health
 zone_pivot_groups: programming-languages-text-analytics
 ---
-
+<!-- markdownlint-disable MD025 -->
 # Quickstart: Using Text Analytics for health client library and REST API
 
-This article contains Text Analytics for health quickstarts that help with using the supported client libraries, C#, Java, NodeJS, and Python as well as with using the REST API.
+This article contains Text Analytics for health quickstarts that help with using the supported client libraries, C#, Java, NodeJS, and Python and the REST API.
 
-[!INCLUDE [Use Language Studio](../includes/use-language-studio.md)]
+[!INCLUDE [Use Microsoft Foundry](../includes/microsoft-foundry/tip-you-can-use-foundry.md)]
 ::: zone pivot="programming-language-csharp"
 
 [!INCLUDE [C# quickstart](includes/quickstarts/csharp-sdk.md)]
@@ -53,18 +53,16 @@ This article contains Text Analytics for health quickstarts that help with using
 
 ::: zone pivot="ai-foundry-portal"
 
-[!INCLUDE [Azure AI Foundry quickstart](includes/quickstarts/azure-ai-foundry.md)]
+[!INCLUDE [Microsoft Foundry quickstart](includes/quickstarts/azure-ai-foundry.md)]
 
 ::: zone-end
 
 ## Clean up resources
 
-If you want to clean up and remove an Azure AI services subscription, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it.
+To clean up and remove an Azure AI resource, you can delete either the individual resource or the entire resource group. If you delete the resource group, all resources contained within are also deleted.
 
 * [Azure portal](../../multi-service-resource.md?pivots=azportal#clean-up-resources)
 * [Azure CLI](../../multi-service-resource.md?pivots=azcli#clean-up-resources)
-
-
 
 ## Next steps
 

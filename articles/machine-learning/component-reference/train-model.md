@@ -38,7 +38,7 @@ In Azure Machine Learning, creating and using a machine learning model is typica
     
 1. Add the **Train Model** component to the pipeline.  You can find this component under the **Machine Learning** category. Expand **Train**, and then drag the **Train Model** component into your pipeline.
   
-1.  On the left input, attach the untrained mode. Attach the training dataset to the right-hand input of **Train Model**.
+1.  On the left input, attach the untrained model. Attach the training dataset to the right-hand input of **Train Model**.
 
     The training dataset must contain a label column. Any rows without labels are ignored.
   

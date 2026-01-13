@@ -1,6 +1,6 @@
 ---
 title: Use the HeadPose attribute
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to use the HeadPose attribute to automatically rotate the face rectangle in a video feed.
 author: PatrickFarley
 manager: nitinme
@@ -8,13 +8,12 @@ manager: nitinme
 
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
+ms.update-cycle: 90-days
 ms.topic: how-to
-ms.date: 01/29/2025
+ms.date: 08/21/2025
 ms.author: pafarley
 ms.devlang: csharp
-ms.custom:
-  - devx-track-csharp
-  - ignite-2023
+ms.custom: devx-track-csharp
 feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 

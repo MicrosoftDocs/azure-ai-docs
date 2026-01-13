@@ -1,11 +1,12 @@
 ---
 title: Azure OpenAI new v1 preview inference API documentation
-titleSuffix: Azure OpenAI in Azure AI Foundry Models
+titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Latest v1 preview data plane inference documentation generated from OpenAPI 3.0 spec
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: include
-ms.date: 05/23/2025
+ms.date: 08/04/2025
 ---
 
 ## Create speech
@@ -20,8 +21,8 @@ Generates text-to-speech audio from the input text.
 
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
-| endpoint | path | Yes | string url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Microsoft Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 
 ### Request Header
 
@@ -42,6 +43,7 @@ Generates text-to-speech audio from the input text.
 | model | string | The model to use for this text-to-speech request. | Yes |  |
 | response_format | object | The supported audio output formats for text-to-speech. | No |  |
 | speed | number | The speed of speech for generated audio. Values are valid in the range from 0.25 to 4.0, with 1.0 the default and higher values corresponding to faster speech. | No | 1 |
+| stream_format | enum | The format to stream the audio in. Supported formats are `sse` and `audio`. `sse` is not supported for `tts-1` or `tts-1-hd`.<br>Possible values: `sse`, `audio` | No |  |
 | voice | object |  | Yes |  |
 
 ### Responses
@@ -101,8 +103,8 @@ Transcribes audio into the input language.
 
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
-| endpoint | path | Yes | string url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 
 ### Request Header
 
@@ -125,7 +127,7 @@ Transcribes audio into the input language.
 | └─ type | enum | Must be set to `server_vad` to enable manual chunking using server side VAD.<br>Possible values: `server_vad` | No |  |
 | file | string |  | Yes |  |
 | filename | string | The optional filename or descriptive identifier to associate with with the audio data. | No |  |
-| include[] | array | Additional information to include in the transcription response. <br>`logprobs` will return the log probabilities of the tokens in the response to understand the model's confidence in the transcription. <br>`logprobs` only works with response_format set to `json` and only with the models `gpt-4o-transcribe` and `gpt-4o-mini-transcribe`. | No |  |
+| include[] | array | Additional information to include in the transcription response. `logprobs` will return the log probabilities of the tokens in the response to understand the model's confidence in the transcription. `logprobs` only works with response_format set to `json` and only with the models `gpt-4o-transcribe`, `gpt-4o-transcribe-diarize`, `gpt-4o-mini-transcribe`, and `gpt-4o-mini-transcribe-2025-12-15`. | No |  |
 | language | string | The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) (e.g. `en`) format will improve accuracy and latency. | No |  |
 | model | string | The model to use for this transcription request. | No |  |
 | prompt | string | An optional text to guide the model's style or continue a previous audio segment. The prompt should match the audio language. | No |  |
@@ -165,7 +167,7 @@ POST {endpoint}/openai/v1/audio/transcriptions?api-version=preview
 {
  "file": "<binary audio data>",
  "model": "whisper-1",
- "response_format": "verbose_json"
+ "response_format": "text"
 }
 
 ```
@@ -175,18 +177,73 @@ Status Code: 200
 
 ```json
 {
-  "body": {
-    "text": "A structured object when requesting json or verbose_json"
-  }
+  "body": "plain text when requesting text, srt, or vtt"
 }
 ```
 
-### Example
-
-Gets transcribed text and associated metadata from provided spoken audio data.
+## Create translation
 
 ```HTTP
-POST {endpoint}/openai/v1/audio/transcriptions?api-version=preview
+POST {endpoint}/openai/v1/audio/translations?api-version=preview
+```
+
+Gets English language transcribed text and associated metadata from provided spoken audio data.
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+### Request Body
+
+**Content-Type**: multipart/form-data
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| file | string |  | Yes |  |
+| filename | string | The optional filename or descriptive identifier to associate with with the audio data | No |  |
+| model | string | The model to use for this translation request. | No |  |
+| prompt | string | An optional text to guide the model's style or continue a previous audio segment. The prompt should be in English. | No |  |
+| response_format | object |  | No |  |
+| temperature | number | The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. | No | 0 |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureAudioTranslationResponse](#azureaudiotranslationresponse) | |
+|text/plain | string | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+### Examples
+
+### Example
+
+Gets English language transcribed text and associated metadata from provided spoken audio data.
+
+```HTTP
+POST {endpoint}/openai/v1/audio/translations?api-version=preview
 
 {
  "file": "<binary audio data>",
@@ -217,8 +274,8 @@ Creates a chat completion.
 
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
-| endpoint | path | Yes | string url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 
 ### Request Header
 
@@ -235,18 +292,18 @@ Creates a chat completion.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | audio | object | Parameters for audio output. Required when audio output is requested with `modalities: ["audio"]`. | No |  |
-| └─ format | enum | Specifies the output audio format. Must be one of `wav`, `mp3`, `flac`, `opus`, or `pcm16`.<br>Possible values: `wav`, `aac`, `mp3`, `flac`, `opus`, `pcm16` | No |  |
+| └─ format | enum | Specifies the output audio format. Must be one of `wav`, `mp3`, `flac`,`opus`, or `pcm16`.<br>Possible values: `wav`, `aac`, `mp3`, `flac`, `opus`, `pcm16` | No |  |
 | └─ voice | object |  | No |  |
 | data_sources | array | The data sources to use for the On Your Data feature, exclusive to Azure OpenAI. | No |  |
 | frequency_penalty | number | Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim. | No | 0 |
 | function_call | enum | Specifying a particular function via `{"name": "my_function"}` forces the model to call that function.<br>Possible values: `none`, `auto` | No |  |
-| functions | array | Deprecated in favor of `tools`.<br><br>A list of functions the model may generate JSON inputs for. | No |  |
-| logit_bias | object | Modify the likelihood of specified tokens appearing in the completion.<br><br>Accepts a JSON object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling.<br>The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token. | No | None |
+| functions | array | Deprecated in favor of `tools`.<br>A list of functions the model may generate JSON inputs for. | No |  |
+| logit_bias | object | Modify the likelihood of specified tokens appearing in the completion. Accepts a JSON object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token. | No | None |
 | logprobs | boolean | Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`. | No | False |
 | max_completion_tokens | integer | An upper bound for the number of tokens that can be generated for a completion, including visible output tokens and reasoning tokens. | No |  |
-| max_tokens | integer | The maximum number of tokens that can be generated in the chat completion.<br>This value can be used to control costs for text generated via API.<br><br>This value is now deprecated in favor of `max_completion_tokens`, and is not compatible with o1 series models. | No |  |
+| max_tokens | integer | The maximum number of tokens that can be generated in the chat completion.<br>This value can be used to control costs for text generated via API.<br>This value is now deprecated in favor of `max_completion_tokens`, and is not compatible with o1 series models. | No |  |
 | messages | array | A list of messages comprising the conversation so far. Depending on the model you use, different message types (modalities) are supported, like text, images, and audio. | Yes |  |
-| metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | No |  |
+| metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard. <br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | No |  |
 | modalities | object | Output types that you would like the model to generate.<br>Most models are capable of generating text, which is the default:<br><br>`["text"]`<br><br>The `gpt-4o-audio-preview` model can also be used to generate audio. To request that this model generate both text and audio responses, you can use:<br><br>`["text", "audio"]` | No |  |
 | model | string | The model deployment identifier to use for the chat completion request. | Yes |  |
 | n | integer | How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep `n` as `1` to minimize costs. | No | 1 |
@@ -254,19 +311,19 @@ Creates a chat completion.
 | prediction | object | Base representation of predicted output from a model. | No |  |
 | └─ type | [OpenAI.ChatOutputPredictionType](#openaichatoutputpredictiontype) |  | No |  |
 | presence_penalty | number | Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics. | No | 0 |
-| reasoning_effort | object | **o-series models only** <br><br>Constrains effort on reasoning for reasoning models. Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. | No |  |
+| reasoning_effort | object | **o-series models only**<br><br>Constrains effort on reasoning for reasoning models.<br>Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. | No |  |
 | response_format | object |  | No |  |
 | └─ type | enum | <br>Possible values: `text`, `json_object`, `json_schema` | No |  |
 | seed | integer | This feature is in Beta.<br>If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result.<br>Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend. | No |  |
 | stop | object | Not supported with latest reasoning models `o3` and `o4-mini`.<br><br>Up to 4 sequences where the API will stop generating further tokens. The returned text will not contain the stop sequence. | No |  |
-| store | boolean | Whether or not to store the output of this chat completion request for use in model distillation or evals products. | No | False |
+| store | boolean | Whether or not to store the output of this chat completion request for use in model distillation or evaluation products. | No | False |
 | stream | boolean | If set to true, the model response data will be streamed to the client as it is generated using server-sent events. | No | False |
 | stream_options | object | Options for streaming response. Only set this when you set `stream: true`. | No |  |
-| └─ include_usage | boolean | If set, an additional chunk will be streamed before the `data: [DONE]` message. The `usage` field on this chunk shows the token usage statistics for the entire request, and the `choices` field will always be an empty array. <br><br>All other chunks will also include a `usage` field, but with a null value. **NOTE:** If the stream is interrupted, you may not receive the final usage chunk which contains the total token usage for the request. | No |  |
+| └─ include_usage | boolean | If set, an additional chunk will be streamed before the `data: [DONE]` message. The `usage` field on this chunk shows the token usage statistics for the entire request, and the `choices` field will always be an empty array.<br><br>All other chunks will also include a `usage` field, but with a null value. **NOTE:** If the stream is interrupted, you may not receive the final usage chunk which contains the total token usage for the request. | No |  |
 | temperature | number | What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.<br>We generally recommend altering this or `top_p` but not both. | No | 1 |
 | tool_choice | [OpenAI.ChatCompletionToolChoiceOption](#openaichatcompletiontoolchoiceoption) | Controls which (if any) tool is called by the model.<br>`none` means the model will not call any tool and instead generates a message.<br>`auto` means the model can pick between generating a message or calling one or more tools.<br>`required` means the model must call one or more tools.<br>Specifying a particular tool via `{"type": "function", "function": {"name": "my_function"}}` forces the model to call that tool.<br><br>`none` is the default when no tools are present. `auto` is the default if tools are present. | No |  |
 | tools | array | A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for. A max of 128 functions are supported. | No |  |
-| top_logprobs | integer | An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability.<br>`logprobs` must be set to `true` if this parameter is used. | No |  |
+| top_logprobs | integer | An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. | No |  |
 | top_p | number | An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.<br><br>We generally recommend altering this or `temperature` but not both. | No | 1 |
 | user | string | A unique identifier representing your end-user, which can help to monitor and detect abuse. | No |  |
 | user_security_context | [AzureUserSecurityContext](#azureusersecuritycontext) | User security context contains several parameters that describe the application itself, and the end user that interacts with the application. These fields assist your security operations teams to investigate and mitigate security incidents by providing a comprehensive approach to protecting your AI applications. [Learn more](https://aka.ms/TP4AI/Documentation/EndUserContext) about protecting AI applications using Microsoft Defender for Cloud. | No |  |
@@ -342,119 +399,6 @@ Status Code: 200
 }
 ```
 
-## Create completion
-
-```HTTP
-POST {endpoint}/openai/v1/completions?api-version=preview
-```
-
-
-Creates a completion.
-### URI Parameters
-
-| Name | In | Required | Type | Description |
-|------|------|----------|------|-----------|
-| endpoint | path | Yes | string url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
-
-### Request Header
-
-**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
-
-| Name | Required | Type | Description |
-| --- | --- | --- | --- |
-| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
-| api-key | True | string | Provide Azure OpenAI API key here |
-### Request Body
-
-**Content-Type**: application/json
-
-| Name | Type | Description | Required | Default |
-|------|------|-------------|----------|---------|
-| best_of | integer | Generates `best_of` completions server-side and returns the "best" (the one with the highest log probability per token). Results cannot be streamed.<br><br>When used with `n`, `best_of` controls the number of candidate completions and `n` specifies how many to return `best_of` must be greater than `n`.<br><br>**Note:** Because this parameter generates many completions, it can quickly consume your token quota. Use carefully and ensure that you have reasonable settings for `max_tokens` and `stop`. | No | 1 |
-| echo | boolean | Echo back the prompt in addition to the completion | No | False |
-| frequency_penalty | number | Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.| No | 0 |
-| logit_bias | object | Modify the likelihood of specified tokens appearing in the completion.<br><br>Accepts a JSON object that maps tokens (specified by their token ID in the GPT tokenizer) to an associated bias value from -100 to 100.  Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token.<br><br>As an example, you can pass `{"50256": -100}` to prevent the <&#124;endoftext&#124;> token from being generated. | No | None |
-| logprobs | integer | Include the log probabilities on the `logprobs` most likely output tokens, as well the chosen tokens. For example, if `logprobs` is 5, the API will return a list of the 5 most likely tokens. The API will always return the `logprob` of the sampled token, so there may be up to `logprobs+1` elements in the response.<br><br>The maximum value for `logprobs` is 5. | No | None |
-| max_tokens | integer | The maximum number of tokens that can be generated in the completion.<br><br>The token count of your prompt plus `max_tokens` cannot exceed the model's context length. | No | 16 |
-| model | string | The model to use for the text completion request. | Yes |  |
-| n | integer | How many completions to generate for each prompt.<br><br>**Note:** Because this parameter generates many completions, it can quickly consume your token quota. Use carefully and ensure that you have reasonable settings for `max_tokens` and `stop`. | No | 1 |
-| presence_penalty | number | Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics. | No | 0 |
-| prompt | string or array | The prompt(s) to generate completions for, encoded as a string, array of strings, array of tokens, or array of token arrays.<br>Note that <&#124;endoftext&#124;> is the document separator that the model sees during training, so if a prompt is not specified the model will generate as if from the beginning of a new document. | No |  |
-| seed | integer | If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result.<br><br>Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend. | No |  |
-| stop | object | Not supported with latest reasoning models `o3` and `o4-mini`.<br><br>Up to 4 sequences where the API will stop generating further tokens. The returned text will not contain the stop sequence. | No |  |
-| stream | boolean | Whether to stream back partial progress. If set, tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message.  | No | False |
-| stream_options | object | Options for streaming response. Only set this when you set `stream: true`. | No |  |
-| └─ include_usage | boolean | If set, an additional chunk will be streamed before the `data: [DONE]` message. The `usage` field on this chunk shows the token usage statistics for the entire request, and the `choices` field will always be an empty array. <br><br>All other chunks will also include a `usage` field, but with a null value. **NOTE:** If the stream is interrupted, you may not receive the final usage chunk which contains the total token usage for the request. | No |  |
-| suffix | string | The suffix that comes after a completion of inserted text.<br><br>This parameter is only supported for `gpt-3.5-turbo-instruct`. | No | None |
-| temperature | number | What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.<br><br>We generally recommend altering this or `top_p` but not both. | No | 1 |
-| top_p | number | An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.<br><br>We generally recommend altering this or `temperature` but not both. | No | 1 |
-| user | string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.  | No |  |
-
-### Responses
-
-**Status Code:** 200
-
-**Description**: The request has succeeded. 
-
-|**Content-Type**|**Type**|**Description**|
-|:---|:---|:---|
-|application/json | [AzureCreateCompletionResponse](#azurecreatecompletionresponse) | |
-
-**Status Code:** default
-
-**Description**: An unexpected error response. 
-
-|**Content-Type**|**Type**|**Description**|
-|:---|:---|:---|
-|application/json | [AzureErrorResponse](#azureerrorresponse) | |
-
-### Examples
-
-### Example
-
-Creates a completion for the provided prompt, parameters and chosen model.
-
-```HTTP
-POST {endpoint}/openai/v1/completions?api-version=preview
-
-{
- "model": "gpt-4o-mini",
- "prompt": [
-  "tell me a joke about mango"
- ],
- "max_tokens": 32,
- "temperature": 1.0,
- "n": 1
-}
-
-```
-
-**Responses**:
-Status Code: 200
-
-```json
-{
-  "body": {
-    "id": "cmpl-7QmVI15qgYVllxK0FtxVGG6ywfzaq",
-    "created": 1686617332,
-    "choices": [
-      {
-        "text": "es\n\nWhat do you call a mango who's in charge?\n\nThe head mango.",
-        "index": 0,
-        "finish_reason": "stop",
-        "logprobs": null
-      }
-    ],
-    "usage": {
-      "completion_tokens": 20,
-      "prompt_tokens": 6,
-      "total_tokens": 26
-    }
-  }
-}
-```
-
 ## Create embedding
 
 ```HTTP
@@ -467,8 +411,8 @@ Creates an embedding vector representing the input text.
 
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
-| endpoint | path | Yes | string url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 
 ### Request Header
 
@@ -634,21 +578,25 @@ Status Code: 200
 }
 ```
 
-## Image generations - Edit
+## List evals
 
 ```HTTP
-POST https://{endpoint}/openai/deployments/{deployment-id}/images/edits?api-version=2025-04-01-preview
+GET {endpoint}/openai/v1/evals?api-version=preview
 ```
 
-Edits an image from a text caption on a given gpt-image-1 model deployment
+List evaluations for a project.
 
 ### URI Parameters
 
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
-| endpoint | path | Yes | string url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| deployment-id | path | Yes | string |  |
-| api-version | query | Yes | string |  |
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| aoai-evals | header | Yes | string<br>Possible values: `preview` | Enables access to AOAI Evals, a preview feature.<br>This feature requires the 'aoai-evals' header to be set to 'preview'. |
+| after | query | No | string | Identifier for the last eval from the previous pagination request. |
+| limit | query | No | integer | A limit on the number of evals to be returned in a single pagination response. |
+| order | query | No | string<br>Possible values: `asc`, `desc` | Sort order for evals by timestamp. Use `asc` for ascending order or `desc` for descending order. |
+| order_by | query | No | string<br>Possible values: `created_at`, `updated_at` | Evals can be ordered by creation time or last updated time. Use `created_at` for creation time or `updated_at` for last updated time. |
 
 ### Request Header
 
@@ -658,55 +606,49 @@ Edits an image from a text caption on a given gpt-image-1 model deployment
 | --- | --- | --- | --- |
 | Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
 | api-key | True | string | Provide Azure OpenAI API key here |
-### Request Body
-
-**Content-Type**: multipart/form-data
-
-| Name | Type | Description | Required | Default |
-|------|------|-------------|----------|---------|
-| image | string or array | The image(s) to edit. Must be a supported image file or an array of images. Each image should be a png, or jpg file less than 25MB. | Yes |  |
-| mask | string | An additional image whose fully transparent areas (e.g., where alpha is zero) indicate where the image should be edited. If there are multiple images provided, the mask will be applied to the first image. Must be a valid PNG file, less than 4MB, and have the same dimensions as the image. | No |  |
-| n | integer | The number of images to generate. | No | 1 |
-| prompt | string | A text description of the desired image(s). The maximum length is 32000 characters. | Yes |  |
-| quality | enum | The quality of the image that will be generated. `high`, `medium` and `low` are only supported for `gpt-image-1`. `dall-e-2` only supports `standard` quality. Defaults to `auto`.<br>Possible values: `standard`, `low`, `medium`, `high`, `auto` | No |  |
-| response_format | enum | The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. This parameter is only supported for `dall-e-2`, as `gpt-image-1` will always return base64-encoded images.<br>Possible values: `url`, `b64_json` | No |  |
-| size | enum | The size of the generated images. Must be one of `1024x1024`, `1536x1024` (landscape), `1024x1536` (portrait), or `auto` (default value) for `gpt-image-1`, and one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`.<br>Possible values: `256x256`, `512x512`, `1024x1024`, `1536x1024`, `1024x1536`, `auto` | No |  |
-| user | string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.  | No |  |
-
 
 ### Responses
 
 **Status Code:** 200
 
-**Description**: Ok 
+**Description**: The request has succeeded. 
 
 |**Content-Type**|**Type**|**Description**|
 |:---|:---|:---|
-|application/json | [AzureImagesResponse](#azureimagesresponse) | |
+|application/json | [OpenAI.EvalList](#openaievallist) | |
 
 **Status Code:** default
 
-**Description**: An error occurred. 
+**Description**: An unexpected error response. 
 
 |**Content-Type**|**Type**|**Description**|
 |:---|:---|:---|
-|application/json | [azureerrorresponse](#azureerrorresponse) | |
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
 
-
-## Create image
+## Createeval
 
 ```HTTP
-POST {endpoint}/openai/v1/images/generations?api-version=preview
+POST {endpoint}/openai/v1/evals?api-version=preview
 ```
 
 
+Create the structure of an evaluation that can be used to test a model's
+performance.
 
+An evaluation is a set of testing criteria and a datasource. After
+creating an evaluation, you can run it on different models and model
+parameters. We support several types of graders and datasources.
+
+
+
+NOTE: This Azure OpenAI API is in preview and subject to change.
 ### URI Parameters
 
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
-| endpoint | path | Yes | string url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| aoai-evals | header | Yes | string<br>Possible values: `preview` | Enables access to AOAI Evals, a preview feature.<br>This feature requires the 'aoai-evals' header to be set to 'preview'. |
 
 ### Request Header
 
@@ -722,16 +664,1356 @@ POST {endpoint}/openai/v1/images/generations?api-version=preview
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| background | enum | Allows to set transparency for the background of the generated image(s). <br>This parameter is only supported for `gpt-image-1`. Must be one of `transparent`, `opaque` or `auto` (default value). When `auto` is used, the model will automatically determine the best background for the image.<br><br>If `transparent`, the output format needs to support transparency, so it should be set to either `png` (default value) or `webp`.<br>Possible values: `transparent`, `opaque`, `auto` | No |  |
+| data_source_config | object |  | Yes |  |
+| └─ type | [OpenAI.EvalDataSourceConfigType](#openaievaldatasourceconfigtype) |  | No |  |
+| metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | No |  |
+| name | string | The name of the evaluation. | No |  |
+| statusCode | enum | <br>Possible values: `201` | Yes |  |
+| testing_criteria | array | A list of graders for all eval runs in this group. Graders can reference variables in the data source using double curly braces notation, like `{{item.variable_name}}`. To reference the model's output, use the `sample` namespace (ie, `{{sample.output_text}}`). | Yes |  |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [OpenAI.Eval](#openaieval) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+## Get eval
+
+```HTTP
+GET {endpoint}/openai/v1/evals/{eval_id}?api-version=preview
+```
+
+Retrieve an evaluation by its ID.
+Retrieves an evaluation by its ID.
+
+NOTE: This Azure OpenAI API is in preview and subject to change.
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| aoai-evals | header | Yes | string<br>Possible values: `preview` | Enables access to AOAI Evals, a preview feature.<br>This feature requires the 'aoai-evals' header to be set to 'preview'. |
+| eval_id | path | Yes | string |  |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [OpenAI.Eval](#openaieval) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+## Update eval
+
+```HTTP
+POST {endpoint}/openai/v1/evals/{eval_id}?api-version=preview
+```
+
+
+Update select, mutable properties of a specified evaluation.
+
+NOTE: This Azure OpenAI API is in preview and subject to change.
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| aoai-evals | header | Yes | string<br>Possible values: `preview` | Enables access to AOAI Evals, a preview feature.<br>This feature requires the 'aoai-evals' header to be set to 'preview'. |
+| eval_id | path | Yes | string |  |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+### Request Body
+
+**Content-Type**: application/json
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| metadata | [OpenAI.MetadataPropertyForRequest](#openaimetadatapropertyforrequest) | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | No |  |
+| name | string |  | No |  |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [OpenAI.Eval](#openaieval) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+## Delete eval
+
+```HTTP
+DELETE {endpoint}/openai/v1/evals/{eval_id}?api-version=preview
+```
+
+
+Delete a specified evaluation.
+
+NOTE: This Azure OpenAI API is in preview and subject to change.
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| aoai-evals | header | Yes | string<br>Possible values: `preview` | Enables access to AOAI Evals, a preview feature.<br>This feature requires the 'aoai-evals' header to be set to 'preview'. |
+| eval_id | path | Yes | string |  |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | object | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+## Get eval runs
+
+```HTTP
+GET {endpoint}/openai/v1/evals/{eval_id}/runs?api-version=preview
+```
+
+
+Retrieve a list of runs for a specified evaluation.
+
+NOTE: This Azure OpenAI API is in preview and subject to change.
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| aoai-evals | header | Yes | string<br>Possible values: `preview` | Enables access to AOAI Evals, a preview feature.<br>This feature requires the 'aoai-evals' header to be set to 'preview'. |
+| eval_id | path | Yes | string |  |
+| after | query | No | string |  |
+| limit | query | No | integer |  |
+| order | query | No | string<br>Possible values: `asc`, `desc` |  |
+| status | query | No | string<br>Possible values: `queued`, `in_progress`, `completed`, `canceled`, `failed` |  |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [OpenAI.EvalRunList](#openaievalrunlist) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+## Create eval run
+
+```HTTP
+POST {endpoint}/openai/v1/evals/{eval_id}/runs?api-version=preview
+```
+
+
+Create a new evaluation run, beginning the grading process.
+
+NOTE: This Azure OpenAI API is in preview and subject to change.
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| aoai-evals | header | Yes | string<br>Possible values: `preview` | Enables access to AOAI Evals, a preview feature.<br>This feature requires the 'aoai-evals' header to be set to 'preview'. |
+| eval_id | path | Yes | string |  |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+### Request Body
+
+**Content-Type**: application/json
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| data_source | object |  | Yes |  |
+| └─ type | [OpenAI.EvalRunDataSourceType](#openaievalrundatasourcetype) |  | No |  |
+| metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | No |  |
+| name | string | The name of the run. | No |  |
+
+### Responses
+
+**Status Code:** 201
+
+**Description**: The request has succeeded and a new resource has been created as a result. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [OpenAI.EvalRun](#openaievalrun) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+## Get eval run
+
+```HTTP
+GET {endpoint}/openai/v1/evals/{eval_id}/runs/{run_id}?api-version=preview
+```
+
+
+Retrieve a specific evaluation run by its ID.
+
+NOTE: This Azure OpenAI API is in preview and subject to change.
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| aoai-evals | header | Yes | string<br>Possible values: `preview` | Enables access to AOAI Evals, a preview feature.<br>This feature requires the 'aoai-evals' header to be set to 'preview'. |
+| eval_id | path | Yes | string |  |
+| run_id | path | Yes | string |  |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [OpenAI.EvalRun](#openaievalrun) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+## Cancel eval run
+
+```HTTP
+POST {endpoint}/openai/v1/evals/{eval_id}/runs/{run_id}?api-version=preview
+```
+
+
+Cancel a specific evaluation run by its ID.
+
+NOTE: This Azure OpenAI API is in preview and subject to change.
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| aoai-evals | header | Yes | string<br>Possible values: `preview` | Enables access to AOAI Evals, a preview feature.<br>This feature requires the 'aoai-evals' header to be set to 'preview'. |
+| eval_id | path | Yes | string |  |
+| run_id | path | Yes | string |  |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [OpenAI.EvalRun](#openaievalrun) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+## Deleteevalrun
+
+```HTTP
+DELETE {endpoint}/openai/v1/evals/{eval_id}/runs/{run_id}?api-version=preview
+```
+
+
+Delete a specific evaluation run by its ID.
+
+NOTE: This Azure OpenAI API is in preview and subject to change.
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| aoai-evals | header | Yes | string<br>Possible values: `preview` | Enables access to AOAI Evals, a preview feature.<br>This feature requires the 'aoai-evals' header to be set to 'preview'. |
+| eval_id | path | Yes | string |  |
+| run_id | path | Yes | string |  |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | object | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+## Get eval run output items
+
+```HTTP
+GET {endpoint}/openai/v1/evals/{eval_id}/runs/{run_id}/output_items?api-version=preview
+```
+
+
+Get a list of output items for a specified evaluation run.
+
+NOTE: This Azure OpenAI API is in preview and subject to change.
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| aoai-evals | header | Yes | string<br>Possible values: `preview` | Enables access to AOAI Evals, a preview feature.<br>This feature requires the 'aoai-evals' header to be set to 'preview'. |
+| eval_id | path | Yes | string |  |
+| run_id | path | Yes | string |  |
+| after | query | No | string |  |
+| limit | query | No | integer |  |
+| status | query | No | string<br>Possible values: `fail`, `pass` |  |
+| order | query | No | string<br>Possible values: `asc`, `desc` |  |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [OpenAI.EvalRunOutputItemList](#openaievalrunoutputitemlist) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+## Get eval run output item
+
+```HTTP
+GET {endpoint}/openai/v1/evals/{eval_id}/runs/{run_id}/output_items/{output_item_id}?api-version=preview
+```
+
+
+Retrieve a specific output item from an evaluation run by its ID.
+
+NOTE: This Azure OpenAI API is in preview and subject to change.
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| aoai-evals | header | Yes | string<br>Possible values: `preview` | Enables access to AOAI Evals, a preview feature.<br>This feature requires the 'aoai-evals' header to be set to 'preview'. |
+| eval_id | path | Yes | string |  |
+| run_id | path | Yes | string |  |
+| output_item_id | path | Yes | string |  |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [OpenAI.EvalRunOutputItem](#openaievalrunoutputitem) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+## Create file
+
+```HTTP
+POST {endpoint}/openai/v1/files?api-version=preview
+```
+
+
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+### Request Body
+
+**Content-Type**: multipart/form-data
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| expires_after | object |  | Yes |  |
+| └─ anchor | [AzureFileExpiryAnchor](#azurefileexpiryanchor) |  | No |  |
+| └─ seconds | integer |  | No |  |
+| file | string |  | Yes |  |
+| purpose | enum | The intended purpose of the uploaded file. One of: - `assistants`: Used in the Assistants API - `batch`: Used in the Batch API - `fine-tune`: Used for fine-tuning - `evals`: Used for eval data sets<br>Possible values: `assistants`, `batch`, `fine-tune`, `evals` | Yes |  |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureOpenAIFile](#azureopenaifile) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+### Examples
+
+### Example
+
+
+
+```HTTP
+POST {endpoint}/openai/v1/files?api-version=preview
+
+```
+
+## List files
+
+```HTTP
+GET {endpoint}/openai/v1/files?api-version=preview
+```
+
+
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| purpose | query | No | string |  |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureListFilesResponse](#azurelistfilesresponse) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+## Retrieve file
+
+```HTTP
+GET {endpoint}/openai/v1/files/{file_id}?api-version=preview
+```
+
+
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| file_id | path | Yes | string | The ID of the file to use for this request. |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureOpenAIFile](#azureopenaifile) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+## Delete file
+
+```HTTP
+DELETE {endpoint}/openai/v1/files/{file_id}?api-version=preview
+```
+
+
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| file_id | path | Yes | string | The ID of the file to use for this request. |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [OpenAI.DeleteFileResponse](#openaideletefileresponse) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+## Download file
+
+```HTTP
+GET {endpoint}/openai/v1/files/{file_id}/content?api-version=preview
+```
+
+
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| file_id | path | Yes | string | The ID of the file to use for this request. |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/octet-stream | string | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+## Rungrader
+
+```HTTP
+POST {endpoint}/openai/v1/fine_tuning/alpha/graders/run?api-version=preview
+```
+
+Run a grader.
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+### Request Body
+
+**Content-Type**: application/json
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| grader | object | A StringCheckGrader object that performs a string comparison between input and reference using a specified operation. | Yes |  |
+| └─ calculate_output | string | A formula to calculate the output based on grader results. | No |  |
+| └─ evaluation_metric | enum | The evaluation metric to use. One of `fuzzy_match`, `bleu`, `gleu`, `meteor`, `rouge_1`, `rouge_2`, `rouge_3`, `rouge_4`, `rouge_5`, or `rouge_l`.<br>Possible values: `fuzzy_match`, `bleu`, `gleu`, `meteor`, `rouge_1`, `rouge_2`, `rouge_3`, `rouge_4`, `rouge_5`, `rouge_l` | No |  |
+| └─ graders | object |  | No |  |
+| └─ image_tag | string | The image tag to use for the python script. | No |  |
+| └─ input | array | The input text. This may include template strings. | No |  |
+| └─ model | string | The model to use for the evaluation. | No |  |
+| └─ name | string | The name of the grader. | No |  |
+| └─ operation | enum | The string check operation to perform. One of `eq`, `ne`, `like`, or `ilike`.<br>Possible values: `eq`, `ne`, `like`, `ilike` | No |  |
+| └─ range | array | The range of the score. Defaults to `[0, 1]`. | No |  |
+| └─ reference | string | The text being graded against. | No |  |
+| └─ sampling_params |  | The sampling parameters for the model. | No |  |
+| └─ source | string | The source code of the python script. | No |  |
+| └─ type | enum | The object type, which is always `multi`.<br>Possible values: `multi` | No |  |
+| item |  | The dataset item provided to the grader. This will be used to populate the `item` namespace.  | No |  |
+| model_sample | string | The model sample to be evaluated. This value will be used to populate the `sample` namespace. <br>The `output_json` variable will be populated if the model sample is a valid JSON string. | Yes |  |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [OpenAI.RunGraderResponse](#openairungraderresponse) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+## Validate grader
+
+```HTTP
+POST {endpoint}/openai/v1/fine_tuning/alpha/graders/validate?api-version=preview
+```
+
+Validate a grader.
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+### Request Body
+
+**Content-Type**: application/json
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| grader | object | A StringCheckGrader object that performs a string comparison between input and reference using a specified operation. | Yes |  |
+| └─ calculate_output | string | A formula to calculate the output based on grader results. | No |  |
+| └─ evaluation_metric | enum | The evaluation metric to use. One of `fuzzy_match`, `bleu`, `gleu`, `meteor`, `rouge_1`, `rouge_2`, `rouge_3`, `rouge_4`, `rouge_5`, or `rouge_l`.<br>Possible values: `fuzzy_match`, `bleu`, `gleu`, `meteor`, `rouge_1`, `rouge_2`, `rouge_3`, `rouge_4`, `rouge_5`, `rouge_l` | No |  |
+| └─ graders | object |  | No |  |
+| └─ image_tag | string | The image tag to use for the python script. | No |  |
+| └─ input | array | The input text. This may include template strings. | No |  |
+| └─ model | string | The model to use for the evaluation. | No |  |
+| └─ name | string | The name of the grader. | No |  |
+| └─ operation | enum | The string check operation to perform. One of `eq`, `ne`, `like`, or `ilike`.<br>Possible values: `eq`, `ne`, `like`, `ilike` | No |  |
+| └─ range | array | The range of the score. Defaults to `[0, 1]`. | No |  |
+| └─ reference | string | The text being graded against. | No |  |
+| └─ sampling_params |  | The sampling parameters for the model. | No |  |
+| └─ source | string | The source code of the python script. | No |  |
+| └─ type | enum | The object type, which is always `multi`.<br>Possible values: `multi` | No |  |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [OpenAI.ValidateGraderResponse](#openaivalidategraderresponse) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+## Create fine-tuning job
+
+```HTTP
+POST {endpoint}/openai/v1/fine_tuning/jobs?api-version=preview
+```
+
+Creates a fine-tuning job which begins the process of creating a new model from a given dataset.
+
+Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.
+
+
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+### Request Body
+
+**Content-Type**: application/json
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| hyperparameters | object | The hyperparameters used for the fine-tuning job.<br>This value is now deprecated in favor of `method`, and should be passed in under the `method` parameter. | No |  |
+| └─ batch_size | enum | <br>Possible values: `auto` | No |  |
+| └─ learning_rate_multiplier | enum | <br>Possible values: `auto` | No |  |
+| └─ n_epochs | enum | <br>Possible values: `auto` | No |  |
+| integrations | array | A list of integrations to enable for your fine-tuning job. | No |  |
+| metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | No |  |
+| method | [OpenAI.FineTuneMethod](#openaifinetunemethod) | The method used for fine-tuning. | No |  |
+| model | string (see valid models below) | The name of the model to fine-tune.  | Yes |  |
+| seed | integer | The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases.<br>If a seed is not specified, one will be generated for you. | No |  |
+| suffix | string | A string of up to 64 characters that will be added to your fine-tuned model name.<br><br>For example, a `suffix` of "custom-model-name" would produce a model name like `ft:gpt-4o-mini:openai:custom-model-name:7p4lURel`. | No | None |
+| training_file | string | The ID of an uploaded file that contains training data.Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose `fine-tune`.<br><br>The contents of the file should differ depending on if the model uses the chat, completions format, or if the fine-tuning method uses the preference format. | Yes |  |
+| validation_file | string | The ID of an uploaded file that contains validation data.<br><br>If you provide this file, the data is used to generate validation metrics periodically during fine-tuning. These metrics can be viewed in the fine-tuning results file.<br>The same data should not be present in both train and validation files.<br><br>Your dataset must be formatted as a JSONL file. You must upload your file with the purpose `fine-tune`. | No |  |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [OpenAI.FineTuningJob](#openaifinetuningjob) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+## List paginated fine-tuning jobs
+
+```HTTP
+GET {endpoint}/openai/v1/fine_tuning/jobs?api-version=preview
+```
+
+List your organization's fine-tuning jobs
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| after | query | No | string | Identifier for the last job from the previous pagination request. |
+| limit | query | No | integer | Number of fine-tuning jobs to retrieve. |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [OpenAI.ListPaginatedFineTuningJobsResponse](#openailistpaginatedfinetuningjobsresponse) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+## Retrieve fine-tuning job
+
+```HTTP
+GET {endpoint}/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}?api-version=preview
+```
+
+Get info about a fine-tuning job.
+
+
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| fine_tuning_job_id | path | Yes | string | The ID of the fine-tuning job. |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [OpenAI.FineTuningJob](#openaifinetuningjob) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+## Cancel fine-tuning job
+
+```HTTP
+POST {endpoint}/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/cancel?api-version=preview
+```
+
+Immediately cancel a fine-tune job.
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| fine_tuning_job_id | path | Yes | string | The ID of the fine-tuning job to cancel. |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [OpenAI.FineTuningJob](#openaifinetuningjob) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+## List fine-tuning job checkpoints
+
+```HTTP
+GET {endpoint}/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints?api-version=preview
+```
+
+List the checkpoints for a fine-tuning job.
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| fine_tuning_job_id | path | Yes | string | The ID of the fine-tuning job to get checkpoints for. |
+| after | query | No | string | Identifier for the last checkpoint ID from the previous pagination request. |
+| limit | query | No | integer | Number of checkpoints to retrieve. |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [OpenAI.ListFineTuningJobCheckpointsResponse](#openailistfinetuningjobcheckpointsresponse) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+## List fine-tuning events
+
+```HTTP
+GET {endpoint}/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/events?api-version=preview
+```
+
+Get status updates for a fine-tuning job.
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| fine_tuning_job_id | path | Yes | string | The ID of the fine-tuning job to get events for. |
+| after | query | No | string | Identifier for the last event from the previous pagination request. |
+| limit | query | No | integer | Number of events to retrieve. |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [OpenAI.ListFineTuningJobEventsResponse](#openailistfinetuningjobeventsresponse) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+## Pause fine-tuning job
+
+```HTTP
+POST {endpoint}/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/pause?api-version=preview
+```
+
+Pause a fine-tune job.
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| fine_tuning_job_id | path | Yes | string | The ID of the fine-tuning job to pause. |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [OpenAI.FineTuningJob](#openaifinetuningjob) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+## Resume fine-tuning job
+
+```HTTP
+POST {endpoint}/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/resume?api-version=preview
+```
+
+Resume a paused fine-tune job.
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| fine_tuning_job_id | path | Yes | string | The ID of the fine-tuning job to resume. |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [OpenAI.FineTuningJob](#openaifinetuningjob) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+## Create image edit
+
+```HTTP
+POST {endpoint}/openai/v1/images/edits?api-version=preview
+```
+
+
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+### Request Body
+
+**Content-Type**: multipart/form-data
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| background | enum | Allows to set transparency for the background of the generated image(s).<br>This parameter is only supported for `gpt-image-1`-series models. Must be one of `transparent`, `opaque` or `auto` (default value). When `auto` is used, the model will automatically determine the best background for the image.<br><br>If `transparent`, the output format needs to support transparency, so it should be set to either `png` (default value) or `webp`.<br>Possible values: `transparent`, `opaque`, `auto` | No |  |
+| image | string or array |  | Yes |  |
+| mask | string |  | No |  |
+| model | string | The model deployment to use for the image edit operation. | Yes |  |
+| n | integer | The number of images to generate. Must be between 1 and 10. | No | 1 |
+| output_compression | integer | The compression level (0-100%) for the generated images. This parameter is only supported for `gpt-image-1`-series models with the `webp` or `jpeg` output formats, and defaults to 100. | No | 100 |
+| output_format | enum | The format in which the generated images are returned. This parameter is only supported for `gpt-image-1`-series models. Must be one of `png`, `jpeg`, or `webp`.<br>The default value is `png`.<br>Possible values: `png`, `jpeg`, `webp` | No |  |
+| prompt | string | A text description of the desired image(s). The maximum length is 1000 characters for `dall-e-2`, and 32000 characters for `gpt-image-1`-series models. | Yes |  |
+| quality | enum | The quality of the image that will be generated. `high`, `medium` and `low` are only supported for `gpt-image-1`-series models. `dall-e-2` only supports `standard` quality. Defaults to `auto`.<br>Possible values: `standard`, `low`, `medium`, `high`, `auto` | No |  |
+| response_format | enum | The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. This parameter is only supported for `dall-e-2`, as `gpt-image-1`-series models will always return base64-encoded images.<br>Possible values: `url`, `b64_json` | No |  |
+| size | enum | The size of the generated images. Must be one of `1024x1024`, `1536x1024` (landscape), `1024x1536` (portrait), or `auto` (default value) for `gpt-image-1`-series models, and one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`.<br>Possible values: `256x256`, `512x512`, `1024x1024`, `1536x1024`, `1024x1536`, `auto` | No |  |
+| user | string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.  | No |  |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureImagesResponse](#azureimagesresponse) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+## Createimage
+
+```HTTP
+POST {endpoint}/openai/v1/images/generations?api-version=preview
+```
+
+
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+### Request Body
+
+**Content-Type**: application/json
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| background | enum | Allows to set transparency for the background of the generated image(s).<br>This parameter is only supported for `gpt-image-1`-series models. Must be one of `transparent`, `opaque` or `auto` (default value). When `auto` is used, the model will automatically determine the best background for the image.<br><br>If `transparent`, the output format needs to support transparency, so it should be set to either `png` (default value) or `webp`.<br>Possible values: `transparent`, `opaque`, `auto` | No |  |
 | model | string | The model deployment to use for the image generation. | Yes |  |
-| moderation | enum | Control the content-moderation level for images generated by `gpt-image-1`. Must be either `low` for less restrictive filtering or `auto` (default value).<br>Possible values: `low`, `auto` | No |  |
+| moderation | enum | Control the content-moderation level for images generated by `gpt-image-1`-series models. Must be either `low` for less restrictive filtering or `auto` (default value).<br>Possible values: `low`, `auto` | No |  |
 | n | integer | The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported. | No | 1 |
-| output_compression | integer | The compression level (0-100%) for the generated images. This parameter is only supported for `gpt-image-1` with the `webp` or `jpeg` output formats, and defaults to 100. | No | 100 |
-| output_format | enum | The format in which the generated images are returned. This parameter is only supported for `gpt-image-1`. Must be one of `png`, `jpeg`, or `webp`.<br>Possible values: `png`, `jpeg`, `webp` | No |  |
-| prompt | string | A text description of the desired image(s). The maximum length is 32000 characters for `gpt-image-1`, 1000 characters for `dall-e-2` and 4000 characters for `dall-e-3`. | Yes |  |
-| quality | enum | The quality of the image that will be generated. <br><br>- `auto` (default value) will automatically select the best quality for the given model.<br>- `high`, `medium` and `low` are supported for `gpt-image-1`.<br>- `hd` and `standard` are supported for `dall-e-3`.<br>- `standard` is the only option for `dall-e-2`.<br>Possible values: `standard`, `hd`, `low`, `medium`, `high`, `auto` | No |  |
-| response_format | enum | The format in which generated images with `dall-e-2` and `dall-e-3` are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. This parameter isn't supported for `gpt-image-1` which will always return base64-encoded images.<br>Possible values: `url`, `b64_json` | No |  |
-| size | enum | The size of the generated images. Must be one of `1024x1024`, `1536x1024` (landscape), `1024x1536` (portrait), or `auto` (default value) for `gpt-image-1`, one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`, and one of `1024x1024`, `1792x1024`, or `1024x1792` for `dall-e-3`.<br>Possible values: `auto`, `1024x1024`, `1536x1024`, `1024x1536`, `256x256`, `512x512`, `1792x1024`, `1024x1792` | No |  |
+| output_compression | integer | The compression level (0-100%) for the generated images. This parameter is only supported for `gpt-image-1`-series models with the `webp` or `jpeg` output formats, and defaults to 100. | No | 100 |
+| output_format | enum | The format in which the generated images are returned. This parameter is only supported for `gpt-image-1`-series models. Must be one of `png`, `jpeg`, or `webp`.<br>Possible values: `png`, `jpeg`, `webp` | No |  |
+| prompt | string | A text description of the desired image(s). The maximum length is 32000 characters for `gpt-image-1`-series models, 1000 characters for `dall-e-2` and 4000 characters for `dall-e-3`. | Yes |  |
+| quality | enum | The quality of the image that will be generated.<br><br>- `auto` (default value) will automatically select the best quality for the given model.<br>- `high`, `medium` and `low` are supported for `gpt-image-1`-series models.<br>- `hd` and `standard` are supported for `dall-e-3`.<br>- `standard` is the only option for `dall-e-2`.<br>Possible values: `standard`, `hd`, `low`, `medium`, `high`, `auto` | No |  |
+| response_format | enum | The format in which generated images with `dall-e-2` and `dall-e-3` are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. This parameter isn't supported for `gpt-image-1`-series models which will always return base64-encoded images.<br>Possible values: `url`, `b64_json` | No |  |
+| size | enum | The size of the generated images. Must be one of `1024x1024`, `1536x1024` (landscape), `1024x1536` (portrait), or `auto` (default value) for `gpt-image-1`-series models, one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`, and one of `1024x1024`, `1792x1024`, or `1024x1792` for `dall-e-3`.<br>Possible values: `auto`, `1024x1024`, `1536x1024`, `1024x1536`, `256x256`, `512x512`, `1792x1024`, `1024x1792` | No |  |
 | style | enum | The style of the generated images. This parameter is only supported for `dall-e-3`. Must be one of `vivid` or `natural`. Vivid causes the model to lean towards generating hyper-real and dramatic images. Natural causes the model to produce more natural, less hyper-real looking images.<br>Possible values: `vivid`, `natural` | No |  |
 | user | string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.  | No |  |
 
@@ -833,6 +2115,93 @@ Status Code: 200
 }
 ```
 
+## List models
+
+```HTTP
+GET {endpoint}/openai/v1/models?api-version=preview
+```
+
+Lists the currently available models, and provides basic information about each one such as the
+owner and availability.
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [OpenAI.ListModelsResponse](#openailistmodelsresponse) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+## Retrieve model
+
+```HTTP
+GET {endpoint}/openai/v1/models/{model}?api-version=preview
+```
+
+Retrieves a model instance, providing basic information about the model such as the owner and
+permissioning.
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| model | path | Yes | string | The ID of the model to use for this request. |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [OpenAI.Model](#openaimodel) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
 ## Create response
 
 ```HTTP
@@ -845,8 +2214,8 @@ Creates a model response.
 
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
-| endpoint | path | Yes | string url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 
 ### Request Header
 
@@ -862,29 +2231,35 @@ Creates a model response.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| background | boolean | Whether to run the model response in the background. | No | False |
-| include | array | Specify additional output data to include in the model response. Currently supported values are:<br>- `file_search_call.results`: Include the search results of the file search tool call.<br>- `message.input_image.image_url`: Include image urls from the input message.<br>- `computer_call_output.output.image_url`: Include image urls from the computer call output.<br>- `reasoning.encrypted_content`: Includes an encrypted version of reasoning tokens in reasoning item outputs. This enables reasoning items to be used in multi-turn conversations when using the Responses API statelessly (like when the `store` parameter is set to `false`, or when an organization is enrolled in the zero data retention program). | No |  |
-| input | string or array |  | Yes |  |
-| instructions | string | Inserts a system (or developer) message as the first item in the model's context.<br><br>When using along with `previous_response_id`, the instructions from a previous response will not be carried over to the next response. This makes it simple to swap out system (or developer) messages in new responses. | No |  |
-| max_output_tokens | integer | An upper bound for the number of tokens that can be generated for a response, including visible output tokens and . | No |  |
+| background | boolean | Whether to run the model response in the background.| No | False |
+| include | array | Specify additional output data to include in the model response. Currently supported values are:<br>- `code_interpreter_call.outputs`: Includes the outputs of python code execution in code interpreter tool call items.<br>- `computer_call_output.output.image_url`: Include image urls from the computer call output.<br>- `file_search_call.results`: Include the search results of the file search tool call.<br>- `message.input_image.image_url`: Include image urls from the input message.<br>- `message.output_text.logprobs`: Include logprobs with assistant messages.<br>- `reasoning.encrypted_content`: Includes an encrypted version of reasoning tokens in reasoning item outputs. This enables reasoning items to be used in multi-turn conversations when using the Responses API statelessly (like when the `store` parameter is set to `false`, or when an organization is enrolled in the zero data retention program). | No |  |
+| input | string or array |  | No |  |
+| instructions | string | A system (or developer) message inserted into the model's context.<br><br>When using along with `previous_response_id`, the instructions from a previous response will not be carried over to the next response. This makes it simple to swap out system (or developer) messages in new responses. | No |  |
+| max_output_tokens | integer | An upper bound for the number of tokens that can be generated for a response, including visible output tokens and reasoning tokens | No |  |
+| max_tool_calls | integer | The maximum number of total calls to built-in tools that can be processed in a response. This maximum number applies across all built-in tool calls, not per individual tool. Any further attempts to call a tool by the model will be ignored. | No |  |
 | metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | No |  |
 | model | string | The model deployment to use for the creation of this response. | Yes |  |
 | parallel_tool_calls | boolean | Whether to allow the model to run tool calls in parallel. | No | True |
-| previous_response_id | string | The unique ID of the previous response to the model. Use this to create multi-turn conversations. reasoning models. | No |  |
+| previous_response_id | string | The unique ID of the previous response to the model. Use this to create multi-turn conversations. | No |  |
+| prompt | object | Reference to a prompt template and its variables. | No |  |
+| └─ id | string | The unique identifier of the prompt template to use. | No |  |
+| └─ variables | [OpenAI.ResponsePromptVariables](#openairesponsepromptvariables) | Optional map of values to substitute in for variables in your prompt. The substitution values can either be strings, or other response input types like images or files. | No |  |
+| └─ version | string | Optional version of the prompt template. | No |  |
 | reasoning | object | **o-series models only**<br><br>Configuration options for reasoning models. | No |  |
-| └─ effort | [OpenAI.ReasoningEffort](#openaireasoningeffort) | **o-series models only** <br><br>Constrains effort on reasoning for reasoning models.<br>Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. | No |  |
+| └─ effort | [OpenAI.ReasoningEffort](#openaireasoningeffort) | **o-series models only**<br><br>Constrains effort on reasoning for reasoning models.<br>Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. | No |  |
 | └─ generate_summary | enum | **Deprecated:** use `summary` instead.<br><br>A summary of the reasoning performed by the model. This can be useful for debugging and understanding the model's reasoning process.<br>One of `auto`, `concise`, or `detailed`.<br>Possible values: `auto`, `concise`, `detailed` | No |  |
 | └─ summary | enum | A summary of the reasoning performed by the model. This can be useful for debugging and understanding the model's reasoning process.<br>One of `auto`, `concise`, or `detailed`.<br>Possible values: `auto`, `concise`, `detailed` | No |  |
 | store | boolean | Whether to store the generated model response for later retrieval via API. | No | True |
 | stream | boolean | If set to true, the model response data will be streamed to the client as it is generated using [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format). | No | False |
 | temperature | number | What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.<br>We generally recommend altering this or `top_p` but not both. | No | 1 |
-| text | object | Configuration options for a text response from the model. Can be plain text or structured JSON data.  | No |  |
+| text | object | Configuration options for a text response from the model. Can be plain text or structured JSON data. | No |  |
 | └─ format | [OpenAI.ResponseTextFormatConfiguration](#openairesponsetextformatconfiguration) |  | No |  |
 | tool_choice | object | Controls which (if any) tool is called by the model.<br><br>`none` means the model will not call any tool and instead generates a message.<br><br>`auto` means the model can pick between generating a message or calling one or more tools.<br><br>`required` means the model must call one or more tools. | No |  |
 | └─ type | [OpenAI.ToolChoiceObjectType](#openaitoolchoiceobjecttype) | Indicates that the model should use a built-in tool to generate a response. | No |  |
-| tools | array | An array of tools the model may call while generating a response. You can specify which tool to use by setting the `tool_choice` parameter.<br><br>The two categories of tools you can provide the model are:<br><br>- **Built-in tools**: Tools that are provided by OpenAI that extend the model's capabilities, like file search.<br>- **Function calls (custom tools)**: Functions that are defined by you, enabling the model to call your own code. | No |  |
+| tools | array | An array of tools the model may call while generating a response. You <br>can specify which tool to use by setting the `tool_choice` parameter.<br><br>The two categories of tools you can provide the model are:<br><br>- **Built-in tools**: Tools that are provided by OpenAI that extend the model's capabilities, like file search.<br>- **Function calls (custom tools)**: Functions that are defined by you, enabling the model to call your own code. | No |  |
+| top_logprobs | integer | An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. | No |  |
 | top_p | number | An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.<br><br>We generally recommend altering this or `temperature` but not both. | No | 1 |
-| truncation | enum | The truncation strategy to use for the model response.<br>- `auto`: If the context of this response and previous ones exceeds the model's context window size, the model will truncate the response to fit the context window by dropping input items in the middle of the conversation. <br>- `disabled` (default): If a model response will exceed the context window size for a model, the request will fail with a 400 error.<br>Possible values: `auto`, `disabled` | No |  |
+| truncation | enum | The truncation strategy to use for the model response.<br>- `auto`: If the context of this response and previous ones exceeds the model's context window size, the model will truncate the response to fit the context window by dropping input items in the middle of the conversation.<br>- `disabled` (default): If a model response will exceed the context window size for a model, the request will fail with a 400 error.<br>Possible values: `auto`, `disabled` | No |  |
 | user | string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.  | No |  |
 
 ### Responses
@@ -929,8 +2304,8 @@ Retrieves a model response with the given ID.
 
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
-| endpoint | path | Yes | string url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | response_id | path | Yes | string |  |
 | include[] | query | No | array |  |
 
@@ -973,8 +2348,8 @@ Deletes a response by ID.
 
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
-| endpoint | path | Yes | string url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | response_id | path | Yes | string |  |
 
 ### Request Header
@@ -1004,20 +2379,20 @@ Deletes a response by ID.
 |:---|:---|:---|
 |application/json | [AzureErrorResponse](#azureerrorresponse) | |
 
-## Listinputitems
+## List input items
 
 ```HTTP
 GET {endpoint}/openai/v1/responses/{response_id}/input_items?api-version=preview
 ```
 
-Returns a list of input items for a given response.
 
+Returns a list of input items for a given response.
 ### URI Parameters
 
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
-| endpoint | path | Yes | string url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | response_id | path | Yes | string |  |
 | limit | query | No | integer | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. |
 | order | query | No | string<br>Possible values: `asc`, `desc` | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and`desc` for descending order. |
@@ -1051,18 +2426,24 @@ Returns a list of input items for a given response.
 |:---|:---|:---|
 |application/json | [AzureErrorResponse](#azureerrorresponse) | |
 
-## Video generation jobs - Create
+## List vector stores
 
 ```HTTP
-POST {endpoint}/openai/v1/video/generations/jobs?api-version=preview
+GET {endpoint}/openai/v1/vector_stores?api-version=preview
 ```
+
+Returns a list of vector stores.
 
 ### URI Parameters
 
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
-| endpoint | path | Yes | string url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| limit | query | No | integer | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. |
+| order | query | No | string<br>Possible values: `asc`, `desc` | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and`desc` for descending order. |
+| after | query | No | string | A cursor for use in pagination. `after` is an object ID that defines your place in the list.<br>For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. |
+| before | query | No | string | A cursor for use in pagination. `before` is an object ID that defines your place in the list.<br>For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. |
 
 ### Request Header
 
@@ -1073,18 +2454,700 @@ POST {endpoint}/openai/v1/video/generations/jobs?api-version=preview
 | Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
 | api-key | True | string | Provide Azure OpenAI API key here |
 
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [OpenAI.ListVectorStoresResponse](#openailistvectorstoresresponse) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+## Create vector store
+
+```HTTP
+POST {endpoint}/openai/v1/vector_stores?api-version=preview
+```
+
+Creates a vector store.
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
 ### Request Body
 
 **Content-Type**: application/json
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| height | integer | The height of the video. The following dimensions are supported: 480x480, 480x854, 854x480, 720x720, 720x1280, 1280x720, 1080x1080, 1080x1920, 1920x1080. | Yes |  |
+| chunking_strategy | object | The default strategy. This strategy currently uses a `max_chunk_size_tokens` of `800` and `chunk_overlap_tokens` of `400`. | No |  |
+| └─ static | [OpenAI.StaticChunkingStrategy](#openaistaticchunkingstrategy) |  | No |  |
+| └─ type | enum | Always `static`.<br>Possible values: `static` | No |  |
+| expires_after | [OpenAI.VectorStoreExpirationAfter](#openaivectorstoreexpirationafter) | The expiration policy for a vector store. | No |  |
+| file_ids | array | A list of file IDs that the vector store should use. Useful for tools like `file_search` that can access files. | No |  |
+| metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | No |  |
+| name | string | The name of the vector store. | No |  |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [OpenAI.VectorStoreObject](#openaivectorstoreobject) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+### Examples
+
+Example file not found: ./examples/vector_stores.json
+
+## Get vector store
+
+```HTTP
+GET {endpoint}/openai/v1/vector_stores/{vector_store_id}?api-version=preview
+```
+
+Retrieves a vector store.
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| vector_store_id | path | Yes | string | The ID of the vector store to retrieve. |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [OpenAI.VectorStoreObject](#openaivectorstoreobject) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+## Modify vector store
+
+```HTTP
+POST {endpoint}/openai/v1/vector_stores/{vector_store_id}?api-version=preview
+```
+
+Modifies a vector store.
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| vector_store_id | path | Yes | string | The ID of the vector store to modify. |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+### Request Body
+
+**Content-Type**: application/json
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| expires_after | object | The expiration policy for a vector store. | No |  |
+| └─ anchor | enum | Anchor timestamp after which the expiration policy applies. Supported anchors: `last_active_at`.<br>Possible values: `last_active_at` | No |  |
+| └─ days | integer | The number of days after the anchor time that the vector store will expire. | No |  |
+| metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | No |  |
+| name | string | The name of the vector store. | No |  |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [OpenAI.VectorStoreObject](#openaivectorstoreobject) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+## Delete vector store
+
+```HTTP
+DELETE {endpoint}/openai/v1/vector_stores/{vector_store_id}?api-version=preview
+```
+
+Delete a vector store.
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| vector_store_id | path | Yes | string | The ID of the vector store to delete. |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [OpenAI.DeleteVectorStoreResponse](#openaideletevectorstoreresponse) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+## Create vector store file batch
+
+```HTTP
+POST {endpoint}/openai/v1/vector_stores/{vector_store_id}/file_batches?api-version=preview
+```
+
+Create a vector store file batch.
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| vector_store_id | path | Yes | string | The ID of the vector store for which to create a file batch. |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+### Request Body
+
+**Content-Type**: application/json
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| attributes | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard. Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters, booleans, or numbers. | No |  |
+| chunking_strategy | [OpenAI.ChunkingStrategyRequestParam](#openaichunkingstrategyrequestparam) | The chunking strategy used to chunk the file(s). If not set, will use the `auto` strategy. | No |  |
+| file_ids | array | A list of file IDs that the vector store should use. Useful for tools like `file_search` that can access files. | Yes |  |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [OpenAI.VectorStoreFileBatchObject](#openaivectorstorefilebatchobject) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+## Get vector store file batch
+
+```HTTP
+GET {endpoint}/openai/v1/vector_stores/{vector_store_id}/file_batches/{batch_id}?api-version=preview
+```
+
+Retrieves a vector store file batch.
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| vector_store_id | path | Yes | string | The ID of the vector store that the file batch belongs to. |
+| batch_id | path | Yes | string | The ID of the file batch being retrieved. |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [OpenAI.VectorStoreFileBatchObject](#openaivectorstorefilebatchobject) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+## Cancel vector store file batch
+
+```HTTP
+POST {endpoint}/openai/v1/vector_stores/{vector_store_id}/file_batches/{batch_id}/cancel?api-version=preview
+```
+
+Cancel a vector store file batch. This attempts to cancel the processing of files in this batch as soon as possible.
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| vector_store_id | path | Yes | string | The ID of the vector store that the file batch belongs to. |
+| batch_id | path | Yes | string | The ID of the file batch to cancel. |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [OpenAI.VectorStoreFileBatchObject](#openaivectorstorefilebatchobject) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+## List files in vector store batch
+
+```HTTP
+GET {endpoint}/openai/v1/vector_stores/{vector_store_id}/file_batches/{batch_id}/files?api-version=preview
+```
+
+Returns a list of vector store files in a batch.
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| vector_store_id | path | Yes | string | The ID of the vector store that the file batch belongs to. |
+| batch_id | path | Yes | string | The ID of the file batch that the files belong to. |
+| limit | query | No | integer | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. |
+| order | query | No | string<br>Possible values: `asc`, `desc` | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and`desc` for descending order. |
+| after | query | No | string | A cursor for use in pagination. `after` is an object ID that defines your place in the list.<br>For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. |
+| before | query | No | string | A cursor for use in pagination. `before` is an object ID that defines your place in the list.<br>For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. |
+| filter | query | No |  | Filter by file status. One of `in_progress`, `completed`, `failed`, `cancelled`. |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [OpenAI.ListVectorStoreFilesResponse](#openailistvectorstorefilesresponse) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+## List vector store files
+
+```HTTP
+GET {endpoint}/openai/v1/vector_stores/{vector_store_id}/files?api-version=preview
+```
+
+Returns a list of vector store files.
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| vector_store_id | path | Yes | string | The ID of the vector store that the files belong to. |
+| limit | query | No | integer | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. |
+| order | query | No | string<br>Possible values: `asc`, `desc` | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and`desc` for descending order. |
+| after | query | No | string | A cursor for use in pagination. `after` is an object ID that defines your place in the list.<br>For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. |
+| before | query | No | string | A cursor for use in pagination. `before` is an object ID that defines your place in the list.<br>For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. |
+| filter | query | No |  | Filter by file status. One of `in_progress`, `completed`, `failed`, `cancelled`. |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [OpenAI.ListVectorStoreFilesResponse](#openailistvectorstorefilesresponse) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+## Create vector store file
+
+```HTTP
+POST {endpoint}/openai/v1/vector_stores/{vector_store_id}/files?api-version=preview
+```
+
+Create a vector store file by attaching a file to a vector store.
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| vector_store_id | path | Yes | string | The ID of the vector store for which to create a File. |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+### Request Body
+
+**Content-Type**: application/json
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| attributes | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard. Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters, booleans, or numbers. | No |  |
+| chunking_strategy | [OpenAI.ChunkingStrategyRequestParam](#openaichunkingstrategyrequestparam) | The chunking strategy used to chunk the file(s). If not set, will use the `auto` strategy. | No |  |
+| file_id | string | A file ID that the vector store should use. Useful for tools like `file_search` that can access files. | Yes |  |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [OpenAI.VectorStoreFileObject](#openaivectorstorefileobject) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+## Get vector store file
+
+```HTTP
+GET {endpoint}/openai/v1/vector_stores/{vector_store_id}/files/{file_id}?api-version=preview
+```
+
+Retrieves a vector store file.
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| vector_store_id | path | Yes | string | The ID of the vector store that the file belongs to. |
+| file_id | path | Yes | string | The ID of the file being retrieved. |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [OpenAI.VectorStoreFileObject](#openaivectorstorefileobject) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+## Update vector store file attributes
+
+```HTTP
+POST {endpoint}/openai/v1/vector_stores/{vector_store_id}/files/{file_id}?api-version=preview
+```
+
+
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| vector_store_id | path | Yes | string |  |
+| file_id | path | Yes | string |  |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+### Request Body
+
+**Content-Type**: application/json
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| attributes | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard. Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters, booleans, or numbers. | Yes |  |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [OpenAI.VectorStoreFileObject](#openaivectorstorefileobject) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+## Delete vector store file
+
+```HTTP
+DELETE {endpoint}/openai/v1/vector_stores/{vector_store_id}/files/{file_id}?api-version=preview
+```
+
+Delete a vector store file. This will remove the file from the vector store but the file itself will not be deleted. To delete the file, use the delete file endpoint.
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| vector_store_id | path | Yes | string | The ID of the vector store that the file belongs to. |
+| file_id | path | Yes | string | The ID of the file to delete. |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [OpenAI.DeleteVectorStoreFileResponse](#openaideletevectorstorefileresponse) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+
+## Video generation jobs - Create
+
+```HTTP
+POST {endpoint}/openai/v1/video/generations/jobs?api-version=preview
+```
+
+
+Creates a new video generation job.
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+### Request Body
+
+**Content-Type**: application/json
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| height | integer | The height of the video. The following dimensions are supported: 480x480, 854x480, 720x720, 1280x720, 1080x1080 and 1920x1080 in both landscape and portrait orientations. | Yes |  |
 | model | string | The name of the deployment to use for this request. | Yes |  |
 | n_seconds | integer | The duration of the video generation job. Must be between 1 and 20 seconds. | No | 5 |
 | n_variants | integer | The number of videos to create as variants for this job. Must be between 1 and 5. Smaller dimensions allow more variants. | No | 1 |
 | prompt | string | The prompt for this video generation job. | Yes |  |
-| width | integer | The width of the video. The following dimensions are supported: 480x480, 480x854, 854x480, 720x720, 720x1280, 1280x720, 1080x1080, 1080x1920, 1920x1080. | Yes |  |
+| width | integer | The width of the video. The following dimensions are supported: 480x480, 854x480, 720x720, 1280x720, 1080x1080 and 1920x1080 in both landscape and portrait orientations. | Yes |  |
+### Request Body
+
+**Content-Type**: multipart/form-data
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| files | array |  | Yes |  |
+| height | integer | The height of the video. The following dimensions are supported: 480x480, 854x480, 720x720, 1280x720, 1080x1080 and 1920x1080 in both landscape and portrait orientations. | Yes |  |
+| inpaint_items | array | Optional inpainting items for this video generation job. | No |  |
+| model | string | The name of the deployment to use for this request. | Yes |  |
+| n_seconds | integer | The duration of the video generation job. Must be between 1 and 20 seconds. | No | 5 |
+| n_variants | integer | The number of videos to create as variants for this job. Must be between 1 and 5. Smaller dimensions allow more variants. | No | 1 |
+| prompt | string | The prompt for this video generation job. | Yes |  |
+| width | integer | The width of the video. The following dimensions are supported: 480x480, 854x480, 720x720, 1280x720, 1080x1080 and 1920x1080 in both landscape and portrait orientations. | Yes |  |
 
 ### Responses
 
@@ -1106,35 +3169,7 @@ POST {endpoint}/openai/v1/video/generations/jobs?api-version=preview
 
 ### Examples
 
-### Example
-
-Create a video generation job
-
-```HTTP
-POST {endpoint}/openai/v1/video/generations/jobs?api-version=preview
-
-{
- "prompt": "A cat playing piano in a jazz bar.",
- "model": "video-gen-001"
-}
-
-```
-
-**Responses**:
-Status Code: 200
-
-```json
-{
-  "body": {
-    "id": "vidjob_1234567890",
-    "object": "video_generation_job",
-    "created": 1680000000,
-    "status": "queued",
-    "prompt": "A cat playing piano in a jazz bar.",
-    "model": "video-gen-001"
-  }
-}
-```
+Example file not found: ./examples/create_video_generation_job_simple.json
 
 ## Video generation jobs - List
 
@@ -1143,13 +3178,13 @@ GET {endpoint}/openai/v1/video/generations/jobs?api-version=preview
 ```
 
 
-
+Lists video generation jobs.
 ### URI Parameters
 
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
-| endpoint | path | Yes | string url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | before | query | No | string |  |
 | after | query | No | string |  |
 | limit | query | Yes | integer |  |
@@ -1182,6 +3217,10 @@ GET {endpoint}/openai/v1/video/generations/jobs?api-version=preview
 |:---|:---|:---|
 |application/json | [AzureOpenAIVideoGenerationErrorResponse](#azureopenaivideogenerationerrorresponse) | |
 
+### Examples
+
+Example file not found: ./examples/get_video_generation_job_list.json
+
 ## Video generation jobs - Get
 
 ```HTTP
@@ -1189,13 +3228,13 @@ GET {endpoint}/openai/v1/video/generations/jobs/{job-id}?api-version=preview
 ```
 
 
-
+Retrieves properties of a video generation job.
 ### URI Parameters
 
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
-| endpoint | path | Yes | string url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | job-id | path | Yes | string | The ID of the video generation job to use for the Azure OpenAI request. |
 
 ### Request Header
@@ -1225,18 +3264,24 @@ GET {endpoint}/openai/v1/video/generations/jobs/{job-id}?api-version=preview
 |:---|:---|:---|
 |application/json | [AzureOpenAIVideoGenerationErrorResponse](#azureopenaivideogenerationerrorresponse) | |
 
+### Examples
+
+Example file not found: ./examples/get_video_generation_job.json
+
 ## Video generation jobs - Delete
 
 ```HTTP
 DELETE {endpoint}/openai/v1/video/generations/jobs/{job-id}?api-version=preview
 ```
 
+
+Deletes a video generation job.
 ### URI Parameters
 
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
-| endpoint | path | Yes | string url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | job-id | path | Yes | string | The ID of the video generation job to use for the Azure OpenAI request. |
 
 ### Request Header
@@ -1269,13 +3314,13 @@ GET {endpoint}/openai/v1/video/generations/{generation-id}?api-version=preview
 ```
 
 
-
+Retrieves a video generation by ID.
 ### URI Parameters
 
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
-| endpoint | path | Yes | string url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | generation-id | path | Yes | string | The ID of the video generation to use for the Azure OpenAI request. |
 
 ### Request Header
@@ -1305,6 +3350,10 @@ GET {endpoint}/openai/v1/video/generations/{generation-id}?api-version=preview
 |:---|:---|:---|
 |application/json | [AzureOpenAIVideoGenerationErrorResponse](#azureopenaivideogenerationerrorresponse) | |
 
+### Examples
+
+Example file not found: ./examples/get_video_generation.json
+
 ## Video generations - Retrieve thumbnail
 
 ```HTTP
@@ -1312,15 +3361,14 @@ GET {endpoint}/openai/v1/video/generations/{generation-id}/content/thumbnail?api
 ```
 
 
-
+Retrieves a thumbnail of the generated video content.
 ### URI Parameters
 
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
-| endpoint | path | Yes | string url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | generation-id | path | Yes | string | The ID of the video generation to use for the Azure OpenAI request. |
-| If-Modified-Since | header | No | string | Timestamp formatted as GMT time |
 
 ### Request Header
 
@@ -1339,7 +3387,7 @@ GET {endpoint}/openai/v1/video/generations/{generation-id}/content/thumbnail?api
 
 |**Content-Type**|**Type**|**Description**|
 |:---|:---|:---|
-|application/json | string | |
+|image/jpg | string | |
 
 **Status Code:** default
 
@@ -1349,20 +3397,21 @@ GET {endpoint}/openai/v1/video/generations/{generation-id}/content/thumbnail?api
 |:---|:---|:---|
 |application/json | [AzureOpenAIVideoGenerationErrorResponse](#azureopenaivideogenerationerrorresponse) | |
 
-## Video generations - Retrieve video
+## Video generations - Retrieve video content
 
 ```HTTP
 GET {endpoint}/openai/v1/video/generations/{generation-id}/content/video?api-version=preview
 ```
 
+
+Retrieves the generated video content.
 ### URI Parameters
 
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
-| endpoint | path | Yes | string url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | generation-id | path | Yes | string | The ID of the video generation to use for the Azure OpenAI request. |
-| If-Modified-Since | header | No | string |  |
 | quality | query | No |  |  |
 
 ### Request Header
@@ -1382,7 +3431,47 @@ GET {endpoint}/openai/v1/video/generations/{generation-id}/content/video?api-ver
 
 |**Content-Type**|**Type**|**Description**|
 |:---|:---|:---|
-|application/json | string | |
+|video/mp4 | string | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureOpenAIVideoGenerationErrorResponse](#azureopenaivideogenerationerrorresponse) | |
+
+## Video generations - Retrieve videocontent headers only
+
+```HTTP
+HEAD {endpoint}/openai/v1/video/generations/{generation-id}/content/video?api-version=preview
+```
+
+
+Retrieves headers for the the generated video content.
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| generation-id | path | Yes | string | The ID of the video generation to use for the Azure OpenAI request. |
+| quality | query | No |  |  |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
 
 **Status Code:** default
 
@@ -1404,12 +3493,31 @@ Defines the possible descriptors for available audio operation responses.
 | **Type** | string |
 | **Values** | `transcribe`<br>`translate` |
 
+### AudioTranslationSegment
+
+Extended information about a single segment of translated audio data.
+Segments generally represent roughly 5-10 seconds of speech. Segment boundaries typically occur between words but not
+necessarily sentences.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| avg_logprob | number | The average log probability associated with this audio segment. | Yes |  |
+| compression_ratio | number | The compression ratio of this audio segment. | Yes |  |
+| end | number | The time at which this segment ended relative to the beginning of the translated audio. | Yes |  |
+| id | integer | The 0-based index of this segment within a translation. | Yes |  |
+| no_speech_prob | number | The probability of no speech detection within this audio segment. | Yes |  |
+| seek | integer | The seek position associated with the processing of this audio segment.<br>Seek positions are expressed as hundredths of seconds.<br>The model may process several segments from a single seek position, so while the seek position will never represent a later time than the segment's start, the segment's start may represent a significantly later time than the segment's associated seek position. | Yes |  |
+| start | number | The time at which this segment started relative to the beginning of the translated audio. | Yes |  |
+| temperature | number | The temperature score associated with this audio segment. | Yes |  |
+| text | string | The translated text that was part of this audio segment. | Yes |  |
+| tokens | array | The token IDs matching the translated text in this audio segment. | Yes |  |
+
 ### AzureAIFoundryModelsApiVersion
 
 | Property | Value |
 |----------|-------|
 | **Type** | string |
-| **Values** | `latest`<br>`preview` |
+| **Values** | `v1`<br>`preview` |
 
 ### AzureAudioTranscriptionResponse
 
@@ -1424,6 +3532,18 @@ Result information for an operation that transcribed spoken audio into written t
 | text | string | The transcribed text for the provided audio data. | Yes |  |
 | words | array | A collection of information about the timing of each processed word. | No |  |
 
+### AzureAudioTranslationResponse
+
+Result information for an operation that translated spoken audio into written text.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| duration | number | The total duration of the audio processed to produce accompanying translation information. | No |  |
+| language | string | The spoken language that was detected in the translated audio data.<br>This is expressed as a two-letter ISO-639-1 language code like 'en' or 'fr'. | No |  |
+| segments | array | A collection of information about the timing, probabilities, and other detail of each processed audio segment. | No |  |
+| task | object | Defines the possible descriptors for available audio operation responses. | No |  |
+| text | string | The translated text for the provided audio data. | Yes |  |
+
 ### AzureChatCompletionResponseMessage
 
 The extended response model component for chat completion response messages on the Azure OpenAI service.
@@ -1433,7 +3553,7 @@ information related to retrieval-augmented generation performed.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | annotations | array | Annotations for the message, when applicable, as when using the web search tool. | No |  |
-| audio | object | If the audio output modality is requested, this object contains data about the audio response from the model. | No |  |
+| audio | object | If the audio output modality is requested, this object contains data about the audio response from the model.  | No |  |
 | └─ data | string | Base64 encoded audio bytes generated by the model, in the format specified in the request. | No |  |
 | └─ expires_at | integer | The Unix timestamp (in seconds) for when this audio response will no longer be accessible on the server for use in multi-turn conversations. | No |  |
 | └─ id | string | Unique identifier for this audio response. | No |  |
@@ -1730,6 +3850,15 @@ A representation of a span of completion text as used by Azure OpenAI content fi
 | detected | boolean | Whether the labeled content category was detected in the content. | Yes |  |
 | filtered | boolean | Whether the content detection resulted in a content filtering action. | Yes |  |
 
+### AzureContentFilterCustomTopicResult
+
+A collection of true/false filtering results for configured custom topics.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| details | array | The pairs of individual topic IDs and whether they are detected. | No |  |
+| filtered | boolean | A value indicating whether any of the detailed topics resulted in a filtering action. | Yes |  |
+
 ### AzureContentFilterDetectionResult
 
 A labeled content filter result item that indicates whether the content was detected and whether the content was
@@ -1749,6 +3878,9 @@ A content filter result for an image generation operation's input request conten
 | custom_blocklists | object | A collection of true/false filtering results for configured custom blocklists. | No |  |
 | └─ details | array | The pairs of individual blocklist IDs and whether they resulted in a filtering action. | No |  |
 | └─ filtered | boolean | A value indicating whether any of the detailed blocklists resulted in a filtering action. | No |  |
+| custom_topics | object | A collection of true/false filtering results for configured custom topics. | No |  |
+| └─ details | array | The pairs of individual topic IDs and whether they are detected. | No |  |
+| └─ filtered | boolean | A value indicating whether any of the detailed topics resulted in a filtering action. | No |  |
 | jailbreak | object | A labeled content filter result item that indicates whether the content was detected and whether the content was filtered. | Yes |  |
 | └─ detected | boolean | Whether the labeled content category was detected in the content. | No |  |
 | └─ filtered | boolean | Whether the content detection resulted in a content filtering action. | No |  |
@@ -1784,6 +3916,9 @@ A content filter result for a single response item produced by a generative AI s
 | custom_blocklists | object | A collection of true/false filtering results for configured custom blocklists. | No |  |
 | └─ details | array | The pairs of individual blocklist IDs and whether they resulted in a filtering action. | No |  |
 | └─ filtered | boolean | A value indicating whether any of the detailed blocklists resulted in a filtering action. | No |  |
+| custom_topics | object | A collection of true/false filtering results for configured custom topics. | No |  |
+| └─ details | array | The pairs of individual topic IDs and whether they are detected. | No |  |
+| └─ filtered | boolean | A value indicating whether any of the detailed topics resulted in a filtering action. | No |  |
 | error | object | If present, details about an error that prevented content filtering from completing its evaluation. | No |  |
 | └─ code | integer | A distinct, machine-readable code associated with the error. | No |  |
 | └─ message | string | A human-readable message associated with the error. | No |  |
@@ -1823,6 +3958,9 @@ A content filter result associated with a single input prompt item into a genera
 | └─ custom_blocklists | object | A collection of true/false filtering results for configured custom blocklists. | No |  |
 |   └─ details | array | The pairs of individual blocklist IDs and whether they resulted in a filtering action. | No |  |
 |   └─ filtered | boolean | A value indicating whether any of the detailed blocklists resulted in a filtering action. | No |  |
+| └─ custom_topics | object | A collection of true/false filtering results for configured custom topics. | No |  |
+|   └─ details | array | The pairs of individual topic IDs and whether they are detected. | No |  |
+|   └─ filtered | boolean | A value indicating whether any of the detailed topics resulted in a filtering action. | No |  |
 | └─ error | object | If present, details about an error that prevented content filtering from completing its evaluation. | No |  |
 |   └─ code | integer | A distinct, machine-readable code associated with the error. | No |  |
 |   └─ message | string | A human-readable message associated with the error. | No |  |
@@ -1913,7 +4051,7 @@ This adds the ability to provide data sources for the On Your Data feature.
 | prediction | object | Base representation of predicted output from a model. | No |  |
 | └─ type | [OpenAI.ChatOutputPredictionType](#openaichatoutputpredictiontype) |  | No |  |
 | presence_penalty | number | Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics. | No | 0 |
-| reasoning_effort | object | **o-series models only** <br><br>Constrains effort on reasoning for reasoning models.<br>Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. | No |  |
+| reasoning_effort | object | **o-series models only**<br><br>Constrains effort on reasoning for reasoning models.<br>Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. | No |  |
 | response_format | object |  | No |  |
 | └─ type | enum | <br>Possible values: `text`, `json_object`, `json_schema` | No |  |
 | seed | integer | This feature is in Beta.<br>If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result.<br>Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend. | No |  |
@@ -1921,11 +4059,11 @@ This adds the ability to provide data sources for the On Your Data feature.
 | store | boolean | Whether or not to store the output of this chat completion request for use in model distillation or evals products. | No | False |
 | stream | boolean | If set to true, the model response data will be streamed to the client as it is generated using server-sent events. | No | False |
 | stream_options | object | Options for streaming response. Only set this when you set `stream: true`. | No |  |
-| └─ include_usage | boolean | If set, an additional chunk will be streamed before the `data: [DONE]` message. The `usage` field on this chunk shows the token usage statistics for the entire request, and the `choices` field will always be an empty array. <br><br>All other chunks will also include a `usage` field, but with a null value. **NOTE:** If the stream is interrupted, you may not receive the final usage chunk which contains the total token usage for the request. | No |  |
+| └─ include_usage | boolean | If set, an additional chunk will be streamed before the `data: [DONE]` message. The `usage` field on this chunk shows the token usage statistics for the entire request, and the `choices` field will always be an empty array.<br><br>All other chunks will also include a `usage` field, but with a null value. **NOTE:** If the stream is interrupted, you may not receive the final usage chunk which contains the total token usage for the request. | No |  |
 | temperature | number | What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.<br>We generally recommend altering this or `top_p` but not both. | No | 1 |
 | tool_choice | [OpenAI.ChatCompletionToolChoiceOption](#openaichatcompletiontoolchoiceoption) | Controls which (if any) tool is called by the model.<br>`none` means the model will not call any tool and instead generates a message.<br>`auto` means the model can pick between generating a message or calling one or more tools.<br>`required` means the model must call one or more tools.<br>Specifying a particular tool via `{"type": "function", "function": {"name": "my_function"}}` forces the model to call that tool.<br><br>`none` is the default when no tools are present. `auto` is the default if tools are present. | No |  |
 | tools | array | A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for. A max of 128 functions are supported. | No |  |
-| top_logprobs | integer | An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability.<br>`logprobs` must be set to `true` if this parameter is used. | No |  |
+| top_logprobs | integer | An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. | No |  |
 | top_p | number | An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.<br><br>We generally recommend altering this or `temperature` but not both. | No | 1 |
 | user | string | A unique identifier representing your end-user, which can help to monitor and detect abuse. | No |  |
 | user_security_context | [AzureUserSecurityContext](#azureusersecuritycontext) | User security context contains several parameters that describe the application itself, and the end user that interacts with the application. These fields assist your security operations teams to investigate and mitigate security incidents by providing a comprehensive approach to protecting your AI applications. [Learn more](https://aka.ms/TP4AI/Documentation/EndUserContext) about protecting AI applications using Microsoft Defender for Cloud. | No |  |
@@ -1951,6 +4089,7 @@ This model adds Responsible AI content filter annotations for prompt input.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | choices | array | A list of chat completion choices. Can contain more than one elements if `n` is greater than 1. Can also be empty for the last chunk if you set `stream_options: {"include_usage": true}`. | Yes |  |
+| content_filter_results | [AzureContentFilterResultForChoice](#azurecontentfilterresultforchoice) | A content filter result for a single response item produced by a generative AI system. | No |  |
 | created | integer | The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp. | Yes |  |
 | delta | [AzureChatCompletionStreamResponseDelta](#azurechatcompletionstreamresponsedelta) | The extended response model for a streaming chat response message on the Azure OpenAI service.<br>This model adds support for chat message context, used by the On Your Data feature for intent, citations, and other information related to retrieval-augmented generation performed. | No |  |
 | id | string | A unique identifier for the chat completion. Each chunk has the same ID. | Yes |  |
@@ -1970,45 +4109,6 @@ This model adds Responsible AI content filter annotations for prompt input.
 |   └─ cached_tokens | integer | Cached tokens present in the prompt. | No | 0 |
 | └─ total_tokens | integer | Total number of tokens used in the request (prompt + completion). | No | 0 |
 
-### AzureCreateCompletionRequest
-
-| Name | Type | Description | Required | Default |
-|------|------|-------------|----------|---------|
-| best_of | integer | Generates `best_of` completions server-side and returns the "best" (the one with the highest log probability per token). Results cannot be streamed.<br><br>When used with `n`, `best_of` controls the number of candidate completions and `n` specifies how many to return â€“ `best_of` must be greater than `n`.<br><br>**Note:** Because this parameter generates many completions, it can quickly consume your token quota. Use carefully and ensure that you have reasonable settings for `max_tokens` and `stop`. | No | 1 |
-| echo | boolean | Echo back the prompt in addition to the completion | No | False |
-| frequency_penalty | number | Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim. | No | 0 |
-| logit_bias | object | Modify the likelihood of specified tokens appearing in the completion.<br><br>Accepts a JSON object that maps tokens (specified by their token ID in the GPT tokenizer) to an associated bias value from -100 to 100.  Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token.<br><br>As an example, you can pass `{"50256": -100}` to prevent the <&#124;endoftext&#124;> token from being generated. | No | None |
-| logprobs | integer | Include the log probabilities on the `logprobs` most likely output tokens, as well the chosen tokens. For example, if `logprobs` is 5, the API will return a list of the 5 most likely tokens. The API will always return the `logprob` of the sampled token, so there may be up to `logprobs+1` elements in the response.<br><br>The maximum value for `logprobs` is 5. | No | None |
-| max_tokens | integer | The maximum number of tokens that can be generated in the completion.<br><br>The token count of your prompt plus `max_tokens` cannot exceed the model's context length. | No | 16 |
-| model | string | The model to use for the text completion request. | Yes |  |
-| n | integer | How many completions to generate for each prompt.<br><br>**Note:** Because this parameter generates many completions, it can quickly consume your token quota. Use carefully and ensure that you have reasonable settings for `max_tokens` and `stop`. | No | 1 |
-| presence_penalty | number | Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics. | No | 0 |
-| prompt | string or array | The prompt(s) to generate completions for, encoded as a string, array of strings, array of tokens, or array of token arrays.<br>Note that <&#124;endoftext&#124;> is the document separator that the model sees during training, so if a prompt is not specified the model will generate as if from the beginning of a new document. | No |  |
-| seed | integer | If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result.<br><br>Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend. | No |  |
-| stop | object | Not supported with latest reasoning models `o3` and `o4-mini`.<br><br>Up to 4 sequences where the API will stop generating further tokens. The returned text will not contain the stop sequence. | No |  |
-| stream | boolean | Whether to stream back partial progress. If set, tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message.  | No | False |
-| stream_options | object | Options for streaming response. Only set this when you set `stream: true`. | No |  |
-| └─ include_usage | boolean | If set, an additional chunk will be streamed before the `data: [DONE]` message. The `usage` field on this chunk shows the token usage statistics for the entire request, and the `choices` field will always be an empty array. <br><br>All other chunks will also include a `usage` field, but with a null value. **NOTE:** If the stream is interrupted, you may not receive the final usage chunk which contains the total token usage for the request. | No |  |
-| suffix | string | The suffix that comes after a completion of inserted text.<br><br>This parameter is only supported for `gpt-3.5-turbo-instruct`. | No | None |
-| temperature | number | What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.<br><br>We generally recommend altering this or `top_p` but not both. | No | 1 |
-| top_p | number | An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.<br><br>We generally recommend altering this or `temperature` but not both. | No | 1 |
-| user | string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.  | No |  |
-
-### AzureCreateCompletionResponse
-
-Represents a completion response from the API. Note: both the streamed and non-streamed response objects share the same shape (unlike the chat endpoint).
-
-| Name | Type | Description | Required | Default |
-|------|------|-------------|----------|---------|
-| choices | array | The list of completion choices the model generated for the input prompt. | Yes |  |
-| created | integer | The Unix timestamp (in seconds) of when the completion was created. | Yes |  |
-| id | string | A unique identifier for the completion. | Yes |  |
-| model | string | The model used for completion. | Yes |  |
-| object | enum | The object type, which is always "text_completion"<br>Possible values: `text_completion` | Yes |  |
-| prompt_filter_results | array |  | No |  |
-| system_fingerprint | string | This fingerprint represents the backend configuration that the model runs with.<br><br>Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. | No |  |
-| usage | [OpenAI.CompletionUsage](#openaicompletionusage) | Usage statistics for the completion request. | No |  |
-
 ### AzureCreateEmbeddingRequest
 
 | Name | Type | Description | Required | Default |
@@ -2019,35 +4119,47 @@ Represents a completion response from the API. Note: both the streamed and non-s
 | model | string | The model to use for the embedding request. | Yes |  |
 | user | string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.  | No |  |
 
+### AzureCreateFileRequestMultiPart
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| expires_after | object |  | Yes |  |
+| └─ anchor | [AzureFileExpiryAnchor](#azurefileexpiryanchor) |  | No |  |
+| └─ seconds | integer |  | No |  |
+| file | string |  | Yes |  |
+| purpose | enum | The intended purpose of the uploaded file. One of: - `assistants`: Used in the Assistants API - `batch`: Used in the Batch API - `fine-tune`: Used for fine-tuning - `evals`: Used for eval data sets. <br>Possible values: `assistants`, `batch`, `fine-tune`, `evals` | Yes |  |
+
 ### AzureCreateImageEditRequestMultiPart
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| background | enum | Allows to set transparency for the background of the generated image(s). <br>This parameter is only supported for `gpt-image-1`. Must be one of `transparent`, `opaque` or `auto` (default value). When `auto` is used, the model will automatically determine the best background for the image.<br><br>If `transparent`, the output format needs to support transparency, so it should be set to either `png` (default value) or `webp`.<br>Possible values: `transparent`, `opaque`, `auto` | No |  |
+| background | enum | Allows to set transparency for the background of the generated image(s).<br>This parameter is only supported for `gpt-image-1`-series models. Must be one of `transparent`, `opaque` or `auto` (default value). When `auto` is used, the model will automatically determine the best background for the image.<br><br>If `transparent`, the output format needs to support transparency, so it should be set to either `png` (default value) or `webp`.<br>Possible values: `transparent`, `opaque`, `auto` | No |  |
 | image | string or array |  | Yes |  |
 | mask | string |  | No |  |
 | model | string | The model deployment to use for the image edit operation. | Yes |  |
 | n | integer | The number of images to generate. Must be between 1 and 10. | No | 1 |
-| prompt | string | A text description of the desired image(s). The maximum length is 1000 characters for `dall-e-2`, and 32000 characters for `gpt-image-1`. | Yes |  |
-| quality | enum | The quality of the image that will be generated. `high`, `medium` and `low` are only supported for `gpt-image-1`. `dall-e-2` only supports `standard` quality. Defaults to `auto`.<br>Possible values: `standard`, `low`, `medium`, `high`, `auto` | No |  |
-| response_format | enum | The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. This parameter is only supported for `dall-e-2`, as `gpt-image-1` will always return base64-encoded images.<br>Possible values: `url`, `b64_json` | No |  |
-| size | enum | The size of the generated images. Must be one of `1024x1024`, `1536x1024` (landscape), `1024x1536` (portrait), or `auto` (default value) for `gpt-image-1`, and one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`.<br>Possible values: `256x256`, `512x512`, `1024x1024`, `1536x1024`, `1024x1536`, `auto` | No |  |
+| output_compression | integer | The compression level (0-100%) for the generated images. This parameter is only supported for `gpt-image-1`-series models with the `webp` or `jpeg` output formats, and defaults to 100. | No | 100 |
+| output_format | enum | The format in which the generated images are returned. This parameter is only supported for `gpt-image-1`-series models. Must be one of `png`, `jpeg`, or `webp`.<br>The default value is `png`.<br>Possible values: `png`, `jpeg`, `webp` | No |  |
+| prompt | string | A text description of the desired image(s). The maximum length is 1000 characters for `dall-e-2`, and 32000 characters for `gpt-image-1`-series models. | Yes |  |
+| quality | enum | The quality of the image that will be generated. `high`, `medium` and `low` are only supported for `gpt-image-1`-series models. `dall-e-2` only supports `standard` quality. Defaults to `auto`.<br>Possible values: `standard`, `low`, `medium`, `high`, `auto` | No |  |
+| response_format | enum | The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. This parameter is only supported for `dall-e-2`, as `gpt-image-1`-series models will always return base64-encoded images.<br>Possible values: `url`, `b64_json` | No |  |
+| size | enum | The size of the generated images. Must be one of `1024x1024`, `1536x1024` (landscape), `1024x1536` (portrait), or `auto` (default value) for `gpt-image-1`-series models, and one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`.<br>Possible values: `256x256`, `512x512`, `1024x1024`, `1536x1024`, `1024x1536`, `auto` | No |  |
 | user | string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.  | No |  |
 
 ### AzureCreateImageRequest
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| background | enum | Allows to set transparency for the background of the generated image(s). <br>This parameter is only supported for `gpt-image-1`. Must be one of `transparent`, `opaque` or `auto` (default value). When `auto` is used, the model will automatically determine the best background for the image.<br><br>If `transparent`, the output format needs to support transparency, so it should be set to either `png` (default value) or `webp`.<br>Possible values: `transparent`, `opaque`, `auto` | No |  |
+| background | enum | Allows to set transparency for the background of the generated image(s).<br>This parameter is only supported for `gpt-image-1`-series models. Must be one of `transparent`, `opaque` or `auto` (default value). When `auto` is used, the model will automatically determine the best background for the image.<br><br>If `transparent`, the output format needs to support transparency, so it should be set to either `png` (default value) or `webp`.<br>Possible values: `transparent`, `opaque`, `auto` | No |  |
 | model | string | The model deployment to use for the image generation. | Yes |  |
-| moderation | enum | Control the content-moderation level for images generated by `gpt-image-1`. Must be either `low` for less restrictive filtering or `auto` (default value).<br>Possible values: `low`, `auto` | No |  |
+| moderation | enum | Control the content-moderation level for images generated by `gpt-image-1`-series models. Must be either `low` for less restrictive filtering or `auto` (default value).<br>Possible values: `low`, `auto` | No |  |
 | n | integer | The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported. | No | 1 |
-| output_compression | integer | The compression level (0-100%) for the generated images. This parameter is only supported for `gpt-image-1` with the `webp` or `jpeg` output formats, and defaults to 100. | No | 100 |
-| output_format | enum | The format in which the generated images are returned. This parameter is only supported for `gpt-image-1`. Must be one of `png`, `jpeg`, or `webp`.<br>Possible values: `png`, `jpeg`, `webp` | No |  |
-| prompt | string | A text description of the desired image(s). The maximum length is 32000 characters for `gpt-image-1`, 1000 characters for `dall-e-2` and 4000 characters for `dall-e-3`. | Yes |  |
-| quality | enum | The quality of the image that will be generated. <br><br>- `auto` (default value) will automatically select the best quality for the given model.<br>- `high`, `medium` and `low` are supported for `gpt-image-1`.<br>- `hd` and `standard` are supported for `dall-e-3`.<br>- `standard` is the only option for `dall-e-2`.<br>Possible values: `standard`, `hd`, `low`, `medium`, `high`, `auto` | No |  |
-| response_format | enum | The format in which generated images with `dall-e-2` and `dall-e-3` are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. This parameter isn't supported for `gpt-image-1` which will always return base64-encoded images.<br>Possible values: `url`, `b64_json` | No |  |
-| size | enum | The size of the generated images. Must be one of `1024x1024`, `1536x1024` (landscape), `1024x1536` (portrait), or `auto` (default value) for `gpt-image-1`, one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`, and one of `1024x1024`, `1792x1024`, or `1024x1792` for `dall-e-3`.<br>Possible values: `auto`, `1024x1024`, `1536x1024`, `1024x1536`, `256x256`, `512x512`, `1792x1024`, `1024x1792` | No |  |
+| output_compression | integer | The compression level (0-100%) for the generated images. This parameter is only supported for `gpt-image-1`-series models with the `webp` or `jpeg` output formats, and defaults to 100. | No | 100 |
+| output_format | enum | The format in which the generated images are returned. This parameter is only supported for `gpt-image-1`-series models. Must be one of `png`, `jpeg`, or `webp`.<br>Possible values: `png`, `jpeg`, `webp` | No |  |
+| prompt | string | A text description of the desired image(s). The maximum length is 32000 characters for `gpt-image-1`-series models, 1000 characters for `dall-e-2` and 4000 characters for `dall-e-3`. | Yes |  |
+| quality | enum | The quality of the image that will be generated.<br><br>- `auto` (default value) will automatically select the best quality for the given model.<br>- `high`, `medium` and `low` are supported for `gpt-image-1`-series models.<br>- `hd` and `standard` are supported for `dall-e-3`.<br>- `standard` is the only option for `dall-e-2`.<br>Possible values: `standard`, `hd`, `low`, `medium`, `high`, `auto` | No |  |
+| response_format | enum | The format in which generated images with `dall-e-2` and `dall-e-3` are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. This parameter isn't supported for `gpt-image-1`-series models which will always return base64-encoded images.<br>Possible values: `url`, `b64_json` | No |  |
+| size | enum | The size of the generated images. Must be one of `1024x1024`, `1536x1024` (landscape), `1024x1536` (portrait), or `auto` (default value) for `gpt-image-1`-series models, one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`, and one of `1024x1024`, `1792x1024`, or `1024x1792` for `dall-e-3`.<br>Possible values: `auto`, `1024x1024`, `1536x1024`, `1024x1536`, `256x256`, `512x512`, `1792x1024`, `1024x1792` | No |  |
 | style | enum | The style of the generated images. This parameter is only supported for `dall-e-3`. Must be one of `vivid` or `natural`. Vivid causes the model to lean towards generating hyper-real and dramatic images. Natural causes the model to produce more natural, less hyper-real looking images.<br>Possible values: `vivid`, `natural` | No |  |
 | user | string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.  | No |  |
 
@@ -2055,29 +4167,35 @@ Represents a completion response from the API. Note: both the streamed and non-s
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| background | boolean | Whether to run the model response in the background. | No | False |
-| include | array | Specify additional output data to include in the model response. Currently supported values are:<br>- `file_search_call.results`: Include the search results of the file search tool call.<br>- `message.input_image.image_url`: Include image urls from the input message.<br>- `computer_call_output.output.image_url`: Include image urls from the computer call output.<br>- `reasoning.encrypted_content`: Includes an encrypted version of reasoning tokens in reasoning item outputs. This enables reasoning items to be used in multi-turn conversations when using the Responses API statelessly (like when the `store` parameter is set to `false`, or when an organization is enrolled in the zero data retention program). | No |  |
-| input | string or array |  | Yes |  |
-| instructions | string | Inserts a system (or developer) message as the first item in the model's context.<br><br>When using along with `previous_response_id`, the instructions from a previous response will not be carried over to the next response. This makes it simple to swap out system (or developer) messages in new responses. | No |  |
-| max_output_tokens | integer | An upper bound for the number of tokens that can be generated for a response, including visible output tokens and . | No |  |
+| background | boolean | Whether to run the model response in the background.| No | False |
+| include | array | Specify additional output data to include in the model response. Currently supported values are:<br>- `code_interpreter_call.outputs`: Includes the outputs of python code execution in code interpreter tool call items.<br>- `computer_call_output.output.image_url`: Include image urls from the computer call output.<br>- `file_search_call.results`: Include the search results of the file search tool call.<br>- `message.input_image.image_url`: Include image urls from the input message.<br>- `message.output_text.logprobs`: Include logprobs with assistant messages.<br>- `reasoning.encrypted_content`: Includes an encrypted version of reasoning tokens in reasoning item outputs. This enables reasoning items to be used in multi-turn conversations when using the Responses API statelessly (like when the `store` parameter is set to `false`, or when an organization is enrolled in the zero data retention program). | No |  |
+| input | string or array |  | No |  |
+| instructions | string | A system (or developer) message inserted into the model's context.<br><br>When using along with `previous_response_id`, the instructions from a previous response will not be carried over to the next response. This makes it simple to swap out system (or developer) messages in new responses. | No |  |
+| max_output_tokens | integer | An upper bound for the number of tokens that can be generated for a response, including visible output tokens and reasoning tokens | No |  |
+| max_tool_calls | integer | The maximum number of total calls to built-in tools that can be processed in a response. This maximum number applies across all built-in tool calls, not per individual tool. Any further attempts to call a tool by the model will be ignored. | No |  |
 | metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | No |  |
 | model | string | The model deployment to use for the creation of this response. | Yes |  |
 | parallel_tool_calls | boolean | Whether to allow the model to run tool calls in parallel. | No | True |
-| previous_response_id | string | The unique ID of the previous response to the model. Use this to create multi-turn conversations. reasoning models. | No |  |
+| previous_response_id | string | The unique ID of the previous response to the model. Use this to create multi-turn conversations. | No |  |
+| prompt | object | Reference to a prompt template and its variables. | No |  |
+| └─ id | string | The unique identifier of the prompt template to use. | No |  |
+| └─ variables | [OpenAI.ResponsePromptVariables](#openairesponsepromptvariables) | Optional map of values to substitute in for variables in your prompt. The substitution values can either be strings, or other Response input types like images or files. | No |  |
+| └─ version | string | Optional version of the prompt template. | No |  |
 | reasoning | object | **o-series models only**<br><br>Configuration options for reasoning models. | No |  |
-| └─ effort | [OpenAI.ReasoningEffort](#openaireasoningeffort) | **o-series models only** <br><br>Constrains effort on reasoning for reasoning models.<br>Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. | No |  |
+| └─ effort | [OpenAI.ReasoningEffort](#openaireasoningeffort) | **o-series models only**<br><br>Constrains effort on reasoning for reasoning models.<br>Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. | No |  |
 | └─ generate_summary | enum | **Deprecated:** use `summary` instead.<br><br>A summary of the reasoning performed by the model. This can be useful for debugging and understanding the model's reasoning process.<br>One of `auto`, `concise`, or `detailed`.<br>Possible values: `auto`, `concise`, `detailed` | No |  |
 | └─ summary | enum | A summary of the reasoning performed by the model. This can be useful for debugging and understanding the model's reasoning process.<br>One of `auto`, `concise`, or `detailed`.<br>Possible values: `auto`, `concise`, `detailed` | No |  |
 | store | boolean | Whether to store the generated model response for later retrieval via API. | No | True |
 | stream | boolean | If set to true, the model response data will be streamed to the client as it is generated using [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format). | No | False |
 | temperature | number | What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.<br>We generally recommend altering this or `top_p` but not both. | No | 1 |
-| text | object | Configuration options for a text response from the model. Can be plain text or structured JSON data.  | No |  |
+| text | object | Configuration options for a text response from the model. Can be plain text or structured JSON data. | No |  |
 | └─ format | [OpenAI.ResponseTextFormatConfiguration](#openairesponsetextformatconfiguration) |  | No |  |
 | tool_choice | object | Controls which (if any) tool is called by the model.<br><br>`none` means the model will not call any tool and instead generates a message.<br><br>`auto` means the model can pick between generating a message or calling one or more tools.<br><br>`required` means the model must call one or more tools. | No |  |
 | └─ type | [OpenAI.ToolChoiceObjectType](#openaitoolchoiceobjecttype) | Indicates that the model should use a built-in tool to generate a response. | No |  |
 | tools | array | An array of tools the model may call while generating a response. You can specify which tool to use by setting the `tool_choice` parameter.<br><br>The two categories of tools you can provide the model are:<br><br>- **Built-in tools**: Tools that are provided by OpenAI that extend the model's capabilities, like file search.<br>- **Function calls (custom tools)**: Functions that are defined by you, enabling the model to call your own code. | No |  |
+| top_logprobs | integer | An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. | No |  |
 | top_p | number | An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.<br><br>We generally recommend altering this or `temperature` but not both. | No | 1 |
-| truncation | enum | The truncation strategy to use for the model response.<br>- `auto`: If the context of this response and previous ones exceeds the model's context window size, the model will truncate the response to fit the context window by dropping input items in the middle of the conversation. <br>- `disabled` (default): If a model response will exceed the context window size for a model, the request will fail with a 400 error.<br>Possible values: `auto`, `disabled` | No |  |
+| truncation | enum | The truncation strategy to use for the model response.<br>- `auto`: If the context of this response and previous ones exceeds the model's context window size, the model will truncate the response to fit the context window by dropping input items in the middle of the conversation.<br>- `disabled` (default): If a model response will exceed the context window size for a model, the request will fail with a 400 error.<br>Possible values: `auto`, `disabled` | No |  |
 | user | string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.  | No |  |
 
 ### AzureCreateSpeechRequestMultiPart
@@ -2091,6 +4209,7 @@ A representation of the request options that control the behavior of a text-to-s
 | model | string | The model to use for this text-to-speech request. | Yes |  |
 | response_format | object | The supported audio output formats for text-to-speech. | No |  |
 | speed | number | The speed of speech for generated audio. Values are valid in the range from 0.25 to 4.0, with 1.0 the default and higher values corresponding to faster speech. | No | 1 |
+| stream_format | enum | The format to stream the audio in. Supported formats are `sse` and `audio`. `sse` is not supported for `tts-1` or `tts-1-hd`.<br>Possible values: `sse`, `audio` | No |  |
 | voice | object |  | Yes |  |
 
 ### AzureCreateTranscriptionRequestMultiPart
@@ -2106,14 +4225,27 @@ The configuration information for an audio transcription request.
 | └─ type | enum | Must be set to `server_vad` to enable manual chunking using server side VAD.<br>Possible values: `server_vad` | No |  |
 | file | string |  | Yes |  |
 | filename | string | The optional filename or descriptive identifier to associate with with the audio data. | No |  |
-| include[] | array | Additional information to include in the transcription response. <br>`logprobs` will return the log probabilities of the tokens in the response to understand the model's confidence in the transcription. <br>`logprobs` only works with response_format set to `json` and only with the models `gpt-4o-transcribe` and `gpt-4o-mini-transcribe`. | No |  |
+| include[] | array | Additional information to include in the transcription response.<br>`logprobs` will return the log probabilities of the tokens in the response to understand the model's confidence in the transcription.<br>`logprobs` only works with response_format set to `json` and only with the models `gpt-4o-transcribe`, `gpt-4o-transcribe-diarize`, `gpt-4o-mini-transcribe`, and `gpt-4o-mini-transcribe-2025-12-15`. | No |  |
 | language | string | The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) (e.g. `en`) format will improve accuracy and latency. | No |  |
 | model | string | The model to use for this transcription request. | No |  |
 | prompt | string | An optional text to guide the model's style or continue a previous audio segment. The prompt should match the audio language. | No |  |
 | response_format | object |  | No |  |
-| stream | boolean | If set to true, the model response data will be streamed to the client as it is generated using [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format). <br>Note: Streaming is not supported for the `whisper-1` model and will be ignored. | No | False |
+| stream | boolean | If set to true, the model response data will be streamed to the client as it is generated using [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format). Note: Streaming is not supported for the `whisper-1` model and will be ignored. | No | False |
 | temperature | number | The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. | No | 0 |
 | timestamp_granularities[] | array | The timestamp granularities to populate for this transcription. `response_format` must be set `verbose_json` to use timestamp granularities. Either or both of these options are supported: `word`, or `segment`. Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional latency. | No | ['segment'] |
+
+### AzureCreateTranslationRequestMultiPart
+
+The configuration information for an audio transcription request.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| file | string |  | Yes |  |
+| filename | string | The optional filename or descriptive identifier to associate with with the audio data | No |  |
+| model | string | The model to use for this translation request. | No |  |
+| prompt | string | An optional text to guide the model's style or continue a previous audio segment. The prompt should be in English. | No |  |
+| response_format | object |  | No |  |
+| temperature | number | The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. | No | 0 |
 
 ### AzureErrorResponse
 
@@ -2126,26 +4258,111 @@ The configuration information for an audio transcription request.
 | └─ param | string | If applicable, the request input parameter associated with the error | No |  |
 | └─ type | enum | The object type, always 'error.'<br>Possible values: `error` | No |  |
 
+### AzureEvalAPICompletionsSamplingParams
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| parallel_tool_calls | boolean |  | No |  |
+| response_format | [OpenAI.ResponseTextFormatConfiguration](#openairesponsetextformatconfiguration) |  | No |  |
+| tools | array |  | No |  |
+
+### AzureEvalAPIModelSamplingParams
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| max_tokens | integer | The maximum number of tokens in the generated output. | No |  |
+| reasoning_effort | enum | Controls the level of reasoning effort applied during generation.<br>Possible values: `low`, `medium`, `high` | No |  |
+| seed | integer | A seed value to initialize the randomness during sampling. | No |  |
+| temperature | number | A higher temperature increases randomness in the outputs. | No |  |
+| top_p | number | An alternative to temperature for nucleus sampling; 1.0 includes all tokens. | No |  |
+
+### AzureEvalAPIResponseSamplingParams
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| parallel_tool_calls | boolean |  | No |  |
+| response_format | [OpenAI.ResponseTextFormatConfiguration](#openairesponsetextformatconfiguration) |  | No |  |
+| tools | array |  | No |  |
+
+### AzureFileExpiryAnchor
+
+| Property | Value |
+|----------|-------|
+| **Type** | string |
+| **Values** | `created_at` |
+
+### AzureFineTuneReinforcementMethod
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| grader | object | A StringCheckGrader object that performs a string comparison between input and reference using a specified operation. | Yes |  |
+| └─ calculate_output | string | A formula to calculate the output based on grader results. | No |  |
+| └─ evaluation_metric | enum | The evaluation metric to use. One of `fuzzy_match`, `bleu`, `gleu`, `meteor`, `rouge_1`, `rouge_2`, `rouge_3`, `rouge_4`, `rouge_5`, or `rouge_l`.<br>Possible values: `fuzzy_match`, `bleu`, `gleu`, `meteor`, `rouge_1`, `rouge_2`, `rouge_3`, `rouge_4`, `rouge_5`, `rouge_l` | No |  |
+| └─ graders | object |  | No |  |
+| └─ input | array | The input text. This may include template strings. | No |  |
+| └─ model | string | The model to use for the evaluation. | No |  |
+| └─ name | string | The name of the grader. | No |  |
+| └─ operation | enum | The string check operation to perform. One of `eq`, `ne`, `like`, or `ilike`.<br>Possible values: `eq`, `ne`, `like`, `ilike` | No |  |
+| └─ range | array | The range of the score. Defaults to `[0, 1]`. | No |  |
+| └─ reference | string | The text being graded against. | No |  |
+| └─ sampling_params |  | The sampling parameters for the model. | No |  |
+| └─ type | enum | The object type, which is always `multi`.<br>Possible values: `multi` | No |  |
+| hyperparameters | [OpenAI.FineTuneReinforcementHyperparameters](#openaifinetunereinforcementhyperparameters) | The hyperparameters used for the reinforcement fine-tuning job. | No |  |
+| response_format | object |  | No |  |
+| └─ json_schema | object | JSON Schema for the response format | No |  |
+| └─ type | enum | Type of response format.<br>Possible values: `json_schema` | No |  |
+
 ### AzureImage
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
+| b64_json | string | The base64-encoded JSON of the generated image. Default value for `gpt-image-1`-series models, and only present if `response_format` is set to `b64_json` for `dall-e-2` and `dall-e-3`. | No |  |
 | content_filter_results | [AzureContentFilterImageResponseResults](#azurecontentfilterimageresponseresults) | A content filter result for an image generation operation's output response content. | Yes |  |
 | prompt_filter_results | [AzureContentFilterImagePromptResults](#azurecontentfilterimagepromptresults) | A content filter result for an image generation operation's input request content. | Yes |  |
+| revised_prompt | string | For `dall-e-3` only, the revised prompt that was used to generate the image. | No |  |
+| url | string | When using `dall-e-2` or `dall-e-3`, the URL of the generated image if `response_format` is set to `url` (default value). Unsupported for `gpt-image-1`-series models. | No |  |
 
 ### AzureImagesResponse
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
+| background | enum | The background parameter used for the image generation. Either `transparent` or `opaque`.<br>Possible values: `transparent`, `opaque` | No |  |
 | created | integer | The Unix timestamp (in seconds) of when the image was created. | Yes |  |
 | data | array |  | No |  |
-| usage | object | For `gpt-image-1` only, the token usage information for the image generation. | No |  |
+| output_format | enum | The output format of the image generation. Either `png`, `webp`, or `jpeg`.<br>Possible values: `png`, `webp`, `jpeg` | No |  |
+| quality | enum | The quality of the image generated. Either `low`, `medium`, or `high`.<br>Possible values: `low`, `medium`, `high` | No |  |
+| size | enum | The size of the image generated. Either `1024x1024`, `1024x1536`, or `1536x1024`.<br>Possible values: `1024x1024`, `1024x1536`, `1536x1024` | No |  |
+| usage | object | For `gpt-image-1`-series models only, the token usage information for the image generation. | No |  |
 | └─ input_tokens | integer | The number of tokens (images and text) in the input prompt. | No |  |
 | └─ input_tokens_details | object | The input tokens detailed information for the image generation. | No |  |
 |   └─ image_tokens | integer | The number of image tokens in the input prompt. | No |  |
 |   └─ text_tokens | integer | The number of text tokens in the input prompt. | No |  |
 | └─ output_tokens | integer | The number of image tokens in the output image. | No |  |
 | └─ total_tokens | integer | The total number of tokens (images and text) used for the image generation. | No |  |
+
+### AzureListFilesResponse
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| data | array |  | Yes |  |
+| first_id | string |  | Yes |  |
+| has_more | boolean |  | Yes |  |
+| last_id | string |  | Yes |  |
+| object | enum | <br>Possible values: `list` | Yes |  |
+
+### AzureOpenAIFile
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| bytes | integer | The size of the file, in bytes. | Yes |  |
+| created_at | integer | The Unix timestamp (in seconds) for when the file was created. | Yes |  |
+| expires_at | integer | The Unix timestamp (in seconds) for when the file will expire. | No |  |
+| filename | string | The name of the file. | Yes |  |
+| id | string | The file identifier, which can be referenced in the API endpoints. | Yes |  |
+| object | enum | The object type, which is always `file`.<br>Possible values: `file` | Yes |  |
+| purpose | enum | The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune` and `fine-tune-results`.<br>Possible values: `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results`, `evals` | Yes |  |
+| status | enum | <br>Possible values: `uploaded`, `pending`, `running`, `processed`, `error`, `deleting`, `deleted` | Yes |  |
+| status_details | string | Deprecated. For details on why a fine-tuning training file failed validation, see the `error` field on `fine_tuning.job`. | No |  |
 
 ### AzureOpenAIVideoGenerationErrorResponse
 
@@ -2154,7 +4371,7 @@ The configuration information for an audio transcription request.
 | code | string | The distinct, machine-generated identifier for the error. | No |  |
 | inner_error | object | If applicable, an upstream error that originated this error. | No |  |
 | └─ code | enum | The code associated with the inner error.<br>Possible values: `ResponsibleAIPolicyViolation` | No |  |
-| └─ error_details | object |  | No |  |
+| └─ error_details |  | The content filter result details associated with the inner error. | No |  |
 | └─ revised_prompt | string | If applicable, the modified prompt used for generation. | No |  |
 | message | string | A human-readable message associated with the error. | No |  |
 | param | string | If applicable, the request input parameter associated with the error | No |  |
@@ -2164,7 +4381,7 @@ The configuration information for an audio transcription request.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| background | boolean | Whether to run the model response in the background. | No | False |
+| background | boolean | Whether to run the model response in the background.| No | False |
 | created_at | integer | Unix timestamp (in seconds) of when this Response was created. | Yes |  |
 | error | object | An error object returned when the model fails to generate a Response. | Yes |  |
 | └─ code | [OpenAI.ResponseErrorCode](#openairesponseerrorcode) | The error code for the response. | No |  |
@@ -2172,28 +4389,34 @@ The configuration information for an audio transcription request.
 | id | string | Unique identifier for this Response. | Yes |  |
 | incomplete_details | object | Details about why the response is incomplete. | Yes |  |
 | └─ reason | enum | The reason why the response is incomplete.<br>Possible values: `max_output_tokens`, `content_filter` | No |  |
-| instructions | string | Inserts a system (or developer) message as the first item in the model's context.<br><br>When using along with `previous_response_id`, the instructions from a previous response will not be carried over to the next response. This makes it simple to swap out system (or developer) messages in new responses. | No |  |
-| max_output_tokens | integer | An upper bound for the number of tokens that can be generated for a response, including visible output tokens and . | No |  |
+| instructions | string or array |  | Yes |  |
+| max_output_tokens | integer | An upper bound for the number of tokens that can be generated for a response, including visible output tokens and reasoning tokens | No |  |
+| max_tool_calls | integer | The maximum number of total calls to built-in tools that can be processed in a response. This maximum number applies across all built-in tool calls, not per individual tool. Any further attempts to call a tool by the model will be ignored. | No |  |
 | metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | Yes |  |
 | model | string | The model used to generate this response. | Yes |  |
 | object | enum | The object type of this resource - always set to `response`.<br>Possible values: `response` | Yes |  |
 | output | array | An array of content items generated by the model.<br><br>- The length and order of items in the `output` array is dependent on the model's response.<br>- Rather than accessing the first item in the `output` array and assuming it's an `assistant` message with the content generated by the model, you might consider using the `output_text` property where supported in SDKs. | Yes |  |
-| output_text | string | SDK-only convenience property that contains the aggregated text output from all `output_text` items in the `output` array, if any are present. <br>Supported in the Python and JavaScript SDKs. | No |  |
+| output_text | string | SDK-only convenience property that contains the aggregated text output from all `output_text` items in the `output` array, if any are present.<br>Supported in the Python and JavaScript SDKs. | No |  |
 | parallel_tool_calls | boolean | Whether to allow the model to run tool calls in parallel. | Yes | True |
-| previous_response_id | string | The unique ID of the previous response to the model. Use this to create multi-turn conversations. reasoning models. | No |  |
+| previous_response_id | string | The unique ID of the previous response to the model. Use this to create multi-turn conversations. | No |  |
+| prompt | object | Reference to a prompt template and its variables. | No |  |
+| └─ id | string | The unique identifier of the prompt template to use. | No |  |
+| └─ variables | [OpenAI.ResponsePromptVariables](#openairesponsepromptvariables) | Optional map of values to substitute in for variables in your prompt. The substitution values can either be strings, or other Response input types like images or files. | No |  |
+| └─ version | string | Optional version of the prompt template. | No |  |
 | reasoning | object | **o-series models only**<br><br>Configuration options for reasoning models. | No |  |
-| └─ effort | [OpenAI.ReasoningEffort](#openaireasoningeffort) | **o-series models only** <br><br>Constrains effort on reasoning for reasoning models.<br>Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. | No |  |
+| └─ effort | [OpenAI.ReasoningEffort](#openaireasoningeffort) | **o-series models only**<br><br>Constrains effort on reasoning for reasoning models.<br>Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. | No |  |
 | └─ generate_summary | enum | **Deprecated:** use `summary` instead.<br><br>A summary of the reasoning performed by the model. This can be useful for debugging and understanding the model's reasoning process.<br>One of `auto`, `concise`, or `detailed`.<br>Possible values: `auto`, `concise`, `detailed` | No |  |
 | └─ summary | enum | A summary of the reasoning performed by the model. This can be useful for debugging and understanding the model's reasoning process.<br>One of `auto`, `concise`, or `detailed`.<br>Possible values: `auto`, `concise`, `detailed` | No |  |
 | status | enum | The status of the response generation. One of `completed`, `failed`, `in_progress`, `cancelled`, `queued`, or `incomplete`.<br>Possible values: `completed`, `failed`, `in_progress`, `cancelled`, `queued`, `incomplete` | No |  |
 | temperature | number | What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.<br>We generally recommend altering this or `top_p` but not both. | Yes |  |
-| text | object | Configuration options for a text response from the model. Can be plain text or structured JSON data.  | No |  |
+| text | object | Configuration options for a text response from the model. Can be plain text or structured JSON data. | No |  |
 | └─ format | [OpenAI.ResponseTextFormatConfiguration](#openairesponsetextformatconfiguration) |  | No |  |
 | tool_choice | object | Controls which (if any) tool is called by the model.<br><br>`none` means the model will not call any tool and instead generates a message.<br><br>`auto` means the model can pick between generating a message or calling one or more tools.<br><br>`required` means the model must call one or more tools. | No |  |
 | └─ type | [OpenAI.ToolChoiceObjectType](#openaitoolchoiceobjecttype) | Indicates that the model should use a built-in tool to generate a response. | No |  |
-| tools | array | An array of tools the model may call while generating a response. You can specify which tool to use by setting the `tool_choice` parameter.<br><br>The two categories of tools you can provide the model are:<br><br>- **Built-in tools**: Tools that are provided by OpenAI that extend the model's capabilities. **nction calls (custom tools)**: Functions that are defined by you, enabling the model to call your own code | No |  |
+| tools | array | An array of tools the model may call while generating a response. You can specify which tool to use by setting the `tool_choice` parameter.<br><br>The two categories of tools you can provide the model are:<br><br>- **Built-in tools**: Tools that are provided by OpenAI that extend the model's capabilities. | No |  |
+| top_logprobs | integer | An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. | No |  |
 | top_p | number | An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.<br><br>We generally recommend altering this or `temperature` but not both. | Yes |  |
-| truncation | enum | The truncation strategy to use for the model response.<br>- `auto`: If the context of this response and previous ones exceeds the model's context window size, the model will truncate the response to fit the context window by dropping input items in the middle of the conversation. <br>- `disabled` (default): If a model response will exceed the context window size for a model, the request will fail with a 400 error.<br>Possible values: `auto`, `disabled` | No |  |
+| truncation | enum | The truncation strategy to use for the model response.<br>- `auto`: If the context of this response and previous ones exceeds the model's context window size, the model will truncate the response to fit the context window by dropping input items in the middle of the conversation.<br>- `disabled` (default): If a model response will exceed the context window size for a model, the request will fail with a 400 error.<br>Possible values: `auto`, `disabled` | No |  |
 | usage | [OpenAI.ResponseUsage](#openairesponseusage) | Represents token usage details including input tokens, output tokens, a breakdown of output tokens, and the total tokens used. | No |  |
 | user | string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.  | Yes |  |
 
@@ -2247,11 +4470,6 @@ User security context contains several parameters that describe the application 
 | end_user_tenant_id | string | The Microsoft 365 tenant ID the end user belongs to. It's required when the generative AI application is multitenant. | No |  |
 | source_ip | string | Captures the original client's IP address. | No |  |
 
-### AzureVideoGenerationError
-
-**Type**: object
-
-
 ### ChatCompletionMessageToolCallsItem
 
 The tool calls generated by the model, such as function calls.
@@ -2259,30 +4477,43 @@ The tool calls generated by the model, such as function calls.
 **Array of**: [OpenAI.ChatCompletionMessageToolCall](#openaichatcompletionmessagetoolcall)
 
 
-### CompletionChoice
-
-| Name | Type | Description | Required | Default |
-|------|------|-------------|----------|---------|
-| content_filter_results | [AzureContentFilterResultForChoice](#azurecontentfilterresultforchoice) | A content filter result for a single response item produced by a generative AI system. | No |  |
-| finish_reason | enum | The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters.<br>Possible values: `stop`, `length`, `content_filter` | Yes |  |
-| index | integer |  | Yes |  |
-| logprobs | object |  | Yes |  |
-| └─ text_offset | array |  | No |  |
-| └─ token_logprobs | array |  | No |  |
-| └─ tokens | array |  | No |  |
-| └─ top_logprobs | array |  | No |  |
-| text | string |  | Yes |  |
-
 ### CreateVideoGenerationRequest
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| height | integer | The height of the video. The following dimensions are supported: 480x480, 480x854, 854x480, 720x720, 720x1280, 1280x720, 1080x1080, 1080x1920, 1920x1080. | Yes |  |
+| height | integer | The height of the video. The following dimensions are supported: 480x480, 854x480, 720x720, 1280x720, 1080x1080 and 1920x1080 in both landscape and portrait orientations. | Yes |  |
 | model | string | The name of the deployment to use for this request. | Yes |  |
 | n_seconds | integer | The duration of the video generation job. Must be between 1 and 20 seconds. | No | 5 |
 | n_variants | integer | The number of videos to create as variants for this job. Must be between 1 and 5. Smaller dimensions allow more variants. | No | 1 |
 | prompt | string | The prompt for this video generation job. | Yes |  |
-| width | integer | The width of the video. The following dimensions are supported: 480x480, 480x854, 854x480, 720x720, 720x1280, 1280x720, 1080x1080, 1080x1920, 1920x1080. | Yes |  |
+| width | integer | The width of the video. The following dimensions are supported: 480x480, 854x480, 720x720, 1280x720, 1080x1080 and 1920x1080 in both landscape and portrait orientations. | Yes |  |
+
+### CreateVideoGenerationWithMediaRequestMultiPart
+
+The properties of a video generation job request with media files.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| files | array |  | Yes |  |
+| height | integer | The height of the video. The following dimensions are supported: 480x480, 854x480, 720x720, 1280x720, 1080x1080 and 1920x1080 in both landscape and portrait orientations. | Yes |  |
+| inpaint_items | array | Optional inpainting items for this video generation job. | No |  |
+| model | string | The name of the deployment to use for this request. | Yes |  |
+| n_seconds | integer | The duration of the video generation job. Must be between 1 and 20 seconds. | No | 5 |
+| n_variants | integer | The number of videos to create as variants for this job. Must be between 1 and 5. Smaller dimensions allow more variants. | No | 1 |
+| prompt | string | The prompt for this video generation job. | Yes |  |
+| width | integer | The width of the video. The following dimensions are supported: 480x480, 854x480, 720x720, 1280x720, 1080x1080 and 1920x1080 in both landscape and portrait orientations. | Yes |  |
+
+### CropBounds
+
+The crop bounds for an inpainting item.
+This specifies the area of the media item that should be used for inpainting.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| bottom_fraction | number | The bottom boundary of the crop box specified as fraction of the height of the original media item. Must be between 0.0 and 1.0. Use e.g. 0.5 for half the height of the original media item. | No | 1 |
+| left_fraction | number | The left boundary of the crop box specified as fraction of the width of the original media item. Must be between 0.0 and 1.0. Use e.g. 0.5 for half the width of the original media item. | No | 0 |
+| right_fraction | number | The right boundary of the crop box specified as fraction of the width of the original media item. Must be between 0.0 and 1.0. Use e.g. 0.5 for half the width of the original media item. | No | 1 |
+| top_fraction | number | The top boundary of the crop box specified as fraction of the height of the original media item. Must be between 0.0 and 1.0. Use e.g. 0.5 for half the height of the original media item. | No | 0 |
 
 ### ElasticsearchChatDataSource
 
@@ -2313,19 +4544,48 @@ The tool calls generated by the model, such as function calls.
 | └─ top_n_documents | integer | The configured number of documents to feature in the query. | No |  |
 | type | enum | The discriminated type identifier, which is always 'elasticsearch'.<br>Possible values: `elasticsearch` | Yes |  |
 
+### InpaintItem
+
+An inpainting item for a video generation job.
+This specifies the media item that should be used for inpainting in the video generation.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| crop_bounds | object | The crop bounds for an inpainting item.<br>This specifies the area of the media item that should be used for inpainting. | No |  |
+| └─ bottom_fraction | number | The bottom boundary of the crop box specified as fraction of the height of the original media item. Must be between 0.0 and 1.0. Use e.g. 0.5 for half the height of the original media item. | No | 1 |
+| └─ left_fraction | number | The left boundary of the crop box specified as fraction of the width of the original media item. Must be between 0.0 and 1.0. Use e.g. 0.5 for half the width of the original media item. | No | 0 |
+| └─ right_fraction | number | The right boundary of the crop box specified as fraction of the width of the original media item. Must be between 0.0 and 1.0. Use e.g. 0.5 for half the width of the original media item. | No | 1 |
+| └─ top_fraction | number | The top boundary of the crop box specified as fraction of the height of the original media item. Must be between 0.0 and 1.0. Use e.g. 0.5 for half the height of the original media item. | No | 0 |
+| file_name | string | The file name of the media item. It must match the file name of a file attachment in this request. | Yes |  |
+| frame_index | integer | The frame index for this media item. This specifies the starting frame in the resulting generated video for this inpainting item. | Yes | 0 |
+| type | object | The type of the inpainting item. | Yes |  |
+
 ### JobStatus
+
+The status of a video generation job.
 
 | Property | Value |
 |----------|-------|
+| **Description** | The status of a video generation job. |
 | **Type** | string |
 | **Values** | `preprocessing`<br>`queued`<br>`running`<br>`processing`<br>`cancelled`<br>`succeeded`<br>`failed` |
+
+### MediaItemType
+
+The type of the inpainting item.
+
+| Property | Value |
+|----------|-------|
+| **Description** | The type of the inpainting item. |
+| **Type** | string |
+| **Values** | `image` |
 
 ### MongoDBChatDataSource
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | parameters | object | The parameter information to control the use of the MongoDB data source. | Yes |  |
-| └─ allow_partial_result | boolean | If set to true, the system will allow partial search results to be used and the request will fail if all<br>partial queries fail. If not specified or specified as false, the request will fail if any search query fails. | No | False |
+| └─ allow_partial_result | boolean | If set to true, the system will allow partial search results to be used and the request will fail if all partial queries fail. If not specified or specified as false, the request will fail if any search query fails. | No | False |
 | └─ app_name | string | The name of the MongoDB application. | No |  |
 | └─ authentication | object |  | No |  |
 |   └─ password | string |  | No |  |
@@ -2379,6 +4639,7 @@ A citation to a file.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | file_id | string | The ID of the file. | Yes |  |
+| filename | string | The filename of the file cited. | Yes |  |
 | index | integer | The index of the file in the list of files. | Yes |  |
 | type | enum | The type of the file citation. Always `file_citation`.<br>Possible values: `file_citation` | Yes |  |
 
@@ -2397,7 +4658,7 @@ A path to a file.
 | Property | Value |
 |----------|-------|
 | **Type** | string |
-| **Values** | `file_citation`<br>`url_citation`<br>`file_path` |
+| **Values** | `file_citation`<br>`url_citation`<br>`file_path`<br>`container_file_citation` |
 
 ### OpenAI.AnnotationUrlCitation
 
@@ -2423,13 +4684,21 @@ A citation for a web resource used to generate a model response.
 
 ### OpenAI.AudioResponseFormat
 
-The format of the output, in one of these options: `json`, `text`, `srt`, `verbose_json`, or `vtt`. For `gpt-4o-transcribe` and `gpt-4o-mini-transcribe`, the only supported format is `json`.
+The format of the output, in one of these options: `json`, `text`, `srt`, `verbose_json`, or `vtt`. For `gpt-4o-transcribe`, `gpt-4o-transcribe-diarize`, `gpt-4o-mini-transcribe`, and `gpt-4o-mini-transcribe-2025-12-15`. The only supported format is `json`.
 
 | Property | Value |
 |----------|-------|
-| **Description** | The format of the output, in one of these options: `json`, `text`, `srt`, `verbose_json`, or `vtt`. For `gpt-4o-transcribe` and `gpt-4o-mini-transcribe`, the only supported format is `json`. |
+| **Description** | The format of the output, in one of these options: `json`, `text`, `srt`, `verbose_json`, or `vtt`. For `gpt-4o-transcribe`, `gpt-4o-transcribe-diarize`, `gpt-4o-mini-transcribe`, and `gpt-4o-mini-transcribe-2025-12-15`. The only supported format is `json`. |
 | **Type** | string |
 | **Values** | `json`<br>`text`<br>`srt`<br>`verbose_json`<br>`vtt` |
+
+### OpenAI.AutoChunkingStrategyRequestParam
+
+The default strategy. This strategy currently uses a `max_chunk_size_tokens` of `800` and `chunk_overlap_tokens` of `400`.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| type | enum | Always `auto`.<br>Possible values: `auto` | Yes |  |
 
 ### OpenAI.ChatCompletionFunctionCallOption
 
@@ -2598,7 +4867,7 @@ This component uses the property `type` to discriminate between different types:
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | image_url | object |  | Yes |  |
-| └─ detail | enum | Specifies the detail level of the image. .<br>Possible values: `auto`, `low`, `high` | No |  |
+| └─ detail | enum | Specifies the detail level of the image. <br>Possible values: `auto`, `low`, `high` | No |  |
 | └─ url | string | Either a URL of the image or the base64 encoded image data. | No |  |
 | type | enum | The type of the content part.<br>Possible values: `image_url` | Yes |  |
 
@@ -2671,7 +4940,7 @@ information.
 | └─ file_id | string | The ID of an uploaded file to use as input. | No |  |
 | └─ filename | string | The name of the file, used when passing the file to the model as a string. | No |  |
 | image_url | object |  | Yes |  |
-| └─ detail | enum | Specifies the detail level of the image. .<br>Possible values: `auto`, `low`, `high` | No |  |
+| └─ detail | enum | Specifies the detail level of the image. <br>Possible values: `auto`, `low`, `high` | No |  |
 | └─ url | string | Either a URL of the image or the base64 encoded image data. | No |  |
 | input_audio | object |  | Yes |  |
 | └─ data | string | Base64 encoded audio data. | No |  |
@@ -2695,7 +4964,7 @@ Options for streaming response. Only set this when you set `stream: true`.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| include_usage | boolean | If set, an additional chunk will be streamed before the `data: [DONE]` message. The `usage` field on this chunk shows the token usage statistics for the entire request, and the `choices` field will always be an empty array. <br><br>All other chunks will also include a `usage` field, but with a null value. **NOTE:** If the stream is interrupted, you may not receive the final usage chunk which contains the total token usage for the request. | No |  |
+| include_usage | boolean | If set, an additional chunk will be streamed before the `data: [DONE]` message. The `usage` field on this chunk shows the token usage statistics for the entire request, and the `choices` field will always be an empty array.<br><br>All other chunks will also include a `usage` field, but with a null value. **NOTE:** If the stream is interrupted, you may not receive the final usage chunk which contains the total token usage for the request. | No |  |
 
 ### OpenAI.ChatCompletionStreamResponseDelta
 
@@ -2782,23 +5051,79 @@ being regenerated.
 | **Type** | string |
 | **Values** | `content` |
 
-### OpenAI.CodeInterpreterFileOutput
+### OpenAI.ChunkingStrategyRequestParam
 
-The output of a code interpreter tool call that is a file.
+The chunking strategy used to chunk the file(s). If not set, will use the `auto` strategy.
+
+
+### Discriminator for OpenAI.ChunkingStrategyRequestParam
+
+This component uses the property `type` to discriminate between different types:
+
+| Type Value | Schema |
+|------------|--------|
+| `static` | [OpenAI.StaticChunkingStrategyRequestParam](#openaistaticchunkingstrategyrequestparam) |
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| files | array |  | Yes |  |
-| type | enum | The type of the code interpreter file output. Always `files`.<br>Possible values: `files` | Yes |  |
+| type | enum | The type of chunking strategy.<br>Possible values: `auto`, `static` | Yes |  |
 
-### OpenAI.CodeInterpreterTextOutput
+### OpenAI.ChunkingStrategyResponseParam
 
-The output of a code interpreter tool call that is text.
+
+### Discriminator for OpenAI.ChunkingStrategyResponseParam
+
+This component uses the property `type` to discriminate between different types:
+
+| Type Value | Schema |
+|------------|--------|
+| `other` | [OpenAI.OtherChunkingStrategyResponseParam](#openaiotherchunkingstrategyresponseparam) |
+| `static` | [OpenAI.StaticChunkingStrategyResponseParam](#openaistaticchunkingstrategyresponseparam) |
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| logs | string | The logs of the code interpreter tool call. | Yes |  |
-| type | enum | The type of the code interpreter text output. Always `logs`.<br>Possible values: `logs` | Yes |  |
+| type | enum | <br>Possible values: `static`, `other` | Yes |  |
+
+### OpenAI.CodeInterpreterOutput
+
+
+### Discriminator for OpenAI.CodeInterpreterOutput
+
+This component uses the property `type` to discriminate between different types:
+
+| Type Value | Schema |
+|------------|--------|
+| `image` | [OpenAI.CodeInterpreterOutputImage](#openaicodeinterpreteroutputimage) |
+| `logs` | [OpenAI.CodeInterpreterOutputLogs](#openaicodeinterpreteroutputlogs) |
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| type | [OpenAI.CodeInterpreterOutputType](#openaicodeinterpreteroutputtype) |  | Yes |  |
+
+### OpenAI.CodeInterpreterOutputImage
+
+The image output from the code interpreter.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| type | enum | The type of the output. Always 'image'.<br>Possible values: `image` | Yes |  |
+| url | string | The URL of the image output from the code interpreter. | Yes |  |
+
+### OpenAI.CodeInterpreterOutputLogs
+
+The logs output from the code interpreter.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| logs | string | The logs output from the code interpreter. | Yes |  |
+| type | enum | The type of the output. Always 'logs'.<br>Possible values: `logs` | Yes |  |
+
+### OpenAI.CodeInterpreterOutputType
+
+| Property | Value |
+|----------|-------|
+| **Type** | string |
+| **Values** | `logs`<br>`image` |
 
 ### OpenAI.CodeInterpreterTool
 
@@ -2828,9 +5153,9 @@ A tool call to run code.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| code | string | The code to run. | Yes |  |
-| container_id | string | The ID of the container used to run the code. | No |  |
-| results | array | The results of the code interpreter tool call. | Yes |  |
+| code | string | The code to run, or null if not available. | Yes |  |
+| container_id | string | The ID of the container used to run the code. | Yes |  |
+| outputs | array | The outputs generated by the code interpreter, such as logs or images.<br>Can be null if no outputs are available. | Yes |  |
 | type | enum | <br>Possible values: `code_interpreter_call` | Yes |  |
 
 ### OpenAI.CodeInterpreterToolCallItemResource
@@ -2840,21 +5165,11 @@ A tool call to run code.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| code | string | The code to run. | Yes |  |
-| container_id | string | The ID of the container used to run the code. | No |  |
-| results | array | The results of the code interpreter tool call. | Yes |  |
-| status | enum | <br>Possible values: `in_progress`, `interpreting`, `completed` | Yes |  |
+| code | string | The code to run, or null if not available. | Yes |  |
+| container_id | string | The ID of the container used to run the code. | Yes |  |
+| outputs | array | The outputs generated by the code interpreter, such as logs or images.<br>Can be null if no outputs are available. | Yes |  |
+| status | enum | <br>Possible values: `in_progress`, `completed`, `incomplete`, `interpreting`, `failed` | Yes |  |
 | type | enum | <br>Possible values: `code_interpreter_call` | Yes |  |
-
-### OpenAI.CodeInterpreterToolOutput
-
-The output of a code interpreter tool.
-
-| Name | Type | Description | Required | Default |
-|------|------|-------------|----------|---------|
-| files | array |  | Yes |  |
-| logs | string | The logs of the code interpreter tool call. | Yes |  |
-| type | enum | The type of the code interpreter file output. Always `files`.<br>Possible values: `files` | Yes |  |
 
 ### OpenAI.ComparisonFilter
 
@@ -2863,7 +5178,7 @@ A filter used to compare a specified attribute key to a given value using a defi
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | key | string | The key to compare against the value. | Yes |  |
-| type | enum | Specifies the comparison operator: `eq`, `ne`, `gt`, `gte`, `lt`, `lte`.<br>- `eq`: equals<br>- `ne`: not equal<br>- `gt`: greater than<br>- `gte`: greater than or equal<br>- `lt`: less than<br>- `lte`: less than or equal<br>Possible values: `eq`, `ne`, `gt`, `gte`, `lt`, `lte` | Yes |  |
+| type | enum | Specifies the comparison operator: `eq`, `ne`, `gt`, `gte`, `lt`, `lte`.<br>- `eq`: equals<br>- `ne`: not equal<br>- `gt`: greater than<br>- `gte`: greater than or equal<br>- `lt`: less than<br>- `lte`: less than or equal.<br>Possible values: `eq`, `ne`, `gt`, `gte`, `lt`, `lte` | Yes |  |
 | value | string or number or boolean |  | Yes |  |
 
 ### OpenAI.CompletionUsage
@@ -2943,7 +5258,7 @@ A drag action.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| path | array | An array of coordinates representing the path of the drag action. Coordinates will appear as an array of objects, eg```[{ x: 100, y: 200 }, { x: 200, y: 300 }]``` | Yes |  |
+| path | array | An array of coordinates representing the path of the drag action. Coordinates will appear as an array of objects, eg```{ x: 100, y: 200 }, { x: 200, y: 300 }``` | Yes |  |
 | type | enum | Specifies the event type. For a drag action, this property is always set to `drag`.<br>Possible values: `drag` | Yes |  |
 
 ### OpenAI.ComputerActionKeyPress
@@ -3133,6 +5448,130 @@ An x/y coordinate pair, e.g. `{ x: 100, y: 200 }`.
 | └─ prompt_tokens | integer | The number of tokens used by the prompt. | No |  |
 | └─ total_tokens | integer | The total number of tokens used by the request. | No |  |
 
+### OpenAI.CreateEvalItem
+
+A chat message that makes up the prompt or context. May include variable references to the `item` namespace, ie {{item.name}}.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| content | string or [OpenAI.EvalItemContent](#openaievalitemcontent) | Text inputs to the model - can contain template strings. | Yes |  |
+| role | enum | The role of the message input. One of `user`, `assistant`, `system`, or `developer`.<br>Possible values: `user`, `assistant`, `system`, `developer` | Yes |  |
+| type | enum | The type of the message input. Always `message`.<br>Possible values: `message` | No |  |
+
+### OpenAI.CreateEvalRunRequest
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| data_source | object |  | Yes |  |
+| └─ type | [OpenAI.EvalRunDataSourceType](#openaievalrundatasourcetype) |  | No |  |
+| metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | No |  |
+| name | string | The name of the run. | No |  |
+
+### OpenAI.CreateFineTuningJobRequest
+
+
+**Valid models:**
+
+```
+babbage-002
+davinci-002
+gpt-3.5-turbo
+gpt-4o-mini
+```
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| hyperparameters | object | The hyperparameters used for the fine-tuning job.<br>This value is now deprecated in favor of `method`, and should be passed in under the `method` parameter. | No |  |
+| └─ batch_size | enum | <br>Possible values: `auto` | No |  |
+| └─ learning_rate_multiplier | enum | <br>Possible values: `auto` | No |  |
+| └─ n_epochs | enum | <br>Possible values: `auto` | No |  |
+| integrations | array | A list of integrations to enable for your fine-tuning job. | No |  |
+| metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | No |  |
+| method | [OpenAI.FineTuneMethod](#openaifinetunemethod) | The method used for fine-tuning. | No |  |
+| model | string (see valid models below) | The name of the model to fine-tune.  | Yes |  |
+| seed | integer | The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases.<br>If a seed is not specified, one will be generated for you. | No |  |
+| suffix | string | A string of up to 64 characters that will be added to your fine-tuned model name.<br><br>For example, a `suffix` of "custom-model-name" would produce a model name like `ft:gpt-4o-mini:openai:custom-model-name:7p4lURel`. | No | None |
+| training_file | string | The ID of an uploaded file that contains training data.Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose `fine-tune`.<br><br>The contents of the file should differ depending on if the model uses the chat, completions format, or if the fine-tuning method uses the preference format. | Yes |  |
+| validation_file | string | The ID of an uploaded file that contains validation data.<br><br>If you provide this file, the data is used to generate validation metrics periodically during fine-tuning. These metrics can be viewed in the fine-tuning results file.<br>The same data should not be present in both train and validation files.<br><br>Your dataset must be formatted as a JSONL file. You must upload your file with the purpose `fine-tune`. | No |  |
+
+### OpenAI.CreateFineTuningJobRequestIntegration
+
+
+### Discriminator for OpenAI.CreateFineTuningJobRequestIntegration
+
+This component uses the property `type` to discriminate between different types:
+
+| Type Value | Schema |
+|------------|--------|
+| `wandb` | [OpenAI.CreateFineTuningJobRequestWandbIntegration](#openaicreatefinetuningjobrequestwandbintegration) |
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| type | string (see valid models below) |  | Yes |  |
+
+### OpenAI.CreateFineTuningJobRequestWandbIntegration
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| type | enum | <br>Possible values: `wandb` | Yes |  |
+| wandb | object |  | Yes |  |
+| └─ entity | string |  | No |  |
+| └─ name | string |  | No |  |
+| └─ project | string |  | No |  |
+| └─ tags | array |  | No |  |
+
+### OpenAI.CreateVectorStoreFileBatchRequest
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| attributes | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard. Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters, booleans, or numbers. | No |  |
+| chunking_strategy | [OpenAI.ChunkingStrategyRequestParam](#openaichunkingstrategyrequestparam) | The chunking strategy used to chunk the file(s). If not set, will use the `auto` strategy. | No |  |
+| file_ids | array | A list of file IDs that the vector store should use. Useful for tools like `file_search` that can access files. | Yes |  |
+
+### OpenAI.CreateVectorStoreFileRequest
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| attributes | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard. Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters, booleans, or numbers. | No |  |
+| chunking_strategy | [OpenAI.ChunkingStrategyRequestParam](#openaichunkingstrategyrequestparam) | The chunking strategy used to chunk the file(s). If not set, will use the `auto` strategy. | No |  |
+| file_id | string | A file ID that the vector store should use. Useful for tools like `file_search` that can access files. | Yes |  |
+
+### OpenAI.CreateVectorStoreRequest
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| chunking_strategy | object | The default strategy. This strategy currently uses a `max_chunk_size_tokens` of `800` and `chunk_overlap_tokens` of `400`. | No |  |
+| └─ static | [OpenAI.StaticChunkingStrategy](#openaistaticchunkingstrategy) |  | No |  |
+| └─ type | enum | Always `static`.<br>Possible values: `static` | No |  |
+| expires_after | [OpenAI.VectorStoreExpirationAfter](#openaivectorstoreexpirationafter) | The expiration policy for a vector store. | No |  |
+| file_ids | array | A list of file IDs that the vector store should use. Useful for tools like `file_search` that can access files. | No |  |
+| metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | No |  |
+| name | string | The name of the vector store. | No |  |
+
+### OpenAI.DeleteFileResponse
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| deleted | boolean |  | Yes |  |
+| id | string |  | Yes |  |
+| object | enum | <br>Possible values: `file` | Yes |  |
+
+### OpenAI.DeleteVectorStoreFileResponse
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| deleted | boolean |  | Yes |  |
+| id | string |  | Yes |  |
+| object | enum | <br>Possible values: `vector_store.file.deleted` | Yes |  |
+
+### OpenAI.DeleteVectorStoreResponse
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| deleted | boolean |  | Yes |  |
+| id | string |  | Yes |  |
+| object | enum | <br>Possible values: `vector_store.deleted` | Yes |  |
+
 ### OpenAI.Embedding
 
 Represents an embedding vector returned by embedding endpoint.
@@ -3142,6 +5581,606 @@ Represents an embedding vector returned by embedding endpoint.
 | embedding | array or string |  | Yes |  |
 | index | integer | The index of the embedding in the list of embeddings. | Yes |  |
 | object | enum | The object type, which is always "embedding".<br>Possible values: `embedding` | Yes |  |
+
+### OpenAI.Eval
+
+An Eval object with a data source config and testing criteria.
+An Eval represents a task to be done for your LLM integration.
+Like:
+- Improve the quality of my chatbot
+- See how well my chatbot handles customer support
+- Check if o4-mini is better at my usecase than gpt-4o
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| created_at | integer | The Unix timestamp (in seconds) for when the eval was created. | Yes |  |
+| data_source_config | object |  | Yes |  |
+| └─ type | [OpenAI.EvalDataSourceConfigType](#openaievaldatasourceconfigtype) |  | No |  |
+| id | string | Unique identifier for the evaluation. | Yes |  |
+| metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | Yes |  |
+| name | string | The name of the evaluation. | Yes |  |
+| object | enum | The object type.<br>Possible values: `eval` | Yes |  |
+| testing_criteria | array | A list of testing criteria. | Yes | None |
+
+### OpenAI.EvalApiError
+
+An object representing an error response from the Eval API.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| code | string | The error code. | Yes |  |
+| message | string | The error message. | Yes |  |
+
+### OpenAI.EvalCompletionsRunDataSourceParams
+
+A CompletionsRunDataSource object describing a model sampling configuration.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| input_messages | object |  | No |  |
+| └─ item_reference | string | A reference to a variable in the `item` namespace. Ie, "item.input_trajectory" | No |  |
+| └─ template | array | A list of chat messages forming the prompt or context. May include variable references to the `item` namespace, ie {{item.name}}. | No |  |
+| └─ type | enum | The type of input messages. Always `item_reference`.<br>Possible values: `item_reference` | No |  |
+| model | string | The name of the model to use for generating completions (e.g. "o3-mini"). | No |  |
+| sampling_params | [AzureEvalAPICompletionsSamplingParams](#azureevalapicompletionssamplingparams) |  | No |  |
+| source | object |  | Yes |  |
+| └─ content | array | The content of the jsonl file. | No |  |
+| └─ created_after | integer | An optional Unix timestamp to filter items created after this time. | No |  |
+| └─ created_before | integer | An optional Unix timestamp to filter items created before this time. | No |  |
+| └─ id | string | The identifier of the file. | No |  |
+| └─ limit | integer | An optional maximum number of items to return. | No |  |
+| └─ metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | No |  |
+| └─ model | string | An optional model to filter by (e.g., 'gpt-4o'). | No |  |
+| └─ type | enum | The type of source. Always `stored_completions`.<br>Possible values: `stored_completions` | No |  |
+| type | enum | The type of run data source. Always `completions`.<br>Possible values: `completions` | Yes |  |
+
+### OpenAI.EvalCustomDataSourceConfigParams
+
+A CustomDataSourceConfig object that defines the schema for the data source used for the evaluation runs.
+This schema is used to define the shape of the data that will be:
+- Used to define your testing criteria and
+- What data is required when creating a run
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| include_sample_schema | boolean | Whether the eval should expect you to populate the sample namespace (ie, by generating responses off of your data source) | No | False |
+| item_schema | object | The json schema for each row in the data source. | Yes |  |
+| type | enum | The type of data source. Always `custom`.<br>Possible values: `custom` | Yes |  |
+
+### OpenAI.EvalCustomDataSourceConfigResource
+
+A CustomDataSourceConfig which specifies the schema of your `item` and optionally `sample` namespaces.
+The response schema defines the shape of the data that will be:
+- Used to define your testing criteria and
+- What data is required when creating a run
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| schema | object | The json schema for the run data source items.<br>Learn how to build JSON schemas [here](https://json-schema.org/). | Yes |  |
+| type | enum | The type of data source. Always `custom`.<br>Possible values: `custom` | Yes |  |
+
+### OpenAI.EvalDataSourceConfigParams
+
+
+### Discriminator for OpenAI.EvalDataSourceConfigParams
+
+This component uses the property `type` to discriminate between different types:
+
+| Type Value | Schema |
+|------------|--------|
+| `custom` | [OpenAI.EvalCustomDataSourceConfigParams](#openaievalcustomdatasourceconfigparams) |
+| `logs` | [OpenAI.EvalLogsDataSourceConfigParams](#openaievallogsdatasourceconfigparams) |
+| `stored_completions` | [OpenAI.EvalStoredCompletionsDataSourceConfigParams](#openaievalstoredcompletionsdatasourceconfigparams) |
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| type | [OpenAI.EvalDataSourceConfigType](#openaievaldatasourceconfigtype) |  | Yes |  |
+
+### OpenAI.EvalDataSourceConfigResource
+
+
+### Discriminator for OpenAI.EvalDataSourceConfigResource
+
+This component uses the property `type` to discriminate between different types:
+
+| Type Value | Schema |
+|------------|--------|
+| `custom` | [OpenAI.EvalCustomDataSourceConfigResource](#openaievalcustomdatasourceconfigresource) |
+| `stored_completions` | [OpenAI.EvalStoredCompletionsDataSourceConfigResource](#openaievalstoredcompletionsdatasourceconfigresource) |
+| `logs` | [OpenAI.EvalLogsDataSourceConfigResource](#openaievallogsdatasourceconfigresource) |
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| type | [OpenAI.EvalDataSourceConfigType](#openaievaldatasourceconfigtype) |  | Yes |  |
+
+### OpenAI.EvalDataSourceConfigType
+
+| Property | Value |
+|----------|-------|
+| **Type** | string |
+| **Values** | `custom`<br>`logs`<br>`stored_completions` |
+
+### OpenAI.EvalGraderLabelModelParams
+
+A LabelModelGrader object which uses a model to assign labels to each item
+in the evaluation.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| input | array | A list of chat messages forming the prompt or context. May include variable references to the `item` namespace, ie {{item.name}}. | Yes |  |
+| labels | array | The labels to classify to each item in the evaluation. | Yes |  |
+| model | string | The model to use for the evaluation. Must support structured outputs. | Yes |  |
+| name | string | The name of the grader. | Yes |  |
+| passing_labels | array | The labels that indicate a passing result. Must be a subset of labels. | Yes |  |
+| type | enum | The object type, which is always `label_model`.<br>Possible values: `label_model` | Yes |  |
+
+### OpenAI.EvalGraderLabelModelResource
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| input | array |  | Yes |  |
+| labels | array | The labels to assign to each item in the evaluation. | Yes |  |
+| model | string | The model to use for the evaluation. Must support structured outputs. | Yes |  |
+| name | string | The name of the grader. | Yes |  |
+| passing_labels | array | The labels that indicate a passing result. Must be a subset of labels. | Yes |  |
+| type | enum | The object type, which is always `label_model`.<br>Possible values: `label_model` | Yes |  |
+
+### OpenAI.EvalGraderParams
+
+
+### Discriminator for OpenAI.EvalGraderParams
+
+This component uses the property `type` to discriminate between different types:
+
+| Type Value | Schema |
+|------------|--------|
+| `label_model` | [OpenAI.EvalGraderLabelModelParams](#openaievalgraderlabelmodelparams) |
+| `string_check` | [OpenAI.EvalGraderStringCheckParams](#openaievalgraderstringcheckparams) |
+| `text_similarity` | [OpenAI.EvalGraderTextSimilarityParams](#openaievalgradertextsimilarityparams) |
+| `python` | [OpenAI.EvalGraderPythonParams](#openaievalgraderpythonparams) |
+| `score_model` | [OpenAI.EvalGraderScoreModelParams](#openaievalgraderscoremodelparams) |
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| type | [OpenAI.GraderType](#openaigradertype) |  | Yes |  |
+
+### OpenAI.EvalGraderPythonParams
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| image_tag | string | The image tag to use for the python script. | No |  |
+| name | string | The name of the grader. | Yes |  |
+| pass_threshold | number | The threshold for the score. | No |  |
+| source | string | The source code of the python script. | Yes |  |
+| type | enum | The object type, which is always `python`.<br>Possible values: `python` | Yes |  |
+
+### OpenAI.EvalGraderPythonResource
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| image_tag | string | The image tag to use for the python script. | No |  |
+| name | string | The name of the grader. | Yes |  |
+| pass_threshold | number | The threshold for the score. | No |  |
+| source | string | The source code of the python script. | Yes |  |
+| type | enum | The object type, which is always `python`.<br>Possible values: `python` | Yes |  |
+
+### OpenAI.EvalGraderResource
+
+
+### Discriminator for OpenAI.EvalGraderResource
+
+This component uses the property `type` to discriminate between different types:
+
+| Type Value | Schema |
+|------------|--------|
+| `label_model` | [OpenAI.EvalGraderLabelModelResource](#openaievalgraderlabelmodelresource) |
+| `text_similarity` | [OpenAI.EvalGraderTextSimilarityResource](#openaievalgradertextsimilarityresource) |
+| `python` | [OpenAI.EvalGraderPythonResource](#openaievalgraderpythonresource) |
+| `score_model` | [OpenAI.EvalGraderScoreModelResource](#openaievalgraderscoremodelresource) |
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| type | [OpenAI.GraderType](#openaigradertype) |  | Yes |  |
+
+### OpenAI.EvalGraderScoreModelParams
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| input | array | The input text. This may include template strings. | Yes |  |
+| model | string | The model to use for the evaluation. | Yes |  |
+| name | string | The name of the grader. | Yes |  |
+| pass_threshold | number | The threshold for the score. | No |  |
+| range | array | The range of the score. Defaults to `[0, 1]`. | No |  |
+| sampling_params |  | The sampling parameters for the model. | No |  |
+| type | enum | The object type, which is always `score_model`.<br>Possible values: `score_model` | Yes |  |
+
+### OpenAI.EvalGraderScoreModelResource
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| input | array | The input text. This may include template strings. | Yes |  |
+| model | string | The model to use for the evaluation. | Yes |  |
+| name | string | The name of the grader. | Yes |  |
+| pass_threshold | number | The threshold for the score. | No |  |
+| range | array | The range of the score. Defaults to `[0, 1]`. | No |  |
+| sampling_params |  | The sampling parameters for the model. | No |  |
+| type | enum | The object type, which is always `score_model`.<br>Possible values: `score_model` | Yes |  |
+
+### OpenAI.EvalGraderStringCheckParams
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| input | string | The input text. This may include template strings. | Yes |  |
+| name | string | The name of the grader. | Yes |  |
+| operation | enum | The string check operation to perform. One of `eq`, `ne`, `like`, or `ilike`.<br>Possible values: `eq`, `ne`, `like`, `ilike` | Yes |  |
+| reference | string | The reference text. This may include template strings. | Yes |  |
+| type | enum | The object type, which is always `string_check`.<br>Possible values: `string_check` | Yes |  |
+
+### OpenAI.EvalGraderTextSimilarityParams
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| evaluation_metric | enum | The evaluation metric to use. One of `fuzzy_match`, `bleu`, `gleu`, `meteor`, `rouge_1`, `rouge_2`, `rouge_3`, `rouge_4`, `rouge_5`, or `rouge_l`.<br>Possible values: `fuzzy_match`, `bleu`, `gleu`, `meteor`, `rouge_1`, `rouge_2`, `rouge_3`, `rouge_4`, `rouge_5`, `rouge_l` | Yes |  |
+| input | string | The text being graded. | Yes |  |
+| name | string | The name of the grader. | Yes |  |
+| pass_threshold | number | The threshold for the score. | Yes |  |
+| reference | string | The text being graded against. | Yes |  |
+| type | enum | The type of grader.<br>Possible values: `text_similarity` | Yes |  |
+
+### OpenAI.EvalGraderTextSimilarityResource
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| evaluation_metric | enum | The evaluation metric to use. One of `fuzzy_match`, `bleu`, `gleu`, `meteor`, `rouge_1`, `rouge_2`, `rouge_3`, `rouge_4`, `rouge_5`, or `rouge_l`.<br>Possible values: `fuzzy_match`, `bleu`, `gleu`, `meteor`, `rouge_1`, `rouge_2`, `rouge_3`, `rouge_4`, `rouge_5`, `rouge_l` | Yes |  |
+| input | string | The text being graded. | Yes |  |
+| name | string | The name of the grader. | Yes |  |
+| pass_threshold | number | The threshold for the score. | Yes |  |
+| reference | string | The text being graded against. | Yes |  |
+| type | enum | The type of grader.<br>Possible values: `text_similarity` | Yes |  |
+
+### OpenAI.EvalItem
+
+A message input to the model with a role indicating instruction following
+hierarchy. Instructions given with the `developer` or `system` role take
+precedence over instructions given with the `user` role. Messages with the
+`assistant` role are presumed to have been generated by the model in previous
+interactions.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| content | object |  | Yes |  |
+| └─ type | [OpenAI.EvalItemContentType](#openaievalitemcontenttype) |  | No |  |
+| role | enum | The role of the message input. One of `user`, `assistant`, `system`, or `developer`.<br>Possible values: `user`, `assistant`, `system`, `developer` | Yes |  |
+| type | enum | The type of the message input. Always `message`.<br>Possible values: `message` | No |  |
+
+### OpenAI.EvalItemContent
+
+
+### Discriminator for OpenAI.EvalItemContent
+
+This component uses the property `type` to discriminate between different types:
+
+| Type Value | Schema |
+|------------|--------|
+| `input_text` | [OpenAI.EvalItemContentInputText](#openaievalitemcontentinputtext) |
+| `output_text` | [OpenAI.EvalItemContentOutputText](#openaievalitemcontentoutputtext) |
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| type | [OpenAI.EvalItemContentType](#openaievalitemcontenttype) |  | Yes |  |
+
+### OpenAI.EvalItemContentInputText
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| text | string |  | Yes |  |
+| type | enum | <br>Possible values: `input_text` | Yes |  |
+
+### OpenAI.EvalItemContentOutputText
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| text | string |  | Yes |  |
+| type | enum | <br>Possible values: `output_text` | Yes |  |
+
+### OpenAI.EvalItemContentType
+
+| Property | Value |
+|----------|-------|
+| **Type** | string |
+| **Values** | `input_text`<br>`output_text` |
+
+### OpenAI.EvalJsonlRunDataSourceParams
+
+A JsonlRunDataSource object with that specifies a JSONL file that matches the eval
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| source | object |  | Yes |  |
+| └─ content | array | The content of the jsonl file. | No |  |
+| └─ id | string | The identifier of the file. | No |  |
+| └─ type | enum | The type of jsonl source. Always `file_id`.<br>Possible values: `file_id` | No |  |
+| type | enum | The type of data source. Always `jsonl`.<br>Possible values: `jsonl` | Yes |  |
+
+### OpenAI.EvalList
+
+An object representing a list of evals.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| data | array | An array of eval objects. | Yes |  |
+| first_id | string | The identifier of the first eval in the data array. | Yes |  |
+| has_more | boolean | Indicates whether there are more evaluations available. | Yes |  |
+| last_id | string | The identifier of the last eval in the data array. | Yes |  |
+| object | enum | The type of this object. It is always set to "list".<br>Possible values: `list` | Yes |  |
+
+### OpenAI.EvalLogsDataSourceConfigParams
+
+A data source config which specifies the metadata property of your logs query.
+This is usually metadata like `usecase=chatbot` or `prompt-version=v2`, etc.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | No |  |
+| type | enum | The type of data source. Always `logs`.<br>Possible values: `logs` | Yes |  |
+
+### OpenAI.EvalLogsDataSourceConfigResource
+
+A LogsDataSourceConfig which specifies the metadata property of your logs query.
+This is usually metadata like `usecase=chatbot` or `prompt-version=v2`, etc.
+The schema returned by this data source config is used to defined what variables are available in your evaluations.
+`item` and `sample` are both defined when using this data source config.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | Yes |  |
+| schema | object | The json schema for the run data source items.<br>Learn how to build JSON schemas [here](https://json-schema.org/). | Yes |  |
+| type | enum | The type of data source. Always `logs`.<br>Possible values: `logs` | Yes |  |
+
+### OpenAI.EvalResponsesRunDataSourceParams
+
+A ResponsesRunDataSource object describing a model sampling configuration.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| input_messages | object |  | No |  |
+| └─ item_reference | string | A reference to a variable in the `item` namespace. Ie, "item.name" | No |  |
+| └─ template | array | A list of chat messages forming the prompt or context. May include variable references to the `item` namespace, ie {{item.name}}. | No |  |
+| └─ type | enum | The type of input messages. Always `item_reference`.<br>Possible values: `item_reference` | No |  |
+| model | string | The name of the model to use for generating completions (e.g. "o3-mini"). | No |  |
+| sampling_params | [AzureEvalAPIResponseSamplingParams](#azureevalapiresponsesamplingparams) |  | No |  |
+| source | object |  | Yes |  |
+| └─ content | array | The content of the jsonl file. | No |  |
+| └─ created_after | integer | Only include items created after this timestamp (inclusive). This is a query parameter used to select responses. | No |  |
+| └─ created_before | integer | Only include items created before this timestamp (inclusive). This is a query parameter used to select responses. | No |  |
+| └─ id | string | The identifier of the file. | No |  |
+| └─ instructions_search | string | Optional string to search the 'instructions' field. This is a query parameter used to select responses. | No |  |
+| └─ metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | No |  |
+| └─ model | string | The name of the model to find responses for. This is a query parameter used to select responses. | No |  |
+| └─ reasoning_effort | [OpenAI.ReasoningEffort](#openaireasoningeffort) | Optional reasoning effort parameter. This is a query parameter used to select responses. | No |  |
+| └─ temperature | number | Sampling temperature. This is a query parameter used to select responses. | No |  |
+| └─ tools | array | List of tool names. This is a query parameter used to select responses. | No |  |
+| └─ top_p | number | Nucleus sampling parameter. This is a query parameter used to select responses. | No |  |
+| └─ type | enum | The type of run data source. Always `responses`.<br>Possible values: `responses` | No |  |
+| └─ users | array | List of user identifiers. This is a query parameter used to select responses. | No |  |
+| type | enum | The type of run data source. Always `responses`.<br>Possible values: `responses` | Yes |  |
+
+### OpenAI.EvalRun
+
+A schema representing an evaluation run.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| created_at | integer | Unix timestamp (in seconds) when the evaluation run was created. | Yes |  |
+| data_source | object |  | Yes |  |
+| └─ type | [OpenAI.EvalRunDataSourceType](#openaievalrundatasourcetype) |  | No |  |
+| error | [OpenAI.EvalApiError](#openaievalapierror) | An object representing an error response from the Eval API. | Yes |  |
+| eval_id | string | The identifier of the associated evaluation. | Yes |  |
+| id | string | Unique identifier for the evaluation run. | Yes |  |
+| metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | Yes |  |
+| model | string | The model that is evaluated, if applicable. | Yes |  |
+| name | string | The name of the evaluation run. | Yes |  |
+| object | enum | The type of the object. Always "eval.run".<br>Possible values: `eval.run` | Yes |  |
+| per_model_usage | array | Usage statistics for each model during the evaluation run. | Yes |  |
+| per_testing_criteria_results | array | Results per testing criteria applied during the evaluation run. | Yes |  |
+| report_url | string | The URL to the rendered evaluation run report on the UI dashboard. | Yes |  |
+| result_counts | object | Counters summarizing the outcomes of the evaluation run. | Yes |  |
+| └─ errored | integer | Number of output items that resulted in an error. | No |  |
+| └─ failed | integer | Number of output items that failed to pass the evaluation. | No |  |
+| └─ passed | integer | Number of output items that passed the evaluation. | No |  |
+| └─ total | integer | Total number of executed output items. | No |  |
+| status | string | The status of the evaluation run. | Yes |  |
+
+### OpenAI.EvalRunDataContentSource
+
+
+### Discriminator for OpenAI.EvalRunDataContentSource
+
+This component uses the property `type` to discriminate between different types:
+
+| Type Value | Schema |
+|------------|--------|
+| `file_id` | [OpenAI.EvalRunFileIdDataContentSource](#openaievalrunfileiddatacontentsource) |
+| `stored_completions` | [OpenAI.EvalRunStoredCompletionsDataContentSource](#openaievalrunstoredcompletionsdatacontentsource) |
+| `responses` | [OpenAI.EvalRunResponsesDataContentSource](#openaievalrunresponsesdatacontentsource) |
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| type | [OpenAI.EvalRunDataContentSourceType](#openaievalrundatacontentsourcetype) |  | Yes |  |
+
+### OpenAI.EvalRunDataContentSourceType
+
+| Property | Value |
+|----------|-------|
+| **Type** | string |
+| **Values** | `file_id`<br>`file_content`<br>`stored_completions`<br>`responses` |
+
+### OpenAI.EvalRunDataSourceCompletionsResource
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| type | enum | <br>Possible values: `completions` | Yes |  |
+
+### OpenAI.EvalRunDataSourceJsonlResource
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| type | enum | <br>Possible values: `jsonl` | Yes |  |
+
+### OpenAI.EvalRunDataSourceParams
+
+
+### Discriminator for OpenAI.EvalRunDataSourceParams
+
+This component uses the property `type` to discriminate between different types:
+
+| Type Value | Schema |
+|------------|--------|
+| `jsonl` | [OpenAI.EvalJsonlRunDataSourceParams](#openaievaljsonlrundatasourceparams) |
+| `completions` | [OpenAI.EvalCompletionsRunDataSourceParams](#openaievalcompletionsrundatasourceparams) |
+| `responses` | [OpenAI.EvalResponsesRunDataSourceParams](#openaievalresponsesrundatasourceparams) |
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| type | [OpenAI.EvalRunDataSourceType](#openaievalrundatasourcetype) |  | Yes |  |
+
+### OpenAI.EvalRunDataSourceResource
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| type | [OpenAI.EvalRunDataSourceType](#openaievalrundatasourcetype) |  | Yes |  |
+
+### OpenAI.EvalRunDataSourceResponsesResource
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| type | enum | <br>Possible values: `responses` | Yes |  |
+
+### OpenAI.EvalRunDataSourceType
+
+| Property | Value |
+|----------|-------|
+| **Type** | string |
+| **Values** | `jsonl`<br>`completions`<br>`responses` |
+
+### OpenAI.EvalRunFileContentDataContentSource
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| content | array | The content of the jsonl file. | Yes |  |
+| type | enum | The type of jsonl source. Always `file_content`.<br>Possible values: `file_content` | Yes |  |
+
+### OpenAI.EvalRunFileIdDataContentSource
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| id | string | The identifier of the file. | Yes |  |
+| type | enum | The type of jsonl source. Always `file_id`.<br>Possible values: `file_id` | Yes |  |
+
+### OpenAI.EvalRunList
+
+An object representing a list of runs for an evaluation.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| data | array | An array of eval run objects. | Yes |  |
+| first_id | string | The identifier of the first eval run in the data array. | Yes |  |
+| has_more | boolean | Indicates whether there are more evaluations available. | Yes |  |
+| last_id | string | The identifier of the last eval run in the data array. | Yes |  |
+| object | enum | The type of this object. It is always set to "list".<br>Possible values: `list` | Yes |  |
+
+### OpenAI.EvalRunOutputItem
+
+A schema representing an evaluation run output item.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| created_at | integer | Unix timestamp (in seconds) when the evaluation run was created. | Yes |  |
+| datasource_item | object | Details of the input data source item. | Yes |  |
+| datasource_item_id | integer | The identifier for the data source item. | Yes |  |
+| eval_id | string | The identifier of the evaluation group. | Yes |  |
+| id | string | Unique identifier for the evaluation run output item. | Yes |  |
+| object | enum | The type of the object. Always "eval.run.output_item".<br>Possible values: `eval.run.output_item` | Yes |  |
+| results | array | A list of results from the evaluation run. | Yes |  |
+| run_id | string | The identifier of the evaluation run associated with this output item. | Yes |  |
+| sample | object | A sample containing the input and output of the evaluation run. | Yes |  |
+| └─ error | [OpenAI.EvalApiError](#openaievalapierror) | An object representing an error response from the Eval API. | No |  |
+| └─ finish_reason | string | The reason why the sample generation was finished. | No |  |
+| └─ input | array | An array of input messages. | No |  |
+| └─ max_completion_tokens | integer | The maximum number of tokens allowed for completion. | No |  |
+| └─ model | string | The model used for generating the sample. | No |  |
+| └─ output | array | An array of output messages. | No |  |
+| └─ seed | integer | The seed used for generating the sample. | No |  |
+| └─ temperature | number | The sampling temperature used. | No |  |
+| └─ top_p | number | The top_p value used for sampling. | No |  |
+| └─ usage | object | Token usage details for the sample. | No |  |
+|   └─ cached_tokens | integer | The number of tokens retrieved from cache. | No |  |
+|   └─ completion_tokens | integer | The number of completion tokens generated. | No |  |
+|   └─ prompt_tokens | integer | The number of prompt tokens used. | No |  |
+|   └─ total_tokens | integer | The total number of tokens used. | No |  |
+| status | string | The status of the evaluation run. | Yes |  |
+
+### OpenAI.EvalRunOutputItemList
+
+An object representing a list of output items for an evaluation run.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| data | array | An array of eval run output item objects. | Yes |  |
+| first_id | string | The identifier of the first eval run output item in the data array. | Yes |  |
+| has_more | boolean | Indicates whether there are more eval run output items available. | Yes |  |
+| last_id | string | The identifier of the last eval run output item in the data array. | Yes |  |
+| object | enum | The type of this object. It is always set to "list".<br>Possible values: `list` | Yes |  |
+
+### OpenAI.EvalRunResponsesDataContentSource
+
+A EvalResponsesSource object describing a run data source configuration.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| created_after | integer | Only include items created after this timestamp (inclusive). This is a query parameter used to select responses. | No |  |
+| created_before | integer | Only include items created before this timestamp (inclusive). This is a query parameter used to select responses. | No |  |
+| instructions_search | string | Optional string to search the 'instructions' field. This is a query parameter used to select responses. | No |  |
+| metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | No |  |
+| model | string | The name of the model to find responses for. This is a query parameter used to select responses. | No |  |
+| reasoning_effort | object | **o-series models only**<br><br>Constrains effort on reasoning for reasoning models.<br>Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. | No |  |
+| temperature | number | Sampling temperature. This is a query parameter used to select responses. | No |  |
+| tools | array | List of tool names. This is a query parameter used to select responses. | No |  |
+| top_p | number | Nucleus sampling parameter. This is a query parameter used to select responses. | No |  |
+| type | enum | The type of run data source. Always `responses`.<br>Possible values: `responses` | Yes |  |
+| users | array | List of user identifiers. This is a query parameter used to select responses. | No |  |
+
+### OpenAI.EvalRunStoredCompletionsDataContentSource
+
+A StoredCompletionsRunDataSource configuration describing a set of filters
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| created_after | integer | An optional Unix timestamp to filter items created after this time. | No |  |
+| created_before | integer | An optional Unix timestamp to filter items created before this time. | No |  |
+| limit | integer | An optional maximum number of items to return. | No |  |
+| metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | Yes |  |
+| model | string | An optional model to filter by (e.g., 'gpt-4o'). | No |  |
+| type | enum | The type of source. Always `stored_completions`.<br>Possible values: `stored_completions` | Yes |  |
+
+### OpenAI.EvalStoredCompletionsDataSourceConfigParams
+
+Deprecated in favor of LogsDataSourceConfig.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| metadata | object | Metadata filters for the stored completions data source. | No |  |
+| type | enum | The type of data source. Always `stored_completions`.<br>Possible values: `stored_completions` | Yes |  |
+
+### OpenAI.EvalStoredCompletionsDataSourceConfigResource
+
+Deprecated in favor of LogsDataSourceConfig.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | Yes |  |
+| schema | object | The json schema for the run data source items.<br>Learn how to build JSON schemas [here](https://json-schema.org/). | Yes |  |
+| type | enum | The type of data source. Always `stored_completions`.<br>Possible values: `stored_completions` | Yes |  |
 
 ### OpenAI.FileSearchTool
 
@@ -3161,7 +6200,6 @@ A tool that searches for relevant content from uploaded files.
 
 The results of a file search tool call. 
 
-
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | queries | array | The queries used to search for files. | Yes |  |
@@ -3172,12 +6210,11 @@ The results of a file search tool call.
 
 The results of a file search tool call. 
 
-
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | queries | array | The queries used to search for files. | Yes |  |
 | results | array | The results of the file search tool call. | No |  |
-| status | enum | The status of the file search tool call. One of `in_progress`, `searching`, `incomplete` or `failed`,<br>Possible values: `in_progress`, `searching`, `completed`, `incomplete`, `failed` | Yes |  |
+| status | enum | The status of the file search tool call. One of `in_progress`, `searching`, `incomplete` or `failed`.<br>Possible values: `in_progress`, `searching`, `completed`, `incomplete`, `failed` | Yes |  |
 | type | enum | <br>Possible values: `file_search_call` | Yes |  |
 
 ### OpenAI.Filters
@@ -3189,18 +6226,174 @@ The results of a file search tool call.
 | type | enum | Type of operation: `and` or `or`.<br>Possible values: `and`, `or` | Yes |  |
 | value | string or number or boolean | The value to compare against the attribute key; supports string, number, or boolean types. | Yes |  |
 
+### OpenAI.FineTuneDPOHyperparameters
+
+The hyperparameters used for the DPO fine-tuning job.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| batch_size | enum | <br>Possible values: `auto` | No |  |
+| beta | enum | <br>Possible values: `auto` | No |  |
+| learning_rate_multiplier | enum | <br>Possible values: `auto` | No |  |
+| n_epochs | enum | <br>Possible values: `auto` | No |  |
+
+### OpenAI.FineTuneDPOMethod
+
+Configuration for the DPO fine-tuning method.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| hyperparameters | [OpenAI.FineTuneDPOHyperparameters](#openaifinetunedpohyperparameters) | The hyperparameters used for the DPO fine-tuning job. | No |  |
+
+### OpenAI.FineTuneMethod
+
+The method used for fine-tuning.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| dpo | [OpenAI.FineTuneDPOMethod](#openaifinetunedpomethod) | Configuration for the DPO fine-tuning method. | No |  |
+| reinforcement | [AzureFineTuneReinforcementMethod](#azurefinetunereinforcementmethod) |  | No |  |
+| supervised | [OpenAI.FineTuneSupervisedMethod](#openaifinetunesupervisedmethod) | Configuration for the supervised fine-tuning method. | No |  |
+| type | enum | The type of method. Is either `supervised`, `dpo`, or `reinforcement`.<br>Possible values: `supervised`, `dpo`, `reinforcement` | Yes |  |
+
+### OpenAI.FineTuneReinforcementHyperparameters
+
+The hyperparameters used for the reinforcement fine-tuning job.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| batch_size | enum | <br>Possible values: `auto` | No |  |
+| compute_multiplier | enum | <br>Possible values: `auto` | No |  |
+| eval_interval | enum | <br>Possible values: `auto` | No |  |
+| eval_samples | enum | <br>Possible values: `auto` | No |  |
+| learning_rate_multiplier | enum | <br>Possible values: `auto` | No |  |
+| n_epochs | enum | <br>Possible values: `auto` | No |  |
+| reasoning_effort | enum | Level of reasoning effort.<br>Possible values: `default`, `low`, `medium`, `high` | No |  |
+
+### OpenAI.FineTuneSupervisedHyperparameters
+
+The hyperparameters used for the fine-tuning job.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| batch_size | enum | <br>Possible values: `auto` | No |  |
+| learning_rate_multiplier | enum | <br>Possible values: `auto` | No |  |
+| n_epochs | enum | <br>Possible values: `auto` | No |  |
+
+### OpenAI.FineTuneSupervisedMethod
+
+Configuration for the supervised fine-tuning method.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| hyperparameters | [OpenAI.FineTuneSupervisedHyperparameters](#openaifinetunesupervisedhyperparameters) | The hyperparameters used for the fine-tuning job. | No |  |
+
+### OpenAI.FineTuningIntegration
+
+
+### Discriminator for OpenAI.FineTuningIntegration
+
+This component uses the property `type` to discriminate between different types:
+
+| Type Value | Schema |
+|------------|--------|
+| `wandb` | [OpenAI.FineTuningIntegrationWandb](#openaifinetuningintegrationwandb) |
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| type | string (see valid models below) |  | Yes |  |
+
+### OpenAI.FineTuningIntegrationWandb
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| type | enum | The type of the integration being enabled for the fine-tuning job.<br>Possible values: `wandb` | Yes |  |
+| wandb | object | The settings for your integration with Weights and Biases. This payload specifies the project that metrics will be sent to. Optionally, you can set an explicit display name for your run, add tags to your run, and set a default entity (team, username, etc) to be associated with your run. | Yes |  |
+| └─ entity | string | The entity to use for the run. This allows you to set the team or username of the WandB user that you would like associated with the run. If not set, the default entity for the registered WandB API key is used. | No |  |
+| └─ name | string | A display name to set for the run. If not set, we will use the Job ID as the name. | No |  |
+| └─ project | string | The name of the project that the new run will be created under. | No |  |
+| └─ tags | array | A list of tags to be attached to the newly created run. These tags are passed through directly to WandB. Some default tags are generated by OpenAI: "openai/finetune", "openai/{base-model}", "openai/{ftjob-abcdef}". | No |  |
+
+### OpenAI.FineTuningJob
+
+The `fine_tuning.job` object represents a fine-tuning job that has been created through the API.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| created_at | integer | The Unix timestamp (in seconds) for when the fine-tuning job was created. | Yes |  |
+| error | object | For fine-tuning jobs that have `failed`, this will contain more information on the cause of the failure. | Yes |  |
+| └─ code | string | A machine-readable error code. | No |  |
+| └─ message | string | A human-readable error message. | No |  |
+| └─ param | string | The parameter that was invalid, usually `training_file` or `validation_file`. This field will be null if the failure was not parameter-specific. | No |  |
+| estimated_finish | integer | The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running. | No |  |
+| fine_tuned_model | string | The name of the fine-tuned model that is being created. The value will be null if the fine-tuning job is still running. | Yes |  |
+| finished_at | integer | The Unix timestamp (in seconds) for when the fine-tuning job was finished. The value will be null if the fine-tuning job is still running. | Yes |  |
+| hyperparameters | object | The hyperparameters used for the fine-tuning job. This value will only be returned when running `supervised` jobs. | Yes |  |
+| └─ batch_size | enum | <br>Possible values: `auto` | No |  |
+| └─ learning_rate_multiplier | enum | <br>Possible values: `auto` | No |  |
+| └─ n_epochs | enum | <br>Possible values: `auto` | No |  |
+| id | string | The object identifier, which can be referenced in the API endpoints. | Yes |  |
+| integrations | array | A list of integrations to enable for this fine-tuning job. | No |  |
+| metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | Yes |  |
+| method | [OpenAI.FineTuneMethod](#openaifinetunemethod) | The method used for fine-tuning. | No |  |
+| model | string | The base model that is being fine-tuned. | Yes |  |
+| object | enum | The object type, which is always "fine_tuning.job".<br>Possible values: `fine_tuning.job` | Yes |  |
+| organization_id | string | The organization that owns the fine-tuning job. | Yes |  |
+| result_files | array | The compiled results file ID(s) for the fine-tuning job. You can retrieve the results with the Files API. | Yes |  |
+| seed | integer | The seed used for the fine-tuning job. | Yes |  |
+| status | enum | The current status of the fine-tuning job, which can be either `validating_files`, `queued`, `running`, `succeeded`, `failed`, or `cancelled`.<br>Possible values: `validating_files`, `queued`, `running`, `succeeded`, `failed`, `cancelled` | Yes |  |
+| trained_tokens | integer | The total number of billable tokens processed by this fine-tuning job. The value will be null if the fine-tuning job is still running. | Yes |  |
+| training_file | string | The file ID used for training. You can retrieve the training data with the Files API. | Yes |  |
+| user_provided_suffix | string | The descriptive suffix applied to the job, as specified in the job creation request. | No |  |
+| validation_file | string | The file ID used for validation. You can retrieve the validation results with the Files API. | Yes |  |
+
+### OpenAI.FineTuningJobCheckpoint
+
+The `fine_tuning.job.checkpoint` object represents a model checkpoint for a fine-tuning job that is ready to use.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| created_at | integer | The Unix timestamp (in seconds) for when the checkpoint was created. | Yes |  |
+| fine_tuned_model_checkpoint | string | The name of the fine-tuned checkpoint model that is created. | Yes |  |
+| fine_tuning_job_id | string | The name of the fine-tuning job that this checkpoint was created from. | Yes |  |
+| id | string | The checkpoint identifier, which can be referenced in the API endpoints. | Yes |  |
+| metrics | object | Metrics at the step number during the fine-tuning job. | Yes |  |
+| └─ full_valid_loss | number |  | No |  |
+| └─ full_valid_mean_token_accuracy | number |  | No |  |
+| └─ step | number |  | No |  |
+| └─ train_loss | number |  | No |  |
+| └─ train_mean_token_accuracy | number |  | No |  |
+| └─ valid_loss | number |  | No |  |
+| └─ valid_mean_token_accuracy | number |  | No |  |
+| object | enum | The object type, which is always "fine_tuning.job.checkpoint".<br>Possible values: `fine_tuning.job.checkpoint` | Yes |  |
+| step_number | integer | The step number that the checkpoint was created at. | Yes |  |
+
+### OpenAI.FineTuningJobEvent
+
+Fine-tuning job event object
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| created_at | integer | The Unix timestamp (in seconds) for when the fine-tuning job was created. | Yes |  |
+| data |  | The data associated with the event. | No |  |
+| id | string | The object identifier. | Yes |  |
+| level | enum | The log level of the event.<br>Possible values: `info`, `warn`, `error` | Yes |  |
+| message | string | The message of the event. | Yes |  |
+| object | enum | The object type, which is always "fine_tuning.job.event".<br>Possible values: `fine_tuning.job.event` | Yes |  |
+| type | enum | The type of event.<br>Possible values: `message`, `metrics` | No |  |
+
 ### OpenAI.FunctionObject
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | description | string | A description of what the function does, used by the model to choose when and how to call the function. | No |  |
 | name | string | The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64. | Yes |  |
-| parameters |  | The parameters the functions accepts, described as a JSON Schema object.  | No |  |
-| strict | boolean | Whether to enable strict schema adherence when generating the function call. If set to true, the model will follow the exact schema defined in the `parameters` field. Only a subset of JSON Schema is supported when `strict` is `true`.  | No | False |
+| parameters |  | The parameters the functions accepts, described as a JSON Schema object.| No |  |
+| strict | boolean | Whether to enable strict schema adherence when generating the function call. If set to true, the model will follow the exact schema defined in the `parameters` field. Only a subset of JSON Schema is supported when `strict` is `true`. | No | False |
 
 ### OpenAI.FunctionTool
 
-Defines a function in your own code the model can choose to call.
+Defines a function in your own code the model can choose to call. 
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -3212,7 +6405,8 @@ Defines a function in your own code the model can choose to call.
 
 ### OpenAI.FunctionToolCallItemParam
 
-A tool call to run a function.
+A tool call to run a function. 
+
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -3223,7 +6417,8 @@ A tool call to run a function.
 
 ### OpenAI.FunctionToolCallItemResource
 
-A tool call to run a function.
+A tool call to run a function. 
+
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -3256,9 +6451,108 @@ The output of a function tool call.
 | status | enum | The status of the item. One of `in_progress`, `completed`, or `incomplete`. Populated when items are returned via API.<br>Possible values: `in_progress`, `completed`, `incomplete` | Yes |  |
 | type | enum | <br>Possible values: `function_call_output` | Yes |  |
 
+### OpenAI.Grader
+
+
+### Discriminator for OpenAI.Grader
+
+This component uses the property `type` to discriminate between different types:
+
+| Type Value | Schema |
+|------------|--------|
+| `label_model` | [OpenAI.GraderLabelModel](#openaigraderlabelmodel) |
+| `text_similarity` | [OpenAI.GraderTextSimilarity](#openaigradertextsimilarity) |
+| `python` | [OpenAI.GraderPython](#openaigraderpython) |
+| `score_model` | [OpenAI.GraderScoreModel](#openaigraderscoremodel) |
+| `multi` | [OpenAI.GraderMulti](#openaigradermulti) |
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| type | [OpenAI.GraderType](#openaigradertype) |  | Yes |  |
+
+### OpenAI.GraderLabelModel
+
+A LabelModelGrader object which uses a model to assign labels to each item
+in the evaluation.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| input | array |  | Yes |  |
+| labels | array | The labels to assign to each item in the evaluation. | Yes |  |
+| model | string | The model to use for the evaluation. Must support structured outputs. | Yes |  |
+| name | string | The name of the grader. | Yes |  |
+| passing_labels | array | The labels that indicate a passing result. Must be a subset of labels. | Yes |  |
+| type | enum | The object type, which is always `label_model`.<br>Possible values: `label_model` | Yes |  |
+
+### OpenAI.GraderMulti
+
+A MultiGrader object combines the output of multiple graders to produce a single score.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| calculate_output | string | A formula to calculate the output based on grader results. | Yes |  |
+| graders | object |  | Yes |  |
+| name | string | The name of the grader. | Yes |  |
+| type | enum | The object type, which is always `multi`.<br>Possible values: `multi` | Yes |  |
+
+### OpenAI.GraderPython
+
+A PythonGrader object that runs a python script on the input.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| image_tag | string | The image tag to use for the python script. | No |  |
+| name | string | The name of the grader. | Yes |  |
+| source | string | The source code of the python script. | Yes |  |
+| type | enum | The object type, which is always `python`.<br>Possible values: `python` | Yes |  |
+
+### OpenAI.GraderScoreModel
+
+A ScoreModelGrader object that uses a model to assign a score to the input.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| input | array | The input text. This may include template strings. | Yes |  |
+| model | string | The model to use for the evaluation. | Yes |  |
+| name | string | The name of the grader. | Yes |  |
+| range | array | The range of the score. Defaults to `[0, 1]`. | No |  |
+| sampling_params |  | The sampling parameters for the model. | No |  |
+| type | enum | The object type, which is always `score_model`.<br>Possible values: `score_model` | Yes |  |
+
+### OpenAI.GraderStringCheck
+
+A StringCheckGrader object that performs a string comparison between input and reference using a specified operation.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| input | string | The input text. This may include template strings. | Yes |  |
+| name | string | The name of the grader. | Yes |  |
+| operation | enum | The string check operation to perform. One of `eq`, `ne`, `like`, or `ilike`.<br>Possible values: `eq`, `ne`, `like`, `ilike` | Yes |  |
+| reference | string | The reference text. This may include template strings. | Yes |  |
+| type | enum | The object type, which is always `string_check`.<br>Possible values: `string_check` | Yes |  |
+
+### OpenAI.GraderTextSimilarity
+
+A TextSimilarityGrader object which grades text based on similarity metrics.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| evaluation_metric | enum | The evaluation metric to use. One of `fuzzy_match`, `bleu`, `gleu`, `meteor`, `rouge_1`, `rouge_2`, `rouge_3`, `rouge_4`, `rouge_5`, or `rouge_l`.<br>Possible values: `fuzzy_match`, `bleu`, `gleu`, `meteor`, `rouge_1`, `rouge_2`, `rouge_3`, `rouge_4`, `rouge_5`, `rouge_l` | Yes |  |
+| input | string | The text being graded. | Yes |  |
+| name | string | The name of the grader. | Yes |  |
+| reference | string | The text being graded against. | Yes |  |
+| type | enum | The type of grader.<br>Possible values: `text_similarity` | Yes |  |
+
+### OpenAI.GraderType
+
+| Property | Value |
+|----------|-------|
+| **Type** | string |
+| **Values** | `string_check`<br>`text_similarity`<br>`score_model`<br>`label_model`<br>`python`<br>`multi` |
+
 ### OpenAI.ImageGenTool
 
-A tool that generates images using a model like `gpt-image-1`.
+A tool that generates images using a model like `gpt-image-1.5`.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -3266,7 +6560,7 @@ A tool that generates images using a model like `gpt-image-1`.
 | input_image_mask | object | Optional mask for inpainting. Contains `image_url` (string, optional) and `file_id` (string, optional). | No |  |
 | └─ file_id | string | File ID for the mask image. | No |  |
 | └─ image_url | string | Base64-encoded mask image. | No |  |
-| model | enum | The image generation model to use. Default: `gpt-image-1`.<br>Possible values: `gpt-image-1` | No |  |
+| model | enum | The image generation model to use. Default: `gpt-image-1`.<br>Possible values: `gpt-image-1`, `gpt-image-1.5` | No |  |
 | moderation | enum | Moderation level for the generated image. Default: `auto`.<br>Possible values: `auto`, `low` | No |  |
 | output_compression | integer | Compression level for the output image. Default: 100. | No | 100 |
 | output_format | enum | The output format of the generated image. One of `png`, `webp`, or `jpeg`. Default: `png`.<br>Possible values: `png`, `webp`, `jpeg` | No |  |
@@ -3306,11 +6600,14 @@ An image generation request made by the model.
 
 Specify additional output data to include in the model response. Currently
 supported values are:
+- `code_interpreter_call.outputs`: Includes the outputs of python code execution
+  in code interpreter tool call items.
+- `computer_call_output.output.image_url`: Include image urls from the computer call output.
 - `file_search_call.results`: Include the search results of
   the file search tool call.
 - `message.input_image.image_url`: Include image urls from the input message.
-- `computer_call_output.output.image_url`: Include image urls from the computer call output.
-- `reasoning.encrypted_content`: Includes an encrypted version of reasoning 
+- `message.output_text.logprobs`: Include logprobs with assistant messages.
+- `reasoning.encrypted_content`: Includes an encrypted version of reasoning
   tokens in reasoning item outputs. This enables reasoning items to be used in
   multi-turn conversations when using the Responses API statelessly (like
   when the `store` parameter is set to `false`, or when an organization is
@@ -3318,9 +6615,9 @@ supported values are:
 
 | Property | Value |
 |----------|-------|
-| **Description** | Specify additional output data to include in the model response. Currently supported values are:<br>- `file_search_call.results`: Include the search results of the file search tool call.<br>- `message.input_image.image_url`: Include image urls from the input message.<br>- `computer_call_output.output.image_url`: Include image urls from the computer call output.<br>- `reasoning.encrypted_content`: Includes an encrypted version of reasoning tokens in reasoning item outputs. This enables reasoning items to be used in multi-turn conversations when using the Responses API statelessly (like when the `store` parameter is set to `false`, or when an organization is enrolled in the zero data retention program). |
+| **Description** | Specify additional output data to include in the model response. Currently supported values are:<br>- `code_interpreter_call.outputs`: Includes the outputs of python code execution in code interpreter tool call items.<br>- `computer_call_output.output.image_url`: Include image urls from the computer call output.<br>- `file_search_call.results`: Include the search results of the file search tool call.<br>- `message.input_image.image_url`: Include image urls from the input message.<br>- `message.output_text.logprobs`: Include logprobs with assistant messages.<br>- `reasoning.encrypted_content`: Includes an encrypted version of reasoning tokens in reasoning item outputs. This enables reasoning items to be used in multi-turn conversations when using the Responses API statelessly (like when the `store` parameter is set to `false`, or when an organization is enrolled in the zero data retention program). |
 | **Type** | string |
-| **Values** | `file_search_call.results`<br>`message.input_image.image_url`<br>`computer_call_output.output.image_url`<br>`reasoning.encrypted_content` |
+| **Values** | `code_interpreter_call.outputs`<br>`computer_call_output.output.image_url`<br>`file_search_call.results`<br>`message.input_image.image_url`<br>`message.output_text.logprobs`<br>`reasoning.encrypted_content` |
 
 ### OpenAI.ItemContent
 
@@ -3401,6 +6698,7 @@ A text output from the model.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | annotations | array | The annotations of the text output. | Yes |  |
+| logprobs | array |  | No |  |
 | text | string | The text output from the model. | Yes |  |
 | type | enum | The type of the output text. Always `output_text`.<br>Possible values: `output_text` | Yes |  |
 
@@ -3410,7 +6708,7 @@ A refusal from the model.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| refusal | string | The refusal explanation from the model. | Yes |  |
+| refusal | string | The refusal explanationfrom the model. | Yes |  |
 | type | enum | The type of the refusal. Always `refusal`.<br>Possible values: `refusal` | Yes |  |
 
 ### OpenAI.ItemContentType
@@ -3434,21 +6732,23 @@ This component uses the property `type` to discriminate between different types:
 
 | Type Value | Schema |
 |------------|--------|
-| `message` | [OpenAI.ResponsesMessageItemParam](#openairesponsesmessageitemparam) |
-| `function_call_output` | [OpenAI.FunctionToolCallOutputItemParam](#openaifunctiontoolcalloutputitemparam) |
 | `file_search_call` | [OpenAI.FileSearchToolCallItemParam](#openaifilesearchtoolcallitemparam) |
 | `computer_call` | [OpenAI.ComputerToolCallItemParam](#openaicomputertoolcallitemparam) |
 | `computer_call_output` | [OpenAI.ComputerToolCallOutputItemParam](#openaicomputertoolcalloutputitemparam) |
 | `web_search_call` | [OpenAI.WebSearchToolCallItemParam](#openaiwebsearchtoolcallitemparam) |
 | `function_call` | [OpenAI.FunctionToolCallItemParam](#openaifunctiontoolcallitemparam) |
+| `function_call_output` | [OpenAI.FunctionToolCallOutputItemParam](#openaifunctiontoolcalloutputitemparam) |
 | `reasoning` | [OpenAI.ReasoningItemParam](#openaireasoningitemparam) |
 | `item_reference` | [OpenAI.ItemReferenceItemParam](#openaiitemreferenceitemparam) |
 | `image_generation_call` | [OpenAI.ImageGenToolCallItemParam](#openaiimagegentoolcallitemparam) |
 | `code_interpreter_call` | [OpenAI.CodeInterpreterToolCallItemParam](#openaicodeinterpretertoolcallitemparam) |
+| `local_shell_call` | [OpenAI.LocalShellToolCallItemParam](#openailocalshelltoolcallitemparam) |
+| `local_shell_call_output` | [OpenAI.LocalShellToolCallOutputItemParam](#openailocalshelltoolcalloutputitemparam) |
 | `mcp_list_tools` | [OpenAI.MCPListToolsItemParam](#openaimcplisttoolsitemparam) |
 | `mcp_approval_request` | [OpenAI.MCPApprovalRequestItemParam](#openaimcpapprovalrequestitemparam) |
 | `mcp_approval_response` | [OpenAI.MCPApprovalResponseItemParam](#openaimcpapprovalresponseitemparam) |
 | `mcp_call` | [OpenAI.MCPCallItemParam](#openaimcpcallitemparam) |
+| `message` | [OpenAI.ResponsesMessageItemParam](#openairesponsesmessageitemparam) |
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -3474,20 +6774,22 @@ This component uses the property `type` to discriminate between different types:
 
 | Type Value | Schema |
 |------------|--------|
-| `message` | [OpenAI.ResponsesMessageItemResource](#openairesponsesmessageitemresource) |
-| `computer_call_output` | [OpenAI.ComputerToolCallOutputItemResource](#openaicomputertoolcalloutputitemresource) |
-| `function_call` | [OpenAI.FunctionToolCallItemResource](#openaifunctiontoolcallitemresource) |
-| `function_call_output` | [OpenAI.FunctionToolCallOutputItemResource](#openaifunctiontoolcalloutputitemresource) |
-| `mcp_approval_response` | [OpenAI.MCPApprovalResponseItemResource](#openaimcpapprovalresponseitemresource) |
-| `code_interpreter_call` | [OpenAI.CodeInterpreterToolCallItemResource](#openaicodeinterpretertoolcallitemresource) |
 | `file_search_call` | [OpenAI.FileSearchToolCallItemResource](#openaifilesearchtoolcallitemresource) |
 | `computer_call` | [OpenAI.ComputerToolCallItemResource](#openaicomputertoolcallitemresource) |
+| `computer_call_output` | [OpenAI.ComputerToolCallOutputItemResource](#openaicomputertoolcalloutputitemresource) |
 | `web_search_call` | [OpenAI.WebSearchToolCallItemResource](#openaiwebsearchtoolcallitemresource) |
+| `function_call` | [OpenAI.FunctionToolCallItemResource](#openaifunctiontoolcallitemresource) |
+| `function_call_output` | [OpenAI.FunctionToolCallOutputItemResource](#openaifunctiontoolcalloutputitemresource) |
 | `reasoning` | [OpenAI.ReasoningItemResource](#openaireasoningitemresource) |
 | `image_generation_call` | [OpenAI.ImageGenToolCallItemResource](#openaiimagegentoolcallitemresource) |
+| `code_interpreter_call` | [OpenAI.CodeInterpreterToolCallItemResource](#openaicodeinterpretertoolcallitemresource) |
+| `local_shell_call` | [OpenAI.LocalShellToolCallItemResource](#openailocalshelltoolcallitemresource) |
+| `local_shell_call_output` | [OpenAI.LocalShellToolCallOutputItemResource](#openailocalshelltoolcalloutputitemresource) |
 | `mcp_list_tools` | [OpenAI.MCPListToolsItemResource](#openaimcplisttoolsitemresource) |
 | `mcp_approval_request` | [OpenAI.MCPApprovalRequestItemResource](#openaimcpapprovalrequestitemresource) |
+| `mcp_approval_response` | [OpenAI.MCPApprovalResponseItemResource](#openaimcpapprovalresponseitemresource) |
 | `mcp_call` | [OpenAI.MCPCallItemResource](#openaimcpcallitemresource) |
+| `message` | [OpenAI.ResponsesMessageItemResource](#openairesponsesmessageitemresource) |
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -3499,7 +6801,132 @@ This component uses the property `type` to discriminate between different types:
 | Property | Value |
 |----------|-------|
 | **Type** | string |
-| **Values** | `message`<br>`file_search_call`<br>`function_call`<br>`function_call_output`<br>`computer_call`<br>`computer_call_output`<br>`web_search_call`<br>`reasoning`<br>`item_reference`<br>`image_generation_call`<br>`code_interpreter_call`<br>`mcp_list_tools`<br>`mcp_approval_request`<br>`mcp_approval_response`<br>`mcp_call` |
+| **Values** | `message`<br>`file_search_call`<br>`function_call`<br>`function_call_output`<br>`computer_call`<br>`computer_call_output`<br>`web_search_call`<br>`reasoning`<br>`item_reference`<br>`image_generation_call`<br>`code_interpreter_call`<br>`local_shell_call`<br>`local_shell_call_output`<br>`mcp_list_tools`<br>`mcp_approval_request`<br>`mcp_approval_response`<br>`mcp_call` |
+
+### OpenAI.ListFineTuningJobCheckpointsResponse
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| data | array |  | Yes |  |
+| first_id | string |  | No |  |
+| has_more | boolean |  | Yes |  |
+| last_id | string |  | No |  |
+| object | enum | <br>Possible values: `list` | Yes |  |
+
+### OpenAI.ListFineTuningJobEventsResponse
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| data | array |  | Yes |  |
+| has_more | boolean |  | Yes |  |
+| object | enum | <br>Possible values: `list` | Yes |  |
+
+### OpenAI.ListModelsResponse
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| data | array |  | Yes |  |
+| object | enum | <br>Possible values: `list` | Yes |  |
+
+### OpenAI.ListPaginatedFineTuningJobsResponse
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| data | array |  | Yes |  |
+| has_more | boolean |  | Yes |  |
+| object | enum | <br>Possible values: `list` | Yes |  |
+
+### OpenAI.ListVectorStoreFilesFilter
+
+| Property | Value |
+|----------|-------|
+| **Type** | string |
+| **Values** | `in_progress`<br>`completed`<br>`failed`<br>`cancelled` |
+
+### OpenAI.ListVectorStoreFilesResponse
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| data | array |  | Yes |  |
+| first_id | string |  | Yes |  |
+| has_more | boolean |  | Yes |  |
+| last_id | string |  | Yes |  |
+| object | enum | <br>Possible values: `list` | Yes |  |
+
+### OpenAI.ListVectorStoresResponse
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| data | array |  | Yes |  |
+| first_id | string |  | Yes |  |
+| has_more | boolean |  | Yes |  |
+| last_id | string |  | Yes |  |
+| object | enum | <br>Possible values: `list` | Yes |  |
+
+### OpenAI.LocalShellExecAction
+
+Execute a shell command on the server.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| command | array | The command to run. | Yes |  |
+| env | object | Environment variables to set for the command. | Yes |  |
+| timeout_ms | integer | Optional timeout in milliseconds for the command. | No |  |
+| type | enum | The type of the local shell action. Always `exec`.<br>Possible values: `exec` | Yes |  |
+| user | string | Optional user to run the command as. | No |  |
+| working_directory | string | Optional working directory to run the command in. | No |  |
+
+### OpenAI.LocalShellTool
+
+A tool that allows the model to execute shell commands in a local environment.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| type | enum | The type of the local shell tool. Always `local_shell`.<br>Possible values: `local_shell` | Yes |  |
+
+### OpenAI.LocalShellToolCallItemParam
+
+A tool call to run a command on the local shell.
+
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| action | [OpenAI.LocalShellExecAction](#openailocalshellexecaction) | Execute a shell command on the server. | Yes |  |
+| call_id | string | The unique ID of the local shell tool call generated by the model. | Yes |  |
+| type | enum | <br>Possible values: `local_shell_call` | Yes |  |
+
+### OpenAI.LocalShellToolCallItemResource
+
+A tool call to run a command on the local shell.
+
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| action | [OpenAI.LocalShellExecAction](#openailocalshellexecaction) | Execute a shell command on the server. | Yes |  |
+| call_id | string | The unique ID of the local shell tool call generated by the model. | Yes |  |
+| status | enum | <br>Possible values: `in_progress`, `completed`, `incomplete` | Yes |  |
+| type | enum | <br>Possible values: `local_shell_call` | Yes |  |
+
+### OpenAI.LocalShellToolCallOutputItemParam
+
+The output of a local shell tool call.
+
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| output | string | A JSON string of the output of the local shell tool call. | Yes |  |
+| type | enum | <br>Possible values: `local_shell_call_output` | Yes |  |
+
+### OpenAI.LocalShellToolCallOutputItemResource
+
+The output of a local shell tool call.
+
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| output | string | A JSON string of the output of the local shell tool call. | Yes |  |
+| status | enum | <br>Possible values: `in_progress`, `completed`, `incomplete` | Yes |  |
+| type | enum | <br>Possible values: `local_shell_call_output` | Yes |  |
 
 ### OpenAI.Location
 
@@ -3522,6 +6949,17 @@ This component uses the property `type` to discriminate between different types:
 |----------|-------|
 | **Type** | string |
 | **Values** | `approximate` |
+
+### OpenAI.LogProb
+
+The log probability of a token.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| bytes | array |  | Yes |  |
+| logprob | number |  | Yes |  |
+| token | string |  | Yes |  |
+| top_logprobs | array |  | Yes |  |
 
 ### OpenAI.MCPApprovalRequestItemParam
 
@@ -3649,12 +7087,55 @@ Give the model access to additional tools via remote Model Context Protocol
 | server_url | string | The URL for the MCP server. | Yes |  |
 | type | enum | The type of the MCP tool. Always `mcp`.<br>Possible values: `mcp` | Yes |  |
 
+### OpenAI.MetadataPropertyForRequest
+
+Set of 16 key-value pairs that can be attached to an object. This can be
+useful for storing additional information about the object in a structured
+format, and querying for objects via API or the dashboard.
+
+Keys are strings with a maximum length of 64 characters. Values are strings
+with a maximum length of 512 characters.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | No |  |
+
+### OpenAI.Model
+
+Describes an OpenAI model offering that can be used with the API.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| created | integer | The Unix timestamp (in seconds) when the model was created. | Yes |  |
+| id | string | The model identifier, which can be referenced in the API endpoints. | Yes |  |
+| object | enum | The object type, which is always "model".<br>Possible values: `model` | Yes |  |
+| owned_by | string | The organization that owns the model. | Yes |  |
+
+### OpenAI.OtherChunkingStrategyResponseParam
+
+This is returned when the chunking strategy is unknown. Typically, this is because the file was indexed before the `chunking_strategy` concept was introduced in the API.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| type | enum | Always `other`.<br>Possible values: `other` | Yes |  |
+
 ### OpenAI.ParallelToolCalls
 
 Whether to enable parallel function calling during tool use.
 
 **Type**: boolean
 
+
+### OpenAI.Prompt
+
+Reference to a prompt template and its variables.
+
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| id | string | The unique identifier of the prompt template to use. | Yes |  |
+| variables | object | Optional map of values to substitute in for variables in your prompt. The substitution values can either be strings, or other Response input types like images or files. | No |  |
+| version | string | Optional version of the prompt template. | No |  |
 
 ### OpenAI.RankingOptions
 
@@ -3667,35 +7148,29 @@ Whether to enable parallel function calling during tool use.
 
 **o-series models only**
 
-Configuration options for reasoning models.
+
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| effort | object | **o-series models only** <br><br>Constrains effort on reasoning for reasoning models.<br>Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. | No |  |
+| effort | object | **o-series models only**<br><br>Constrains effort on reasoning for reasoning models.<br>Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. | No |  |
 | generate_summary | enum | **Deprecated:** use `summary` instead.<br><br>A summary of the reasoning performed by the model. This can be useful for debugging and understanding the model's reasoning process.<br>One of `auto`, `concise`, or `detailed`.<br>Possible values: `auto`, `concise`, `detailed` | No |  |
 | summary | enum | A summary of the reasoning performed by the model. This can be useful for debugging and understanding the model's reasoning process.<br>One of `auto`, `concise`, or `detailed`.<br>Possible values: `auto`, `concise`, `detailed` | No |  |
 
 ### OpenAI.ReasoningEffort
 
-**o-series models only** 
+**o-series models only**
 
-Constrains effort on reasoning for reasoning models.
-
-Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used
-on reasoning in a response.
+Constrains effort on reasoning for reasoning models. Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.
 
 | Property | Value |
 |----------|-------|
-| **Description** | **o-series models only** <br><br>Constrains effort on reasoning for reasoning models.<br>Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. |
+| **Description** | **o-series models only**<br><br>Constrains effort on reasoning for reasoning models.<br>Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. |
 | **Type** | string |
 | **Values** | `low`<br>`medium`<br>`high` |
 
 ### OpenAI.ReasoningItemParam
 
-A description of the chain of thought used by a reasoning model while generating
-a response. Be sure to include these items in your `input` to the Responses API
-for subsequent turns of a conversation if you are manually 
-managing context.
+A description of the chain of thought used by a reasoning model while generating a response. Be sure to include these items in your `input` to the Responses API for subsequent turns of a conversation if you are manually managing context.
 
 
 | Name | Type | Description | Required | Default |
@@ -3706,10 +7181,7 @@ managing context.
 
 ### OpenAI.ReasoningItemResource
 
-A description of the chain of thought used by a reasoning model while generating
-a response. Be sure to include these items in your `input` to the Responses API
-for subsequent turns of a conversation if you are manually 
-managing context.
+A description of the chain of thought used by a reasoning model while generating a response. Be sure to include these items in your `input` to the Responses API for subsequent turns of a conversation if you are manually managing context.
 
 
 | Name | Type | Description | Required | Default |
@@ -3751,7 +7223,7 @@ This component uses the property `type` to discriminate between different types:
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| background | boolean | Whether to run the model response in the background. | No | False |
+| background | boolean | Whether to run the model response in the background.| No | False |
 | created_at | integer | Unix timestamp (in seconds) of when this Response was created. | Yes |  |
 | error | object | An error object returned when the model fails to generate a Response. | Yes |  |
 | └─ code | [OpenAI.ResponseErrorCode](#openairesponseerrorcode) | The error code for the response. | No |  |
@@ -3759,49 +7231,57 @@ This component uses the property `type` to discriminate between different types:
 | id | string | Unique identifier for this Response. | Yes |  |
 | incomplete_details | object | Details about why the response is incomplete. | Yes |  |
 | └─ reason | enum | The reason why the response is incomplete.<br>Possible values: `max_output_tokens`, `content_filter` | No |  |
-| instructions | string | Inserts a system (or developer) message as the first item in the model's context.<br><br>When using along with `previous_response_id`, the instructions from a previous response will not be carried over to the next response. This makes it simple to swap out system (or developer) messages in new responses. | No |  |
-| max_output_tokens | integer | An upper bound for the number of tokens that can be generated for a response, including visible output tokens and . | No |  |
+| instructions | string or array |  | Yes |  |
+| max_output_tokens | integer | An upper bound for the number of tokens that can be generated for a response, including visible output tokens and reasoning tokens | No |  |
+| max_tool_calls | integer | The maximum number of total calls to built-in tools that can be processed in a response. This maximum number applies across all built-in tool calls, not per individual tool. Any further attempts to call a tool by the model will be ignored. | No |  |
 | metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | Yes |  |
 | object | enum | The object type of this resource - always set to `response`.<br>Possible values: `response` | Yes |  |
 | output | array | An array of content items generated by the model.<br><br>- The length and order of items in the `output` array is dependent on the model's response.<br>- Rather than accessing the first item in the `output` array and assuming it's an `assistant` message with the content generated by the model, you might consider using the `output_text` property where supported in SDKs. | Yes |  |
-| output_text | string | SDK-only convenience property that contains the aggregated text output from all `output_text` items in the `output` array, if any are present. <br>Supported in the Python and JavaScript SDKs. | No |  |
+| output_text | string | SDK-only convenience property that contains the aggregated text output from all `output_text` items in the `output` array, if any are present.<br>Supported in the Python and JavaScript SDKs. | No |  |
 | parallel_tool_calls | boolean | Whether to allow the model to run tool calls in parallel. | Yes | True |
-| previous_response_id | string | The unique ID of the previous response to the model. Use this to create multi-turn conversations. reasoning models. | No |  |
+| previous_response_id | string | The unique ID of the previous response to the model. Use this to create multi-turn conversations. | No |  |
+| prompt | object | Reference to a prompt template and its variables. | No |  |
+| └─ id | string | The unique identifier of the prompt template to use. | No |  |
+| └─ variables | [OpenAI.ResponsePromptVariables](#openairesponsepromptvariables) | Optional map of values to substitute in for variables in your prompt. The substitution values can either be strings, or other Response input types like images or files. | No |  |
+| └─ version | string | Optional version of the prompt template. | No |  |
 | reasoning | object | **o-series models only**<br><br>Configuration options for reasoning models. | No |  |
-| └─ effort | [OpenAI.ReasoningEffort](#openaireasoningeffort) | **o-series models only** <br><br>Constrains effort on reasoning for reasoning models.<br>Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. | No |  |
+| └─ effort | [OpenAI.ReasoningEffort](#openaireasoningeffort) | **o-series models only**<br><br>Constrains effort on reasoning for reasoning models.<br>Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. | No |  |
 | └─ generate_summary | enum | **Deprecated:** use `summary` instead.<br><br>A summary of the reasoning performed by the model. This can be useful for debugging and understanding the model's reasoning process.<br>One of `auto`, `concise`, or `detailed`.<br>Possible values: `auto`, `concise`, `detailed` | No |  |
 | └─ summary | enum | A summary of the reasoning performed by the model. This can be useful for debugging and understanding the model's reasoning process.<br>One of `auto`, `concise`, or `detailed`.<br>Possible values: `auto`, `concise`, `detailed` | No |  |
 | status | enum | The status of the response generation. One of `completed`, `failed`, `in_progress`, `cancelled`, `queued`, or `incomplete`.<br>Possible values: `completed`, `failed`, `in_progress`, `cancelled`, `queued`, `incomplete` | No |  |
 | temperature | number | What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.<br>We generally recommend altering this or `top_p` but not both. | Yes |  |
-| text | object | Configuration options for a text response from the model. Can be plain text or structured JSON data.  | No |  |
+| text | object | Configuration options for a text response from the model. Can be plain text or structured JSON data. | No |  |
 | └─ format | [OpenAI.ResponseTextFormatConfiguration](#openairesponsetextformatconfiguration) |  | No |  |
 | tool_choice | object | Controls which (if any) tool is called by the model.<br><br>`none` means the model will not call any tool and instead generates a message.<br><br>`auto` means the model can pick between generating a message or calling one or more tools.<br><br>`required` means the model must call one or more tools. | No |  |
 | └─ type | [OpenAI.ToolChoiceObjectType](#openaitoolchoiceobjecttype) | Indicates that the model should use a built-in tool to generate a response. | No |  |
-| tools | array | An array of tools the model may call while generating a response. You can specify which tool to use by setting the `tool_choice` parameter.<br><br>The two categories of tools you can provide the model are:<br><br>- **Built-in tools**: Tools that are provided by OpenAI that extend the model's capabilities **Function calls (custom tools)**: Functions that are defined by you, enabling the model to call your own code. managing context. | No |  |
+| tools | array | An array of tools the model may call while generating a response. You can specify which tool to use by setting the `tool_choice` parameter.<br><br>The two categories of tools you can provide the model are:<br><br>- **Built-in tools**: Tools that are provided by OpenAI that extend the model's capabilities. | No |  |
+| top_logprobs | integer | An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. | No |  |
 | top_p | number | An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.<br><br>We generally recommend altering this or `temperature` but not both. | Yes |  |
-| truncation | enum | The truncation strategy to use for the model response.<br>- `auto`: If the context of this response and previous ones exceeds the model's context window size, the model will truncate the response to fit the context window by dropping input items in the middle of the conversation. <br>- `disabled` (default): If a model response will exceed the context window size for a model, the request will fail with a 400 error.<br>Possible values: `auto`, `disabled` | No |  |
+| truncation | enum | The truncation strategy to use for the model response.<br>- `auto`: If the context of this response and previous ones exceeds the model's context window size, the model will truncate the response to fit the context window by dropping input items in the middle of the conversation.<br>- `disabled` (default): If a model response will exceed the context window size for a model, the request will fail with a 400 error.<br>Possible values: `auto`, `disabled` | No |  |
 | usage | [OpenAI.ResponseUsage](#openairesponseusage) | Represents token usage details including input tokens, output tokens, a breakdown of output tokens, and the total tokens used. | No |  |
 | user | string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.  | Yes |  |
 
 ### OpenAI.ResponseCodeInterpreterCallCodeDeltaEvent
 
-Emitted when a partial code snippet is added by the code interpreter.
+Emitted when a partial code snippet is streamed by the code interpreter.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| delta | string | The partial code snippet added by the code interpreter. | Yes |  |
-| output_index | integer | The index of the output item that the code interpreter call is in progress. | Yes |  |
-| type | enum | The type of the event. Always `response.code_interpreter_call.code.delta`.<br>Possible values: `response.code_interpreter_call.code.delta` | Yes |  |
+| delta | string | The partial code snippet being streamed by the code interpreter. | Yes |  |
+| item_id | string | The unique identifier of the code interpreter tool call item. | Yes |  |
+| output_index | integer | The index of the output item in the response for which the code is being streamed. | Yes |  |
+| type | enum | The type of the event. Always `response.code_interpreter_call_code.delta`.<br>Possible values: `response.code_interpreter_call_code.delta` | Yes |  |
 
 ### OpenAI.ResponseCodeInterpreterCallCodeDoneEvent
 
-Emitted when code snippet output is finalized by the code interpreter.
+Emitted when the code snippet is finalized by the code interpreter.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | code | string | The final code snippet output by the code interpreter. | Yes |  |
-| output_index | integer | The index of the output item that the code interpreter call is in progress. | Yes |  |
-| type | enum | The type of the event. Always `response.code_interpreter_call.code.done`.<br>Possible values: `response.code_interpreter_call.code.done` | Yes |  |
+| item_id | string | The unique identifier of the code interpreter tool call item. | Yes |  |
+| output_index | integer | The index of the output item in the response for which the code is finalized. | Yes |  |
+| type | enum | The type of the event. Always `response.code_interpreter_call_code.done`.<br>Possible values: `response.code_interpreter_call_code.done` | Yes |  |
 
 ### OpenAI.ResponseCodeInterpreterCallCompletedEvent
 
@@ -3809,8 +7289,8 @@ Emitted when the code interpreter call is completed.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| code_interpreter_call | [OpenAI.CodeInterpreterToolCallItemResource](#openaicodeinterpretertoolcallitemresource) | A tool call to run code. | Yes |  |
-| output_index | integer | The index of the output item that the code interpreter call is in progress. | Yes |  |
+| item_id | string | The unique identifier of the code interpreter tool call item. | Yes |  |
+| output_index | integer | The index of the output item in the response for which the code interpreter call is completed. | Yes |  |
 | type | enum | The type of the event. Always `response.code_interpreter_call.completed`.<br>Possible values: `response.code_interpreter_call.completed` | Yes |  |
 
 ### OpenAI.ResponseCodeInterpreterCallInProgressEvent
@@ -3819,8 +7299,8 @@ Emitted when a code interpreter call is in progress.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| code_interpreter_call | [OpenAI.CodeInterpreterToolCallItemResource](#openaicodeinterpretertoolcallitemresource) | A tool call to run code. | Yes |  |
-| output_index | integer | The index of the output item that the code interpreter call is in progress. | Yes |  |
+| item_id | string | The unique identifier of the code interpreter tool call item. | Yes |  |
+| output_index | integer | The index of the output item in the response for which the code interpreter call is in progress. | Yes |  |
 | type | enum | The type of the event. Always `response.code_interpreter_call.in_progress`.<br>Possible values: `response.code_interpreter_call.in_progress` | Yes |  |
 
 ### OpenAI.ResponseCodeInterpreterCallInterpretingEvent
@@ -3829,8 +7309,8 @@ Emitted when the code interpreter is actively interpreting the code snippet.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| code_interpreter_call | [OpenAI.CodeInterpreterToolCallItemResource](#openaicodeinterpretertoolcallitemresource) | A tool call to run code. | Yes |  |
-| output_index | integer | The index of the output item that the code interpreter call is in progress. | Yes |  |
+| item_id | string | The unique identifier of the code interpreter tool call item. | Yes |  |
+| output_index | integer | The index of the output item in the response for which the code interpreter is interpreting code. | Yes |  |
 | type | enum | The type of the event. Always `response.code_interpreter_call.interpreting`.<br>Possible values: `response.code_interpreter_call.interpreting` | Yes |  |
 
 ### OpenAI.ResponseCompletedEvent
@@ -3840,29 +7320,32 @@ Emitted when the model response is complete.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | response | object |  | Yes |  |
-| └─ background | boolean | Whether to run the model response in the background. | No | False |
+| └─ background | boolean | Whether to run the model response in the background.| No | False |
 | └─ created_at | integer | Unix timestamp (in seconds) of when this Response was created. | No |  |
 | └─ error | [OpenAI.ResponseError](#openairesponseerror) | An error object returned when the model fails to generate a Response. | No |  |
 | └─ id | string | Unique identifier for this Response. | No |  |
 | └─ incomplete_details | object | Details about why the response is incomplete. | No |  |
 |   └─ reason | enum | The reason why the response is incomplete.<br>Possible values: `max_output_tokens`, `content_filter` | No |  |
-| └─ instructions | string | Inserts a system (or developer) message as the first item in the model's context.<br><br>When using along with `previous_response_id`, the instructions from a previous response will not be carried over to the next response. This makes it simple to swap out system (or developer) messages in new responses. | No |  |
-| └─ max_output_tokens | integer | An upper bound for the number of tokens that can be generated for a response, including visible output tokens and . | No |  |
+| └─ instructions | string or array | A system (or developer) message inserted into the model's context.<br><br>When using along with `previous_response_id`, the instructions from a previous response will not be carried over to the next response. This makes it simple to swap out system (or developer) messages in new responses. | No |  |
+| └─ max_output_tokens | integer | An upper bound for the number of tokens that can be generated for a response, including visible output tokens and reasoning tokens | No |  |
+| └─ max_tool_calls | integer | The maximum number of total calls to built-in tools that can be processed in a response. This maximum number applies across all built-in tool calls, not per individual tool. Any further attempts to call a tool by the model will be ignored. | No |  |
 | └─ metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | No |  |
 | └─ object | enum | The object type of this resource - always set to `response`.<br>Possible values: `response` | No |  |
 | └─ output | array | An array of content items generated by the model.<br><br>- The length and order of items in the `output` array is dependent on the model's response.<br>- Rather than accessing the first item in the `output` array and assuming it's an `assistant` message with the content generated by the model, you might consider using the `output_text` property where supported in SDKs. | No |  |
-| └─ output_text | string | SDK-only convenience property that contains the aggregated text output from all `output_text` items in the `output` array, if any are present. <br>Supported in the Python and JavaScript SDKs. | No |  |
+| └─ output_text | string | SDK-only convenience property that contains the aggregated text output from all `output_text` items in the `output` array, if any are present.<br>Supported in the Python and JavaScript SDKs. | No |  |
 | └─ parallel_tool_calls | boolean | Whether to allow the model to run tool calls in parallel. | No | True |
-| └─ previous_response_id | string | The unique ID of the previous response to the model. Use this to create multi-turn conversations. reasoning models. | No |  |
+| └─ previous_response_id | string | The unique ID of the previous response to the model. Use this to create multi-turn conversations. | No |  |
+| └─ prompt | [OpenAI.Prompt](#openaiprompt) | Reference to a prompt template and its variables. | No |  |
 | └─ reasoning | [OpenAI.Reasoning](#openaireasoning) | **o-series models only**<br><br>Configuration options for reasoning models. | No |  |
 | └─ status | enum | The status of the response generation. One of `completed`, `failed`, `in_progress`, `cancelled`, `queued`, or `incomplete`.<br>Possible values: `completed`, `failed`, `in_progress`, `cancelled`, `queued`, `incomplete` | No |  |
 | └─ temperature | number | What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.<br>We generally recommend altering this or `top_p` but not both. | No |  |
-| └─ text | object | Configuration options for a text response from the model. Can be plain text or structured JSON data.  | No |  |
+| └─ text | object | Configuration options for a text response from the model. Can be plain text or structured JSON data. | No |  |
 |   └─ format | [OpenAI.ResponseTextFormatConfiguration](#openairesponsetextformatconfiguration) |  | No |  |
 | └─ tool_choice | [OpenAI.ToolChoiceOptions](#openaitoolchoiceoptions) or [OpenAI.ToolChoiceObject](#openaitoolchoiceobject) | How the model should select which tool (or tools) to use when generating a response. See the `tools` parameter to see how to specify which tools the model can call. | No |  |
-| └─ tools | array | An array of tools the model may call while generating a response. You can specify which tool to use by setting the `tool_choice` parameter.<br><br>The two categories of tools you can provide the model are:<br><br>- **Built-in tools**: Tools that extend the model's capabilities. | No |  |
+| └─ tools | array | An array of tools the model may call while generating a response. You can specify which tool to use by setting the `tool_choice` parameter.<br><br>The two categories of tools you can provide the model are:<br><br>- **Built-in tools**: Tools that are provided by OpenAI that extend the model's capabilities. | No |  |
+| └─ top_logprobs | integer | An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. | No |  |
 | └─ top_p | number | An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.<br><br>We generally recommend altering this or `temperature` but not both. | No |  |
-| └─ truncation | enum | The truncation strategy to use for the model response.<br>- `auto`: If the context of this response and previous ones exceeds the model's context window size, the model will truncate the response to fit the context window by dropping input items in the middle of the conversation. <br>- `disabled` (default): If a model response will exceed the context window size for a model, the request will fail with a 400 error.<br>Possible values: `auto`, `disabled` | No |  |
+| └─ truncation | enum | The truncation strategy to use for the model response.<br>- `auto`: If the context of this response and previous ones exceeds the model's context window size, the model will truncate the response to fit the context window by dropping input items in the middle of the conversation.<br>- `disabled` (default): If a model response will exceed the context window size for a model, the request will fail with a 400 error.<br>Possible values: `auto`, `disabled` | No |  |
 | └─ usage | [OpenAI.ResponseUsage](#openairesponseusage) | Represents token usage details including input tokens, output tokens, a breakdown of output tokens, and the total tokens used. | No |  |
 | └─ user | string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.  | No |  |
 | type | enum | The type of the event. Always `response.completed`.<br>Possible values: `response.completed` | Yes |  |
@@ -3900,29 +7383,32 @@ An event that is emitted when a response is created.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | response | object |  | Yes |  |
-| └─ background | boolean | Whether to run the model response in the background. | No | False |
+| └─ background | boolean | Whether to run the model response in the background.| No | False |
 | └─ created_at | integer | Unix timestamp (in seconds) of when this Response was created. | No |  |
 | └─ error | [OpenAI.ResponseError](#openairesponseerror) | An error object returned when the model fails to generate a Response. | No |  |
 | └─ id | string | Unique identifier for this Response. | No |  |
 | └─ incomplete_details | object | Details about why the response is incomplete. | No |  |
 |   └─ reason | enum | The reason why the response is incomplete.<br>Possible values: `max_output_tokens`, `content_filter` | No |  |
-| └─ instructions | string | Inserts a system (or developer) message as the first item in the model's context.<br><br>When using along with `previous_response_id`, the instructions from a previous response will not be carried over to the next response. This makes it simple to swap out system (or developer) messages in new responses. | No |  |
-| └─ max_output_tokens | integer | An upper bound for the number of tokens that can be generated for a response, including visible output tokens and . | No |  |
+| └─ instructions | string or array | A system (or developer) message inserted into the model's context.<br><br>When using along with `previous_response_id`, the instructions from a previous response will not be carried over to the next response. This makes it simple to swap out system (or developer) messages in new responses. | No |  |
+| └─ max_output_tokens | integer | An upper bound for the number of tokens that can be generated for a response, including visible output tokens and reasoning tokens | No |  |
+| └─ max_tool_calls | integer | The maximum number of total calls to built-in tools that can be processed in a response. This maximum number applies across all built-in tool calls, not per individual tool. Any further attempts to call a tool by the model will be ignored. | No |  |
 | └─ metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | No |  |
 | └─ object | enum | The object type of this resource - always set to `response`.<br>Possible values: `response` | No |  |
 | └─ output | array | An array of content items generated by the model.<br><br>- The length and order of items in the `output` array is dependent on the model's response.<br>- Rather than accessing the first item in the `output` array and assuming it's an `assistant` message with the content generated by the model, you might consider using the `output_text` property where supported in SDKs. | No |  |
-| └─ output_text | string | SDK-only convenience property that contains the aggregated text output from all `output_text` items in the `output` array, if any are present. <br>Supported in the Python and JavaScript SDKs. | No |  |
+| └─ output_text | string | SDK-only convenience property that contains the aggregated text output from all `output_text` items in the `output` array, if any are present.<br>Supported in the Python and JavaScript SDKs. | No |  |
 | └─ parallel_tool_calls | boolean | Whether to allow the model to run tool calls in parallel. | No | True |
-| └─ previous_response_id | string | The unique ID of the previous response to the model. Use this to create multi-turn conversations. reasoning models. | No |  |
+| └─ previous_response_id | string | The unique ID of the previous response to the model. Use this to create multi-turn conversations. | No |  |
+| └─ prompt | [OpenAI.Prompt](#openaiprompt) | Reference to a prompt template and its variables. | No |  |
 | └─ reasoning | [OpenAI.Reasoning](#openaireasoning) | **o-series models only**<br><br>Configuration options for reasoning models. | No |  |
-| └─ status | enum | The status of the response generation. One of `completed`, `failed`, `in_progress`, `cancelled`, `queued`, or `incomplete`.<br>Possible values: `completed`, `failed`, `in_progress`, `cancelled`, `queued`, `incomplete` | No |  |
+| └─ status | enum | The status of the response generation. One of `completed`, `failed`,<br>`in_progress`, `cancelled`, `queued`, or `incomplete`.<br>Possible values: `completed`, `failed`, `in_progress`, `cancelled`, `queued`, `incomplete` | No |  |
 | └─ temperature | number | What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.<br>We generally recommend altering this or `top_p` but not both. | No |  |
-| └─ text | object | Configuration options for a text response from the model. Can be plain text or structured JSON data.  | No |  |
+| └─ text | object | Configuration options for a text response from the model. Can be plain text or structured JSON data. | No |  |
 |   └─ format | [OpenAI.ResponseTextFormatConfiguration](#openairesponsetextformatconfiguration) |  | No |  |
 | └─ tool_choice | [OpenAI.ToolChoiceOptions](#openaitoolchoiceoptions) or [OpenAI.ToolChoiceObject](#openaitoolchoiceobject) | How the model should select which tool (or tools) to use when generating a response. See the `tools` parameter to see how to specify which tools the model can call. | No |  |
-| └─ tools | array | An array of tools the model may call while generating a response. You can specify which tool to use by setting the `tool_choice` parameter.<br><br>The two categories of tools you can provide the model are:<br><br>- **Built-in tools**: Tools that are provided by OpenAI that extend the model's capabilities. **Function calls (custom tools)**: Functions that are defined by you, enabling the model to call your own code. managing context. | No |  |
+| └─ tools | array | An array of tools the model may call while generating a response. You can specify which tool to use by setting the `tool_choice` parameter.<br><br>The two categories of tools you can provide the model are:<br><br>- **Built-in tools**: Tools that are provided by OpenAI that extend the model's capabilities. | No |  |
+| └─ top_logprobs | integer | An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. | No |  |
 | └─ top_p | number | An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.<br><br>We generally recommend altering this or `temperature` but not both. | No |  |
-| └─ truncation | enum | The truncation strategy to use for the model response.<br>- `auto`: If the context of this response and previous ones exceeds the model's context window size, the model will truncate the response to fit the context window by dropping input items in the middle of the conversation. <br>- `disabled` (default): If a model response will exceed the context window size for a model, the request will fail with a 400 error.<br>Possible values: `auto`, `disabled` | No |  |
+| └─ truncation | enum | The truncation strategy to use for the model response.<br>- `auto`: If the context of this response and previous ones exceeds the model's context window size, the model will truncate the response to fit the context window by dropping input items in the middle of the conversation.<br>- `disabled` (default): If a model response will exceed the context window size for a model, the request will fail with a 400 error.<br>Possible values: `auto`, `disabled` | No |  |
 | └─ usage | [OpenAI.ResponseUsage](#openairesponseusage) | Represents token usage details including input tokens, output tokens, a breakdown of output tokens, and the total tokens used. | No |  |
 | └─ user | string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.  | No |  |
 | type | enum | The type of the event. Always `response.created`.<br>Possible values: `response.created` | Yes |  |
@@ -3964,29 +7450,32 @@ An event that is emitted when a response fails.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | response | object |  | Yes |  |
-| └─ background | boolean | Whether to run the model response in the background. | No | False |
+| └─ background | boolean | Whether to run the model response in the background.| No | False |
 | └─ created_at | integer | Unix timestamp (in seconds) of when this Response was created. | No |  |
 | └─ error | [OpenAI.ResponseError](#openairesponseerror) | An error object returned when the model fails to generate a Response. | No |  |
 | └─ id | string | Unique identifier for this Response. | No |  |
 | └─ incomplete_details | object | Details about why the response is incomplete. | No |  |
 |   └─ reason | enum | The reason why the response is incomplete.<br>Possible values: `max_output_tokens`, `content_filter` | No |  |
-| └─ instructions | string | Inserts a system (or developer) message as the first item in the model's context.<br><br>When using along with `previous_response_id`, the instructions from a previous response will not be carried over to the next response. This makes it simple to swap out system (or developer) messages in new responses. | No |  |
-| └─ max_output_tokens | integer | An upper bound for the number of tokens that can be generated for a response, including visible output tokens and . | No |  |
+| └─ instructions | string or array | A system (or developer) message inserted into the model's context.<br><br>When using along with `previous_response_id`, the instructions from a previous response will not be carried over to the next response. This makes it simple to swap out system (or developer) messages in new responses. | No |  |
+| └─ max_output_tokens | integer | An upper bound for the number of tokens that can be generated for a response, including visible output tokens and reasoning tokens | No |  |
+| └─ max_tool_calls | integer | The maximum number of total calls to built-in tools that can be processed in a response. This maximum number applies across all built-in tool calls, not per individual tool. Any further attempts to call a tool by the model will be ignored. | No |  |
 | └─ metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | No |  |
 | └─ object | enum | The object type of this resource - always set to `response`.<br>Possible values: `response` | No |  |
 | └─ output | array | An array of content items generated by the model.<br><br>- The length and order of items in the `output` array is dependent on the model's response.<br>- Rather than accessing the first item in the `output` array and assuming it's an `assistant` message with the content generated by the model, you might consider using the `output_text` property where supported in SDKs. | No |  |
-| └─ output_text | string | SDK-only convenience property that contains the aggregated text output from all `output_text` items in the `output` array, if any are present. <br>Supported in the Python and JavaScript SDKs. | No |  |
+| └─ output_text | string | SDK-only convenience property that contains the aggregated text output from all `output_text` items in the `output` array, if any are present.<br>Supported in the Python and JavaScript SDKs. | No |  |
 | └─ parallel_tool_calls | boolean | Whether to allow the model to run tool calls in parallel. | No | True |
-| └─ previous_response_id | string | The unique ID of the previous response to the model. Use this to create multi-turn conversations. reasoning models. | No |  |
+| └─ previous_response_id | string | The unique ID of the previous response to the model. Use this to create multi-turn conversations. | No |  |
+| └─ prompt | [OpenAI.Prompt](#openaiprompt) | Reference to a prompt template and its variables. | No |  |
 | └─ reasoning | [OpenAI.Reasoning](#openaireasoning) | **o-series models only**<br><br>Configuration options for reasoning models. | No |  |
 | └─ status | enum | The status of the response generation. One of `completed`, `failed`, `in_progress`, `cancelled`, `queued`, or `incomplete`.<br>Possible values: `completed`, `failed`, `in_progress`, `cancelled`, `queued`, `incomplete` | No |  |
 | └─ temperature | number | What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.<br>We generally recommend altering this or `top_p` but not both. | No |  |
-| └─ text | object | Configuration options for a text response from the model. Can be plain text or structured JSON data.  | No |  |
+| └─ text | object | Configuration options for a text response from the model. Can be plain text or structured JSON data. | No |  |
 |   └─ format | [OpenAI.ResponseTextFormatConfiguration](#openairesponsetextformatconfiguration) |  | No |  |
 | └─ tool_choice | [OpenAI.ToolChoiceOptions](#openaitoolchoiceoptions) or [OpenAI.ToolChoiceObject](#openaitoolchoiceobject) | How the model should select which tool (or tools) to use when generating a response. See the `tools` parameter to see how to specify which tools the model can call. | No |  |
-| └─ tools | array | An array of tools the model may call while generating a response. You can specify which tool to use by setting the `tool_choice` parameter.<br><br>The two categories of tools you can provide the model are:<br><br>- **Built-in tools**: Tools that are provided by OpenAI that extend the model's capabilities. **Function calls (custom tools)**: Functions that are defined by you, enabling the model to call your own code. managing context. | No |  |
+| └─ tools | array | An array of tools the model may call while generating a response. You can specify which tool to use by setting the `tool_choice` parameter.<br><br>The two categories of tools you can provide the model are:<br><br>- **Built-in tools**: Tools that are provided by OpenAI that extend th model's capabilities. | No |  |
+| └─ top_logprobs | integer | An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. | No |  |
 | └─ top_p | number | An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.<br><br>We generally recommend altering this or `temperature` but not both. | No |  |
-| └─ truncation | enum | The truncation strategy to use for the model response.<br>- `auto`: If the context of this response and previous ones exceeds the model's context window size, the model will truncate the response to fit the context window by dropping input items in the middle of the conversation. <br>- `disabled` (default): If a model response will exceed the context window size for a model, the request will fail with a 400 error.<br>Possible values: `auto`, `disabled` | No |  |
+| └─ truncation | enum | The truncation strategy to use for the model response.<br>- `auto`: If the context of this response and previous ones exceeds the model's context window size, the model will truncate the response to fit the context window by dropping input items in the middle of the conversation.<br>- `disabled` (default): If a model response will exceed the context window size for a model, the request will fail with a 400 error.<br>Possible values: `auto`, `disabled` | No |  |
 | └─ usage | [OpenAI.ResponseUsage](#openairesponseusage) | Represents token usage details including input tokens, output tokens, a breakdown of output tokens, and the total tokens used. | No |  |
 | └─ user | string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.  | No |  |
 | type | enum | The type of the event. Always `response.failed`.<br>Possible values: `response.failed` | Yes |  |
@@ -4053,14 +7542,13 @@ to do so.
 
 JSON Schema response format. Used to generate structured JSON responses.
 
-
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | json_schema | object | Structured Outputs configuration options, including a JSON Schema. | Yes |  |
 | └─ description | string | A description of what the response format is for, used by the model to determine how to respond in the format. | No |  |
 | └─ name | string | The name of the response format. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64. | No |  |
 | └─ schema | [OpenAI.ResponseFormatJsonSchemaSchema](#openairesponseformatjsonschemaschema) | The schema for the response format, described as a JSON Schema object.<br>Learn how to build JSON schemas [here](https://json-schema.org/). | No |  |
-| └─ strict | boolean | Whether to enable strict schema adherence when generating the output.<br>If set to true, the model will always follow the exact schema defined in the `schema` field. Only a subset of JSON Schema is supported when `strict` is `true`. . | No | False |
+| └─ strict | boolean | Whether to enable strict schema adherence when generating the output.<br>If set to true, the model will always follow the exact schema defined in the `schema` field. Only a subset of JSON Schema is supported when `strict` is `true`. | No | False |
 | type | enum | The type of response format being defined. Always `json_schema`.<br>Possible values: `json_schema` | Yes |  |
 
 ### OpenAI.ResponseFormatJsonSchemaSchema
@@ -4150,29 +7638,32 @@ Emitted when the response is in progress.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | response | object |  | Yes |  |
-| └─ background | boolean | Whether to run the model response in the background. | No | False |
+| └─ background | boolean | Whether to run the model response in the background.| No | False |
 | └─ created_at | integer | Unix timestamp (in seconds) of when this Response was created. | No |  |
 | └─ error | [OpenAI.ResponseError](#openairesponseerror) | An error object returned when the model fails to generate a Response. | No |  |
 | └─ id | string | Unique identifier for this Response. | No |  |
 | └─ incomplete_details | object | Details about why the response is incomplete. | No |  |
 |   └─ reason | enum | The reason why the response is incomplete.<br>Possible values: `max_output_tokens`, `content_filter` | No |  |
-| └─ instructions | string | Inserts a system (or developer) message as the first item in the model's context.<br><br>When using along with `previous_response_id`, the instructions from a previous response will not be carried over to the next response. This makes it simple to swap out system (or developer) messages in new responses. | No |  |
-| └─ max_output_tokens | integer | An upper bound for the number of tokens that can be generated for a response, including visible output tokens and . | No |  |
+| └─ instructions | string or array | A system (or developer) message inserted into the model's context.<br><br>When using along with `previous_response_id`, the instructions from a previous response will not be carried over to the next response. This makes it simple to swap out system (or developer) messages in new responses. | No |  |
+| └─ max_output_tokens | integer | An upper bound for the number of tokens that can be generated for a response, including visible output tokens and reasoning tokens | No |  |
+| └─ max_tool_calls | integer | The maximum number of total calls to built-in tools that can be processed in a response. This maximum number applies across all built-in tool calls, not per individual tool. Any further attempts to call a tool by the model will be ignored. | No |  |
 | └─ metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | No |  |
 | └─ object | enum | The object type of this resource - always set to `response`.<br>Possible values: `response` | No |  |
 | └─ output | array | An array of content items generated by the model.<br><br>- The length and order of items in the `output` array is dependent on the model's response.<br>- Rather than accessing the first item in the `output` array and assuming it's an `assistant` message with the content generated by the model, you might consider using the `output_text` property where supported in SDKs. | No |  |
-| └─ output_text | string | SDK-only convenience property that contains the aggregated text output from all `output_text` items in the `output` array, if any are present. <br>Supported in the Python and JavaScript SDKs. | No |  |
+| └─ output_text | string | SDK-only convenience property that contains the aggregated text output from all `output_text` items in the `output` array, if any are present.<br>Supported in the Python and JavaScript SDKs. | No |  |
 | └─ parallel_tool_calls | boolean | Whether to allow the model to run tool calls in parallel. | No | True |
-| └─ previous_response_id | string | The unique ID of the previous response to the model. Use this to create multi-turn conversations. reasoning models. | No |  |
+| └─ previous_response_id | string | The unique ID of the previous response to the model. Use this to create multi-turn conversations. | No |  |
+| └─ prompt | [OpenAI.Prompt](#openaiprompt) | Reference to a prompt template and its variables. | No |  |
 | └─ reasoning | [OpenAI.Reasoning](#openaireasoning) | **o-series models only**<br><br>Configuration options for reasoning models. | No |  |
 | └─ status | enum | The status of the response generation. One of `completed`, `failed`, `in_progress`, `cancelled`, `queued`, or `incomplete`.<br>Possible values: `completed`, `failed`, `in_progress`, `cancelled`, `queued`, `incomplete` | No |  |
 | └─ temperature | number | What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.<br>We generally recommend altering this or `top_p` but not both. | No |  |
-| └─ text | object | Configuration options for a text response from the model. Can be plain text or structured JSON data.  | No |  |
+| └─ text | object | Configuration options for a text response from the model. Can be plain text or structured JSON data. | No |  |
 |   └─ format | [OpenAI.ResponseTextFormatConfiguration](#openairesponsetextformatconfiguration) |  | No |  |
 | └─ tool_choice | [OpenAI.ToolChoiceOptions](#openaitoolchoiceoptions) or [OpenAI.ToolChoiceObject](#openaitoolchoiceobject) | How the model should select which tool (or tools) to use when generating a response. See the `tools` parameter to see how to specify which tools the model can call. | No |  |
 | └─ tools | array | An array of tools the model may call while generating a response. You can specify which tool to use by setting the `tool_choice` parameter.<br><br>The two categories of tools you can provide the model are:<br><br>- **Built-in tools**: Tools that are provided by OpenAI that extend the model's capabilities. | No |  |
+| └─ top_logprobs | integer | An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. | No |  |
 | └─ top_p | number | An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.<br><br>We generally recommend altering this or `temperature` but not both. | No |  |
-| └─ truncation | enum | The truncation strategy to use for the model response.<br>- `auto`: If the context of this response and previous ones exceeds the model's context window size, the model will truncate the response to fit the context window by dropping input items in the middle of the conversation. <br>- `disabled` (default): If a model response will exceed the context window size for a model, the request will fail with a 400 error.<br>Possible values: `auto`, `disabled` | No |  |
+| └─ truncation | enum | The truncation strategy to use for the model response.<br>- `auto`: If the context of this response and previous ones exceeds the model's context window size, the model will truncate the response to fit the context window by dropping input items in the middle of the conversation.<br>- `disabled` (default): If a model response will exceed the context window size for a model, the request will fail with a 400 error.<br>Possible values: `auto`, `disabled` | No |  |
 | └─ usage | [OpenAI.ResponseUsage](#openairesponseusage) | Represents token usage details including input tokens, output tokens, a breakdown of output tokens, and the total tokens used. | No |  |
 | └─ user | string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.  | No |  |
 | type | enum | The type of the event. Always `response.in_progress`.<br>Possible values: `response.in_progress` | Yes |  |
@@ -4184,30 +7675,33 @@ An event that is emitted when a response finishes as incomplete.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | response | object |  | Yes |  |
-| └─ background | boolean | Whether to run the model response in the background. | No | False |
+| └─ background | boolean | Whether to run the model response in the background.| No | False |
 | └─ created_at | integer | Unix timestamp (in seconds) of when this Response was created. | No |  |
 | └─ error | [OpenAI.ResponseError](#openairesponseerror) | An error object returned when the model fails to generate a Response. | No |  |
 | └─ id | string | Unique identifier for this Response. | No |  |
 | └─ incomplete_details | object | Details about why the response is incomplete. | No |  |
 |   └─ reason | enum | The reason why the response is incomplete.<br>Possible values: `max_output_tokens`, `content_filter` | No |  |
-| └─ instructions | string | Inserts a system (or developer) message as the first item in the model's context.<br><br>When using along with `previous_response_id`, the instructions from a previous response will not be carried over to the next response. This makes it simple to swap out system (or developer) messages in new responses. | No |  |
-| └─ max_output_tokens | integer | An upper bound for the number of tokens that can be generated for a response, including visible output tokens and . | No |  |
+| └─ instructions | string or array | A system (or developer) message inserted into the model's context.<br><br>When using along with `previous_response_id`, the instructions from a previous response will not be carried over to the next response. This makes it simple to swap out system (or developer) messages in new responses. | No |  |
+| └─ max_output_tokens | integer | An upper bound for the number of tokens that can be generated for a response, including visible output tokens and reasoning tokens | No |  |
+| └─ max_tool_calls | integer | The maximum number of total calls to built-in tools that can be processed in a response. This maximum number applies across all built-in tool calls, not per individual tool. Any further attempts to call a tool by the model will be ignored. | No |  |
 | └─ metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | No |  |
 | └─ object | enum | The object type of this resource - always set to `response`.<br>Possible values: `response` | No |  |
 | └─ output | array | An array of content items generated by the model.<br><br>- The length and order of items in the `output` array is dependent on the model's response.<br>- Rather than accessing the first item in the `output` array and assuming it's an `assistant` message with the content generated by the model, you might consider using the `output_text` property where supported in SDKs. | No |  |
-| └─ output_text | string | SDK-only convenience property that contains the aggregated text output from all `output_text` items in the `output` array, if any are present. <br>Supported in the Python and JavaScript SDKs. | No |  |
+| └─ output_text | string | SDK-only convenience property that contains the aggregated text output from all `output_text` items in the `output` array, if any are present.<br>Supported in the Python and JavaScript SDKs. | No |  |
 | └─ parallel_tool_calls | boolean | Whether to allow the model to run tool calls in parallel. | No | True |
-| └─ previous_response_id | string | The unique ID of the previous response to the model. Use this to create multi-turn conversations. reasoning models. | No |  |
+| └─ previous_response_id | string | The unique ID of the previous response to the model. Use this to create multi-turn conversations. | No |  |
+| └─ prompt | [OpenAI.Prompt](#openaiprompt) | Reference to a prompt template and its variables. | No |  |
 | └─ reasoning | [OpenAI.Reasoning](#openaireasoning) | **o-series models only**<br><br>Configuration options for reasoning models. | No |  |
 | └─ status | enum | The status of the response generation. One of `completed`, `failed`, `in_progress`, `cancelled`, `queued`, or `incomplete`.<br>Possible values: `completed`, `failed`, `in_progress`, `cancelled`, `queued`, `incomplete` | No |  |
 | └─ temperature | number | What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.<br>We generally recommend altering this or `top_p` but not both. | No |  |
-| └─ text | object | Configuration options for a text response from the model. Can be plain text or structured JSON data.  | No |  |
+| └─ text | object | Configuration options for a text response from the model. Can be plain text or structured JSON data. | No |  |
 |   └─ format | [OpenAI.ResponseTextFormatConfiguration](#openairesponsetextformatconfiguration) |  | No |  |
 | └─ tool_choice | [OpenAI.ToolChoiceOptions](#openaitoolchoiceoptions) or [OpenAI.ToolChoiceObject](#openaitoolchoiceobject) | How the model should select which tool (or tools) to use when generating a response. See the `tools` parameter to see how to specify which tools the model can call. | No |  |
-| └─ tools | array | An array of tools the model may call while generating a response. You can specify which tool to use by setting the `tool_choice` parameter.<br><br>The two categories of tools you can provide the model are:<br><br>- **Built-in tools**: Tools that that extend the model's capabilities, **Function calls (custom tools)** | No |  |
+| └─ tools | array | An array of tools the model may call while generating a response. You can specify which tool to use by setting the `tool_choice` parameter.<br><br>The two categories of tools you can provide the model are:<br><br>- **Built-in tools**: Tools that are provided by OpenAI that extend the model's capabilities. | No |  |
+| └─ top_logprobs | integer | An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. | No |  |
 | └─ top_p | number | An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.<br><br>We generally recommend altering this or `temperature` but not both. | No |  |
-| └─ truncation | enum | The truncation strategy to use for the model response.<br>- `auto`: If the context of this response and previous ones exceeds the model's context window size, the model will truncate the response to fit the context window by dropping input items in the middle of the conversation. <br>- `disabled` (default): If a model response will exceed the context window size for a model, the request will fail with a 400 error.<br>Possible values: `auto`, `disabled` | No |  |
-| └─ usage | [OpenAI.ResponseUsage](#openairesponseusage) | Represents token usage details including input tokens, output tokens,<br>a breakdown of output tokens, and the total tokens used. | No |  |
+| └─ truncation | enum | The truncation strategy to use for the model response.<br>- `auto`: If the context of this response and previous ones exceeds the model's context window size, the model will truncate the response to fit the context window by dropping input items in the middle of the conversation.<br>- `disabled` (default): If a model response will exceed the context window size for a model, the request will fail with a 400 error.<br>Possible values: `auto`, `disabled` | No |  |
+| └─ usage | [OpenAI.ResponseUsage](#openairesponseusage) | Represents token usage details including input tokens, output tokens, a breakdown of output tokens, and the total tokens used. | No |  |
 | └─ user | string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.  | No |  |
 | type | enum | The type of the event. Always `response.incomplete`.<br>Possible values: `response.incomplete` | Yes |  |
 
@@ -4319,6 +7813,15 @@ Emitted when an output item is marked done.
 | output_index | integer | The index of the output item that was marked done. | Yes |  |
 | type | enum | The type of the event. Always `response.output_item.done`.<br>Possible values: `response.output_item.done` | Yes |  |
 
+### OpenAI.ResponsePromptVariables
+
+Optional map of values to substitute in for variables in your
+prompt. The substitution values can either be strings, or other
+Response input types like images or files.
+
+**Type**: object
+
+
 ### OpenAI.ResponseQueuedEvent
 
 Emitted when a response is queued and waiting to be processed.
@@ -4326,29 +7829,32 @@ Emitted when a response is queued and waiting to be processed.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | response | object |  | Yes |  |
-| └─ background | boolean | Whether to run the model response in the background. | No | False |
+| └─ background | boolean | Whether to run the model response in the background.| No | False |
 | └─ created_at | integer | Unix timestamp (in seconds) of when this Response was created. | No |  |
 | └─ error | [OpenAI.ResponseError](#openairesponseerror) | An error object returned when the model fails to generate a Response. | No |  |
 | └─ id | string | Unique identifier for this Response. | No |  |
 | └─ incomplete_details | object | Details about why the response is incomplete. | No |  |
 |   └─ reason | enum | The reason why the response is incomplete.<br>Possible values: `max_output_tokens`, `content_filter` | No |  |
-| └─ instructions | string | Inserts a system (or developer) message as the first item in the model's context.<br><br>When using along with `previous_response_id`, the instructions from a previous response will not be carried over to the next response. This makes it simple to swap out system (or developer) messages in new responses. | No |  |
-| └─ max_output_tokens | integer | An upper bound for the number of tokens that can be generated for a response, including visible output tokens and . | No |  |
+| └─ instructions | string or array | A system (or developer) message inserted into the model's context.<br><br>When using along with `previous_response_id`, the instructions from a previous response will not be carried over to the next response. This makes it simple to swap out system (or developer) messages in new responses. | No |  |
+| └─ max_output_tokens | integer | An upper bound for the number of tokens that can be generated for a response, including visible output tokens and reasoning tokens | No |  |
+| └─ max_tool_calls | integer | The maximum number of total calls to built-in tools that can be processed in a response. This maximum number applies across all built-in tool calls, not per individual tool. Any further attempts to call a tool by the model will be ignored. | No |  |
 | └─ metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | No |  |
 | └─ object | enum | The object type of this resource - always set to `response`.<br>Possible values: `response` | No |  |
 | └─ output | array | An array of content items generated by the model.<br><br>- The length and order of items in the `output` array is dependent on the model's response.<br>- Rather than accessing the first item in the `output` array and assuming it's an `assistant` message with the content generated by the model, you might consider using the `output_text` property where supported in SDKs. | No |  |
-| └─ output_text | string | SDK-only convenience property that contains the aggregated text output from all `output_text` items in the `output` array, if any are present. <br>Supported in the Python and JavaScript SDKs. | No |  |
+| └─ output_text | string | SDK-only convenience property that contains the aggregated text output from all `output_text` items in the `output` array, if any are present.<br>Supported in the Python and JavaScript SDKs. | No |  |
 | └─ parallel_tool_calls | boolean | Whether to allow the model to run tool calls in parallel. | No | True |
-| └─ previous_response_id | string | The unique ID of the previous response to the model. Use this to create multi-turn conversations. reasoning models. | No |  |
+| └─ previous_response_id | string | The unique ID of the previous response to the model. Use this to create multi-turn conversations. | No |  |
+| └─ prompt | [OpenAI.Prompt](#openaiprompt) | Reference to a prompt template and its variables. | No |  |
 | └─ reasoning | [OpenAI.Reasoning](#openaireasoning) | **o-series models only**<br><br>Configuration options for reasoning models. | No |  |
 | └─ status | enum | The status of the response generation. One of `completed`, `failed`, `in_progress`, `cancelled`, `queued`, or `incomplete`.<br>Possible values: `completed`, `failed`, `in_progress`, `cancelled`, `queued`, `incomplete` | No |  |
 | └─ temperature | number | What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.<br>We generally recommend altering this or `top_p` but not both. | No |  |
-| └─ text | object | Configuration options for a text response from the model. Can be plain text or structured JSON data.  | No |  |
+| └─ text | object | Configuration options for a text response from the model. Can be plain text or structured JSON data. | No |  |
 |   └─ format | [OpenAI.ResponseTextFormatConfiguration](#openairesponsetextformatconfiguration) |  | No |  |
 | └─ tool_choice | [OpenAI.ToolChoiceOptions](#openaitoolchoiceoptions) or [OpenAI.ToolChoiceObject](#openaitoolchoiceobject) | How the model should select which tool (or tools) to use when generating a response. See the `tools` parameter to see how to specify which tools the model can call. | No |  |
-| └─ tools | array | An array of tools the model may call while generating a response. You can specify which tool to use by setting the `tool_choice` parameter.<br><br>The two categories of tools you can provide the model are:<br><br>-**Built-in tools**: Tools that that extend the model's capabilities. **Function calls (custom tools)**: Functions that are defined by you, nabling the model to call your own code.  | No |  |
+| └─ tools | array | An array of tools the model may call while generating a response. You can specify which tool to use by setting the `tool_choice` parameter.<br><br>The two categories of tools you can provide the model are:<br><br>- **Built-in tools**: Tools that are provided by OpenAI that extend the model's capabilities. | No |  |
+| └─ top_logprobs | integer | An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. | No |  |
 | └─ top_p | number | An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.<br><br>We generally recommend altering this or `temperature` but not both. | No |  |
-| └─ truncation | enum | The truncation strategy to use for the model response.<br>- `auto`: If the context of this response and previous ones exceeds the model's context window size, the model will truncate the response to fit the context window by dropping input items in the middle of the conversation. <br>- `disabled` (default): If a model response will exceed the context window size for a model, the request will fail with a 400 error.<br>Possible values: `auto`, `disabled` | No |  |
+| └─ truncation | enum | The truncation strategy to use for the model response.<br>- `auto`: If the context of this response and previous ones exceeds the model's context window size, the model will truncate the response to fit the context window by dropping input items in the middle of the conversation.<br>- `disabled` (default): If a model response will exceed the context window size for a model, the request will fail with a 400 error.<br>Possible values: `auto`, `disabled` | No |  |
 | └─ usage | [OpenAI.ResponseUsage](#openairesponseusage) | Represents token usage details including input tokens, output tokens, a breakdown of output tokens, and the total tokens used. | No |  |
 | └─ user | string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.  | No |  |
 | type | enum | The type of the event. Always 'response.queued'.<br>Possible values: `response.queued` | Yes |  |
@@ -4501,7 +8007,6 @@ This component uses the property `type` to discriminate between different types:
 | `response.output_item.done` | [OpenAI.ResponseOutputItemDoneEvent](#openairesponseoutputitemdoneevent) |
 | `response.refusal.delta` | [OpenAI.ResponseRefusalDeltaEvent](#openairesponserefusaldeltaevent) |
 | `response.refusal.done` | [OpenAI.ResponseRefusalDoneEvent](#openairesponserefusaldoneevent) |
-| `response.output_text.annotation.added` | [OpenAI.ResponseTextAnnotationDeltaEvent](#openairesponsetextannotationdeltaevent) |
 | `response.output_text.delta` | [OpenAI.ResponseTextDeltaEvent](#openairesponsetextdeltaevent) |
 | `response.output_text.done` | [OpenAI.ResponseTextDoneEvent](#openairesponsetextdoneevent) |
 | `response.reasoning_summary_part.added` | [OpenAI.ResponseReasoningSummaryPartAddedEvent](#openairesponsereasoningsummarypartaddedevent) |
@@ -4528,8 +8033,8 @@ This component uses the property `type` to discriminate between different types:
 | `response.reasoning.done` | [OpenAI.ResponseReasoningDoneEvent](#openairesponsereasoningdoneevent) |
 | `response.reasoning_summary.delta` | [OpenAI.ResponseReasoningSummaryDeltaEvent](#openairesponsereasoningsummarydeltaevent) |
 | `response.reasoning_summary.done` | [OpenAI.ResponseReasoningSummaryDoneEvent](#openairesponsereasoningsummarydoneevent) |
-| `response.code_interpreter_call.code.delta` | [OpenAI.ResponseCodeInterpreterCallCodeDeltaEvent](#openairesponsecodeinterpretercallcodedeltaevent) |
-| `response.code_interpreter_call.code.done` | [OpenAI.ResponseCodeInterpreterCallCodeDoneEvent](#openairesponsecodeinterpretercallcodedoneevent) |
+| `response.code_interpreter_call_code.delta` | [OpenAI.ResponseCodeInterpreterCallCodeDeltaEvent](#openairesponsecodeinterpretercallcodedeltaevent) |
+| `response.code_interpreter_call_code.done` | [OpenAI.ResponseCodeInterpreterCallCodeDoneEvent](#openairesponsecodeinterpretercallcodedoneevent) |
 | `response.code_interpreter_call.completed` | [OpenAI.ResponseCodeInterpreterCallCompletedEvent](#openairesponsecodeinterpretercallcompletedevent) |
 | `response.code_interpreter_call.in_progress` | [OpenAI.ResponseCodeInterpreterCallInProgressEvent](#openairesponsecodeinterpretercallinprogressevent) |
 | `response.code_interpreter_call.interpreting` | [OpenAI.ResponseCodeInterpreterCallInterpretingEvent](#openairesponsecodeinterpretercallinterpretingevent) |
@@ -4544,20 +8049,7 @@ This component uses the property `type` to discriminate between different types:
 | Property | Value |
 |----------|-------|
 | **Type** | string |
-| **Values** | `response.audio.delta`<br>`response.audio.done`<br>`response.audio_transcript.delta`<br>`response.audio_transcript.done`<br>`response.code_interpreter_call.code.delta`<br>`response.code_interpreter_call.code.done`<br>`response.code_interpreter_call.completed`<br>`response.code_interpreter_call.in_progress`<br>`response.code_interpreter_call.interpreting`<br>`response.completed`<br>`response.content_part.added`<br>`response.content_part.done`<br>`response.created`<br>`error`<br>`response.file_search_call.completed`<br>`response.file_search_call.in_progress`<br>`response.file_search_call.searching`<br>`response.function_call_arguments.delta`<br>`response.function_call_arguments.done`<br>`response.in_progress`<br>`response.failed`<br>`response.incomplete`<br>`response.output_item.added`<br>`response.output_item.done`<br>`response.refusal.delta`<br>`response.refusal.done`<br>`response.output_text.annotation.added`<br>`response.output_text.delta`<br>`response.output_text.done`<br>`response.reasoning_summary_part.added`<br>`response.reasoning_summary_part.done`<br>`response.reasoning_summary_text.delta`<br>`response.reasoning_summary_text.done`<br>`response.web_search_call.completed`<br>`response.web_search_call.in_progress`<br>`response.web_search_call.searching`<br>`response.image_generation_call.completed`<br>`response.image_generation_call.generating`<br>`response.image_generation_call.in_progress`<br>`response.image_generation_call.partial_image`<br>`response.mcp_call.arguments_delta`<br>`response.mcp_call.arguments_done`<br>`response.mcp_call.completed`<br>`response.mcp_call.failed`<br>`response.mcp_call.in_progress`<br>`response.mcp_list_tools.completed`<br>`response.mcp_list_tools.failed`<br>`response.mcp_list_tools.in_progress`<br>`response.queued`<br>`response.reasoning.delta`<br>`response.reasoning.done`<br>`response.reasoning_summary.delta`<br>`response.reasoning_summary.done` |
-
-### OpenAI.ResponseTextAnnotationDeltaEvent
-
-Emitted when a text annotation is added.
-
-| Name | Type | Description | Required | Default |
-|------|------|-------------|----------|---------|
-| annotation | [OpenAI.Annotation](#openaiannotation) |  | Yes |  |
-| annotation_index | integer | The index of the annotation that was added. | Yes |  |
-| content_index | integer | The index of the content part that the text annotation was added to. | Yes |  |
-| item_id | string | The ID of the output item that the text annotation was added to. | Yes |  |
-| output_index | integer | The index of the output item that the text annotation was added to. | Yes |  |
-| type | enum | The type of the event. Always `response.output_text.annotation.added`.<br>Possible values: `response.output_text.annotation.added` | Yes |  |
+| **Values** | `response.audio.delta`<br>`response.audio.done`<br>`response.audio_transcript.delta`<br>`response.audio_transcript.done`<br>`response.code_interpreter_call_code.delta`<br>`response.code_interpreter_call_code.done`<br>`response.code_interpreter_call.completed`<br>`response.code_interpreter_call.in_progress`<br>`response.code_interpreter_call.interpreting`<br>`response.completed`<br>`response.content_part.added`<br>`response.content_part.done`<br>`response.created`<br>`error`<br>`response.file_search_call.completed`<br>`response.file_search_call.in_progress`<br>`response.file_search_call.searching`<br>`response.function_call_arguments.delta`<br>`response.function_call_arguments.done`<br>`response.in_progress`<br>`response.failed`<br>`response.incomplete`<br>`response.output_item.added`<br>`response.output_item.done`<br>`response.refusal.delta`<br>`response.refusal.done`<br>`response.output_text.annotation.added`<br>`response.output_text.delta`<br>`response.output_text.done`<br>`response.reasoning_summary_part.added`<br>`response.reasoning_summary_part.done`<br>`response.reasoning_summary_text.delta`<br>`response.reasoning_summary_text.done`<br>`response.web_search_call.completed`<br>`response.web_search_call.in_progress`<br>`response.web_search_call.searching`<br>`response.image_generation_call.completed`<br>`response.image_generation_call.generating`<br>`response.image_generation_call.in_progress`<br>`response.image_generation_call.partial_image`<br>`response.mcp_call.arguments_delta`<br>`response.mcp_call.arguments_done`<br>`response.mcp_call.completed`<br>`response.mcp_call.failed`<br>`response.mcp_call.in_progress`<br>`response.mcp_list_tools.completed`<br>`response.mcp_list_tools.failed`<br>`response.mcp_list_tools.in_progress`<br>`response.queued`<br>`response.reasoning.delta`<br>`response.reasoning.done`<br>`response.reasoning_summary.delta`<br>`response.reasoning_summary.done` |
 
 ### OpenAI.ResponseTextDeltaEvent
 
@@ -4598,39 +8090,37 @@ This component uses the property `type` to discriminate between different types:
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| type | [OpenAI.ResponseTextFormatConfigurationType](#openairesponsetextformatconfigurationtype) | An object specifying the format that the model must output.<br><br>Configuring `{ "type": "json_schema" }` enables Structured Outputs, which ensures the model will match your supplied JSON schema. <br><br>The default format is `{ "type": "text" }` with no additional options.<br><br>**Not recommended for gpt-4o and newer models:**<br><br>Setting to `{ "type": "json_object" }` enables the older JSON mode, which ensures the message the model generates is valid JSON. Using `json_schema` is preferred for models that support it. | Yes |  |
+| type | [OpenAI.ResponseTextFormatConfigurationType](#openairesponsetextformatconfigurationtype) | An object specifying the format that the model must output.<br><br>Configuring `{ "type": "json_schema" }` enables Structured Outputs, which ensures the model will match your supplied JSON schema. The default format is `{ "type": "text" }` with no additional options.<br><br>**Not recommended for gpt-4o and newer models:**<br><br>Setting to `{ "type": "json_object" }` enables the older JSON mode, which ensures the message the model generates is valid JSON. Using `json_schema` is preferred for models that support it. | Yes |  |
 
 ### OpenAI.ResponseTextFormatConfigurationJsonObject
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| type | enum | Possible values: `json_object` | Yes |  |
+| type | enum | <br>Possible values: `json_object` | Yes |  |
 
 ### OpenAI.ResponseTextFormatConfigurationJsonSchema
 
 JSON Schema response format. Used to generate structured JSON responses.
-
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | description | string | A description of what the response format is for, used by the model to determine how to respond in the format. | No |  |
 | name | string | The name of the response format. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64. | Yes |  |
 | schema | [OpenAI.ResponseFormatJsonSchemaSchema](#openairesponseformatjsonschemaschema) | The schema for the response format, described as a JSON Schema object.<br>Learn how to build JSON schemas [here](https://json-schema.org/). | Yes |  |
-| strict | boolean | Whether to enable strict schema adherence when generating the output.<br>If set to true, the model will always follow the exact schema defined in the `schema` field. Only a subset of JSON Schema is supported when `strict` is `true`.  | No | False |
+| strict | boolean | Whether to enable strict schema adherence when generating the output.<br>If set to true, the model will always follow the exact schema defined in the `schema` field. Only a subset of JSON Schema is supported when `strict` is `true`. | No | False |
 | type | enum | The type of response format being defined. Always `json_schema`.<br>Possible values: `json_schema` | Yes |  |
 
 ### OpenAI.ResponseTextFormatConfigurationText
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| type | enum | Possible values: `text` | Yes |  |
+| type | enum | <br>Possible values: `text` | Yes |  |
 
 ### OpenAI.ResponseTextFormatConfigurationType
 
 An object specifying the format that the model must output.
 
-Configuring `{ "type": "json_schema" }` enables Structured Outputs, 
-which ensures the model will match your supplied JSON schema. 
+Configuring `{ "type": "json_schema" }` enables Structured Outputs, which ensures the model will match your supplied JSON schema. 
 
 The default format is `{ "type": "text" }` with no additional options.
 
@@ -4644,18 +8134,13 @@ is preferred for models that support it.
 |----------|-------|
 | **Description** | An object specifying the format that the model must output.
 
-Configuring `{ "type": "json_schema" }` enables Structured Outputs, 
-which ensures the model will match your supplied JSON schema. 
+Configuring `{ "type": "json_schema" }` enables Structured Outputs, which ensures the model will match your supplied JSON schema. 
 
 The default format is `{ "type": "text" }` with no additional options.
 
 **Not recommended for gpt-4o and newer models:**
 
-Setting to `{ "type": "json_object" }` enables the older JSON mode, which
-ensures the message the model generates is valid JSON. Using `json_schema`
-is preferred for models that support it. |
-| **Type** | string |
-| **Values** | `text`<br>`json_schema`<br>`json_object` |
+Setting to `{ "type": "json_object" }` enables the older JSON mode, which ensures the message the model generates is valid JSON. Using `json_schema`is preferred for models that support it. 
 
 ### OpenAI.ResponseUsage
 
@@ -4827,6 +8312,80 @@ A message resource item with the `user` role.
 | content | array | The content associated with the message. | Yes |  |
 | role | enum | The role of the message, which is always `user`.<br>Possible values: `user` | Yes |  |
 
+### OpenAI.RunGraderRequest
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| grader | object | A StringCheckGrader object that performs a string comparison between input and reference using a specified operation. | Yes |  |
+| └─ calculate_output | string | A formula to calculate the output based on grader results. | No |  |
+| └─ evaluation_metric | enum | The evaluation metric to use. One of `fuzzy_match`, `bleu`, `gleu`, `meteor`, `rouge_1`, `rouge_2`, `rouge_3`, `rouge_4`, `rouge_5`, or `rouge_l`.<br>Possible values: `fuzzy_match`, `bleu`, `gleu`, `meteor`, `rouge_1`, `rouge_2`, `rouge_3`, `rouge_4`, `rouge_5`, `rouge_l` | No |  |
+| └─ graders | object |  | No |  |
+| └─ image_tag | string | The image tag to use for the python script. | No |  |
+| └─ input | array | The input text. This may include template strings. | No |  |
+| └─ model | string | The model to use for the evaluation. | No |  |
+| └─ name | string | The name of the grader. | No |  |
+| └─ operation | enum | The string check operation to perform. One of `eq`, `ne`, `like`, or `ilike`.<br>Possible values: `eq`, `ne`, `like`, `ilike` | No |  |
+| └─ range | array | The range of the score. Defaults to `[0, 1]`. | No |  |
+| └─ reference | string | The text being graded against. | No |  |
+| └─ sampling_params |  | The sampling parameters for the model. | No |  |
+| └─ source | string | The source code of the python script. | No |  |
+| └─ type | enum | The object type, which is always `multi`.<br>Possible values: `multi` | No |  |
+| item |  | The dataset item provided to the grader. This will be used to populate the `item` namespace.  | No |  |
+| model_sample | string | The model sample to be evaluated. This value will be used to populate the `sample` namespace. <br>The `output_json` variable will be populated if the model sample is a valid JSON string. | Yes |  |
+
+### OpenAI.RunGraderResponse
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| metadata | object |  | Yes |  |
+| └─ errors | object |  | No |  |
+|   └─ formula_parse_error | boolean |  | No |  |
+|   └─ invalid_variable_error | boolean |  | No |  |
+|   └─ model_grader_parse_error | boolean |  | No |  |
+|   └─ model_grader_refusal_error | boolean |  | No |  |
+|   └─ model_grader_server_error | boolean |  | No |  |
+|   └─ model_grader_server_error_details | string |  | No |  |
+|   └─ other_error | boolean |  | No |  |
+|   └─ python_grader_runtime_error | boolean |  | No |  |
+|   └─ python_grader_runtime_error_details | string |  | No |  |
+|   └─ python_grader_server_error | boolean |  | No |  |
+|   └─ python_grader_server_error_type | string |  | No |  |
+|   └─ sample_parse_error | boolean |  | No |  |
+|   └─ truncated_observation_error | boolean |  | No |  |
+|   └─ unresponsive_reward_error | boolean |  | No |  |
+| └─ execution_time | number |  | No |  |
+| └─ name | string |  | No |  |
+| └─ sampled_model_name | string |  | No |  |
+| └─ scores |  |  | No |  |
+| └─ token_usage | integer |  | No |  |
+| └─ type | string |  | No |  |
+| model_grader_token_usage_per_model |  |  | Yes |  |
+| reward | number |  | Yes |  |
+| sub_rewards |  |  | Yes |  |
+
+### OpenAI.StaticChunkingStrategy
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| chunk_overlap_tokens | integer | The number of tokens that overlap between chunks. The default value is `400`.<br><br>Note that the overlap must not exceed half of `max_chunk_size_tokens`. | Yes |  |
+| max_chunk_size_tokens | integer | The maximum number of tokens in each chunk. The default value is `800`. The minimum value is `100` and the maximum value is `4096`. | Yes |  |
+
+### OpenAI.StaticChunkingStrategyRequestParam
+
+Customize your own chunking strategy by setting chunk size and chunk overlap.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| static | [OpenAI.StaticChunkingStrategy](#openaistaticchunkingstrategy) |  | Yes |  |
+| type | enum | Always `static`.<br>Possible values: `static` | Yes |  |
+
+### OpenAI.StaticChunkingStrategyResponseParam
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| static | [OpenAI.StaticChunkingStrategy](#openaistaticchunkingstrategy) |  | Yes |  |
+| type | enum | Always `static`.<br>Possible values: `static` | Yes |  |
+
 ### OpenAI.StopConfiguration
 
 Not supported with latest reasoning models `o3` and `o4-mini`.
@@ -4854,6 +8413,7 @@ This component uses the property `type` to discriminate between different types:
 | `web_search_preview` | [OpenAI.WebSearchPreviewTool](#openaiwebsearchpreviewtool) |
 | `code_interpreter` | [OpenAI.CodeInterpreterTool](#openaicodeinterpretertool) |
 | `image_generation` | [OpenAI.ImageGenTool](#openaiimagegentool) |
+| `local_shell` | [OpenAI.LocalShellTool](#openailocalshelltool) |
 | `mcp` | [OpenAI.MCPTool](#openaimcptool) |
 
 | Name | Type | Description | Required | Default |
@@ -4874,8 +8434,8 @@ This component uses the property `type` to discriminate between different types:
 | `web_search_preview` | [OpenAI.ToolChoiceObjectWebSearch](#openaitoolchoiceobjectwebsearch) |
 | `image_generation` | [OpenAI.ToolChoiceObjectImageGen](#openaitoolchoiceobjectimagegen) |
 | `code_interpreter` | [OpenAI.ToolChoiceObjectCodeInterpreter](#openaitoolchoiceobjectcodeinterpreter) |
-| `mcp` | [OpenAI.ToolChoiceObjectMCP](#openaitoolchoiceobjectmcp) |
 | `function` | [OpenAI.ToolChoiceObjectFunction](#openaitoolchoiceobjectfunction) |
+| `mcp` | [OpenAI.ToolChoiceObjectMCP](#openaitoolchoiceobjectmcp) |
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -4885,19 +8445,19 @@ This component uses the property `type` to discriminate between different types:
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| type | enum | Possible values: `code_interpreter` | Yes |  |
+| type | enum | <br>Possible values: `code_interpreter` | Yes |  |
 
 ### OpenAI.ToolChoiceObjectComputer
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| type | enum | Possible values: `computer_use_preview` | Yes |  |
+| type | enum | <br>Possible values: `computer_use_preview` | Yes |  |
 
 ### OpenAI.ToolChoiceObjectFileSearch
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| type | enum | Possible values: `file_search` | Yes |  |
+| type | enum | <br>Possible values: `file_search` | Yes |  |
 
 ### OpenAI.ToolChoiceObjectFunction
 
@@ -4912,21 +8472,27 @@ Use this option to force the model to call a specific function.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| type | enum | Possible values: `image_generation` | Yes |  |
+| type | enum | <br>Possible values: `image_generation` | Yes |  |
 
 ### OpenAI.ToolChoiceObjectMCP
 
+Use this option to force the model to call a specific tool on a remote MCP server.
+
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| type | enum | Possible values: `mcp` | Yes |  |
+| name | string | The name of the tool to call on the server. | No |  |
+| server_label | string | The label of the MCP server to use. | Yes |  |
+| type | enum | For MCP tools, the type is always `mcp`.<br>Possible values: `mcp` | Yes |  |
 
 ### OpenAI.ToolChoiceObjectType
 
 Indicates that the model should use a built-in tool to generate a response.
 
+
 | Property | Value |
 |----------|-------|
-| **Description** | Indicates that the model should use a built-in tool to generate a response. |
+| **Description** | Indicates that the model should use a built-in tool to generate a response.
+ |
 | **Type** | string |
 | **Values** | `file_search`<br>`function`<br>`computer_use_preview`<br>`web_search_preview`<br>`image_generation`<br>`code_interpreter`<br>`mcp` |
 
@@ -4936,7 +8502,7 @@ Note: web_search is not yet available via Azure OpenAI.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| type | enum | Possible values: `web_search_preview` | Yes |  |
+| type | enum | <br>Possible values: `web_search_preview` | Yes |  |
 
 ### OpenAI.ToolChoiceOptions
 
@@ -4963,7 +8529,17 @@ A tool that can be used to generate a response.
 |----------|-------|
 | **Description** | A tool that can be used to generate a response. |
 | **Type** | string |
-| **Values** | `file_search`<br>`function`<br>`computer_use_preview`<br>`web_search_preview`<br>`mcp`<br>`code_interpreter`<br>`image_generation` |
+| **Values** | `file_search`<br>`function`<br>`computer_use_preview`<br>`web_search_preview`<br>`mcp`<br>`code_interpreter`<br>`image_generation`<br>`local_shell` |
+
+### OpenAI.TopLogProb
+
+The top log probability of a token.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| bytes | array |  | Yes |  |
+| logprob | number |  | Yes |  |
+| token | string |  | Yes |  |
 
 ### OpenAI.TranscriptionAudioResponseFormat
 
@@ -4999,6 +8575,26 @@ References: [OpenAI.AudioResponseFormat](#openaiaudioresponseformat)
 | start | number | Start time of the word in seconds. | Yes |  |
 | word | string | The text content of the word. | Yes |  |
 
+### OpenAI.TranslationAudioResponseFormat
+
+References: [OpenAI.AudioResponseFormat](#openaiaudioresponseformat)
+
+### OpenAI.UpdateVectorStoreFileAttributesRequest
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| attributes | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard. Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters, booleans, or numbers. | Yes |  |
+
+### OpenAI.UpdateVectorStoreRequest
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| expires_after | object | The expiration policy for a vector store. | No |  |
+| └─ anchor | enum | Anchor timestamp after which the expiration policy applies. Supported anchors: `last_active_at`.<br>Possible values: `last_active_at` | No |  |
+| └─ days | integer | The number of days after the anchor time that the vector store will expire. | No |  |
+| metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | No |  |
+| name | string | The name of the vector store. | No |  |
+
 ### OpenAI.VadConfig
 
 | Name | Type | Description | Required | Default |
@@ -5007,6 +8603,53 @@ References: [OpenAI.AudioResponseFormat](#openaiaudioresponseformat)
 | silence_duration_ms | integer | Duration of silence to detect speech stop (in milliseconds).<br>With shorter values the model will respond more quickly, but may jump in on short pauses from the user. | No | 200 |
 | threshold | number | Sensitivity threshold (0.0 to 1.0) for voice activity detection. A higher threshold will require louder audio to activate the model, and thus might perform better in noisy environments. | No | 0.5 |
 | type | enum | Must be set to `server_vad` to enable manual chunking using server side VAD.<br>Possible values: `server_vad` | Yes |  |
+
+### OpenAI.ValidateGraderRequest
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| grader | object | A StringCheckGrader object that performs a string comparison between input and reference using a specified operation. | Yes |  |
+| └─ calculate_output | string | A formula to calculate the output based on grader results. | No |  |
+| └─ evaluation_metric | enum | The evaluation metric to use. One of `fuzzy_match`, `bleu`, `gleu`, `meteor`, `rouge_1`, `rouge_2`, `rouge_3`, `rouge_4`, `rouge_5`, or `rouge_l`.<br>Possible values: `fuzzy_match`, `bleu`, `gleu`, `meteor`, `rouge_1`, `rouge_2`, `rouge_3`, `rouge_4`, `rouge_5`, `rouge_l` | No |  |
+| └─ graders | object |  | No |  |
+| └─ image_tag | string | The image tag to use for the python script. | No |  |
+| └─ input | array | The input text. This may include template strings. | No |  |
+| └─ model | string | The model to use for the evaluation. | No |  |
+| └─ name | string | The name of the grader. | No |  |
+| └─ operation | enum | The string check operation to perform. One of `eq`, `ne`, `like`, or `ilike`.<br>Possible values: `eq`, `ne`, `like`, `ilike` | No |  |
+| └─ range | array | The range of the score. Defaults to `[0, 1]`. | No |  |
+| └─ reference | string | The text being graded against. | No |  |
+| └─ sampling_params |  | The sampling parameters for the model. | No |  |
+| └─ source | string | The source code of the python script. | No |  |
+| └─ type | enum | The object type, which is always `multi`.<br>Possible values: `multi` | No |  |
+
+### OpenAI.ValidateGraderResponse
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| grader | object | A StringCheckGrader object that performs a string comparison between input and reference using a specified operation. | No |  |
+| └─ calculate_output | string | A formula to calculate the output based on grader results. | No |  |
+| └─ evaluation_metric | enum | The evaluation metric to use. One of `fuzzy_match`, `bleu`, `gleu`, `meteor`, `rouge_1`, `rouge_2`, `rouge_3`, `rouge_4`, `rouge_5`, or `rouge_l`.<br>Possible values: `fuzzy_match`, `bleu`, `gleu`, `meteor`, `rouge_1`, `rouge_2`, `rouge_3`, `rouge_4`, `rouge_5`, `rouge_l` | No |  |
+| └─ graders | object |  | No |  |
+| └─ image_tag | string | The image tag to use for the python script. | No |  |
+| └─ input | array | The input text. This may include template strings. | No |  |
+| └─ model | string | The model to use for the evaluation. | No |  |
+| └─ name | string | The name of the grader. | No |  |
+| └─ operation | enum | The string check operation to perform. One of `eq`, `ne`, `like`, or `ilike`.<br>Possible values: `eq`, `ne`, `like`, `ilike` | No |  |
+| └─ range | array | The range of the score. Defaults to `[0, 1]`. | No |  |
+| └─ reference | string | The text being graded against. | No |  |
+| └─ sampling_params |  | The sampling parameters for the model. | No |  |
+| └─ source | string | The source code of the python script. | No |  |
+| └─ type | enum | The object type, which is always `multi`.<br>Possible values: `multi` | No |  |
+
+### OpenAI.VectorStoreExpirationAfter
+
+The expiration policy for a vector store.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| anchor | enum | Anchor timestamp after which the expiration policy applies. Supported anchors: `last_active_at`.<br>Possible values: `last_active_at` | Yes |  |
+| days | integer | The number of days after the anchor time that the vector store will expire. | Yes |  |
 
 ### OpenAI.VectorStoreFileAttributes
 
@@ -5019,12 +8662,124 @@ length of 512 characters, booleans, or numbers.
 **Type**: object
 
 
+### OpenAI.VectorStoreFileBatchObject
+
+A batch of files attached to a vector store.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| created_at | integer | The Unix timestamp (in seconds) for when the vector store files batch was created. | Yes |  |
+| file_counts | object |  | Yes |  |
+| └─ cancelled | integer | The number of files that where cancelled. | No |  |
+| └─ completed | integer | The number of files that have been processed. | No |  |
+| └─ failed | integer | The number of files that have failed to process. | No |  |
+| └─ in_progress | integer | The number of files that are currently being processed. | No |  |
+| └─ total | integer | The total number of files. | No |  |
+| id | string | The identifier, which can be referenced in API endpoints. | Yes |  |
+| object | enum | The object type, which is always `vector_store.file_batch`.<br>Possible values: `vector_store.files_batch` | Yes |  |
+| status | enum | The status of the vector store files batch, which can be either `in_progress`, `completed`, `cancelled` or `failed`.<br>Possible values: `in_progress`, `completed`, `cancelled`, `failed` | Yes |  |
+| vector_store_id | string | The ID of the vector store that the file is attached to. | Yes |  |
+
+### OpenAI.VectorStoreFileObject
+
+A list of files attached to a vector store.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| attributes | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard. Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters, booleans, or numbers. | No |  |
+| chunking_strategy | object |  | No |  |
+| └─ type | enum | <br>Possible values: `static`, `other` | No |  |
+| created_at | integer | The Unix timestamp (in seconds) for when the vector store file was created. | Yes |  |
+| id | string | The identifier, which can be referenced in API endpoints. | Yes |  |
+| last_error | object | The last error associated with this vector store file. Will be `null` if there are no errors. | Yes |  |
+| └─ code | enum | One of `server_error` or `rate_limit_exceeded`.<br>Possible values: `server_error`, `unsupported_file`, `invalid_file` | No |  |
+| └─ message | string | A human-readable description of the error. | No |  |
+| object | enum | The object type, which is always `vector_store.file`.<br>Possible values: `vector_store.file` | Yes |  |
+| status | enum | The status of the vector store file, which can be either `in_progress`, `completed`, `cancelled`, or `failed`. The status `completed` indicates that the vector store file is ready for use.<br>Possible values: `in_progress`, `completed`, `cancelled`, `failed` | Yes |  |
+| usage_bytes | integer | The total vector store usage in bytes. Note that this may be different from the original file size. | Yes |  |
+| vector_store_id | string | The ID of the vector store that the file is attached to. | Yes |  |
+
+### OpenAI.VectorStoreObject
+
+A vector store is a collection of processed files can be used by the `file_search` tool.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| created_at | integer | The Unix timestamp (in seconds) for when the vector store was created. | Yes |  |
+| expires_after | [OpenAI.VectorStoreExpirationAfter](#openaivectorstoreexpirationafter) | The expiration policy for a vector store. | No |  |
+| expires_at | integer | The Unix timestamp (in seconds) for when the vector store will expire. | No |  |
+| file_counts | object |  | Yes |  |
+| └─ cancelled | integer | The number of files that were cancelled. | No |  |
+| └─ completed | integer | The number of files that have been successfully processed. | No |  |
+| └─ failed | integer | The number of files that have failed to process. | No |  |
+| └─ in_progress | integer | The number of files that are currently being processed. | No |  |
+| └─ total | integer | The total number of files. | No |  |
+| id | string | The identifier, which can be referenced in API endpoints. | Yes |  |
+| last_active_at | integer | The Unix timestamp (in seconds) for when the vector store was last active. | Yes |  |
+| metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | Yes |  |
+| name | string | The name of the vector store. | Yes |  |
+| object | enum | The object type, which is always `vector_store`.<br>Possible values: `vector_store` | Yes |  |
+| status | enum | The status of the vector store, which can be either `expired`, `in_progress`, or `completed`. A status of `completed` indicates that the vector store is ready for use.<br>Possible values: `expired`, `in_progress`, `completed` | Yes |  |
+| usage_bytes | integer | The total number of bytes used by the files in the vector store. | Yes |  |
+
 ### OpenAI.VoiceIdsShared
 
 | Property | Value |
 |----------|-------|
 | **Type** | string |
 | **Values** | `alloy`<br>`ash`<br>`ballad`<br>`coral`<br>`echo`<br>`fable`<br>`onyx`<br>`nova`<br>`sage`<br>`shimmer`<br>`verse` |
+
+### OpenAI.WebSearchAction
+
+
+### Discriminator for OpenAI.WebSearchAction
+
+This component uses the property `type` to discriminate between different types:
+
+| Type Value | Schema |
+|------------|--------|
+| `find` | [OpenAI.WebSearchActionFind](#openaiwebsearchactionfind) |
+| `open_page` | [OpenAI.WebSearchActionOpenPage](#openaiwebsearchactionopenpage) |
+| `search` | [OpenAI.WebSearchActionSearch](#openaiwebsearchactionsearch) |
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| type | [OpenAI.WebSearchActionType](#openaiwebsearchactiontype) |  | Yes |  |
+
+### OpenAI.WebSearchActionFind
+
+Action type "find": Searches for a pattern within a loaded page.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| pattern | string | The pattern or text to search for within the page. | Yes |  |
+| type | enum | The action type.<br>Possible values: `find` | Yes |  |
+| url | string | The URL of the page searched for the pattern. | Yes |  |
+
+### OpenAI.WebSearchActionOpenPage
+
+Action type "open_page" - Opens a specific URL from search results.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| type | enum | The action type.<br>Possible values: `open_page` | Yes |  |
+| url | string | The URL opened by the model. | Yes |  |
+
+### OpenAI.WebSearchActionSearch
+
+Action type "search" - Performs a web search query.
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| query | string | The search query. | Yes |  |
+| type | enum | The action type.<br>Possible values: `search` | Yes |  |
+
+### OpenAI.WebSearchActionType
+
+| Property | Value |
+|----------|-------|
+| **Type** | string |
+| **Values** | `search`<br>`open_page`<br>`find` |
 
 ### OpenAI.WebSearchPreviewTool
 
@@ -5039,22 +8794,24 @@ Note: web_search is not yet available via Azure OpenAI.
 
 ### OpenAI.WebSearchToolCallItemParam
 
-The results of a web search tool call. 
-
+Note: web_search is not yet available via Azure OpenAI.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| type | enum | Possible values: `web_search_call` | Yes |  |
+| action | object |  | Yes |  |
+| └─ type | [OpenAI.WebSearchActionType](#openaiwebsearchactiontype) |  | No |  |
+| type | enum | <br>Possible values: `web_search_call` | Yes |  |
 
 ### OpenAI.WebSearchToolCallItemResource
 
-The results of a web search tool call. 
-
+Note: web_search is not yet available via Azure OpenAI.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
+| action | object |  | Yes |  |
+| └─ type | [OpenAI.WebSearchActionType](#openaiwebsearchactiontype) |  | No |  |
 | status | enum | The status of the web search tool call.<br>Possible values: `in_progress`, `searching`, `completed`, `failed` | Yes |  |
-| type | enum | Possible values: `web_search_call` | Yes |  |
+| type | enum | <br>Possible values: `web_search_call` | Yes |  |
 
 ### PineconeChatDataSource
 
@@ -5064,7 +8821,7 @@ The results of a web search tool call.
 | └─ allow_partial_result | boolean | If set to true, the system will allow partial search results to be used and the request will fail if all partial queries fail. If not specified or specified as false, the request will fail if any search query fails. | No | False |
 | └─ authentication | object |  | No |  |
 |   └─ key | string |  | No |  |
-|   └─ type | enum | Possible values: `api_key` | No |  |
+|   └─ type | enum | <br>Possible values: `api_key` | No |  |
 | └─ embedding_dependency | object | A representation of a data vectorization source usable as an embedding resource with a data source. | No |  |
 |   └─ type | [AzureChatDataSourceVectorizationSourceType](#azurechatdatasourcevectorizationsourcetype) | The differentiating identifier for the concrete vectorization source. | No |  |
 | └─ environment | string | The environment name to use with Pinecone. | No |  |
@@ -5084,10 +8841,21 @@ The results of a web search tool call.
 
 ### Quality
 
+The quality of the video content to retrieve.
+This specifies the quality of the video content that should be returned.
+
 | Property | Value |
 |----------|-------|
+| **Description** | The quality of the video content to retrieve.<br>This specifies the quality of the video content that should be returned. |
 | **Type** | string |
 | **Values** | `high`<br>`low` |
+
+### ResponseFormatJSONSchemaRequest
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| json_schema | object | JSON Schema for the response format | Yes |  |
+| type | enum | Type of response format<br>Possible values: `json_schema` | Yes |  |
 
 ### ResponseModalities
 
@@ -5096,9 +8864,7 @@ Most models are capable of generating text, which is the default:
 
 `["text"]`
 
-The `gpt-4o-audio-preview` model can also be used to 
-generate audio. To request that this model generate 
-both text and audio responses, you can use:
+The `gpt-4o-audio-preview` model can also be used to generate audio. To request that this model generate both text and audio responses, you can use:
 
 `["text", "audio"]`
 
@@ -5109,7 +8875,12 @@ both text and audio responses, you can use:
 
 The supported audio output formats for text-to-speech.
 
+This component can be one of the following:
+
+
 ### VideoGeneration
+
+A  video generation result.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -5118,36 +8889,40 @@ The supported audio output formats for text-to-speech.
 | id | string | The id of the video generation. | Yes |  |
 | job_id | string | The id of the video generation job for this video. | Yes |  |
 | n_seconds | integer | The duration of the video generation. | Yes |  |
-| object | enum | Possible values: `video.generation` | Yes |  |
+| object | enum | <br>Possible values: `video.generation` | Yes |  |
 | prompt | string | The prompt for this video generation. | Yes |  |
 | width | integer | The width of the video. | Yes |  |
 
 ### VideoGenerationJob
 
+A video generation job.
+
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | created_at | integer | The time when the job was created. | Yes |  |
-| expires_at | integer | The Unix timestamp (in seconds) for when the job gets deleted from the server. The video content and metadata of the job should be stored before this date to avoid data loss. The default and maximum range is 24 hours from the job completion timestamp. | No | |
+| expires_at | integer | The time when the job gets automatically deleted from the service. The video content and metadata of the job should be stored before this date to avoid data loss. | No |  |
 | failure_reason | string (see valid models below) |  | No |  |
 | finished_at | integer | The time when the job finished with all video generations. | No |  |
 | generations | array | The generated videos for this job. The number depends on the given n_variants and the creation success of the generations. | No |  |
 | height | integer | The height of the video. | Yes |  |
 | id | string | The id of the job. | Yes |  |
+| inpaint_items | array | Optional inpainting items for this video generation job. | No |  |
 | model | string | The name of the deployment to use for this video generation job. | Yes |  |
 | n_seconds | integer | The duration of the video generation job. | Yes |  |
 | n_variants | integer | The number of videos to create as variants for this video generation job. | Yes |  |
-| object | enum | Possible values: `video.generation.job` | Yes |  |
+| object | enum | <br>Possible values: `video.generation.job` | Yes |  |
 | prompt | string | The prompt for this video generation job. | Yes |  |
-| status | object |  | Yes |  |
+| status | object | The status of a video generation job. | Yes |  |
 | width | integer | The height of the video. | Yes |  |
 
 ### VideoGenerationJobList
 
+A list of video generation jobs.
+
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| data | array |  | Yes |  |
-| first_id | string |  | No |  |
-| has_more | boolean |  | Yes |  |
-| last_id | string |  | No |  |
-| object | enum | Possible values: `list` | Yes |  |
-
+| data | array | The list of video generation jobs. | Yes |  |
+| first_id | string | The ID of the first job in the current page, if available. | No |  |
+| has_more | boolean | A flag indicating whether there are more jobs available after the list. | Yes |  |
+| last_id | string | The ID of the last job in the current page, if available. | No |  |
+| object | enum | <br>Possible values: `list` | Yes |  |

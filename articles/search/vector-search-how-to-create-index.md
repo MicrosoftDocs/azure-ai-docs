@@ -2,7 +2,6 @@
 title: Create a vector index
 titleSuffix: Azure AI Search
 description: Create or update a search index to include vector fields.
-
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
@@ -10,7 +9,7 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 07/07/2025
+ms.date: 09/28/2025
 ---
 
 # Create a vector index
@@ -34,7 +33,7 @@ This article uses REST for illustration. After you understand the basic workflow
 
 ## Prerequisites
 
-+ An [Azure AI Search service](search-create-service-portal.md) in any region and on any tier. If you plan to use [integrated vectorization](vector-search-integrated-vectorization.md) with Azure AI skills and vectorizers, Azure AI Search must be in the same region as the embedding models hosted on Azure AI Vision.
++ An [Azure AI Search service](search-create-service-portal.md) in any region and on any tier. If you plan to use [integrated vectorization](vector-search-integrated-vectorization.md) with Azure AI skills and vectorizers, Azure AI Search must be in the same region as the embedding models hosted on Azure Vision in Foundry Tools.
 
 + Your source documents must have [vector embeddings](vector-search-how-to-generate-embeddings.md) to upload to the index. You can also use [integrated vectorization](vector-search-integrated-vectorization.md) for this step.
 
@@ -76,6 +75,7 @@ Here's a basic index with a `"name"`, a `"fields"` collection, and some other co
 POST https://[servicename].search.windows.net/indexes?api-version=[api-version] 
 {
   "name": "example-index",
+  "description": "This is an example index."
   "fields": [
     { "name": "documentId", "type": "Edm.String", "key": true, "retrievable": true, "searchable": true, "filterable": true },
     { "name": "myHumanReadableNameField", "type": "Edm.String", "retrievable": true, "searchable": true, "filterable": false, "sortable": true, "facetable": false },
@@ -98,20 +98,7 @@ A vector configuration includes:
 + `vectorSearch.compressions` for scalar or binary quantization, oversampling, and reranking with original vectors.
 + `vectorSearch.profiles` for specifying multiple combinations of algorithm and compression configurations.
 
-### [**2024-07-01**](#tab/config-2024-07-01)
-
-[**2024-07-01**](/rest/api/searchservice/search-service-api-versions#2024-07-01) is generally available. It supports a vector configuration that has:
-
-+ Hierarchical Navigable Small World (HNSW) algorithm.
-+ Exhaustive K-Nearest Neighbor (KNN) algorithm.
-+ Scalar compression.
-+ Binary compression, which is available in 2024-07-01 only and in newer Azure SDK packages.
-+ Oversampling.
-+ Reranking with original vectors.
-
-If you choose HNSW on a field, you can opt for exhaustive KNN at query time. However, the opposite doesn’t work. If you choose exhaustive for indexing, you can’t later request HNSW search because the extra data structures that enable approximate search don’t exist.
-
-Be sure to have a strategy for [vectorizing your content](vector-search-how-to-generate-embeddings.md). We recommend [integrated vectorization](vector-search-integrated-vectorization.md) and [query-time vectorizers](vector-search-how-to-configure-vectorizer.md) for built-in encoding.
+Here are the steps:
 
 1. Use the [Create or Update Index](/rest/api/searchservice/indexes/create-or-update) REST API to create the index.
 
@@ -123,17 +110,23 @@ Be sure to have a strategy for [vectorizing your content](vector-search-how-to-g
             {
                 "name": "scalar-quantization",
                 "kind": "scalarQuantization",
-                "rerankWithOriginalVectors": true,
-                "defaultOversampling": 10.0,
-                    "scalarQuantizationParameters": {
-                        "quantizedDataType": "int8"
-                    }
+                "scalarQuantizationParameters": {
+                    "quantizedDataType": "int8"
+                    },
+                "rescoringOptions": {
+                    "enableRescoring": true,
+                    "defaultOversampling": 10,
+                    "rescoreStorageMethod": "preserveOriginals"
+                }
             },
             {
                 "name": "binary-quantization",
                 "kind": "binaryQuantization",
-                "rerankWithOriginalVectors": true,
-                "defaultOversampling": 10.0
+                "rescoringOptions": {
+                    "enableRescoring": true,
+                    "defaultOversampling": 10,
+                    "rescoreStorageMethod": "discardOriginals"
+            }
             }
         ],
         "algorithms": [
@@ -182,9 +175,9 @@ Be sure to have a strategy for [vectorizing your content](vector-search-how-to-g
 
    + `vectorSearch.compressions` can be `scalarQuantization` or `binaryQuantization`. Scalar quantization compresses float values into narrower data types. Binary quantization converts floats into binary 1-bit values.
 
-   + `vectorSearch.compressions.rerankWithOriginalVectors` uses the original, uncompressed vectors to recalculate similarity and rerank the top results returned by the initial search query. The uncompressed vectors exist in the search index even if `stored` is false. This property is optional. Default is true.
+   + `vectorSearch.compressions.rescoringOptions` uses the original, uncompressed vectors to recalculate similarity and rerank the top results returned by the initial search query. The uncompressed vectors exist in the search index even if `stored` is false. This property is optional. Default is true.
 
-   + `vectorSearch.compressions.defaultOversampling` considers a broader set of potential results to offset the reduction in information from quantization. The formula for potential results consists of the `k` in the query, with an oversampling multiplier. For example, if the query specifies a `k` of 5, and oversampling is 20, the query effectively requests 100 documents for use in reranking, using the original uncompressed vector for that purpose. Only the top `k` reranked results are returned. This property is optional. Default is 4.
+   + `vectorSearch.compressions.rescoringOptions.defaultOversampling` considers a broader set of potential results to offset the reduction in information from quantization. The formula for potential results consists of the `k` in the query, with an oversampling multiplier. For example, if the query specifies a `k` of 5, and oversampling is 20, the query effectively requests 100 documents for use in reranking, using the original uncompressed vector for that purpose. Only the top `k` reranked results are returned. This property is optional. Default is 4.
 
    + `vectorSearch.compressions.scalarQuantizationParameters.quantizedDataType` must be set to `int8`. This is the only primitive data type supported at this time. This property is optional. Default is `int8`.
 
@@ -200,103 +193,11 @@ Be sure to have a strategy for [vectorizing your content](vector-search-how-to-g
 
    + `vectorSearch.profiles` add a layer of abstraction for accommodating richer definitions. A profile is defined in `vectorSearch` and referenced by name in each vector field. It's a combination of compression and algorithm configurations. You assign this property to a vector field, and it determines the fields' algorithm and compression.
 
-### [**2024-05-01-preview**](#tab/config-2024-05-01-Preview)
-
-[**2024-05-01-preview**](/rest/api/searchservice/search-service-api-versions#2024-05-01-preview) is the most recent preview version. It's inclusive of previous preview versions.
-
-Preview and stable API versions support the same `vectorSearch` configurations. You would choose the preview over the stable version for other reasons, such as [more compression options](vector-search-how-to-quantization.md) or [newer vectorizers](vector-search-how-to-configure-vectorizer.md) invoked at query time.
-
-1. Use the [Create or Update Index Preview REST API](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-05-01-preview&preserve-view=true) to create the index.
-
-1. Add a `vectorSearch` section in the index that specifies compression settings and the search algorithms used to create the embedding space. For more information, see [Configure vector quantization](vector-search-how-to-quantization.md).
-
-   ```json
-    "vectorSearch": {
-        "compressions": [
-            {
-                "name": "my-scalar-quantization",
-                "kind": "scalarQuantization",
-                "rerankWithOriginalVectors": true,
-                "defaultOversampling": 10.0,
-                    "scalarQuantizationParameters": {
-                        "quantizedDataType": "int8"
-                    }
-            }
-        ],
-        "algorithms": [
-            {
-                "name": "hnsw-1",
-                "kind": "hnsw",
-                "hnswParameters": {
-                    "m": 4,
-                    "efConstruction": 400,
-                    "efSearch": 500,
-                    "metric": "cosine"
-                }
-            },
-            {
-                "name": "hnsw-2",
-                "kind": "hnsw",
-                "hnswParameters": {
-                    "m": 8,
-                    "efConstruction": 800,
-                    "efSearch": 800,
-                    "metric": "hamming"
-                }
-            },
-            {
-                "name": "eknn",
-                "kind": "exhaustiveKnn",
-                "exhaustiveKnnParameters": {
-                    "metric": "euclidean"
-                }
-            }
-
-        ],
-        "profiles": [
-          {
-            "name": "vector-profile-hnsw-1",
-            "algorithm": "hnsw-1"
-          }
-        ]
-    }
-   ```
-
-   **Key points**:
-
-   + `vectorSearch.compressions.kind` must be `scalarQuantization`.
-
-   + `vectorSearch.compressions.rerankWithOriginalVectors` uses the original, uncompressed vectors to recalculate similarity and rerank the top results returned by the initial search query. The uncompressed vectors exist in the search index even if `stored` is false. This property is optional. Default is true.
-
-   + `vectorSearch.compressions.defaultOversampling` considers a broader set of potential results to offset the reduction in information from quantization. The formula for potential results consists of the `k` in the query, with an oversampling multiplier. For example, if the query specifies a `k` of 5, and oversampling is 20, the query effectively requests 100 documents for use in reranking, using the original uncompressed vector for that purpose. Only the top `k` reranked results are returned. This property is optional. Default is 4.
-
-   + `vectorSearch.compressions.scalarQuantizationParameters.quantizedDataType` must be set to `int8`. This is the only primitive data type supported at this time. This property is optional. Default is `int8`.
-
-   + `vectorSearch.algorithms.kind` is either `hnsw` or `exhaustiveKnn`. These are the Approximate Nearest Neighbors (ANN) algorithms used to organize vector content during indexing.
-
-   + `vectorSearch.algorithms.m` is the bi-directional link count. Default is 4. The range is 4 to 10. Lower values should return less noise in the results.
-
-   + `vectorSearch.algorithms.efConstruction` is the number of nearest neighbors used during indexing. Default is 400. The range is 100 to 1,000.
-
-   + `vectorSearch.algorithms.efSearch` is the number of nearest neighbors used during search. Default is 500. The range is 100 to 1,000.
-
-   + `vectorSearch.algorithms.metric` should be `cosine` if you're using Azure OpenAI, otherwise use the similarity metric associated with the embedding model you're using. Supported values are `cosine`, `dotProduct`, `euclidean`, and `hamming` (used for [indexing binary data](vector-search-how-to-index-binary-data.md)).
-
-   + `vectorSearch.profiles` add a layer of abstraction for accommodating richer definitions. A profile is defined in `vectorSearch` and referenced by name in each vector field. It's a combination of compression and algorithm configurations. You assign this property to a vector field, and it determines the fields' algorithm and compression.
-
-For more information about new preview features, see [What's new in Azure AI Search](whats-new.md).
-
----
-
 ## Add a vector field to the fields collection
 
 Once you have a vector configuration, you can add a vector field to the fields collection. Recall that the fields collection must include a field for the document key, vector fields, and any other nonvector fields you need for [hybrid search scenarios](hybrid-search-overview.md) or chat model completion in [RAG workloads](retrieval-augmented-generation-overview.md).
 
 Vector fields are characterized by [their data type](/rest/api/searchservice/supported-data-types#edm-data-types-for-vector-fields), a `dimensions` property based on the embedding model used to output the vectors, and a vector profile that you created in a previous step.
-
-### [**2024-07-01**](#tab/rest-2024-07-01)
-
-[**2024-07-01**](/rest/api/searchservice/search-service-api-versions#2024-07-01) is generally available.
 
 1. Use the [Create or Update Index](/rest/api/searchservice/indexes/create-or-update) REST API to create the index and add a vector field to the fields collection.
 
@@ -327,7 +228,7 @@ Vector fields are characterized by [their data type](/rest/api/searchservice/sup
    + `stored` can be true or false. It determines whether an extra copy of vectors is stored for retrieval. For more information, see [Reduce vector size](vector-search-how-to-storage-options.md).
    + `filterable`, `facetable`, and `sortable` must be false.
 
-1. Add filterable nonvector fields to the collection, such as `title` with `filterable` set to true, if you want to invoke [prefiltering or postfiltering](vector-search-filters.md) on the [vector query](vector-search-how-to-query.md).
+1. Add filterable nonvector fields to the collection, such as `title` with `filterable` set to true, if you want to invoke [prefiltering, postfiltering, or strict postfiltering (preview)](vector-search-filters.md) on the [vector query](vector-search-how-to-query.md).
 
 1. Add other fields that define the substance and structure of the textual content you're indexing. At a minimum, you need a document key.
 
@@ -336,7 +237,7 @@ Vector fields are characterized by [their data type](/rest/api/searchservice/sup
    The following example shows the fields collection:
 
     ```http
-    PUT https://my-search-service.search.windows.net/indexes/my-index?api-version=2024-07-01&allowIndexDowntime=true
+    PUT https://my-search-service.search.windows.net/indexes/my-index?api-version=2025-09-01&allowIndexDowntime=true
     Content-Type: application/json
     api-key: {{admin-api-key}}
     {
@@ -404,122 +305,6 @@ Vector fields are characterized by [their data type](/rest/api/searchservice/sup
     }
     ```
 
-### [**2024-05-01-preview**](#tab/rest-2024-05-01-Preview)
-
-[**2024-05-01-preview**](/rest/api/searchservice/search-service-api-versions#2024-05-01-preview) is the most recent preview version. It supports the same vector field definitions as the stable version, including support for all [vector data types](/rest/api/searchservice/supported-data-types#edm-data-types-for-vector-fields).
-
-1. Use the [Create or Update Index Preview REST API](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-05-01-preview&preserve-view=true) to create the index and add a vector field to the fields collection.
-
-    ```json
-    {
-      "name": "example-index",
-      "fields": [
-        {
-            "name": "contentVector",
-            "type": "Collection(Edm.Single)",
-            "searchable": true,
-            "retrievable": false,
-            "stored": false,
-            "dimensions": 1536,
-            "vectorSearchProfile": "vector-profile-1"
-        }
-      ]
-    }
-    ```
-
-1. Specify a vector field with the following attributes. You can store one generated embedding per document field. For each vector field:
-
-   + `type` can be `Collection(Edm.Single)`, `Collection(Edm.Half)`, `Collection(Edm.Int16)`, or `Collection(Edm.SByte)`.
-   + `dimensions` is the number of dimensions generated by the embedding model. For text-embedding-ada-002, it's 1536.
-   + `vectorSearchProfile` is the name of a profile defined elsewhere in the index.
-   + `searchable` must be true.
-   + `retrievable` can be true or false. True returns the raw vectors (1,536 of them) as plain text and consumes storage space. Set to true if you're passing a vector result to a downstream app. False is required if `stored` is false.
-   + `stored` is a new boolean property that applies to vector fields only. True stores a copy of vectors returned in search results. False discards that copy during indexing. You can search on vectors, but you can't return vectors in results.
-   + `filterable`, `facetable`, and `sortable` must be false.
-
-1. Add filterable nonvector fields to the collection, such as "title" with `filterable` set to true, if you want to invoke [prefiltering or postfiltering](vector-search-filters.md) on the [vector query](vector-search-how-to-query.md).
-
-1. Add other fields that define the substance and structure of the textual content you're indexing. At a minimum, you need a document key.
-
-   You should also add fields that are useful in the query or in its response. The following example shows vector fields for title and content (`titleVector` and `contentVector`) that are equivalent to vectors. It also provides fields for equivalent textual content (`title` and `content`) that are useful for sorting, filtering, and reading in a search result.
-
-   The following example shows the fields collection:
-
-    ```http
-    PUT https://my-search-service.search.windows.net/indexes/my-index?api-version=2024-05-01-preview&allowIndexDowntime=true
-    Content-Type: application/json
-    api-key: {{admin-api-key}}
-    {
-        "name": "{{index-name}}",
-        "fields": [
-            {
-                "name": "id",
-                "type": "Edm.String",
-                "key": true,
-                "filterable": true
-            },
-            {
-                "name": "firstVectorfield-float32-embeddings",
-                "type": "Collection(Edm.Single)",
-                "searchable": true,
-                "retrievable": false,
-                "stored": false,
-                "dimensions": 1536,
-                "vectorSearchProfile": "vector-profile-1"
-            },
-            {
-                "name": "secondVectorfield-float16-embeddings",
-                "type": "Collection(Edm.Half)",
-                "searchable": true,
-                "retrievable": false,
-                "stored": false,
-                "dimensions": 1536,
-                "vectorSearchProfile": "vector-profile-1"
-            },
-            {
-                "name": "thirdVectorfield-int8-embeddings-for-my-custom-quantization-output",
-                "type": "Collection(Edm.SByte)",
-                "searchable": true,
-                "retrievable": false,
-                "stored": false,
-                "dimensions": 1536,
-                "vectorSearchProfile": "vector-profile-1"
-            },
-            {
-                "name": "fourthVectorfield-for-binary-data",
-                "type": "Collection(Edm.Byte)",
-                "searchable": true,
-                "retrievable": false,
-                "stored": false,
-                "dimensions": 1536,
-                "vectorSearchProfile": "vector-profile-1"
-            }
-        ],
-        "vectorSearch": {
-            "algorithms": [
-                {
-                    "name": "hnsw-1",
-                    "kind": "hnsw",
-                    "hnswParameters": {
-                        "m": 4,
-                        "efConstruction": 400,
-                        "efSearch": 500,
-                        "metric": "cosine"
-                    }
-                }
-            ],
-            "profiles": [
-                {
-                    "name": "vector-profile-1",
-                    "algorithm": "hnsw-1"
-                }
-            ]
-        }
-    }
-   ```
-
----
-
 ## Load vector data for indexing
 
 Content that you provide for indexing must conform to the index schema and include a unique string value for the document key. Prevectorized data is loaded into one or more vector fields, which can coexist with other fields containing nonvector content.
@@ -528,13 +313,10 @@ For data ingestion, you can use [push or pull methodologies](search-what-is-data
 
 ### [**Push APIs**](#tab/push)
 
-Use **Documents - Index** to load vector and nonvector data into an index. The push APIs for indexing are identical across all stable and preview versions. Use any of the following APIs to load documents:
-
-+ [2024-07-01](/rest/api/searchservice/documents)
-+ [2024-05-01-preview](/rest/api/searchservice/documents/?view=rest-searchservice-2024-05-01-preview&preserve-view=true)
+Use [Documents - Index](/rest/api/searchservice/documents) to load vector and nonvector data into an index. The push APIs for indexing are identical across all stable and preview versions. Use any of the following APIs to load documents:
 
 ```http
-POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/index?api-version=2024-07-01
+POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/index?api-version=2025-09-01
 
 {
     "value": [
@@ -583,8 +365,8 @@ Pull APIs refer to indexers that automate multiple indexing steps, from data ret
 
   + [AzureOpenAIEmbedding skill](cognitive-search-skill-azure-openai-embedding.md)
   + [Custom Web API skill](cognitive-search-custom-skill-web-api.md)
-  + [Azure AI Vision multimodal embeddings skill (preview)](cognitive-search-skill-vision-vectorize.md)
-  + [AML skill (preview)](cognitive-search-aml-skill.md) to generate embeddings for models hosted in the Azure AI Foundry model catalog. For more information, see [Use embedding models from Azure AI Foundry model catalog for integrated vectorization](vector-search-integrated-vectorization-ai-studio.md).
+  + [Azure Vision multimodal embeddings skill (preview)](cognitive-search-skill-vision-vectorize.md)
+  + [AML skill (preview)](cognitive-search-aml-skill.md) to generate embeddings for models hosted in the Microsoft Foundry model catalog. For more information, see [Use embedding models from Foundry model catalog for integrated vectorization](vector-search-integrated-vectorization-ai-studio.md).
 
 + Indexes provide the vector field definitions and vector search configurations. This article describes those definitions.
 
@@ -596,7 +378,7 @@ If you're familiar with indexers and skillsets:
 
 + If vector data is sourced in files, we recommend a nondefault `parsingMode`, such as `json`, `jsonLines`, or `csv` based on the shape of the data.
 
-+ For data sources, [Azure blob indexers](search-howto-indexing-azure-blob-storage.md) and [Azure Cosmos DB for NoSQL indexers](search-howto-index-cosmosdb.md) with one of the aforementioned parsingModes have been tested and confirmed to work.
++ For data sources, [Azure blob indexers](search-how-to-index-azure-blob-storage.md) and [Azure Cosmos DB for NoSQL indexers](search-how-to-index-cosmosdb-sql.md) with one of the aforementioned parsingModes have been tested and confirmed to work.
 
 + The dimensions of all vectors from the data source must be the same and match their index definition for the field they're mapping to. The indexer throws an error on any documents that don’t match.
 
@@ -627,7 +409,7 @@ For more information, see [Create a vector query](vector-search-how-to-query.md)
 The following REST API example is a vector query, but it returns only nonvector fields (`title`, `content`, and `category`). Only fields marked as `retrievable` can be returned in search results.
 
 ```http
-POST https://my-search-service.search.windows.net/indexes/my-index/docs/search?api-version=2024-07-01
+POST https://my-search-service.search.windows.net/indexes/my-index/docs/search?api-version=2025-09-01
 Content-Type: application/json
 api-key: {{admin-api-key}}
 {

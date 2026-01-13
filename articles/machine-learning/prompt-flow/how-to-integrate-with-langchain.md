@@ -9,10 +9,11 @@ ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: how-to
-author: s-polly
-ms.author: scottpolly
-ms.reviewer: chenlujiao
+author: lgayhardt
+ms.author: lagayhar
+ms.reviewer: sooryar
 ms.date: 10/23/2024
+ms.update-cycle: 365-days
 ---
 
 # Integrate LangChain in prompt flows

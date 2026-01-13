@@ -2,8 +2,9 @@
 manager: nitinme
 author: santiagxf
 ms.author: fasantia 
-ms.service: azure-ai-model-inference
-ms.date: 12/15/2024
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
+ms.date: 09/26/2025
 ms.topic: include
 zone_pivot_groups: azure-ai-models-deployment
 ---
@@ -16,9 +17,9 @@ zone_pivot_groups: azure-ai-models-deployment
 
   * Your Azure subscription ID.
 
-  * Your Azure AI Foundry (formerly known Azure AI Services) resource name.
+  * Your Microsoft Foundry resource (formerly known as Azure AI Services resource) name.
 
-  * The resource group where the Azure AI Foundry (formerly known Azure AI Services) resource is deployed.
+  * The resource group where you deployed the Foundry resource.
 
 
 ## Configure Microsoft Entra ID for inference
@@ -26,66 +27,66 @@ zone_pivot_groups: azure-ai-models-deployment
 Follow these steps to configure Microsoft Entra ID for inference:
 
 
-1. Log in into your Azure subscription:
+1. Sign in to your Azure subscription.
 
     ```azurecli
     az login
     ```
 
-2. If you have more than one subscription, select the subscription where your resource is located:
+1. If you have more than one subscription, select the subscription where your resource is located.
 
     ```azurecli
     az account set --subscription "<subscription-id>"
     ```
 
-3. Set the following environment variables with the name of the Azure AI Foundry (formerly known Azure AI Services) resource you plan to use and resource group.
+1. Set the following environment variables with the name of the Foundry resource you plan to use and resource group.
 
     ```azurecli
     ACCOUNT_NAME="<ai-services-resource-name>"
     RESOURCE_GROUP="<resource-group>"
     ```
 
-4. Get the full name of your resource:
+1. Get the full name of your resource.
 
     ```azurecli
-    RESOURCE_ID=$(az resource show -g $RESOURCE_GROUP -n $ACCOUNT_NAME --resource-type "Microsoft.CognitiveServices/accounts")
+    RESOURCE_ID=$(az resource show -g $RESOURCE_GROUP -n $ACCOUNT_NAME --resource-type "Microsoft.CognitiveServices/accounts" --query id --output tsv)
     ```
 
-5. Get the object ID of the security principal you want to assign permissions to. The following example shows how to get the object ID associated with:
+1. Get the object ID of the security principal you want to assign permissions to. The following example shows how to get the object ID associated with:
     
-    __Your own logged in account:__
+    **Your own signed in account:**
 
     ```azurecli
     OBJECT_ID=$(az ad signed-in-user show --query id --output tsv)
     ```
 
-    __A security group:__
+    **A security group:**
 
     ```azurecli
     OBJECT_ID=$(az ad group show --group "<group-name>" --query id --output tsv)
     ```
 
-    __A service principal:__
+    **A service principal:**
 
     ```azurecli
     OBJECT_ID=$(az ad sp show --id "<service-principal-guid>" --query id --output tsv)
     ```
     
-6. Assign the **Cognitive Services User** role to the service principal (scoped to the resource). By assigning a role, you're granting service principal access to this resource.
+1. Assign the **Cognitive Services User** role to the service principal (scoped to the resource). By assigning a role, you grant the service principal access to this resource.
 
     ```azurecli
     az role assignment create --assignee-object-id $OBJECT_ID --role "Cognitive Services User" --scope $RESOURCE_ID
     ```
 
-8.  The selected user can now use Microsoft Entra ID for inference.
+1. The selected user can now use Microsoft Entra ID for inference.
 
     > [!TIP]
-    > Keep in mind that Azure role assignments may take up to five minutes to propagate. Adding or removing users from a security group propagates immediately.
+    > Keep in mind that Azure role assignments can take up to five minutes to propagate. Adding or removing users from a security group propagates immediately.
 
 
 ## Use Microsoft Entra ID in your code
 
-Once Microsoft Entra ID is configured in your resource, you need to update your code to use it when consuming the inference endpoint. The following example shows how to use a chat completions model:
+After you configure Microsoft Entra ID in your resource, update your code to use it when consuming the inference endpoint. The following example shows how to use a chat completions model:
 
 [!INCLUDE [code](../code-create-chat-client-entra.md)]
 
@@ -94,3 +95,14 @@ Once Microsoft Entra ID is configured in your resource, you need to update your 
 ## Troubleshooting
 
 [!INCLUDE [troubleshooting](troubleshooting.md)]
+
+## Disable key-based authentication in the resource
+
+Disable key-based authentication when you implement Microsoft Entra ID and fully address compatibility or fallback concerns in all the applications that consume the service. 
+You can use PowerShell with the Azure CLI to disable local authentication for an individual resource. First sign in with the `Connect-AzAccount` command. Then use the `Set-AzCognitiveServicesAccount` cmdlet with the parameter `-DisableLocalAuth $true`, like the following example:
+
+```powershell
+Set-AzCognitiveServicesAccount -ResourceGroupName "my-resource-group" -Name "my-resource-name" -DisableLocalAuth $true
+```
+
+For more details on how to use the Azure CLI to disable or re-enable local authentication and verify authentication status, see [Disable local authentication in Foundry Tools](../../../../ai-services/disable-local-auth.md).

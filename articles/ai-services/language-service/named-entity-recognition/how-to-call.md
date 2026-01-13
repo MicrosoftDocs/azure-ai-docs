@@ -1,17 +1,15 @@
 ---
 title: How to perform Named Entity Recognition (NER)
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This article shows you how to extract named entities from text.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 02/15/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-ner, ignite-2024
 ---
-
-
 # How to use Named Entity Recognition (NER)
 
 The NER feature can evaluate unstructured text, and extract named entities from text in several predefined categories, for example: person, location, event, product, and organization.  
@@ -24,7 +22,7 @@ The NER feature can evaluate unstructured text, and extract named entities from 
 
 ### Input languages
 
-When you submit input text to be processed, you can specify which of [the supported languages](language-support.md) they're written in. if you don't specify a language, key phrase extraction defaults to English. The API may return offsets in the response to support different [multilingual and emoji encodings](../concepts/multilingual-emoji-support.md). 
+When you submit input text to be processed, you can specify which of [the supported languages](language-support.md) they're written in. If you don't specify a language, key phrase extraction defaults to English. The API may return offsets in the response to support different [multilingual and emoji encodings](../concepts/multilingual-emoji-support.md). 
 
 ## Submitting data
 
@@ -40,7 +38,7 @@ When you get results from NER, you can stream the results to an application or s
 
 ## Select which entities to be returned
 
-The API attempts to detect the [defined entity types and tags](concepts/named-entity-categories.md) for a given input text language. The entity types and tags replace the categories and subcategories structure the older models use to define entities for more flexibility. You can also specify which entities are detected and returned, use the optional `includeList` and `excludeList` parameters with the appropriate entity types. The following example would detect only `Location`. You can specify one or more [entity types](concepts/named-entity-categories.md) to be returned. Given the types and tags hierarchy introduced for this version, you have the flexibility to filter on different granularity levels as so:
+The API attempts to detect the [defined entity types and tags](concepts/named-entity-categories.md) for a given input text language. The entity types and tags replace the categories and subcategories structure the older models use to define entities for more flexibility. You can also specify which entities are detected and returned, use the optional `inclusionList` and `exclusionList` parameters with the appropriate entity types. The following example would detect only `Location`. You can specify one or more [entity types](concepts/named-entity-categories.md) to be returned. Given the types and tags hierarchy introduced for this version, you have the flexibility to filter on different granularity levels as so:
 
 **Input:**
 
@@ -52,7 +50,7 @@ The API attempts to detect the [defined entity types and tags](concepts/named-en
     "kind": "EntityRecognition",
     "parameters": 
     {
-        "includeList" :
+        "inclusionList" :
         [
             "Location"
         ]
@@ -78,7 +76,7 @@ The above examples would return entities falling under the `Location` entity typ
 
     "parameters": 
     {
-        "includeList" :
+        "inclusionList" :
         [
             "GPE"
         ]
@@ -86,17 +84,17 @@ The above examples would return entities falling under the `Location` entity typ
     
 ```
 
-This method returns all `Location` entities only falling under the `GPE` tag and ignore any other entity falling under the `Location` type that is tagged with any other entity tag such as `Structural` or `Geological` tagged `Location` entities. We could also further drill down on our results by using the `excludeList` parameter. `GPE` tagged entities could be tagged with the following tags: `City`, `State`, `CountryRegion`, `Continent`. We could, for example, exclude `Continent` and `CountryRegion` tags for our example:
+This method returns all `Location` entities only falling under the `GPE` tag and ignore any other entity falling under the `Location` type that is tagged with any other entity tag such as `Structural` or `Geological` tagged `Location` entities. We can also further analyze our results by using the `exclusionList` parameter. `GPE` tagged entities could be tagged with the following tags: `City`, `State`, `CountryRegion`, `Continent`. We could, for example, exclude `Continent` and `CountryRegion` tags for our example:
 
 ```bash
 
     "parameters": 
     {
-        "includeList" :
+        "inclusionList" :
         [
             "GPE"
         ],
-        "excludeList": :
+        "exclusionList": :
         [
             "Continent",
             "CountryRegion"
@@ -105,21 +103,21 @@ This method returns all `Location` entities only falling under the `GPE` tag and
     
 ```
 
-Using these parameters we can successfully filter on only `Location` entity types, since the `GPE` entity tag included in the `includeList` parameter, falls under the `Location` type. We then filter on only Geopolitical entities and exclude any entities tagged with `Continent` or `CountryRegion` tags.
+Using these parameters we can successfully filter on only `Location` entity types, since the `GPE` entity tag included in the `inclusionList` parameter, falls under the `Location` type. We then filter on only Geopolitical entities and exclude any entities tagged with `Continent` or `CountryRegion` tags.
 
-## Additional output attributes
+## Supported output attributes
 
 In order to provide users with more insight into an entity's types and provide increased usability, NER supports these attributes in the output:
 
 |Name of the attribute|Type        |Definition                               |
 |---------------------|------------|-----------------------------------------|
-|`type`               |String      |The most specific type of detected entity.<br><br>For example, “Seattle” is a `City`, a `GPE` (Geo Political Entity) and a `Location`. The most granular classification for “Seattle” is that it is a `City`. The type would be `City` for the text “Seattle".|
-|`tags`               |List (tags) |A list of tag objects which expresses the affinity of the detected entity to a hierarchy or any other grouping.<br><br>A tag contains two fields:<br>1. `name`: A unique name for the tag.<br>2. `confidenceScore`: The associated confidence score for a tag ranging from 0 to 1.<br><br>This unique tagName is used to filter in the `inclusionList` and `exclusionList` parameters.
+|`type`               |String      |The most specific type of detected entity.<br><br>For example, "Seattle" is a `City`, a `GPE` (Geo Political Entity) and a `Location`. The most granular classification for "Seattle" is `City`. The type is `City` for the text "Seattle."|
+|`tags`               |List (tags) |A list of tag objects that expresses the affinity of the detected entity to a hierarchy or any other grouping.<br><br>A tag contains two fields:<br>- `name`: A unique name for the tag.<br>- `confidenceScore`: The associated confidence score for a tag ranging from 0 to 1.<br><br>This unique tagName is used to filter in the `inclusionList` and `exclusionList` parameters.
 |`metadata`           |Object      |Metadata is an object containing more data about the entity type detected. It changes based on the field `metadataKind`.
 
 ## Sample output
 
-This sample output includes an example of the additional output attributes.
+This sample output includes an example of output attributes.
 
 ```bash
 { 

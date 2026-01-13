@@ -1,12 +1,13 @@
 ---
 title: Azure AI Face API error codes
 description: Error codes returned from Face API services.
-author: shaoli
+author: PatrickFarley
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
+ms.update-cycle: 365-days
 ms.topic: reference
-ms.author: shaoli
-ms.date: 05/24/2024
+ms.author: pafarley
+ms.date: 08/21/2025
 feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 

@@ -1,32 +1,31 @@
 ### YamlMime:Landing
 
-title: Foundry Local documentation # < 60 chars
+title: Foundry Local (preview) documentation # < 60 chars
 summary:  Safely design, customize, and manage AI applications and agents on-device.
 metadata:
-  title: Foundry Local documentation
-  description: Foundry Local helps developers and organizations rapidly create intelligent, cutting-edge, market-ready, and responsible applications with out-of-the-box and prebuilt and customizable APIs and models. Example applications include generative AI, natural language processing for conversations, search, monitoring, translation, speech, vision, and decision-making.
+  title: Foundry Local (preview) documentation
+  description: Foundry Local (preview) helps developers and organizations rapidly create intelligent, cutting-edge, market-ready, and responsible applications with out-of-the-box and prebuilt and customizable APIs and models. Example applications include generative AI, natural language processing for conversations, search, monitoring, translation, speech, vision, and decision-making.
   ms.service: azure-ai-foundry
   ms.subservice: foundry-local
   ms.custom:
     - build-2025
   ms.topic: landing-page
-  manager: scottpolly
   ms.reviewer: samkemp
   ms.author: jburchel
   reviewer: samuel100
   author: jonburchel
-  ms.date: 03/04/2025
+  ms.date: 01/05/2026
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
 
 landingContent:
 # Cards and links should be based on top customer tasks or top subjects
 # Start card title with a verb
   # Card
-  - title: Learn About Foundry Local
+  - title: Learn About Foundry Local (preview)
     linkLists:
       - linkListType: overview
         links:
-          - text: What is Foundry Local?
+          - text: What is Foundry Local (preview)?
             url: what-is-foundry-local.md
       - linkListType: concept
         links:
@@ -65,6 +64,8 @@ landingContent:
             url: reference/reference-rest.md
           - text: Catalog API reference
             url: reference/reference-catalog-api.md
+          - text: Foundry Local on Windows Server 2025
+            url: reference/windows-server-frequently-asked-questions.md            
           - text: Best practice and troubleshooting
             url: reference/reference-best-practice.md
   
@@ -79,7 +80,7 @@ landingContent:
             url: /training/modules/improve-search-results-vector-search/
       - linkListType: reference
         links:
-          - text: Azure AI Foundry
+          - text: Microsoft Foundry
             url: /azure/ai-foundry/
           - text: Semantic Kernel
             url: /semantic-kernel/

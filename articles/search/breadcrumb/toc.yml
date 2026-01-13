@@ -1,20 +1,22 @@
+items:
 - name: Azure
   tocHref: /azure/
   topicHref: /azure/index
   items:
-  - name: AI services
+  - name: Search
+    tocHref: /azure/reliability
+  - name: Foundry Tools
     tocHref: /azure/ai-services/
     topicHref: /azure/ai-services/index
     items:
     - name: Azure AI Search
       tocHref: /azure/search/
       topicHref: /azure/search/index
-
 - name: Azure
   tocHref: /legal/
   topicHref: /azure/index
   items:
-  - name: AI services                # Original doc set name
+  - name: Foundry Tools                # Original doc set name
     tocHref: /legal/cognitive-services/    # Destination doc set route
     topicHref: /azure/ai-services/index    # Original doc set route
     items:

@@ -7,7 +7,7 @@ manager: nitinme
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 06/17/2025
+ms.date: 10/21/2025
 ms.custom:
   - ignite-2023
   - sfi-image-nochange
@@ -15,6 +15,9 @@ ms.custom:
 ---
 
 # Create a knowledge store using REST
+
+> [!NOTE]
+> *Knowledge stores* are secondary storage that exists in Azure Storage and contain the outputs of Azure AI Search skillsets. They're separate from knowledge sources and knowledge bases, which are used in [agentic retrieval](agentic-retrieval-overview.md) workflows.
 
 In Azure AI Search, a [knowledge store](knowledge-store-concept-intro.md) is a repository of [AI-generated content](cognitive-search-concept-intro.md) that's used for non-search scenarios. You create the knowledge store using an indexer and skillset, and specify Azure Storage to store the output. After the knowledge store is populated, use tools like [Storage Explorer](/azure/vs-azure-tools-storage-manage-with-storage-explorer) or [Power BI](knowledge-store-connect-power-bi.md) to explore the content.
 
@@ -33,7 +36,7 @@ To make the initial data set available, the hotel reviews are first imported int
 
 + Azure Storage. [Create an account](/azure/storage/common/storage-account-create) or [find an existing one](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Storage%2storageAccounts/). The account type must be **StorageV2 (general purpose V2)**.
 
-The skillset in this example uses Azure AI Services for enrichments. Because the workload is so small, Azure AI services is tapped behind the scenes to provide free processing for up to 20 transactions daily. A small workload means that you can skip creating or attaching an Azure AI services multi-service resource.
+The skillset in this example uses Foundry Tools for enrichments. Because the workload is so small, Foundry Tools is tapped behind the scenes to provide free processing for up to 20 transactions daily. A small workload means that you can skip creating or attaching a Microsoft Foundry resource.
 
 ## Upload data to Azure Storage and get a connection string
 
@@ -54,7 +57,7 @@ The skillset in this example uses Azure AI Services for enrichments. Because the
   ```
 
 > [!NOTE]
-> See [Connect using a managed identity](search-howto-managed-identities-data-sources.md) if you don't want to provide sensitive data on the connection string. 
+> See [Connect using a managed identity](search-how-to-managed-identities.md) if you don't want to provide sensitive data on the connection string. 
 
 ## Copy a key and URL
 
@@ -89,7 +92,7 @@ A valid API key establishes trust, on a per request basis, between the applicati
 
     ```http
     ### Create a new index
-    POST {{baseUrl}}/indexes?api-version=2024-07-01  HTTP/1.1
+    POST {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
         Content-Type: application/json
         api-key: {{apiKey}}
     
@@ -121,7 +124,7 @@ A valid API key establishes trust, on a per request basis, between the applicati
 
     ```http
     ### Create a data source
-    POST {{baseUrl}}/datasources?api-version=2024-07-01  HTTP/1.1
+    POST {{baseUrl}}/datasources?api-version=2025-09-01  HTTP/1.1
       Content-Type: application/json
       api-key: {{apiKey}}
     
@@ -152,7 +155,7 @@ A skillset defines enrichments (skills) and your knowledge store. [Create Skills
 
     ```http
     ### Create a skillset
-    POST {{baseUrl}}/skillsets?api-version=2024-07-01  HTTP/1.1
+    POST {{baseUrl}}/skillsets?api-version=2025-09-01  HTTP/1.1
         Content-Type: application/json
         api-key: {{apiKey}}
     
@@ -319,7 +322,7 @@ A skillset defines enrichments (skills) and your knowledge store. [Create Skills
 
     ```http
     ### Create indexer
-    POST {{baseUrl}}/indexers?api-version=2024-07-01  HTTP/1.1
+    POST {{baseUrl}}/indexers?api-version=2025-09-01  HTTP/1.1
         Content-Type: application/json
         api-key: {{apiKey}}
     
@@ -367,7 +370,7 @@ After you send each request, the search service should respond with a 201 succes
 
 ```http
 ### Get Indexer Status (wait several minutes for the indexer to complete)
-GET {{baseUrl}}/indexers/hotel-reviews-kstore-idxr/status?api-version=2024-07-01  HTTP/1.1
+GET {{baseUrl}}/indexers/hotel-reviews-kstore-idxr/status?api-version=2025-09-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
 ```
@@ -376,7 +379,7 @@ After several minutes, you can query the index to inspect the content. Even if y
 
 ```http
 ### Query the index (indexer status must be "success" before querying the index)
-POST {{baseUrl}}/indexes/hotel-reviews-kstore-idxr/docs/search?api-version=2024-07-01  HTTP/1.1
+POST {{baseUrl}}/indexes/hotel-reviews-kstore-idxr/docs/search?api-version=2025-09-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
   
@@ -414,7 +417,7 @@ You can find and manage resources in the Azure portal, using the **All resources
 
 ## Next steps
 
-Now that you've enriched your data by using Azure AI services and projected the results to a knowledge store, you can use Storage Explorer or other apps to explore your enriched data set.
+Now that you've enriched your data by using Foundry Tools and projected the results to a knowledge store, you can use Storage Explorer or other apps to explore your enriched data set.
 
 > [!div class="nextstepaction"]
 > [Get started with Storage Explorer](/azure/vs-azure-tools-storage-manage-with-storage-explorer)

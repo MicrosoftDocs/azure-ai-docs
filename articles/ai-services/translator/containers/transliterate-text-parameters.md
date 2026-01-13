@@ -1,17 +1,16 @@
 ---
 title: "Container: Transliterate text"
-titleSuffix: Azure AI services
-description: Understand the parameters, headers, and body messages for the Azure AI Translator container transliterate text operation.
+titleSuffix: Foundry Tools
+description: Understand the parameters, headers, and body messages for the Azure Translator container transliterate text operation.
 author: laujan
 manager: nitinme
-
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 03/07/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
-# Container: Transliterate Text
+# Azure Translator in Foundry Tools container: transliterate text
 
 Convert characters or letters of a source language to the corresponding characters or letters of a target language.
 
@@ -24,7 +23,7 @@ Convert characters or letters of a source language to the corresponding characte
 
 ```
 
-*See* [**Virtual Network Support**](../text-translation/reference/authentication.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
+*See* [**Virtual Network Support**](../text-translation/reference/authentication.md#virtual-network-support) for Translator selected network and private endpoint configuration and support.
 
 ## Request parameters
 
@@ -66,7 +65,7 @@ A successful response is a JSON array with one result for each element in the in
 ### Sample request
 
 ```bash
-curl -X POST "http://localhost:5000/transliterate?api-version=3.0&language=ja&fromScript=Jpan&toScript=Latn"
+curl -X POST "http://localhost:5000/transliterate?api-version=3.0&language=ja&fromScript=Jpan&toScript=Latin"
 ```
 
 ### Sample request body
@@ -75,8 +74,8 @@ The body of the request is a JSON array. Each array element is a JSON object wit
 
 ```json
 [
-    {"Text":"こんにちは"},
-    {"Text":"さようなら"}
+    {"text":"こんにちは"},
+    {"text":"さようなら"}
 ]
 ```
 
@@ -92,11 +91,11 @@ The following limitations apply:
 [
   {
     "text": "Kon'nichiwa​",
-    "script": "Latn"
+    "script": "Latin"
   },
   {
     "text": "sayonara",
-    "script": "Latn"
+    "script": "Latin"
   }
 ]
 ```
@@ -105,13 +104,13 @@ The following limitations apply:
 >
 > * Each sample runs on the `localhost` that you specified with the `docker run` command.
 > * While your container is running, `localhost` points to the container itself.
-> * You don't have to use `localhost:5000`. You can use any port that isn't already in use in your host environment.
+> * You don't have to use `localhost:5000`. You can use any port that'sn't already in use in your host environment.
 
 ### Transliterate with REST API
 
 ```bash
 
-  curl -X POST "http://localhost:5000/transliterate?api-version=3.0&language=ja&fromScript=Jpan&toScript=Latn" -H "Content-Type: application/json" -d "[{'Text':'こんにちは'},{'Text':'さようなら'}]"
+  curl -X POST "http://localhost:5000/transliterate?api-version=3.0&language=ja&fromScript=Jpan&toScript=Latin" -H "Content-Type: application/json" -d "[{'Text':'こんにちは'},{'Text':'さようなら'}]"
 
 ```
 

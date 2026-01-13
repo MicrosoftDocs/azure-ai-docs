@@ -6,7 +6,6 @@ manager: nitinme
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
-ms.update-cycle: 90-days
 ms.custom:
   - devx-track-dotnet
   - devx-track-extended-java
@@ -16,7 +15,7 @@ ms.custom:
   - ignite-2023
 ms.topic: quickstart
 zone_pivot_groups: search-quickstart-full-text
-ms.date: 06/25/2025
+ms.date: 11/20/2025
 ---
 
 # Quickstart: Full-text search

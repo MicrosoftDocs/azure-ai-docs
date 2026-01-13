@@ -3,12 +3,15 @@ title: 'Fine-tuning cost management'
 titleSuffix: Azure OpenAI
 description: Learn about the training and hosting costs associated with fine-tuning
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 07/08/2025
+ms.date: 11/26/2025
 author: mrbullwinkle
 ms.author: mbullwin
 show_latex: true
+ms.custom: ignite2025
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Cost management for fine-tuning
@@ -20,7 +23,9 @@ Fine-tuning can be intimidating: unlike base models, where you're just paying fo
 
 ## Upfront investment - training your model
 
-This is the one-time, fixed cost associated with teaching a base model your specific requirements using your training data.
+This is the one-time, fixed cost associated with teaching a base model your specific requirements using your training data. Below, we explain how training costs can be calculated.
+
+For all training jobs, you have the option to use **global standard** (10-30% discount from regional standard training) or **developer** (50% discount from global). Neither Global nor Developer training guarantee data residency; developer training will run on pre-emptible spot capacity so may take longer to complete. Developer tier jobs may be paused by the system but will automatically resume; users do not incur charges for jobs in paused states.
 
 ### The calculation formula
 
@@ -29,7 +34,7 @@ This is the one-time, fixed cost associated with teaching a base model your spec
 It's straightforward to estimate the costs for SFT & DPO. You're charged based on the number of tokens in your training file, and the number of epochs for your training job.
 
 $$
-\text{price} = \text{\# training tokens} \times \text{\# epochs} \times \text{price per token}
+\text{price} = \text{\# training tokens} \times \text{\# epochs} \times \text{training price per token}
 $$
 
 In general, smaller models and more recent models have lower prices per token than larger, older models. To estimate the number of tokens in your file, you can use the [tiktoken library](https://github.com/openai/tiktoken) – or, for a less precise estimate, one word is roughly equivalent to four tokens.
@@ -37,7 +42,7 @@ In general, smaller models and more recent models have lower prices per token th
 We offer both regional and global training for SFT; if you don't need data residency, global training allows you to train at a discounted rate.
 
 > [!IMPORTANT]
-> We don't charge you for time spent in queue, failed jobs, jobs canceled prior to training beginning, or data safety checks.
+> We don't charge you for time spent in queue, failed jobs, jobs canceled prior to training beginning, or data safety checks. Training token price is different from inferencing input/ output token price. Please refer the [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service)
 
 #### Example: Supervised fine-tuning (SFT)
 
@@ -149,7 +154,7 @@ We have three options for hosting:
 - **Standard**: pay per-token at the same rate as base model Standard deployments with an additional $1.70/hour hosting fee. Offers regional data residency guarantees.
 - **Global Standard**: pay per-token at the same rate as base model Global Standard deployments with an additional hosting fee. Doesn't offer data residency guarantees. Offers higher throughput than Standard deployments.
 - **Regional Provisioned Throughput**: offers latency guarantees, designed for latency-sensitive workloads. Instead of paying per-token or an hourly hosting fee, deployments accrue PTU-hours based on the number of provisioned throughput units (PTU) assigned to the deployment, and billed at a rate determined by your agreements or reservations with Microsoft Azure.
-- **Developer Tier (Public Preview)**: pay per-token and without an hourly hosting fee but offers neither data residency nor availability guarantees. Developer Tier is designed for model candidate evaluation and proof of concepts, deployments are removed automatically after 24 hours regardless of usage but may be redeployed as needed.
+- **Developer Tier**: pay per-token and without an hourly hosting fee but offers neither data residency nor availability guarantees. Developer Tier is designed for model candidate evaluation and proof of concepts, deployments are removed automatically after 24 hours regardless of usage but may be redeployed as needed.
 
 The right deployment type for your use case depends on weighing your AI requirements and where you are on your fine-tuning journey.
 

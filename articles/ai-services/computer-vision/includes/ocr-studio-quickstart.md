@@ -1,6 +1,6 @@
 ---
 title: "Quickstart: Optical character recognition using Vision Studio"
-titleSuffix: "Azure AI services"
+titleSuffix: "Foundry Tools"
 description: In this quickstart, get started with the OCR service using Vision Studio.
 author: PatrickFarley
 manager: nitinme
@@ -8,15 +8,13 @@ manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: include
 ms.date: 08/07/2023
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
 ms.author: pafarley
 ---
 
 ## Prerequisites
 
-- An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/).
-- [An Azure AI Vision resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision). You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
+- An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- [An Azure Vision resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision). You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 - Connect to [Vision Studio](https://portal.vision.cognitive.azure.com/).
   - You might need to sign in.
   - After you sign in, select **View all resources**. If necessary, select **Refresh**. Verify that your resource is available.
@@ -26,7 +24,7 @@ ms.author: pafarley
 ## Read printed and handwritten text
 
 1. Under **Optical character recognition**, select **Extract text from images**.
-1. Under **Try it out**, acknowledge that this demo incurs usage to your Azure account. For more information, see [Azure AI Vision pricing](https://azure.microsoft.com/pricing/details/cognitive-services/computer-vision/).
+1. Under **Try it out**, acknowledge that this demo incurs usage to your Azure account. For more information, see [Azure Vision pricing](https://azure.microsoft.com/pricing/details/cognitive-services/computer-vision/).
 1. Select an image from the available set, or upload your own.
 1. If necessary, select **Please select a resource** to select your resource.
 

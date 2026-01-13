@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 06/23/2025
+ms.date: 11/20/2025
 ---
 
 [!INCLUDE [Full text introduction](full-text-intro.md)]
@@ -14,7 +14,7 @@ ms.date: 06/23/2025
 
 ## Prerequisites
 
-- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - An Azure AI Search service. [Create a service](../../search-create-service-portal.md) if you don't have one. For this quickstart, you can use a free service.
 
@@ -26,7 +26,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you must:
 
 - Assign the `Search Service Contributor` and `Search Index Data Contributor` roles to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**. For more information, see [Connect to Azure AI Search using roles](../../search-security-rbac.md).
 
-## Retrieve resource information
+## Get service information
 
 [!INCLUDE [resource authentication](../resource-authentication.md)]
 
@@ -98,7 +98,7 @@ The sample in this quickstart works with the Java Runtime. Install a Java Develo
 
 In the prior [set up](#set-up) section, you installed the Azure AI Search client library and other dependencies. 
 
-In this section, you add code to create a search index, load it with documents, and run queries. You run the program to see the results in the console. For a detailed explanation of the code, see the [explaining the code](#explaining-the-code) section.
+In this section, you add code to create a search index, load it with documents, and run queries. You run the program to see the results in the console. For a detailed explanation of the code, see the [Explaining the code](#explaining-the-code) section.
 
 The sample code in this quickstart uses Microsoft Entra ID for the recommended keyless authentication. If you prefer to use an API key, you can replace the `DefaultAzureCredential` object with a `AzureKeyCredential` object. 
 
