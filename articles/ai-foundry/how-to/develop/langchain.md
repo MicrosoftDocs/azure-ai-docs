@@ -21,13 +21,13 @@ ai-usage: ai-assisted
 
 LangChain is a developer ecosystem that makes it easier to build reasoning applications. It includes multiple components, and most of them can be used independently, so you can pick and choose the pieces you need.
 
-::: moniker range="foundry-classic"
+<!-- ::: moniker range="foundry-classic" -->
 You can use models deployed to [!INCLUDE [classic-link](../../includes/classic-link.md)] with LangChain in two ways:
-::: moniker-end
+<!-- ::: moniker-end
 
 ::: moniker range="foundry"
 You can use models deployed to [!INCLUDE [foundry-link](../../default/includes/foundry-link.md)] with LangChain in two ways:
-::: moniker-end
+::: moniker-end -->
 
 - **Use the model provider's API:** Some models, such as OpenAI, Cohere, or Mistral, offer their own APIs and LangChain extensions. These extensions might include model-specific capabilities and are suitable if you need to use them. Install the extension for your chosen model, such as `langchain-openai` or `langchain-cohere`.
 
@@ -426,7 +426,7 @@ chain.invoke({"topic": "living in a foreign country"})
 To see traces:
 
 <!-- ::: moniker range="foundry-classic" -->
-1. [!INCLUDE [version-sign-in](../../includes/version-sign-in.md)]
+1. [!INCLUDE [classic-sign-in](../../includes/classic-sign-in.md)]
 
 1. Go to the **Tracing** section.
 
