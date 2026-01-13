@@ -115,7 +115,7 @@ workspace = client.workspaces.begin_create(workspace=wps).result()
 ```
 
 
-# [Portal](#tab/azure-portal)
+# [Studio](#tab/azure-portal)
 
 Not supported currently.
 
@@ -163,7 +163,7 @@ workspace = client.workspaces.begin_update(workspace=wps).result()
 ```
 
 
-# [Portal](#tab/azure-portal)
+# [Studio](#tab/azure-portal)
 
 Not supported currently.
 
@@ -292,7 +292,7 @@ ml_client.workspaces.begin_create(workspace).result()
 ```
 
 
-# [Portal](#tab/azure-portal)
+# [Studio](#tab/azure-portal)
 
 Data isolation is automatically enabled when creating hub or project workspaces through Azure Machine Learning studio. For default workspaces, this setting isn't available in the studio interface. Use the Azure CLI or Python SDK to create a default workspace with data isolation enabled.
 
@@ -380,7 +380,7 @@ except Exception:
 ```
 
 
-# [Portal](#tab/azure-portal)
+# [Studio](#tab/azure-portal)
 
 During cluster creation or when editing compute cluster details, in the **Advanced settings**, toggle **Assign a managed identity** and specify a system-assigned identity or user-assigned identity.
 
@@ -668,7 +668,7 @@ az ml compute create --name cpu-cluster --type <cluster name>  --identity-type s
         ml_client.compute.begin_create_or_update(compute)
 ```
 
-# [Portal](#tab/azure-portal)
+# [Studio](#tab/azure-portal)
 
 For information on configuring managed identity when creating a compute cluster in studio, see [Set up managed identity](how-to-create-attach-compute-cluster.md#set-up-managed-identity).
 
