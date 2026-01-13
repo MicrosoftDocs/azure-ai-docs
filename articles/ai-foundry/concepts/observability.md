@@ -31,6 +31,9 @@ In today's AI-driven world, Generative AI Operations (GenAIOps) is revolutionizi
 
 This is where observability becomes essential. These capabilities measure both the frequency and severity of risks in AI outputs, enabling teams to systematically address quality, safety, and security concerns throughout the entire AI development journey—from selecting the right model to monitoring production performance, quality, and safety.
 
+> [!NOTE]
+> Items marked (preview*) in this article are currently in public preview for the SDK and Azure portal but the API is generally available.
+
 ## What is observability?
 
 AI observability refers to the ability to monitor, understand, and troubleshoot AI systems throughout their lifecycle. It involves collecting and analyzing signals such as evaluation metrics, logs, traces, and model and agent outputs to gain visibility into performance, quality, safety, and operational health.
@@ -75,7 +78,7 @@ To learn more, see [Textual similarity evaluators](./evaluation-evaluators/textu
 
 To learn more, see [Retrieval-augmented Generation (RAG) evaluators](./evaluation-evaluators/rag-evaluators.md).
 
-### Safety and security (preview)
+### Safety and security (preview*)
 
 | Evaluator | Purpose | Inputs |
 |--|--|--|
@@ -120,7 +123,7 @@ To learn more, see [Risk and safety evaluators](./evaluation-evaluators/risk-saf
 
 To learn more, see [Agent evaluators](./evaluation-evaluators/agent-evaluators.md).
 
-### Azure OpenAI graders (preview)
+### Azure OpenAI graders (preview*)
 
 | Evaluator | Purpose |  Inputs |
 |--|--|--|
