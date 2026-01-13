@@ -427,20 +427,6 @@ items:
     displayName: cognitive,task,speech,vision,language,translator,document,intelligence,content,understanding,safety
   - name: What are Azure AI services?
     href: ../ai-services/what-are-ai-services.md?context=/azure/ai-foundry/context/context
-  - name: Content Safety
-    items: 
-    - name: What is Azure AI Content Safety service?
-      href: ../ai-services/content-safety/overview.md?context=/azure/ai-foundry/context/context
-    - name: Prompt Shields quickstart
-      href: ../ai-services/content-safety/quickstart-jailbreak.md?context=/azure/ai-foundry/context/context
-    - name: Groundedness detection (preview) quickstart
-      href: ../ai-services/content-safety/quickstart-groundedness.md?context=/azure/ai-foundry/context/context
-    - name: Protected material detection for text quickstart
-      href: ../ai-services/content-safety/quickstart-protected-material.md?context=/azure/ai-foundry/context/context
-    - name: Custom categories (preview) quickstart
-      href: ../ai-services/content-safety/quickstart-custom-categories.md?context=/azure/ai-foundry/context/context
-    - name: Text moderation quickstart
-      href: ../ai-services/content-safety/quickstart-text.md?context=/azure/ai-foundry/context/context
   - name:  Content Understanding
     items:
     - name: What is Azure AI Content Understanding (preview)?
