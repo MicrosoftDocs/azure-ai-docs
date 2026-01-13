@@ -6,7 +6,7 @@ description: Manage Microsoft Foundry costs by estimating expenses, monitoring u
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: aashishb
-ms.date: 10/15/2025
+ms.date: 01/13/2026
 ms.topic: how-to
 ai-usage: ai-assisted
 monikerRange: 'foundry-classic || foundry'
@@ -17,10 +17,10 @@ ms.service: azure-ai-foundry
 
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
-**Managing Microsoft Foundry costs effectively starts with planning.** This article shows you how to estimate expenses before deployment, track spending in real-time, and set up alerts to avoid budget surprises.
+**To manage Microsoft Foundry costs effectively, start with planning.** This article shows you how to estimate expenses before deployment, track spending in real time, and set up alerts to avoid budget surprises.
 
 **What you'll learn:**
-- Estimate costs using the Azure pricing calculator
+- Estimate costs by using the Azure pricing calculator
 - Monitor actual spending across different model types
 - Create budgets and alerts to control expenses
 - Understand billing differences between Azure-hosted and partner models
@@ -54,7 +54,7 @@ Use the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculato
 
 1. Select more than one product to estimate costs for multiple products. For example, search for and select Azure AI Search to add potential costs.
 
-As you add new resources to your project, return to this calculator and add the same resource here to update your cost estimates.
+As you add new resources to your project, return to this calculator and add the same resource to update your cost estimates.
 
 ## Costs associated with Foundry
 
