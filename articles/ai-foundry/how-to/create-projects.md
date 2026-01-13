@@ -30,18 +30,6 @@ This article describes how to create a Foundry project in [Microsoft Foundry](ht
 
 * [!INCLUDE [fdp-description](../includes/fdp-description.md)]
 
-* This project type gives you access to the latest generative AI features in Foundry, including:
-
-    * Agents 
-    * Foundry SDK and API to build agents and switch easily between models
-    * Models sold directly by Azure - Azure OpenAI, Mistral, xAI, DeepSeek, and more.
-    * Partner and community models sold through Marketplace - Stability, Cohere, and more. 
-    * Content understanding
-    * Evaluations
-    * Fine-tuning
-    * OpenAI SDK and API including Batch and Stored Completions
-    * Foundry Tools
-
 * If you need access to open-source models or PromptFlow, [create a hub project type](../how-to/hub-create-projects.md) instead.
 
 * For more information about the different project types, see [Types of projects](../what-is-foundry.md#types-of-projects).
