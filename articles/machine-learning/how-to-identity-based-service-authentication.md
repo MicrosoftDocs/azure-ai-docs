@@ -73,7 +73,7 @@ For automated creation of role assignments on your user-assigned managed identit
 
 #### To create a workspace with multiple user assigned identities, use one of the following methods:
 
-# [Azure CLI](#tab/cli)
+# [Azure CLI](#tab/azure-cli)
 
 [!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
 
@@ -115,7 +115,7 @@ workspace = client.workspaces.begin_create(workspace=wps).result()
 ```
 
 
-# [Studio](#tab/azure-studio)
+# [Portal](#tab/azure-portal)
 
 Not supported currently.
 
@@ -124,7 +124,7 @@ Not supported currently.
 
 #### To update user assigned identities for a workspace, includes adding a new one or deleting the existing ones, use one of the following methods:
 
-# [Azure CLI](#tab/cli)
+# [Azure CLI](#tab/azure-cli)
 
 [!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
 
@@ -163,7 +163,7 @@ workspace = client.workspaces.begin_update(workspace=wps).result()
 ```
 
 
-# [Studio](#tab/azure-studio)
+# [Portal](#tab/azure-portal)
 
 Not supported currently.
 
@@ -235,7 +235,7 @@ For hub and project workspaces, data isolation is enabled by default to support 
 
 #### Enable data isolation when creating a workspace
 
-# [Azure CLI](#tab/cli)
+# [Azure CLI](#tab/azure-cli)
 
 [!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
 
@@ -292,7 +292,7 @@ ml_client.workspaces.begin_create(workspace).result()
 ```
 
 
-# [Studio](#tab/azure-studio)
+# [Portal](#tab/azure-portal)
 
 Data isolation is automatically enabled when creating hub or project workspaces through Azure Machine Learning studio. For default workspaces, this setting isn't available in the studio interface. Use the Azure CLI or Python SDK to create a default workspace with data isolation enabled.
 
@@ -327,7 +327,7 @@ During a run there are two applications of an identity:
 
 To configure a compute cluster with managed identity, use one of the following methods:
 
-# [Azure CLI](#tab/cli)
+# [Azure CLI](#tab/azure-cli)
 
 [!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
 
@@ -380,7 +380,7 @@ except Exception:
 ```
 
 
-# [Studio](#tab/azure-studio)
+# [Portal](#tab/azure-portal)
 
 During cluster creation or when editing compute cluster details, in the **Advanced settings**, toggle **Assign a managed identity** and specify a system-assigned identity or user-assigned identity.
 
@@ -635,7 +635,7 @@ az ml workspace update --update-dependent-resources \
 
 To access the workspace ACR, create machine learning compute cluster with system-assigned managed identity enabled. You can enable the identity from Azure portal or Studio when creating compute, or from Azure CLI using the below. For more information, see [using managed identity with compute clusters](how-to-create-attach-compute-cluster.md#set-up-managed-identity).
 
-# [Azure CLI](#tab/cli)
+# [Azure CLI](#tab/azure-cli)
 
 [!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
 
@@ -668,7 +668,7 @@ az ml compute create --name cpu-cluster --type <cluster name>  --identity-type s
         ml_client.compute.begin_create_or_update(compute)
 ```
 
-# [Studio](#tab/azure-studio)
+# [Portal](#tab/azure-portal)
 
 For information on configuring managed identity when creating a compute cluster in studio, see [Set up managed identity](how-to-create-attach-compute-cluster.md#set-up-managed-identity).
 
