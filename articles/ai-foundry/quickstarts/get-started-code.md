@@ -61,7 +61,7 @@ The Microsoft Foundry SDK is available in multiple languages, including Python, 
 ## Prerequisites
 
 - [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
-- You must be **Owner** of the subscription to get the appropriate access control needed to use your project.
+- [!INCLUDE [rbac-create](../includes/rbac-create.md)]
 - Install the required language runtimes, global tools, and VS Code extensions as described in [Prepare your development environment](../how-to/develop/install-cli-sdk.md).
 
 > [!IMPORTANT]
