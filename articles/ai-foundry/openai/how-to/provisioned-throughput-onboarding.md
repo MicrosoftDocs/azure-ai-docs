@@ -128,9 +128,9 @@ Use these steps to delete a provisioned deployment to avoid unwanted charges.
 
 ## How much throughput per PTU you get for each model
 
-The amount of throughput (measured in tokens per minute or TPM) a deployment gets per PTU is a function of the input and output tokens in a given minute. Generating output tokens requires more processing than input tokens. Starting with GPT 4.1 models and later, the system generally matches the global standard price ratio between input and output tokens, although there are [exceptions](#exceptions-to-input-and-output-throughput-ratio). Cached tokens are deducted 100% from the utilization.
+The amount of throughput (measured in tokens per minute or TPM) a deployment gets per PTU is a function of the input and output tokens in a given minute. Generating output tokens requires more processing than input tokens. Starting with GPT 4.1 models and later, the system generally matches the global standard price ratio between input and output tokens, with [exceptions for some models](#exceptions-to-input-and-output-throughput-ratio). For all deployments, cached tokens are deducted 100% from the utilization.
 
-For example, for gpt-5, 1 output token counts as 8 input tokens towards your utilization limit, which matches the [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). For other models, such as gpt-4.1, 1 output token counts as 4 input tokens. Older models use a different ratio.
+For example, for gpt-5, one output token counts as eight input tokens towards your utilization limit, which matches the [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). For other models, such as gpt-4.1, one output token counts as four input tokens. Older models use a different ratio.
 
 ::: moniker range="foundry-classic"
 
@@ -173,16 +173,17 @@ The system allows exceptions to the standard input-to-output token ratio for cer
 
 ## Direct from Azure models
  
-|Topic| **Llama-3.3-70B-Instruct**<sup>1</sup> | **DeepSeek-R1** | **DeepSeek-V3-0324** | **DeepSeek-R1-0528** |
+|Topic| **Llama-3.3-70B-Instruct** | **DeepSeek-R1** | **DeepSeek-V3-0324** | **DeepSeek-R1-0528** |
 |---|---|---|---|---|
 |Global & data zone provisioned minimum deployment|100|100|100|100|
 |Global & data zone provisioned scale increment|100|100|100|100|
 |Regional provisioned minimum deployment|NA|NA|NA|NA|
 |Regional provisioned scale increment|NA|NA|NA|NA|
-|Input TPM per PTU|8,450|4,000|4,000|4,000|
+|Input TPM per PTU|8,450<sup>1</sup>|4,000|4,000|4,000|
 |Latency Target Value|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|
 
 \* Calculated as the average request latency on a per-minute basis across the month.
+
 <sup>1</sup> For Llama-3.3-70B-Instruct, one output token counts as four input tokens towards your utilization limit. This ratio differs from the global standard price ratio between input and output tokens. For more details, see [Exceptions to input and output throughput ratio](#exceptions-to-input-and-output-throughput-ratio).
  
 ::: moniker range="foundry-classic"
