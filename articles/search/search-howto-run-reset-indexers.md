@@ -94,7 +94,7 @@ If you need to rebuild all or part of an index, use Reset APIs available at decr
 + [Reset Documents (preview)](#reset-docs) reindexes a specific document or list of documents
 + [Reset Skills (preview)](#reset-skills) invokes skill processing for a specific skill
 
-After reset, follow with a Run command to reprocess new and existing documents. Orphaned search documents having no counterpart in the data source can't be removed through reset/run. If you need to delete documents, see [Documents - Index](/rest/api/searchservice/documents) instead.
+After reset, follow with a Run command to reprocess new and existing documents. Orphaned search documents having no counterpart in the data source can't be removed through reset/run. If you need to delete specific documents, see [Delete documents in a search index](search-how-to-delete-documents.md) or [Documents - Index](/rest/api/searchservice/documents) instead.
 
 > [!NOTE]
 > Tables can't be empty. If you use TRUNCATE TABLE to clear rows, a reset and rerun of the indexer won't remove the corresponding search documents. To remove orphaned search documents, you must [index them with a delete action](search-howto-reindex.md#delete-orphan-documents).

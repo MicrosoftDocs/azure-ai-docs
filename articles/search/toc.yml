@@ -122,6 +122,8 @@ items:
         href: search-how-to-load-search-index.md
       - name: Import large data sets
         href: search-how-to-large-index.md
+      - name: Delete documents
+        href: search-how-to-delete-documents.md
       - name: Manage an index
         href: search-how-to-manage-index.md
       - name: Update or rebuild an index
