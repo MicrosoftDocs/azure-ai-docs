@@ -42,9 +42,8 @@ audioConfig = AudioConfiguration.fromMicrophoneInput("<device id>");
 ```
 
 > [!IMPORTANT]
-> Although the device enumeration examples in this article return device IDs, the Speech SDK
-`AudioConfig.FromMicrophoneInput()` method does not accept a device ID.
-It only accepts the device’s friendly name.
+> Although the device enumeration examples in this article return device IDs, the Speech SDK `AudioConfig.FromMicrophoneInput()` method does not accept a device ID.
+> It only accepts the device’s friendly name.
 
 Correct usage (device name)
 
