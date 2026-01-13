@@ -46,7 +46,7 @@ Before you create resources for a key-based connection, confirm regional support
 
 Azure AI Search offers several [pricing tiers](search-sku-tier.md), but only two tiers stay within the free account credit limits:
 
-+ **Free** doesn't consume credits and provides 50 MB of storage. You can have one free search service per Azure subscription. This tier supports quickstarts and tutorials that don't feature semantic ranking or managed identities for Microsoft Entra ID authentication and authorization.
++ **Free** doesn't consume credits and provides 50 MB of storage. You can have one free search service per Azure subscription. This tier is always free and doesn't expire, even after your 30-day trial ends. However, it doesn't support semantic ranking or managed identities for Microsoft Entra ID authentication and authorization, which are commonly used in quickstarts.
 
 + **Basic** (recommended) consumes about one-third of your USD200 credits over 30 days and provides 15 GB of storage in most regions. This tier supports all features, including semantic ranking and managed identities, and runs on dedicated infrastructure for consistent performance.
 
