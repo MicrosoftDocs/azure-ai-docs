@@ -27,15 +27,22 @@ Dragon HD Omni unifies a broad range of prebuilt voices into one advanced voice 
 
 You also can use this voice name format by adding the suffix `:DragonHDOmniLatestNeural` to try the Omni version of the given voice via direct SSML call
 
-For example
+For example:
+
 | **Previous neural voice** | **Omni version voice name**                        |
 | ------------------------- | -------------------------------------------------- |
 | `de-DE-ConradNeural`      | `de-DE-Conrad:DragonHDOmniLatestNeural`            |
 
+#### Neural text to speech 4.1.0
+- Resolved vulnerabilities
 
 ### November 2025 release
 
 #### Public preview of new HD voices
+
+Azure speech high definition (HD) voices are available in public preview. The HD voices can understand the content, automatically detect emotions in the input text, and adjust the speaking tone in real-time to match the sentiment. For more information, see [What are Azure Speech high definition (HD) voices?](../../high-definition-voices.md).
+
+
 | **Locale (BCP-47)** | **Voice name**                                      |
 | -------------------- | ---------------------------------------------------- |
 | `en-GB`             | `en-GB-Ada:DragonHDLatestNeural` (Female)           |
@@ -48,6 +55,7 @@ For example
 | `ko-KR`             | `ko-KR-SunHi:DragonHDLatestNeural` (Female)         |
 
 #### 33 previous HD voices have been updated to v2.0 with quality improved and bugs fixed
+
 | **Locale (BCP-47)** | **Voice name**                                      |
 | ------------------- | ----------------------------------------------------|
 | `de-DE`             | `de-DE-Florian:DragonHDLatestNeural` (Male)         |
@@ -86,6 +94,17 @@ For example
 
 > [!NOTE]
 > After this update, if you encounter issue when calling `en-US-MultiTalker-Ava-Andrew:DragonHDLatestNeural` & `en-US-MultiTalker-Ava-Steffan:DragonHDLatestNeural`, please update your voice name to `en-US-MultiTalker-Ava-Andrew:DragonHDv1.2Neural` & `en-US-MultiTalker-Ava-Steffan:DragonHDv1.2Neural`
+
+#### Neural text to speech 4.0.0-preview
+- Updated OS to Azure Linux 3
+- Resolved vulnerabilities
+
+### October 2025 release
+
+#### Neural text to speech 3.14.0
+- Added support for new neural voices: `nl-nl-maartenneural`, `nl-be-arnaudneural`, `nl-be-denaneural`, `de-de-elkeneural`
+- Resolved vulnerabilities
+
 
 ### August 2025 release
 

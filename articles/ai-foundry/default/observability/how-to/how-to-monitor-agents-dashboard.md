@@ -169,8 +169,8 @@ To view the full sample code, see:
 - [Continuous evaluation sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_continuous_evaluation_rule.py).
 - [Scheduled evaluation and Schedule AI red teaming evaluation sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_scheduled_evaluations.py).
 
-## Next steps
+## Related content
 
-- [Continuously evaluate your AI agents (preview)](/azure/ai-foundry/how-to/continuous-evaluation-agents)
-- [Trace and observe AI agents in Foundry (preview)](/azure/ai-foundry/how-to/develop/trace-agents-sdk)
-- [Monitor your generative AI applications (preview)](/azure/ai-foundry/how-to/monitor-applications)
+- [Agent tracing](../concepts/trace-agent-concept.md)
+- [Run AI Red Teaming Agent in the cloud](../../../how-to/develop/run-ai-red-teaming-cloud.md)
+

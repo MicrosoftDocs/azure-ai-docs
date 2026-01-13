@@ -94,6 +94,9 @@ You store Customer-Managed Keys (CMKs) in **Azure Key Vault**. You can either ge
 1. Enter a key name, choose the key type (such as RSA or HSM-backed), and configure key size and expiration details.
 1. Select **Create** to save the new key.
 
+* Projects can be updated from Microsoft-managed keys to CMKs but not reverted.
+* Project CMK can be updated only to keys in the same Key Vault instance.
+* Storage-related charges for CMK encryption continue during soft-deleted retention.
    For more information, see [Create and Manage Keys in Azure Key Vault](/azure/key-vault/keys/about-keys).
 
 **Import a Key**
