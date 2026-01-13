@@ -12,13 +12,12 @@ ms.date: 12/29/2025
 ms.reviewer: fasantia
 ms.author: sgilley
 author: sdgilley
-monikerRange: foundry-classic || foundry
 ai-usage: ai-assisted
 ---
 
 # Develop applications with LangChain and Microsoft Foundry
 
-[!INCLUDE [version-banner](../../includes/version-banner.md)]
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 LangChain is a developer ecosystem that makes it easier to build reasoning applications. It includes multiple components, and most of them can be used independently, so you can pick and choose the pieces you need.
 
@@ -45,18 +44,18 @@ To run this tutorial, you need:
 
 * [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
 
-:::moniker range="foundry-classic"
+<!-- :::moniker range="foundry-classic" -->
 * Required role: 
     * **Owner** or **Contributor** on the Foundry resource or AI Hub to deploy models
     * **Azure AI User** to use the model in a Foundry project
     * **Azure AI Developer** to use the model in a hub-based project
-:::moniker-end
+<!-- :::moniker-end
 
 :::moniker range="foundry"
 * Required role: 
     * **Owner** or **Contributor** on the Foundry resource to deploy models
     * **Azure AI User** to use the model in a Foundry project
-:::moniker-end
+:::moniker-end -->
 
 * A model deployment that supports the [Model Inference API](https://aka.ms/azureai/modelinference). This article uses `Mistral-Large-3`.
 
@@ -77,13 +76,13 @@ To run this tutorial, you need:
 
 ## Configure the environment
 
-::: moniker range="foundry-classic"
+<!-- ::: moniker range="foundry-classic" -->
 [!INCLUDE [set-endpoint](../../includes/set-endpoint.md)]
-::: moniker-end
+<!-- ::: moniker-end -->
 
-::: moniker range="foundry"
+<!-- ::: moniker range="foundry"
 [!INCLUDE [set-endpoint](../../default/includes/set-endpoint.md)]
-::: moniker-end
+::: moniker-end -->
 
 
 Create a client to connect to the chat model by using the `AzureAIChatCompletionsModel` class.
@@ -347,7 +346,7 @@ Use tracing in Foundry by creating a tracer. Logs are stored in Azure Applicatio
 
 ### Get your instrumentation connection string
 
-::: moniker range="foundry-classic"
+<!-- ::: moniker range="foundry-classic" -->
 
 [!INCLUDE [tip-left-pane](../../includes/tip-left-pane.md)]
 
@@ -386,10 +385,10 @@ You can configure your application to send telemetry to Azure Application Insigh
         
         application_insights_connection_string = project_client.telemetry.get_application_insights_connection_string()
         ```
-::: moniker-end
+<!-- ::: moniker-end
 ::: moniker range="foundry"
 
-::: moniker-end
+::: moniker-end -->
 
 ### Configure tracing for Foundry
 
@@ -426,7 +425,7 @@ chain.invoke({"topic": "living in a foreign country"})
 
 To see traces:
 
-::: moniker range="foundry-classic"
+<!-- ::: moniker range="foundry-classic" -->
 1. [!INCLUDE [version-sign-in](../../includes/version-sign-in.md)]
 
 1. Go to the **Tracing** section.
@@ -435,7 +434,7 @@ To see traces:
 
     :::image type="content" source="../../media/how-to/develop-langchain/langchain-portal-tracing-example.png" alt-text="A screenshot showing the trace of a chain." lightbox="../../media/how-to/develop-langchain/langchain-portal-tracing-example.png":::
 
-::: moniker-end
+<!-- ::: moniker-end
 
 ::: moniker range="foundry"
 1. [!INCLUDE [version-sign-in](../../includes/version-sign-in.md)]
@@ -443,7 +442,7 @@ To see traces:
 1. Go to the **Tracing** section.
 
 1. Find the trace you created. It might take a couple of seconds for the trace to show.
-::: moniker-end
+::: moniker-end -->
 
 
 
