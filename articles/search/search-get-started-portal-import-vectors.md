@@ -16,7 +16,7 @@ ms.date: 12/16/2025
 
 In this quickstart, you use the **Import data (new)** wizard in the Azure portal to get started with [integrated vectorization](vector-search-integrated-vectorization.md). The wizard chunks your content and calls an embedding model to vectorize the chunks at indexing and query time.
 
-This quickstart uses text-based PDFs from the [azure-search-sample-data](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/sustainable-ai-pdf) repo. However, you can use images and still complete this quickstart.
+This quickstart uses text-based PDFs from the [azure-search-sample-data](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/sustainable-ai-pdf) repo. Although you can use images to complete this quickstart, we recommend [Quickstart: Multimodal search in the Azure portal](search-get-started-portal-image-search.md) for advanced image processing.
 
 ## Prerequisites
 
@@ -46,12 +46,12 @@ The portal supports the following embedding models for integrated vectorization.
 
 | Provider | Supported models |
 |--|--|
-| [Microsoft Foundry resource](/azure/ai-services/multi-service-resource) <sup>1</sup> | For text and images: [Azure Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) <sup>2</sup> |
-| [Microsoft Foundry hub-based project](/azure/ai-foundry/how-to/hub-create-projects) | For text:<br>text-embedding-ada-002<br>text-embedding-3-small<br>text-embedding-3-large<br><br>For text and images:<br>Cohere-embed-v3-english <sup>3</sup><br>Cohere-embed-v3-multilingual <sup>3</sup> |
-| [Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects) | For text:<br>text-embedding-ada-002<br>text-embedding-3-small<br>text-embedding-3-large |
-| [Azure OpenAI resource](/azure/ai-services/openai/how-to/create-resource) <sup>4, 5</sup> | For text:<br>text-embedding-ada-002<br>text-embedding-3-small<br>text-embedding-3-large |
+| [Microsoft Foundry resource](/azure/ai-services/multi-service-resource) <sup>1</sup> | **For text and images**: [Azure Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) <sup>2</sup> |
+| [Microsoft Foundry hub-based project](/azure/ai-foundry/how-to/hub-create-projects) | **For text**:<br>text-embedding-ada-002<br>text-embedding-3-small<br>text-embedding-3-large<br><br>**For text and images**:<br>Cohere-embed-v3-english <sup>3</sup><br>Cohere-embed-v3-multilingual <sup>3</sup> |
+| [Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects) | **For text**:<br>text-embedding-ada-002<br>text-embedding-3-small<br>text-embedding-3-large |
+| [Azure OpenAI resource](/azure/ai-services/openai/how-to/create-resource) <sup>4, 5</sup> | **For text**:<br>text-embedding-ada-002<br>text-embedding-3-small<br>text-embedding-3-large |
 
-<sup>1</sup> For billing purposes, you must [attach your Foundry resource](cognitive-search-attach-cognitive-services.md) to the skillset in your Azure AI Search service. Unless you use a [keyless connection (preview)](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) to create the skillset, both resources must be in the same region.
+<sup>1</sup> For billing purposes, you must [attach your Foundry resource](cognitive-search-attach-cognitive-services.md) to the skillset in your Azure AI Search service. Unless you use a [keyless connection](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) (preview) to create the skillset, both resources must be in the same region.
 
 <sup>2</sup> The Azure Vision multimodal embeddings APIs are available in [select regions](/azure/ai-services/computer-vision/overview-image-analysis#region-availability).
 
