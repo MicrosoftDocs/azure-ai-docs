@@ -9,7 +9,7 @@ ms.topic: how-to
 ms.author: scottpolly
 author: s-polly
 ms.reviewer: soumyapatro
-ms.date: 01/12/2026
+ms.date: 01/13/2026
 ms.custom:
   - data4ml
   - devx-track-azurecli
@@ -568,7 +568,7 @@ To create a Git connection in Machine Learning studio:
 
 1. On the **Connect a Git repository** screen, input the path to your Git repo under **Endpoint** and your Git personal access token (PAT) under **Personal access token**. Provide a **Connection name**, and then select **Add connection**.
 
-   :::image type="content" source="media/how-to-connection/how-to-connect-add-connection.png" alt-text="Screenshot highlighting of the Git connection screen in Azure Machine Learning studio UI.":::
+   :::image type="content" source="media/how-to-connection/how-to-connect-add-connection.png" alt-text="Screenshot of the Git connection screen in Azure Machine Learning studio UI.":::
 
 ---
 
