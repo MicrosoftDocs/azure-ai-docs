@@ -190,7 +190,7 @@ For individual agent estimates:
 1. Select the **Agents** tab.
 1. The **Estimated costs** column shows monthly estimates based on agent configuration and usage patterns.
 
-**Reference:** [Agent concepts](../agents/concepts/development-lifecycle.md)
+**Reference:** [Agent concepts](../default/agents/concepts/development-lifecycle.md)
 
 :::image type="content" source="../default/media/manage-costs/agent-list.png" alt-text="Screenshot of the Agents tab showing a list of agents with columns for Name, Status, and Estimated costs. The Estimated costs column displays monthly values." lightbox="../default/media/manage-costs/agent-list.png":::
 
