@@ -21,7 +21,6 @@ This article explains how to maximize the value of your Azure free account to qu
 ## Prerequisites
 
 + An internet connection and a supported web browser.
-
 + A phone number, credit or debit card, and Microsoft or GitHub account to create an Azure free account.
 
 ## Create an Azure free account
@@ -47,7 +46,7 @@ Before you create resources for a key-based connection, confirm regional support
 
 Azure AI Search offers several [pricing tiers](search-sku-tier.md), but only two tiers stay within the free account credit limits:
 
-+ **Free** doesn't consume any credits and provides 50 MB of storage. You can have one free search service per Azure subscription. This tier supports quickstarts and tutorials that don't feature semantic ranking or managed identities for Microsoft Entra ID authentication and authorization.
++ **Free** doesn't consume credits and provides 50 MB of storage. You can have one free search service per Azure subscription. This tier supports quickstarts and tutorials that don't feature semantic ranking or managed identities for Microsoft Entra ID authentication and authorization.
 
 + **Basic** (recommended) consumes about one-third of your USD200 credits over 30 days and provides 15 GB of storage in most regions. This tier supports all features, including semantic ranking and managed identities, and runs on dedicated infrastructure for consistent performance.
 
@@ -56,11 +55,13 @@ Azure AI Search offers several [pricing tiers](search-sku-tier.md), but only two
 
 ## Create resources
 
-1. [Create an Azure AI Search service](search-create-service-portal.md). Choose the pricing tier that fits your needs and, if applicable, the same region as Microsoft Foundry. Most Azure AI Search regions provide higher-capacity storage limits. Only a few have older, lower limits. For the Basic tier, confirm that you have 15-GB partition during service creation.
+Most Azure AI Search scenarios require the following resources:
 
-1. (Optional) [Create an Azure Storage account](/azure/storage/common/storage-account-create?tabs=azure-portal) to index your own files. Choose a general purpose account and use default settings.
+1. [Create an Azure AI Search service](search-create-service-portal.md). Choose the pricing tier that fits your needs and, if applicable, the same region as Microsoft Foundry. Most Azure AI Search regions provide higher-capacity storage limits. Only a few have older, lower limits. For the Basic tier, confirm that you have a 15-GB partition during service creation.
 
-1. (Optional) [Create a Microsoft Foundry resource](/azure/ai-services/multi-service-resource) to use AI enrichment in your indexing workloads and the Azure Vision multimodal APIs as an embedding model provider.
+1. [Create an Azure Storage account](/azure/storage/common/storage-account-create?tabs=azure-portal) to index your own files. Choose a general purpose account and use the default settings.
+
+1. [Create a Microsoft Foundry resource](/azure/ai-services/multi-service-resource) to use AI enrichment in your indexing workloads and the Azure Vision multimodal APIs as an embedding model provider.
 
 ## Run a quickstart
 
@@ -89,4 +90,4 @@ In the Azure portal, a notification in the upper-right corner shows how many cre
 
 ## Next step
 
-Ready to move beyond exploration? After your free trial ends, learn how to [plan and manage capacity](search-capacity-planning.md) and [plan and manage costs](search-sku-cost-management.md) for production workloads.
+Ready to move beyond exploration? After your free trial ends, learn how to [plan and manage capacity](search-capacity-planning.md) and [plan and manage costs](search-sku-manage-costs.md) for production workloads.
