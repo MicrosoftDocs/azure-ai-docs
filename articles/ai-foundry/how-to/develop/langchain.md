@@ -5,7 +5,7 @@ description: Learn how to use LangChain with models deployed in Microsoft Foundr
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
-  - update-code
+  - update-code-2
   - dev-focus
 ms.topic: how-to
 ms.date: 12/29/2025
@@ -58,7 +58,7 @@ To run this tutorial, you need:
     * **Azure AI User** to use the model in a Foundry project
 :::moniker-end
 
-* A model deployment that supports the [Model Inference API](https://aka.ms/azureai/modelinference). This article uses `Mistral-Large-2411` in code examples, but this model is deprecated. Deploy a more recent Mistral model such as `Mistral-Large-3` or `Mistral-Nemo` from the Foundry model catalog instead, and substitute your model name in the code examples.
+* A model deployment that supports the [Model Inference API](https://aka.ms/azureai/modelinference). This article uses `Mistral-Large-3`.
 
 * Python 3.9 or later installed, including pip.
 * LangChain installed. You can install it by using the following command:
@@ -110,7 +110,7 @@ from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
 model = AzureAIChatCompletionsModel(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
     credential=DefaultAzureCredential(),
-    model="Mistral-Large-2411",
+    model="Mistral-Large-3",
 )
 ```
 
@@ -128,7 +128,7 @@ from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
 model = AzureAIChatCompletionsModel(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
     credential=DefaultAzureCredentialAsync(),
-    model="Mistral-Large-2411",
+    model="Mistral-Large-3",
 )
 ```
 
@@ -211,7 +211,7 @@ In the following example, you create two model clients: one producer and one ver
 
 [!notebook-python[](~/azureai-samples-main/scenarios/langchain/getting-started-with-langchain-chat-models.ipynb?name=create_producer_verifier)]
 
-**What this snippet does:** Instantiates two separate `AzureAIChatCompletionsModel` clients: one using `Mistral-Large-2411` for content generation and another using `Mistral-Small` for verification, demonstrating how to choose different models for different tasks.
+**What this snippet does:** Instantiates two separate `AzureAIChatCompletionsModel` clients: one using `Mistral-Large-3` for content generation and another using `Mistral-Small` for verification, demonstrating how to choose different models for different tasks.
 
 **References:**
 - [LangChain Azure AI integration](https://python.langchain.com/docs/integrations/chat/azure_ai)
