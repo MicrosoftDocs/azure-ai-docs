@@ -190,7 +190,7 @@ For individual agent estimates:
 1. Select the **Agents** tab.
 1. The **Estimated costs** column shows monthly estimates based on agent configuration and usage patterns.
 
-**Reference:** [Agents in Foundry](../agents/concepts/index.md)
+**Reference:** [Agent concepts](../agents/concepts/development-lifecycle.md)
 
 :::image type="content" source="../default/media/manage-costs/agent-list.png" alt-text="Screenshot of the Agents tab showing a list of agents with columns for Name, Status, and Estimated costs. The Estimated costs column displays monthly values." lightbox="../default/media/manage-costs/agent-list.png":::
 
@@ -203,7 +203,7 @@ To view detailed agent costs:
 1. Set the date range in the upper-right corner.
 1. View token costs and usage metrics for the selected range.
 
-**Reference:** [Monitor agents](../agents/concepts/index.md)
+**Reference:** [Monitor agent metrics](../agents/how-to/metrics.md)
 
 :::image type="content" source="../default/media/manage-costs/agent-build-cost.png" alt-text="Screenshot of the Build page showing the Models pane with a selected model highlighted." lightbox="../default/media/manage-costs/agent-build-cost.png":::
 
@@ -216,7 +216,7 @@ To view detailed agent costs:
 1. Set the date range in the upper-right corner.
 You see total cost and an estimated cost chart for the selected range.
 
-**Reference:** [Deploy and monitor models](../foundry-models/how-to/deploy-models.md) 
+**Reference:** [Monitor models](../foundry-models/how-to/monitor-models.md) 
 
 :::image type="content" source="../default/media/manage-costs/model-costs.png" alt-text="Screenshot of Azure portal showing the Monitor tab with total cost and estimated cost chart for a selected model and date range." lightbox="../default/media/manage-costs/model-costs.png":::
 
@@ -249,11 +249,8 @@ When you select **View More Details** or **Azure Cost Management**, you're direc
 Use the **Cost Analysis** tool to view costs grouped by billing meter:
 
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and select the resource group that contains the project you want to monitor.
-
-   [!INCLUDE [find-region](../includes/find-region.md)]
-
-1. In Azure portal, select **Cost analysis** under **Cost Management**.
+1. Sign in to the [Azure portal](https://portal.azure.com/) and select your resource group.
+1. Select **Cost analysis** under **Cost Management**.
 
 1. By default, cost analysis is scoped to the selected resource group.
 
