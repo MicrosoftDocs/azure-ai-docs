@@ -44,18 +44,18 @@ audioConfig = AudioConfiguration.fromMicrophoneInput("<device id>");
 > [!IMPORTANT]
 > Although the device enumeration examples in this article return device IDs, the Speech SDK `AudioConfig.FromMicrophoneInput()` method does not accept a device ID.
 > It only accepts the device’s friendly name.
-
+>
 > Correct usage (device name)
-
-```cs
-audioConfig = AudioConfig.FromMicrophoneInput("Microphone (Realtek(R) Audio)");
-```
-
+>
+> ```cs
+> audioConfig = AudioConfig.FromMicrophoneInput("Microphone (Realtek(R) Audio)");
+> ```
+>
 > Incorrect usage (device ID)
-
-```cs
-audioConfig = AudioConfig.FromMicrophoneInput("{0.0.1.00000000}.{5f23ab69-6181-4f4a-81a4-45414013aac8}");
-```
+>
+> ```cs
+> audioConfig = AudioConfig.FromMicrophoneInput("{0.0.1.00000000}.{5f23ab69-6181-4f4a-81a4-45414013aac8}");
+> ```
 
 > [!NOTE]
 > Microphone use isn't available for JavaScript running in Node.js.
