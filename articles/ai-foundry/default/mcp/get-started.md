@@ -142,8 +142,7 @@ Install Foundry MCP Server for a specific workspace to scope it to that folder:
     Show me details about the GPT-5-mini model on Foundry
     ```
 
-## Next steps
+## Related content
 
-> [!div class="nextstepaction"]
-> [Foundry MCP Server security and best practices](security-best-practices.md)
-> [Foundry MCP Server tools and example prompts](available-tools.md)
+* [Foundry MCP Server security and best practices](security-best-practices.md)
+* [Foundry MCP Server tools and example prompts](available-tools.md)

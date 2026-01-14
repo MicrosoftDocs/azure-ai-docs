@@ -122,5 +122,5 @@ The playground only supports select models, such as Azure OpenAI models and Llam
 
 ## Related content
 
-- [Foundry overview](../what-is-azure-ai-foundry.md)
+- [Foundry overview](../what-is-foundry.md)
 - [Azure AI FAQ](../faq.yml)

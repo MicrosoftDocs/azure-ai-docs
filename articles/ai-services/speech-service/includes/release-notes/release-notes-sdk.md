@@ -123,7 +123,7 @@ SDK version 1.44.1 is being released for JavaScript only with 4 bug fixes:
 #### New features:
   * Updated development dependency: TypeScript 3.5.3 → 4.5
   * Updated TranslationRecognizer to use V2 endpoints by default.
-  * Updated SpeechRecongizer to use V2 endpoints.
+  * Updated SpeechRecognizer to use V2 endpoints.
     * This results in no longer receiving NoMatch results.
   * Added support for Microsoft Entra token-based authentication for Speech Recognition and Translation.
   * Updated FromEndpoint API to be the recommended method for constructing a SpeechConfig for most scenarios.

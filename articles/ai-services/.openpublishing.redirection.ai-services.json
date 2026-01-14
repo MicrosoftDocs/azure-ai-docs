@@ -1,6 +1,11 @@
 {
   "redirections": [
     {
+      "source_path_from_root": "/articles/ai-services/connect-services-ai-foundry-portal.md",
+      "redirect_url": "/azure/ai-services/connect-services-foundry-portal",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/speech-service/pattern-matching-overview.md",
       "redirect_url": "/azure/ai-services/speech-service/migrate-intent-recognition",
       "redirect_document_id": false
@@ -1366,6 +1371,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/ai-services/speech-service/how-to-custom-speech-transcription-editor.md",
+      "redirect_url": "/azure/ai-services/speech-service/how-to-custom-speech-create-project",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/content-understanding/concepts/capabilities.md",
       "redirect_url": "/azure/ai-services/content-understanding/concepts/analyzer-templates",
       "redirect_document_id": true
@@ -2157,7 +2167,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/includes/audio-completions-ai-foundry.md",
-      "redirect_url": "/azure/ai-foundry/openai/includes/audio-completions-ai-foundry",
+      "redirect_url": "/azure/ai-foundry/openai/includes/audio-completions-foundry",
       "redirect_document_id": true
     },
     {

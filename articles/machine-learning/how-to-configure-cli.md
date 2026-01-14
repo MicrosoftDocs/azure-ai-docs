@@ -9,7 +9,7 @@ ms.topic: how-to
 author: s-polly
 ms.author: scottpolly
 ms.date: 10/06/2025
-ms.reviewer: balapv
+ms.reviewer: shshubhe
 ms.custom: devx-track-azurecli, devplatv2
 # Customer intent: As an admin, I want to understand how to install the Azure CLI extension for Azure Machine Learning.
 ---

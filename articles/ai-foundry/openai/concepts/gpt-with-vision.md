@@ -17,6 +17,7 @@ ai-usage: ai-assisted
 
 # Vision-enabled chat model concepts
 
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 Vision-enabled chat models are large multimodal models (LMM) developed by OpenAI that can analyze images and provide textual responses to questions about them. They incorporate both natural language processing and visual understanding. This guide provides details on their capabilities and limitations. To see which models support image input, see the [Models page](./models.md).
 

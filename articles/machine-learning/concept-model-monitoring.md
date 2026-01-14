@@ -7,7 +7,7 @@ author: s-polly
 ms.author: scottpolly
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.reviewer: alehughes
+ms.reviewer: jturuk
 ms.topic: concept-article
 ms.date: 02/25/2025
 ms.custom: devplatv2, FY25Q1-Linter

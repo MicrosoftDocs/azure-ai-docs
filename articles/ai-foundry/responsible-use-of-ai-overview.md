@@ -6,7 +6,7 @@ manager: nitinme
 keywords: Foundry Tools, cognitive
 ms.service: azure-ai-foundry
 ms.topic: overview
-ms.date: 11/21/2025
+ms.date: 12/30/2025
 ms.author: pafarley
 author: PatrickFarley
 ms.custom: ignite-2024
@@ -14,6 +14,8 @@ monikerRange: 'foundry-classic || foundry'
 ---
 
 # Responsible AI for Microsoft Foundry
+
+[!INCLUDE [version-banner](includes/version-banner.md)]
 
 This article provides an overview of the resources for building and deploying trustworthy AI agents. This includes end-to end security, observability, and governance with controls and checkpoints at all stages of the agent lifecycle. Our recommended essential development steps are grounded in the [Microsoft Responsible AI Standard](https://aka.ms/RAI), which sets policy requirements that our own engineering teams follow. Much of the content of the Standard follows a pattern, asking teams to Discover, Protect, and Govern potential content risks.
 

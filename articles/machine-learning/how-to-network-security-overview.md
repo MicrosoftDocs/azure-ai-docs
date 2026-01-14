@@ -5,7 +5,7 @@ description: Secure Azure Machine Learning workspace resources and compute envir
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
-ms.reviewer: None
+ms.reviewer: shshubhe
 ms.author: scottpolly
 author: s-polly
 ms.date: 10/28/2025

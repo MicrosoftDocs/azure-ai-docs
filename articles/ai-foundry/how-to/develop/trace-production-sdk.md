@@ -17,6 +17,8 @@ ms.update-cycle: 180-days
 
 # Enable tracing and collect feedback for a flow deployment
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 After you deploy a generative AI application in production, you might want to enhance your understanding and optimize performance. Trace data for each request, aggregated metrics, and user feedback play critical roles.
@@ -33,7 +35,7 @@ In this article, you learn to enable tracing, collect aggregated metrics, and co
 - The Azure CLI and the Azure Machine Learning extension to the Azure CLI.
 - A Microsoft Foundry project. If you don't already have a project, you can [create one](../../how-to/create-projects.md).
 - An Application Insights resource. If you don't already have an Application Insights resource, you can [create one](/azure/azure-monitor/app/create-workspace-resource).
-- Azure role-based access controls are used to grant access to operations in Azure Machine Learning. To perform the steps in this article, you must have Owner or Contributor permissions on the selected resource group. For more information, see [Role-based access control in the Foundry portal](../../concepts/rbac-azure-ai-foundry.md).
+- Azure role-based access controls are used to grant access to operations in Azure Machine Learning. To perform the steps in this article, you must have Owner or Contributor permissions on the selected resource group. For more information, see [Role-based access control in the Foundry portal](../../concepts/rbac-foundry.md).
 
 ## Deploy a flow for real-time inference
 

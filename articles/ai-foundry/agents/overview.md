@@ -18,9 +18,9 @@ monikerRange: 'foundry-classic || foundry'
 
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
-Most businesses don't want just chatbots. They want automation that's faster and has fewer errors. That might mean summarizing documents, processing invoices, managing support tickets, or publishing blog posts. In all cases, the goal is the same: freeing people and resources to focus on higher-value work by offloading repetitive and predictable tasks.
+Most businesses don't want just chatbots. They want automation that's faster and has fewer errors. That desire might mean summarizing documents, processing invoices, managing support tickets, or publishing blog posts. In all cases, the goal is the same: freeing people and resources to focus on higher-value work by offloading repetitive and predictable tasks.
 
-Large language models (LLMs) introduced a new type of automation with systems that can understand unstructured data, make decisions, and generate content. In practice, businesses can have difficulty moving beyond demos and into production. LLMs can drift, be incorrect, and lack accountability. Without visibility, policy enforcement, and orchestration, these models are hard to trust in real business workflows.
+Large language models (LLMs) introduce a new type of automation with systems that can understand unstructured data, make decisions, and generate content. In practice, businesses can have difficulty moving beyond demos and into production. LLMs can drift, be incorrect, and lack accountability. Without visibility, policy enforcement, and orchestration, these models are hard to trust in real business workflows.
 
 :::row:::
     :::column span="1":::
@@ -31,15 +31,15 @@ Large language models (LLMs) introduced a new type of automation with systems th
     :::column-end:::
 :::row-end:::
 
-Foundry Agent Service connects the core pieces of Foundry (such as models, tools, and frameworks) into a single runtime. It manages conversations, orchestrates tool calls, enforces content safety, and integrates with identity, networking, and observability systems. These activities help ensure that agents are secure, scalable, and production ready.
+Foundry Agent Service connects the core pieces of Foundry, such as models, tools, and frameworks, into a single runtime. It manages conversations, orchestrates tool calls, enforces content safety, and integrates with identity, networking, and observability systems. These activities help ensure that agents are secure, scalable, and production ready.
 
 By abstracting away infrastructure complexity and enforcing trust and safety by design, Foundry Agent Service can help you move from prototype to production with confidence.
 
 ## What is an AI agent?
 
-Agents make decisions, invoke tools, and participate in workflows. They do these tasks sometimes independently and sometimes in collaboration with other agents or humans. They're foundational to real process automation.
+Agents make decisions, invoke tools, and participate in workflows. They perform these tasks sometimes independently and sometimes in collaboration with other agents or humans. They're foundational to real process automation.
 
-Agents created via Foundry are not monoliths. They're composable units. Each agent has a specific role, is powered by the right model, and is equipped with the right tools. And each agent is deployed within a secure, observable, and governable runtime.
+Agents you create through Foundry aren't monoliths. They're composable units. Each agent has a specific role, is powered by the right model, and is equipped with the right tools. You deploy each agent within a secure, observable, and governable runtime.
 
 An agent has three core components:
 
@@ -65,7 +65,7 @@ Think of Foundry as an assembly line for intelligent agents. Like any modern fac
     :::column span="1":::
 ### 1. Models
 
-The assembly line starts when you select a model that gives your agent its intelligence. Choose from a growing catalog of LLMs, including GPT-4o, GPT-4, GPT-3.5 (Azure OpenAI), and others like Llama. The model is the reasoning core of the agent that informs its decisions.
+The assembly line starts when you select a model that gives your agent its intelligence. Choose from a growing catalog of large language models (LLMs), including GPT-4o, GPT-4, GPT-3.5 (Azure OpenAI), and others like Llama. The model is the reasoning core of the agent that informs its decisions.
     :::column-end:::
     :::column span="1":::
 ### 2. Customizability
@@ -96,18 +96,18 @@ The agent needs coordination. [Workflows](../default/agents/concepts/workflow.md
     :::column span="1":::
 ### 5. Observability
 
-Agents are tested and monitored. Foundry can capture logs, traces, and evaluations at every step. With full conversation-level visibility and Application Insights integration, teams can inspect every decision and continuously improve agents over time.
+Test and monitor agents. Foundry can capture logs, traces, and evaluations at every step. With full conversation-level visibility and Application Insights integration, teams can inspect every decision and continuously improve agents over time.
     :::column-end:::
     :::column span="1":::
 ### 6. Trust
 
-It's important to ensure that agents are suitable and reliable for the workload they're assigned to. Foundry applies enterprise-grade trust features, including identity via Microsoft Entra, role-based access control (RBAC), content filters, encryption, and network isolation. You choose how and where your agents run, by using platform-managed or bring-your-own infrastructure.
+Ensure that agents are suitable and reliable for the workload they're assigned to. Foundry applies enterprise-grade trust features, including identity via Microsoft Entra, role-based access control (RBAC), content filters, encryption, and network isolation. You choose how and where your agents run, by using platform-managed or bring-your-own infrastructure.
     :::column-end:::
 :::row-end:::
 
 The result is an agent that's ready for production: reliable, extensible, and safe to deploy across your workflows.
 
-## Why Use Foundry Agent Service?
+## Why use Foundry Agent Service?
 
 Foundry Agent Service provides a production-ready foundation for deploying intelligent agents in enterprise environments. Here's how it compares across key capabilities:
 
@@ -123,21 +123,21 @@ Foundry Agent Service provides a production-ready foundation for deploying intel
 
 ## Get started with Foundry Agent Service
 
-To get started with Foundry Agent Service, you need to create a Foundry project in your Azure subscription.
+To get started with Foundry Agent Service, create a Foundry project in your Azure subscription.
 
 :::moniker range="foundry-classic"
 
-Start with the [environment setup](environment-setup.md) and [quickstart](./quickstart.md) guides if it's your first time using the service.
+If it's your first time using the service, start with the [environment setup](environment-setup.md) and [quickstart](./quickstart.md) guides.
 
 :::moniker-end
 
 :::moniker range="foundry"
 
-Start with the [environment setup](environment-setup.md) and [quickstart](../quickstarts/get-started-code.md) guides if it's your first time using the service.
+If it's your first time using the service, start with the [environment setup](environment-setup.md) and [quickstart](../quickstarts/get-started-code.md) guides.
 
 :::moniker-end
 
-You can create a project with the required resources. After you create a project, you can deploy a compatible model such as GPT-4o. When you have a deployed model, you can also start making API calls to the service by using the SDKs.
+Create a project with the required resources. After you create a project, you can deploy a compatible model such as GPT-4o. When you have a deployed model, you can also start making API calls to the service by using the SDKs.
 
 :::moniker range="foundry"
 
@@ -149,11 +149,11 @@ You can find a list of official samples with the new Python agent SDK on [GitHub
 
 To support service resilience, Foundry Agent Service relies on customer-provisioned Azure Cosmos DB accounts for business continuity and disaster recovery (BCDR). This reliance helps ensure that your agent state can be preserved and recovered in the event of a regional outage.
 
-As an Azure Standard customer, you provision and manage your own single-tenant Azure Cosmos DB account. All agent state is stored in this account. Backup and recovery rely on native capabilities in Azure Cosmos DB, which you control.
+As an Azure Standard customer, you provision and manage your own single-tenant Azure Cosmos DB account. You store all agent state in this account. You control backup and recovery through native capabilities in Azure Cosmos DB.
 
-If the primary region becomes unavailable, the agent automatically becomes available in the secondary region by connecting to the same Azure Cosmos DB account. Because all history is preserved in Cosmos DB, the agent can continue operation with minimal disruption.
+If the primary region becomes unavailable, the agent automatically connects to the same Azure Cosmos DB account in the secondary region. Because Cosmos DB preserves all history, the agent can continue operation with minimal disruption.
 
-We recommend that customers provision and maintain their Azure Cosmos DB accounts, and that they configure appropriate backup and recovery policies. This effort helps ensure seamless continuity if the primary region becomes unavailable.
+Provision and maintain your Azure Cosmos DB account, and configure appropriate backup and recovery policies. This effort helps ensure seamless continuity if the primary region becomes unavailable.
 
 ## Related content
 

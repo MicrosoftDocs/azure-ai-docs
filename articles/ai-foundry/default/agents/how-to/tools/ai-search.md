@@ -43,6 +43,15 @@ The [Azure AI Search](/azure/search/search-what-is-azure-search) tool in Microso
 - For keyless authentication, the following Azure role-based access control (RBAC) roles assigned to your project's managed identity:
   - **Search Index Data Contributor** - Allows reading and writing to search indexes
   - **Search Service Contributor** - Allows managing search service resources
+ 
+## Parameters in AI Search tool
+| Agents AI Search tool parameter | Status in Agents | Note | 
+|---|---|---|
+| `index_connection_id` | Required | Agents uses Connections to manage Search endpoints and authentication.
+| `index_name`| Required | Name of the index in your search resource.
+| `top_k` | Optional | Default value is 5.
+| `query_type` | Optional | The default value is `vector_sematic_hybrid`. Other supported values: `simple`, `vector`, `semantic`, `vector_simple_hybrid`.
+| `filter` | Optional | Note that this filter will apply for all calls the agent makes to the search index, across all threads run by that agent.
 
 ## Code example
 
@@ -76,6 +85,11 @@ project_client = AIProjectClient(
 openai_client = project_client.get_openai_client()
 
 with project_client:
+
+    azs_connection = project_client.connections.get(os.environ["AI_SEARCH_PROJECT_CONNECTION_NAME"])
+    connection_id = azs_connection.id
+    print(f"Azure AI Search connection ID: {connection_id}")
+
     agent = project_client.agents.create_version(
         agent_name="MyAgent",
         definition=PromptAgentDefinition(
@@ -87,7 +101,7 @@ with project_client:
                     azure_ai_search=AzureAISearchToolResource(
                         indexes=[
                             AISearchIndexResource(
-                                project_connection_id=os.environ["AI_SEARCH_PROJECT_CONNECTION_ID"],
+                                project_connection_id=connection_id,
                                 index_name=os.environ["AI_SEARCH_INDEX_NAME"],
                                 query_type=AzureAISearchQueryType.SIMPLE,
                             ),

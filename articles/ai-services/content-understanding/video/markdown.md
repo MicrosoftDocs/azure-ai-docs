@@ -16,11 +16,6 @@ ms.custom:
 
 Azure Content Understanding in Foundry Tools converts unstructured audio and video content into richly formatted [GitHub Flavored Markdown](https://github.github.com/gfm), while preserving temporal relationships and content structure for accurate downstream use. This document describes how each audiovisual content element is represented in markdown for both audio and video inputs.
 
-> [!IMPORTANT]
->
-> * Azure Content Understanding is available in preview. Public preview releases provide early access to features that are in active development.
-> * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
-> * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
 ## Overview
 
@@ -30,7 +25,7 @@ The markdown format differs based on input type:
 - **Audio inputs**: Focus on transcript content, timing, and speaker information
 - **Video inputs**: Include all audio elements plus key frames
 
-For complete details about supported file types, file size limits, and other constraints, see [service quotas and limits](../service-limits.md#analyzers).
+For complete details about supported file types, file size limits, and other constraints, see [service quotas and limits](../service-limits.md).
 
 
 ## Document structure and metadata

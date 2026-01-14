@@ -123,7 +123,7 @@ Check your permissions in Entra ID and confirm your access token is valid. Sign 
 
 ### Permission errors
 
-Check your resource role assignments in the Azure portal to make sure you have the permissions for the operations you need. For more information, see [Role-based access control for Microsoft Foundry](../../concepts/rbac-azure-ai-foundry.md).
+Check your resource role assignments in the Azure portal to make sure you have the permissions for the operations you need. For more information, see [Role-based access control for Microsoft Foundry](../../concepts/rbac-foundry.md).
 
 ### Server connectivity issues
 
@@ -131,4 +131,10 @@ Make sure your network allows outbound HTTPS connections to Azure services and n
 
 ### Tool discovery problems
 
-Make sure the MCP server is running and tools are loaded by checking the Output view in Visual Studio Code. Restart VS Code or reload your workspace to fix discovery issues. 
+Make sure the MCP server is running and tools are loaded by checking the Output view in Visual Studio Code. Restart VS Code or reload your workspace to fix discovery issues.
+
+## Related content
+
+- Review [available tools and example prompts](available-tools.md) for Foundry MCP Server
+- Get started with [Foundry MCP Server](get-started.md)
+- Learn how to [build your own MCP server](build-your-own-mcp-server.md) 

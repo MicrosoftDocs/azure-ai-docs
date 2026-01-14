@@ -5,7 +5,7 @@ description: Find code samples to use OpenAPI tools with agents.
 author: alvinashcraft
 ms.author: aashcraft
 manager: nitinme
-ms.date: 11/20/2025
+ms.date: 01/14/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
@@ -18,7 +18,7 @@ zone_pivot_groups: selection-openapi-function
 # How to use the OpenAPI spec tool
 
 > [!NOTE]
-> This document refers to the classic version of the agents API. 
+> This article refers to the classic version of the agents API. 
 >
 > 🔍 [View the new OpenAPI tool documentation](../../../default/agents/how-to/tools/openapi.md?view=foundry&preserve-view=true).
 
@@ -26,7 +26,7 @@ Use this article to find step-by-step instructions and code samples for using Op
 
 :::zone pivot="portal"
 
-1. Go to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). in the **Agents** screen or **Agent playground**, select your agent.
+1. Go to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). In the **Agents** screen or **Agent playground**, select your agent.
 1. Scroll down the **Setup** pane to **action**. Then select **Add**.
 
     :::image type="content" source="../../media\tools\action-tools.png" alt-text="A screenshot showing the available tool categories in the Foundry portal." lightbox="../../media\tools\action-tools.png":::
@@ -35,13 +35,13 @@ Use this article to find step-by-step instructions and code samples for using Op
 
     :::image type="content" source="../../media\tools\action-tools-list.png" alt-text="A screenshot showing the available action tools in the Foundry portal." lightbox="../../media\tools\action-tools-list.png":::
    
-1. Give your tool a name (required) and a description (optional). The description will be used by the model to decide when and how to use the tool.
+1. Give your tool a name (required) and a description (optional). The description is used by the model to decide when and how to use the tool.
 
    :::image type="content" source="../../media\tools\open-api-details.png" alt-text="A screenshot showing the openAPI tool details in the Foundry portal." lightbox="../../media\tools\open-api-details.png":::
 
 1. Select **Next** and select your authentication method.
-   1. If you choose `connection`, you need to select the [custom connection](./openapi-spec.md#authenticate-with-api-key) with an API key.
-   1. If you choose `managed identity`, you need to input the audience to get your token which is the authentication scope. Make sure you have already set up authentication and role assignment as described in the [OpenAPI tool overview](./openapi-spec.md#authenticate-with-managed-identity-microsoft-entra-id). An example of an audience might be `https://cognitiveservices.azure.com/` to connect to Foundry Tools, once proper setup has been performed.
+   1. If you choose `connection`, select the [custom connection](./openapi-spec.md#authenticate-with-api-key) with an API key.
+   1. If you choose `managed identity`, enter the **Audience** value. The audience is the OAuth2 resource identifier for the API you're calling. For common audience values and guidance on finding the correct value for your API, see [Authenticate with managed identity](./openapi-spec.md#authenticate-with-managed-identity-microsoft-entra-id). Make sure you already set up authentication and role assignment as described in that section.
       
 1. Copy and paste your OpenAPI specification in the text box.
 
@@ -52,7 +52,7 @@ Use this article to find step-by-step instructions and code samples for using Op
 :::zone pivot="python"
 
 ## Initialization
-The code begins by setting up the necessary imports and initializing the AI Project client:
+Set up the necessary imports and initialize the AI Project client.
 
 ```python
 # Import necessary libraries
@@ -77,7 +77,7 @@ with AIProjectClient(
 ```
 
 ## Tool setup
-Similarly, the OpenAPI specification is loaded from `weather.json`. An anonymous authentication object (`OpenApiAnonymousAuthDetails`) is created, as this specific API doesn't require authentication in this example. You can find an example OpenAPI spec on [GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples-classic/python/getting-started-agents/openapi/weather_openapi.json).
+Load the OpenAPI specification from `weather.json`. Create an anonymous authentication object (`OpenApiAnonymousAuthDetails`), as this specific API doesn't require authentication in this example. You can find an example OpenAPI spec on [GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples-classic/python/getting-started-agents/openapi/weather_openapi.json).
 
 ```python
     # Load the OpenAPI specification for the weather service from a local JSON file
@@ -98,7 +98,7 @@ Similarly, the OpenAPI specification is loaded from `weather.json`. An anonymous
 ```
 
 ## Agent Creation
-An agent is created using the `project_client.agents.create_agent` method.
+Create an agent by using the `project_client.agents.create_agent` method.
 
 ```python
     # Create an agent configured with the combined OpenAPI tool definitions
@@ -161,7 +161,7 @@ Create the run, check the output, and examine what tools were called during the 
 
 
 ## Cleanup
-After the interaction is complete, the script performs cleanup by deleting the created agent resource using `agents_client.delete_agent()` to avoid leaving unused resources. It also fetches and prints the entire message history from the thread using `agents_client.messages.list()` for review or logging.
+After the interaction is complete, the script cleans up by deleting the created agent resource by using `agents_client.delete_agent()` to avoid leaving unused resources. It also fetches and prints the entire message history from the thread by using `agents_client.messages.list()` for review or logging.
 
 ```python
         # Delete the agent resource to clean up
@@ -388,11 +388,15 @@ client.Administration.DeleteAgent(agent.Id);
 
 :::zone pivot="rest-api"
 
-Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
+Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT`, and `API_VERSION`.
 
 ## Create the OpenAPI Spec tool definition, agent, and thread
  
-You might want to store the OpenAPI specification in another file and import the content to initialize the tool. This example is using `anonymous` as the authentication type. You can find an example OpenAPI spec on [GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples-classic/python/getting-started-agents/openapi/weather_openapi.json).
+You might want to store the OpenAPI specification in another file and import the content to initialize the tool. The following examples show how to use `anonymous` and `connection` (API key) authentication types. You can find an example OpenAPI spec on [GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples-classic/python/getting-started-agents/openapi/weather_openapi.json).
+
+### Anonymous authentication
+
+This example uses `anonymous` as the authentication type for APIs that don't require authentication.
 
 ```bash
 curl --request POST \
@@ -470,6 +474,83 @@ curl --request POST \
                 "schemes": { }
             }
             }
+        }
+    }]
+    }'
+```
+
+### API key authentication
+
+This example uses `connection` as the authentication type for APIs that require an API key. Before using this example, you need to create a custom keys connection to store your API key. For instructions, see [Authenticate with API key](./openapi-spec.md#authenticate-with-api-key).
+
+Replace `{connection-id}` with the full resource ID of your connection, which follows this format: `/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.MachineLearningServices/workspaces/{project-name}/connections/{connection-name}`.
+
+```bash
+curl --request POST \
+  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/assistants?api-version=$API_VERSION \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "instructions": "You are a helpful assistant that can retrieve data from an external API.",
+    "model": "gpt-4o",
+    "tools": [{
+        "type": "openapi",
+        "openapi": {
+          "name": "my_api_tool",
+          "description": "Tool to interact with an API that requires authentication",
+          "auth": {
+            "type": "connection",
+            "connection_id": "{connection-id}"
+          },
+          "spec": {
+            "openapi": "3.1.0",
+            "info": {
+                "title": "Example API",
+                "description": "An example API that requires API key authentication.",
+                "version": "v1.0.0"
+            },
+            "servers": [{
+                "url": "https://api.example.com"
+            }],
+            "security": [
+                {
+                    "apiKeyHeader": []
+                }
+            ],
+            "paths": {
+                "/data": {
+                    "get": {
+                        "description": "Retrieve data from the API",
+                        "operationId": "GetData",
+                        "responses": {
+                            "200": {
+                                "description": "Successful response",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            },
+                            "401": {
+                                "description": "Unauthorized"
+                            }
+                        },
+                        "deprecated": false
+                    }
+                }
+            },
+            "components": {
+                "securitySchemes": {
+                    "apiKeyHeader": {
+                        "type": "apiKey",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                }
+            }
+          }
         }
     }]
     }'

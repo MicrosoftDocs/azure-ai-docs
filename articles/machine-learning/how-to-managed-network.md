@@ -5,7 +5,7 @@ description: Use managed virtual network isolation for network security with Azu
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
-ms.reviewer: None
+ms.reviewer: shshubhe
 ms.author: scottpolly
 author: s-polly
 ms.date: 05/23/2025

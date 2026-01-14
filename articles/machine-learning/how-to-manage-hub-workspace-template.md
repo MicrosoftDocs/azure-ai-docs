@@ -9,7 +9,7 @@ ms.custom: devx-track-arm-template, devx-track-bicep
 ms.topic: how-to
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: deeikele
+ms.reviewer: shshubhe
 ms.date: 03/07/2025
 #Customer intent: As a DevOps person, I need to automate or customize the creation of Azure Machine Learning by using templates.
 ---

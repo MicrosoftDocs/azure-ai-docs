@@ -7,8 +7,8 @@ ms.author: gimondra
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: reference
-ms.date: 09/17/2025
+ms.topic: article
+ms.date: 01/07/2026
 ms.update-cycle: 365-days
 ---
 # OCR cognitive skill

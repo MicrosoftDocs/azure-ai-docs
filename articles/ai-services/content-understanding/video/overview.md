@@ -5,25 +5,20 @@ description: Learn about Azure Content Understanding in Foundry Tools video solu
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
-ms.date: 09/16/2025
+ms.date: 12/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: overview
 ms.custom:
   - build-2025
 ---
 
-# Azure Content Understanding in Foundry Tools video solutions (preview)
-
-> [!IMPORTANT]
->
-> Azure Content Understanding is available in preview. Public preview releases provide early access to features that are in active development. Features, approaches, and processes can change or have limited capabilities before General Availability (GA). For more information, see **[Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms)**.
+# Azure Content Understanding in Foundry Tools video solutions
 
 Azure Content Understanding allows you to generate a standard set of video metadata and create custom fields for your specific use case using generative models. Content Understanding helps you manage, categorize, retrieve, and build workflows for video assets. It enhances your media asset library, supports features such as highlight generation, categorizes content, and facilitates applications like retrieval-augmented generation (RAG).
 
 :::image type="content" source="../media/video/video-processing-flow.png" alt-text="Illustration of the Content Understanding video processing flow.":::
 
 The **pre-built video analyzer** (`prebuilt-videoAnalysis`) outputs RAG-ready output. In Markdown it outputs the following:
-
 - **Transcript:** Inline transcripts in standard WEBVTT format
 - **Key Frames:** Ordered key-frame thumbnails enabling deeper analysis
 
@@ -36,7 +31,6 @@ This format can drop straight into a vector store to enable an agent or RAG work
 From there you can customize the analyzer for more fine-grained control of the output. You can define custom fields and segments. Customization allows you to use the full power of generative models to extract deep insights from the visual and audio details of the video.
 
 For example, customization allows you to:
-
 - **Define custom fields:** to identify what products and brands are seen or mentioned in the video.
 - **Generate custom segments:** to segment a news broadcast into chapters based on the topics or news stories discussed.
 - **Identify prominent people using face description:** enabling a customer to label celebrities in footage with name and title based on the generative model's world knowledge, for example, `Satya Nadella`.
@@ -44,7 +38,6 @@ For example, customization allows you to:
 ## Why use Content Understanding for video?
 
 Content understanding for video has broad potential uses. For example, you can customize metadata to tag specific scenes in a training video, making it easier for employees to locate and revisit important sections. You can also use metadata customization to identify product placement in promotional videos, which helps marketing teams analyze brand exposure. Other use cases include:
-
 - **Broadcast media and entertainment:** Manage large libraries of shows, movies, and clips by generating detailed metadata for each asset.
 - **Education and e-Learning:** Index and retrieve specific moments in educational videos or lectures.
 - **Corporate training:** Organize training videos by key topics, scenes, or important moments.
@@ -56,7 +49,7 @@ With the prebuilt video analyzer (prebuilt-videoSearch), you can upload a video 
 
 1. For example, call the analyzer designed for Retrieval-augmented generation for video `prebuilt-videoSearch`. See the [REST API quickstart](../quickstart/use-rest-api.md) for details.
 
-2. Next, analyzing a 30-second advertising video, would result in the following output:
+1. Next, analyzing a 30-second advertising video, would result in the following output:
 
    ```markdown
      # Video: 00:00.000 => 00:06.000
@@ -172,7 +165,7 @@ Shape the output to match your business vocabulary. Use a `fieldSchema` object w
 
 > [!NOTE]
 >
->  This feature is limited access; customers need to request to disable face blur for Azure OpenAI models with an Azure support request. Learn more [Manage an Azure support request](https://learn.microsoft.com/azure/azure-portal/supportability/how-to-manage-azure-support-request).
+>  This feature is limited access; customers need to request to disable face blur for Azure OpenAI models with an Azure support request. Learn more [Manage an Azure support request](/azure/azure-portal/supportability/how-to-manage-azure-support-request).
 
 The field extraction capability can optionally be enhanced to provide detailed descriptions of faces in the video. This capability includes attributes such as facial hair, facial expression, and the presence of celebrities, which can be crucial for various analytical and indexing purposes. To enable face description capabilities set `disableFaceBlurring : true` in the analyzer configuration.
 
@@ -250,7 +243,7 @@ As with all Foundry Tools, review Microsoft's [Data, protection, and privacy](ht
 
 > [!IMPORTANT]
 >
-> If you process **Biometric Data** (for example, enable **Face Description**), you must meet all notice, consent, and deletion requirements under GDPR or other applicable laws. See [Data and Privacy for Face](/azure/ai-foundry/responsible-ai/face/data-privacy-security).
+> If you process **Biometric Data** (for example, enable **Face Description**), you must meet all notice, consent, and deletion requirements under applicable laws. See [Data and Privacy for Face](/azure/ai-foundry/responsible-ai/face/data-privacy-security).
 
 ## Related content
 

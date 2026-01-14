@@ -8,7 +8,7 @@ ms.subservice: prompt-flow
 ms.topic: reference
 author: lgayhardt
 ms.author: lagayhar
-ms.reviewer: GEWOODS
+ms.reviewer: sooryar
 ms.date: 11/02/2023
 ms.custom:
   - ignite-2023

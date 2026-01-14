@@ -5,7 +5,7 @@ description: Learn how to prompt Microsoft Foundry Models to generate text, usin
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 12/04/2025
+ms.date: 01/07/2026
 ms.author: mopeakande
 author: msakande
 ms.reviewer: achand

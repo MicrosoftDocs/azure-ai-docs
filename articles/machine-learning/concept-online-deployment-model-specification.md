@@ -5,10 +5,9 @@ description: Specify the model to use in an Azure Machine Learning online endpoi
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 author: dem108
-ms.author: sehan
-ms.reviewer: mopeakande
+ms.author: scottpolly
+ms.reviewer: jturuk
 ms.date: 11/13/2025
-reviewer: msakande
 ms.topic: concept-article
 ms.custom: how-to, devplatv2, cliv2, sdkv2
 ---

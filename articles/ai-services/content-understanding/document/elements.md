@@ -28,7 +28,7 @@ The document content kind includes output for input files like:
 - **Structured content**: XML, JSON, CSV, and TSV files
 - **Email**: EML and MSG message formats
 
-For more information about supported file types, file size limits, and other constraints, see [Service quotas and limits](../service-limits.md#analyzers).
+For more information about supported file types, file size limits, and other constraints, see [Service quotas and limits](../service-limits.md).
 
 ## JSON response structure
 

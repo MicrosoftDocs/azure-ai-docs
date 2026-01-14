@@ -5,7 +5,7 @@ description: Learn how to view and evaluate charts and metrics for each of your 
 services: machine-learning
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: manashg
+ms.reviewer: sooryar
 ms.service: azure-machine-learning
 ms.subservice: automl
 ms.date: 09/16/2025

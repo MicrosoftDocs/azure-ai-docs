@@ -672,7 +672,7 @@
     },
     {
       "source_path": "articles/ai-foundry/azure-openai-in-azure-ai-foundry.md",
-      "redirect_url": "/azure/ai-foundry/what-is-azure-ai-foundry",
+      "redirect_url": "/azure/ai-foundry/what-is-foundry",
       "redirect_document_id": false
     },
     {
@@ -1237,7 +1237,7 @@
     },
     {
       "source_path": "articles/ai-foundry/concepts/authentication-options-ai-foundry.md",
-      "redirect_url": "/azure/ai-foundry/concepts/rbac-azure-ai-foundry",
+      "redirect_url": "/azure/ai-foundry/concepts/rbac-foundry",
       "redirect_document_id": false
     }
   ]

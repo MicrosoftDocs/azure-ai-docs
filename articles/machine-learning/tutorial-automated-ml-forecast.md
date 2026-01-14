@@ -8,7 +8,7 @@ ms.subservice: automl
 ms.topic: tutorial
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: manashg
+ms.reviewer: sooryar
 ms.date: 07/22/2025
 ms.custom: automl
 #Customer intent: As a non-coding data scientist, I want to use automated machine learning to build a demand forecasting model.

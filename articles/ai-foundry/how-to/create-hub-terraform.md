@@ -123,13 +123,13 @@ You'll create four Terraform files to configure the Azure provider, define Found
 1. Get the Azure resource group name.
 
     ```console
-    $resource_group_name=$(terraform output -raw resource_group_name)
+    resource_group_name=$(terraform output -raw resource_group_name)
     ```
 
 1. Get the workspace name.
 
     ```console
-    $workspace_name=$(terraform output -raw workspace_name)
+    workspace_name=$(terraform output -raw workspace_name)
     ```
 
 1. Run [az ml workspace show](/cli/azure/ml/workspace#az-ml-workspace-show) to display information about the new workspace.

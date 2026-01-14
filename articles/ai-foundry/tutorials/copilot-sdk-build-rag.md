@@ -19,6 +19,8 @@ ai-usage: ai-assisted
 
 # Tutorial:  Part 2 - Build a custom knowledge retrieval (RAG) app with the Microsoft Foundry SDK
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 In this tutorial, you use the [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) SDK and other libraries to build, configure, and evaluate a chat app for your retail company called Contoso Trek. Your retail company specializes in outdoor camping gear and clothing. The chat app answers questions about your products and services. For example, the chat app can answer questions such as "which tent is the most waterproof?" or "what is the best sleeping bag for cold weather?".
 
 This part two shows you how to enhance a basic chat application by adding [retrieval augmented generation (RAG)](../concepts/retrieval-augmented-generation.md) to ground the responses in your custom data. Retrieval Augmented Generation (RAG) is a pattern that uses your data with a large language model (LLM) to generate answers specific to your data. In this part two, you learn how to:
@@ -37,13 +39,13 @@ This tutorial builds on [Tutorial: Part 1 - Create resources for building a cust
 
 ## Prerequisites
 
-[!INCLUDE [hub-only-tutorial](../includes/hub-only-tutorial.md)]
+[!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
 
 * Complete [Tutorial: Part 1 - Create resources for building a custom chat application with the Microsoft Foundry SDK](copilot-sdk-create-resources.md) to:
     * Create a project with a connected Azure AI Search index.
     * Install the Azure CLI, Python, and required packages.
     * Configure your environment variables.
-* Use the same **Microsoft Foundry** project you created in Part 1.
+* Use the same **hub-based** project you created in Part 1.
 * **Azure AI permissions**: Owner or Contributor role to create search indexes and deploy models; Cognitive Services Contributor or higher for AI Services resources. 
 
 ## Verify your setup
@@ -51,15 +53,24 @@ This tutorial builds on [Tutorial: Part 1 - Create resources for building a cust
 Before building the RAG app, confirm that your environment is properly configured by running a quick connection test:
 
 ```python
-from azure.ai.projects import AIProjectClient
+import os
 from azure.identity import DefaultAzureCredential
+import azure.ai.projects
+
+# Check the SDK version
+print(f"Azure AI Projects SDK version: {azure.ai.projects.__version__}")
 
 # Test that you can connect to your project
-client = AIProjectClient.from_config(credential=DefaultAzureCredential())
+project = AIProjectClient.from_connection_string(
+    conn_str=os.environ["AIPROJECT_CONNECTION_STRING"], credential=DefaultAzureCredential()
+)
 print("✓ Setup verified! Ready to build your RAG app.")
 ```
 
 If you see the success message, your Azure credentials and SDK are configured correctly. If you encounter authentication errors, verify your `FOUNDRY_*` environment variables are set correctly (see Part 1 prerequisites).
+
+> [!TIP]
+> This tutorial requires Azure AI Projects SDK version `1.0.0b10`. The SDK version displayed above helps you verify compatibility. If you have a different version, the `from_connection_string()` method may not be available. To install the required version, run `pip install azure-ai-projects==1.0.0b10`. 
 
 References: [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.AIProjectClient), [DefaultAzureCredential](/python/api/azure-identity/azure.identity.DefaultAzureCredential).
 

@@ -159,9 +159,12 @@ The Foundry Agent Service runtime only accepts a remote MCP server endpoint. If 
 |:---------:|:---------:|:---------:|
 | **Transport** | HTTP POST/GET endpoints required. | HTTP streamable required. | 
 | **Code changes** | The container must rebuild. | Azure Functions-specific configuration files required in the root directory. |
-| **Authentication** | Custom authentication implementation required. | Key-based only. OAuth needs API Management. |
-| **Language** | Any language that runs in Linux containers (Python, Node.js, .NET, TypeScript, Go). | Python, Node.js, Java, .NET only. |
-| **Container Requirements** | Linux (linux/amd64) only. No privileged containers.| Containerized servers are not supported. |
+| **Authentication** | Custom authentication implementation required. | Use [built-in authentication][app-service-auth] or custom code.<br/><br/>Azure Functions requires a key by default, but you can [disable the key requirement in host.json][func-host-json]. |
+| **Language stack** | Any language that runs in Linux containers (Python, Node.js, .NET, TypeScript, Go). | Python, Node.js, TypeScript, Java, .NET only. |
+| **Container requirements** | Linux (linux/amd64) only. No privileged containers.| Containerized servers are not supported. |
 | **Dependencies** | All dependencies must be in container image. | OS-level dependencies (such as Playwright) are not supported. |
 | **State** | Stateless only. | Stateless only. |
 | **UVX/NPX** | Supported. | Not supported. `npx` start commands not supported. |
+
+[app-service-auth]: /azure/app-service/configure-authentication-mcp?toc=%2Fazure%2Fazure-functions%2Ftoc.json
+[func-host-json]: /azure/azure-functions/functions-bindings-mcp#hostjson-settings
