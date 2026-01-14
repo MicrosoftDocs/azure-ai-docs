@@ -9,7 +9,7 @@ ms.reviewer: sooryar
 ms.service: azure-machine-learning
 ms.subservice: training
 ms.topic: concept-article
-ms.date: 01/14/2025
+ms.date: 01/14/2026
 ms.custom: sdkv2, update-code2
 ---
 
