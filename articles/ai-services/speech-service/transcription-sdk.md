@@ -45,12 +45,12 @@ Samples can be found for each programming language in the respective GitHub repo
 
 | Programming language | Samples Repository |
 |----------------------|--------------------|
-| [Java](quickstarts/setup-platform.md?pivots=programming-language-java) | [Java Samples](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/transcription/azure-ai-speech-transcription/src/samples/java/com/azure/ai/speech/transcription/README.md) |
-| [Python](quickstarts/setup-platform.md?pivots=programming-language-python) | [Python Samples](https://github.com/Azure/azure-sdk-for-python/tree/azure-ai-transcription_1.0.0b2/sdk/cognitiveservices/azure-ai-transcription/samples) |
+| Java | [Java Samples](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/transcription/azure-ai-speech-transcription/src/samples/java/com/azure/ai/speech/transcription/README.md) |
+| Python | [Python Samples](https://github.com/Azure/azure-sdk-for-python/tree/azure-ai-transcription_1.0.0b2/sdk/cognitiveservices/azure-ai-transcription/samples) |
 
 ## Help options
 
-The [Microsoft Q&A](/answers/topics/azure-speech.html) and [Stack Overflow](https://stackoverflow.com/questions/tagged/azure-speech) forums are available for the developer community to ask and answer questions about Azure Cognitive Speech and other services. Microsoft monitors the forums and replies to questions that the community didn't yet answer. To make sure that we see your question, tag it with 'azure-speech'.
+The [Stack Overflow](https://stackoverflow.com/questions/tagged/azure-speech) forums are available for the developer community to ask and answer questions about Azure Cognitive Speech and other services. Microsoft monitors the forums and replies to questions that the community didn't yet answer. To make sure that we see your question, tag it with 'azure-speech'.
 
 You can suggest an idea or report a bug by creating an issue on GitHub.
 
