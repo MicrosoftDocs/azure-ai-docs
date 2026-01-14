@@ -52,23 +52,41 @@ To streamline workflows with your AI agent with capabilities to take actions, th
 
 Tools are optional capabilities you can add to your AI agent for AI models to decide and pick based on the user query and context. When a user sends a query, the AI model identifies the intent with the context and potentially rewrites the user query. Then the AI model decides which tools to be called for each run. For example, if you add both the Grounding with Bing Search tool and the Azure AI Search tool to your agent and ask "*what is the weather in Seattle today?*", the model will identify your intent to ask about real-time information and more likely to invoke the Grounding with Bing Search tool.
 
-You can add tools at the agent, thread, or run level. By providing tools at a narrower level, the tool resources will **override** tool resources at a broader level. For example, tool resources at the run level override tool resources at thread level. Currently, you can add multiple tools but you can add **one instance of each** of the following tools: File Search, Azure AI Search, Grounding with Bing Search, Grounding with Bing Custom Search, Microsoft Fabric, and other tools under `knowledge` section. 
+You can add tools at the agent, thread, or run level. By providing tools at a narrower level, the tool resources will **override** tool resources at a broader level. For example, tool resources at the run level override tool resources at thread level.
 
-When a user sends a query to the agent, it will create a [thread, run, and message](../../concepts\threads-runs-messages.md). For each run, the AI model decides what tools to invoke based on the user intent and available tool resources. Based on the tool outputs, the AI model might decide to invoke another tool or call the same tool again to get more context. For example, when you use Grounding with Bing Search tool, you might see multiple Bing Search queries when [tracing a thread](../../../how-to/develop/trace-agents-sdk.md). This means the AI model actually calls the Grounding with Bing Search tool multiple times with different queries to get more information. If you want to learn more about what tools are called and how the AI model invokes them, check the run step details.
+> [!IMPORTANT]
+> **Tool instance limitation**: You can add multiple tools, but only **one instance of each** knowledge tool type: File Search, Azure AI Search, Grounding with Bing Search, Grounding with Bing Custom Search, Microsoft Fabric, and other tools under the `knowledge` section. To use multiple indexes with Azure AI Search, consider using [connected agents](../connected-agents.md).
 
-There are various ways to influence how your AI agent invokes tools:
+When a user sends a query to the agent, it will create a [thread, run, and message](../../concepts/threads-runs-messages.md). For each run, the AI model decides what tools to invoke based on the user intent and available tool resources. Based on the tool outputs, the AI model might decide to invoke another tool or call the same tool again to get more context. For example, when you use Grounding with Bing Search tool, you might see multiple Bing Search queries when [tracing a thread](../../../how-to/develop/trace-agents-sdk.md). This means the AI model actually calls the Grounding with Bing Search tool multiple times with different queries to get more information. If you want to learn more about what tools are called and how the AI model invokes them, check the run step details.
 
-- The `tool_choice` parameter: Most deterministic way of controlling which (if any) tool is called by the model. By default, it is set to `auto`, which means the AI model will decide. If you want to **force** the model to call a specific tool, you can provide the specification of this tool, for example
+### Controlling tool invocation
+
+There are two main ways to influence how your AI agent invokes tools:
+
+| Method | Behavior | Use when |
+|--------|----------|----------|
+| `tool_choice` parameter | Deterministic - forces or prevents specific tool use | You need guaranteed tool invocation or want to disable tools |
+| `instructions` parameter | Non-deterministic - guides the model's decision | You want the model to intelligently choose based on context |
+
+#### Using `tool_choice`
+
+The `tool_choice` parameter is the most deterministic way of controlling which (if any) tool is called by the model. By default, it is set to `auto`, which means the AI model will decide. If you want to **force** the model to call a specific tool, you can provide the specification of this tool, for example
 
   ```python
   run = project_client.agents.runs.create_and_process(
-        thread_id=thread.id, 
+        thread_id=thread.id,
         agent_id=agent.id,
         tool_choice={"type": "bing_grounding"}  # specify the tool to use
         )
   ```
 
-- The `instructions` parameter: Nondeterministic. Use the instructions to help the AI model understand your use case and the purposes of each tool. You want to tell the AI model what information or actions each tool can do. For example "*use the AI Search tool `<tool_name>` for product related information, use the Fabric tool `<tool_name>` for sales related information*." Sometimes the user query can be responded by the model's base knowledge or by the tools, you want to provide instructions like "*use the tool outputs to generate a response, don't use your own knowledge.*"
+#### Using `instructions`
+
+The `instructions` parameter is non-deterministic but provides flexible guidance. Use instructions to help the AI model understand your use case and the purposes of each tool. Tell the model what information or actions each tool can provide:
+
+- **Route to specific tools**: "*Use the AI Search tool `<tool_name>` for product-related information, use the Fabric tool `<tool_name>` for sales-related information.*"
+- **Prefer tools over base knowledge**: "*Use the tool outputs to generate a response, don't use your own knowledge.*"
+- **Describe tool capabilities**: "*The Bing Search tool has access to real-time information including current weather, news, and stock prices.*"
 
 ## Prerequisites 
 
