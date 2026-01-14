@@ -9,7 +9,7 @@ ms.reviewer: sooryar
 ms.service: azure-machine-learning
 ms.subservice: training
 ms.topic: concept-article
-ms.date: 01/13/2025
+ms.date: 01/14/2025
 ms.custom: sdkv2, update-code2
 ---
 
@@ -17,7 +17,7 @@ ms.custom: sdkv2, update-code2
 
 [!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
 
-This article describes how to use distributed GPU training code in Azure Machine Learning. You see how to run existing code with tips and examples for PyTouch, DeepSpeed, and TensorFlow, and learn about accelerating distributed GPU training with InfiniBand.
+This article describes how to use distributed GPU training code in Azure Machine Learning. You see how to run existing code with tips and examples for PyTorch, DeepSpeed, and TensorFlow. You also learn about accelerating distributed GPU training with InfiniBand.
 
 > [!TIP]
 > More than 90% of the time, you should use [distributed data parallelism](concept-distributed-training.md#data-parallelism) as your distributed parallelism type.
@@ -61,7 +61,7 @@ Many applications also need the following environment variables:
 - **LOCAL_RANK**: The local relative rank of the process within the node. The possible values are `0` to `(<# of processes on the node> - 1)`. This information is useful because many operations such as data preparation only need to be performed once per node, usually on `local_rank = 0`.
 - **NODE_RANK**: The rank of the node for multinode training. The possible values are `0` to `(<total # of nodes> - 1)`.
 
-### Run a distributed PyTouch job
+### Run a distributed PyTorch job
 
 You don't need to use a launcher utility like `torch.distributed.launch` to run a distributed PyTorch job. You can:
 
@@ -84,7 +84,7 @@ Azure Machine Learning supports [DeepSpeed](https://www.deepspeed.ai/tutorials/a
 
 You can enable DeepSpeed for running distributed training by using either PyTorch distribution or Message Passing Interface (MPI). Azure Machine Learning supports the DeepSpeed launcher to launch distributed training, and autotuning to get optimal `ds` configuration.
 
-You can use a [curated environment](resource-curated-environments.md) with the latest state-of-the-art technologies, including DeepSpeed, ONNX Runtime (ORT), Microsoft Collective Communication Library (MSSCCL), and PyTorch, for your DeepSpeed training jobs.
+You can use a [curated environment](resource-curated-environments.md) with the latest state-of-the-art technologies, including DeepSpeed, ONNX (Open Neural Network Exchange) Runtime (ORT), Microsoft Collective Communication Library (MSSCCL), and PyTorch, for your DeepSpeed training jobs.
 
 ### DeepSpeed example
 
@@ -118,7 +118,7 @@ TF_CONFIG='{
 
 ### TensorFlow example
 
-For the full notebook to run a TensorFlow example, see [Train a neural network with TensorFlow on the Iris dataset](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/single-step/tensorflow/mnist-distributed/tensorflow-mnist-distributed.ipynb).
+For the full notebook to run a TensorFlow example, see [tensorflow-mnist-distributed-example](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/single-step/tensorflow/mnist-distributed/tensorflow-mnist-distributed.ipynb).
 
 <a name="accelerating-distributed-gpu-training-with-infiniband"></a>
 ## InfiniBand
