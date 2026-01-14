@@ -9,7 +9,7 @@ ms.topic: tutorial
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: sooryar
-ms.date: 01/14/2026
+ms.date: 01/20/2025
 ms.custom: devx-track-python, automl, devx-track-azurecli, update-code, build-2023
 ---
 
