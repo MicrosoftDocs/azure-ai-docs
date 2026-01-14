@@ -306,7 +306,7 @@ Batch endpoints can read files that are located in the following types of storag
 - [Azure Machine Learning data assets](#use-input-data-from-a-data-asset), including the folder (`uri_folder`) and file (`uri_file`) types.
 - [Azure Machine Learning data stores](#use-input-data-from-a-data-store), including Azure Blob Storage, Azure Data Lake Storage Gen1, and Azure Data Lake Storage Gen2.
 - [Azure Storage accounts](#use-input-data-from-an-azure-storage-account), including Blob Storage, Data Lake Storage Gen1, and Data Lake Storage Gen2.
-- Local data folders and files, when you use the Azure Machine Learning CLI or the Azure Machine Learning SDK for Python to invoke endpoints. But the local data gets uploaded to the default data store of your Azure Machine Learning workspace.
+- Local data folders and files, when you use the Azure Machine Learning CLI or the Azure Machine Learning SDK for Python to invoke endpoints. The local data gets uploaded to the default data store of your Azure Machine Learning workspace.
 
 > [!IMPORTANT]
 > **Deprecation notice**: Data assets of type `FileDataset` (V1) are deprecated and will be retired in the future. Existing batch endpoints that rely on this functionality will continue to work. But there's no support for V1 datasets in batch endpoints that are created with:
@@ -750,7 +750,7 @@ For more information about extra required configurations for reading data from s
     az ml batch-endpoint invoke --name $ENDPOINT_NAME --file inputs.yml
     ```
 
-    If your data is in a file, use the `uri_file` type in the inputs.yml file for the data input. 
+    If your data is in a file, use the `uri_file` type for the data input in the inputs.yml file. 
 
     # [Python SDK](#tab/sdk)
 
