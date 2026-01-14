@@ -4,8 +4,7 @@ titleSuffix: Azure Machine Learning
 description: Learn how Nebula can save time, resources, and money for large model training applications
 services: machine-learning
 ms.service: azure-machine-learning
-ms.topic: reference
-
+ms.topic: how-to
 author: ziqiwang
 ms.author: ziqiwang
 ms.date: 10/30/2025

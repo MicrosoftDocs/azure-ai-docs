@@ -5,7 +5,7 @@ description: Configure and submit Azure Machine Learning jobs to train your mode
 services: machine-learning
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: balapv
+ms.reviewer: sooryar
 ms.service: azure-machine-learning
 ms.subservice: training
 ms.date: 12/22/2025

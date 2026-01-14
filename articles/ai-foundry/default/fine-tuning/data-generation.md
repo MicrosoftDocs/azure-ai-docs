@@ -44,7 +44,7 @@ This article covers:
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 - A Foundry project. For more information, see [create a project with Foundry](../../how-to/create-projects.md)
-- A minimum role assignment of `Azure AI User` or optionally `Azure AI Project Manager` on the Foundry resource. For more information, see [Manage access with role-based access control (RBAC)](../../concepts/rbac-azure-ai-foundry.md)
+- A minimum role assignment of `Azure AI User` or optionally `Azure AI Project Manager` on the Foundry resource. For more information, see [Manage access with role-based access control (RBAC)](../../concepts/rbac-foundry.md)
 
 - Use one of the **supported regions** for synthetic data generation:
   - `eastus2`

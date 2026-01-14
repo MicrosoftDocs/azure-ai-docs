@@ -5,7 +5,7 @@ description: Upgrade how to run a script from SDK v1 to SDK v2
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.topic: reference
+ms.topic: how-to
 author: s-polly
 ms.author: scottpolly
 ms.date: 09/16/2022

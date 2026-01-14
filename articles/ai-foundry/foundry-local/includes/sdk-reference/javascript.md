@@ -1,16 +1,21 @@
 ---
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
-ms.custom: build-2025
+ms.custom: build-2025, dev-focus
 ms.topic: include
-ms.date: 05/02/2025
+ms.date: 01/05/2026
 ms.author: jburchel
 ms.reviewer: maanavd
 reviewer: maanavdalal
 author: jonburchel
+ai-usage: ai-assisted
 ---
 
 ## JavaScript SDK Reference
+
+### Prerequisites
+
+- Install Foundry Local and ensure the `foundry` command is available on your `PATH`.
 
 ### Installation
 
@@ -19,6 +24,27 @@ Install the package from npm:
 ```bash
 npm install foundry-local-sdk
 ```
+
+### Quickstart
+
+Use this snippet to verify that the SDK can start the service and reach the local catalog.
+
+```js
+import { FoundryLocalManager } from "foundry-local-sdk";
+
+const manager = new FoundryLocalManager();
+
+await manager.startService();
+const catalogModels = await manager.listCatalogModels();
+
+console.log(`Catalog models available: ${catalogModels.length}`);
+```
+
+This example prints a non-zero number when the service is running and the catalog is available.
+
+References:
+
+- [Integrate with inference SDKs](../../how-to/how-to-integrate-with-inference-sdks.md)
 
 ### FoundryLocalManager Class
 
@@ -34,7 +60,7 @@ const foundryLocalManager = new FoundryLocalManager();
 
 Available options:
 
-- `serviceUrl`: Base URL of the Foundry Local service
+- `host`: Base URL of the Foundry Local service
 - `fetch`: (optional) Custom fetch implementation for environments like Node.js
 
 ### A note on aliases
@@ -52,14 +78,14 @@ Many methods outlined in this reference have an `aliasOrModelId` parameter in th
 
 ### Service Management
 
-| Method               | Signature                                    | Description                                       |
-| -------------------- | -------------------------------------------- | ------------------------------------------------- |
-| `init()`             | `(aliasOrModelId?: string) => Promise<void>` | Initializes the SDK and optionally loads a model. |
-| `isServiceRunning()` | `() => Promise<boolean>`                     | Checks if the Foundry Local service is running.   |
-| `startService()`     | `() => Promise<void>`                        | Starts the Foundry Local service.                 |
-| `serviceUrl`         | `string`                                     | The base URL of the Foundry Local service.        |
-| `endpoint`           | `string`                                     | The API endpoint (serviceUrl + `/v1`).            |
-| `apiKey`             | `string`                                     | The API key (none).                               |
+| Method | Signature | Description |
+| --- | --- | --- |
+| `init()` | `(aliasOrModelId?: string) => Promise<FoundryModelInfo \| void>` | Initializes the SDK and optionally loads a model. |
+| `isServiceRunning()` | `() => Promise<boolean>` | Checks if the Foundry Local service is running. |
+| `startService()` | `() => Promise<void>` | Starts the Foundry Local service. |
+| `serviceUrl` | `string` | The base URL of the Foundry Local service. |
+| `endpoint` | `string` | The API endpoint (`serviceUrl` + `/v1`). |
+| `apiKey` | `string` | The API key (none). |
 
 ### Catalog Management
 
@@ -125,6 +151,12 @@ const loaded = await manager.listLoadedModels();
 await manager.unloadModel(alias);
 ```
 
+This example downloads and loads a model, then lists cached and loaded models.
+
+References:
+
+- [Integrate with inference SDKs](../../how-to/how-to-integrate-with-inference-sdks.md)
+
 ## Integration with OpenAI Client
 
 Install the OpenAI package:
@@ -176,9 +208,15 @@ async function streamCompletion() {
 streamCompletion();
 ```
 
+This example streams a chat completion response from the local model.
+
+References:
+
+- [Integrate with inference SDKs](../../how-to/how-to-integrate-with-inference-sdks.md)
+
 ## Browser Usage
 
-The SDK includes a browser-compatible version where you must specify the service URL manually:
+The SDK includes a browser-compatible version where you must specify the host URL manually:
 
 ```js
 import { FoundryLocalManager } from "foundry-local-sdk/browser";
@@ -186,9 +224,9 @@ import { FoundryLocalManager } from "foundry-local-sdk/browser";
 // Specify the service URL
 // Run the Foundry Local service using the CLI: `foundry service start`
 // and use the URL from the CLI output
-const endpoint = "ENDPOINT";
+const host = "HOST";
 
-const manager = new FoundryLocalManager({ serviceUrl: endpoint });
+const manager = new FoundryLocalManager({ host });
 
 // Note: The `init`, `isServiceRunning`, and `startService` methods
 // are not available in the browser version
@@ -205,9 +243,9 @@ import { FoundryLocalManager } from "foundry-local-sdk/browser";
 // Specify the service URL
 // Run the Foundry Local service using the CLI: `foundry service start`
 // and use the URL from the CLI output
-const endpoint = "ENDPOINT";
+const host = "HOST";
 
-const manager = new FoundryLocalManager({ serviceUrl: endpoint });
+const manager = new FoundryLocalManager({ host });
 
 const alias = "qwen2.5-0.5b";
 
@@ -220,8 +258,8 @@ await manager.downloadModel(alias);
 await manager.loadModel(alias);
 
 // View models in your local cache
-const localModels = await manager.listLocalModels();
-console.log("Cached models:", catalog);
+const localModels = await manager.listCachedModels();
+console.log("Cached models:", localModels);
 
 // Check which models are currently loaded
 const loaded = await manager.listLoadedModels();
@@ -230,3 +268,7 @@ console.log("Loaded models in inference service:", loaded);
 // Unload a model when finished
 await manager.unloadModel(alias);
 ```
+
+References:
+
+- [Integrate with inference SDKs](../../how-to/how-to-integrate-with-inference-sdks.md)

@@ -34,7 +34,7 @@ Integrate your agents with **Microsoft SharePoint** to chat with your private do
 ## Prerequisites
 
 - Developers and end users have Microsoft 365 Copilot license, as required by [Microsoft 365 Copilot API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview).
-- Developers and end users have at least `Azure AI User` RBAC role assigned on the Foundry project. For more information about Azure role-based access control, see [Azure role-based access control in Foundry](/azure/ai-foundry/concepts/rbac-azure-ai-foundry).
+- Developers and end users have at least `Azure AI User` RBAC role assigned on the Foundry project. For more information about Azure role-based access control, see [Azure role-based access control in Foundry](/azure/ai-foundry/concepts/rbac-foundry).
 - Developers and end users have at least `READ` access to the SharePoint site.
 - The latest prerelease package installed:
   - **Python**: `pip install azure-ai-projects --pre`
@@ -75,10 +75,14 @@ project_client = AIProjectClient(
 # Get the OpenAI client for responses and conversations
 openai_client = project_client.get_openai_client()
 
+sharepoint_connection = project_client.connections.get(os.environ["SHAREPOINT_PROJECT_CONNECTION_NAME"])
+connection_id = sharepoint_connection.id
+print(f"SharePoint connection ID: {connection_id}")
+
 sharepoint_tool = SharepointAgentTool(
     sharepoint_grounding_preview=SharepointGroundingToolParameters(
         project_connections=[
-            ToolProjectConnection(project_connection_id=os.environ["SHAREPOINT_PROJECT_CONNECTION_ID"])
+            ToolProjectConnection(project_connection_id=connection_id)
         ]
     )
 )
@@ -497,6 +501,20 @@ The SharePoint tool makes it possible by enabling seamless integrations between 
 Instead of requiring developers to export SharePoint content, build a custom semantic index, manage governance controls, and configure refresh logic, this capability automates the entire retrieval pipeline. It dynamically indexes documents, breaks content into meaningful chunks, and applies advanced query processing to surface the most relevant information. By leveraging the same enterprise-grade retrieval stack that powers Microsoft 365 Copilot, it ensures AI agent responses are grounded in the most up-to-date and contextually relevant content. 
 
 Customers rely on data security in SharePoint to access, create, and share documents with flexible document-level access control. Enterprise features such as Identity Passthrough/On-Behalf-Of (OBO) authentication ensure proper access control. End users receive responses generated from SharePoint documents they have permission to access. By using OBO authentication, the Foundry Agent service uses the end user's identity to authorize and retrieve relevant SharePoint documents, generating responses tailored towards specific end users.
+
+## Troubleshooting
+
+1. Error message: Request to Graph API failed, with error-code: AuthenticationError and error-message: AppOnly OBO tokens not supported by target service.
+
+  This means you are using an application's identity to authenticate with the Foundry Agent Service and the SharePoint tool, which is not supported. Make sure you are always passing the user's identity.
+
+2. Error message: Request to Graph API failed, with error-code: Forbidden and error-message: Authorization Failed - User does not have valid license.
+
+   This means the user doesn't have a valid Microsoft 365 Copilot license to use the SharePoint tool. Make sure each user has Microsoft 365 Copilot license, as required by [Microsoft 365 Copilot API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview).
+
+3. Other error message with 401 error code or authentication issue
+
+   1. Make sure user in Foundry and Microsoft 365 are in the same tenant.
 
 ## Next steps
 

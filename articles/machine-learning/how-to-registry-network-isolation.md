@@ -8,7 +8,7 @@ ms.subservice: mlops
 ms.custom: build-2023
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: kritifaujdar
+ms.reviewer: jturuk
 ms.date: 04/04/2025
 ms.topic: how-to
 ---

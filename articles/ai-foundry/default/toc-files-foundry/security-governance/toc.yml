@@ -1,10 +1,14 @@
 items:
-# Access Control
-- name: Authentication and authorization
-  href: ../../../concepts/authentication-authorization-foundry.md
-- name: Role-based access control
-  displayName: RBAC, roles, permissions
-  href: ../../../concepts/rbac-azure-ai-foundry.md
+- name: Identity
+  items:
+  # Access Control
+  - name: Authentication and authorization
+    href: ../../../concepts/authentication-authorization-foundry.md
+  - name: Disable preview features with role-based access control
+    href: ../../../concepts/disable-preview-features-with-rbac.md
+  - name: Role-based access control
+    displayName: RBAC, roles, permissions
+    href: ../../../concepts/rbac-foundry.md
 #-  missed from mainline: https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/how-to/configure-entra-id?tabs=python&pivots=ai-foundry-portal
 
 # Network Security

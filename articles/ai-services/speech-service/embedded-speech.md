@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java
 ms.topic: how-to
-ms.date: 08/07/2025
+ms.date: 12/30/2025
 ms.author: pafarley
 zone_pivot_groups: programming-languages-set-thirteen
 ---
@@ -53,13 +53,12 @@ The Speech SDK for Java doesn't support Windows on Arm64.
 
 ---
 
+
 ## Limitations
 
-Embedded speech is only available with C#, C++, and Java SDKs. The other Speech SDKs, Speech CLI, and REST APIs don't support embedded speech.
-
-Embedded speech recognition only supports mono 16 bit, 8-kHz or 16-kHz PCM-encoded WAV audio formats.
-
-Embedded neural voices support 16 or 24 kHz RIFF/RAW.
+- Embedded speech is only available with C#, C++, and Java SDKs. The other Speech SDKs, Speech CLI, and REST APIs don't support embedded speech.
+- Embedded speech recognition only supports mono 16 bit, 8-kHz or 16-kHz PCM-encoded WAV audio formats.
+- Embedded neural voices support 16 or 24 kHz RIFF/RAW.
 
 ## Embedded speech SDK packages
 

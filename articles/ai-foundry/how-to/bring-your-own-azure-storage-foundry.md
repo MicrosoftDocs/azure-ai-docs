@@ -205,7 +205,7 @@ resource "azurerm_cognitive_account" "foundry" {
 
 ### Role assignment
 
-Create the role assignment on the Azure Storage account for the Foundry resource (account) managed identity—not the project managed identity. Assign `Storage Blob Data Contributor`.
+Create the role assignment on the Azure Storage account for the Foundry resource managed identity, not the project managed identity. Assign `Storage Blob Data Contributor`.
 
 
 ::: moniker range="foundry-classic"
@@ -241,5 +241,5 @@ After these steps all features (Agents, Evaluations, Datasets, Content Understan
 - [Add connections to your project](connections-add.md)
 - [Recover a storage account](/azure/storage/common/storage-account-recover)
 - [Azure Storage documentation](/azure/storage/)
-- [Infrastructure setup samples](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup)
+- [Infrastructure setup samples](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples)
 - [Connect storage for Speech/Language](../../ai-services/speech-service/bring-your-own-storage-speech-resource.md?tabs=portal)

@@ -1,6 +1,6 @@
 items:
 - name: What's new in Microsoft Foundry?
-  href: ../../whats-new-azure-ai-foundry.md
+  href: ../../whats-new-foundry.md
 - name: Azure AI FAQ
   href: ../../faq.yml
 - name: Foundry known issues

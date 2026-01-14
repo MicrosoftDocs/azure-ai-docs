@@ -7,7 +7,7 @@ ms.author: pafarley
 manager: nitinme
 ms.date: 09/10/2025
 ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: article
 ms.custom:
   - build-2025
@@ -26,7 +26,7 @@ Model router is a trained language model that intelligently routes your prompts 
 
 ::: moniker range="foundry-classic"
 > [!TIP]
-> The [Microsoft Foundry (new)](../../what-is-azure-ai-foundry.md#microsoft-foundry-portals) portal offers enhanced configuration options for model router. [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) to see the latest features.
+> The [Microsoft Foundry (new)](../../what-is-foundry.md#microsoft-foundry-portals) portal offers enhanced configuration options for model router. [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) to see the latest features.
 ::: moniker-end
 
 ## How model router works

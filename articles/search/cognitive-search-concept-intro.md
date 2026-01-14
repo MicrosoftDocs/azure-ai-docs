@@ -62,7 +62,7 @@ Open-source, third-party, or first-party code can be integrated into the pipelin
 
 ### Use-cases for built-in skills
 
-Built-in skills are based on the Foundry Tools APIs: [Azure Vision](/azure/ai-services/computer-vision/) and [Azure Language](/azure/ai-services/language-service/overview). Unless your content input is small, expect to [attach a billable Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md) to run larger workloads.
+Built-in skills are based on the Foundry Tools APIs: [Azure Vision](/azure/ai-services/computer-vision/) and [Azure Language](/azure/ai-services/language-service/overview). Unless your content input is small, you are expected to [attach a billable Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md) to run larger workloads.
 
 A [skillset](cognitive-search-defining-skillset.md) that's assembled using built-in skills is well suited for the following application scenarios:
 

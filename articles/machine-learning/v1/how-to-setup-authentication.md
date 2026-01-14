@@ -5,7 +5,7 @@ description: Learn how to set up and configure authentication for various resour
 services: machine-learning
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: roastala
+ms.reviewer: shshubhe
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.date: 06/13/2025

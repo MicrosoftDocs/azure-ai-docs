@@ -20,13 +20,15 @@ items:
     displayName: cost
   - name: Quotas and limits
     href: speech-services-quotas-and-limits.md
-  - name: Speech Studio
-    href: speech-studio-overview.md
     displayName: get started
 - name: Speech tools
   items:
   - name: Speech MCP server
     href: /azure/ai-foundry/agents/how-to/tools-classic/azure-ai-speech?view=foundry&context=/azure/ai-services/speech-service/context/context
+  - name: Speech Studio
+    href: speech-studio-overview.md
+  - name: Speech in Microsoft Foundry
+    href: speech-features-foundry.md
   - name: Speech CLI
     items:
       - name: Speech CLI overview
@@ -130,9 +132,11 @@ items:
             href: how-to-custom-speech-display-text-format.md
         - name: Custom speech model lifecycle
           href: how-to-custom-speech-model-and-endpoint-lifecycle.md
-    - name: How to use Pronunciation Assessment
+    - name: Pronunciation Assessment
       href: how-to-pronunciation-assessment.md
       displayName: pronounce, language learn, assess pron, scripted, unscripted
+    - name: Language identification
+      href: language-identification.md
     - name: Improve recognition with phrase list
       href: improve-accuracy-phrase-list.md
     - name: Display text formatting
@@ -366,8 +370,6 @@ items:
         href: /azure/communication-services/concepts/call-automation/azure-communication-services-azure-cognitive-services-integration?context=/azure/ai-services/speech-service/context/context
     - name: Gaming integration
       href: gaming-concepts.md
-    - name: Language identification
-      href: language-identification.md
     - name: Language learning
       items:
       - name: Overview
@@ -531,11 +533,6 @@ items:
           href: /rest/api/batchavatar/operation-groups
 - name: Retiring features and migration
   items:
-  - name: Retiring features
-    displayName: migrate,migration,deprecate,retire,sunset
-    items:
-      - name: Online transcription editor
-        href: how-to-custom-speech-transcription-editor.md
   - name: Speech to text REST API migration
     items:
     - name: From Speech to text 2024-11-15 to 2025-10-15
