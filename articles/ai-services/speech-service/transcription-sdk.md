@@ -14,18 +14,18 @@ ms.author: pafarley
 # What is the Speech Transcription SDK?
 
 The Speech Transcription software development kit (SDK) exposes the LLM Speech and Fast Transcription capabilities of the Speech Service, making it easier to develop high quality transcription applications.
-The Speech Transcription SDK is available [in many programming languages](quickstarts/setup-platform.md) and across platforms. The Speech Transcription SDK is ideal for near-real-time and non-real-time scenarios, by using local device captured audio, files, and Azure Blob Storage data.
+The Speech Transcription SDK is available [in many programming languages](#supported-languages) and across platforms. The Speech Transcription SDK is ideal for near-real-time and non-real-time scenarios, by using local device captured audio, files, and Azure Blob Storage data.
 
-In some cases, you can't or shouldn't use the [Speech Transcription SDK](transcription-sdk.md). In those cases, you can use real-time streaming via WebSockets or REST APIs to access the Speech service. For example use the [Speech SDK](speech-sdk.md) for real-time streaming, or use the [Speech to text REST API](rest-speech-to-text.md) for [batch transcription](batch-transcription.md) of high-volume processing and [custom speech](custom-speech-overview.md) model management.
+In some cases, you can't or shouldn't use the [Speech Transcription SDK](./transcription-sdk.md). In those cases, you can use real-time streaming via WebSockets or REST APIs to access the Speech service. For example use the [Speech SDK](speech-sdk.md) for real-time streaming, or use the [Speech to text REST API](rest-speech-to-text.md) for [batch transcription](batch-transcription.md) of high-volume processing and [custom speech](custom-speech-overview.md) model management.
 
 ## Supported languages
 
 The Speech Transcription SDK supports the following languages and platforms:
 
 | Programming language | Reference | Platform support |
-|----------------------|----------|----------|
-| [Java](quickstarts/setup-platform.md?pivots=programming-language-java) | [Java](/java/api/overview/azure/ai-speech-transcription-readme) | Android, Windows, Linux, macOS |
-| [Python](quickstarts/setup-platform.md?pivots=programming-language-python) | [Python](/python/api/overview/azure/ai-transcription-readme) | Windows, Linux, macOS |
+|----------------------|-----------|------------------|
+| Java | [Java](/java/api/overview/azure/ai-speech-transcription-readme) | Android, Windows, Linux, macOS |
+| Python | [Python](/python/api/overview/azure/ai-transcription-readme) | Windows, Linux, macOS |
 
 ## Code samples
 
@@ -44,7 +44,7 @@ If a sample isn't available in your preferred programming language, you can sele
 Samples can be found for each programming language in the respective GitHub repositories.
 
 | Programming language | Samples Repository |
-|----------------------|----------|----------|
+|----------------------|--------------------|
 | [Java](quickstarts/setup-platform.md?pivots=programming-language-java) | [Java Samples](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/transcription/azure-ai-speech-transcription/src/samples/java/com/azure/ai/speech/transcription/README.md) |
 | [Python](quickstarts/setup-platform.md?pivots=programming-language-python) | [Python Samples](https://github.com/Azure/azure-sdk-for-python/tree/azure-ai-transcription_1.0.0b2/sdk/cognitiveservices/azure-ai-transcription/samples) |
 
