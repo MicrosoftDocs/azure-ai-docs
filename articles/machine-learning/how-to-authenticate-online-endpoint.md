@@ -603,7 +603,7 @@ You can get the token if you're using the Azure Machine Learning workspace's com
 
 ### [Python](#tab/python)
 
-If you plan to use the SDK to invoke the endpoint, you don't need to get the keys or token for data plane operations explicitly because the SDK provides it for you. However, you can still use the SDK to get the keys or token for data plane operations so that you can use it with other channels, such as the REST API.
+If you use the SDK's `invoke()` method to call the endpoint, the SDK handles authentication automatically—you don't need to retrieve keys or tokens manually
 
 To get the keys or token for data plane operations, use the [get_keys](/python/api/azure-ai-ml/azure.ai.ml.operations.onlineendpointoperations#azure-ai-ml-operations-onlineendpointoperations-get-keys) method of the `OnlineEndpointOperations` class. This method returns an object that includes keys and the token.
 
