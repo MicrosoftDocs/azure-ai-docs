@@ -13,7 +13,9 @@ ms.date: 01/13/2026
 
 # Delete documents in a search index
 
-This article explains how to delete whole documents from a search index on Azure AI Search. It covers these tasks:
+This article explains how to delete whole documents from a search index on Azure AI Search. 
+
+It covers these tasks:
 
 + Understand when manual deletion is required
 + Identify specific documents to delete
@@ -22,7 +24,7 @@ This article explains how to delete whole documents from a search index on Azure
 + Delete documents in bulk
 + Confirm deletion
 
-You can use the REST APIs or an Azure SDK client library to delete documents. There's currently no support for deleting documents in the Azure portal.
+You can use the REST APIs or an Azure SDK client library to delete documents. There's currently no support for document deletion in the Azure portal.
 
 For more information about deleting or updating a *specific field* within a document, see [Update or rebuild an index](search-howto-reindex.md).
 
@@ -42,7 +44,7 @@ You might also need manual document deletion in indexer-driven workloads if sear
 The following links provide more information about change and deletion detection for each data source in indexer-driven workloads.
 
 + [Azure Storage](search-how-to-index-azure-blob-changed-deleted.md)
-+ [Azure SQL](earch-how-to-index-sql-database.md#indexing-new-changed-and-deleted-rows)
++ [Azure SQL](search-how-to-index-sql-database.md#indexing-new-changed-and-deleted-rows)
 + [Azure Cosmos DB](search-how-to-index-cosmosdb-sql.md#indexing-deleted-documents)
 + [Azure Database for MySQL (preview)](search-how-to-index-mysql.md#indexing-deleted-rows)
 + [SharePoint indexer](search-how-to-index-sharepoint-online.md)
@@ -50,20 +52,15 @@ The following links provide more information about change and deletion detection
 
 ## Identify specific documents for deletion
 
-Documents in a search index are either well-structured, with a collection of fields that map to individual fields in a data source - or chunks of a parent document, such as paragraphs or sections of a PDF. Indexes built for RAG workloads typically contain chunked documents. Indexes built from databases are typically well-structured.
-
 All documents are uniquely identified by a [document key](search-how-to-create-search-index.md#document-keys) in a search index. To delete a document, you must identify which field is the document key and provide the key on the deletion request.
 
 In the Azure portal, you can view the fields of each index. Document keys are string fields and are denoted with a key icon to make them easier to spot.
 
-> [!TIP]
-> If you're working with chunked documents, we recommend using the push model (indexers) for automated change and deletion detection. It can coordinate parent-child chunk updates. If you can't use indexers, consider deleting all chunks related to single parent and then reindex the parent document if there are partial updates within the source content itself.
-
 ### Find the document key
 
-To find the document key of a specific document, run a query that returns the document and include the document key field in the search results.
+Once you know which field is the document key, you can get the key value by running a query that returns the document and include the key field in the search results.
 
-In this example, the "HotelId" is the document key.
+In this example, the "HotelId" is the document key. The select statement includes this field.
 
 ```http
 POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2025-09-01
@@ -92,7 +89,7 @@ Results for this keyword search are the top 50 by default. If the document you w
 
 A simple string is straightforward, but if the index uses a base-64 encoded field, or if search documents were generated from a `parsingMode` setting, you might be working with values that you aren't familiar with. If you're working with chunked documents create by an indexer, the document key is often "chunked_id".
 
-### Look up a specific document
+## Look up a specific document
 
 Now that you have the document key, run a [look up query](/rest/api/searchservice/documents/get) that retrieves the entire document. If the document is a chunk, you should see the ID of the parent document. The document key is included as a query parameter.
 
@@ -197,11 +194,9 @@ The Azure SDK for Python provides the following APIs for simple and bulk documen
 + [IndexDocumentsBatch](/python/api/azure-search-documents/azure.search.documents.indexdocumentsbatch)
 + [SearchIndexingBufferedSender](/python/api/azure-search-documents/azure.search.documents.searchindexingbufferedsender)
 
-Code samples include:
+Code sample:
 
 + [sample_crud_operations.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/samples/sample_crud_operations.py)
-
-+ Be sure to check the [azure-search-vector-samples](https://github.com/Azure/azure-search-vector-samples) repo for code examples showing how to index vector fields.
 
 ### [**JavaScript**](#tab/sdk-javascript)
 
@@ -210,11 +205,76 @@ The Azure SDK for JavaScript/TypeScript provides the following APIs for simple a
 + [IndexDocumentsBath](/javascript/api/%40azure/search-documents/indexdocumentsbatch)
 + [SearchIndexingBufferedSender](/javascript/api/%40azure/search-documents/searchindexingbufferedsender)
 
-Code samples include:
+### [**Java**](#tab/sdk-java)
 
-+ See this quickstart for basic steps: [Quickstart: Full-text search](search-get-started-text.md?tabs=keyless%2Cwindows&pivots=javascript)
+The Azure SDK for Java provides the following APIs for simple and bulk document uploads into an index:
 
-+ Be sure to check the [azure-search-vector-samples](https://github.com/Azure/azure-search-vector-samples) repo for code examples showing how to index vector fields.
++ [indexactiontype enumerator](/java/api/com.azure.search.documents.models.indexactiontype)
++ [SearchIndexingBufferedSender](/java/api/com.azure.search.documents.searchclientbuilder.searchindexingbufferedsenderbuilder)
+
+Code sample:
+
++ [IndexContentManagementExample.java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/src/samples/java/com/azure/search/documents/IndexContentManagementExample.java)
+
+---
+
+## Delete documents in bulk
+
+### [**REST**](#tab/rest)
+
+1. Use the [Documents - Index](/rest/api/searchservice/documents) REST API with a delete `@search.action` to remove it from the search index. Formulate a POST call specifying the index name, the "docs/index" endpoint. Make sure the body of the request includes the key of the document you want to delete.
+
+    ```http
+    POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/index?api-version=2025-09-01
+    Content-Type: application/json   
+    api-key: [admin key]
+    
+    {
+      "value": [
+        {
+          "@search.action": "delete",
+          "id": "doc1"
+        },
+        {
+          "@search.action": "delete",
+          "id": "doc2"
+        }
+      ]
+    }
+    ```
+
++ Batch Limits: It is recommended to limit batches to 1,000 documents or roughly 16 MB per request to ensure optimal performance.
+
++ Idempotency: Deletion is idempotent; if you attempt to delete a document ID that does not exist, the API will still return a 200 OK status.
+
++ Latency: Documents are not always removed instantly from storage. A background process performs the physical deletion every few minutes.
+
++ Vector Storage: Deleting documents does not immediately free up vector storage quotas. For immediate reclamation of vector space, you may need to rebuild the index.
+
+### [**.NET**](#tab/sdk-dotnet)
+
+The Azure SDK for .NET provides the following APIs for simple and bulk document uploads into an index:
+
++ [IndexDocumentsAsync](/dotnet/api/azure.search.documents.searchclient.indexdocumentsasync)
++ [SearchIndexingBufferedSender](/dotnet/api/azure.search.documents.searchindexingbufferedsender-1)
+
+### [**Python**](#tab/sdk-python)
+
+The Azure SDK for Python provides the following APIs for simple and bulk document uploads into an index:
+
++ [IndexDocumentsBatch](/python/api/azure-search-documents/azure.search.documents.indexdocumentsbatch)
++ [SearchIndexingBufferedSender](/python/api/azure-search-documents/azure.search.documents.searchindexingbufferedsender)
+
+Code sample:
+
++ [sample_crud_operations.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/samples/sample_crud_operations.py)
+
+### [**JavaScript**](#tab/sdk-javascript)
+
+The Azure SDK for JavaScript/TypeScript provides the following APIs for simple and bulk document uploads into an index:
+
++ [IndexDocumentsBath](/javascript/api/%40azure/search-documents/indexdocumentsbatch)
++ [SearchIndexingBufferedSender](/javascript/api/%40azure/search-documents/searchindexingbufferedsender)
 
 ### [**Java**](#tab/sdk-java)
 
@@ -223,17 +283,11 @@ The Azure SDK for Java provides the following APIs for simple and bulk document 
 + [indexactiontype enumerator](/java/api/com.azure.search.documents.models.indexactiontype)
 + [SearchIndexingBufferedSender](/java/api/com.azure.search.documents.searchclientbuilder.searchindexingbufferedsenderbuilder)
 
-Code samples include:
+Code sample:
 
 + [IndexContentManagementExample.java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/src/samples/java/com/azure/search/documents/IndexContentManagementExample.java)
 
-+ Be sure to check the [azure-search-vector-samples](https://github.com/Azure/azure-search-vector-samples) repo for code examples showing how to index vector fields.
-
 ---
-
-## Delete documents in bulk
-
-TBD
 
 ## Confirm document deletion
 
