@@ -30,18 +30,6 @@ This article describes how to create a Foundry project in [Microsoft Foundry](ht
 
 * [!INCLUDE [fdp-description](../includes/fdp-description.md)]
 
-* This project type gives you access to the latest generative AI features in Foundry, including:
-
-    * Agents 
-    * Foundry SDK and API to build agents and switch easily between models
-    * Models sold directly by Azure - Azure OpenAI, Mistral, xAI, DeepSeek, and more.
-    * Partner and community models sold through Marketplace - Stability, Cohere, and more. 
-    * Content understanding
-    * Evaluations
-    * Fine-tuning
-    * OpenAI SDK and API including Batch and Stored Completions
-    * Foundry Tools
-
 * If you need access to open-source models or PromptFlow, [create a hub project type](../how-to/hub-create-projects.md) instead.
 
 * For more information about the different project types, see [Types of projects](../what-is-foundry.md#types-of-projects).
@@ -55,11 +43,12 @@ If your organization requires customized Azure configurations like alternative n
 * [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 
 :::moniker range="foundry"
-* **Permissions**: You need access to a role that allows you to create a Foundry resource, such as **Azure Account AI Owner** or **Azure AI Owner** on the subscription or resource group. For more details about permissions, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md#permissions-for-each-built-in-role).
+* [!INCLUDE [rbac-create](../includes/rbac-create.md)]
 :::moniker-end
 
 :::moniker range="foundry-classic"
-* **Permissions**: You need access to a role that allows you to create a Foundry resource, such as **Azure Account AI Owner** or **Azure AI Owner** on the subscription or resource group. For more details about permissions, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md#permissions-for-each-built-in-role).
+* [!INCLUDE [rbac-create](../includes/rbac-create.md)]
+
     If you lack this role, request your subscription administrator to [create a Foundry resource](../../ai-services/multi-service-resource.md) and then skip to [Create multiple projects on the same resource](#create-multiple-projects-on-the-same-resource).
 :::moniker-end
 

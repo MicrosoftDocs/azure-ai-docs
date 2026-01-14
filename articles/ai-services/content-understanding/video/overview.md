@@ -12,10 +12,7 @@ ms.custom:
   - build-2025
 ---
 
-# Azure Content Understanding in Foundry Tools video solutions (preview)
-
-> [!IMPORTANT]
-> Azure Content Understanding is available in preview. Public preview releases provide early access to features that are in active development. Features, approaches, and processes can change or have limited capabilities before General Availability (GA). For more information, see **[Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms)**.
+# Azure Content Understanding in Foundry Tools video solutions
 
 Azure Content Understanding allows you to generate a standard set of video metadata and create custom fields for your specific use case using generative models. Content Understanding helps you manage, categorize, retrieve, and build workflows for video assets. It enhances your media asset library, supports features such as highlight generation, categorizes content, and facilitates applications like retrieval-augmented generation (RAG).
 
@@ -168,7 +165,7 @@ Shape the output to match your business vocabulary. Use a `fieldSchema` object w
 
 > [!NOTE]
 >
->  This feature is limited access; customers need to request to disable face blur for Azure OpenAI models with an Azure support request. Learn more [Manage an Azure support request](https://learn.microsoft.com/azure/azure-portal/supportability/how-to-manage-azure-support-request).
+>  This feature is limited access; customers need to request to disable face blur for Azure OpenAI models with an Azure support request. Learn more [Manage an Azure support request](/azure/azure-portal/supportability/how-to-manage-azure-support-request).
 
 The field extraction capability can optionally be enhanced to provide detailed descriptions of faces in the video. This capability includes attributes such as facial hair, facial expression, and the presence of celebrities, which can be crucial for various analytical and indexing purposes. To enable face description capabilities set `disableFaceBlurring : true` in the analyzer configuration.
 
