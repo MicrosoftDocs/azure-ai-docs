@@ -445,7 +445,7 @@ For more information on deploying online endpoints, see [Deploy a machine learni
 
 ### [Azure CLI](#tab/azure-cli)
 
-If you use `az ml online-endpoint invoke` to call the endpoint, the CLI resolves the scoring URI automatically—you don't need to retrieve it manually.
+If you use `az ml online-endpoint invoke` to call the endpoint, the CLI resolves the scoring URI automatically, so you don't need to retrieve it manually.
 
 However, if you need the scoring URI for use with other tools (such as REST API or custom HTTP clients), you can retrieve it with the following command:
 
@@ -605,7 +605,7 @@ You can get the token if you're using the Azure Machine Learning workspace's com
 
 ### [Python](#tab/python)
 
-If you use the SDK's `invoke()` method to call the endpoint, the SDK handles authentication automatically—you don't need to retrieve keys or tokens manually
+If you use the SDK's `invoke()` method to call the endpoint, the SDK handles authentication automatically, so you don't need to retrieve keys or tokens manually.
 
 However, if you need to retrieve keys or tokens for use with other tools (such as REST API or custom HTTP clients), you can use the [get_keys](/python/api/azure-ai-ml/azure.ai.ml.operations.onlineendpointoperations#azure-ai-ml-operations-onlineendpointoperations-get-keys) method in the `OnlineEndpointOperations` class. This method returns an object that includes keys and token.
 
