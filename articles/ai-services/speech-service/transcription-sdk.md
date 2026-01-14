@@ -14,9 +14,9 @@ ms.author: pafarley
 # What is the Speech Transcription SDK?
 
 The Speech Transcription software development kit (SDK) exposes the LLM Speech and Fast Transcription capabilities of the Speech Service, making it easier to develop high quality transcription applications.
-The Speech Transcription SDK is available [in many programming languages](quickstarts/setup-platform.md) and across platforms. The Speech Transcription SDK is ideal for near-real-time and non-real-time scenarios, by using local device captured audio, files and Azure Blob Storage data.
+The Speech Transcription SDK is available [in many programming languages](quickstarts/setup-platform.md) and across platforms. The Speech Transcription SDK is ideal for near-real-time and non-real-time scenarios, by using local device captured audio, files, and Azure Blob Storage data.
 
-In some cases, you can't or shouldn't use the [Speech Transcription SDK](transcription-sdk.md). In those cases, you can use real-time streaming via websockets or REST APIs to access the Speech service. For example use the [Speech SDK](speech-sdk.md) for real-time streaming, or use the [Speech to text REST API](rest-speech-to-text.md) for [batch transcription](batch-transcription.md) of high-volume processing and [custom speech](custom-speech-overview.md) model management.
+In some cases, you can't or shouldn't use the [Speech Transcription SDK](transcription-sdk.md). In those cases, you can use real-time streaming via WebSockets or REST APIs to access the Speech service. For example use the [Speech SDK](speech-sdk.md) for real-time streaming, or use the [Speech to text REST API](rest-speech-to-text.md) for [batch transcription](batch-transcription.md) of high-volume processing and [custom speech](custom-speech-overview.md) model management.
 
 ## Supported languages
 
@@ -41,7 +41,7 @@ If a sample isn't available in your preferred programming language, you can sele
 
 ### GitHub samples
 
-Samples can be found for each programming language in the respective github repositories.
+Samples can be found for each programming language in the respective GitHub repositories.
 
 | Programming language | Samples Repository |
 |----------------------|----------|----------|
@@ -50,7 +50,7 @@ Samples can be found for each programming language in the respective github repo
 
 ## Help options
 
-The [Microsoft Q&A](/answers/topics/azure-speech.html) and [Stack Overflow](https://stackoverflow.com/questions/tagged/azure-speech) forums are available for the developer community to ask and answer questions about Azure Cognitive Speech and other services. Microsoft monitors the forums and replies to questions that the community hasn't yet answered. To make sure that we see your question, tag it with 'azure-speech'.
+The [Microsoft Q&A](/answers/topics/azure-speech.html) and [Stack Overflow](https://stackoverflow.com/questions/tagged/azure-speech) forums are available for the developer community to ask and answer questions about Azure Cognitive Speech and other services. Microsoft monitors the forums and replies to questions that the community didn't yet answer. To make sure that we see your question, tag it with 'azure-speech'.
 
 You can suggest an idea or report a bug by creating an issue on GitHub.
 
