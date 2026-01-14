@@ -31,7 +31,7 @@ The following information is displayed:
 | Column | Description | [Agent platform](#supported-agent-platforms) |
 |--------|-------------|------------|
 | **Name** | The name of the agent or the agentic resource. | All |
-| **Source** | The source platform from where the agent or resource was discovered. | All |
+| **Source** | The source platform from where the agent or resource was discovered. See the list of [supported platforms](#supported-agent-platforms). | All |
 | **Project** | The Foundry project associated with the agent. For custom agents, it's the project where the agent was registered to. | Foundry<br />Custom | 
 | **Status** | It refers to a broad range of conditions, including operational, health, or lifecycle, status of the agent. Agents transition to different values depending on the platform and [lifecycle operations](#lifecycle-operations). Possible values are: <ul><li>[Running](#start-and-stop-agents)</li><li>[Stopped](#start-and-stop-agents)</li><li>[Blocked](#block-and-unblock-agents)</li><li>[Unblocked](#block-and-unblock-agents)</li><li>[Unknown](#unknown-states)</li></ul> | All |
 | **Version** | The version of the agent asset. | Foundry |
@@ -54,7 +54,7 @@ Control Plane automatically discovers agents in the following platforms:
 > [!div class="checklist"]
 > * Foundry agents, including [prompt-based agents](../../agents/overview.md), [workflows](../agents/concepts/workflow.md), and [hosted-agents](../agents/concepts/hosted-agents.md). 
 > * [Azure SRE Agent](/azure/sre-agent/)
-> * [Azure LogicApp agent loops](/azure/logic-apps/agent-workflows-concepts)
+> * [Azure Logic App agent loops](/azure/logic-apps/agent-workflows-concepts)
 
 For agentic platforms not supported by Control Plane, you can [manually register the agent in a Microsoft Foundry project](register-custom-agent.md) to enable management.
 
@@ -141,13 +141,7 @@ To view them:
 
 Control Plane helps organizations to control agents to manage usage and infrastructure cost. Different agent platforms support different operations.
 
-### Start and stop agents
-
-Stopping an agent stops the infrastructure that is associated with this agent and moves the agent to the **Stopped** state.
-
-Stopping an agent deprovisions its infrastructure and prevents new runs. Any workflows or resources connected to this agent can't access it. Notice that this operation **doesn't terminating existing runs**. 
-
-The following platforms support stopping agents. Foundry agent's support depends on the agent kind and its publishing state:
+The following table summarizes supported actions for each platform. Foundry agent's support depends on the agent kind and its publishing state:
 
 | Platform | Agent kind | Published | Supported actions | Notes        |
 |----------|------------|-----------|-------------------|--------------|
@@ -155,7 +149,14 @@ The following platforms support stopping agents. Foundry agent's support depends
 | Foundry | Hosted | No | Start/stop | Stopping a hosted agent stops the deployment associated with it. Any compute attached to is deallocated. |
 | Foundry | Prompt<br />Workflow<br />Hosted | Yes | Start/stop | Stopping a published agent stops the deployment associated with it. It deallocates any compute attached. |
 | Azure SRE | NA | NA | Start/stop | |
-| Azure Logic Apps | NA | NA | Start/stop | You can start/stop an Azure Logic Apps agent loop by stopping the LogicApp resource that hosts them. Stopping a LogicApp resources stops all the workflows associated with it. |
+| Azure Logic Apps | NA | NA | Start/stop | You can start/stop an Azure Logic Apps agent loop by stopping the Logic App resource that hosts them. Stopping a Logic App resources stops all the workflows associated with it. |
+| Custom | NA | NA | Block/unblock | Foundry doesn't have access to the underlying infrastructure where the agent runs, so start and stop operations aren't available. However, Foundry can block incoming requests to the agent, preventing clients from consuming it. |
+
+### Start and stop agents
+
+Stopping an agent stops the infrastructure that is associated with this agent and moves the agent to the **Stopped** state.
+
+Stopping an agent deprovisions its infrastructure and prevents new runs. Any workflows or resources connected to this agent can't access it. Notice that this operation **doesn't terminating existing runs**. 
 
 To stop an agent:
 
