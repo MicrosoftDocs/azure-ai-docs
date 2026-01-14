@@ -445,7 +445,9 @@ For more information on deploying online endpoints, see [Deploy a machine learni
 
 ### [Azure CLI](#tab/azure-cli)
 
-If you plan to use the CLI to invoke the endpoint, you don't need to get the scoring URI explicitly because the CLI provides it for you. However, you can still use the CLI to get the scoring URI so that you can use it with other channels, such as the REST API.
+If you use `az ml online-endpoint invoke` to call the endpoint, the CLI resolves the scoring URI automatically—you don't need to retrieve it manually.
+
+However, if you need the scoring URI for use with other tools (such as REST API or custom HTTP clients), you can retrieve it with the following command:
 
 ```CLI
 scoringUri=$(az ml online-endpoint show -n my-endpoint --query "scoring_uri")
