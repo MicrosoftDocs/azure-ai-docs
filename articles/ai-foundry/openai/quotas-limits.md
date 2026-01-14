@@ -4,7 +4,7 @@ description: This article features detailed descriptions and best practices on t
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 12/10/2025
+ms.date: 01/14/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: article
@@ -82,8 +82,10 @@ The following section provides you with a quick guide to the default quotas and 
 
 | Model                | Deployment Type | Default RPM | Default TPM | Enterprise and MCA-E RPM | Enterprise and MCA-E TPM |
 |:---------------------|:----------------|:-----------:|:-----------:|:------------------------:|:------------------------:|
+| `gpt-5.2`            | DataZoneStandard| 3,000       | 300,000     | 30,000                   | 3,000,000                |
 | `gpt-5.2`            | GlobalStandard  | 10,000      | 1,000,000   | 100,000                  | 10,000,000               |
 | `gpt-5.2-chat`       | GlobalStandard  | 10,000      | 1,000,000   | 50,000                   | 5,000,000                |
+| `gpt-5.2-codex`      | GlobalStandard  | 1,000       | 1,000,000   | 10,000                   | 10,000,000               |
 
 ## GPT-5.1 series
 
