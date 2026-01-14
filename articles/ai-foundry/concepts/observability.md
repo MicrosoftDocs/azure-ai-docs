@@ -260,7 +260,7 @@ GenAIOps establishes a reliable process for managing AI applications throughout 
 For network isolation purposes you can bring your own virtual network for evaluation. To learn more, see [How to configure a private link](../how-to/configure-private-link.md).
 
 > [!NOTE]
-> Evaluation data is sent to Application Insights if Application Insights is connected. Virtual Network support for Application Insights and tracing isn't available.
+> Evaluation data is sent to Application Insights if Application Insights is connected. Virtual network support for Application Insights and tracing isn't available. Inline datasource is not supported.
 
 > [!IMPORTANT]
 > To prevent evaluation and red teaming run failures, assign the Azure AI User role to the project's Managed Identity during initial project setup.
