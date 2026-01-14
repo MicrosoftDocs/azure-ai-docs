@@ -4,7 +4,9 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 12/05/2025
+ms.date: 01/14/2026
+ms.custom: dev-focus
+ai-usage: ai-assisted
 ---
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]
@@ -13,7 +15,7 @@ In this quickstart, you use [agentic retrieval](../../agentic-retrieval-overview
 
 A *knowledge base* orchestrates agentic retrieval by decomposing complex queries into subqueries, running the subqueries against one or more *knowledge sources*, and returning results with metadata. By default, the knowledge base outputs raw content from your sources, but this quickstart uses the answer synthesis output mode for natural-language answer generation.
 
-Although you can provide your own data, this quickstart uses [sample JSON documents](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth-at-night-json) from NASA's Earth at Night e-book. The documents describe general science topics and images of Earth at night as observed from space.
+Although you can use your own data, this quickstart uses [sample JSON documents](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth-at-night-json) from NASA's Earth at Night e-book. The documents describe general science topics and images of Earth at night as observed from space.
 
 > [!TIP]
 > Want to get started right away? See the [azure-search-rest-samples](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-agentic-retrieval) GitHub repository.
@@ -387,7 +389,7 @@ Now that you've run the code, let's break down the key steps:
 
 ### Create a search index
 
-In Azure AI Search, an index is a structured collection of data. The following code uses [Indexes - Create (REST API)](/rest/api/searchservice/indexes/create) to define an index named `earth-at-night`, which you previously specified using the `@index-name` variable.
+In Azure AI Search, an index is a structured collection of data. The following code defines an index named `earth-at-night`.
 
 The index schema contains fields for document identification and page content, embeddings, and numbers. The schema also includes configurations for semantic ranking and vector search, which uses your `text-embedding-3-large` deployment to vectorize text and match documents based on semantic similarity.
 
@@ -467,12 +469,13 @@ Authorization: Bearer {{token}}
 }
 ```
 
+Reference: [Indexes - Create](/rest/api/searchservice/indexes/create)
+
 ### Upload documents to the index
 
-Currently, the `earth-at-night` index is empty. The following code uses [Documents - Index (REST API)](/rest/api/searchservice/documents/index) to populate the index with JSON documents from NASA's Earth at Night e-book. As required by Azure AI Search, each document conforms to the fields and data types defined in the index schema.
+Currently, the `earth-at-night` index is empty. The following code populates the index with JSON documents from NASA's Earth at Night e-book. As required by Azure AI Search, each document conforms to the fields and data types defined in the index schema.
 
 ```HTTP
-
 ### Upload documents
 POST {{search-url}}/indexes/{{index-name}}/docs/index?api-version={{api-version}}  HTTP/1.1
 Content-Type: application/json
@@ -502,9 +505,11 @@ Authorization: Bearer {{token}}
 }
 ```
 
+Reference: [Documents - Index](/rest/api/searchservice/documents/index)
+
 ### Create a knowledge source
 
-A knowledge source is a reusable reference to source data. The following code uses [Knowledge Sources - Create (REST API)](/rest/api/searchservice/knowledge-sources/create?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to define a knowledge source named `earth-knowledge-source` that targets the `earth-at-night` index.
+A knowledge source is a reusable reference to source data. The following code defines a knowledge source named `earth-knowledge-source` that targets the `earth-at-night` index.
 
 `sourceDataFields` specifies which index fields are included in citation references. Our example includes only human-readable fields to avoid lengthy, uninterpretable embeddings in responses.
 
@@ -529,9 +534,11 @@ Authorization: Bearer {{token}}
 }
 ```
 
+Reference: [Knowledge Sources - Create](/rest/api/searchservice/knowledge-sources/create?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+
 ### Create a knowledge base
 
-To target your `earth-knowledge-source` and `gpt-5-mini` deployment at query time, you need a knowledge base. The following code uses [Knowledge Bases - Create (REST API)](/rest/api/searchservice/knowledge-bases/create?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to define a base named `earth-knowledge-base`, which you previously specified using the `@knowledge-base-name` variable.
+To target your `earth-knowledge-source` and `gpt-5-mini` deployment at query time, you need a knowledge base. The following code defines a base named `earth-knowledge-base`.
 
 `outputMode` is set to `answerSynthesis`, enabling natural-language answers that cite the retrieved documents and follow the provided `answerInstructions`.
 
@@ -563,9 +570,11 @@ Authorization: Bearer {{token}}
 }
 ```
 
+Reference: [Knowledge Bases - Create](/rest/api/searchservice/knowledge-bases/create?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+
 ### Run the retrieval pipeline
 
-You're ready to run agentic retrieval. The following code uses [Knowledge Retrieval - Retrieve (REST API)](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to send a two-part user query to `earth-knowledge-base`, which:
+You're ready to run agentic retrieval. The following code sends a two-part user query to `earth-knowledge-base`, which:
 
 1. Analyzes the entire conversation to infer the user's information need.
 1. Decomposes the compound query into focused subqueries.
@@ -605,6 +614,8 @@ Authorization: Bearer {{token}}
     "retrievalReasoningEffort": { "kind": "low" }
 }
 ```
+
+Reference: [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
 
 The output should contain the following components:
 

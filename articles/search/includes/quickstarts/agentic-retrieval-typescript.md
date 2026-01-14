@@ -4,7 +4,9 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 12/19/2025
+ms.date: 01/14/2026
+ms.custom: dev-focus
+ai-usage: ai-assisted
 ---
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]
@@ -598,19 +600,7 @@ Reference Type: searchIndex
   "rerankerScore": 2.6692379,
   "docKey": "earth_at_night_508_page_174_verbalized"
 }
-Reference Type: searchIndex
-{
-  "type": "searchIndex",
-  "id": "1",
-  "activitySource": 3,
-  "sourceData": {
-    "id": "earth_at_night_508_page_186_verbalized",
-    "page_chunk": "## Appendix A\n\n### NASA's Black Marble Product Suite\n\nNASA's Black Marble product suite provides estimates of daily nighttime lights and other intrinsic surface optical properties of Earth at night. The product is based on the Day/Night Band (DNB) sensor of the Visible Infrared Imaging Radiometer Suite (VIIRS) instrument onboard the Suomi National Polar-orbiting Partnership (NPP) satellite. The VIIRS DNB is a highly sensitive, low-light sensor capable of measuring daily global nighttime light emissions and reflections, allowing users to identify sources and intensities of these artificial lights, and monitor changes over a period of time. Like any optical sensor, the principal challenge in using VIIRS DNB data is to account for variations in light captured by the sensor. Certainly, there are variations in the sources and intensity of anthropogenic light due to changing human processes like urbanization, oil and gas production, nighttime commercial fishing, and infrastructure development. However, these processes can only be studied when other naturally-occurring factors that influence nighttime lights are removed. For example, variations in lunar lighting due to consistent changes in Moon phase cause fluctuations in the amount of light shining on Earth. Similarly, land-cover dynamics (e.g., seasonal vegetation, snow and ice cover), as well as atmospheric conditions (e.g., clouds, aerosols, airglow, and auroras), influence the intensity of the light captured by the sensor as it travels over various parts of the world.\n\nTo realize the full potential of the VIIRS DNB time series record for nighttime lights applications, NASA's Black Marble product suite was developed, building on a history of 20 years of research on how light changes when it reflects off of surfaces with different angular and spectral properties. Through complex modeling, scientists can now predict how moonlight, snow, vegetation, terrain, and clouds impact the lights we see from space, allowing for more accurate assessments of human and environmental activity at night.\n\n<!-- PageFooter=\"170 Earth at Night\" -->",
-    "page_number": 186
-  },
-  "rerankerScore": 2.5997617,
-  "docKey": "earth_at_night_508_page_186_verbalized"
-}
+... // Trimmed for brevity
 
 ❓ Follow-up question: How do I find lava at night?
 
@@ -735,6 +725,8 @@ const searchClient = new SearchClient<EarthAtNightDocument>(process.env.AZURE_SE
 await searchIndexClient.createOrUpdateIndex(index);
 ```
 
+Reference: [SearchField](/javascript/api/@azure/search-documents/searchfield), [VectorSearch](/javascript/api/@azure/search-documents/vectorsearch), [SemanticSearch](/javascript/api/@azure/search-documents/semanticsearch), [SearchIndex](/javascript/api/@azure/search-documents/searchindex), [SearchIndexClient](/javascript/api/@azure/search-documents/searchindexclient), [SearchClient](/javascript/api/@azure/search-documents/searchclient), [DefaultAzureCredential](/javascript/api/@azure/identity/defaultazurecredential)
+
 ### Upload documents to the index
 
 Currently, the `earth-at-night` index is empty. The following code populates the index with JSON documents from [NASA's Earth at Night e-book](https://raw.githubusercontent.com/Azure-Samples/azure-search-sample-data/refs/heads/main/nasa-e-book/earth-at-night-json/documents.json). As required by Azure AI Search, each document conforms to the fields and data types defined in the index schema.
@@ -775,6 +767,8 @@ while (count !== documents.length) {
 console.log(`✓ All ${documents.length} documents indexed successfully!`);
 ```
 
+Reference: [SearchIndexingBufferedSender](/javascript/api/@azure/search-documents/searchindexingbufferedsender)
+
 ### Create a knowledge source
 
 A knowledge source is a reusable reference to source data. The following code defines a knowledge source named `earth-knowledge-source` that targets the `earth-at-night` index.
@@ -797,6 +791,8 @@ await searchIndexClient.createKnowledgeSource({
 
 console.log(`✅ Knowledge source 'earth-knowledge-source' created successfully.`);
 ```
+
+Reference: [SearchIndexKnowledgeSource](/javascript/api/@azure/search-documents/searchindexknowledgesource)
 
 ### Create a knowledge base
 
@@ -828,6 +824,8 @@ await searchIndexClient.createKnowledgeBase({
 
 console.log(`✅ Knowledge base 'earth-knowledge-base' created successfully.`); 
 ```
+
+Reference: [KnowledgeBase](/javascript/api/@azure/search-documents/knowledgebase)
 
 ### Run the retrieval pipeline
 
@@ -876,6 +874,8 @@ const retrievalRequest = {
 
 const result = await knowledgeRetrievalClient.retrieveKnowledge(retrievalRequest);
 ```
+
+Reference: [KnowledgeRetrievalClient](/javascript/api/@azure/search-documents/knowledgeretrievalclient), [KnowledgeBaseRetrievalRequest](/javascript/api/@azure/search-documents/knowledgebaseretrievalrequest)
 
 ### Review the response, activity, and references
 
