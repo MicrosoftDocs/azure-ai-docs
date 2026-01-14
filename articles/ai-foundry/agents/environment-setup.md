@@ -9,9 +9,10 @@ ms.reviewer: fosteramanda
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 12/04/2025
+ms.date: 01/08/2026
 ms.custom: azure-ai-agents
 monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
 # Set up your environment
@@ -37,13 +38,13 @@ To get started, you need a Microsoft Foundry resource and a Foundry project.
 Agents are created within a specific project, and each project acts as an isolated workspace. This means:
 * All agents in the same project share access to the same file storage, thread storage (conversation history), and search indexes.
 * Data is isolated between projects. Agents in one project cannot access resources from another.
-Projects are currently the unit of sharing and isolation in Foundry. See the [what is AI foundry](../../ai-foundry/what-is-azure-ai-foundry.md) article for more information on Foundry projects.
+Projects are currently the unit of sharing and isolation in Foundry. See the [what is AI foundry](../../ai-foundry/what-is-foundry.md) article for more information on Foundry projects.
 
 ### Prerequisites 
 
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * Ensure that the individual creating the account and project has the **Azure AI Account Owner** role at the subscription scope
-* If configuring a [standard setup](#choose-your-setup), the same individual must also have permissions to assign roles to required resources (Cosmos DB, Azure AI Search, Azure Blob Storage). For more information on RBAC roles, specific to Agent Service, see [Agent Service RBAC roles](../concepts/rbac-azure-ai-foundry.md).
+* If configuring a [standard setup](#choose-your-setup), the same individual must also have permissions to assign roles to required resources (Cosmos DB, Azure AI Search, Azure Blob Storage). For more information on RBAC roles, specific to Agent Service, see [Agent Service RBAC roles](../concepts/rbac-foundry.md).
     * The built-in role needed is **Role Based Access Administrator**.
     * Alternatively, having the **Owner** role at the subscription level also satisfies this requirement.
     * The key permission needed is: `Microsoft.Authorization/roleAssignments/write`
@@ -79,8 +80,8 @@ If you want support for Private Network Isolation see [network-secured setup](ho
 
 | Description and Autodeploy  |  Diagram (click to zoom in) |
 |-----------------------------|------------------------------|
-| Deploy a basic agent setup that uses **Managed Identity** for authentication. <br> An account and project are created. <br> A GPT-4o model is deployed. <br> A Microsoft-managed Key Vault is used by default. <br> [![Deploy To Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazure-ai-foundry%2Ffoundry-samples%2Frefs%2Fheads%2Fmain%2Fsamples%2Fmicrosoft%2Finfrastructure-setup%2F40-basic-agent-setup%2Fbasic-setup.json) | :::image type="content" source="./media\quickstart\basic-setup-resources-foundry.png" alt-text="An architecture diagram for basic agent setup." lightbox="./media\quickstart\basic-setup-resources-foundry.png"::: |
-| Deploy a standard agent setup that uses **Managed Identity** for authentication. <br>An account and project are created. <br> A GPT-4o model is deployed. <br> Azure resources for storing customer data - **Azure Storage**, **Azure Cosmos DB**, and **Azure AI Search** - are automatically created if existing resources are't  provided. <br> These resources are connected to your project to store files, threads, and vector data. <br> A Microsoft-managed Key Vault is used by default.</li></ul> <br> [![Deploy To Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazure-ai-foundry%2Ffoundry-samples%2Frefs%2Fheads%2Fmain%2Fsamples%2Fmicrosoft%2Finfrastructure-setup%2F41-standard-agent-setup%2Fazuredeploy.json) | :::image type="content" source="./media\quickstart\standard-agent-setup.png" alt-text="An architecture diagram for standard agent setup." lightbox="./media\quickstart\standard-agent-setup.png"::: |
+| Deploy a basic agent setup that uses **Managed Identity** for authentication. <br> An account and project are created. <br> A GPT-4o model is deployed. <br> A Microsoft-managed Key Vault is used by default. <br> [![Deploy To Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazure-ai-foundry%2Ffoundry-samples%2Frefs%2Fheads%2Fmain%2Finfrastructure%2Finfrastructure-setup-bicep%2F40-basic-agent-setup%2Fbasic-setup.json) | :::image type="content" source="./media\quickstart\basic-setup-resources-foundry.png" alt-text="An architecture diagram for basic agent setup." lightbox="./media\quickstart\basic-setup-resources-foundry.png"::: |
+| Deploy a standard agent setup that uses **Managed Identity** for authentication. <br>An account and project are created. <br> A GPT-4o model is deployed. <br> Azure resources for storing customer data - **Azure Storage**, **Azure Cosmos DB**, and **Azure AI Search** - are automatically created if existing resources are't  provided. <br> These resources are connected to your project to store files, threads, and vector data. <br> A Microsoft-managed Key Vault is used by default.</li></ul> <br> [![Deploy To Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazure-ai-foundry%2Ffoundry-samples%2Frefs%2Fheads%2Fmain%2Finfrastructure%2Finfrastructure-setup-bicep%2F41-standard-agent-setup%2Fazuredeploy.json) | :::image type="content" source="./media\quickstart\standard-agent-setup.png" alt-text="An architecture diagram for standard agent setup." lightbox="./media\quickstart\standard-agent-setup.png"::: |
 
 ### [Optional] Model selection in autodeploy template
 

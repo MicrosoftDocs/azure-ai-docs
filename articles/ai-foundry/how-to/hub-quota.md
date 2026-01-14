@@ -3,6 +3,7 @@ title: Manage and increase quotas for hub resources
 titleSuffix: Microsoft Foundry
 description: Manage and increase quotas for hub-level resources in Microsoft Foundry.
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.custom:
   - ignite-2023
   - build-2024

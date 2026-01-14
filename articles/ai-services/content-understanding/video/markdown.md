@@ -2,12 +2,12 @@
 title: Content Understanding audiovisual modality markdown representation
 titleSuffix: Foundry Tools
 description: Description of the markdown representation returned as part of the Content Understanding audiovisual response for both audio and video inputs and how to use the response in your applications.
-author: laujan
-ms.author: paulhsu
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.date: 06/19/2025
 ms.service: azure-ai-content-understanding
-ms.topic: conceptual
+ms.topic: article
 ms.custom:
   - build-2025
 ---
@@ -29,6 +29,9 @@ The markdown representation from Content Understanding generates structured mark
 The markdown format differs based on input type:
 - **Audio inputs**: Focus on transcript content, timing, and speaker information
 - **Video inputs**: Include all audio elements plus key frames
+
+For complete details about supported file types, file size limits, and other constraints, see [service quotas and limits](../service-limits.md).
+
 
 ## Document structure and metadata
 

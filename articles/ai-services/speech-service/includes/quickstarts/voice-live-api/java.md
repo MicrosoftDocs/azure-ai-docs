@@ -1,15 +1,16 @@
 ---
 manager: nitinme
-author: goergenj
-ms.author: jagoerge
+author: PatrickFarley
+ms.author: pafarley
 reviewer: patrickfarley
 ms.reviewer: pafarley
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 11/10/2025
+ms.subservice: azure-ai-foundry-openai
 ---
 
-In this article, you learn how to use Azure Speech in Foundry Tools voice live with [Microsoft Foundry models](/azure/ai-foundry/concepts/foundry-models-overview) using the VoiceLive SDK for Java.
+In this article, you learn how to use voice live with [Microsoft Foundry models](/azure/ai-foundry/concepts/foundry-models-overview) using the VoiceLive SDK for Java.
 
 [!INCLUDE [Header](../../common/voice-live-java.md)]
 
@@ -29,7 +30,7 @@ In this article, you learn how to use Azure Speech in Foundry Tools voice live w
 > [!NOTE]
 > For keyless authentication with Microsoft Entra ID, install the [Azure CLI](/cli/azure/install-azure-cli) and assign the `Cognitive Services User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
 
-## Quick Start
+## Setup
 
 1. Create a new folder `voice-live-quickstart` and go to the quickstart folder with the following command:
 
@@ -167,7 +168,7 @@ In this article, you learn how to use Azure Speech in Foundry Tools voice live w
 
 [!INCLUDE [resource authentication](resource-authentication.md)]
 
-## Code Sample
+## Add sample code
 
 Create the `ModelQuickstart.java` file with the following code:
 
@@ -1017,7 +1018,7 @@ Press Ctrl+C to exit
 ? Audio playback stopped
 ```
 
-## Logging Configuration
+## Logging configuration
 
 The sample uses SLF4J for logging. By default, the logging level is set to INFO. You can configure logging by creating a `simplelogger.properties` file in the project root directory (same folder as `pom.xml`):
 

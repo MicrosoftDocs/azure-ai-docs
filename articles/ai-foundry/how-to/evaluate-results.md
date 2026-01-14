@@ -8,7 +8,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 09/22/2025
+ms.date: 12/22/2025
 ms.reviewer: dlozier
 ms.author: lagayhar
 author: lgayhardt
@@ -53,7 +53,7 @@ Select a run to open details (dataset, task type, prompt, parameters) plus per-s
 
 ::: moniker range="foundry"
 
-In foundry, the concept of group runs is introduced. You can create multiple runs within a group that share common characteristics, such as metrics and datasets, to make comparison easier. Once you run an evaluation, locate the group on the **Evaluation** page, which contains a list of group evaluations and associated meta data, such as the number of targets and the last modified date.  
+In Microsoft Foundry, the concept of group runs is introduced. You can create multiple runs within a group that share common characteristics, such as metrics and datasets, to make comparison easier. Once you run an evaluation, locate the group on the **Evaluation** page, which contains a list of group evaluations and associated meta data, such as the number of targets and the last modified date.  
 
 Select a group run to review group details, including each run and high-level metrics, such as run duration, tokens, and evaluator scores, for each run within that group.
 

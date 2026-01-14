@@ -12,7 +12,7 @@ In this quickstart, you use the [Azure AI Search REST APIs](/rest/api/searchserv
 This quickstart uses fictional hotel data from the [azure-search-sample-data](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/hotels/hotel-json-documents) repo to populate the index.
 
 > [!TIP]
-> You can download the [source code](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart) to start with a finished project or follow these steps to create your own.
+> You can download the [source code](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-keyword-search) to start with a finished project or follow these steps to create your own.
 
 ## Prerequisites
 

@@ -4,7 +4,7 @@ titleSuffix: Azure Machine Learning
 description:  Learn how to use MLflow to log metrics and artifacts from machine learning experiments and runs in Azure Machine Learning workspaces.
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: cacrest
+ms.reviewer: jturuk
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.date: 10/17/2025

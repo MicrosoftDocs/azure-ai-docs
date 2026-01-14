@@ -142,7 +142,7 @@ You can access cost information from either the [!INCLUDE [foundry-link](../defa
 
 ### Configure permissions to view costs
 
-You need the [AI User role](rbac-azure-ai-foundry.md#azure-ai-user) and [Cost Management Reader role](/azure/role-based-access-control/built-in-roles/management-and-governance#cost-management-reader) at the resource group of subscription level to view the costs.
+You need the [AI User role](rbac-foundry.md#built-in-roles) and [Cost Management Reader role](/azure/role-based-access-control/built-in-roles/management-and-governance#cost-management-reader) at the resource group of subscription level to view the costs.
 
 Or you can create the following custom rules:
 
@@ -415,7 +415,7 @@ For more information, see [Azure pricing calculator](https://azure.microsoft.com
 :::moniker range="foundry-classic"
 - [Foundry management center](management-center.md)
 :::moniker-end
-- [Foundry status dashboard](../azure-ai-foundry-status-dashboard-documentation.md)
+- [Foundry status dashboard](../foundry-status-dashboard-documentation.md)
 - Learn [how to optimize your cloud investment with cost management](/azure/cost-management-billing/costs/cost-mgt-best-practices).
 - Learn more about managing costs with [cost analysis](/azure/cost-management-billing/costs/quick-acm-cost-analysis).
 - Learn about how to [prevent unexpected costs](/azure/cost-management-billing/understand/analyze-unexpected-charges).

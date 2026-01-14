@@ -5,7 +5,7 @@ description: Learn how MLflow uses the concept of models instead of artifacts to
 services: machine-learning
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: cacrest
+ms.reviewer: jturuk
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.date: 10/30/2025

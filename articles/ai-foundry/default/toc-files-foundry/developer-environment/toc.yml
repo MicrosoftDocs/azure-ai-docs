@@ -11,6 +11,18 @@ items:
 - name: Playgrounds and quick evaluation
   href: ../../../concepts/concept-playgrounds.md
 
+# Agent Tools
+- name: Agent development tools
+  items:
+  - name: Use the Visual Studio Code extension for agent development
+    href: ../../../how-to/develop/vs-code-agents.md
+  - name: Use MCP Tools in the Visual Studio Code extension
+    href: ../../../how-to/develop/vs-code-agents-mcp.md
+  - name: Use declarative agent workflows in the Visual Studio Code extension
+    href: ../../agents/how-to/vs-code-agents-workflow-low-code.md
+  - name: Use hosted agent workflows in the Visual Studio Code extension
+    href: ../../agents/how-to/vs-code-agents-workflow-pro-code.md
+
 # MCP Server
 - name: Foundry MCP Server (preview)
   items:

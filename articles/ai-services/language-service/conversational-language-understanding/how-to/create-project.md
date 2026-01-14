@@ -16,7 +16,7 @@ A Conversational Language Understanding (CLU) fine-tuning task is a workspace pr
 
 > [!NOTE]
 >
-> * If you already have an Azure Language in Foundry Tools or multi-service resource—whether used on its own or through Language Studio—you can continue to use those existing Language resources within the Foundry portal. For more information, see [How to use Foundry Tools in the Foundry portal](../../../../ai-services/connect-services-ai-foundry-portal.md).
+> * If you already have an Azure Language in Foundry Tools or multi-service resource—whether used on its own or through Language Studio—you can continue to use those existing Language resources within the Foundry portal. For more information, see [How to use Foundry Tools in the Foundry portal](../../../../ai-services/connect-services-foundry-portal.md).
 > * In Foundry, a fine-tuning task serves as your workspace when customizing your CLU model. Previously, a **fine-tuning task** was referred to as a **CLU project**. You might encounter both terms used interchangeably in older CLU documentation.
 > * We highly recommend that you use a Foundry resource in the Foundry; however, you can also follow these instructions using a Language resource.
 >
@@ -38,7 +38,7 @@ A Conversational Language Understanding (CLU) fine-tuning task is a workspace pr
 1. If you aren't already signed in, the portal prompts you to do so with your Azure credentials.
 1. Once signed in, you can create or access your existing projects within Foundry.
 1. If you're not already at your project for this task, select it.
-1. Select Fine-tuning from the left navigation panel.
+1. Select Fine-tuning from the left navigation pane.
 
    :::image type="content" source="../media/select-fine-tuning.png" alt-text="Screenshot of fine-tuning selector in the Foundry.":::
 
@@ -104,7 +104,7 @@ Importing the configuration file allows you to bring your existing settings dire
 
 ### [Foundry](#tab/azure-ai-foundry)
 
-To import an existing Foundry Tools project with Foundry, you need to create a connection to the Foundry Tools resource within your Foundry project. For more information, *see* [Connect Foundry Tools projects to Foundry](../../../../ai-services/connect-services-ai-foundry-portal.md)
+To import an existing Foundry Tools project with Foundry, you need to create a connection to the Foundry Tools resource within your Foundry project. For more information, *see* [Connect Foundry Tools projects to Foundry](../../../../ai-services/connect-services-foundry-portal.md)
 
 ### [REST APIs](#tab/rest-api)
 

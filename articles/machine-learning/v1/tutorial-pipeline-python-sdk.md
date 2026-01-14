@@ -7,7 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.topic: tutorial
 author: lgayhardt
-ms.author: lagayhar
+ms.author: scottpolly
+ms.reviewer: jturuk
 ms.date: 01/28/2022
 ms.custom: UpdateFrequency5, devx-track-python, sdkv1
 ---

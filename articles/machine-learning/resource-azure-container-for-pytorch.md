@@ -9,7 +9,7 @@ ms.reviewer: parinitarahi
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.custom: build-2023, build-2023-dataai
-ms.topic: reference
+ms.topic: overview 
 ms.date: 05/13/2024
 ---
 

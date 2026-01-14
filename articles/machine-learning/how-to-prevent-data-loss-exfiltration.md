@@ -8,7 +8,7 @@ ms.subservice: enterprise-readiness
 ms.topic: how-to
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: meerakurup
+ms.reviewer: shshubhe
 ms.date: 02/05/2025
 ms.custom: engagement-fy23, build-2023
 monikerRange: 'azureml-api-2 || azureml-api-1'

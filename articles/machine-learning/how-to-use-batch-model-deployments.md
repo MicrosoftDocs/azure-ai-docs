@@ -8,13 +8,13 @@ ms.subservice: inferencing
 ms.topic: how-to
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: cacrest
+ms.reviewer: jturuk
 ms.date: 08/04/2025
 ai-usage: ai-assisted
 ms.custom:
   - how-to
   - devplatv2
-  - update-code2
+  - update-code3
   - sfi-image-nochange
 #Customer intent: As an ML engineer or data scientist, I want to create an endpoint to host my models for batch scoring, so that I can use the same endpoint continuously for different large datasets on-demand or on-schedule.
 ---

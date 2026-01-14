@@ -7,7 +7,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 12/15/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-classification
 ---
@@ -29,13 +29,7 @@ Before viewing model evaluation you need:
 
 See the [project development lifecycle](../overview.md#project-development-lifecycle).
 
-## Model details
-
-### [Language studio](#tab/language-studio)
-
-[!INCLUDE [View model details](../includes/language-studio/model-evaluation.md)]
-
-### [REST APIs](#tab/rest-api)
+## Model details (REST API)
 
 ### Single label classification
 [!INCLUDE [Model evaluation](../includes/rest-api/model-evaluation-single-label.md)]
@@ -44,34 +38,15 @@ See the [project development lifecycle](../overview.md#project-development-lifec
 
 [!INCLUDE [Model evaluation](../includes/rest-api/model-evaluation-multi-label.md)]
 
----
 
-## Load or export model data
-
-### [Language studio](#tab/Language-studio)
-
-[!INCLUDE [Load export model](../../conversational-language-understanding/includes/language-studio/load-export-model.md)]
-
-
-### [REST APIs](#tab/REST-APIs)
+## Load or export model data (REST API)
 
 [!INCLUDE [Load export model](../includes/rest-api/load-export-model.md)]
 
----
 
-## Delete model
-
-### [Language studio](#tab/language-studio)
-
-[!INCLUDE [Delete model](../includes/language-studio/delete-model.md)]
-
-
-### [REST APIs](#tab/rest-api)
+## Delete model (REST API)
 
 [!INCLUDE [Delete model](../includes/rest-api/delete-model.md)]
-
-
----
 
 ## Next steps
 

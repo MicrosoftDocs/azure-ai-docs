@@ -287,13 +287,11 @@ task_adherence(
 
 ### Task adherence output
 
-The numerical score is on a Likert scale (integer 1 to 5). A higher score is better. Given a numerical threshold (default to 3), the evaluator also outputs *pass* if the score >= threshold, or *fail* otherwise. Use the reason field to understand why the score is high or low.
+The evaluator outputs *pass* or *fail* otherwise. Use the reason field to understand the reasoning behind the score
 
 ```python
 {
-   "task_adherence": 2.0,
     "task_adherence_result": "fail",
-    "task_adherence_threshold": 3,
     "task_adherence_reason": "The response partially addresses the query by mentioning relevant practices but lacks critical details and depth, making it insufficient for a comprehensive understanding of maintaining a rose garden in summer."
 }
 ```
@@ -339,9 +337,9 @@ Specifically, for textual outputs from agents, you can also apply RAG quality ev
 Examples:
 
 - [Task completion (preview) sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_task_completion.py)
-- [Task adherence sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_task_adherence.py)
+- [Task adherence (preview) sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_task_adherence.py)
 - [Task navigation efficiency (preview) sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_task_navigation_efficiency.py)
-- [Intent resolution sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_intent_resolution.py)
+- [Intent resolution (preview) sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_intent_resolution.py)
 
 ## Process evaluation
 
@@ -363,7 +361,7 @@ Examples:
 
 ## Evaluator model support for AI-assisted evaluators
 
-For AI-assisted evaluators, you can use AzureOpenAI or OpenAI [reasoning models](../../../ai-services/openai/how-to/reasoning.md) and non-reasoning models for the LLM-judge depending on the evaluators. For complex evaluation that requires refined reasoning, we recommend a strong reasoning model like `gpt-5-mini` with a balance of reasoning performance and cost and performance efficiency.
+For AI-assisted evaluators, you can use AzureOpenAI or OpenAI [reasoning models](../../../ai-services/openai/how-to/reasoning.md) and non-reasoning models for the LLM-judge depending on the evaluators. For complex evaluation that requires refined reasoning, we recommend a strong reasoning model like `gpt-5-mini` with a balance of reasoning performance, cost-effectiveness, and efficiency.
 
 ### Tool evaluators support
 

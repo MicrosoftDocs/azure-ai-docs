@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: training
 ms.topic: how-to
 author: lgayhardt
-ms.author: lagayhar
-ms.reviewer: lagayhar
+ms.author: scottpolly
+ms.reviewer: sooryar
 ms.date: 09/30/2024
 ---
 

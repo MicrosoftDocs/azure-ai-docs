@@ -1,10 +1,10 @@
 ---
-author: goergenj
+author: PatrickFarley
 reviewer: patrickfarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 10/21/2025
-ms.author: jagoerge
+ms.author: pafarley
 ms.reviewer: pafarley
 ms.custom: devx-track-csharp, references_regions
 ---
@@ -386,12 +386,12 @@ For a complete code sample, see [language identification](../../../language-iden
 
 Multi-lingual speech translation implements a new level of speech translation technology that unlocks various capabilities, including having no specified input language, and handling language switches within the same session. These features enable a new level of speech translation powers that can be implemented into your products.
 
-Currently when you use Language ID with speech translation, you must create the `SpeechTranslationConfig` object from the v2 endpoint. Replace the string "YourServiceRegion" with your Speech resource region (such as "westus"). Replace "YourSpeechResoureKey" with your Speech resource key.
+Currently when you use Language ID with speech translation, you must create the `SpeechTranslationConfig` object from the v2 endpoint. Replace the string "YourServiceRegion" with your Speech resource region (such as "westus"). Replace "YourSpeechResourceKey" with your Speech resource key.
 
 ```csharp
 var v2EndpointInString = String.Format("wss://{0}.stt.speech.microsoft.com/speech/universal/v2", "YourServiceRegion");
 var v2EndpointUrl = new Uri(v2EndpointInString);
-var speechTranslationConfig = SpeechTranslationConfig.FromEndpoint(v2EndpointUrl, "YourSpeechResoureKey");
+var speechTranslationConfig = SpeechTranslationConfig.FromEndpoint(v2EndpointUrl, "YourSpeechResourceKey");
 ```
 
 Specify the translation target languages. Replace with languages of your choice. You can add more lines.

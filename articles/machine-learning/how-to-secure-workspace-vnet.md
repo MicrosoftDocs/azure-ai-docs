@@ -5,7 +5,7 @@ description: Use an isolated Azure Virtual Network to secure your Azure Machine 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
-ms.reviewer: None
+ms.reviewer: shshubhe
 ms.author: scottpolly
 author: s-polly
 ms.date: 09/10/2025
@@ -85,7 +85,7 @@ When your Azure Machine Learning workspace is configured with a private endpoint
 
 ### Azure Container Registry
 
-When your Azure Machine Learning workspace or any resource is configured with a private endpoint it may be required to setup a user managed compute cluster for AzureML Environment image builds. Default scenario is leveraging [serverless compute](how-to-use-serverless-compute.md) and currently intended for scenarios with no network restrictions on resources associated with AzureML Workspace.
+When your Azure Machine Learning workspace or any resource is configured with a private endpoint it may be required to setup a user managed compute cluster for Azure Machine Learning Environment image builds. Default scenario is leveraging [serverless compute](how-to-use-serverless-compute.md) and currently intended for scenarios with no network restrictions on resources associated with Azure Machine Learning Workspace.
 
 > [!IMPORTANT]
 > The compute cluster used to build Docker images needs to be able to access the package repositories that are used to train and deploy your models. You might need to add network security rules that allow access to public repos, [use private Python packages](concept-vulnerability-management.md#using-a-private-package-repository), or use [custom Docker images (SDK v1)](v1/how-to-train-with-custom-image.md?view=azureml-api-1&preserve-view=true) that already include the packages.

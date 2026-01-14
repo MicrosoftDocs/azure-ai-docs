@@ -1,141 +1,93 @@
 ---
-title: 'Try Azure AI Search for free'
+title: Try for Free
 titleSuffix: Azure AI Search
-description: Learn how to create a trial subscription and use credits for trying advanced features.
+description: Learn how to start a trial subscription and use credits to try advanced Azure AI Search features.
 manager: nitinme
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
-ms.topic: conceptual
-ms.date: 11/06/2025
+ms.topic: how-to
+ms.date: 01/13/2026
 ms.custom: references_regions
 ---
 
 # Try Azure AI Search for free
 
-If you're new to Azure, you can set up an Azure free account to explore Azure AI Search and other services at no charge. Information retrieval over your own content is useful for many scenarios including AI generative search.
+If you're new to Azure, you can create an Azure free account to explore Azure AI Search and other services at no charge. The free account provides credits that you can use to create and test services for 30 days.
 
-This article explains how to get the most value from your Azure free account so that you can complete your evaluation of Azure AI Search quickly and efficiently.
+This article explains how to maximize the value of your Azure free account to quickly and efficiently evaluate Azure AI Search.
 
-## Step one: Sign up for an Azure free account
+## Prerequisites
 
-To try Azure AI Search for free, [sign up for an Azure free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). The free account is active for 30 days, and comes with free credits so that you can create billable services at no charge.
++ An internet connection and a supported web browser.
++ A phone number, credit or debit card, and Microsoft or GitHub account to create an Azure free account.
 
-Currently, the credit is equivalent to USD 200. The exact amount is subject to change, and you can verify the credit on the Azure sign-up page.
+## Create an Azure free account
 
-> [!div class="nextstepaction"]
-> [Try Azure for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
+To try Azure AI Search for free, [sign up for an Azure free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-After you sign up, you can immediately use either of these links to access Azure resources and experiences:
+The free account is active for 30 days and includes credits that allow you to create billable services at no charge. Currently, the credits are equivalent to USD200. This amount is subject to change, so verify the credit on the sign-up page.
 
-+ [Sign in to Azure portal](https://portal.azure.com/) to view, manage, and create more resources. You can also use the Azure portal to track your credits and projected costs.
+## Choose a region
 
-+ [Sign in to the Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) for a no-code approach to deploying models on Azure OpenAI and using Azure AI Search for information retrieval. **We recommend you start here first.**
+You can optionally integrate Azure AI Search with Foundry Tools for [AI enrichment](cognitive-search-concept-intro.md), [integrated vectorization](vector-search-integrated-vectorization.md), and [multimodal search](multimodal-search-overview.md). For billing purposes, you must [attach your Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md) to your search service via a keyless connection (preview) or key-based connection. Key-based connections require both services to be in the same region.
 
-## Step two: "Day One" tasks
+Before you create resources for a key-based connection, confirm regional support:
 
-In the Foundry (new) portal, you can create an end-to-end solution that integrates Azure AI Search and Foundry Agent Service for knowledge retrieval.
++ [**Azure AI Search regions**](search-region-support.md): The **AI enrichment** column indicates whether Azure AI Search and Microsoft Foundry are in the same region.
 
-The portal supports creating *knowledge sources* that map to your indexed content in Azure AI Search and *knowledge bases* that orchestrate retrieval operations, including query decomposition, hybrid search, and result reranking. You can then configure a Foundry agent to use this knowledge base as a Model Context Protocol (MCP) tool, allowing the agent to retrieve relevant information and provide grounded, citation-backed responses.
++ [**Azure Vision regions**](/azure/ai-services/computer-vision/overview-image-analysis?tabs=4-0#region-availability): The **Multimodal embeddings** column indicates regional support for the multimodal APIs that enable text and image vectorization. Azure Vision provides these APIs, which you access through a Microsoft Foundry resource. Ensure that Azure AI Search and Microsoft Foundry are in the same region as the multimodal APIs.
 
-For more information about the programmatic experience, see [Connect a Foundry IQ knowledge base to Foundry Agent Service](/azure/ai-foundry/agents/how-to/tools/knowledge-retrieval).
+> [!TIP]
+> If you don't need features powered by Foundry Tools, ignore the Azure Vision regions and choose an Azure AI Search region that provides the features and capacity you need.
 
-## Step three: Have a plan for next steps
+## Choose a pricing tier
 
-The trial period can go by quick. Having a plan of action can help you get the most out of your trial subscription. For Azure AI Search, most newer customers and developers are exploring RAG patterns.
+Azure AI Search offers several [pricing tiers](search-sku-tier.md), but only two tiers stay within the free account credit limits:
 
-For a next step evaluation of [RAG scenarios](retrieval-augmented-generation-overview.md), you should have three or five Azure resources for:
++ **Free** doesn't consume credits and provides 50 MB of storage. You can have one free search service per Azure subscription. This tier is always free and doesn't expire, even after your 30-day trial ends. However, it doesn't support semantic ranking or managed identities for Microsoft Entra ID authentication and authorization, which are commonly used in quickstarts.
 
-- Storing data
-- Deploying embedding and chat models (**Azure OpenAI**)
-- Applying Foundry Tools for creating AI-generated content during indexing (optional)
-- Adding information retrieval (**Azure AI Search**)
-- Adding a frontend app (optional)
-
-Many of our quickstarts and tutorials use Azure Storage, so we recommend creating an Azure Storage account for getting started.
-
-Generative search requires embedding and chat models. The Azure cloud provides Azure OpenAI, but you can also use Azure Vision in Foundry Tools for multimodal embeddings (but not chat). Another model provider is Foundry and deploying chat and embedding models into the model catalog. However, for initial exploration, we recommend Azure OpenAI for its familiarity and mainstream offerings.
-
-Application frontends are useful if you're prototyping a solution for a wider audience. You can use Azure Web apps or build an ASP.NET MVC application for this task. Otherwise, if you're working locally, you can view output in Jupyter notebooks in Visual Studio Code or another IDE. Or view results in console apps or other apps that run on localhost.
-
-## Check regions
-
-Azure AI Search offers integrated operations with applied AI in the Azure cloud. For data residency and efficient operations, integration typically depends on services running within the same region.
++ **Basic** (recommended) consumes about one-third of your USD200 credits over 30 days and provides 15 GB of storage in most regions. This tier supports all features, including semantic ranking and managed identities, and runs on dedicated infrastructure for consistent performance.
 
 > [!NOTE]
-> The same-region requirement doesn't apply to Azure OpenAI and Foundry for interoperability with Azure AI Search. However, using the same region can improve performance and reduce latency.
+> Free search services that remain inactive for an extended period of time might be deleted to free up capacity, should the region be experiencing capacity constraints.
 
-For [AI enrichment](cognitive-search-concept-intro.md), [integrated vectorization](vector-search-integrated-vectorization.md), and [multimodal search](multimodal-search-overview.md) powered by Foundry Tools, you must create Azure AI Search and Foundry in the same region. This is required for [billing purposes](cognitive-search-attach-cognitive-services.md).
+## Create resources
 
-Before you create these resources:
+Most Azure AI Search scenarios require the following resources:
 
-+ Check [Azure AI Search regions](search-region-support.md). The **AI enrichment** column indicates whether Azure AI Search and Foundry are in the same region.
+1. [Create an Azure AI Search service](search-create-service-portal.md). Choose the pricing tier that fits your needs and, if applicable, the same region as Microsoft Foundry. Most Azure AI Search regions provide higher-capacity storage limits. Only a few have older, lower limits. For the Basic tier, confirm that you have a 15-GB partition during service creation.
 
-+ Check [Azure Vision regions](/azure/ai-services/computer-vision/overview-image-analysis?tabs=4-0#region-availability). The **Multimodal embeddings** column indicates regional support for the multimodal APIs that enable text and image vectorization. Azure Vision provides these APIs, which you access through a Foundry resource. Ensure that your search service and Foundry resource are in the same region as the multimodal APIs.
+1. [Create an Azure Storage account](/azure/storage/common/storage-account-create?tabs=azure-portal) to index your own files. Choose a general purpose account and use the default settings.
 
-### Create services
+1. [Create a Microsoft Foundry resource](/azure/ai-services/multi-service-resource) to use AI enrichment in your indexing workloads and the Azure Vision multimodal APIs as an embedding model provider.
 
-1. [Create a search service](search-create-service-portal.md) if you don't have one already. Choose the Basic tier and, if applicable, the same region as Foundry. Most Azure AI Search regions provide higher capacity storage limits. There are just a few that have older and lower limits. For the Basic tier, as you install, confirm that you have a 15-GB partition.
+## Run a quickstart
 
-   > [!div class="nextstepaction"]
-   > [Create a search service](search-create-service-portal.md)
+To get started with Azure AI Search, try one of the following quickstarts:
 
-1. [Create an Azure Storage account](/azure/storage/common/storage-account-create?tabs=azure-portal). Choose a general purpose account and use default settings.
++ Quickstart: Agentic retrieval ([portal](get-started-portal-agentic-retrieval.md) or [programmatic](search-get-started-agentic-retrieval.md))
++ Quickstart: Keyword search ([portal](search-get-started-portal.md) or [programmatic](search-get-started-text.md))
++ Quickstart: Vector search ([portal](search-get-started-portal-import-vectors.md) or [programmatic](search-get-started-vector.md))
 
-1. [Create an Azure OpenAI resource](/azure/ai-services/openai/how-to/create-resource?pivots=web-portal).
+You can also explore the [azure-search-vector-samples](https://github.com/Azure/azure-search-vector-samples) GitHub repository or [solution accelerators](resource-tools.md). Many samples and accelerators include Bicep scripts that deploy all Azure resources and dependencies, allowing you to quickly explore operational solutions.
 
-1. [Create a Foundry resource](/azure/ai-services/multi-service-resource) to use applied AI in your indexing workloads and Azure Vision multimodal APIs as an embedding model provider. You can create and transform content during indexing if applied AI can be attached. For multimodal APIs, make sure you choose a region that provides those APIs. Look for this tile in Azure Marketplace:
+## Use a portal to explore features
 
-### Try the quickstarts
+You can access Azure AI Search through two portals, each optimized for different scenarios:
 
-Try the Azure portal quickstarts for Azure AI Search or quickstarts that use Visual Studio Code with REST or Python extensions.  It's the fastest approach creating searchable content, and you don't need coding skills to complete the tasks.
+| Portal | Description | What you can do |
+|--------|-------------|-----------------|
+| [Azure portal](https://portal.azure.com/) | The primary management interface for Azure resources and your Azure AI Search service. **This portal is most useful for classic search scenarios and overall resource management.** | <ul><li>Create and configure your search service.</li><li>Build knowledge bases and knowledge sources for [agentic retrieval](search-what-is-azure-search.md#what-is-agentic-retrieval).</li><li>Build indexes, indexers, data sources, and skillsets for [classic search](search-what-is-azure-search.md#what-is-classic-search).</li><li>Query your knowledge bases and indexes.</li><li>Track credits and monitor costs.</li></ul> |
+| [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) | A unified platform for deploying models and building AI applications. **This portal is most useful for agentic retrieval (RAG) scenarios.** | <ul><li>Deploy embedding and chat models.</li><li>Use [Foundry IQ](/azure/ai-foundry/agents/how-to/tools/knowledge-retrieval) to connect your Azure AI Search knowledge base to an AI agent.</li></ul> |
 
-- [Quickstart: Vector search in the Azure portal](search-get-started-portal-import-vectors.md)
-- [Quickstart: Image search in the Azure portal](search-get-started-portal-image-search.md)
-- [Quickstart: Keyword in the Azure portal](search-get-started-portal.md)
-- [Quickstart: Generative search (RAG) using a Python client](search-get-started-rag.md)
-- [Quickstart: Vector search using a REST client](search-get-started-vector.md)
+## Track your credit usage
 
-Foundry supports connecting to content in Azure AI Search.
+During the trial period, you should stay under the USD200 credit allocation. Most services are on the Standard tier, so you aren't charged while they're not in use. However, an Azure AI Search service on the Basic tier is provisioned on dedicated clusters, so it's billable during its lifetime and can only be used by you. If you create a Basic search service, expect Azure AI Search to consume about one-third of your available credits during the trial period.
 
-- [Quickstart: Chat using your own data with Azure OpenAI](/azure/ai-services/openai/use-your-data-quickstart)
-- [Tutorial: Build a custom chat app with the prompt flow SDK](/azure/ai-foundry/tutorials/copilot-sdk-create-resources)
+In the Azure portal, a notification in the upper-right corner shows how many credits have been used and how many remain. You can also monitor billing by searching for **Subscriptions** in the topmost search bar. The **Overview** page shows spending rates, forecasts, and cost management. For more information, see [Check usage of free services included with your Azure free account](/azure/cost-management-billing/manage/check-free-service-usage).
 
-Developers should review [azure-search-vector-samples](https://github.com/Azure/azure-search-vector-samples) repository or the solution accelerators. You can deploy and run any of these samples using the Azure trial subscription. 
+## Next step
 
-Many samples and [accelerators](resource-tools.md) come with bicep scripts that deploy all Azure resources and dependencies, so you can skip installation steps and explore an operational solution as soon as the development completes.
-
-## Step four: Track your credits 
-
-During the trial period, you want to stay under the USD 200 credit allocation. Most services are Standard, so you won't be charged while they're not in use, but an Azure AI Search service on the Basic tier is provisioned on dedicated clusters and it can only be used by you. It's billable during its lifetime. If you provision a basic search service, expect Azure AI Search to consume about one third of your available credits during the trial period.
-
-During the trial period, the Azure portal provides a notification on the top right that tells you how many credits are used up and what remains. 
-
-You can also monitor billing by searching for *subscriptions* in the Azure portal to view subscription information at any time. The Overview page gives you spending rates, forecasts, and cost management. For more information, see [Check usage of free services included with your Azure free account](/azure/cost-management-billing/manage/check-free-service-usage).
-
-## Consider the free tier
-
-You can create a search service that doesn't consume credits. Here are some points about the free tier to keep in mind:
-
-+ You can have one free search service per Azure subscription.
-+ You can complete all of the quickstarts and most tutorials, except for those featuring semantic ranking and managed identities for Microsoft Entra ID authentication and authorization.
-+ Storage is capped at 50 MB.
-+ You can have up to three indexes, indexers, data sources, and skillset at one time.
-
-Review the [service limits](search-limits-quotas-capacity.md) for other constraints that apply to the free tier.
-
-> [!NOTE]
-> Free services that remain inactive for an extended period of time might be deleted to free up capacity if the region is under capacity constraints.
-
-## Next steps
-
-Sign up for an Azure free account:
-
-> [!div class="nextstepaction"]
-> [Try Azure for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
-
-When you're ready, add Azure AI Search as your first resource:
-
-> [!div class="nextstepaction"]
-> [Create a search service](search-create-service-portal.md)
+Ready to move beyond exploration? After your free trial ends, learn how to [plan and manage capacity](search-capacity-planning.md) and [plan and manage costs](search-sku-manage-costs.md) for production workloads.

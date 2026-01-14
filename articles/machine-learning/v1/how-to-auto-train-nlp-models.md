@@ -5,6 +5,7 @@ description: Set up Azure Machine Learning automated ML to train natural languag
 services: machine-learning
 author: wenxwei
 ms.author: scottpolly
+ms.reviewer: sooryar
 ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: how-to

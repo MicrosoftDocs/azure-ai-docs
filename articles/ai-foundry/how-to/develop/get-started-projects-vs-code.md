@@ -19,7 +19,7 @@ monikerRange: foundry-classic || foundry
 
 # Work with the Microsoft Foundry for Visual Studio Code extension (Preview)
 
-[Microsoft Foundry](/azure/ai-foundry/what-is-azure-ai-foundry) provides a unified platform for enterprise AI operations, model builders, and application development. This foundation combines production-grade infrastructure with friendly interfaces, ensuring organizations can build and operate AI applications with confidence.
+[Microsoft Foundry](/azure/ai-foundry/what-is-foundry) provides a unified platform for enterprise AI operations, model builders, and application development. This foundation combines production-grade infrastructure with friendly interfaces, ensuring organizations can build and operate AI applications with confidence.
 
 With Foundry, you can: 
 
@@ -46,7 +46,7 @@ Before using the Foundry for Visual Studio Code extension, you must:
 
 - Your subscription needs to be below your [quota limit](../quota.md) to [deploy a new model in this quickstart](#deploy-a-model-from-the-model-catalog). Otherwise you already need to have a [deployed chat model](../deploy-models-openai.md).
 
-- Set the appropriate RBAC permissions to create and manage Foundry resources with the Visual Studio Code extension. For more information, see [Role-based access control for Foundry](/azure/ai-foundry/concepts/rbac-azure-ai-foundry).
+- Set the appropriate RBAC permissions to create and manage Foundry resources with the Visual Studio Code extension. For more information, see [Role-based access control for Foundry](/azure/ai-foundry/concepts/rbac-foundry).
 
 ## Installation
 

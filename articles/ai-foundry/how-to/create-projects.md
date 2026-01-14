@@ -6,7 +6,7 @@ monikerRange: 'foundry-classic || foundry'
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: deeikele
-ms.date: 11/02/2025
+ms.date: 01/09/2026
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.custom:
@@ -15,6 +15,7 @@ ms.custom:
   - ignite-2024
   - build-aifnd
   - build-2025
+  - dev-focus
 ai-usage: ai-assisted
 # customer intent: As a developer, I want to create a Microsoft Foundry project so I can work with generative AI.
 ---
@@ -29,107 +30,106 @@ This article describes how to create a Foundry project in [Microsoft Foundry](ht
 
 * [!INCLUDE [fdp-description](../includes/fdp-description.md)]
 
-* This project type gives you access to the latest generative AI features in Foundry, including:
+* If you need access to open-source models or PromptFlow, [create a hub project type](../how-to/hub-create-projects.md) instead.
 
-    * Agents 
-    * Foundry SDK and API to build agents and switch easily between models
-    * Models sold directly by Azure - Azure OpenAI, Mistral, xAI, DeepSeek, etc.
-    * Partner & Community Models sold through Marketplace - Stability, Cohere, etc. 
-    * Content understanding
-    * Evaluations
-    * Fine-tuning
-    * OpenAI SDK and API including Batch and Stored Completions
-    * Foundry Tools
-
-* Do you need access to open-source models or PromptFlow? [Create a hub project type](../how-to/hub-create-projects.md) instead.
-
-* See [Types of projects](../what-is-azure-ai-foundry.md#types-of-projects) for more information on the different project types.
+* For more information about the different project types, see [Types of projects](../what-is-foundry.md#types-of-projects).
 
 ::: moniker-end
 
-If your organization requires customized Azure configurations like alternative names, security controls or cost tags, you might need to use the [Azure portal](https://portal.azure.com) or [template options](create-resource-template.md) to comply with your organization's Azure Policy requirements.
+If your organization requires customized Azure configurations like alternative names, security controls, or cost tags, you might need to use the [Azure portal](https://portal.azure.com) or [template options](create-resource-template.md) to comply with your organization's Azure Policy requirements.
 
 ## Prerequisites
 
-
-Use the following tabs to select the method you'll use to create a Foundry project:
-
-# [Foundry portal](#tab/foundry)
-
-- [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
-
-:::moniker range="foundry-classic"
-- You must be **Owner** of the subscription to have the appropriate access control necessary to create the Foundry resource that's the parent of the project. If you don't have this access, have your administrator [create a Foundry resource](../../ai-services/multi-service-resource.md) for you to use. Then skip to [Create multiple projects on the same resource](#create-multiple-projects-on-the-same-resource) to create your project.
-:::moniker-end
+* [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 
 :::moniker range="foundry"
-- You must be **Owner** of the subscription to have the appropriate access control necessary to create the Foundry resource that's the parent of the project. If you don't have this access, have your administrator create a project for you.
+* [!INCLUDE [rbac-create](../includes/rbac-create.md)]
 :::moniker-end
 
-# [Python SDK](#tab/python)
+:::moniker range="foundry-classic"
+* [!INCLUDE [rbac-create](../includes/rbac-create.md)]
 
-- [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
-- You must be **Owner** of the subscription to get the appropriate access control needed to use the project.
-- [Set up your development environment](develop/install-cli-sdk.md?tabs=python)
-- Run `az login` or `az login --use-device-code` in your environment before running code.
+    If you lack this role, request your subscription administrator to [create a Foundry resource](../../ai-services/multi-service-resource.md) and then skip to [Create multiple projects on the same resource](#create-multiple-projects-on-the-same-resource).
+:::moniker-end
 
-::: moniker range="foundry-classic"
+* Use the following tabs to select the method you want to use to create a Foundry project:
 
-- Complete these steps to start your Python script:
-    1. Install packages: `pip install azure-identity azure-mgmt-cognitiveservices~=13.7.0b1`. If you're in a notebook cell, use `%pip install` instead.
-    1. Use `pip show azure-mgmt-cognitiveservices` to check that your version is 13.7 or greater.
-    1. Start your script with the following code to create the `client` connection and variables used throughout this article. This example creates the project in East US:
+    # [Foundry portal](#tab/foundry)
     
-        :::code language="python" source="~/foundry-samples-main/samples-classic/python/quickstart/create_project.py" id="create_client":::
-
-    1. (Optional) If you have multiple accounts, add the tenant ID of the Microsoft Entra ID you want to use into the `DefaultAzureCredential`.
-            
-        ```python
-        DefaultAzureCredential(interactive_browser_tenant_id="<TENANT_ID>")
-        ```
-
-          
-    1. (Optional) If you're working in the [Azure Government - US](/azure/azure-government/documentation-government-welcome) or [Azure operated by 21Vianet](https://azure.microsoft.com/global-infrastructure/services/?regions=china-east-2%2cchina-non-regional&products=all) regions, specify the region you want to authenticate to. This example authenticates to the Azure Government - US region:
-            
-        ```python
-        from azure.identity import AzureAuthorityHosts
-        DefaultAzureCredential(authority=AzureAuthorityHosts.AZURE_GOVERNMENT)
-        ```
-::: moniker-end
-
-::: moniker range="foundry"
-
-- Complete these steps to start your Python script:
-    1. Install packages: `pip install azure-identity azure-mgmt-cognitiveservices~=13.7.0b1`. If you're in a notebook cell, use `%pip install` instead.
-    1. Use `pip show azure-mgmt-cognitiveservices` to check that your version is 13.7 or greater.
-    1. Start your script with the following code to create the `client` connection and variables used throughout this article. This example creates the project in East US:
+    - [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
     
-        :::code language="python" source="~/foundry-samples-main/samples-classic/python/quickstart/create_project.py" id="create_client":::
-
-    1. (Optional) If you have multiple accounts, add the tenant ID of the Microsoft Entra ID you want to use into the `DefaultAzureCredential`.
-            
-        ```python
-        DefaultAzureCredential(interactive_browser_tenant_id="<TENANT_ID>")
-        ```
-::: moniker-end
-
-
-# [Azure CLI](#tab/azurecli)
-
-- [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
-- You must be **Owner** of the subscription to receive the appropriate access control needed to use the project.
-- Install the [Azure CLI](/cli/azure/install-azure-cli) 
-- Set default values for `subscription` and `resource group`.
-
-  ```azurecli
-    # Set your default subscription
-    az account set --subscription "{subscription-name}"
-
-    # Set default resource group
-    az config set defaults.group={resource-group-name}
-   ```
-
----
+    # [Python SDK](#tab/python)
+    
+    - [Set up your development environment](develop/install-cli-sdk.md?tabs=python)
+    - Run `az login` or `az login --use-device-code` in your environment before running code.
+    - **Quick validation**: Before creating a project, verify your SDK and authentication are working by testing the client:
+    
+      ```python
+      from azure.identity import DefaultAzureCredential
+      from azure.mgmt.cognitiveservices import CognitiveServicesManagementClient
+      
+      # Test authentication by instantiating the client
+      credential = DefaultAzureCredential()
+      subscription_id = "<your-subscription-id>"  # Replace with your subscription ID
+      client = CognitiveServicesManagementClient(credential, subscription_id)
+      print("✓ Authentication successful! Ready to create a project.")
+      ```
+    
+    ::: moniker range="foundry-classic"
+    
+    - Complete these steps to start your Python script:
+        1. Install packages: `pip install azure-identity azure-mgmt-cognitiveservices~=13.7.0b1`. If you're in a notebook cell, use `%pip install` instead.
+        1. Use `pip show azure-mgmt-cognitiveservices` to check that your version is 13.7 or greater.
+        1. Start your script with the following code to create the `client` connection and variables used throughout this article. This example creates the project in East US:
+        
+            :::code language="python" source="~/foundry-samples-main/samples-classic/python/quickstart/create_project.py" id="create_client":::
+    
+        1. (Optional) If you have multiple accounts, add the tenant ID of the Microsoft Entra ID you want to use into the `DefaultAzureCredential`.
+                
+            ```python
+            DefaultAzureCredential(interactive_browser_tenant_id="<TENANT_ID>")
+            ```
+    
+              
+        1. (Optional) If you're working in the [Azure Government - US](/azure/azure-government/documentation-government-welcome) or [Azure operated by 21Vianet](https://azure.microsoft.com/global-infrastructure/services/?regions=china-east-2%2cchina-non-regional&products=all) regions, specify the region you want to authenticate to. This example authenticates to the Azure Government - US region:
+                
+            ```python
+            from azure.identity import AzureAuthorityHosts
+            DefaultAzureCredential(authority=AzureAuthorityHosts.AZURE_GOVERNMENT)
+            ```
+    ::: moniker-end
+    
+    ::: moniker range="foundry"
+    
+    - Complete these steps to start your Python script:
+        1. Install packages: `pip install azure-identity azure-mgmt-cognitiveservices~=13.7.0b1`. If you're in a notebook cell, use `%pip install` instead.
+        1. Use `pip show azure-mgmt-cognitiveservices` to check that your version is 13.7 or greater.
+        1. Start your script with the following code to create the `client` connection and variables used throughout this article. This example creates the project in East US:
+        
+            :::code language="python" source="~/foundry-samples-main/samples-classic/python/quickstart/create_project.py" id="create_client":::
+    
+        1. (Optional) If you have multiple accounts, add the tenant ID of the Microsoft Entra ID you want to use into the `DefaultAzureCredential`.
+                
+            ```python
+            DefaultAzureCredential(interactive_browser_tenant_id="<TENANT_ID>")
+            ```
+    ::: moniker-end
+    
+    
+    # [Azure CLI](#tab/azurecli)
+    
+    - Install the [Azure CLI](/cli/azure/install-azure-cli). 
+    - Set default values for `subscription` and `resource group`.
+    
+      ```azurecli
+        # Set your default subscription
+        az account set --subscription "{subscription-name}"
+    
+        # Set default resource group
+        az config set defaults.group={resource-group-name}
+       ```
+    
+    ---
 
 ## Create a Foundry project
 
@@ -166,28 +166,30 @@ To create a Foundry project, follow these steps:
 
 ### Advanced options
 
-1. A Foundry project is created on an `Foundry` resource. This resource is created for you automatically when you create the project. Select an existing **Resource group** you want to use, or leave the default to create a new resource group.
+1. You create a Foundry project on a `Foundry` resource. The portal automatically creates this resource when you create the project. Select an existing **Resource group** to use, or leave the default to create a new resource group.
 
     > [!TIP]
-    > Especially for getting started, we recommend you create a new resource group for your project. The resource group lets you easily manage the project and all its resources together.
+    > Especially for getting started, create a new resource group for your project. The resource group makes it easy to manage the project and all its resources together.
 
-1. Select a **Location** or use the default. The location is the region where the resources in the project are hosted. 
+1. Select a **Location** or use the default. The location is the region where the project resources are hosted. 
 
-1. Select **Create**. You see progress of resource creation. The project is created when the process is complete.
+1. Select **Create**. You see the progress of resource creation. The project is created when the process is complete.
 
 # [Python SDK](#tab/python)
 
 To create a Foundry project:
 
 
-- Add this code to create a Foundry project by using the variables and `client` connection from the [Prerequisites](#prerequisites).
+- Add the following code to create a Foundry project by using the variables and `client` connection from the [Prerequisites](#prerequisites).
 
     :::code language="python" source="~/foundry-samples-main/samples-classic/python/quickstart/create_project.py" id="create_resource_project":::
+
+    References: [CognitiveServicesManagementClient](/python/api/azure-mgmt-cognitiveservices/azure.mgmt.cognitiveservices.CognitiveServicesManagementClient).
 
 
 # [Azure CLI](#tab/azurecli)
 
-1. Authenticate to your Azure subscription from the Azure CLI with the following command:
+1. Authenticate to your Azure subscription from the Azure CLI by using the following command:
 
     ```azurecli
     az login
@@ -232,9 +234,9 @@ To create a Foundry project:
 
 ::: moniker range="foundry-classic"
 
-On the project **Home** page, you find information about the project.
+On the **Home** project page, you find information about the project.
 
-- **Name**: The name of the project appears in the top left corner. 
+- **Name**: The name of the project appears in the upper left corner. 
 - **Subscription**: The subscription that hosts the hub that hosts the project.
 - **Resource group**: The resource group that hosts the hub that hosts the project.
 
@@ -242,13 +244,15 @@ On the project **Home** page, you find information about the project.
 
 ::: moniker range="foundry"
 
-On the **Home** page, you see the project endpoint and API key for the project. You don't need the API key if you use Microsoft Entra ID authentication.
+On the **Home** project page, you see the project endpoint and API key for the project. You don't need the API key if you use Microsoft Entra ID authentication.
 
 ::: moniker-end
 
 # [Python SDK](#tab/python)
 
 :::code language="python" source="~/foundry-samples-main/samples-classic/python/quickstart/create_project.py" id="show_project":::
+
+References: [CognitiveServicesManagementClient](/python/api/azure-mgmt-cognitiveservices/azure.mgmt.cognitiveservices.CognitiveServicesManagementClient).
 
 # [Azure CLI](#tab/azurecli)
 
@@ -295,13 +299,15 @@ To delete the Foundry resource and all its projects:
 
 # [Python SDK](#tab/python)
 
-This code uses the variables and `client connection` from the Prerequisites. First create the client connection:
+This code uses the variables and `client connection` from the Prerequisites. First, create the client connection:
 
 ```python
 client.projects.begin_delete(
     resource_group_name, foundry_resource_name, foundry_project_name
 )
 ```
+
+References: [CognitiveServicesManagementClient](/python/api/azure-mgmt-cognitiveservices/azure.mgmt.cognitiveservices.CognitiveServicesManagementClient).
 
 Delete a Foundry resource and all of its projects:
 
@@ -320,6 +326,8 @@ print("Deleting resource:", foundry_resource_name)
 client.accounts.begin_delete(resource_group_name, foundry_resource_name).wait()
 ```
 
+References: [CognitiveServicesManagementClient](/python/api/azure-mgmt-cognitiveservices/azure.mgmt.cognitiveservices.CognitiveServicesManagementClient).
+
 # [Azure CLI](#tab/azurecli)
 
 Run the following command:
@@ -330,10 +338,15 @@ az cognitiveservices account project delete \
 --project-name {my_project_name}
 ```
 
+References: [az cognitiveservices account project delete](/cli/azure/cognitiveservices/account/project#az-cognitiveservices-account-project-delete).
+
 ---
+
+> [!IMPORTANT]
+> Use with caution. You can't recover a project after it's deleted.
 
 ## Related content
 
-- [Quickstart: Get started with Foundry](../quickstarts/get-started-code.md)
-- [What is Foundry?](../what-is-azure-ai-foundry.md)
+- [Microsoft Foundry Quickstart](../quickstarts/get-started-code.md)
+- [What is Foundry?](../what-is-foundry.md)
 

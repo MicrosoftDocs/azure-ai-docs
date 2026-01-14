@@ -8,7 +8,7 @@ ms.subservice: prompt-flow
 ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
-ms.reviewer: keli19
+ms.reviewer: sooryar
 ms.date: 05/09/2024
 ms.custom:
   - sfi-image-nochange

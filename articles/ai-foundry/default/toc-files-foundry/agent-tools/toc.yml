@@ -14,12 +14,22 @@ items:
 
 - name: Code interpreter
   href: ../../agents/how-to/tools/code-interpreter.md
+- name: Custom code interpreter (preview)
+  href: ../../agents/how-to/tools/custom-code-interpreter.md
 - name: Browser automation (preview)
   href: ../../agents/how-to/tools/browser-automation.md
 - name: Computer Use (preview)
   href: ../../agents/how-to/tools/computer-use.md
 - name: Image generation (preview)
   href: ../../agents/how-to/tools/image-generation.md
+
+# Memory Tools
+- name: Memory (preview)
+  items:
+  - name: What is memory?
+    href: ../../agents/concepts/what-is-memory.md
+  - name: Create and use memory
+    href: ../../agents/how-to/memory-usage.md
 
 # Search and Retrieval Tools
 - name: Search and retrieval
@@ -47,33 +57,37 @@ items:
 - name: Foundry Tools
   items:
   - name: Azure Speech in Foundry Tools
-    href: ../../../agents/how-to/tools/azure-ai-speech.md
+    href: ../../agents/how-to/tools/azure-ai-speech.md
   - name: Azure Language in Foundry Tools
     items:
     - name: Azure Language tools and agents
-      href: /azure/ai-services/language-service/concepts/foundry-tools-agents?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+      href: /azure/ai-services/language-service/concepts/foundry-tools-agents?context=/azure/ai-foundry/context/context
     - name: Try CLU multi-turn conversations
-      href: /azure/ai-services/language-service/conversational-language-understanding/how-to/quickstart-multi-turn-conversations?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+      href: /azure/ai-services/language-service/conversational-language-understanding/how-to/quickstart-multi-turn-conversations?context=/azure/ai-foundry/context/context
     - name: Detect Personally Identifiable Information (PII)
-      href: /azure/ai-services/language-service/personally-identifiable-information/quickstart?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+      href: /azure/ai-services/language-service/personally-identifiable-information/quickstart?context=/azure/ai-foundry/context/context
     - name: Try Azure Language detection
-      href: /azure/ai-services/language-service/language-detection/quickstart?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+      href: /azure/ai-services/language-service/language-detection/quickstart?context=/azure/ai-foundry/context/context
   - name: Azure Translator in Foundry Tools
     items:
     - name: Azure text translation
-      href: /azure/ai-services/translator/text-translation/overview?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+      href: /azure/ai-services/translator/text-translation/overview?context=/azure/ai-foundry/context/context
     - name: Azure document translation
-      href: /azure/ai-services/translator/document-translation/overview?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+      href: /azure/ai-services/translator/document-translation/overview?context=/azure/ai-foundry/context/context
 
-# Protocols
-- name: Protocols
+# MCP Server
+- name: Model Context Protocol (MCP)
   items:
-  - name: Model Context Protocol (MCP)
+  - name: Connect to MCP server
     href: ../../agents/how-to/tools/model-context-protocol.md
   - name: MCP authentication
     href: ../../agents/how-to/mcp-authentication.md
   - name: Build your own MCP server
     href: ../../mcp/build-your-own-mcp-server.md
+
+# Protocols
+- name: Protocols
+  items:
   - name: Agent2Agent (A2A) tool (preview)
     href: ../../agents/how-to/tools/agent-to-agent.md
   - name: Agent2Agent (A2A) authentication (preview)
@@ -82,8 +96,3 @@ items:
     href: ../../agents/how-to/tools/openapi.md
   - name: Function calling
     href: ../../agents/how-to/tools/function-calling.md
-
-- name: Memory (preview)
-  href: ../../agents/concepts/agent-memory.md
-- name: Enable token limits with API gateways
-  href: ../../configuration/enable-ai-api-management-gateway-portal.md

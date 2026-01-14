@@ -5,9 +5,9 @@ description: Learn how to set up data drift detection in Azure Learning. Create 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mldata
-ms.reviewer: franksolomon
-ms.author: xunwan
-author: SturgeonMi
+ms.reviewer: soumyapatro 
+ms.author: scottpolly
+author: s-polly
 ms.date: 02/04/2025
 ms.topic: how-to
 ms.custom:
@@ -118,8 +118,8 @@ The monitor compares the baseline and target datasets.
 
 ### Migrate to Model Monitor
 In Model Monitor, you can find corresponding concepts as following, and you can find more details in this article [Set up model monitoring by bringing in your production data to Azure Machine Learning](../how-to-monitor-model-performance.md#set-up-out-of-box-model-monitoring):
-*	Reference dataset: similar to your baseline dataset for data drift detection, it is set as the recent past production inference dataset.
-*	Production inference data: similar to your target dataset in data drift detection, the production inference data can be collected automatically from models deployed in production. It can also be inference data you store.
+*    Reference dataset: similar to your baseline dataset for data drift detection, it is set as the recent past production inference dataset.
+*    Production inference data: similar to your target dataset in data drift detection, the production inference data can be collected automatically from models deployed in production. It can also be inference data you store.
 
 ## Create target dataset
 

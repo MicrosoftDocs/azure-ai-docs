@@ -2,12 +2,12 @@
 title: How to configure Microsoft Entra authentication
 titleSuffix: Foundry Tools
 description: Learn how to authenticate using Microsoft Entra authentication
-author: PatrickFarley
+author: goergenj
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 8/13/2025
-ms.author: pafarley
+ms.date: 11/13/2025
+ms.author: jagoerge
 zone_pivot_groups: programming-languages-set-two
 ms.custom: devx-track-azurepowershell, devx-track-extended-java, devx-track-python, devx-track-azurecli
 ---
@@ -204,9 +204,9 @@ var endpoint = "https://{your custom name}.cognitiveservices.azure.com/";
 var speechConfig = SpeechTranslationConfig.FromEndpoint(new Uri(endpoint), browserCredential);
 ```
 
-### SpeechSynthesizer, IntentRecognizer
+### SpeechSynthesizer
 
-For ```SpeechSynthesizer```, ```IntentRecognizer``` objects, build the authorization token from the resource ID and the Microsoft Entra access token and then use it to create a ```SpeechConfig``` object.
+For ```SpeechSynthesizer``` objects, build the authorization token from the resource ID and the Microsoft Entra access token and then use it to create a ```SpeechConfig``` object.
 
 ```C#
 string resourceId = "Your Resource ID";
@@ -220,9 +220,9 @@ var speechConfig = SpeechConfig.FromAuthorizationToken(authorizationToken, regio
 ::: zone-end
 
 ::: zone pivot="programming-language-cpp"
-### SpeechRecognizer, SpeechSynthesizer, IntentRecognizer, ConversationTranscriber
+### SpeechRecognizer, SpeechSynthesizer, ConversationTranscriber
 
-For ```SpeechRecognizer```, ```SpeechSynthesizer```, ```IntentRecognizer```, ```ConversationTranscriber``` objects, build the authorization token from the resource ID and the Microsoft Entra access token and then use it to create a ```SpeechConfig``` object.
+For ```SpeechRecognizer```, ```SpeechSynthesizer```, ```ConversationTranscriber``` objects, build the authorization token from the resource ID and the Microsoft Entra access token and then use it to create a ```SpeechConfig``` object.
 
 ```C++
 std::string resourceId = "Your Resource ID";
@@ -279,9 +279,9 @@ String endpoint = "https://{your custom name}.cognitiveservices.azure.com/";
 SpeechConfig speechConfig = SpeechTranslationConfig.fromEndpoint(new java.net.URI(endpoint), browserCredential);
 ```
 
-### SpeechSynthesizer, IntentRecognizer
+### SpeechSynthesizer
 
-For ```SpeechSynthesizer```, ```IntentRecognizer``` objects, build the authorization token from the resource ID and the Microsoft Entra access token and then use it to create a ```SpeechConfig``` object.
+For ```SpeechSynthesizer```, objects, build the authorization token from the resource ID and the Microsoft Entra access token and then use it to create a ```SpeechConfig``` object.
 
 ```Java
 String resourceId = "Your Resource ID";
@@ -322,9 +322,9 @@ custom_endpoint = "https://{your custom name}.cognitiveservices.azure.com/"
 speechTranslationConfig = SpeechTranslationConfig(token_credential=credential, endpoint=custom_endpoint)
 ```
 
-### SpeechSynthesizer, IntentRecognizer
+### SpeechSynthesizer
 
-For ```SpeechSynthesizer```, ```IntentRecognizer``` objects, build the authorization token from the resource ID and the Microsoft Entra access token and then use it to create a ```SpeechConfig``` object.
+For ```SpeechSynthesizer``` object, build the authorization token from the resource ID and the Microsoft Entra access token and then use it to create a ```SpeechConfig``` object.
 
 ```Python
 resourceId = "Your Resource ID"
