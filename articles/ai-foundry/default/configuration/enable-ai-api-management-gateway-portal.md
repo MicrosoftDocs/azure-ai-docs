@@ -81,9 +81,9 @@ Follow these steps in the Foundry portal to enable AI Gateway for a resource.
 
 1. Validate that the AI Gateway is listed now.
 
-1. Once AI Gateway is configured for the Foundry resource, each project have its own configuration, including if they want to use AI Gateway or not. New projects created in the Foundry resource have AI Gateway enabled by default. However, existing projects must be enabled for AI Gateway. 
+1. Once AI Gateway is configured for the Foundry resource, each project has its own configuration, including if they want to use AI Gateway or not. New projects created in the Foundry resource have AI Gateway enabled by default. However, existing projects must be enabled for AI Gateway. 
 
-1. To add existing projects to the AI Gateway, select the name of the AI Gateway you just created. You see a list of all the projects in the Foundry resource with a column **Gateway status** showing if the project has AI Gateway enabled or not. Locate your project and then select **Add project to gateway**. The column **Gateway status** shows **Enabled**.
+1. To add existing projects to the AI Gateway, select the name of the AI Gateway you created. You see a list of all the projects in the Foundry resource with a column **Gateway status** showing if the project has AI Gateway enabled or not. Locate your project and then select **Add project to gateway**. The column **Gateway status** shows **Enabled**.
 
     :::image type="content" source="..\control-plane\media\register-custom-agent\verify-ai-gateway-project.png" alt-text="An screenshot showing how to enable a given project by adding it to the gateway." lightbox="..\control-plane\media\register-custom-agent\verify-ai-gateway-project.png":::
 
@@ -102,7 +102,7 @@ If you created a dedicated APIM instance for this purpose:
 1. Confirm that no other workloads depend on it.
 1. Disable the AI Gateway for all projects in the Foundry resource it's associated with.
 1. Remove linked resources in Azure portal.
-1. Delete the APIM instance with the same name as the AI gateway in Azure portal (if it's not used for any other purpose).
+1. Delete the APIM instance with the same name as the AI gateway in Azure portal (if it isn't used for any other purpose).
 
 ## Related content
 

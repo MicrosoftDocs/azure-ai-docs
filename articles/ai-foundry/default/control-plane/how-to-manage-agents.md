@@ -149,7 +149,7 @@ The following table summarizes supported actions for each platform. Foundry agen
 | Foundry | Hosted | No | Start/stop | Stopping a hosted agent stops the deployment associated with it. Any compute attached to is deallocated. |
 | Foundry | Prompt<br />Workflow<br />Hosted | Yes | Start/stop | Stopping a published agent stops the deployment associated with it. It deallocates any compute attached. |
 | Azure SRE | NA | NA | Start/stop | |
-| Azure Logic Apps | NA | NA | Start/stop | You can start/stop an Azure Logic Apps agent loop by stopping the Logic App resource that hosts them. Stopping a Logic App resources stops all the workflows associated with it. |
+| Azure Logic Apps | NA | NA | Start/stop | You can start/stop an Azure Logic Apps agent loop by stopping the Logic App resource that hosts them. Stopping a Logic App resource stops all the workflows associated with it. |
 | Custom | NA | NA | Block/unblock | Foundry doesn't have access to the underlying infrastructure where the agent runs, so start and stop operations aren't available. However, Foundry can block incoming requests to the agent, preventing clients from consuming it. |
 
 ### Start and stop agents
