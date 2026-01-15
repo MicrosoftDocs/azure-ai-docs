@@ -75,7 +75,7 @@ Set these environment variables to use in your scripts:
 
 [!INCLUDE [clean-up-resources](../includes/clean-up-resources.md)]
 
-## <a name="start-here"></a> What you need to run this code
+## What you need to run this code
 
 The preceeding code uses a model in a project.  If you don't have one, start here first.  You need:
 
@@ -94,7 +94,7 @@ The preceeding code uses a model in a project.  If you don't have one, start her
 
 [!INCLUDE [find-endpoint](../default/includes/find-endpoint.md)]
 
-Your prerequisites are all complete.  Jump back to [Install and authenticate](#install-and-authenticate)
+Your prerequisites are all complete.  Jump back to [Set environment variables](#set-environment-variables) to begin.
 
 ## Next step
  
