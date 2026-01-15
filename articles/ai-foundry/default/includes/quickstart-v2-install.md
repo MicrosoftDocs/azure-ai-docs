@@ -13,63 +13,38 @@ ms.custom: include
 
 # [Python](#tab/python)
 
-1. Install these packages, including the preview version of `azure-ai-projects`. This version uses the **Foundry projects (new) API** (preview).
+Install these packages, including the preview version of `azure-ai-projects`. This version uses the **Foundry projects (new) API** (preview).
 
-    ```
-    pip install azure-ai-projects --pre
-    pip install openai azure-identity python-dotenv
-    ```
-
-1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Python scripts.
-
-Follow along below or get the code:
-> [!div class="nextstepaction"]
-> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/python/quickstart)
+```
+pip install azure-ai-projects --pre
+pip install openai azure-identity python-dotenv
+```
 
 # [C#](#tab/csharp)
 
-1. Install packages:
-
-    Add NuGet packages using the .NET CLI in the integrated terminal: These packages use the **Foundry projects (new) API** (preview).
-        
-    ```bash
-    dotnet add package Azure.AI.Projects --prerelease
-    dotnet add package Azure.AI.Projects.OpenAI --prerelease
-    dotnet add package Azure.Identity
-    ```
-
-1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your C# scripts.
-
-> Follow along below or get the code:
-> [!div class="nextstepaction"]
-> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/csharp/quickstart)
+Add NuGet packages using the .NET CLI in the integrated terminal: These packages use the **Foundry projects (new) API** (preview).
+    
+```bash
+dotnet add package Azure.AI.Projects --prerelease
+dotnet add package Azure.AI.Projects.OpenAI --prerelease
+dotnet add package Azure.Identity
+```
 
 
 # [TypeScript](#tab/typescript)
 
-1. Install these packages, including the preview version of `@azure/ai-projects`. This version uses the **Foundry projects (new) API** (preview).:
+Install these packages, including the preview version of `@azure/ai-projects`. This version uses the **Foundry projects (new) API** (preview).:
 
-    ```bash
-    npm install @azure/ai-projects@beta @azure/identity dotenv
-    ```
-
-1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your TypeScript scripts.
-
-Follow along below or get the code:
-> [!div class="nextstepaction"]
-> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/typescript/quickstart/src)
+```bash
+npm install @azure/ai-projects@beta @azure/identity dotenv
+```
 
 # [Java](#tab/java)
 
-1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Java scripts.
-
-Follow along below or get the code:
-> [!div class="nextstepaction"]
-> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/java/quickstart/src/main/java/com/microsoft/foundry/samples/)
+No installation needed.
 
 # [REST API](#tab/rest)
 
-1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running the next command.
 1. Get a temporary access token. It will expire in 60-90 minutes, you'll need to refresh after that.
 
     ```azurecli
@@ -77,11 +52,6 @@ Follow along below or get the code:
     ```
     
 1. Save the results as the environment variable `AZURE_AI_AUTH_TOKEN`.  
-
-Follow along below or get the code:
-> [!div class="nextstepaction"]
-> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/REST/mslearn-resources/quickstart).
-
 
 # [Foundry portal](#tab/portal)
 

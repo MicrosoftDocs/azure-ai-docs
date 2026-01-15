@@ -39,7 +39,7 @@ The Microsoft Foundry SDK is available in multiple languages, including Python, 
 
 * A model deployed in Microsoft Foundry. If you don't have this, jump to [What you need to run this code](#what-you-need-to-run-this-code) to create them. The code in this quickstart
 * The [endpoint for the model](#find-your-endpoint).
-  
+* Installation of the [appropriate packages](#install) for your language.  
 
 
 ## Set environment variables
@@ -54,10 +54,9 @@ Set these environment variables to use in your scripts:
     AGENT_NAME="MyAgent"
     MODEL_DEPLOYMENT_NAME="gpt-4.1-mini"
     ```
-## Install and authenticate
+## Get the code
 
-
-[!INCLUDE [quickstart-v2-install](../default/includes/quickstart-v2-install.md)]
+[!INCLUDE [quickstart-v2-get-code](../default/includes/quickstart-v2-get-code.md)]
 
 ## Chat with a model
 
@@ -93,6 +92,12 @@ The preceeding code uses a model in a project.  If you don't have one, start her
 ## Find your endpoint 
 
 [!INCLUDE [find-endpoint](../default/includes/find-endpoint.md)]
+
+
+## Installation
+
+[!INCLUDE [quickstart-v2-install](../default/includes/quickstart-v2-install.md)]
+
 
 Your prerequisites are all complete.  Jump back to [Set environment variables](#set-environment-variables) to begin.
 
