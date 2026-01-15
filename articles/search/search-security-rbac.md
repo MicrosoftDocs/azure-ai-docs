@@ -5,7 +5,7 @@ description: Use Azure role-based access control for granular permissions on ser
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 11/21/2025
+ms.date: 01/15/2026
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: how-to
@@ -76,7 +76,7 @@ The following roles are built in. If these roles are insufficient, [create a cus
 | [Contributor](/azure/role-based-access-control/built-in-roles#contributor) | Control & Data |  Same level of control plane access as Owner, minus the ability to assign roles or change authentication options. </br></br>On the data plane, this role has the same access as the Search Service Contributor role. It includes access to all data plane actions except the ability to query or index documents.|
 | [Reader](/azure/role-based-access-control/built-in-roles#reader) | Control & Data | Read access across the entire service, including search metrics, content metrics (storage consumed, number of objects), and the object definitions of data plane resources (indexes, indexers, and so on). However, it can't read API keys or read content within indexes. |
 | [Search Service Contributor](/azure/role-based-access-control/built-in-roles#search-service-contributor) | Control & Data | Read-write access to object definitions (indexes, aliases, synonym maps, indexers, data sources, and skillsets). This role is for developers who create objects, and for administrators who manage a search service and its objects, but without access to index content. Use this role to create, delete, and list indexes, get index definitions, get service information (statistics and quotas), test analyzers, create and manage synonym maps, indexers, data sources, and skillsets. See [`Microsoft.Search/searchServices/*`](/azure/role-based-access-control/resource-provider-operations#microsoftsearch) for the permissions list. |
-| [Search Index Data Contributor](/azure/role-based-access-control/built-in-roles#search-index-data-contributor) | Data | Read-write access to content in indexes. This role is for developers or index owners who need to import, refresh, or query the documents collection of an index. This role doesn't support index creation or management. By default, this role is for all indexes on a search service. See [Grant access to a single index](#grant-access-to-a-single-index) to narrow the scope.  |
+| [Search Index Data Contributor](/azure/role-based-access-control/built-in-roles#search-index-data-contributor) | Data | Read-write access to content in indexes. This role is for developers or index owners who need to import, refresh, or query the documents collection of an index. This role doesn't support index creation, updates, or deletion. By default, this role applies to all indexes on a search service. See [Grant access to a single index](#grant-access-to-a-single-index) to narrow the scope.  |
 | [Search Index Data Reader](/azure/role-based-access-control/built-in-roles#search-index-data-reader) | Data |  Read-only access for querying search indexes. This role is for apps and users who run queries. This role doesn't support read access to object definitions. For example, you can't read a search index definition or get search service statistics. By default, this role is for all indexes on a search service. See [Grant access to a single index](#grant-access-to-a-single-index) to narrow the scope.  |
 
 Combine these roles to get sufficient permissions for your use case.
@@ -94,6 +94,7 @@ Combine these roles to get sufficient permissions for your use case.
 |Access quotas and service statistics |❌|❌|✅|✅|❌|
 |Read/query an index |✅|✅|❌|❌|❌|
 |Upload data for indexing <sup>1</sup>|❌|✅|❌|❌|❌|
+|Elevated read regardless of permission filters <sup>2</sup>|❌|✅|❌|❌|❌|
 |Create or edit indexes/aliases |❌|❌|✅|✅|❌|
 |Create, edit and run indexers/data sources/skillsets |❌|❌|✅|✅|❌|
 |Create or edit synonym maps |❌|❌|✅|✅|❌|
@@ -107,6 +108,8 @@ Combine these roles to get sufficient permissions for your use case.
 |Configure network security |❌|❌|✅|✅|❌|
 
 <sup>1</sup> In the Azure portal, an Owner or Contributor can run the Import data wizards that create and load indexes, even though they can't upload documents in other clients. Data connections in the wizard are made by the search service itself and not individual users. The wizards have the `Microsoft.Search/searchServices/indexes/documents/*` permission necessary for completing this task.
+
+<sup>2</sup> Elevated read is used for debugging queries that obtain results using the identity of the called. For more information, see [Investigate incorrect query results](search-query-access-control-rbac-enforcement.md#elevated-permissions-for-investigating-incorrect-results).
 
 Owners and Contributors grant the same permissions, except that only Owners can assign roles.
 
@@ -210,6 +213,9 @@ Use the Search Index Data Reader role for apps and processes that only need read
 This is a very specific role. It grants [GET or POST access](/rest/api/searchservice/documents) to the *documents collection of a search index* for search, autocomplete, and suggestions. It doesn't support GET or LIST operations on an index or other top-level objects, or GET service statistics.
 
 This section provides basic steps for setting up the role assignment and is here for completeness, but we recommend [Use Azure AI Search without keys ](keyless-connections.md) for comprehensive instructions on configuring your app for role-based access.
+
+> [!NOTE]
+> As a developer, if you need to debug queries that are predicated on a Microsoft identity, you should use Search Index Data Contributor or create a custom role that gives you [elevated permissions for debug purposes](search-query-access-control-rbac-enforcement.md#elevated-permissions-for-investigating-incorrect-results).
 
 #### [**Azure portal**](#tab/roles-portal-query)
 
