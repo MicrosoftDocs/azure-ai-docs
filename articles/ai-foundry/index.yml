@@ -90,16 +90,16 @@ productDirectory:
           text: Monitor your generative AI applications
     # Card
     - title: Foundry IQ
-      imageSrc: media/logos/foundry-iq.png
+      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/foundry-iq.png
       links:
-        - url: /azure/ai-foundry/agents/how-to/tools/knowledge-retrieval
-          text: Connect a Foundry IQ knowledge base to Foundry Agent Service
         - url: /azure/search/agentic-retrieval-overview
-          text: Agentic retrieval in Azure AI Search
-        - url: /azure/search/search-get-started-agentic-retrieval
-          text: Quickstart for agentic retrieval
+          text: Agentic retrieval
+        - url: /azure/search/agentic-retrieval-how-to-create-knowledge-base
+          text: Create a knowledge base for agentic retrieval
+        - url: /azure/ai-foundry/agents/how-to/tools/knowledge-retrieval
+          text: Connect an agent to a knowledge base
         - url: /azure/search/agentic-retrieval-how-to-create-pipeline
-          text: Tutorial for agentic retrieval
+          text: "Tutorial: Create an end-to-end retrieval solution"
     # Card
     - title: Foundry Tools
       imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry-tools.png
