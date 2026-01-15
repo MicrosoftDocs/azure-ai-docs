@@ -111,20 +111,20 @@ We notify all customers with these preview deployments at least 30 days before t
 
 Fine-tuned models retire in two phases: *training* and *deployment*.
 
-All fine-tuned models follow their equivalent base model for *training* retirement. After a model is retired, it's no longer available for fine-tuning.
+Unless explicitly stated, training retires no earlier than the base model retirement date. After a model is retired for training, it's no longer available for fine-tuning but any models you've trained remain available for deployment.
 
-For fine-tuned models made generally available since `gpt-4o-2024-08-06`, *deployment* retirement occurs 1 year after *training* retirement. At deployment retirement, inference and deployment return error responses.
+At deployment retirement, inference and deployment return error responses.
 
-| Model            | Version     | Training retirement date  | Deployment retirement date       |
-| -----------------|-------------|---------------------------|----------------------------------|
-| `gpt-35-turbo`   | 1106        | At base model retirement  | At training retirement           |
-| `gpt-35-turbo`   | 0125        | At base model retirement  | At training retirement           |
-| `gpt-4o`         | 2024-08-06  | At base model retirement  | One year after training retirement |
-| `gpt-4o-mini`    | 2024-07-18  | At base model retirement  | One year after training retirement |
-| `gpt-4.1`        | 2025-04-14  | At base model retirement  | One year after training retirement |
-| `gpt-4.1-mini`   | 2025-04-14  | At base model retirement  | One year after training retirement |
-| `gpt-4.1-nano`   | 2025-04-14  | At base model retirement  | One year after training retirement |
-| `o4-mini`        | 2025-04-16  | At base model retirement  | One year after training retirement |
+| Model            | Version     | Training retirement date   | Deployment retirement date        |
+| -----------------|-------------|----------------------------|-----------------------------------|
+| `gpt-4o`         | 2024-08-06  | No earlier than 2026-09-31<sup>1</sup> | 2027-03-31 |
+| `gpt-4o-mini`    | 2024-07-18  | No earlier than 2026-09-31<sup>1</sup> | 2027-03-31 |
+| `gpt-4.1`        | 2025-04-14  | Base model retirement  | One year after training retirement |
+| `gpt-4.1-mini`   | 2025-04-14  | Base model retirement  | One year after training retirement |
+| `gpt-4.1-nano`   | 2025-04-14  | Base model retirement  | One year after training retirement |
+| `o4-mini`        | 2025-04-16  | Base model retirement  | One year after training retirement |
+
+<sup>1</sup> For existing customers only. Otherwise, training retirement occurs at base model retirement.
 
 ## Default model versions
 
