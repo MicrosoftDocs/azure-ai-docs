@@ -37,7 +37,7 @@ AutoML provides the option to use distributed training on multi-GPU compute clus
 
 # [Azure CLI](#tab/cli)
 
-- The Azure Machine Learning CLI v2 installed. For guidance to update and install the latest version, see the [Install and set up CLI (v2)](how-to-configure-cli.md).
+- The Azure Machine Learning CLI v2 installed. For guidance to update and install the latest version, see [Install and set up the CLI (v2)](how-to-configure-cli.md).
 
 # [Python SDK](#tab/python)
 
@@ -338,7 +338,7 @@ The following table describes the hyperparameters that AutoML NLP supports.
 |`number_of_epochs`| Number of training epochs. | Must be a positive integer. |
 |`training_batch_size`| Training batch size. | Must be a positive integer. |
 |`validation_batch_size`| Validation batch size. | Must be a positive integer. |
-|`warmup_ratio`| Ratio of total training steps used for a linear warmup from 0 to learning_rate.  | Must be a float in the range `[0, 1]`. |
+|`warmup_ratio`| Ratio of total training steps used for a linear warmup from `0` to `learning_rate`.  | Must be a float in the range `[0, 1]`. |
 |`weight_decay`| Value of weight decay when optimizer is `sgd`, `adam`, or `adamw`. | Must be a float in the range `[0, 1]`. |
 
 All discrete hyperparameters only allow choice distributions, such as the integer-typed `training_batch_size` and the string-typed `model_name` hyperparameters. All continuous hyperparameters like `learning_rate` support all distributions. 
