@@ -65,5 +65,3 @@ Follow along below or get the code:
 No code is necessary when using the Foundry portal.
 
 ---
-
-[!INCLUDE [agent-v2-switch](agent-v2-switch.md)]
