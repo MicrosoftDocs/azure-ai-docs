@@ -7,7 +7,7 @@ ms.author: ssalgado
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
-ms.date: 09/16/2025
+ms.date: 01/14/2026
 ms.custom: template-concept, devx-track-python
 manager: nitinme
 monikerRange: 'foundry-classic || foundry'
