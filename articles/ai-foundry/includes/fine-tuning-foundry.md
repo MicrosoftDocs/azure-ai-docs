@@ -57,7 +57,7 @@ Multiple turns of a conversation in a single line of your JSONL training file ar
 
 ### Dataset size considerations
 
-The more training examples you have, the better. Fine-tuning jobs won't proceed without at least 10 training examples, but such a small number isn't enough to noticeably influence model responses. A best practice for successful fine-tuning is to provide hundreds, if not thousands, of training examples. We recommend that you start with 50 well-crafted examples.
+The more training examples you have, the better. Fine-tuning jobs won't proceed without at least 10 training examples, but such a small number isn't enough to noticeably influence model responses. A best practice for successful fine-tuning is to provide hundreds, if not thousands, of training examples.  start with 50 well-crafted examples.
 
 In general, doubling the dataset size can lead to a linear increase in model quality. But keep in mind that low-quality examples can negatively affect performance. If you train the model on a large amount of internal data without first pruning the dataset for only the highest-quality examples, your model might perform worse than expected.
 
@@ -88,7 +88,7 @@ The supported customization methods depend on the selected model:
 - **Reinforcement fine-tuning (RFT)**: Uses reward signals from model graders to optimize complex behaviors.
 
 > [!NOTE]
-> This rest of this article covers steps for the SFT method. For instructions specific to other customization methods, see the [guide for DPO](../openai/how-to/fine-tuning-direct-preference-optimization.md) and the [guide for RFT](../openai/how-to/reinforcement-fine-tuning.md).
+> The rest of this article covers steps for the SFT method. For instructions specific to other customization methods, see the [guide for DPO](../openai/how-to/fine-tuning-direct-preference-optimization.md) and the [guide for RFT](../openai/how-to/reinforcement-fine-tuning.md).
 
 ### Training type
 
@@ -112,7 +112,7 @@ After you select or upload your data files, validation checks automatically occu
 
 #### Suffix
 
-We recommend that you to provide a **Suffix** value to make it easier to distinguish between different iterations of your fine-tuned model. A suffix takes a string of up to 18 characters and is used in naming the resulting fine-tuned model.
+We recommend that you provide a **Suffix** value to make it easier to distinguish between different iterations of your fine-tuned model. A suffix takes a string of up to 18 characters and is used in naming the resulting fine-tuned model.
 
 #### Seed
 
