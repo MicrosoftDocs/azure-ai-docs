@@ -9,7 +9,7 @@ ms.custom:
   - dev-focus
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 01/13/2026
+ms.date: 01/15/2026
 ms.reviewer: dantaylo
 ms.author: johalexander
 author: ms-johnalex
@@ -18,7 +18,7 @@ monikerRange: foundry-classic || foundry
 # customer intent: I want to learn how to use the Microsoft Foundry SDK and endpoints to build AI applications on Azure.
 ---
 
-# Microsoft Foundry SDKs and Endpoints (Revised Version)
+# Microsoft Foundry SDKs and Endpoints
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
@@ -169,7 +169,7 @@ project = AIProjectClient(
 ```python
 openai_client = project.inference.get_azure_openai_client(api_version="2024-10-21")
 response = openai_client.responses.create(
-    model="gpt-4.1-mini",
+    model="gpt-5.2",
     input="What is the speed of light?",
 )
 print(response.output_text)
@@ -240,7 +240,7 @@ AIProjectClient projectClient = new(
 **Create an OpenAI-compatible client from your project:**
 
 ```csharp
-OpenAIResponseClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForModel("gpt-4.1");
+OpenAIResponseClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForModel("gpt-5.2");
 OpenAIResponse response = responseClient.CreateResponse("What is the speed of light?");
 Console.WriteLine(response.GetOutputText());
 ```
@@ -270,7 +270,7 @@ This snippet uses the `AIProjectClient` to request an OpenAI client scoped to yo
 # Use the AIProjectClient to create an OpenAI client for your project
 openai_client = project.get_openai_client(api_version="2024-10-21")
 response = openai_client.responses.create(
-    model="gpt-4.1-mini",
+    model="gpt-5.2",
     input="What is the size of France in square miles?",
 )
 print(f"Response output: {response.output_text}")
@@ -309,7 +309,7 @@ This snippet uses the `AIProjectClient` to request an OpenAI client from your Fo
 # Use the AIProjectClient to create an OpenAI client for your project
 openai_client = project.get_openai_client()
 response = openai_client.responses.create(
-    model="gpt-4.1-mini",
+    model="gpt-5.2",
     input="What is the size of France in square miles?",
 )
 print(f"Response output: {response.output_text}")
@@ -398,7 +398,7 @@ When it succeeds, the .NET CLI confirms that it installed the `OpenAI` package.
     using System.ClientModel.Primitives;
     
     const string directModelEndpoint  = "https://<resource-name>.openai.azure.com/openai/v1/";
-    const string deploymentName = "gpt-4.1";    
+    const string deploymentName = "gpt-5.2";    
 
     BearerTokenPolicy tokenPolicy = new(
         new DefaultAzureCredential(),
