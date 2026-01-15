@@ -160,13 +160,13 @@ This article explores modern RAG and classic RAG experiences that you can get wi
 
 Azure AI Search is a [proven solution for RAG workloads](https://github.com/Azure-Samples/azure-search-openai-demo/blob/main/README.md). It now provides [agentic retrieval](search-what-is-azure-search.md#what-is-agentic-retrieval), a specialized pipeline designed specifically for RAG patterns. This approach uses LLMs to intelligently break down complex user queries into focused subqueries, executes them in parallel, and returns structured responses optimized for chat completion models.
 
-Agentic retrieval represents the evolution from traditional single-query RAG patterns to mult-query intelligent retrieval, providing:
+Agentic retrieval represents the evolution from traditional single-query RAG patterns to multi-query intelligent retrieval, providing:
 
 + Context-aware query planning using conversation history
 + Parallel execution of multiple focused subqueries  
 + Structured responses with grounding data, citations, and execution metadata
 + Built-in semantic ranking for optimal relevance
-+ Optional answer synthesis that uses an LLM-formulated answer in the query response.
++ Optional answer synthesis that uses an LLM-formulated answer in the query response
 
 You need new objects for this pipeline: one or more knowledge sources, a knowledge base, and the retrieve action that you call from application code, such as a tool that works with your AI agent.
 
