@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Learn how query-time ACL and RBAC enforcement ensures secure document retrieval in Azure AI Search for indexes containing permission filters from data sources such as Azure Data Lake Storage (ADLS) Gen2 and SharePoint in Microsoft 365.  
 ms.service: azure-ai-search  
 ms.topic: article  
-ms.date: 12/01/2025  
+ms.date: 01/15/2026  
 author: mattgotteiner  
 ms.author: magottei 
 ---  
@@ -115,7 +115,9 @@ You can accomplish these tasks by adding a custom header, `x-ms-enable-elevated-
 
 ### Permissions for elevated-read requests
 
-Currently, you must [create a custom role](search-security-rbac.md#create-a-custom-role) to run queries with elevated permissions. Add the `Microsoft.Search/searchServices/indexes/contentSecurity/elevatedOperations/read` permission to run the queries.
+Currently, you must [create a custom role](search-security-rbac.md#create-a-custom-role) to run queries with elevated permissions. Queries are a data plane operation, so the custom role can only consist of atomic data plane permissions. 
+
+To debug and run queries, add the `Microsoft.Search/searchServices/indexes/contentSecurity/elevatedOperations/read` permission.
 
 ### Add an elevated-read header to a query
 
