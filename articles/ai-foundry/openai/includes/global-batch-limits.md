@@ -19,7 +19,7 @@ ms.date: 01/14/2025
 | Maximum requests per file | 100,000 |
 
 > [!NOTE]
-> Batch file limits do not apply to output files (`result.jsonl`, and `error.jsonl`). To remove batch input file limits use [Batch with Azure Blob Storage](../how-to/batch-blob-storage.md).
+> Batch file limits do not apply to output files (for example, `result.jsonl`, and `error.jsonl`). To remove batch input file limits use [Batch with Azure Blob Storage](../how-to/batch-blob-storage.md).
 
 ## Batch quota
 
