@@ -13,7 +13,7 @@ ms.custom: include
 
 # [Python](#tab/python)
 
-Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Python scripts.
+Sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Python scripts.
 
 Follow along below or get the code:
 > [!div class="nextstepaction"]
@@ -21,7 +21,7 @@ Follow along below or get the code:
 
 # [C#](#tab/csharp)
 
-Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your C# scripts.
+Sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your C# scripts.
 
 > Follow along below or get the code:
 > [!div class="nextstepaction"]
@@ -30,7 +30,7 @@ Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) 
 
 # [TypeScript](#tab/typescript)
 
-Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your TypeScript scripts.
+Sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your TypeScript scripts.
 
 Follow along below or get the code:
 > [!div class="nextstepaction"]
@@ -38,7 +38,7 @@ Follow along below or get the code:
 
 # [Java](#tab/java)
 
-Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Java scripts.
+Sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Java scripts.
 
 Follow along below or get the code:
 > [!div class="nextstepaction"]
@@ -46,7 +46,7 @@ Follow along below or get the code:
 
 # [REST API](#tab/rest)
 
-1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running the next command.
+1. Sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running the next command.
 1. Get a temporary access token. It will expire in 60-90 minutes, you'll need to refresh after that.
 
     ```azurecli

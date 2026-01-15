@@ -46,9 +46,6 @@ The Microsoft Foundry SDK is available in multiple languages, including Python, 
 
 Store the endpoint as an environment variable. Also set these values for use in your scripts.
 
-
-Set these environment variables to use in your scripts:
-
 ```plaintext
 PROJECT_ENDPOINT=<endpoint copied from welcome screen>
 AGENT_NAME="MyAgent"
