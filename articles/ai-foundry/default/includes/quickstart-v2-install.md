@@ -21,7 +21,7 @@ ms.custom: include
     pip install openai azure-identity python-dotenv
     ```
 
-1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Python scripts.
+1. Sign in using the CLI `az login` command to authenticate before running your Python scripts.
 
 # [C#](#tab/csharp)
 
@@ -35,7 +35,7 @@ ms.custom: include
     dotnet add package Azure.Identity
     ```
 
-1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your C# scripts.
+1. Sign in using the CLI `az login` command to authenticate before running your C# scripts.
 
 
 # [TypeScript](#tab/typescript)
@@ -46,15 +46,15 @@ ms.custom: include
     npm install @azure/ai-projects@beta @azure/identity dotenv
     ```
 
-1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your TypeScript scripts.
+1. Sign in using the CLI `az login` command to authenticate before running your TypeScript scripts.
 
 # [Java](#tab/java)
 
-1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Java scripts.
+1. Sign in using the CLI `az login` command to authenticate before running your Java scripts.
 
 # [REST API](#tab/rest)
 
-1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running the next command.
+1. Sign in using the CLI `az login` command to authenticate before running the next command.
 1. Get a temporary access token. It will expire in 60-90 minutes, you'll need to refresh after that.
 
     ```azurecli
