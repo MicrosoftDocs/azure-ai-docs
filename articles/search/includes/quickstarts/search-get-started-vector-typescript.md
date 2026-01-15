@@ -197,7 +197,7 @@ To upload documents to the index:
 
     :::code language="typescript" source="~/azure-search-javascript-samples/quickstart-vector-ts/src/uploadDocuments.ts" :::
 
-    This code loads a variable documents with a JSON object describing each document, along with the vectorized version of the article's description. This vector enables similarity search, where matching is based on meaning rather than exact keywords.
+    This code loads variable documents with a JSON object describing each document, along with the vectorized version of the article's description. This vector enables similarity search, where matching is based on meaning rather than exact keywords.
 
     Because this quickstart article searches the index immediately, the `waitUntilIndexed` function waits until the index is ready for search operations. This is important because the index needs to be fully populated with documents before you can perform searches.
 
