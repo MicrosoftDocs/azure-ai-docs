@@ -94,7 +94,7 @@ The preceeding code uses a model in a project.  If you don't have one, start her
 [!INCLUDE [find-endpoint](../default/includes/find-endpoint.md)]
 
 
-## Installation
+## Install and authenticate
 
 [!INCLUDE [quickstart-v2-install](../default/includes/quickstart-v2-install.md)]
 
