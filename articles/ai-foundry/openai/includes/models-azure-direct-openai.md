@@ -468,23 +468,6 @@ For more information on provisioned deployments, see [Provisioned guidance](../c
 
 This table doesn't include fine-tuning regional availability information. Consult the [fine-tuning section](#fine-tuning-models) for this information.
 
-### Standard deployment (regional) models by endpoint
-
-# [Chat completions](#tab/standard-chat-completions)
-
-### Chat completions
-
-[!INCLUDE [Chat Completions](../includes/model-matrix/standard-chat-completions.md)]
-
-> [!NOTE]
-> `o1-mini` is currently available to all customers for Global Standard deployment.
->
-> Select customers were granted standard (regional) deployment access to `o1-mini` as part of the `o1-preview` limited access release. At this time, access to `o1-mini` standard (regional) deployments isn't being expanded.
-
-To learn about how Azure OpenAI handles model version upgrades, see [Model versions](../concepts/model-versions.md). To learn how to view and configure the model version settings of your GPT-3.5 Turbo deployments, see [Working with models](../how-to/working-with-models.md).
-
-# [Embeddings](#tab/standard-embeddings)
-
 ### Embeddings models
 
 [!INCLUDE [Embeddings](../includes/model-matrix/standard-embeddings.md)]
@@ -504,11 +487,7 @@ These models can be used only with Embedding API requests.
 > [!NOTE]
 > When you send an array of inputs for embedding, the maximum number of input items in the array per call to the embedding endpoint is 2,048.
 
-# [Image generation](#tab/standard-image-generations)
-
 ### Image generation models
-
-[!INCLUDE [Image generation](../includes/model-matrix/standard-image-generation.md)]
 
 |  Model ID  | Max request (characters) |
 |  --- | :---: |
@@ -517,31 +496,11 @@ These models can be used only with Embedding API requests.
 | `gpt-image-1.5` | 4,000 |
 | `dall-e-3`  | 4,000 |
 
-# [Video generation](#tab/standard-video-generations)
-
 ### Video generation models
-
-| Region   | sora   |
-|:-----------------|:---------------------:|
-| eastus2    | ✅                  |
 
 |  Model ID  | Max Request (characters) |
 |  --- | :---: |
 | sora | 4,000 |
-
-# [Audio](#tab/standard-audio)
-
-### Audio models
-
-[!INCLUDE [Audio](../includes/model-matrix/standard-audio.md)]
-
-# [Completions (legacy)](#tab/standard-completions)
-
-### Completions models
-
-[!INCLUDE [Completions](../includes/model-matrix/standard-completions.md)]
-
----
 
 ## Fine-tuning models
 
