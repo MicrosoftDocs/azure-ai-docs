@@ -17,7 +17,7 @@ ms.custom:
 
 - Read the [guide on when to use Foundry fine-tuning](../concepts/fine-tuning-considerations.md).
 - You need an Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- You need a Foundry project resource. to create one, sign in to the [Foundry portal](https://ai.azure.com).
+- You need a Foundry project resource. To create one, sign in to the [Foundry portal](https://ai.azure.com).
 - You need the following Python libraries: `os`, `json`, `requests`, `azure-ai-projects`, `azure-identity`.
 - Fine-tuning access requires the Azure AI User role.
 - If you don't already have access to view quotas and deploy models in the Foundry portal, you need [more permissions](../how-to/role-based-access-control.md).
