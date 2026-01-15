@@ -12,7 +12,7 @@ ms.custom: include, build-2024, ignite-2024
 
 :::moniker range="foundry-classic"
 
-In this quickstart, you use [!INCLUDE [classic-link](../includes/classic-link.md)] to:
+In this quickstart, you use [!INCLUDE [classic-link](classic-link.md)] to:
 
 > [!div class="checklist"]
 > * Create a project
@@ -24,12 +24,12 @@ In this quickstart, you use [!INCLUDE [classic-link](../includes/classic-link.md
 The Microsoft Foundry SDK is available in multiple languages, including Python, Java, TypeScript, and C#. This quickstart provides instructions for each of these languages.
 
 > [!TIP]
-> The rest of this article shows how to create and use a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**. See [Quickstart: Get started with Microsoft Foundry (Hub projects)](hub-get-started-code.md) if you want to use a [!INCLUDE [hub](../includes/hub-project-name.md)] instead. [Which type of project do I need?](../what-is-foundry.md#which-type-of-project-do-i-need)
+> The rest of this article shows how to create and use a **[!INCLUDE [fdp](fdp-project-name.md)]**. See [Quickstart: Get started with Microsoft Foundry (Hub projects)](hub-get-started-code.md) if you want to use a [!INCLUDE [hub](hub-project-name.md)] instead. [Which type of project do I need?](../what-is-foundry.md#which-type-of-project-do-i-need)
 
 ## Prerequisites
 
-- [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
-- [!INCLUDE [rbac-create](../includes/rbac-create.md)]
+- [!INCLUDE [azure-subscription](azure-subscription.md)]
+- [!INCLUDE [rbac-create](rbac-create.md)]
 - Install the required language runtimes, global tools, and VS Code extensions as described in [Prepare your development environment](../how-to/develop/install-cli-sdk.md).
 
 > [!IMPORTANT]
@@ -37,11 +37,11 @@ The Microsoft Foundry SDK is available in multiple languages, including Python, 
 > This Quickstart focuses on **scenario-specific steps** like SDK installation, authentication, and running sample code.
 >
 
-[!INCLUDE [first-run](../includes/first-run-experience.md)]
+[!INCLUDE [first-run](first-run-experience.md)]
 
 ## Get ready to code
 
-[!INCLUDE [agent-v1-switch](../includes/agent-v1-switch.md)]
+[!INCLUDE [agent-v1-switch](agent-v1-switch.md)]
 
 # [Python](#tab/python)
 
@@ -51,7 +51,7 @@ The Microsoft Foundry SDK is available in multiple languages, including Python, 
     pip install openai azure-identity azure-ai-projects==1.0.0
     ```
 
-1. [!INCLUDE [find-endpoint](../includes/find-endpoint.md)]
+1. [!INCLUDE [find-endpoint](find-endpoint.md)]
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Python scripts.
 
 Follow along below or get the code:
@@ -62,9 +62,9 @@ Follow along below or get the code:
 
 1. Install packages:
 
-    [!INCLUDE [install-csharp-packages](../includes/install-csharp-packages.md)]
+    [!INCLUDE [install-csharp-packages](install-csharp-packages.md)]
 
-1. [!INCLUDE [find-endpoint](../includes/find-endpoint.md)]
+1. [!INCLUDE [find-endpoint](find-endpoint.md)]
 
 1. Set these environment variables to use in your scripts.  The `AZURE_AI_ENDPOINT` is the project endpoint you copied earlier.  Remove everything after `.com/` in that endpoint to form `AZURE_AI_INFERENCE`.
 
@@ -84,7 +84,7 @@ Follow along below or get the code:
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your TypeScript scripts.
 1. Download [package.json](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples-classic/typescript/quickstart/package.json).
 1. Install packages with `npm install`
-1. [!INCLUDE [find-endpoint](../includes/find-endpoint.md)]
+1. [!INCLUDE [find-endpoint](find-endpoint.md)]
 1. Set these environment variables to use in your scripts:
 
     :::code language="plaintext" source="~/foundry-samples-main/samples-classic/typescript/quickstart/.env.template":::
@@ -100,7 +100,7 @@ Follow along below or get the code:
 
 [!INCLUDE [code-preview](../default/includes/code-preview.md)]
 
-1. [!INCLUDE [find-endpoint](../includes/find-endpoint.md)]
+1. [!INCLUDE [find-endpoint](find-endpoint.md)]
 1. Set these environment variables to use in your scripts:
 
     ```txt
@@ -140,7 +140,7 @@ No installation is necessary to use the Foundry portal.
 
 Chat completions are the basic building block of AI applications. Using chat completions you can send a list of messages and get a response from the model.
 
-[!INCLUDE [agent-v1-switch](../includes/agent-v1-switch.md)]
+[!INCLUDE [agent-v1-switch](agent-v1-switch.md)]
 
 # [Python](#tab/python)
 
@@ -177,7 +177,7 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 
 Create an agent and chat with it.
 
-[!INCLUDE [agent-v1-switch](../includes/agent-v1-switch.md)]
+[!INCLUDE [agent-v1-switch](agent-v1-switch.md)]
 
 # [Python](#tab/python)
 
@@ -220,7 +220,7 @@ Agents have powerful capabilities through the use of tools. Let's add a file sea
 
 * Download [product_info_1.md](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples-classic/data/product_info_1.md) to give to your agent.
 
-[!INCLUDE [agent-v1-switch](../includes/agent-v1-switch.md)]
+[!INCLUDE [agent-v1-switch](agent-v1-switch.md)]
 
 # [Python](#tab/python)
 
@@ -261,7 +261,7 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` and `YOUR-PROJECT-NAME` with your values:
 
 ## Clean up resources
 
-[!INCLUDE [clean-up-resources](../includes/clean-up-resources.md)]
+[!INCLUDE [clean-up-resources](clean-up-resources.md)]
 
 ## Related content
 
