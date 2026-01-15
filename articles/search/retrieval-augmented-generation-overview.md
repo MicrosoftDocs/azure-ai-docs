@@ -5,7 +5,7 @@ description: Learn how generative AI and retrieval augmented generation (RAG) pa
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 12/15/2025
+ms.date: 01/15/2026
 ms.service: azure-ai-search
 ms.topic: article
 ms.custom:
@@ -24,7 +24,7 @@ Retrieval-augmented Generation (RAG) is a pattern that extends LLM capabilities 
 |-----------|-------------|
 | **Query&nbsp;understanding** | Modern users ask complex, conversational, or vague questions with assumed context. Traditional keyword search fails when queries don't match document terminology. For RAG, an information retrieval system must understand intent, not just match words. |
 | **Multi-source&nbsp;data&nbsp;access** | Enterprise content spans SharePoint, databases, blob storage, and other platforms. Creating a unified search corpus without disrupting data operations is essential. |
-| **Token&nbsp;constraints** | LLMs accept limited token inputs. Your retrieval system must return highly relevant, concise results—not exhaustive document dumps. |
+| **Token&nbsp;constraints** | LLMs accept limited token inputs. Your retrieval system must return highly relevant, concise results - not exhaustive document dumps. |
 | **Response&nbsp;time&nbsp;expectations** | Users expect AI-powered answers in seconds, not minutes. The retrieval system must balance thoroughness with speed.
 | **Security&nbsp;and&nbsp;governance** | Opening private content to LLMs requires granular access control. Users and agents must only retrieve authorized content. |
 
@@ -44,43 +44,43 @@ The following sections explain how each approach solves specific RAG challenges.
 
 **Agentic retrieval solution:**
 
-+ LLM analyzes the question and generates multiple targeted subqueries
-+ Decomposes complex questions into focused searches
-+ Uses conversation history to understand context
-+ Parallel execution across knowledge sources
++ LLM analyzes the question and generates multiple targeted subqueries.
++ Decomposes complex questions into focused searches.
++ Uses conversation history to understand context.
++ Parallel execution across knowledge sources.
 
 **Classic RAG solution:**
 
-+ Hybrid queries combine keyword and vector search for better recall
-+ Semantic ranking re-scores results based on meaning, not just keywords
-+ Vector similarity search matches concepts, not exact terms
++ Hybrid queries combine keyword and vector search for better recall.
++ Semantic ranking re-scores results based on meaning, not just keywords.
++ Vector similarity search matches concepts, not exact terms.
 
 [Learn more about query planning](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md).
 
-### Solving multi-source data challenges
+### Solving multisource data challenges
 
-**The problem:** HR policies in SharePoint, benefits in databases, company news on web pages—creating copies disrupts governance and routine data operations.
+**The problem:** HR policies in SharePoint, benefits in databases, company news on web pages - creating copies disrupts governance and routine data operations.
 
 **Agentic retrieval solution:**
 
-+ Knowledge bases unify multiple knowledge sources
-+ Direct query against remote SharePoint and Bing (no indexing needed) to supplement index content
-+ Retrieval instructions guide the LLM to appropriate data sources
-+ Automatic indexing pipeline generation for Azure Blob, OneLake, ingested SharePoint content, ingested other external content
-+ Single query interface and query plan across all sources
++ Knowledge bases unify multiple knowledge sources.
++ Direct query against remote SharePoint and Bing (no indexing needed) to supplement index content.
++ Retrieval instructions guide the LLM to appropriate data sources.
++ Automatic indexing pipeline generation for Azure Blob, OneLake, ingested SharePoint content, ingested other external content.
++ Single query interface and query plan across all sources.
 
 **Classic RAG solution:**
 
-+ Indexers pull from over 10 Azure data sources
-+ Skills pipeline for chunking, vectorization, image verbalization and analysis
-+ Incremental indexing keeps content fresh
-+ You control what's indexed and how
++ Indexers pull from more than 10 Azure data sources.
++ Skills pipeline for chunking, vectorization, image verbalization, and analysis.
++ Incremental indexing keeps content fresh.
++ You control what's indexed and how.
 
 [Learn more about knowledge sources](agentic-knowledge-source-overview.md).
 
 ### Solving token constraint challenges
 
-**The problem:** GPT-4 accepts ~128k tokens, but you have 10,000 pages of documentation. Sending everything wastes tokens and degrades quality.
+**The problem:** GPT-4 accepts about 128k tokens, but you have 10,000 pages of documentation. Sending everything wastes tokens and degrades quality.
 
 **Agentic retrieval solution:**
 
@@ -91,7 +91,7 @@ The following sections explain how each approach solves specific RAG challenges.
 
 **Classic RAG solution:**
 
-+ Semantic ranking identifies top 50 most relevant results
++ Semantic ranking identifies the top 50 most relevant results
 + Configurable result limits (top-k for vectors, top-n for text) and minimum thresholds
 + Scoring profiles boost critical content
 + Select statement controls which fields are returned
@@ -136,7 +136,7 @@ The following sections explain how each approach solves specific RAG challenges.
 
 [Learn more about security](search-security-overview.md).
 
-<!-- OLD INTRO #2
+<!-- OLD INTRO
 Retrieval-augmented Generation (RAG) is a design pattern in AI that augments the capabilities of a pretrained large language model (LLM) by adding newer, specialized, or proprietary content to help answer questions. To get that content, you typically need an information retrieval component. Azure AI Search is an information retrieval solution that's designed to solve the challenges of RAG implementations.
 
 + The first challenge: rising expectations for reasonable answers regardless of the quality of the question. The modern query consists of complex or convoluted questions, possibly vague or incomplete, with the assumption of context from the current chat. These become the inputs to the information retrieval system, against which the system must understand so that it can find relevant matches for LLM answer formulation.
@@ -153,30 +153,14 @@ Azure AI Search can meet *all* of these challenges with the new agentic retrieva
 
 It can meet *most* of these challenges with the classic search engine that accepts single-shot queries against a single search index. Classic search is generally available, and it supports a hybrid search capability with semantic ranking that produces high quality responses that help LLMs deliver their best answers using your content.
 
-This article explores modern RAG and classic RAG experiences that you can get with Azure AI Search. It speaks to the challenges of RAG implementations and how Azure AI Search solves for specific problems with each RAG pattern. -->
-
-<!-- OLD INTRO #1
-Retrieval-augmented Generation (RAG) is a design pattern that augments the capabilities of a pretrained large language model (LLM) by adding newer, specialized, or proprietary content to help answer questions. 
-
-RAG implementations typically include an information retrieval component. The decision about which information retrieval system to use is critical because LLMs are constrained by the number of token inputs they can accept, so you want the grounding data to be as relevant as possible. Criteria to consider include:
-
-+ Ability to pull from a broad range of data sources and platforms.
-
-+ Query capabilities that can target all of your data and return synthesized and highly relevant results, in the short-form formats necessary for meeting the token length requirements of LLM inputs.
-
-+ Ease of integration with agents and chat apps, and other models and processes that are part of your application.
-
-+ Built-in content preparation (chunking, vectorization, image verbalization). It's common to consolidate searchable data into separate physical data structures that are optimized for search. You can verbalize, recognize, or analyze images to get text-equivalent information into your index. More likely, you might want to chunk verbose source content so that it can be easily consumed, and vectorize that content if you want similarity search.
-
-Azure AI Search is a [proven solution for RAG workloads](https://github.com/Azure-Samples/azure-search-openai-demo/blob/main/README.md). It provides indexing and query capabilities that meet common criteria, with the infrastructure and security of the Azure cloud. Through code and other components, you can design a full stack RAG architecture that includes all of the elements for generative AI over your proprietary content.
-
-You can choose between two approaches for RAG workloads: new **agentic retrieval** for modern RAG (currently in preview), or the original query architecture for **classic RAG**. If you're required to use only generally available features, you should consider classic RAG. -->
+This article explores modern RAG and classic RAG experiences that you can get with Azure AI Search. It speaks to the challenges of RAG implementations and how Azure AI Search solves for specific problems with each RAG pattern. 
+ -->
 
 ### Modern RAG with agentic retrieval
 
 Azure AI Search is a [proven solution for RAG workloads](https://github.com/Azure-Samples/azure-search-openai-demo/blob/main/README.md). It now provides [agentic retrieval](search-what-is-azure-search.md#what-is-agentic-retrieval), a specialized pipeline designed specifically for RAG patterns. This approach uses LLMs to intelligently break down complex user queries into focused subqueries, executes them in parallel, and returns structured responses optimized for chat completion models.
 
-Agentic retrieval represents the evolution from traditional single-query RAG patterns to multi-query intelligent retrieval, providing:
+Agentic retrieval represents the evolution from traditional single-query RAG patterns to mult-query intelligent retrieval, providing:
 
 + Context-aware query planning using conversation history
 + Parallel execution of multiple focused subqueries  
@@ -186,7 +170,7 @@ Agentic retrieval represents the evolution from traditional single-query RAG pat
 
 You need new objects for this pipeline: one or more knowledge sources, a knowledge base, and the retrieve action that you call from application code, such as a tool that works with your AI agent.
 
-For new RAG implementations, we recommend starting with [agentic retrieval](agentic-retrieval-overview.md). For existing solutions, consider migrating to take advantage of improved accuracy and context understanding.
+For new RAG implementations, start with [agentic retrieval](agentic-retrieval-overview.md). For existing solutions, consider migrating to take advantage of improved accuracy and context understanding.
 
 ### Classic RAG pattern for Azure AI Search
 
@@ -201,7 +185,7 @@ RAG quality depends on how you prepare content for retrieval. Azure AI Search su
 | Content challenge | How Azure AI Search helps |
 |-------------------|---------------------------|
 | **Large documents** | Automatic chunking (built-in or via skills) |
-| **Multiple languages** | 50+ language analyzers for text, multilingual vectors |
+| **Multiple languages** | More than 50 language analyzers for text, multilingual vectors |
 | **Images and PDFs** | OCR, image analysis, image verbalization, document extraction skills |
 | **Need for similarity search** | Integrated vectorization (Azure OpenAI, Azure Vision in Foundry Tools, custom) |
 | **Terminology mismatches** | Synonym maps, semantic ranking |
@@ -226,24 +210,24 @@ On the query side, to ensure the most relevant results for your RAG implementati
 
 + Fine-tune with vector query parameters for [vector weighting](vector-search-how-to-query.md#vector-weighting) and [minimum thresholds](vector-search-how-to-query.md#set-thresholds-to-exclude-low-scoring-results-preview).
 
-Learn more about [hybrid search](hybrid-search-overview.md) and [semantic ranking](semantic-ranking.md).
+For more information, see [hybrid search](hybrid-search-overview.md) and [semantic ranking](semantic-ranking.md).
 
 ## Choose between agentic retrieval and classic RAG
 
 **Use agentic retrieval when:**
 
-+ Your client is an agent or chatbot
-+ You need the highest possible relevance and accuracy
-+ Your queries are complex or conversational
-+ You want structured responses with citations and query details
-+ You're building new RAG implementations
++ Your client is an agent or chatbot.
++ You need the highest possible relevance and accuracy.
++ Your queries are complex or conversational.
++ You want structured responses with citations and query details.
++ You're building new RAG implementations.
 
 **Use classic RAG when:**
 
-+ You need generally available (GA) features only
-+ Simplicity and speed are priorities over advanced relevance
-+ You have existing orchestration code you want to preserve
-+ You need fine-grained control over the query pipeline
++ You need generally available (GA) features only.
++ Simplicity and speed are priorities over advanced relevance.
++ You have existing orchestration code you want to preserve.
++ You need fine-grained control over the query pipeline.
 
 A RAG solution that includes agents and Azure AI Search can benefit from [Foundry IQ](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/foundry-iq-unlocking-ubiquitous-knowledge-for-agents/4470812), as an agent's single endpoint to a knowledge layer that provides grounding data. Foundry IQ uses agentic retrieval.
 
@@ -276,7 +260,7 @@ There are many ways to get started, including code-first solutions and demos.
 + [Review creating queries](search-query-create.md) to learn more about search request syntax and requirements.
 
 > [!NOTE]
-> Some Azure AI Search features are intended for human interaction and aren't useful in a RAG pattern. Specifically, you can skip features like autocomplete and suggestions. Other features like facets and orderby might be useful, but would be uncommon in a RAG scenario.
+> Some Azure AI Search features are intended for human interaction and aren't useful in a RAG pattern. Specifically, you can skip features like autocomplete and suggestions. Other features like facets and orderby might be useful, but are uncommon in a RAG scenario.
 
 ### [**Code**](#tab/demos)
 
@@ -290,7 +274,7 @@ There are many ways to get started, including code-first solutions and demos.
 
 ### [**Templates**](#tab/templates)
 
-[Use enterprise chat app templates](https://aka.ms/azai) deploy Azure resources, code, and sample grounding data using fictitious health plan documents for Contoso and Northwind. This end-to-end solution gives you an operational chat app in as little as 15 minutes. Code for these templates is the **azure-search-openai-demo** featured in several presentations. The following links provide language-specific versions:
+[Use enterprise chat app templates](https://aka.ms/azai) to deploy Azure resources, code, and sample grounding data using fictitious health plan documents for Contoso and Northwind. This end-to-end solution gives you an operational chat app in as little as 15 minutes. Code for these templates is the **azure-search-openai-demo** featured in several presentations. The following links provide language-specific versions:
 
 + [.NET](https://aka.ms/azai/net)
 + [Python](https://aka.ms/azai/py)
