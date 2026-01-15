@@ -129,7 +129,7 @@ curl -X POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/v1/files \
 
 The above code assumes a particular file path for your test.jsonl file. Adjust this file path as necessary for your local system. 
 
-By adding the optional `"expires_after.seconds=1209600"` and `"expires_after.anchor=created_at"` parameters  you're setting your upload file to expire in 14 days. There's a max limit of 500 batch input files per resource when no expiration is set. By setting a value for expiration the number of batch files per resource is increased to 10,000 files per resource. You can set to a number between 1209600-2592000. This is equivalent to 14-30 days. To remove batch input file limits use [Batch with Azure Blob Storage](../..how-to/batch-blob-storage.md).
+By adding the optional `"expires_after.seconds=1209600"` and `"expires_after.anchor=created_at"` parameters  you're setting your upload file to expire in 14 days. There's a max limit of 500 batch input files per resource when no expiration is set. By setting a value for expiration the number of batch files per resource is increased to 10,000 files per resource. You can set to a number between 1209600-2592000. This is equivalent to 14-30 days. To remove batch input file limits use [Batch with Azure Blob Storage](../../how-to/batch-blob-storage.md).
 
 
 
