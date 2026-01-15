@@ -35,7 +35,7 @@ ms.topic: include
 |---|---|
 | `gpt-5.2` |  See the [models table](#model-summary-table-and-region-availability).   |
 | `gpt-5.2-chat` |  See the [models table](#model-summary-table-and-region-availability).  |
-| `gpt-5.2.-codex` | East US2 & Sweden Central (Global Standard) |
+| `gpt-5.2-codex` | East US2 & Sweden Central (Global Standard) |
 
 - **[Registration is required for access to gpt-5.2 and gpt-5.2-codex](https://aka.ms/oai/gpt5access).**
 
