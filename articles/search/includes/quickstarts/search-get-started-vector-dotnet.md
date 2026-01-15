@@ -9,7 +9,7 @@ ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
 
-In this quickstart, you use a .NET app to create, populate, and query a [vector index](../../vector-store.md). The code performs these operations by using the [Azure AI Search client library for .NET](/dotnet/api/overview/azure/search), which provides an abstraction over the REST APIs for access to index operations.
+In this quickstart, you use a .NET app to create, load, and query a [vector index](../../vector-store.md). The code performs these operations by using the [Azure AI Search client library for .NET](/dotnet/api/overview/azure/search), which provides an abstraction over the REST APIs to access index operations.
 
 In Azure AI Search, a vector index has an index schema that defines vector and nonvector fields, a vector search configuration for algorithms that create the embedding space, and settings on vector field definitions that are evaluated at query time. [Indexes - Create or Update](/rest/api/searchservice/indexes/create-or-update) (REST API) creates the vector index.
 
@@ -24,7 +24,7 @@ In Azure AI Search, a vector index has an index schema that defines vector and n
 
     + You can use the Free tier for most of this quickstart, but we recommend Basic or higher for larger data files.
 
-    + For [keyless authentication](../../search-get-started-rbac.md) with Microsoft Entra ID, assign the **Search Index Data Contributor role** to your user account or service principal.
+    + For [keyless authentication](../../search-get-started-rbac.md) with Microsoft Entra ID, assign the **Search Index Data Contributor role** to your user account.
     
     + To run the semantic hybrid query, you must [enable semantic ranker](../../semantic-how-to-enable-disable.md).
 
@@ -54,7 +54,7 @@ This quickstart uses `DefaultAzureCredential`, which simplifies authentication i
 
 1. Set `IndexName` to a unique name for your index. You can also use the default `hotels-vector-quickstart` name.
 
-## Create the vector index and upload documents
+## Create a vector index and upload documents
 
 To run search queries against your Azure AI Search service, you must first create a search index and upload documents to the index.
 
@@ -90,7 +90,7 @@ To create and populate the index:
     
     Key takeaways:
 
-    + Your code interacts with a specific search index hosted in your Azure AI Search service through the SearchClient, which is the main object provided by the azure-search-documents package. The SearchClient provides access to index operations such as:
+    + Your code interacts with a specific search index hosted in your Azure AI Search service through the SearchClient, which is the main object provided by the azure-search-documents package. The SearchClient provides access to index operations, such as:
 
         + Data ingestion: `UploadDocuments()`, `MergeDocuments()`, `DeleteDocuments()`
 
@@ -115,7 +115,7 @@ Queries in this section:
 
 The first query demonstrates a basic scenario where you want to find document descriptions that closely match the search string.
 
-To issue a single vector search:
+To create a single vector search:
 
 1. In the `Program.cs` file of the `VectorSearchExamples` folder, uncomment the `SearchExamples.SearchSingleVector(searchClient, vectorizedResult);` method call.
 
@@ -138,7 +138,7 @@ To issue a single vector search:
 
 In Azure AI Search, [filters](../../vector-search-filters.md) apply to nonvector fields in an index. This example filters on the `Tags` field to filter out any hotels that don't provide free Wi-Fi.
 
-To issue a single vector search with a filter:
+To create a single vector search with a filter:
 
 1. In the `Program.cs` file of the `VectorSearchExamples` folder, uncomment the `SearchExamples.SearchSingleVectorWithFilter(searchClient, vectorizedResult);` method call.
 
@@ -160,7 +160,7 @@ To issue a single vector search with a filter:
 
     :::code language="csharp" source="~/azure-search-dotnet-samples/quickstart-vector-search/vectorsearchexamples/SearchExamples.cs" id="SingleSearchWithGeoFilter":::
 
-1.  Run `dotnet run` to execute the query, which returns only hotels within 300 km.
+1.  Run `dotnet run` to execute the query, which returns only hotels within 300 kilometers.
    
     ```output
     Vector query with a geo filter:
@@ -184,7 +184,7 @@ To issue a single vector search with a filter:
 + Search string: `historic hotel walk to restaurants and shopping`
 + Vector query string: `quintessential lodging near running trails, eateries, retail` (vectorized into a mathematical representation)
 
-To issue a hybrid search:
+To create a hybrid search:
 
 1. In the `Program.cs` file, uncomment the `SearchExamples.SearchHybridVectorAndText(searchClient, vectorizedResult);` method call.
 
@@ -307,7 +307,7 @@ To issue a hybrid search:
 
 Add [semantic ranking](../../semantic-search-overview.md) to rerank results based on language understanding.
 
-To issue a semantic hybrid search with a filter:
+To create a semantic hybrid search with a filter:
 
 1. In the `Program.cs` file, uncomment `SearchExamples.SearchHybridVectorAndSemantic(searchClient, vectorizedResult);` method call.
 
@@ -367,5 +367,5 @@ You can find and manage resources in the Azure portal by using the **All resourc
 
 ## Next steps
 
-+ Review the repository of code samples for vector search capabilities in Azure AI Search for [.NET](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-dotnet)
-+ Review the other .NET and Azure AI Search code samples in the [azure-search-dotnet-samples repo](https://github.com/Azure-Samples/azure-search-dotnet-samples)
++ Review the repository of code samples for vector search capabilities in Azure AI Search for [.NET](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-dotnet).
++ Review the other .NET and Azure AI Search code samples in the [azure-search-dotnet-samples repo](https://github.com/Azure-Samples/azure-search-dotnet-samples).

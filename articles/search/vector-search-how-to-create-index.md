@@ -28,15 +28,15 @@ This article uses REST to explain how to create a vector index, which includes t
 > + Add vector field definitions
 > + Load prevectorized data as a [separate step](#load-vector-data-for-indexing) or use [integrated vectorization](vector-search-integrated-vectorization.md) to chunk and embed data during indexing
 
-After you understand the basic workflow, try the Azure SDK samples in the [azure-search-vector-samples](https://github.com/Azure/azure-search-vector-samples) GitHub repo for guidance on using vectors in test and production code. You can also use the Azure portal to [create a vector index](search-get-started-portal-import-vectors.md) and test integrated vectorization.
+After you understand the basic workflow, try the Azure SDK samples in the [azure-search-vector-samples](https://github.com/Azure/azure-search-vector-samples) GitHub repo for guidance on using vectors in test and production code. You can also use the Azure portal to [create a vector index](search-get-started-portal-import-vectors.md) via integrated vectorization.
 
 ## Prerequisites
 
 + An [Azure AI Search service](search-create-service-portal.md) in any region and on any tier. If you plan to use [integrated vectorization](vector-search-integrated-vectorization.md) with the Azure Vision skill and vectorizer, Azure AI Search must be in the same region as the embedding models hosted on Azure Vision in Foundry Tools.
 
-+ For the recommended [keyless authentication](search-security-rbac.md), assign the **Search Service Contributor** and **Search Index Data Contributor** roles to your user account. For [key-based authentication](search-security-api-keys.md), obtain an admin API key.
++ For the recommended [keyless authentication](search-security-rbac.md), assign the **Search Service Contributor** and **Search Index Data Contributor** roles to your user account, managed identity, or service principal. For the less secure [key-based authentication](search-security-api-keys.md), obtain an admin API key.
 
-+ Source documents with [vector embeddings](vector-search-how-to-generate-embeddings.md) to upload to the index. You can also use [integrated vectorization](vector-search-integrated-vectorization.md) for this step.
++ Source documents with [vector embeddings](vector-search-how-to-generate-embeddings.md) to upload to the index. You can also use [integrated vectorization](vector-search-integrated-vectorization.md) for this task.
 
 + The dimensions limit of your embedding model. `text-embedding-ada-002` is fixed at 1536, `text-embedding-3-small` ranges from 1 to 1536, and `text-embedding-3-large` ranges from 1 to 3072.
 

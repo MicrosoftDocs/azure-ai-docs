@@ -9,7 +9,7 @@ ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
 
-In this quickstart, you use the [Azure AI Search REST APIs](/rest/api/searchservice) to create, populate, and query a [vector index](../../vector-store.md).
+In this quickstart, you use the [Azure AI Search REST APIs](/rest/api/searchservice) to create, load, and query a [vector index](../../vector-store.md).
 
 In Azure AI Search, a vector index has an index schema that defines vector and nonvector fields, a vector search configuration for algorithms that create the embedding space, and settings on vector field definitions that are evaluated at query time. [Indexes - Create or Update](/rest/api/searchservice/indexes/create-or-update) (REST API) creates the vector index.
 
@@ -102,7 +102,7 @@ You use [Indexes - Create](/rest/api/searchservice/indexes/create) (REST API) to
 
 The index schema in this example is organized around hotel content. Sample data consists of vector and nonvector descriptions of fictitious hotels. This schema includes configurations for vector indexing and queries, and for semantic ranking.
 
-To create the vector index:
+To create a vector index:
 
 1. In Visual Studio Code, open the `az-search-vector-quickstart.rest` file you [created earlier](#create-or-download-the-code-file).
 
@@ -396,7 +396,7 @@ To create the vector index:
 
 ## Upload documents to the index
 
-Creating and loading the index are separate steps. You created the index schema [in the previous step](#create-a-vector-index). Now you need to load documents into the index.
+Creating and loading the index are separate steps. You created the index schema in the previous step. You now need to load documents into the index.
  
 In Azure AI Search, the index contains all searchable data and queries run on the search service. For REST calls, the data is provided as JSON documents. Use [Documents - Index](/rest/api/searchservice/documents/) (REST API) for this task. The URI is extended to include the `docs` collection and the `index` operation.
 
@@ -673,6 +673,8 @@ The vector query string is semantically similar to the search string, but it inc
 
 ### Single vector search
 
+To create a single vector search:
+
 1. Formulate the request. The query is a 1536 float representation of *quintessential lodging near running trails, eateries, retail*. The query is searching `DescriptionVector` and returning k-5 results. It's using the "exhaustive" override parameter to perform a full scan of the index instead of ANN. An exhaustive search is useful for small indexes.
 
     ```http
@@ -783,6 +785,8 @@ The vector query string is semantically similar to the search string, but it inc
 ### Single vector search with filter
 
 You can add filters, but the filters are applied to the nonvector content in your index. In this example, the filter applies to the `Tags` field to filter out any hotels that don't provide free Wi-Fi.
+
+To create a single vector search with a filter:
 
 1. Formulate the request. This is the same request as the previous one, with an extra filter and filter mode parameter.
 
@@ -917,6 +921,8 @@ Hybrid search consists of keyword queries and vector queries in a single search 
 + Search string: `historic hotel walk to restaurants and shopping`
 + Vector query string: `quintessential lodging near running trails, eateries, retail` (vectorized into a mathematical representation)
 
+To create a hybrid search:
+
 1. Formulate the hybrid query.
 
     ```http
@@ -1033,6 +1039,8 @@ Hybrid search consists of keyword queries and vector queries in a single search 
 
 Here's the last query in the collection. This hybrid query adds L2 semantic ranking that applies machine reading comprehension over the L1-ranked results, promoting more relevant matches to the top.
 
+To create a semantic hybrid search:
+
 1. Formulate the request. 
 
     ```http
@@ -1126,7 +1134,7 @@ When you're working in your own subscription, it's a good idea at the end of a p
 
 You can find and manage resources in the Azure portal by using the **All resources** or **Resource groups** link in the leftmost pane.
 
-If you want to keep the search service, but delete the index and documents, you can use the `DELETE` command in the REST client. This command (at the end of your `az-search-vector-quickstart.rest` file) deletes the `hotels-vector-quickstart` index:
+Alternatively, you can send the following request to delete the vector index created in this quickstart.
 
 ```http
 ### Delete an index
@@ -1137,6 +1145,4 @@ DELETE  {{baseUrl}}/indexes/hotels-vector-quickstart?api-version=2025-09-01 HTTP
 
 ## Next steps
 
-As a next step, we recommend learning how to invoke REST API calls [without API keys](../../search-get-started-rbac.md).
-
-You might also want to review the demo code for [Python](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-python), [C#](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-dotnet), or [JavaScript](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-javascript).
++ Learn how to invoke REST API calls [without API keys](../../search-get-started-rbac.md).

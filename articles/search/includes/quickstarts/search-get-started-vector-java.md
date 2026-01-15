@@ -8,7 +8,7 @@ ms.date: 01/14/2026
 ai-usage: ai-assisted
 ---
 
-In this quickstart, you use Java to create, populate, and query a [vector index](../../vector-store.md). The code performs these operations by using the [Azure AI Search client library for Java](/java/api/overview/azure/search-documents-readme), which provides an abstraction over the REST APIs for access to index operations.
+In this quickstart, you use Java to create, load, and query a [vector index](../../vector-store.md). The code performs these operations by using the [Azure AI Search client library for Java](/java/api/overview/azure/search-documents-readme), which provides an abstraction over the REST APIs to access index operations.
 
 In Azure AI Search, a vector index has an index schema that defines vector and nonvector fields, a vector search configuration for algorithms that create the embedding space, and settings on vector field definitions that are evaluated at query time. [Indexes - Create or Update](/rest/api/searchservice/indexes/create-or-update) (REST API) creates the vector index.
 
@@ -23,7 +23,7 @@ In Azure AI Search, a vector index has an index schema that defines vector and n
 
     + You can use the Free tier for most of this quickstart, but we recommend Basic or higher for larger data files.
 
-    + For [keyless authentication](../../search-get-started-rbac.md) with Microsoft Entra ID, assign the **Search Index Data Contributor role** to your user account or service principal.
+    + For [keyless authentication](../../search-get-started-rbac.md) with Microsoft Entra ID, assign the **Search Index Data Contributor role** to your user account.
     
     + To run the semantic hybrid query, you must [enable semantic ranker](../../semantic-how-to-enable-disable.md).
 
@@ -91,11 +91,11 @@ az login --tenant <PUT YOUR TENANT ID HERE>
 
 You should now be logged in to Azure from your local device.
 
-## Create the vector index
+## Create a vector index
 
 In this section, you create a vector index in Azure AI Search with [SearchIndexClient](/java/api/com.azure.search.documents.indexes.searchindexclient).[createOrUpdateIndex](/java/api/com.azure.search.documents.indexes.searchindexclient#com-azure-search-documents-indexes-searchindexclient-createorupdateindex(com-azure-search-documents-indexes-models-searchindex)). The index schema defines the fields, including the vector field `DescriptionVector`.
 
-To create the vector index:
+To create a vector index:
 
 1. Create a `CreateIndex.java` file in the the `src/main/java/com/example/search` directory.
 
@@ -246,6 +246,8 @@ To create a single vector search:
 
 You can add filters, but the filters are applied to the nonvector content in your index. In this example, the filter applies to the `Tags` field to filter out any hotels that don't provide free Wi-Fi. This search uses [SearchClient](/java/api/com.azure.search.documents.searchclient).[SearchClient](/java/api/com.azure.search.documents.searchclient) and [SearchOptions](/java/api/com.azure.search.documents.models.searchoptions). 
 
+To create a single vector search with a filter:
+
 1. Create a `SearchSingleWithFilter.java` file in the `src/main/java/com/example/search` directory.
 
 1. Copy the following code into the file.
@@ -260,7 +262,7 @@ You can add filters, but the filters are applied to the nonvector content in you
     mvn compile exec:java -Dexec.mainClass="com.example.search.SearchSingleWithFilter"
     ```
 
-1. The output of this code shows the relevant documents for the query with the filter for `free wifi` applied:
+    The output of this code shows the relevant documents for the query with the filter for `free wifi` applied.
 
     ```output
     Using Azure Search endpoint: https://<search-service-name>.search.windows.net
@@ -516,7 +518,7 @@ When you're working in your own subscription, it's a good idea at the end of a p
 
 You can find and manage resources in the Azure portal by using the **All resources** or **Resource groups** link in the leftmost pane.
 
-If you want to keep your search service but delete the index and its documents, you can delete the index programmatically.
+Alternatively, to delete the vector index you created in this quickstart programmatically:
 
 1. Create a `DeleteIndex.java` file in the `src/main/java/com/example/search` directory.
 
@@ -532,4 +534,4 @@ If you want to keep your search service but delete the index and its documents, 
 
 ## Next steps
 
-+ Review the repository of code samples for vector search capabilities in Azure AI Search for [Java](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-java)
++ Review the repository of code samples for vector search capabilities in Azure AI Search for [Java](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-java).

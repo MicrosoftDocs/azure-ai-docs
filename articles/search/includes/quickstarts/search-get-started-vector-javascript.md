@@ -9,7 +9,7 @@ ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
 
-In this quickstart, you use JavaScript to create, populate, and query a [vector index](../../vector-store.md). The code performs these operations by using the [Azure AI Search client library for JavaScript](/javascript/api/overview/azure/search-documents-readme), which provides an abstraction over the REST APIs for access to index operations.
+In this quickstart, you use JavaScript to create, load, and query a [vector index](../../vector-store.md). The code performs these operations by using the [Azure AI Search client library for JavaScript](/javascript/api/overview/azure/search-documents-readme), which provides an abstraction over the REST APIs to access index operations.
 
 In Azure AI Search, a vector index has an index schema that defines vector and nonvector fields, a vector search configuration for algorithms that create the embedding space, and settings on vector field definitions that are evaluated at query time. [Indexes - Create or Update](/rest/api/searchservice/indexes/create-or-update) (REST API) creates the vector index.
 
@@ -24,7 +24,7 @@ In Azure AI Search, a vector index has an index schema that defines vector and n
 
     + You can use the Free tier for most of this quickstart, but we recommend Basic or higher for larger data files.
 
-    + For [keyless authentication](../../search-get-started-rbac.md) with Microsoft Entra ID, assign the **Search Index Data Contributor role** to your user account or service principal.
+    + For [keyless authentication](../../search-get-started-rbac.md) with Microsoft Entra ID, assign the **Search Index Data Contributor role** to your user account.
     
     + To run the semantic hybrid query, you must [enable semantic ranker](../../semantic-how-to-enable-disable.md).
 
@@ -99,11 +99,11 @@ az login --tenant <PUT YOUR TENANT ID HERE>
 
 You should now be logged in to Azure from your local device.
 
-## Create the vector index
+## Create a vector index
 
 In this section, you create a vector index in Azure AI Search with [SearchIndexClient](/javascript/api/@azure/search-documents/searchindexclient).[createOrUpdateIndex](/javascript/api/@azure/search-documents/searchindexclient#@azure-search-documents-searchindexclient-createorupdateindex). The index schema defines the fields, including the vector field `DescriptionVector`. 
 
-To create the vector index:
+To create a vector index:
 
 1. Create a `createIndex.js` file in the `src` directory.
 
@@ -188,7 +188,7 @@ To upload documents to the index:
 
     Key takeaways:
 
-    * Your code interacts with a specific search index hosted in your Azure AI Search service through the `SearchClient`, which is the main object provided by the @azure/search-documents package. The `SearchClient` provides access to index operations such as:
+    * Your code interacts with a specific search index hosted in your Azure AI Search service through the `SearchClient`, which is the main object provided by the @azure/search-documents package. The `SearchClient` provides access to index operations, such as:
 
         * Data ingestion: `uploadDocuments`, `mergeDocuments`, `deleteDocuments`, and so on.
 
@@ -530,7 +530,7 @@ When you're working in your own subscription, it's a good idea at the end of a p
 
 You can find and manage resources in the Azure portal by using the **All resources** or **Resource groups** link in the leftmost pane.
 
-If you want to keep your search service but delete the index and its documents, you can delete the index programmatically.
+Alternatively, to delete the vector index you created in this quickstart programmatically:
 
 1. Create a `deleteIndex.js` file in the `src` directory.
 1. Add the dependencies, environment variables, and code to delete the index.
@@ -545,4 +545,4 @@ If you want to keep your search service but delete the index and its documents, 
 
 ## Next steps
 
-+ Review the repository of code samples for vector search capabilities in Azure AI Search for [JavaScript](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-javascript)
++ Review the repository of code samples for vector search capabilities in Azure AI Search for [JavaScript](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-javascript).

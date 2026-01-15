@@ -9,7 +9,7 @@ ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
 
-In this quickstart, you use a Jupyter notebook to create, populate, and query a [vector index](../../vector-store.md). The code performs these operations by using the [Azure AI Search client library for Python](/python/api/overview/azure/search-documents-readme), which provides an abstraction over the REST APIs for access to index operations.
+In this quickstart, you use a Jupyter notebook to create, load, and query a [vector index](../../vector-store.md). The code performs these operations by using the [Azure AI Search client library for Python](/python/api/overview/azure/search-documents-readme), which provides an abstraction over the REST APIs to access index operations.
 
 In Azure AI Search, a vector index has an index schema that defines vector and nonvector fields, a vector search configuration for algorithms that create the embedding space, and settings on vector field definitions that are evaluated at query time. [Indexes - Create or Update](/rest/api/searchservice/indexes/create-or-update) (REST API) creates the vector index.
 
@@ -24,7 +24,7 @@ In Azure AI Search, a vector index has an index schema that defines vector and n
 
     + You can use the Free tier for most of this quickstart, but we recommend Basic or higher for larger data files.
 
-    + For [keyless authentication](../../search-get-started-rbac.md) with Microsoft Entra ID, assign the **Search Index Data Contributor role** to your user account or service principal.
+    + For [keyless authentication](../../search-get-started-rbac.md) with Microsoft Entra ID, assign the **Search Index Data Contributor role** to your user account.
     
     + To run the semantic hybrid query, you must [enable semantic ranker](../../semantic-how-to-enable-disable.md).
 
@@ -77,10 +77,7 @@ This quickstart uses `DefaultAzureCredential`, which simplifies authentication i
 
 1. Open the `vector-search-quickstart.ipynb` file.
 
-   > [!Note]
-   > If this is your first time using a Jupyter notebook (.ipynb) in Visual Studio Code, you're prompted to install the Jupyter notebook kernel and possibly other tools. Install the suggested tools to continue with this quickstart.
-
-1. Run the `Install packages and set variables` code cell to load the environment variables, create the `DefaultAzureCredential`, and print values to the output.
+1. Run the `Install packages and set variables` code cell to load the environment variables.
 
    ```python
    # Load environment variables from .env file
@@ -99,7 +96,7 @@ This quickstart uses `DefaultAzureCredential`, which simplifies authentication i
    print(f"Using Azure Search index: {index_name}")
    !pip list 
    ```
-   Executing this cell produces the following output, which shows some of the installed packages.
+   The output includes some of the installed packages.
 
    ```output
    Using Azure Search endpoint: https://<search-service-name>.search.windows.net
@@ -121,7 +118,7 @@ This quickstart uses `DefaultAzureCredential`, which simplifies authentication i
    ...
    ```
   
-## Create the vector index
+## Create a vector index
 
 The code in `vector-search-quickstart.ipynb` uses several methods from the `azure.search.documents` library to create the vector index and searchable fields.
 
@@ -211,7 +208,7 @@ To create the vector index:
    print(f' {result.name} created')
    ```
 
-   If the index is created successfully, you see the following result below the cell:
+   If the index is created successfully, the following output is displayed below the code cell.
 
    ```output
    vector-search-quickstart created
@@ -237,7 +234,7 @@ To create the vector index:
 
 ## Upload documents to the index
 
-Creating and loading the index are separate steps. You created the index schema [in the previous step](#create-a-vector-index). Now you need to load documents into the index.
+Creating and loading the index are separate steps. You created the index schema in the previous step. You now need to load documents into the index.
  
 In Azure AI Search, the index stores all searchable content, while the search engine executes queries against that index.
 
@@ -307,9 +304,9 @@ To upload documents to the index:
    index_client = SearchIndexClient(endpoint=search_endpoint, credential=credential)
    ```
 
-   This creates an instance of the search client by calling the `SearchClient()` constructor, then calls the `upload_documents()` method on the object. 
+   This creates an instance of the search client by calling the `SearchClient()` constructor and then calling the `upload_documents()` method on the object. 
 
-   After you run the cell, the status of each document is printed below it:
+   After you run the cell, the status of each document is printed below it.
 
    ```output
    Key: 1, Succeeded: True, ErrorMessage: None
@@ -323,19 +320,19 @@ To upload documents to the index:
 
    Key takeaways:
 
-   + Your code interacts with a specific search index hosted in your Azure AI Search service through the `SearchClient`, which is the main object provided by the `azure-search-documents` package. The `SearchClient` provides access to index operations such as:
+   + Your code interacts with a specific search index hosted in your Azure AI Search service through the `SearchClient`, which is the main object provided by the `azure-search-documents` package. The `SearchClient` provides access to index operations, such as:
 
-      + **Data ingestion**: `upload_documents()`, `merge_documents()`, `delete_documents()`, etc.
+      + Data ingestion: `upload_documents()`, `merge_documents()`, `delete_documents()`, etc.
       
-      + **Search operations**: `search()`, `autocomplete()`, `suggest()`
+      + Search operations: `search()`, `autocomplete()`, `suggest()`
 
-      + **Index management operations**: `get_index_statistics()`, `get_document_count()`
+      + Index management operations: `get_index_statistics()`, `get_document_count()`
 
    + Vector fields contain floating point values. The dimensions attribute has a minimum of 2 and a maximum of 4096 floating point values each. This quickstart sets the dimensions attribute to 1,536 because that's the size of embeddings generated by the `text-embedding-ada-002` model.
 
 ## Run queries
 
-Now that documents are loaded, you can issue vector queries against them by calling `search_client.search()` and passing in a `VectorizedQuer`y` object, the fields you want returned, the number of results, and so on.
+Now that documents are loaded, you can issue vector queries against them by calling `search_client.search()` and passing in a `VectorizedQuery` object, the fields you want returned, the number of results, and so on.
 
 Queries in this section:
 
@@ -353,13 +350,13 @@ The example vector queries are based on two strings:
 
 The vector query string is semantically similar to the search string, but it includes terms that don't exist in the search index. If you do a keyword search for `quintessential lodging near running trails, eateries, retail`, results are zero. We use this example to show how you can get relevant results even if there are no matching terms.
 
-+ Run the `Create the vector query string` code cell. This loads the `vector` variable with the vectorized query data required to run all of the searches in the next sections.
+1. Run the `Create the vector query string` code cell. This loads the `vector` variable with the vectorized query data required to run all of the searches in the next sections.
 
 ### Single vector search
 
 The first example demonstrates a basic scenario where you want to find document descriptions that closely match the search string.
 
-+ Run the `Single vector search` code cell. This block contains the request to query the search index.
+1. Run the `Single vector search` code cell. This block contains the request to query the search index.
 
    ```python
    # IMPORTANT: Before you run this code, make sure the documents were successfully
@@ -403,7 +400,7 @@ The first example demonstrates a basic scenario where you want to find document 
 
    `search_client.search()` returns a dict-like object. Each result provides a search score, which can be accessed using `score = result.get("@search.score", "N/A")`. While not displayed in this example, in a similarity search, the response always includes `k` results ordered by the value similarity score.
 
-   After you run the cell, the status of each document is printed below it:
+   After you run the cell, the status of each document is printed below it.
 
    ```output
    Total results: 5
@@ -417,6 +414,8 @@ The first example demonstrates a basic scenario where you want to find document 
 ### Single vector search with filter
 
 You can add filters, but the filters are applied to the nonvector content in your index. In this example, the filter applies to the `Tags` field to filter out any hotels that don't provide free Wi-Fi.
+
+To create a single vector search with a filter:
 
 1. Run the `Single vector search with filter` code cell. This cell contains the request to query the search index.
 
@@ -459,7 +458,7 @@ You can add filters, but the filters are applied to the nonvector content in you
 
    The query was the same as the previous [single vector search example](#single-vector-search), but it includes a post-processing exclusion filter and returns only the two hotels that have free Wi-Fi.
 
-1. The next filter example uses a **geo filter**. Run the cell in the section titled "Vector query with a geo filter". This block contains the request to query the search index.
+1. The next filter example uses a geo filter. Run the `Vector query with a geo filter` code cell. This block contains the request to query the search index.
 
    ```python
    if vector:
@@ -524,7 +523,9 @@ Hybrid search consists of keyword queries and vector queries in a single search 
 + Search string: `historic hotel walk to restaurants and shopping`
 + Vector query string: `quintessential lodging near running trails, eateries, retail` (vectorized into a mathematical representation)
 
-+ Run the `Hybrid search` code cell. This block contains the request to query the search index.
+To create a hybrid search:
+
+1. Run the `Hybrid search` code cell. This block contains the request to query the search index.
 
    ```python
    if vector:
@@ -562,7 +563,7 @@ Hybrid search consists of keyword queries and vector queries in a single search 
       print("No vector loaded, skipping search.")    
    ```
 
-   Review the response.
+1. Review the output below the cell.
 
    ```output
    Total hybrid results: 7
@@ -677,7 +678,9 @@ Hybrid search consists of keyword queries and vector queries in a single search 
 
 Here's the last query in the collection. This hybrid query specifies the semantic query type and a semantic configuration, demonstrating that you can build a hybrid query that uses semantic reranking.
 
-+ Run the `Semantic hybrid search` code cell. This code block contains the request to query the search index.
+To create a semantic hybrid search:
+
+1. Run the `Semantic hybrid search` code cell. This code block contains the request to query the search index.
 
    ```python
    if semantic_hybrid_query_vector:
@@ -720,9 +723,9 @@ Here's the last query in the collection. This hybrid query specifies the semanti
       print("No vector loaded, skipping search.")
    ```
 
-   Review the output below the cell.
+1. Review the output below the cell.
 
-   With semantic ranking, the Swirling Currents Hotel now moves into the top spot. W
+   With semantic ranking, the Swirling Currents Hotel now moves into the top spot.
 
    ```output
    Total semantic hybrid results: 7
@@ -758,15 +761,15 @@ Here's the last query in the collection. This hybrid query specifies the semanti
      Category: Suite
    ```
 
-You can think of the semantic ranking as a way to improve the relevance of search results by understanding the meaning behind the words in the query and the content of the documents. In this case, the semantic ranking helps to identify hotels that are not only relevant to the keywords but also match the intent of the query:
-
-Key takeaways:
-
-+ Vector search is specified through the `vectors.value` property. Keyword search is specified through the `search` property.
-
-+ In a hybrid search, you can integrate vector search with full-text search over keywords. Filters, spell check, and semantic ranking apply to textual content only, and not vectors. In this final query, there's no semantic `answer` because the system didn't produce one that was sufficiently strong.
-
-+ Actual results include more detail, including semantic captions and highlights. Results were modified for readability. To get the full structure of the response, run the request in the REST client.
+    You can think of the semantic ranking as a way to improve the relevance of search results by understanding the meaning behind the words in the query and the content of the documents. In this case, the semantic ranking helps to identify hotels that are not only relevant to the keywords but also match the intent of the query:
+    
+    Key takeaways:
+    
+    + Vector search is specified through the `vectors.value` property. Keyword search is specified through the `search` property.
+    
+    + In a hybrid search, you can integrate vector search with full-text search over keywords. Filters, spell check, and semantic ranking apply to textual content only, and not vectors. In this final query, there's no semantic `answer` because the system didn't produce one that was sufficiently strong.
+    
+    + Actual results include more detail, including semantic captions and highlights. Results were modified for readability. To get the full structure of the response, run the request in the REST client.
 
 ## Clean up resources
 
@@ -774,7 +777,7 @@ When you're working in your own subscription, it's a good idea at the end of a p
 
 You can find and manage resources in the Azure portal by using the **All resources** or **Resource groups** link in the leftmost pane.
 
-If you want to keep the search service, but delete the index and documents, you can use the `SearchIndexClient` object's `delete_index()` method. Find the cell below section titled "Clean up" and execute the cell if you want to delete the `hotels-vector-quickstart` index:
+Alternatively, you can run the `Clean up` code cell to delete the vector index created in this quickstart.
 
 ```python
 index_client.delete_index(index_name)
@@ -783,5 +786,5 @@ print(f"Index '{index_name}' deleted successfully.")
 
 ## Next steps
 
-+ Review the repository of code samples for vector search capabilities in Azure AI Search for [Python](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-python)
-+ Review the other Python and Azure AI Search code samples in the [azure-search-python-samples repo](https://github.com/Azure-Samples/azure-search-python-samples)
++ Review the repository of code samples for vector search capabilities in Azure AI Search for [Python](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-python).
++ Review the other Python and Azure AI Search code samples in the [azure-search-python-samples repo](https://github.com/Azure-Samples/azure-search-python-samples).
