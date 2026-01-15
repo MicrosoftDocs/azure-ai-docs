@@ -9,7 +9,7 @@ ms.custom:
   - references_regions
   - ignite-2024
 ms.topic: article
-ms.date: 11/19/2025
+ms.date: 01/15/2026
 ms.update-cycle: 365-days
 ---
 
@@ -28,7 +28,6 @@ This skill is bound to a [billable Microsoft Foundry resource](cognitive-search-
 >
 > - [Tutorial: Verbalize images from a structured document layout](tutorial-document-layout-image-verbalization.md)
 > - [Tutorial: Vectorize from a structured document layout](tutorial-document-layout-multimodal-embeddings.md)
->
 
 ## Limitations
 
@@ -46,8 +45,8 @@ Supported regions vary by modality and how the skill connects to the Azure Docum
 
 | Approach | Requirement |
 |----------|-------------|
-| [**Import data (new)** wizard](search-import-data-portal.md) | Create a Foundry resource in one of these regions to get the portal experience: **East US**, **West Europe**, **North Central US**. | 
-| Programmatic, using [Microsoft Entra ID authentication (preview)](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) for billing |  Create Azure AI Search in one of the regions where the service is supported, according to [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table). <br>Create the Foundry resource in any region listed in the [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table) table.|
+| [**Import data (new)** wizard](search-import-data-portal.md) | Create an [Azure AI multi-service account](https://portal.azure.com/#create/Microsoft.CognitiveServicesAllInOne), not a Foundry resource, in one of these regions to get the portal experience: **East US**, **West Europe**, **North Central US**. | 
+| Programmatic, using [Microsoft Entra ID authentication (preview)](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) for billing |  Create Azure AI Search in one of the regions where the service is supported, according to [product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table). <br>Create the Foundry resource in any region listed in the [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table) table.|
 | Programmatic, using a [Foundry resource key](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) for billing | Create your Azure AI Search service and Foundry resource in the same region. This means that the region chosen must have support for both [Azure AI Search and Azure Document Intelligence services](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table). |
 
 The implemented version of Document Layout model doesn't have support for [21Vianet](/azure/china/overview-operations) regions at this time.
