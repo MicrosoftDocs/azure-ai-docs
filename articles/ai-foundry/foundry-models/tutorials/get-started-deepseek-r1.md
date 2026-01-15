@@ -6,7 +6,7 @@ monikerRange: 'foundry-classic || foundry'
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: tutorial
-ms.date: 01/09/2026
+ms.date: 01/15/2026
 ms.author: mopeakande
 author: msakande
 ms.custom: dev-focus
@@ -152,7 +152,7 @@ The following code examples demonstrate how to:
     1. **Other methods** - Continues through additional authentication methods as needed
     
     > [!TIP]
-    > For local development, ensure you're authenticated with Azure CLI by running `az login`. For production deployments in Azure, configure managed identity for your application. For API key authentication instead of keyless auth, see [alternative authentication methods](../../model-inference/how-to/configure-authentication.md).
+    > For local development, ensure you're authenticated with Azure CLI by running `az login`. For production deployments in Azure, configure managed identity for your application.
 
 1. Create a chat completion client connected to your model deployment
 1. Send a basic prompt to the DeepSeek-R1 model
@@ -174,7 +174,14 @@ Reasoning might generate longer responses and consume a larger number of tokens.
 
 ## About reasoning models
 
-[!INCLUDE [about-reasoning](../../foundry-models/includes/use-chat-reasoning/about-reasoning.md)]
+Reasoning models can reach higher levels of performance in domains like math, coding, science, strategy, and logistics. The way these models produce outputs is by explicitly using chain of thought to explore all possible paths before generating an answer. They verify their answers as they produce them, which helps to arrive at more accurate conclusions. As a result, reasoning models might require less context prompts in order to produce effective results. 
+
+Reasoning models produce two types of content as outputs:
+
+* Reasoning completions
+* Output completions
+
+Both of these completions count towards content generated from the model. Therefore, they contribute to the token limits and costs associated with the model. Some models, like `DeepSeek-R1`, might respond with the reasoning content. Others, like `o1`, output only the completions.
 
 ### Reasoning content
 
@@ -269,7 +276,7 @@ Use the model in the playground to get an idea of the model's capabilities.
 
 ::: moniker range="foundry"
 
-1. Enter your prompts, such as "How many languages are in the world?" in the playground.
+As stated previously, immediately a model deployment is complete, you land on the model's playground, where you can start to interact with the deployment. For example, you can enter your prompts, such as "How many languages are in the world?" in the playground.
 
 ::: moniker-end
 
