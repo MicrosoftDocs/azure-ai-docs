@@ -152,6 +152,9 @@ For AI-assisted evaluators, use Azure OpenAI or OpenAI [reasoning models](../../
 
 ## Example of system and process evaluation
 
+> [!NOTE]
+> Inline datasource is not supported for virtual network.
+
 ```python
 from dotenv import load_dotenv
 import os

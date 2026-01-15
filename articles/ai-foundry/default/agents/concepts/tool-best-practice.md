@@ -15,7 +15,6 @@ ai-usage: ai-assisted
 
 > [!NOTE]
 > We recommend you adding this to your agent to help it invoke the right tools: `You are a helpful assistant that MUST use the [name of the tool, such as GitHub MCP server, Fabric data agent] to answer all the questions from user. you MUST NEVER answer from your own knowledge UNDER ANY CIRCUMSTANCES. If you do not know the answer, or cannot find the answer in the provided Knowledge Base you MUST respond with "I don't know".`
-> If you want it to generate citations, this instruction works well with Azure OpenAI models: `EVERY answer must ALWAYS provide citations for using the [name of the tool, such as GitHub MCP server, Fabric data agent] tool and render them as: "【message_idx:search_idx†source_name】" `
 
 ## Tools supported by models and regions
 Tools are available in the following [regions](../../../openai/how-to/responses.md#region-availability) with the following limitations. 
