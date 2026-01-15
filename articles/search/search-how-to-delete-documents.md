@@ -8,7 +8,7 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: how-to
-ms.date: 01/13/2026
+ms.date: 01/15/2026
 ---
 
 # Delete documents in a search index
@@ -249,7 +249,7 @@ Code sample:
 
 + Latency: Documents are not always removed instantly from storage. A background process performs the physical deletion every few minutes.
 
-+ Vector Storage: Deleting documents does not immediately free up vector storage quotas. For immediate reclamation of vector space, you may need to rebuild the index.
++ Vector Storage: Deleting documents does not immediately free up vector storage quotas. For immediate reclamation of vector space, you may need to drop and rebuild the index.
 
 ### [**.NET**](#tab/sdk-dotnet)
 
@@ -291,12 +291,14 @@ Code sample:
 
 ## Confirm document deletion
 
-You can get document counts and index storage in:
+You can find metrics about document counts and index storage using:
 
-+ In the Azure portal, under **Search management** > **Indexes**.
-+ Using the [Indexes - Get Statistics](/rest/api/searchservice/indexes/get-statistics) REST API
++ The Azure portal, under **Search management** > **Indexes**.
++ The [Indexes - Get Statistics](/rest/api/searchservice/indexes/get-statistics) REST API
 
-Deleting a document doesn't immediately free up space in the index. Every few minutes, a background process performs the physical deletion. Whether you use the Azure portal or an API to return index statistics, you can expect a small delay before the deletion is reflected in the Azure portal and API metrics.
+Get Statistics is the mechanism for retrieving index metrics. The portal calls Get Statistics to populate the index metrics in the portal pages.
+
+Deleting a document doesn't immediately free up space in the index. Every few minutes, a background process performs the physical deletion. Whether you use the Azure portal or the Get Statistics API to return index statistics, you can expect a small delay before the deletion is reflected in the Azure portal and API metrics.
 
 ## See also
 
