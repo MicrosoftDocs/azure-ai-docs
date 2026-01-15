@@ -39,7 +39,7 @@ Manual document deletion is necessary when you use the [push mode approach to in
 
 You also need manual document deletion if you use [Logic Apps to load an index (preview)](search-how-to-index-logic-apps.md#limitations).
 
-You might also need manual document deletion in indexer-driven workloads if search documents are "orphaned" from source documents. An important benefit of indexers is automated content retrieval and synchronization via the change and deletion detection features of the target data source. All of the supported data sources provide some level of detection. But in some cases, synchronized deletion is predicated on a soft-delete strategy where you flag a source document (or record) for deletion, run the indexer to delete the indexed content, and only after the index is updated do you physically delete the source content. If source content is deleted first, you have *orphan documents* in the search index. You must manually delete orphan documents in your index to re-establish parity between source and indexed content.
+You might also need manual document deletion in indexer-driven workloads if search documents become "orphaned" from source documents. An important benefit of indexers is automated content retrieval and synchronization via the change and deletion detection features of the target data source. All of the supported data sources provide some level of detection. But in some cases, synchronized deletion is predicated on a soft-delete strategy where you flag a source document (or record) for deletion, run the indexer to delete the indexed content, and only after the index is updated do you physically delete the source content. If source content is deleted first, you have *orphan documents* in the search index. You must manually delete orphan documents in your index to re-establish parity between source and indexed content.
 
 The following links provide more information about change and deletion detection for each data source in indexer-driven workloads.
 
@@ -58,9 +58,9 @@ In the Azure portal, you can view the fields of each index. Document keys are st
 
 ### Find the document key
 
-Once you know which field is the document key, you can get the key value by running a query that returns the document and include the key field in the search results.
+Once you know which field is the document key, you can get the key value by running a query that returns the key field in the search results.
 
-In this example, the "HotelId" is the document key. The select statement includes this field.
+In this example, the search string is used to find the document in the index, and the select statement determines what fields are in the results. The "HotelId" is the document key in this example. 
 
 ```http
 POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2025-09-01
@@ -87,7 +87,7 @@ Results for this keyword search are the top 50 by default. If the document you w
 }
 ```
 
-A simple string is straightforward, but if the index uses a base-64 encoded field, or if search documents were generated from a `parsingMode` setting, you might be working with values that you aren't familiar with. If you're working with chunked documents create by an indexer, the document key is often "chunked_id".
+A simple string is straightforward, but if the index uses a base-64 encoded field, or if search documents were generated from a `parsingMode` setting, you might be working with values that you aren't familiar with. If you're working with chunked documents create by an indexer, the document key is often a generated "chunked_id" composed of a long sequence of numbers and letters.
 
 ## Look up a specific document
 
@@ -124,10 +124,10 @@ The response from the second example includes all fields, which you should revie
 
 Before you delete documents, get initial metrics for the index document count and storage so that you can confirm deletion later.
 
-You can get document counts and index storage in:
+You can get document counts and index storage using:
 
-+ In the Azure portal, under **Search management** > **Indexes**.
-+ Using the [Indexes - Get Statistics](/rest/api/searchservice/indexes/get-statistics) REST API
++ The Azure portal, under **Search management** > **Indexes**.
++ The [Indexes - Get Statistics](/rest/api/searchservice/indexes/get-statistics) REST API
 
 Here's an example response:
 
@@ -143,7 +143,7 @@ Here's an example response:
 
 ### [**REST**](#tab/rest)
 
-1. Use the [Documents - Index](/rest/api/searchservice/documents) REST API with a delete `@search.action` to remove it from the search index. Formulate a POST call specifying the index name, the "docs/index" endpoint. Make sure the body of the request includes the key of the document you want to delete.
+1. Use the [Documents - Index](/rest/api/searchservice/documents) REST API with a delete `@search.action` to remove it from the search index. Formulate a POST call specifying the index name and the `docs/index` endpoint. Make sure the body of the request includes the key of the document you want to delete.
 
     ```http
     POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/index?api-version=2025-09-01
@@ -174,7 +174,7 @@ Here's an example response:
    > [!NOTE]  
    > If your client code frequently encounters a 207 response, one possible reason is that the system is under load. You can confirm this by checking the `statusCode` property for 503. If so, we recommend throttling indexing requests. Otherwise, if indexing traffic doesn't subside, the system could start rejecting all requests with 503 errors.  
 
-1. You can resent the [Lookup query](/rest/api/searchservice/documents/get) to confirm the deletion. You should get a 404 document not found response. 
+1. You can resend the [Lookup query](/rest/api/searchservice/documents/get) to confirm the deletion. You should get a 404 document not found message. 
 
     ```http
     GET https://[service name].search.windows.net/indexes/hotel-sample-index/docs/18?api-version=2025-09-01
@@ -222,7 +222,7 @@ Code sample:
 
 ### [**REST**](#tab/rest)
 
-1. Use the [Documents - Index](/rest/api/searchservice/documents) REST API with a delete `@search.action` to remove it from the search index. Formulate a POST call specifying the index name, the "docs/index" endpoint. Make sure the body of the request includes the key of the document you want to delete.
+1. Use the [Documents - Index](/rest/api/searchservice/documents) REST API with a delete `@search.action` to remove it from the search index. Formulate a POST call specifying the index name and the `docs/index` endpoint. Make sure the body of the request includes the keys of all of the documents you want to delete.
 
     ```http
     POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/index?api-version=2025-09-01
@@ -243,13 +243,13 @@ Code sample:
     }
     ```
 
-+ Batch Limits: It is recommended to limit batches to 1,000 documents or roughly 16 MB per request to ensure optimal performance.
++ **Batch limits**: It is recommended to limit batches to 1,000 documents or roughly 16 MB per request to ensure optimal performance.
 
-+ Idempotency: Deletion is idempotent; if you attempt to delete a document ID that does not exist, the API will still return a 200 OK status.
++ **Idempotency**: Deletion is idempotent; if you attempt to delete a document ID that does not exist, the API will still return a 200 OK status.
 
-+ Latency: Documents are not always removed instantly from storage. A background process performs the physical deletion every few minutes.
++ **Latency**: Documents are not always removed instantly from storage. A background process performs the physical deletion every few minutes.
 
-+ Vector Storage: Deleting documents does not immediately free up vector storage quotas. For immediate reclamation of vector space, you may need to drop and rebuild the index.
++ **Vector storage**: Deleting documents does not immediately free up vector storage quotas. It takes several minutes for physical deletion. For immediate reclamation of vector space, you may need to drop and rebuild the index.
 
 ### [**.NET**](#tab/sdk-dotnet)
 
