@@ -468,8 +468,6 @@ This table doesn't include fine-tuning regional availability information. Consul
 
 ### Embeddings models
 
-[!INCLUDE [Embeddings](../includes/model-matrix/standard-embeddings.md)]
-
 These models can be used only with Embedding API requests.
 
 > [!NOTE]
