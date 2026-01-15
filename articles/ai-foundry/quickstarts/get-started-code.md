@@ -33,16 +33,14 @@ monikerRange: 'foundry-classic || foundry'
 :::moniker range="foundry"
 In this quickstart, you use [!INCLUDE [foundry-link](../default/includes/foundry-link.md)] to interact with a Foundry model, create, and chat with an agent.
 
-The Microsoft Foundry SDK is available in multiple languages, including Python, Java, TypeScript, and C#. This quickstart provides instructions for each of these languages.
-
 ## Prerequisites
 
-* A model deployed in Microsoft Foundry. If you don't have one, jump to [What you need to run this code](#what-you-need-to-run-this-code) to create them. The code in this quickstart
+* A model deployed in Microsoft Foundry. If you don't have one, jump to [What you need to run this code](#what-you-need-to-run-this-code) to create them. 
 * The [endpoint for the model](#find-your-endpoint).
 * Installation of the [appropriate packages](#install-and-authenticate) for your language. 
 
 
-## Set environment variables
+## Set environment variables and get the code
 
 Store the endpoint as an environment variable. Also set these values for use in your scripts.
 
@@ -51,7 +49,6 @@ PROJECT_ENDPOINT=<endpoint copied from welcome screen>
 AGENT_NAME="MyAgent"
 MODEL_DEPLOYMENT_NAME="gpt-4.1-mini"
 ```
-## Get the code
 
 [!INCLUDE [quickstart-v2-get-code](../default/includes/quickstart-v2-get-code.md)]
 
