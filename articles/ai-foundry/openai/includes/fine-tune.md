@@ -1,5 +1,5 @@
 ---
-title: Fine-tuning inactivity guidance
+title: Fine-Tuning Inactivity Guidance
 titleSuffix: Azure OpenAI
 description: Describes the fine-tuning guidance for a model deployment that's inactive for more than 15 days.
 author: mrbullwinkle 
