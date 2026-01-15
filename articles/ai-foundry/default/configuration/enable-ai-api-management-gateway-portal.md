@@ -69,13 +69,13 @@ Follow these steps in the Foundry portal to enable AI Gateway for a resource.
 
 1. Select **Add AI Gateway**.
 
-    :::image type="content" source="..\media\enable-ai-api-management-gateway-portal\foundry-add-ai-gateway.png" alt-text="An screenshot showing how to add an AI Gateway to a given Foundry resource." lightbox="..\media\enable-ai-api-management-gateway-portal\foundry-add-ai-gateway.png":::
+    :::image type="content" source="..\media\enable-ai-api-management-gateway-portal\foundry-add-ai-gateway.png" alt-text="A screenshot showing how to add an AI Gateway to a given Foundry resource." lightbox="..\media\enable-ai-api-management-gateway-portal\foundry-add-ai-gateway.png":::
 
 1. Select the Foundry resource you want to connect with the gateway.
 
 1. Select **Create new** or **Use existing** APIM.
 
-    :::image type="content" source="..\media\enable-ai-api-management-gateway-portal\create-ai-gateway-portal.png" alt-text="AI Gateway tab in the Admin console showing options to create or select an API Management instance." lightbox="..\media\enable-ai-api-management-gateway-portal\create-ai-gateway-portal.png":::
+    :::image type="content" source="..\media\enable-ai-api-management-gateway-portal\create-ai-gateway-portal.png" alt-text="Screenshot of AI Gateway tab in the Admin console showing options to create or select an API Management instance." lightbox="..\media\enable-ai-api-management-gateway-portal\create-ai-gateway-portal.png":::
 
 1. Name the gateway, and select **Add** to create or associate the APIM instance.
 
@@ -85,7 +85,7 @@ Follow these steps in the Foundry portal to enable AI Gateway for a resource.
 
 1. To add existing projects to the AI Gateway, select the name of the AI Gateway you created. You see a list of all the projects in the Foundry resource with a column **Gateway status** showing if the project has AI Gateway enabled or not. Locate your project and then select **Add project to gateway**. The column **Gateway status** shows **Enabled**.
 
-    :::image type="content" source="..\control-plane\media\register-custom-agent\verify-ai-gateway-project.png" alt-text="An screenshot showing how to enable a given project by adding it to the gateway." lightbox="..\control-plane\media\register-custom-agent\verify-ai-gateway-project.png":::
+    :::image type="content" source="..\control-plane\media\register-custom-agent\verify-ai-gateway-project.png" alt-text="A screenshot showing how to enable a given project by adding it to the gateway." lightbox="..\control-plane\media\register-custom-agent\verify-ai-gateway-project.png":::
 
 ## Governance scenarios
 

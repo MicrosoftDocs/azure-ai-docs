@@ -104,7 +104,7 @@ Control Plane uses the Azure Application Insights associated with the resources 
 * Compute usage metrics, including token usage and cost
 * Collect execution traces
 
-If you don't see such information for your agent, [you need to configure Azure Application Insights](monitoring-across-fleet.md#configure-monitoring). Ensure you also have [the appropiate permissions to view Azure Application Insights data and cost metrics](monitoring-across-fleet.md#permissions).
+If you don't see such information for your agent, [you need to configure Azure Application Insights](monitoring-across-fleet.md#configure-monitoring). Ensure you also have [the appropriate permissions to view Azure Application Insights data and cost metrics](monitoring-across-fleet.md#permissions).
 
 > [!TIP]
 > We strongly advise configuring Azure Application Insights for each of the resources hosting agents. For Foundry agents, Azure Applications Insights is configured per Foundry project. However, you can connect multiple Foundry projects to the same Azure Applications Insights to optimize resources.
