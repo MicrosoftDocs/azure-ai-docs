@@ -295,4 +295,4 @@ You can delete a custom model on the **Models** pane in the Foundry portal. Sele
 
 ### Delete your training files
 
-You can optionally delete training and validation files that you uploaded for training, along result files generated during training, on the **Management** > **Data + indexes** pane in the Foundry portal. Select the file to delete, and then select **Delete**.
+You can optionally delete training and validation files that you uploaded for training, along with result files generated during training, on the **Management** > **Data + indexes** pane in the Foundry portal. Select the file to delete, and then select **Delete**.
