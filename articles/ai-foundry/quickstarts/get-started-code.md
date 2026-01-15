@@ -82,21 +82,16 @@ The preceeding code uses a model in a project.  If you don't have one, start her
 - [!INCLUDE [rbac-create](../includes/rbac-create.md)]
 - Install the required language runtimes, global tools, and VS Code extensions as described in [Prepare your development environment](../how-to/develop/install-cli-sdk.md).
 
-> [!IMPORTANT]
-> Before starting, make sure your development environment is ready.  
-> This Quickstart focuses on **scenario-specific steps** like SDK installation, authentication, and running sample code.
->
-
 [!INCLUDE [first-run](../includes/first-run-experience.md)]
-
-## Find your endpoint 
-
-[!INCLUDE [find-endpoint](../default/includes/find-endpoint.md)]
-
 
 ## Install and authenticate
 
 [!INCLUDE [quickstart-v2-install](../default/includes/quickstart-v2-install.md)]
+
+
+## Find your endpoint 
+
+[!INCLUDE [find-endpoint](../default/includes/find-endpoint.md)]
 
 
 Your prerequisites are all complete.  Jump back to [Set environment variables](#set-environment-variables) to begin.
