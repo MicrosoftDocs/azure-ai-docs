@@ -280,7 +280,16 @@ As stated previously, immediately a model deployment is complete, you land on th
 
 ::: moniker-end
 
+## What you learned
 
+In this tutorial, you accomplished the following:
+
+> [!div class="checklist"]
+> * Created Foundry resources for hosting AI models
+> * Deployed the DeepSeek-R1 reasoning model
+> * Made authenticated API calls using Microsoft Entra ID
+> * Sent inference requests and received reasoning outputs
+> * Parsed reasoning content from model responses to understand the model's thought process
 
 ## Related content
 
