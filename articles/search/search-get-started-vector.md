@@ -7,9 +7,9 @@ ms.author: haileytapia
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
+  - dev-focus
 ms.topic: quickstart
 ms.date: 01/14/2026
-ms.custom: dev-focus
 ai-usage: ai-assisted
 zone_pivot_groups: search-get-started-vector-search
 ---

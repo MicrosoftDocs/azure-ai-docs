@@ -217,20 +217,25 @@ To create the vector index:
    vector-search-quickstart created
    ```
 
-   Key takeaways when creating vector index with the `azure.search.documents`:
+   Key takeaways:
 
    + You define an index by creating a list of fields. Each field is created using a helper method that defines the field type and its settings.
 
    + This particular index supports multiple search capabilities, such as:
-      + Full-text keyword search (`SearchableField(name="HotelName", ...)`, `SearchableField(name="Description", ...)`)
-      + Vector search (enables hybrid search by collocating vector and nonvector fields) fields (`DescriptionVector`)
-      + Semantic search (`semantic_search=SemanticSearch(configurations=[semantic_config])`)
-      + Faceted search (`facetable=True`)
-      + Semantic search (`semantic_search=SemanticSearch(configurations=[semantic_config])`)
-      + Geo-spatial search (`Location` field is `GeographyPoint`)
-      + Filtering, sorting (Many fields marked filterable and sortable)
 
-## Upload documents
+      + Full-text keyword search (`SearchableField(name="HotelName", ...)`, `SearchableField(name="Description", ...)`)
+
+      + Vector search (enables hybrid search by collocating vector and nonvector fields) fields (`DescriptionVector`)
+
+      + Semantic search (`semantic_search=SemanticSearch(configurations=[semantic_config])`)
+
+      + Faceted search (`facetable=True`)
+
+      + Geo-spatial search (`Location` field is `GeographyPoint`)
+
+      + Filtering, sorting (many fields marked filterable and sortable)
+
+## Upload documents to the index
 
 Creating and loading the index are separate steps. You created the index schema [in the previous step](#create-a-vector-index). Now you need to load documents into the index.
  
@@ -316,7 +321,7 @@ To upload documents to the index:
    Key: 13, Succeeded: True, ErrorMessage: None
    ```
 
-   Key takeaways about the `upload_documents()` method and this example:
+   Key takeaways:
 
    + Your code interacts with a specific search index hosted in your Azure AI Search service through the `SearchClient`, which is the main object provided by the `azure-search-documents` package. The `SearchClient` provides access to index operations such as:
 

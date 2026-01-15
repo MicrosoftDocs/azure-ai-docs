@@ -139,7 +139,7 @@ az login --tenant <PUT YOUR TENANT ID HERE>
 You should now be logged in to Azure from your local device.
 
 
-## Create the vector index 
+## Create the vector index
 
 In this section, you create a vector index in Azure AI Search with [SearchIndexClient](/javascript/api/@azure/search-documents/searchindexclient).[createOrUpdateIndex](/javascript/api/@azure/search-documents/searchindexclient#@azure-search-documents-searchindexclient-createorupdateindex). The index schema defines the fields, including the vector field `DescriptionVector`. Once the index is created, you upload documents to the index. The documents contain the vectorized version of the article's description, which enables similarity search based on meaning rather than exact keywords.
 
@@ -167,17 +167,23 @@ To create the vector index:
     hotels-vector-quickstart created
     ```
 
-   Key takeaways when creating vector index with the `@azure/search-documents` library:
+   Key takeaways:
 
    + You define an index by creating a list of fields. 
 
    + This particular index supports multiple search capabilities, such as:
+
       + Full-text keyword search (`searchable`)
+
       + Vector search (enables hybrid search by collocating vector and nonvector fields) fields (`DescriptionVector` with `vectorSearchProfileName`)
+
       + Semantic search 
+
       + Faceted search (`searchSuggester`)
+
       + Geo-spatial search (`Location` field with `geo.distance`)
-      + Filtering, sorting (Many fields marked filterable and sortable)
+
+      + Filtering, sorting (many fields marked filterable and sortable)
 
 
 ## Upload documents to the index
@@ -217,7 +223,7 @@ To upload documents to the index:
     All documents indexed successfully.
     ```
 
-    Key takeaways about the `uploadDocuments` method and this example:
+    Key takeaways:
 
     * Your code interacts with a specific search index hosted in your Azure AI Search service through the `SearchClient`, which is the main object provided by the @azure/search-documents package. The `SearchClient` provides access to index operations such as:
 

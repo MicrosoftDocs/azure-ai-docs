@@ -384,7 +384,7 @@ To create the vector index:
     }
     ```
 
-    Key takeaways about [Indexes - Create or Update](/rest/api/searchservice/indexes/create-or-update) (REST API):
+    Key takeaways:
     
     + The `fields` collection includes a required key field and text and vector fields (such as `Description` and `DescriptionVector`) for text and vector search. Colocating vector and nonvector fields in the same index enables hybrid queries. For instance, you can combine filters, text search with semantic ranking, and vectors into a single query operation.
     
@@ -394,7 +394,7 @@ To create the vector index:
     
     + The (optional) `semantic` configuration enables reranking of search results. You can rerank results in queries of type `semantic` for string fields that are specified in the configuration. To learn more, see [Semantic ranking overview](../../semantic-search-overview.md).
 
-## Upload documents
+## Upload documents to the index
 
 Creating and loading the index are separate steps. You created the index schema [in the previous step](#create-a-vector-index). Now you need to load documents into the index.
  
@@ -647,7 +647,7 @@ To upload documents to the index:
 
 1. Select **Send Request**. You should have an `HTTP/1.1 200 OK` response. The response body should include the JSON representation of the search documents.
 
-    Key takeaways about [Documents - Index](/rest/api/searchservice/documents/) (REST API):
+    Key takeaways:
     
     + Documents in the payload consist of fields defined in the index schema.
     
@@ -657,7 +657,7 @@ To upload documents to the index:
 
 Now that documents are loaded, you can run vector queries against them by using [Documents - Search Post](/rest/api/searchservice/documents/search-post) (REST API).
 
-In the next sections, we run queries against the `hotels-vector-quickstart` index. The queries include:
+Queries in this section:
 
 + [Single vector search](#single-vector-search)
 + [Single vector search with filter](#single-vector-search-with-filter)

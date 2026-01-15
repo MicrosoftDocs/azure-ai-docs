@@ -53,7 +53,7 @@ To get the service endpoint:
 
 1. Create a `pom.xml` file with required dependencies.
 
-   :::code language="xml" source="~/azure-search-java-samples/vector-quickstart/pom.xml" :::
+   :::code language="xml" source="~/azure-search-java-samples/quickstart-vector-search/pom.xml" :::
 
 1. Compile the project to resolve the dependencies.
 
@@ -101,7 +101,7 @@ To create the vector index:
 
 1. Copy the following code into the file.
 
-   :::code language="java" source="~/azure-search-java-samples/vector-quickstart/src/main/java/com/example/search/CreateIndex.java" :::
+   :::code language="java" source="~/azure-search-java-samples/quickstart-vector-search/src/main/java/com/example/search/CreateIndex.java" :::
 
    The code file creates the index and defines the index schema, including the `DescriptionVector` vector field.
 
@@ -120,11 +120,11 @@ To create the vector index:
     hotels-vector-quickstart created
     ```
 
-   Key takeaways when creating vector index with the `azure-search-documents` library:
+   Key takeaways:
 
    + You define an index by creating a list of fields.
 
-   + This particular index supports multiple search capabilities:
+   + This particular index supports multiple search capabilities, such as:
 
       + Full-text keyword search (`setSearchable`)
 
@@ -136,7 +136,7 @@ To create the vector index:
 
       + Geo-spatial search (`Location` field with `SearchFieldDataType.GEOGRAPHY_POINT`)
 
-      + Filtering, sorting (Many fields marked filterable and sortable)
+      + Filtering, sorting (many fields marked filterable and sortable)
 
 ## Upload documents to the index
 
@@ -150,7 +150,7 @@ To upload documents to the index:
 
 1. Copy the following code into the file.
 
-   :::code language="java" source="~/azure-search-java-samples/vector-quickstart/src/main/java/com/example/search/UploadDocuments.java" :::
+   :::code language="java" source="~/azure-search-java-samples/quickstart-vector-search/src/main/java/com/example/search/UploadDocuments.java" :::
 
     This code loads a collection of documents. Each document includes the vectorized version of the article's `Description`. This vector enables similarity search, where matching is based on meaning rather than exact keywords.
 
@@ -179,7 +179,7 @@ To upload documents to the index:
     All documents indexed successfully.
     ```
 
-    Key takeaways about the `uploadDocuments` method and this example:
+    Key takeaways:
 
     * Your code interacts with a specific search index hosted in your Azure AI Search service through the `SearchClient`. The `SearchClient` provides access to operations such as:
 
@@ -200,7 +200,7 @@ The vector query string is semantically similar to the search string, but it inc
 
 Create a `QueryVector.java` file in the `src/main/java/com/example/search` directory and add the code to create the query vector.
 
-:::code language="java" source="~/azure-search-java-samples/vector-quickstart/src/main/java/com/example/search/QueryVector.java" :::
+:::code language="java" source="~/azure-search-java-samples/quickstart-vector-search/src/main/java/com/example/search/QueryVector.java" :::
 
 This code is used in the following sections to perform vector searches. The query vector is created using an embedding model from Azure OpenAI.
 
@@ -214,7 +214,7 @@ To create a single vector search:
 
 1. Copy the following code into the file.
 
-    :::code language="java" source="~/azure-search-java-samples/vector-quickstart/src/main/java/com/example/search/SearchSingle.java" :::
+    :::code language="java" source="~/azure-search-java-samples/quickstart-vector-search/src/main/java/com/example/search/SearchSingle.java" :::
 
     The `vectorQuery` contains the configuration of the vectorized query including the vectorized text of the query input as retrieved through `QueryVector.getVectorList`. `setFields` determines which vector fields are searched and `setKNearestNeighborsCount` specifies the number of nearest neighbors to return.
 
@@ -250,7 +250,7 @@ You can add filters, but the filters are applied to the nonvector content in you
 
 1. Copy the following code into the file.
 
-    :::code language="java" source="~/azure-search-java-samples/vector-quickstart/src/main/java/com/example/search/SearchSingleWithFilter.java" :::
+    :::code language="java" source="~/azure-search-java-samples/quickstart-vector-search/src/main/java/com/example/search/SearchSingleWithFilter.java" :::
 
     This code has the same search functionality as the previous search, but it adds a post-processing exclusion filter for hotels with `free wifi`.
 
@@ -281,7 +281,7 @@ To create a single vector search with a geospatial filter:
 
 1. Copy the following code into the file.
 
-    :::code language="java" source="~/azure-search-java-samples/vector-quickstart/src/main/java/com/example/search/SearchSingleWithFilterGeo.java" :::
+    :::code language="java" source="~/azure-search-java-samples/quickstart-vector-search/src/main/java/com/example/search/SearchSingleWithFilterGeo.java" :::
 
 1. Build and run the file.
 
@@ -315,7 +315,7 @@ Tp create a hybrid search:
 
 1. Copy the following code into the file.
 
-    :::code language="java" source="~/azure-search-java-samples/vector-quickstart/src/main/java/com/example/search/SearchHybrid.java" :::
+    :::code language="java" source="~/azure-search-java-samples/quickstart-vector-search/src/main/java/com/example/search/SearchHybrid.java" :::
 
 1. Build and run the file.
 
@@ -449,7 +449,7 @@ To create a semantic hybrid search:
 
 1. Copy the following code into the file.
 
-    :::code language="java" source="~/azure-search-java-samples/vector-quickstart/src/main/java/com/example/search/SearchSemanticHybrid.java" :::
+    :::code language="java" source="~/azure-search-java-samples/quickstart-vector-search/src/main/java/com/example/search/SearchSemanticHybrid.java" :::
 
 1. Build and run the file.
 
@@ -522,7 +522,7 @@ If you want to keep your search service but delete the index and its documents, 
 
 1. Add the following code to the file.
 
-    :::code language="java" source="~/azure-search-java-samples/vector-quickstart/src/main/java/com/example/search/DeleteIndex.java" :::
+    :::code language="java" source="~/azure-search-java-samples/quickstart-vector-search/src/main/java/com/example/search/DeleteIndex.java" :::
 
 1. Build and run the file.
 
