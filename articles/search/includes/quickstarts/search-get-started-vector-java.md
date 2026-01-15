@@ -97,7 +97,7 @@ In this section, you create a vector index in Azure AI Search with [SearchIndexC
 
 To create a vector index:
 
-1. Create a `CreateIndex.java` file in the the `src/main/java/com/example/search` directory.
+1. Create a `CreateIndex.java` file in the `src/main/java/com/example/search` directory.
 
 1. Copy the following code into the file.
 
