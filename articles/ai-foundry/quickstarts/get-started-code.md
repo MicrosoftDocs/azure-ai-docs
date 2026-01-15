@@ -1,7 +1,7 @@
 ---
 title: "Microsoft Foundry Quickstart"
 titleSuffix: Microsoft Foundry
-description: Get started with Microsoft Foundry SDK to build AI applications. 
+description: Get started with Microsoft Foundry SDK building AI applications. 
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: dantaylo
@@ -31,20 +31,20 @@ monikerRange: 'foundry-classic || foundry'
 :::moniker-end
 
 :::moniker range="foundry"
-In this quickstart, you use [!INCLUDE [foundry-link](../default/includes/foundry-link.md)] to interact with a Foundry model, create and chat with an agent.
+In this quickstart, you use [!INCLUDE [foundry-link](../default/includes/foundry-link.md)] to interact with a Foundry model, create, and chat with an agent.
 
 The Microsoft Foundry SDK is available in multiple languages, including Python, Java, TypeScript, and C#. This quickstart provides instructions for each of these languages.
 
 ## Prerequisites
 
-* A model deployed in Microsoft Foundry. If you don't have this, jump to [What you need to run this code](#what-you-need-to-run-this-code) to create them. The code in this quickstart
+* A model deployed in Microsoft Foundry. If you don't have one, jump to [What you need to run this code](#what-you-need-to-run-this-code) to create them. The code in this quickstart
 * The [endpoint for the model](#find-your-endpoint).
-* Installation of the [appropriate packages](#install-and-authenticate) for your language.  
+* Installation of the [appropriate packages](#install-and-authenticate) for your language. 
 
 
 ## Set environment variables
 
-Store the endpoint as an environment variable.  Also set these values for use in your scripts.
+Store the endpoint as an environment variable. Also set these values for use in your scripts.
 
 
 Set these environment variables to use in your scripts:
@@ -76,11 +76,11 @@ MODEL_DEPLOYMENT_NAME="gpt-4.1-mini"
 
 ## What you need to run this code
 
-The preceeding code uses a model in a project.  If you don't have one, start here first.  You need:
+The preceding code uses a model in a project. If you don't have one, start here first. You need:
 
 - [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 - [!INCLUDE [rbac-create](../includes/rbac-create.md)]
-- Install the required language runtimes, global tools, and VS Code extensions as described in [Prepare your development environment](../how-to/develop/install-cli-sdk.md).
+- Install the required language runtimes, global tools, and Visual Studio Code extensions as described in [Prepare your development environment](../how-to/develop/install-cli-sdk.md).
 
 [!INCLUDE [first-run](../includes/first-run-experience.md)]
 
@@ -94,7 +94,7 @@ The preceeding code uses a model in a project.  If you don't have one, start her
 [!INCLUDE [find-endpoint](../default/includes/find-endpoint.md)]
 
 
-Your prerequisites are all complete.  Jump back to [Set environment variables](#set-environment-variables) to begin.
+Your prerequisites are all complete. Jump back to [Set environment variables](#set-environment-variables) to begin.
 
 ## Next step
  
