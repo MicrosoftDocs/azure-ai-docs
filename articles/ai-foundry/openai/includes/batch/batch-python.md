@@ -185,7 +185,7 @@ file_id = file.id
 
 ---
 
-By uncommenting and adding `extra_body={"expires_after":{"seconds": 1209600, "anchor": "created_at"}}` you're setting our upload file to expire in 14 days. There's a max limit of 500 input batch files per resource when no expiration is set. By setting a value for expiration the number of input batch files per resource is increased to 10,000 files per resource. To remove batch input file limits use [Batch with Azure Blob Storage](../how-to/batch-blob-storage.md).
+By uncommenting and adding `extra_body={"expires_after":{"seconds": 1209600, "anchor": "created_at"}}` you're setting our upload file to expire in 14 days. There's a max limit of 500 input batch files per resource when no expiration is set. By setting a value for expiration the number of input batch files per resource is increased to 10,000 files per resource. To remove batch input file limits use [Batch with Azure Blob Storage](../../how-to/batch-blob-storage.md).
 
 **Output:**
 
