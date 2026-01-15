@@ -9,6 +9,7 @@ ms.topic: tutorial
 ms.date: 01/09/2026
 ms.author: mopeakande
 author: msakande
+ms.custom: dev-focus
 ai-usage: ai-assisted
 #CustomerIntent: As a developer or data scientist, I want to learn how to deploy and use the DeepSeek-R1 reasoning model in Microsoft Foundry Models so that I can build applications that leverage advanced reasoning capabilities for complex problem-solving tasks.
 ---
@@ -19,12 +20,15 @@ ai-usage: ai-assisted
 
 In this tutorial, you learn how to deploy and use a DeepSeek reasoning model in Microsoft Foundry. This tutorial uses [DeepSeek-R1](https://ai.azure.com/explore/models/deepseek-r1/version/1/registry/azureml-deepseek?cid=learnDocs) for illustration. However, the content also applies to the newer [DeepSeek-R1-0528](https://ai.azure.com/explore/models/deepseek-r1-0528/version/1/registry/azureml-deepseek?cid=learnDocs) reasoning model.
 
+**What you'll accomplish:**
+
+In this tutorial, you'll deploy the DeepSeek-R1 reasoning model, send inference requests programmatically using code, and parse the reasoning output to understand how the model arrives at its answers.
+
 The steps you perform in this tutorial are:
 
 * Create and configure the Azure resources to use DeepSeek-R1 in Foundry Models.
 * Configure the model deployment.
 * Use DeepSeek-R1 with the next generation v1 Azure OpenAI APIs to consume the model in code.
-
 
 ## Prerequisites
 
@@ -32,9 +36,15 @@ To complete this article, you need:
 
 - An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can [upgrade from GitHub Models to Microsoft Foundry Models](../how-to/quickstart-github-models.md) and create an Azure subscription in the process.
 
-- Access to Microsoft Foundry with appropriate permissions to create and manage resources.
+- Access to Microsoft Foundry with appropriate permissions to create and manage resources. Typically requires Contributor or Owner role on the resource group for creating resources and deploying models.
 
-[!INCLUDE [about-reasoning](../../foundry-models/includes/use-chat-reasoning/about-reasoning.md)]
+- Install the Azure OpenAI SDK for your programming language:
+  - **Python**: `pip install openai azure-identity`
+  - **.NET**: `dotnet add package Azure.Identity` and install the OpenAI package
+  - **JavaScript**: `npm install openai @azure/identity`
+  - **Java**: Add the Azure Identity package (see code examples for details)
+
+DeepSeek-R1 is a reasoning model that generates explanations alongside answers—see [About reasoning models](#about-reasoning-models) for details.
 
 ## Create the resources
 
@@ -111,34 +121,7 @@ When the deployment finishes, you land on its playground, where you can start to
 
 ::: moniker-end
 
-
-## Use the model in the playground
-
-Get started by using the model in the playground to get an idea of the model's capabilities.
-
-::: moniker range="foundry-classic"
-
-1. On the deployment details page, select **Open in playground** in the top bar. This action opens the chat playground.
-
-1. In the **Deployment** drop down of the chat playground, the deployment you created is already automatically selected.
-
-1. Configure the system prompt as needed.
-
-   :::image type="content" source="../media/quickstart-get-started-deepseek-r1/playground-chat-models.png" alt-text="Screenshot showing how to select a model deployment to use in playground, configure the system message, and test it out." lightbox="../media/quickstart-get-started-deepseek-r1/playground-chat-models.png":::
-
-1. Enter your prompt and see the outputs.
-
-1. Select **View code** to see details about how to access the model deployment programmatically.
-
-::: moniker-end
-
-::: moniker range="foundry"
-
-1. Enter your prompts, such as "How many languages are in the world?" in the playground.
-
-::: moniker-end
-
-[!INCLUDE [best-practices](../../foundry-models/includes/use-chat-reasoning/best-practices.md)]
+If you prefer to explore the model interactively first, skip to [Use the model in the playground](#use-the-model-in-the-playground).
 
 ## Use the model in code
 
@@ -159,9 +142,39 @@ Use the Foundry Models endpoint and credentials to connect to the model.
 
 Use the next generation v1 Azure OpenAI APIs to consume the model in your code. These code examples use a secure, keyless authentication approach, Microsoft Entra ID, via the [Azure Identity library](/dotnet/api/overview/azure/identity-readme?view=azure-dotnet&preserve-view=true).
 
+
+The following code examples demonstrate how to:
+1. Authenticate with Microsoft Entra ID using `DefaultAzureCredential`, which automatically attempts multiple authentication methods in sequence:
+
+    1. **Environment variables** - Checks for service principal credentials in environment variables
+    1. **Managed identity** - Uses managed identity if running in Azure (App Service, Functions, VM, etc.)
+    1. **Azure CLI** - Falls back to Azure CLI credentials if you're authenticated locally
+    1. **Other methods** - Continues through additional authentication methods as needed
+    
+    > [!TIP]
+    > For local development, ensure you're authenticated with Azure CLI by running `az login`. For production deployments in Azure, configure managed identity for your application. For API key authentication instead of keyless auth, see [alternative authentication methods](../../model-inference/how-to/configure-authentication.md).
+
+1. Create a chat completion client connected to your model deployment
+1. Send a basic prompt to the DeepSeek-R1 model
+1. Receive and display the response
+
+**Expected output:** A JSON response containing the model's answer, reasoning process (within `<think>` tags), token usage statistics (prompt tokens, completion tokens, total tokens), and model information.
+
 [!INCLUDE [code-create-chat-client-request](../../foundry-models/includes/code-create-chat-client-request.md)]
 
+**API Reference:**
+- [OpenAI Python client](https://github.com/openai/openai-python)
+- [OpenAI JavaScript client](https://github.com/openai/openai-node)
+- [OpenAI .NET client](https://github.com/openai/openai-dotnet)
+- [DefaultAzureCredential class](/dotnet/api/azure.identity.defaultazurecredential)
+- [Chat completions API reference](../../openai/latest.md#create-chat-completion)
+- [Azure Identity library overview](/dotnet/api/overview/azure/identity-readme)
+
 Reasoning might generate longer responses and consume a larger number of tokens. See the [rate limits](../../model-inference/quotas-limits.md) that apply to DeepSeek-R1 models. Consider having a retry strategy to handle rate limits. You can also [request increases to the default limits](../quotas-limits.md#request-increases-to-the-default-limits).
+
+## About reasoning models
+
+[!INCLUDE [about-reasoning](../../foundry-models/includes/use-chat-reasoning/about-reasoning.md)]
 
 ### Reasoning content
 
@@ -196,15 +209,71 @@ Usage:
   Completion tokens: 886
 ```
 
+**API Reference:**
+- [Python re module documentation](https://docs.python.org/3/library/re.html)
+- [ChatCompletion object reference](https://github.com/openai/openai-python/blob/main/src/openai/types/chat/chat_completion.py)
+
+
+[!INCLUDE [best-practices](../../foundry-models/includes/use-chat-reasoning/best-practices.md)]
 
 ### Parameters
 
-In general, reasoning models don't support the following parameters that you find in chat completion models:
+Reasoning models support a subset of the standard chat completion parameters to maintain the integrity of their reasoning process.
 
-- Temperature
-- Presence penalty
-- Repetition penalty
-- Parameter `top_p`
+**Supported parameters:**
+- `max_tokens` - Maximum number of tokens to generate in the response
+- `stop` - Sequences where the API stops generating tokens
+- `stream` - Enable streaming responses
+- `n` - Number of completions to generate
+- `frequency_penalty` - Reduces repetition of token sequences
+
+**Unsupported parameters** (reasoning models don't support these):
+- `temperature` - Fixed to optimize reasoning quality
+- `top_p` - Not configurable for reasoning models
+- `presence_penalty` - Not available
+- `repetition_penalty` - Use `frequency_penalty` instead
+
+**Example using `max_tokens`:**
+
+```python
+response = client.chat.completions.create(
+    model="DeepSeek-R1",
+    messages=[
+        {"role": "user", "content": "Explain quantum computing"}
+    ],
+    max_tokens=1000  # Limit response length
+)
+```
+
+For the complete list of supported parameters, see the [Chat completions API reference](../../openai/latest.md#create-chat-completion).
+
+## Use the model in the playground
+
+Use the model in the playground to get an idea of the model's capabilities.
+
+::: moniker range="foundry-classic"
+
+1. On the deployment details page, select **Open in playground** in the top bar. This action opens the chat playground.
+
+1. In the **Deployment** drop down of the chat playground, the deployment you created is already automatically selected.
+
+1. Configure the system prompt as needed.
+
+   :::image type="content" source="../media/quickstart-get-started-deepseek-r1/playground-chat-models.png" alt-text="Screenshot showing how to select a model deployment to use in playground, configure the system message, and test it out." lightbox="../media/quickstart-get-started-deepseek-r1/playground-chat-models.png":::
+
+1. Enter your prompt and see the outputs.
+
+1. Select **View code** to see details about how to access the model deployment programmatically.
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+1. Enter your prompts, such as "How many languages are in the world?" in the playground.
+
+::: moniker-end
+
+
 
 ## Related content
 
