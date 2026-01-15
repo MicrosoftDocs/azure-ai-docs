@@ -6,16 +6,20 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
-ms.date: 02/12/2025
+ms.date: 01/14/2025
 ---
 
 ## Batch limits
 
 | Limit name | Limit value |
 |--|--|
-| Maximum files per resource | 500 |
+| Maximum Batch input files - (no expiration)  | 500 |
+| Maximum Batch input files - (expiration set) | 10,000 |
 | Maximum input file size | 200 MB |
 | Maximum requests per file | 100,000 |
+
+> [!NOTE]
+> Batch file limits do not apply to output files (`result.jsonl`, and `error.jsonl`). To remove batch input file limits use [Batch with Azure Blob Storage](../how-to/batch-blob-storage.md).
 
 ## Batch quota
 
