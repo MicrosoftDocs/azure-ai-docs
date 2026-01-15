@@ -4,7 +4,7 @@ author: heidisteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 11/14/2025
+ms.date: 01/15/2026
 ---
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]
@@ -31,7 +31,7 @@ After you create a knowledge base, you can update its properties at any time. If
 
 + One or more [knowledge sources](../../agentic-knowledge-source-overview.md#supported-knowledge-sources) on your search service.
 
-+ Permission to create and use objects on Azure AI Search. We recommend [role-based access](../../search-security-rbac.md). **Search Service Contributor** can create and manage a knowledge base. **Search Index Data Reader** can run queries. Alternatively, you can use [API keys](../../search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](../../search-get-started-rbac.md)
++ Permission to create and use objects on Azure AI Search. We recommend [role-based access](../../search-security-rbac.md). **Search Service Contributor** can create and manage a knowledge base. **Search Index Data Reader** can run queries. Alternatively, you can use [API keys](../../search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](../../search-get-started-rbac.md).
 
 + The latest preview version of the [`Azure.Search.Documents` client library](https://www.nuget.org/packages/Azure.Search.Documents/11.8.0-beta.1) for the .NET SDK.
 
@@ -50,7 +50,7 @@ Use one of the following LLMs from Azure OpenAI or an equivalent open-source mod
 
 ## Configure access
 
-Azure AI Search needs access to the LLM from Azure OpenAI. We recommend Microsoft Entra ID for authentication and role-based access for authorization. You must be an **Owner or User Access Administrator** to assign roles. If roles aren't feasible, use key-based authentication instead.
+Azure AI Search needs access to the LLM from Azure OpenAI. We recommend Microsoft Entra ID for authentication and role-based access for authorization. To assign roles, you must be an **Owner or User Access Administrator**. If you can't use roles, use key-based authentication instead.
 
 ### [**Use roles**](#tab/rbac)
 
@@ -71,7 +71,7 @@ Azure AI Search needs access to the LLM from Azure OpenAI. We recommend Microsof
 
 1. [Copy an Azure AI Search admin API key](../../search-security-api-keys.md#find-existing-keys) from the Azure portal.
 
-1. Specify the API key in each request, which should look similar to the following example:
+1. Specify the API key in each request. The key should look similar to the following example:
 
    ```http
    # List indexes using keys
@@ -131,9 +131,9 @@ The following JSON is an example response for a knowledge base.
 
 ## Create a knowledge base
 
-A knowledge base drives the agentic retrieval pipeline. In application code, it's called by other agents or chatbots.
+A knowledge base drives the agentic retrieval pipeline. In application code, other agents or chatbots call it.
 
-A knowledge base connects knowledge sources (searchable content) to an LLM deployment from Azure OpenAI. Properties on the LLM establish the connection, while properties on the knowledge source establish defaults that inform query execution and the response.
+A knowledge base connects knowledge sources (searchable content) to an LLM deployment from Azure OpenAI. Properties on the LLM establish the connection, while properties on the knowledge source set defaults that guide query execution and the response.
 
 Use [Knowledge Bases - Create or Update (REST API)](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to formulate the request.
 
@@ -177,13 +177,13 @@ api-key: {{search-api-key}}
 
 ### Knowledge base properties
 
-You can pass the following properties to create a knowledge base.
+Pass the following properties to create a knowledge base.
 
 | Name | Description | Type | Required |
 |--|--|--|--|
-| `name` | The name of the knowledge base, which must be unique within the knowledge bases collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes |
+| `name` | The name of the knowledge base. It must be unique within the knowledge bases collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes |
 | `description` | A description of the knowledge base. The LLM uses the description to inform query planning. | String | No |
-| `retrievalInstructions` | A prompt for the LLM to determine whether a knowledge source should be in scope for a query, which is recommended when you have multiple knowledge sources. This field influences both knowledge source selection and query formulation. For example, instructions could append information or prioritize a knowledge source. Instructions are passed directly to the LLM, which means it's possible to provide instructions that break query planning, such as instructions that result in bypassing an essential knowledge source. | String | Yes |
+| `retrievalInstructions` | A prompt for the LLM to determine whether a knowledge source should be in scope for a query. Include this prompt when you have multiple knowledge sources. This field influences both knowledge source selection and query formulation. For example, instructions could append information or prioritize a knowledge source. You pass instructions directly to the LLM, which means it's possible to provide instructions that break query planning, such as instructions that result in bypassing an essential knowledge source. | String | Yes |
 | `answerInstructions` | Custom instructions to shape synthesized answers. The default is null. For more information, see [Use answer synthesis for citation-backed responses](../../agentic-retrieval-how-to-answer-synthesis.md). | String | Yes |
 | `outputMode` | Valid values are `answerSynthesis` for an LLM-formulated answer or `extractedData` for full search results that you can pass to an LLM as a downstream step. | String | Yes |
 | `knowledgeSources` | One or more [supported knowledge sources](../../agentic-knowledge-source-overview.md#supported-knowledge-sources). | Array | Yes |
@@ -235,7 +235,7 @@ api-key: {{search-api-key}}
 
 **Key points:**
 
-+ [`messages`](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview#knowledgeagentmessage&preserve-view=true) is required, but you can run this example using just the `user` role that provides the query.
++ [`messages`](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview#knowledgeagentmessage&preserve-view=true) is required, but you can run this example by using just the `user` role that provides the query.
 
 + [`knowledgeSourceParams`](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview#searchindexknowledgesourceparams&preserve-view=true) specifies one or more query targets. For each knowledge source, you can specify how much information to include in the output.
 

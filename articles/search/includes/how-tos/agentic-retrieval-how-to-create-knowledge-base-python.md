@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 12/12/2025
+ms.date: 01/15/2026
 ---
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]
@@ -70,7 +70,7 @@ Azure AI Search needs access to the LLM from Azure OpenAI. We recommend Microsof
 
 1. [Copy an Azure AI Search admin API key](../../search-security-api-keys.md#find-existing-keys) from the Azure portal.
 
-1. Use `AzureKeyCredential` to specify the API key in each request, which should look similar to the following example:
+1. Use `AzureKeyCredential` to specify the API key in each request. Your code should look similar to the following example:
 
     ```python
     # Authenticate using keys
@@ -141,7 +141,7 @@ The following JSON is an example response for a knowledge base.
 
 ## Create a knowledge base
 
-A knowledge base drives the agentic retrieval pipeline. In application code, it's called by other agents or chatbots.
+A knowledge base drives the agentic retrieval pipeline. In application code, other agents or chatbots call it.
 
 A knowledge base connects knowledge sources (searchable content) to an LLM deployment from Azure OpenAI. Properties on the LLM establish the connection, while properties on the knowledge source establish defaults that inform query execution and the response.
 
@@ -183,13 +183,13 @@ print(f"Knowledge base '{knowledge_base.name}' created or updated successfully."
 
 ### Knowledge base properties
 
-You can pass the following properties to create a knowledge base.
+Pass the following properties to create a knowledge base.
 
 | Name | Description | Type | Required |
 |--|--|--|--|
-| `name` | The name of the knowledge base, which must be unique within the knowledge bases collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes |
+| `name` | The name of the knowledge base. It must be unique within the knowledge bases collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes |
 | `description` | A description of the knowledge base. The LLM uses the description to inform query planning. | String | No |
-| `retrieval_instructions` | A prompt for the LLM to determine whether a knowledge source should be in scope for a query, which is recommended when you have multiple knowledge sources. This field influences both knowledge source selection and query formulation. For example, instructions could append information or prioritize a knowledge source. Instructions are passed directly to the LLM, which means it's possible to provide instructions that break query planning, such as instructions that result in bypassing an essential knowledge source. | String | Yes |
+| `retrieval_instructions` | A prompt for the LLM to determine whether a knowledge source should be in scope for a query. Include this prompt when you have multiple knowledge sources. This field influences both knowledge source selection and query formulation. For example, instructions could append information or prioritize a knowledge source. Pass instructions directly to the LLM. It's possible to provide instructions that break query planning, such as instructions that result in bypassing an essential knowledge source. | String | Yes |
 | `answer_instructions` | Custom instructions to shape synthesized answers. The default is null. For more information, see [Use answer synthesis for citation-backed responses](../../agentic-retrieval-how-to-answer-synthesis.md). | String | Yes |
 | `output_mode` | Valid values are `answer_synthesis` for an LLM-formulated answer or `extracted_data` for full search results that you can pass to an LLM as a downstream step. | String | Yes |
 | `knowledge_sources` | One or more [supported knowledge sources](../../agentic-knowledge-source-overview.md#supported-knowledge-sources). | Array | Yes |
@@ -239,7 +239,7 @@ print(result.response[0].content[0].text)
 
 **Key points:**
 
-+ [`messages`](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview#knowledgeagentmessage&preserve-view=true) is required, but you can run this example using just the `user` role that provides the query.
++ [`messages`](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview#knowledgeagentmessage&preserve-view=true) is required, but you can run this example by using just the `user` role that provides the query.
 
 + [`knowledge_source_params`](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview#searchindexknowledgesourceparams&preserve-view=true) specifies one or more query targets. For each knowledge source, you can specify how much information to include in the output.
 
