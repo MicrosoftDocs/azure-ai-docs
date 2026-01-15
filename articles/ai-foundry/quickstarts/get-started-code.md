@@ -46,34 +46,25 @@ The Microsoft Foundry SDK is available in multiple languages, including Python, 
 
 ## Prerequisites
 
-- [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
-- [!INCLUDE [rbac-create](../includes/rbac-create.md)]
-- Install the required language runtimes, global tools, and VS Code extensions as described in [Prepare your development environment](../how-to/develop/install-cli-sdk.md).
+* A model deployed in Microsoft Foundry. If you don't have this, jump to [What you need to run this code](#what-you-need-to-run-this-code) to create them. The code in this quickstart
+* The [endpoint for the model](#find-your-endpoint).
+  
 
-> [!IMPORTANT]
-> Before starting, make sure your development environment is ready.  
-> This Quickstart focuses on **scenario-specific steps** like SDK installation, authentication, and running sample code.
->
 
-[!INCLUDE [first-run](../includes/first-run-experience.md)]
-
-## Get ready to code
-
-[!INCLUDE [code-preview](../default/includes/code-preview.md)] 
-
-### Set environment variables
+## Set environment variables
 
 Store the endpoint as an environment variable.  Also set these values for use in your scripts.
 
-1. [!INCLUDE [find-endpoint](../default/includes/find-endpoint.md)]
-1. Set these environment variables to use in your scripts:
+
+Set these environment variables to use in your scripts:
 
     ```plaintext
     PROJECT_ENDPOINT=<endpoint copied from welcome screen>
     AGENT_NAME="MyAgent"
     MODEL_DEPLOYMENT_NAME="gpt-4.1-mini"
     ```
-### Install and authenticate
+## Install and authenticate
+
 
 [!INCLUDE [quickstart-v2-install](../default/includes/quickstart-v2-install.md)]
 
@@ -92,6 +83,27 @@ Store the endpoint as an environment variable.  Also set these values for use in
 ## Clean up resources
 
 [!INCLUDE [clean-up-resources](../includes/clean-up-resources.md)]
+
+## <a name="start-here"></a> What you need to run this code
+
+The preceeding code uses a model in a project.  If you don't have one, start here first.  You need:
+
+- [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
+- [!INCLUDE [rbac-create](../includes/rbac-create.md)]
+- Install the required language runtimes, global tools, and VS Code extensions as described in [Prepare your development environment](../how-to/develop/install-cli-sdk.md).
+
+> [!IMPORTANT]
+> Before starting, make sure your development environment is ready.  
+> This Quickstart focuses on **scenario-specific steps** like SDK installation, authentication, and running sample code.
+>
+
+[!INCLUDE [first-run](../includes/first-run-experience.md)]
+
+## Find your endpoint 
+
+[!INCLUDE [find-endpoint](../default/includes/find-endpoint.md)]
+
+Your prerequisites are all complete.  Jump back to [Install and authenticate](#install-and-authenticate)
 
 ## Next step
  
