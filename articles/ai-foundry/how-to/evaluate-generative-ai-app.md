@@ -37,6 +37,7 @@ This article explains how to create an evaluation run against a model, agent, or
 
 - A test dataset in one of these formats: A model, agent, or test dataset in one of these formats: CSV or JSON Lines (JSONL).
 - An Azure OpenAI connection. A deployment of one of these models: a GPT-3.5 model, a GPT-4 model, or a Davinci model. Required only when you run AI-assisted quality evaluations.
+- [!INCLUDE [rbac-dev](../includes/rbac-dev.md)]
 
 ::: moniker-end
 

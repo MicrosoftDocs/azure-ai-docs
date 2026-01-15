@@ -36,11 +36,9 @@ This article explains how to fine-tune models that are deployed using serverless
 
 - An Azure subscription with a valid payment method. Free or trial Azure subscriptions don't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-- Access to the [Azure portal](https://portal.azure.com).
-
 - A [Foundry project](create-projects.md).
 
-- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Foundry portal. To perform the steps in this article, your user account must be assigned the __owner__ or __contributor__ role for the Azure subscription. For more information on permissions, see [role-based access control in Foundry portal](../concepts/rbac-foundry.md).
+- [!INCLUDE [rbac-dev](../includes/rbac-dev.md)]
 
 ## Verify registration of subscription provider
 

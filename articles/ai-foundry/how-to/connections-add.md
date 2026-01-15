@@ -37,6 +37,7 @@ Connections are a way to authenticate and consume both Microsoft and other resou
 
 * [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 * If you don't have one, [create a project](./create-projects.md).
+* [!INCLUDE [rbac-dev](../includes/rbac-dev.md)]
 
 ## Connection types
 
