@@ -5,14 +5,14 @@ ms.author: mbullwin
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
-ms.date: 09/03/2025
+ms.date: 01/14/2026
 ---
 
 Azure OpenAI is powered by a diverse set of models with different capabilities and price points. Model availability varies by region and cloud. For Azure Government model availability, refer to [Azure OpenAI in Azure Government](../azure-government.md).
 
 | Models | Description |
 |--|--|
-| [GPT-5.2 series](../concepts/models.md#gpt-52) | **NEW** `gpt-5.2`, `gpt-5.2-chat` (**Preview**)|
+| [GPT-5.2 series](../concepts/models.md#gpt-52) | **NEW** `gpt-5.2-codex`, `gpt-5.2`, `gpt-5.2-chat` (**Preview**)|
 | [GPT-5.1 series](../concepts/models.md#gpt-51) | **NEW** `gpt-5.1`, `gpt-5.1-chat`, `gpt-5.1-codex`, `gpt-5.1-codex-mini`|
 | [Sora](/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?pivots=azure-openai&tabs=global-standard-aoai%2Cstandard-chat-completions%2Cglobal-standard#video-generation-models) | **NEW** sora-2 |
 | [GPT-5 series](../concepts/models.md#gpt-5) | gpt-5, gpt-5-mini, gpt-5-nano, gpt-5-chat |
