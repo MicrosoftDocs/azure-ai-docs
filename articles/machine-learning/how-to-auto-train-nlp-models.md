@@ -63,6 +63,10 @@ Decide what NLP task you want to accomplish. AutoML supports the follow deep neu
 |Multilabel text classification | CLI v2: `text_classification_multilabel`  <br> SDK v2: `text_classification_multilabel()`| There are multiple possible classes and each sample can be assigned any number of classes. The task is to predict all the classes for each sample.<br> <br> For example, classify a movie script as `Comedy`, `Romantic`, and `Comedy and Romantic`. |
 |Named Entity Recognition (NER)| CLI v2:`text_ner` <br> SDK v2: `text_ner()`| There are multiple possible tags for tokens in sequences. The task is to predict the tags for all the tokens for each sequence. <br> <br> For example, extract domain-specific entities from unstructured text, such as contracts or financial documents.|
 
+### Thresholding
+
+Thresholding is a multilabel text classification feature that determines the threshold at which the predicted probabilities produce a positive label. Lower values allow more labels, which is better when users care about recall, but can lead to more false positives. Higher values allow fewer labels, which are better when users care about precision, but could lead to more false negatives.
+
 <a name="preparing-data"></a>
 ## Prepare data
 
@@ -110,10 +114,6 @@ text,labels
 "The four most popular leagues are NFL, MLB, NBA and NHL","['football','baseball','basketball','hockey']"
 "I like drinking beer.","[]"
 ```
-
-#### Thresholding
-
-Thresholding is the multilabel feature that lets users pick the threshold at which the predicted probabilities produce a positive label. Lower values allow more labels, which is better when users care about recall, but can lead to more false positives. Higher values allow fewer labels, which are better when users care about precision, but could lead to more false negatives.
 
 ### Named entity recognition (NER)
 
