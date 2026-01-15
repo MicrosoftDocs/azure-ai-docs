@@ -5,7 +5,7 @@ description: Learn how to use Azure OpenAI's new stateful Responses API.
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 12/09/2025
+ms.date: 01/14/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
@@ -57,6 +57,7 @@ The responses API is currently available in the following regions:
 
 ### Model support
 
+- `gpt-5.2-codex` (Version: `2026-01-14`)
 - `gpt-5.2` (Version: `2025-12-11`)
 - `gpt-5.2-chat` (Version: `2025-12-11`)
 - `gpt-5.1-codex-max` (Version: `2025-12-04`)
