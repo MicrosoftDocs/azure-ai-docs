@@ -31,18 +31,9 @@ monikerRange: 'foundry-classic || foundry'
 :::moniker-end
 
 :::moniker range="foundry"
-In this quickstart, you use [!INCLUDE [foundry-link](../default/includes/foundry-link.md)] to:
-
-> [!div class="checklist"]
-> * Create a project 
-> * Deploy a model
-> * Get ready to code - install necessary packages and authenticate
-> * Chat with a model
-> * Create an agent
-> * Chat with an agent
+In this quickstart, you use [!INCLUDE [foundry-link](../default/includes/foundry-link.md)] to interact with a Foundry model, create and chat with an agent.
 
 The Microsoft Foundry SDK is available in multiple languages, including Python, Java, TypeScript, and C#. This quickstart provides instructions for each of these languages.
-
 
 ## Prerequisites
 
