@@ -1,7 +1,7 @@
 ---
 title: What is the Speech service?
 titleSuffix: Foundry Tools
-description: The Speech service provides speech to text, text to speech, and speech translation capabilities with an Azure resource. Add speech to your applications, tools, and devices with the Speech SDK, Speech Studio, or REST APIs.
+description: Speech service provides speech to text, text to speech, and speech translation so you can add speech to your applications and devices—get started today.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
@@ -15,7 +15,7 @@ ms.author: pafarley
 
 The Speech service provides speech-to-text and text-to-speech capabilities through a [Speech resource](~/articles/ai-services/multi-service-resource.md?pivots=azportal). You can transcribe speech to text with high accuracy, produce natural-sounding text-to-speech voices, translate spoken audio, and conduct live AI voice conversations.
 
-:::image type="content" border="false" source="media/overview/speech-features-highlight.png" alt-text="Image of tiles that highlight some Speech service features.":::
+:::image type="content" border="false" source="media/overview/speech-features-highlight.png" alt-text="Screenshot of tiles that highlight Speech service features.":::
 
 You can create custom voices, add specific words to your base vocabulary, or build your own models. Run Speech anywhere, in the cloud or at the edge in containers. It's easy to speech enable your applications, tools, and devices by using the [Speech CLI](spx-overview.md), [Speech SDK](./speech-sdk.md), and [REST APIs](./rest-speech-to-text.md).
 
@@ -32,7 +32,7 @@ Common scenarios for speech include:
 
 Microsoft uses Speech for many scenarios, such as captioning in Teams, dictation in Office 365, and Read Aloud in the Microsoft Edge browser. 
 
-:::image type="content" border="false" source="media/overview/microsoft-uses-speech.png" alt-text="Image showing logos of Microsoft products where Speech service is used.":::
+:::image type="content" border="false" source="media/overview/microsoft-uses-speech.png" alt-text="Screenshot of logos of Microsoft products that use Speech service.":::
 
 ## Speech capabilities
 
@@ -81,7 +81,7 @@ By using [containers](speech-container-howto.md), you can bring the service clos
 
 Speech service deployment in sovereign clouds is available for some government entities and their partners. For example, the Azure Government cloud is available to US government entities and their partners. Microsoft Azure operated by 21Vianet cloud is available to organizations with a business presence in China. For more information, see [sovereign clouds](sovereign-clouds.md). 
 
-:::image type="content" border="false" source="media/overview/speech-delivery-presence.png" alt-text="Diagram showing where Speech service can be deployed and accessed.":::
+:::image type="content" border="false" source="media/overview/speech-delivery-presence.png" alt-text="Screenshot of diagram showing where Speech service can be deployed and accessed.":::
 
 ## Use Speech in your application
 
@@ -120,7 +120,7 @@ An AI system includes not only the technology, but also the people who use it, t
 * [Integration and responsible use](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note)
 * [Data, privacy, and security](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/data-privacy-security)
 
-### Pronunciation Assessment
+### Pronunciation assessment
 
 * [Transparency note and use cases](/azure/ai-foundry/responsible-ai/speech-service/pronunciation-assessment/transparency-note-pronunciation-assessment)
 * [Characteristics and limitations](/azure/ai-foundry/responsible-ai/speech-service/pronunciation-assessment/characteristics-and-limitations-pronunciation-assessment)
