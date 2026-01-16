@@ -20,6 +20,9 @@ ms.custom: references_regions
 
 The Voice live API is a solution that enables low-latency, high-quality speech-to-speech interactions for voice agents. The API is designed for developers seeking scalable and efficient voice-driven experiences as it eliminates the need to manually orchestrate multiple components. By integrating speech recognition, generative AI, and text-to-speech functionalities into a single, unified interface, it provides an end-to-end solution for creating seamless experiences.
 
+The Voice live API is fully managed, so you don't need to handle backend orchestration or component integration. Developers provide audio input and receive audio output, avatar visuals, and action triggers—all with minimal latency. You don't need to deploy or manage any generative AI models, as the API handles the underlying infrastructure.
+
+
 ## Understand speech-to-speech experiences
 
 Speech-to-speech technology is revolutionizing how humans interact with systems, offering intuitive voice-based solutions. Traditional implementations involved combining disparate modules such as speech-to-text, dialog management, text-to-speech, and more. Such chaining can lead to increased engineering complexity and end-user perceived latency.
@@ -50,10 +53,6 @@ The Voice live API includes a comprehensive set of features to support diverse u
     - Advanced end-of-turn detection: Allows natural pauses without prematurely concluding interactions.
 - **Avatar integration**: Provides standard or customizable avatars synchronized with audio output, offering a visual identity for voice agents.
 - **Function calling**: Enables external actions, use of tools, and grounded responses using the VoiceRAG pattern.
-
-## How it works
-
-The Voice live API is fully managed, eliminating the need for you to handle backend orchestration or component integration. Developers provide audio input and receive audio output, avatar visuals, and action triggers—all with minimal latency. You don't need to deploy or manage any generative AI models, as the API handles the underlying infrastructure.
 
 ## API design and compatibility
 
@@ -106,9 +105,7 @@ To meet your requirements, you can either build your own solution or use the Voi
 
 Pricing for the Voice live API takes effect on July 1, 2025.
 
-Pricing for the Voice live API is tiered (**Pro**, **Basic**, and **Lite**) based on the generative AI model used.
-
-You don't select a tier. You choose a generative AI model and the corresponding pricing applies.
+Pricing for the Voice live API is tiered (**Pro**, **Basic**, and **Lite**) based on the generative AI model used. You don't select a tier. You choose a generative AI model and the corresponding pricing applies:
 
 | Pricing category | Models |
 | ----- | ------ |
