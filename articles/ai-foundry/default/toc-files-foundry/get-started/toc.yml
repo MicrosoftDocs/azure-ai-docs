@@ -3,7 +3,7 @@ items:
 - name: "Quickstart: Create resources"
   href: ../../../tutorials/quickstart-create-foudry-resources.md
 - name: "Quickstart: Chat with a model"
-  href: ../../../tutorials/get-started-chat.md
+  href: ../../../tutorials/get-started-code.md
 
 - name: "Tutorial: Idea to prototype"
   href: ../../tutorials/developer-journey-idea-to-prototype.md

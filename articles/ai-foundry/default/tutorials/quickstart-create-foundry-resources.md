@@ -227,7 +227,7 @@ If you're administering this project for others, send them this information.
 | ----------- | ---------------- |
 | **Project endpoint** | [Foundry portal](https://ai.azure.com/?cid=learnDocs) > Home page > **Endpoint** |
 | **Model deployment name** | [Foundry portal](https://ai.azure.com/?cid=learnDocs) > Build > Models |
-| **Getting started guide** | [Microsoft Foundry Quickstart](get-started-chat.md) |
+| **Getting started guide** | [Microsoft Foundry Quickstart](get-started-code.md) |
 
 You sign in to [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) by using your Azure account. Then select your project to start building.
 
@@ -250,6 +250,6 @@ In the [Azure portal](https://portal.azure.com), find and select your resource g
 ## Next step
  
 > [!div class="nextstepaction"]
-> [Quickstart: Chat with a model](get-started-chat.md)
+> [Quickstart: Chat with a model](get-started-code.md)
 
 
