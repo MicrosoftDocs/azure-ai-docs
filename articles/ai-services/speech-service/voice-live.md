@@ -1,7 +1,7 @@
 ---
-title: Voice live API overview
+title: Voice Live API Overview
 titleSuffix: Foundry Tools
-description: Learn about the Voice live API for real-time voice agents.
+description: Learn about the Voice live API for real-time voice agents, key scenarios, and pricing so you can choose the right model and start building voice apps.
 manager: nitinme
 author: PatrickFarley
 ms.author: pafarley
@@ -20,7 +20,7 @@ ms.custom: references_regions
 
 The Voice live API is a solution that enables low-latency, high-quality speech-to-speech interactions for voice agents. The API is designed for developers seeking scalable and efficient voice-driven experiences as it eliminates the need to manually orchestrate multiple components. By integrating speech recognition, generative AI, and text-to-speech functionalities into a single, unified interface, it provides an end-to-end solution for creating seamless experiences.
 
-## Understanding speech-to-speech experiences
+## Understand speech-to-speech experiences
 
 Speech-to-speech technology is revolutionizing how humans interact with systems, offering intuitive voice-based solutions. Traditional implementations involved combining disparate modules such as speech-to-text, dialog management, text-to-speech, and more. Such chaining can lead to increased engineering complexity and end-user perceived latency.
 
@@ -86,7 +86,7 @@ The Voice live API supports the following models. For supported regions, see the
 | `phi4-mm-realtime` | Phi4-mm + audio output through Azure text to speech voices including custom voice. |
 | `phi4-mini` | Phi4-mm + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
 
-## Comparing Voice live API with other speech-to-speech solutions
+## Compare Voice live API with other speech-to-speech solutions
 
 The Voice live API is an alternative to orchestrating multiple components such as speech recognition, generative AI, and text to speech. This orchestration can be complex and time-consuming, requiring significant engineering effort to integrate and maintain. The Voice live API simplifies this process by providing a single interface for all these components. Developers can focus on building their applications rather than managing the underlying infrastructure.
 
