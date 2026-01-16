@@ -122,11 +122,9 @@ On your Azure Storage account:
 
 The following tabs cover all wizard-compatible resources for multimodal search. Select only the tabs that apply to your chosen [extraction method](#supported-extraction-methods) and [embedding method](#supported-embedding-methods).
 
-### [**Azure AI multi-service account**](#tab/multi-service-perms)
+### [**Azure AI multi-service**](#tab/multi-service-perms)
 
 A multi-service account provides access to multiple Azure AI services, including [Azure Document Intelligence](/azure/ai-services/document-intelligence/overview) for content extraction and [Azure Vision](/azure/ai-services/computer-vision/overview) for content embedding. Your search service requires access to call the [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) and [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md).
-
-If you don't have a multi-service account, [create one in the Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesAllInOne).
 
 On your multi-service account:
 
