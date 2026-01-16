@@ -1,7 +1,7 @@
 ---
 title: Manage and increase quotas for hub resources
-titleSuffix: Microsoft Foundry
-description: Manage and increase quotas for hub-level resources in Microsoft Foundry.
+titleSuffix: Foundry
+description: This article shows you how to view and increase quotas for hub-level resources in Microsoft Foundry.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.custom:
@@ -9,8 +9,9 @@ ms.custom:
   - build-2024
   - ignite-2024
   - hub-only
+  - dev-focus
 ms.topic: how-to
-ms.date: 09/22/2025
+ms.date: 01/16/2026
 ms.reviewer: haakar
 ms.author: mopeakande
 author: msakande 
@@ -25,11 +26,22 @@ ai-usage: ai-assisted
 > [!TIP]
 > An alternate Foundry project-focused quota article is available: [Manage and increase quotas for resources with Microsoft Foundry](quota.md).
 
-Quota provides flexibility to manage rate limits across deployments within your subscription. This article focuses on hub-level quotas (virtual machines and models) and how to view and request increases.
+This article shows you how to view current quota allocations and request increases for hub-level resources in Microsoft Foundry. Quotas apply to virtual machines and model deployments and provide flexibility to manage rate limits across deployments within your subscription.
+
+## Prerequisites
+
+To view and manage quotas, you need:
+
+- An Azure subscription with an active Foundry hub resource. If you don't have one, see [Create and manage a Foundry hub](create-hubs.md).
+- Access to the Foundry portal with appropriate permissions. You need one of the following Azure role-based access control (RBAC) roles:
+  - **Owner** or **Contributor** role on the subscription to request quota increases
+  - **Reader** role to view current quota allocations
+- For managing compute quotas, ensure you have the required permissions on the Azure Machine Learning workspace associated with your hub.
+
 
 ## Special considerations 
 
-Quotas apply per subscription. Request increases separately for each subscription.
+Quotas apply per subscription and per region. Request increases separately for each subscription.
 
 A quota is a credit limit, not a capacity guarantee. For large capacity needs, contact support.
 
@@ -59,28 +71,18 @@ Available resources include:
 - Dedicated cores per region default 24–300 (depends on subscription). Specialized GPU families may default to 0.
 - Total compute limit per region default 500; increase up to 2500. Shared between compute instances and managed online endpoint deployments.
 
-Support request steps to increase total compute limit:
-1. Issue type: **Technical**.
-1. Select subscription.
-1. Service type: **Machine Learning**.
-1. Select resource.
-1. Summary: "Increase total compute limits".
-1. Problem type: **Compute instance**; subtype: **Other features (Setup scripts, shutdown, Identity etc.)**.
-1. Provide additional details and submit.
+To increase the total compute limit beyond 2500, submit a support request:
+
+1. Enter **Issue type**: **Technical**.
+1. Select your subscription.
+1. Enter **Service type**: **Machine Learning**.
+1. Select your resource.
+1. Enter **Summary**: "Increase total compute limits".
+1. Enter **Problem type**: **Compute instance**.
+1. Enter **Problem subtype**: **Other features (Setup scripts, shutdown, Identity etc.)**.
+1. Provide additional details and submit the request.
 
 :::image type="content" source="../media/cost-management/quota-azure-portal-support.png" alt-text="Screenshot of the page to submit compute quota requests in Azure portal." lightbox="../media/cost-management/quota-azure-portal-support.png":::
-
-## Foundry shared quota 
-
-Shared quota provides a regional pool for temporary testing (for Foundry Models). Use only for temporary test endpoints; request dedicated quota for production. Billing is usage-based.
-
-## Container Instances 
-
-See [Container Instances limits](/azure/azure-resource-manager/management/azure-subscription-service-limits#container-instances-limits).
-
-## Storage
-
-Azure Storage limit: 250 storage accounts per region per subscription (Standard + Premium).
 
 ## View and request quotas in Foundry portal
 
@@ -93,23 +95,53 @@ Use quotas to manage compute and model quota across hubs in the same subscriptio
 
 1. Expand groupings to view model deployments and details.
 
-:::image type="content" source="../media/cost-management/quotas.png" alt-text="Screenshot of the quota entry in the management center section." lightbox="../media/cost-management/quotas.png":::
+    :::image type="content" source="../media/cost-management/quotas.png" alt-text="Screenshot of the quota entry in the management center section." lightbox="../media/cost-management/quotas.png":::
 
-:::image type="content" source="../media/cost-management/model-quota.png" alt-text="Screenshot of the Model quota page in Foundry portal, with one of the groupings expanded." lightbox="../media/cost-management/model-quota.png":::
- 
-- **Show all quota** toggle displays all or allocated quota.
-- **Group by** changes nesting (Quota type / Region / Model or flat view).
-- Pencil icon edits allocation.
-- **Request quota** link requests increases (standard deployments).
-- Charts are interactive for usage insights.
-- **Provisioned Throughput** link opens PTU info and capacity calculator.
+    :::image type="content" source="../media/cost-management/model-quota.png" alt-text="Screenshot of the Model quota page in Foundry portal, with one of the groupings expanded." lightbox="../media/cost-management/model-quota.png":::
 
-**VM Quota** link: View per-region VM family quota and usage. Select a family then **Request quota** to ask for more.
+1. Manage your quotas using the following options:
 
-> [!TIP]
-> If the VM quota link is missing you were in a Foundry project view. Use **All resources** then select a hub-type project and return to **Management center**.
+    - Select the **Show all quota** toggle to display all quota or only allocated quota.
+    - Select **Group by** to change nesting options (Quota type / Region / Model or flat view).
+    - Select the pencil icon to edit allocation for a specific quota.
+    - Select the **Request quota** link to request increases for standard deployments.
+    - Use the interactive charts to view usage insights.
+    - Select the **Provisioned Throughput** link to open PTU information and the capacity calculator.
 
-:::image type="content" source="../media/cost-management/vm-quota.png" alt-text="Screenshot of the VM quota page in Foundry portal." lightbox="../media/cost-management/vm-quota.png":::
+1. Select the **VM Quota** link to view per-region VM family quota and usage and to request more quota for the selected family.
+
+    > [!TIP]
+    > If the VM quota link is missing, you were in a Foundry project view. Use **All resources** then select a hub-type project and return to **Management center**.
+
+    :::image type="content" source="../media/cost-management/vm-quota.png" alt-text="Screenshot of the VM quota page in Foundry portal." lightbox="../media/cost-management/vm-quota.png":::
+
+## Additional quota information
+
+### Container Instances
+
+For Container Instances quota limits, see [Container Instances limits](/azure/azure-resource-manager/management/azure-subscription-service-limits#container-instances-limits).
+
+### Storage
+
+Azure Storage has a limit of 250 storage accounts per region per subscription (Standard + Premium).
+
+### Shared quota for testing
+
+Shared quota provides a regional pool for temporary testing with Foundry Models. Use shared quota only for temporary test endpoints. For production workloads, request dedicated quota. Billing is usage-based.
+
+## Troubleshooting
+
+If you encounter issues when viewing or requesting quotas, try the following solutions:
+
+| Issue | Solution |
+|-------|----------|
+| VM quota link is missing | Verify you're viewing a hub resource, not a project. In the portal, use **All resources**, select a hub-type resource, and return to **Management center** > **Quota**. |
+| Quota increase request was denied | Check that your subscription supports the requested quota limit in your region. Some VM families and regions have different default and maximum limits. Contact Azure support for region-specific availability. |
+| Unable to see quota allocations | Verify you have at least **Reader** role on the subscription. Check that you're viewing the correct subscription in the portal. |
+| Quota increase not reflected after approval | Allow up to 15 minutes for quota changes to propagate. Refresh the quota page in the portal. If the issue persists after 24 hours, contact Azure support. |
+| Can't request quota beyond 2500 for compute | Use the support request process described in the [Foundry compute](#foundry-compute) section instead of the standard quota request UI. |
+
+For additional assistance, contact [Azure support](https://azure.microsoft.com/support/options/).
 
 ## Related content
 
