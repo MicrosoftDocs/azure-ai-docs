@@ -5,6 +5,7 @@ ms.topic: include
 ms.date: 05/02/2019
 ms.author: magottei
 ---
+
 * CSV (see [Indexing CSV blobs](../search-how-to-index-azure-blob-csv.md))
 * EML
 * EPUB
