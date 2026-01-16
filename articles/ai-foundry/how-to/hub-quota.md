@@ -71,15 +71,15 @@ Available resources include:
 - Dedicated cores per region: default is 24–300 (depends on subscription). Specialized GPU families might default to 0.
 - Total compute limit per region: default is 500. You can increase it up to 2,500. This limit is shared between compute instances and managed online endpoint deployments.
 
-To increase the total compute limit beyond 2,500, submit a support request:
+To increase the total compute limit beyond 2,500, submit a support request by going to **Help + support** in the [Azure portal](https://ms.portal.azure.com/):
 
-1. For **Issue type**, enter **Technical**.
+1. For **Issue type**, select **Technical**.
 1. Select your subscription.
-1. For **Service type**, enter **Machine Learning**.
+1. For **Service type**, select **Machine Learning**.
 1. Select your resource.
 1. For **Summary**, enter "Increase total compute limits".
-1. For **Problem type**, enter **Compute instance**.
-1. For **Problem subtype**, enter **Other features (Setup scripts, shutdown, Identity etc.)**.
+1. For **Problem type**, select **Compute instance**.
+1. For **Problem subtype**, select **Other features (Setup scripts, shutdown, Identity etc.)**.
 1. Provide additional details, and then submit the request.
 
 :::image type="content" source="../media/cost-management/quota-azure-portal-support.png" alt-text="Screenshot of the page to submit compute quota requests in Azure portal." lightbox="../media/cost-management/quota-azure-portal-support.png":::
