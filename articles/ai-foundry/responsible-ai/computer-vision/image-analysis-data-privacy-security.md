@@ -16,8 +16,7 @@ ms.date: 10/15/2025
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 
-This article describes how Azure Vision in Foundry Tools processes customer data; customers are responsible for implementing Image Analysis in compliance with applicable laws and for obtaining any required licenses, permissions, or third‑party approvals.
-<!-- Edited to tighten multiple introductory legal and marketing statements into a single concise responsibility statement, per agent feedback. -->
+This article provides high-level details regarding how Azure Vision in Foundry Tools processes data provided by customers. Image Analysis was designed with compliance, privacy, and security in mind. As an important reminder, you're responsible for the implementation of this technology. It's your responsibility to comply with all applicable laws and regulations in your jurisdiction, including ensuring you have all necessary licenses, permissions or other third-party approvals required to transfer and process your content using Image Analysis.
 
 Image Analysis is part of the Azure Cognitive Azure Vision in Foundry Tools. To learn more about the different offerings, see [Azure Vision Overview](/azure/ai-services/computer-vision/overview).
 
@@ -60,7 +59,7 @@ The most common way to authenticate access to the Image Analysis API is by using
 
 ### Secure data in transit
 
-All Foundry Tools endpoints, including the Image Analysis API URLs, use HTTPS URLs for encrypting data during transit. The client operating system needs to support Transport Layer Security (TLS) 1.2 for calling the end points. For more information, see [Transport Layer Security](/azure/ai-services/security-features?tabs=command-line%2Ccsharp#transport-layer-security-tls). The incoming data is processed in the same region where the Azure resource was created. 
+All Foundry Tools endpoints, including the Image Analysis API URLs, use HTTPS URLs for encrypting data during transit. The client operating system needs to support Transport Layer Security (TLS) 1.3 for calling the end points. For more information, see [Transport Layer Security](/azure/ai-services/security-features?tabs=command-line%2Ccsharp#transport-layer-security-tls). The incoming data is processed in the same region where the Azure resource was created. 
 
 ### Return the processed image results
 

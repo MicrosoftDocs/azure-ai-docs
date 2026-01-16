@@ -19,8 +19,7 @@ Microsoft wants to help you responsibly develop and deploy solutions that use Qn
 
 ## General deployment principles
 
-When you're getting ready to deploy AI-powered products or features, the following activities are required before production deployment:
-<!-- Changed per agent feedback to replace a high-level success framing with a concrete production deployment requirement. -->
+When you're getting ready to deploy AI-powered products or features, the following activities help to set you up for success:
 
 * **Understand what it can do:** Fully assess the capabilities of any AI model you are using to understand its capabilities and limitations. Understand how it will perform in your particular scenario and context, by thoroughly testing it with real-life conditions and data. Synthetic data and tests that don't reflect your end-to-end scenario won't be sufficient.
 

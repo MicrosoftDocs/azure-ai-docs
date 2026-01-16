@@ -22,7 +22,7 @@ Microsoft works to help customers responsibly develop and deploy solutions by us
 - Transparency.
 - Human accountability.
 
-<!-- Removed a marketing-style sentence to tighten the introduction and focus on concrete, actionable guidance. -->
+These considerations reflect our commitment to developing responsible AI.
 
 ## General guidelines for integration and responsible use principles
 

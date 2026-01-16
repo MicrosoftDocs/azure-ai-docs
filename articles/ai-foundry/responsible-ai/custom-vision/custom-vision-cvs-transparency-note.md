@@ -16,8 +16,9 @@ ms.date: 07/07/2021
 
 ## What is a Transparency Note?
 
-A Transparency Note explains how an AI technology works, its capabilities and limitations, and the design choices that can affect system behavior and performance across the broader system in which it is deployed. Transparency Notes can be used when developing, deploying, or evaluating AI systems and are part of Microsoft’s broader effort to put its AI principles into practice; see the [Microsoft AI Principles](https://www.microsoft.com/ai/responsible-ai).
-<!-- Condensed to remove marketing-style narrative and restatement, focusing on a single concise definition and purpose per agent feedback. -->
+An AI system includes not only the technology, but also the people who will use it, the people who will be affected by it, and the environment in which it is deployed. Creating a system that is fit for its intended purpose requires an understanding of how the technology works, its capabilities and limitations, and how to achieve the best performance. Microsoft's Transparency Notes are intended to help you understand how our AI technology works, the choices system owners can make that influence system performance and behavior, and the importance of thinking about the whole system, including the technology, the people, and the environment. You can use Transparency Notes when developing or deploying your own system, or share them with the people who will use or be affected by your system.
+
+Microsoft's Transparency Notes are part of a broader effort at Microsoft to put our AI principles into practice. To find out more, see the [Microsoft AI Principles](https://www.microsoft.com/ai/responsible-ai).
 
 ## Introduction to Custom Vision
 
@@ -25,8 +26,7 @@ Custom Vision is an image recognition service that lets you build, deploy, and i
 
 ### What Custom Vision does
 
-Custom Vision uses machine learning to analyze labeled images provided by the user, training a model to classify images or detect objects based on visual characteristics. After training, you can test and retrain the model, use it to generate predictions on new images, or export it for offline use.
-<!-- Condensed to reduce redundancy and highlight the core functional workflow, per agent feedback. -->
+The Custom Vision service uses machine learning to analyze images. You submit images that both include and lack the characteristics in question. You label the images yourself. Then, the algorithm trains itself using this data and calculates its own accuracy by testing itself on those same images. Once you've trained the algorithm, you can test, retrain, and eventually use it in your image recognition application or solution to infer predictions on new images. You can also export the model itself for offline use. 
 
 For more information, see [What is Custom Vision?](/azure/ai-services/custom-vision-service/overview).
 

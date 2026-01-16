@@ -15,8 +15,7 @@ ms.date: 10/15/2025
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
-This article explains how Document Intelligence processes data, while customers remain responsible for compliant use in accordance with applicable laws and regulations.
-<!-- Condensed introductory marketing and responsibility boilerplate into a single concise sentence per agent feedback. -->
+This article provides details regarding how Document Intelligence processes your data. Document Intelligence is designed with compliance, privacy, and security in mind. However, you are responsible for its use and the implementation of this technology. It's your responsibility to comply with all applicable laws and regulations in your jurisdiction.
 
 ## How does Document Intelligence process data?
 
@@ -26,7 +25,7 @@ The most common way to authenticate access to Document Intelligence is by using 
 
 ### Secure data in transit (for scanning)
 
-All Foundry Tools endpoints, including the Document Intelligence API URLs, use HTTPS URLs for encrypting data during transit. The client operating system needs to support Transport Layer Security (TLS) 1.2 for calling the endpoints. For more information, see [Foundry Tools security](/azure/security/fundamentals/double-encryption).
+All Foundry Tools endpoints, including the Document Intelligence API URLs, use HTTPS URLs for encrypting data during transit. The client operating system needs to support Transport Layer Security (TLS) 1.3 for calling the endpoints. For more information, see [Foundry Tools security](/azure/security/fundamentals/double-encryption).
 
 ### Encrypts input data for processing
 

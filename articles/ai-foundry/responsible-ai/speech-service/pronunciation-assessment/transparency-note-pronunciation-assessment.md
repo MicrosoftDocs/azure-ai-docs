@@ -14,11 +14,9 @@ ms.date: 05/17/2021
 
 [!INCLUDE [non-english-translation](../../includes/non-english-translation.md)]
 
-An AI system includes the technology, its users, affected stakeholders, and the deployment environment. Creating a system that is fit for its intended purpose requires understanding how the technology works, its capabilities and limitations, and the factors that influence performance.
-<!-- Edited to condense and remove repetitive marketing language while preserving factual intent, per agent feedback. -->
+An AI system includes not only the technology, but also the people who will use it, the people who will be affected by it, and the environment in which it is deployed. Creating a system that is fit for its intended purpose requires an understanding of how the technology works, its capabilities and limitations, and how to achieve the best performance.
 
-Microsoft provides *Transparency Notes* to explain how an AI technology works and to describe the design choices system owners can make that influence system behavior and performance. These notes can be used when developing or deploying a system, or shared with people who use or are affected by it.
-<!-- Edited to tighten language and focus on concrete purpose and usage of Transparency Notes, per agent feedback. -->
+Microsoft provides *Transparency Notes* to help you understand how our AI technology works. This includes the choices system owners can make that influence system performance and behavior, and the importance of thinking about the whole system, including the technology, the people, and the environment. You can use Transparency Notes when developing or deploying your own system, or share them with the people who will use or be affected by your system.
 
 Transparency Notes are part of a broader effort at Microsoft to put our AI principles into practice. To find out more, see [Microsoft's AI principles](https://www.microsoft.com/ai/responsible-ai).
 
@@ -71,3 +69,4 @@ The following recommendations pertain to use cases where Pronunciation Assessmen
 - **Consider the ability to account for miscues**:  When the scenario involves reading long paragraphs, users are likely to find it hard to follow the reference text without making mistakes. These mistakes, including omission, insertion, and repetition, are counted as miscues. With **EnableMiscue** enabled, the pronounced words will be compared to the reference text, and will be marked with Omission, Insertion, Repetition based on the comparison.
 
 [!INCLUDE [regulatory-considerations](../../includes/regulatory-considerations.md)]
+

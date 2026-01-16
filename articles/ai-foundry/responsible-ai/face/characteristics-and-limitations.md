@@ -14,9 +14,7 @@ ms.date: 06/21/2022
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
-Azure Vision in Foundry Tools Face API (“Face API”) provides face detection, verification, identification, and liveness signals, but end-to-end system accuracy cannot be estimated without accounting for deployment-specific factors such as camera hardware, environment, thresholds, and human review.
-<!-- Edited to replace a marketing-style statement with a concrete scope and constraints description, per agent feedback. -->
-Companies may share accuracy as measured by public benchmark competitions, but these accuracies depend on details of each benchmark methodology and therefore won’t be the same as the accuracy of a deployed system. 
+Azure Vision in Foundry Tools Face API (“Face API”) is a building block for creating a facial AI system to which other building blocks must be added, so it is not possible to provide a universally applicable estimate of accuracy for the actual system you are planning to deploy. Companies may share accuracy as measured by public benchmark competitions, but these accuracies depend on details of each benchmark methodology and therefore won’t be the same as the accuracy of a deployed system. 
 
 Ultimately, system accuracy depends on several factors, including the camera technology and how it is configured, environmental conditions, the use case for the system, how people to be recognized interact with the camera, and how people interpret the system’s output. The following section is intended to help you understand key concepts that describe accuracy in the context of a facial recognition and liveness system. With that understanding, we then describe system design choices, how they influence accuracy, and reference metrics. 
 
@@ -36,11 +34,9 @@ The consequences of a false positive or a false negative vary depending on the p
 ## How accurate is the facial recognition model?
 
 
-Measuring the accuracy of facial recognition technology is a very difficult problem and methodologies vary across the industry. For guidance on evaluating fairness and accuracy, see the [Responsible AI Resources](https://aka.ms/ResponsibleAIResources), which describe measurement practices, evaluation datasets, and mitigation strategies for Face verification and identification scenarios.
-<!-- Edited to replace a high-level commitment statement with a concrete evaluation reference, per agent feedback. -->
+Measuring the accuracy of facial recognition technology is a very difficult problem and methodologies vary across the industry. To learn about our commitment to Fairness and improving the accuracy of our AI systems, review the [Responsible AI Resources](https://aka.ms/ResponsibleAIResources).
 
-You can use the [Fairness Assessment Sample Notebook](https://go.microsoft.com/fwlink/?linkid=2174387) (Jupyter, Fairlearn-based) to measure group-level performance differences in face verification using your own labeled evaluation data.
-<!-- Edited to emphasize concrete tooling, scope, and data requirements, per agent feedback. -->
+You can use the [Fairness Assessment Sample Notebook](https://go.microsoft.com/fwlink/?linkid=2174387) to assess the fairness of face verification on your own data. It is a Jupyter notebook using the Fairlearn Python package.
 
 ## How accurate is the facial liveness detection model? 
 

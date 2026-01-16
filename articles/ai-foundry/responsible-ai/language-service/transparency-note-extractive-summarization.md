@@ -17,97 +17,72 @@ ms.date: 05/18/2022
 
 ## What is a transparency note?
 
-A transparency note explains how an AI feature works, its capabilities and limitations, and the factors that can influence its behavior and performance.
-<!-- Edited to replace multi-paragraph boilerplate with a single fact-bearing sentence -->
+An AI system includes not only the technology, but also the people who will use it, the people who will be affected by it, and the environment in which it is deployed. Creating a system that is fit for its intended purpose requires an understanding of how the technology works, its capabilities and limitations, and how to achieve the best performance.
 
-Transparency notes are intended to support informed design, deployment, and use decisions by system owners and stakeholders.
-<!-- Edited to remove marketing language and clarify intent in one sentence -->
+Microsoft transparency notes are intended to help you understand how our AI technology works, and the choices that you as a system owner can make that influence system performance and behavior. It's important to think about the whole system, including the technology, the people, and the environment. You can use transparency notes when you develop or deploy your own system, or share them with the people who will use or be affected by your system.
 
-Transparency notes reflect Microsoft’s broader responsible AI commitments. For more information, see [Microsoft AI principles](https://www.microsoft.com/ai/responsible-ai).
-<!-- Edited to condense program-level context into a single factual statement -->
+Transparency notes are part of a broader effort at Microsoft to put our AI principles into practice. To find out more, see [Microsoft AI principles](https://www.microsoft.com/ai/responsible-ai).
 
 ## The basics of Summarization
 
 ### Introduction
-Summarization uses natural language processing techniques to condense articles, papers, or documents into key sentences. This feature is provided as an API for developers to build intelligent solutions based on extracted information and supports multiple use cases.
-<!-- Minor edit to remove promotional phrasing and keep one clear intent -->
+Summarization uses natural language processing techniques to condense articles, papers, or documents into key sentences. This feature is provided as an API for developers to build intelligent solutions based on the relevant information extracted and can support various use cases.
+
 
 ## Capabilities
 
 ### [Document summarization](#tab/document)
 
-Document summarization generates a summary for documents using natural language processing techniques. There are two general approaches to auto-summarization: *extractive* and *abstractive*.
-<!-- Edited to reduce repetition and remove non-essential wording -->
+Document summarization uses natural language processing techniques to generate a summary for documents. There are two general approaches to auto-summarization: *extractive* and *abstractive*.
 
 ### The basics of document extractive summarization
 
-Extractive summarization identifies and returns sentences from the original text that represent the most important information. The selected sentences collectively convey the main idea of the document.
-<!-- Edited for clarity and concision -->
+This feature extracts sentences that collectively represent the most important or relevant information within the original content. It locates key sentences in an unstructured text document. These sentences collectively convey the main idea of the document.
+
 
 ### The basics of document abstractive summarization
 
-Abstractive summarization generates new sentences or phrases that capture the core meaning of the document rather than directly extracting text.
-<!-- Edited to simplify comparison wording -->
+Different from extractive summarization, document abstractive summarization generates a summary with concise, coherent sentences or words which are not simply extracted from the original document.
 
 ### Example use cases
 
-You can use document summarization across a variety of industries and scenarios. For example, extractive summarization can:
-<!-- Edited to remove generic phrasing -->
+You can use document summarization in multiple scenarios, across a variety of industries. For example, you can use extractive summarization to: 
+* **Assist the processing of documents to improve efficiency.** Distill critical information from lengthy documents, reports, and other text forms,highlight key sentences in documents, andquickly skim documents in a library.
+* **Extract key information from public news articles** to produce insights such as trends and news spotlights, and generate news feed content.
+* **Classify or cluster documents by their contents.** Use Summarization to surface key concepts from documents and use those key concepts to group documents that are similar.
+* **Distill important information from long documents** to empower solutions such as search, question and answering, and decision support.
 
-* **Assist document processing.** Distill critical information from lengthy documents and highlight key sentences to support efficient review.
-<!-- Edited to remove marketing tone and fix spacing issues -->
-
-* **Extract key information from public news articles** to identify trends, generate insights, or produce summarized news content.
-
-* **Classify or cluster documents by content.** Use summarized key concepts to group documents with similar topics.
-
-* **Support downstream solutions** such as search, question answering, and decision support by distilling important information from long documents.
-<!-- Edited to reduce promotional language -->
 
 #### [Conversation summarization](#tab/conversation)
 
-Conversation summarization generates structured summaries from chat transcripts or transcribed phone calls, where relevant information may be distributed across long conversations.
-<!-- Edited to condense explanation into a single sentence -->
+Conversation summarization uses natural language processing techniques to generate a structured summary for conversations. This feature supports both natural chat transcripts and transcribed transcripts from phone calls. For a chat or call, there are different kinds of important information, scattered over a long text or transcribed transcripts.
 
-This capability is designed primarily for customer service and call center scenarios, where agents typically document issues and resolutions after or during calls.
-<!-- Edited to remove repetitive detail -->
-
-The feature generates summaries of issues and resolutions in two-party conversations, such as interactions between a customer and a support agent.
-<!-- Edited for clarity and focus -->
+This feature currently focuses on the needs of customer service or a call center. Customer support agents typically spend considerable time and effort writing notes after each call, or while transferring a case to the next level of support. This feature auto-generates a summary of issues and resolutions in a two-party conversation, especially between a customer and an agent.
 
 ### Example use cases
 
-You can use conversation summarization in several scenarios, including:
-<!-- Edited to remove boilerplate phrasing -->
+You can use conversation summarization in multiple scenarios, across a variety of industries. Some examples include:
+* **Customer support:** Summarize the solutions  provided in a customer conversation (for example, what solutions an agent has provided to resolve the customer's issue). 
+* **Resource planning:** Classify customer calls to plan for resource allocation and education.
+* **Knowledge base:** Distill best practices from previous conversations between a customer and an agent to generate a knowledge base for improved customer engagements.
+* **Inventory planning:** Classify customer calls for inventory and procurement planning.
+* **Sales call:** Summarize the reason for the call, as well as information or ideas discussed for future action items.
+* **Meeting summarization:** Summarize key statements made by participants in a meeting or Segment a long conversation with a short title for each section
 
-* **Customer support:** Summarize solutions provided during customer interactions.
-
-* **Resource planning:** Classify customer calls to support staffing, training, and resource allocation.
-
-* **Knowledge base creation:** Distill recurring issues and resolutions from past conversations.
-
-* **Inventory planning:** Classify customer calls to inform inventory and procurement decisions.
-
-* **Sales calls:** Summarize call reasons and discussion points for follow-up actions.
-
-* **Meeting summarization:** Summarize key statements or segment long conversations into titled sections.
-<!-- Edited to standardize tone and remove redundancy -->
 
 ---
 
 ## Considerations when you choose a use case
 
-Choose use cases that align with your specific context and requirements, and conduct scenario-specific testing to support responsible integration.
-<!-- Edited to condense guidance into one actionable sentence -->
+We encourage you to come up with use cases that most closely match your own particular context and requirements. Draw on actionable information that enables responsible integration in your use cases, and conduct your own testing specific to your scenarios.
 
-Summarization models may reflect biases present in their training data and can generate unfair or undesirable content. As a result, avoid high-stakes scenarios where inaccurate or biased output could cause harm.
-<!-- Edited to reduce repetition and clarify risk -->
+The summarization models reflect certain societal views that are over-represented in the training data, relative to other, marginalized perspectives. The models reflect societal biases and other undesirable content present in the training data. As a result, we caution against using the models in high-stakes scenarios, where unfair, unreliable, or offensive behavior might be extremely costly or lead to harm.
 
-* **Avoid real-time, critical safety alerting.** Do not rely on summarization for scenarios that require immediate intervention to prevent injury, such as controlling heavy machinery.
+* **Avoid real-time, critical safety alerting.** Don't rely on this feature for scenarios that require real-time alerts to trigger intervention to prevent injury. For example, don't rely on summarization for turning off a piece of heavy machinery when a harmful action is present.
 
-* **The feature is not suitable for scenarios requiring up-to-date or fully accurate information** without human review. The models lack awareness of events after training and may produce incomplete or inaccurate outputs.
+* **The feature isn't suitable for scenarios where up-to-date, factually accurate information is crucial,** unless you have human reviewers. The service doesn't have information about current events after its training date, probably has missing knowledge about some topics, and might not always produce factually accurate information.
 
-* **Avoid scenarios with significant legal or life-impacting consequences.** Do not use summarization in contexts that could affect legal status, rights, or access to essential services such as credit, employment, healthcare, housing, or social benefits.
+* **Avoid scenarios in which the use or misuse of the system could have a consequential impact on life opportunities or legal status.** For example, avoid scenarios in which the AI system could affect an individual's legal status or legal rights. Additionally, avoid scenarios in which the AI system could affect an individual's access to credit, education, employment, healthcare, housing, insurance, social welfare benefits, services, opportunities, or the terms on which they are provided.
 
 * [!INCLUDE [regulatory-considerations](../includes/regulatory-considerations.md)]
 
@@ -121,3 +96,4 @@ Summarization models may reflect biases present in their training data and can g
 * [Transparency note for sentiment analysis](/azure/ai-foundry/responsible-ai/language-service/transparency-note-sentiment-analysis)
 * [Guidance for integration and responsible use with language](/azure/ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use)
 * [Data privacy for language](/azure/ai-foundry/responsible-ai/language-service/data-privacy)
+

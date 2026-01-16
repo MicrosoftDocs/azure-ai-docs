@@ -26,15 +26,13 @@ Transparency Notes are part of a broader effort at Microsoft to put our AI princ
 
 Custom named entity recognition (custom NER) is a cloud-based API service for information extraction. The service applies machine-learning intelligence so you can build custom models for information extraction tasks.
 
-Custom NER can be used to extract information from plain text (.txt) files submitted to the service. For example, a financial institution might want to build an automated notification system to remind clients of their payments due. The organization uses custom NER to extract predefined entities from loan agreements, such as client name, loan amount, interest rate, and payment date. The extracted entities can then be passed to downstream systems, such as notification or reporting workflows, where validation or human review can be applied before taking action.
-<!-- Changed to replace illustrative marketing language with concrete input format (.txt) and a recommendation for validation or human review before downstream actions. -->
+Custom NER can be used to extract information from .txt files. For example, a financial institution might want to build an automated notification system to remind clients of their payments due. The organization uses custom NER to extract relevant information from loan agreements, such as the client name, loan amount, interest rate, and payment date. The system can further process the extracted entities to send a reminder to the client with the next payment date and amount due.
 
 ### The basics of custom named entity recognition
 
-Custom named entity recognition enables users to build custom machine learning models to extract domain-specific entities from unstructured text, such as contracts or financial documents.
+Custom named entity recognition enables its users to build custom machine learning models to extract domain-specific entities from unstructured text, such as contracts or financial documents.
 
-By creating a custom NER project, developers can iteratively tag entities within the data, train models, evaluate performance using provided metrics, and refine the models before deployment. Model accuracy is directly dependent on the quality, consistency, and representativeness of the tagged training data. To support this workflow, the service provides a web-based authoring experience through [Language Studio](https://aka.ms/languageStudio).
-<!-- Changed to remove promotional phrasing and add specific constraints about evaluation metrics and data quality impact. -->
+By creating a custom NER project, developers can iteratively tag entities within the data, train, evaluate, and improve model performance before making it available for consumption. The quality of the tagged data greatly affects model performance. To simplify building and customizing your model, the service offers a custom web portal that can be accessed through [Language Studio](https://aka.ms/languageStudio).
 
 ### Custom NER terminology
 
@@ -50,14 +48,11 @@ The following terms are commonly used with this feature:
 
 Here are some examples of when you might use custom NER:
 
-* **Knowledge mining to enhance semantic search:** Custom NER can be used as a preprocessing step in search or indexing pipelines to extract domain-specific entities from unstructured text. These extracted entities can be stored as structured fields and used to improve filtering, ranking, or faceted search over private document collections. The effectiveness of this approach depends on entity definition quality and periodic evaluation against ground truth data.
-<!-- Changed to remove high-level marketing language and add concrete pipeline usage and evaluation constraints. -->
+* **Knowledge mining to enhance semantic search:** Search is foundational to any app that surfaces text content to users. Common scenarios include catalog or document search, retail product search, or knowledge mining for data science. Many enterprises across various industries want to build a rich search experience over private, heterogeneous content, which includes both structured and unstructured documents. As a part of their pipeline, developers can use custom NER for extracting entities from the text that are relevant to their industry. These entities can be used to enrich the indexing of the file for a more customized search experience.
 
-* **Information extraction from unstructured text:** Organizations in financial or legal domains often process large volumes of documents such as bank statements, agreements, or forms. Custom NER can automate extraction of predefined fields to reduce manual data entry. For high-impact workflows, extracted values should be reviewed by a human or validated against business rules before being used in downstream systems.
-<!-- Changed to focus on operational use and explicitly recommend human review for high-impact workflows. -->
+* **Information extraction from unstructured text:** Many financial and legal organizations extract and normalize data from thousands of complex, unstructured text sources on a daily basis. Such sources include bank statements, legal agreements, or bank forms. For example, mortgage application data extraction done manually by human reviewers may take several days to extract. Automating these steps simplifies the process and saves cost, time, and effort.
 
-* **Audit and compliance:** Custom NER can support audit or compliance workflows by identifying relevant entities or terms within long text documents. The service can help prioritize documents for review, but it does not replace legal or compliance judgment. Human oversight is required to interpret results and make final determinations.
-<!-- Changed to clarify limitations and the requirement for human oversight, removing implied automation guarantees. -->
+* **Audit and compliance:** Instead of manually reviewing significantly long text files to audit and apply policies, IT departments in financial or legal enterprises can use custom NER to build automated solutions. These solutions can be helpful to enforce compliance policies, and set up necessary business rules based on knowledge mining pipelines that process structured and unstructured content.
 
 ## Considerations when choosing a use case
 

@@ -14,8 +14,7 @@ ms.date: 05/17/2021
 
 [!INCLUDE [non-english-translation](../../includes/non-english-translation.md)]
 
-As part of the Azure Speech in Foundry Tools service, Pronunciation Assessment is used in computer-assisted language learning scenarios to evaluate learners’ spoken language. Pronunciation Assessment involves multiple criteria to assess learners' performance at multiple levels of detail, with perceptions similar to human judges.
-<!-- Edited to replace promotional phrasing with a factual description of scope and usage. -->
+As a part of the Azure Speech in Foundry Tools service, pronunciation assessment empowers end-to-end education solutions for computer-assisted language learning. Pronunciation Assessment involves multiple criteria to assess learners' performance at multiple levels of detail, with perceptions similar to human judges.
 
 ## How accurate is Pronunciation Assessment?
 
@@ -48,8 +47,7 @@ In our evaluations, Microsoft Pronunciation Assessment has performed >0.5 Pearso
 - Pronunciation Assessment doesn't support a mixed lingual assessment scenario.
 - Pronunciation Assessment supports a broader range of [languages](/azure/ai-services/speech-service/language-support?tabs=pronunciation-assessment#pronunciation-assessment).
 - Pronunciation Assessment doesn't support a multi-speaker assessment scenario. The audio should include only one speaker for each assessment.
-- Pronunciation Assessment compares the submitted audio to native speakers under standard conversational recording conditions, such as normal speaking rate and volume. The speaker should maintain a normal speaking speed and volume, and avoid shouting or otherwise raising their voice.
-<!-- Edited to replace vague "general conditions" with explicit recording condition qualifiers. -->
+- Pronunciation Assessment compares the submitted audio to native speakers in general conditions. The speaker should maintain a normal speaking speed and volume, and avoid shouting or otherwise raising their voice.
 - Pronunciation assessment performs better in an environment with little background noise. Current Speech-To-Text models accommodate noise in general conditions. Noisy environments or multiple people speaking at the same time might lead to lower confidence of the evaluation. To handle difficult cases better, you can suggest that the speaker should repeat a pronunciation if they score below a certain threshold.
 
 ## Evaluating Pronunciation Assessment in your applications
@@ -58,3 +56,4 @@ Pronunciation Assessment's performance will vary depending on the real-world use
 
 - Before using Pronunciation Assessment in your applications, consider whether this product performs well in your scenario. Collect real-life data from the target scenario, test how Pronunciation Assessment performs, and make sure Speech-To-Text and Pronunciation Assessment can deliver the accuracy you need, see [Evaluate and improve Foundry Tools Custom Speech accuracy](/azure/ai-services/speech-service/how-to-custom-speech-evaluate-data).
 - Select suitable thresholds per the target scenario. Pronunciation Assessment provides accuracy scores at different levels and you may need to consider the threshold employed in real-use. For example, the grading method for children's learning might not be as strict as that for adult learning. Consider setting a higher mispronunciation detection threshold for adult learning.
+

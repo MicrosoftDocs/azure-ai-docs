@@ -14,8 +14,12 @@ ms.date: 04/26/2023
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
-This article describes how data is processed by custom text classification. You are responsible for complying with all applicable laws and regulations, including understanding where your data is processed and stored to meet regulatory obligations, and ensuring you have all required licenses, proprietary rights, or permissions for any content used to train custom text classification models.
-<!-- Edited to condense repetitive responsibility statements into a single concise paragraph, per agent feedback. -->
+This article provides high-level details about how data is processed by custom text classification. Remember that you're responsible for your use and the implementation of this technology, which includes complying with all laws and regulations that apply to you. For example, it's your responsibility to:
+
+* Understand where your data is processed and stored by the custom text classification service to meet regulatory obligations for your application.
+* Ensure you have all necessary licenses, proprietary rights, or other permissions required for the content in your dataset that's used as the basis for building your custom text classification models.
+
+It's your responsibility to comply with all applicable laws and regulations in your jurisdiction.
 
 ## What data does Custom text classification process?
 
@@ -51,8 +55,7 @@ Customer controls include:
 
 ## Optional: Security for customers' data
 
-Azure services implement technical and organizational measures to protect customer data in the cloud, as described in the Microsoft Trust Center.
-<!-- Edited to tighten the security statement and anchor it to a concrete reference, per agent feedback. -->
+Azure services are implemented while maintaining appropriate technical and organizational measures to protect customer data in the cloud.
 
 To learn more about Microsoft's privacy and security commitments, see the [Microsoft Trust Center](https://www.microsoft.com/trust-center).
 

@@ -15,8 +15,7 @@ ms.date: 10/15/2025
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
-To help prevent misuse in accordance with Microsoft’s [AI Principles](https://www.microsoft.com/ai/responsible-ai?SilentAuth=1&wa=wsignin1.0) and [facial recognition principles](https://blogs.microsoft.com/on-the-issues/2018/12/17/six-principles-to-guide-microsofts-facial-recognition-work/), facial recognition features—including the Celebrity Recognition API in Azure Vision in Foundry Tools—are Limited Access and require registration.
-<!-- Condensed the marketing-oriented introduction into a single policy-scoped sentence focused on Limited Access and responsible AI principles, per agent feedback. -->
+Our vision is to empower developers and organizations to leverage AI to transform society in positive ways. We encourage responsible AI practices to protect the rights and safety of individuals. Microsoft facial recognition services are Limited Access in order to help prevent the misuse of the services in accordance with our [AI Principles](https://www.microsoft.com/ai/responsible-ai?SilentAuth=1&wa=wsignin1.0) and [facial recognition principles](https://blogs.microsoft.com/on-the-issues/2018/12/17/six-principles-to-guide-microsofts-facial-recognition-work/). The Celebrity Recognition API in Azure Vision in Foundry Tools is a Limited Access feature that requires registration.  
 
 ## Registration process
 

@@ -44,8 +44,7 @@ Customer controls include:
 
 ## Optional: Security for customers' data
 
-Azure protects customer data using security controls described in the Microsoft Trust Center, including encryption at rest and in transit and audited operational access.
-<!-- Edited to replace generic security boilerplate with a concise, factual statement about Azure security controls, per agent feedback. -->
+Azure services are implemented while maintaining appropriate technical and organizational measures to protect customer data in the cloud.
 
 To maintain security and data governance requirements, run Docker containers for LUIS in your own environment. For more information on installing and running LUIS containers, see [Install and run Docker containers for LUIS](/azure/ai-services/luis/luis-container-howto?tabs=v3). For more information on the security model of Foundry Tools, see [Foundry Tools container security](/azure/ai-services/cognitive-services-container-support?tabs=luis#azure-cognitive-services-container-security). You're responsible for securing and maintaining the equipment and infrastructure required to operate LUIS's containers located on your premises.
 

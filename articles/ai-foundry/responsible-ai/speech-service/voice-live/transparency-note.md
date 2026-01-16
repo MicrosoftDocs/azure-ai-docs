@@ -16,8 +16,9 @@ ms.date: 09/29/2025
 
 ## What is a Transparency Note? 
 
-Microsoft Transparency Notes explain how an AI system works, its capabilities and limitations, and the design choices that influence system performance and behavior across the technology, people, and deployment environment. They support informed development, deployment, and use of AI systems and align with Microsoft’s AI Principles.
-<!-- Edited to condense framing-heavy content into a single, intent-focused paragraph per agent feedback, while preserving meaning and references to Microsoft AI Principles. -->
+An AI system includes not only the technology, but also the people who will use it, the people who will be affected by it, and the environment in which it is deployed. Creating a system that is fit for its intended purpose requires an understanding of how the technology works, what its capabilities and limitations are, and how to achieve the best performance. Microsoft’s Transparency Notes are intended to help you understand how our AI technology works, the choices system owners can make that influence system performance and behavior, and the importance of thinking about the whole system, including the technology, the people, and the environment. You can use Transparency Notes when developing or deploying your own system, or share them with the people who will use or be affected by your system.
+
+Microsoft’s Transparency Notes are part of a broader effort at Microsoft to put our AI Principles into practice. To find out more, see the [Microsoft AI principles](https://www.microsoft.com/ai/responsible-ai).
 
 ## The basics of Voice Live API 
 
@@ -112,4 +113,4 @@ If you choose to bring your own Foundry Agent to Voice Live, learn about the [ev
 ## Learn more about Voice Live API 
 
 - [Voice live API overview](/azure/ai-services/speech-service/voice-live) 
-- [How to use the voice live API](/azure/ai-services/speech-service/voice-live-how-to)
+- [How to use the voice live API](/azure/ai-services/speech-service/voice-live-how-to)  

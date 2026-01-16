@@ -13,8 +13,9 @@ ms.date: 05/12/2024
 
 # Data, privacy, and security for Azure Translator in Foundry Tools
 
-Azure Translator in Foundry Tools processes customer-provided text and documents solely to perform translation and does not retain customer data beyond the duration required to complete the requested operation.  
-<!-- Consolidated the previous translation notice and high-level boilerplate into a single concise scope and retention statement, as requested. -->
+[!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
+
+This article provides some high-level details regarding how Azure Translator in Foundry Tools processes data provided by customers.
 
 ## What data does Translator process? 
 
@@ -25,11 +26,11 @@ Azure Translator in Foundry Tools processes customer-provided text and documents
 
 The following diagram illustrates how your data is processed.
 
-###  Text translation
+###  Text Translation
 
 :::image type="content" source="media/translator-data.png" alt-text="A diagram of the data flow between a client and the Text Translation service.":::
 
-###  Document translation
+###  Document Translation
 
 :::image type="content" source="media/translator-document-data.png" alt-text="Diagram of the data flow between a client and the Document Translation service.":::
 
