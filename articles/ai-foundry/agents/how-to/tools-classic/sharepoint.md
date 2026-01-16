@@ -53,7 +53,7 @@ Customers rely on data security in SharePoint to access, create, and share docum
 
 1. Create an agent by following the steps in the [quickstart](../../quickstart.md).
 
-1. You can add the SharePoint tool to an agent programatically using the code examples listed at the top of this article, or the Foundry portal. If you want to use the portal, in either the **Create and debug** or **Agent playground** screen for your agent, scroll down the setup pane on the right to knowledge. Then select **Add**.
+1. You can add the SharePoint tool to an agent programmatically using the code examples listed at the top of this article, or the Foundry portal. If you want to use the portal, in either the **Create and debug** or **Agent playground** screen for your agent, scroll down the setup pane on the right to knowledge. Then select **Add**.
 
    :::image type="content" source="../../media\tools\knowledge-tools.png" alt-text="A screenshot showing the available tool categories in the Foundry portal." lightbox="../../media\tools\knowledge-tools.png":::
 

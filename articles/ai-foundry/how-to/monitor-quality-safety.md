@@ -378,7 +378,7 @@ deployment_name = "INSERT YOUR DEPLOYMENT NAME"
 monitor_name ="gen_ai_monitor_tokens" 
 defaulttokenstatisticssignalname ="token-usage-signal" 
 
-# Determine the frequency to run the monitor, and the emails to recieve email alerts
+# Determine the frequency to run the monitor, and the emails to receive email alerts
 trigger_schedule = CronTrigger(expression="15 10 * * *")
 notification_emails_list = ["test@example.com", "def@example.com"]
 

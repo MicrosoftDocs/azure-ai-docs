@@ -22,7 +22,7 @@ Use this article to make your Microsoft Foundry agent available in Microsoft 365
 ## Publish your agent as an agent application  
 
 > [!NOTE]
-> You can also use the [available C# sample](https://github.com/OfficeDev/microsoft-365-agents-toolkit-samples/tree/dev/ProxyAgent-CSharp) to work programatically. 
+> You can also use the [available C# sample](https://github.com/OfficeDev/microsoft-365-agents-toolkit-samples/tree/dev/ProxyAgent-CSharp) to work programmatically. 
 
 1. In the Microsoft Foundry portal, select your agent version. 
 1. Select **Publish** and create an agent application.   

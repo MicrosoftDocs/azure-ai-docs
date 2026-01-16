@@ -198,7 +198,7 @@ ws.on("open", () => {
 End the session with the Hang up endpoint when your application should disconnect the caller. This endpoint can be used to terminate both SIP and WebRTC real-time sessions.
 
 ```
-curl -X POST "https://<your azure resoure name>.openai.azure.com/openai/v1/realtime/calls/$CALL_ID/hangup" \
+curl -X POST "https://<your azure resource name>.openai.azure.com/openai/v1/realtime/calls/$CALL_ID/hangup" \
   -H "Authorization: Bearer $TOKEN"
 The API responds with 200 OK when it starts tearing down the call.
 ```

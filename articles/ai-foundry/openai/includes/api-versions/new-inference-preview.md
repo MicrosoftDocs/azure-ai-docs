@@ -3448,7 +3448,7 @@ HEAD {endpoint}/openai/v1/video/generations/{generation-id}/content/video?api-ve
 ```
 
 
-Retrieves headers for the the generated video content.
+Retrieves headers for the generated video content.
 ### URI Parameters
 
 | Name | In | Required | Type | Description |
