@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Get an overview of Azure Speech, which provides speech to text, text to speech, speech translation, and other capabilities with a Microsoft Foundry resource.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech
 ms.topic: overview
 ms.date: 08/07/2025
 ms.author: pafarley
@@ -26,7 +26,7 @@ Azure Speech is available for many [languages](language-support.md), [regions](r
 Common scenarios for Azure Speech include:
 
 - [Captioning](./captioning-concepts.md): Learn how to synchronize captions with your input audio, apply profanity filters, get partial results, apply customizations, and identify spoken languages for multilingual scenarios.
-- [Audio content creation](text-to-speech.md#more-about-neural-text-to-speech-features): You can use neural voices to make interactions with chatbots and voice agents more natural and engaging, convert digital texts such as e-books into audiobooks, and enhance in-car navigation systems.
+- [Audio content creation](text-to-speech.md#more-about-neural-text-to-speech-features): Use neural voices to make interactions with chatbots and voice agents more natural and engaging, convert digital texts such as e-books into audiobooks, and enhance in-car navigation systems.
 - [Call center](call-center-overview.md): Transcribe calls in real time or process a batch of calls, redact personal information, and extract insights such as sentiment to help with your call-center use case.
 - [Language learning](language-learning-overview.md): Provide pronunciation assessment feedback to language learners, support real-time transcription for remote learning conversations, and read aloud teaching materials with neural voices.
 - [Voice live](voice-live.md): Create natural, humanlike conversational interfaces for applications and experiences. The voice live feature provides fast, reliable interaction between a human and an agent implementation.
@@ -41,16 +41,22 @@ The following sections summarize Azure Speech features and provide links for mor
 
 ### Speech to text
 
-Use [speech to text](speech-to-text.md) to convert audio into text. Capabilities include [real-time transcription](get-started-speech-to-text.md) for streaming audio, [fast transcription](fast-transcription-create.md) for pre-recorded audio files, or [batch transcription](batch-transcription.md) for processing large volumes of audio asynchronously.
+Use [speech to text](speech-to-text.md) to convert audio into text. Capabilities include:
+
+- [Real-time transcription](get-started-speech-to-text.md) for streaming audio.
+- [Fast transcription](fast-transcription-create.md) for pre-recorded audio files.
+- [Batch transcription](batch-transcription.md) for processing large volumes of audio asynchronously.
 
 The base model might not be sufficient if the audio contains ambient noise or includes numerous industry and domain-specific jargon. In these cases, you can create and train [custom speech models](custom-speech-overview.md) with acoustic, language, and pronunciation data. Custom speech models are private and can offer a competitive advantage.
 
 ### Text to speech
 
-With [text to speech](text-to-speech.md), you can convert input text into human like synthesized speech. Use neural voices, which are human like voices powered by deep neural networks. Use the [Speech Synthesis Markup Language (SSML)](speech-synthesis-markup.md) to fine-tune the pitch, pronunciation, speaking rate, volume, and more.
+With [text to speech](text-to-speech.md), you can convert input text into humanlike synthesized speech. Use neural voices, which are humanlike voices powered by deep neural networks. Use the [Speech Synthesis Markup Language (SSML)](speech-synthesis-markup.md) to fine-tune the pitch, pronunciation, speaking rate, volume, and more.
 
-- Standard voice: Highly natural out-of-the-box voices. Check the standard voice samples the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery) and determine the right voice for your business needs.
-- Custom voice: Besides the standard voices that come out of the box, you can also create a [custom voice](custom-neural-voice.md) that is recognizable and unique to your brand or product. Custom voices are private and can offer a competitive advantage. Check the [custom voice samples](https://aka.ms/customvoice).
+Voice options include:
+
+- Standard voice: You can choose among highly natural out-of-the-box voices. Check the standard voice samples in the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery) and determine the right voice for your business needs.
+- Custom voice: You can create a [custom voice](custom-neural-voice.md) that's recognizable and unique to your brand or product. Custom voices are private and can offer a competitive advantage. Check the [custom voice samples](https://aka.ms/customvoice).
 
 ### Speech translation
 
@@ -58,16 +64,16 @@ With [text to speech](text-to-speech.md), you can convert input text into human 
 
 ### LLM speech (preview)
 
-[LLM speech](llm-speech.md) currently supports the following tasks:
+Take advantage of a large language model (LLM)-enhanced speech model in [LLM speech](llm-speech.md). This feature currently supports the following tasks:
 
 - `transcribe`: Convert pre-recorded audio into text.
 - `translate`: Convert pre-recorded audio into text in a specified target language.
 
-LLM speech uses a large-language-model-enhanced speech model that delivers improved quality, deep contextual understanding, multilingual support, and prompt-tuning capabilities. It shares the same ultra-fast inference performance as fast transcription, making it ideal for use cases such as generating captions and subtitles from audio files, summarizing meeting notes, assisting call center agents, transcribing voicemails, and more.
+The LLM-enhanced speech model delivers improved quality, deep contextual understanding, multilingual support, and prompt-tuning capabilities. LLM speech shares the same ultra-fast inference performance as fast transcription. Use cases include generating captions and subtitles from audio files, summarizing meeting notes, assisting call center agents, transcribing voicemails, and more.
 
 ### Language identification
 
-[Language identification](language-identification.md) is used to identify languages spoken in audio when compared against a list of [supported languages](language-support.md). Use language identification by itself, with speech-to-text recognition, or with speech translation.
+[Language identification](language-identification.md) helps you identify languages spoken in audio by comparing them against a list of [supported languages](language-support.md). Use language identification by itself, with speech-to-text recognition, or with speech translation.
 
 ### Pronunciation assessment
 
@@ -75,31 +81,23 @@ LLM speech uses a large-language-model-enhanced speech model that delivers impro
 
 ## Delivery and presence
 
-You can deploy Azure Speech in Foundry Tools features in the cloud or on-premises.
+You can deploy Azure Speech features in the cloud or on-premises.
 
 With [containers](speech-container-howto.md), you can bring the service closer to your data for compliance, security, or other operational reasons.
 
-Azure Speech deployment in sovereign clouds is available for some government entities and their partners. For example, the Azure Government cloud is available to US government entities and their partners. Microsoft Azure operated by 21Vianet cloud is available to organizations with a business presence in China. For more information, see [sovereign clouds](sovereign-clouds.md).
+Azure Speech deployment in sovereign clouds is available for some government entities and their partners. For example, the Azure Government cloud is available to US government entities and their partners. The Azure operated by 21Vianet cloud is available to organizations that have a business presence in China. For more information, see [Speech service in sovereign clouds](sovereign-clouds.md).
 
-:::image type="content" border="false" source="media/overview/speech-delivery-presence.png" alt-text="Diagram showing where Azure Speech can be deployed and accessed.":::
+:::image type="content" border="false" source="media/overview/speech-delivery-presence.png" alt-text="Diagram that shows where Azure Speech can be deployed and accessed.":::
 
-## Use Azure Speech in your application
+## Integration of Azure Speech in your application
 
-[Speech Studio](speech-studio-overview.md) is a set of UI-based tools for building and integrating features from Azure Speech in your applications. You create projects in Speech Studio by using a no-code approach, and then reference those assets in your applications by using the [Speech SDK](speech-sdk.md), the [Speech CLI](spx-overview.md), or the REST APIs.
+[Speech Studio](speech-studio-overview.md) is a set of UI-based tools for building and integrating features from Azure Speech in your applications. You create projects in Speech Studio by using a no-code approach. You can then reference those assets in your applications by using:
 
-The Speech CLI is a command-line tool for using Azure Speech without having to write any code. Most features in the Speech SDK are available in the Speech CLI, and some advanced features and customizations are simplified in the Speech CLI.
+- The [Speech SDK](speech-sdk.md). The Speech SDK exposes many of the Azure Speech capabilities that you can use to develop speech-enabled applications. The Speech SDK is available in many programming languages and across all platforms.
 
-The Speech SDK exposes many of the Azure Speech capabilities you can use to develop speech-enabled applications. The Speech SDK is available in many programming languages and across all platforms.
+- The [Speech CLI](spx-overview.md). The Speech CLI is a command-line tool for using Azure Speech without having to write any code. Most features in the Speech SDK are available in the Speech CLI, and some advanced features and customizations are simplified in the Speech CLI.
 
-In some cases, you can't or shouldn't use the Speech SDK. In those cases, you can use REST APIs to access Azure Speech. For example, use REST APIs for [batch transcription](batch-transcription.md).
-
-## Get started
-
-We offer quickstarts in many popular programming languages. Each quickstart is designed to teach you basic design patterns and have you running code in less than 10 minutes. See the following list for the quickstart for each feature:
-
-- [Speech-to-text quickstart](get-started-speech-to-text.md)
-- [Text-to-speech quickstart](get-started-text-to-speech.md)
-- [Speech translation quickstart](./get-started-speech-translation.md)
+- [REST APIs](./rest-speech-to-text.md). In some cases, you can't or shouldn't use the Speech SDK. In those cases, you can use REST APIs to access Azure Speech. For example, use REST APIs for [batch transcription](batch-transcription.md).
 
 ## Code samples
 
@@ -111,7 +109,7 @@ Sample code for Azure Speech is available on GitHub. These samples cover common 
 
 ## Responsible AI
 
-An AI system includes not only the technology, but also the people who use it, the people who are affected by it, and the environment in which it's deployed. Read the transparency notes to learn about responsible AI use and deployment in your systems.
+An AI system includes not only the technology, but also the people who use it, the people who are affected by it, and the environment in which it's deployed. Use the following resources to learn about responsible AI use and deployment in your systems.
 
 ### Speech to text
 
@@ -139,5 +137,8 @@ An AI system includes not only the technology, but also the people who use it, t
 
 ## Related content
 
-- [Get started with speech to text](get-started-speech-to-text.md)
-- [Get started with text to speech](get-started-text-to-speech.md)
+The following quickstarts are available for Azure Speech features. Each quickstart teaches you basic design patterns in many popular programming languages and has you running code in less than 10 minutes.
+
+- [Speech-to-text quickstart](get-started-speech-to-text.md)
+- [Text-to-speech quickstart](get-started-text-to-speech.md)
+- [Speech translation quickstart](./get-started-speech-translation.md)

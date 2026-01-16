@@ -1,26 +1,26 @@
 ---
-title: Speech service quotas and limits
+title: Quotas and Limits for Azure Speech
 titleSuffix: Foundry Tools
-description: Quick reference, detailed description, and best practices on the quotas and limits for the Speech service in Foundry Tools.
+description: This article provides a quick reference, a detailed description, and best practices for the quotas and limits in Azure Speech.
 author: goergenj
 ms.author: jagoerge
 manager: nitinme
-ms.service: azure-ai-speech
+ms.service: azure-speech
 ms.topic: article
 ms.date: 12/08/2025
 ms.reviewer: jagoerge
-#Customer intent: As a developer, I want to learn about the quotas and limits for the Speech service in Foundry Tools.
+#Customer intent: As a developer, I want to learn about the quotas and limits for Azure Speech in Foundry Tools so that I can decide how to use the features in my application.
 ---
 
-# Speech service quotas and limits
+# Quotas and limits for Azure Speech
 
-This article contains a quick reference and a detailed description of the quotas and limits for the Speech service in Foundry Tools. The information applies to all [pricing tiers](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/) of the service. It also contains some best practices to avoid request throttling.
+This article contains a quick reference and a detailed description of the quotas and limits for Azure Speech in Foundry Tools. The information applies to all [pricing tiers](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/) of Azure Speech. It also contains some best practices to avoid request throttling.
 
 For the free (F0) pricing tier, see also the monthly allowances at the [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).
 
 ## Quotas and limits reference
 
-The following sections provide you with a quick guide to the quotas and limits that apply to the Speech service.
+The following sections provide you with a quick guide to the quotas and limits that apply to Azure Speech.
 
 For information about adjustable quotas for Standard (S0) Speech resources, see [more explanations](#detailed-description-quota-adjustment-and-best-practices), [best practices](#general-best-practices-to-mitigate-throttling-during-autoscaling), and [adjustment instructions](#speech-to-text-increase-real-time-speech-to-text-concurrent-request-limit). The quotas and limits for Free (F0) Speech resources aren't adjustable. 
 
@@ -114,7 +114,7 @@ You can use real-time text to speech with the [Speech SDK](speech-sdk.md) or the
 | Max SSML message size per turn for websocket | 64 KB | 64 KB |
 
 > [!NOTE]
-> Most HTTP 429 errors with Text-to-Speech Standard Voice are caused by limited backend service capacity for a specific voice in the selected region, not by quota limits. Increasing your quota won't resolve these errors. For best results, use the voice in its native region or select a more popular voice in your current region.
+> Most HTTP 429 errors with text-to-speech standard voice are caused by limited backend service capacity for a specific voice in the selected region, not by quota limits. Increasing your quota won't resolve these errors. For best results, use the voice in its native region or select a more popular voice in your current region.
 
 #### Batch synthesis
 
@@ -183,7 +183,7 @@ The limits in this table apply per Speech resource when you create a personal vo
 
 ## Detailed description, quota adjustment, and best practices
 
-Some Speech service quotas are adjustable. This section provides more explanations, best practices, and adjustment instructions. 
+Some Azure Speech quotas are adjustable. This section provides more explanations, best practices, and adjustment instructions. 
 
 The following quotas are adjustable for Standard (S0) resources. The Free (F0) request limits aren't adjustable.
 
@@ -200,9 +200,9 @@ Before requesting a quota increase (where applicable), check your current TPS (t
 > [!NOTE]
 > Batch transcription and Batch synthesis are asynchronous processes, and jobs are processed one-by-one in a queue. So, increasing the quota won't improve transcription performance. For performance improvements, see [Batch transcription best practices](./batch-transcription.md#best-practices-for-improving-performance) or [Batch synthesis latency and best practices](./batch-synthesis.md#batch-synthesis-latency-and-best-practices).
 
-Speech service uses autoscaling technologies to bring the required computational resources in on-demand mode. At the same time, Speech service tries to keep your costs low by not maintaining an excessive amount of hardware capacity.
+Azure Speech uses autoscaling technologies to bring the required computational resources in on-demand mode. At the same time, Azure Speech tries to keep your costs low by not maintaining an excessive amount of hardware capacity.
 
-Let's look at an example. Suppose that your application receives response code 429, which indicates that there are too many requests. Your application receives this response even though your workload is within the limits defined by the [Quotas and limits reference](#quotas-and-limits-reference). The most likely explanation is that Speech service is scaling up to your demand and didn't reach the required scale yet. Therefore the service doesn't immediately have enough resources to serve the request. In such cases, increasing the quota won’t help. In most cases, the Speech service will scale up soon, and the issue causing response code 429 will be resolved.
+Let's look at an example. Suppose that your application receives response code 429, which indicates that there are too many requests. Your application receives this response even though your workload is within the limits defined by the [Quotas and limits reference](#quotas-and-limits-reference). The most likely explanation is that Azure Speech is scaling up to your demand and didn't reach the required scale yet. Therefore Azure Speech doesn't immediately have enough resources to serve the request. In such cases, increasing the quota won't help. In most cases, Azure Speech will scale up soon, and the issue causing response code 429 will be resolved.
 
 > [!NOTE]
 > As a best practice every implementation should gracefully handle 429 errors with retry logic to ensure best performance and to handle autoscaling. Please consider this before requesting additional quota. See general best practices for additional details.
@@ -212,9 +212,9 @@ Let's look at an example. Suppose that your application receives response code 4
 To minimize issues related to throttling, it's a good idea to use the following techniques:
 
 - Implement retry logic in your application to handle 429 errors.
-- Avoid sharp changes in the workload. Increase the workload gradually. For example, let's say your application is using text to speech, and your current workload is 5 TPS. The next second, you increase the load to 20 TPS (that is, four times more). Speech service immediately starts scaling up to fulfill the new load, but is unable to scale as needed within one second. Some of the requests get response code 429 (too many requests).
+- Avoid sharp changes in the workload. Increase the workload gradually. For example, let's say your application is using text to speech, and your current workload is 5 TPS. The next second, you increase the load to 20 TPS (that is, four times more). Azure Speech immediately starts scaling up to fulfill the new load, but is unable to scale as needed within one second. Some of the requests get response code 429 (too many requests).
 - Test different load increase patterns. For more information, see the [workload pattern example](#example-of-a-workload-pattern-best-practice).
-- Create more Speech service resources in *different* regions, and distribute the workload among them. (Creating multiple Speech service resources in the same region won't affect the performance, because all resources are served by the same backend cluster).
+- Create more Azure Speech resources in *different* regions, and distribute the workload among them. (Creating multiple Azure Speech resources in the same region won't affect the performance, because all resources are served by the same backend cluster).
 
 The next sections describe specific cases of adjusting quotas.
 
@@ -222,7 +222,7 @@ The next sections describe specific cases of adjusting quotas.
 
 Here's a general example of a good approach to take. It's meant only as a template that you can adjust as necessary for your own use.
 
-Suppose that a Speech service resource has the concurrent request limit set to 300. Start the workload from 20 concurrent connections, and increase the load by 20 concurrent connections every 90-120 seconds. Control the service responses, and implement the logic that falls back (reduces the load) if you get too many requests (response code 429). Then, retry the load increase in one minute, and if it still doesn't work, try again in two minutes. Use a pattern of 1-2-4-4 minutes for the intervals.
+Suppose that a Azure Speech resource has the concurrent request limit set to 300. Start the workload from 20 concurrent connections, and increase the load by 20 concurrent connections every 90-120 seconds. Control the Azure Speech responses, and implement the logic that falls back (reduces the load) if you get too many requests (response code 429). Then, retry the load increase in one minute, and if it still doesn't work, try again in two minutes. Use a pattern of 1-2-4-4 minutes for the intervals.
 
 Generally, it's a good idea to test the workload and the workload patterns before going to production.
 
@@ -245,9 +245,9 @@ Follow the steps described in [create and submit a quota increase request](#crea
 By default, the number of concurrent real-time speech to text and speech translation [requests combined](#real-time-speech-to-text-and-speech-translation) is limited to 100 per resource in the base model, and 100 per custom endpoint in the custom model. For the standard pricing tier, you can increase this amount. Before submitting the request, ensure that you're familiar with the material discussed earlier in this article, such as the best practices to mitigate throttling.
 
 > [!NOTE]
-> Concurrent request limits for base and custom models need to be adjusted separately. You can have a Speech service resource that's associated with many custom endpoints hosting many custom model deployments. As needed, the limit adjustments per custom endpoint must be requested separately. 
+> Concurrent request limits for base and custom models need to be adjusted separately. You can have an Azure Speech resource that's associated with many custom endpoints hosting many custom model deployments. As needed, the limit adjustments per custom endpoint must be requested separately. 
 
-Increasing the limit of concurrent requests doesn't directly affect your costs. The Speech service uses a payment model that requires that you pay only for what you use. The limit defines how high the service can scale before it starts throttle your requests.
+Increasing the limit of concurrent requests doesn't directly affect your costs. Azure Speech uses a payment model that requires that you pay only for what you use. The limit defines how high Azure Speech can scale before it starts throttle your requests.
 
 You aren't able to see the existing value of the concurrent request limit parameter in the Azure portal, the command-line tools, or API requests. To verify the existing value, create an Azure support request.
 
@@ -321,7 +321,7 @@ Multiply the result with unit price $15 per million characters to estimate the m
 > If your estimated usage significantly exceeds your budget, you may be overestimating your needs.
  
 **Cost Considerations**  
-Increasing the concurrent request limit does **not** directly affect your costs. You only pay for what you use. The limit simply defines how much the service can scale before throttling begins.
+Increasing the concurrent request limit does **not** directly affect your costs. You only pay for what you use. The limit simply defines how much the Azure Speech can scale before throttling begins.
 
 You aren't able to see the existing value of the concurrent request limit parameter in the Azure portal, the command-line tools, or API requests. To verify the existing value, create an Azure support request.
 
