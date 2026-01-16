@@ -28,7 +28,7 @@ items:
   items:
    - name: Run evaluations in the cloud (Microsoft Foundry SDK)
      href: ../../../how-to/develop/cloud-evaluation.md
-   - name: Run agent evaluations locally (Azure AI Evaluation SDK)
+   - name: Run agent evaluations in the cloud (Microsoft Foundry SDK)
      href: ../../../how-to/develop/agent-evaluate-sdk.md
      displayName: code,accuracy,metrics
    - name: Run evaluations from the portal
@@ -54,6 +54,8 @@ items:
   items:
    - name: Evaluation in GitHub Actions 
      href: ../../../how-to/evaluation-github-action.md
+   - name: Evaluation in Azure DevOps
+     href: ../../../how-to/evaluation-azure-devops.md
 # Continuous Monitoring
 - name: Continuous monitoring and evaluation 
   items:
