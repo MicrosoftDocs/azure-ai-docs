@@ -320,19 +320,19 @@ For more information on using the OpenAI SDK, see [Azure OpenAI supported progra
 1. Install the OpenAI package:
 
     ```bash
+    dotnet add package Azure.Identity
+    dotnet add package Azure.Core
     dotnet add package OpenAI
     ```
-1. The following code snippet demonstrates how to create the OpenAI client directly using the Azure OpenAI v1 endpoint.
+1. The following code snippet demonstrates how to create the OpenAI client for responses directly using the Azure OpenAI v1 endpoint.
 
     ```csharp
     using Azure.Identity;
-    using Azure.Core;
-    using Azure.Core.Pipeline;   
     using OpenAI;
-    using System;
+    using OpenAI.Responses;
     using System.ClientModel.Primitives;
-    
-    endpointUrl = "https://<YOUR-RESOURCE-NAME>.openai.azure.com/openai/v1/"
+        
+    string endpointUrl = "https://<YOUR-RESOURCE-NAME>.openai.azure.com/openai/v1/";
     
     DefaultAzureCredential credential = new();
     BearerTokenPolicy tokenPolicy = new(credential, "https://cognitiveservices.azure.com/.default");
@@ -342,16 +342,19 @@ For more information on using the OpenAI SDK, see [Azure OpenAI supported progra
         Endpoint = new Uri(endpointUrl)
     };
     
-    // The PerRetry position ensures the authentication policy is applied to every retry attempt.
-    // This is important for robust authentication in distributed/cloud environments.
-    clientOptions.AddPolicy(tokenPolicy, HttpPipelinePosition.PerRetry);
-    
-    var projectClient = new ResponseClient(
-        endpointUrl, 
-        credential,
+    #pragma warning disable OPENAI001    
+    var responsesClient = new ResponsesClient(
+        model: "<YOUR-DEPLOYMENT-NAME>", //e.g. gpt-5.2-chat, must be a model that supports Responses API
+        authenticationPolicy: tokenPolicy, // if you use Microsoft Entra ID
+        // credential: new ApiKeyCredential("<YOUR-KEY>") // if use APIKEY
         clientOptions
     );
-    // The ResponseClient lets you interact with models and services in your project.
+    
+    // The ResponsesClient lets you interact with models and services in your project.
+    ResponseResult response = responsesClient.CreateResponse("How are you?");
+    Console.WriteLine(response.GetOutputText());
+    
+    #pragma warning restore OPENAI001
     ```
 
 ::: moniker range="foundry-classic"
