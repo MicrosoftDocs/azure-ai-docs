@@ -5,7 +5,7 @@ description: Learn about agentic retrieval concepts, architecture, and use cases
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 12/04/2025
+ms.date: 01/16/2026
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.custom:
@@ -34,6 +34,8 @@ This high-performance pipeline helps you generate high quality grounding data (o
 Programmatically, agentic retrieval is supported through a new [Knowledge Base object](/rest/api/searchservice/knowledge-bases?view=rest-searchservice-2025-11-01-preview&preserve-view=true) in the 2025-11-01-preview and in Azure SDK preview packages that provide the feature. A knowledge base's retrieval response is designed for downstream consumption by other agents and chat apps.
 
 ## Why use agentic retrieval
+
+There are two use cases for agentic retrieval. First, it's the basis of the [Foundry IQ experience](/azure/ai-foundry/agents/how-to/tools/knowledge-retrieval) in the Microsoft Foundry (new) portal. It provides the knowledge layer for agent solutions in Microsoft Foundry. Second, it's the basis for custom agentic solutions that you create using the Azure AI Search APIs.
 
 You should use agentic retrieval when you want to provide agents and apps with the most relevant content for answering harder questions, leveraging chat context and your proprietary content.
 

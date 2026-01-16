@@ -54,7 +54,7 @@ A semantic configuration has a name and the following properties:
 | Property | Characteristics |
 |----------|-----------------|
 | Title field | A short string, ideally under 25 words. This field could be the title of a document, name of a product, or a unique identifier. If you don't have suitable field, leave it blank. | 
-| Content fields | Longer chunks of text in natural language form, subject to [maximum token input limits](semantic-search-overview.md#how-inputs-are-collected-and-summarized) on the machine learning models. Common examples include the body of a document, description of a product, or other free-form text. | 
+| Content fields | Longer chunks of text in natural language form, subject to [maximum token input limits](semantic-search-overview.md#how-the-system-collects-and-summarizes-inputs) on the machine learning models. Common examples include the body of a document, description of a product, or other free-form text. | 
 | Keyword fields | A list of keywords, such as the tags on a document, or a descriptive term, such as the category of an item. | 
 
 You can only specify one title field, but you can have as many content and keyword fields as you like. For content and keyword fields, list the fields in priority order because lower priority fields might get truncated.
