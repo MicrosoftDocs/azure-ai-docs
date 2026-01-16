@@ -6,7 +6,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 01/15/2026
+ms.date: 01/16/2026
 ms.custom:
   - references_regions
 ---
@@ -18,7 +18,7 @@ In this quickstart, you use the **Import data (new)** wizard in the Azure portal
 This quickstart uses a multimodal PDF from the [azure-search-sample-data](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/sustainable-ai-pdf) repo. However, you can use different files and still complete this quickstart.
 
 > [!TIP]
-> Want to process simple text-containing images? See [Quickstart: Vector search in the Azure portal](search-get-started-portal-import-vectors.md).
+> Have text-heavy documents? See [Quickstart: Vector search in the Azure portal](search-get-started-portal-import-vectors.md) to chunk and vectorize content with optional image support.
 
 ## Prerequisites
 
@@ -41,9 +41,9 @@ For content extraction, choose either default extraction via Azure AI Search or 
 | Method | Description |
 |--|--|
 | Default extraction | Extracts location metadata from PDF images only. Doesn't require another Azure resource. |
-| Enhanced extraction | Extracts location metadata from text and images for multiple document types. Requires an [Azure AI multi-service account](https://portal.azure.com/#create/Microsoft.CognitiveServicesAllInOne) <sup>1</sup> in a [supported region](cognitive-search-skill-document-intelligence-layout.md#supported-regions). |
+| Enhanced extraction | Extracts location metadata from text and images for multiple document types. Requires an [Azure AI multi-service account](https://portal.azure.com/#create/Microsoft.CognitiveServicesAllInOne) <sup>1</sup> for integration. |
 
-<sup>1</sup> For billing purposes, you must [attach your multi-service account](cognitive-search-attach-cognitive-services.md) to the skillset in your Azure AI Search service. Unless you use a [keyless connection](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) (preview) to create the skillset, both resources must be in the same region.
+<sup>1</sup> For billing purposes, you must [attach your multi-service account](cognitive-search-attach-cognitive-services.md) to your Azure AI Search skillset. Currently, the wizard requires your search service and multi-service account to be in the [same supported region for the Document Layout skill](cognitive-search-skill-document-intelligence-layout.md#supported-regions), even when using keyless connections.
 
 ### Supported embedding methods
 
@@ -57,20 +57,18 @@ The portal supports the following models for each method. Deployment instruction
 
 | Provider | Models for image verbalization | Models for multimodal embeddings |
 |--|--|--|
-| [Azure AI multi-service account](https://portal.azure.com/#create/Microsoft.CognitiveServicesAllInOne) <sup>1</sup> | **Embedding model**: [Azure Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) <sup>2</sup> | [Azure Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) <sup>2</sup> |
-| [Microsoft Foundry hub-based project](/azure/ai-foundry/how-to/hub-create-projects?view=foundry-classic&pivots=web-portal&preserve-view=true) | **LLMs**:<ul><li>phi-4</li><li>gpt-4o</li><li>gpt-4o-mini</li><li>gpt-5</li><li>gpt-5-mini</li><li>gpt-5-nano</li></ul><br>**Embedding models**:<ul><li>text-embedding-ada-002</li><li>text-embedding-3-small</li><li>text-embedding-3-large</li><li>Cohere-embed-v3-english <sup>3</sup></li><li>Cohere-embed-v3-multilingual <sup>3</sup></li></ul> | <ul><li>Cohere-embed-v3-english <sup>3</sup></li><li>Cohere-embed-v3-multilingual <sup>3</sup></li></ul> |
-| [Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects?view=foundry-classic&pivots=web-portal&preserve-view=true) | **LLMs**:<ul><li>phi-4</li><li>gpt-4o</li><li>gpt-4o-mini</li><li>gpt-5</li><li>gpt-5-mini</li><li>gpt-5-nano</li></ul><br>**Embedding models**:<ul><li>text-embedding-ada-002</li><li>text-embedding-3-small</li><li>text-embedding-3-large</li></ul> | |
-| [Azure OpenAI resource](/azure/ai-foundry/openai/how-to/create-resource?view=foundry-classic&pivots=web-portal&preserve-view=true) <sup>4, 5</sup> | **LLMs**:<ul><li>gpt-4o</li><li>gpt-4o-mini</li><li>gpt-5</li><li>gpt-5-mini</li><li>gpt-5-nano</li></ul><br>**Embedding models**:<ul><li>text-embedding-ada-002</li><li>text-embedding-3-small</li><li>text-embedding-3-large</li></ul> | |
+| [Azure AI multi-service account](https://portal.azure.com/#create/Microsoft.CognitiveServicesAllInOne) <sup>1</sup> | Embedding model: [Azure Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) | [Azure Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) |
+| [Microsoft Foundry hub-based project](/azure/ai-foundry/how-to/hub-create-projects?view=foundry-classic&pivots=web-portal&preserve-view=true) | LLMs:<ul><li>phi-4</li><li>gpt-4o</li><li>gpt-4o-mini</li><li>gpt-5</li><li>gpt-5-mini</li><li>gpt-5-nano</li></ul>Embedding models:<ul><li>text-embedding-ada-002</li><li>text-embedding-3-small</li><li>text-embedding-3-large</li><li>Cohere-embed-v3-english <sup>2</sup></li><li>Cohere-embed-v3-multilingual <sup>2</sup></li></ul> | <ul><li>Cohere-embed-v3-english <sup>2</sup></li><li>Cohere-embed-v3-multilingual <sup>2</sup></li></ul> |
+| [Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects?view=foundry-classic&pivots=web-portal&preserve-view=true) | LLMs:<ul><li>phi-4</li><li>gpt-4o</li><li>gpt-4o-mini</li><li>gpt-5</li><li>gpt-5-mini</li><li>gpt-5-nano</li></ul>Embedding models:<ul><li>text-embedding-ada-002</li><li>text-embedding-3-small</li><li>text-embedding-3-large</li></ul> | |
+| [Azure OpenAI resource](/azure/ai-foundry/openai/how-to/create-resource?view=foundry-classic&pivots=web-portal&preserve-view=true) <sup>3, 4</sup> | LLMs:<ul><li>gpt-4o</li><li>gpt-4o-mini</li><li>gpt-5</li><li>gpt-5-mini</li><li>gpt-5-nano</li></ul>Embedding models:<ul><li>text-embedding-ada-002</li><li>text-embedding-3-small</li><li>text-embedding-3-large</li></ul> | |
 
-<sup>1</sup> For billing purposes, you must [attach your multi-service account](cognitive-search-attach-cognitive-services.md) to the skillset in your Azure AI Search service. Unless you use a [keyless connection](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) (preview) to create the skillset, both resources must be in the same region.
+<sup>1</sup> For billing purposes, you must [attach your multi-service account](cognitive-search-attach-cognitive-services.md) to your Azure AI Search skillset. Currently, the wizard requires your search service and multi-service account to be in the [same supported region for the Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md#supported-regions), even when using keyless connections.
 
-<sup>2</sup> The Azure Vision multimodal embeddings APIs are available in [select regions](/azure/ai-services/computer-vision/overview-image-analysis#region-availability).
+<sup>2</sup> To use this model in the wizard, you must provision it as a serverless API deployment. You can use an [ARM/Bicep template](https://github.com/Azure-Samples/azure-ai-search-multimodal-sample/blob/42b4d07f2dd9f7720fdc0b0788bf107bdac5eecb/infra/ai/modules/project.bicep#L37C1-L38C1) for this task.
 
-<sup>3</sup> To use this model in the wizard, you must provision it as a serverless API deployment. You can use an [ARM/Bicep template](https://github.com/Azure-Samples/azure-ai-search-multimodal-sample/blob/42b4d07f2dd9f7720fdc0b0788bf107bdac5eecb/infra/ai/modules/project.bicep#L37C1-L38C1) for this task.
+<sup>3</sup> The endpoint of your Azure OpenAI resource must have a [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains), such as `https://my-unique-name.openai.azure.com`. If you created your resource in the [Azure portal](https://portal.azure.com/), this subdomain was automatically generated during resource setup.
 
-<sup>4</sup> The endpoint of your Azure OpenAI resource must have a [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains), such as `https://my-unique-name.openai.azure.com`. If you created your resource in the [Azure portal](https://portal.azure.com/), this subdomain was automatically generated during resource setup.
-
-<sup>5</sup> Azure OpenAI resources (with access to embedding models) that were created in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) aren't supported. You must create an Azure OpenAI resource in the Azure portal.
+<sup>4</sup> Azure OpenAI resources (with access to embedding models) that were created in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) aren't supported. You must create an Azure OpenAI resource in the Azure portal.
 
 ### Public endpoint requirements
 

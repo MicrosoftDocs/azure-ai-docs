@@ -10,9 +10,9 @@ ms.date: 01/15/2026
 > [!IMPORTANT]
 > The **Import data (new)** wizard now supports keyword search, which was previously only available in the **Import data** wizard. We recommend the new wizard for an improved search experience. For more information about how we're consolidating the wizards, see [Import data wizards in the Azure portal](../../search-import-data-portal.md).
 
-In this quickstart, you use the **Import data (new)** wizard and sample data about fictitious hotels to get started with full-text search, also known as keyword search. The wizard requires no code to create an index, helping you write interesting queries within minutes.
+In this quickstart, you use the **Import data (new)** wizard and sample data about fictitious hotels to get started with [full-text search](search-lucene-query-architecture.md), also known as keyword search. The wizard requires no code to create an index, helping you write interesting queries within minutes.
 
-The wizard creates multiple objects on your search service, including a searchable [index](../../search-what-is-an-index.md), an [indexer](../../search-indexer-overview.md), and a data source connection for automated data retrieval. At the end of this quickstart, you review each object.
+The wizard creates multiple objects on your search service, including a searchable index, an indexer, and a data source connection for automated data retrieval. At the end of this quickstart, you review each object.
 
 ## Prerequisites
 
