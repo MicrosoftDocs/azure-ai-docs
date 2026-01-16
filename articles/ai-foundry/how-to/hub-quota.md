@@ -110,7 +110,7 @@ Use quotas to manage compute and model quota across hubs in the same subscriptio
 
 1. Select the **VM Quota** link to view per-region VM family quota and usage, and to request more quota for the selected family.
 
-        > [!TIP]
+    > [!TIP]
     > If the VM quota link is missing, you're in a Foundry project view. Use **All resources** then select a hub-type project and return to **Management center**.
 
     :::image type="content" source="../media/cost-management/vm-quota.png" alt-text="Screenshot of the VM quota page in Foundry portal." lightbox="../media/cost-management/vm-quota.png":::
