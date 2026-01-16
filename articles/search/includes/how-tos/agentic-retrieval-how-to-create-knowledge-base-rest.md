@@ -11,7 +11,7 @@ ms.date: 01/15/2026
 
 In Azure AI Search, a *knowledge base* is a top-level object that orchestrates [agentic retrieval](../../agentic-retrieval-overview.md). It defines which knowledge sources to query and the default behavior for retrieval operations. At query time, the [retrieve method](../../agentic-retrieval-how-to-retrieve.md) targets the knowledge base to run the configured retrieval pipeline.
 
-You can create a knowledge base in a [Foundry IQ workload](/azure/ai-foundry/agents/how-to/tools/knowledge-retrieval) in the Foundry portal. You also need a knowledge base in any agentic solutions that you create in Azure AI Search.
+You can create a knowledge base in a [Foundry IQ workload](/azure/ai-foundry/agents/how-to/tools/knowledge-retrieval) in the Microsoft Foundry (new) portal. You also need a knowledge base in any agentic solutions that you create using the Azure AI Search APIs.
 
 A knowledge base specifies:
 
