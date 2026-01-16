@@ -15,11 +15,13 @@ ms.custom:
   - build-2025
 ---
 
-# Agent evaluators (preview)
+# Agent evaluators
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+
+[!INCLUDE [evaluation-preview](../../includes/evaluation-preview.md)]
 
 ::: moniker range="foundry-classic"
 
@@ -337,9 +339,9 @@ Specifically, for textual outputs from agents, you can also apply RAG quality ev
 Examples:
 
 - [Task completion (preview) sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_task_completion.py)
-- [Task adherence (preview) sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_task_adherence.py)
+- [Task adherence sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_task_adherence.py)
 - [Task navigation efficiency (preview) sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_task_navigation_efficiency.py)
-- [Intent resolution (preview) sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_intent_resolution.py)
+- [Intent resolution sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_intent_resolution.py)
 
 ## Process evaluation
 
