@@ -1,9 +1,9 @@
 items:
 
 - name: "Quickstart: Create resources"
-  href: ../../../quickstarts/quickstart-create-resources.md
+  href: ../../../tutorials/quickstart-create-foudry-resources.md
 - name: "Quickstart: Chat with a model"
-  href: ../../../quickstarts/get-started-code.md
+  href: ../../../tutorials/get-started-chat.md
 
 - name: "Tutorial: Idea to prototype"
   href: ../../tutorials/developer-journey-idea-to-prototype.md
