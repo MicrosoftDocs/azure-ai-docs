@@ -151,7 +151,7 @@ You can pass the following properties to create an indexed SharePoint knowledge 
 | `IndexedSharePointKnowledgeSourceParameters` | Parameters specific to indexed SharePoint knowledge sources: `connectionString`, `containerName`, and `query`. | Object | No | No |
 | `connectionString` | The connection string to a SharePoint site. For more information, see [Connection string syntax](../../search-how-to-index-sharepoint-online.md#connection-string-format). | String | Yes | Yes |
 | `containerName` | The SharePoint library to access. Use `defaultSiteLibrary` to index content from the site's default document library or `allSiteLibraries` to index content from every document library in the site. Ignore `useQuery` for now. | String | No | Yes |
-| `query` | Ignore for now. | String | Yes | No |
+| `query` | Optional [query](search-how-to-index-sharepoint-online.md#query) to filter SharePoint content. | String | Yes | No |
 
 ### `ingestion_parameters` properties
 
