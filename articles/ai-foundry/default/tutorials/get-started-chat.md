@@ -16,13 +16,13 @@ ai-usage: ai-assisted
 
 # Quickstart: Chat with a model
 
-In this quickstart, you use [!INCLUDE [foundry-link](../default/includes/foundry-link.md)] to interact with a Foundry model, create, and chat with an agent.
+In this quickstart, you use [!INCLUDE [foundry-link](../includes/foundry-link.md)] to interact with a Foundry model, create, and chat with an agent.
 
 ## Prerequisites
 
-* A model deployed in Microsoft Foundry. If you don't have one, first complete [Quickstart: Set up Microsoft Foundry resources](../default/tutorials/quickstart-create-foundry-resources.md).
+* A model deployed in Microsoft Foundry. If you don't have one, first complete [Quickstart: Set up Microsoft Foundry resources](../tutorials/quickstart-create-foundry-resources.md).
 * The [endpoint for the model](#find-your-endpoint).
-* Install the required language runtimes, global tools, and Visual Studio Code extensions as described in [Prepare your development environment](../how-to/develop/install-cli-sdk.md).
+* Install the required language runtimes, global tools, and Visual Studio Code extensions as described in [Prepare your development environment](../../how-to/develop/install-cli-sdk.md).
 
 ## Set environment variables and get the code
 
@@ -34,23 +34,23 @@ AGENT_NAME="MyAgent"
 MODEL_DEPLOYMENT_NAME="gpt-4.1-mini"
 ```
 
-[!INCLUDE [quickstart-v2-get-code](../default/includes/quickstart-v2-get-code.md)]
+[!INCLUDE [quickstart-v2-get-code](../includes/quickstart-v2-get-code.md)]
 
 ## Install and authenticate
 
-[!INCLUDE [quickstart-v2-install](../default/includes/quickstart-v2-install.md)]
+[!INCLUDE [quickstart-v2-install](../includes/quickstart-v2-install.md)]
 
 ## Chat with a model
 
-[!INCLUDE [quickstart-v2-chat](../default/includes/quickstart-v2-chat.md)]
+[!INCLUDE [quickstart-v2-chat](../includes/quickstart-v2-chat.md)]
 
 <!-- ## Create an agent
 
-[!INCLUDE [quickstart-v2-create-agent](../default/includes/quickstart-v2-create-agent.md)]
+[!INCLUDE [quickstart-v2-create-agent](../includes/quickstart-v2-create-agent.md)]
 
 ## Chat with an agent
 
-[!INCLUDE [quickstart-v2-agent-chat](../default/includes/quickstart-v2-agent-chat.md)] -->
+[!INCLUDE [quickstart-v2-agent-chat](../includes/quickstart-v2-agent-chat.md)] -->
 
 ## Clean up resources
 
@@ -66,5 +66,5 @@ Copy the endpoint to use in your [environment variable](#set-environment-variabl
 ## Next step
  
 > [!div class="nextstepaction"]
-> [Idea to prototype - Build and evaluate an enterprise agent](../default/tutorials/developer-journey-idea-to-prototype.md)
+> [Idea to prototype - Build and evaluate an enterprise agent](../tutorials/developer-journey-idea-to-prototype.md)
 

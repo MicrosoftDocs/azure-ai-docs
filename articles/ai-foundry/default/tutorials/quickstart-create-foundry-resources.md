@@ -22,11 +22,11 @@ In this article, you create a [Microsoft Foundry](https://ai.azure.com) project 
 
 ## Prerequisites
 
-- [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
+- [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
 - If you're creating the project for yourself: 
-    - [!INCLUDE [rbac-create](../includes/rbac-create.md)]
+    - [!INCLUDE [rbac-create](../../includes/rbac-create.md)]
 - If you're creating the project for a team: 
-    - [!INCLUDE [rbac-assign-roles](../includes/rbac-assign-roles.md)]
+    - [!INCLUDE [rbac-assign-roles](../../includes/rbac-assign-roles.md)]
     - A list of user email addresses or Microsoft Entra security group IDs for team members who need access.
 
 Select your preferred method by using the following tabs:
@@ -149,9 +149,9 @@ Reference: [az cognitiveservices account deployment](/cli/azure/cognitiveservice
 
 ---
 
-## For administrators
+## For administrators - grant access
 
-If you're creating the project for yourself, you're done.  If you're administering a team, assign the **Azure AI User** role to team members so they can use the project and deployed models. This role provides the minimum permissions needed to build and test AI applications.
+If you're administering a team, assign the **Azure AI User** role to team members so they can use the project and deployed models. This role provides the minimum permissions needed to build and test AI applications.
 
 # [Azure CLI](#tab/azurecli)
 
@@ -211,23 +211,25 @@ Repeat these steps for each team member or security group.
 
 ---
 
-### Share project information with your team
-
-After you grant access, share the following information with your team members:
-
-| Information | Where to find it |
-| ----------- | ---------------- |
-| **Project endpoint** | Foundry portal > Home page > **Endpoint** |
-| **Model deployment name** | Foundry portal > My assets > Models + endpoints |
-| **Getting started guide** | [Microsoft Foundry Quickstart](get-started-code.md) |
-
-Team members sign in to [Microsoft Foundry](https://ai.azure.com) by using their Azure account. They select your project to start building.
-
 ### Verify team member access
 
 Ask a team member to verify their access by signing in to [Microsoft Foundry](https://ai.azure.com), selecting the project from the project list, and confirming the deployed model appears under **My assets** > **Models + endpoints**.
 
 If the team member can't access the project, verify that the role assignment completed successfully. Check that you used the correct email address or security group ID. Make sure the team member's Azure account is in the same Microsoft Entra tenant.
+
+## Get your project connection details
+
+You need the following information to connect to the project in other quickstarts and tutorials. 
+
+If you're administering this project for others, send them this information.
+
+| Information | Where to find it |
+| ----------- | ---------------- |
+| **Project endpoint** | [Foundry portal](https://ai.azure.com/?cid=learnDocs) > Home page > **Endpoint** |
+| **Model deployment name** | [Foundry portal](https://ai.azure.com/?cid=learnDocs) > Build > Models |
+| **Getting started guide** | [Microsoft Foundry Quickstart](get-started-chat.md) |
+
+You sign in to [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) by using your Azure account. Then select your project to start building.
 
 ## Clean up resources
 
