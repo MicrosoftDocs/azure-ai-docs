@@ -31,8 +31,7 @@ In today's AI-driven world, Generative AI Operations (GenAIOps) is revolutionizi
 
 This is where observability becomes essential. These capabilities measure both the frequency and severity of risks in AI outputs, enabling teams to systematically address quality, safety, and security concerns throughout the entire AI development journey—from selecting the right model to monitoring production performance, quality, and safety.
 
-> [!NOTE]
-> Items marked (preview*) in this article are currently in public preview for the SDK and Azure portal but the API is generally available.
+[!INCLUDE [evaluation-preview](../includes/evaluation-preview.md)]
 
 ## What is observability?
 
@@ -70,15 +69,15 @@ To learn more, see [Textual similarity evaluators](./evaluation-evaluators/textu
 | Evaluator | Purpose | Inputs |
 |--|--|--|
 | Retrieval | Measures how effectively the system retrieves relevant information. | Query, context |
-| Document Retrieval (preview) | Measures accuracy in retrieval results given ground truth. | Ground truth, retrieved documents |
+| Document Retrieval| Measures accuracy in retrieval results given ground truth. | Ground truth, retrieved documents |
 | Groundedness | Measures how consistent the response is with respect to the retrieved context. |  Query (optional), context, response |
-| Groundedness Pro (preview)  | Measures whether the response is consistent with respect to the retrieved context. | Query, context, response |
+| Groundedness Pro | Measures whether the response is consistent with respect to the retrieved context. | Query, context, response |
 | Relevance | Measures how relevant the response is with respect to the query. | Query, response| 
-| Response Completeness (preview) | Measures to what extent the response is complete (not missing critical information) with respect to the ground truth. | Response, ground truth |
+| Response Completeness | Measures to what extent the response is complete (not missing critical information) with respect to the ground truth. | Response, ground truth |
 
 To learn more, see [Retrieval-augmented Generation (RAG) evaluators](./evaluation-evaluators/rag-evaluators.md).
 
-### Safety and security (preview*)
+### Safety and security
 
 | Evaluator | Purpose | Inputs |
 |--|--|--|
@@ -93,7 +92,7 @@ To learn more, see [Retrieval-augmented Generation (RAG) evaluators](./evaluatio
 
 To learn more, see [Risk and safety evaluators](./evaluation-evaluators/risk-safety-evaluators.md).
 
-### Agents (preview)
+### Agents
 
 ::: moniker range="foundry-classic"
 
@@ -109,21 +108,21 @@ To learn more, see [Risk and safety evaluators](./evaluation-evaluators/risk-saf
 
 | Evaluator | Purpose | Inputs |
 |--|--|--|
-| Task Adherence | Measures whether the agent follows through on identified tasks according to system instructions. | Query, Response, Tool definitions (Optional) |
-| Task Completion | Measures whether the agent successfully completed the requested task end-to-end. | Query, Response, Tool definitions (Optional) |
+| Task Adherence  | Measures whether the agent follows through on identified tasks according to system instructions. | Query, Response, Tool definitions (Optional) |
+| Task Completion (preview)| Measures whether the agent successfully completed the requested task end-to-end. | Query, Response, Tool definitions (Optional) |
 | Intent Resolution | Measures how accurately the agent identifies and addresses user intentions. | Query, Response, Tool definitions (Optional)  |
-| Task Navigation Efficiency | Determines whether the agent's sequence of steps matches an optimal or expected path to measure efficiency. | Response, Ground truth |
+| Task Navigation Efficiency (preview) | Determines whether the agent's sequence of steps matches an optimal or expected path to measure efficiency. | Response, Ground truth |
 | Tool Call Accuracy | Measures the overall quality of tool calls including selection, parameter correctness, and efficiency. | Query, Tool definitions, Tool calls (Optional), Response |
-| Tool Selection | Measures whether the agent selected the most appropriate and efficient tools for a task. | Query, Tool definitions, Tool calls (Optional), Response |
-| Tool Input Accuracy | Validates that all tool call parameters are correct with strict criteria including grounding, type, format, completeness, and appropriateness. | Query, Response, Tool definitions |
-| Tool Output Utilization | Measures whether the agent correctly interprets and uses tool outputs contextually in responses and subsequent calls. | Query, Response, Tool definitions (Optional) |
-| Tool Call Success | Evaluates whether all tool calls executed successfully without technical failures. | Response, Tool definitions (Optional) |
+| Tool Selection (preview) | Measures whether the agent selected the most appropriate and efficient tools for a task. | Query, Tool definitions, Tool calls (Optional), Response |
+| Tool Input Accuracy (preview)| Validates that all tool call parameters are correct with strict criteria including grounding, type, format, completeness, and appropriateness. | Query, Response, Tool definitions |
+| Tool Output Utilization (preview)| Measures whether the agent correctly interprets and uses tool outputs contextually in responses and subsequent calls. | Query, Response, Tool definitions (Optional) |
+| Tool Call Success (preview) | Evaluates whether all tool calls executed successfully without technical failures. | Response, Tool definitions (Optional) |
 
 ::: moniker-end
 
 To learn more, see [Agent evaluators](./evaluation-evaluators/agent-evaluators.md).
 
-### Azure OpenAI graders (preview*)
+### Azure OpenAI graders
 
 | Evaluator | Purpose |  Inputs |
 |--|--|--|
