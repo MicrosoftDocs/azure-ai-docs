@@ -411,7 +411,8 @@ When it succeeds, the .NET CLI confirms that it installed the `OpenAI` package.
     
     OpenAIResponseClient client = new(
         model: deploymentName,
-        authenticationPolicy: tokenPolicy,
+        authenticationPolicy: tokenPolicy, // To use Entra 
+     // credential: new ApiKeyCredential("<YOUR-AZURE-OPENAI-API-KEY>") // To use APIKEY 
         options: new OpenAIClientOptions()
         {
             Endpoint = new($"{directModelEndpoint}"),
