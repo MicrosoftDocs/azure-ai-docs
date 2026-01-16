@@ -172,8 +172,6 @@ For CLI v2 AutoML jobs, you configure your experiment in a YAML file. See the fo
 - [YAML: AutoML text classification multilabel job](reference-automl-nlp-cli-multilabel-classification.md#yaml-automl-text-classification-multilabel-job)
 - [YAML: AutoML text NER job](reference-automl-nlp-cli-ner.md#yaml-automl-text-ner-job)
 
-You can also run your NLP experiments with distributed training on an Azure Machine Learning compute cluster. 
-
 # [Python SDK](#tab/python)
 
 For AutoML jobs via the SDK, you configure the job by using the specific NLP task function. The following example demonstrates the configuration for `text_classification`.
@@ -255,6 +253,8 @@ To submit your AutoML job, run the following CLI v2 command. Replace the placeho
 
 az ml job create --file ./<YAML filename> --workspace-name <machine-learning-workspace> --resource-group <resource-group> --subscription <subscription ID>
 ```
+
+You can also run your NLP experiments with distributed training on an Azure Machine Learning compute cluster. 
 
 # [Python SDK](#tab/python)
 
