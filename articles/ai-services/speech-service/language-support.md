@@ -1,7 +1,7 @@
 ---
-title: Language support - Speech service
+title: Language Support - Speech Service
 titleSuffix: Foundry Tools
-description: The Speech service supports numerous languages for speech to text and text to speech conversion, along with speech translation. This article provides a comprehensive list of language support by service feature.
+description: See language and voice support in the Speech service for speech to text, text to speech, translation, and more. Learn which features support each locale.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
@@ -14,7 +14,7 @@ ms.custom: references_regions, build-2024
 
 # Language and voice support for the Speech service
 
-The following tables summarize language support for [speech to text](speech-to-text.md), [text to speech](text-to-speech.md), [pronunciation assessment](how-to-pronunciation-assessment.md), [speech translation](speech-translation.md), and more service features.
+The following tables summarize language support for [speech to text](speech-to-text.md), [text to speech](text-to-speech.md), [pronunciation assessment](how-to-pronunciation-assessment.md), [speech translation](speech-translation.md), and more service features. Use this page to check whether your target language and locale are available for each Speech service capability.
 
 You can also see the list of locales and voices supported for each specific region or endpoint:
 - [Speech SDK](speech-sdk.md)
