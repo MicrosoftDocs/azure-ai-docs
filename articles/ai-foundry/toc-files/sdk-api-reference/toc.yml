@@ -2,7 +2,7 @@ items:
 - name: Azure AI Projects
   items:
   - name: C#
-    href: /dotnet/api/overview/azure/ai.projects-readme?view=azure-dotnet-preview
+    href: /dotnet/api/overview/azure/ai.projects-readme?view=azure-dotnet-preview&preserve-view=true
   - name: JavaScript
     href: /javascript/api/overview/azure/ai-projects-readme?view=azure-node-preview&preserve-view=true
   - name: Python
