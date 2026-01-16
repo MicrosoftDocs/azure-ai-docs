@@ -699,7 +699,7 @@ The numerical score is on a Likert scale (integer 1 to 5). A higher score is bet
 }
 ```
 
-## Groundedness Pro (preview)
+## Groundedness Pro
 
 AI systems can generate irrelevant responses or fabricate content outside the given context. Powered by Azure AI Content Safety, `GroundednessProEvaluator` checks if the generated text response is accurate and consistent with the given context in a retrieval-augmented generation question-and-answering scenario. It ensures the response closely adheres to the context to answer the query, avoiding speculation or fabrication. It outputs a binary label.
 
