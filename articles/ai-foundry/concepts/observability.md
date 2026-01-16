@@ -71,7 +71,7 @@ To learn more, see [Textual similarity evaluators](./evaluation-evaluators/textu
 | Retrieval | Measures how effectively the system retrieves relevant information. | Query, context |
 | Document Retrieval| Measures accuracy in retrieval results given ground truth. | Ground truth, retrieved documents |
 | Groundedness | Measures how consistent the response is with respect to the retrieved context. |  Query (optional), context, response |
-| Groundedness Pro | Measures whether the response is consistent with respect to the retrieved context. | Query, context, response |
+| Groundedness Pro (preview) | Measures whether the response is consistent with respect to the retrieved context. | Query, context, response |
 | Relevance | Measures how relevant the response is with respect to the query. | Query, response| 
 | Response Completeness | Measures to what extent the response is complete (not missing critical information) with respect to the ground truth. | Response, ground truth |
 
