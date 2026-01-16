@@ -1,5 +1,9 @@
 {
     "redirections": [
+        { "source_path_from_root": "/articles/ai-foundry/quickstarts/get-started-code.md",
+          "redirect_url": "/azure/ai-foundry/tutorials/get-started-code",
+          "redirect_document_id": false
+        },
         { "source_path_from_root": "/articles/ai-foundry/openai/concepts/gov-provisioned.md",
           "redirect_url": "/azure/ai-foundry/openai/azure-government",
           "redirect_document_id": false
