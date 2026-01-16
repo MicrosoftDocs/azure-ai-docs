@@ -21,9 +21,11 @@ ai-usage: ai-assisted
 # customer intent: As a developer, I want to start using the Microsoft Foundry portal and client libraries.
 ---
 
+# Microsoft Foundry quickstart
+
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
-In this quickstart, you use [!INCLUDE [classic-link](classic-link.md)] to:
+In this quickstart, you use [!INCLUDE [classic-link](../includes/classic-link.md)] to:
 
 > [!div class="checklist"]
 > * Create a project
@@ -35,7 +37,7 @@ In this quickstart, you use [!INCLUDE [classic-link](classic-link.md)] to:
 The Microsoft Foundry SDK is available in multiple languages, including Python, Java, TypeScript, and C#. This quickstart provides instructions for each of these languages.
 
 > [!TIP]
-> The rest of this article shows how to create and use a **[!INCLUDE [fdp](fdp-project-name.md)]**. See [Quickstart: Get started with Microsoft Foundry (Hub projects)](hub-get-started-code.md) if you want to use a [!INCLUDE [hub](hub-project-name.md)] instead. [Which type of project do I need?](../what-is-foundry.md#which-type-of-project-do-i-need)
+> The rest of this article shows how to create and use a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**. See [Quickstart: Get started with Microsoft Foundry (Hub projects)](hub-get-started-code.md) if you want to use a [!INCLUDE [hub](../includes/hub-project-name.md)] instead. [Which type of project do I need?](../what-is-foundry.md#which-type-of-project-do-i-need)
 
 ## Prerequisites
 
