@@ -250,6 +250,6 @@ In the [Azure portal](https://portal.azure.com), find and select your resource g
 ## Next step
  
 > [!div class="nextstepaction"]
-> [Quickstart: Chat with a model](get-started-code.md)
+> [Microsoft Foundry quickstart](../../quickstarts/get-started-code.md)
 
 

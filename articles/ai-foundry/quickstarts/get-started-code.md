@@ -8,6 +8,7 @@ ms.reviewer: dantaylo
 ms.date: 12/16/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
+monikerRange: 'foundry-classic || foundry'
 ms.custom:
   - build-2024
   - devx-track-azurecli
@@ -23,7 +24,15 @@ ai-usage: ai-assisted
 
 # Microsoft Foundry quickstart
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+[!INCLUDE [version-banner](../includes/version-banner.md)]
+
+:::moniker range="foundry"
+
+[!INCLUDE [quickstart-v2-main](../default/includes/quickstart-v2-main.md)]
+
+:::moniker-end
+
+:::moniker range="foundry-classic"
 
 In this quickstart, you use [!INCLUDE [classic-link](../includes/classic-link.md)] to:
 
