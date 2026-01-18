@@ -17,27 +17,27 @@ ms.custom:
 
 # Retrieval-Augmented Generation (RAG) evaluators
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
-
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-A Retrieval-Augmented Generation (RAG) system tries to generate the most relevant answer consistent with grounding documents in response to a user's query. A user's query triggers a search retrieval in the corpus of grounding documents to provide grounding context for the AI model to generate a response. 
+A Retrieval-Augmented Generation (RAG) system tries to generate the most relevant answer consistent with grounding documents in response to a user's query. A user's query triggers a search retrieval in the corpus of grounding documents to provide grounding context for the AI model to generate a response.
+
+[!INCLUDE [evaluation-preview](../../includes/evaluation-preview.md)]
 
 ::: moniker range="foundry-classic"
 
 It's important to evaluate:
 
-- [Document Retrieval (preview)](#document-retrieval)
+- [Document Retrieval](#document-retrieval)
 - [Retrieval](#retrieval)
 - [Groundedness](#groundedness)
 - [Groundedness Pro (preview)](#groundedness-pro)
 - [Relevance](#relevance)
-- [Response Completeness (preview)](#response-completeness)
+- [Response Completeness](#response-completeness)
 
 These evaluators focus on three aspects:
 
 - The relevance of the retrieval results to the user's query: use [Document Retrieval](#document-retrieval) if you have labels for query-specific document relevance, or query relevance judgement (qrels) for more accurate measurements. Use [Retrieval](#retrieval) if you only have the retrieved context, but you don't have such labels and have a higher tolerance for a less fine-grained measurement.
-- The consistency of the generated response with respect to the grounding documents: use [Groundedness](#groundedness) if you want to customize the definition of groundedness in our open-source large language model-judge (LLM-judge) prompt. Use [Groundedness Pro](#groundedness-pro) if you want a straightforward definition.
+- The consistency of the generated response with respect to the grounding documents: use [Groundedness](#groundedness) if you want to customize the definition of groundedness in our open-source large language model-judge (LLM-judge) prompt. Use [Groundedness Pro (preview)](#groundedness-pro) if you want a straightforward definition.
 - The relevance of the final response to the query: use [Relevance](#relevance) if you don't have ground truth. Use [Response Completeness](#response-completeness) if you have ground truth and don't want your response to miss critical information.
 
 ::: moniker-end
@@ -46,12 +46,12 @@ These evaluators focus on three aspects:
 
 | Evaluator | Best practice | Use when | Purpose | Inputs | Output |
 |--|--|--|--|--|--|
-| Document Retrieval (preview)| Process evaluation | Retrieval quality is a bottleneck for your RAG, and you have query relevance labels (ground truth) for precise search quality metrics for debugging and parameter optimization | Measures search quality metrics (Fidelity, NDCG, XDCG, Max Relevance, Holes) by comparing retrieved documents against ground truth labels | `retrieval_ground_truth`, `retrieval_documents` | Composite: Fidelity, NDCG, XDCG, Max Relevance, Holes (with Pass/Fail) |
+| Document Retrieval | Process evaluation | Retrieval quality is a bottleneck for your RAG, and you have query relevance labels (ground truth) for precise search quality metrics for debugging and parameter optimization | Measures search quality metrics (Fidelity, NDCG, XDCG, Max Relevance, Holes) by comparing retrieved documents against ground truth labels | `retrieval_ground_truth`, `retrieval_documents` | Composite: Fidelity, NDCG, XDCG, Max Relevance, Holes (with Pass/Fail) |
 | Retrieval | Process evaluation | You want to assess textual quality of retrieved context, but you don't have ground truths | Measures how relevant the retrieved context chunks are to addressing a query using an LLM judge | Query, Context | Binary: Pass/Fail based on threshold (1-5 scale) |
 | Groundedness | System evaluation |  You want a well-rounded groundedness definition that works with agent inputs, and bring your own GPT models as the LLM-judge | Measures how well the generated response aligns with the given context without fabricating content (precision aspect) | Query, Context, Response | Binary: Pass/Fail based on threshold (1-5 scale) |
-| Groundedness Pro (preview) | System evaluation | You want a strict groundedness definition powered by Azure AI Content Safety and use our service model | Detects if the response is strictly consistent with the context using the Azure AI Content Safety service | Query, Context, Response | Binary: True/False |
+| Groundedness Pro (preview)| System evaluation | You want a strict groundedness definition powered by Azure AI Content Safety and use our service model | Detects if the response is strictly consistent with the context using the Azure AI Content Safety service | Query, Context, Response | Binary: True/False |
 | Relevance | System evaluation | You want to assess how well the RAG response addresses the query but don't have ground truths | Measures the accuracy, completeness, and direct relevance of the response to the query | Query, Response | Binary: Pass/Fail based on threshold (1-5 scale) |
-| Response Completeness (preview) | System evaluation | You want to ensure the RAG response doesn't miss critical information (recall aspect) from your ground truth | Measures how completely the response covers the expected information compared to ground truth | Response, Ground truth | Binary: Pass/Fail based on threshold (1-5 scale) |
+| Response Completeness | System evaluation | You want to ensure the RAG response doesn't miss critical information (recall aspect) from your ground truth | Measures how completely the response covers the expected information compared to ground truth | Response, Ground truth | Binary: Pass/Fail based on threshold (1-5 scale) |
 
 ::: moniker-end
 

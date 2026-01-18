@@ -1,7 +1,7 @@
 ---
-title: 'Customize a model with Microsoft Foundry fine-tuning'
+title: 'Customize a Model with Microsoft Foundry Fine-Tuning'
 titleSuffix: Azure OpenAI
-description: Learn how to fine-tune and customize Foundry models using Python, REST APIs, or Microsoft Foundry portal. Improve model performance with LoRA adaptation and custom datasets.
+description: Learn how to fine-tune and customize Foundry models by using Python, REST APIs, or the Microsoft Foundry portal. Improve model performance with LoRA adaptation and custom datasets.
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -19,18 +19,18 @@ ai-usage: ai-assisted
 
 Learn how to fine-tune models in Microsoft Foundry for your datasets and use cases. Fine-tuning enables:
 
-- Higher quality results than what you can get just from [prompt engineering](../concepts/prompt-engineering.md)
-- The ability to train on more examples than can fit into a model's max request context limit.
-- Token savings due to shorter prompts
-- Lower-latency requests, particularly when using smaller models.
+- Higher-quality results than what you can get just from [prompt engineering](../concepts/prompt-engineering.md).
+- The ability to train on more examples than what can fit into a model's request context limit.
+- Token savings due to shorter prompts.
+- Lower-latency requests, particularly when you're using smaller models.
 
-In contrast to few-shot learning, fine-tuning improves the model by training on more examples than fit in a prompt. Because weights adapt to your task, you include fewer examples or instructions, reducing tokens per call and potentially lowering cost and latency.
+In contrast to few-shot learning, fine-tuning improves the model by training on more examples than what fits in a prompt. Because weights adapt to your task, you include fewer examples or instructions. Including less reduces tokens per call and potentially lowers cost and latency.
 
-We use LoRA, or low rank adaptation, to fine-tune models in a way that reduces their complexity without significantly affecting their performance. This method works by approximating the original high-rank matrix with a lower rank one, thus only fine-tuning a smaller subset of important parameters during the supervised training phase, making the model more manageable and efficient. For users, this makes training faster and more affordable than other techniques.
+We use low-rank adaptation (LoRA) to fine-tune models in a way that reduces their complexity without significantly affecting their performance. This method works by approximating the original high-rank matrix with a lower-rank one. Fine-tuning a smaller subset of important parameters during the supervised training phase makes the model more manageable and efficient. For users, it also makes training faster and more affordable than other techniques.
 
-In this article, you will learn how to:
+In this article, you learn how to:
 
-- Choose appropriate datasets and formats for fine-tuning
+- Choose appropriate datasets and formats for fine-tuning.
 - Trigger a fine-tuning job, monitor the status, and fetch results.
 - Deploy and evaluate a fine-tuned model.
 - Iterate based on evaluation feedback.
@@ -88,7 +88,7 @@ In this article, you will learn how to:
 ## Related content
 
 - [Fine-tuning tutorial (step-by-step)](../tutorials/fine-tune.md)
-- [Model catalog & regional availability](../concepts/models.md)
+- [Model catalog and regional availability](../concepts/models.md)
 - [Quotas and limits](../quotas-limits.md)
 - [View and interpret evaluation results](../../how-to/evaluate-results.md)
 - [Trace AI application usage (OpenAI SDK)](../../how-to/develop/trace-application.md)

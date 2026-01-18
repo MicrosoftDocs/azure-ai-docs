@@ -3,7 +3,7 @@ title: Azure OpenAI in Microsoft Foundry Models
 author: mrbullwinkle #ChrisHMSFT
 ms.author: mbullwin #chrhoder#
 manager: nitinme
-ms.date: 01/06/2026
+ms.date: 01/14/2026
 ms.service: azure-ai-foundry
 ms.topic: include
 ---
@@ -35,14 +35,15 @@ ms.topic: include
 |---|---|
 | `gpt-5.2` |  See the [models table](#model-summary-table-and-region-availability).   |
 | `gpt-5.2-chat` |  See the [models table](#model-summary-table-and-region-availability).  |
+| `gpt-5.2-codex` | East US2 & Sweden Central (Global Standard) |
 
-
-- **[Registration is required for access to gpt-5.2](https://aka.ms/oai/gpt5access).**
+- **[Registration is required for access to gpt-5.2 and gpt-5.2-codex](https://aka.ms/oai/gpt5access).**
 
 Access will be granted based on Microsoft's eligibility criteria. Customers who previously applied and received access to a limited access model, don't need to reapply as their approved subscriptions will automatically be granted access upon model release.
 
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
+| `gpt-5.2-codex` (2026-01-14) |  - [Reasoning](../how-to/reasoning.md) <br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Full summary of capabilities](../how-to/reasoning.md). <br> - Optimized for [Codex CLI & Codex VS Code extension](../how-to/codex.md)  | 400,000<br><br>Input: 272,000<br>Output: 128,000  | 128,000 | |
 | `gpt-5.2` (2025-12-11) |  - [Reasoning](../how-to/reasoning.md) <br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Full summary of capabilities](../how-to/reasoning.md).  | 400,000<br><br>Input: 272,000<br>Output: 128,000  | 128,000 | August 2025 |
 | `gpt-5.2-chat` (2025-12-11)<br>**Preview** |  - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs <br> - Functions, tools, and parallel tool calling. |128,000 <br><br>Input: 111,616 <br> Output: 16,384  | 16,384 | August 2025 |
 
@@ -383,8 +384,6 @@ The audio models via the `/audio` API can be used for speech to text, translatio
 | `gpt-4o-mini-tts` | Text-to-speech model powered by GPT-4o mini.<br/><br/>You can guide the voice to speak in a specific style or tone. |
 | `gpt-4o-mini-tts-2025-12-15` | Text-to-speech model powered by GPT-4o mini.<br/><br/>You can guide the voice to speak in a specific style or tone. |
 
-For more information, see [Audio models region availability](?tabs=standard-audio#standard-deployment-regional-models-by-endpoint) later in this article.
-
 ## Model summary table and region availability
 
 ### Models by deployment type
@@ -467,26 +466,7 @@ For more information on provisioned deployments, see [Provisioned guidance](../c
 
 This table doesn't include fine-tuning regional availability information. Consult the [fine-tuning section](#fine-tuning-models) for this information.
 
-### Standard deployment (regional) models by endpoint
-
-# [Chat completions](#tab/standard-chat-completions)
-
-### Chat completions
-
-[!INCLUDE [Chat Completions](../includes/model-matrix/standard-chat-completions.md)]
-
-> [!NOTE]
-> `o1-mini` is currently available to all customers for Global Standard deployment.
->
-> Select customers were granted standard (regional) deployment access to `o1-mini` as part of the `o1-preview` limited access release. At this time, access to `o1-mini` standard (regional) deployments isn't being expanded.
-
-To learn about how Azure OpenAI handles model version upgrades, see [Model versions](../concepts/model-versions.md). To learn how to view and configure the model version settings of your GPT-3.5 Turbo deployments, see [Working with models](../how-to/working-with-models.md).
-
-# [Embeddings](#tab/standard-embeddings)
-
 ### Embeddings models
-
-[!INCLUDE [Embeddings](../includes/model-matrix/standard-embeddings.md)]
 
 These models can be used only with Embedding API requests.
 
@@ -503,11 +483,7 @@ These models can be used only with Embedding API requests.
 > [!NOTE]
 > When you send an array of inputs for embedding, the maximum number of input items in the array per call to the embedding endpoint is 2,048.
 
-# [Image generation](#tab/standard-image-generations)
-
 ### Image generation models
-
-[!INCLUDE [Image generation](../includes/model-matrix/standard-image-generation.md)]
 
 |  Model ID  | Max request (characters) |
 |  --- | :---: |
@@ -516,31 +492,11 @@ These models can be used only with Embedding API requests.
 | `gpt-image-1.5` | 4,000 |
 | `dall-e-3`  | 4,000 |
 
-# [Video generation](#tab/standard-video-generations)
-
 ### Video generation models
-
-| Region   | sora   |
-|:-----------------|:---------------------:|
-| eastus2    | ✅                  |
 
 |  Model ID  | Max Request (characters) |
 |  --- | :---: |
 | sora | 4,000 |
-
-# [Audio](#tab/standard-audio)
-
-### Audio models
-
-[!INCLUDE [Audio](../includes/model-matrix/standard-audio.md)]
-
-# [Completions (legacy)](#tab/standard-completions)
-
-### Completions models
-
-[!INCLUDE [Completions](../includes/model-matrix/standard-completions.md)]
-
----
 
 ## Fine-tuning models
 

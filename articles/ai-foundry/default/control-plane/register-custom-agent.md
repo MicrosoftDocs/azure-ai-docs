@@ -24,9 +24,7 @@ This article shows you how to register a custom agent in the Foundry Control Pla
 
 Before getting started, make sure you have:
 
-- [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
-
-- A Foundry project. If you don't have one, [create a project](../../how-to/create-projects.md).
+[!INCLUDE [control-plane-prereqs](../includes/control-plane-prereqs.md)]
 
 - Foundry uses Azure API Management to register agents as APIs. [Configure AI Gateway in your Foundry resource](../configuration/enable-ai-api-management-gateway-portal.md#create-an-ai-gateway).
 

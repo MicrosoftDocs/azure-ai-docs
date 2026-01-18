@@ -68,9 +68,9 @@ In some cases, models are retired in Azure Governmen earlier or later than in th
 | `gpt-4`                   | turbo-2024-04-09	| Retired                   | November 14, 2025       |
 
 #### Late Model Retirements
-| Model                     | Version			      | Azure Government Status	  | Public Retirement date  | Replacement Model   | Estimated Target   |
-| --------------------------|-------------------|---------------------------|-------------------------|---------------------|--------------------|
-| `gpt-35-turbo`            | 0125 				      | Active                    | November 14, 2025       | gpt-4.1-mini        | ~January 2026      |
+| Model                     | Version			      | Azure Government Status	  | Public Retirement date  | Replacement Model   | Upgrade date       | Azure Government Retirement date |
+| --------------------------|-------------------|---------------------------|-------------------------|---------------------|--------------------|----------------------------------|
+| `gpt-35-turbo`            | 0125 				      | Active                    | November 14, 2025       | gpt-4.1-mini        | January 16, 2026   | February 15, 2026                |
 
 <br>
 
