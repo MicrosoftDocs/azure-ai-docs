@@ -29,8 +29,6 @@ items:
         href: ../../openai/concepts/content-filter-personal-information.md
       - name: Use blocklists
         href: ../../foundry-models/how-to/use-blocklists.md
-      - name: Content filter configurability
-        href: ../../openai/concepts/content-filter-configurability.md
       - name: Content filter annotations
         href: ../../openai/concepts/content-filter-annotations.md
       - name: Document embedding in prompts

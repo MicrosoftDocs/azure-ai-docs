@@ -1163,6 +1163,11 @@
             "redirect_document_id": false
           },
           {
+            "source_path_from_root": "/articles/ai-foundry/openai/concepts/content-filter-configurability.md",
+            "redirect_url": "/azure/ai-foundry/foundry-models/concepts/content-filter",
+            "redirect_document_id": false
+          },
+          {
             "source_path_from_root": "/articles/ai-studio/ai-services/concepts/quotas-limits.md",
             "redirect_url": "/azure/ai-foundry/model-inference/quotas-limits",
             "redirect_document_id": false
