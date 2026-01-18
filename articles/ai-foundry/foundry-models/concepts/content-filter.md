@@ -21,6 +21,8 @@ ai-usage: ai-assisted
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
+[Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) includes a content filtering system that works alongside core models and image generation models.
+
 
 > [!IMPORTANT]
 > The content filtering system doesn't apply to prompts and completions processed by audio models such as Whisper in Azure OpenAI in Microsoft Foundry Models. For more information, see [Audio models in Azure OpenAI](../../../ai-services/openai/concepts/models.md?tabs=standard-audio#standard-deployment-regional-models-by-endpoint).
@@ -60,7 +62,9 @@ The content filtering system integrated in the Foundry Models service in Foundry
 
 [!INCLUDE [severity-levels image](../../../ai-services/content-safety/includes/severity-levels-image.md)]
 
-## Prompt shield content
+## Prompt shields
+
+Prompt shields is a safety filter for the inputs to generative AI models.
 
 #### [User prompt attacks](#tab/user-prompt)
 
@@ -83,6 +87,17 @@ The content filtering system integrated in the Foundry Models service in Foundry
 Detecting indirect attacks requires using document delimiters when constructing the prompt. See the [Document embedding in prompts for Azure OpenAI](../../openai/concepts/content-filter-document-embedding.md) section to learn more.  
 
 ---
+
+## Output filters
+
+You can also enable the following special output filters:
+- **Protected material for text**: Protected material text describes known text content (for example, song lyrics, articles, recipes, and selected web content) that a large language model might output.
+- **Protected material for code**: Protected material code describes source code that matches a set of source code from public repositories, which a large language models might output without proper citation of source repositories.
+- **Groundedness**: The groundedness detection filter detects whether the text responses of large language models (LLMs) are grounded in the source materials provided by the users.
+- **Personally identifiable information (PII)**: The PII filter detects whether the text responses of large language models (LLMs) contain personally identifiable information (PII). PII refers to any information that can be used to identify a particular individual, such as a name, address, phone number, email address, social security number, driver's license number, passport number, or similar information.
+
+[!INCLUDE [create-content-filter](../../includes/create-content-filter.md)]
+
 
 ## Configurability
 

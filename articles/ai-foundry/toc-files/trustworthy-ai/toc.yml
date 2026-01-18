@@ -7,8 +7,6 @@ items:
       href: ../../ai-services/content-safety-overview.md
     - name: Guardrails + Controls for models deployed with serverless APIs
       href: ../../concepts/model-catalog-content-safety.md
-    - name: Content filtering
-      href: ../../concepts/content-filtering.md
     - name: Content filtering for Foundry Models
       href: ../../foundry-models/concepts/content-filter.md
     - name: Configure content filtering for Foundry Models
