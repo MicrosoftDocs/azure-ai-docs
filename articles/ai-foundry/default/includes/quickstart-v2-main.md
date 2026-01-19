@@ -1,20 +1,15 @@
 ---
-title: "Quickstart: Chat with a model"
-titleSuffix: Microsoft Foundry
-description: Get started with Microsoft Foundry SDK building AI applications. 
+title: Include file
+description: Include file
 author: sdgilley
+ms.reviewer: sgilley
 ms.author: sgilley
-ms.reviewer: dantaylo
-ms.date: 01/16/2026
 ms.service: azure-ai-foundry
-ms.topic: how-to
-ms.custom:
-  - dev-focus
-ai-usage: ai-assisted
-# customer intent: As a developer, I want to start using the Microsoft Foundry portal and client libraries.
+ms.topic: include
+ms.date: 01/19/2026
+ms.custom: include
 ---
 
-# Quickstart: Chat with a model
 
 In this quickstart, you use [!INCLUDE [foundry-link](../includes/foundry-link.md)] to interact with a Foundry model, create, and chat with an agent.
 

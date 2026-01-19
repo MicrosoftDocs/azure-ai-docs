@@ -223,13 +223,10 @@ You need the following information to connect to the project in other quickstart
 
 If you're administering this project for others, send them this information.
 
-| Information | Where to find it |
-| ----------- | ---------------- |
-| **Project endpoint** | [Foundry portal](https://ai.azure.com/?cid=learnDocs) > Home page > **Endpoint** |
-| **Model deployment name** | [Foundry portal](https://ai.azure.com/?cid=learnDocs) > Build > Models |
-| **Getting started guide** | [Microsoft Foundry Quickstart](get-started-code.md) |
+* Sign in to [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) by using your Azure account. Select your project to start building.
+* [!INCLUDE [find-endpoint](../includes/find-endpoint.md)]
+* Get started with [Microsoft Foundry quickstart](../../quickstarts/get-started-code.md).
 
-You sign in to [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) by using your Azure account. Then select your project to start building.
 
 ## Clean up resources
 
