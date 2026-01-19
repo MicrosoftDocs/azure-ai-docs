@@ -75,8 +75,8 @@ Deploy a model that you can use. This example uses **gpt-4.1-mini**, but you can
 
 ```azurecli
 az cognitiveservices account deployment create \
-    --name team-ai-resource \
-    --resource-group team-ai-rg \
+    --name my-foundry-resource \
+    --resource-group my-foundry-rg \
     --deployment-name gpt-4.1-mini \
     --model-name gpt-4.1-mini \
     --model-version "2025-04-14" \
@@ -89,8 +89,8 @@ Verify the deployment succeeded:
 
 ```azurecli
 az cognitiveservices account deployment show \
-    --name team-ai-resource \
-    --resource-group team-ai-rg \
+    --name my-foundry-resource \
+    --resource-group my-foundry-rg \
     --deployment-name gpt-4.1-mini
 ```
 
@@ -118,9 +118,9 @@ If you're administering a team, assign the **Azure AI User** role to team member
 
    ```azurecli
    PROJECT_ID=$(az cognitiveservices account project show \
-       --name team-ai-resource \
-       --resource-group team-ai-rg \
-       --project-name team-ai-project \
+       --name my-foundry-resource \
+       --resource-group my-foundry-rg \
+       --project-name my-foundry-project \
        --query id -o tsv)
    ```
 
@@ -194,7 +194,7 @@ When you no longer want this project, delete the resource group to delete all re
 # [Azure CLI](#tab/azurecli)
 
 ```azurecli
-az group delete --name team-ai-rg --yes --no-wait
+az group delete --name my-foundry-rg --yes --no-wait
 ```
 
 # [Foundry portal](#tab/portal)
