@@ -189,40 +189,7 @@ To create a Foundry project:
 
 # [Azure CLI](#tab/azurecli)
 
-1. Authenticate to your Azure subscription from the Azure CLI by using the following command:
-
-    ```azurecli
-    az login
-    ```
-
-    For more information on authenticating, see [Authentication methods](/cli/azure/authenticate-azure-cli).
-
-1. Create a resource group, for example in East US:
-
-    ```azurecli
-    az group create --name {my_resource_group} --location eastus
-    ```
-
-1. Create a Foundry resource
-
-    ```azurecli
-    az cognitiveservices account create \
-    --name {your-foundry-resource-name} \
-    --kind AIServices \
-    --location eastus \
-    --sku s0 \
-    --allow-project-management
-    ```
-
-1. Create a project:
-
-    ```azurecli
-    az cognitiveservices account project create \
-    --name {your-foundry-resource-name} \
-    --project-name {your-project-name} \
-    --location eastus
-    ```
----
+[!INCLUDE [create-project-cli](../default/includes/create-project-cli.md)]
 
 ## Create multiple projects on the same resource
 
@@ -260,8 +227,8 @@ To view settings for the project, use the `az cognitiveservices account connecti
 
 ```azurecli
 az cognitiveservices account connection show \
---name <my_project_name> \
---resource-group <my_resource_group>
+--name my-foundry-project \
+--resource-group my-foundry-rg
 ```
 
 ---

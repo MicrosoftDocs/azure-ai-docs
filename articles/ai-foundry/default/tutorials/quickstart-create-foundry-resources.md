@@ -52,55 +52,14 @@ Create a Foundry project to organize your work. The project contains models, age
 
 # [Azure CLI](#tab/azurecli)
 
-1. Create a resource group or use an existing one:
-
-   ```azurecli
-   az group create --name team-ai-rg --location eastus
-   ```
-
-1. Create the Foundry resource:
-
-   ```azurecli
-   az cognitiveservices account create \
-       --name team-ai-resource \
-       --resource-group team-ai-rg \
-       --kind AIServices \
-       --sku s0 \
-       --location eastus \
-       --allow-project-management
-   ```
-
-   The `--allow-project-management` flag enables project creation within this resource.
-
-1. Create the project:
-
-   ```azurecli
-   az cognitiveservices account project create \
-       --name team-ai-resource \
-       --resource-group team-ai-rg \
-       --project-name team-ai-project \
-       --location eastus
-   ```
-
-1. Verify the project was created:
-
-   ```azurecli
-   az cognitiveservices account project show \
-       --name team-ai-resource \
-       --resource-group team-ai-rg \
-       --project-name team-ai-project
-   ```
-
-   The output displays the project properties, including its resource ID.
-
-Reference: [az cognitiveservices account](/cli/azure/cognitiveservices/account)
+[!INCLUDE [create-project-cli](../includes/create-project-cli.md)]
 
 # [Foundry portal](#tab/portal)
 
 1. Go to [Microsoft Foundry](https://ai.azure.com).
 1. Sign in with your Azure account.
 1. Select the project name in the upper-left corner, and then select **Create new project**.
-1. Enter a project name, such as `team-ai-project`.
+1. Enter a project name, such as `my-foundry-project`.
 1. Select **Advanced options** to configure the resource group and location:
    - **Resource group**: Create a new resource group or select an existing one. If you create a new resource group, you can more easily manage the project and all its resources together.
    - **Location**: Select the region closest to your team.
