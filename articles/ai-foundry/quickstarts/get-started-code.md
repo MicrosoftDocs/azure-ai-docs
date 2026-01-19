@@ -59,7 +59,7 @@ The Microsoft Foundry SDK is available in multiple languages, including Python, 
 > This Quickstart focuses on **scenario-specific steps** like SDK installation, authentication, and running sample code.
 >
 
-[!INCLUDE [first-run](../includes/first-run-experience.md)]
+[!INCLUDE [first-run](../includes/first-run-experience-classic.md)]
 
 ## Get ready to code
 
