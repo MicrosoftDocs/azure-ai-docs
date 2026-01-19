@@ -10,7 +10,7 @@ ms.date: 11/06/2025
 ms.custom: include
 ---
 
-[!INCLUDE [agent-v2-switch](agent-v2-switch.md)]
+Make sure you install the correct preview/prerelease version of the packages as shown here.
 
 # [Python](#tab/python)
 
@@ -69,3 +69,5 @@ ms.custom: include
 No installation is necessary to use the Foundry portal.
 
 ---
+
+[!INCLUDE [agent-v2-switch](agent-v2-switch.md)]

@@ -16,7 +16,7 @@ In this quickstart, you use [!INCLUDE [foundry-link](../includes/foundry-link.md
 ## Prerequisites
 
 * A model deployed in Microsoft Foundry. If you don't have one, first complete [Quickstart: Set up Microsoft Foundry resources](../tutorials/quickstart-create-foundry-resources.md).
-* The [endpoint for the model](#find-your-endpoint).
+* The [endpoint for the model](../tutorials/quickstart-create-foundry-resources.md#get-your-project-connection-details).
 * Install the required language runtimes, global tools, and Visual Studio Code extensions as described in [Prepare your development environment](../../how-to/develop/install-cli-sdk.md).
 
 ## Set environment variables and get the code
@@ -50,12 +50,6 @@ MODEL_DEPLOYMENT_NAME="gpt-4.1-mini"
 ## Clean up resources
 
 [!INCLUDE [clean-up-resources](../includes/clean-up-resources.md)]
-
-## Find your endpoint 
-
-[!INCLUDE [find-endpoint](../includes/find-endpoint.md)]
- 
-Copy the endpoint to use in your [environment variable](#set-environment-variables-and-get-the-code).
 
 
 ## Next step
