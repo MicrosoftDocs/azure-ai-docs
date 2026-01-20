@@ -153,7 +153,11 @@ Here's an example response:
 
 ### [**REST**](#tab/rest)
 
-1. Use the [Documents - Index](/rest/api/searchservice/documents) REST API with a delete `@search.action` to remove it from the search index. Formulate a POST call specifying the index name and the `docs/index` endpoint. Make sure the body of the request includes the key of the document you want to delete.
+1. Use the [Documents - Index](/rest/api/searchservice/documents) REST API with a delete `@search.action` to remove it from the search index. 
+
+1. Formulate a POST call specifying the index name and the `docs/index` endpoint. 
+
+1. Make sure the body of the request includes the key of the document you want to delete.
 
     ```http
     POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/index?api-version=2025-09-01
@@ -279,7 +283,9 @@ Code sample: [IndexContentManagementExample.java](https://github.com/Azure/azure
 
 ### [**REST**](#tab/rest)
 
-1. Use the [Documents - Index](/rest/api/searchservice/documents) REST API with a delete `@search.action` to remove it from the search index. Formulate a POST call specifying the index name and the `docs/index` endpoint. Make sure the body of the request includes the keys of all of the documents you want to delete.
+1. Use the [Documents - Index](/rest/api/searchservice/documents) REST API with a delete `@search.action` to remove it from the search index. Formulate a POST call specifying the index name and the `docs/index` endpoint.
+
+1. Make sure the body of the request includes the keys of all of the documents you want to delete.
 
     ```http
     POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/index?api-version=2025-09-01

@@ -273,7 +273,7 @@ A successful connection prints the names of your indexes (or an empty list if no
 The default authority is Azure public cloud. Custom `audience` values for sovereign or specialized clouds include:
 
 * `https://search.azure.us` for Azure Government
-* `https://search.azure.cn` for Azure China
+* `https://search.azure.cn` for Azure operated by 21Vianet
 * `https://search.microsoftazure.de` for Azure Germany
 
 ---
