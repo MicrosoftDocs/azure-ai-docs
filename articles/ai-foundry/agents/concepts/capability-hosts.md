@@ -19,7 +19,7 @@ monikerRange: 'foundry-classic || foundry'
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 Capability hosts are sub-resources that you define at both the Microsoft Foundry account and Foundry project scopes. They specify where the Foundry Agent Service stores and processes your agent data, including:
-<!-- Tightened wording to reduce low-signal phrasing and improve readability. -->
+
 - **Conversation history (threads)** 
 - **File uploads** 
 - **Vector stores** 
@@ -35,7 +35,6 @@ Capability hosts allow you to **bring your own Azure resources** instead of usin
 ## How do capability hosts work?
 
 Creating capability hosts is optional. To use your own resources, you must create a capability host at both the account and project levels.
-<!-- Combined and tightened the conditional explanation into a single, clearer sentence. -->
 
 ### Default behavior (Microsoft-managed resources)
 If you don't create an account-level and project-level capability host, the Agent Service automatically uses Microsoft-managed Azure resources for:
@@ -47,7 +46,6 @@ If you don't create an account-level and project-level capability host, the Agen
 When you create capability hosts at both the account and project levels, all agent data is stored and processed using your own Azure resources within your subscription. This configuration is called a **standard agent setup**. For this set-up, all Foundry workspace resources should be in the same region as the VNet, including CosmosDB, Storage Account, AI Search, Foundry Account, Project, and Managed Identity.
 
 All Foundry workspace resources should be in the same region as the VNet, including Cosmos DB, Storage accounts, Azure AI Search, Foundry accounts, projects, and managed identities.
-<!-- Tightened list formatting and terminology for consistency with Microsoft style. -->
 
 > [!NOTE]
 > When it comes to **standard agent set-up** versus the **basic agent set-up** with managed agent data resources, we reccomend creating different Foundry resources for each set-up. If you want to create **standard agents** in Foundry, create your account and project capability host with the bring-your-own resources defined. If you want to create **basic agents** in Foundry, create your account and project capability host without bring-your-own resources defined. We do not reccomend mixing both agent set-ups within one Foundry account. 
@@ -67,7 +65,6 @@ When creating capability hosts, be aware of these constraints to avoid conflicts
 - **One capability host per scope**: Each account and each project can have only one active capability host. Creating a second capability host with a different name at the same scope results in a 409 Conflict.
 
 - **Configuration updates aren't supported**: To change the configuration, delete the existing capability host and recreate it.
-<!-- Removed the earlier standalone note and consolidated this guidance here to eliminate duplicate note blocks. -->
 
 ## Recommended setup 
 
@@ -80,7 +77,6 @@ A capability host must be configured with the following three properties at eith
 | `threadStorageConnections` | Stores agent definitions, conversation history, and chat threads | Azure Cosmos DB | `"my-cosmosdb-connection"` |
 | `vectorStoreConnections` | Handles vector storage for retrieval and search | Azure AI Search | `"my-ai-search-connection"` |
 | `storageConnections` | Manages file uploads and blob storage | Azure Storage account | `"my-storage-connection"` |
-<!-- Minor punctuation and capitalization adjustments for Microsoft style consistency. -->
 
 ### Optional property
 
@@ -102,7 +98,7 @@ PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
 **Project capability host**
 
 This configuration overrides service defaults and any account-level settings. All agents in this project use your specified resources:
-<!-- Tightened phrasing to remove low-signal future tense. -->
+
 ```http
 PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/capabilityHosts/{name}?api-version=2025-06-01
 
@@ -137,13 +133,11 @@ PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
 ```
 > [!NOTE]
 > All Foundry projects inherit these settings. Override specific settings at the project level as needed.
-<!-- Tightened inheritance explanation and removed redundant phrasing. -->
 
 ## Delete capability hosts
 
 > [!WARNING]
 > Deleting a capability host affects all agents that depend on it. Make sure you understand the impact before proceeding. For example, if you delete both the project-level and account-level capability hosts, agents in the project lose access to the files, threads, and vector stores they previously used.
-<!-- Tightened warning language while preserving intent. -->
 
 ### Delete an account-level capability host
 
@@ -160,7 +154,6 @@ DELETE https://management.azure.com/subscriptions/{subscriptionId}/resourceGroup
 ## Troubleshooting
 
 If you experience issues when creating capability hosts, this section provides solutions to common problems and errors.
-<!-- Minor tightening for concision. -->
 
 ### HTTP 409 Conflict errors
 
@@ -184,7 +177,6 @@ If you experience issues when creating capability hosts, this section provides s
 1. **Check existing capability hosts** - Query the scope to see what already exists.
 2. **Use consistent naming** - Use the same name for all requests at the same scope.
 3. **Review requirements** - Determine whether the existing capability host meets your needs.
-<!-- Tightened list items for clarity and parallelism. -->
 
 **Validation steps:**
 ```http
@@ -215,7 +207,6 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
 1. **Wait for the operation to complete** - Check the status of ongoing operations.
 2. **Monitor progress** - Use the operations API to track completion.
 3. **Implement retry logic** - Add exponential backoff for temporary conflicts.
-<!-- Clarified operation types and tightened phrasing. -->
 
 **Operation monitoring:**
 ```http
@@ -229,7 +220,6 @@ Verify the current state before making changes:
 - Query existing capability hosts in the target scope.
 - Check for ongoing operations.
 - Understand the current configuration.
-<!-- Tightened imperative phrasing. -->
 
 #### 2. Implement retry logic with exponential backoff
 ```csharp
@@ -261,22 +251,18 @@ catch (HttpRequestException ex) when (ex.Message.Contains("409"))
     }
 }
 ```
-<!-- Minor comment and punctuation adjustments for clarity. -->
 
 #### 3. Understand idempotent behavior
 The system supports idempotent create requests:
 - **Same name + same configuration** → Returns the existing resource (200 OK).
 - **Same name + different configuration** → Returns 400 Bad Request.  
 - **Different name** → Returns 409 Conflict.
-<!-- Added consistent punctuation. -->
 
 #### 4. Configuration change workflow
 Because updates aren't supported, use this sequence for configuration changes:
 1. Delete the existing capability host.
 2. Wait for deletion to complete.  
 3. Create a new capability host with the desired configuration.
-<!-- Tightened introductory clause. -->
-
 
 ## Next steps
 - Learn more about the [Standard Agent Setup](standard-agent-setup.md) 

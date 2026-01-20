@@ -38,9 +38,7 @@ Deploying models to managed compute deploys model weights to dedicated virtual m
 
 You manage the infrastructure for these managed compute resources. Azure data, privacy, and security commitments apply. To learn more about Azure compliance offerings applicable to Foundry, see the [Azure Compliance Offerings page](https://servicetrust.microsoft.com/DocumentPage/7adf2d9e-d7b5-4e71-bad8-713e6a183cf3).
 
-Although containers for **Models Sold Directly by Azure** *(only for models sold directly by Azure)* are scanned for vulnerabilities that could exfiltrate data, not all models available through the model catalog are scanned.  
-<!-- Inline qualifier added to clarify that vulnerability scanning applies only to models sold directly by Azure. -->
-To reduce the risk of data exfiltration, you can [help protect your deployment by using virtual networks](configure-managed-network.md). You can also use [Azure Policy](../../ai-services/policy-reference.md) to regulate the models that your users can deploy.
+Although containers for **Models Sold Directly by Azure** are scanned for vulnerabilities that could exfiltrate data, not all models available through the model catalog are scanned. To reduce the risk of data exfiltration, you can [help protect your deployment by using virtual networks](configure-managed-network.md). You can also use [Azure Policy](../../ai-services/policy-reference.md) to regulate the models that your users can deploy.
 
 :::image type="content" source="../media/explore/subscription-service-cycle.png" alt-text="Diagram that shows the platform service life cycle." lightbox="../media/explore/subscription-service-cycle.png":::
 
@@ -54,8 +52,7 @@ Microsoft acts as the data processor for prompts and outputs sent to, and genera
 
 Models are stateless, and they don't store any prompts or outputs. If content filtering is enabled, the Azure AI Content Safety service screens prompts and outputs for certain categories of harmful content in real time. [Learn more about how Azure AI Content Safety processes data](/azure/ai-foundry/responsible-ai/content-safety/data-privacy).
 
-Prompts and outputs are processed within the geography specified during deployment *(processed within the deployment geography)*, but they might be processed between regions within the geography for operational purposes. Operational purposes include performance and capacity management.  
-<!-- Inline qualifier added to clarify the operational processing scope for serverless API deployments. -->
+Prompts and outputs are processed within the geography specified during deployment, but they might be processed between regions within the geography for operational purposes. Operational purposes include performance and capacity management.
 
 :::image type="content" source="../media/explore/model-publisher-cycle.png" alt-text="Diagram that shows the model publisher service cycle." lightbox="../media/explore/model-publisher-cycle.png":::
 

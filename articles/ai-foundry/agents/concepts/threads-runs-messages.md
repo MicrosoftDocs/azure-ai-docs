@@ -43,7 +43,6 @@ Threads are conversation sessions between an agent and a user. They store messag
 ## Messages
 
 Messages are the individual pieces of communication within a thread. They can be created by either the agent or the user and can include text, or other files. Messages are stored as a list within the thread, allowing for a structured and organized conversation flow.
-<!-- Removed the duplicated statement about the maximum number of messages per thread to eliminate redundancy with the Threads section. -->
 
 ## Runs
 

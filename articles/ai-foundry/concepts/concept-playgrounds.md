@@ -24,7 +24,6 @@ ms.custom: build-2025
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 As you build with state-of-the-art models and create agents and apps with them, Microsoft Foundry playgrounds provide an on-demand, zero-setup environment designed for rapid prototyping, API exploration, and technical validation (for example, testing max_tokens limits, latency under streaming, or tool-calling behavior) before you commit a single line of code to your production codebase.
-<!-- Added concrete validation examples to increase semantic density and clarify typical playground use cases. -->
 
 ## Highlights of the Foundry playgrounds experience
 
@@ -55,7 +54,7 @@ Some highlights of the Foundry playgrounds experience include:
 Modern development involves working across multiple systems—APIs, services, SDKs, and data models—often before you're ready to fully commit to a framework, write tests, or spin up infrastructure. As the complexity of software ecosystems increases, the need for safe, lightweight environments to validate ideas becomes critical. The playgrounds are built to meet this need.
 
 The Foundry playgrounds provide ready-to-use environments with all the necessary tools and features preinstalled (for example, prewired REST endpoints, API keys, and default parameter sets such as temperature and top_p), so you don't need to set up projects, manage dependencies, or solve compatibility issues.
-<!-- Added concrete examples of preinstalled configuration to clarify what “ready-to-use” means in practice. -->
+
 The playgrounds can *accelerate developer velocity* by validating API behavior, going quicker to code, reducing cost of experimentation and time to ship, accelerating integration, optimizing prompts, and more.
 
 Playgrounds also *provide clarity quickly* when you have questions, by providing answers in seconds—rather than hours—and allowing you to test and validate ideas before you commit to building at scale. For example, the playgrounds are ideal for quickly answering questions like:
@@ -107,7 +106,7 @@ Available on the multilingual sample code samples, **Open in VS Code for the Web
 ## Agents playground
 
 The agents playground lets you explore, prototype, and test agents without running any code, such as configuring a tool-enabled agent that uses web search, file search, or code interpreter against a gpt-4o-mini deployment.
-<!-- Added a concrete agent configuration example to clarify typical agent playground usage. -->
+
 From this page, you can quickly iterate and experiment with new ideas. 
 
 ::: moniker range="foundry-classic"
@@ -137,7 +136,6 @@ To learn more about the chat playground, see the [Quickstart: Get answers in the
 ## Model playground
 
 When you deploy a model in the [!INCLUDE [foundry-link](../default/includes/foundry-link.md)] portal, you immediately land on its playground. The model playground is an interactive experience designed for developers to test and experiment with the latest models from providers like Azure Open AI, DeepSeek, xAI, and Meta. The playground gives you full control over model behavior, safety, and deployment so that you can tune system prompts, compare model outputs in real time, or integrate tools like web search and code execution (for example, enabling code interpreter with uploaded CSV files or adjusting max_tokens for long-form responses).
-<!-- Added concrete configuration examples to make model controls more tangible. -->
 
 The playground is designed for fast iteration and production readiness. It supports everything from prototyping to performance benchmarking. The playground prepares you to use your model in a production workflow, easily upgrade your model as an agent, and continue to prototype in the agent playground with additional tools, knowledge, and memory before deploying as an agentic web application. 
 
@@ -400,7 +398,7 @@ When you use the video playground to plan your production workload, explore and 
 ## Images playground
 
 The images playground is ideal for developers who build image generation flows, such as generating 1024×1024 marketing images from a single text prompt or performing inpainting on a selected region using gpt-image-1.
-<!-- Added concrete prompt and output examples to clarify typical image playground scenarios. -->
+
 This playground is a full-featured, controlled environment for high-fidelity experiments designed for model-specific APIs to generate and edit images.
 
 ::: moniker range="foundry-classic"
