@@ -260,7 +260,7 @@ A script example showing query key usage can be found at [Create or delete query
 
 Use [Create Query Keys](/rest/api/searchmanagement/query-keys/create) in the Management REST API.
 
-You must have a [valid role assignment](#permissions-to-view-or-manage-keys) to create or manage API keys. See [Manage your Azure AI Search service with REST APIs](search-manage-rest.md) for guidance on meeting role requirements using the REST APIs.
+You must have a valid role assignment to create or manage API keys. See [Manage your Azure AI Search service with REST APIs](search-manage-rest.md) for guidance on meeting role requirements using the REST APIs.
 
 ```rest
 POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Search/searchServices/{searchServiceName}/createQueryKey/{name}?api-version=2025-05-01
