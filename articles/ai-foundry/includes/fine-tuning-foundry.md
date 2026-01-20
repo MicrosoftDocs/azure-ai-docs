@@ -168,6 +168,9 @@ A checkpoint is a fully functional version of a model that can be both deployed 
 
 ## Deploy the fine-tuned model
 
+> [!IMPROTANT]
+> To deploy models, you need to be assigned as `Azure AI owner` role or any role with `Microsfot.CognitiveServices/accounts/deployments/write" action.
+
 When you're satisfied with the metrics from your fine-tuning job, you can deploy the model by selecting the **Deploy** button on the details page and then configuring your deployment settings.
 
 For more information, see the [fine-tuning deployment guide](../openai/how-to/fine-tuning-deploy.md?tabs=portal).
