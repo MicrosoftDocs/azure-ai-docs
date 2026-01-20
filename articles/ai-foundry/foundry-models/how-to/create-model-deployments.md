@@ -130,7 +130,7 @@ You can deploy the same model multiple times if needed as long as it's under a d
 
 ## Use the model
 
-Deployed models in can be consumed using the [Endpoints for Microsoft Foundry Models](../concepts/endpoints.md) for the resource. When constructing your request, indicate the parameter `model` and insert the model deployment name you have created. You can programmatically get the URI for the inference endpoint using the following code:
+Deployed models can be consumed using the [Endpoints for Microsoft Foundry Models](../concepts/endpoints.md) for the resource. When constructing your request, indicate the parameter `model` and insert the model deployment name you have created. You can programmatically get the URI for the inference endpoint using the following code:
 
 __Inference endpoint__
 
