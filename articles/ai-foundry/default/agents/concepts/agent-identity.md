@@ -16,7 +16,7 @@ ms.custom: pilot-ai-workflow-jan-2026
 
 # Agent identity concepts in Microsoft Foundry
 
-An *agent identity* is a specialized identity type in [Microsoft Entra ID](https://learn.microsoft.com/entra/fundamentals/what-is-entra) that's designed specifically for AI agents. It provides a standardized framework for governing, authenticating, and authorizing AI agents across Microsoft services. This framework enables agents to securely access resources, interact with users, and communicate with other systems.
+An *agent identity* is a specialized identity type in [Microsoft Entra ID](/entra/fundamentals/what-is-entra) that's designed specifically for AI agents. It provides a standardized framework for governing, authenticating, and authorizing AI agents across Microsoft services. This framework enables agents to securely access resources, interact with users, and communicate with other systems.
 
 Microsoft Foundry automatically provisions and manages agent identities throughout the agent lifecycle. This integration simplifies permission management while maintaining security and auditability as agents move from development to production.
 
@@ -24,8 +24,8 @@ This article explains how agent identities relate to Microsoft Entra ID objects,
 
 ## Prerequisites
 
-* Understanding of [Microsoft Entra ID and OAuth](https://learn.microsoft.com/entra/architecture/auth-sync-overview) authentication
-* Familiarity with [Azure role-based access control (RBAC)](https://learn.microsoft.com/azure/role-based-access-control/overview)
+* Understanding of [Microsoft Entra ID and OAuth](/entra/architecture/auth-sync-overview) authentication
+* Familiarity with [Azure role-based access control (RBAC)](/azure/role-based-access-control/overview)
 * Basic knowledge of AI agents and their runtime requirements
 
 For Foundry-specific RBAC roles and scopes, see [Azure role-based access control in Foundry](../../../concepts/rbac-foundry.md).
@@ -262,7 +262,7 @@ In this experience, you can enable built-in security controls, including:
 * **Network access**: Control network-based access for agents.
 * **Governance**: Manage expiration, owners, and sponsors for agent identities.
 
-For more information about Microsoft Entra Agent ID features, see [Microsoft Entra documentation](https://learn.microsoft.com/entra/fundamentals/what-is-entra).
+For more information about Microsoft Entra Agent ID features, see [Microsoft Entra documentation](/entra/fundamentals/what-is-entra).
 
 ## Related content
 
