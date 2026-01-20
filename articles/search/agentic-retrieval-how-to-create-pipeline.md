@@ -265,7 +265,7 @@ print(f"Documents uploaded to index '{index_name}'")
 
 A knowledge source is a reusable reference to source data. The following code creates a knowledge source that targets the index you previously created.
 
-`source_data_fields` specifies which index fields are included in citation references. Our example includes only human-readable fields to avoid lengthy, uninterpretable embeddings in responses.
+`source_data_fields` specifies which index fields are included in citation references. This example includes only human-readable fields to avoid lengthy, uninterpretable embeddings in responses.
 
 For more information about this step, see [Create a search index knowledge source](agentic-knowledge-source-how-to-search-index.md).
 

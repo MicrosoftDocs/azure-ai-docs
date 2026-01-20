@@ -30,7 +30,7 @@ The quickstart assumes the following is available on your computer:
 
 1. Create a `pom.xml` file with required dependencies.
 
-   :::code language="xml" source="~/azure-search-java-samples/semantic-ranking-quickstart/pom.xml" :::
+   :::code language="xml" source="~/azure-search-java-samples/quickstart-semantic-ranking/pom.xml" :::
 
 1. Compile the project to resolve the dependencies.
 
@@ -61,7 +61,7 @@ If you signed in to the [Azure portal](https://portal.azure.com), you're signed 
 
 Create a `SearchConfig.java` file in the `src/main/java/com/azure/search/quickstart` directory to read the properties file and hold the configuration values and authentication credential.
 
-:::code language="java" source="~/azure-search-java-samples/semantic-ranking-quickstart/src/main/java/com/azure/search/quickstart/SearchConfig.java" :::
+:::code language="java" source="~/azure-search-java-samples/quickstart-semantic-ranking/src/main/java/com/azure/search/quickstart/SearchConfig.java" :::
 
 ## Get the index schema
 
@@ -69,7 +69,7 @@ In this section, you get settings for the existing `hotels-sample-index` index o
 
 1. Create a `GetIndexSettings.java` file in the `src/main/java/com/azure/search/quickstart` directory.
 
-   :::code language="java" source="~/azure-search-java-samples/semantic-ranking-quickstart/src/main/java/com/azure/search/quickstart/GetIndexSettings.java" :::
+   :::code language="java" source="~/azure-search-java-samples/quickstart-semantic-ranking/src/main/java/com/azure/search/quickstart/GetIndexSettings.java" :::
 
 1. Compile and run the code.
 
@@ -83,7 +83,7 @@ In this section, you get settings for the existing `hotels-sample-index` index o
 
 1. Create an `UpdateIndexSettings.java` file in the `src/main/java/com/azure/search/quickstart` directory to add a semantic configuration to the existing `hotels-sample-index` index on your search service.
 
-   :::code language="java" source="~/azure-search-java-samples/semantic-ranking-quickstart/src/main/java/com/azure/search/quickstart/UpdateIndexSettings.java" :::
+   :::code language="java" source="~/azure-search-java-samples/quickstart-semantic-ranking/src/main/java/com/azure/search/quickstart/UpdateIndexSettings.java" :::
 
 1. Compile and run the code.
 
@@ -99,7 +99,7 @@ After the `hotels-sample-index` index has a semantic configuration, you can run 
 
 1. Create a `SemanticQuery.java` file in the `src/main/java/com/azure/search/quickstart` directory to create a semantic query of the index.
 
-   :::code language="java" source="~/azure-search-java-samples/semantic-ranking-quickstart/src/main/java/com/azure/search/quickstart/SemanticQuery.java" :::
+   :::code language="java" source="~/azure-search-java-samples/quickstart-semantic-ranking/src/main/java/com/azure/search/quickstart/SemanticQuery.java" :::
 
 1. Compile and run the code.
 
@@ -115,7 +115,7 @@ Optionally, you can add captions to extract portions of the text and apply hit h
 
 1. Create a `SemanticQueryWithCaptions.java` file in the `src/main/java/com/azure/search/quickstart` directory.
 
-   :::code language="java" source="~/azure-search-java-samples/semantic-ranking-quickstart/src/main/java/com/azure/search/quickstart/SemanticQueryWithCaptions.java" :::
+   :::code language="java" source="~/azure-search-java-samples/quickstart-semantic-ranking/src/main/java/com/azure/search/quickstart/SemanticQueryWithCaptions.java" :::
 
 1. Compile and run the code.
 
@@ -144,7 +144,7 @@ To produce a semantic answer, the question and answer must be closely aligned, a
 
 1. Create a `SemanticAnswer.java` file in the `src/main/java/com/azure/search/quickstart` directory.
 
-   :::code language="java" source="~/azure-search-java-samples/semantic-ranking-quickstart/src/main/java/com/azure/search/quickstart/SemanticAnswer.java" :::
+   :::code language="java" source="~/azure-search-java-samples/quickstart-semantic-ranking/src/main/java/com/azure/search/quickstart/SemanticAnswer.java" :::
 
 1. Compile and run the code.
 

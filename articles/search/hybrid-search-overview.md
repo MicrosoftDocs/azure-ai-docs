@@ -13,17 +13,17 @@ ms.date: 11/21/2025
 
 # Hybrid search using vectors and full text in Azure AI Search
 
-A hybrid search is a single query request configured for both full-text and vector queries. It executes against a search index that contains searchable, plain-text content and generated embeddings. For query purposes, hybrid search:
+Hybrid search is a single query request configured for both full-text and vector queries. It runs against a search index that contains searchable, plain-text content and generated embeddings. For query purposes, hybrid search:
 
 + Is a single query request that includes both `search` and `vectors` query parameters.
-+ Executes full-text search and vector search in parallel.
-+ Merges results from each query using [Reciprocal Rank Fusion (RRF)](hybrid-search-ranking.md).
++ Runs full-text search and vector search in parallel.
++ Merges results from each query by using [Reciprocal Rank Fusion (RRF)](hybrid-search-ranking.md).
 
 This article explains the concepts, benefits, and limitations of hybrid search. Links at the end provide usage instructions and next steps. You can also watch the [embedded video](#why-use-hybrid-search) for an explanation of how hybrid retrieval contributes to high-quality generative search applications.
 
 ## Why use hybrid search?
 
-Hybrid search combines the strengths of vector search and keyword search. The advantage of vector search is finding information that's conceptually similar to your search query, even if there are no keyword matches in the inverted index. The advantage of keyword or full-text search is precision, with the ability to apply optional semantic ranking that improves the quality of the initial results. Some scenarios, such as querying over product codes, highly specialized jargon, dates, and people's names, can perform better with keyword search because it can identify exact matches.
+Hybrid search combines the strengths of vector search and keyword search. The advantage of vector search is finding information that's conceptually similar to your search query, even if there are no keyword matches in the inverted index. The advantage of keyword or full-text search is precision, with the ability to apply optional semantic ranking that improves the quality of the initial results. Some scenarios, such as querying over product codes, highly specialized jargon, dates, and people's names, perform better with keyword search because it can identify exact matches.
 
 Benchmark testing on real-world and benchmark datasets indicates that hybrid retrieval with semantic ranker offers significant benefits in search relevance.
 
@@ -33,7 +33,7 @@ The following video explains how hybrid retrieval gives you optimal grounding da
 
 ## How does hybrid search work?
 
-In a search index, vector fields containing embeddings coexist with textual and numerical fields, allowing you to formulate hybrid queries that execute simultaneously. Hybrid queries take advantage of existing text-based functionality like filtering, faceting, sorting, scoring profiles, and [semantic ranking](semantic-search-overview.md) on your text fields, while executing a similarity search against vectors in a single search request.
+In a search index, vector fields containing embeddings coexist with textual and numerical fields. You can formulate hybrid queries that execute simultaneously. Hybrid queries take advantage of existing text-based functionality like filtering, faceting, sorting, scoring profiles, and [semantic ranking](semantic-search-overview.md) on your text fields, while executing a similarity search against vectors in a single search request.
 
 Hybrid search combines results from both full-text and vector queries, which use different ranking functions such as BM25 for text, and Hierarchical Navigable Small World (HNSW) and exhaustive K Nearest Neighbors (eKNN) for vectors. An [RRF](hybrid-search-ranking.md) algorithm merges the results. The query response provides just one result set, using RRF to rank the unified results.
 
@@ -83,7 +83,7 @@ content-type: application/JSON
 **Key points:**
 
 + `search` specifies a single full-text search query.
-+ `vectorQueries` specifies vector queries, which can be multiple, targeting multiple vector fields. If the embedding space includes multi-lingual content, vector queries can find the match with no language analyzers or translation required. If you're using semantic ranker, set `k` to 50 to maximize its inputs.
++ `vectorQueries` specifies vector queries, which can be multiple, targeting multiple vector fields. If the embedding space includes multilingual content, vector queries can find the match with no language analyzers or translation required. If you're using semantic ranker, set `k` to 50 to maximize its inputs.
 + `select` specifies which fields to return in results, which should be human-readable text fields if you're showing them to users or sending them to a large language model (LLM).
 + `filters` can specify geospatial search or other inclusion and exclusion criteria, such as whether parking is included. The geospatial query in this example finds hotels within a 300-kilometer radius of Washington D.C. You can apply the filter at the beginning or end of query processing. If you're using semantic ranker, you probably want post-filtering as the last step, but you should test to confirm which behavior is best for your queries.
 + `facets` can be used to compute facet buckets over results that are returned from hybrid queries.

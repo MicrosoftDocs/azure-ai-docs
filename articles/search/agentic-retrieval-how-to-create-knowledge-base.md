@@ -2,11 +2,11 @@
 title: Create a Knowledge Base
 titleSuffix: Azure AI Search
 description: Learn how to create a knowledge base for agentic retrieval workloads in Azure AI Search.
-author: HeidiSteen
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 12/12/2025
+ms.date: 01/15/2026
 zone_pivot_groups: agentic-retrieval-pivots
 ---
 
