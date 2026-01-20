@@ -315,7 +315,7 @@ You can configure web search behavior when you create your agent.
 
 ### Options
 
-- `user_location`: Helps web search return results relevant to a user’s geography. Use an approximate location when you want results localized to a city, region, or country.
+- `user_location`: Helps web search return results relevant to a user’s geography. Use an approximate location when you want results localized to a country/region/city.
 - `search_context_size`: Controls how much context window space to use for the search. Supported values are `low`, `medium`, and `high`. The default is `medium`.
 
 ## Security and privacy considerations
