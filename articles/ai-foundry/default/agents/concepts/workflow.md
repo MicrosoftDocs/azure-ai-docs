@@ -150,44 +150,44 @@ For advanced options and comprehensive information about agent creation, go to t
   > [!IMPORTANT]
   > Don't include secrets (passwords, keys, tokens) in JSON schemas, prompts, or saved workflow variables.
 
-    ```json
-    {
-      "name": "math_response",
-      "schema": {
-        "type": "object",
-        "properties": {
-          "steps": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "explanation": {
-                  "type": "string"
-                },
-                "output": {
-                  "type": "string"
-                }
+  ```json
+  {
+    "name": "math_response",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "explanation": {
+                "type": "string"
               },
-              "required": [
-                "explanation",
-                "output"
-              ],
-              "additionalProperties": false
-            }
-          },
-          "final_answer": {
-            "type": "string"
+              "output": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "explanation",
+              "output"
+            ],
+            "additionalProperties": false
           }
         },
-        "additionalProperties": false,
-        "required": [
-          "steps",
-          "final_answer"
-        ]
+        "final_answer": {
+          "type": "string"
+        }
       },
-      "strict": true
-    }
-    ```
+      "additionalProperties": false,
+      "required": [
+        "steps",
+        "final_answer"
+      ]
+    },
+    "strict": true
+  }
+  ```
 
 1. Select **Action settings**. Then select **Save output json_object/json_schema as**.
 
