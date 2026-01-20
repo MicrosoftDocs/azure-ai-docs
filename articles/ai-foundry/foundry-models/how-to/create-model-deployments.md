@@ -2,12 +2,13 @@
 title: Deploy models using Azure CLI and Bicep
 titleSuffix: Microsoft Foundry
 description: Learn how to add and configure Microsoft Foundry Models in your Foundry resource for use in inferencing applications using Azure CLI and Bicep templates.
+#customer intent: As an AI practitioner, I want to configure model deployments with Azure CLI or Bicep templates so that I can automate and standardize the deployment process.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
 ms.date: 01/20/2026
 ms.custom: ignite-2024, github-universe-2024, dev-focus
-author: msakande   
+author: msakande
 ms.author: mopeakande
 recommendations: false
 zone_pivot_groups: azure-ai-create-deployment
@@ -23,17 +24,17 @@ ai-usage: ai-assisted
 
 [!INCLUDE [migrate-model-inference-to-v1-openai](../../includes/migrate-model-inference-to-v1-openai.md)]
 
-In this article, you learn how to add a new model deployment to a Foundry Models endpoint. The deployment is then available for inference in your Foundry resource by specifying the deployment name in your requests.
+In this article, you'll learn how to add a new model deployment to a Foundry Models endpoint. The deployment is available for inference in your Foundry resource when you specify the deployment name in your requests.
 
 ## Prerequisites
 
-To complete this article, you need:
+To complete this article, you need the following:
 
-* An Azure subscription. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Foundry Models](quickstart-github-models.md) if that's your case.
+* An Azure subscription. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. For more information, see [Upgrade from GitHub Models to Foundry Models](quickstart-github-models.md).
 
-* A Foundry project. This kind of project is managed under a Foundry resource (formerly known as Azure AI Services resource). If you don't have a Foundry project, see [Create a project for Microsoft Foundry](../../how-to/create-projects.md).
+* A Foundry project. This project type is managed under a Foundry resource (formerly known as Azure AI Services resource). If you don't have a Foundry project, see [Create a project for Microsoft Foundry](../../how-to/create-projects.md).
 
-* Azure role-based access control (RBAC) permissions to create and manage deployments. You need the **Cognitive Services Contributor** role or equivalent permissions on the Foundry resource.
+* Azure role-based access control (RBAC) permissions to create and manage deployments. You need the **Cognitive Services Contributor** role or equivalent permissions for the Foundry resource.
 
 * [Foundry Models from partners and community](../concepts/models-from-partners.md) require access to **Azure Marketplace**. Ensure you have the [permissions required to subscribe to model offerings](../how-to/configure-marketplace.md). [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md) don't have this requirement.
 
@@ -45,20 +46,20 @@ To complete this article, you need:
     az extension add -n cognitiveservices
     ```
 
-* Some of the commands in this tutorial use the `jq` tool, which might not be installed on your system. For installation instructions, see [Download `jq`](https://stedolan.github.io/jq/download/).
+* Some commands in this tutorial use the `jq` tool, which might not be installed on your system. For installation instructions, see [Download `jq`](https://stedolan.github.io/jq/download/).
 
 * Identify the following information:
 
-  * Your Azure subscription ID.
+  * Your Azure subscription ID
 
-  * Your Foundry Tools resource name.
+  * Your Foundry Tools resource name
 
-  * The resource group where you deployed the Foundry Tools resource.
+  * The resource group where you deployed the Foundry Tools resource
     
     
 ## Add models
 
-To add a model, first identify the model that you want to deploy. You can query the available models as follows:
+To add a model, first identify the model that you want to deploy. Query the available models as follows:
 
 1. Sign in to your Azure subscription.
 
@@ -80,7 +81,7 @@ To add a model, first identify the model that you want to deploy. You can query 
     location="eastus2"
     ```
 
-1. If you didn't create a Foundry Tools account yet, create one.
+1. If you haven't created a Foundry Tools account yet, create one.
 
     ```azurecli
     az cognitiveservices account create -n $accountName -g $resourceGroupName --custom-domain $accountName --location $location --kind AIServices --sku S0
@@ -88,7 +89,7 @@ To add a model, first identify the model that you want to deploy. You can query 
 
     Reference: [az cognitiveservices account](/cli/azure/cognitiveservices/account)
 
-1. Check which models are available to you and under which SKU. SKUs, also known as [deployment types](../concepts/deployment-types.md), define how Azure infrastructure is used to process requests. Models might offer different deployment types. The following command lists all the model definitions available:
+1. Check which models are available to you and under which SKU. SKUs, also known as [deployment types](../concepts/deployment-types.md), define how Azure infrastructure processes requests. Models might offer different deployment types. The following command lists all the model definitions available:
     
     ```azurecli
     az cognitiveservices account list-models \
@@ -111,7 +112,7 @@ To add a model, first identify the model that you want to deploy. You can query 
 
     Reference: [az cognitiveservices account list-models](/cli/azure/cognitiveservices/account#az-cognitiveservices-account-list-models)
 
-1. Identify the model you want to deploy. You need the properties `name`, `format`, `version`, and `sku`. The property `format` indicates the provider offering the model. You might also need capacity depending on the type of deployment.
+1. Identify the model you want to deploy. You need the properties `name`, `format`, `version`, and `sku`. The property `format` indicates the provider offering the model. Depending on the type of deployment, you might also need capacity.
 
 1. Add the model deployment to the resource. The following example adds `Phi-3.5-vision-instruct`:
 
@@ -131,21 +132,21 @@ To add a model, first identify the model that you want to deploy. You can query 
 
 1. The model is ready to use.
 
-You can deploy the same model multiple times if needed as long as it's under a different deployment name. This capability might be useful if you want to test different configurations for a given model, including content filters.
+You can deploy the same model multiple times if needed as long as it's under a different deployment name. This capability is useful if you want to test different configurations for a given model, including content filters.
 
 ## Use the model
 
-Deployed models can be consumed using the [Endpoints for Foundry Models](../concepts/endpoints.md) for the resource. When constructing your request, indicate the parameter `model` and insert the model deployment name you have created. You can programmatically get the URI for the inference endpoint using the following code:
+You can consume deployed models using the [Endpoints for Foundry Models](../concepts/endpoints.md) for the resource. When you construct your request, specify the parameter `model` and insert the model deployment name you created. You can programmatically get the URI for the inference endpoint by using the following code:
 
-__Inference endpoint__
+**Inference endpoint**
 
 ```azurecli
 az cognitiveservices account show  -n $accountName -g $resourceGroupName | jq '.properties.endpoints["Azure AI Model Inference API"]'
 ```
 
-To make requests to the Foundry Models endpoint, append the route `models`, for example `https://<resource>.services.ai.azure.com/models`. You can see the API reference for the endpoint at [Azure AI Model Inference API reference page](https://aka.ms/azureai/modelinference).
+To make requests to the Foundry Models endpoint, append the route `models`. For example: `https://<resource>.services.ai.azure.com/models`. You can see the API reference for the endpoint at [Azure AI Model Inference API reference page](https://aka.ms/azureai/modelinference).
 
-__Inference keys__
+**Inference keys**
 
 ```azurecli
 az cognitiveservices account keys list  -n $accountName -g $resourceGroupName
@@ -163,7 +164,7 @@ You can see all the deployments available using the CLI:
 
     Reference: [az cognitiveservices account deployment list](/cli/azure/cognitiveservices/account/deployment#az-cognitiveservices-account-deployment-list)
 
-2. You can see the details of a given deployment:
+1. You can see the details of a given deployment:
 
     ```azurecli
     az cognitiveservices account deployment show \
@@ -174,7 +175,7 @@ You can see all the deployments available using the CLI:
 
     Reference: [az cognitiveservices account deployment show](/cli/azure/cognitiveservices/account/deployment#az-cognitiveservices-account-deployment-show)
 
-3. You can delete a given deployment as follows:
+1. You can delete a given deployment as follows:
 
     ```azurecli
     az cognitiveservices account deployment delete \
@@ -193,18 +194,18 @@ You can see all the deployments available using the CLI:
 
 * Identify the following information:
 
-  * Your Azure subscription ID.
+  * Your Azure subscription ID
 
-  * Your Foundry resource (formerly known as Azure AI Services resource) name.
+* Your Foundry resource (formerly known as Azure AI Services resource) name
 
-  * The resource group where the Foundry resource is deployed.
+* The resource group where the Foundry resource is deployed
 
-  * The model name, provider, version, and SKU you want to deploy. You can use the Foundry portal or the Azure CLI to find this information. In this example, you deploy the following model:
+* The model name, provider, version, and SKU you want to deploy. You can use the Foundry portal or the Azure CLI to find this information. In this example, you deploy the following model:
 
-    * **Model name:**: `Phi-3.5-vision-instruct`
-    * **Provider**: `Microsoft`
-    * **Version**: `2`
-    * **Deployment type**: Global standard
+  * **Model name**: `Phi-3.5-vision-instruct`
+  * **Provider**: `Microsoft`
+  * **Version**: `2`
+  * **Deployment type**: Global standard
 
 ## Set up the environment
 
@@ -248,7 +249,7 @@ cd azureai-model-inference-bicep/infra
 ## Use the model
 
 > [!NOTE]
-> This section is identical for both CLI and Bicep approaches.
+> This section is identical for both the CLI and Bicep approaches.
 
 Deployed models can be consumed using the [Endpoints for Foundry Models](../concepts/endpoints.md) for the resource. When constructing your request, indicate the parameter `model` and insert the model deployment name you have created. You can programmatically get the URI for the inference endpoint using the following code:
 
@@ -271,4 +272,4 @@ az cognitiveservices account keys list  -n $accountName -g $resourceGroupName
 
 ## Next step
 
-- [How to generate text responses with Foundry Models](generate-responses.md)
+[How to generate text responses with Foundry Models](generate-responses.md)
