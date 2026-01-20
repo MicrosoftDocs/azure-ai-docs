@@ -61,17 +61,11 @@ For details about supported authentication approaches, see [Agent2Agent (A2A) au
 ### Create the connection in the Foundry portal
 
 1. [!INCLUDE [foundry-sign-in](../../../includes/foundry-sign-in.md)]
-
 1. Select **Tools**.
-
 1. Select **Connect tool**.
-
 1. Select the **Custom** tab.
-
 1. Select **Agent2Agent (A2A)**, and then select **Create**.
-
 1. Enter a **Name** and an **A2A Agent Endpoint**.
-
 1. Under **Authentication**, select an authentication method. For key-based authentication, set the credential name (for example, `x-api-key`) and the corresponding secret value.
 
 ### Get the connection identifier for code
