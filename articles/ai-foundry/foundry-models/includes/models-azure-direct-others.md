@@ -21,7 +21,7 @@ The Black Forest Labs (BFL) collection of image generation models includes FLUX.
 You can run these models through the BFL service provider API and through the [images/generations and images/edits endpoints](../../openai/reference-preview.md). 
 
 > [!NOTE]
-> See the [GitHub repo](https://github.com/LazaUK/AIFoundry-BlackForestLabs-FLUX) for samples that use FLUX image generation models from Black Forest Labs in Microsoft Foundry. The [Image Generation with FLUX models](https://github.com/LazaUK/AIFoundry-BlackForestLabs-FLUX/blob/main/AIFoundry_ImageGeneration_FLUX.ipynb) Jupyter notebook showcases how to create high-quality images from textual prompts.
+> See the [GitHub sample for image generation with FLUX models in Microsoft Foundry](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/black-forest-labs/flux/README.md) and its associated [notebook](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/black-forest-labs/flux/AIFoundry_ImageGeneration_FLUX.ipynb) that showcases how to create high-quality images from textual prompts.
 
 ::: moniker range="foundry-classic"
 
