@@ -98,7 +98,7 @@ input_data = {
     data = {
         "input_data": {
             "columns": list(input_data.keys()),
-            #  IMPORANT: Modify the index as needed
+            #  IMPORTANT: Modify the index as needed
             "index": [0],  # 1, 2],
             "data": [
                 list(input_data.values()),
