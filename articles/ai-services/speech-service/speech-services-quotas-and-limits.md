@@ -276,7 +276,7 @@ For instructions on how to get the general resource information that you need, s
 
 To create an increase request for fast transcription, you also need to provide the *average audio length per API request*.
 
-An example lenth is `5 minutes/request`. Provide an estimate based on the workload that you want to process.
+An example length is `5 minutes/request`. Provide an estimate based on the workload that you want to process.
 
 #### Create the quota increase request
 
@@ -377,45 +377,45 @@ Initiate the increase of the limit for concurrent requests for your resource by 
 
 1. Provide the requestor details:
 
-    1. First Name
-    1. Last Name
-    1. Your Work/Organization Email Address
+    1. First name
+    1. Last name
+    1. Your work or organization email address
         > [!NOTE]
-        > Applications submitted with a personal email address (for example, hotmail.com, outlook.com, gmail.com, etc.) won't be accepted.
-    1. Company/Organization Name
+        > Applications submitted with a personal email address (for example, hotmail.com, outlook.com, or gmail.com) aren't accepted.
+    1. Company or organization name
         > [!NOTE]
-        > You can only request quota increases on behalf of your own organization.
+        > You can request quota increases only on behalf of your own organization.
 
 1. Provide the resource information:
 
-    1. Azure Subscription ID
-    1. Azure AI Service Resource ID
-    1. Azure AI Service Resource Region
-1. Provide the quota increase requested:
+    1. Azure subscription ID
+    1. Foundry Tools resource ID
+    1. Foundry Tools resource region
+1. Provide the requested quota increase:
 
-    1. New Quota Limit requested (limit value you're requesting as integer only, for example, 300, 500, 1000, etc.)
-    1. Justification (business justification for the limit increase)
+    1. New quota limit requested (limit value you're requesting as integer only; for example, 300, 500, or 1,000.)
+    1. Business justification for the limit increase
 
-1. Select the Foundry Tools service **Azure Speech** and click `Next`.
+1. Select the Foundry Tools service **Azure Speech**, and then select **Next**.
 
-1. On the next page, select the **Azure Speech** feature you're requesting the increase for. Options are:
+1. On the next page, select the Azure Speech feature that you're requesting the increase for. Options are:
 
-    - Speech to text concurrent request limit base model endpoint
-    - Speech to text concurrent request limit custom endpoint
-    - Fast transcription maximum requests per minute
-    - Text to speech maximum number of transactions per time period standard voices
-    - Text to speech maximum number of transactions per time period custom voices
-    - Speech translation concurrent request limit
-    - Batch text to speech avatar maximum requests per minute
-    - Real-time text to speech avatar new connections per minute
+    - Speech-to-text concurrent request limit for the base model endpoint
+    - Speech-to-text concurrent request limit for the custom endpoint
+    - Maximum requests per minute for fast transcription
+    - Text-to-speech maximum number of transactions per time period for standard voices
+    - Text-to-speech maximum number of transactions per time period for custom voices
+    - Concurrent request limit for speech translation
+    - Maximum requests per minute for batch text-to-speech avatar
+    - New connections per minute for real-time text-to-speech avatar
     - Voice Live API tokens per minute
 
-1. Add the additional feature specific information requested in the form and click `Next`.
+1. Add the additional feature-specific information requested in the form, and then select **Next**.
 
-1. On the final page, provide additional contact information of your account or partner contact name and e-mail address.
+1. On the final page, provide additional contact information for your account or your partner's contact name and e-mail address.
 
-1. Check the two confirmation questions and click `Submit`.
+1. Check the two confirmation questions, and then select **Submit**.
 
 1. Note the support request number in Azure portal notifications. You're contacted shortly about your request.
 
-You'll receive a confirmation e-mail including your application ID. Check your spam folder in case you didn't receive the confirmation e-mail and ensure you're able to receive follow-up communication on your case.
+You receive a confirmation e-mail that includes your application ID. Check your spam folder if you don't receive the confirmation e-mail. Ensure that you can receive follow-up communication on your case.
