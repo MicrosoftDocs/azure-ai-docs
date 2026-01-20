@@ -21,3 +21,14 @@ _repo.*/
 .github/prompts/*.zip
 .github/patterns/*.md
 .github/chatmodes/*.*
+# Doc-Kit workspace files
+.github/AGENTS.md
+.github/agents/
+.github/instructions/
+.github/prompts/
+.github/skills/
+.vscode/settings.json
+.dockit/
+.env
+.env.example
+requirements.txt
