@@ -11,6 +11,7 @@ ms.date: 01/20/2026
 author: alvinashcraft
 ms.author: aashcraft
 ai-usage: ai-assisted
+zone_pivot_groups: selection-mcp-code-new
 ms.custom: dev-focus, pilot-ai-workflow-jan-2026
 ---
 
