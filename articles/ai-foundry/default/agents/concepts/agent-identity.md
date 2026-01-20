@@ -6,11 +6,12 @@ description: Learn how agent identities and agent identity blueprints work in Mi
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: fosteramanda
-ms.date: 11/03/2025
+ms.date: 01/20/2026
 ms.topic: concept-article
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ai-usage: ai-assisted
+ms.custom: pilot-ai-workflow-jan-2026
 ---
 
 # Agent identity concepts in Microsoft Foundry
