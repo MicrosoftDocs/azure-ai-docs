@@ -315,7 +315,7 @@ It's not possible to use [customer-managed key encryption](search-security-manag
 
 ## Best practices
 
-+ For production workloads, switch to [Microsoft Entra ID and role-based access](keyless-connections.md). Alternatively, if you want to continue using API keys, be sure to always monitor [who has access to your API keys](#secure-keys) and [regenerate API keys](#regenerate-admin-keys) on a regular cadence.
++ For production workloads, switch to [Microsoft Entra ID and role-based access](search-security-rbac-client-code.md). Alternatively, if you want to continue using API keys, be sure to always monitor [who has access to your API keys](#secure-keys) and [regenerate API keys](#regenerate-admin-keys) on a regular cadence.
 
 + Only use API keys if data disclosure isn't a risk (for example, when using sample data) and if you're operating behind a firewall. Exposing API keys puts both your data and your search service at risk of unauthorized use.
 

@@ -243,7 +243,7 @@ Use the Search Index Data Reader role for apps and processes that only need read
 
 This role is very specific. It grants [GET or POST access](/rest/api/searchservice/documents) to the *documents collection of a search index* for search, autocomplete, and suggestions. It doesn't support GET or LIST operations on an index or other top-level objects, or GET service statistics.
 
-This section provides basic steps for setting up the role assignment and is here for completeness, but for comprehensive instructions on configuring your app for role-based access, see [Use Azure AI Search without keys](keyless-connections.md).
+This section provides basic steps for setting up the role assignment and is here for completeness, but for comprehensive instructions on configuring your app for role-based access, see [Use Azure AI Search without keys](search-security-rbac-client-code.md).
 
 > [!NOTE]
 > As a developer, if you need to debug queries that are predicated on a Microsoft identity, use Search Index Data Contributor or create a custom role that gives you [elevated permissions for debug purposes](search-query-access-control-rbac-enforcement.md#elevated-permissions-for-investigating-incorrect-results).
@@ -298,7 +298,7 @@ When [using PowerShell to assign roles](/azure/role-based-access-control/role-as
 
 Use a client to test role assignments. Remember that roles are cumulative. You can't delete or deny inherited roles that are scoped to the subscription or resource group level at the resource (search service) level. 
 
-[Configure your application for keyless connections](keyless-connections.md) and have role assignments in place before testing. 
+[Configure your application for keyless connections](search-security-rbac-client-code.md) and have role assignments in place before testing. 
 
 ### [**Azure portal**](#tab/test-portal)
 
