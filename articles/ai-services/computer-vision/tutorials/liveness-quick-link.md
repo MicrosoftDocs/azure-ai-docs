@@ -1,15 +1,15 @@
 ---
 title: "Face liveness quick link - Face"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This article explains the concept of Face liveness quick link, its usage flow, and related concepts. 
-author: JinyuID
+author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
 ms.update-cycle: 90-days
 ms.topic: conceptual
-ms.date: 08/21/2025
+ms.date: 09/26/2025
 ms.author: pafarley
 feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---

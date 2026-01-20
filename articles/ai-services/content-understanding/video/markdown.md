@@ -1,34 +1,32 @@
 ---
 title: Content Understanding audiovisual modality markdown representation
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Description of the markdown representation returned as part of the Content Understanding audiovisual response for both audio and video inputs and how to use the response in your applications.
-author: laujan
-ms.author: paulhsu
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.date: 06/19/2025
 ms.service: azure-ai-content-understanding
-ms.topic: conceptual
+ms.topic: article
 ms.custom:
   - build-2025
 ---
 
 # AudioVisual analysis: Markdown representation
 
-Azure AI Content Understanding converts unstructured audio and video content into richly formatted [GitHub Flavored Markdown](https://github.github.com/gfm), while preserving temporal relationships and content structure for accurate downstream use. This document describes how each audiovisual content element is represented in markdown for both audio and video inputs.
+Azure Content Understanding in Foundry Tools converts unstructured audio and video content into richly formatted [GitHub Flavored Markdown](https://github.github.com/gfm), while preserving temporal relationships and content structure for accurate downstream use. This document describes how each audiovisual content element is represented in markdown for both audio and video inputs.
 
-> [!IMPORTANT]
->
-> * Azure AI Content Understanding is available in preview. Public preview releases provide early access to features that are in active development.
-> * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
-> * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
 ## Overview
 
-The markdown representation enables large language models to better comprehend audio and video context and temporal relationships for AI-powered analysis and generation tasks. Content Understanding generates structured markdown that includes timing information, transcripts, visual elements (for video), and content descriptions, making it ready for use in retrieval-augmented generation (RAG) workflows without post-processing.
+The markdown representation from Content Understanding generates structured markdown that includes timing information, and transcripts.
 
 The markdown format differs based on input type:
 - **Audio inputs**: Focus on transcript content, timing, and speaker information
-- **Video inputs**: Include all audio elements plus visual metadata, segments, and key frames
+- **Video inputs**: Include all audio elements plus key frames
+
+For complete details about supported file types, file size limits, and other constraints, see [service quotas and limits](../service-limits.md).
+
 
 ## Document structure and metadata
 
@@ -81,27 +79,6 @@ Speakers are identified using the `<v Speaker N>` or `<Speaker N>` format within
 
 ## Visual elements (video only)
 
-### Segmentation
-
-> [!NOTE]
-> Segmentation is only available for video inputs when segmentation is enabled in the analyzer configuration.
-
-Video content can be automatically segmented into logical temporal units. Each segment receives a descriptive heading and natural language description of the visual and audio content.
-
-**Segment example:**
-```markdown
-## Segment 1: 00:00.000 => 00:02.001
-The video begins with a black screen, with the text 'Welcome' appearing at the bottom left corner.
-
-## Segment 2: 00:02.001 => 00:22.356
-The segment transitions to a sports montage. Various sports clips are shown, including volleyball, softball, football, basketball, golf, hockey, swimming, and track events.
-```
-
-Segment properties include:
-- Segment identifier and timing span
-- Natural language description of visual and audio content
-- Embedded transcript and key frames for that time period
-
 ### Key frames
 
 Key frames represent significant visual moments extracted from the video timeline. They are embedded as markdown image references with precise timestamps.
@@ -125,12 +102,7 @@ Key frame properties:
 The following is a complete example fo the markdown generated for a video
 
 ````markdown
-# Video: 00:00.000 => 00:42.520
-Width: 640
-Height: 360
-
-## Segment 1: 00:08.960 => 00:25.040
-The video shows the Xbox interface with step-by-step instructions for code redemption.
+# Video: 00:00.960 => 00:25.040
 
 Key Frames
 - 00:08.040 ![](keyFrame.8040.jpg)
@@ -154,7 +126,8 @@ WEBVTT
 
 ## Next steps
 
-* Try processing your audiovisual content using Content Understanding in [Azure AI Foundry](https://aka.ms/cu-landing).
-* Learn to analyze audiovisual content [**analyzer templates**](../quickstart/use-ai-foundry.md).
-* Review code samples: [**video analysis with segments**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).
-* Review the complete [**audiovisual elements documentation**](elements.md) for detailed information about all supported elements.
+* Try out analyzing videos in the [Content Understanding Studio](https://aka.ms/cu-studio).
+* Check out the [Content Understanding Studio quickstart](../quickstart/content-understanding-studio.md).
+* Learn more about analyzing video content using [analyzer templates](../concepts/analyzer-templates.md).
+* Review code samples: [video analysis with segments](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).
+* Review the complete [audiovisual elements documentation](elements.md) for detailed information about all supported elements.

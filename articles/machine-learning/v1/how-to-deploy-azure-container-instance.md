@@ -9,7 +9,7 @@ ms.topic: how-to
 ms.custom: UpdateFrequency5, deploy, cliv1, sdkv1, ignite-2024
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: bozhlin
+ms.reviewer: jturuk
 ms.date: 07/10/2024
 ---
 

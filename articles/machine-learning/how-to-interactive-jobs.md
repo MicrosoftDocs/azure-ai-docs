@@ -5,7 +5,7 @@ description: Debug or monitor your Machine Learning job as it runs on Azure Mach
 services: machine-learning
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: joburges
+ms.reviewer: sooryar
 ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: how-to

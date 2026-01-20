@@ -1,7 +1,7 @@
 ---
-title: How to use structured outputs for chat models with Azure AI Foundry Models
-titleSuffix: Azure AI Foundry
-description: Learn how to use structured outputs with chat completions with Azure AI Foundry Models
+title: How to use structured outputs for chat models with Microsoft Foundry Models
+titleSuffix: Microsoft Foundry
+description: Learn how to use structured outputs with chat completions with Microsoft Foundry Models
 author: msakande
 reviewer: santiagxf
 ms.service: azure-ai-foundry
@@ -74,7 +74,7 @@ IF SUFFICIENT INFORMATION IS NOT PROVIDED VIA THE FOLLOWING TEMPLATE THE ISSUE M
 > None
 
 ### Expected/desired behavior
-> groups field to be filled the the groups id's that have permissions to "view the file"
+> groups field to be filled with the groups id's that have permissions to "view the file"
 
 ### OS and Version?
 > win 10

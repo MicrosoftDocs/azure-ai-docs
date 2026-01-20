@@ -1,6 +1,6 @@
 ---
 title: Voice and sound with Speech Synthesis Markup Language (SSML) - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about how you can use Speech Synthesis Markup Language (SSML) elements to customize what your Speech service voice sounds like.
 author: PatrickFarley
 manager: nitinme
@@ -37,11 +37,11 @@ For information about the supported values for attributes of the `voice` element
 
 #### Single voice example
 
-This example uses the `en-US-AvaMultilingualNeural` voice. 
+This example uses the `en-US-Ava:DragonHDLatestNeural` voice. 
 
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-US">
-    <voice name="en-US-AvaMultilingualNeural">
+    <voice name="en-US-Ava:DragonHDLatestNeural">
         This is the text that is spoken.
     </voice>
 </speak>
@@ -51,14 +51,14 @@ This example uses the `en-US-AvaMultilingualNeural` voice.
 
 Within the `speak` element, you can specify multiple voices for text to speech output. These voices can be in different languages. For each voice, the text must be wrapped in a `voice` element.
 
-This example alternates between the `en-US-AvaMultilingualNeural` and `en-US-AndrewMultilingualNeural` voices. The neural multilingual voices can speak different languages based on the input text.
+This example alternates between the `en-US-Ava:DragonHDLatestNeural` and `en-US-Andrew:DragonHDLatestNeural` voices. The neural multilingual voices can speak different languages based on the input text.
 
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-US">
-    <voice name="en-US-AvaMultilingualNeural">
+    <voice name="en-US-Ava:DragonHDLatestNeural">
         Good morning!
     </voice>
-    <voice name="en-US-AndrewMultilingualNeural">
+    <voice name="en-US-Andrew:DragonHDLatestNeural">
         Good morning to you too Ava!
     </voice>
 </speak>
@@ -279,19 +279,19 @@ Use the [multilingual voices section](language-support.md?tabs=tts#multilingual-
 | ------------------------------------------------------------ | ----------------------------- | ------------------------------------------------------------ | ------------------ | ------------------------------------------------------------ |
 |`en-US-AndrewMultilingualNeural`<sup>1</sup> (Male)<br/>`en-US-AvaMultilingualNeural`<sup>1</sup> (Female)<br/>`en-US-BrianMultilingualNeural`<sup>1</sup> (Male)<br/>`en-US-EmmaMultilingualNeural`<sup>1</sup> (Female)| 77                            | Afrikaans (`af-ZA`), Albanian (`sq-AL`), Amharic (`am-ET`), Arabic (`ar-EG`), Armenian (`hy-AM`), Azerbaijani (`az-AZ`), Bahasa Indonesian (`id-ID`), Bangla (`bn-BD`), Basque (`eu-ES`), Bengali (`bn-IN`), Bosnian (`bs-BA`), Bulgarian (`bg-BG`), Burmese (`my-MM`), Catalan (`ca-ES`), Chinese Cantonese (`zh-HK`), Chinese Mandarin (`zh-CN`), Chinese Taiwanese (`zh-TW`), Croatian (`hr-HR`), Czech (`cs-CZ`), Danish (`da-DK`), Dutch (`nl-NL`), English (`en-US`), Estonian (`et-EE`), Filipino (`fil-PH`), Finnish (`fi-FI`), French (`fr-FR`), Galician (`gl-ES`), Georgian (`ka-GE`), German (`de-DE`), Greek (`el-GR`), Hebrew (`he-IL`), Hindi (`hi-IN`), Hungarian (`hu-HU`), Icelandic (`is-IS`), Irish (`ga-IE`), Italian (`it-IT`), Japanese (`ja-JP`), Javanese (`jv-ID`), Kannada (`kn-IN`), Kazakh (`kk-KZ`), Khmer (`km-KH`), Korean (`ko-KR`), Lao (`lo-LA`), Latvian (`lv-LV`), Lithuanian (`lt-LT`), Macedonian (`mk-MK`), Malay (`ms-MY`), Malayalam (`ml-IN`), Maltese (`mt-MT`), Mongolian (`mn-MN`), Nepali (`ne-NP`), Norwegian Bokmål (`nb-NO`), Pashto (`ps-AF`), Persian (`fa-IR`), Polish (`pl-PL`), Portuguese (`pt-BR`), Romanian (`ro-RO`), Russian (`ru-RU`), Serbian (`sr-RS`), Sinhala (`si-LK`), Slovak (`sk-SK`), Slovene (`sl-SI`), Somali (`so-SO`), Spanish (`es-ES`), Sundanese (`su-ID`), Swahili (`sw-KE`), Swedish (`sv-SE`), Tamil (`ta-IN`), Telugu (`te-IN`), Thai (`th-TH`), Turkish (`tr-TR`), Ukrainian (`uk-UA`), Urdu (`ur-PK`), Uzbek (`uz-UZ`), Vietnamese (`vi-VN`), Welsh (`cy-GB`), Zulu (`zu-ZA`) | 91                 | Afrikaans (South Africa) (`af-ZA`), Albanian (Albania) (`sq-AL`), Amharic (Ethiopia) (`am-ET`), Arabic (Egypt) (`ar-EG`), Arabic (Saudi Arabia) (`ar-SA`), Armenian (Armenia) (`hy-AM`), Azerbaijani (Azerbaijan) (`az-AZ`), Basque (Basque) (`eu-ES`), Bengali (India) (`bn-IN`), Bosnian (Bosnia and Herzegovina) (`bs-BA`), Bulgarian (Bulgaria) (`bg-BG`), Burmese (Myanmar) (`my-MM`), Catalan (Spain) (`ca-ES`), Chinese (Cantonese, Traditional) (`zh-HK`), Chinese (Mandarin, Simplified) (`zh-CN`), Chinese (Taiwanese Mandarin) (`zh-TW`), Croatian (Croatia) (`hr-HR`), Czech (Czech) (`cs-CZ`), Danish (Denmark) (`da-DK`), Dutch (Belgium) (`nl-BE`), Dutch (Netherlands) (`nl-NL`), English (Australia) (`en-AU`), English (Canada) (`en-CA`), English (Hong Kong SAR) (`en-HK`), English (India) (`en-IN`), English (Ireland) (`en-IE`), English (United Kingdom) (`en-GB`), English (United States) (`en-US`), Estonian (Estonia) (`et-EE`), Filipino (Philippines) (`fil-PH`), Finnish (Finland) (`fi-FI`), French (Belgium) (`fr-BE`), French (Canada) (`fr-CA`), French (France) (`fr-FR`), French (Switzerland) (`fr-CH`), Galician (Galician) (`gl-ES`), Georgian (Georgia) (`ka-GE`), German (Austria) (`de-AT`), German (Germany) (`de-DE`), German (Switzerland) (`de-CH`), Greek (Greece) (`el-GR`), Hebrew (Israel) (`he-IL`), Hindi (India) (`hi-IN`), Hungarian (Hungary) (`hu-HU`), Icelandic (Iceland) (`is-IS`), Indonesian (Indonesia) (`id-ID`), Irish (Ireland) (`ga-IE`), Italian (Italy) (`it-IT`), Japanese (Japan) (`ja-JP`), Javanese (Indonesia) (`jv-ID`), Kannada (India) (`kn-IN`), Kazakh (Kazakhstan) (`kk-KZ`), Khmer (Cambodia) (`km-KH`), Korean (Korea) (`ko-KR`), Lao (Laos) (`lo-LA`), Latvian (Latvia) (`lv-LV`), Lithuanian (Lithuania) (`lt-LT`), Macedonian (North Macedonia) (`mk-MK`), Malay (Malaysia) (`ms-MY`), Malayalam (India) (`ml-IN`), Maltese (Malta) (`mt-MT`), Mongolian (Mongolia) (`mn-MN`), Nepali (Nepal) (`ne-NP`), Norwegian (Bokmål, Norway) (`nb-NO`), Pashto (Afghanistan) (`ps-AF`), Persian (Iran) (`fa-IR`), Polish (Poland) (`pl-PL`), Portuguese (Brazil) (`pt-BR`), Portuguese (Portugal) (`pt-PT`), Romanian (Romania) (`ro-RO`), Russian (Russia) (`ru-RU`), Serbian (Cyrillic, Serbia) (`sr-RS`), Sinhala (Sri Lanka) (`si-LK`), Slovak (Slovakia) (`sk-SK`), Slovenian (Slovenia) (`sl-SI`), Somali (Somalia) (`so-SO`), Spanish (Mexico) (`es-MX`), Spanish (Spain) (`es-ES`), Sundanese (Indonesia) (`su-ID`), Swahili (Kenya) (`sw-KE`), Swedish (Sweden) (`sv-SE`), Tamil (India) (`ta-IN`), Telugu (India) (`te-IN`), Thai (Thailand) (`th-TH`), Turkish (Türkiye) (`tr-TR`), Ukrainian (Ukraine) (`uk-UA`), Urdu (Pakistan) (`ur-PK`), Uzbek (Uzbekistan) (`uz-UZ`), Vietnamese (Vietnam) (`vi-VN`), Welsh (United Kingdom) (`cy-GB`), Zulu (South Africa) (`zu-ZA`)|
 
-<sup>1</sup> Those are neural multilingual voices in Azure AI Speech. All multilingual voices can speak in the language in default locale of the input text without [using SSML](#adjust-speaking-languages). However, you can still use the `<lang xml:lang>` element to adjust the speaking accent of each language to set preferred accent such as British accent (`en-GB`) for English. The prefix in each voice name indicates its primary locale; for example, the primary locale for `en-US-AndrewMultilingualNeural` is `en-US`.
+<sup>1</sup> Those are neural multilingual voices in Azure Speech in Foundry Tools. All multilingual voices can speak in the language in default locale of the input text without [using SSML](#adjust-speaking-languages). However, you can still use the `<lang xml:lang>` element to adjust the speaking accent of each language to set preferred accent such as British accent (`en-GB`) for English. The prefix in each voice name indicates its primary locale; for example, the primary locale for `en-US-AndrewMultilingualNeural` is `en-US`.
 
 ### Lang examples
 
 For information about the supported values for attributes of the `lang` element, see [Adjust speaking language](#adjust-speaking-languages). 
 
-You must specify `en-US` as the default language within the `speak` element, whether or not the language is adjusted elsewhere. In this example, the primary language for `en-US-AvaMultilingualNeural` is `en-US`. 
+You must specify `en-US` as the default language within the `speak` element, whether or not the language is adjusted elsewhere. In this example, the primary language for `en-US-Ava:DragonHDLatestNeural` is `en-US`. 
 
-This SSML snippet shows how to use `<lang xml:lang>` to speak `de-DE` with the `en-US-AvaMultilingualNeural` neural voice.
+This SSML snippet shows how to use `<lang xml:lang>` to speak `de-DE` with the `en-US-Ava:DragonHDLatestNeural` neural voice.
 
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="https://www.w3.org/2001/mstts" xml:lang="en-US">
-    <voice name="en-US-AvaMultilingualNeural">
+    <voice name="en-US-Ava:DragonHDLatestNeural">
         <lang xml:lang="de-DE">
             Wir freuen uns auf die Zusammenarbeit mit Ihnen!
         </lang>
@@ -303,7 +303,7 @@ Within the `speak` element, you can specify multiple languages including `en-US`
 
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="https://www.w3.org/2001/mstts" xml:lang="en-US">
-    <voice name="en-US-AvaMultilingualNeural">
+    <voice name="en-US-Ava:DragonHDLatestNeural">
         <lang xml:lang="es-MX">
             ¡Esperamos trabajar con usted!
         </lang>
@@ -343,7 +343,7 @@ This SSML snippet illustrates how the `rate` attribute is used to change the spe
 
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-US">
-    <voice name="en-US-AvaMultilingualNeural">
+    <voice name="en-US-Ava:DragonHDLatestNeural">
         <prosody rate="+30.00%">
             Enjoy using text to speech.
         </prosody>
@@ -357,7 +357,7 @@ This SSML snippet illustrates how the `volume` attribute is used to change the v
 
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-US">
-    <voice name="en-US-AvaMultilingualNeural">
+    <voice name="en-US-Ava:DragonHDLatestNeural">
         <prosody volume="+20.00%">
             Enjoy using text to speech.
         </prosody>

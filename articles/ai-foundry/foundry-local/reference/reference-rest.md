@@ -4,14 +4,12 @@ titleSuffix: Foundry Local
 description: Complete reference guide for the Foundry Local REST API.
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
-ms.custom: build-2025
-ms.author: jburchel
-ms.reviewer: samkemp
-author: jonburchel
-reviewer: samuel100
-ms.topic: concept-article
-ms.date: 10/01/2025
-ai-usage: ai-assisted
+ms.author: nakersha
+ms.reviewer: jonburchel
+author: natke
+reviewer: jonburchel
+ms.topic: reference
+ms.date: 11/24/2025
 ---
 
 # Foundry Local REST API Reference
@@ -19,11 +17,9 @@ ai-usage: ai-assisted
 [!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 
 > [!CAUTION]
-> This API is under active development and may include breaking changes without notice. We strongly recommend monitoring the changelog before building production applications.
+> This API refers to the REST API available in the Foundry Local CLI. This API is under active development and may include breaking changes without notice. We strongly recommend monitoring the changelog before building production applications.
 
-## OpenAI v1 compatibility
-
-### POST /v1/chat/completions
+## POST /v1/chat/completions
 
 This endpoint processes chat completion requests.  
 It's fully compatible with the [OpenAI Chat Completions API](https://platform.openai.com/docs/api-reference/chat/create).
@@ -125,8 +121,8 @@ _---Standard OpenAI Properties---_
 
 **Example:**
 
-- Request body
-  ```json
+Request body
+```json
   {
     "model": "qwen2.5-0.5b-instruct-generic-cpu",
     "messages": [
@@ -149,9 +145,11 @@ _---Standard OpenAI Properties---_
     "function_call": null,
     "metadata": {}
   }
-  ```
-- Response body
-  ```json
+```
+
+Response body
+
+```json
   {
     "id": "chatcmpl-1234567890",
     "object": "chat.completion",
@@ -173,11 +171,34 @@ _---Standard OpenAI Properties---_
       "total_tokens": 30
     }
   }
-  ```
+```
 
-## Custom API
 
-### GET /foundry/list
+## GET /openai/status
+
+Get server status information.
+
+**Response body:**
+
+- `Endpoints` (array of strings)  
+  The HTTP server binding endpoints.
+- `ModelDirPath` (string)  
+  Directory where local models are stored.
+- `PipeName` (string)  
+  The current NamedPipe server name.
+
+**Example:**
+
+Response body
+```json
+  {
+    "Endpoints": ["http://localhost:5272"],
+    "ModelDirPath": "/path/to/models",
+    "PipeName": "inference_agent"
+  }
+```
+
+## GET /foundry/list
 
 Get a list of available Foundry Local models in the catalog.
 
@@ -208,38 +229,10 @@ Get a list of available Foundry Local models in the catalog.
   - `licenseDescription`: A detailed description or link to the license terms.
   - `parentModelUri`: The URI of the parent model from which this model is derived.
 
-### POST /openai/register
 
-Registers an external model provider for use with Foundry Local.
+## GET /openai/models
 
-**Request Body:**
-
-- `TypeName` (string)  
-  Provider name (e.g., `"deepseek"`)
-- `ModelName` (string)  
-  Model name to register (e.g., `"deepseek-chat"`)
-- `BaseUri` (string)  
-  The OpenAI-compatible base URI for the provider
-
-**Response:**
-
-- 200 OK  
-  Empty response body
-
-**Example:**
-
-- Request body
-  ```json
-  {
-    "TypeName": "deepseek",
-    "ModelName": "deepseek-chat",
-    "BaseUri": "https://api.deepseek.com/v1"
-  }
-  ```
-
-### GET /openai/models
-
-Get all available models, including local and registered external models.
+Get a list of cached models, including local and registered external models.
 
 **Response:**
 
@@ -248,12 +241,118 @@ Get all available models, including local and registered external models.
 
 **Example:**
 
-- Response body
-  ```json
-  ["Phi-4-mini-instruct-generic-cpu", "phi-3.5-mini-instruct-generic-cpu"]
-  ```
+Response body
 
-### GET /openai/load/{name}
+```json
+  ["Phi-4-mini-instruct-generic-cpu", "phi-3.5-mini-instruct-generic-cpu"]
+```
+
+## POST /openai/download
+
+Download a model from the catalog to local storage.
+
+> [!NOTE]
+> Large model downloads can take a long time. Set a high timeout for this request to avoid early termination.
+
+**Request Body:**
+
+- `model` (`WorkspaceInferenceModel` object)
+  - `Uri` (string)  
+    The model URI to download.
+  - `Name` (string)
+    The model name.
+  - `ProviderType` (string, optional)  
+    The provider type (for example, `"AzureFoundryLocal"`, `"HuggingFace"`).
+  - `Path` (string, optional)  
+    Remote path to the model files. For example, in a Hugging Face repository, this is the path to the model files.
+  - `PromptTemplate` (`Dictionary<string, string>`, optional)  
+    Includes:
+    - `system` (string, optional)  
+      The template for the system message.
+    - `user` (string, optional)
+      The template for the user's message.
+    - `assistant` (string, optional)  
+      The template for the assistant's response.
+    - `prompt` (string, optional)  
+      The template for the user-assistant interaction.
+  - `Publisher` (string, optional)  
+     The publisher of the model.
+- `token` (string, optional)  
+  Authentication token for protected models (GitHub or Hugging Face).
+- `progressToken` (object, optional)  
+  For AITK only. Token to track download progress.
+- `customDirPath` (string, optional)  
+  Custom download directory (used for CLI, not needed for AITK).
+- `bufferSize` (integer, optional)  
+  HTTP download buffer size in KB. No effect on NIM or Azure Foundry models.
+- `ignorePipeReport` (boolean, optional)  
+  If `true`, forces progress reporting via HTTP stream instead of pipe.
+  Defaults to `false` for AITK and `true` for Foundry Local.
+
+**Streaming Response:**
+
+During download, the server streams progress updates in the format:
+
+```text
+("file name", percentage_complete)
+```
+
+**Final Response body:**
+
+- `Success` (boolean)  
+  Whether the download completed successfully.
+- `ErrorMessage` (string, optional)  
+  Error details if download failed.
+
+**Example:**
+
+Request URI
+
+```http
+POST /openai/download
+```
+
+Request body
+
+Note that the version suffix must be supplied in the model name.
+
+```json
+{
+  "model": {
+    "Uri": "azureml://registries/azureml/models/Phi-4-mini-instruct-generic-cpu/versions/4",
+    "ProviderType": "AzureFoundryLocal",
+    "Name": "Phi-4-mini-instruct-generic-cpu:4",
+    "Publisher": "",
+    "PromptTemplate": {
+      "system": "<|system|>{Content}<|end|>",
+      "user": "<|user|>{Content}<|end|>",
+      "assistant": "<|assistant|>{Content}<|end|>",
+      "prompt": "<|user|>{Content}<|end|><|assistant|>"
+    }
+  }
+}
+```
+
+Response stream
+
+```text
+  ("genai_config.json", 0.01)
+  ("genai_config.json", 0.2)
+  ("model.onnx.data", 0.5)
+  ("model.onnx.data", 0.78)
+  ...
+  ("", 1)
+```
+
+Final response
+```json
+  {
+    "Success": true,
+    "ErrorMessage": null
+  }
+```
+
+## GET /openai/load/{name}
 
 Load a model into memory for faster inference.
 
@@ -279,14 +378,13 @@ Load a model into memory for faster inference.
 
 **Example:**
 
-- Request URI
-  ```http
+Request URI
+
+```http
   GET /openai/load/Phi-4-mini-instruct-generic-cpu?ttl=3600&ep=dml
-  ```
+```
 
-````
-
-### GET /openai/unload/{name}
+## GET /openai/unload/{name}
 
 Unload a model from memory.
 
@@ -307,12 +405,13 @@ Unload a model from memory.
 
 **Example:**
 
-- Request URI
-  ```http
+Request URI
+
+```http
 GET /openai/unload/Phi-4-mini-instruct-generic-cpu?force=true
 ````
 
-### GET /openai/unloadall
+## GET /openai/unloadall
 
 Unloads all models from memory.
 
@@ -321,7 +420,7 @@ Unloads all models from memory.
 - 200 OK  
   Empty response body
 
-### GET /openai/loadedmodels
+## GET /openai/loadedmodels
 
 Get the list of currently loaded models.
 
@@ -332,12 +431,13 @@ Get the list of currently loaded models.
 
 **Example:**
 
-- Response body
-  ```json
-  ["Phi-4-mini-instruct-generic-cpu", "phi-3.5-mini-instruct-generic-cpu"]
-  ```
+Response body
 
-### GET /openai/getgpudevice
+```json
+["Phi-4-mini-instruct-generic-cpu", "phi-3.5-mini-instruct-generic-cpu"]
+```
+
+## GET /openai/getgpudevice
 
 Get the current GPU device ID.
 
@@ -346,7 +446,7 @@ Get the current GPU device ID.
 - 200 OK  
   An integer representing the current GPU device ID.
 
-### GET /openai/setgpudevice/{deviceId}
+## GET /openai/setgpudevice/{deviceId}
 
 Set the active GPU device.
 
@@ -367,132 +467,7 @@ Set the active GPU device.
   GET /openai/setgpudevice/1
   ```
 
-````
-
-### POST /openai/download
-
-Download a model to local storage.
-
-> [!NOTE]
-> Large model downloads can take a long time. Set a high timeout for this request to avoid early termination.
-
-**Request Body:**
-
-- `model` (`WorkspaceInferenceModel` object)
-  - `Uri` (string)
-    The model URI to download.
-  - `Name` (string)
-    The model name.
-  - `ProviderType` (string, optional)
-    The provider type (for example, `"AzureFoundryLocal"`, `"HuggingFace"`).
-  - `Path` (string, optional)
-    Remote path to the model files. For example, in a Hugging Face repository, this is the path to the model files.
-  - `PromptTemplate` (`Dictionary<string, string>`, optional)
-    Includes:
-    - `system` (string, optional)
-      The template for the system message.
-    - `user` (string, optional)
-      The template for the user's message.
-    - `assistant` (string, optional)
-      The template for the assistant's response.
-    - `prompt` (string, optional)
-      The template for the user-assistant interaction.
-  - `Publisher` (string, optional)
-     The publisher of the model.
-- `token` (string, optional)
-  Authentication token for protected models (GitHub or Hugging Face).
-- `progressToken` (object, optional)
-  For AITK only. Token to track download progress.
-- `customDirPath` (string, optional)
-  Custom download directory (used for CLI, not needed for AITK).
-- `bufferSize` (integer, optional)
-  HTTP download buffer size in KB. No effect on NIM or Microsoft Foundry models.
-- `ignorePipeReport` (boolean, optional)
-  If `true`, forces progress reporting via HTTP stream instead of pipe.
-  Defaults to `false` for AITK and `true` for Foundry Local.
-
-**Streaming Response:**
-
-During download, the server streams progress updates in the format:
-
-```text
-("file name", percentage_complete)
-````
-
-**Final Response body:**
-
-- `Success` (boolean)  
-  Whether the download completed successfully.
-- `ErrorMessage` (string, optional)  
-  Error details if download failed.
-
-**Example:**
-
-- Request body
-
-```json
-{
-  "model": {
-    "Uri": "azureml://registries/azureml/models/Phi-4-mini-instruct-generic-cpu/versions/4",
-    "ProviderType": "AzureFoundryLocal",
-    "Name": "Phi-4-mini-instruct-generic-cpu",
-    "Publisher": "",
-    "promptTemplate": {
-      "system": "<|system|>{Content}<|end|>",
-      "user": "<|user|>{Content}<|end|>",
-      "assistant": "<|assistant|>{Content}<|end|>",
-      "prompt": "<|user|>{Content}<|end|><|assistant|>"
-    }
-  }
-}
-```
-
-- Response stream
-
-  ```text
-  ("genai_config.json", 0.01)
-  ("genai_config.json", 0.2)
-  ("model.onnx.data", 0.5)
-  ("model.onnx.data", 0.78)
-  ...
-  ("", 1)
-  ```
-
-````
-
-- Final response
-  ```json
-  {
-    "Success": true,
-    "ErrorMessage": null
-  }
-````
-
-### GET /openai/status
-
-Get server status information.
-
-**Response body:**
-
-- `Endpoints` (array of strings)  
-  The HTTP server binding endpoints.
-- `ModelDirPath` (string)  
-  Directory where local models are stored.
-- `PipeName` (string)  
-  The current NamedPipe server name.
-
-**Example:**
-
-- Response body
-  ```json
-  {
-    "Endpoints": ["http://localhost:5272"],
-    "ModelDirPath": "/path/to/models",
-    "PipeName": "inference_agent"
-  }
-  ```
-
-### POST /v1/chat/completions/tokenizer/encode/count
+## POST /v1/chat/completions/tokenizer/encode/count
 
 Counts tokens for a given chat completion request without performing inference.
 
@@ -514,8 +489,9 @@ Counts tokens for a given chat completion request without performing inference.
 
 **Example:**
 
-- Request body
-  ```json
+Request body
+
+```json
   {
     "messages": [
       {
@@ -529,10 +505,12 @@ Counts tokens for a given chat completion request without performing inference.
     ],
     "model": "Phi-4-mini-instruct-cuda-gpu"
   }
-  ```
-- Response body
-  ```json
+```
+
+Response body
+
+```json
   {
     "tokenCount": 23
   }
-  ```
+```

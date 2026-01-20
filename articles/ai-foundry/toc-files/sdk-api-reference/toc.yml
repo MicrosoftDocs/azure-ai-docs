@@ -2,7 +2,7 @@ items:
 - name: Azure AI Projects
   items:
   - name: C#
-    href: /dotnet/api/overview/azure/ai.projects-readme
+    href: /dotnet/api/overview/azure/ai.projects-readme?view=azure-dotnet-preview&preserve-view=true
   - name: JavaScript
     href: /javascript/api/overview/azure/ai-projects-readme?view=azure-node-preview&preserve-view=true
   - name: Python
@@ -29,26 +29,12 @@ items:
   href: /python/api/overview/azure/ai-ml-readme
 - name: Azure Machine Learning REST API
   href: /rest/api/azureml
-- name: Azure AI services SDKs
+- name: Foundry Tools SDKs
   displayName: client library libraries development kit
-  href: ../../../ai-services/reference/sdk-package-resources.md?context=/azure/ai-foundry/context/context
-- name: Azure AI services REST APIs
+  href: ../../../ai-services/reference/sdk-package-resources.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+- name: Foundry Tools REST APIs
   displayName: swagger http
-  href: ../../../ai-services/reference/rest-api-resources.md?context=/azure/ai-foundry/context/context
-- name: Azure AI Model Inference API
-  items:
-  - name: What's the Model Inference API?
-    href: /rest/api/aifoundry/modelinference
-  - name: Reference
-    items:
-    - name: Get Model Info
-      href: /rest/api/aifoundry/get-model-info/get-model-info
-    - name: Get Chat Completions
-      href: /rest/api/aifoundry/get-chat-completions/get-chat-completions
-    - name: Get Embeddings
-      href: /rest/api/aifoundry/get-embeddings/get-embeddings
-    - name: Get Image Embeddings
-      href: /rest/api/aifoundry/get-image-embeddings/get-image-embeddings
+  href: ../../../ai-services/reference/rest-api-resources.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
 - name: Azure OpenAI
   items:
   - name: v1 API

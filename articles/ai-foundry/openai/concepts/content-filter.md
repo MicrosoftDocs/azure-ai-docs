@@ -1,18 +1,21 @@
 ---
-title: Azure OpenAI in Azure AI Foundry Models content filtering
+title: Azure OpenAI in Microsoft Foundry Models content filtering
 titleSuffix: Azure OpenAI
 description: Learn about the content filtering capabilities of Azure OpenAI.
-author: PatrickFarley
-ms.author: pafarley
+author: ssalgadodev
+ms.author: ssalgado
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
-ms.date: 09/16/2025
+ms.date: 01/14/2026
 ms.custom: template-concept, devx-track-python
 manager: nitinme
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
 # Content filtering overview
+
 
 Azure OpenAI includes a content filtering system that works alongside core models, including image generation models. This system runs both the prompt and completion through a set of classification models designed to detect and prevent the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions. Variations in API configurations and application design might affect completions and thus filtering behavior.
 

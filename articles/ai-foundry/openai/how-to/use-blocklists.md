@@ -1,37 +1,52 @@
 ---
-title: 'How to use blocklists with Azure OpenAI in Azure AI Foundry Models'
+title: 'How to use block lists in Microsoft Foundry models'
 titleSuffix: Azure OpenAI
-description: Learn how to use blocklists with Azure OpenAI
+description: Learn how to use block lists with Azure OpenAI
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 09/16/2025
+ms.date: 11/05/2025
 author: PatrickFarley
 ms.author: pafarley
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
-# Use a blocklist with Azure OpenAI
+# How to use block lists in Microsoft Foundry models
 
-The [configurable content filters](/azure/ai-foundry/openai/how-to/content-filters) available in Azure OpenAI are sufficient for most content moderation needs. However, you might need to filter terms specific to your use case. For this, you can use custom blocklists.
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
+
+::: moniker range="foundry"
+
+The [configurable Guardrails and controls](/azure/ai-foundry/openai/how-to/content-filters) available in Microsoft Foundry are sufficient for most content moderation needs. However, you might need to filter terms specific to your use case. For this, you can use custom block lists.
+
+::: moniker-end
+
+::: moniker range="foundry-classic"
+
+The [configurable content filters](/azure/ai-foundry/openai/how-to/content-filters) available in Azure OpenAI are sufficient for most content moderation needs. However, you might need to filter terms specific to your use case. For this, you can use custom block lists.
+
+::: moniker-end
 
 ## Prerequisites
 
-- An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Once you have your Azure subscription, create an Azure OpenAI resource in the Azure portal to get your token, key, and endpoint. Enter a unique name for your resource, select the subscription you entered on the application form, select a resource group, supported region, and supported pricing tier. Then select **Create**.
     - The resource takes a few minutes to deploy. After it finishes, select **go to resource**. In the left pane, under **Resource Management**, select **Subscription Key and Endpoint**. The endpoint and either of the keys are used to call APIs.
 - [Azure CLI](/cli/azure/install-azure-cli) installed
 - [cURL](https://curl.haxx.se/) installed
 
-## Use blocklists
+## Use block lists
+
 
 #### [Azure OpenAI API](#tab/api)
 
-You can create blocklists with the Azure OpenAI API. The following steps help you get started. 
+You can create block lists with the Azure OpenAI API. The following steps help you get started. 
 
 ### Get your token
 
-First, you need to get a token for accessing the APIs for creating, editing, and deleting blocklists. You can get this token using the following Azure CLI command: 
+First, you need to get a token for accessing the APIs for creating, editing, and deleting block lists. You can get this token using the following Azure CLI command: 
 
 ```bash
 az account get-access-token 
@@ -63,7 +78,7 @@ The response code should be `201` (created a new list) or `200` (updated an exis
 
 ### Apply a blocklist to a content filter
 
-If you haven't yet created a content filter, you can do so in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). See [Content filtering](/azure/ai-foundry/openai/how-to/content-filters#create-a-content-filter-in-azure-ai-foundry).
+If you haven't yet created a content filter, you can do so in [Foundry](https://ai.azure.com/?cid=learnDocs). See [Content filtering](/azure/ai-foundry/openai/how-to/content-filters#create-a-content-filter-in-azure-ai-foundry).
 
 To apply a **completion** blocklist to a content filter, use the following cURL command: 
 
@@ -233,7 +248,7 @@ If the completion itself is blocked, the response returns `200`, as the completi
 ```
 
 
-#### [Azure AI Foundry](#tab/foundry)
+#### [Foundry](#tab/foundry)
 
 [!INCLUDE [use-blocklists](../../../ai-foundry/includes/use-blocklists.md)]
 
@@ -243,6 +258,6 @@ If the completion itself is blocked, the response returns `200`, as the completi
 
 - Learn more about Responsible AI practices for Azure OpenAI: [Overview of Responsible AI practices for Azure OpenAI models](/azure/ai-foundry/responsible-ai/openai/overview). 
 
-- Read more about [content filtering categories and severity levels](/azure/ai-foundry/openai/concepts/content-filter?tabs=python) with Azure OpenAI in Azure AI Foundry Models. 
+- Read more about [content filtering categories and severity levels](/azure/ai-foundry/openai/concepts/content-filter?tabs=python) with Azure OpenAI in Foundry models. 
 
 - Learn more about red teaming from our: [Introduction to red teaming large language models (LLMs)](/azure/ai-foundry/openai/concepts/red-teaming) article. 

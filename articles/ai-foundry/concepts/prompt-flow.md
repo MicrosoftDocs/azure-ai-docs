@@ -1,7 +1,7 @@
 ---
-title: Prompt flow in Azure AI Foundry portal
-titleSuffix: Azure AI Foundry
-description: This article introduces prompt flow in Azure AI Foundry portal.
+title: Prompt flow in Microsoft Foundry portal
+titleSuffix: Microsoft Foundry
+description: This article introduces prompt flow in Microsoft Foundry portal.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-prompt-flow
 ms.custom:
@@ -18,13 +18,15 @@ ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ms.update-cycle: 180-days
 ---
 
-# Prompt flow in Azure AI Foundry portal
+# Prompt flow in Microsoft Foundry portal
+
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 Prompt flow is a development tool designed to streamline the entire development cycle of AI applications powered by Large Language Models (LLMs). Prompt flow provides a comprehensive solution that simplifies the process of prototyping, experimenting, iterating, and deploying your AI applications.
 
-Prompt flow is available independently as an open-source project on [GitHub](https://github.com/microsoft/promptflow), with its own SDK and [VS Code extension](https://marketplace.visualstudio.com/items?itemName=prompt-flow.prompt-flow). Prompt flow is also available and recommended to use as a feature within both [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) and [Azure Machine Learning studio](https://ml.azure.com). This set of documentation focuses on prompt flow in Azure AI Foundry portal.
+Prompt flow is available independently as an open-source project on [GitHub](https://github.com/microsoft/promptflow), with its own SDK and [VS Code extension](https://marketplace.visualstudio.com/items?itemName=prompt-flow.prompt-flow). Prompt flow is also available and recommended to use as a feature within both [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) and [Azure Machine Learning studio](https://ml.azure.com). This set of documentation focuses on prompt flow in Foundry portal.
 
 [!INCLUDE [hub-only-prereq](../includes/uses-hub-only.md)]
 
@@ -38,7 +40,7 @@ Definitions:
 
 ## Benefits of prompt flow
 
-With prompt flow in Azure AI Foundry portal, you can:
+With prompt flow in Foundry portal, you can:
 
 - Orchestrate executable flows with LLMs, prompts, and Python tools through a visualized graph.
 - Debug, share, and iterate your flows with ease through team collaboration.
@@ -57,7 +59,7 @@ With prompt flow in Azure AI Foundry portal, you can:
 - All-in-one platform: Prompt flow streamlines the entire prompt engineering process, from development and evaluation to deployment and monitoring. You can effortlessly deploy their flows as Azure AI endpoints and monitor their performance in real-time, ensuring optimal operation and continuous improvement.
 - Enterprise Readiness Solutions: Prompt flow applies robust Azure AI enterprise readiness solutions, providing a secure, scalable, and reliable foundation for the development, experimentation, and deployment of flows.
 
-With prompt flow in Azure AI Foundry portal, you can unleash prompt engineering agility, collaborate effectively, and apply enterprise-grade solutions for successful LLM-based application development and deployment.
+With prompt flow in Foundry portal, you can unleash prompt engineering agility, collaborate effectively, and apply enterprise-grade solutions for successful LLM-based application development and deployment.
 
 ## Flow development lifecycle
 
@@ -74,7 +76,7 @@ By following this structured and methodical approach, prompt flow empowers you t
 
 ## Flow types
 
-In Azure AI Foundry portal, you can start a new flow by selecting a flow type or a template from the gallery. 
+In Foundry portal, you can start a new flow by selecting a flow type or a template from the gallery. 
 
 :::image type="content" source="../media/prompt-flow/type-or-gallery.png" alt-text="Screenshot of example flow types and templates from the gallery." lightbox="../media/prompt-flow/type-or-gallery.png":::
 
@@ -100,7 +102,7 @@ With the flow feature in Prompt flow, you have the power to design, customize, a
 
 Tools are the fundamental building blocks of a flow.
 
-In Azure AI Foundry portal, tool options include the [LLM tool](../how-to/prompt-flow-tools/llm-tool.md), [Prompt tool](../how-to/prompt-flow-tools/prompt-tool.md), [Python tool](../how-to/prompt-flow-tools/python-tool.md), and more.
+In Foundry portal, tool options include the [LLM tool](../how-to/prompt-flow-tools/llm-tool.md), [Prompt tool](../how-to/prompt-flow-tools/prompt-tool.md), [Python tool](../how-to/prompt-flow-tools/python-tool.md), and more.
 
 :::image type="content" source="../media/prompt-flow/tool-options.png" alt-text="Screenshot of tool options in prompt flow editor." lightbox="../media/prompt-flow/tool-options.png":::
 
@@ -108,9 +110,9 @@ Each tool is a simple, executable unit with a specific function. By combining di
 
 One of the key benefit of Prompt flow tools is their seamless integration with third-party APIs and python open source packages. This not only improves the functionality of large language models but also makes the development process more efficient for developers.
 
-If the prompt flow tools in Azure AI Foundry portal don't meet your requirements, you can [develop your own custom tool and make it a tool package](https://microsoft.github.io/promptflow/how-to-guides/develop-a-tool/create-and-use-tool-package.html). To discover more custom tools developed by the open source community, visit [prompt flow custom tools](https://microsoft.github.io/promptflow/integrations/tools/index.html).
+If the prompt flow tools in Foundry portal don't meet your requirements, you can [develop your own custom tool and make it a tool package](https://microsoft.github.io/promptflow/how-to-guides/develop-a-tool/create-and-use-tool-package.html). To discover more custom tools developed by the open source community, visit [prompt flow custom tools](https://microsoft.github.io/promptflow/integrations/tools/index.html).
 
 ## Next steps
 
-- [Build with prompt flow in Azure AI Foundry portal](../how-to/flow-develop.md)
+- [Build with prompt flow in Foundry portal](../how-to/flow-develop.md)
 - [Get started with prompt flow in VS Code](https://microsoft.github.io/promptflow/how-to-guides/quick-start.html)

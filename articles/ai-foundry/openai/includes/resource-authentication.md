@@ -15,7 +15,6 @@ You need to retrieve the following information to authenticate your application 
 |--------------------------|-------------|
 | `AZURE_OPENAI_ENDPOINT`               | This value can be found in the **Keys and Endpoint** section when examining your resource from the Azure portal. |
 | `AZURE_OPENAI_DEPLOYMENT_NAME` | This value will correspond to the custom name you chose for your deployment when you deployed a model. This value can be found under **Resource Management** > **Model Deployments** in the Azure portal.|
-| `OPENAI_API_VERSION`|Learn more about [API Versions](/azure/ai-foundry/openai/api-version-lifecycle).<br/><br/>You can change the version in code or use an environment variable.|
 
 Learn more about [keyless authentication](/azure/ai-services/authentication) and [setting environment variables](/azure/ai-services/cognitive-services-environment-variables).
 
@@ -26,7 +25,6 @@ Learn more about [keyless authentication](/azure/ai-services/authentication) and
 | `AZURE_OPENAI_ENDPOINT`               | This value can be found in the **Keys and Endpoint** section when examining your resource from the Azure portal. |
 | `AZURE_OPENAI_API_KEY` | This value can be found in the **Keys and Endpoint** section when examining your resource from the Azure portal. You can use either `KEY1` or `KEY2`.|
 | `AZURE_OPENAI_DEPLOYMENT_NAME` | This value will correspond to the custom name you chose for your deployment when you deployed a model. This value can be found under **Resource Management** > **Model Deployments** in the Azure portal.|
-| `OPENAI_API_VERSION`|Learn more about [API Versions](/azure/ai-foundry/openai/api-version-lifecycle).|
 
 Learn more about [finding API keys](/azure/ai-services/cognitive-services-environment-variables) and [setting environment variables](/azure/ai-services/cognitive-services-environment-variables).
 

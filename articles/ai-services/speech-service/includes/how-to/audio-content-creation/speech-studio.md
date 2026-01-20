@@ -3,7 +3,7 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 8/5/2025
+ms.date: 10/31/2025
 ---
 
 ## Prerequisites
@@ -13,7 +13,7 @@ ms.date: 8/5/2025
 - A Speech resource. Create one in the [Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesSpeechServices) or [Speech Studio](https://aka.ms/speechstudio).
 
 > [!NOTE]
-> The [AI Foundry resource type](../../../../multi-service-resource.md) isn't supported in Speech Studio. 
+> The [Foundry resource type](../../../../multi-service-resource.md) isn't supported in Speech Studio. 
 
 ## Use the audio content creation tool
 
@@ -120,7 +120,7 @@ Now you're ready to use your custom tuned audio in your apps or products.
    
 ## Configure BYOS and anonymous public read access for blobs
    
-If you lose access permission to your Bring Your Own Storage (BYOS), you can't view, create, edit, or delete files. To resume your access, you need to remove the current storage and reconfigure the BYOS in the [Azure portal](https://portal.azure.com/#allservices). To learn more about how to configure BYOS, see [Mount Azure Storage as a local share in App Service](/azure/app-service/configure-connect-to-azure-storage?pivots=container-linux&tabs=portal). 
+If you lose access permission to your bring your own storage (BYOS), you can't view, create, edit, or delete files. To resume your access, you need to remove the current storage and reconfigure the BYOS in the [Azure portal](https://portal.azure.com/#allservices). To learn more about how to configure BYOS, see [Mount Azure Storage as a local share in App Service](/azure/app-service/configure-connect-to-azure-storage?pivots=container-linux&tabs=portal). 
 
 After configuring the BYOS permission, you need to configure anonymous public read access for related containers and blobs. Otherwise, blob data isn't available for public access and your lexicon file in the blob is inaccessible. By default, a container’s public access setting is disabled. To grant anonymous users read access to a container and its blobs, first set **Allow Blob anonymous access** to **Enabled** to allow public access for the storage account, then set the container's (named **acc-public-files**) public access level (**anonymous read access for blobs only**). To learn more about how to configure anonymous public read access, see [Configure anonymous public read access for containers and blobs](/azure/storage/blobs/anonymous-read-access-configure?tabs=portal). 
    
@@ -134,7 +134,7 @@ The users you grant access to need to set up a [Microsoft account](https://accou
 
 To add users to a Speech resource so that they can use audio content creation, do the following:
 
-1. In the [Azure portal](https://portal.azure.com/), select **All services** from the left pane, and then search for **Azure AI services** or **Speech**.
+1. In the [Azure portal](https://portal.azure.com/), select **All services** from the left pane, and then search for **Foundry Tools** or **Speech**.
 1. Select your Speech resource.
 
    > [!NOTE]
@@ -166,7 +166,7 @@ Users who are in the same Speech resource see each other's work in the audio con
 ### Remove users from a Speech resource
 
 To remove a user's permission from a Speech resource, do the following:
-1. Search for **Azure AI services** in the Azure portal, select the Speech resource that you want to remove users from.
+1. Search for **Foundry Tools** in the Azure portal, select the Speech resource that you want to remove users from.
 1. Select **Access control (IAM)**, and then select the **Role assignments** tab to view all the role assignments for this Speech resource.
 1. Select the users you want to remove, select **Remove**, and then select **OK**.
 

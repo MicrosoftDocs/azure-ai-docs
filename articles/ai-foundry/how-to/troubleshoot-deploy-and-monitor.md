@@ -1,8 +1,9 @@
 ---
-title: How to troubleshoot your deployments and monitors in Azure AI Foundry portal
-titleSuffix: Azure AI Foundry
-description: Learn how to troubleshoot and monitor model deployments in Azure AI Foundry portal to quickly resolve errors and optimize performance.
+title: How to troubleshoot your deployments and monitors in Microsoft Foundry portal
+titleSuffix: Microsoft Foundry
+description: Learn how to troubleshoot and monitor model deployments in Microsoft Foundry portal to quickly resolve errors and optimize performance.
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.custom:
   - ignite-2023
   - build-2024
@@ -17,33 +18,33 @@ ms.author: mopeakande
 manager: nitinme
 author: msakande
 
-#CustomerIntent: As a developer or data scientist, I want to troubleshoot and monitor model deployments in Azure AI Foundry so that I can quickly resolve errors, optimize performance, and ensure my AI solutions run smoothly.
+#CustomerIntent: As a developer or data scientist, I want to troubleshoot and monitor model deployments in Microsoft Foundry so that I can quickly resolve errors, optimize performance, and ensure my AI solutions run smoothly.
 ---
 
-# How to troubleshoot your deployments and monitors in Azure AI Foundry portal
+# How to troubleshoot your deployments and monitors in Microsoft Foundry portal
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-This article provides instructions on how to troubleshoot your deployments and monitors in Azure AI Foundry portal. 
+This article provides instructions on how to troubleshoot your deployments and monitors in Microsoft Foundry portal. 
 
 ## Deployment issues
 
-For general deployment error code reference, see [Troubleshooting online endpoints deployment and scoring](/azure/machine-learning/how-to-troubleshoot-online-endpoints) in the Azure Machine Learning documentation. Much of the information there also applies to Azure AI Foundry deployments.
+For general deployment error code reference, see [Troubleshooting online endpoints deployment and scoring](/azure/machine-learning/how-to-troubleshoot-online-endpoints) in the Azure Machine Learning documentation. Much of the information there also applies to Foundry deployments.
 
 
-### Error: Use of Azure OpenAI models in Azure Machine Learning requires Azure OpenAI in Azure AI Foundry Models resources
+### Error: Use of Azure OpenAI models in Azure Machine Learning requires Azure OpenAI in Foundry Models resources
 
-The full error message states: "Use of Azure OpenAI models in Azure Machine Learning requires Azure OpenAI in Azure AI Foundry Models resources. This subscription or region doesn't have access to this model."
+The full error message states: "Use of Azure OpenAI models in Azure Machine Learning requires Azure OpenAI in Foundry Models resources. This subscription or region doesn't have access to this model."
 
-This error means that you might not have access to the particular Azure OpenAI model. For example, your subscription might not have access to the latest GPT model yet or this model isn't offered in the region you want to deploy to. You can learn more about it on [Azure OpenAI in Azure AI Foundry Models](../../ai-services/openai/concepts/models.md?context=/azure/ai-foundry/context/context).
+This error means that you might not have access to the particular Azure OpenAI model. For example, your subscription might not have access to the latest GPT model yet or this model isn't offered in the region you want to deploy to. You can learn more about it on [Azure OpenAI in Foundry Models](../../ai-services/openai/concepts/models.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json).
 
 ### Error: Out of quota
 
 For more information about managing quota, see:
 
 - [Quota for deploying and inferencing a model](../how-to/deploy-models-openai.md#quota-for-deploying-and-inferencing-a-model)
-- [Manage Azure OpenAI in Azure AI Foundry Models quota documentation](/azure/ai-foundry/openai/how-to/quota?tabs=rest)
-- [Manage and increase quotas for resources with Azure AI Foundry](quota.md)
+- [Manage Azure OpenAI in Foundry Models quota documentation](/azure/ai-foundry/openai/how-to/quota?tabs=rest)
+- [Manage and increase quotas for resources with Foundry](quota.md)
 
 ### Error: `ToolLoadError`
 
@@ -53,7 +54,7 @@ To fix this error, manually assign the **Azure ML Data Scientist** role to your 
 
 [!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
 
-1. Go to your project in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) and select **Management center** from the left pane to open the settings page.
+1. Go to your project in [Foundry](https://ai.azure.com/?cid=learnDocs) and select **Management center** from the left pane to open the settings page.
 1. Under the **Project** heading, select **Overview**.
 1. Under **Project properties**, select the link to your resource group to open it in the Azure portal. 
 1. Select **Access control (IAM)** from the left pane in the Azure portal.
@@ -66,7 +67,7 @@ To fix this error, manually assign the **Azure ML Data Scientist** role to your 
     1. Select your endpoint's name.
     1. Select **Select** to choose the endpoint and close the right pane.
 1. Select **Review + assign**. Then select **Review + assign** again to confirm the role assignment.
-1. Return to your project in Azure AI Foundry portal and select **Models + endpoints** from the left pane.
+1. Return to your project in Foundry portal and select **Models + endpoints** from the left pane.
 1. On the **Model deployments** page, select your deployment.
 1. Test the prompt flow deployment.
 
@@ -84,9 +85,9 @@ __Option 1: Find the build log for the Azure default blob storage.__
 
 [!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
 
-1. Go to your project in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) and select **Management center** from the left pane to open the overview page of your hub.
+1. Go to your project in [Foundry](https://ai.azure.com/?cid=learnDocs) and select **Management center** from the left pane to open the overview page of your hub.
 1. In the section for **Connected resources**, select the link to your storage account name. This name should be the name of the storage account listed in the error message you received. 
-1. On the details page of the storage account, select **View in Azure Portal** to open up the storage account page in the [Azure portal](https://portal.azure.com).
+1. On the details page of the storage account, select **View in Azure portal** to open up the storage account page in the [Azure portal](https://portal.azure.com).
 1. Alternatively, go to the Azure portal, and from the home page, select **Storage accounts** from the list of Azure services.
 1. Select your storage account from the list. You might want to search for it in the search box to find it quickly.
 1. On the storage account page, select **Data Storage** > **Containers** from the left pane.
@@ -96,7 +97,7 @@ __Option 1: Find the build log for the Azure default blob storage.__
 __Option 2: Find the build log within Azure Machine Learning studio.__
 
 > [!NOTE]
-> This option to access the build log uses [Azure Machine Learning studio](https://ml.azure.com), which is a different portal than [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
+> This option to access the build log uses [Azure Machine Learning studio](https://ml.azure.com), which is a different portal than [Foundry](https://ai.azure.com/?cid=learnDocs).
 
 1. Go to [Azure Machine Learning studio](https://ml.azure.com).
 1. Go to your workspace or hub.
@@ -121,5 +122,5 @@ The playground only supports select models, such as Azure OpenAI models and Llam
 
 ## Related content
 
-- [Azure AI Foundry overview](../what-is-azure-ai-foundry.md)
+- [Foundry overview](../what-is-foundry.md)
 - [Azure AI FAQ](../faq.yml)

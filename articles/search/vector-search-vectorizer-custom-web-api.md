@@ -7,7 +7,7 @@ ms.author: gimondra
 ms.service: azure-ai-search
 ms.custom:
   - build-2024
-ms.topic: reference
+ms.topic: concept-article
 ms.date: 08/05/2024
 ms.update-cycle: 365-days
 ---
@@ -22,7 +22,7 @@ The custom web API vectorizer is called `WebApiVectorizer` in the REST API. Use 
 
 ## Vectorizer parameters
 
-Parameters are case-sensitive.
+Parameters are case sensitive.
 
 | Parameter name	 | Description |
 |--------------------|-------------|

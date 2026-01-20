@@ -4,7 +4,7 @@ title: Azure AI Content Safety documentation # < 60 chars
 summary: The cloud-based Azure AI Content Safety API provides developers with access to advanced algorithms for processing images and text and flagging content that is potentially offensive, risky, or otherwise undesirable. # < 160 chars
 
 metadata:
-  title: Azure AI Content Safety documentation - Quickstarts, Tutorials, API Reference - Azure AI services | Microsoft Docs # Required; page title displayed in search results. Include the brand. < 60 chars.
+  title: Azure AI Content Safety documentation - Quickstarts, Tutorials, API Reference - Foundry Tools | Microsoft Docs # Required; page title displayed in search results. Include the brand. < 60 chars.
   description: The cloud-based Azure AI Content Safety API provides developers with access to advanced algorithms for processing images and text and flagging content that is potentially offensive, risky, or otherwise undesirable. # Required; article description that is displayed in search results. < 160 chars.
   ms.service: azure-ai-content-safety
   ms.custom: build-2023

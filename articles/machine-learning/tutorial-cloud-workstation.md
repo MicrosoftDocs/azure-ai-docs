@@ -16,7 +16,7 @@ ms.custom:
 #Customer intent: As a data scientist, I want to know how to prototype and develop machine learning models on a cloud workstation.
 ---
 
-# Tutorial: Model development on a cloud workstation
+# Tutorial: model development on a cloud workstation
 
 This article describes how to develop a training script by using a notebook on an Azure Machine Learning cloud workstation. The tutorial covers the basic steps that you need to get started:
 
@@ -74,7 +74,7 @@ In order for your script to run, you need to be working in an environment that's
 
     1. In the menu at the top of Visual Studio Code, select **Terminal > New Terminal**.
 
-        :::image type="content" source="media/tutorial-cloud-workstation/open-terminal.png" alt-text="Screenshot shows open terminal tool in notebook toolbar.":::
+    :::image type="content" source="media/tutorial-cloud-workstation/open-terminal.png" alt-text="Screenshot of open terminal tool in notebook toolbar.":::
 
     1. View your current Conda environments. The active environment is marked with an asterisk (*).
 
@@ -140,7 +140,7 @@ You now have a new kernel. Next, you'll open a notebook and use this kernel.
 
 In this section, you develop a Python training script that predicts credit card default payments by using the prepared test and training datasets from the [UCI dataset](https://archive.ics.uci.edu/ml/datasets/default+of+credit+card+clients).
 
-This code uses `sklearn` for training and MLflow for logging the metrics.
+This code uses `sklearn` for training and MLflow for logging metrics.
 
 1. Start with code that imports the packages and libraries that you'll use in the training script.
 
@@ -150,7 +150,7 @@ This code uses `sklearn` for training and MLflow for logging the metrics.
 
     [!notebook-python[] (~/azureml-examples-main/tutorials/get-started-notebooks/cloud-workstation.ipynb?name=load)]
 
-1. Get the data ready for training:
+1. Prepare the data for training.
 
     [!notebook-python[] (~/azureml-examples-main/tutorials/get-started-notebooks/cloud-workstation.ipynb?name=extract)]
 
@@ -168,7 +168,7 @@ This code uses `sklearn` for training and MLflow for logging the metrics.
 
 ## Iterate 
 
-Now that you have model results, you might want to change something and try again. For example, try a different classifier technique:
+Now that you have model results, change something and run the model again. For example, try a different classification technique:
 
 [!notebook-python[] (~/azureml-examples-main/tutorials/get-started-notebooks/cloud-workstation.ipynb?name=ada)]
 

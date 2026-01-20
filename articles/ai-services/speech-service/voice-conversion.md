@@ -1,8 +1,8 @@
 ---
 title: What is voice conversion?
-titleSuffix: Azure AI services
-description: Learn about voice conversion in Azure AI speech.
-author: JieD-7
+titleSuffix: Foundry Tools
+description: Learn about voice conversion in Azure Speech in Foundry Tools.
+author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
@@ -36,7 +36,7 @@ Voice conversion (or voice changer or speech to speech conversion) is built on s
 
 ## Use voice conversion
 
-You can use Azure AI Speech voice conversion with either the Speech SDK or text to speech REST APIs.
+You can use Azure Speech in Foundry Tools voice conversion with either the Speech SDK or text to speech REST APIs.
 
 Use the `<mstts:voiceconversion>` tag via Speech Synthesis Markup Language (SSML) to specify the source audio URL and the target voice for the conversion. For a complete list of supported target voices, see [supported voices for voice conversion](./language-support.md?tabs=tts#voice-conversion).
 

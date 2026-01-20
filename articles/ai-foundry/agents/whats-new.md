@@ -1,6 +1,6 @@
 ---
-title: What's new in Azure AI Foundry Agent Service?
-titleSuffix: Azure AI Foundry
+title: What's new in Foundry Agent Service?
+titleSuffix: Microsoft Foundry
 description: Learn about new feature updates and additions for your AI Agents.
 manager: nitinme
 author: aahill
@@ -12,9 +12,11 @@ ms.date: 10/08/2025
 ms.custom: azure-ai-agents
 ---
 
-# What's new in Azure AI Foundry Agent Service
+# What's new in Foundry Agent Service
 
-This article provides a summary of the latest releases and major documentation updates for Azure AI Foundry Agent Service.
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
+This article provides a summary of the latest releases and major documentation updates for Foundry Agent Service.
 
 ## October 2025
 
@@ -53,7 +55,7 @@ The [Browser Automation tool](./how-to/tools/browser-automation.md) is now avail
 
 ### New regional availability
 
-The Azure AI Foundry Agent Service is now available in the following [regions](./concepts/model-region-support.md#available-models):
+The Agent Service is now available in the following [regions](./concepts/model-region-support.md#available-models):
 * Brazil south
 * Germany west central
 * Italy north
@@ -70,13 +72,13 @@ You can new extend the capabilities of your agents by connecting them to tools h
 
 ## May 2025
 
-### Azure AI Foundry Agent Service GA
+### Agent Service GA
 
-The Azure AI Foundry Agent Service is now Generally Available (GA). Along with this milestone, the service offers the following feature updates:
+The Agent Service is now Generally Available (GA). Along with this milestone, the service offers the following feature updates:
 
-#### AI Foundry Visual Studio Code extension
+#### Foundry Visual Studio Code extension
 
-The [AI Foundry Visual Studio Code extension](../../ai-foundry/how-to/develop/vs-code-agents.md?context=/azure/ai-services/agents/context/context) is now available with the ability to perform a variety of AI Foundry actions, such as deploying and configure agents natively.
+The [Foundry Visual Studio Code extension](../../ai-foundry/how-to/develop/vs-code-agents.md?context=/azure/ai-services/agents/context/context) is now available with the ability to perform a variety of Foundry actions, such as deploying and configure agents natively.
 
 #### Connected agents
 
@@ -115,13 +117,13 @@ The Standard Agent Setup now supports **Bring Your Own (BYO) thread storage usin
 
 ### Microsoft Fabric tool
 
-The Microsoft Fabric tool is now available for the Azure AI Foundry Agent Service, allowing users to interact with data you have in Microsoft Fabric through chat and uncover data-driven and actionable insights. See the [how-to article](how-to\tools\fabric.md) for more information.
+The Microsoft Fabric tool is now available for the Agent Service, allowing users to interact with data you have in Microsoft Fabric through chat and uncover data-driven and actionable insights. See the [how-to article](how-to\tools\fabric.md) for more information.
 
 ## February 2025
 
-### Use Azure AI Foundry Agent Service in the Azure AI Foundry portal
+### Use Agent Service in the Microsoft Foundry portal
 
-You can now use the Azure AI Foundry Agent Service in the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). Create, debug and modify agents, view threads, add tools and chat with agents without writing code. See the [quickstart](quickstart.md?pivots=ai-foundry) for steps on getting started. 
+You can now use the Agent Service in the [Foundry](https://ai.azure.com/?cid=learnDocs). Create, debug and modify agents, view threads, add tools and chat with agents without writing code. See the [quickstart](quickstart.md?pivots=ai-foundry) for steps on getting started. 
 
 ## December 2024
 

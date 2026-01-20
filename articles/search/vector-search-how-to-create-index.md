@@ -1,51 +1,51 @@
 ---
-title: Create a vector index
+title: Create a Vector Index
 titleSuffix: Azure AI Search
-description: Create or update a search index to include vector fields.
+description: Learn how to create or update a search index to include vector fields.
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2024
+  - dev-focus
+ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 09/28/2025
+ms.date: 01/14/2026
 ---
 
-# Create a vector index
+# Create a vector index in Azure AI Search
 
-In Azure AI Search, you can use [Create or Update Index (REST API)](/rest/api/searchservice/indexes/create-or-update) to store vectors in a search index. A vector index is defined by an index schema that has vector fields, nonvector fields, and a vector configuration section.
+In Azure AI Search, you can store and query vectors in a search index. A *vector index* is defined by an index schema that has vector fields, nonvector fields, and a vector configuration section.
 
-When you create a vector index, you implicitly create an *embedding space* that serves as the corpus for vector queries. The embedding space consists of all vector fields populated with embeddings from the same embedding model. At query time, the system compares the vector query to the indexed vectors, returning results based on semantic similarity.
+Creating a vector index implicitly creates an *embedding space* that serves as the corpus for vector queries. The embedding space consists of all vector fields populated with embeddings from the same embedding model. At query time, the system compares the vector query to the indexed vectors and returns results based on semantic similarity.
 
-To index vectors in Azure AI Search, follow these steps:
+This article uses REST to explain how to create a vector index, which includes the following steps:
 
 > [!div class="checklist"]
-> + Start with a basic schema definition.
-> + Add vector algorithms and optional compression.
-> + Add vector field definitions.
-> + Load prevectorized data as a [separate step](#load-vector-data-for-indexing) or use [integrated vectorization](vector-search-integrated-vectorization.md) for data chunking and embedding during indexing.
+> + Start with a basic schema definition
+> + Add vector algorithms and optional compression
+> + Add vector field definitions
+> + Load prevectorized data as a [separate step](#load-vector-data-for-indexing) or use [integrated vectorization](vector-search-integrated-vectorization.md) to chunk and embed data during indexing
 
-This article uses REST for illustration. After you understand the basic workflow, continue with the Azure SDK code samples in the [azure-search-vector-samples](https://github.com/Azure/azure-search-vector-samples) repo, which provides guidance on using vectors in test and production code.
-
-> [!TIP]
-> You can also use the Azure portal to [create a vector index](search-get-started-portal-import-vectors.md) and try out integrated data chunking and vectorization.
+After you understand the basic workflow, try the Azure SDK samples in the [azure-search-vector-samples](https://github.com/Azure/azure-search-vector-samples) GitHub repo for guidance on using vectors in test and production code. You can also use the Azure portal to [create a vector index](search-get-started-portal-import-vectors.md) via integrated vectorization.
 
 ## Prerequisites
 
-+ An [Azure AI Search service](search-create-service-portal.md) in any region and on any tier. If you plan to use [integrated vectorization](vector-search-integrated-vectorization.md) with Azure AI skills and vectorizers, Azure AI Search must be in the same region as the embedding models hosted on Azure AI Vision.
++ An [Azure AI Search service](search-create-service-portal.md) in any region and on any tier. If you plan to use [integrated vectorization](vector-search-integrated-vectorization.md) with the Azure Vision skill and vectorizer, Azure AI Search must be in the same region as the embedding models hosted on Azure Vision in Foundry Tools.
 
-+ Your source documents must have [vector embeddings](vector-search-how-to-generate-embeddings.md) to upload to the index. You can also use [integrated vectorization](vector-search-integrated-vectorization.md) for this step.
++ For the recommended [keyless authentication](search-security-rbac.md), assign the **Search Service Contributor** and **Search Index Data Contributor** roles to your user account, managed identity, or service principal. For the less secure [key-based authentication](search-security-api-keys.md), obtain an admin API key.
 
-+ You should know the dimensions limit of the model that creates the embeddings so that you can assign that limit to the vector field. For **text-embedding-ada-002**, dimensions are fixed at 1536. For **text-embedding-3-small** or **text-embedding-3-large**, dimensions range from 1 to 1536 and from 1 to 3072, respectively.
++ Source documents with [vector embeddings](vector-search-how-to-generate-embeddings.md) to upload to the index. You can also use [integrated vectorization](vector-search-integrated-vectorization.md) for this task.
 
-+ You should know what similarity metric to use. For embedding models on Azure OpenAI, similarity is computed using [`cosine`](/azure/ai-services/openai/concepts/understand-embeddings#cosine-similarity).
++ The dimensions limit of your embedding model. `text-embedding-ada-002` is fixed at 1536, `text-embedding-3-small` ranges from 1 to 1536, and `text-embedding-3-large` ranges from 1 to 3072.
 
-+ You should know how to [create an index](search-how-to-create-search-index.md). A schema always includes a field for the document key, fields for search or filters, and other configurations for behaviors needed during indexing and queries.
++ The similarity metric for your embedding model. Azure OpenAI models use [`cosine`](/azure/ai-services/openai/concepts/understand-embeddings#cosine-similarity).
 
-## Limitations
++ Familiarity with [creating an index](search-how-to-create-search-index.md).  A schema always includes a field for the document key, fields for search or filters, and other configurations for behaviors needed during indexing and queries.
 
-Some search services created before January 2019 can't create a vector index. If this applies to you, create a new service to use vectors.
+> [!NOTE]
+> Some search services created before January 2019 can't create a vector index. If applicable, create a new service to use vectors.
 
 ## Prepare documents for indexing
 
@@ -61,7 +61,7 @@ Make sure your source documents provide the following content:
 
 Your search index should include fields and content for all of the query scenarios you want to support. Suppose you want to search or filter over product names, versions, metadata, or addresses. In this case, vector similarity search isn't especially helpful. Keyword search, geo-search, or filters that iterate over verbatim content would be a better choice. A search index that's inclusive of both vector and nonvector fields provides maximum flexibility for query construction and response composition.
 
-For a short example of a documents payload that includes vector and nonvector fields, see the [load vector data](#load-vector-data-for-indexing) section of this article.
+For a documents payload example, see the [Load vector data for indexing](#load-vector-data-for-indexing) section.
 
 ## Start with a basic index
 
@@ -365,8 +365,8 @@ Pull APIs refer to indexers that automate multiple indexing steps, from data ret
 
   + [AzureOpenAIEmbedding skill](cognitive-search-skill-azure-openai-embedding.md)
   + [Custom Web API skill](cognitive-search-custom-skill-web-api.md)
-  + [Azure AI Vision multimodal embeddings skill (preview)](cognitive-search-skill-vision-vectorize.md)
-  + [AML skill (preview)](cognitive-search-aml-skill.md) to generate embeddings for models hosted in the Azure AI Foundry model catalog. For more information, see [Use embedding models from Azure AI Foundry model catalog for integrated vectorization](vector-search-integrated-vectorization-ai-studio.md).
+  + [Azure Vision multimodal embeddings skill (preview)](cognitive-search-skill-vision-vectorize.md)
+  + [AML skill (preview)](cognitive-search-aml-skill.md) to generate embeddings for models hosted in the Microsoft Foundry model catalog. For more information, see [Use embedding models from Foundry model catalog for integrated vectorization](vector-search-integrated-vectorization-ai-studio.md).
 
 + Indexes provide the vector field definitions and vector search configurations. This article describes those definitions.
 
@@ -384,7 +384,7 @@ If you're familiar with indexers and skillsets:
 
 ---
 
-## Query your index for vector content
+## Query an index for vector content
 
 For validation purposes, you can query the index using Search Explorer in the Azure portal or a REST API call. Because Azure AI Search can't convert a vector to human-readable text, try to return fields from the same document that provide evidence of the match. For example, if the vector query targets the `titleVector` field, you could select `title` for the search results.
 

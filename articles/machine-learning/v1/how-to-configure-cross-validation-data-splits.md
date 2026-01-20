@@ -7,9 +7,9 @@ ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: how-to
 ms.custom: UpdateFrequency5, automl, sdkv1
-ms.author: cesardl
-author: CESARDELATORRE
-ms.reviewer: ssalgado
+ms.author: scottpolly
+author: s-polly
+ms.reviewer: sooryar
 ms.date: 10/04/2024
 monikerRange: 'azureml-api-1'
 

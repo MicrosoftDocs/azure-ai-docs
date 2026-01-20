@@ -23,7 +23,7 @@ In this article, learn the steps for defining a schema for a [**search index**](
 
 + You must also have a unique field in source data that can be used as the [document key (or ID)](#document-keys) in the index.
 
-+ A stable index location. Moving an existing index to a different search service isn't supported out-of-the-box. Revisit application requirements and make sure that your existing search service (capacity and region), are sufficient for your needs. If you're taking a dependency on Azure AI services or Azure OpenAI, [choose a region](search-create-service-portal.md#checklist-for-choosing-a-region) that provides all of the necessary resources.
++ A stable index location. Moving an existing index to a different search service isn't supported out-of-the-box. Revisit application requirements and make sure that your existing search service (capacity and region), are sufficient for your needs. If you're taking a dependency on Foundry Tools or Azure OpenAI, [choose a region](search-create-service-portal.md#checklist-for-choosing-a-region) that provides all of the necessary resources.
 
 + Finally, all service tiers have [index limits](search-limits-quotas-capacity.md#index-limits) on the number of objects that you can create. For example, if you're experimenting on the Free tier, you can only have three indexes at any given time. Within the index itself, there are [limits on vectors](search-limits-quotas-capacity.md#vector-index-size-limits) and [index limits](search-limits-quotas-capacity.md#index-limits) on the number of simple and complex fields.
 
@@ -224,7 +224,7 @@ SearchIndex index = new SearchIndex(indexName)
 await indexClient.CreateIndexAsync(index);
 ```
 
-For more examples, see [azure-search-dotnet-samples/quickstart/v11/](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart/AzureSearchQuickstart).
+For more examples, see [azure-search-dotnet-samples/quickstart-keyword-search/v11](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-keyword-search/AzureSearchQuickstart).
 
 ### [**Other SDKs**](#tab/index-other-sdks)
 

@@ -1,7 +1,7 @@
 ---
-title: Work with Azure AI Foundry Agent Service and MCP Server Tools in Visual Studio Code
-titleSuffix: Azure AI Foundry
-description: Use this article to learn how to use MCP server tools with Azure AI Foundry Agent Service directly in VS Code.
+title: Work with Foundry Agent Service and MCP Server Tools in Visual Studio Code
+titleSuffix: Microsoft Foundry
+description: Use this article to learn how to use MCP server tools with Foundry Agent Service directly in VS Code.
 manager: mcleans
 ms.service: azure-ai-foundry
 content_well_notification: 
@@ -12,13 +12,14 @@ ms.date: 09/24/2025
 ms.reviewer: erichen
 ms.author: johalexander
 author: ms-johnalex
+monikerRange: foundry-classic || foundry
 ---
 
-# Work with Azure AI Foundry Agent Service and MCP server tools in Visual Studio Code (preview)
+# Work with Foundry Agent Service and MCP server tools in Visual Studio Code (preview)
 
-In this article, you learn how to add and use [Model Context Protocol (MCP)](/azure/ai-foundry/agents/how-to/tools/model-context-protocol) tools with Azure AI agents by using the [Azure AI Foundry for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry).
+In this article, you learn how to add and use [Model Context Protocol (MCP)](/azure/ai-foundry/agents/how-to/tools/model-context-protocol) tools with Azure AI agents by using the [Microsoft Foundry for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry).
 
-After you [build an agent in Azure AI Foundry Agent Service](./vs-code-agents.md) by using this Visual Studio Code (VS Code) extension, you can add MCP tools to your agent.
+After you [build an agent in Foundry Agent Service](./vs-code-agents.md) by using this Visual Studio Code (VS Code) extension, you can add MCP tools to your agent.
 
 Using or building an MCP server allows your agent to:
 
@@ -27,7 +28,7 @@ Using or building an MCP server allows your agent to:
 
 Agents combine AI models with tools to access and interact with your data.
 
-Azure AI Foundry developers can stay productive by developing, testing, and deploying MCP tool-calling agents in the familiar environment of VS Code.
+Foundry developers can stay productive by developing, testing, and deploying MCP tool-calling agents in the familiar environment of VS Code.
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -48,7 +49,7 @@ To add an existing MCP server tool to your AI agent, follow these steps:
 
 1. In the designer, in the upper-right corner of the **TOOL** section, select the **Add tool** button. In the dropdown list, select the **MCP Server** tool.
 
-1. Find the remote MCP server that you want to connect to, such as the GitHub MCP server. Create or update an Azure AI Foundry agent with an MCP tool by using the following information:
+1. Find the remote MCP server that you want to connect to, such as the GitHub MCP server. Create or update a Foundry agent with an MCP tool by using the following information:
 
     1. **Server URL**: The URL of the MCP server; for example, `https://gitmcp.io/Azure/azure-rest-api-specs`.
 
@@ -62,13 +63,13 @@ To add an existing MCP server tool to your AI agent, follow these steps:
 
 1. After you enter the required information, select the **Create tool** button.
 
-### Create an Azure AI agent on Azure AI Foundry
+### Create an Azure AI agent on Foundry
 
-After you add an MCP tool, you can create an agent directly on Azure AI Foundry by using the following steps:
+After you add an MCP tool, you can create an agent directly on Foundry by using the following steps:
 
-1. In the designer, select the **Create Agent on Azure AI Foundry** button.
+1. In the designer, select the **Create Agent on Foundry** button.
 
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-deploy.png" alt-text="Screenshot of the agent designer with the button for creating an agent on Azure AI Foundry highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/agent-deploy.png":::
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-deploy.png" alt-text="Screenshot of the agent designer with the button for creating an agent on Foundry highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/agent-deploy.png":::
 
 1. In VS Code, refresh the **Azure Resources** view. The deployed agent appears in the **Agents** subsection.
 
@@ -76,7 +77,7 @@ After you add an MCP tool, you can create an agent directly on Azure AI Foundry 
 
 ## View the details of a deployed AI agent
 
-Selecting the deployed agent opens the **AGENT PERFERENCES** pane in a view-only mode. You can:
+Selecting the deployed agent opens the **AGENT PREFERENCES** pane in a view-only mode. You can:
 
 - Select the **Edit Agent** button to view the agent designer and the .yaml definition of the agent for editing.
 - Select the **Open Code File** button to create a sample code file that uses the agent.
@@ -86,13 +87,13 @@ Selecting the deployed agent opens the **AGENT PERFERENCES** pane in a view-only
 
 ### Edit and update the deployed AI agent
 
-1. On the **AGENT PERFERENCES** pane, select the **Edit Agent** button. The agent designer opens with the agent's .yaml file.
+1. On the **AGENT PREFERENCES** pane, select the **Edit Agent** button. The agent designer opens with the agent's .yaml file.
 
 1. Edit the agent's configuration, such as the model, tools, and instructions.
 
-1. After you finish editing, select the **Update Agent on Azure AI Foundry** button to save your changes.
+1. After you finish editing, select the **Update Agent on Foundry** button to save your changes.
 
-:::image type="content" source="../../media/how-to/get-started-projects-vs-code/update-agent.png" alt-text="Screenshot of the pane for agent preferences with the Update Agent on Azure AI Foundry button highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/update-agent.png":::
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/update-agent.png" alt-text="Screenshot of the pane for agent preferences with the Update Agent on Foundry button highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/update-agent.png":::
 
 ### Interact with agents by using the MCP server tool in the agent playground
 
@@ -124,11 +125,11 @@ The Azure resources that you created in this article are billed to your Azure su
 
 [!INCLUDE [tip-left-pane](../../includes/tip-left-pane.md)]
 
-1. In the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), on the left menu, select **Agents**.
+1. In the [Foundry portal](https://ai.azure.com/?cid=learnDocs), on the left menu, select **Agents**.
 
 1. Select the agent that you want to delete, and then select **Delete**.
 
-   :::image type="content" source="../../media/how-to/get-started-projects-vs-code/delete-agent.png" alt-text="Screenshot of the Azure AI Foundry portal with the Delete command for a selected agent." lightbox="../../media/how-to/get-started-projects-vs-code/delete-agent.png":::
+   :::image type="content" source="../../media/how-to/get-started-projects-vs-code/delete-agent.png" alt-text="Screenshot of the Foundry portal with the Delete command for a selected agent." lightbox="../../media/how-to/get-started-projects-vs-code/delete-agent.png":::
 
 ### Delete your models
 

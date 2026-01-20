@@ -1,15 +1,13 @@
 ---
 title: Regions - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: A list of available regions and endpoints for the Speech service, including speech to text, text to speech, and speech translation.
-author: goergenj
-reviewer: patrickfarley
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: conceptual
-ms.date: 10/24/2025
-ms.author: jagoerge
-ms.reviewer: pafarley
+ms.topic: article
+ms.date: 11/09/2025
+ms.author: pafarley
 ms.custom: references_regions
 #Customer intent: As a developer, I want to learn about the available regions and endpoints for the Speech service.
 ---
@@ -25,7 +23,7 @@ Keep in mind the following points:
 - Keys created for a region are valid only in that region. If you attempt to use them with other regions, you get authentication errors.
 
 > [!NOTE]
-> Speech service doesn't store or process your data outside the region of your Speech resource. The data is only stored or processed in the region where the resource is created. For example, if you create an AI Foundry resource for Speech in the `westus` region, the data is only in the `westus` region.
+> Speech service doesn't store or process your data outside the region of your Speech resource. The data is only stored or processed in the region where the resource is created. For example, if you create a Foundry resource for Speech in the `westus` region, the data is only in the `westus` region.
 
 ## Regions
 
@@ -78,7 +76,7 @@ The regions in these tables support most of the core features of the Speech serv
 |-----|-----|-----|-----|-----|-----|-----|
 | australiaeast | ✅ | ✅ | ✅ | ✅ |   | ✅ |
 | brazilsouth | ✅ | ✅ | ✅ |   |   |   |
-| canadacentral | ✅ |   | ✅ |   |   | ✅ |
+| canadacentral | ✅ | ✅ | ✅ |   |   | ✅ |
 | canadaeast | ✅ |   | ✅ |   |   |   |
 | centralindia | ✅ | ✅ | ✅ |   | ✅ | ✅ |
 | centralus  | ✅ |   | ✅ |   |   |   |
@@ -86,11 +84,11 @@ The regions in these tables support most of the core features of the Speech serv
 | eastus | ✅ | ✅ | ✅ | ✅ |   | ✅ |
 | eastus2  | ✅ | ✅ | ✅ |   | ✅ | ✅ |
 | francecentral | ✅ | ✅ | ✅ |   |   | ✅ |
-| germanywestcentral | ✅ |   | ✅ |   |   |   |
+| germanywestcentral | ✅ | ✅ | ✅ |   |   |   |
 | italynorth | ✅ |   | ✅ |   |   |   |
 | japaneast  | ✅ | ✅ | ✅ | ✅ |   | ✅ |
-| japanwest  | ✅ |   | ✅ |   |   |   |
-| koreacentral   | ✅ |   | ✅ |   |   | ✅ |
+| japanwest  | ✅ | ✅ | ✅ |   |   |   |
+| koreacentral   | ✅ | ✅ | ✅ |   |   | ✅ |
 | northcentralus   | ✅ | ✅ | ✅ |   | ✅ |   |
 | northeurope | ✅ | ✅ | ✅ |   |   | ✅ |
 | norwayeast | ✅ |   | ✅ |   | ✅ |   |
@@ -203,25 +201,49 @@ The regions in these tables support most of the core features of the Speech serv
 | westus2 | ✅ | ✅ | ✅ |
 | westus3 | ✅ | ✅ |   |
 
+# [LLM speech](#tab/llmspeech)
+
+| **Region** | **transcription** | **translation** |
+|-----|-----|-----|
+| centralindia   | ✅ | ✅ |
+| eastus | ✅ | ✅ |
+| northeurope | ✅ | ✅ |
+| southeastasia  | ✅ | ✅ |
+| westus | ✅ | ✅ |
+
 # [Voice live](#tab/voice-live)
 
-| **Region** | **gpt-realtime** | **gpt-4o-mini-realtime-preview** (Preview) | **gpt-4o** | **gpt-4o-mini**  | **gpt-4.1** | **gpt-4.1-mini** | **gpt-5** (Preview) | **gpt-5-mini** (Preview) | **gpt-5-nano** (Preview) | **gpt-5-chat** (Preview) | **phi4-mm-realtime** (Preview) | **phi4-mini** (Preview) |
-|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
-| centralindia   | Cross-region<sup>1</sup> | Cross-region<sup>1</sup> | Global standard | Global standard | Global standard | Global standard | - | - | - | - | - | - |
-| eastus2   | Global standard | Global standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Global standard | Regional | Regional |
-| southeastasia   | - | - | - | - | Global standard | Global standard | - | - | - | - | Regional | Regional |
-| swedencentral   | Global standard | Global standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Global standard | Regional | Regional |
-| westus2<sup>3</sup> | Cross-region<sup>2</sup> | Cross-region<sup>2</sup> | Data zone standard | Data zone standard | Data zone standard | Data zone standard | - | - | - | - | Regional | Regional |
-|australiaeast| - | - | Global standard | Global standard | Global standard | Global standard | - | - | - | - | - | - |
-|japaneast| - | - | Global standard | Global standard | Global standard | Global standard | - | - | - | - | Regional | Regional |
-|eastus| - | - | Data zone standard | Data zone standard | Data zone standard | Data zone standard | - | - | - | - | - | - |
-|uksouth| - | - | Global standard | Global standard | Global standard | Global standard | - | - | - | - | - | - |
+| **Region** | **gpt-realtime** | **gpt-realtime-mini** | **gpt-4o** | **gpt-4o-mini**  | **gpt-4.1** | **gpt-4.1-mini** | **gpt-5.2** | **gpt-5.2-chat** | **gpt-5.1** | **gpt-5.1-chat** | **gpt-5** | **gpt-5-mini** | **gpt-5-nano** | **gpt-5-chat** | **phi4-mm-realtime** (Preview) | **phi4-mini** (Preview) | **Agent Support** |
+|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
+|australiaeast| - | - | Global standard | Global standard | Global standard | Global standard | - | - | Global standard | Global standard | Global standard | Global standard | Global standard | - | - | - | ✅ |
+| brazilsouth | - | - | Global standard | Global standard | Global standard | Global standard | - | - | - | - | Global standard | Global standard | Global standard | - | - | - | ✅ |
+| canadacentral | - | - | - | - | Global standard | Global standard | - | - | Global standard | Global standard | Global standard | Global standard | Global standard | - | - | - | - |
+| canadaeast | - | - | - | - | Global standard | Global standard | - | - | Global standard | Global standard | Global standard | Global standard | Global standard | - | - | - | ✅ |
+| centralindia   | Cross-region<sup>1</sup> | Cross-region<sup>1</sup> | Global standard | Global standard | Global standard | Global standard | - | - | - | - | Global standard | Global standard | Global standard | - | - | - | - |
+|eastus| - | - | Data zone standard | Data zone standard | Data zone standard | Data zone standard | - | - | Data zone standard | - | Data zone standard | Data zone standard | Data zone standard | - | - | - | ✅ |
+| eastus2   | Global standard | Global standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Global standard | Data zone standard | Global standard | Data zone standard | Data zone standard | Data zone standard | Global standard | Regional | Regional | ✅ |
+| francecentral | - | - | Data zone standard | Data zone standard | Data zone standard | Data zone standard | - | - | Data zone standard | - | Data zone standard | Data zone standard | Data zone standard | - | - | - | ✅ |
+| germanywestcentral | - | - | - | - | Data zone standard | Data zone standard | - | - | - | - | Data zone standard | Data zone standard | Data zone standard | - | - | - | ✅ |
+| italynorth | - | - | Data zone standard | Data zone standard | Data zone standard | Data zone standard | - | - | - | - | Data zone standard | Data zone standard | Data zone standard | - | - | - | ✅ |
+|japaneast| - | - | Global standard | Global standard | Global standard | Global standard | - | - | Global standard | Global standard | Global standard | Global standard | Global standard | - | Regional | Regional | ✅ |
+| koreacentral | - | - | Global standard | Global standard | Global standard | Global standard | - | - | Global standard | Global standard | Global standard | Global standard | Global standard | - | - | - | - |
+| northcentralus | - | - | Data zone standard | Data zone standard | Data zone standard | Data zone standard | - | - | - | - | Data zone standard | Data zone standard | Data zone standard | - | - | - | - |
+| norwayeast | - | - | Global standard | Global standard | Global standard | Global standard | - | - | - | - | Global standard | Global standard | Global standard | - | - | - | ✅ |
+| southafricanorth | - | - | Global standard | Global standard | Global standard | Global standard | - | - | - | - | Global standard | Global standard | Global standard | - | - | - | ✅ |
+| southcentralus | - | - | Data zone standard | Data zone standard | Data zone standard | Data zone standard | - | - | - | - | Data zone standard | Data zone standard | Data zone standard | - | - | - | ✅ |
+| southeastasia   | - | - | - | - | Global standard | Global standard | - | - | - | - | Global standard | Global standard | Global standard | - | Regional | Regional | ✅ |
+| swedencentral   | Global standard | Global standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Global standard | Global standard | Data zone standard | Global standard | Data zone standard | Data zone standard | Data zone standard | Global standard | Regional | Regional | ✅ |
+| switzerlandnorth | - | - | Global standard | Global standard | Global standard | Global standard | - | - | Global standard | Global standard | Global standard | Global standard | Global standard | - | - | - | ✅ |
+| uaenorth | - | - | Global standard | Global standard | Global standard | Global standard | - | - | - | - | Global standard | Global standard | Global standard | - | - | - | - |
+|uksouth| - | - | Global standard | Global standard | Global standard | Global standard | - | - | Global standard | Global standard | Global standard | Global standard | Global standard | - | - | - | ✅ |
+|westeurope| - | - | Data zone standard | Data zone standard | Data zone standard | Data zone standard | - | - | - | - | Data zone standard | Data zone standard | Data zone standard | - | - | - | ✅ |
+| westus | - | - | Data zone standard | Data zone standard | Data zone standard | Data zone standard | - | - | - | - | Data zone standard | Data zone standard | Data zone standard | - | - | - | ✅ |
+| westus2 | Cross-region<sup>2</sup> | Cross-region<sup>2</sup> | Data zone standard | Data zone standard | Data zone standard | Data zone standard | - | - | - | - | Data zone standard | Data zone standard | Data zone standard | - | Regional | Regional | ✅ |
+| westus3 | - | - | Data zone standard | Data zone standard | Data zone standard | Data zone standard | - | - | - | - | Data zone standard | Data zone standard | Data zone standard | - | - | - | ✅ |
 
-<sup>1</sup> The Azure AI Foundry resource must be in Central India. Azure AI Speech features remain in Central India. The Voice live API uses Sweden Central as needed for generative AI load balancing.
+<sup>1</sup> The Microsoft Foundry resource must be in Central India. Azure Speech in Foundry Tools features remain in Central India. The Voice live API uses Sweden Central as needed for generative AI load balancing.
 
-<sup>2</sup> The resource must be in West US 2. Azure AI Speech features remain in West US 2. The Voice live API uses East US 2 as needed for generative AI load balancing.
-
-<sup>3</sup> Currently West US 2 only supports Speech Service resources (not AI Foundry resources). Use one of the other regions to use an Azure AI Foundry resource and best integration with Azure AI Foundry Agent Service and bring-your-own-model (BYOM) support.
+<sup>2</sup> The resource must be in West US 2. Azure Speech features remain in West US 2. The Voice live API uses East US 2 as needed for generative AI load balancing.
 
 # [Keyword recognition](#tab/keyword-recognition)
 
@@ -243,7 +265,46 @@ The regions in these tables support most of the core features of the Speech serv
 | westus |  | ✅ |
 | westus2  | ✅ | ✅ |
 
-Verify and check actions taken: Computer Use might make mistakes and perform unintended actions. This behavior can be due to the model not fully understanding the GUI, having unclear instructions or encountering an unexpected scenario. 
+Verify and check actions taken: Computer Use might make mistakes and perform unintended actions. This behavior can be due to the model not fully understanding the GUI, having unclear instructions or encountering an unexpected scenario.
+
+# [Speech MCP server](#tab/mcp)
+
+
+| **Region** | **Speech MCP server agent tool** |
+|-----|-----|
+| australiaeast | ✅ |
+| brazilsouth | ✅ |
+| canadacentral | ✅ |
+| canadaeast | ✅ |
+| centralindia | ✅ |
+| centralus  | ✅ |
+| eastasia | ✅ |
+| eastus | ✅ |
+| eastus2  | ✅ |
+| francecentral | ✅ |
+| germanywestcentral | ✅ |
+| italynorth | ✅ |
+| japaneast  | ✅ |
+| japanwest  | ✅ |
+| koreacentral   | ✅ |
+| northcentralus   | ✅ |
+| northeurope | ✅ |
+| norwayeast | ✅ |
+| qatarcentral | ✅ |
+| southafricanorth | ✅ |
+| southcentralus | ✅ |
+| southeastasia | ✅ |
+| swedencentral | ✅ |
+| switzerlandnorth | ✅ |
+| switzerlandwest  | ✅ |
+| uaenorth | ✅ |
+| uksouth  | ✅ |
+| ukwest | ✅ |
+| westcentralus | ✅ |
+| westeurope | ✅ |
+| westus | ✅ |
+| westus2  | ✅ |
+| westus3  | ✅ |
 
 ---
 

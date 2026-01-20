@@ -1,122 +1,117 @@
 ---
-title: Configure Answer Synthesis
+title: Enable Answer Synthesis
 titleSuffix: Azure AI Search
-description: Learn how to configure a knowledge agent to use answer synthesis in Azure AI Search. At query time, the agent uses your deployed chat completion model to produce natural-language answers with citations to your knowledge sources.
+description: Learn how to enable answer synthesis on a knowledge base or retrieval request in Azure AI Search. At query time, the knowledge base uses your deployed LLM to produce natural-language answers with citations to your knowledge sources.
 manager: nitinme
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 08/26/2025
+ms.date: 11/10/2025
 ---
 
 # Use answer synthesis for citation-backed responses in Azure AI Search
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-By default, a [knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md) in Azure AI Search performs *data extraction*, which returns raw grounding chunks from your knowledge sources. Data extraction is useful for retrieving specific information, but it lacks the context and reasoning necessary for complex queries.
+By default, a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) in Azure AI Search performs *data extraction*, which returns raw grounding chunks from your knowledge sources. Data extraction is useful for retrieving specific information but lacks the context and reasoning necessary for complex queries.
 
-You can configure the agent to perform *answer synthesis*, which uses your deployed chat completion model to respond to queries in natural language. Each answer includes citations to the retrieved sources and follows any instructions you provide, such as using bulleted lists.
+You can instead enable *answer synthesis*, which uses the LLM specified in your knowledge base to answer queries in natural language. Each answer includes citations to the retrieved sources and follows any instructions you provide, such as using bulleted lists.
 
-This article explains how to configure and test answer synthesis for an existing agent. Although you can use this configuration for new agents, agent creation is beyond the scope of this article.
+You can enable answer synthesis in two ways:
+
++ On the knowledge base (becomes the default for all queries)
++ On individual retrieval requests (overrides the default)
 
 > [!IMPORTANT]
-> Answer synthesis incurs pay-as-you-go charges from Azure OpenAI, which is based on the number of input and output tokens. Charges appear under the chat completion model assigned to the agent. For more information, see [Availability and pricing of agentic retrieval](agentic-retrieval-overview.md#availability-and-pricing).
+> + The `minimal` retrieval reasoning effort disables LLM processing, so it's incompatible with answer synthesis in both knowledge base definitions and retrieval requests. For more information, see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md).
+>
+> + Answer synthesis incurs pay-as-you-go charges from Azure OpenAI, which is based on the number of input and output tokens. Charges appear under the LLM assigned to the knowledge base. For more information, see [Availability and pricing of agentic retrieval](agentic-retrieval-overview.md#availability-and-pricing).
 
 ## Prerequisites
 
-+ A knowledge agent that uses the 2025-08-01-preview syntax, which requires `knowledgeSources` instead of `targetIndexes`.
++ A knowledge base that uses the [2025-11-01-preview syntax](agentic-retrieval-how-to-migrate.md).
 
-+ [Visual Studio Code](https://code.visualstudio.com/) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) or a prerelease package of an Azure SDK that provides the knowledge agent REST APIs. Currently, there's no portal support.
++ [Visual Studio Code](https://code.visualstudio.com/) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) or a preview Azure SDK package that provides the knowledge base REST APIs.
 
-## Configure answer synthesis
+## Enable answer synthesis on a knowledge base
 
-To configure your knowledge agent for answer synthesis, use the 2025-08-01-preview of [Knowledge Agent - Create or Update (REST API)](/rest/api/searchservice/knowledge-agents/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true).
+This section explains how to enable answer synthesis on an existing knowledge base. Although you can use this configuration for new knowledge bases, knowledge base creation is beyond the scope of this article.
 
-In the `outputConfiguration` section:
+To enable answer synthesis on a knowledge base:
 
-1. Set `modality` to `answerSynthesis`.
+1. Use the 2025-11-01-preview of [Knowledge Base - Create or Update (REST API)](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to formulate the request.
 
-1. (Optional) Use `answerInstructions` to customize the answer output. Our example instructs the agent to `Use concise bulleted lists`.
+1. In the body of the request, set `outputMode` to `answerSynthesis`.
+
+1. (Optional) Use `answerInstructions` to customize the answer output. Our example instructs the knowledge base to `Use concise bulleted lists`.
 
 ```http
-@search-url = <YourSearchServiceUrl>
-@agent-name = <YourAgentName>
-@api-key = <YourApiKey>
+@search-url = <YOUR SEARCH SERVICE URL>
+@api-key = <YOUR API KEY>
+@knowledge-base-name = <YOUR KNOWLEDGE BASE NAME>
 
-### Configure answer synthesis
-PUT https://{{search-url}}/knowledgeAgents/{{agent-name}}?api-version=2025-08-01-preview  HTTP/1.1
-    Content-Type: application/json
-    api-key: {{api-key}}
+### Enable answer synthesis on a knowledge base
+PUT {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version=2025-11-01-preview  HTTP/1.1
+Content-Type: application/json
+api-key: {{api-key}}
 
-    {
-        "name": "{{agent-name}}",
-        "models": [
-            ... // Redacted for brevity
-        ],
-        "knowledgeSources": [
-            ... // Redacted for brevity
-        ],
-        "outputConfiguration": {
-            "modality": "answerSynthesis",
-            "answerInstructions": "Use concise bulleted lists"
-        }
-    }
+{
+    "name": "{{knowledge-base-name}}",
+    "knowledgeSources": [ ... // OMITTED FOR BREVITY ],
+    "models": [ ... // OMITTED FOR BREVITY ],
+    "outputMode": "answerSynthesis",
+    "answerInstructions": "Use concise bulleted lists"
+}
 ```
 
-> [!IMPORTANT]
+> [!NOTE]
 > This example assumes that you're using key-based authentication for local proof-of-concept testing. We recommend role-based access control for production workloads. For more information, see [Connect to Azure AI Search using roles](search-security-rbac.md).
 
-<!--
-1. (Optional) Set the `includeReferences` property to `true` or `false`.
+## Enable answer synthesis on a retrieval request
 
-    ```http
-          "knowledgeSources" : [
-              {
-                  "name" : "<YourKnowledgeSource>", 
-                  "includeReferences" : true,
-                  "includeReferenceSourceData" : true
-              }
-          ]
-    ```
+For per-query control over the response format, you can enable answer synthesis at query time. This approach overrides the default output mode specified in the knowledge base.
 
-1. (Optional) Set the `includeActivity` property to `true` to include an activity log in answers.
+To enable answer synthesis on a retrieval request:
 
-    ```http
-        	"outputConfiguration": {
-        		"modality": "answerSynthesis",
-        		"answerInstructions": "Use concise bulleted lists",
-        		"includeActivity": true
-        	}
-    ```
--->
+1. Use the 2025-11-01-preview of [Knowledge Retrieval - Retrieve (REST API)](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to formulate the request.
+
+1. In the body of the request, set `outputMode` to `answerSynthesis`.
+
+```http
+@search-url = <YOUR SEARCH SERVICE URL>
+@api-key = <YOUR API KEY>
+@knowledge-base-name = <YOUR KNOWLEDGE BASE NAME>
+
+### Enable answer synthesis on a retrieval request
+POST {{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=2025-11-01-preview  HTTP/1.1
+Content-Type: application/json
+api-key: {{api-key}}
+        
+{
+    "messages": [
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "What is healthcare?"
+                }
+            ]
+        }
+    ],
+    "outputMode": "answerSynthesis"
+}
+```
+
+> [!NOTE]
+> This example assumes that you're using key-based authentication for local proof-of-concept testing. We recommend role-based access control for production workloads. For more information, see [Connect to Azure AI Search using roles](search-security-rbac.md).
 
 ## Get a synthesized answer
 
-After your knowledge agent is configured for answer synthesis, use the 2025-08-01-preview of [Knowledge Retrieval - Retrieve (REST API)](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview&preserve-view=true) to test its output.
+When answer synthesis is enabled, [Knowledge Retrieval - Retrieve (REST API)](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true) returns a natural-language answer based on the instructions you optionally specified in the knowledge base. Citations to your knowledge sources are formatted as `[ref_id:<number>]`.
 
-```http
-### Send a query to the agent
-POST https://{{search-url}}/agents/{{agent-name}}/retrieve?api-version=2025-08-01-preview  HTTP/1.1
-    Content-Type: application/json
-    api-key: {{api-key}}
-        
-    {
-      "messages": [
-            {
-                "role": "user",
-                "content" : [
-                    {
-                        "text": "<YourQueryText>",
-                        "type": "text"
-                    }
-                ]
-            }
-        ]
-    }
-```
-
-The response should include a natural-language answer based on your instructions, with citations to your knowledge sources formatted as `[ref_id:<number>]`. For example, if your instructions are `Use concise bulleted lists` and your query is `What is healthcare?`, the response might look like this:
+For example, if your instructions are `Use concise bulleted lists` and your query is `What is healthcare?`, the response might look like this:
 
 ```json
 {
@@ -125,12 +120,11 @@ The response should include a natural-language answer based on your instructions
       "content": [
         {
           "type": "text",
-          "text": "- Healthcare encompasses various services provided to patients and the general population ... // Trimmed for brevity
+          "text": "- Healthcare encompasses various services provided to patients and the general population ... // TRIMMED FOR BREVITY"
         }
       ]
     }
-  ],
-  ... // Redacted for brevity
+  ]
 }
 ```
 
@@ -140,13 +134,13 @@ The full `text` output is as follows:
 "- Healthcare encompasses various services provided to patients and the general population, including primary health services, hospital care, dental care, mental health services, and alternative health services [ref_id:1].\n- It involves the delivery of safe, effective, patient-centered care through different modalities, such as in-person encounters, shared medical appointments, and group education sessions [ref_id:0].\n- Behavioral health is a significant aspect of healthcare, focusing on the connection between behavior and overall health, including mental health and substance use [ref_id:2].\n- The healthcare system aims to ensure quality of care, access to providers, and accountability for positive outcomes while managing costs effectively [ref_id:2].\n- The global health system is evolving to address complex health needs, emphasizing the importance of cross-sectoral collaboration and addressing social determinants of health [ref_id:4]."
 ```
 
-Depending on your agent's configuration, the response might include other information, such as activity logs and reference arrays. For more information, see [Create a knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md).
+Depending on your knowledge base's configuration, the response might include other information, such as activity logs and reference arrays. For more information, see [Create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
 
 ## Related content
 
 + [Quickstart: Agentic retrieval in Azure AI Search (uses answer synthesis)](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/Quickstart-Agentic-Retrieval/quickstart-agentic-retrieval.ipynb)
 + [Azure AI Search Blob knowledge source Python sample (uses answer synthesis)](https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/knowledge/blob-knowledge-source.ipynb)
 + [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md)
-+ [Create a knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md)
++ [Create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md)
 + [Create a search index knowledge source](agentic-knowledge-source-how-to-search-index.md)
 + [Create a blob knowledge source](agentic-knowledge-source-how-to-blob.md)

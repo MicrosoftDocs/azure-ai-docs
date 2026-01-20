@@ -8,7 +8,7 @@ ms.subservice: mldata
 ms.topic: how-to
 ms.author: scottpolly
 author: ynpandey
-ms.reviewer: fsolomon
+ms.reviewer: soumyapatro
 ms.date: 03/13/2025
 ms.custom:
   - UpdateFrequency5

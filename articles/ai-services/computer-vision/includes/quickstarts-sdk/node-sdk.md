@@ -23,8 +23,8 @@ Use the optical character recognition (OCR) client library to read printed and h
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - The current version of [Node.js](https://nodejs.org/).
-- <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision" title="create a Vision resource" target="_blank">An Azure AI Vision resource</a>. You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
-- The key and endpoint from the resource you create to connect your application to the Azure AI Vision service.
+- <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision" title="create a Vision resource" target="_blank">An Azure Vision in Foundry Tools resource</a>. You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
+- The key and endpoint from the resource you create to connect your application to Azure Vision.
   1. After your Azure Vision resource deploys, select **Go to resource**.
   1. In the left pane, select **Keys and Endpoint**.
   1. Copy one of the keys and the **Endpoint** for use later in the quickstart.
@@ -109,7 +109,7 @@ End of quickstart.
 
 ## Clean up resources
 
-If you want to clean up and remove an Azure AI services subscription, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it.
+If you want to clean up and remove a Foundry Tools subscription, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it.
 
 - [Clean up resources with the Azure portal](../../../multi-service-resource.md?pivots=azportal#clean-up-resources)
 - [Clean up resources with Azure CLI](../../../multi-service-resource.md?pivots=azcli#clean-up-resources)

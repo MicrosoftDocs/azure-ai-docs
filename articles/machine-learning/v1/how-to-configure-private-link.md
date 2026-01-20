@@ -9,7 +9,7 @@ ms.topic: how-to
 ms.custom: UpdateFrequency5, devx-track-azurecli, sdkv1
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: meerakurup
+ms.reviewer: shshubhe
 ms.date: 07/26/2024
 ---
 

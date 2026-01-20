@@ -18,7 +18,7 @@ To ensure the scoring profile provides the determining score, the semantic ranke
 
 ## Prerequisites
 
-- [Azure AI Search](search-create-service-portal.md), Basic pricing tier or higher, with [semantic ranker enabled](semantic-how-to-enable-disable.md).
+- [Azure AI Search](search-create-service-portal.md) in any [region that provides semantic ranking](search-region-support.md), with [semantic ranker enabled](semantic-how-to-enable-disable.md).
 
 - A search index with a semantic configuration that specifies `"rankingOrder": "boostedRerankerScore"` and a scoring profile that specifies [functions](index-add-scoring-profiles.md#use-functions).
 

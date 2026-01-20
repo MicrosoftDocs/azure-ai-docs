@@ -1,18 +1,23 @@
 ---
 title: Document Embedding in Prompts
 description: Learn how to embed documents in prompts for Azure OpenAI, including JSON escaping and indirect attack detection.
-author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
-ms.date: 09/16/2025
-ms.author: pafarley
+ms.date: 01/15/2026
+author: ssalgadodev
+ms.author: ssalgado
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
+
+
 ---
 
 # Document embedding in prompts
 
-Azure OpenAI's content filtering system performs better when it can differentiate between the various elements of your prompt, like system input, user input, and the AI assistant's output. For enhanced detection capabilities, prompts should be formatted according to the following recommended methods.
+
+Microsoft Foundry's Guardrails and controls perform better when it can differentiate between the various elements of your prompt, like system input, user input, and the AI assistant's output. For enhanced detection capabilities, prompts should be formatted according to the following recommended methods.
 
 ## Default behavior in Chat Completions API
 
@@ -37,14 +42,15 @@ This is an example message array:
 
 ## Embedding documents in your prompt  
 
-In addition to detection on last user content, Azure OpenAI also supports the detection of specific risks inside context documents via [Prompt Shields – Indirect Prompt Attack Detection](./content-filter-prompt-shields.md). You should identify the parts of the input that are a document (for example, retrieved website, email, etc.) with the following document delimiter.
+In addition to detection on last user content, Azure OpenAI also supports the detection of specific risks inside context documents via [Prompt Shields – Indirect Prompt Attack Detection](./content-filter-prompt-shields.md) and [Groundedness detection](/azure/ai-foundry/openai/concepts/content-filter-groundedness). You should identify the parts of the input that are a document (for example, retrieved website, email, etc.) with the following document delimiter.
 
 ```
 \"\"\" <documents> *insert your document content here* </documents> \"\"\" 
 ```
 
 When you do this, the following options are available for detection on tagged documents: 
-- Indirect attacks (optional) 
+- Indirect attacks (optional)
+- Groundedness detection
 
 Here's an example chat completion messages array: 
 

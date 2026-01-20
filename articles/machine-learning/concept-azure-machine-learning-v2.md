@@ -146,6 +146,7 @@ To create a compute cluster by using Python SDK v2, you can use the following co
 [!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
 
 ```python
+from azure.ai.ml.entities import AmlCompute
 cluster_basic = AmlCompute(
     name="basic-example",
     type="amlcompute",

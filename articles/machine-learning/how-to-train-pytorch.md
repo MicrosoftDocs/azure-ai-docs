@@ -7,10 +7,10 @@ ms.service: azure-machine-learning
 ms.subservice: training
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: balapv
+ms.reviewer: sooryar
 ms.date: 09/17/2024
 ms.topic: how-to
-ms.custom: sdkv2, update-code1, FY25Q1-Linter
+ms.custom: sdkv2, update-code2, FY25Q1-Linter
 #Customer intent: As a Python PyTorch developer, I need to combine open-source with a cloud platform to train, evaluate, and deploy my deep learning models at scale.
 ---
 

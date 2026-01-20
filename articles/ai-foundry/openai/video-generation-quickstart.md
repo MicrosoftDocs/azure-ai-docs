@@ -10,22 +10,27 @@ author: PatrickFarley
 ms.author: pafarley
 ms.date: 09/16/2025
 zone_pivot_groups: openai-video-generation
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
 # Quickstart: Generate a video with Sora (preview)
 
+[!INCLUDE [version-banner](../includes/version-banner.md)]
+
 [!INCLUDE [Video generation introduction](./includes/video-generation-intro.md)]
 
-::: zone pivot="ai-foundry-portal"
-
-[!INCLUDE [Portal quickstart](includes/video-generation-studio.md)]
-
-::: zone-end
 
 ::: zone pivot="rest-api"
 
 
 [!INCLUDE [REST API quickstart](includes/video-generation-rest.md)]
+
+::: zone-end
+
+::: zone pivot="ai-foundry-portal"
+
+[!INCLUDE [Portal quickstart](includes/video-generation-studio.md)]
 
 ::: zone-end
 

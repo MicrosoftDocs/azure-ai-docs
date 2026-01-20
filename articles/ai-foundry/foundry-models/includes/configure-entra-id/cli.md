@@ -17,9 +17,9 @@ zone_pivot_groups: azure-ai-models-deployment
 
   * Your Azure subscription ID.
 
-  * Your Azure AI Foundry resource (formerly known as Azure AI Services resource) name.
+  * Your Microsoft Foundry resource (formerly known as Azure AI Services resource) name.
 
-  * The resource group where you deployed the Azure AI Foundry resource.
+  * The resource group where you deployed the Foundry resource.
 
 
 ## Configure Microsoft Entra ID for inference
@@ -39,7 +39,7 @@ Follow these steps to configure Microsoft Entra ID for inference:
     az account set --subscription "<subscription-id>"
     ```
 
-1. Set the following environment variables with the name of the Azure AI Foundry resource you plan to use and resource group.
+1. Set the following environment variables with the name of the Foundry resource you plan to use and resource group.
 
     ```azurecli
     ACCOUNT_NAME="<ai-services-resource-name>"
@@ -95,3 +95,14 @@ After you configure Microsoft Entra ID in your resource, update your code to use
 ## Troubleshooting
 
 [!INCLUDE [troubleshooting](troubleshooting.md)]
+
+## Disable key-based authentication in the resource
+
+Disable key-based authentication when you implement Microsoft Entra ID and fully address compatibility or fallback concerns in all the applications that consume the service. 
+You can use PowerShell with the Azure CLI to disable local authentication for an individual resource. First sign in with the `Connect-AzAccount` command. Then use the `Set-AzCognitiveServicesAccount` cmdlet with the parameter `-DisableLocalAuth $true`, like the following example:
+
+```powershell
+Set-AzCognitiveServicesAccount -ResourceGroupName "my-resource-group" -Name "my-resource-name" -DisableLocalAuth $true
+```
+
+For more details on how to use the Azure CLI to disable or re-enable local authentication and verify authentication status, see [Disable local authentication in Foundry Tools](../../../../ai-services/disable-local-auth.md).

@@ -15,7 +15,7 @@ ms.author: pafarley
 
 To call the Speech service by using the Speech SDK, you need to create a [SpeechConfig](/java/api/com.microsoft.cognitiveservices.speech.speechconfig) instance. This class includes information about your Speech resource, like your key and associated region, endpoint, host, or authorization token.
 
-1. Create an AI Foundry resource for Speech in the [Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry). Get the Speech resource key and region.
+1. Create a Foundry resource for Speech in the [Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry). Get the Speech resource key and region.
 1. Create a `SpeechConfig` instance by using your Speech key and region.
 
 ```java
@@ -152,7 +152,7 @@ Next, subscribe to the events that [`SpeechRecognizer`](/java/api/com.microsoft.
 * [`recognizing`](/java/api/com.microsoft.cognitiveservices.speech.speechrecognizer.recognizing): Signal for events that contain intermediate recognition results.
 * [`recognized`](/java/api/com.microsoft.cognitiveservices.speech.speechrecognizer.recognized): Signal for events that contain final recognition results, which indicate a successful recognition attempt.
 * [`sessionStopped`](/java/api/com.microsoft.cognitiveservices.speech.recognizer.sessionstopped): Signal for events that indicate the end of a recognition session (operation).
-* [`canceled`](/java/api/com.microsoft.cognitiveservices.speech.speechrecognizer.canceled): Signal for events that contain canceled recognition results. These results indicate a recognition attempt that was canceled as a result of a direct cancelation request. Alternatively, they indicate a transport or protocol failure.
+* [`canceled`](/java/api/com.microsoft.cognitiveservices.speech.speechrecognizer.canceled): Signal for events that contain canceled recognition results. These results indicate a recognition attempt that was canceled as a result of a direct cancellation request. Alternatively, they indicate a transport or protocol failure.
 
 ```java
 // First initialize the semaphore.

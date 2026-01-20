@@ -1,19 +1,19 @@
 ---
 title: Get document status method
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: The get document status method returns the status for a specific document.
 manager: nitinme
 ms.author: lajanuar
 author: laujan
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 04/14/2025
+ms.date: 11/18/2025
 ---
 
 # Get status for a specific document
 
 Reference</br>
-Feature: **Azure AI Translator → Document translation**</br>
+Feature: **Azure Translator → Document translation**</br>
 API Version: **2024-05-01**</br>
 HTTP method: **GET**
 
@@ -23,7 +23,7 @@ This method returns the status for a specific document in a job as indicated in 
 
 > [!IMPORTANT]
 >
-> **All API requests to the Document translation feature require a custom domain endpoint that is located on your resource overview page in the Azure portal**.
+> **All API requests to the Document translation feature require a custom domain endpoint that's located on your resource overview page in the Azure portal**.
 
 ```bash
   curl -i -X GET "{document-translation-endpoint}/translator/document/batches/{id}/documents/{documentId}?api-version={date}"
@@ -92,7 +92,7 @@ The following are the possible HTTP status codes that a request returns.
 |--- |--- |--- |
 |code|string|Enums containing high-level error codes. Accepted values:<br>&bullet; InternalServerError<br>&bullet; InvalidArgument<br>&bullet; InvalidRequest<br>&bullet; RequestRateTooHigh<br>&bullet; ResourceNotFound<br>&bullet; ServiceUnavailable<br>&bullet; Unauthorized|
 |message|string|Gets high-level error message.|
-|innerError|InnerTranslationError|New Inner Error format that conforms to Azure AI services API Guidelines. This error message contains required properties ErrorCode, message, and optional properties target, details(key value pair), inner error(it can be nested).|
+|innerError|InnerTranslationError|New Inner Error format that conforms to Foundry Tools API Guidelines. This error message contains required properties ErrorCode, message, and optional properties target, details(key value pair), inner error(it can be nested).|
 |innerError.code|string|Gets code error string.|
 |innerError.message|string|Gets high-level error message.|
 |innerError.target|string|Gets the source of the error. For example, it would be `documents` or `document id` for an invalid document.|

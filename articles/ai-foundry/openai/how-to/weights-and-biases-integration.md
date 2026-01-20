@@ -8,12 +8,14 @@ ms.subservice: azure-ai-foundry-openai
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 09/30/2025
+ms.date: 12/6/2025
 author: mrbullwinkle
 ms.author: mbullwin
 ---
 
 # Integrate Azure OpenAI fine-tuning with Weights & Biases (preview)
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 Weights & Biases (W&B) is a powerful AI developer platform that enables machine learning practitioners to train, fine-tune, and deploy models efficiently. Azure OpenAI fine-tuning integrates with W&B, allowing you to track metrics, parameters, and visualize your Azure OpenAI fine-tuning training runs within your W&B projects. In this article, we will guide you through setting up the Weights & Biases integration.
 
@@ -22,7 +24,7 @@ Weights & Biases (W&B) is a powerful AI developer platform that enables machine 
 ## Prerequisites
 
 - An Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md). The resource should be in a [region that supports fine-tuning](../concepts/models.md#fine-tuning-models).
-- Ensure all team members who need to fine-tune models have **Cognitive Services OpenAI Contributor** access assigned for the new Azure OpenAI resource.
+- Ensure all team members who need to fine-tune models have **Azure AI User** access assigned for the new Azure OpenAI resource.
 - A [Weights & Biases](https://wandb.ai) account and API key.
 - [Azure Key Vault](https://portal.azure.com/#create/Microsoft.KeyVault). For more information on creating a key vault, see the [Azure Key Vault quickstart](/azure/key-vault/general/quick-create-portal).
 
@@ -88,7 +90,7 @@ Give your Azure OpenAI resource the **Key Vault Secrets Officer** role.
 
 ## Link Weights & Biases with Azure OpenAI
 
-1. Navigate to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and select your Azure OpenAI fine-tuning resource.
+1. Navigate to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) and select your Azure OpenAI fine-tuning resource.
 
     :::image type="content" source="../media/how-to/weights-and-biases/manage-integrations.png" alt-text="Screenshot of the manage integrations button." lightbox="../media/how-to/weights-and-biases/manage-integrations.png":::
 

@@ -5,7 +5,7 @@ description: Learn how to securely get secrets from Azure Key Vault in your trai
 services: machine-learning
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: roastala
+ms.reviewer: shshubhe
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.date: 08/20/2024

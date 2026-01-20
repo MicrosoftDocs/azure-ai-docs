@@ -1,18 +1,19 @@
+monikerRange: 'foundry-classic'
 items:
-- name: What is Azure AI Foundry?
-  href: what-is-azure-ai-foundry.md
+- name: What is Microsoft Foundry (classic)?
+  href: what-is-foundry.md
 - name: Get started
   expanded: true
   items:
     - name: Quickstart
       href: quickstarts/get-started-code.md  
-    - name: Azure AI Foundry client libraries
+    - name: Microsoft Foundry SDKs
       href: how-to/develop/sdk-overview.md
-    - name: Ask the Foundry agent
-      href: foundry-agent/ask-foundry-agent.md
+    - name: Ask AI
+      href: concepts/ask-ai.md
 - name: Models
   href: toc-files/models/toc.yml
-- name: AI services
+- name: Foundry Tools
   href: toc-files/ai-services-section/toc.yml
 - name: Agent Service
   href: agents/toc.yml
@@ -22,13 +23,13 @@ items:
   href: toc-files/observability/toc.yml              
 - name: Optimizations
   href: toc-files/optimizations/toc.yml
-- name: Setup and management
+- name: Setup and configure
   href: toc-files/setup-management/toc.yml
-- name: Security & Governance
+- name: Security & governance
   href: toc-files/security-governance/toc.yml
 - name: Trustworthy AI
   href: toc-files/trustworthy-ai/toc.yml
-- name: SDK + API Reference
+- name: SDK + API reference
   href: toc-files/sdk-api-reference/toc.yml
 - name: Other resources
   href: toc-files/other-resources/toc.yml

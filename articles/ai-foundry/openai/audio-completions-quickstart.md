@@ -12,13 +12,17 @@ ms.author: pafarley
 ms.custom: references_regions
 zone_pivot_groups: audio-completions-quickstart
 recommendations: false
+monikerRange: 'foundry-classic || foundry'
+
 ---
 
 # Quickstart: Get started using Azure OpenAI audio generation
 
+[!INCLUDE [version-banner](../includes/version-banner.md)]
+
 ::: zone pivot="ai-foundry-portal"
 
-[!INCLUDE [AI Foundry](includes/audio-completions-ai-foundry.md)]
+[!INCLUDE [Foundry](includes/audio-completions-foundry.md)]
 
 ::: zone-end
 

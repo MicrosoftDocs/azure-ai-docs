@@ -2,14 +2,14 @@
 author: laujan
 ms.service: azure-ai-translator
 ms.topic: include
-ms.date: 07/18/2023
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 ## Set up
 
 ### Create a Translator resource
 
-Azure AI services are represented by Azure resources that you subscribe to. Create a resource for Translator using the [Azure portal](../../multi-service-resource.md?pivots=azportald) or [Azure CLI](../../multi-service-resource.md?pivots=azcli) on your local machine. You can also:
+Foundry Tools are represented by Azure resources that you subscribe to. Create a resource for Translator using the [Azure portal](../../multi-service-resource.md?pivots=azportald) or [Azure CLI](../../multi-service-resource.md?pivots=azcli) on your local machine. You can also:
 
 * View an existing resource in the [Azure portal](https://portal.azure.com/).
 

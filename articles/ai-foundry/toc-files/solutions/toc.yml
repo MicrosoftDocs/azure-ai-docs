@@ -4,20 +4,20 @@ items:
   - name: Retrieval Augmented Generation (RAG) overview
     href: ../../concepts/retrieval-augmented-generation.md
   - name: Use Azure AI Search
-    href: /azure/search/search-what-is-azure-search?context=/azure/ai-foundry/context/context
+    href: /azure/search/search-what-is-azure-search?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
   - name: Build and consume vector indexes (portal)
     href: ../../how-to/index-add.md
   - name: Build a RAG solution using Azure AI Search
-    href: /azure/search/tutorial-rag-build-solution?context=/azure/ai-foundry/context/context
+    href: /azure/search/tutorial-rag-build-solution?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
 - name: Develop with code
   items:
   - name: Set up your development environment
     href: ../../how-to/develop/install-cli-sdk.md
   - name: Work in VS Code (Preview)
     href: ../../how-to/develop/get-started-projects-vs-code.md
-  - name: Use the Azure AI Foundry Agent Service in VS Code (Preview)
+  - name: Use the Microsoft Foundry Agent Service in VS Code (Preview)
     href: ../../how-to/develop/vs-code-agents.md
-  - name: Use MCP tools with the Azure AI Foundry Agent Service in VS Code (Preview)
+  - name: Use MCP tools with the Microsoft Foundry Agent Service in VS Code (Preview)
     href: ../../how-to/develop/vs-code-agents-mcp.md
   - name: Start with an AI template
     href: ../../how-to/develop/ai-template-get-started.md
@@ -34,7 +34,7 @@ items:
       href: ../../quickstarts/get-started-playground.md
   - name: In-depth tutorials
     items:
-    - name: Build custom app with Azure AI Foundry SDK
+    - name: Build custom app with Microsoft Foundry SDK
       items:
         - name: "Part 1: Set up project and install SDK"
           href: ../../tutorials/copilot-sdk-create-resources.md
@@ -49,4 +49,4 @@ items:
     - name: Deploy an enterprise chat web app
       href: ../../tutorials/deploy-chat-web-app.md
     - name: Build a RAG solution using Azure AI Search
-      href: /azure/search/tutorial-rag-build-solution?context=/azure/ai-foundry/context/context
+      href: /azure/search/tutorial-rag-build-solution?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true

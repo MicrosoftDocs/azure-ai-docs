@@ -1,5 +1,5 @@
 ---
-title: "Quickstart: Generate images with Azure OpenAI in Azure AI Foundry Models using PowerShell"
+title: "Quickstart: Generate images with Azure OpenAI in Microsoft Foundry Models using PowerShell"
 titleSuffix: Azure OpenAI
 description: Learn how to generate images with Azure OpenAI by using PowerShell and the endpoint and access keys for your Azure OpenAI resource.
 manager: nitinme
@@ -9,11 +9,11 @@ ms.topic: include
 ms.date: 3/21/2025
 ---
 
-Use this guide to get started calling the Azure OpenAI in Azure AI Foundry Models image generation APIs with PowerShell.
+Use this guide to get started calling the Azure OpenAI in Microsoft Foundry Models image generation APIs with PowerShell.
 
 ## Prerequisites
 
-- An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - For this task, <a href="https://aka.ms/installpowershell" target="_blank">the latest version of PowerShell 7</a> is recommended because the examples use new features not available in Windows PowerShell 5.1.
 - An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 
@@ -119,4 +119,4 @@ If you want to clean up and remove an Azure OpenAI resource, you can delete the 
 ## Next steps
 
 * Explore the Image APIs in more depth with the [Image API how-to guide](../how-to/dall-e.md).
-- Try examples in the [Azure OpenAI Samples GitHub repository](https://github.com/Azure/azure-openai-samples).
+- Try examples in the [Azure OpenAI Samples GitHub repository](https://github.com/Azure-Samples/openai).

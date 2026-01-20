@@ -1,8 +1,8 @@
 ---
 title: 'Quickstart: Speech SDK C++ (macOS) platform setup - Speech service'
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Use this guide to set up your platform for C++ on macOS by using the Speech SDK.
-author: markamos
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: include

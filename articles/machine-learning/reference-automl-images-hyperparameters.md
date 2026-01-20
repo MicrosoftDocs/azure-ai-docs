@@ -6,7 +6,7 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: reference
-ms.reviewer: None
+ms.reviewer: sooryar
 author: s-polly
 ms.author: scottpolly
 ms.date: 01/18/2022

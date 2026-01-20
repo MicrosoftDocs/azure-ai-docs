@@ -9,21 +9,29 @@ ms.topic: include
 ms.date: 08/27/2025
 ms.custom: include
 ---
-## First run experience
 
-Use this fast path when you don't have any projects yet.
+## Create resources
 
-In the portal, you can explore a rich catalog of cutting-edge models from Microsoft, OpenAI, DeepSeek, Hugging Face, Meta, and more. For this tutorial, search and then select the **gpt-4o** model.
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
-1.  From the overview page or **[Model catalog](https://ai.azure.com/explore/models)**, select **gpt-4o** (or **gpt-4o-mini**).
+::: moniker range="foundry-classic"
+[!INCLUDE [first-run-experience-classic](first-run-experience-classic.md)]
+::: moniker-end
 
-    :::image type="content" source="../media/quickstarts/start-building.png" alt-text="Screenshot shows how to start with a model in Azure AI Foundry portal.":::
+::: moniker range="foundry"
+You'll start in Microsoft Foundry portal to create a project and deploy a model. This quickstart uses the **gpt-4-1-mini** model, but you can use any supported model from several providers. 
 
-1. Select **Use this model**. When prompted, enter a project name and select **Create**.
-1. Review the deployment name and select **Create**.
-1. Then select **Connect and deploy** after selecting a deployment type.
-1. Select **Open in playground** from the deployment page after it's deployed.
-1. You land in the Chat playground with the model pre-deployed and ready to use.
+1. [!INCLUDE [version-sign-in](version-sign-in.md)]
+1. Projects help organize your work. The project you're working on appears in the upper-left corner. 
+1. To create a new project, select the project name, then  **Create new project**.
+1. Give your project a name and select **Create project**.
+1. Now deploy a model into the project:
+    1. Select **Discover** in the upper-right navigation.
+    1. Select **Models**.
+    1. Search for the **gpt-4.1-mini** model.
+    1. Select **Deploy** > **Default settings** to add it to your project.
 
-If you're building an agent, you can instead start with **Create an agent**. The steps are similar, but in a different order.  Once the project is created, you arrive at the Agent playground instead of the Chat playground.
+Foundry Models allows customers to consume the most powerful models from flagship model providers using a single endpoint and credentials. This means that you can switch between models and consume them from your application without changing a single line of code.
+
+You're now ready to move on to interacting with your model and creating an agent.
+
+::: moniker-end

@@ -1,16 +1,15 @@
 ---
 title: Preparing data and designing a schema for custom named entity recognition (NER)
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about how to select and prepare data, to be successful in creating custom NER projects.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 09/24/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-ner
 ---
-
 # How to prepare data and define a schema for custom NER
 
 In order to create a custom NER model, you need quality data to train it. This article covers how you should select and prepare your data, along with defining a schema. Defining the schema is the first step in [project development lifecycle](../overview.md#project-development-lifecycle), and it defines the entity types/categories that you need your model to extract from the text at runtime.
@@ -65,7 +64,7 @@ You can upload an annotated dataset, or you can upload an unannotated one and la
  
 ## Test set
 
-When defining the testing set, make sure to include example documents that aren't present in the training set. Defining the testing set is an important step to calculate the [model performance](view-model-evaluation.md#model-details). Also, make sure that the testing set include documents that represent all entities used in your project.
+When defining the testing set, make sure to include example documents that aren't present in the training set. Defining the testing set is an important step to calculating the [model performance](view-model-evaluation.md#model-details-rest-api). Also, make sure that the testing set includes documents that represent all entities used in your project.
 
 ## Next steps
 

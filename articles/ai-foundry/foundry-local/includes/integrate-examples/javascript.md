@@ -3,12 +3,18 @@ ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.custom: build-2025
 ms.topic: include
-ms.date: 05/02/2025
+ms.date: 01/06/2026
 ms.author: jburchel
 reviewer: maanavdalal
 author: jonburchel
 ms.reviewer: maanavd
+ai-usage: ai-assisted
 ---
+
+## Prerequisites
+
+- Foundry Local installed and running. For installation instructions, see [Get started with Foundry Local](../../get-started.md).
+- [Node.js](https://nodejs.org/en/download/) version 18 or later installed.
 
 ## Install Node.js packages
 
@@ -25,7 +31,7 @@ The Foundry Local SDK allows you to manage the Foundry Local service and models.
 
 The following example demonstrates how to use the OpenAI SDK with Foundry Local. The code initializes the Foundry Local service, loads a model, and generates a response using the OpenAI SDK.
 
-Copy-and-paste the following code into a JavaScript file named `app.js`:
+Copy-and-paste the following code into a JavaScript file named `app.mjs`:
 
 ```javascript
 import { OpenAI } from "openai";
@@ -68,11 +74,16 @@ async function generateText() {
 generateText();
 ```
 
+Reference: [Foundry Local SDK reference](../../reference/reference-sdk.md)
+Reference: [Foundry Local REST API reference](../../reference/reference-rest.md)
+
 Run the code using the following command:
 
 ```bash
-node app.js
+node app.mjs
 ```
+
+You should see a text response printed in your terminal. On the first run, Foundry Local might download execution providers and the model, which can take a few minutes.
 
 ### Streaming Responses
 
@@ -119,11 +130,15 @@ async function streamCompletion() {
 streamCompletion();
 ```
 
+Reference: [Foundry Local REST API reference](../../reference/reference-rest.md)
+
 Run the code using the following command:
 
 ```bash
-node app.js
+node app.mjs
 ```
+
+You should see tokens stream to your terminal.
 
 ## Use Fetch API with Foundry Local
 
@@ -168,6 +183,8 @@ async function queryModel() {
 
 queryModel();
 ```
+
+Reference: [Foundry Local REST API reference](../../reference/reference-rest.md)
 
 ### Streaming Responses
 
@@ -241,3 +258,6 @@ async function streamWithFetch() {
 // Call the function to start streaming
 streamWithFetch();
 ```
+
+Reference: [Foundry Local REST API reference](../../reference/reference-rest.md)
+

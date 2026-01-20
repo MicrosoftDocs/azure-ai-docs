@@ -1,8 +1,9 @@
 ---
-title: How to deploy and use MedImageInsight healthcare AI model with Azure AI Foundry
-titleSuffix: Azure AI Foundry
-description: Learn how to use MedImageInsight Healthcare AI Model with Azure AI Foundry.
+title: How to deploy and use MedImageInsight healthcare AI model with Microsoft Foundry
+titleSuffix: Microsoft Foundry
+description: Learn how to use MedImageInsight Healthcare AI Model with Microsoft Foundry.
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
 ms.date: 09/15/2025
 ms.reviewer: itarapov
@@ -15,6 +16,8 @@ author: msakande
 ---
 
 # How to use MedImageInsight healthcare AI model for medical image embedding generation
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 [!INCLUDE [health-ai-models-meddev-disclaimer](../../includes/health-ai-models-meddev-disclaimer.md)]
 
@@ -38,11 +41,11 @@ An embedding model can serve as the basis of many different solutions—from cla
 - If you don't have one, [create a [!INCLUDE [hub](../../includes/hub-project-name.md)]](../hub-create-projects.md).
 
 
-- Azure role-based access controls (Azure RBAC) to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../../concepts/rbac-ai-foundry.md).
+- Azure role-based access controls (Azure RBAC) to grant access to operations in Microsoft Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, see [Role-based access control in Foundry portal](../../concepts/rbac-ai-foundry.md).
 
 ## Deploy the model to a managed compute
 
-Deploying to a self-hosted managed inference solution lets you customize and control all the details about how the model is served. You can deploy the model from its model card in the catalog UI of [Azure AI Foundry](https://aka.ms/healthcaremodelstudio), [Azure Machine Learning studio](https://ml.azure.com/model/catalog), or [deploy it programmatically](../deploy-models-managed.md).
+Deploying to a self-hosted managed inference solution lets you customize and control all the details about how the model is served. You can deploy the model from its model card in the catalog UI of [Foundry](https://aka.ms/healthcaremodelstudio), [Azure Machine Learning studio](https://ml.azure.com/model/catalog), or [deploy it programmatically](../deploy-models-managed.md).
 
 To __deploy the model through the UI__:
 

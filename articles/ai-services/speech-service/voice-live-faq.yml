@@ -1,15 +1,15 @@
 ### YamlMime:FAQ
 metadata:
   title: Voice live frequently asked questions (FAQ)
-  titleSuffix: Azure AI services
-  description: Get answers to frequently asked questions about the Voice live API in Azure AI Speech.
-  author: goergenj
+  titleSuffix: Foundry Tools
+  description: Get answers to frequently asked questions about the Voice live API in Azure Speech in Foundry Tools.
+  author: PatrickFarley
   reviewers: pafarley
   manager: nitinme
   ms.service: azure-ai-speech
   ms.topic: faq
   ms.date: 09/30/2025
-  ms.author: jagoerge
+  ms.author: pafarley
   ms.reviewer: pafarley
 title: Voice live FAQ
 summary: |
@@ -25,7 +25,7 @@ sections:
       - question: |
           How does Voice live compare to AOAI Realtime API? When should I choose which?
         answer: |
-          Voice live API enhances AOAI Realtime API by offering: expanded model selection (including GPT-Realtime, GPT-5, GPT-4.1, PHI), more natural voice options, more supported speech languages, avatar integration, advanced semantic voice activity detection (VAD), seamless Azure AI Foundry Agent Service integration, telephony integration via Azure Communication Services.
+          Voice live API enhances AOAI Realtime API by offering: expanded model selection (including GPT-Realtime, GPT-5, GPT-4.1, PHI), more natural voice options, more supported speech languages, avatar integration, advanced semantic voice activity detection (VAD), seamless Microsoft Foundry Agent Service integration, telephony integration via Azure Communication Services.
       - question: |
           What regions does Voice live support?
         answer: |
@@ -39,7 +39,7 @@ sections:
       - question: |
           What generative AI models are supported?
         answer: |
-          Supports OpenAI models in Azure AI Foundry, Phi-based LLMs, and SLMs. For more information, see [Voice live overview](./voice-live.md). Voice live also provides an option to bring-your-own model (PREVIEW).
+          Supports OpenAI models in Microsoft Foundry, Phi-based LLMs, and SLMs. For more information, see [Voice live overview](./voice-live.md). Voice live also provides an option to bring-your-own model (PREVIEW).
       - question: |
           How do I choose the LLM model for my use case?
         answer: |
@@ -75,11 +75,11 @@ sections:
       - question: |
           What voices does Voice live support?
         answer: |
-          Native audio output with preferred model, Azure AI Speech TTS voices (600+ voices, 150+ locales, 30+ Neural HD voices). Custom voice models via Professional Voice Fine-tuning. For more information, see [Voice live API supported languages](./voice-live-language-support.md?tabs=speechoutput).
+          Native audio output with preferred model, Azure Speech in Foundry Tools TTS voices (600+ voices, 150+ locales, 30+ Neural HD voices). Custom voice models via Professional Voice Fine-tuning. For more information, see [Voice live API supported languages](./voice-live-language-support.md?tabs=speechoutput).
       - question: |
           How do I pick a voice?
         answer: |
-          Use [Voice Gallery](https://speech.microsoft.com/portal/voicegallery) in Azure AI Foundry Speech Playground. Consider gender, age, capability, style, personality.
+          Use [Voice Gallery](https://speech.microsoft.com/portal/voicegallery) in Microsoft Foundry Speech Playground. Consider gender, age, capability, style, personality.
       - question: |
           What is voice temperature?
         answer: |

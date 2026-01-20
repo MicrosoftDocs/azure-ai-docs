@@ -5,7 +5,7 @@ description: Use a private endpoint to attach an Azure Databricks compute to an 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
-ms.reviewer: None
+ms.reviewer: shshubhe
 ms.author: scottpolly
 author: s-polly
 ms.date: 03/17/2025

@@ -1,13 +1,14 @@
 ---
-title: Fine-tuning function calls with Azure OpenAI in Azure AI Foundry Models
+title: Fine-tuning function calls with Azure OpenAI in Microsoft Foundry Models
 description: Learn how to improve tool calling performance with Azure OpenAI fine-tuning
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 08/29/2025
+ms.date: 11/26/2025
 author: mrbullwinkle
 ms.author: mbullwin
+monikerRange: 'foundry-classic || foundry'
 ---
 
 
@@ -165,7 +166,7 @@ Fine-tuning based on function calling examples can also be used to improve the m
 {
     "messages": [
         {"role": "user", "content": "What is the weather in San Francisco?"},
-        {"role": "assistant", "function_call": {"name": "get_current_weather", "arguments": "{\"location\": \"San Francisco, USA\", \"format\": \"celcius\"}"}}
+        {"role": "assistant", "function_call": {"name": "get_current_weather", "arguments": "{\"location\": \"San Francisco, USA\", \"format\": \"celsius\"}"}}
         {"role": "function", "name": "get_current_weather", "content": "21.0"},
         {"role": "assistant", "content": "It is 21 degrees celsius in San Francisco, CA"}
     ],
@@ -176,7 +177,7 @@ Fine-tuning based on function calling examples can also be used to improve the m
 As with the example before, this example is artificially expanded for readability. The actual entry in the `.jsonl` training file would be a single line:
 
 ```jsonl
-{"messages": [{"role": "user", "content": "What is the weather in San Francisco?"}, {"role": "assistant", "function_call": {"name": "get_current_weather", "arguments": "{\"location\": \"San Francisco, USA\", \"format\": \"celcius\"}"}}, {"role": "function", "name": "get_current_weather", "content": "21.0"}, {"role": "assistant", "content": "It is 21 degrees celsius in San Francisco, CA"}], "functions": []}
+{"messages": [{"role": "user", "content": "What is the weather in San Francisco?"}, {"role": "assistant", "function_call": {"name": "get_current_weather", "arguments": "{\"location\": \"San Francisco, USA\", \"format\": \"celsius\"}"}}, {"role": "function", "name": "get_current_weather", "content": "21.0"}, {"role": "assistant", "content": "It is 21 degrees celsius in San Francisco, CA"}], "functions": []}
 ```
 
 

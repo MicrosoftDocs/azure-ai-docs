@@ -1,23 +1,23 @@
 ---
-title: Create and manage a workspace—Azure AI Custom Translator
-titleSuffix: Azure AI services
+title: Create and manage a workspace—Custom Translator
+titleSuffix: Foundry Tools
 description: How to create and manage workspaces
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 05/19/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.topic: how-to
 
 ---
 
-# Create and manage an Azure AI Custom Translator workspace 
+# Create and manage a Custom Translator workspace 
 
  Custom Translator workspaces are places to manage your documents, projects, and models. When you create a workspace, you can choose to use the workspace independently, or share it with teammates to divide up the work.
 
   > [!NOTE]
   >
-  > [Azure AI Custom Translator Portal](https://portal.customtranslator.azure.ai/) access can only be enabled through a public network.
+  > [Custom Translator Portal](https://portal.customtranslator.azure.ai/) access can only be enabled through a public network.
   >
   > For information on how to use selected networks and private endpoints, see [Enable Custom Translator through Azure Virtual Network](enable-vnet-service-endpoint.md).
 
@@ -108,4 +108,4 @@ Select the **Yes** checkbox. Within few minutes, all published models are secure
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Learn how to manage Azure AI Custom Translator projects](create-manage-project.md)
+> [Learn how to manage Custom Translator projects](create-manage-project.md)

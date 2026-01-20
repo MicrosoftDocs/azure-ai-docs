@@ -1,6 +1,6 @@
 ---
 title: Pronunciation with Speech Synthesis Markup Language (SSML) - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about Speech Synthesis Markup Language (SSML) elements and improve pronunciation.
 author: PatrickFarley
 manager: nitinme
@@ -31,7 +31,7 @@ Usage of the `phoneme` element's attributes are described in the following table
 | Attribute | Description | Required or optional |
 | ---------- | ---------- | ---------- |
 | `alphabet` | The phonetic alphabet to use when you synthesize the pronunciation of the string in the `ph` attribute. The string that specifies the alphabet must be specified in lowercase letters. The following options are the possible alphabets that you can specify:<ul><li>`ipa` &ndash; See [SSML phonetic alphabets](speech-ssml-phonetic-sets.md)</li><li>`sapi` &ndash; See [SSML phonetic alphabets](speech-ssml-phonetic-sets.md)</li><li>`ups` &ndash; See [Universal Phone Set](https://documentation.help/Microsoft-Speech-Platform-SDK-11/17509a49-cae7-41f5-b61d-07beaae872ea.htm)</li><li>`x-sampa` &ndash; See [SSML phonetic alphabets](speech-ssml-phonetic-sets.md#map-x-sampa-to-ipa)</li></ul><br>The alphabet applies only to the `phoneme` in the element. | Optional |
-| `ph` | A string containing phones that specify the pronunciation of the word in the `phoneme` element. If the specified string contains unrecognized phones, text to speech rejects the entire SSML document and produces none of the speech output specified in the document.<br/><br/>For `ipa`, to stress one syllable by placing stress symbol before this syllable, you need to mark all syllables for the word. Or else, the syllable before this stress symbol is stressed. For `sapi`, if you want to stress one syllable, you need to place the stress symbol after this syllable, whether or not all syllables of the word are marked.| Required |
+| `ph` | A string containing phones that specify the pronunciation of the word in the `phoneme` element. **Each locale supports a specific phone set**. See [SSML phonetic alphabets](speech-ssml-phonetic-sets.md). If the specified string contains unrecognized phones, text to speech service will return http 400 error for invalid SSML.<br/><br/>For `ipa`, to stress one syllable by placing stress symbol before this syllable, you need to mark all syllables for the word. Or else, the syllable before this stress symbol is stressed. For `sapi`, if you want to stress one syllable, you need to place the stress symbol after this syllable, whether or not all syllables of the word are marked.| Required |
 
 ### phoneme examples
 
@@ -88,7 +88,7 @@ Usage of the `lexicon` element's attributes are described in the following table
 
 | Attribute | Description | Required or optional |
 | --------- | ---------- | ---------- |
-| `uri`     | The URI of the publicly accessible custom lexicon XML file with either the `.xml` or `.pls` file extension. Using [Azure Blob Storage](/azure/storage/blobs/storage-quickstart-blobs-portal) is recommended but not required. For more information about the custom lexicon file, see [Pronunciation Lexicon Specification (PLS) Version 1.0](https://www.w3.org/TR/pronunciation-lexicon/).| Required |
+| `uri`     | The URI of the publicly accessible custom lexicon XML file with either the `.xml` or `.pls` file extension. Using [Azure Blob Storage](/azure/storage/blobs/storage-quickstart-blobs-portal) is recommended but not required, GitHub URIs and other publicly accessible links are also supported. For more information about the custom lexicon file, see [Pronunciation Lexicon Specification (PLS) Version 1.0](https://www.w3.org/TR/pronunciation-lexicon/).| Required |
 
 ### Custom lexicon examples
 
@@ -190,7 +190,7 @@ You could also directly provide your expected `alias` for the acronym or abbrevi
 
 The preceding custom lexicon XML file examples use the IPA alphabet, which is also known as the IPA phone set. We suggest that you use the IPA because it's the international standard. For some IPA characters, they're the "precomposed" and "decomposed" version when they're being represented with Unicode. The custom lexicon only supports the decomposed Unicode.
 
-The Speech service defines a phonetic set for these locales: `en-US`, `fr-FR`, `de-DE`, `es-ES`, `ja-JP`, `zh-CN`, `zh-HK`, and `zh-TW`. For more information on the detailed Speech service phonetic alphabet, see the [Speech service phonetic sets](speech-ssml-phonetic-sets.md).
+The Speech service defines sapi phonetic set for these locales: `en-US`, `en-CA`, `fr-FR`, `fr-CA`,`fr-BE`, `fr-CH`, `de-DE`, `de-AT`, `de-CH`, `es-ES`, `ja-JP`, `zh-CN`, `zh-HK`, `yue-CN`, and `zh-TW`. For more information on the detailed Speech service phonetic alphabet, see the [Speech service phonetic sets](speech-ssml-phonetic-sets.md).
 
 You can use the `x-microsoft-sapi` as the value for the `alphabet` attribute with custom lexicons as demonstrated here:
 
@@ -254,7 +254,7 @@ The speech synthesis engine speaks the following example as "Your first request 
 
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-US">
-    <voice name="en-US-AvaMultilingualNeural">
+    <voice name="en-US-Ava:DragonHDLatestNeural">
         <p>
         Your <say-as interpret-as="ordinal"> 1st </say-as> request was for <say-as interpret-as="cardinal"> 1 </say-as> room
         on <say-as interpret-as="date" format="mdy"> 10/19/2010 </say-as>, with early arrival at <say-as interpret-as="time" format="hms12"> 12:35pm </say-as>.
@@ -281,7 +281,7 @@ The speech synthesis engine speaks the following example as "World Wide Web Cons
 
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-US">
-    <voice name="en-US-AvaMultilingualNeural">
+    <voice name="en-US-Ava:DragonHDLatestNeural">
         <sub alias="World Wide Web Consortium">W3C</sub>
     </voice>
 </speak>

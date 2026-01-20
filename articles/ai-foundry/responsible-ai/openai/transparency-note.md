@@ -1,20 +1,22 @@
 ---
-title: Transparency Note for Azure OpenAI
-titleSuffix: Azure AI services
-description: Transparency Note for Azure OpenAI Service
+title: Transparency Note for Azure OpenAI in Microsoft Foundry Models
+titleSuffix: Microsoft Foundry
+description: Transparency Note for Azure OpenAI
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: article
+monikerRange: 'foundry-classic || foundry'
 ms.date: 04/16/2025
 ---
 
-# Transparency Note for Azure OpenAI Service
+# Transparency note for Azure OpenAI
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
-## What is a Transparency Note?
+## What is a transparency note?
 
 An AI system includes not only the technology, but also the people who use it, the people who are affected by it, and the environment in which it's deployed. Creating a system that is fit for its intended purpose requires an understanding of how the technology works, what its capabilities and limitations are, and how to achieve the best performance. Microsoft's Transparency Notes are intended to help you understand how our AI technology works, the choices system owners can make that influence system performance and behavior, and the importance of thinking about the whole system, including the technology, the people, and the environment. You can use Transparency Notes when developing or deploying your own system, or share them with the people who will use or be affected by your system.
 
@@ -22,7 +24,7 @@ Microsoft's Transparency Notes are part of a broader effort at Microsoft to put 
 
 ## The basics of the Azure OpenAI Models
 
-Azure OpenAI provides customers with a fully managed AI service that lets developers and data scientists apply OpenAI's powerful models including models that can generate natural language, code, and images. Within the Azure OpenAI Service, the OpenAI models are integrated with Microsoft-developed content filtering and abuse detection models. Learn more about content filtering [here](/azure/ai-foundry/openai/concepts/content-filter) and abuse detection [here](/azure/ai-foundry/responsible-ai/openai/data-privacy).
+Azure OpenAI provides customers with a fully managed Foundry Tool that lets developers and data scientists apply OpenAI's powerful models including models that can generate natural language, code, and images. Within the Azure OpenAI Service, the OpenAI models are integrated with Microsoft-developed Guardrails (previously content filters) and abuse detection models. Learn more about Guardrails (previously content filters) [here](/azure/ai-foundry/openai/concepts/content-filter) and abuse detection [here](/azure/ai-foundry/responsible-ai/openai/data-privacy).
 
 
 ### Introduction
@@ -38,6 +40,7 @@ Azure OpenAI provides customers with a fully managed AI service that lets develo
 | GPT-4.1</br>GPT-4.1-mini</br>GPT-4.1-nano | ✅ | ✅ |  |
 | GPT-4.5 | ✅ | ✅ |  |
 | GPT-5 | ✅ | ✅ |  |
+| GPT-5.1-Codex-Max | ✅ | ✅ |  |
 | GPT-oss-120b | ✅ |  |  |
 | o1 series | ✅ | ✅ |  |
 | o3/o3-pro | ✅ | ✅| | 
@@ -122,7 +125,7 @@ The `gpt-4o-realtime-preview` model in Azure OpenAI service enables robust speec
 
 The Whisper model in Azure OpenAI service enables access to a model that performs robust speech recognition and translation tasks. The Whisper model is an Automatic Speech Recognition (ASR) model that was developed by [OpenAI](https://openai.com/research/whisper) and is capable of transcribing speech audio files into the language that was spoken as well as translated into English.
 
-You can learn more about training and modeling techniques for the Whisper model in the [OpenAI Whisper research paper](https://cdn.openai.com/papers/whisper.pdf). The Whisper model is also used in the Azure AI Speech service. Learn more about the Azure AI Speech integration and evaluate it for your use [here](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note).
+You can learn more about training and modeling techniques for the Whisper model in the [OpenAI Whisper research paper](https://cdn.openai.com/papers/whisper.pdf). The Whisper model is also used in the Azure Speech in Foundry Tools service. Learn more about the Azure Speech integration and evaluate it for your use [here](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note).
 
 ### Key terms
 
@@ -187,11 +190,11 @@ A:
 
 **Chain-of-thought** : Azure OpenAI's reasoning models have advanced reasoning capabilities using chain-of-thought (CoT) techniques. CoT techniques generate intermediate reasoning steps before providing a response, enabling them to address more complex challenges through step-by-step problem solving. o1 demonstrates improvements in benchmarks for reasoning-heavy domains such as research, strategy, science, coding and math, among others. These models have safety improvements from advanced reasoning capabilities, with the ability to reason through and apply safety rules more effectively. This results in better performance alongside safety benchmarks such as generating illicit advice, choosing stereotyped responses, and succumbing to known jailbreaks. 
 
-For greater detail on this family of models’ capabilities, see the [OpenAI o1 System Card](https://cdn.openai.com/o1-system-card-20241205.pdf), [o3-mini System Card](https://openai.com/index/o3-mini-system-card/), [o3/o4-mini System Card](https://openai.com/index/o3-o4-mini-system-card/), [Deep Research System Card](https://openai.com/index/deep-research-system-card/), and and [GPT-5 System Card](https://openai.com/index/gpt-5-system-card/).
+For greater detail on this family of models’ capabilities, see the [OpenAI o1 System Card](https://cdn.openai.com/o1-system-card-20241205.pdf), [o3-mini System Card](https://openai.com/index/o3-mini-system-card/), [o3/o4-mini System Card](https://openai.com/index/o3-o4-mini-system-card/), [Deep Research System Card](https://openai.com/index/deep-research-system-card/), and [GPT-5 System Card](https://openai.com/index/gpt-5-system-card/).
 
 **Azure OpenAI Evaluation** 
 
-The evaluation of large language models is a critical step in measuring their performance across various tasks and dimensions. This task is especially important for fine-tuned models, where assessing the performance gains (or losses) from training is crucial. Without thorough evaluations, it can become challenging to understand how different versions of the model may impact your specific application .  
+The evaluation of large language models is a critical step in measuring their performance across various tasks and dimensions. This task is especially important for fine-tuned models, where assessing the performance gains (or losses) from training is crucial. Without thorough evaluations, it can become challenging to understand how different versions of the model may impact your specific application.  
 
 Azure OpenAI Evaluation is a UI-based experience to evaluate data, including generated datasets from an Azure OpenAI deployment, or other manually curated files. 
 
@@ -228,7 +231,7 @@ The main capabilities of the Azure OpenAI image generation APIs are:
     Prompt transformation is applied to every Azure OpenAI DALL·E 3 generation.
 
     
-    After prompt transformation is applied to the original prompt, content filtering is applied as a secondary step prior to image generation; see [Content Filtering](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cpython-new) for more information.  
+    After prompt transformation is applied to the original prompt, Guardrails (previously content filters) is applied as a secondary step prior to image generation; see [Guardrails (previously content filters)](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cpython-new) for more information.  
     
     Learn more about image generation prompting in [OpenAI's documentation](https://platform.openai.com/docs/guides/images/introduction). 
 
@@ -246,7 +249,7 @@ The main capabilities of the Azure OpenAI image generation APIs are:
 
 GPT-4 Turbo with Vision and GPT-4o use natural language and image prompts to generate natural language or code responses. The models accept text only, image only, and interleaved text and image inputs. These models are part of the GPT family and are extensions of GPT-4.
 
-The Azure AI Vision Service provides Video enhancement for GPT-4 Turbo with Vision (Preview), which can also accept video inputs to generate natural language or code responses. This capability is not available with the latest GPT-4 Turbo with Vision model release.
+The Azure Vision in Foundry Tools Service provides Video enhancement for GPT-4 Turbo with Vision (Preview), which can also accept video inputs to generate natural language or code responses. This capability is not available with the latest GPT-4 Turbo with Vision model release.
 
 | **Example prompt** | **Example completion** |
 |---|---|
@@ -319,7 +322,7 @@ Text models can be used in multiple scenarios. The following list isn't comprehe
 - **Search** : Users can search trusted source documents such as internal company documentation. The application doesn't generate results ungrounded in trusted source documentation.
 - **Summarization** : Users can submit content to be summarized for predefined topics built into the application and cannot use the application as an open-ended summarizer. Examples include summarization of internal company documentation, call center transcripts, technical reports, and product reviews.
 - **Writing assistance on specific topics** : Users can create new content or rewrite content submitted by the user as a writing aid for business content or pre-defined topics. Users can only rewrite or create content for specific business purposes or predefined topics and cannot use the application as a general content creation tool for all topics. Examples of business content include proposals and reports. For journalistic use, see above  **Journalistic content** use case.
-- **Data generation for fine-tuning**: Users can use a model in Azure OpenAI to generate data which is used solely to fine-tune (i) another Azure OpenAI model, using the fine-tuning capabilities of Azure OpenAI, and/or (ii) another Azure AI custom model, using the fine-tuning capabilities of the Azure AI service. Generating data and fine-tuning models is limited to internal users only; the fine-tuned model may only be used for inferencing in the applicable Azure AI service and, for Azure OpenAI service, only for customer's permitted use case(s) under this form.
+- **Data generation for fine-tuning**: Users can use a model in Azure OpenAI to generate data which is used solely to fine-tune (i) another Azure OpenAI model, using the fine-tuning capabilities of Azure OpenAI, and/or (ii) another Azure AI custom model, using the fine-tuning capabilities of the Foundry Tool. Generating data and fine-tuning models is limited to internal users only; the fine-tuned model may only be used for inferencing in the applicable Foundry Tool and, for Azure OpenAI service, only for customer's permitted use case(s) under this form.
 
 #### Fine-tuned use cases
 
@@ -519,7 +522,7 @@ The Whisper model in Azure OpenAI service can be used for various speech recogni
 We encourage customers to use the `gpt-4o-realtime-preview` and Whisper models in Azure OpenAI service in their innovative solutions or applications. Here are some considerations when choosing a use case:
 - **Avoid scenarios in which the use or misuse of the system could have a consequential impact on life opportunities or legal status.** Examples include scenarios in which the AI system could affect an individual's legal status, legal rights, or their access to credit, education, employment, healthcare, housing, insurance, social welfare benefits, services, opportunities, or the terms on which these items are available. 
 - **Carefully consider all use cases in high-stakes domains or industries:** Examples include but are not limited to healthcare, education, finance, and legal.
-- **Whisper in Azure Speech service:** The OpenAI Whisper model is also available within Azure AI Speech services, enhancing the experience with advanced features like multi-lingual recognition and readability. Depending on your scenario, you might explore [Azure Speech services](https://azure.microsoft.com/products/cognitive-services/speech-to-text/) and the service's additional capabilities like diaritization, customization, or processing multiple audio files per request.
+- **Whisper in Azure Speech service:** The OpenAI Whisper model is also available within Azure Speech services, enhancing the experience with advanced features like multi-lingual recognition and readability. Depending on your scenario, you might explore [Azure Speech services](https://azure.microsoft.com/products/cognitive-services/speech-to-text/) and the service's additional capabilities like diarization, customization, or processing multiple audio files per request.
 - [!INCLUDE [regulatory-considerations](../includes/regulatory-considerations.md)]
 
 
@@ -541,7 +544,7 @@ Large-scale natural language, image, and speech models trained with such data ca
 - **Stereotyping:** These models can reinforce stereotypes. For example, when translating "He is a nurse" and "She is a doctor" into a genderless language such as Turkish and then back into English, many machine translation systems yield the stereotypical (and incorrect) results of "She is a nurse" and "He is a doctor." With DALL·E, when generating an image based on the prompt "Fatherless children," the model could generate images of Black children only, reinforcing harmful stereotypes that might exist in publicly available images. The GPT-4 vision models might also reinforce stereotypes based on the contents of the input image, by relying on components of the image and making assumptions that might not always be true.
 - **Demeaning:** The natural language and vision models in the Azure OpenAI service can demean people. For example, an open-ended content generation system with inappropriate or insufficient mitigations might produce content that is offensive or demeaning to a particular group of people. 
 - **Overrepresentation and underrepresentation:** The natural language and vision models in the Azure OpenAI service can over- or under-represent groups of people, or even erase their representation entirely. For example, if text prompts that contain the word "gay" are detected as potentially harmful or offensive, this identification could lead to the underrepresentation or even erasure of legitimate image generations by or about the LGBTQIA+ community.
-- **Inappropriate or offensive content:** The natural language and vision models in the Azure OpenAI service can produce other types of inappropriate or offensive content. Examples include the ability to generate text that is inappropriate in the context of the text or image prompt;, the ability to create images that potentially contain harmful artifacts such as hate symbols; images that illicit harmful connotations; images that relate to contested, controversial, or ideologically polarizing topics; images that are manipulative; images that contain sexually charged content that is not caught by sexual-related content filters; and images that relate to sensitive or emotionally charged topics. For example, a well-intentioned text prompt aimed to create an image of the New York skyline with clouds and airplanes flying over it might unintentionally generate images that illicit sentiments related to the events surrounding 9/11. 
+- **Inappropriate or offensive content:** The natural language and vision models in the Azure OpenAI service can produce other types of inappropriate or offensive content. Examples include the ability to generate text that is inappropriate in the context of the text or image prompt; the ability to create images that potentially contain harmful artifacts such as hate symbols; images that elicit harmful connotations; images that relate to contested, controversial, or ideologically polarizing topics; images that are manipulative; images that contain sexually charged content that is not caught by sexual-related guardrails; and images that relate to sensitive or emotionally charged topics. For example, a well-intentioned text prompt aimed to create an image of the New York skyline with clouds and airplanes flying over it might unintentionally generate images that illicit sentiments related to the events surrounding 9/11. 
 - **Disinformation and misinformation about sensitive topics:** Because DALL·E and GPT-image-1 are powerful image generation models, they can be used to produce disinformation and misinformation that can be harmful. For example, a user could prompt the model to generate an image of a political leader engaging in activity of a violent or sexual (or simply inaccurate) nature that might lead to consequential harms, including but not limited to public protests, political change, or fake news. The GPT-4 visions models could also be used in a similar vein. The model might reinforce disinformation or misinformation about sensitive topics if the prompt contains such information without mitigation.
 - **Information reliability:** Language and vision model responses can generate nonsensical content or fabricate content that might sound reasonable but is inaccurate with respect to external validation sources. Even when drawing responses from trusted source information, responses might misrepresent that content. Transcriptions or translations might result in inaccurate text. 
 - **False information:** Azure OpenAI doesn't fact-check or verify content that is provided by customers or users. Depending on how you have developed your application, it might produce false information unless you have built in mitigations (**see Best practices for improving system performance**). 
@@ -554,7 +557,7 @@ When customers fine-tune Azure OpenAI models, it can improve model performance a
 - **Regurgitation**: While your training data is not available to Microsoft or any third-party customers, poorly fine-tuned models may regurgitate, or directly repeat, training data. Customers are responsible for removing any PII or otherwise protected information from their training data and should assess their fine-tuned models for over-fitting or otherwise low-quality responses. To avoid regurgitation, customers are encouraged to provide large and diverse datasets.  
 - **Model transparency and explainability**: The model's logic and reasoning can become more opaque and difficult to understand after fine-tuning, especially if the data is complex or abstract. A fine-tuned model can produce outputs that are unexpected, inconsistent, or contradictory, and customers may not be able to explain how or why the model arrived at those outputs. For example, if the data is about legal or medical terms, the model can generate outputs that are inaccurate or misleading, and customers may not be able to verify or justify them. Customers should monitor and audit the model's outputs and behavior and provide clear and accurate information and guidance to the end-users of the model.
 
-To help mitigate the risks associated with advanced fine-tuned models, we have implemented additional [evaluation steps](/azure/ai-foundry/openai/how-to/fine-tuning?tabs=azure-openai%2Cturbo%2Cpython-new&pivots=programming-language-studio#safety-evaluation-gpt-4-gpt-4o-and-gpt-4o-mini-fine-tuning---public-preview) to help detect and prevent harmful content in the training and outputs of fine-tuned models. The fine-tuned model evaluation filters are set to predefined thresholds and cannot be modified by customers; they aren't tied to any custom content filtering configuration you may have created.
+To help mitigate the risks associated with advanced fine-tuned models, we have implemented additional [evaluation steps](/azure/ai-foundry/openai/how-to/fine-tuning?tabs=azure-openai%2Cturbo%2Cpython-new&pivots=programming-language-studio#safety-evaluation-gpt-4-gpt-4o-and-gpt-4o-mini-fine-tuning---public-preview) to help detect and prevent harmful content in the training and outputs of fine-tuned models. The fine-tuned model evaluation filters are set to predefined thresholds and cannot be modified by customers; they aren't tied to any custom guardrails and control configuration you may have created.
 
 ### Reasoning model limitations
 
@@ -578,9 +581,6 @@ For more best practices, see the [OpenAI 4o System Card](https://openai.com/inde
 - The 4.1-series models introduce the ability to create inference requests with up to 1M context tokens, including images. Due to the extended length, there may be differences in system behavior and risks when compared to other models.
 - Users should thoroughly evaluate and test their applications and use cases that leverage this longer context capability and should account for this additional effort when developing applications.
 
-### GPT-image-1 limitations
-
-- GPT-image-1 currently doesn't support custom policies, such as content filter configurability.
 
 ### Risk and limitations of Computer Use (Preview) 
 
@@ -597,7 +597,7 @@ Developers will need to be systematically aware of, and defend against, situatio
 
 Evaluate in isolation: We recommend only evaluating Computer Use in isolated containers without access to sensitive data or credentials. 
 
-Opaque decision-making processes: As agents combine large language models with external systems, tracing the “why” behind their decisions can become challenging. AEnd users using such of an agent built using the Computer Use model may find it difficult to understand why certain tools or combination of tools were chosen to answer a query, complicating trust and verification of the agent’s outputs or actions. 
+Opaque decision-making processes: As agents combine large language models with external systems, tracing the “why” behind their decisions can become challenging. End users using such an agent built using the Computer Use model may find it difficult to understand why certain tools or combination of tools were chosen to answer a query, complicating trust and verification of the agent’s outputs or actions. 
 
 Evolving best practices and standards: If you are using Computer Use to build an agentic system, bear in mind that Agents are an emerging technology, and guidance on safe integration, transparent tool usage, and responsible deployment continues to evolve. Keeping up with the latest best practices and auditing procedures is crucial, as even well-intentioned uses can become risky without ongoing review and refinement. 
  
@@ -690,7 +690,7 @@ For additional information on how to evaluate and integrate these models respons
 
 #### [Audio / speech models](#tab/speech)
 
-The OpenAI Whisper model is also available within Azure AI Speech services, enhancing the experience with advanced features like multi-lingual recognition and readability. Depending on your scenario, you might explore [Azure Speech services](https://azure.microsoft.com/products/cognitive-services/speech-to-text/) and the service's additional capabilities like diaritization, customization, real-time streaming, or processing multiple audio files per request. For additional information on how to evaluate and integrate the Whisper model responsibly, please see the [Azure Speech services transparency note](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note).
+The OpenAI Whisper model is also available within Azure Speech services, enhancing the experience with advanced features like multi-lingual recognition and readability. Depending on your scenario, you might explore [Azure Speech services](https://azure.microsoft.com/products/cognitive-services/speech-to-text/) and the service's additional capabilities like diarization, customization, real-time streaming, or processing multiple audio files per request. For additional information on how to evaluate and integrate the Whisper model responsibly, please see the [Azure Speech services transparency note](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note).
 
 ---
 
@@ -702,6 +702,6 @@ The OpenAI Whisper model is also available within Azure AI Speech services, enha
 
 ## Learn more about Azure OpenAI
 
-- [Limited access to Azure OpenAI Service - Azure AI services | Microsoft Learn](/azure/ai-foundry/responsible-ai/openai/limited-access) 
+- [Limited access to Azure OpenAI Service - Foundry Tools | Microsoft Learn](/azure/ai-foundry/responsible-ai/openai/limited-access) 
 - [Code of Conduct for the Azure OpenAI Service | Microsoft Learn](/legal/ai-code-of-conduct?context=%2Fazure%2Fcognitive-services%2Fopenai%2Fcontext%2Fcontext) 
-- [Data, privacy, and security for Azure OpenAI Service - Azure AI services | Microsoft Learn](/azure/ai-foundry/responsible-ai/openai/data-privacy)
+- [Data, privacy, and security for Azure OpenAI Service - Foundry Tools | Microsoft Learn](/azure/ai-foundry/responsible-ai/openai/data-privacy)

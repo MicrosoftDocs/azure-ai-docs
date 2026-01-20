@@ -7,7 +7,7 @@ ms.service: azure-machine-learning
 ms.subservice: training
 ms.custom: devx-track-python, update-code
 ms.topic: how-to
-ms.reviewer: None
+ms.reviewer: sooryar
 author: s-polly
 ms.author: scottpolly
 ms.date: 07/17/2025
@@ -40,6 +40,15 @@ Choose the real-time deployment option to open the quick deploy dialog. Specify 
 * Select deploy. You're then navigated to the endpoint page, which might take a few seconds. The deployment takes several minutes to complete based on the model size and instance type. 
 
 Note: If you want to deploy to en existing endpoint, select `More options` from the quick deploy dialog and use the full deployment wizard.
+
+#### Gated models
+
+Gated models are models you will need to request approval from the model's author before use. To use:
+1. Have a Hugging Face read or fine-grained [token](https://huggingface.co/docs/hub/en/security-tokens)
+2. Request access through the model's page on Hugging Face
+3. Create a custom key connection named `HuggingFaceTokenConnection` with the key `HF_TOKEN` and the value being your Hugging Face token marked as a secret.
+3. Create an [endpoint](./how-to-deploy-online-endpoint-with-secret-injection.md#create-an-endpoint) with `enforce_access_to_default_secret_stores` set to `enabled` 
+4. Deploy the model using the newly created endpoint
 
 ### Test the deployed model
 
@@ -174,7 +183,7 @@ Follow this link to find [hugging face model example code](https://github.com/Az
 HuggingFace hub has thousands of models with hundreds being updated each day. Only the most popular models in the collection are tested and others may fail with one of the below errors.
 
 ### Gated models
-[Gated models](https://huggingface.co/docs/hub/models-gated) require users to agree to share their contact information and accept the model owners' terms and conditions in order to access the model. Attempting to deploy such models fails with a `KeyError`.
+[Gated models](https://huggingface.co/docs/hub/models-gated) require users to agree to share their contact information and accept the model owners' terms and conditions in order to access the model. Attempting to deploy such models without properly following the [above steps](#gated-models) will fail with a `KeyError`.
 
 ### Models that need to run remote code
 Models typically use code from the transformers SDK but some models run code from the model repo. Such models need to set the parameter `trust_remote_code` to `True`. Follow this link to learn more about using [remote code](https://huggingface.co/docs/transformers/custom_models#using-a-model-with-custom-code). Such models aren't supported from keeping security in mind. Attempting to deploy such models fails with the following error: `ValueError: Loading <model> requires you to execute the configuration file in that repo on your local machine. Make sure you have read the code there to avoid malicious use, then set the option trust_remote_code=True to remove this error.`
@@ -209,7 +218,7 @@ Deploying these models to batch endpoints for batch inference is currently not s
 Since the model weights aren't stored in the `HuggingFace` registry, you can't access model weights by using these models as inputs to jobs.
 
 **How do I get support if my deployments fail or inference doesn't work as expected?**
-`HuggingFace` is a community registry and that isn't covered by Microsoft support. Review the deployment logs and find out if the issue is related to Azure Machine Learning platform or specific to HuggingFace transformers. Contact Microsoft support for any platform issues. Example, not being able to create online endpoint or authentication to endpoint REST API doesn't work. For transformers specific issues, use the  [HuggingFace forum](https://discuss.huggingface.co/) or [HuggingFace support](https://huggingface.co/support). 
+`HuggingFace` is a community registry and that isn't covered by Microsoft support. Review the deployment logs and find out if the issue is related to Azure Machine Learning platform or specific to HuggingFace transformers. Contact Microsoft support for any platform issues such as not being able to create online endpoint or authentication to endpoint REST API doesn't work. For transformers specific issues, create an issue on [GitHub](https://github.com/huggingface/transformers/issues), use the  [HuggingFace forum](https://discuss.huggingface.co/), or use [HuggingFace support](https://huggingface.co/support). 
 
 **What is a community registry?**
 Community registries are Azure Machine Learning registries created by trusted Azure Machine Learning partners and available to all Azure Machine Learning users.

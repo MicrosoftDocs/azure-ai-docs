@@ -9,7 +9,7 @@ ms.custom: devx-track-azurecli
 ms.topic: how-to
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: vijetaj
+ms.reviewer: jturuk
 ms.date: 05/03/2024
 ---
 

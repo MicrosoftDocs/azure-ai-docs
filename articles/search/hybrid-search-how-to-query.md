@@ -13,7 +13,7 @@ ms.date: 08/28/2025
 
 # Create a hybrid query in Azure AI Search
 
-[Hybrid search](hybrid-search-overview.md) combines text (keyword) and vector queries in a single search request. Both queries execute in parallel. The results are merged and reordered by new search scores, using [Reciprocal Rank Fusion (RRF)](hybrid-search-ranking.md) to return a unified result set. In many cases, [per benchmark tests](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/azure-ai-search-outperforming-vector-search-with-hybrid/ba-p/3929167), hybrid queries with semantic ranking return the most relevant results.
+[Hybrid search](hybrid-search-overview.md) combines text (keyword) and vector queries in a single search request. Both queries execute in parallel. The results are merged and reordered by new search scores, using [Reciprocal Rank Fusion (RRF)](hybrid-search-ranking.md) to return a unified result set. In many cases, [per benchmark tests](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/azure-ai-search-outperforming-vector-search-with-hybrid-retrieval-and-reranking/3929167), hybrid queries with semantic ranking return the most relevant results.
 
 In this article, learn how to:
 
@@ -26,7 +26,7 @@ In this article, learn how to:
 
 + A search index containing `searchable` vector and nonvector fields. We recommend the [**Import data (new)** wizard](search-import-data-portal.md) to create an index quickly. Otherwise, see [Create an index](search-how-to-create-search-index.md) and [Add vector fields to a search index](vector-search-how-to-create-index.md).
 
-+ (Optional) If you want the [semantic ranker](semantic-search-overview.md), your search service must be Basic tier or higher, with [semantic ranker enabled](semantic-how-to-enable-disable.md).
++ (Optional) If you want the [semantic ranker](semantic-search-overview.md), your search service must have the [semantic ranker enabled](semantic-how-to-enable-disable.md).
 
 + (Optional) If you want built-in text-to-vector conversion of a query string, [create and assign a vectorizer](vector-search-how-to-configure-vectorizer.md) to vector fields in the search index.
 
@@ -163,12 +163,12 @@ A hybrid query can be tuned to control how much of each subquery contributes to 
 
 If you use `maxTextRecallSize`, you might also want to set `CountAndFacetMode`. This parameter determines whether the `count` and `facets` should include all documents that matched the search query, or only those documents retrieved within the `maxTextRecallSize` window. The default value is "countAllResults".
 
-We recommend the [latest preview REST API](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-08-01-preview&preserve-view=true) for setting these options.
+We recommend the [latest preview REST API](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-11-01-preview&preserve-view=true) for setting these options.
 
 > [!TIP]
 > Another approach for hybrid query tuning is [vector weighting](vector-search-how-to-query.md#vector-weighting), used to increase the importance of vector queries in the request.
 
-1. Use [Search - POST (preview)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-08-01-preview&preserve-view=true) or [Search - GET (preview)](/rest/api/searchservice/documents/search-get?view=rest-searchservice-2025-08-01-preview&preserve-view=true) to specify preview parameters.
+1. Use [Search - POST (preview)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or [Search - GET (preview)](/rest/api/searchservice/documents/search-get?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to specify preview parameters.
 
 1. Add a `hybridSearch` query parameter object to set the maximum number of documents recalled through the BM25-ranked results of a hybrid query. It has two properties:
 
@@ -275,7 +275,7 @@ api-key: {{admin-api-key}}
 
 ### Example: Hybrid search with filters targeting vector subqueries (preview)
 
-Using the [latest preview REST API](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-08-01-preview&preserve-view=true), you can override a global filter on the search request by applying a secondary filter that targets just the vector subqueries in a hybrid request.
+Using the [latest preview REST API](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-11-01-preview&preserve-view=true), you can override a global filter on the search request by applying a secondary filter that targets just the vector subqueries in a hybrid request.
 
 This feature provides fine-grained control by ensuring that filters only influence the vector search results, leaving keyword-based search results unaffected. 
 
@@ -283,14 +283,14 @@ The targeted filter fully overrides the global filter, including any filters use
 
 To apply targeted vector filters:
 
-+ Use the [latest preview Search Documents REST API](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-08-01-preview&preserve-view=true#request-body) or an Azure SDK beta package that provides the feature.
++ Use the [latest preview Search Documents REST API](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-11-01-preview&preserve-view=true#request-body) or an Azure SDK beta package that provides the feature.
 
 + Modify a query request, adding a new `vectorQueries.filterOverride` parameter set to an [OData filter expression](search-query-odata-filter.md).
 
 Here's an example of hybrid query that adds a filter override. The global filter "Rating gt 3" is replaced at run time by the `filterOverride`.
 
 ```http
-POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2025-08-01-preview
+POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2025-11-01-preview
 
 {
     "vectorQueries": [

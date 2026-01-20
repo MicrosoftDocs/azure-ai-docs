@@ -5,7 +5,7 @@ description: Learn about the content credentials feature, which lets you verify 
 author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-speech
-ms.topic: conceptual
+ms.topic: article
 ms.date: 08/07/2025
 manager: nitinme
 ---

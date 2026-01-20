@@ -1,11 +1,11 @@
 ---
 title: How to record video samples for custom text to speech avatar - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to prepare high-quality video samples for creating a custom text to speech avatar.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: conceptual
+ms.topic: article
 ms.date: 08/07/2025
 ms.author: pafarley
 keywords: how to record video samples for custom text to speech avatar
@@ -43,7 +43,7 @@ Follow these best practices when using a solid-colored background like a green s
 
 ### Equipment
 
-- Camera: Minimum 1080p resolution and 25 FPS (frames per second).
+- Camera: Minimum 1080p resolution and 25 FPS (frames per second). To create a 4K resolution avatar, the video recording should be in 3840x2160 resolution.
 - Keep lighting and camera positions fixed throughout recording.
 - You can use a teleprompter during recording, but make sure it doesn't affect the actor's gaze toward the camera. Provide seating if the avatar needs to be in a sitting position.
 - For half-length or seated avatars, provide seating for the actor. Choose an appropriate chair if you don't want it visible in the video. 
@@ -172,7 +172,7 @@ Basic video processing helps improve model training efficiency:
 
 **Avatar training video recording file format:** .mp4 or .mov.
 
-**Resolution:** At least 1920x1080.
+**Resolution:** At least 1920x1080. 3840x2160 to train a 4K avatar
 
 **Frame rate per second:** At least 25 FPS.
 

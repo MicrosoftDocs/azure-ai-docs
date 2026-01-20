@@ -7,7 +7,7 @@ ms.service: azure-machine-learning
 ms.subservice: inferencing
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: sehan
+ms.reviewer: jturuk
 ms.date: 03/20/2024
 ms.topic: troubleshooting
 ms.custom: devplatv2, devx-track-azurecli, cliv2

@@ -8,7 +8,7 @@ ms.subservice: mlops
 ms.topic: how-to
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: mesameki
+ms.reviewer: jturuk
 ms.date: 03/31/2025
 ms.custom: devplatv2, devx-track-azurecli, update-code5
 # customer intent: As a developer, I want to see how to monitor the models that I deploy to production in Azure Machine Learning so that I can maintain the models and improve their performance.
@@ -908,7 +908,7 @@ Your custom preprocessing component must have the following input and output sig
 
 For an example of a custom data preprocessing component, see [custom_preprocessing in the azuremml-examples GitHub repo](https://github.com/Azure/azureml-examples/tree/main/cli/monitoring/components/custom_preprocessing).
 
-For instructions for registering an Azure Machine Learning component, see [Register component in your workspace](how-to-create-component-pipelines-ui.md#register-component-in-your-workspace).
+For instructions for registering an Azure Machine Learning component, see [Register component in your workspace](how-to-create-component-pipelines-ui.md#register-a-component-in-your-workspace) .
 
 After you register your production data and preprocessing component, you can set up model monitoring.
 
@@ -1147,7 +1147,7 @@ The following table shows example output from a custom signal component that com
 
 To see an example of a custom signal component definition and metric computation code, see [custom_signal in the azureml-examples repo](https://github.com/Azure/azureml-examples/tree/main/cli/monitoring/components/custom_signal).
 
-For instructions for registering an Azure Machine Learning component, see [Register component in your workspace](how-to-create-component-pipelines-ui.md#register-component-in-your-workspace).
+For instructions for registering an Azure Machine Learning component, see [Register component in your workspace](how-to-create-component-pipelines-ui.md#register-a-component-in-your-workspace) .
 
 # [Azure CLI](#tab/azure-cli)
 

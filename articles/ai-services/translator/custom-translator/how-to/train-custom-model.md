@@ -1,18 +1,18 @@
 ---
-title: Train an Azure AI Custom Translator model
-titleSuffix: Azure AI services
+title: Train a Custom Translator model
+titleSuffix: Foundry Tools
 description: How to train a custom model
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 05/19/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.topic: how-to
 ---
 
-# Train an Azure AI Custom Translator model
+# Train a Custom Translator model
 
-An Azure AI Custom Translator model provides translations for a specific language pair. The outcome of a successful training is a model. To train a custom model, three mutually exclusive document types are required: training, tuning, and testing. If only training data is provided when queuing a training, Custom Translator automatically assembles tuning and testing data. It uses a random subset of sentences from your training documents, and exclude these sentences from the training data itself. A minimum of 10,000 parallel training sentences are required to train a full model.
+A Custom Translator model provides translations for a specific language pair. The outcome of a successful training is a model. To train a custom model, three mutually exclusive document types are required: training, tuning, and testing. If only training data is provided when queuing a training, Custom Translator automatically assembles tuning and testing data. It uses a random subset of sentences from your training documents, and exclude these sentences from the training data itself. A minimum of 10,000 parallel training sentences are required to train a full model.
 
 ## Create custom model
 

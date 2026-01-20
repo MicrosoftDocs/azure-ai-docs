@@ -1,0 +1,38 @@
+items:
+# Getting Started
+- name: When to use fine-tuning
+  href: ../../../openai/concepts/fine-tuning-considerations.md
+  displayName: finetuning, fine-tuning 
+- name: Fine-tune models
+  href: ../../../openai/how-to/fine-tuning.md
+  displayName: finetuning, fine-tuning 
+- name: Deploy your fine-tuned model
+  href: ../../../openai/how-to/fine-tuning-deploy.md
+  displayName: finetuning, fine-tuning     
+
+# Data Preparation
+- name: Synthetic Data Generation
+  href: ../../fine-tuning/data-generation.md
+  displayName: finetuning, fine-tuning         
+
+# Advanced Fine-tuning Techniques
+- name: Advanced techniques
+  items:
+  - name: Vision fine-tuning
+    href: ../../../openai/how-to/fine-tuning-vision.md
+    displayName: finetuning, fine-tuning 
+  - name: Preference fine-tuning
+    href: ../../../openai/how-to/fine-tuning-direct-preference-optimization.md
+  - name: Reinforcement fine-tuning
+    href: ../../../openai/how-to/reinforcement-fine-tuning.md
+    displayName: finetuning, fine-tuning 
+  - name: Tool calling
+    href: ../../../openai/how-to/fine-tuning-functions.md
+    displayName: finetuning, fine-tuning       
+
+# Safety and Cost Management
+- name: Safety evaluation
+  href: ../../../openai/how-to/fine-tuning-safety-evaluation.md
+  displayName: finetuning, fine-tuning 
+- name: Fine-tuning cost management
+  href: ../../../openai/how-to/fine-tuning-cost-management.md

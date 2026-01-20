@@ -1,17 +1,16 @@
 ---
 title: "Container: Translate document"
-titleSuffix: Azure AI services
-description: Understand the parameters, headers, and body request/response messages for the Azure AI Translator container translate document operation.
+titleSuffix: Foundry Tools
+description: Understand the parameters, headers, and body request/response messages for the Azure Translator container translate document operation.
 author: laujan
 manager: nitinme
-
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 04/14/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
-# Container: Translate Documents
+# Azure Translator in Foundry Tools container: translate documents
 
 **Translate document with source language specified**.
 
@@ -46,7 +45,7 @@ Use synchronous translation processing to send a document as part of the HTTP re
 |`-F` or `--form` |The filepath to an optional glossary to include with your request. The glossary requires a separate `--form` flag.|*Optional*|
 | &bull; `glossary=`<br> &bull; `type={contentType}/fileExtension`|&bull; Path to the file location for your optional glossary file.</br> &bull; Content type and file extension.</br></br> Ex: **"glossary=@C:\Test\glossary-file.txt;type=text/plain**|*Optional*|
 
-✔️ For more information on **`contentType`**, *see* [**Supported document formats**](../document-translation/overview.md#synchronous-supported-document-formats).
+✔️ For more information on **`contentType`**, *see* [**Supported document formats**](../document-translation/overview.md#key-features).
 
 ## Code sample: document translation
 
@@ -54,13 +53,13 @@ Use synchronous translation processing to send a document as part of the HTTP re
 >
 > * Each sample runs on the `localhost` that you specified with the `docker compose up` command.
 > * While your container is running, `localhost` points to the container itself.
-> * You don't have to use `localhost:5000`. You can use any port that isn't already in use in your host environment.
+> * You don't have to use `localhost:5000`. You can use any port that'sn't already in use in your host environment.
 
 ### Sample document
 
 For this project, you need a source document to translate. You can download our [document translation sample document](https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/Translator/document-translation-sample.docx) for and store it in the same folder as your `compose.yaml` file (`container-environment`). The file name is `document-translation-sample.docx` and the source language is English.
 
-### Query Azure AI Translator endpoint (document)
+### Query Azure Translator endpoint (document)
 
 Here's an example cURL HTTP request using localhost:5000:
 

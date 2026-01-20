@@ -4,12 +4,12 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: include
-ms.date: 07/28/2025
+ms.date: 11/21/2025
 ms.author: pafarley
 ---
 
 
-Groundedness detection in Azure AI Content Safety helps you ensure that large language model (LLM) responses are based on your provided source material, reducing the risk of non-factual or fabricated outputs. Ungroundedness refers to instances where the LLMs produce information that is non-factual or inaccurate from what was present in the source materials.
+Groundedness detection in Azure AI Content Safety helps you ensure that large language model (LLM) responses are based on your provided source material, reducing the risk of non-factual or fabricated outputs. Ungroundedness refers to instances where the LLMs produce information that is non-factual or inaccurate from what was present in the source materials. Groundedness detection requires [document embedding and formatting](/azure/ai-foundry/openai/concepts/content-filter-document-embedding#embedding-documents-in-your-prompt). 
 
 ## Key terms
 

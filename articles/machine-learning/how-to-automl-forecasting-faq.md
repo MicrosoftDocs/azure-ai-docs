@@ -5,7 +5,7 @@ description: Read answers to frequently asked questions about forecasting in Aut
 services: machine-learning
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: sagoswami
+ms.reviewer: sooryar
 ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: faq

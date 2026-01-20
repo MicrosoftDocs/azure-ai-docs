@@ -1,16 +1,15 @@
 ---
 title: Conversational language understanding language support
-titleSuffix: Azure AI services
-description: This article explains which natural languages are supported by the conversational language understanding feature of Azure AI Language.
+titleSuffix: Foundry Tools
+description: This article lists the natural languages Azure Language in Foundry Tools supports for conversational language understanding.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
-ms.date: 05/01/2025
+ms.topic: concept-article
+ms.date: 12/05/2025
 ms.author: lajanuar
 ms.custom: language-service-clu
 ---
-
 # Language support for Conversational Language Understanding (CLU)
 
 Use this article to learn about the languages currently supported by CLU feature.
@@ -18,28 +17,28 @@ Use this article to learn about the languages currently supported by CLU feature
 ## Multi-lingual option
 
 > [!TIP]
-> We recommend using English for the LLM-powered features, like Quick Deploy and Conversation-level understanding, but your project will continue to function for all languages.
+> We recommend using English for the LLM-powered features, like Quick Deploy and Conversation-level understanding, but your project continues to function for all languages.
 
 With conversational language understanding, you can train a model in one language and use to predict intents and entities from utterances in another language. This feature is powerful because it helps save time and effort. Instead of building separate projects for every language, you can handle multi-lingual dataset in one project. Your dataset doesn't have to be entirely in the same language but you should enable the multi-lingual option for your project while creating or later in project settings. If you notice your model performing poorly in certain languages during the evaluation process, consider adding more data in these languages to your training set.
 
 You can train your project entirely with English utterances, and query it in: French, German, Mandarin, Japanese, Korean, and others. Conversational language understanding makes it easy for you to scale your projects to multiple languages by using multilingual technology to train your models.
 
-Whenever you identify that a particular language is not performing as well as other languages, you can add utterances for that language in your project. In the tag utterances page in Language Studio, you can select the language of the utterance you're adding. When you introduce examples for that language to the model, it is introduced to more of the syntax of that language, and learns to predict it better.
+Whenever you identify that a particular language isn't performing as well as other languages, you can add utterances for that language in your project. In the tag utterances page in Microsoft Foundry, you can select the language of the utterance you're adding. When you introduce examples for that language to the model, it introduces the model to more of the syntax of that language, and it learns to predict it better.
 
-You aren't expected to add the same number of utterances for every language. You should build the majority of your project in one language, and only add a few utterances in languages you observe aren't performing well. If you create a project that is primarily in English, and start testing it in French, German, and Spanish, you might observe that German doesn't perform as well as the other two languages. In that case, consider adding 5% of your original English examples in German, train a new model and test in German again. You should see better results for German queries. The more utterances you add, the more likely the results are going to get better. 
+You aren't expected to add the same number of utterances for every language. You should build most your project in one language, and only add a few utterances in languages you observe aren't performing well. In that case, consider adding 5% of your original English examples in German, train a new model and test in German again. You should see better results for German queries. The more utterances you add, the more likely the results are going to get better. 
 
 When you add data in another language, you shouldn't expect it to negatively affect other languages. 
 
 ### List and prebuilt components in multiple languages
 
-Projects with multiple languages enabled will allow you to specify synonyms **per language** for every list key. Depending on the language you query your project with, you will only get matches for the list component with synonyms of that language. When you query your project, you can specify the language in the request body:
+Projects with multiple languages enabled allow you to specify synonyms **per language** for every list key. Depending on the language you query, your project with, you only get matches for the list component with synonyms of that language. When you query your project, you can specify the language in the request body:
 
 ```json
 "query": "{query}"
 "language": "{language code}"
 ```
 
-If you do not provide a language, it will fall back to the default language of your project.
+If you don't provide a language, it falls back to the default language of your project.
 
 Prebuilt components are similar, where you should expect to get predictions for prebuilt components that are available in specific languages. The request's language again determines which components are attempting to be predicted. <!--See the [prebuilt components](../prebuilt-component-reference.md) reference article for the language support of each prebuilt component.-->
 

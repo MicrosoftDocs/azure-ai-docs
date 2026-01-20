@@ -1,25 +1,28 @@
 ---
 title: Build and Consume Vector Indexes
-titleSuffix: Azure AI Foundry
-description: Learn how to create and use a vector index for performing retrieval-augmented generation (RAG) by using Azure AI Foundry portal.
+titleSuffix: Microsoft Foundry
+description: Learn how to create and use a vector index for performing retrieval-augmented generation (RAG) by using Microsoft Foundry portal.
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 10/10/2025
+ms.date: 11/21/2025
 ms.reviewer: estraight
 ms.author: ssalgado
 manager: nitinme
 author: ssalgadodev
 ---
 
-# Build and consume vector indexes in Azure AI Foundry portal
+# Build and consume vector indexes in Microsoft Foundry portal
+
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-In this article, you learn how to create and use a vector index for performing [retrieval-augmented generation (RAG)](../concepts/retrieval-augmented-generation.md) in the Azure AI Foundry portal.
+In this article, you learn how to create and use a vector index for performing [retrieval-augmented generation (RAG)](../concepts/retrieval-augmented-generation.md) in the Microsoft Foundry portal.
 
 A vector index isn't required for RAG, but a vector query can match on semantically similar content, which is useful for RAG workloads.
 
@@ -27,19 +30,19 @@ A vector index isn't required for RAG, but a vector query can match on semantica
 
 You must have:
 
-- An [Azure AI Foundry project](create-projects.md).
+- A [Foundry project](create-projects.md).
 
 - An [Azure AI Search resource](/azure/search/search-create-service-portal).
 
-- You should have content in a supported format that provides sufficient information for a chat experience. It can be an existing index on Azure AI Search, or you can create a new index using content files in Azure Blob Storage, your local system, or data in Azure AI Foundry.
+- You should have content in a supported format that provides sufficient information for a chat experience. It can be an existing index on Azure AI Search, or you can create a new index using content files in Azure Blob Storage, your local system, or data in Foundry.
 
 ## Create an index from the Chat playground
 
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+1. Sign in to the [Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
-1. Go to your project or [create a new project](../how-to/create-projects.md) in your Azure AI Foundry resource.
+1. Go to your project or [create a new project](../how-to/create-projects.md) in your Foundry resource.
 
 1. From the sidebar menu, select **Playgrounds**. Select **Try the Chat playground**.
 

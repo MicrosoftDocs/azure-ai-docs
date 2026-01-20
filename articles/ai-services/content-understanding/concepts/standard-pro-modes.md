@@ -1,20 +1,20 @@
 ---
-title: Azure AI Content Understanding standard and pro modes
-titleSuffix: Azure AI services
-description: Learn about Azure AI Content Understanding standard and pro modes.
+title: Azure Content Understanding in Foundry Tools standard and pro modes (preview)
+titleSuffix: Foundry Tools
+description: Learn about Azure Content Understanding in Foundry Tools standard and pro modes.
 author: PatrickFarley 
-ms.author: kabrow
+ms.author: pafarley
 manager: nitinme
-ms.date: 05/19/2025
+ms.date: 12/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: overview
 ms.custom:
   - build-2025
 ---
 
-# Azure AI Content Understanding pro and standard modes
+# Azure Content Understanding in Foundry Tools pro and standard modes (preview)
 
-Azure AI Content Understanding is an advanced generative AI service designed to derive structured insights from multi-modal content such as documents, images, videos, and audio. With the introduction of the `2025-05-01-preview` version, the service now offers two distinct modes: `standard` and `pro`.
+Azure Content Understanding in Foundry Tools is an advanced generative AI service designed to derive structured insights from multi-modal content such as documents, images, videos, and audio. With the introduction of the `2025-05-01-preview` version, the service now offers two distinct modes: `standard` and `pro`.
 
 * **Standard**: This mode serves as the default solution for processing diverse content types. It's optimized to provide efficient schema extraction tailored to specific tasks across all data formats. This mode emphasizes cost-effectiveness and reduced latency, ensuring structured insights are accessible for your general processing needs.
 
@@ -45,7 +45,7 @@ During analyzer creation, you can provide documents that can aid in providing co
 
 ### Multi-step reasoning
 
-Multi-step reasoning offers the ability to decompose complex problems into a simples tasks. Multi-step reasoning takes data analysis a step further than extracting and aggregating structured data and allows you to draw conclusions on that data, minimizing the need for human review. Examples of the types of questions pro mode can answer with multi-step reasoning include:
+Multi-step reasoning offers the ability to decompose complex problems into simple tasks. Multi-step reasoning takes data analysis a step further than extracting and aggregating structured data and allows you to draw conclusions on that data, minimizing the need for human review. Examples of the types of questions pro mode can answer with multi-step reasoning include:
 
 * Does x match y?
 * Does x pass the outlined criteria?
@@ -82,7 +82,7 @@ Not sure which mode is right for your scenario? The following charts compare sta
 
 ## Try pro mode
 
-You can try out the features of both Content Understanding standard and pro modes using the [Azure AI Foundry](https://ai.azure.com/explore/aiservices/vision/contentunderstanding). The service enables you to bring your own data and experiment with all the functionalities of both modes in a lightweight, no-code approach to help you find the best fit for your unique scenario.
+You can try out the features of both Content Understanding standard and pro modes using the [Microsoft Foundry](https://ai.azure.com/explore/aiservices/vision/contentunderstanding). The service enables you to bring your own data and experiment with all the functionalities of both modes in a lightweight, no-code approach to help you find the best fit for your unique scenario.
 
 ### Pro mode known limitations and best practices
 

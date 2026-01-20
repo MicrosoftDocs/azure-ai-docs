@@ -2,9 +2,9 @@
 title: Linking Tables in OneLake to Azure Machine Learning Through UI
 titleSuffix: Azure Machine Learning
 description: Learn how to link a Table in OneLake Lakehouse to Azure Machine Learning and create datastore through UI.
-author: helenzusa1 
-ms.author: helenzeng
-ms.reviewer:  franksolomon
+ms.author: scottpolly
+author: s-polly
+ms.reviewer: soumyapatro 
 ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.topic: how-to
@@ -23,7 +23,7 @@ In this article, you learn how to link OneLake tables to Azure Machine Learning 
 
 ## Prerequisites
 
-- An Azure subscription; if you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free) before you start.
+- An Azure subscription; if you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you start.
 - An Azure Machine Learning workspace. Visit [Create workspace resources](./quickstart-create-resources.md).
 - An Azure Data Lake Storage (ADLS) storage account. Visit [Create an Azure Data Lake Storage (ADLS) storage account](/azure/storage/blobs/create-data-lake-storage-account).
 - Knowledge of assigning roles in Azure storage account.

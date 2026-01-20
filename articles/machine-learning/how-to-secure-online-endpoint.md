@@ -6,7 +6,7 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.topic: how-to
-ms.reviewer: None
+ms.reviewer: shshubhe
 author: s-polly
 ms.author: scottpolly
 ms.date: 03/31/2025
@@ -119,6 +119,9 @@ Because the workspace is configured to have a managed virtual network, any endpo
    :::code language="azurecli" source="~/azureml-examples-main/cli/deploy-managed-online-endpoint-workspacevnet.sh" ID="set_endpoint_name" :::
 
 1. Create an endpoint with `public_network_access` set to `disabled` to block inbound traffic:
+
+   > [!NOTE]
+   > The referenced script uses YAML configuration files from the cloned repository. Ensure you're in the correct directory (cli) after cloning the repository, or provide the full path to your YAML files. In Azure Cloud Shell, verify the files are accessible in your cloud storage before running the commands.
 
    :::code language="azurecli" source="~/azureml-examples-main/cli/deploy-managed-online-endpoint-workspacevnet.sh" ID="create_endpoint_inbound_blocked" :::
 

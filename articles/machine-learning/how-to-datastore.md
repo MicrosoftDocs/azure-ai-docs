@@ -8,7 +8,7 @@ ms.subservice: mldata
 ms.topic: how-to
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: yogipandey
+ms.reviewer: soumyapatro
 ms.date: 02/28/2025
 ms.custom: data4ml, ignite-2023, devx-track-azurecli
 # Customer intent: As an experienced Python developer, I need to make my data in Azure storage available to my remote compute resource to train my machine learning models.
@@ -460,7 +460,7 @@ ml_client = MLClient.from_config(credential=DefaultAzureCredential())
 
 store = OneLakeDatastore(
     name="onelake_example_id",
-    description="Datastore pointing to an Microsoft fabric artifact.",
+    description="Datastore pointing to a Microsoft fabric artifact.",
     one_lake_workspace_name="bbbbbbbb-7777-8888-9999-cccccccccccc", #{your_one_lake_workspace_guid}
     endpoint="msit-onelake.dfs.fabric.microsoft.com" #{your_one_lake_endpoint}
     artifact = OneLakeArtifact(
@@ -484,7 +484,7 @@ ml_client = MLClient.from_config(credential=DefaultAzureCredential())
 
 store = OneLakeDatastore(
     name="onelake_example_sp",
-    description="Datastore pointing to an Microsoft fabric artifact.",
+    description="Datastore pointing to a Microsoft fabric artifact.",
     one_lake_workspace_name="bbbbbbbb-7777-8888-9999-cccccccccccc", #{your_one_lake_workspace_guid}
     endpoint="msit-onelake.dfs.fabric.microsoft.com" #{your_one_lake_endpoint}
     artifact = OneLakeArtifact(

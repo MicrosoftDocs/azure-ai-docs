@@ -1,27 +1,40 @@
 ---
 title: Content Streaming in Azure OpenAI
 description: Learn about content streaming options in Azure OpenAI, including default and asynchronous filtering modes, and their impact on latency and performance.
-author: PatrickFarley
+author: ssalgadodev
+ms.author: ssalgado
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
-ms.date: 09/16/2025
-ms.author: pafarley
+ms.date: 01/15/2026
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
 
 # Content streaming
 
-This guide describes the Azure OpenAI content streaming experience and options. Customers can receive content from the API as it's generated, instead of waiting for chunks of content that have been verified to pass the content filters.
+
+This guide describes the Azure OpenAI content streaming experience and options. Customers can receive content from the API when it's generated, instead of waiting for chunks of content that have been verified to pass the content filters.
 
 ## Default filtering behavior
 
-The content filtering system is integrated and enabled by default for all customers. In the default streaming scenario, completion content is buffered, the content filtering system runs on the buffered content, and – depending on the content filtering configuration – content is either returned to the user if it doesn't violate the content filtering policy (Microsoft's default or a custom user configuration), or it is immediately blocked and a content filtering error is returned instead. This process repeats until the end of the stream. Content is fully vetted according to the content filtering policy before it's returned to the user. Content isn't returned token-by-token in this case, but in "content chunks" of the respective buffer size.
+::: moniker range="foundry"
+
+The content guardrails system is integrated and enabled by default for all customers. In the default streaming scenario, completion content buffers, the content guardrail system runs on the buffered content, and – depending on the guardrail configuration – content is returned to the user if it doesn't violate the guardrail policy (Microsoft's default or a custom user configuration), or it is immediately blocked and a guardrail error is returned instead. This process repeats until the end of the stream. Content is fully vetted according to the guardrail policy before it's returned to the user. Content isn't returned token-by-token in this case, but in "content chunks" of the respective buffer size.
+
+::: moniker-end
+
+::: moniker range="foundry-classic"
+
+The content filtering system is integrated and enabled by default for all customers. In the default streaming scenario, completion content buffers, the content filtering system runs on the buffered content, and – depending on the content filtering configuration – content is returned to the user if it doesn't violate the content filtering policy (Microsoft's default or a custom user configuration), or it is immediately blocked and a content filtering error is returned instead. This process repeats until the end of the stream. Content is fully vetted according to the content filtering policy before it's returned to the user. Content isn't returned token-by-token in this case, but in "content chunks" of the respective buffer size.
+
+::: moniker-end
 
 ## Asynchronous filtering
 
-Customers can choose the Asynchronous Filter as an extra option, providing a new streaming experience. In this case, content filters run asynchronously, and completion content is returned immediately with a smooth token-by-token streaming experience. No content is buffered, which allows for a fast streaming experience with zero latency associated with content filtering.
+Customers can choose the Asynchronous Filter as an extra option, providing a new streaming experience. In this case, content filters run asynchronously, and completion content returns immediately with a smooth token-by-token streaming experience. No content is buffered, which allows for a fast streaming experience with zero latency associated with content filtering.
 
 Customers must understand that while the feature improves latency, it's a trade-off against the safety and real-time vetting of smaller sections of model output. Because content filters are run asynchronously, content moderation messages and policy violation signals are delayed, which means some sections of harmful content that would otherwise have been filtered immediately could be displayed to the user.
  
@@ -31,15 +44,15 @@ Customers must understand that while the feature improves latency, it's a trade-
 
 **Customer Copyright Commitment**: Content that is retroactively flagged as protected material might not be eligible for Customer Copyright Commitment coverage. 
 
-To enable Asynchronous Filter in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), follow the [Content filter how-to guide](/azure/ai-foundry/openai/how-to/content-filters) to create a new content filtering configuration, and select **Asynchronous Filter** in the Streaming section.
+To enable Asynchronous Filter in [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs), follow the [Content filter how-to guide](/azure/ai-foundry/openai/how-to/content-filters) to create a new content filtering configuration, and select **Asynchronous Filter** in the Streaming section.
 
 ## Comparison of content filtering modes
 
 | Compare | Streaming - Default | Streaming - Asynchronous Filter |
 |---|---|---|
-|Status |GA |Public Preview |
+|Status |GA | GA |
 | Eligibility |All customers |All customers |
-| How to enable | Enabled by default, no action needed |Customers can configure it directly in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) (as part of a content filtering configuration, applied at the deployment level) |
+| How to enable | Enabled by default, no action needed |Customers can configure it directly in [Foundry portal](https://ai.azure.com/?cid=learnDocs) (as part of a content filtering configuration, applied at the deployment level) |
 |Modality and availability |Text; all GPT models |Text; all GPT models |
 |Streaming experience |Content is buffered and returned in chunks |Zero latency (no buffering, filters run asynchronously) |
 |Content filtering signal |Immediate filtering signal |Delayed filtering signal (in up to ~1,000-character increments) |
@@ -182,4 +195,4 @@ data: [DONE]
 ```
 
 > [!IMPORTANT]
-> When content filtering is triggered for a prompt and a `"status": 400` is received as part of the response there will be a charge for this request as the prompt was evaluated by the service. Due to the asynchronous nature of the content filtering system, a charge for both the prompt and completion tokens occurs. [Charges will also occur](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) when a `"status":200` is received with `"finish_reason": "content_filter"`. In this case, the prompt didn't have any issues, but the completion generated by the model was detected to violate the content filtering rules, which results in the completion being filtered.
+> When content filtering is triggered for a prompt and a `"status": 400` is received as part of the response there is a charge for this request as the prompt was evaluated by the service. Due to the asynchronous nature of the content filtering system, a charge for both the prompt and completion tokens occurs. [Charges will also occur](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) when a `"status":200` is received with `"finish_reason": "content_filter"`. In this case, the prompt didn't have any issues, but the completion generated by the model was detected to violate the content filtering rules, which results in the completion being filtered.

@@ -9,7 +9,7 @@ ms.topic: how-to
 author: s-polly
 ms.author: scottpolly
 ms.date: 08/09/2024
-ms.reviewer: cacrest
+ms.reviewer: jturuk
 ms.custom: update-code, devplatv2
 
 #customer intent: As a developer, I want to use batch deployments for MLflow models in Azure Machine Learning, so I can test deployments and analyze outputs.
