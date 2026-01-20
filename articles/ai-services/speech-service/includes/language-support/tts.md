@@ -170,7 +170,7 @@ ms.custom: references_regions
 
 <sup>2</sup> The neural voice is available in public preview. For the current list of regions that support this voice in public preview, see the [table for Azure Speech regions](../../regions.md?tabs=tts).
 
-<sup>3</sup> [Phonemes](../../speech-synthesis-markup-pronunciation.md#phoneme-element), [custom lexicon](../../speech-synthesis-markup-pronunciation.md#custom-lexicon), and [visemes](../../speech-synthesis-markup-voice.md#viseme-element) aren't supported. For details about supported visemes, see the [table of viseme locales](../../language-support.md?tabs=tts#viseme). 
+<sup>3</sup> [Phonemes](../../speech-synthesis-markup-pronunciation.md#phoneme-element), [custom lexicon](../../speech-synthesis-markup-pronunciation.md#custom-lexicon), and [visemes](../../speech-synthesis-markup-voice.md#viseme-element) aren't supported. For details about supported visemes, see the [table of viseme locales](../../language-support.md?tabs=tts#visemes). 
 
 <sup>4</sup> The neural voice is a multilingual voice in Azure Speech. The turbo version of Azure OpenAI voices has a similar voice persona to Azure OpenAI voices but supports extra features. Turbo voices support the full set of SSML elements and more features (like word boundary), just like other Azure Speech voices.
 

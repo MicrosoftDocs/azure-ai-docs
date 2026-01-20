@@ -127,7 +127,7 @@ The following limits aren't adjustable. For more information on latency in batch
 | Maximum number of text inputs per synthesis job | Not applicable | 10,000 |
 | Maximum time to live for a synthesis job since it entered the final state | Not applicable | Up to 31 days (specified through properties) |
 
-#### Custom professional voice
+#### <a name = "custom-voice---professional"></a>Custom professional voice
 
 The limits in this table apply per Azure Speech resource when you create a professional voice.
 
@@ -215,7 +215,7 @@ To minimize issues related to throttling, it's a good idea to use the following 
 
 Later sections describe specific cases of adjusting quotas.
 
-### Example of a best practice for workload patterns
+### <a name = "example-of-a-workload-pattern-best-practice"></a>Example of a best practice for workload patterns
 
 Here's a general example of a good approach to take. It's meant only as a template that you can adjust as necessary for your own use.
 
