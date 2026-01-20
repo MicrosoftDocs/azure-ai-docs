@@ -43,7 +43,7 @@ items:
   - name: Vector stores for file search
     href: ../../agents/concepts/vector-stores.md
   - name: Foundry IQ (preview)
-    href: ../../agents/how-to/tools/knowledge-retrieval.md
+    href: ../../agents/how-to/foundry-iq-usage.md
   - name: SharePoint (preview)
     href: ../../agents/how-to/tools/sharepoint.md
   - name: Web search (preview)

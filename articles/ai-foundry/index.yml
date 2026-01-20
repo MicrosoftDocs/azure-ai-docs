@@ -96,7 +96,7 @@ productDirectory:
           text: Agentic retrieval
         - url: /azure/search/agentic-retrieval-how-to-create-knowledge-base
           text: Create a knowledge base for agentic retrieval
-        - url: /azure/ai-foundry/agents/how-to/tools/knowledge-retrieval
+        - url: /azure/ai-foundry/agents/how-to/foundry-iq-usage
           text: Connect an agent to a knowledge base
         - url: /azure/search/agentic-retrieval-how-to-create-pipeline
           text: "Tutorial: Create an end-to-end retrieval solution"

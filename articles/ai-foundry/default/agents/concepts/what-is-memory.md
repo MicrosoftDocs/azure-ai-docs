@@ -1,5 +1,5 @@
 ---
-title: Overview of Memory
+title: What is Memory?
 titleSuffix: Microsoft Foundry
 description: Learn about memory in Foundry Agent Service, a long-term memory solution. Topics include concepts, use cases, best practices, security risks, limitations, and pricing.
 author: haileytap
@@ -46,7 +46,7 @@ Here's an example of how memory can improve and personalize interactions between
 :::image type="content" source="../media/memory/agent-memory-diagram.svg" alt-text="A diagram illustrating memory integration." lightbox="../media/memory/agent-memory-diagram.svg":::
 
 > [!TIP]
-> Memory isn't designed for general-purpose document ingestion, storage, or retrieval. To provide an agent with grounding data, consider using a [Foundry IQ knowledge base](../how-to/tools/knowledge-retrieval.md).
+> Memory isn't designed for general-purpose document ingestion, storage, or retrieval. To provide an agent with grounding data, consider using a [Foundry IQ knowledge base](../how-to/foundry-iq-usage.md).
 
 ## Memory types
 
