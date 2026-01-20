@@ -17,12 +17,12 @@ ms.update-cycle: 365-days
 
 # Connect to Azure AI Search using keys
 
-Azure AI Search supports both identity-based and key-based authentication for connections to your search service.
+Azure AI Search supports both identity-based and key-based authentication (default) for connections to your search service.
 
-Key-based authentication is the default. A request made to a search service endpoint is accepted if both the request and the API key are valid and if the search service is configured to allow API keys on a request.
+A request made to a search service endpoint is accepted if both the request and the API key are valid and if the search service is configured to allow API keys on a request.
 
 > [!IMPORTANT]
-> Although key authentication is the default, it's not the most secure option. We recommend that you replace it with [role-based access](search-security-enable-roles.md).
+> When you create a search service, key-based authentication is the default, but it's not the most secure option. We recommend that you replace it with  [role-based access](search-security-enable-roles.md).
 
 ## Prerequisites
 
@@ -36,18 +36,14 @@ In the Azure portal, authentication is specified on the **Settings** > **Keys** 
 
 ## Types of keys
 
-An API key is a unique string composed of 52 randomly generated numbers and letters.
+An API key is a unique string composed of 52 randomly generated numbers and letters. Visually, there's no distinction between an admin key or query key. If you lose track of what type of key is specified in your application, you can [check the key values in the Azure portal](#find-existing-keys).
 
 There are two kinds of keys used for authenticating a request:
 
 | Type | Permission level | How it's created | Maximum |
-|------|------------------|---------|---------|
-| Admin | Full access (read-write) for all data plane (content) operations | Two admin keys, *primary* and *secondary*, are generated when the service is created and can be individually regenerated on demand. | 2 <sup>1</sup> |
+| ------ | ------------------ | --------- | --------- |
+| Admin | Full access (read-write) for all data plane (content) operations | Two admin keys, *primary* and *secondary*, are generated when the service is created and can be individually regenerated on demand. Having two allows you to roll over one key while using the second key for continued access to the service. | 2 |
 | Query | Read-only access, scoped to the documents collection of a search index | One query key is generated with the service. More can be created on demand by a search service administrator. | 50 |
-
-<sup>1</sup> Having two allows you to roll over one key while using the second key for continued access to the service.
-
-Visually, there's no distinction between an admin key or query key. If you lose track of what type of key is specified in your application, you can [check the key values in the Azure portal](#find-existing-keys).
 
 ## Find existing keys
 
@@ -60,6 +56,61 @@ You can view and manage API keys using the [Azure portal](https://portal.azure.c
 1. From the left pane, select **Settings** > **Keys** to view admin and query keys.
 
 :::image type="content" source="media/search-manage/azure-search-view-keys.png" alt-text="Screenshot of a portal page showing API keys." border="true":::
+
+### [**REST API**](#tab/rest-find)
+
+Run the following commands to return admin and query API keys, respectively. For help with REST, see [Manage your Azure AI Search service with REST APIs](search-manage-rest.md).
+
+1. Return admin keys:
+
+    ```rest
+    POST https://management.azure.com/subscriptions/{{subscriptionId}}/resourceGroups/{{resource-group}}/providers//Microsoft.Search/searchServices/{{search-service-name}}/listAdminKeys?api-version=2025-05-01
+    ```
+
+1. Return query keys:
+
+    ```rest
+    POST https://management.azure.com/subscriptions/{{subscriptionId}}/resourceGroups/{{resource-group}}/providers//Microsoft.Search/searchServices/{{search-service-name}}/listAdminKeys?api-version=2025-05-01
+    ```
+
+**Reference:** [Admin Keys - Get](/rest/api/searchmanagement/admin-keys/get), [Query Keys - List By Search Service](/rest/api/searchmanagement/query-keys/list-by-search-service)
+
+### [**Python**](#tab/python-find)
+
+Use the Azure SDK for Python to retrieve API keys programmatically. Install the management SDK:
+
+```bash
+pip install azure-mgmt-search azure-identity
+```
+
+Run the following code to return admin and query API keys:
+
+```python
+import os
+from azure.identity import DefaultAzureCredential
+from azure.mgmt.search import SearchManagementClient
+
+# Set up variables
+subscription_id = os.environ["AZURE_SUBSCRIPTION_ID"]
+resource_group = "your-resource-group"
+search_service_name = "your-search-service"
+
+# Create the management client
+credential = DefaultAzureCredential()
+client = SearchManagementClient(credential, subscription_id)
+
+# Get admin keys
+admin_keys = client.admin_keys.get(resource_group, search_service_name)
+print(f"Primary admin key: {admin_keys.primary_key}")
+print(f"Secondary admin key: {admin_keys.secondary_key}")
+
+# Get query keys
+query_keys = client.query_keys.list_by_search_service(resource_group, search_service_name)
+for key in query_keys:
+    print(f"Query key '{key.name}': {key.key}")
+```
+
+**Reference:** [SearchManagementClient](/python/api/azure-mgmt-search/azure.mgmt.search.searchmanagementclient) | [AdminKeys](/python/api/azure-mgmt-search/azure.mgmt.search.operations.adminkeysoperations) | [QueryKeys](/python/api/azure-mgmt-search/azure.mgmt.search.operations.querykeysoperations)
 
 ### [**PowerShell**](#tab/azure-ps-find)
 
@@ -99,24 +150,6 @@ Run the following commands to return admin and query API keys, respectively. For
     ```azurecli
     az search query-key list --resource-group <myresourcegroup> --service-name <myservice>
     ```
-
-### [**REST API**](#tab/rest-find)
-
-Run the following commands to return admin and query API keys, respectively. For help with REST, see [Manage your Azure AI Search service with REST APIs](search-manage-rest.md).
-
-1. Return admin keys:
-
-    ```rest
-    POST https://management.azure.com/subscriptions/{{subscriptionId}}/resourceGroups/{{resource-group}}/providers//Microsoft.Search/searchServices/{{search-service-name}}/listAdminKeys?api-version=2025-05-01
-    ```
-
-1. Return query keys:
-
-    ```rest
-    POST https://management.azure.com/subscriptions/{{subscriptionId}}/resourceGroups/{{resource-group}}/providers//Microsoft.Search/searchServices/{{search-service-name}}/listAdminKeys?api-version=2025-05-01
-    ```
-
-**Reference:** [Admin Keys - Get](/rest/api/searchmanagement/admin-keys/get), [Query Keys - List By Search Service](/rest/api/searchmanagement/query-keys/list-by-search-service)
 ---
 
 ## Use keys on connections
@@ -128,6 +161,12 @@ In your source code, you can directly specify the API key in a request header. A
 - Admin keys are used for creating, modifying, or deleting objects. 
 - Admin keys are also used to GET object definitions and system information, such as [LIST Indexes](/rest/api/searchservice/indexes/list) or [GET Service Statistics](/rest/api/searchservice/get-service-statistics/get-service-statistics).
 - Query keys are typically distributed to client applications that issue queries.
+
+### [**Portal**](#tab/portal-use)
+
+Recall that key authentication is enabled by default and supports data plane operations such as indexing and queries.
+
+However, if you [disable API keys](search-security-enable-roles.md#disable-api-key-authentication) and set up role assignments, the Azure portal uses role assignments instead.
 
 ### [**REST API**](#tab/rest-use)
 
@@ -224,12 +263,6 @@ Invoke-RestMethod -Uri $url -Headers $headers | ConvertTo-Json
 
 More script examples for other operations can be found at [Quickstart: Create an Azure AI Search index in PowerShell using REST APIs](search-get-started-text.md).
 
-### [**Portal**](#tab/portal-use)
-
-Recall that key authentication is enabled by default and supports data plane operations such as indexing and queries.
-
-However, if you [disable API keys](search-security-enable-roles.md#disable-api-key-authentication) and set up role assignments, the Azure portal uses role assignments instead.
-
 ---
 
 ## Create query keys
@@ -248,14 +281,6 @@ Restricting access and operations in client apps is essential to safeguarding th
 
    :::image type="content" source="media/search-security-overview/create-query-key.png" alt-text="Screenshot of the query key management options." border="true":::
 
-### [**PowerShell**](#tab/azure-ps-query)
-
-A script example showing API key usage can be found at [Create or delete query keys](search-manage-powershell.md#create-or-delete-query-keys).
-
-### [**Azure CLI**](#tab/azure-cli-query)
-
-A script example showing query key usage can be found at [Create or delete query keys](search-manage-azure-cli.md#create-or-delete-query-keys).
-
 ### [**REST API**](#tab/rest-query)
 
 Use [Create Query Keys](/rest/api/searchmanagement/query-keys/create) in the Management REST API.
@@ -265,6 +290,14 @@ You must have a valid role assignment to create or manage API keys. See [Manage 
 ```rest
 POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Search/searchServices/{searchServiceName}/createQueryKey/{name}?api-version=2025-05-01
 ```
+
+### [**PowerShell**](#tab/azure-ps-query)
+
+A script example showing API key usage can be found at [Create or delete query keys](search-manage-powershell.md#create-or-delete-query-keys).
+
+### [**Azure CLI**](#tab/azure-cli-query)
+
+A script example showing query key usage can be found at [Create or delete query keys](search-manage-azure-cli.md#create-or-delete-query-keys).
 
 ---
 

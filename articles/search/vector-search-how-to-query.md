@@ -9,7 +9,7 @@ ms.update-cycle: 180-days
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 01/20/2026
+ms.date: 09/29/2025
 ---
 
 # Create a vector query in Azure AI Search

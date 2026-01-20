@@ -365,25 +365,9 @@ Replace placeholders `<role-name>`, `<identity-id>`, `<subscription-id>`, and `<
 
 ### Authentication for local development
 
-Use a tool in your local development environment to authentication to Azure identity. Once you're authenticated, the `DefaultAzureCredential` instance in your source code finds and uses the authentication.  
-
-#### [.NET](#tab/csharp)
-
-Select a tool for [authentication during local development](/dotnet/api/overview/azure/identity-readme#authenticate-the-client).
-
-#### [Java](#tab/java)
-
-Select a tool for [authentication during local development](/java/api/overview/azure/identity-readme#authenticate-the-client).
-
-#### [JavaScript](#tab/javascript)
-
-Select a tool for [authentication during local development](/javascript/api/overview/azure/identity-readme#authenticate-the-client-in-development-environment).
-
-#### [Python](#tab/python)
+Use a tool in your local development environment to authentication to Azure identity. Once you're authenticated, the `DefaultAzureCredential` instance in your source code finds and uses your identity for authentication purposes.
 
 Select a tool for [authentication during local development](/python/api/overview/azure/identity-readme#authenticate-during-local-development).
-
----
 
 ### Configure environment variables for local development
 
