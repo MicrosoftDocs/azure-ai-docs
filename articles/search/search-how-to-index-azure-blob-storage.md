@@ -1,13 +1,13 @@
 ---
-title: Azure blob indexer
+title: Azure Blob Indexer
 titleSuffix: Azure AI Search
-description: Set up an Azure blob indexer to automate indexing of blob content for full text search operations and knowledge mining in Azure AI Search.
+description: Learn how to set up an Azure Blob indexer to automate indexing of blob content for full-text search, knowledge mining, and other scenarios in Azure AI Search.
 author: gmndrg
 ms.author: gimondra
 manager: vinodva
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/08/2025
+ms.date: 01/16/2026
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
@@ -76,7 +76,7 @@ Before you set up indexing, review your source data to determine whether any cha
   | Property name | Property value | Explanation |
   | ------------- | -------------- | ----------- |
   | "AzureSearch_Skip" |`"true"` |Instructs the blob indexer to completely skip the blob. Neither metadata nor content extraction is attempted. This is useful when a particular blob fails repeatedly and interrupts the indexing process. |
-  | "AzureSearch_SkipContent" |`"true"` | Skips content and extracts just the metadata. this is equivalent to the `"dataToExtract" : "allMetadata"` setting described in [configuration settings](#configure-and-run-the-blob-indexer) , just scoped to a particular blob. |
+  | "AzureSearch_SkipContent" |`"true"` | Skips content and extracts just the metadata. This is equivalent to the `"dataToExtract" : "allMetadata"` setting described in [configuration settings](#configure-and-run-the-blob-indexer), just scoped to a particular blob. |
 
 If you don't set up inclusion or exclusion criteria, the indexer reports an ineligible blob as an error and move on. If enough errors occur, processing might stop. You can specify error tolerance in the indexer [configuration settings](#configure-and-run-the-blob-indexer).
 
