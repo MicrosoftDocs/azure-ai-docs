@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: This article provides a list of available regions and endpoints for Azure Speech, including speech to text, text to speech, and speech translation.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-speech
+ms.service: azure-ai-speech
 ms.topic: article
 ms.date: 11/09/2025
 ms.author: pafarley

@@ -5,7 +5,7 @@ description: This article provides a quick reference, a detailed description, an
 author: goergenj
 ms.author: jagoerge
 manager: nitinme
-ms.service: azure-speech
+ms.service: azure-ai-speech
 ms.topic: article
 ms.date: 12/08/2025
 ms.reviewer: jagoerge
@@ -107,7 +107,7 @@ You can use real-time text to speech with the [Speech SDK](speech-sdk.md) or the
 
 | Quota | Free (F0) | Standard (S0) |
 | ----- | --------- | ------------- |
-| Maximum number of transactions per time period for standard voices and custom voices | 20 transactions per 60 seconds<br/><br/>This limit isn't adjustable. | 200 transactions per second (TPS) (default value)<br/><br/>The rate is adjustable up to 1,000 TPS for Standard (S0) resources. See [more explanations](#detailed-description-quota-adjustment-and-best-practices), [best practices](#general-best-practices-to-mitigate-throttling-during-autoscaling), and [adjustment instructions](#text-to-speech-increase-real-time-tps-limit) later in this article. |
+| Maximum number of transactions per time period for standard voices and custom voices | 20 transactions per 60 seconds<br/><br/>This limit isn't adjustable. | 200 transactions per second (TPS) (default value)<br/><br/>The rate is adjustable up to 1,000 TPS for Standard (S0) resources. See [more explanations](#detailed-description-quota-adjustment-and-best-practices), [best practices](#general-best-practices-to-mitigate-throttling-during-autoscaling), and [adjustment instructions](#text-to-speech-increase-the-real-time-tps-limit) later in this article. |
 | Maximum audio length produced per request | 10 min | 10 min |
 | Maximum total number of distinct `<voice>` and `<audio>` tags in SSML | 50 | 50 |
 | Maximum SSML message size per turn for WebSocket | 64 KB | 64 KB |
@@ -210,7 +210,7 @@ To minimize issues related to throttling, it's a good idea to use the following 
 
 - Implement retry logic in your application to handle 429 errors.
 - Avoid sharp changes in the workload. Increase the workload gradually. For example, let's say your application is using text to speech, and your current workload is 5 TPS. The next second, you increase the load to 20 TPS (that is, four times more). Azure Speech immediately starts scaling up to fulfill the new load, but it can't scale as needed within one second. Some of the requests get response code 429 (too many requests).
-- Test different patterns for load increases. For more information, see the [workload pattern example](#example-of-a-workload-pattern-best-practice) in this article.
+- Test different patterns for load increases. For more information, see the [workload pattern example](#example-of-a-best-practice-for-workload-patterns) in this article.
 - Create more Azure Speech resources in *different* regions, and distribute the workload among them. Creating multiple Azure Speech resources in the same region doesn't affect the performance, because the same backend cluster serves all resources.
 
 Later sections describe specific cases of adjusting quotas.

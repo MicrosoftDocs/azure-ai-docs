@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn about language and voice support in Azure Speech for speech to text, text to speech, speech translation, and more. Learn which features support each locale.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-speech
+ms.service: azure-ai-speech
 ms.topic: article
 ms.date: 12/19/2025
 ms.author: pafarley

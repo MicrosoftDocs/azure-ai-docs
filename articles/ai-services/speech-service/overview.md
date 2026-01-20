@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Learn how Azure Speech provides speech to text, text to speech, and speech translation so that you can add speech to your applications and devices.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-speech
+ms.service: azure-ai-speech
 ms.topic: overview
 ms.date: 08/07/2025
 ms.author: pafarley
@@ -47,7 +47,7 @@ Use [speech to text](speech-to-text.md) to convert audio into text. Choose from:
 - [Fast transcription](fast-transcription-create.md) for pre-recorded audio files.
 - [Batch transcription](batch-transcription.md) for processing large volumes of audio asynchronously.
 
-The base model might not be sufficient if the audio contains ambient noise or includes numerous industry and domain-specific jargon. In these cases, you can create and train [custom speech models](custom-speech-overview.md) with acoustic, language, and pronunciation data. Custom speech models are private and can offer a competitive advantage.
+The base model might not be sufficient if the audio contains ambient noise or includes industry and domain-specific jargon. In these cases, you can create and train [custom speech models](custom-speech-overview.md) with acoustic, language, and pronunciation data. Custom speech models are private and can offer a competitive advantage.
 
 ### Text to speech
 
