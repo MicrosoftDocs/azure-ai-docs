@@ -27,7 +27,7 @@ zone_pivot_groups: openai-use-your-data
 In this quickstart, you use your own data with Azure OpenAI models to create a powerful, conversational AI platform that enables faster and more accurate communication.
 
 > [!IMPORTANT]
-> There are new ways to build conversational solutions with your own data. For the latest recommended approach, see [Quickstart: Use agentic retrieval in Azure AI Search](../../search/search-get-started-agentic-retrieval.md).
+> There are new ways to build conversational solutions with your own data. For the latest recommended approach, see [Quickstart: Agentic retrieval](../../search/search-get-started-agentic-retrieval.md).
 
 ::: zone pivot="ai-foundry-portal"
 

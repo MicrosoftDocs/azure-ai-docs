@@ -96,7 +96,7 @@ threadOp.Messages.Add(new ThreadMessageOptions(
         role: MessageRole.User,
         content: "Research the current state of studies on orca intelligence and orca language, " +
         "including what is currently known about orcas' cognitive capabilities, " +
-        "communication systems and problem-solving reflected in recent publications in top thier scientific " +
+        "communication systems and problem-solving reflected in recent publications in top their scientific" +
         "journals like Science, Nature and PNAS."
     ));
 ThreadAndRunOptions opts = new()
