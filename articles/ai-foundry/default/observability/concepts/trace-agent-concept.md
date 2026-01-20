@@ -32,7 +32,7 @@ Trace results solve this by allowing you to view the inputs and outputs of each 
 To use tracing end-to-end, you need:
 
 - A Foundry project with tracing enabled. To set it up, see [How to set up tracing in Microsoft Foundry](../how-to/trace-agent-setup.md).
-- Access to the Azure Application Insights resource connected to your project. For background, see [Azure Application Insights](https://learn.microsoft.com/azure/azure-monitor/app/app-insights-overview).
+- Access to the Azure Application Insights resource connected to your project. For background, see [Azure Application Insights](/azure/azure-monitor/app/app-insights-overview).
 
 ## OpenTelemetry in Foundry
 
