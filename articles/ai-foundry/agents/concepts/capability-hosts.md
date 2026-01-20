@@ -122,7 +122,7 @@ PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
 }
 ```
 
-Reference: [Foundry account management REST API](https://learn.microsoft.com/rest/api/aifoundry/accountmanagement/operation-groups?view=rest-aifoundry-accountmanagement-2025-06-01&preserve-view=true)
+Reference: [Foundry account management REST API](/rest/api/aifoundry/accountmanagement/operation-groups)
 
 **Project capability host**
 
@@ -141,7 +141,7 @@ PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
 }
 ```
 
-Reference: [Project Capability Hosts - Create or update](https://learn.microsoft.com/rest/api/aifoundry/accountmanagement/project-capability-hosts/create-or-update?view=rest-aifoundry-accountmanagement-2025-06-01&tabs=HTTP&preserve-view=true)
+Reference: [Project Capability Hosts - Create or update](/rest/api/aifoundry/accountmanagement/project-capability-hosts/create-or-update)
 
 ### Optional: account-level defaults with project overrides
 
