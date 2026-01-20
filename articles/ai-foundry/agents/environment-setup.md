@@ -66,6 +66,11 @@ Agent Service offers three environment configuration modes to suit different nee
 
 ### Compare setup options
 
+> [!NOTE]
+> Private Network Isolation in the table below refers to Secured Agent outbound communication. Basic setup doesn't apply, and you can use Private Network Isolation for your Agents with Standard Setup only.
+> 
+> Inbound secured communication can be applied to all of setups below, by adding a private endpoint and disabling the inbound public access for your Foundry Account.
+
 | Use Cases                                                                | Basic Setup | Standard Setup with Public Networking | Standard Setup with Private Networking |
 |--------------------------------------------------------------------------|-------------|----------------------------------------|----------------------------------------|
 | Get started quickly without managing resources                          | ✅          |                                        |                                        |

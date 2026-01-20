@@ -84,11 +84,11 @@ The regions in these tables support most of the core features of the Speech serv
 | eastus | ✅ | ✅ | ✅ | ✅ |   | ✅ |
 | eastus2  | ✅ | ✅ | ✅ |   | ✅ | ✅ |
 | francecentral | ✅ | ✅ | ✅ |   |   | ✅ |
-| germanywestcentral | ✅ |   | ✅ |   |   |   |
+| germanywestcentral | ✅ | ✅ | ✅ |   |   |   |
 | italynorth | ✅ |   | ✅ |   |   |   |
 | japaneast  | ✅ | ✅ | ✅ | ✅ |   | ✅ |
-| japanwest  | ✅ |   | ✅ |   |   |   |
-| koreacentral   | ✅ |   | ✅ |   |   | ✅ |
+| japanwest  | ✅ | ✅ | ✅ |   |   |   |
+| koreacentral   | ✅ | ✅ | ✅ |   |   | ✅ |
 | northcentralus   | ✅ | ✅ | ✅ |   | ✅ |   |
 | northeurope | ✅ | ✅ | ✅ |   |   | ✅ |
 | norwayeast | ✅ |   | ✅ |   | ✅ |   |
