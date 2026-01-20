@@ -521,7 +521,7 @@ An example flow is:
 
 1. The tool sends a new request with the updated state, and repeats this loop until the model stops requesting actions or the user decides to stop.
 
-    The Browser Automation tool supports multiturm conversations, allowing the user to refine their request and complete a booking.
+    The Browser Automation tool supports multi-turm conversations, allowing the user to refine their request and complete a booking.
 
 ## Example scenarios
 
