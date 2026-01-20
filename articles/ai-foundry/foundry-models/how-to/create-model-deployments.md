@@ -31,12 +31,12 @@ In this article, you learn how to add a new model to a Foundry Models endpoint.
 
 To complete this article, you need:
 
-* An Azure subscription. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Foundry Models](../../how-to/quickstart-github-models.md) if that's your case.
+* An Azure subscription. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Microsoft Foundry Models](quickstart-github-models.md) if that's your case.
 
-* A Foundry project. This kind of project is managed under a Foundry resource (formerly known as Azure AI Services resource). If you don't have a Foundry project, see [Create a project for Foundry (Foundry projects)](../../../how-to/create-projects.md).
+* A Foundry project. This kind of project is managed under a Foundry resource (formerly known as Azure AI Services resource). If you don't have a Foundry project, see [Create a project for Microsoft Foundry](../../how-to/create-projects.md).
 
 
-* [Foundry Models from partners and community](../../concepts/models-from-partners.md) require access to **Azure Marketplace**. Ensure you have the [permissions required to subscribe to model offerings](../../how-to/configure-marketplace.md). [Foundry Models sold directly by Azure](../../concepts/models-sold-directly-by-azure.md) don't have this requirement.
+* [Foundry Models from partners and community](../concepts/models-from-partners.md) require access to **Azure Marketplace**. Ensure you have the [permissions required to subscribe to model offerings](../how-to/configure-marketplace.md). [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md) don't have this requirement.
 
 ::: zone pivot="programming-language-cli"
 
@@ -87,7 +87,7 @@ To add a model, first identify the model that you want to deploy. You can query 
     az cognitiveservices account create -n $accountName -g $resourceGroupName --custom-domain $accountName --location $location --kind AIServices --sku S0
     ```
 
-1. Check which models are available to you and under which SKU. SKUs, also known as [deployment types](../../concepts/deployment-types.md), define how Azure infrastructure is used to process requests. Models might offer different deployment types. The following command lists all the model definitions available:
+1. Check which models are available to you and under which SKU. SKUs, also known as [deployment types](../concepts/deployment-types.md), define how Azure infrastructure is used to process requests. Models might offer different deployment types. The following command lists all the model definitions available:
     
     ```azurecli
     az cognitiveservices account list-models \
@@ -130,7 +130,7 @@ You can deploy the same model multiple times if needed as long as it's under a d
 
 ## Use the model
 
-Deployed models in can be consumed using the [Azure AI model's inference endpoint](../../concepts/endpoints.md) for the resource. When constructing your request, indicate the parameter `model` and insert the model deployment name you have created. You can programmatically get the URI for the inference endpoint using the following code:
+Deployed models in can be consumed using the [Endpoints for Microsoft Foundry Models](../concepts/endpoints.md) for the resource. When constructing your request, indicate the parameter `model` and insert the model deployment name you have created. You can programmatically get the URI for the inference endpoint using the following code:
 
 __Inference endpoint__
 
@@ -209,8 +209,7 @@ The files for this example are in:
 cd azureai-model-inference-bicep/infra
 ```
 
-[!INCLUDE [marketplace-rbac](../configure-marketplace/rbac.md)]
-
+[!INCLUDE [rbac](../includes/configure-marketplace/rbac.md)]
 ## Add the model
 
 1. Use the template `ai-services-deployment-template.bicep` to describe model deployments:
@@ -237,7 +236,7 @@ cd azureai-model-inference-bicep/infra
 
 ## Use the model
 
-Deployed models can be consumed using the [Azure AI model's inference endpoint](../../concepts/endpoints.md) for the resource. When constructing your request, indicate the parameter `model` and insert the model deployment name you have created. You can programmatically get the URI for the inference endpoint using the following code:
+Deployed models can be consumed using the [Endpoints for Microsoft Foundry Models](../concepts/endpoints.md) for the resource. When constructing your request, indicate the parameter `model` and insert the model deployment name you have created. You can programmatically get the URI for the inference endpoint using the following code:
 
 __Inference endpoint__
 
