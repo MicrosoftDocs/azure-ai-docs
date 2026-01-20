@@ -14,13 +14,6 @@ ms.custom:
 
 # AudioVisual analysis: extracting structured content
 
-> [!IMPORTANT]
->
-> * Azure Content Understanding in Foundry Tools is available in preview. Public preview releases provide early access to features that are in active development.
-> * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
-> * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
-
-## Overview
 
 Azure Content Understanding's multimodal analysis capabilities help you transform unstructured audio and video data into structured, machine-readable information. By precisely identifying and extracting audiovisual elements while preserving their temporal relationships, you can build powerful media processing workflows for a wide range of applications.
 

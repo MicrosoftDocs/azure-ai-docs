@@ -50,7 +50,10 @@ items:
      href: ../../../how-to/develop/run-scans-ai-red-teaming-agent.md
    - name: Run red teaming scans in the cloud (Microsoft Foundry SDK)
      href: ../../../how-to/develop/run-ai-red-teaming-cloud.md
-
+- name: CI/CD evaluations 
+  items:
+   - name: Evaluation in GitHub Actions 
+     href: ../../../how-to/evaluation-github-action.md
 # Continuous Monitoring
 - name: Continuous monitoring and evaluation 
   items:

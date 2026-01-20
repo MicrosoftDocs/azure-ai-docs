@@ -57,7 +57,7 @@ Before you begin, make sure you have:
   - `AZURE_AI_MODEL_DEPLOYMENT_NAME`: Your deployed model name.
   - `BING_PROJECT_CONNECTION_ID` or `BING_CUSTOM_SEARCH_PROJECT_CONNECTION_ID`: Your Bing connection ID in the format `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`.
   - For Bing Custom Search: `BING_CUSTOM_SEARCH_INSTANCE_NAME`: Your custom search instance name.
-- A Bing Grounding or Bing Custom Search resource created and connected to your Foundry project.
+- A Bing Grounding or Bing Custom Search resource created and connected to your Foundry project. A paid subscription is required to create a Grounding with Bing Search or Grounding with Bing Custom Search resource.
 - Normal network access (Bing grounding tools don't work with VPN or Private Endpoints).
 
 ## Available tools
@@ -131,7 +131,7 @@ with project_client:
     stream_response = openai_client.responses.create(
         stream=True,
         tool_choice="required",
-        input="What is today's date and whether in Seattle?",
+        input="What is today's date and weather in Seattle?",
         extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
     )
 

@@ -20,6 +20,8 @@ ms.update-cycle: 180-days
 
 # Deploy a flow for real-time inference
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 After you build a prompt flow and test it, you can deploy it as an online endpoint. Deployments are hosted in an endpoint. They can receive data from clients and send responses in real time.

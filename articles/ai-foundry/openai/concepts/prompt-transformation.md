@@ -24,7 +24,7 @@ Prompt transformation is a process included in the DALL-E 3 models that applies 
 After prompt transformation is applied to the original prompt, content filtering is applied as a secondary step before image generation. For more information, see [Content filtering](./content-filter.md).
 
 > [!TIP]
-> Learn more about image generation prompting in OpenAI's [Image generation documentation](https://platform.openai.com/docs/guides/images/language-specific-tips).
+> Learn more about image generation prompting in OpenAI's [Image generation documentation](https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1).
 
 ## Prompt transformation example
 

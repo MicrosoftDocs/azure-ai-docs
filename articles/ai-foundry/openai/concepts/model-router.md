@@ -7,7 +7,7 @@ ms.author: pafarley
 manager: nitinme
 ms.date: 09/10/2025
 ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: article
 ms.custom:
   - build-2025

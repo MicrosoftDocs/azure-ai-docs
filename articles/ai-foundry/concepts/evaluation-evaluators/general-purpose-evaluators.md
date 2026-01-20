@@ -24,6 +24,8 @@ AI systems might generate textual responses that are incoherent, or lack the gen
 - [Coherence](#coherence)
 - [Fluency](#fluency)
 
+[!INCLUDE [evaluation-preview](../../includes/evaluation-preview.md)]
+
 ::: moniker range="foundry-classic"
 
 If you have a question-answering (QA) scenario with both `context` and `ground truth` data in addition to `query` and `response`, you can also use our [QAEvaluator](#question-answering-composite-evaluator), which is a composite evaluator that uses relevant evaluators for judgment.

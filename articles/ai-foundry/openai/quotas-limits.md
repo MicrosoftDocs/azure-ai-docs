@@ -4,7 +4,7 @@ description: This article features detailed descriptions and best practices on t
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 12/10/2025
+ms.date: 01/14/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: article
@@ -39,10 +39,10 @@ The following section provides you with a quick guide to the default quotas and 
 |--|--|
 | Azure OpenAI resources per region, per Azure subscription | 30. |
 | Default DALL-E 2 quota limits | 2 concurrent requests. |
-| Default DALL-E 3 quota limits| 2 capacity units (6 requests per minute).|
-| Default GPT-image-1 quota limits | 3 capacity units (9 requests per minute). |
-| Default GPT-image-1-mini quota limits | 4 capacity units (12 requests per minute). |
-| Default GPT-image-1.5 quota limits | 3 capacity units (9 requests per minute). |
+| Default DALL-E 3 quota limits| 6 requests per minute |
+| Default GPT-image-1 quota limits | 9 requests per minute |
+| Default GPT-image-1-mini quota limits | 12 requests per minute |
+| Default GPT-image-1.5 quota limits | 9 requests per minute |
 | Default Sora quota limits | 60 requests per minute. |
 | Default Sora 2 quota limits | 2 parallel tasks | 
 | Default speech-to-text audio API quota limits | 3 requests per minute. |
@@ -82,8 +82,10 @@ The following section provides you with a quick guide to the default quotas and 
 
 | Model                | Deployment Type | Default RPM | Default TPM | Enterprise and MCA-E RPM | Enterprise and MCA-E TPM |
 |:---------------------|:----------------|:-----------:|:-----------:|:------------------------:|:------------------------:|
+| `gpt-5.2`            | DataZoneStandard| 3,000       | 300,000     | 30,000                   | 3,000,000                |
 | `gpt-5.2`            | GlobalStandard  | 10,000      | 1,000,000   | 100,000                  | 10,000,000               |
 | `gpt-5.2-chat`       | GlobalStandard  | 10,000      | 1,000,000   | 50,000                   | 5,000,000                |
+| `gpt-5.2-codex`      | GlobalStandard  | 1,000       | 1,000,000   | 10,000                   | 10,000,000               |
 
 ## GPT-5.1 series
 
@@ -349,9 +351,9 @@ If your Azure subscription is linked to certain [offer types](https://azure.micr
 |Tier| Quota limit in tokens per minute |
 |---|:---|
 |`Azure for Students` | 1K (all models) <br>Exception o-series, GPT-4.1, and GPT 4.5 Preview: 0|
-| `MSDN` | GPT-4o-mini: 200K <br> GPT 3.5 Turbo Series: 200K <br> GPT-4 series: 50K <br>computer-use-preview: 8K <br> gpt-4o-realtime-preview: 1K <br> o-series: 0 <br> GPT 4.5 Preview: 0 <br> GPT-4.1: 50K <br> GPT-4.1-nano: 200K  |
-|`Standard`& `Pay-as-you-go` | GPT-4o-mini: 200K <br> GPT 3.5 Turbo Series: 200K <br> GPT-4 series: 50K <br>computer-use-preview: 30K <br> o-series: 0 <br> GPT 4.5 Preview: 0  <br> GPT-4.1: 50K <br> GPT-4.1-nano: 200K  |
-| `Azure_MS-AZR-0111P`  <br> `Azure_MS-AZR-0035P` <br> `Azure_MS-AZR-0025P` <br> `Azure_MS-AZR-0052P` <br>| GPT-4o-mini: 200K <br> GPT 3.5 Turbo Series: 200K <br> GPT-4 series: 50K |
+| `MSDN` | GPT-4o-mini: 200K <br>computer-use-preview: 8K <br> gpt-4o-realtime-preview: 1K <br> o-series: 0 <br> GPT 4.5 Preview: 0 <br> GPT-4.1: 50K <br> GPT-4.1-nano: 200K  |
+|`Standard`& `Pay-as-you-go` | GPT-4o-mini: 200K <br>computer-use-preview: 30K <br> o-series: 0 <br> GPT 4.5 Preview: 0  <br> GPT-4.1: 50K <br> GPT-4.1-nano: 200K  |
+| `Azure_MS-AZR-0111P`  <br> `Azure_MS-AZR-0035P` <br> `Azure_MS-AZR-0025P` <br> `Azure_MS-AZR-0052P` <br>| GPT-4o-mini: 200K |
 | `CSP Integration Sandbox` <sup>*</sup> | All models: 0 |
 | `Lightweight trial`<br>`Free trials`<br>`Azure Pass`  | All models: 0 |
 
