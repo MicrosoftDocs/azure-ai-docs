@@ -108,74 +108,6 @@ Reference: [az cognitiveservices account deployment](/cli/azure/cognitiveservice
 
 ---
 
-## For administrators - grant access
-
-If you're administering a team, assign the **Azure AI User** role to team members so they can use the project and deployed models. This role provides the minimum permissions needed to build and test AI applications.
-
-# [Azure CLI](#tab/azurecli)
-
-1. Get the project's resource ID:
-
-   ```azurecli
-   PROJECT_ID=$(az cognitiveservices account project show \
-       --name my-foundry-resource \
-       --resource-group my-foundry-rg \
-       --project-name my-foundry-project \
-       --query id -o tsv)
-   ```
-
-1. Assign the **Azure AI User** role to a team member:
-
-   ```azurecli
-   az role assignment create \
-       --role "Azure AI User" \
-       --assignee "user@contoso.com" \
-       --scope $PROJECT_ID
-   ```
-
-   To add a security group instead of an individual user:
-
-   ```azurecli
-   az role assignment create \
-       --role "Azure AI User" \
-       --assignee-object-id "<security-group-object-id>" \
-       --assignee-principal-type Group \
-       --scope $PROJECT_ID
-   ```
-
-1. Verify the role assignment:
-
-   ```azurecli
-   az role assignment list \
-       --scope $PROJECT_ID \
-       --role "Azure AI User" \
-       --output table
-   ```
-
-Reference: [az role assignment](/cli/azure/role/assignment)
-
-# [Foundry portal](#tab/portal)
-
-1. In the Foundry portal, select **Operate** in the upper-right navigation.
-1. Select **Admin** in the left pane.
-1. Select your project name in the table.
-1. Select **Add user** in the upper right.
-1. Enter the email address of the team member.
-1. Select **Add**.
-
-Repeat these steps for each team member or security group.
-
-> [!TIP]
-> To add multiple users at once, use a Microsoft Entra security group instead of individual email addresses.
-
----
-
-### Verify team member access
-
-Ask a team member to verify their access by signing in to [Microsoft Foundry](https://ai.azure.com), selecting the project from the project list, and confirming the deployed model appears under **My assets** > **Models + endpoints**.
-
-If the team member can't access the project, verify that the role assignment completed successfully. Check that you used the correct email address or security group ID. Make sure the team member's Azure account is in the same Microsoft Entra tenant.
-
 ## Get your project connection details
 
 You need the following information to connect to the project in other quickstarts and tutorials. 
@@ -185,6 +117,26 @@ If you're administering this project for others, send them this information.
 * Sign in to [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) by using your Azure account. Select your project to start building.
 * [!INCLUDE [find-endpoint](../includes/find-endpoint.md)]
 * Get started with [Microsoft Foundry quickstart](../../quickstarts/get-started-code.md).
+
+## For administrators - grant access
+
+If you're administering a team, assign the **Azure AI User** role to team members so they can use the project and deployed models. This role provides the minimum permissions needed to build and test AI applications.
+
+# [Azure CLI](#tab/azurecli)
+
+[!INCLUDE [add-users-cli](../includes/add-users-cli.md)] 
+
+# [Foundry portal](#tab/portal)
+
+[!INCLUDE [add-users](../includes/add-users.md)]
+
+---
+
+### Verify team member access
+
+Ask a team member to verify their access by signing in to [Microsoft Foundry](https://ai.azure.com), selecting the project from the project list, and confirming the deployed model appears under **Build** > **Models**.
+
+If the team member can't access the project, verify that the role assignment completed successfully. Check that you used the correct email address or security group ID. Make sure the team member's Azure account is in the same Microsoft Entra tenant.
 
 
 ## Clean up resources

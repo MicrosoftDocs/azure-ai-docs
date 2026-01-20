@@ -164,6 +164,7 @@ To create a Foundry project, follow these steps:
 
 ::: moniker-end
 
+
 ### Advanced options
 
 1. You create a Foundry project on a `Foundry` resource. The portal automatically creates this resource when you create the project. Select an existing **Resource group** to use, or leave the default to create a new resource group.
@@ -174,6 +175,7 @@ To create a Foundry project, follow these steps:
 1. Select a **Location** or use the default. The location is the region where the project resources are hosted. 
 
 1. Select **Create**. You see the progress of resource creation. The project is created when the process is complete.
+
 
 # [Python SDK](#tab/python)
 
@@ -190,6 +192,8 @@ To create a Foundry project:
 # [Azure CLI](#tab/azurecli)
 
 [!INCLUDE [create-project-cli](../default/includes/create-project-cli.md)]
+
+---
 
 ## Create multiple projects on the same resource
 

@@ -25,7 +25,7 @@ ms.custom: include
        --kind AIServices \
        --sku s0 \
        --location eastus \
--      --allow-project-management
+      --allow-project-management
    ```
 
    The `--allow-project-management` flag enables project creation within this resource.
