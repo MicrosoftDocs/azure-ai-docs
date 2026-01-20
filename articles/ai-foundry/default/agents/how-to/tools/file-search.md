@@ -410,7 +410,7 @@ main().catch((err) => {
 :::zone pivot="rest"
 ## Upload files and add them to a vector store
 
-To access your files, the file search tool uses the vector store object. Upload your files and create a vector store. After creating the vector store, poll its status until all files are out of the `in_progress` state to ensure that all content is fully processed. The SDK provides helpers for uploading and polling.
+To access your files, the file search tool uses the vector store object. Upload your files and create a vector store. Then poll the store's status until all files are out of the `in_progress` state to ensure that all content is fully processed. The SDK provides helpers for uploading and polling.
 
 ### Upload a file
 
@@ -585,10 +585,10 @@ The file search tool uses several retrieval best practices to help you extract t
 
 Vector store objects give the file search tool the ability to search your files. When you add a file to a vector store, the process automatically parses, chunks, embeds, and stores the file in a vector database that supports both keyword and semantic search. Each vector store can hold up to 10,000 files. You can attach vector stores to both agents and conversations. Currently, you can attach at most one vector store to an agent and at most one vector store to a conversation.
 
-You can remove files from a vector store by either:
+You can remove files from a vector store in two ways:
 
-- Deleting the vector store file object, or
-- Deleting the underlying file object, which removes the file from all `vector_store` and `code_interpreter` configurations across all agents and conversations in your organization.
+- Delete the vector store file object.
+- Delete the underlying file object. This action removes the file from all `vector_store` and `code_interpreter` configurations across all agents and conversations in your organization.
 
 The maximum file size is 512 MB. Each file should contain no more than 5,000,000 tokens (computed automatically when you attach a file).
 
