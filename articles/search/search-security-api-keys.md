@@ -55,7 +55,7 @@ You can view and manage API keys using the [Azure portal](https://portal.azure.c
 
 1. From the left pane, select **Settings** > **Keys** to view admin and query keys.
 
-:::image type="content" source="media/search-manage/azure-search-view-keys.png" alt-text="Screenshot of a portal page showing API keys." border="true":::
+    :::image type="content" source="media/search-manage/azure-search-view-keys.png" alt-text="Screenshot of a portal page showing API keys." border="true":::
 
 ### [**REST API**](#tab/rest-find)
 

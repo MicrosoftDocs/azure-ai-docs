@@ -50,43 +50,6 @@ Role-based access is optional, but recommended. The alternative is [key-based au
 
 + Owner, User Access Administrator, Role-based Access Control Administrator, or a custom role with [Microsoft.Authorization/roleAssignments/write](/azure/templates/microsoft.authorization/roleassignments) permissions.
 
-## How to assign roles in the Azure portal
-
-The following steps work for all role assignments.
-
-1. Sign in to the [Azure portal](https://portal.azure.com).
-
-1. Navigate to your search service.
-
-1. [Enable role-based access](search-security-enable-roles.md).
-
-1. Select **Access Control (IAM)** in the left pane.
-
-1. Select **+ Add** > **Add role assignment** to start the **Add role assignment** wizard.
-
-   :::image type="content" source="media/search-security-rbac/portal-access-control.png" alt-text="Screenshot of the access control page in the Azure portal.":::
-
-1. Select a role. You can assign multiple security principals, whether users or managed identities, to a role in one pass through the wizard. However, you need to repeat these steps for each role you define.
-
-1. On the **Members** tab, select the Microsoft Entra user or group identity. If you're setting up permissions for another Azure service, select a system or user-managed identity.
-
-1. On the **Review + assign** tab, select **Review + assign** to assign the role.
-
-### Verify role assignment
-
-After assigning a role, verify it works by making a test request. This example uses the Azure CLI to get a bearer token and then queries an index:
-
-```azurecli
-az account get-access-token --scope https://search.azure.com/.default
-```
-
-```http
-GET https://<your-search-service>.search.windows.net/indexes?api-version=2025-09-01
-Authorization: Bearer <your-access-token>
-```
-
-A successful response returns a list of indexes (or an empty array if none exist). If you receive a 403 Forbidden error, verify that role-based access is enabled and that your role assignment is correct.
-
 ## Built-in roles used in search
 
 Roles are a collection of permissions on specific operations that affect either data plane or control plane layers.
@@ -111,7 +74,7 @@ Combine these roles to get sufficient permissions for your use case.
 > [!NOTE]
 > If you disable Azure role-based access, built-in roles for the control plane (Owner, Contributor, Reader) continue to be available. Disabling role-based access removes just the data-related permissions associated with those roles. If you disable data plane roles, Search Service Contributor is equivalent to control-plane Contributor.
 
-## Summary
+## Summary of permissions
 
 | Permissions | Search Index Data Reader | Search Index Data Contributor | Search Service Contributor | Owner/Contributor | Reader |
 |-------------|--------------------------|-------------------------------|----------------------------|-------------------|--------|
@@ -162,11 +125,21 @@ As a service administrator, you can create and configure a search service, and p
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
-1. Assign these roles:
+1. Select **Access Control (IAM)** in the left pane.
+
+1. Select **+ Add** > **Add role assignment** to start the **Add role assignment** wizard.
+
+   :::image type="content" source="media/search-security-rbac/portal-access-control.png" alt-text="Screenshot of the access control page in the Azure portal.":::
+
+1. Select a role.
 
    + Owner (full access to all data plane and control plane operations, except for query permissions)
    + Contributor (same as Owner, except for permissions to assign roles)
    + Reader (acceptable for monitoring and viewing metrics)
+
+1. On the **Members** tab, select the Microsoft Entra user or group identity. If you're setting up permissions for another Azure service, select a system or user-managed identity.
+
+1. On the **Review + assign** tab, select **Review + assign** to assign the role.
 
 #### [**PowerShell**](#tab/roles-powershell-admin)
 
@@ -203,11 +176,21 @@ Another combination of roles that provides full access is Contributor or Owner, 
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
-1. Assign these roles:
+1. Select **Access Control (IAM)** in the left pane.
+
+1. Select **+ Add** > **Add role assignment** to start the **Add role assignment** wizard.
+
+   :::image type="content" source="media/search-security-rbac/portal-access-control.png" alt-text="Screenshot of the access control page in the Azure portal.":::
+
+1. Select a role.
 
    + Search Service Contributor (create, read, update, and delete operations on indexes, indexers, skillsets, and other top-level objects)
    + Search Index Data Contributor (load documents and run indexing jobs)
    + Search Index Data Reader (query an index)
+
+1. On the **Members** tab, select the Microsoft Entra user or group identity. If you're setting up permissions for another Azure service, select a system or user-managed identity.
+
+1. On the **Review + assign** tab, select **Review + assign** to assign the role.
 
 #### [**PowerShell**](#tab/roles-powershell)
 
@@ -252,7 +235,17 @@ This section provides basic steps for setting up the role assignment and is here
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
-1. Assign the **Search Index Data Reader** role.
+1. Select **Access Control (IAM)** in the left pane.
+
+1. Select **+ Add** > **Add role assignment** to start the **Add role assignment** wizard.
+
+   :::image type="content" source="media/search-security-rbac/portal-access-control.png" alt-text="Screenshot of the access control page in the Azure portal.":::
+
+1. Select the **Search Index Data Reader** role.
+
+1. On the **Members** tab, select the Microsoft Entra user or group identity. If you're setting up permissions for another Azure service, select a system or user-managed identity.
+
+1. On the **Review + assign** tab, select **Review + assign** to assign the role.
 
 #### [**PowerShell**](#tab/roles-powershell-query)
 
@@ -364,7 +357,8 @@ This approach assumes Visual Studio Code with a [REST client extension](https://
 
    **Reference:** [Search Documents](/rest/api/searchservice/documents/search-post)
 
-For more information on how to acquire a token for a specific environment, see [Manage a Azure AI Search service with REST APIs](search-manage-rest.md) and [Microsoft identity platform authentication libraries](/azure/active-directory/develop/reference-v2-libraries).
+> [!TIP]
+> For more information on how to acquire a token for a specific environment, see [Manage a Azure AI Search service with REST APIs](search-manage-rest.md) and [Microsoft identity platform authentication libraries](/azure/active-directory/develop/reference-v2-libraries).
 
 ### [**.NET**](#tab/test-csharp)
 
