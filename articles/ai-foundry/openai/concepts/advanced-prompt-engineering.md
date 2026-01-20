@@ -7,7 +7,7 @@ ms.author: mbullwin
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual 
-ms.date: 12/6/2025
+ms.date: 01/20/2026
 manager: nitinme
 keywords: system message, system prompt, metaprompt, prompt engineering, safety, grounding
 monikerRange: 'foundry-classic || foundry'

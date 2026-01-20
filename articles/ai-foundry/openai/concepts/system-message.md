@@ -5,7 +5,7 @@ description: Learn how safety system messages (system prompts) guide Azure OpenA
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
-ms.date: 12/6/2025
+ms.date: 01/20/2026
 ms.custom:
   - ignite-2023
   - pilot-ai-workflow-jan-2026
