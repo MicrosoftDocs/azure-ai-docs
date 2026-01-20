@@ -44,7 +44,7 @@ IF SUFFICIENT INFORMATION IS NOT PROVIDED VIA THE FOLLOWING TEMPLATE THE ISSUE M
 > None
 
 ### Expected/desired behavior
-> groups field to be filled the the groups id's that have permissions to "view the file"
+> groups field to be filled with the groups id's that have permissions to "view the file"
 
 ### OS and Version?
 > win 10
