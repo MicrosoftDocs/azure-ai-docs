@@ -1,16 +1,19 @@
 ---
 title: Use SharePoint content with agent API
 titleSuffix: Microsoft Foundry
-description: Learn to ground Azure AI Agents with SharePoint content using the agent API. Connect to SharePoint sites, retrieve documents with managed identity, and maintain enterprise security. Get started now.
+description: Learn how to ground Microsoft Foundry agents with SharePoint content using the agent API. Connect to SharePoint sites or folders, use identity passthrough, and keep enterprise access controls intact.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 12/12/2025
+ms.date: 01/26/2026
 author: alvinashcraft
 ms.author: aashcraft
-ms.custom: azure-ai-agents, dev-focus
+ms.custom: 
+    - azure-ai-agents
+    - dev-focus
+    - pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 zone_pivot_groups: selection-agent-sharepoint-new
 ---
@@ -23,7 +26,9 @@ zone_pivot_groups: selection-agent-sharepoint-new
 > - This article describes the Microsoft SharePoint tool for Foundry Agent Service. For information on using and deploying SharePoint sites, see the [SharePoint documentation](/sharepoint/).
 > - See [best practices](../../concepts/tool-best-practice.md) for information on optimizing tool usage.
 
-Integrate your agents with **Microsoft SharePoint** to chat with your private documents securely. You can connect to your SharePoint site, such as `contoso.sharepoint.com/sites/policies`, to ground your Agents with that data. When a user sends a query, the agent determines if it should use SharePoint. If so, it sends a query by using the SharePoint tool. The tool checks if the user has a Microsoft 365 Copilot license and uses managed identity to retrieve relevant documents they have access to. The scope of retrieval includes all supported documents in this SharePoint site. Lastly, the agent generates responses based on retrieved information. By using identity passthrough (On-Behalf-Of) authorization, this integration simplifies access to enterprise data in SharePoint while maintaining robust security, ensuring proper access control and enterprise-grade protection. For details on the underlying Microsoft 365 Copilot API integration, see the [How it works](#how-it-works) section. 
+Use the SharePoint tool (preview) for SharePoint grounding in Microsoft Foundry Agent Service by retrieving content from a SharePoint site or folder (for example, `contoso.sharepoint.com/sites/policies`). When a user asks a question, the agent can invoke the SharePoint tool to retrieve relevant text from documents the user can access (requires a Microsoft 365 Copilot license). The agent then generates a response based on that retrieved content.
+
+This integration uses identity passthrough (On-Behalf-Of) so SharePoint permissions continue to apply to every request. For details on the underlying Microsoft 365 Copilot Retrieval API integration, see [How it works](#how-it-works).
 
 ### Usage support
 
@@ -34,7 +39,7 @@ Integrate your agents with **Microsoft SharePoint** to chat with your private do
 ## Prerequisites
 
 - Developers and end users have Microsoft 365 Copilot license, as required by [Microsoft 365 Copilot API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview).
-- Developers and end users have at least `Azure AI User` RBAC role assigned on the Foundry project. For more information about Azure role-based access control, see [Azure role-based access control in Foundry](/azure/ai-foundry/concepts/rbac-foundry).
+- Developers and end users have at least `Azure AI User` RBAC role assigned on the Foundry project. For more information about Azure role-based access control, see [Azure role-based access control in Foundry](../../../../concepts/rbac-foundry.md?view=foundry&preserve-view=true).
 - Developers and end users have at least `READ` access to the SharePoint site.
 - The latest prerelease package installed:
   - **Python**: `pip install azure-ai-projects --pre`
@@ -44,7 +49,27 @@ Integrate your agents with **Microsoft SharePoint** to chat with your private do
   - `AZURE_AI_PROJECT_ENDPOINT`: Your Foundry project endpoint URL
   - `AZURE_AI_MODEL_DEPLOYMENT_NAME`: Your model deployment name (for example, `gpt-4`)
   - `SHAREPOINT_PROJECT_CONNECTION_ID`: Your SharePoint connection ID in the format `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`
-- See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for additional authentication setup details.
+  - For REST samples: `API_VERSION`, `AGENT_TOKEN`
+- See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#get-ready-to-code) for additional authentication setup details.
+
+## Parameters
+
+The SharePoint tool uses your project connection to determine which SharePoint site or folder it can retrieve from.
+
+| Parameter | Required | Notes |
+| --- | --- | --- |
+| `type` | Yes | Use `sharepoint_grounding_preview`. |
+| `sharepoint_grounding_preview.project_connections[].project_connection_id` | Yes | Use the value of `SHAREPOINT_PROJECT_CONNECTION_ID`. |
+
+If you need to create a SharePoint connection for your project, see [Add a new connection to your project](../../../../how-to/connections-add.md?view=foundry&preserve-view=true).
+
+## Quick verification
+
+Before you run the full samples, validate these basics:
+
+1. `AZURE_AI_PROJECT_ENDPOINT` points to your Foundry project.
+1. `SHAREPOINT_PROJECT_CONNECTION_ID` starts with `/subscriptions/` and matches your project connection.
+1. Your first successful response includes a `url_citation` annotation pointing to a SharePoint URL.
 
 ## Code example
 
@@ -75,8 +100,7 @@ project_client = AIProjectClient(
 # Get the OpenAI client for responses and conversations
 openai_client = project_client.get_openai_client()
 
-sharepoint_connection = project_client.connections.get(os.environ["SHAREPOINT_PROJECT_CONNECTION_NAME"])
-connection_id = sharepoint_connection.id
+connection_id = os.environ["SHAREPOINT_PROJECT_CONNECTION_ID"]
 print(f"SharePoint connection ID: {connection_id}")
 
 sharepoint_tool = SharepointAgentTool(
@@ -102,6 +126,7 @@ with project_client:
     # Send initial request that will trigger the SharePoint tool
     stream_response = openai_client.responses.create(
         stream=True,
+      tool_choice="required",
         input="Please summarize the last meeting notes stored in SharePoint.",
         extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
     )
@@ -180,18 +205,16 @@ using Azure.AI.Projects.OpenAI;
 using Azure.Identity;
 
 // Create an agent client and read the environment variables, which will be used in the next steps.
-var projectEndpoint = System.Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
-var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
-var sharepointConnectionName = System.Environment.GetEnvironmentVariable("SHAREPOINT_CONNECTION_NAME");
+var projectEndpoint = System.Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME");
+var sharepointConnectionId = System.Environment.GetEnvironmentVariable("SHAREPOINT_PROJECT_CONNECTION_ID");
 AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
 
-// Use the SharePoint connection name as it's shown in the connections section of Microsoft Foundry to get the connection.
-// Get the connection ID to initialize the SharePointGroundingToolOptions,
+// Use the SharePoint connection ID to initialize the SharePointGroundingToolOptions,
 // which will be used to create SharepointAgentTool. Use this tool to create an Agent.
-AIProjectConnection sharepointConnection = projectClient.Connections.GetConnection(sharepointConnectionName);
 SharePointGroundingToolOptions sharepointToolOption = new()
 {
-    ProjectConnections = { new ToolProjectConnection(projectConnectionId: sharepointConnection.Id) }
+  ProjectConnections = { new ToolProjectConnection(projectConnectionId: sharepointConnectionId) }
 };
 PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
 {
@@ -272,25 +295,25 @@ The following sample demonstrates how to create an Agent that uses the SharePoin
 
 ```bash
 curl --request POST \
-  --url "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
-  --H "Authorization: Bearer $AGENT_TOKEN" \
-  --H "Content-Type: application/json" \
-  --H "User-Agent: insomnia/11.6.1" \
-  --d '{
-"model": "$AZURE_AI_MODEL_DEPLOYMENT_NAME",
-"input": "Please summarize the last meeting notes stored in SharePoint.",
-"tools": [
+  --url "$AZURE_AI_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+  "model": "'$AZURE_AI_MODEL_DEPLOYMENT_NAME'",
+  "input": "Please summarize the last meeting notes stored in SharePoint.",
+  "tool_choice": "required",
+  "tools": [
     {
-        "type": "sharepoint_grounding_preview",
-        "sharepoint_grounding_preview": {
-            "project_connections": [
-                {
-                    "project_connection_id": "$SHAREPOINT_PROJECT_CONNECTION_ID"
-                }
+      "type": "sharepoint_grounding_preview",
+      "sharepoint_grounding_preview": {
+        "project_connections": [
+          {
+            "project_connection_id": "'$SHAREPOINT_PROJECT_CONNECTION_ID'"
+          }
         ]
+      }
     }
-    }
-    ]
+  ]
 }'
 ```
 
@@ -351,7 +374,7 @@ import { AIProjectClient } from "@azure/ai-projects";
 import "dotenv/config";
 
 const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "<project endpoint>";
-const deploymentName = process.env["MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
+const deploymentName = process.env["AZURE_AI_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
 const sharepointProjectConnectionId =
   process.env["SHAREPOINT_PROJECT_CONNECTION_ID"] || "<sharepoint project connection id>";
 
@@ -392,6 +415,7 @@ export async function main(): Promise<void> {
     {
       body: {
         agent: { name: agent.name, type: "agent_reference" },
+        tool_choice: "required",
       },
     },
   );
@@ -476,27 +500,41 @@ SharePoint agent sample completed!
 
 :::zone-end
 
-## Setup  
+## Limitations
+
+- The SharePoint tool only supports user identity authentication. App-only (service principal) authentication isn't supported.
+- Your SharePoint site and your Microsoft Foundry agent must be in the same tenant.
+- You can add only one SharePoint tool per agent.
+- The underlying Microsoft 365 Copilot Retrieval API returns text extracts. Retrieval from nontextual content, including images and charts, isn't supported.
+- For semantic and hybrid retrieval, the Microsoft 365 Copilot Retrieval API supports `.doc`, `.docx`, `.pptx`, `.pdf`, `.aspx`, and `.one` file types. For details, see the [Microsoft 365 Copilot API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview).
+
+## Setup
 
 > [!NOTE]
-> - Supported document types: text data in the following formats: `.pdf`, `.docx`, `.ppt`, `.txt`, `.aspx` 
-> > - Start with SharePoint sites that have a simple folder structure and a small number of short documents.
-> - The SharePoint tool only supports user identity authentication. It doesn't support Service Principal Name (SPN) authentication.
-> - Your SharePoint site and Microsoft Foundry agent need to be in the same tenant.
+> Start with SharePoint sites that have a simple folder structure and a small number of short documents.
 
 1. Select **SharePoint** and follow the prompts to add the tool. You can only add one per agent.
 
-1. Select to add a new connection. After you add a connection, you can select directly from the existing list.
-   1. To create a new connection, find `site_url` in your SharePoint site. You can add either a SharePoint site or a SharePoint folder. For a SharePoint site, it looks like `https://microsoft.sharepoint.com/teams/<site_name>`. For a SharePoint folder, it looks like `https://microsoft.sharepoint.com/teams/<site_name>/Shared%20documents/<folder_name>`.
+1. Add a SharePoint connection.
 
-       > [!NOTE]
-       > - Your `site_url` needs to follow the format above. If you copy the entire value from the address bar of your SharePoint, it doesn't work.
-    
-   1. Add the connection. Make sure you select the **is secret** option.
+  For step-by-step instructions, see [Add a new connection to your project](../../../../how-to/connections-add.md?view=foundry&preserve-view=true).
+
+  1. In the SharePoint connection configuration, enter the site URL or folder URL.
+
+    - Site URL example: `https://microsoft.sharepoint.com/teams/<site_name>`
+    - Folder URL example: `https://microsoft.sharepoint.com/teams/<site_name>/Shared%20documents/<folder_name>`
+
+    > [!NOTE]
+    > Your `site_url` needs to follow the format above. If you copy the entire value from the address bar of your SharePoint, it doesn't work.
+
+  1. Save the connection, and then copy its connection **ID**.
+  1. Set the connection ID as `SHAREPOINT_PROJECT_CONNECTION_ID`.
 
 ## How it works
 
 The SharePoint tool makes it possible by enabling seamless integrations between AI agents and business documents stored in SharePoint. This capability is empowered by the [Microsoft 365 Copilot API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview). To ground your SharePoint documents, enter the sites or folders to connect with. The SharePoint tool leverages [built-in indexing capabilities](/microsoftsearch/semantic-index-for-copilot) to enhance the search and retrieval experience, including intelligent indexing, query processing, and content chunking.
+
+For more information about delegated access and identity passthrough in Foundry, see [Agent identity concepts in Microsoft Foundry](../../concepts/agent-identity.md).
 
 Instead of requiring developers to export SharePoint content, build a custom semantic index, manage governance controls, and configure refresh logic, this capability automates the entire retrieval pipeline. It dynamically indexes documents, breaks content into meaningful chunks, and applies advanced query processing to surface the most relevant information. By leveraging the same enterprise-grade retrieval stack that powers Microsoft 365 Copilot, it ensures AI agent responses are grounded in the most up-to-date and contextually relevant content. 
 
@@ -504,17 +542,17 @@ Customers rely on data security in SharePoint to access, create, and share docum
 
 ## Troubleshooting
 
-1. Error message: Request to Graph API failed, with error-code: AuthenticationError and error-message: AppOnly OBO tokens not supported by target service.
+- **AuthenticationError: AppOnly OBO tokens not supported by target service**
 
-  This means you are using an application's identity to authenticate with the Foundry Agent Service and the SharePoint tool, which is not supported. Make sure you are always passing the user's identity.
+  You're using an application's identity to authenticate with Foundry Agent Service and the SharePoint tool. Use a user identity (identity passthrough).
 
-2. Error message: Request to Graph API failed, with error-code: Forbidden and error-message: Authorization Failed - User does not have valid license.
+- **Forbidden: Authorization Failed - User does not have valid license**
 
-   This means the user doesn't have a valid Microsoft 365 Copilot license to use the SharePoint tool. Make sure each user has Microsoft 365 Copilot license, as required by [Microsoft 365 Copilot API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview).
+  The user doesn't have a Microsoft 365 Copilot license. Assign a Microsoft 365 Copilot license, as required by the [Microsoft 365 Copilot API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview).
 
-3. Other error message with 401 error code or authentication issue
+- **401 or authentication failures**
 
-   1. Make sure user in Foundry and Microsoft 365 are in the same tenant.
+  Confirm the user in Foundry and Microsoft 365 is in the same tenant.
 
 ## Next steps
 
