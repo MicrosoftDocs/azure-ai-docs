@@ -5,7 +5,7 @@ description: Learn how to add and configure Microsoft Foundry Models in your Fou
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 09/29/2025
+ms.date: 01/20/2026
 ms.custom: ignite-2024, github-universe-2024
 author: msakande   
 ms.author: mopeakande
