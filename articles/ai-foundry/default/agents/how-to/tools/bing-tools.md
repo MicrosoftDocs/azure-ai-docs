@@ -131,7 +131,7 @@ with project_client:
     stream_response = openai_client.responses.create(
         stream=True,
         tool_choice="required",
-        input="What is today's date and whether in Seattle?",
+        input="What is today's date and weather in Seattle?",
         extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
     )
 
