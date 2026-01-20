@@ -18,6 +18,8 @@ author: lgayhardt
 
 # Monitor quality and token usage of deployed prompt flow applications
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 Monitoring applications that are deployed to production is an essential part of the generative AI application lifecycle. Changes in data and consumer behavior can influence your application over time. The changes can result in outdated systems that negatively affect business outcomes. Such systems expose organizations to compliance, economic, and reputation risks.
@@ -376,7 +378,7 @@ deployment_name = "INSERT YOUR DEPLOYMENT NAME"
 monitor_name ="gen_ai_monitor_tokens" 
 defaulttokenstatisticssignalname ="token-usage-signal" 
 
-# Determine the frequency to run the monitor, and the emails to recieve email alerts
+# Determine the frequency to run the monitor, and the emails to receive email alerts
 trigger_schedule = CronTrigger(expression="15 10 * * *")
 notification_emails_list = ["test@example.com", "def@example.com"]
 

@@ -17,15 +17,17 @@ ms.custom: references_regions, build-2025
 
 | Model Name | Model Version<sup>1</sup> | Lifecycle Status | Deprecation Date (No New Customers) | Retirement Date | Replacement Model |
 |:--|:--|:--|:--|:--|:--|
+| `gpt-5-chat` | 2025-08-07 | Preview | n/a | 2026-03-01 | `gpt-5.2-chat` |
+| `gpt-5-chat` | 2025-10-03 | Preview | n/a | 2026-03-01 | `gpt-5.2-chat` |
 | `gpt-4o` | 2024-05-13 | Generally Available | 2025-05-13 | 2026-03-31 | `gpt-5.1` |
 | `gpt-4o` | 2024-08-06 | Generally Available | 2025-08-06 | 2026-03-31 | `gpt-5.1` |
-| `gpt-4o` | 2024-11-20 | Generally Available | 2025-11-20 | 2026-06-03 | `gpt-5.1` |
+| `gpt-4o` | 2024-11-20 | Generally Available | 2025-11-20 | 2026-06-05 | `gpt-5.1` |
 | `gpt-4o-mini` | 2024-07-18 | Generally Available | 2025-07-18 | 2026-03-31 | `gpt-4.1-mini` |
 | `gpt-4.1` | 2025-04-14 | Generally Available | 2026-04-14 | 2026-10-14 | `gpt-5` |
 | `gpt-4.1-mini` | 2025-04-14 | Generally Available | 2026-04-14 | 2026-10-14 | `gpt-5-mini` |
 | `gpt-4.1-nano` | 2025-04-14 | Generally Available | 2026-04-14 | 2026-10-14 | `gpt-5-nano` |
 | `computer-use-preview` | 2025-03-11 | Preview | n/a | No earlier than 2026-04-14 |  |
-| `o1` | 2024-12-17 | Generally Available | 2025-12-17 | 2026-06-18 | `o3` |
+| `o1` | 2024-12-17 | Generally Available | 2025-12-17 | 2026-07-15 | `o3` |
 | `o1-pro` | 2025-03-19 | Generally Available | 2026-03-19 | 2026-09-18 | `o3-pro` |
 | `o3-mini` | 2025-01-31 | Generally Available | 2026-01-31 | 2026-08-02 | `o4-mini` |
 | `o3` | 2025-04-16 | Generally Available | 2026-04-16 | 2026-10-16 |  |
@@ -42,6 +44,8 @@ ms.custom: references_regions, build-2025
 | `gpt-5.1-codex` | 2025-11-13 | Generally Available | 2026-11-13 | 2027-05-15 |  |
 | `gpt-5.1-codex-mini` | 2025-11-13 | Generally Available | 2026-11-13 | 2027-05-15 |  |
 | `gpt-5.1-chat` | 2025-11-13 | Preview | n/a | No earlier than 2026-03-31 |  |
+| `gpt-5.2` | 2025-12-11 | Generally Available | No earlier than 2026-12-12 | No earlier than 2027-05-12 | |
+| `gpt-5.2-chat` | 2025-12-11 | Preview | n/a | No earlier than 2026-04-01 | |
 
 
 # [Audio](#tab/audio)
@@ -64,9 +68,9 @@ ms.custom: references_regions, build-2025
 | `tts` | 001 | Generally Available | No earlier than February 28, 2026 |  |  |
 | `tts-hd` | 001 | Generally Available | No earlier than February 28, 2026 |  |  |
 | `whisper` | 001 | Generally Available | No earlier than February 28, 2026 |  |  |
-| `gpt-realtime-mini-2025-12-15`    | 2025-12-15   | Generally Available | n/a | No earlier than December 15, 2026    |       |
-| `gpt-4o-mini-transcribe-2025-12-15`    | 2025-12-15   | Generally Available | n/a | No earlier than December 15, 2026    |       |
-| `gpt-4o-mini-tts-2025-12-15`    | 2025-12-15   | Generally Available | n/a | No earlier than December 15, 2026    |       |
+| `gpt-realtime-mini` | 2025-12-15   | Generally Available | n/a | No earlier than December 15, 2026    |       |
+| `gpt-4o-mini-transcribe` | 2025-12-15   | Generally Available | n/a | No earlier than December 15, 2026    |       |
+| `gpt-4o-mini-tts` | 2025-12-15   | Generally Available | n/a | No earlier than December 15, 2026    |       |
 
 # [Image and video](#tab/image)
 
@@ -107,20 +111,20 @@ We notify all customers with these preview deployments at least 30 days before t
 
 Fine-tuned models retire in two phases: *training* and *deployment*.
 
-All fine-tuned models follow their equivalent base model for *training* retirement. After a model is retired, it's no longer available for fine-tuning.
+Unless explicitly stated, training retires no earlier than the base model retirement date. After a model is retired for training, it's no longer available for fine-tuning but any models you've trained remain available for deployment.
 
-For fine-tuned models made generally available since `gpt-4o-2024-08-06`, *deployment* retirement occurs 1 year after *training* retirement. At deployment retirement, inference and deployment return error responses.
+At deployment retirement, inference and deployment return error responses.
 
-| Model            | Version     | Training retirement date  | Deployment retirement date       |
-| -----------------|-------------|---------------------------|----------------------------------|
-| `gpt-35-turbo`   | 1106        | At base model retirement  | At training retirement           |
-| `gpt-35-turbo`   | 0125        | At base model retirement  | At training retirement           |
-| `gpt-4o`         | 2024-08-06  | At base model retirement  | One year after training retirement |
-| `gpt-4o-mini`    | 2024-07-18  | At base model retirement  | One year after training retirement |
-| `gpt-4.1`        | 2025-04-14  | At base model retirement  | One year after training retirement |
-| `gpt-4.1-mini`   | 2025-04-14  | At base model retirement  | One year after training retirement |
-| `gpt-4.1-nano`   | 2025-04-14  | At base model retirement  | One year after training retirement |
-| `o4-mini`        | 2025-04-16  | At base model retirement  | One year after training retirement |
+| Model            | Version     | Training retirement date   | Deployment retirement date        |
+| -----------------|-------------|----------------------------|-----------------------------------|
+| `gpt-4o`         | 2024-08-06  | No earlier than 2026-09-31<sup>1</sup> | 2027-03-31 |
+| `gpt-4o-mini`    | 2024-07-18  | No earlier than 2026-09-31<sup>1</sup> | 2027-03-31 |
+| `gpt-4.1`        | 2025-04-14  | Base model retirement  | One year after training retirement |
+| `gpt-4.1-mini`   | 2025-04-14  | Base model retirement  | One year after training retirement |
+| `gpt-4.1-nano`   | 2025-04-14  | Base model retirement  | One year after training retirement |
+| `o4-mini`        | 2025-04-16  | Base model retirement  | One year after training retirement |
+
+<sup>1</sup> For existing customers only. Otherwise, training retirement occurs at base model retirement.
 
 ## Default model versions
 

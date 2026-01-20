@@ -19,6 +19,8 @@ ms.update-cycle: 180-days
 
 # Serp API tool for flows in Microsoft Foundry portal
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 The prompt flow Serp API tool provides a wrapper to the [Serp API Google Search Engine Results API](https://serpapi.com/search-api) and [Serp API Bing Search Engine Results API](https://serpapi.com/bing-search-api).

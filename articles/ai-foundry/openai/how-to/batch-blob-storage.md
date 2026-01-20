@@ -14,7 +14,7 @@ ms.custom:
   - build-2025
 ---
 
-# Configuring Azure Blob Storage for Azure OpenAI
+# Configuring Azure Blob Storage for Azure OpenAI Batch
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 

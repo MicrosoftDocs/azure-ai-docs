@@ -11,9 +11,10 @@ ms.custom: include
 ---
 ::: moniker range="foundry-classic"
 
-> [!NOTE]
-> This document refers to the [Microsoft Foundry (classic)](../what-is-foundry.md#microsoft-foundry-portals) portal only. 
+> [!IMPORTANT]
 >
-> You must use a **[!INCLUDE [hub](hub-project-name.md)]** for this feature. A **[!INCLUDE [fdp](fdp-project-name.md)]** isn't supported. See [How do I know which type of project I have?](../what-is-foundry.md#how-do-i-know-which-type-of-project-i-have) and [Create a hub-based project](../how-to/create-projects.md?pivots="hub-project").
+> This article provides legacy support for hub-based projects. It will not work for **Foundry projects**. See [How do I know which type of project I have?](../what-is-foundry.md#how-do-i-know-which-type-of-project-i-have)
+>
+> **SDK compatibility note**: Code examples require a specific Microsoft Foundry SDK version. If you encounter compatibility issues, consider [migrating from a hub-based to a Foundry project](../how-to/migrate-project.md).
 
 ::: moniker-end
