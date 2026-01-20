@@ -51,7 +51,7 @@ The current multi-lingual model supports the following languages:
 - Spanish (Mexico) [es-MX]
 - Spanish (Spain) [es-ES]
 
-To use **Automatic multilingual configuration using multilingual model** no extra configuration is required. If you do add the `language` string to the session`session.update` message, make sure to leave it empty.
+To use **Automatic multilingual configuration using multilingual model** no extra configuration is required. If you do add the `language` string to the `session.update` message, make sure to leave it empty.
 
 ```json
 {
