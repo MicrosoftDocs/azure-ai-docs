@@ -3,7 +3,7 @@ title: Foundry Agent Service disaster recovery
 monikerRange: 'foundry-classic || foundry'
 ms.service: azure-ai-foundry
 ms.reviewer: ckittel
-description: Plan disaster recovery for Foundry Agent Service: limitations, readiness checklist, and recovery paths for platform outages and data loss.
+description: "Plan disaster recovery for Foundry Agent Service: limitations, readiness checklist, and recovery paths for platform outages and data loss."
 #customer intent: As a developer, I want to automate the redeployment of agent definitions so that I can speed up disaster recovery processes.
 author: jonburchel
 ms.author: jburchel
