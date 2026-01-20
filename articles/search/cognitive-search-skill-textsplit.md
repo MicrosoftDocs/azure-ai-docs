@@ -1,5 +1,5 @@
 ---
-title: Text split skill
+title: Text Split skill
 titleSuffix: Azure AI Search
 description: Break text into chunks or pages of text based on length in an AI enrichment pipeline in Azure AI Search.
 author: gmndrg
@@ -7,12 +7,12 @@ ms.author: gimondra
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: reference
-ms.date: 09/19/2025
+ms.topic: article
+ms.date: 01/07/2026
 ms.update-cycle: 365-days
 ---
 
-# Text split cognitive skill
+# Text Split cognitive skill
 
 > [!IMPORTANT] 
 > Some parameters are in public preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The [preview REST API](/rest/api/searchservice/index-preview) supports these parameters.

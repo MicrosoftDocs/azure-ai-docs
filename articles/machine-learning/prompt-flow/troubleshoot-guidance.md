@@ -5,7 +5,7 @@ description: This article addresses frequent questions prompt flow usage.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
-ms.topic: reference
+ms.topic: troubleshooting
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: sooryar

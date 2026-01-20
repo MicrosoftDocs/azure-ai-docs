@@ -10,7 +10,7 @@ items:
     - name: Microsoft Foundry SDKs
       href: how-to/develop/sdk-overview.md
     - name: Ask AI
-      href: foundry-agent/ask-foundry-agent.md
+      href: concepts/ask-ai.md
 - name: Models
   href: toc-files/models/toc.yml
 - name: Foundry Tools

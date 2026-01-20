@@ -11,6 +11,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - dev-focus
 ai-usage: ai-assisted
+monikerRange: foundry-classic || foundry
 ---
 
 # Disable preview features in Microsoft Foundry by using role-based access control

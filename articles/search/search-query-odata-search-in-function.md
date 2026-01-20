@@ -8,7 +8,7 @@ ms.author: beloh
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: reference
+ms.topic: concept-article
 ms.date: 09/16/2021
 ms.update-cycle: 365-days
 translation.priority.mt:

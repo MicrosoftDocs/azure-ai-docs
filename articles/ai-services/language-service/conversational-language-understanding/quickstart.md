@@ -17,7 +17,7 @@ Microsoft Foundry offers a unified platform for building, managing, and deployin
 
 Use this article to get started with Conversational Language understanding using Foundry or the REST API.
 
-::: zone pivot="azure-ai-foundry"
+::: zone pivot="microsoft-foundry"
 
 [!INCLUDE [Foundry quickstart](includes/quickstarts/azure-ai-foundry.md)]
 

@@ -142,10 +142,10 @@ To understand the breakdown of built-in roles and the control and data plane act
 ## Set up Microsoft Entra ID
 
 For high-level guidance on setting up Entra ID authentication in Foundry, see [Configure key-less authentication](../foundry-models/how-to/configure-entra-id.md).
-1. Ensure your Azure AI Foundry resource has a custom subdomain configured. See [Custom subdomains](/azure/ai-services/cognitive-services-custom-subdomains).
+1. Ensure your Microsoft Foundry resource has a custom subdomain configured. See [Custom subdomains](/azure/ai-services/cognitive-services-custom-subdomains).
 1. Assign the needed built-in or custom role, such as Azure AI User, to each principal user, service principal, or managed identity at the resource or project scope.
 1. (Optional) For a service principal, create an app registration, add a client secret or certificate, and note the tenant ID, client ID, and secret or certificate.
-1. (Optional) For a managed identity, enable the system-assigned identity on the calling service or attach a user-assigned identity, then assign a role to it on the Azure AI Foundry resource.
+1. (Optional) For a managed identity, enable the system-assigned identity on the calling service or attach a user-assigned identity, then assign a role to it on the Foundry resource.
 1. Remove key-based authentication after all callers use token authentication. Optionally disable local authentication in deployment templates.
 
 ## Related content

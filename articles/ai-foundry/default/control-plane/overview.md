@@ -1,5 +1,5 @@
 ---
-title: What is the Foundry Control Plane?
+title: What is the Microsoft Foundry Control Plane?
 ms.service: azure-ai-foundry
 ms.topic: concept-article
 ms.date: 11/05/2025
@@ -17,29 +17,7 @@ The **Microsoft Foundry Control Plane** is a unified management interface that p
 
 As organizations evolve from isolated copilots to autonomous multi-agent fleets, they need unified oversight. The Foundry Control Plane provides the visibility, governance, and control needed to scale with confidence.
 
-The Foundry Control Plane allows you to:
-
-- Gain unified visibility across all Foundry, Microsoft, and third-party agents in one place.
-- Observe, analyze, and optimize agent performance, cost, quality, and compliance.
-- Apply deterministic guardrails and policies for safety, compliance, and operational consistency.
-- Visualize resource consumption, detect anomalies, and optimize agent configurations to reduce spend while maintaining reliability.
-
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
-
-## The need for unified AI fleet management
-
-Over the next 12–24 months, enterprises will move from a handful of agents to thousands of active, semi-autonomous entities. Without unified oversight, this growth creates risk: uncontrolled costs, data leakage, task drift, and inconsistent security postures.
-
-The Foundry Control Plane is built to address that inflection point. Without proper control mechanisms, scaling AI agents becomes risky and inefficient.
-
-The Foundry Control Plane provides:
-
-- **Fleet-wide visibility** - See all agents (Foundry-native, Microsoft, and third-party), models, and tools in one place.
-- **Governance at scale** - Apply guardrails, enforce policies, and monitor compliance posture.
-- **[Observability](../../concepts/observability.md)** - Monitor and trace agents for debugging, remediation, and optimization.
-- **Optimization intelligence** - Reduce cost, improve performance, and maintain reliability.
-- **Alerting and notifications** - Receive real-time alerts when security, performance, or compliance issues require your attention, so you can act before risk escalates.
-- **Comprehensive guardrails** - Apply a suite of built-in guardrails to models and agents to protect your AI systems against unsafe behaviors, data leakage, and prompt injection attacks.
 
 ## Core Functionalities
 
@@ -47,20 +25,17 @@ The Foundry Control Plane consolidates **inventory, observability, compliance, a
 
 :::image type="content" source="media/overview/control-plane-overall.png" alt-text="A diagram depicting the Foundry Control Plane unified fleet visibility with agents, models, and tools listed across projects in a subscription." lightbox="media/overview/control-plane-overall.png":::
 
-Core capabilities include:
+The Foundry Control Plane allows you to:
 
-### Unified Fleet Visibility
+### Manage your fleet across Foundry, Microsoft, and third-party agents in one place
 
-Get a real-time overview of every agent, model, and tool across projects in your subscription.
+- Track key performance indicators such as active agents, run completion, compliance posture, cost efficiency, and prohibited behaviors across [supported agent platforms](how-to-manage-agents.md#supported-agent-platforms).
 
-- Track key performance indicators such as active agents, run completion, compliance posture, cost efficiency, and prohibited behaviors.
 - Use deep links to evaluation and monitoring experiences for rapid debugging, diagnosis, and remediation.
+
 - Visualize fleet health through intuitive dashboards that surface trends and anomalies instantly.
 
-
-### Observe to Protect and Improve
-
-**[Observability](../../concepts/observability.md)** is built in, not added on.
+### Observe, protect, and improve
 
 - Correlate alerts, evaluation results, and trace data to pinpoint issues instantly.
 
@@ -70,15 +45,13 @@ Get a real-time overview of every agent, model, and tool across projects in your
 
 - Let **Foundry Agent** recommend improvements, from prompt refinements to model version upgrades.
 
-### Govern and Enforce with Guardrails
-
-Operationalize Responsible AI principles through policies that scale.
+### Govern and enforce with guardrails
 
 - Define enterprise-wide guardrail policies for safety, compliance, and quality.
 
 - Apply **bulk remediation** to instantly correct noncompliant configurations across your fleet.
 
-### Secure Agents
+### Secure agents
 
 - Schedule **automated red-teaming scans** and **drift monitoring** for ongoing agent testing.
 
@@ -96,7 +69,7 @@ The Foundry Control Plane experience begins in the **Operate** tab, your command
 
 Use this page to understand fleet health, performance, and compliance at a glance.
 
-:::image type="content" source="media/overview/control-plane-overview.png" alt-text="Screenshot of the Fleet Overview page displaying trend-based health scores, alert summaries, and aggregated compliance metrics." lightbox="media/overview/control-plane-overview.png":::
+:::image type="content" source="media/overview/control-plane-overview.gif" alt-text="Animation of the Fleet Overview page displaying trend-based health scores, alert summaries, and aggregated compliance metrics." lightbox="media/overview/control-plane-overview.gif":::
 
 The Fleet Overview page provides a high-level snapshot of your AI estate, aggregating key operational and compliance metrics in one view.
 
@@ -163,18 +136,17 @@ From **Operate → Admin**, administrators and power users can:
 
 Together, these capabilities make **Admin** the Control Plane's administrative backbone. It's a centralized console to ensure every Foundry project remains properly configured, compliant, and connected to the right people and infrastructure.
 
+## Get started
+
+The Foundry Control Plane is a feature available in the Foundry (new) portal. To get started:
+
+- **[Configure AI Gateway](../configuration/enable-ai-api-management-gateway-portal.md)** - Configure AI Gateway in your Foundry projects to enable advanced governance features.
+- **[Configure monitoring for your agents fleet](monitoring-across-fleet.md)** - Configure observability features in your project to enable metrics and diagnostic information.
+- **[Discover agents in your subscription](how-to-manage-agents.md)** - See which agents are available in your subscription and manage them in a centralized location.
+- **[Register custom Agents](register-custom-agent.md)** - Extend your governance surface by bringing third-party or external agents into the Foundry Control Plane registry.
+
 ## Related content
 
-The Foundry Control Plane brings together everything you need to manage, govern, and optimize your AI estate, from identity and observability to policy and performance. Now that you understand the core concepts and key capabilities, explore the following guides to go deeper into setup, usage, and optimization.
-
-**Quickstarts** - Get up and running quickly with these introductory guides:
-
-
-- **[Create a Guardrail Policy](quickstart-create-guardrail-policy.md)** - Define your first guardrail policy and understand how guardrails apply across projects.
-
-**How-to guides** - Deepen your operational expertise with hands-on workflows:
-
-- **[Monitor Fleet Health and Performance](monitoring-across-fleet.md)** - Track key health metrics, alert trends, and anomalies across agents, models, and tools.
 - **[Ensure Compliance and Security](how-to-manage-compliance-security.md)** - Learn how to enforce Responsible AI policies, integrate Defender and Purview signals, and respond to compliance alerts.
 - **[Optimize model cost and performance](how-to-optimize-cost-performance.md)** - Analyze cost drivers, token usage, and resource consumption to achieve higher ROI from your agent fleet.
-- **[Register Custom Agents](register-custom-agent.md)** - Extend your governance surface by bringing third-party or external agents into the Foundry Control Plane registry.
+

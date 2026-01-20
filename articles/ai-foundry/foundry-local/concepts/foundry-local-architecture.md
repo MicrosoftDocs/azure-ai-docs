@@ -54,12 +54,14 @@ Foundry Local offers these key benefits:
 > [!div class="checklist"]
 >
 > - **Low latency**: Run models locally to minimize processing time and deliver faster results.
-> - **Data privacy**: Process sensitive data locally without sending it to the cloud, helping meet data protection requirements.
+> - **Data privacy**: Process sensitive data locally without sending it to the cloud for inference, helping meet data protection requirements.
 > - **Flexibility**: Support for diverse hardware configurations lets you choose the optimal setup for your needs.
 > - **Scalability**: Deploy across various devices, from laptops to servers, to suit different use cases.
 > - **Cost-effectiveness**: Reduce cloud computing costs, especially for high-volume applications.
 > - **Offline operation**: Work without an internet connection in remote or disconnected environments.
 > - **Seamless integration**: Easily incorporate into existing development workflows for smooth adoption.
+
+Foundry Local can still use the network for operations like downloading models and execution providers. If you report a problem, you might choose to share logs (for example, by using `foundry zip-logs`).
 
 ## Key components
 

@@ -118,7 +118,7 @@ Foundry is currently available in the following Azure regions. You can [create e
 ## Foundry features
  
 
-For maximum feature availability, consider East US 2, Sweden Central, or West US 2 as your primary regions, as they offer the most comprehensive coverage across features.
+For maximum feature availability, consider East US 2 or Sweden Central as your primary regions, as they offer the most comprehensive coverage across features.
 
 Use the following table to investigate regional availability for specific features you plan to use.
 
@@ -194,7 +194,7 @@ Available to US government entities and their partners only. For more informatio
 
 ## Use AI to find the best region
 
-Use AI to help you find the right region for your needs.  Open [Ask AI](../foundry-agent/ask-foundry-agent.md) and customize this prompt for your specific case:
+Use AI to help you find the right region for your needs.  Open [Ask AI](../concepts/ask-ai.md) and customize this prompt for your specific case:
 
 ```copilot-prompt
    Based on the features I need for my Foundry project, which regions would you recommend to create the project? 

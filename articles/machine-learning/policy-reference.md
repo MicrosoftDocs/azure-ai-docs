@@ -5,7 +5,7 @@ ms.date: 02/05/2025
 ms.author: scottpolly
 ms.reviewer: shshubhe
 author: s-polly
-ms.topic: reference
+ms.topic: concept-article
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.custom: subject-policy-reference

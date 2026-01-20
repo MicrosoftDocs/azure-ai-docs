@@ -6,7 +6,7 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.custom: engagement-fy23
-ms.topic: reference
+ms.topic: release-notes
 ms.author: scottpolly
 author: s-polly
 ms.reviewer: hancwang

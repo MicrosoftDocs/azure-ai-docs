@@ -17,6 +17,8 @@ ms.update-cycle: 180-days
 
 # Enable tracing and collect feedback for a flow deployment
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 After you deploy a generative AI application in production, you might want to enhance your understanding and optimize performance. Trace data for each request, aggregated metrics, and user feedback play critical roles.

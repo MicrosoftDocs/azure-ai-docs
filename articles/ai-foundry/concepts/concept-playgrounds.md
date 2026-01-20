@@ -214,7 +214,7 @@ To try the transcription capability, follow these steps:
 
 ## Language playground
 
-The [Language playground](https://ai.azure.com/build/playground/language) provides a code-free environment for testing and validating Azure AI Language capabilities. Use it to experiment with natural language processing (NLP) features such as **key data extraction**, **information summarization**, **text classification**, and **custom model fine-tuning**.
+The [Language playground](https://ai.azure.com/build/playground/language) provides a code-free environment for testing and validating Azure Language in Foundry Tools capabilities. Use it to experiment with natural language processing (NLP) features such as **key data extraction**, **information summarization**, **text classification**, and **custom model fine-tuning**.
 
 The Language playground consists of four primary sections:
 

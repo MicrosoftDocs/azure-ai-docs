@@ -19,6 +19,8 @@ ms.update-cycle: 180-days
 
 # LLM tool for flows in Microsoft Foundry portal
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 To use large language models (LLMs) for natural language processing, you use the prompt flow LLM tool.
