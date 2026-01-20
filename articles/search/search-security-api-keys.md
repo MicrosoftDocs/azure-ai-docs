@@ -116,7 +116,7 @@ Run the following commands to return admin and query API keys, respectively. For
     POST https://management.azure.com/subscriptions/{{subscriptionId}}/resourceGroups/{{resource-group}}/providers//Microsoft.Search/searchServices/{{search-service-name}}/listAdminKeys?api-version=2025-05-01
     ```
 
-Reference: [**Admin Keys - Get**](/rest/api/searchmanagement/admin-keys/get), [**Query Keys - List By Search Service**](/rest/api/searchmanagement/query-keys/list-by-search-service)
+**Reference:** [Admin Keys - Get](/rest/api/searchmanagement/admin-keys/get), [Query Keys - List By Search Service](/rest/api/searchmanagement/query-keys/list-by-search-service)
 ---
 
 ## Use keys on connections
