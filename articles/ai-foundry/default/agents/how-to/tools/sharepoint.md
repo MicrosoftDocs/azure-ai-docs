@@ -521,11 +521,11 @@ SharePoint agent sample completed!
 
   1. In the SharePoint connection configuration, enter the site URL or folder URL.
 
-    - Site URL example: `https://microsoft.sharepoint.com/teams/<site_name>`
-    - Folder URL example: `https://microsoft.sharepoint.com/teams/<site_name>/Shared%20documents/<folder_name>`
+     - Site URL example: `https://microsoft.sharepoint.com/teams/<site_name>`
+     - Folder URL example: `https://microsoft.sharepoint.com/teams/<site_name>/Shared%20documents/<folder_name>`
 
-    > [!NOTE]
-    > Your `site_url` needs to follow the format above. If you copy the entire value from the address bar of your SharePoint, it doesn't work.
+     > [!NOTE]
+     > Your `site_url` needs to follow the format above. If you copy the entire value from the address bar of your SharePoint, it doesn't work.
 
   1. Save the connection, and then copy its connection **ID**.
   1. Set the connection ID as `SHAREPOINT_PROJECT_CONNECTION_ID`.
