@@ -9,7 +9,7 @@ ms.author: scottpolly
 author: s-polly
 ms.date: 09/24/2025
 ms.topic: concept-article
-ms.reviewer: sehan
+ms.reviewer: jturuk
 ms.custom: deploy, docker, prebuilt
 ai-usage: ai-assisted
 ---

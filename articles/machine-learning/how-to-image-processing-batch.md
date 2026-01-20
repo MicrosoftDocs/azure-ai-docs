@@ -9,8 +9,8 @@ ms.topic: how-to
 author: s-polly
 ms.author: scottpolly
 ms.date: 08/20/2024
-ms.reviewer: cacrest
-ms.custom: devplatv2, update-code2, devx-track-azurecli
+ms.reviewer: jturuk
+ms.custom: devplatv2, update-code3, devx-track-azurecli
 #customer intent: As a data scientist, I want to use batch model deployments for machine learning, such as classifying images according to a taxonomy.
 ---
 

@@ -3,9 +3,10 @@ title: Deploy Microsoft Foundry Models to managed compute with pay-as-you-go bil
 titleSuffix: Microsoft Foundry
 description: Learn how to deploy protected AI models from partners and community to Microsoft Foundry managed compute with pay-as-you-go billing.
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.custom:
 ms.topic: how-to
-ms.date: 11/14/2025
+ms.date: 1/20/2026
 ms.reviewer: ambadal
 reviewer: AmarBadal
 ms.author: mopeakande
@@ -29,7 +30,7 @@ Microsoft Foundry Models include a comprehensive catalog of models organized int
 
 - [Azure Marketplace purchases enabled](/azure/cost-management-billing/manage/enable-marketplace-purchases) for your Azure subscription.
 
-- Azure role-based access controls (Azure RBAC) grant access to operations in Foundry portal. To perform the steps in this article, your user account must be assigned a *custom role* with the following permissions. User accounts assigned the *Owner* or *Contributor* role for the Azure subscription can also create deployments. For more information on permissions, see [Role-based access control in Foundry portal](/azure/ai-foundry/concepts/rbac-azure-ai-foundry).
+- Azure role-based access controls (Azure RBAC) grant access to operations in Foundry portal. To perform the steps in this article, your user account must be assigned a *custom role* with the following permissions. User accounts assigned the *Owner* or *Contributor* role for the Azure subscription can also create deployments. For more information on permissions, see [Role-based access control in Foundry portal](/azure/ai-foundry/concepts/rbac-foundry).
 
 
 - On the Azure subscription— **to subscribe the workspace/project to the Azure Marketplace offering**:
@@ -121,6 +122,12 @@ A Foundry project with ingress Public Network Access disabled can only support a
 
 The following sections list the supported models for managed compute deployment with pay-as-you-go billing, grouped by collection.
 
+### Boson AI
+
+| Model | Task |
+|--|--|
+| [Higgs-Audio-v2.5](https://ai.azure.com/explore/models/Higgs-Audio-v2.5/version/1/registry/azureml-bosonai-p/?cid=learnDocs) | Audio generation |
+
 ### Cohere
 
 | Model | Task |
@@ -128,6 +135,8 @@ The following sections list the supported models for managed compute deployment 
 | [Command A](https://ai.azure.com/explore/models/cohere-command-a/version/3/registry/azureml-cohere/?cid=learnDocs) | Chat completion |
 | [Embed v4](https://ai.azure.com/explore/models/embed-v-4-0/version/4/registry/azureml-cohere/?cid=learnDocs) | Embeddings |
 | [Rerank v3.5](https://ai.azure.com/explore/models/Cohere-rerank-v3.5/version/2/registry/azureml-cohere/?cid=learnDocs) | Text classification |
+| [Cohere-rerank-v4.0-pro](https://ai.azure.com/resource/models/Cohere-rerank-v4.0-pro/version/1/registry/azureml-cohere/?cid=learnDocs) | rerank text classification |
+| [Cohere-rerank-v4.0-fast](https://ai.azure.com/resource/models/Cohere-rerank-v4.0-fast/version/2/registry/azureml-cohere/?cid=learnDocs) | rerank text classification |
 
 ### Inception Labs
 

@@ -3,8 +3,8 @@ title: Call Center Telephony Integration - Speech service
 titleSuffix: Foundry Tools
 description: A common scenario for speech to text is transcribing large volumes of telephony data that come from various systems, such as interactive voice response (IVR) in real-time. This requires an integration with the Telephony System used.
 ms.service: azure-ai-speech
-ms.topic: conceptual
-ms.date: 08/07/2025
+ms.topic: article
+ms.date: 12/19/2025
 author: PatrickFarley
 ms.author: pafarley
 ms.reviewer: jagoerge

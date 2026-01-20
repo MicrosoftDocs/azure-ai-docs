@@ -519,11 +519,11 @@ Generally Available features are supported for use in production.
 ## Changes between 2025-03-01-preview and 2025-02-01-preview
 
 - [Responses API](./how-to/responses.md)
-- [Computer use](./how-to/computer-use.md)
+- Computer use
 
 ## Changes between 2025-02-01-preview and 2025-01-01-preview
 
-- [Stored completions (distillation)](./how-to/stored-completions.md#stored-completions-api) API support.
+- Stored completions (distillation API support).
 
 ## Changes between 2025-01-01-preview and 2024-12-01-preview
 
@@ -532,7 +532,7 @@ Generally Available features are supported for use in production.
 
 ## Changes between 2024-12-01-preview and 2024-10-01-preview
 
-- `store`, and `metadata` parameters added for [stored completions support](./how-to/stored-completions.md).
+- `store`, and `metadata` parameters added for stored completions support.
 - `reasoning_effort` added for latest [reasoning models](./how-to/reasoning.md).
 - `user_security_context` added for [Microsoft Defender for Cloud integration](https://aka.ms/TP4AI/Documentation/EndUserContext).
 
@@ -548,7 +548,7 @@ Generally Available features are supported for use in production.
 - [Structured outputs support](./how-to/structured-outputs.md).
 - Large file upload API added.
 - On your data changes:
-    * [Mongo DB integration](./reference-preview.md#example-7).
+    * Mongo DB integration.
     * `role_information` parameter removed.
     *  [`rerank_score`](https://github.com/Azure/azure-rest-api-specs/blob/2b700e5e84d4a95880d373e6a4bce5d16882e4b5/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2024-08-01-preview/inference.json#L5532) added to citation object.
     * AML datasource removed.
@@ -575,9 +575,6 @@ Generally Available features are supported for use in production.
 - [`audioWord`](https://github.com/Azure/azure-rest-api-specs/blob/fbc90d63f236986f7eddfffe3dca6d9d734da0b2/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2024-04-01-preview/inference.json#L5286) object added.
 - Additional TTS [`response_formats: wav & pcm`](https://github.com/Azure/azure-rest-api-specs/blob/fbc90d63f236986f7eddfffe3dca6d9d734da0b2/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2024-04-01-preview/inference.json#L5333).
 
-## Latest GA API release
-
-Azure OpenAI API version [2024-10-21](./reference.md) is currently the latest GA API release. This API version is the replacement for the previous `2024-06-01` GA API release.
 
 ## Known issues
 

@@ -6,10 +6,11 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 01/11/2026
 ms.author: lajanuar
 ms.custom: language-service-clu
 ---
+
 # Train a conversational language understanding model
 
 After you complete [labeling your utterances](tag-utterances.md), you can start training a model. Training is the process where the model learns from your [labeled utterances](tag-utterances.md). <!--After training is completed, you can [view model performance](view-model-evaluation.md).-->
@@ -91,7 +92,7 @@ Use the evaluation scores to guide your decisions. There may be times where a sp
 1. If you aren't already signed in, the portal prompts you to do so with your Azure credentials.
 1. Once signed in, you can create or access your existing projects within Foundry.
 1. If you're not already at your project for this task, select it.
-1. Select Fine-tuning from the left navigation panel.
+1. Select Fine-tuning from the left navigation pane.
 
    :::image type="content" source="../media/select-fine-tuning.png" alt-text="Screenshot of fine-tuning selector in the Foundry.":::
 
@@ -105,7 +106,7 @@ Use the evaluation scores to guide your decisions. There may be times where a sp
 
 1. In **Create CLU fine tuning task** window, select your **Connected service** from the drop-down menu, then complete the **Name** and **Language** fields. If you're using the free **Standard Training** mode, select **English** for the language field.
 
-1. Select the  **Create** button. It may take a few minutes for the create operation to complete.
+1. Select the  **Create** button. It may take a few minutes for the operation to complete.
 
     > [!NOTE]
     >
@@ -113,7 +114,7 @@ Use the evaluation scores to guide your decisions. There may be times where a sp
     > * **Advanced training** includes longer training durations and is supported for English, other languages, and multilingual projects.
     > * For more information, *see* [Training modes](#training-modes).
 
-1. From the immediate left navigation panel, choose **Train model**.
+1. From the immediate left navigation pane, choose **Train model**.
 
    :::image type="content" source="../media/train-fine-tuning-model.png" alt-text="Screenshot of the train model selection in the Foundry.":::
 

@@ -2,7 +2,7 @@
 title: Get started with Foundry Local
 titleSuffix: Foundry Local
 description: Learn how to install, configure, and run your first AI model with Foundry Local
-ms.date: 10/01/2025
+ms.date: 01/06/2026
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.topic: quickstart
@@ -14,6 +14,7 @@ ms.custom:
   - build-2025
   - build-aifnd
   - peer-review-program 
+  - dev-focus
 keywords:
   - Foundry Tools
   - cognitive
@@ -27,7 +28,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [foundry-local-preview](./includes/foundry-local-preview.md)]
 
-This guide walks you through setting up Foundry Local to run AI models on your device.
+This guide shows you how to set up Foundry Local to run AI models on your device.
 
 ## Prerequisites
 
@@ -35,8 +36,13 @@ Your system must meet the following requirements to run Foundry Local:
 
 - **Operating System**: Windows 10 (x64), Windows 11 (x64/ARM), Windows Server 2025, macOS.
 - **Hardware**: Minimum 8 GB RAM and 3 GB free disk space. Recommended 16 GB RAM and 15 GB free disk space.
-- **Network**: Internet connection to download the initial model (optional for offline use).
-- **Acceleration (optional)**: NVIDIA GPU (2,000 series or newer), AMD GPU (6,000 series or newer), AMD NPU, Intel iGPU, Intel NPU (32GB or more of memory), Qualcomm Snapdragon X Elite (8GB or more of memory), Qualcomm NPU, or Apple silicon.
+- **Network**: Internet connection to download models and execution providers. After you download a model, you can run cached models offline.
+- **Acceleration (optional)**: NVIDIA GPU (2000 series or newer), AMD GPU (6000 series or newer), AMD NPU, Intel iGPU, Intel NPU (32 GB or more of memory), Qualcomm Snapdragon X Elite (8 GB or more of memory), Qualcomm NPU, or Apple silicon.
+
+To install Foundry Local by using the commands in this quickstart:
+
+- On Windows, make sure `winget` is available.
+- On macOS, install Homebrew if you use the `brew` option.
 
 > [!NOTE]
 > New NPUs are supported only on systems running Windows 24H2 or later. If you use an Intel NPU on Windows, install the [Intel NPU driver](https://www.intel.com/content/www/us/en/download/794734/intel-npu-driver-windows.html) to enable NPU acceleration in Foundry Local.
@@ -48,25 +54,34 @@ Make sure you have admin rights to install software.
 
 ## Quickstart
 
-Get started fast with Foundry Local:
+Get started quickly with Foundry Local:
 
 ### Option 1: Quick CLI setup
 
 1. **Install Foundry Local**.
 
-   - **Windows**: Open a terminal and run the following command:
+   - **Windows**: Open a terminal and run the following command.
      ```bash
      winget install Microsoft.FoundryLocal
      ```
-   - **macOS**: Open a terminal and run the following command:
+   - **macOS**: Open a terminal and run the following command.
      ```bash
      brew tap microsoft/foundrylocal
      brew install foundrylocal
      ```
      Alternatively, you can download the installer from the [Foundry Local GitHub repository](https://aka.ms/foundry-local-installer).
 
-1. **Run your first model**. Open a terminal and run this command:
+    Reference: [Foundry Local documentation](https://aka.ms/foundry-local-docs)
 
+  1. **Verify the installation**. Run:
+     ```bash
+     foundry --version
+     ```
+     You should see the installed version number.
+
+     Reference: [Foundry Local CLI reference](reference/reference-cli.md)
+
+1. **Run your first model**. Open a terminal and run this command:
    ```bash
    foundry model run qwen2.5-0.5b
    ```
@@ -80,9 +95,11 @@ Get started fast with Foundry Local:
    You see a response from the model in the terminal:
    :::image type="content" source="media/get-started-output.png" alt-text="Screenshot of output from Foundry Local run command." lightbox="media/get-started-output.png":::
 
+  Reference: [Foundry Local CLI reference](reference/reference-cli.md)
+
 ### Option 2: Download starter projects
 
-For practical, hands-on learning, download one of our starter projects that demonstrate real-world scenarios:
+For practical, hands-on learning, download one of the starter projects that demonstrate real-world scenarios:
 
 - [Chat Application Starter](https://github.com/microsoft/Foundry-Local/tree/main/samples/electron/foundry-chat): Build a local chat interface with multiple model support.
 - [Summarize Sample](https://github.com/microsoft/Foundry-Local/tree/main/samples/python/summarize): A command-line utility that generates summaries of text files or direct text input.
@@ -103,23 +120,7 @@ Each project includes:
 >
 > When you run `foundry model list` the first time, you see a download progress bar while Foundry Local downloads the execution providers for your hardware.
 
-## Run the latest OpenAI open-source model
-
-Run the latest OpenAI open-source model, `GPT-OSS-20B`, with this command:
-
-```bash
-foundry model run gpt-oss-20b
-```
-
-> [!IMPORTANT]
-> Requirements for running GPT-OSS-20B:
->
-> - NVIDIA GPU with 16 GB of VRAM or more.
-> - Foundry Local version **0.6.87** or later. Earlier versions don't support the model. Check your version with:
->
-> ```bash
-> foundry --version
-> ```
+Reference: [Foundry Local CLI reference](reference/reference-cli.md)
 
 ## Explore commands
 
@@ -129,19 +130,17 @@ The Foundry CLI organizes commands into these main categories:
 - **Service**: Commands for managing the Foundry Local service.
 - **Cache**: Commands for managing the local model cache (downloaded models on local disk).
 
-View all commands:
+To view all commands, use:
 
 ```bash
 foundry --help
 ```
 
-View **model** commands:
-
 ```bash
 foundry model --help
 ```
 
-View **service** commands:
+foundry --help
 
 ```bash
 foundry service --help
@@ -152,6 +151,29 @@ View **cache** commands:
 ```bash
 foundry cache --help
 ```
+
+Reference: [Foundry Local CLI reference](reference/reference-cli.md)
+
+## Optional: Run the latest GPT OSS 20B model
+
+Run the `gpt-oss-20b` model:
+
+```bash
+foundry model run gpt-oss-20b
+```
+
+> [!IMPORTANT]
+> If the model isn't available for your device, run a smaller model (for example, `qwen2.5-0.5b`).
+>
+> For the CUDA variant, you typically need an NVIDIA GPU with 16 GB of VRAM or more.
+>
+> Foundry Local version **0.6.87** or later adds support for this model. Check your version with:
+>
+> ```bash
+> foundry --version
+> ```
+
+Reference: [Foundry Local CLI reference](reference/reference-cli.md)
 
 > [!TIP]
 > For details on all CLI commands, see [Foundry Local CLI reference](reference/reference-cli.md).
@@ -186,16 +208,15 @@ To uninstall Foundry Local, run the command for your operating system:
 
 ## Troubleshooting
 
-### Service connection issues
+### Service connection problems
 
 If you see this error when you run `foundry model list` or a similar command:
 
-```
->foundry model list
+```text
+foundry model list
 
-🟢 Service is Started on http://127.0.0.1:0/, PID 11192!
-
-Exception: Request to local service failed. Uri:http://127.0.0.1:0/foundry/list
+Exception: Request to local service failed.
+Uri: http://127.0.0.1:0/foundry/list
 
 The requested address is not valid in its context. (127.0.0.1:0)
 
@@ -208,7 +229,9 @@ Run this command to restart the service:
 foundry service restart
 ```
 
-This command fixes cases where the service runs but isn't accessible because of a port binding issue.
+This command fixes cases where the service runs but isn't accessible because of a port binding problem.
+
+Reference: [Best practices and troubleshooting](reference/reference-best-practice.md)
 
 ## Related content
 

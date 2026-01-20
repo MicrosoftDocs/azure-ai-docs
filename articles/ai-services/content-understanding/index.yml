@@ -7,7 +7,7 @@ metadata:
   description: Content Understanding is a solution that analyzes and comprehends various media content—such as documents, images, audio, and video—transforming it into structured, organized, and searchable data.
   author: PatrickFarley 
   ms.author: pafarley
-  ms.date: 09/16/2025
+  ms.date: 12/18/2025
   ms.service: azure-ai-content-understanding
   ms.topic: landing-page
   ms.custom:
@@ -30,7 +30,7 @@ highlightedContent:
 
 conceptualContent:
   items:
-    - title: Foundry (classic)
+    - title: Microsoft Foundry (classic)
       links:
         - itemType: how-to-guide
           text: "Create Content Understanding Standard and Pro tasks in the Foundry (classic) portal"
@@ -52,7 +52,7 @@ conceptualContent:
         - itemType: how-to-guide
           text: Create a custom analyzer
           url: tutorial/create-custom-analyzer.md
-    - title: Classifiers
+    - title: Classification
       links:
         - itemType: overview
           text: Overview

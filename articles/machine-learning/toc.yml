@@ -1523,6 +1523,8 @@ items:
                 href: reference-yaml-deployment-kubernetes-online.md
               - name: Batch
                 href: reference-yaml-deployment-batch.md
+              - name: Deployment template
+                href: reference-yaml-deployment-template.md
           - name: Component
             items:
               - name: Spark
@@ -1691,7 +1693,7 @@ items:
       - name: Azure roadmap
         href: https://azure.microsoft.com/roadmap/
       - name: Pricing
-        href: https://azure.microsoft.com/pricing/details/machine-learning-services/
+        href: https://azure.microsoft.com/pricing/details/machine-learning/%5C
       - name: Conda licensing
         href: /legal/machine-learning/conda-licensing
       - name: Regional availability

@@ -9,7 +9,7 @@ ms.topic: how-to
 ms.custom: UpdateFrequency5, data4ml, devx-track-arm-template
 ms.author: scottpolly
 author: ynpandey
-ms.reviewer: franksolomon
+ms.reviewer: soumyapatro
 ms.date: 03/06/2025
 #Customer intent: As an experienced data scientist, I need to package my data into a consumable and reusable object to train my machine learning models.
 ---

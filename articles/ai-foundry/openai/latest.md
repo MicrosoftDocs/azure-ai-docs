@@ -397,8 +397,6 @@ An evaluation is a set of testing criteria and a datasource. After
 creating an evaluation, you can run it on different models and model
 parameters. We support several types of graders and datasources.
 
-For more information, see the [Evals guide](./how-to/evaluations.md).
-
 > [!NOTE]
 > This Azure OpenAI operation is in preview and subject to change.
 ### Parameters
@@ -5593,7 +5591,7 @@ A TextSimilarityGrader object which grades text based on similarity metrics.
 
 ### OpenAI.ImageGenTool
 
-A tool that generates images using a model like `gpt-image-1`.
+A tool that generates images using a model like `gpt-image-1`-series.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|

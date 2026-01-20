@@ -5,7 +5,7 @@ description: Learn about agentic retrieval concepts, architecture, and use cases
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 12/04/2025
+ms.date: 01/16/2026
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.custom:
@@ -34,6 +34,8 @@ This high-performance pipeline helps you generate high quality grounding data (o
 Programmatically, agentic retrieval is supported through a new [Knowledge Base object](/rest/api/searchservice/knowledge-bases?view=rest-searchservice-2025-11-01-preview&preserve-view=true) in the 2025-11-01-preview and in Azure SDK preview packages that provide the feature. A knowledge base's retrieval response is designed for downstream consumption by other agents and chat apps.
 
 ## Why use agentic retrieval
+
+There are two use cases for agentic retrieval. First, it's the basis of the [Foundry IQ experience](/azure/ai-foundry/agents/how-to/tools/knowledge-retrieval) in the Microsoft Foundry (new) portal. It provides the knowledge layer for agent solutions in Microsoft Foundry. Second, it's the basis for custom agentic solutions that you create using the Azure AI Search APIs.
 
 You should use agentic retrieval when you want to provide agents and apps with the most relevant content for answering harder questions, leveraging chat context and your proprietary content.
 
@@ -98,16 +100,14 @@ Your application drives the pipeline by calling the knowledge base and handling 
 
 ## How to get started
 
-To create an agentic retrieval solution, you must use a preview REST API version or a prerelease Azure SDK package that provides the functionality.
+To create an agentic retrieval solution, you can use the Azure portal, the latest preview REST APIs, or a preview Azure SDK package that provides the functionality.
 
-Currently, Azure portal support for agentic retrieval is limited to the 2025-08-01-preview. We recommend using a programmatic approach to access the latest features.
+Currently, the portal only supports creating search index and blob knowledge sources. Other types of knowledge sources must be created programmatically.
 
 ### [**Quickstarts**](#tab/quickstarts)
 
-+ [Quickstart: Use agentic retrieval in Azure AI Search](search-get-started-agentic-retrieval.md)
-  + This quickstart supports C#, Java, JavaScript, Python, TypeScript, and REST.
-+ [Quickstart: Use agentic retrieval in the Azure portal](get-started-portal-agentic-retrieval.md)
-  + The portal uses the 2025-08-01-preview, which uses the previous "knowledge agent" terminology and doesn't support all 2025-11-01-preview features. Breaking changes apply to objects created in this quickstart.
++ [Quickstart: Agentic retrieval in the Azure portal](get-started-portal-agentic-retrieval.md)
++ [Quickstart: Agentic retrieval](search-get-started-agentic-retrieval.md) (C#, Java, JavaScript, Python, TypeScript, REST)
 
 ### [**How-to guides**](#tab/how-to-guides)
 

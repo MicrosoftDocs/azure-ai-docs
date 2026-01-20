@@ -5,7 +5,7 @@ author: aahill
 ms.author: aahi
 ms.date: 12/04/2025
 ms.manager: nitinme
-ms.topic: conceptual
+ms.topic: concept-article
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ai-usage: ai-assisted
@@ -19,7 +19,10 @@ The Foundry Tools enables you to:
 
 * Browse and use Model Context Protocol (MCP) tool servers created by Microsoft and non-Microsoft services, for various use cases such as data integration, productivity and more. 
 * Streamline integration between tool configuration and adding to an agent or workflow. 
-* Filter, search, and sort by your desired outcome 
+* Filter, search, and sort by your desired outcome
+
+> [!NOTE]
+> If you're interested in bringing your official, remote MCP server(s) to all Foundry customers, please fill out this [form](https://forms.office.com/r/EEvMNceMRU).
 
 ## Considerations for using non-Microsoft services and servers 
 
@@ -82,6 +85,7 @@ Foundry Tools contains three sections:
     |[Azure AI Search](../how-to/tools/ai-search.md)     | Use an existing Azure AI Search index to ground agents with data in the index, and chat with your data.        |
     |[Browser Automation (preview)](../how-to/tools/browser-automation.md)     | Perform real-world browser tasks through natural language prompts.         |
     |[Code Interpreter](../how-to/tools/code-interpreter.md)     | Enable agents to write and run Python code in a sandboxed execution environment.         |
+    |[Custom Code Interpreter (preview)](../how-to/tools/custom-code-interpreter.md)     | Use a custom code interpreter MCP server to customize the resources, available Python packages, and Container Apps environment that the agent uses to run the Python code it writes.         |
     |[Computer Use (preview)](../how-to/tools/computer-use.md)     | Specialized AI tool that uses a specialized model that can perform tasks by interacting with computer systems and applications through their user interfaces         |
     |[File Search](../how-to/tools/file-search.md)     | Augment agents with knowledge from outside its model, such as proprietary product information or documents provided by your users.          |
     | [Grounding with Bing tools](../how-to/tools/bing-tools.md) | Enable your agent to use Grounding with Bing Search to access and return information from the internet.         |
@@ -105,3 +109,4 @@ Foundry Tools contains three sections:
 
 * [Create a private tool catalog](../how-to/private-tool-catalog.md)
 * [Build your own MCP server](https://aka.ms/FoundryCustomTool)
+* [Bring your remote, official MCP server to all Foundry customers](https://forms.office.com/r/EEvMNceMRU)

@@ -2,12 +2,12 @@
 title: Regions - Speech service
 titleSuffix: Foundry Tools
 description: A list of available regions and endpoints for the Speech service, including speech to text, text to speech, and speech translation.
-author: goergenj
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: conceptual
+ms.topic: article
 ms.date: 11/09/2025
-ms.author: jagoerge
+ms.author: pafarley
 ms.custom: references_regions
 #Customer intent: As a developer, I want to learn about the available regions and endpoints for the Speech service.
 ---
@@ -76,7 +76,7 @@ The regions in these tables support most of the core features of the Speech serv
 |-----|-----|-----|-----|-----|-----|-----|
 | australiaeast | ✅ | ✅ | ✅ | ✅ |   | ✅ |
 | brazilsouth | ✅ | ✅ | ✅ |   |   |   |
-| canadacentral | ✅ |   | ✅ |   |   | ✅ |
+| canadacentral | ✅ | ✅ | ✅ |   |   | ✅ |
 | canadaeast | ✅ |   | ✅ |   |   |   |
 | centralindia | ✅ | ✅ | ✅ |   | ✅ | ✅ |
 | centralus  | ✅ |   | ✅ |   |   |   |
@@ -84,11 +84,11 @@ The regions in these tables support most of the core features of the Speech serv
 | eastus | ✅ | ✅ | ✅ | ✅ |   | ✅ |
 | eastus2  | ✅ | ✅ | ✅ |   | ✅ | ✅ |
 | francecentral | ✅ | ✅ | ✅ |   |   | ✅ |
-| germanywestcentral | ✅ |   | ✅ |   |   |   |
+| germanywestcentral | ✅ | ✅ | ✅ |   |   |   |
 | italynorth | ✅ |   | ✅ |   |   |   |
 | japaneast  | ✅ | ✅ | ✅ | ✅ |   | ✅ |
-| japanwest  | ✅ |   | ✅ |   |   |   |
-| koreacentral   | ✅ |   | ✅ |   |   | ✅ |
+| japanwest  | ✅ | ✅ | ✅ |   |   |   |
+| koreacentral   | ✅ | ✅ | ✅ |   |   | ✅ |
 | northcentralus   | ✅ | ✅ | ✅ |   | ✅ |   |
 | northeurope | ✅ | ✅ | ✅ |   |   | ✅ |
 | norwayeast | ✅ |   | ✅ |   | ✅ |   |
@@ -265,12 +265,12 @@ The regions in these tables support most of the core features of the Speech serv
 | westus |  | ✅ |
 | westus2  | ✅ | ✅ |
 
-Verify and check actions taken: Computer Use might make mistakes and perform unintended actions. This behavior can be due to the model not fully understanding the GUI, having unclear instructions or encountering an unexpected scenario. 
+Verify and check actions taken: Computer Use might make mistakes and perform unintended actions. This behavior can be due to the model not fully understanding the GUI, having unclear instructions or encountering an unexpected scenario.
 
 # [Speech MCP server](#tab/mcp)
 
 
-| **Region** | **Speech MCP server agent tool** | 
+| **Region** | **Speech MCP server agent tool** |
 |-----|-----|
 | australiaeast | ✅ |
 | brazilsouth | ✅ |

@@ -5,7 +5,7 @@ description: See how to use the MLflow SDK to log MLflow models as models, not a
 services: machine-learning
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: fasantia
+ms.reviewer: jturuk
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.date: 03/04/2025

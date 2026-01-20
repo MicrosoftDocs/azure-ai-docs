@@ -7,7 +7,7 @@ author: mrcarter8
 ms.author: mcarter
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 09/26/2025
+ms.date: 12/15/2025
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2024
@@ -70,6 +70,8 @@ When evaluating shared private links for your scenario, remember these constrain
 + Indexer execution must use the [private execution environment](search-howto-run-reset-indexers.md#indexer-execution-environment) that's specific to your search service. Private endpoint connections aren't supported from the multitenant content processing environment. The configuration setting for this requirement is covered in this article.
 
 + Review shared private link [resource limits for each tier](search-limits-quotas-capacity.md#shared-private-link-resource-limits).
+
++ The resource type `Microsoft.CognitiveServices/accounts` for kind `AIServices` isn't currently supported.  This means that shared private link for Foundry resources with this kind can't be created at this time. If you require to use an Azure OpenAI embedding model for your skill or vectorizer, and need private communication, create an Azure OpenAI resource and a shared private link with the `Microsoft.CognitiveServices/accounts` with subtype `openai_account` as a workaround.
 
 ## Prerequisites
 

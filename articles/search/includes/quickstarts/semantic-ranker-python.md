@@ -17,13 +17,13 @@ In this quickstart, use a Jupyter notebook and the [**azure-search-documents**](
 We recommend [Visual Studio Code](https://code.visualstudio.com/download) with Python 3.10 or later and the [Python extension](https://code.visualstudio.com/docs/languages/python) for this quickstart.
 
 > [!TIP]
-> You can [download a finished notebook](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/Quickstart-Semantic-Search) to start with a finished project or follow these steps to create your own.
+> You can [download a finished notebook](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/Quickstart-Semantic-Ranking) to start with a finished project or follow these steps to create your own.
 
 We recommend a virtual environment for this quickstart:
 
 1. Start Visual Studio Code.
 
-1. Open the **semantic-search-quickstart.ipynb** file or create a new notebook.
+1. Open the **semantic-ranking-quickstart.ipynb** file or create a new notebook.
 
 1. Open the Command Palette by using **Ctrl+Shift+P**.
 
@@ -58,7 +58,7 @@ If you signed in to the [Azure portal](https://portal.azure.com), you're signed 
 
 In this section, you update a search index to include a semantic configuration. The code gets the index definition from the search service and adds a semantic configuration.
 
-1. Open the [semantic-search-quickstart.ipynb](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/Quickstart-Semantic-Search/semantic-search-quickstart.ipynb) file in Visual Studio Code or create a new file.
+1. Open the [semantic-ranking-quickstart.ipynb](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/Quickstart-Semantic-Ranking/semantic-ranking-quickstart.ipynb) file in Visual Studio Code or create a new file.
 
 1. Provide the variables used in the solution.
 

@@ -5,7 +5,8 @@ description: Transparency Note for Azure OpenAI
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: article
 monikerRange: 'foundry-classic || foundry'
 ms.date: 04/16/2025
@@ -39,6 +40,7 @@ Azure OpenAI provides customers with a fully managed Foundry Tool that lets deve
 | GPT-4.1</br>GPT-4.1-mini</br>GPT-4.1-nano | ✅ | ✅ |  |
 | GPT-4.5 | ✅ | ✅ |  |
 | GPT-5 | ✅ | ✅ |  |
+| GPT-5.1-Codex-Max | ✅ | ✅ |  |
 | GPT-oss-120b | ✅ |  |  |
 | o1 series | ✅ | ✅ |  |
 | o3/o3-pro | ✅ | ✅| | 

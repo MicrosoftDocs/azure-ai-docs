@@ -19,6 +19,8 @@ ms.update-cycle: 180-days
 
 # Embedding tool for flows in Microsoft Foundry portal
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 The prompt flow Embedding tool enables you to convert text into dense vector representations for various natural language processing tasks.

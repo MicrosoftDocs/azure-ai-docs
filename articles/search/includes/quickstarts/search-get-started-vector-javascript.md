@@ -4,43 +4,47 @@ author: diberry
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 11/20/2025
+ms.date: 01/14/2026
+ms.custom: dev-focus
+ai-usage: ai-assisted
 ---
 
-In this quickstart, you use JavaScript to create, load, and query vectors. The code examples perform these operations by using the [Azure AI Search client library](/javascript/api/overview/azure/search-documents-readme). The library provides an abstraction over the REST API for access to index operations such as data ingestion, search operations, and index management operations.
+In this quickstart, you use JavaScript to create, load, and query a [vector index](../../vector-store.md). The code performs these operations by using the [Azure AI Search client library for JavaScript](/javascript/api/overview/azure/search-documents-readme), which provides an abstraction over the REST APIs to access index operations.
 
-In Azure AI Search, a [vector store](../../vector-store.md) has an index schema that defines vector and nonvector fields, a vector search configuration for algorithms that create the embedding space, and settings on vector field definitions that are evaluated at query time. The [Create Index](/rest/api/searchservice/indexes/create-or-update) REST API creates the vector store.
+In Azure AI Search, a vector index has an index schema that defines vector and nonvector fields, a vector search configuration for algorithms that create the embedding space, and settings on vector field definitions that are evaluated at query time. [Indexes - Create or Update](/rest/api/searchservice/indexes/create-or-update) (REST API) creates the vector index.
 
 > [!NOTE]
 > This quickstart omits the vectorization step and provides inline embeddings. If you want to add [built-in data chunking and vectorization](../../vector-search-integrated-vectorization.md) over your own content, try the [**Import data (new)** wizard](../../search-get-started-portal-import-vectors.md) for an end-to-end walkthrough.
 
 ## Prerequisites
 
-- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
++ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-- An Azure AI Search service. [Create a service](../../search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/CognitiveSearch) in your current subscription.
-    - The `Search Index Data Contributor` role assigned at the scope of the service.
-    - You can use a free search service for most of this quickstart, but we recommend the Basic tier or higher for larger data files.
-    - To run the query example that invokes [semantic reranking](../../semantic-search-overview.md), your search service must have [semantic ranker enabled](../../semantic-how-to-enable-disable.md).
++ An [Azure AI Search service](../../search-create-service-portal.md).
 
-- [Visual Studio Code](https://code.visualstudio.com/download).
+    + You can use the Free tier for most of this quickstart, but we recommend Basic or higher for larger data files.
 
-- [Node.JS with LTS](https://nodejs.org/en/download/).
+    + For [keyless authentication](../../search-get-started-rbac.md) with Microsoft Entra ID, assign the **Search Index Data Contributor role** to your user account.
+    
+    + To run the semantic hybrid query, you must [enable semantic ranker](../../semantic-how-to-enable-disable.md).
+
++ [Visual Studio Code](https://code.visualstudio.com/download).
+
++ [Node.JS with LTS](https://nodejs.org/en/download/).
 
 ## Get service endpoints
 
 In the remaining sections, you set up API calls to Azure OpenAI and Azure AI Search. Get the service endpoints so that you can provide them as variables in your code.
 
+To get the service endpoint:
+
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
 1. [Find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 
-1. On the **Overview** home page, copy the URL. An example endpoint might look like `https://example.search.windows.net`. 
-
+1. On the **Overview** home page, copy the URL. An example endpoint might look like `https://example.search.windows.net`.
 
 ## Set up the Node.JS project
-
-Set up project with Visual Studio Code and JavaScript.
 
 1. Start Visual Studio Code in a new directory.
 
@@ -57,8 +61,7 @@ Set up project with Visual Studio Code and JavaScript.
 
    This creates a `package.json` file with default values.
 
-
-1. Install the following npm packages.
+1. Install the following `npm` packages.
 
    ```bash
    npm install @azure/identity @azure/search-documents dotenv
@@ -73,6 +76,7 @@ Set up project with Visual Studio Code and JavaScript.
 ## Set up environment variables for local development
 
 1. Create a `.env` file in your `vector-quickstart` project directory.
+
 1. Add the following environment variables to the `.env` file, replacing the values with your own service endpoints and keys.
 
    ```plaintext
@@ -85,7 +89,7 @@ You're using Microsoft Entra ID and role assignments for the connection. Make su
 
 Run each of the following commands in sequence.
 
-```azure-cli
+```azurecli
 az account show
 
 az account set --subscription <PUT YOUR SUBSCRIPTION ID HERE>
@@ -95,10 +99,11 @@ az login --tenant <PUT YOUR TENANT ID HERE>
 
 You should now be logged in to Azure from your local device.
 
-
-## Create the vector index 
+## Create a vector index
 
 In this section, you create a vector index in Azure AI Search with [SearchIndexClient](/javascript/api/@azure/search-documents/searchindexclient).[createOrUpdateIndex](/javascript/api/@azure/search-documents/searchindexclient#@azure-search-documents-searchindexclient-createorupdateindex). The index schema defines the fields, including the vector field `DescriptionVector`. 
+
+To create a vector index:
 
 1. Create a `createIndex.js` file in the `src` directory.
 
@@ -108,12 +113,13 @@ In this section, you create a vector index in Azure AI Search with [SearchIndexC
 
     The code file adds the dependencies, environment variables, and JavaScript type for `HotelDocument` to the top of the file. Add the `createIndex` function to create the index. The function defines the index schema, including the vector field `DescriptionVector`.
 
-1. Run the file:
+1. Run the file.
 
     ```bash
     node -r dotenv/config src/createIndex.js
     ```
-1. The output of this code shows that the index is created successfully:
+
+   The output of this code shows that the index is created successfully.
 
     ```output
     Using Azure Search endpoint: https://<search-service-name>.search.windows.net
@@ -122,24 +128,31 @@ In this section, you create a vector index in Azure AI Search with [SearchIndexC
     hotels-vector-quickstart created
     ```
 
-   Key takeaways when creating vector index with the `@azure/search-documents` library:
+   Key takeaways:
 
-   - You define an index by creating a list of fields. 
+   + You define an index by creating a list of fields. 
 
-   - This particular index supports multiple search capabilities, such as:
-      - Full-text keyword search (`searchable`)
-      - Vector search (enables hybrid search by collocating vector and nonvector fields) fields (`DescriptionVector` with `vectorSearchProfileName`)
-      - Semantic search 
-      - Faceted search (`searchSuggester`)
-      - Geo-spatial search (`Location` field with `geo.distance`)
-      - Filtering, sorting (Many fields marked filterable and sortable)
+   + This particular index supports multiple search capabilities, such as:
 
+      + Full-text keyword search (`searchable`)
+
+      + Vector search (enables hybrid search by collocating vector and nonvector fields) fields (`DescriptionVector` with `vectorSearchProfileName`)
+
+      + Semantic search 
+
+      + Faceted search (`searchSuggester`)
+
+      + Geo-spatial search (`Location` field with `geo.distance`)
+
+      + Filtering, sorting (many fields marked filterable and sortable)
 
 ## Upload documents to the index
 
-Creating and loading the index are separate steps. You created the index schema [in the previous step](#create-the-vector-index). Now you need to load documents into the index with [SearchClient](/javascript/api/@azure/search-documents/searchclient).[uploadDocuments](/javascript/api/%40azure/search-documents/searchclient#@azure-search-documents-searchclient-uploaddocuments). The documents contain the vectorized version of the article's description, which enables similarity search based on meaning rather than exact keywords.
+Creating and loading the index are separate steps. You created the index schema in the previous step. You now need to load documents into the index with [SearchClient](/javascript/api/@azure/search-documents/searchclient).[uploadDocuments](/javascript/api/%40azure/search-documents/searchclient#@azure-search-documents-searchclient-uploaddocuments). The documents contain the vectorized version of the article's description, which enables similarity search based on meaning rather than exact keywords.
 
 In Azure AI Search, the index stores all searchable content, while the search engine executes queries against that index.
+
+To upload documents to the index:
 
 1. Create an `uploadDocuments.js` file in the `src` directory.
 1. Copy the following code into the file.
@@ -150,12 +163,13 @@ In Azure AI Search, the index stores all searchable content, while the search en
 
     Because this quickstart article searches the index immediately, the `waitUntilIndexed` function waits until the index is ready for search operations. This is important because the index needs to be fully populated with documents before you can perform searches.
 
-1. Build and run the file:
+1. Build and run the file.
 
     ```bash
     node -r dotenv/config src/uploadDocuments.js
     ```
-1. The output of this code shows that the documents are indexed and ready for search:
+
+   The output of this code shows that the documents are indexed and ready for search.
 
     ```output
     Using Azure Search endpoint: https://<search-service-name>.search.windows.net
@@ -172,33 +186,38 @@ In Azure AI Search, the index stores all searchable content, while the search en
     All documents indexed successfully.
     ```
 
-    Key takeaways about the uploadDocuments() method and this example:
-    
-    * Your code interacts with a specific search index hosted in your Azure AI Search service through the SearchClient, which is the main object provided by the @azure/search-documents package. The SearchClient provides access to index operations such as:
-        * Data ingestion - uploadDocuments(), mergeDocuments(), deleteDocuments(), etc.
-        * Search operations - search(), autocomplete(), suggest()
-        * Index management operations such as createIndex(), deleteIndex(), getIndex(), etc.
-    * Vector fields contain floating point values. The dimensions attribute has a minimum of 2 and a maximum of 4096 floating point values each. This quickstart sets the dimensions attribute to 1,536 because that's the size of embeddings generated by the Azure OpenAI text-embedding-ada-002 model.
+    Key takeaways:
+
+    * Your code interacts with a specific search index hosted in your Azure AI Search service through the `SearchClient`, which is the main object provided by the @azure/search-documents package. The `SearchClient` provides access to index operations, such as:
+
+        * Data ingestion: `uploadDocuments`, `mergeDocuments`, `deleteDocuments`, and so on.
+
+        * Search operations: `search`, `autocomplete`, `suggest`
+
+        * Index management operations: `createIndex`, `deleteIndex`, `getIndex`, and so on.
+
+    * Vector fields contain floating point values. The dimensions attribute has a minimum of 2 and a maximum of 4096 floating point values each. This quickstart sets the dimensions attribute to 1,536 because that's the size of embeddings generated by the `text-embedding-ada-002` model.
 
 ## Create the query as a vector
 
 The example vector queries are based on two strings:
 
-- **Search string**: `historic hotel walk to restaurants and shopping`
-- **Vector query string** (vectorized into a mathematical representation): `quintessential lodging near running trails, eateries, retail`
++ Search string: `historic hotel walk to restaurants and shopping`
++ Vector query string: `quintessential lodging near running trails, eateries, retail` (vectorized into a mathematical representation)
 
 The vector query string is semantically similar to the search string, but it includes terms that don't exist in the search index. If you do a keyword search for `quintessential lodging near running trails, eateries, retail`, results are zero. We use this example to show how you can get relevant results even if there are no matching terms.
 
-1. Create a `queryVector.js` file in the `src` directory and add the code to create the query vector.
+Create a `queryVector.js` file in the `src` directory and add the code to create the query vector.
 
-    :::code language="javascript" source="~/azure-search-javascript-samples/quickstart-vector-js/src/queryVector.js" :::
+:::code language="javascript" source="~/azure-search-javascript-samples/quickstart-vector-js/src/queryVector.js" :::
 
-1. This code is used in the following sections to perform vector searches. The query vector is created using an embedding model from Azure OpenAI.
-
+This code is used in the following sections to perform vector searches. The query vector is created using an embedding model from Azure OpenAI.
 
 ## Create a single vector search
 
 The first example demonstrates a basic scenario where you want to find document descriptions that closely match the search string using the [SearchClient](/javascript/api/@azure/search-documents/searchclient).[search](/javascript/api/@azure/search-documents/searchclient#@azure-search-documents-searchclient-search) and the [VectorQuery](/javascript/api/@azure/search-documents/vectorquery) and [SearchOptions](/javascript/api/@azure/search-documents/searchoptions).
+
+To create a single vector search:
 
 1. Create a `searchSingle.js` file in the `src` directory.
 
@@ -210,13 +229,13 @@ The first example demonstrates a basic scenario where you want to find document 
 
     The vector query string is `quintessential lodging near running trails, eateries, retail`, which is vectorized into 1,536 embeddings for this query.
 
-1. Build and run the file:
+1. Build and run the file.
 
     ```bash
     node -r dotenv/config src/searchSingle.js
     ```
 
-1. The output of this code shows the relevant docs for the query `quintessential lodging near running trails, eateries, retail`. 
+   The output of this code shows the relevant docs for the query `quintessential lodging near running trails, eateries, retail`.
 
     ```output
     Using Azure Search endpoint: https://<search-service-name>.search.windows.net
@@ -238,6 +257,8 @@ The first example demonstrates a basic scenario where you want to find document 
 
 You can add filters, but the filters are applied to the nonvector content in your index. In this example, the filter applies to the `Tags` field to filter out any hotels that don't provide free Wi-Fi. This search uses [SearchClient](/javascript/api/@azure/search-documents/searchclient).[search](/javascript/api/@azure/search-documents/searchclient#@azure-search-documents-searchclient-search) and the [VectorQuery](/javascript/api/@azure/search-documents/vectorquery) and [SearchOptions](/javascript/api/@azure/search-documents/searchoptions). 
 
+To create a single vector search with a filter:
+
 1. Create a `searchSingleWithFilter.js` file in the `src` directory.
 
 1. Copy the following code into the file.
@@ -246,12 +267,13 @@ You can add filters, but the filters are applied to the nonvector content in you
 
     Add the dependencies, environment variables, and the same search functionality as the previous search with a post-processing exclusion filter added for hotels with `free wifi`.
 
-1. Build and run the file:
+1. Build and run the file.
 
     ```bash
     node -r dotenv/config src/searchSingleWithFilter.js
     ```
-1. The output of this code shows the relevant documents for the query with the filter for `free wifi` applied:
+
+   The output of this code shows the relevant documents for the query with the filter for `free wifi` applied.
 
     ```output
     Using Azure Search endpoint: https://<search-service-name>.search.windows.net
@@ -267,18 +289,20 @@ You can add filters, but the filters are applied to the nonvector content in you
 
 You can specify a geospatial filter to limit results to a specific geographic area. In this example, the filter limits results to hotels within 300 kilometers of Washington D.C. (coordinates: `-77.03241 38.90166`). Geospatial distances are always in kilometers. This search uses [SearchClient](/javascript/api/@azure/search-documents/searchclient).[search](/javascript/api/@azure/search-documents/searchclient#@azure-search-documents-searchclient-search) and the [VectorQuery](/javascript/api/@azure/search-documents/vectorquery) and [SearchOptions](/javascript/api/@azure/search-documents/searchoptions). 
 
+To create a search with a geospatial filter:
+
 1. Create a `searchSingleWithFilterGeo.js` file in the `src` directory.
 
 1. Copy the following code into the file.
 
     :::code language="javascript" source="~/azure-search-javascript-samples/quickstart-vector-js/src/searchSingleWithFilterGeo.js" :::
-1. Build and run the file:
+1. Build and run the file.
 
     ```bash
     node -r dotenv/config src/searchSingleWithFilterGeo.js
     ```
 
-1. The output of this code shows the relevant documents for the query with the geospatial post-processing exclusion filter applied:
+   The output of this code shows the relevant documents for the query with the geospatial post-processing exclusion filter applied.
 
     ```output
     Using Azure Search endpoint: https://<search-service-name>.search.windows.net
@@ -290,26 +314,28 @@ You can specify a geospatial filter to limit results to a specific geographic ar
     - HotelId: 49, HotelName: Swirling Currents Hotel, Tags: N/A, Score 0.602634072303772
     ```
 
-
 ## Create a hybrid search
 
 Hybrid search consists of keyword queries and vector queries in a single search request. This example runs the vector query and full-text search concurrently:
 
-- **Search string**: `historic hotel walk to restaurants and shopping`
-- **Vector query string** (vectorized into a mathematical representation): `quintessential lodging near running trails, eateries, retail`
++ Search string: `historic hotel walk to restaurants and shopping`
++ Vector query string: `quintessential lodging near running trails, eateries, retail` (vectorized into a mathematical representation)
 
 This search uses [SearchClient](/javascript/api/@azure/search-documents/searchclient).[search](/javascript/api/@azure/search-documents/searchclient#@azure-search-documents-searchclient-search) and the [VectorQuery](/javascript/api/@azure/search-documents/vectorquery) and [SearchOptions](/javascript/api/@azure/search-documents/searchoptions). 
+
+To create a hybrid search:
 
 1. Create a `searchHybrid.js` file in the `src` directory.
 1. Copy the following code into the file.
 
     :::code language="javascript" source="~/azure-search-javascript-samples/quickstart-vector-js/src/searchHybrid.js" :::
-1. Build and run the file:
+1. Build and run the file.
 
     ```bash
     node -r dotenv/config src/searchHybrid.js
     ```
-1. The output of this code shows the relevant documents for the hybrid search:
+
+   The output of this code shows the relevant documents for the hybrid search.
 
     ```output
     Using Azure Search endpoint: https://<search-service-name>.search.windows.net
@@ -353,7 +379,7 @@ This search uses [SearchClient](/javascript/api/@azure/search-documents/searchcl
       Tags: ["pool","free wifi","air conditioning","concierge"]
     ```
 
-    Because Reciprocal Rank Fusion (RRF) merges results, it helps to review the inputs. The following results are from only the full-text query. The top two results are Sublime Palace Hotel and History Lion Resort. The Sublime Palace Hotel has a stronger BM25 relevance score.
+    Because Reciprocal Rank Fusion (RRF) merges results, it helps to review the inputs. The following results are from the full-text query only. The top two results are Sublime Palace Hotel and Luxury Lion Resort. The Sublime Palace Hotel has a stronger BM25 relevance score.
 
     ```json
        {
@@ -368,7 +394,7 @@ This search uses [SearchClient](/javascript/api/@azure/search-documents/searchcl
        },
     ```
 
-    In the vector-only query, which uses HNSW for finding matches, the Sublime Palace Hotel drops to fourth position. Historic Lion, which was second in the full-text search and third in the vector search, doesn't experience the same range of fluctuation, so it appears as a top match in a homogenized result set.
+    In the vector-only query, which uses HNSW for finding matches, the Sublime Palace Hotel drops to the fourth position. Luxury Lion, which was second in the full-text search and third in the vector search, doesn't experience the same range of fluctuation, so it appears as a top match in a homogenized result set.
    
    ```json
    "value": [
@@ -430,18 +456,21 @@ Here's the last query in the collection to extend the semantic hybrid search wit
 
 This search uses [SearchClient](/javascript/api/@azure/search-documents/searchclient).[search](/javascript/api/@azure/search-documents/searchclient#@azure-search-documents-searchclient-search) and the [VectorQuery](/javascript/api/@azure/search-documents/vectorquery) and [SearchOptions](/javascript/api/@azure/search-documents/searchoptions). 
 
+To create a semantic hybrid search:
+
 1. Create a `searchSemanticHybrid.js` file in the `src` directory.
+
 1. Copy the following code into the file.
 
     :::code language="javascript" source="~/azure-search-javascript-samples/quickstart-vector-js/src/searchSemanticHybrid.js" :::
 
-1. Build and run the file:
+1. Build and run the file.
 
     ```bash
     node -r dotenv/config src/searchSemanticHybrid.js
     ```
 
-1. The output of this code shows the relevant documents for the semantic hybrid search:
+   The output of this code shows the relevant documents for the semantic hybrid search.
 
     ```output
     Using Azure Search endpoint: https://<search-service-name>.search.windows.net
@@ -495,20 +524,20 @@ This search uses [SearchClient](/javascript/api/@azure/search-documents/searchcl
 
     - Actual results include more detail, including semantic captions and highlights. Results were modified for readability. To get the full structure of the response, run the request in the REST client.
 
-## Clean up
+## Clean up resources
 
 When you're working in your own subscription, it's a good idea at the end of a project to identify whether you still need the resources you created. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
 
 You can find and manage resources in the Azure portal by using the **All resources** or **Resource groups** link in the leftmost pane.
 
-If you want to keep the search service, but delete the index and documents, you can delete the index programmatically.
+Alternatively, to delete the vector index you created in this quickstart programmatically:
 
 1. Create a `deleteIndex.js` file in the `src` directory.
 1. Add the dependencies, environment variables, and code to delete the index.
 
     :::code language="javascript" source="~/azure-search-javascript-samples/quickstart-vector-js/src/deleteIndex.js" :::
 
-1. Build and run the file:
+1. Build and run the file.
 
     ```bash
     node -r dotenv/config src/deleteIndex.js
@@ -516,4 +545,4 @@ If you want to keep the search service, but delete the index and documents, you 
 
 ## Next steps
 
-- Review the repository of code samples for vector search capabilities in Azure AI Search for [JavaScript](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-javascript)
++ Review the repository of code samples for vector search capabilities in Azure AI Search for [JavaScript](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-javascript).

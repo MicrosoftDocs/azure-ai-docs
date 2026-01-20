@@ -5,7 +5,7 @@ description: Learn about evaluation metrics in conversational language understan
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-clu
@@ -172,4 +172,4 @@ After you train your model, you see some guidance and recommendations on how to 
 
 ## Related content
 
-* [Train a model in Language Studio](../how-to/train-model.md)
+* [Train a model](../how-to/train-model.md)

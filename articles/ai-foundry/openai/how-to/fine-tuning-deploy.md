@@ -25,6 +25,9 @@ Azure OpenAI provides choices of deployment types for fine-tuned models on the h
 
 ## [Portal](#tab/portal)
 
+> [!IMPROTANT]
+> To deploy models, you need to be assigned as `Azure AI owner` role or any role with `Microsfot.CognitiveServices/accounts/deployments/write" action.
+
 To deploy your custom model, select the custom model to deploy, and then select **Deploy**.
 
 The **Deploy model** dialog box opens. In the dialog box, enter your **Deployment name** and then select **Create** to start the deployment of your custom model.
@@ -433,5 +436,4 @@ You can also delete a deployment in Foundry portal, or use [Azure CLI](/cli/azur
 
 ## Next steps
 
-- [Azure OpenAI Quotas & limits](./quota.md)
 - [Azure OpenAI deployment types](../../foundry-models/concepts/deployment-types.md)

@@ -25,33 +25,6 @@ items:
   - name: Create a workflow
     href: ../../agents/concepts/workflow.md
 
-# Setup and Configuration
-- name: Setup and configuration
-  items:
-  - name: Set up your development environment
-    href: ../../../agents/environment-setup.md
-  - name: Standard agent setup
-    href: ../../../agents/concepts/standard-agent-setup.md
-  - name: Use your own Azure resources
-    href: ../../../agents/how-to/use-your-own-resources.md
-  - name: Migrate agents
-    href: ../../agents/how-to/migrate.md
-  - name: Virtual networks
-    href: ../../../agents/how-to/virtual-networks.md
-  - name: Use an AI Gateway
-    href: ../../agents/how-to/ai-gateway.md
-
-# Development Tools
-- name: Development tools
-  items:
-  - name: Use the Visual Studio Code extension
-    href: ../../../how-to/develop/vs-code-agents.md
-  - name: Use MCP Tools in the Visual Studio Code extension
-    href: ../../../how-to/develop/vs-code-agents-mcp.md
-  - name: Use declarative agent workflows in the Visual Studio Code extension
-    href: ../../agents/how-to/vs-code-agents-workflow-low-code.md
-  - name: Use hosted agent workflows in the Visual Studio Code extension
-    href: ../../agents/how-to/vs-code-agents-workflow-pro-code.md
 
 # System Messages
 - name: System messages
@@ -80,7 +53,7 @@ items:
   - name: Service monitoring
     href: ../../../agents/how-to/metrics.md
   - name: Monitor agents in the dashboard
-    href: ../../agents/how-to/how-to-monitor-agents-dashboard.md
+    href: ../../observability/how-to/how-to-monitor-agents-dashboard.md
   - name: Trace agents
     items:
     - name: Trace agent overview

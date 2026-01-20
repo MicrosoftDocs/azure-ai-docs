@@ -6,7 +6,7 @@ ai-usage: ai-assisted
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: article
-ms.date: 11/03/2025
+ms.date: 01/12/2026
 manager: nitinme
 author: msakande 
 ms.author: mopeakande 
@@ -128,9 +128,9 @@ Use these steps to delete a provisioned deployment to avoid unwanted charges.
 
 ## How much throughput per PTU you get for each model
 
-The amount of throughput (measured in tokens per minute or TPM) a deployment gets per PTU is a function of the input and output tokens in a given minute. Generating output tokens requires more processing than input tokens. Starting with GPT 4.1 models and later, the system matches the global standard price ratio between input and output tokens. Cached tokens are deducted 100% from the utilization.
+The amount of throughput (measured in tokens per minute or TPM) a deployment gets per PTU is a function of the input and output tokens in a given minute. Generating output tokens requires more processing than input tokens. Starting with GPT 4.1 models and later, the system generally matches the global standard price ratio between input and output tokens, with [exceptions for some models](#exceptions-to-input-and-output-throughput-ratio). For all deployments, cached tokens are deducted 100% from the utilization.
 
-For example, for gpt-5, 1 output token counts as 8 input tokens towards your utilization limit which matches the [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). For other models, such as gpt-4.1, 1 output token counts as 4 input tokens. Older models use a different ratio.
+For example, for gpt-5, one output token counts as eight input tokens towards your utilization limit, which matches the [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). For other models, such as gpt-4.1, one output token counts as four input tokens. Older models use a different ratio.
 
 ::: moniker range="foundry-classic"
 
@@ -138,19 +138,23 @@ For a deeper understanding on how different ratios of input and output tokens im
 
 ::: moniker-end
 
+#### Exceptions to input and output throughput ratio
+
+The system allows exceptions to the standard input-to-output token ratio for certain models. For example, with Llama-3.3-70B-Instruct, one output token counts as four input tokens toward your utilization limit. This ratio differs from the global standard price ratio between input and output tokens. To see the input and output pricing for the model, see [pricing for Llama models](https://azure.microsoft.com/pricing/details/ai-foundry-models/llama/).
+
 ## Latest Azure OpenAI models
 
 > [!NOTE]
 > gpt-4.1, gpt-4.1-mini and gpt-4.1-nano don't support long context (requests estimated at larger than 128k prompt tokens).
 
-|Topic| **gpt-5.1** | **gpt-5.1-codex** | **gpt-5** | **gpt-5-mini** | **gpt-4.1** | **gpt-4.1-mini** | **gpt-4.1-nano** | **o3** | **o4-mini** | 
-| --- | --- | --- | --- |  --- | --- |  --- |  --- | --- |  --- |
-|Global & data zone provisioned minimum deployment| 15 | 15 | 15 | 15  | 15|15| 15 | 15 | 15 |
-|Global & data zone provisioned scale increment| 5 | 5 | 5 | 5 | 5|5| 5 | 5 | 5 |
-|Regional provisioned minimum deployment| 50 | 50 | 50 | 25 | 50|25| 25 |50 |25|
-|Regional provisioned scale increment| 50 | 50 | 50 | 25 | 50|25| 25 | 50 | 25|
-|Input TPM per PTU| 4,750 | 4,750 | 4,750  | 23,750 | 3,000|14,900| 59,400 | 3,000 | 5,400 |
-|Latency Target Value| 99% > 50 Tokens Per Second\* | 99% > 50 Tokens Per Second\* | 99% > 50 Tokens Per Second\* | 99% > 80 Tokens Per Second\* | 99% > 80 Tokens Per Second\* | 99% > 90 Tokens Per Second\*| 99% > 100 Tokens Per Second\* | 99% > 80 Tokens Per Second\* | 99% > 90 Tokens Per Second\* |
+| Topic | **gpt-5.2** | **gpt-5.1** | **gpt-5.1-codex** | **gpt-5** | **gpt-5-mini** | **gpt-4.1** | **gpt-4.1-mini** | **gpt-4.1-nano** | **o3** | **o4-mini** |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Global & data zone provisioned minimum deployment | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 |
+| Global & data zone provisioned scale increment | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 |
+| Regional provisioned minimum deployment | 50 | 50 | 50 | 50 | 25 | 50 | 25 | 25 | 50 | 25 |
+| Regional provisioned scale increment | 50 | 50 | 50 | 50 | 25 | 50 | 25 | 25 | 50 | 25 |
+| Input TPM per PTU | 3,400 | 4,750 | 4,750 | 4,750 | 23,750 | 3,000 | 14,900 | 59,400 | 3,000 | 5,400 |
+| Latency Target Value | 99% > 50 Tokens Per Second\* | 99% > 50 Tokens Per Second\* | 99% > 50 Tokens Per Second\* | 99% > 50 Tokens Per Second\* | 99% > 80 Tokens Per Second\* | 99% > 80 Tokens Per Second\* | 99% > 90 Tokens Per Second\* | 99% > 100 Tokens Per Second\* | 99% > 80 Tokens Per Second\* | 99% > 90 Tokens Per Second\* |
 
 \* Calculated as p50 request latency on a per 5 minute basis.
 
@@ -169,17 +173,19 @@ For a deeper understanding on how different ratios of input and output tokens im
 
 ## Direct from Azure models
  
-|Topic| **DeepSeek-R1** | **DeepSeek-V3-0324** | **DeepSeek-R1-0528** |
-| --- | --- | --- | --- |
-|Global & data zone provisioned minimum deployment| 100|100|100|
-|Global & data zone provisioned scale increment|  100|100|100|
-|Regional provisioned minimum deployment| NA|NA|NA|
-|Regional provisioned scale increment|NA|NA|NA|
-|Input TPM per PTU|4,000|4,000|4,000|
-|Latency Target Value| 99% > 50 Tokens Per Second\*| 99% > 50 Tokens Per Second\*| 99% > 50 Tokens Per Second\*|
+|Topic| **Llama-3.3-70B-Instruct** | **DeepSeek-R1** | **DeepSeek-V3-0324** | **DeepSeek-R1-0528** |
+|---|---|---|---|---|
+|Global & data zone provisioned minimum deployment|100|100|100|100|
+|Global & data zone provisioned scale increment|100|100|100|100|
+|Regional provisioned minimum deployment|NA|NA|NA|NA|
+|Regional provisioned scale increment|NA|NA|NA|NA|
+|Input TPM per PTU|8,450<sup>1</sup>|4,000|4,000|4,000|
+|Latency Target Value|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|
 
 \* Calculated as the average request latency on a per-minute basis across the month.
 
+<sup>1</sup> For Llama-3.3-70B-Instruct, one output token counts as four input tokens towards your utilization limit. This ratio differs from the global standard price ratio between input and output tokens. For more details, see [Exceptions to input and output throughput ratio](#exceptions-to-input-and-output-throughput-ratio).
+ 
 ::: moniker range="foundry-classic"
 
 For a full list, see the [Foundry calculator](https://ai.azure.com/resource/calculator).

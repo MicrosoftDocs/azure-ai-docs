@@ -4,25 +4,29 @@ author: haileytapia
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 11/20/2025
+ms.date: 01/14/2026
+ms.custom: dev-focus
+ai-usage: ai-assisted
 ---
 
-In this quickstart, you use the [Azure AI Search REST APIs](/rest/api/searchservice) to create, load, and query vectors.
+In this quickstart, you use the [Azure AI Search REST APIs](/rest/api/searchservice) to create, load, and query a [vector index](../../vector-store.md).
 
-In Azure AI Search, a [vector store](../../vector-store.md) has an index schema that defines vector and nonvector fields, a vector search configuration for algorithms that create the embedding space, and settings on vector field definitions that are evaluated at query time. The [Create Index](/rest/api/searchservice/indexes/create-or-update) REST API creates the vector store.
+In Azure AI Search, a vector index has an index schema that defines vector and nonvector fields, a vector search configuration for algorithms that create the embedding space, and settings on vector field definitions that are evaluated at query time. [Indexes - Create or Update](/rest/api/searchservice/indexes/create-or-update) (REST API) creates the vector index.
 
 > [!NOTE]
 > This quickstart omits the vectorization step and provides inline embeddings. If you want to add [built-in data chunking and vectorization](../../vector-search-integrated-vectorization.md) over your own content, try the [**Import data (new)** wizard](../../search-get-started-portal-import-vectors.md) for an end-to-end walkthrough.
 
 ## Prerequisites
 
-- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
++ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-- An Azure AI Search service. [Create a service](../../search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/CognitiveSearch) in your current subscription.
-    - You can use a free search service for most of this quickstart, but we recommend the Basic tier or higher for larger data files.
-    - To run the query example that invokes [semantic reranking](../../semantic-search-overview.md), your search service must have [semantic ranker enabled](../../semantic-how-to-enable-disable.md).
++ An [Azure AI Search service](../../search-create-service-portal.md).
 
-- [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
+    + You can use the Free tier for most of this quickstart, but we recommend Basic or higher for larger data files.
+    
+    + To run the semantic hybrid query, you must [enable semantic ranker](../../semantic-how-to-enable-disable.md).
+
++ [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
 ## Get service information
 
@@ -48,7 +52,6 @@ Select the tab that corresponds to your preferred authentication method. Use the
 
 #### [API key](#tab/api-key)
 
-
 1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/CognitiveSearch).
 
 1. On the **Overview** home page, find the URL. An example endpoint might look like `https://mydemo.search.windows.net`. 
@@ -65,38 +68,41 @@ Select the tab that corresponds to your preferred authentication method. Use the
 
 You use one `.rest` or `.http` file to run all the requests in this quickstart. You can download the REST file that contains the code for this quickstart, or you can create a new file in Visual Studio Code and copy the code into it.
 
-1. In Visual Studio Code, create a new file with a `.rest` or `.http` file extension. For example, `az-search-vector-quickstart.rest`. Copy and paste the raw contents of the [Azure-Samples/azure-search-rest-samples/blob/main/Quickstart-vectors/az-search-vector-quickstart.rest](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-vectors) file into this new file. 
+To create the code file:
 
-1. At the top of the file, replace the placeholder value for `@baseUrl` with your search service URL. See the [Get service information](#get-service-information) section for instructions on how to find your search service URL.
+1. In Visual Studio Code, create a file with a `.rest` or `.http` file extension, such as `az-search-vector-quickstart.rest`.
 
+1. Copy and paste the raw contents of the [az-search-vector-quickstart.rest](https://github.com/Azure-Samples/azure-search-rest-samples/blob/main/Quickstart-vectors/az-search-quickstart-vectors.rest) file into the new file. 
 
    ```http
    @baseUrl = PUT-YOUR-SEARCH-SERVICE-URL-HERE
    ```
 
-1. At the top of the file, replace the placeholder value for authentication. See the [Get service information](#get-service-information) section for instructions on how to get your Microsoft Entra token or API key.
+1. Set `@baseUrl` to the endpoint you obtained in [Get service information](#get-service-information).
 
-    For the **recommended** keyless authentication via Microsoft Entra ID, you need to replace `@apiKey` with the `@token` variable.
+1. Set the key or token for authentication. You obtained this value in [Get service information](#get-service-information).
 
-   ```http
-   @token = PUT-YOUR-MICROSOFT-ENTRA-TOKEN-HERE
-   ```
+   + For the **recommended** keyless authentication with Microsoft Entra ID, replace `@apiKey` with the `@token` variable.
 
-    If you prefer to use an API key, replace `@apiKey` with the key you copied from the Azure portal.
+        ```http
+        @token = PUT-YOUR-MICROSOFT-ENTRA-TOKEN-HERE
+        ```
 
-    ```http
-    @apiKey = PUT-YOUR-ADMIN-KEY-HERE
-    ```
+    + If you prefer to use an API key, replace `@apiKey` with the key you copied from the Azure portal.
 
-1. For the **recommended** keyless authentication via Microsoft Entra ID, you need to replace `api-key: {{apiKey}}` with `Authorization: Bearer {{token}}` in the request headers. Replace all instances of `api-key: {{apiKey}}` that you find in the file.
+        ```http
+        @apiKey = PUT-YOUR-ADMIN-KEY-HERE
+        ```
 
-
+1. For the **recommended** keyless authentication with Microsoft Entra ID, replace all instances of `api-key: {{apiKey}}` with `Authorization: Bearer {{token}}` in the request headers.
 
 ## Create a vector index
 
-You use the [Create Index](/rest/api/searchservice/indexes/create) REST API to create a vector index and set up the physical data structures on your search service.
+You use [Indexes - Create](/rest/api/searchservice/indexes/create) (REST API) to create a vector index and set up the physical data structures on your search service.
 
 The index schema in this example is organized around hotel content. Sample data consists of vector and nonvector descriptions of fictitious hotels. This schema includes configurations for vector indexing and queries, and for semantic ranking.
+
+To create a vector index:
 
 1. In Visual Studio Code, open the `az-search-vector-quickstart.rest` file you [created earlier](#create-or-download-the-code-file).
 
@@ -378,21 +384,23 @@ The index schema in this example is organized around hotel content. Sample data 
     }
     ```
 
-Key takeaways about the [Create Index](/rest/api/searchservice/indexes/create) REST API:
+    Key takeaways:
+    
+    + The `fields` collection includes a required key field and text and vector fields (such as `Description` and `DescriptionVector`) for text and vector search. Colocating vector and nonvector fields in the same index enables hybrid queries. For instance, you can combine filters, text search with semantic ranking, and vectors into a single query operation.
+    
+    + Vector fields must be one of the [EDM data types used for vectors](/rest/api/searchservice/supported-data-types#edm-data-types-for-vector-fields), such as `type: Collection(Edm.Single)`. Vector fields also have `dimensions` and `vectorSearchProfile` properties.
+    
+    + The `vectorSearch` section is an array of Approximate Nearest Neighbor (ANN) algorithm configurations and profiles. Supported algorithms include Hierarchical Navigable Small World and exhaustive K-Nearest Neighbor. For more information, see [Relevance scoring in vector search](../../vector-search-ranking.md).
+    
+    + The (optional) `semantic` configuration enables reranking of search results. You can rerank results in queries of type `semantic` for string fields that are specified in the configuration. To learn more, see [Semantic ranking overview](../../semantic-search-overview.md).
 
-- The `fields` collection includes a required key field and text and vector fields (such as `Description` and `DescriptionVector`) for text and vector search. Colocating vector and nonvector fields in the same index enables hybrid queries. For instance, you can combine filters, text search with semantic ranking, and vectors into a single query operation.
+## Upload documents to the index
 
-- Vector fields must be one of the [EDM data types used for vectors](/rest/api/searchservice/supported-data-types#edm-data-types-for-vector-fields), such as `type: Collection(Edm.Single)`. Vector fields also have `dimensions` and `vectorSearchProfile` properties.
-
-- The `vectorSearch` section is an array of Approximate Nearest Neighbor (ANN) algorithm configurations and profiles. Supported algorithms include Hierarchical Navigable Small World and exhaustive K-Nearest Neighbor. For more information, see [Relevance scoring in vector search](../../vector-search-ranking.md).
-
-- The (optional) `semantic` configuration enables reranking of search results. You can rerank results in queries of type `semantic` for string fields that are specified in the configuration. To learn more, see [Semantic ranking overview](../../semantic-search-overview.md).
-
-## Upload documents
-
-Creating and loading the index are separate steps. You created the index schema [in the previous step](#create-a-vector-index). Now you need to load documents into the index.
+Creating and loading the index are separate steps. You created the index schema in the previous step. You now need to load documents into the index.
  
-In Azure AI Search, the index contains all searchable data and queries run on the search service. For REST calls, the data is provided as JSON documents. Use [Documents- Index REST API](/rest/api/searchservice/documents/) for this task. The URI is extended to include the `docs` collection and the `index` operation.
+In Azure AI Search, the index contains all searchable data and queries run on the search service. For REST calls, the data is provided as JSON documents. Use [Documents - Index](/rest/api/searchservice/documents/) (REST API) for this task. The URI is extended to include the `docs` collection and the `index` operation.
+
+To upload documents to the index:
 
 1. Formulate an upload documents request to upload documents to the `hotels-vector-quickstart` index on your search service.
 
@@ -639,31 +647,33 @@ In Azure AI Search, the index contains all searchable data and queries run on th
 
 1. Select **Send Request**. You should have an `HTTP/1.1 200 OK` response. The response body should include the JSON representation of the search documents.
 
-Key takeaways about the [Documents - Index REST API](/rest/api/searchservice/documents/) request:
-
-- Documents in the payload consist of fields defined in the index schema.
-
-- Vector fields contain floating point values. The dimensions attribute has a minimum of 2 and a maximum of `4096` floating point values each. This quickstart sets the dimensions attribute to 1,536 because that's the size of embeddings generated by the Azure OpenAI **text-embedding-3-small** model.
+    Key takeaways:
+    
+    + Documents in the payload consist of fields defined in the index schema.
+    
+    + Vector fields contain floating point values. The dimensions attribute has a minimum of 2 and a maximum of 4096 floating point values each. This quickstart sets the dimensions attribute to 1,536 because that's the size of embeddings generated by the `text-embedding-ada-002` model.
 
 ## Run queries
 
-Now that documents are loaded, you can run vector queries against them by using [Documents - Search Post (REST)](/rest/api/searchservice/documents/search-post).
+Now that documents are loaded, you can run vector queries against them by using [Documents - Search Post](/rest/api/searchservice/documents/search-post) (REST API).
 
-In the next sections, we run queries against the `hotels-vector-quickstart` index. The queries include:
+Queries in this section:
 
-- [Single vector search](#single-vector-search)
-- [Single vector search with filter](#single-vector-search-with-filter)
-- [Hybrid search](#hybrid-search)
-- [Semantic hybrid search](#semantic-hybrid-search)
++ [Single vector search](#single-vector-search)
++ [Single vector search with filter](#single-vector-search-with-filter)
++ [Hybrid search](#hybrid-search)
++ [Semantic hybrid search](#semantic-hybrid-search)
 
 The example queries are based on two strings:
 
-- **Search string**: `historic hotel walk to restaurants and shopping`
-- **Vector query string** (vectorized into a mathematical representation): `quintessential lodging near running trails, eateries, retail`
++ Search string: `historic hotel walk to restaurants and shopping`
++ Vector query string: `quintessential lodging near running trails, eateries, retail` (vectorized into a mathematical representation)
 
 The vector query string is semantically similar to the search string, but it includes terms that don't exist in the search index. If you do a keyword search for `quintessential lodging near running trails, eateries, retail`, results are zero in a pure keyword search without semantic ranking. We use this example to show how you can get relevant results using vectors, even if there are no matching terms.
 
 ### Single vector search
+
+To create a single vector search:
 
 1. Formulate the request. The query is a 1536 float representation of *quintessential lodging near running trails, eateries, retail*. The query is searching `DescriptionVector` and returning k-5 results. It's using the "exhaustive" override parameter to perform a full scan of the index instead of ANN. An exhaustive search is useful for small indexes.
 
@@ -688,7 +698,7 @@ The vector query string is semantically similar to the search string, but it inc
         }
     ```
 
-   Key takeaways about the [Documents - Search Post](/rest/api/searchservice/documents/search-post) REST API:
+    Key takeaways about [Documents - Search Post](/rest/api/searchservice/documents/search-post) (REST API):
 
     + The `vectorQueries.vector` is the vector query string. It's a vector representation of *quintessential lodging near running trails, eateries, retail*, which is vectorized into 1,536 embeddings for this query.
 
@@ -775,6 +785,8 @@ The vector query string is semantically similar to the search string, but it inc
 ### Single vector search with filter
 
 You can add filters, but the filters are applied to the nonvector content in your index. In this example, the filter applies to the `Tags` field to filter out any hotels that don't provide free Wi-Fi.
+
+To create a single vector search with a filter:
 
 1. Formulate the request. This is the same request as the previous one, with an extra filter and filter mode parameter.
 
@@ -906,8 +918,10 @@ You can add filters, but the filters are applied to the nonvector content in you
 
 Hybrid search consists of keyword queries and vector queries in a single search request. This example runs the vector query and full text search concurrently:
 
-- **Search string**: `historic hotel walk to restaurants and shopping`
-- **Vector query string** (vectorized into a mathematical representation): `quintessential lodging near running trails, eateries, retail`
++ Search string: `historic hotel walk to restaurants and shopping`
++ Vector query string: `quintessential lodging near running trails, eateries, retail` (vectorized into a mathematical representation)
+
+To create a hybrid search:
 
 1. Formulate the hybrid query.
 
@@ -936,94 +950,96 @@ Hybrid search consists of keyword queries and vector queries in a single search 
 
 1. Select **Send Request**. You should have an `HTTP/1.1 200 OK` response. The response body should include the JSON representation of the search results.
 
-Because this is a hybrid query, results are [ranked by Reciprocal Rank Fusion (RRF)](../../hybrid-search-ranking.md#scores-in-a-hybrid-search-results). Notice that `@search.score` values have a different basis and are uniformly smaller values. RRF evaluates search scores of multiple search results, takes the inverse, and then merges and sorts the combined results. The `top` number of results are returned.
-
-Review the response, consisting of the top k-5 matches out of 7 matching documents in the index:
-
-```json
-{
-  "@odata.count": 7,
-  "value": [
+    Because this is a hybrid query, results are [ranked by Reciprocal Rank Fusion (RRF)](../../hybrid-search-ranking.md#scores-in-a-hybrid-search-results). Notice that `@search.score` values have a different basis and are uniformly smaller values. RRF evaluates search scores of multiple search results, takes the inverse, and then merges and sorts the combined results. The `top` number of results are returned.
+    
+    Review the response, consisting of the top k-5 matches out of 7 matching documents in the index:
+    
+    ```json
     {
-      "@search.score": 0.03279569745063782,
-      "HotelName": "Sublime Palace Hotel",
-      "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 19th century resort, updated for every modern convenience."
-    },
-    {
-      "@search.score": 0.032522473484277725,
-      "HotelName": "Luxury Lion Resort",
-      "Description": "Unmatched Luxury. Visit our downtown hotel to indulge in luxury accommodations. Moments from the stadium and transportation hubs, we feature the best in convenience and comfort."
-    },
-    {
-      "@search.score": 0.03205128386616707,
-      "HotelName": "Nordick's Valley Motel",
-      "Description": "Only 90 miles (about 2 hours) from the nation's capital and nearby most everything the historic valley has to offer. Hiking? Wine Tasting? Exploring the caverns? It's all nearby and we have specially priced packages to help make our B&B your home base for fun while visiting the valley."
-    },
-    {
-      "@search.score": 0.0317460335791111,
-      "HotelName": "Swirling Currents Hotel",
-      "Description": "Spacious rooms, glamorous suites and residences, rooftop pool, walking access to shopping, dining, entertainment and the city center. Each room comes equipped with a microwave, a coffee maker and a minifridge. In-room entertainment includes complimentary Wi-Fi and flat-screen TVs."
-    },
-    {
-      "@search.score": 0.03125,
-      "HotelName": "Old Century Hotel",
-      "Description": "The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer dinners, and live music."
+      "@odata.count": 7,
+      "value": [
+        {
+          "@search.score": 0.03279569745063782,
+          "HotelName": "Sublime Palace Hotel",
+          "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 19th century resort, updated for every modern convenience."
+        },
+        {
+          "@search.score": 0.032522473484277725,
+          "HotelName": "Luxury Lion Resort",
+          "Description": "Unmatched Luxury. Visit our downtown hotel to indulge in luxury accommodations. Moments from the stadium and transportation hubs, we feature the best in convenience and comfort."
+        },
+        {
+          "@search.score": 0.03205128386616707,
+          "HotelName": "Nordick's Valley Motel",
+          "Description": "Only 90 miles (about 2 hours) from the nation's capital and nearby most everything the historic valley has to offer. Hiking? Wine Tasting? Exploring the caverns? It's all nearby and we have specially priced packages to help make our B&B your home base for fun while visiting the valley."
+        },
+        {
+          "@search.score": 0.0317460335791111,
+          "HotelName": "Swirling Currents Hotel",
+          "Description": "Spacious rooms, glamorous suites and residences, rooftop pool, walking access to shopping, dining, entertainment and the city center. Each room comes equipped with a microwave, a coffee maker and a minifridge. In-room entertainment includes complimentary Wi-Fi and flat-screen TVs."
+        },
+        {
+          "@search.score": 0.03125,
+          "HotelName": "Old Century Hotel",
+          "Description": "The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer dinners, and live music."
+        }
+      ]
     }
-  ]
-}
-```
-
-Because RRF merges results, it helps to review the inputs individually. 
-
-The following results are from the full-text portion of the query: *historic hotel walk to restaurants and shopping*. In the full text query, the top three results are Sublime Palace Hotel, Stay-Kay City Hotel, and Luxury Lion Resort. The Sublime Palace Hotel has a stronger BM25 relevance score. In the fused query, only two of these matches are in the top 3, and the second match (Stay-Kay City Hotel) doesn't appear in the top 5 at all.
-
-```json
-  "value": [
-    {
-      "@search.score": 1.4868739,
-      "HotelName": "Sublime Palace Hotel",
-      "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 19th century resort, updated for every modern convenience."
-    },
-    {
-      "@search.score": 1.2699215,
-      "HotelName": "Stay-Kay City Hotel",
-      "Description": "This classic hotel is fully-refurbished and ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Times Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities."
-    },
-    {
-      "@search.score": 1.2456272,
-      "HotelName": "Luxury Lion Resort",
-      "Description": "Unmatched Luxury. Visit our downtown hotel to indulge in luxury accommodations. Moments from the stadium and transportation hubs, we feature the best in convenience and comfort."
-    },
-    ...
-  ]
-```
-
-In the vector portion query (*quintessential lodging near running trails, eateries, retail*) is a different string so we should expect different results. This query returns Nordick's Valley Motel, Luxury Lion Resort, and Sublime Palace Hotel as the top three matches. In the fused query, these results are in the top 3, but in reverse order.
-
-```json
-  "value": [
-    {
-      "@search.score": 0.6605852,
-      "HotelName": "Nordick's Valley Motel",
-      "Description": "Only 90 miles (about 2 hours) from the nation's capital and nearby most everything the historic valley has to offer. Hiking? Wine Tasting? Exploring the caverns? It's all nearby and we have specially priced packages to help make our B&B your home base for fun while visiting the valley."
-    },
-    {
-      "@search.score": 0.6333684,
-      "HotelName": "Luxury Lion Resort",
-      "Description": "Unmatched Luxury. Visit our downtown hotel to indulge in luxury accommodations. Moments from the stadium and transportation hubs, we feature the best in convenience and comfort."
-    },
-    {
-      "@search.score": 0.605672,
-      "HotelName": "Sublime Palace Hotel",
-      "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 19th century resort, updated for every modern convenience."
-    },
-   ...
-  ]
-```
+    ```
+    
+    Because RRF merges results, it helps to review the inputs individually. 
+    
+    The following results are from the full-text portion of the query: *historic hotel walk to restaurants and shopping*. In the full text query, the top three results are Sublime Palace Hotel, Stay-Kay City Hotel, and Luxury Lion Resort. The Sublime Palace Hotel has a stronger BM25 relevance score. In the fused query, only two of these matches are in the top 3, and the second match (Stay-Kay City Hotel) doesn't appear in the top 5 at all.
+    
+    ```json
+      "value": [
+        {
+          "@search.score": 1.4868739,
+          "HotelName": "Sublime Palace Hotel",
+          "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 19th century resort, updated for every modern convenience."
+        },
+        {
+          "@search.score": 1.2699215,
+          "HotelName": "Stay-Kay City Hotel",
+          "Description": "This classic hotel is fully-refurbished and ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Times Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities."
+        },
+        {
+          "@search.score": 1.2456272,
+          "HotelName": "Luxury Lion Resort",
+          "Description": "Unmatched Luxury. Visit our downtown hotel to indulge in luxury accommodations. Moments from the stadium and transportation hubs, we feature the best in convenience and comfort."
+        },
+        ...
+      ]
+    ```
+    
+    In the vector portion query (*quintessential lodging near running trails, eateries, retail*) is a different string so we should expect different results. This query returns Nordick's Valley Motel, Luxury Lion Resort, and Sublime Palace Hotel as the top three matches. In the fused query, these results are in the top 3, but in reverse order.
+    
+    ```json
+      "value": [
+        {
+          "@search.score": 0.6605852,
+          "HotelName": "Nordick's Valley Motel",
+          "Description": "Only 90 miles (about 2 hours) from the nation's capital and nearby most everything the historic valley has to offer. Hiking? Wine Tasting? Exploring the caverns? It's all nearby and we have specially priced packages to help make our B&B your home base for fun while visiting the valley."
+        },
+        {
+          "@search.score": 0.6333684,
+          "HotelName": "Luxury Lion Resort",
+          "Description": "Unmatched Luxury. Visit our downtown hotel to indulge in luxury accommodations. Moments from the stadium and transportation hubs, we feature the best in convenience and comfort."
+        },
+        {
+          "@search.score": 0.605672,
+          "HotelName": "Sublime Palace Hotel",
+          "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 19th century resort, updated for every modern convenience."
+        },
+       ...
+      ]
+    ```
 
 ### Semantic hybrid search
 
 Here's the last query in the collection. This hybrid query adds L2 semantic ranking that applies machine reading comprehension over the L1-ranked results, promoting more relevant matches to the top.
+
+To create a semantic hybrid search:
 
 1. Formulate the request. 
 
@@ -1054,72 +1070,71 @@ Here's the last query in the collection. This hybrid query adds L2 semantic rank
 
 1. Select **Send Request**. You should have an `HTTP/1.1 200 OK` response. The response body should include the JSON representation of the search results.
 
-Review the response, consisting of a semantic reranking of the RRF-ranked results of the hybrid query. Semantic ranking works off of text inputs. In a text or hybrid query, this input is the text portion of the query (*historic hotel walk to restaurants and shopping*). To use semantic ranking on a pure vector query, such as the first example, or to explicitly control the text used for semantic ranking, [provide a semanticQuery string](../../semantic-how-to-query-request.md#set-up-the-query).
-
-After semantic reranking, Swirling Currents Hotel with its reference to *walking access to shopping, dining, entertainment and the city center* moves into the top spot. The machine comprehension model promotes *walking access to shopping and dining* as a closer match to *walk to restaurants and shopping*.
-
-Before semantic reranking, Sublime Palace, with its reference to *walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments* was number one.  
-
-```json
-{
-  "@odata.count": 7,
-  "@search.answers": [],
-  "value": [
+    Review the response, consisting of a semantic reranking of the RRF-ranked results of the hybrid query. Semantic ranking works off of text inputs. In a text or hybrid query, this input is the text portion of the query (*historic hotel walk to restaurants and shopping*). To use semantic ranking on a pure vector query, such as the first example, or to explicitly control the text used for semantic ranking, [provide a semanticQuery string](../../semantic-how-to-query-request.md#set-up-the-query).
+    
+    After semantic reranking, Swirling Currents Hotel with its reference to *walking access to shopping, dining, entertainment and the city center* moves into the top spot. The machine comprehension model promotes *walking access to shopping and dining* as a closer match to *walk to restaurants and shopping*.
+    
+    Before semantic reranking, Sublime Palace, with its reference to *walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments* was number one.  
+    
+    ```json
     {
-      "@search.score": 0.0317460335791111,
-      "@search.rerankerScore": 2.6550590991973877,
-      "HotelId": "49",
-      "HotelName": "Swirling Currents Hotel",
-      "Description": "Spacious rooms, glamorous suites and residences, rooftop pool, walking access to shopping, dining, entertainment and the city center. Each room comes equipped with a microwave, a coffee maker and a minifridge. In-room entertainment includes complimentary Wi-Fi and flat-screen TVs.",
-      "Category": "Suite"
-    },
-    {
-      "@search.score": 0.03279569745063782,
-      "@search.rerankerScore": 2.599761724472046,
-      "HotelId": "4",
-      "HotelName": "Sublime Palace Hotel",
-      "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 19th century resort, updated for every modern convenience.",
-      "Category": "Boutique"
-    },
-    {
-      "@search.score": 0.03125,
-      "@search.rerankerScore": 2.3480887413024902,
-      "HotelId": "2",
-      "HotelName": "Old Century Hotel",
-      "Description": "The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer dinners, and live music.",
-      "Category": "Boutique"
-    },
-    {
-      "@search.score": 0.03154495730996132,
-      "@search.rerankerScore": 2.2718777656555176,
-      "HotelId": "1",
-      "HotelName": "Stay-Kay City Hotel",
-      "Description": "This classic hotel is fully-refurbished and ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Times Square and the historic center of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.",
-      "Category": "Boutique"
-    },
-    {
-      "@search.score": 0.03053613007068634,
-      "@search.rerankerScore": 2.0582215785980225,
-      "HotelId": "3",
-      "HotelName": "Gastronomic Landscape Hotel",
-      "Description": "The Gastronomic Hotel stands out for its culinary excellence under the management of William Dough, who advises on and oversees all of the Hotel\u2019s restaurant services.",
-      "Category": "Suite"
+      "@odata.count": 7,
+      "@search.answers": [],
+      "value": [
+        {
+          "@search.score": 0.0317460335791111,
+          "@search.rerankerScore": 2.6550590991973877,
+          "HotelId": "49",
+          "HotelName": "Swirling Currents Hotel",
+          "Description": "Spacious rooms, glamorous suites and residences, rooftop pool, walking access to shopping, dining, entertainment and the city center. Each room comes equipped with a microwave, a coffee maker and a minifridge. In-room entertainment includes complimentary Wi-Fi and flat-screen TVs.",
+          "Category": "Suite"
+        },
+        {
+          "@search.score": 0.03279569745063782,
+          "@search.rerankerScore": 2.599761724472046,
+          "HotelId": "4",
+          "HotelName": "Sublime Palace Hotel",
+          "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 19th century resort, updated for every modern convenience.",
+          "Category": "Boutique"
+        },
+        {
+          "@search.score": 0.03125,
+          "@search.rerankerScore": 2.3480887413024902,
+          "HotelId": "2",
+          "HotelName": "Old Century Hotel",
+          "Description": "The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer dinners, and live music.",
+          "Category": "Boutique"
+        },
+        {
+          "@search.score": 0.03154495730996132,
+          "@search.rerankerScore": 2.2718777656555176,
+          "HotelId": "1",
+          "HotelName": "Stay-Kay City Hotel",
+          "Description": "This classic hotel is fully-refurbished and ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Times Square and the historic center of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.",
+          "Category": "Boutique"
+        },
+        {
+          "@search.score": 0.03053613007068634,
+          "@search.rerankerScore": 2.0582215785980225,
+          "HotelId": "3",
+          "HotelName": "Gastronomic Landscape Hotel",
+          "Description": "The Gastronomic Hotel stands out for its culinary excellence under the management of William Dough, who advises on and oversees all of the Hotel\u2019s restaurant services.",
+          "Category": "Suite"
+        }
+      ]
     }
-  ]
-}
-```
+    ```
 
-> [!TIP]
->Semantically ranked results can include more detail, including semantic answers, captions, and highlights. Adding more parameters to the request produces the extra detail. For more information, see [Set up a semantic query](../../semantic-how-to-query-request.md?tabs=rest-query#set-up-the-query).
->
+    > [!TIP]
+    > Semantically ranked results can include more detail, including semantic answers, captions, and highlights. Adding more parameters to the request produces the extra detail. For more information, see [Set up a semantic query](../../semantic-how-to-query-request.md?tabs=rest-query#set-up-the-query).
 
-## Clean up
+## Clean up resources
 
 When you're working in your own subscription, it's a good idea at the end of a project to identify whether you still need the resources you created. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
 
 You can find and manage resources in the Azure portal by using the **All resources** or **Resource groups** link in the leftmost pane.
 
-If you want to keep the search service, but delete the index and documents, you can use the `DELETE` command in the REST client. This command (at the end of your `az-search-vector-quickstart.rest` file) deletes the `hotels-vector-quickstart` index:
+Alternatively, you can send the following request to delete the vector index created in this quickstart.
 
 ```http
 ### Delete an index
@@ -1130,6 +1145,4 @@ DELETE  {{baseUrl}}/indexes/hotels-vector-quickstart?api-version=2025-09-01 HTTP
 
 ## Next steps
 
-As a next step, we recommend learning how to invoke REST API calls [without API keys](../../search-get-started-rbac.md).
-
-You might also want to review the demo code for [Python](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-python), [C#](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-dotnet), or [JavaScript](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-javascript).
++ Learn how to invoke REST API calls [without API keys](../../search-get-started-rbac.md).

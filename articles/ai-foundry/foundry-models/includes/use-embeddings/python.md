@@ -2,7 +2,7 @@
 title: How to generate embeddings with Microsoft Foundry Models
 titleSuffix: Microsoft Foundry
 description: Learn how to generate embeddings with Microsoft Foundry Models
-author: mopeakande
+author: msakande
 reviewer: santiagxf
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
@@ -81,7 +81,7 @@ The response is as follows, where you can see the model's usage statistics:
 import numpy as np
 
 for embed in response.data:
-    print("Embeding of size:", np.asarray(embed.embedding).shape)
+    print("Embedding of size:", np.asarray(embed.embedding).shape)
 
 print("Model:", response.model)
 print("Usage:", response.usage)
@@ -106,7 +106,7 @@ The response is as follows, where you can see the model's usage statistics:
 import numpy as np
 
 for embed in response.data:
-    print("Embeding of size:", np.asarray(embed.embedding).shape)
+    print("Embedding of size:", np.asarray(embed.embedding).shape)
 
 print("Model:", response.model)
 print("Usage:", response.usage)

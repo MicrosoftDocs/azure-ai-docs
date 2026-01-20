@@ -6,9 +6,9 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: training
 ms.topic: concept-article
-ms.reviewer: None
+ms.reviewer: sooryar
 author: lgayhardt
-ms.author: lagayhar
+ms.author: scottpolly
 ms.date: 08/13/2025
 adobe-target: true
 ---

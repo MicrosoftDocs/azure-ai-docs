@@ -3,6 +3,7 @@ title: How to troubleshoot your deployments and monitors in Microsoft Foundry po
 titleSuffix: Microsoft Foundry
 description: Learn how to troubleshoot and monitor model deployments in Microsoft Foundry portal to quickly resolve errors and optimize performance.
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.custom:
   - ignite-2023
   - build-2024
@@ -96,7 +97,7 @@ __Option 1: Find the build log for the Azure default blob storage.__
 __Option 2: Find the build log within Azure Machine Learning studio.__
 
 > [!NOTE]
-> This option to access the build log uses [Azure Machine Learning studio](https://ml.azure.com), which is a different portal tha [Foundry](https://ai.azure.com/?cid=learnDocs).
+> This option to access the build log uses [Azure Machine Learning studio](https://ml.azure.com), which is a different portal than [Foundry](https://ai.azure.com/?cid=learnDocs).
 
 1. Go to [Azure Machine Learning studio](https://ml.azure.com).
 1. Go to your workspace or hub.
@@ -121,5 +122,5 @@ The playground only supports select models, such as Azure OpenAI models and Llam
 
 ## Related content
 
-- [Foundry overview](../what-is-azure-ai-foundry.md)
+- [Foundry overview](../what-is-foundry.md)
 - [Azure AI FAQ](../faq.yml)

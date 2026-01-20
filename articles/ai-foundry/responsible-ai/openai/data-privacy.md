@@ -5,7 +5,8 @@ description: This document details issues for data, privacy, and security for Az
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: article
 monikerRange: 'foundry-classic || foundry'
 ms.date: 10/01/2025
@@ -56,7 +57,7 @@ As depicted in the diagram above, managed customers may [apply to modify abuse m
 
 ### Generating completions, images or embeddings through inferencing
 
-Azure Direct Models (base or fine-tuned) deployed in your Foundry resource process your input prompts and generate responses with text, images, or embeddings. Customer interactions with the model are logically isolated and secured employing technical measures including but not limited to transport encryption of TLS1.2 or higher, compute security perimeter, tokenization of text, and exclusive access to allocated GPU memory. Prompts and completions are evaluated in real time for harmful content types and content generation is filtered based on configured thresholds. Learn more at [Guardrails (previously content filters) overview](/azure/ai-foundry/openai/concepts/content-filter). 
+Azure Direct Models (base or fine-tuned) deployed in your Foundry resource process your input prompts and generate responses with text, images, or embeddings. Prompts and completions are evaluated in real time for harmful content types and content generation is filtered based on configured thresholds. Learn more at [Guardrails (previously content filters) overview](/azure/ai-foundry/openai/concepts/content-filter). 
 
 Prompts and responses are processed within the customer-specified [geography](https://azure.microsoft.com/explore/global-infrastructure/geographies/) (unless you are using a Global or DataZone deployment type), but may be processed between regions within the geography for operational purposes (including performance and capacity management). See below for information about location of processing when using a Global or DataZone deployment type.  
 

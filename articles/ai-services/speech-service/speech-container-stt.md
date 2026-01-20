@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python
 ms.topic: how-to
-ms.date: 7/1/2025
+ms.date: 12/19/2025
 ms.author: pafarley
 zone_pivot_groups: programming-languages-speech-sdk-cli
 keywords: on-premises, Docker, container
@@ -63,7 +63,7 @@ The tags are also available [in JSON format](https://mcr.microsoft.com/v2/azure-
 }
 ```
 
-## Get the container image with docker pull
+## Get the container image with `docker pull`
 
 You need the [prerequisites](speech-container-howto.md#prerequisites) including required hardware. Also see the [recommended allocation of resources](speech-container-howto.md#container-requirements-and-recommendations) for each Speech container. 
 
@@ -76,7 +76,7 @@ docker pull mcr.microsoft.com/azure-cognitive-services/speechservices/speech-to-
 > [!IMPORTANT]
 > The `latest` tag pulls the latest image for the `en-US` locale. For additional versions and locales, see [speech to text container images](#container-images).
 
-## Run the container with docker run
+## Run the container with `docker run`
 
 Use the [docker run](https://docs.docker.com/engine/reference/commandline/run/) command to run the container. 
 
@@ -179,7 +179,7 @@ For more information about `docker run` with Speech containers, see [Install and
 
 [Try the speech to text quickstart](get-started-speech-to-text.md) using host authentication instead of key and region.
 
-## Next steps
+## Related content
 
 * See the [Speech containers overview](speech-container-overview.md)
 * Review [configure containers](speech-container-configuration.md) for configuration settings

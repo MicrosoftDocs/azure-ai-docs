@@ -35,6 +35,8 @@ In general, there are two authentication scenarios:
 |Unauthenticated|No authentication is needed | No |
 
 ### Key-based authentication 
+> [!NOTE]
+> API key stored in Foundry connection will be accessible to users who have access to this project. We recommend you storing shared keys and tokens in the Foundry connection. For user specific tokens, we recommend using OAuth Identity Passthrough.
 
 You can pass your API key, PAT token, and other credentials to MCP servers supporting key-based authentication. With Foundry Agent Service, we recommend you put your credentials in Foundry connection instead of manually passing each time during runtime for improved security. When you connect your MCP server to an agent in Foundry portal, a Foundry connection will be automatically created for you. You need to provide the credential name and credential value. For example, if you're trying to connect with GitHub MCP server, you can select to use key-based authentication to pass your personal access token. The credential name is `Authorization` and the credential value is `Bearer <your personal access token>`. 
 
@@ -88,7 +90,19 @@ Foundry Agent Service supports two OAuth options: **managed OAuth** and **custom
 > [!NOTE]
 > If you decide to use custom OAuth and provide all information above, you will then get a redirect URL. Make sure to add this redirect URL to your OAuth app, as it will delegate the handling of the access token to enable use of your connection.
 
+When you set up **custom OAuth**, the following information is needed:
+
+- client ID: required, you can find this in your OAuth app
+- client secret: optional depending on if this is required by your OAuth app
+- auth URL: required, the auth URL is used for users to log in. You can find this from your OAuth app or your MCP server provider documentation. Some providers provide the same auth URL for all MCP servers and others provide a custom auth URL for different MCP servers. Review the documentation to make sure you use the proper one. 
+- refresh URL: required, the refresh URL is used to get a refresh token. You can find this from your OAuth app or your MCP server provider documentation. If you don't find a specific refresh URL, you can provide the token URL. Some providers provide the same refresh URL for all MCP servers and others provide custom refresh URL for different MCP servers. Review the documentation to make sure you use the proper one. 
+- token URL: required, the token URL is used to get a token. You can find this from your OAuth app or your MCP server provider documentation. Some providers provide the same token URL for all MCP servers and others provide custom token URL for different MCP servers; please review the documentation to make sure you use the proper one. 
+- scopes: optional, scopes specify which permission/scope you want the user to have access to, make sure the scopes use the correct naming from the OAuth app. 
+
 #### Bring your own Microsoft Entra app registration
+
+> [!NOTE]
+> Agent 365 MCP servers are only available to [Frontier tenants](https://adoption.microsoft.com/en-us/copilot/frontier-program/).
 
 To use with Microsoft services and identity passthrough, you can bring your own [Microsoft Entra app registration](/entra/identity-platform/quickstart-register-app). By bringing your own Microsoft Entra app registration, you can control what permissions you give to your Entra app. Let's use the Agents 365 MCP server as an example:
 1. Follow the [app registration guide](/entra/identity-platform/quickstart-register-app) to create a Microsoft Entra app and get the client ID and client secret. 
@@ -139,15 +153,18 @@ This is supported if the MCP server doesn’t require authentication.
 
 ## Host a local MCP server
 
-The Foundry Agent Service runtime only accepts a remote MCP server endpoint. If you want to add tools from a local MCP server, you'll have to self-host it on [Azure Container Apps](/samples/azure-samples/mcp-container-ts/mcp-container-ts/) or [Azure Functions](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-python/blob/main/ExistingServer.md) to get a remote MCP server endpoint. Pay attention to the following considerations when attempting to host local MCP servers in the cloud:
+The Foundry Agent Service runtime only accepts a remote MCP server endpoint. If you want to add tools from a local MCP server, you'll have to self-host it on [Azure Container Apps](/samples/azure-samples/mcp-container-ts/mcp-container-ts/) or [Azure Functions](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-python/tree/main) to get a remote MCP server endpoint. Pay attention to the following considerations when attempting to host local MCP servers in the cloud:
 
 |Local MCP server setup | Hosting in Azure Container Apps | Hosting in Azure Functions |
 |:---------:|:---------:|:---------:|
 | **Transport** | HTTP POST/GET endpoints required. | HTTP streamable required. | 
 | **Code changes** | The container must rebuild. | Azure Functions-specific configuration files required in the root directory. |
-| **Authentication** | Custom authentication implementation required. | Key-based only. OAuth needs API Management. |
-| **Language** | Any language that runs in Linux containers (Python, Node.js, .NET, TypeScript, Go). | Python, Node.js, Java, .NET only. |
-| **Container Requirements** | Linux (linux/amd64) only. No privileged containers.| Containerized servers are not supported. |
+| **Authentication** | Custom authentication implementation required. | Use [built-in authentication][app-service-auth] or custom code.<br/><br/>Azure Functions requires a key by default, but you can [disable the key requirement in host.json][func-host-json]. |
+| **Language stack** | Any language that runs in Linux containers (Python, Node.js, .NET, TypeScript, Go). | Python, Node.js, TypeScript, Java, .NET only. |
+| **Container requirements** | Linux (linux/amd64) only. No privileged containers.| Containerized servers are not supported. |
 | **Dependencies** | All dependencies must be in container image. | OS-level dependencies (such as Playwright) are not supported. |
 | **State** | Stateless only. | Stateless only. |
 | **UVX/NPX** | Supported. | Not supported. `npx` start commands not supported. |
+
+[app-service-auth]: /azure/app-service/configure-authentication-mcp?toc=%2Fazure%2Fazure-functions%2Ftoc.json
+[func-host-json]: /azure/azure-functions/functions-bindings-mcp#hostjson-settings

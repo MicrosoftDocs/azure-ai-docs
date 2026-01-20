@@ -5,7 +5,7 @@ description: Train your machine learning model on various training environments 
 services: machine-learning
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: sgilley
+ms.reviewer: sooryar
 ms.service: azure-machine-learning
 ms.subservice: training
 ms.date: 03/10/2025

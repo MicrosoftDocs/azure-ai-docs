@@ -7,7 +7,7 @@ ms.service: azure-machine-learning
 ms.subservice: automl
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: manashg
+ms.reviewer: sooryar
 ms.date: 09/22/2025
 ms.topic: how-to
 ms.custom:

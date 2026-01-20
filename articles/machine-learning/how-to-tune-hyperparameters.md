@@ -5,7 +5,7 @@ description: Discover how to define search spaces, choose sampling algorithms, a
 #customer intent: As a data scientist, I want to automate hyperparameter tuning using Azure Machine Learning so that I can optimize model performance efficiently.
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: amipatel
+ms.reviewer: sooryar
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: training

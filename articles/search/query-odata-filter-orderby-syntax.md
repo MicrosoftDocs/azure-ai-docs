@@ -5,7 +5,7 @@ description: OData language overview for filters, select, and order-by for Azure
 author: bevloh
 ms.author: beloh
 ms.service: azure-ai-search
-ms.topic: reference
+ms.topic: concept-article
 ms.date: 12/10/2024
 ms.update-cycle: 365-days
 ---
