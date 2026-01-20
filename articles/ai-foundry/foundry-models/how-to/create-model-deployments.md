@@ -136,6 +136,9 @@ You can deploy the same model multiple times if needed as long as it's under a d
 
 ## Use the model
 
+> [!NOTE]
+> This section is identical for both the CLI and Bicep approaches.
+
 You can consume deployed models using the [Endpoints for Foundry Models](../concepts/endpoints.md) for the resource. When you construct your request, specify the parameter `model` and insert the model deployment name you created. You can programmatically get the URI for the inference endpoint by using the following code:
 
 **Inference endpoint**
@@ -251,17 +254,17 @@ cd azureai-model-inference-bicep/infra
 > [!NOTE]
 > This section is identical for both the CLI and Bicep approaches.
 
-Deployed models can be consumed using the [Endpoints for Foundry Models](../concepts/endpoints.md) for the resource. When constructing your request, indicate the parameter `model` and insert the model deployment name you have created. You can programmatically get the URI for the inference endpoint using the following code:
+You can consume deployed models using the [Endpoints for Foundry Models](../concepts/endpoints.md) for the resource. When you construct your request, specify the parameter `model` and insert the model deployment name you created. You can programmatically get the URI for the inference endpoint by using the following code:
 
-__Inference endpoint__
+**Inference endpoint**
 
 ```azurecli
 az cognitiveservices account show  -n $accountName -g $resourceGroupName | jq '.properties.endpoints["Azure AI Model Inference API"]'
 ```
 
-To make requests to the Foundry Models endpoint, append the route `models`, for example `https://<resource>.services.ai.azure.com/models`. You can see the API reference for the endpoint at [Azure AI Model Inference API reference page](https://aka.ms/azureai/modelinference).
+To make requests to the Foundry Models endpoint, append the route `models`. For example: `https://<resource>.services.ai.azure.com/models`. You can see the API reference for the endpoint at [Azure AI Model Inference API reference page](https://aka.ms/azureai/modelinference).
 
-__Inference keys__
+**Inference keys**
 
 ```azurecli
 az cognitiveservices account keys list  -n $accountName -g $resourceGroupName
