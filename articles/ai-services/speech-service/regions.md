@@ -84,11 +84,11 @@ The regions in the following tables support most of the core features of Azure S
 | `eastus` | ✅ | ✅ | ✅ | ✅ | | ✅ |
 | `eastus2` | ✅ | ✅ | ✅ | | ✅ | ✅ |
 | `francecentral` | ✅ | ✅ | ✅ | | | ✅ |
-| `germanywestcentral` | ✅ | | ✅ | | | |
+| `germanywestcentral` | ✅ | ✅ | ✅ | | | |
 | `italynorth` | ✅ | | ✅ | | | |
 | `japaneast` | ✅ | ✅ | ✅ | ✅ | | ✅ |
-| `japanwest` | ✅ | | ✅ | | | |
-| `koreacentral` | ✅ | | ✅ | | | ✅ |
+| `japanwest` | ✅ | ✅ | ✅ | | | |
+| `koreacentral` | ✅ | ✅ | ✅ | | | ✅ |
 | `northcentralus` | ✅ | ✅ | ✅ | | ✅ | |
 | `northeurope` | ✅ | ✅ | ✅ | | | ✅ |
 | `norwayeast` | ✅ | | ✅ | | ✅ | |

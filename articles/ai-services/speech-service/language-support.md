@@ -1,7 +1,7 @@
 ---
 title: Language and Voice Support for Azure Speech
 titleSuffix: Foundry Tools
-description: This article provides a comprehensive list of languages that Azure Speech supports for speech-to-text and text-to-speech conversion, along with speech translation.
+description: Learn about language and voice support in Azure Speech for speech to text, text to speech, speech translation, and more. Learn which features support each locale.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-speech
@@ -14,7 +14,7 @@ ms.custom: references_regions, build-2024
 
 # Language and voice support for Azure Speech
 
-The following tables summarize language support for [speech to text](speech-to-text.md), [text to speech](text-to-speech.md), [pronunciation assessment](how-to-pronunciation-assessment.md), [speech translation](speech-translation.md), and more features of Azure Speech.
+The following tables summarize language support for [speech to text](speech-to-text.md), [text to speech](text-to-speech.md), [pronunciation assessment](how-to-pronunciation-assessment.md), [speech translation](speech-translation.md), and more features of Azure Speech. Use them to check whether your target language and locale are available for each Azure Speech capability.
 
 You can also see the list of locales and voices supported for each specific region or endpoint:
 
@@ -45,13 +45,13 @@ More remarks for speech to text locales are included in the [Custom speech](#cus
 
 ### Custom speech
 
-To improve the accuracty of speech-to-text recognition, customization is available for some languages and base models. Depending on the locale, you can upload audio and human-labeled transcripts, plain text, structured text, and pronunciation data. By default, plain-text customization is supported for all available base models. To learn more about customization, see [What is custom speech?](./custom-speech-overview.md).
+To improve the accuracy of speech-to-text recognition, you can customize some languages and base models. Depending on the locale, you can upload audio with human-labeled transcripts, plain text, structured text, and pronunciation data. By default, all available base models support plain-text customization. For more information about customization, see [What is custom speech?](./custom-speech-overview.md).
 
 These locales support the [display text format feature](./how-to-custom-speech-display-text-format.md): `da-DK`, `de-DE`, `en-AU`, `en-CA`, `en-GB`, `en-HK`, `en-IE`, `en-IN`, `en-NG`, `en-NZ`, `en-PH`, `en-SG`, `en-US`, `es-ES`, `es-MX`, `fi-FI`, `fr-CA`, `fr-FR`, `hi-IN`, `it-IT`, `ja-JP`, `ko-KR`, `nb-NO`, `nl-NL`, `pl-PL`, `pt-BR`, `pt-PT`, `sv-SE`, `tr-TR`, `zh-CN`, `zh-HK`.
 
 # [Text to speech](#tab/tts)
 
-The table in this section summarizes the locales and voices that Azure Speech supports for text to speech. For details, see the table footnotes.
+The table in this section summarizes the locales and voices that text to speech supports. For details, see the table footnotes.
 
 More remarks for text-to-speech locales are included in the [Voice styles and roles](#voice-styles-and-roles), [Standard voices](#standard-voices), [Professional voice](#professional-voice), and [Personal voice](#personal-voice) sections in this article.
 
@@ -64,7 +64,7 @@ More remarks for text-to-speech locales are included in the [Voice styles and ro
 
 ### Dragon HD voices
 
-Dragon high definition (HD) voices are neural voices based on large language models. HD voices are multilingual, can understand the content, automatically detect emotions in the input text, and adjust the speaking tone in real time to match the sentiment.
+Dragon high definition (HD) voices are neural voices based on large language models. HD voices are multilingual, understand the content, automatically detect emotions in the input text, and adjust the speaking tone in real time to match the sentiment.
 
 HD voices maintain a consistent voice persona with their neural (and non-HD) counterparts. They deliver more value through enhanced features.
 
@@ -72,9 +72,9 @@ HD voices maintain a consistent voice persona with their neural (and non-HD) cou
 
 ### Multilingual voices
 
-Multilingual voices can support more languages. This expansion enhances your ability to express content in various languages, overcome language barriers, and foster a global communication environment that's more inclusive.
+Multilingual voices support more languages. This expansion enhances your ability to express content in various languages. It helps you overcome language barriers and foster a global communication environment that's more inclusive.
 
-Use this table to understand all supported speaking languages for each multilingual voice. If the voice doesn't speak the language of the input text, Azure Speech doesn't produce synthesized audio as output.
+Use this table to see all supported speaking languages for each multilingual voice. If the voice doesn't speak the language of the input text, Azure Speech doesn't produce synthesized audio as output.
 
 The table is sorted by the number of supported languages in descending order. The locale prefix indicates the primary locale. For example, for the voice `en-US-AndrewMultilingualNeural`, the locale prefix is `en-US`. The locale prefix is the first part of the voice name.
 
@@ -113,7 +113,7 @@ Each standard voice supports a specific language and dialect, identified by loca
 > [!IMPORTANT]
 > Pricing varies for standard voice and custom voice. For more information, see the [Azure Speech in Foundry Tools pricing](https://azure.microsoft.com/pricing/details/speech/) page.
 
-Each standard voice model is available at 24 kHz and high-fidelity 48 kHz. You can obtain other sample rates through upsampling or downsampling when synthesizing.
+Each standard voice model is available at 24 kHz and high-fidelity 48 kHz. You can get other sample rates through upsampling or downsampling when synthesizing.
 
 ### Professional voice
 
@@ -121,7 +121,7 @@ Use [professional voice fine-tuning](./professional-voice-create-project.md) to 
 
 Select the right locale that matches the data for your professional voice fine-tuning. For example, if the recording data is spoken in English with a British accent, select `en-GB`.
 
-With the cross-lingual feature, you can transfer your custom voice model to speak a second language. For example, with the `zh-CN` data, you can create a voice that speaks `en-AU` or any of the languages with cross-lingual support.
+By using the cross-lingual feature, you can transfer your custom voice model to speak a second language. For example, with the `zh-CN` data, you can create a voice that speaks `en-AU` or any of the languages with cross-lingual support.
 
 For the cross-lingual feature, we categorize locales into two tiers:
 
@@ -190,7 +190,7 @@ The table in this section summarizes the supported locales for [language identif
 
 # [Custom keyword](#tab/custom-keyword)
 
-The table in this section summarizes the supported locales for custom keyword and keyword verification.
+The following table summarizes the supported locales for custom keyword and keyword verification.
 
 [!INCLUDE [Language support include](includes/language-support/custom-keyword.md)]
 

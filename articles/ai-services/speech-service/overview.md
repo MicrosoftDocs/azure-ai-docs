@@ -1,7 +1,7 @@
 ---
 title: What Is Azure Speech?
 titleSuffix: Foundry Tools
-description: Get an overview of Azure Speech, which provides speech to text, text to speech, speech translation, and other capabilities with a Microsoft Foundry resource.
+description: Learn how Azure Speech provides speech to text, text to speech, and speech translation so that you can add speech to your applications and devices.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-speech
@@ -13,17 +13,17 @@ ms.author: pafarley
 
 # What is Azure Speech?
 
-Azure Speech in Foundry Tools provides speech to text, text to speech, and other capabilities with a [Microsoft Foundry resource](~/articles/ai-services/multi-service-resource.md?pivots=azportal). You can transcribe speech to text with high accuracy, produce natural-sounding text-to-speech voices, translate spoken audio, and conduct live AI voice conversations.
+Azure Speech in Foundry Tools provides speech to text, text to speech, and other capabilities through a [Microsoft Foundry resource](~/articles/ai-services/multi-service-resource.md?pivots=azportal). You can transcribe speech to text with high accuracy, produce natural-sounding text-to-speech voices, translate spoken audio, and conduct live AI voice conversations.
 
-:::image type="content" border="false" source="media/overview/speech-features-highlight.png" alt-text="Image of tiles that highlight some Azure Speech features.":::
+:::image type="content" border="false" source="media/overview/speech-features-highlight.png" alt-text="Screenshot of tiles that highlight some Azure Speech features.":::
 
-Create custom voices, add specific words to your base vocabulary, or build your own models. Run Azure Speech anywhere, in the cloud or at the edge in containers. Enable your applications, tools, and devices for Azure Speech by using the [Speech CLI](spx-overview.md), [Speech SDK](./speech-sdk.md), and [REST APIs](./rest-speech-to-text.md).
+You can create custom voices, add specific words to your base vocabulary, or build your own models. Run Azure Speech anywhere, in the cloud or at the edge in containers. Enable your applications, tools, and devices for speech by using the [Speech CLI](spx-overview.md), [Speech SDK](./speech-sdk.md), and [REST APIs](./rest-speech-to-text.md).
 
 Azure Speech is available for many [languages](language-support.md), [regions](regions.md), and [price points](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).
 
 ## Scenarios
 
-Common scenarios for Azure Speech include:
+Common scenarios for speech include:
 
 - [Captioning](./captioning-concepts.md): Learn how to synchronize captions with your input audio, apply profanity filters, get partial results, apply customizations, and identify spoken languages for multilingual scenarios.
 - [Audio content creation](text-to-speech.md#more-about-neural-text-to-speech-features): Use neural voices to make interactions with chatbots and voice agents more natural and engaging, convert digital texts such as e-books into audiobooks, and enhance in-car navigation systems.
@@ -33,7 +33,7 @@ Common scenarios for Azure Speech include:
 
 Microsoft uses Azure Speech for many scenarios, such as captioning in Teams, dictation in Office 365, and Read Aloud in the Microsoft Edge browser.
 
-:::image type="content" border="false" source="media/overview/microsoft-uses-speech.png" alt-text="Diagram that shows logos of Microsoft products that use Azure Speech.":::
+:::image type="content" border="false" source="media/overview/microsoft-uses-speech.png" alt-text="Screenshot that shows logos of Microsoft products that use Azure Speech.":::
 
 ## Capabilities
 
@@ -41,7 +41,7 @@ The following sections summarize Azure Speech features and provide links for mor
 
 ### Speech to text
 
-Use [speech to text](speech-to-text.md) to convert audio into text. Capabilities include:
+Use [speech to text](speech-to-text.md) to convert audio into text. Choose from:
 
 - [Real-time transcription](get-started-speech-to-text.md) for streaming audio.
 - [Fast transcription](fast-transcription-create.md) for pre-recorded audio files.
@@ -77,13 +77,13 @@ The LLM-enhanced speech model delivers improved quality, deep contextual underst
 
 ### Pronunciation assessment
 
-[Pronunciation assessment](./how-to-pronunciation-assessment.md) evaluates speech pronunciation and gives speakers feedback on the accuracy and fluency of spoken audio. With pronunciation assessment, language learners can practice, get instant feedback, and improve their pronunciation so that they can speak and present with confidence.
+[Pronunciation assessment](./how-to-pronunciation-assessment.md) evaluates speech pronunciation and gives speakers feedback on the accuracy and fluency of spoken audio. By using pronunciation assessment, language learners can practice, get instant feedback, and improve their pronunciation so that they can speak and present with confidence.
 
 ## Delivery and presence
 
 You can deploy Azure Speech features in the cloud or on-premises.
 
-With [containers](speech-container-howto.md), you can bring the service closer to your data for compliance, security, or other operational reasons.
+By using [containers](speech-container-howto.md), you can bring the service closer to your data for compliance, security, or other operational reasons.
 
 Azure Speech deployment in sovereign clouds is available for some government entities and their partners. For example, the Azure Government cloud is available to US government entities and their partners. The Azure operated by 21Vianet cloud is available to organizations that have a business presence in China. For more information, see [Speech service in sovereign clouds](sovereign-clouds.md).
 
@@ -109,7 +109,7 @@ Sample code for Azure Speech is available on GitHub. These samples cover common 
 
 ## Responsible AI
 
-An AI system includes not only the technology, but also the people who use it, the people who are affected by it, and the environment in which it's deployed. Use the following resources to learn about responsible AI use and deployment in your systems.
+An AI system includes not only the technology, but also the people who use it, the people who are affected by it, and the environment where it's deployed. Use the following resources to learn about responsible AI use and deployment in your systems.
 
 ### Speech to text
 
