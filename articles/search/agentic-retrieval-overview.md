@@ -106,8 +106,8 @@ Currently, the portal only supports creating search index and blob knowledge sou
 
 ### [**Quickstarts**](#tab/quickstarts)
 
-+ [Quickstart: Use agentic retrieval in the Azure portal](get-started-portal-agentic-retrieval.md)
-+ [Quickstart: Use agentic retrieval in Azure AI Search](search-get-started-agentic-retrieval.md) (C#, Java, JavaScript, Python, TypeScript, REST)
++ [Quickstart: Agentic retrieval in the Azure portal](get-started-portal-agentic-retrieval.md)
++ [Quickstart: Agentic retrieval](search-get-started-agentic-retrieval.md) (C#, Java, JavaScript, Python, TypeScript, REST)
 
 ### [**How-to guides**](#tab/how-to-guides)
 
