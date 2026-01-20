@@ -70,13 +70,13 @@ huggingface-cli --help
 ### [Bash](#tab/Bash)
 
 ```bash
-pip install olive-ai[auto-opt]
+pip install olive-ai[cpu]
 ```
 
 ### [PowerShell](#tab/PowerShell)
 
 ```powershell
-pip install olive-ai[auto-opt]
+pip install olive-ai[cpu]
 ```
 
 ---
@@ -84,7 +84,7 @@ pip install olive-ai[auto-opt]
 > [!TIP]
 > Install Olive in a virtual environment by using [venv](https://docs.python.org/3/library/venv.html) or [conda](https://www.anaconda.com/docs/getting-started/miniconda/main).
 
-Expected result: `olive auto-opt --help` prints usage information.
+Expected result: `olive optimize --help` prints usage information.
 
 References:
 
@@ -125,36 +125,30 @@ References:
 
 ### Manual example (might require adjustments)
 
-#### Step 1: Run the Olive auto-opt command
+#### Step 1: Run the Olive optimize command
 
-Use the Olive `auto-opt` command to download, convert, quantize, and optimize the model:
+Use the Olive `optimize` command to download, convert, quantize, and optimize the model:
 
 ### [Bash](#tab/Bash)
 
 ```bash
-olive auto-opt \
+olive optimize \
     --model_name_or_path meta-llama/Llama-3.2-1B-Instruct \
-    --trust_remote_code \
-    --output_path models/llama \
+    --output_path models/llama/llama-3.2 \
     --device cpu \
     --provider CPUExecutionProvider \
-    --use_ort_genai \
-    --precision int4 \
-    --log_level 1
+    --precision fp32
 ```
 
 ### [PowerShell](#tab/PowerShell)
 
 ```powershell
-olive auto-opt `
+olive optimize `
     --model_name_or_path meta-llama/Llama-3.2-1B-Instruct `
-    --trust_remote_code `
-    --output_path models/llama `
+    --output_path models/llama/llama-3.2 `
     --device cpu `
     --provider CPUExecutionProvider `
-    --use_ort_genai `
-    --precision int4 `
-    --log_level 1
+    --precision fp32
 ```
 
 ---
@@ -162,7 +156,7 @@ olive auto-opt `
 > [!NOTE]
 > The compilation process takes about 60 seconds, plus download time.
 
-Expected result: The command creates the `models/llama/model` directory.
+Expected result: The command creates the `models/llama/llama-3.2` directory.
 
 The command uses the following parameters:
 
@@ -172,39 +166,17 @@ The command uses the following parameters:
 | `output_path` | Where to save the optimized model |
 | `device` | Target hardware: `cpu`, `gpu`, or `npu` |
 | `provider` | Execution provider (for example, `CPUExecutionProvider`, `CUDAExecutionProvider`) |
-| `precision` | Model precision: `fp16`, `fp32`, `int4`, or `int8` |
-| `use_ort_genai` | Creates inference configuration files |
+| `precision` | Model precision: `fp16`, `fp32`, or `int4` |
 
 > [!TIP]
 > If you have a local copy of the model, use a local path instead of the Hugging Face ID. For example, `--model_name_or_path models/llama-3.2-1B-Instruct`. Olive handles the conversion, optimization, and quantization automatically.
+> `int4` precision performs GPTQ quantization which can significantly reduce model size and improve performance with minimal impact on accuracy. However, the quantization step requires CUDA-capable GPU hardware for faster processing.
 
 References:
 
 - Reference: [Olive documentation](https://microsoft.github.io/Olive/)
 
-#### Step 2: Rename the output model
-
-Olive creates a generic `model` directory. Rename it for easier reuse:
-
-### [Bash](#tab/Bash)
-
-```bash
-cd models/llama
-mv model llama-3.2
-```
-
-### [PowerShell](#tab/PowerShell)
-
-```powershell
-cd models/llama
-Rename-Item -Path "model" -NewName "llama-3.2"
-```
-
----
-
-Expected result: The `models/llama/llama-3.2` directory exists.
-
-#### Step 3: Create chat template file
+#### Step 2: Create chat template file
 
 Foundry Local requires a chat template JSON file named `inference_model.json` in the model directory. Foundry Local injects the user prompt into the template using the `{Content}` placeholder at runtime.
 
