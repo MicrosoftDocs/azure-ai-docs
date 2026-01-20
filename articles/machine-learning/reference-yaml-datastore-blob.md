@@ -11,7 +11,7 @@ ms.custom: cliv2
 author: s-polly
 ms.author: scottpolly
 ms.date: 04/15/2024
-ms.reviewer: yogipandey
+ms.reviewer: soumyapatro
 ---
 
 # CLI (v2) Azure Blob datastore YAML schema

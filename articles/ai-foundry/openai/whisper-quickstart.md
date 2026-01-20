@@ -7,7 +7,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.custom: devx-track-python
 ms.topic: quickstart
-ms.date: 8/13/2025
+ms.date: 11/21/2025
 ms.author: pafarley
 author: PatrickFarley
 recommendations: false
@@ -18,12 +18,9 @@ ai-usage: ai-assisted
 
 # Quickstart: Speech to text with the Azure OpenAI Whisper model
 
-This quickstart explains how to use the [Azure OpenAI Whisper model](../../ai-services/speech-service/whisper-overview.md) for speech to text conversion. The Whisper model can transcribe human speech in numerous languages, and it can also translate other languages into English.
+[!INCLUDE [version-banner](../includes/version-banner.md)]
 
-> [!NOTE]
-> For information about other audio models that you can use with Azure OpenAI, see [Audio models](./concepts/models.md?tabs=standard-audio#standard-deployment-regional-models-by-endpoint).
-
-The file size limit for the Whisper model is 25 MB. If you need to transcribe a file larger than 25 MB, you can use the Azure Speech in Foundry Tools [batch transcription](../../ai-services/speech-service/batch-transcription-create.md#use-a-whisper-model) API.
+In this quickstart, you use the [Azure OpenAI Whisper model](../../ai-services/speech-service/whisper-overview.md) for speech to text conversion. The Whisper model can transcribe human speech in numerous languages, and it can also translate other languages into English.
 
 ::: zone pivot="rest-api"
 
@@ -51,7 +48,7 @@ The file size limit for the Whisper model is 25 MB. If you need to transcribe a 
 
 ::: zone pivot="programming-language-typescript"
 
-[!INCLUDE [JavaScript quickstart](includes/whisper-typescript.md)]
+[!INCLUDE [TypeScript quickstart](includes/whisper-typescript.md)]
 
 ::: zone-end
 
@@ -60,6 +57,12 @@ The file size limit for the Whisper model is 25 MB. If you need to transcribe a 
 [!INCLUDE [PowerShell quickstart](includes/whisper-powershell.md)]
 
 ::: zone-end
+
+> [!NOTE]
+> For information about other audio models that you can use with Azure OpenAI, see [Audio models](./concepts/models.md?tabs=standard-audio#standard-deployment-regional-models-by-endpoint).
+
+> [!TIP]
+> The file size limit for the Whisper model is 25 MB. If you need to transcribe a file larger than 25 MB, you can use the Azure Speech in Foundry Tools [batch transcription](../../ai-services/speech-service/batch-transcription-create.md#use-a-whisper-model) API.
 
 ## Clean up resources
 

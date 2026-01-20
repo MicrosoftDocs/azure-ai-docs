@@ -1,24 +1,24 @@
 ---
-title: Integrated vectorization with models from Microsoft Foundry
+title: Integrated Vectorization With Models From Microsoft Foundry
 titleSuffix: Azure AI Search
-description: Learn  how to vectorize content during indexing on Azure AI Search with a Microsoft Foundry model.
+description: Learn how to vectorize content during indexing in Azure AI Search with a Microsoft Foundry model.
 author: gmndrg
 ms.author: gimondra
 ms.service: azure-ai-search
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 10/23/2025
+ms.date: 11/21/2025
 ---
 
 # Use embedding models from the Microsoft Foundry model catalog for integrated vectorization
 
 > [!IMPORTANT]
-> This feature is in public preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The [2024-05-01-Preview REST API](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2024-05-01-preview&preserve-view=true) supports this feature.
+> This feature is in public preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The latest preview version of [Skillsets - Create Or Update (REST API)](/rest/api/searchservice/skillsets/create-or-update) supports this feature.
 
-In this article, you learn how to access embedding models from the [Foundry model catalog](/azure/ai-foundry/how-to/model-catalog-overview) for vector conversions during indexing and in queries in Azure AI Search.
+In this article, you learn how to access embedding models from the [Microsoft Foundry model catalog](/azure/ai-foundry/how-to/model-catalog-overview) for vector conversions during indexing and query execution in Azure AI Search.
 
-The workflow includes model deployment steps. The model catalog includes embedding models from Microsoft and other companies. Deploying a model is billable according to the billing structure of each provider.
+The workflow requires that you deploy a model from the catalog, which includes embedding models from Microsoft and other companies. Deploying a model is billable according to the billing structure of each provider.
 
 After the model is deployed, you can use it with the [AML skill](cognitive-search-aml-skill.md) for integrated vectorization during indexing or with the [Microsoft Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md) for queries.
 
@@ -27,13 +27,13 @@ After the model is deployed, you can use it with the [AML skill](cognitive-searc
 
 ## Prerequisites
 
-+ An [Azure AI Search service](search-create-service-portal.md) in any region and on any tier.
++ An [Azure AI Search service](search-create-service-portal.md) in any region and on any pricing tier.
 
-+ A [Foundry hub-based project](/azure/ai-foundry/how-to/hub-create-projects).
++ A [Microsoft Foundry hub-based project](/azure/ai-foundry/how-to/hub-create-projects).
 
 ## Supported embedding models
 
-Supported embedding models from the Foundry model catalog vary by usage method:
+Supported embedding models from the model catalog vary by usage method:
 
 + For the latest list of models supported programmatically, see the [AML skill](cognitive-search-aml-skill.md) and [Microsoft Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md) references.
 
@@ -41,15 +41,15 @@ Supported embedding models from the Foundry model catalog vary by usage method:
 
 ## Deploy an embedding model from the model catalog
 
-1. Deploy a supported model to your project using [these instructions](/azure/ai-foundry/how-to/deploy-models-openai).
+1. Follow [these instructions](/azure/ai-foundry/how-to/deploy-models-openai) to deploy a supported model to your project.
 
 1. Make a note of the target URI, key, and model name. You need these values for the vectorizer definition in a search index and for the skillset that calls the model endpoints during indexing.
 
-    If you'd rather to use token authentication than key authentication, you only need to copy the URI and model name. However, make a note of the region to which the model is deployed.
+    If you prefer [token authentication](#connect-using-token-authentication) to key-based authentication, you only need to copy the URI and model name. However, make a note of the region to which the model is deployed.
 
 1. Configure a search index and indexer to use the deployed model.
 
-   + To use the model during indexing, see [steps to enable integrated vectorization](vector-search-integrated-vectorization.md#how-to-use-integrated-vectorization). Be sure to use the [AML skill](cognitive-search-aml-skill.md), not the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md). The next section describes the skill configuration.
+   + To use the model during indexing, see [How to use integrated vectorization](vector-search-integrated-vectorization.md#how-to-use-integrated-vectorization). Be sure to use the [AML skill](cognitive-search-aml-skill.md), not the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md). The next section describes the skill configuration.
 
    + To use the model as a vectorizer at query time, see [Configure a vectorizer](vector-search-how-to-configure-vectorizer.md). Be sure to use the [Microsoft Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md) for this step.
 
@@ -81,11 +81,11 @@ Supported embedding models from the Foundry model catalog vary by usage method:
    + To use the model as a vectorizer at query time, see [Configure a vectorizer](vector-search-how-to-configure-vectorizer.md). Be sure to use the [Microsoft Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md) for this step.
 -->
 
-## Sample AML skill payloads
+## Sample AML skill payload
 
-When you deploy embedding models from the Foundry model catalog, you connect to them using the [AML skill](cognitive-search-aml-skill.md) in Azure AI Search for indexing workloads.
+When you deploy embedding models from the model catalog, you connect to them using the [AML skill](cognitive-search-aml-skill.md) in Azure AI Search for indexing workloads.
 
-This section describes the AML skill definition and index mappings. It includes sample payloads that are already configured to work with their corresponding deployed endpoints. For more technical details on how these payloads work, see the [Skill context and input annotation language](cognitive-search-skill-annotation-language.md).
+This section describes the AML skill definition and index mappings. It includes a sample payload that's already configured to work with its corresponding deployed endpoint. For more information, see [Skill context and input annotation language](cognitive-search-skill-annotation-language.md).
 
 <!-- ### [**Text Input for "Inference" API**](#tab/inference-text)
 
@@ -252,9 +252,9 @@ If you selected a different `embedding_types` in your skill definition, change `
 }
 ```
 
-## Sample Foundry vectorizer payload
+## Sample vectorizer payload
 
-The [Microsoft Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md), unlike the AML skill, is tailored to work only with those embedding models that are deployable via the Foundry model catalog. The main difference is that you don't have to worry about the request and response payload, but you do have to provide the `modelName`, which corresponds to the "Model ID" that you copied after deploying the model in [Foundry portal](https://ai.azure.com/?cid=learnDocs). 
+The [Microsoft Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md), unlike the AML skill, is tailored to work only with embedding models that are deployable via the model catalog. The main difference is that you don't have to worry about the request and response payload. However, you must provide the `modelName`, which corresponds to the "Model ID" that you copied after deploying the model.
 
 Here's a sample payload of how you would configure the vectorizer on your index definition given the properties copied from Foundry.
 
@@ -276,18 +276,20 @@ For Cohere models, you should NOT add the `/v1/embed` path to the end of your UR
 
 ## Connect using token authentication
 
-If you can't use key-based authentication, you can instead configure the AML skill and Foundry vectorizer connection for [token authentication](../machine-learning/how-to-authenticate-online-endpoint.md) via role-based access control on Azure. The search service must have a [system or user-assigned managed identity](search-how-to-managed-identities.md), and the identity must have Owner or Contributor permissions for your AML project workspace. You can then remove the key field from your skill and vectorizer definition, replacing it with the resourceId field. If your AML project and search service are in different regions, also provide the region field.
+If you can't use key-based authentication, you can configure the AML skill and Microsoft Foundry model catalog vectorizer connection for [token authentication](../machine-learning/how-to-authenticate-online-endpoint.md) via role-based access control on Azure.
+
+Your search service must have a [system or user-assigned managed identity](search-how-to-managed-identities.md), and the identity must have **Owner** or **Contributor** permissions for your project. You can then remove the `key` field from your skill and vectorizer definition, replacing it with `resourceId`. If your project and search service are in different regions, also provide the `region` field.
 
 ```json
 "uri": "<YOUR_URL_HERE>",
 "resourceId": "subscriptions/<YOUR_SUBSCRIPTION_ID_HERE>/resourceGroups/<YOUR_RESOURCE_GROUP_NAME_HERE>/providers/Microsoft.MachineLearningServices/workspaces/<YOUR_AML_WORKSPACE_NAME_HERE>/onlineendpoints/<YOUR_AML_ENDPOINT_NAME_HERE>",
-"region": "westus", // Only need if AML project lives in different region from search service
+"region": "westus", // Only needed if project is in different region from search service
 ```
 
 > [!NOTE]
-> Token authentication is not currently supported for Cohere models for this integration; only key authentication is available at this time.  
+> This integration doesn't currently support token authentication for Cohere models. You must use key-based authentication.
 
-## Next steps
+## Related content
 
 + [Configure a vectorizer in a search index](vector-search-how-to-configure-vectorizer.md)
 + [Configure index projections in a skillset](index-projections-concept-intro.md)

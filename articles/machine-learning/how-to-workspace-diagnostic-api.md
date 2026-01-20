@@ -7,7 +7,7 @@ ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: jhirono
+ms.reviewer: shshubhe
 ms.date: 03/04/2025
 ms.topic: how-to
 ms.custom: sdkv2, devx-track-python

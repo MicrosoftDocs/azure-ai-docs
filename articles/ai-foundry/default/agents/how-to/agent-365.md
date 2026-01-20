@@ -3,7 +3,7 @@ title: Publish Agents to Agents 365.
 description: Learn how to publish agents to Agents 365.
 author: aahill
 ms.author: aahi
-ms.date: 11/17/2025
+ms.date: 01/14/2026
 ms.topic: how-to
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service

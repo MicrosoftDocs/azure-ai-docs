@@ -100,7 +100,7 @@ API calls require the service URL and an access key. A search service is created
 
 1. Sign in to the [Azure portal](https://portal.azure.com). On your service **Overview** page, copy the endpoint URL. An example endpoint might look like `https://mydemo.search.windows.net`.
 
-1. On **Settings** > **Keys**, get an admin key for full rights on the service. There are two interchangeable admin keys, provided for business continuity in case you need to roll one over. You can use either the primary or secondary key on requests for adding, modifying, and deleting objects.
+1. On **Settings** > **Keys**, get an admin key for full rights on the service. There are two interchangeable admin keys, provided for business continuity in case you need to roll one over. You can use either key on requests to add, modify, or delete objects.
 
    :::image type="content" source="media/search-get-started-rest/get-url-key.png" alt-text="Screenshot of Azure portal pages showing the HTTP endpoint and access key location for a search service." border="false":::
 

@@ -15,11 +15,13 @@ ms.custom:
   - build-2025
 ---
 
-# Agent evaluators (preview)
+# Agent evaluators
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+
+[!INCLUDE [evaluation-preview](../../includes/evaluation-preview.md)]
 
 ::: moniker range="foundry-classic"
 
@@ -38,7 +40,7 @@ In addition to `IntentResolution`, `ToolCallAccuracy`, and `TaskAdherence`, whic
 - **Quality**: `IntentResolution`, `ToolCallAccuracy`, `TaskAdherence`, `Relevance`, `Coherence`, and `Fluency`
 - **Safety**: `CodeVulnerabilities`, `Violence`, `Self-harm`, `Sexual`, `HateUnfairness`, `IndirectAttack`, and `ProtectedMaterials`
 
-This article includes examples of `IntentResolution`, `ToolCallAccuracy`, and `TaskAdherence`. For examples of other evaluators with Azure AI agent messages, see [evaluating Azure AI agents](../../how-to/develop/agent-evaluate-sdk.md#evaluate-azure-ai-agents).
+This article includes examples of `IntentResolution`, `ToolCallAccuracy`, and `TaskAdherence`. For examples of other evaluators with Azure AI agent messages, see [evaluating Azure AI agents](../../how-to/develop/agent-evaluate-sdk.md#evaluate-microsoft-foundry-agents).
 
 ## Model configuration for AI-assisted evaluators
 
@@ -287,13 +289,11 @@ task_adherence(
 
 ### Task adherence output
 
-The numerical score is on a Likert scale (integer 1 to 5). A higher score is better. Given a numerical threshold (default to 3), the evaluator also outputs *pass* if the score >= threshold, or *fail* otherwise. Use the reason field to understand why the score is high or low.
+The evaluator outputs *pass* or *fail* otherwise. Use the reason field to understand the reasoning behind the score
 
 ```python
 {
-   "task_adherence": 2.0,
     "task_adherence_result": "fail",
-    "task_adherence_threshold": 3,
     "task_adherence_reason": "The response partially addresses the query by mentioning relevant practices but lacks critical details and depth, making it insufficient for a comprehensive understanding of maintaining a rose garden in summer."
 }
 ```
@@ -338,10 +338,10 @@ Specifically, for textual outputs from agents, you can also apply RAG quality ev
 
 Examples:
 
-- [Task completion (preview) sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluation/agentic_evaluators/sample_task_completion.py)
-- [Task adherence sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluation/agentic_evaluators/sample_task_adherence.py)
-- [Task navigation efficiency (preview) sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluation/agentic_evaluators/sample_task_navigation_efficiency.py)
-- [Intent resolution sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluation/agentic_evaluators/sample_intent_resolution.py)
+- [Task completion (preview) sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_task_completion.py)
+- [Task adherence sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_task_adherence.py)
+- [Task navigation efficiency (preview) sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_task_navigation_efficiency.py)
+- [Intent resolution sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_intent_resolution.py)
 
 ## Process evaluation
 
@@ -355,15 +355,15 @@ Process evaluation examines the quality and efficiency of each step in your agen
 
 Examples:
 
-- [Tool call accuracy sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluation/agentic_evaluators/sample_tool_call_accuracy.py)
-- [Tool selection (preview) sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluation/agentic_evaluators/sample_tool_selection.py)
-- [Tool input accuracy (preview) sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluation/agentic_evaluators/sample_tool_input_accuracy.py)
-- [Tool output utilization (preview) sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluation/agentic_evaluators/sample_tool_output_utilization.py)
-- [Tool call success (preview) sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluation/agentic_evaluators/sample_tool_success.py)
+- [Tool call accuracy sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_tool_call_accuracy.py)
+- [Tool selection (preview) sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_tool_selection.py)
+- [Tool input accuracy (preview) sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_tool_input_accuracy.py)
+- [Tool output utilization (preview) sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_tool_output_utilization.py)
+- [Tool call success (preview) sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_tool_call_success.py)
 
 ## Evaluator model support for AI-assisted evaluators
 
-For AI-assisted evaluators, you can use AzureOpenAI or OpenAI [reasoning models](../../../ai-services/openai/how-to/reasoning.md) and non-reasoning models for the LLM-judge depending on the evaluators. For complex evaluation that requires refined reasoning, we recommend a strong reasoning model like `gpt-5-mini` with a balance of reasoning performance and cost and performance efficiency.
+For AI-assisted evaluators, you can use AzureOpenAI or OpenAI [reasoning models](../../../ai-services/openai/how-to/reasoning.md) and non-reasoning models for the LLM-judge depending on the evaluators. For complex evaluation that requires refined reasoning, we recommend a strong reasoning model like `gpt-5-mini` with a balance of reasoning performance, cost-effectiveness, and efficiency.
 
 ### Tool evaluators support
 
@@ -920,7 +920,7 @@ with DefaultAzureCredential() as credential:
 
 ::: moniker range="foundry"
 
-- [More examples for agent quality evaluator](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluation/agentic_evaluators)
+- [More examples for agent quality evaluator](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators)
 - [How to run agent evaluation](../../how-to/develop/agent-evaluate-sdk.md)
 - [How to run cloud evaluation](../../how-to/develop/cloud-evaluation.md)
 - [How to optimize agentic RAG](https://aka.ms/optimize-agentic-rag-blog)

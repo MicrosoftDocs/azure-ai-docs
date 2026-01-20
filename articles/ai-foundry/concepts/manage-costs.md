@@ -6,8 +6,9 @@ description: Manage Microsoft Foundry costs by estimating expenses, monitoring u
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: aashishb
-ms.date: 10/15/2025
+ms.date: 01/13/2026
 ms.topic: how-to
+ms.custom: dev-focus
 ai-usage: ai-assisted
 monikerRange: 'foundry-classic || foundry'
 ms.service: azure-ai-foundry
@@ -17,58 +18,46 @@ ms.service: azure-ai-foundry
 
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
-**Managing Microsoft Foundry costs effectively starts with planning.** This article shows you how to estimate expenses before deployment, track spending in real-time, and set up alerts to avoid budget surprises.
-
-**What you'll learn:**
-- Estimate costs using the Azure pricing calculator
-- Monitor actual spending across different model types
-- Create budgets and alerts to control expenses
-- Understand billing differences between Azure-hosted and partner models
-
-:::moniker range="foundry"
-This article describes how to plan for and manage costs for [!INCLUDE [foundry-link](../default/includes/foundry-link.md)]. First, use the Azure pricing calculator to help plan for Foundry costs before you add resources. Next, as you add Azure resources, review the estimated costs. After you start using Azure resources, use cost management features to set budgets and monitor costs.
-:::moniker-end
-
-:::moniker range="foundry-classic"
-This article describes how to plan for and manage costs for [!INCLUDE [classic-link](../includes/classic-link.md)]. First, use the Azure pricing calculator to help plan for Foundry costs before you add resources. Next, as you add Azure resources, review the estimated costs. After you start using Azure resources, use cost management features to set budgets and monitor costs.
-:::moniker-end
-
-> [!TIP]
-> Foundry doesn't have a specific page in the Azure pricing calculator. Foundry is composed of several other Azure services, some of which are optional. This article shows how to use the pricing calculator to estimate costs for these services.
-
-You use Foundry Tools in Foundry portal. Costs for  Foundry Tools are only a portion of the monthly costs in your Azure bill. You're billed for all services and resources used in your Azure subscription, including third-party services. You can also review forecasted costs and identify spending trends to find areas where you might want to act.
+This article shows you how to estimate expenses before deployment, track spending in real time, and set up alerts to avoid budget surprises.
 
 ## Prerequisites
 
-**To view and analyze costs, you need:**
-- An Azure account with read access to Cost Management data
-- One of the [supported Azure account types](/azure/cost-management-billing/costs/understand-cost-mgt-data)
+Before you begin, ensure you have:
 
-**Need to grant access?** See [how to assign access to Cost Management data](/azure/cost-management-billing/costs/assign-access-acm-data).
+- **Azure subscription:** An active Azure subscription with the resources you want to monitor.
+- **Role-based access control (RBAC):** One or both of the following roles at the subscription or resource group scope:
+  - [**Cost Management Reader**](/azure/role-based-access-control/built-in-roles/management-and-governance#cost-management-reader) – View costs and usage data.
+  - [**AI User**](rbac-foundry.md#built-in-roles) – View Foundry resource data and costs.
+- **Supported Azure account type:** One of the [supported account types for Cost Management](/azure/cost-management-billing/costs/understand-cost-mgt-data).
 
-## Estimate costs before using Foundry Tools
+If you need to grant these roles to team members, see [Assign access to Cost Management data](/azure/cost-management-billing/costs/assign-access-acm-data) and [Foundry RBAC roles](rbac-foundry.md).
 
-Use the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/) to estimate costs before you add Foundry Tools.
+> [!NOTE]
+> Foundry doesn't have a dedicated page in the Azure pricing calculator because Foundry is composed of several optional Azure services. This article shows how to use the calculator to estimate costs for these services.
 
-1. Search for and select a product, such as Azure Language in Foundry Tools, in the Azure pricing calculator.
+## Estimate costs before using Foundry
 
-1. Select more than one product to estimate costs for multiple products. For example, search for and select Azure AI Search to add potential costs.
+Use the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/) to estimate costs before you add Foundry resources.
 
-As you add new resources to your project, return to this calculator and add the same resource here to update your cost estimates.
+1. Go to the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/).
+1. Search for and select a product, such as Azure Speech in Foundry or Azure Language in Foundry.
+1. Select additional products to estimate costs for multiple services. For example, add Azure AI Search to include potential search costs.
+1. As you add resources to your project, return to the calculator and update estimates.
+
+**Reference:** [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/)
 
 ## Costs associated with Foundry
 
-When you create a Foundry resource, you pay to use services like Azure OpenAI, Speech, Content Safety, Vision, Document Intelligence, and Language. Costs vary for each service and for some features within each service. Find more details on the [Foundry Tools](https://azure.microsoft.com/pricing/details/cognitive-services/) pricing page.
+When you create a Foundry resource, you pay for the Azure services you use, such as Azure OpenAI, Azure Speech in Foundry, Content Safety, Azure Vision in Foundry, Azure Document Intelligence, and Azure Language in Foundry. Costs vary by service and feature. For details, see the [Azure AI services pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/).
 
-## Understand the billing model for Foundry Tools
+## Understand billing models for Foundry
 
-Foundry Tools run on Azure infrastructure that accrues costs when you deploy the new resource. It's important to understand that extra infrastructure can accrue cost. You need to manage that cost when you make changes to deployed resources.
+Foundry resources run on Azure infrastructure and accrue costs when deployed. When you create or use Foundry resources, you're charged based on the services you use.
 
-When you create or use Foundry Tools resources, you're charged based on the services that you use. Two billing models are available for Foundry Tools:
+Two billing models are available:
 
- - **Serverless API**: With serverless API pricing, you're billed according to the Foundry Tools offering you use, based on its billing information.
-
- - **Commitment tiers**: With commitment tier pricing, you commit to using several service features for a fixed fee, so you have a predictable total cost based on the needs of your workload. You're billed based on the plan you choose. For information on available services, how to sign up, and considerations when buying a plan, see [Quickstart: Purchase commitment tier pricing](/azure/ai-services/commitment-tier).
+- **Pay-as-you-go (Serverless API):** You're billed according to your usage of each Azure service.
+- **Commitment tiers:** You commit to using service features for a fixed fee, providing predictable costs. For details, see [Commitment tier pricing](/azure/ai-services/commitment-tier).
 
 > [!NOTE]
 > If you use the resource above the quota provided by the commitment plan, you pay for the extra usage as described in the overage amount in the Azure portal when you buy a commitment plan.
@@ -77,46 +66,35 @@ When you create or use Foundry Tools resources, you're charged based on the serv
 
 ### Token-based pricing
 
-Language models understand and process inputs by breaking them down into tokens. For reference, each token is roughly four characters for typical English text. Models that can process images or audio break them down into tokens too for billing purposes. The number of tokens per image or audio content depends on the model and the resolution of the input.
-
-Costs per token vary depending on which model series you choose, but in all cases, models deployed in Foundry are charged per 1,000 tokens. For example, Azure OpenAI chat completions model inference is [charged per 1,000 tokens with different rates](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) depending on the model and deployment type. For most models, pricing is now listed in terms of 1 million tokens.
-
-Token costs are for both input and output. For example, suppose you have a 1,000-token JavaScript code sample that you ask a model to convert to Python. You pay for approximately 1,000 tokens for the initial input request sent, and 1,000 more tokens for the output that is received in response for a total of 2,000 tokens.
-
-In practice, for this type of completion call, the token input/output isn't perfectly 1:1. A conversion from one programming language to another can result in a longer or shorter output depending on many factors. One such factor is the value assigned to the `max_tokens` parameter.
+Language and vision models process inputs by breaking them down into tokens. Each token is roughly four characters of text; image and audio content are also converted to tokens for billing. You're charged per 1,000 tokens (input and output combined). Token pricing varies by model series and deployment type. For the latest rates, see the [Azure OpenAI pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
 
 ### Models sold directly by Azure
 
-Models sold directly by Azure (including Azure OpenAI) are charged directly. They appear as billing meters under each Foundry resource. Microsoft handles this billing directly. When you inspect your bill, you see billing meters that account for inputs and outputs for each consumed model.
+Models sold directly by Azure (including Azure OpenAI) appear as billing meters under each Foundry resource. Microsoft handles billing directly; you see separate meters for each model's input and output usage.
 
 ::: moniker range="foundry-classic"
 
 ### Models from partners and community
 
-Models provided by third-party providers, such as Cohere, are billed using Azure Marketplace. Unlike Microsoft billing meters, those entries are associated with the resource group where your Foundry resource is deployed instead of to the Foundry resource itself. Given model providers charge you directly, you see entries under the category **Marketplace** and **Service Name** *SaaS* accounting for inputs and outputs for each consumed model.
+Third-party provider models (such as Cohere) are billed via Azure Marketplace. These entries appear at the resource group level (not the Foundry resource level) under **Marketplace** > **Service Name** *SaaS*, with separate meters for inputs and outputs.
 
 > [!IMPORTANT]
-> This distinction between Models Sold Directly by Azure (including Azure OpenAI) and Models from Partners and Community only affects how the model is made available to you and how you are charged. In all cases, models are hosted within Azure cloud, and there's no interaction with external services or providers.
+> All models, whether Microsoft-sold or third-party, are hosted in Azure cloud with no external service interaction. Billing location differences affect cost analysis but not actual charges.
 
 ::: moniker-end
 
 ### Fine-tuned models
 
-Azure OpenAI fine-tuning models are charged based on the [number of tokens in your training file](https://techcommunity.microsoft.com/blog/azure-ai-services-blog/pricing-update-token-based-billing-for-fine-tuning-training-%F0%9F%8E%89/4164465). For the latest prices, see the [official pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
+Azure OpenAI fine-tuned models are charged in three ways:
 
-Once your fine-tuned model is deployed, you're also charged based on:
+- **Training:** Charged per token in your training file.
+- **Hosting:** Hourly cost per deployed model (applies even if the model is unused).
+- **Inference:** Per 1,000 tokens (input and output) when the model is called.
 
-- Hosting hours.
-- Inference per 1,000 tokens (broken down by input usage and output usage).
-
-The hosting hours cost is important to be aware of because after a fine-tuned model is deployed, it continues to incur an hourly cost regardless of whether you're actively using it. Monitor deployed fine-tuned model costs closely.
+Monitor hosted fine-tuned model costs closely to avoid unexpected charges. For current rates, see the [Azure OpenAI pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
 
 > [!IMPORTANT]
-> After you deploy a customized model, if at any time the deployment remains inactive for more than 15 days, the deployment is deleted. The deployment of a customized model is *inactive* if the model was deployed more than 15 days ago and no completions or chat completions calls were made to it during a continuous 15-day period.
->
-> The deletion of an inactive deployment doesn't delete or affect the underlying customized model, and the customized model can be redeployed at any time.
->
-> Each customized (fine-tuned) model that's deployed incurs an hourly hosting cost regardless of whether completions or chat completions calls are being made to the model.
+> Inactive deployments (unused for 15 consecutive days) are deleted automatically. This deletion doesn't affect the underlying model; you can redeploy it at any time. However, deployed fine-tuned models incur hourly hosting costs even if inactive, so remove unused deployments promptly to control costs.
 
 ### HTTP Error response code and billing status
 
@@ -126,23 +104,23 @@ If the service doesn't perform processing, you aren't charged. For example, a 40
 
 ## Monitor costs
 
-As you use Foundry, you incur costs. Azure resource usage unit costs vary by time intervals (seconds, minutes, hours, and days) or by unit usage (bytes, megabytes, and so on). You can see the incurred costs in [cost analysis](/azure/cost-management-billing/costs/quick-acm-cost-analysis).
-
-When you use cost analysis, you view costs in graphs and tables for different time intervals. Some examples are by day, current and prior month, and year. You also view costs against budgets and forecasted costs. Switching to longer views over time can help you identify spending trends so you can see where overspending might occur. If you create budgets, you can also easily see where they're exceeded.
+Track your Foundry spending using cost analysis tools. You can view costs by day, month, or year, compare against budgets, and identify spending trends.
 
 :::moniker range="foundry-classic"
-You can access cost information from either the [!INCLUDE [classic-link](../includes/classic-link.md)] portal or the [Azure portal](https://portal.azure.com/).
+Access cost information from the [!INCLUDE [classic-link](../includes/classic-link.md)] portal or the [Azure portal](https://portal.azure.com/).
 :::moniker-end
 :::moniker range="foundry"
-You can access cost information from either the [!INCLUDE [foundry-link](../default/includes/foundry-link.md)] portal or the [Azure portal](https://portal.azure.com/).
+Access cost information from the [!INCLUDE [foundry-link](../default/includes/foundry-link.md)] portal or the [Azure portal](https://portal.azure.com/).
 :::moniker-end
+
+**Reference:** [Cost analysis](/azure/cost-management-billing/costs/quick-acm-cost-analysis)
 
 > [!IMPORTANT]
 > Your Foundry costs are only a subset of your overall application or solution costs. You need to monitor costs for all Azure resources used in your application or solution.
 
 ### Configure permissions to view costs
 
-You need the [AI User role](rbac-azure-ai-foundry.md#azure-ai-user) and [Cost Management Reader role](/azure/role-based-access-control/built-in-roles/management-and-governance#cost-management-reader) at the resource group of subscription level to view the costs.
+To view Foundry costs, ensure you have the [AI User role](rbac-foundry.md#built-in-roles) and [Cost Management Reader role](/azure/role-based-access-control/built-in-roles/management-and-governance#cost-management-reader) at the resource group or subscription level.
 
 Or you can create the following custom rules:
 
@@ -187,6 +165,7 @@ To create a custom role, construct a role definition JSON file that specifies th
 
 Replace `<subscriptionId>`, `<resourceGroupName>`, and `<foundryResourceName>` with your actual values.
 
+:::moniker range="foundry"
 
 ## Monitor in Foundry portal
 
@@ -194,7 +173,7 @@ Replace `<subscriptionId>`, `<resourceGroupName>`, and `<foundryResourceName>` w
 1. Use the sections below to monitor costs.
 
 > [!NOTE]
-> These are estimated values and do not reflect any discounts or special contracted pricing that may appear on your final bill. They also cover only standard deployment costs, not [provisioned throughput offerings](../openai/concepts/provisioned-throughput.md).
+> Estimates do not reflect discounts or contracted pricing that may appear on your final bill. Estimates cover standard deployment costs only, not [provisioned throughput](../openai/concepts/provisioned-throughput.md).
 
 ### Agent costs
 
@@ -207,20 +186,24 @@ Replace `<subscriptionId>`, `<resourceGroupName>`, and `<foundryResourceName>` w
 
 For individual agent estimates:
 
-1. Select **Assets** in the left pane
+1. Select **Assets** in the left pane.
 1. Select the **Agents** tab.
-1. The **Estimated costs** column shows monthly estimates based on the agent configuration and usage patterns.
+1. The **Estimated costs** column shows monthly estimates based on agent configuration and usage patterns.
+
+**Reference:** [Agent concepts](../default/agents/concepts/development-lifecycle.md)
 
 :::image type="content" source="../default/media/manage-costs/agent-list.png" alt-text="Screenshot of the Agents tab showing a list of agents with columns for Name, Status, and Estimated costs. The Estimated costs column displays monthly values." lightbox="../default/media/manage-costs/agent-list.png":::
 
-For more details of an individual agent:
+To view detailed agent costs:
 
 1. Select **Build** in the upper-right navigation.
 1. Select **Agents** in the left pane.
 1. Select an agent.
-1. Select the **Monitor** tab for the agent.
+1. Select the **Monitor** tab.
 1. Set the date range in the upper-right corner.
-1. Operational metrics show the token cost and usage for the given range.
+1. View token costs and usage metrics for the selected range.
+
+**Reference:** [Monitor agent metrics](../agents/how-to/metrics.md)
 
 :::image type="content" source="../default/media/manage-costs/agent-build-cost.png" alt-text="Screenshot of the Build page showing the Models pane with a selected model highlighted." lightbox="../default/media/manage-costs/agent-build-cost.png":::
 
@@ -230,47 +213,44 @@ For more details of an individual agent:
 1. Select **Models** in the left pane.
 1. Select a model.
 1. Select the **Monitor** tab.
-1. Select the date range in the upper right corner.
-You  see the total cost along with an estimated cost chart for the given range. 
+1. Set the date range in the upper-right corner.
+You see total cost and an estimated cost chart for the selected range.
+
+**Reference:** [Monitor models](../foundry-models/how-to/monitor-models.md) 
 
 :::image type="content" source="../default/media/manage-costs/model-costs.png" alt-text="Screenshot of Azure portal showing the Monitor tab with total cost and estimated cost chart for a selected model and date range." lightbox="../default/media/manage-costs/model-costs.png":::
 
-When you select the **View More Details** or the **Azure Cost Management** link, you are directed to the Azure portal under the **Cost Management** section. The costs displayed there reflect the aggregated charges for the entire Cognitive Services account. These differ from the costs shown here, which are specific to the selected model only.
+When you select **View More Details** or **Azure Cost Management**, you're directed to the Azure portal's **Cost Management** section. Note: Azure portal costs show aggregated charges for the entire Cognitive Services account, not individual models. Costs display in USD only.
 
 > [!NOTE]
 > Token and request charts can sometimes show lower values than the **Estimated cost** view because late‑arrival usage events may not be included in those charts. If there’s a mismatch, rely on **Estimated cost** as the most accurate view, and note that your **Azure Cost Management invoice** remains the final source of truth.
 
+:::moniker-end
+
 ## Monitor in Azure portal
 
-Here's an example of how to monitor costs in the Azure portal. The costs are used as an example only. Your costs vary depending on the services that you use and the amount of usage.
-
-1. Sign in to the [Azure portal](https://portal.azure.com/)
-1. You can view costs for a resource group or for an individual Foundry resource. 
+1. Sign in to the [Azure portal](https://portal.azure.com/).
+1. View costs for your resource group or individual Foundry resource.
 
     [!INCLUDE [find-region](../includes/find-region.md)]
 
-1. In the Azure portal, for either your resource group or Foundry resource, select **Cost analysis** under **Cost Management**.
+1. In the Azure portal, select **Cost analysis** under **Cost Management** (for your resource group or Foundry resource).
 
-1. You see the cost overview. You can also add filters such as deployment level tags and user defined tags. For example, to see the costs based on model deployment:
+1. View the cost overview. Optionally, add filters (deployment tags, user-defined tags) to segment costs by model deployment:
 
-   :::image type="content" source="../media/manage-costs/cost-overview-deployment-tags.png" alt-text="Screenshot of cost overview with deployment level tags." lightbox="../media/manage-costs/cost-overview-deployment-tags.png":::
+   :::image type="content" source="../media/manage-costs/cost-overview-deployment-tags.png" alt-text="Screenshot of cost overview showing deployment-level tags filter." lightbox="../media/manage-costs/cost-overview-deployment-tags.png":::
 
-1. Select **Costs by resource** > **Resources** to open the Cost analysis page.
-
-1. You can see cost of your Foundry resource and the split of that cost across multiple model deployments under that resource.
+1. Select **Costs by resource** > **Resources** to see your Foundry resource cost split across model deployments:
 
    :::image type="content" source="../media/manage-costs/azure-foundry-cost-split.png" alt-text="Screenshot of split of Foundry resource cost across model deployments." lightbox="../media/manage-costs/azure-foundry-cost-split.png":::
 
 ### Understand cost breakdown by meter
 
-To understand the breakdown of the cost, use the **Cost Analysis** tool in Azure portal. Follow these steps to understand the cost of inference:
+Use the **Cost Analysis** tool to view costs grouped by billing meter:
 
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and select the resource group that contains the project you want to monitor.
-
-   [!INCLUDE [find-region](../includes/find-region.md)]
-
-1. In Azure portal, select **Cost analysis** under **Cost Management**.
+1. Sign in to the [Azure portal](https://portal.azure.com/) and select your resource group.
+1. Select **Cost analysis** under **Cost Management**.
 
 1. By default, cost analysis is scoped to the selected resource group.
 
@@ -412,8 +392,10 @@ For more information, see [Azure pricing calculator](https://azure.microsoft.com
 
 ## Related content
 
+:::moniker range="foundry-classic"
 - [Foundry management center](management-center.md)
-- [Foundry status dashboard](../azure-ai-foundry-status-dashboard-documentation.md)
+:::moniker-end
+- [Foundry status dashboard](../foundry-status-dashboard-documentation.md)
 - Learn [how to optimize your cloud investment with cost management](/azure/cost-management-billing/costs/cost-mgt-best-practices).
 - Learn more about managing costs with [cost analysis](/azure/cost-management-billing/costs/quick-acm-cost-analysis).
 - Learn about how to [prevent unexpected costs](/azure/cost-management-billing/understand/analyze-unexpected-charges).

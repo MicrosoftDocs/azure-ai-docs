@@ -48,13 +48,8 @@ Custom text classification supports two methods for data splitting:
 
 * **Use a manual split of training and testing data**: This method enables users to define which labeled documents should belong to which set. This step is only enabled if you added documents to your testing set during [data labeling](tag-data.md).
 
-## Train model
+## Train model with REST API
 
-# [Language studio](#tab/Language-studio)
-
-[!INCLUDE [Train model](../includes/language-studio/train-model.md)]
-
-# [REST APIs](#tab/REST-APIs)
 
 ### Start training job
 
@@ -66,19 +61,11 @@ Training could take sometime depending on the size of your training data and com
 
  [!INCLUDE [get training model status](../includes/rest-api/get-training-status.md)]
 
----
 
-### Cancel training job
-
-# [Language Studio](#tab/language-studio)
-
-[!INCLUDE [Cancel training](../includes/language-studio/cancel-training.md)]
-
-# [REST APIs](#tab/rest-api)
+### Cancel training job with REST API
 
 [!INCLUDE [Cancel training](../includes/rest-api/cancel-training.md)]
 
----
 
 ## Next steps
 

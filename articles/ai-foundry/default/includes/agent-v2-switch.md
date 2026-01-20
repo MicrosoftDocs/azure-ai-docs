@@ -10,4 +10,5 @@ ms.date: 11/04/2025
 ms.custom: include
 ---
 
-ℹ️ Code uses **Agents v2 API (preview)**. [Switch to (classic)](?view=foundry-classic&preserve-view=true) for the Agents v1 API version.
+> [!TIP]
+> Code uses **Foundry projects (new) API (preview)** and is incompatible with Foundry projects (classic) API version. [Switch to Foundry (classic) documentation](?view=foundry-classic&preserve-view=true) for the Foundry projects (classic) API version.

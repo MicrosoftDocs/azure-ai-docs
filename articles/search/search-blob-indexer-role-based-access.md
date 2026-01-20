@@ -1,29 +1,32 @@
 ---  
-title: Use a Blob indexer to ingest RBAC scopes metadata
+title: Use a Blob indexer or knowledge source to ingest RBAC scopes metadata
 titleSuffix: Azure AI Search  
-description: Learn how to configure Azure AI Search indexers for ingesting Azure Role-Based Access (RBAC) metadata on Azure blobs.
+description: Learn how to configure Azure AI Search knowledge sources and indexers for ingesting Azure Role-Based Access (RBAC) metadata on Azure blobs.
 ms.service: azure-ai-search  
 ms.topic: how-to
-ms.date: 09/18/2025
+ms.date: 11/18/2025
 author: vaishalishah
 ms.author: vaishalishah
 ---  
 
-# Use a Blob indexer to ingest RBAC scopes metadata
+# Use a Blob indexer or knowledge source to ingest RBAC scopes metadata
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-Azure Storage allows for role-based access on containers in blob storage, where roles like **Storage Blob Data Reader** or **Storage Blob Data Contributor** determine whether someone has access to content. Starting in 2025-05-01-preview, you can now include RBAC scope alongside document ingestion in Azure AI Search and use those permissions to control access to search results. If you have rights to the content, you can see that content in search results. If you don't have rights (or more specifically, a role assignment on the blob container), you *can't* see those results even if you personally have a **Search Index Data Reader** assignment *on the index*.
+Azure Storage allows for role-based access on containers in blob storage, where roles like **Storage Blob Data Reader** or **Storage Blob Data Contributor** determine whether someone has access to content. Preview APIs in Azure AI Search now support ingestion of user permissions alongside document ingestion so that you can use those permissions to control access to search results. If a user lacks permissions on a specific directory or file in Azure Storage, that user doesn't have access to the corresponding documents in Azure AI Search results, even if you personally have a **Search Index Data Reader** assignment *on the index*.
 
-RBAC scope is set at the container level and flows to all blobs (documents) through permission inheritance. RBAC scope is captured during indexing as permission metadata. You can use the push APIs to upload and index content and permission metadata manually (see [Indexing Permissions using the push REST API](search-index-access-control-lists-and-rbac-push-api.md)), or you can use an indexer to automate data ingestion. This article focuses on the indexer approach.
++ 2025-05-01-preview and later, RBAC scopes metadata can be ingested using the [Blob indexer](search-how-to-index-azure-data-lake-storage.md).
++ 2025-11-01-preview provides equivalent support for [Blob knowledge sources](agentic-knowledge-source-how-to-blob.md) in Azure Storage.
+
+RBAC scope is set at the container level and flows to all blobs (documents) through permission inheritance. RBAC scope is captured during indexing as permission metadata. You can use the push APIs to upload and index content and permission metadata manually (see [Indexing Permissions using the push REST API](search-index-access-control-lists-and-rbac-push-api.md)), or you can use an indexer or knowledge source to automate data ingestion. This article focuses on indexing automation.
 
 At query time, the identity of the caller is included in the request header via the `x-ms-query-source-authorization` parameter. The identity must match the permission metadata on documents if the user is to see the search results.
 
-The indexer approach is built on this foundation:
+This article focuses on the indexing automation approaches, built on this foundation:
 
 + [Azure Storage blobs secured using role-based access control (Azure RBAC)](/azure/storage/blobs/data-lake-storage-access-control-model#role-based-access-control-azure-rbac). There's no support for Attribute-based access control (Azure ABAC).
 
-+ [An Azure AI Search indexer for blobs](search-how-to-index-azure-blob-storage.md) that retrieves and ingests data and metadata, including permission filters. To get permission filter support, use the latest preview REST API or a preview package of an Azure SDK that supports the feature.
++ [Azure Blob indexer](#configure-indexer-based-indexing) or a [Blob knowledge source](#configure-a-knowledge-source) that retrieves and ingests data and metadata, including permission filters. To get permission filter support, use the latest preview REST API or a preview package of an Azure SDK that supports the feature.
 
 + [An index in Azure AI Search](search-how-to-create-search-index.md) containing the ingested documents and corresponding permissions. Permission metadata is stored as fields in the index. 
 
@@ -37,7 +40,7 @@ The indexer approach is built on this foundation:
 
 + Azure Storage, Standard performance (general-purpose v2), on hot, cool, and cold access tiers, with RBAC-secured containers or blobs.
 
-+ You should understand how indexers work and how to create an index. This article explains the configuration settings for the data source and indexer, but doesn't provide steps for creating the index. For more information about indexes designed for permission filters, see [Create an index with permission filter fields](search-index-access-control-lists-and-rbac-push-api.md#create-an-index-with-permission-filter-fields).
++ You should understand how indexers and knowledge sources work and how to create an index. This article explains the configuration settings for the data source and indexer, but doesn't provide steps for creating the index. For more information about indexes designed for permission filters, see [Create an index with permission filter fields](search-index-access-control-lists-and-rbac-push-api.md#create-an-index-with-permission-filter-fields).
 
 + This functionality is currently not supported in the Azure portal, this includes Permission filters created through the [Import wizards](search-import-data-portal.md). Use a programmatic approach to create or modify existing objects for document-level access. 
 
@@ -66,9 +69,59 @@ Recall that the search service must have:
 
 For indexer execution, the client issuing the API call must have **Search Service Contributor** permission to create objects, **Search Index Data Contributor** permission to perform data import, and **Search Index Data Reader** to query an index see [Connect to Azure AI Search using roles](search-security-rbac.md).
 
-## Configure indexing
+## Configure a knowledge source
 
-In Azure AI Search, configure an indexer, data source, and index to pull permission metadata from blobs.
+If you're using a knowledge source, definitions in the knowledge source are used to generate a full indexing pipeline (indexer, data source, and index). RBAC scope is detected and automatically included in the generated index. There's no need to modify any of the generated objects if you want permission inheritance in your indexed content.
+
+Key points about the configuration that make it work for this scenario:
+
++ `isADLSGen2` is set to false, which means the data source is Azure Blob storage.
++ `ingestionPermissionOptions` specifies `rbacScope`.
+
+```http
+# Create / Update Azure Blob Knowledge Source
+###
+PUT {{url}}/knowledgesources/azure-blob-ks?api-version=2025-11-01-preview
+api-key: {{key}}
+Content-Type: application/json
+ 
+{
+    "name": "azure-blob-ks",
+    "kind": "azureBlob",
+    "description": "A sample azure blob knowledge source",
+    "azureBlobParameters": {
+        "connectionString": "{{blob-connection-string}}",
+        "containerName": "blobcontainer",
+        "folderPath": null,
+        "isADLSGen2": false,
+        "ingestionParameters": {
+            "identity": null,
+            "embeddingModel": {
+                "kind": "azureOpenAI",
+                "azureOpenAIParameters": {
+                    "deploymentId": "text-embedding-3-large",
+                    "modelName": "text-embedding-3-large",
+                    "resourceUri": "{{aoai-endpoint}}",
+                    "apiKey": "{{aoai-key}}"
+                }
+            },
+            "chatCompletionModel": null,
+            "disableImageVerbalization": true,
+            "ingestionSchedule": null,
+            "ingestionPermissionOptions": ["rbacScope"],
+            "contentExtractionMode": "minimal",
+            "aiServices": {
+                "uri": "{{ai-endpoint}}",
+                "apiKey": "{{ai-key}}"
+            }
+        }
+    }
+}
+```
+
+## Configure indexer-based indexing
+
+If you're using an indexer, configure it, the data source, and the index to pull permission metadata from blobs.
 
 ### Create the data source
 
@@ -189,7 +242,7 @@ To effectively manage blob deletion, ensure that you have enabled [deletion trac
 ## See also
 
 + [Connect to Azure AI Search using roles](search-security-rbac.md)
-- [Query-Time ACL and RBAC enforcement](search-query-access-control-rbac-enforcement.md)
+- [Query-time ACL and RBAC enforcement](search-query-access-control-rbac-enforcement.md)
 - [azure-search-python-samples/Quickstart-Document-Permissions-Push-API](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/Quickstart-Document-Permissions-Push-API)
 + [Search over Azure Blob Storage content](search-blob-storage-integration.md)
 + [Configure a blob indexer](search-how-to-index-azure-blob-storage.md)

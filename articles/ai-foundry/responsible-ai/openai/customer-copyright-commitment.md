@@ -4,7 +4,8 @@ description: Customer Copyright Commitment Required Mitigations for Azure OpenAI
 keywords: Code of Conduct for Azure OpenAI Service
 author: mrbullwinkle
 ms.author: mbullwin
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.reviewer: nitinme
 ms.topic: article
 monikerRange: 'foundry-classic || foundry'
@@ -16,7 +17,7 @@ ms.date: 05/21/2024
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 > [!NOTE]
-> The requirements described below apply only to customers using Azure OpenAI in Microsoft Foundry Models ("Azure OpenAI") and other Covered Products with configurable Metaprompts or other safety systems ("Configurable GAI Services"). They do not apply to customers using other Covered Products including Copilots with safety systems that are fixed. As of the publication date above, the only Configurable GAI Services are Microsoft Copilot Studio and GitHub Copilot; the Universal Required Mitigations do not apply to these offerings, but service-specific mitigations apply instead.  
+> The requirements described below apply only to customers using Azure OpenAI in Microsoft Foundry Models ("Azure OpenAI") and other Covered Products with configurable Metaprompts or other safety systems ("Configurable GAI Services"). They do not apply to customers using other Covered Products including Copilots with safety systems that are fixed. The only Configurable GAI Services are Microsoft Copilot Studio and GitHub Copilot; the Universal Required Mitigations do not apply to these offerings, but service-specific mitigations apply instead.  
 
 The Customer Copyright Commitment ("CCC") is a provision in the Microsoft Product Terms that describes Microsoft's obligation to defend customers against certain third-party intellectual property claims relating to Output Content. For Azure OpenAI and any Configurable GAI Service, Customer also must have implemented all mitigations required by the Azure OpenAI documentation in the offering that delivered the Output Content that is the subject of the claim. The required mitigations to maintain CCC coverage are set forth below.
 

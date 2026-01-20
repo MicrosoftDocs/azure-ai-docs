@@ -12,7 +12,7 @@ ms.date: 10/02/2025
 
 # Autoscale Foundry Tools limits
 
-This article provides guidance on how customers can access higher rate limits on certain Foundry Tools resources, including those AI services used with [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) .
+This article provides guidance on how customers can access higher rate limits on certain Foundry Tools resources, including those Foundry Tools used with [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) .
 
 ## Overview
 
@@ -55,7 +55,7 @@ Autoscale feature is available in the paid subscription tier of the following se
 * [Metrics Advisor](metrics-advisor/overview.md)
 * [Personalizer](personalizer/what-is-personalizer.md)
 * [QnAMaker](qnamaker/overview/overview.md)
-* [Document Intelligence](document-intelligence/overview.md?tabs=v3-0)
+* [Document Intelligence](document-intelligence/overview.md?tabs=v3-0)(only available get operations, list operations and model management operations)
 
 ### Can I test this feature using a free subscription?
 

@@ -3,9 +3,9 @@ title: How to view AutoML model training code
 titleSuffix: Azure Machine Learning AutoML
 description: How to view model training code for an automated ML trained model and explanation of each stage.
 services: machine-learning
-author: rsavage2
-ms.author: rasavage
-ms.reviewer: ssalgado
+ms.author: scottpolly
+author: s-polly
+ms.reviewer: sooryar
 ms.service: azure-machine-learning
 ms.subservice: automl
 ms.custom: UpdateFrequency5, sdkv1

@@ -8,11 +8,13 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.custom: devx-track-dotnet
 ms.topic: how-to
-ms.date: 09/30/2025
+ms.date: 11/6/2025
 manager: nitinme
 ---
 
 # Migrate from 1.0 beta to 2.0 (`Azure.AI.OpenAI`)
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 > [!NOTE]
 > This guidance is no longer recommended. To take advantage of the latest v1 API refer to the [.NET programming language guide](../supported-languages.md).

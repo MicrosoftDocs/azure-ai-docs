@@ -5,7 +5,8 @@ description: This document details issues for data, privacy, and security for Az
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: article
 monikerRange: 'foundry-classic || foundry'
 ms.date: 10/01/2025
@@ -24,6 +25,7 @@ This article provides details regarding how data provided by you to Azure Direct
 > - are NOT available to OpenAI or other Azure Direct Model providers. 
 > - are NOT used by Azure Direct Model providers to improve their models or services. 
 > - are NOT used to train any generative AI foundation models without your permission or instruction. 
+> - Customer Data, Prompts, and Completions are NOT used to improve Microsoft or third-party products or services without your explicit permission or instruction.
 >
 > Your fine-tuned Azure Direct Models are available exclusively for your use.
 >
@@ -55,7 +57,7 @@ As depicted in the diagram above, managed customers may [apply to modify abuse m
 
 ### Generating completions, images or embeddings through inferencing
 
-Azure Direct Models (base or fine-tuned) deployed in your Foundry resource process your input prompts and generate responses with text, images, or embeddings. Customer interactions with the model are logically isolated and secured employing technical measures including but not limited to transport encryption of TLS1.2 or higher, compute security perimeter, tokenization of text, and exclusive access to allocated GPU memory. Prompts and completions are evaluated in real time for harmful content types and content generation is filtered based on configured thresholds. Learn more at [Guardrails (previously content filters) overview](/azure/ai-foundry/openai/concepts/content-filter). 
+Azure Direct Models (base or fine-tuned) deployed in your Foundry resource process your input prompts and generate responses with text, images, or embeddings. Prompts and completions are evaluated in real time for harmful content types and content generation is filtered based on configured thresholds. Learn more at [Guardrails (previously content filters) overview](/azure/ai-foundry/openai/concepts/content-filter). 
 
 Prompts and responses are processed within the customer-specified [geography](https://azure.microsoft.com/explore/global-infrastructure/geographies/) (unless you are using a Global or DataZone deployment type), but may be processed between regions within the geography for operational purposes (including performance and capacity management). See below for information about location of processing when using a Global or DataZone deployment type.  
 

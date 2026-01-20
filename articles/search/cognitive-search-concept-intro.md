@@ -62,7 +62,7 @@ Open-source, third-party, or first-party code can be integrated into the pipelin
 
 ### Use-cases for built-in skills
 
-Built-in skills are based on the Foundry Tools APIs: [Azure Vision](/azure/ai-services/computer-vision/) and [Azure Language](/azure/ai-services/language-service/overview). Unless your content input is small, expect to [attach a billable Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md) to run larger workloads.
+Built-in skills are based on the Foundry Tools APIs: [Azure Vision](/azure/ai-services/computer-vision/) and [Azure Language](/azure/ai-services/language-service/overview). Unless your content input is small, you are expected to [attach a billable Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md) to run larger workloads.
 
 A [skillset](cognitive-search-defining-skillset.md) that's assembled using built-in skills is well suited for the following application scenarios:
 
@@ -85,7 +85,7 @@ In Azure AI Search, an indexer saves the output it creates. A single indexer run
 | Data store | Required | Location | Description |
 |------------|----------|----------|-------------|
 | [searchable index](search-what-is-an-index.md) | Required | Search service | Used for full-text search and other query forms. Specifying an index is an indexer requirement. Index content is populated from skill outputs, plus any source fields that are mapped directly to fields in the index. |
-| [knowledge store](knowledge-store-concept-intro.md) | Optional | Azure Storage | Used for downstream apps like knowledge mining, data science, and multimodal search. A knowledge store is defined within a skillset. Its definition determines whether your enriched documents are projected as tables or objects (files or blobs) in Azure Storage. For [multimodal search scenarios](multimodal-search-overview.md#how-multimodal-search-works-in-azure-ai-search), you can save extracted images to the knowledge store and reference them at query time, allowing the images to be returned directly to client apps. |
+| [knowledge store](knowledge-store-concept-intro.md) | Optional | Azure Storage | Used for downstream apps like knowledge mining, data science, and multimodal search. A knowledge store is defined within a skillset. Its definition determines whether your enriched documents are projected as tables or objects (files or blobs) in Azure Storage. For [multimodal search scenarios](multimodal-search-overview.md#how-does-multimodal-search-work), you can save extracted images to the knowledge store and reference them at query time, allowing the images to be returned directly to client apps. |
 | [enrichment cache](enrichment-cache-how-to-configure.md) | Optional | Azure Storage | Used for caching enrichments for reuse in subsequent skillset executions. The cache stores imported, unprocessed content (cracked documents). It also stores the enriched documents created during skillset execution. Caching is helpful if you're using image analysis or OCR, and you want to avoid the time and expense of reprocessing image files. |
 
 Indexes and knowledge stores are fully independent of each other. While you must attach an index to satisfy indexer requirements, if your sole objective is a knowledge store, you can ignore the index after it's populated.

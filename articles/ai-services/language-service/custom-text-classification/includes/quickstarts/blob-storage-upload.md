@@ -13,7 +13,7 @@ After you create an Azure storage account and connected it to your Language reso
 
 1. [Download the sample dataset for multi label classification projects](https://github.com/Azure-Samples/cognitive-services-sample-data-files/raw/master/language-service/Custom%20text%20classification/Custom%20multi%20classification%20-%20movies%20summary.zip).
 
-2. Open the .zip file, and extract the folder containing the documents. 
+1. Open the .zip file, and extract the folder containing the documents. 
 
 The provided sample dataset contains about 200 documents,  each of which is a summary for a movie. Each document belongs to one or more of the following classes: 
 * "Mystery"
@@ -26,7 +26,7 @@ The provided sample dataset contains about 200 documents,  each of which is a su
 
 1. [Download the sample dataset for single label classification projects](https://github.com/Azure-Samples/cognitive-services-sample-data-files/raw/master/language-service/Custom%20text%20classification/Custom%20single%20classification%20-%20WebOfScience.zip). 
 
-2. Open the .zip file, and extract the folder containing the documents. 
+1. Open the .zip file, and extract the folder containing the documents. 
 
 The provided sample dataset contains about 210 documents, each of which is an abstract of a scientific paper. Each document is labeled with only one class of the following classes: 
 * "Computer_science"
@@ -39,14 +39,16 @@ The provided sample dataset contains about 210 documents, each of which is an ab
 
 ---
 
-2. In the [Azure portal](https://portal.azure.com), navigate to the storage account you created, and select it by selecting **Storage accounts** and typing your storage account name into **Filter for any field**.
+### Azure portal
+
+1. In the [Azure portal](https://portal.azure.com), navigate to the storage account you created, and select it by selecting **Storage accounts** and typing your storage account name into **Filter for any field**.
 
     if your resource group doesn't show up, make sure the **Subscription equals** filter is set to **All**.
 
-3. In your storage account, select **Containers** from the left menu, located below **Data storage**. On the screen that appears, select **+ Container**. Give the container the name **example-data** and leave the default **Public access level**.
+1. In your storage account, select **Containers** from the left menu, located below **Data storage**. On the screen that appears, select **+ Container**. Give the container the name **example-data** and leave the default **Public access level**.
 
     :::image type="content" source="../../media/storage-screen.png" alt-text="A screenshot showing the main page for a storage account." lightbox="../../media/storage-screen.png":::
 
-4. After your container is created, select it. Then select **Upload** button to select the `.txt` and `.json` files you downloaded earlier. 
+1. After your container is created, select it. Then select **Upload** button to select the `.txt` and `.json` files you downloaded earlier. 
 
     :::image type="content" source="../../media/file-upload-screen.png" alt-text="A screenshot showing the button for uploading files to the storage account." lightbox="../../media/file-upload-screen.png":::

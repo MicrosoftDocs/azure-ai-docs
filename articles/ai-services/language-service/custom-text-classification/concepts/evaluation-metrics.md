@@ -6,7 +6,7 @@ description: Learn about evaluation metrics in custom text classification.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-classification
@@ -151,5 +151,4 @@ Similarly,
 
 ## Next steps
 
-* [View a model's performance in Language Studio](../how-to/view-model-evaluation.md)
 * [Train a model](../how-to/train-model.md)

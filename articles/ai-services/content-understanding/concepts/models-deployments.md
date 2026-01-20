@@ -7,7 +7,7 @@ ms.author: pafarley
 manager: nitinme
 ms.date: 10/26/2025
 ms.service: azure-ai-content-understanding
-ms.topic: conceptual
+ms.topic: article
 ms.custom:
   - ignite-2025
 ---
@@ -24,67 +24,9 @@ The service requires a `chat completion` model and `embeddings` model and suppor
 
 The service is periodically updated to add support for more models. The currently supported models can be found at [Service Limits - Supported generative models](../service-limits.md#supported-generative-models). 
 
-## Define models for your analyzer
+## Set default deployments at the resource level
 
-When you create a custom analyzer, specify which chat completion and embeddings models the analyzer should use. This configuration provides the flexibility of picking a model that provides the best results at the lowest cost. The analyzer definition associates a model name with the analyzer definition but not a specific model deployment. 
-
-``` json
-{
-  "analyzerId": "myReceipt",
-  "models": {
-    // Specifies the completion and embedding models used by this analyzer. 
-    "completion": "gpt-4.1",
-    "embedding": "text-embedding-ada-002"
-  },
-  "config": {
-    
-  }
-  // Complete analyzer definition
-}
-```
-
-> [!TIP]
-> GPT-4.1 is a recommended model for use with Foundry and the Studio. You can experiment or use any of the supported chat completion models in addition to GPT-4.1. The embeddings models are used when you use labeled samples or in-context learning to improve the quality of your analyzer.
-
-## Call the analyzer with model deployments
-
-After you define an analyzer, you have two options for connecting it to model deployments when you call it:
-
-### Option 1: Provide model deployments in the analyze request
-
-The simplest approach is to provide the `modelDeployments` object directly in your analyze request. This option gives you flexibility and requires only a single API call.
-
-When you call the analyzer to process content, provide a `modelDeployments` object that maps the model names you defined for that analyzer to actual deployments. The deployment names must match completion and embeddings deployments that exist in the Foundry resource you're using.
-
-``` json
-POST /myReceipt:analyze
-{
-  "modelDeployments": {
-    // This dictionary is formatted as "model name": "deployment name"
-    "gpt-4.1": "myGpt41Deployment",
-    "text-embedding-ada-002": "myEmbeddingDeployment"
-  }
-}
-```
-
-#### Prebuilt analyzers
-
-When you use [prebuilt analyzers](../concepts/prebuilt-analyzers.md), you still need to provide model deployments when you call the analyzer. The required deployments are based on the definition of that analyzer. Currently, all prebuilt analyzers require a GPT-4.1 completion model and a text-embedding-3-large embeddings model.
-
-``` json
-POST /prebuilt-receipt:analyze
-{
-  "modelDeployments": {
-    // This dictionary is formatted as "model name": "deployment name"
-    "gpt-4.1": "myGpt41Deployment",
-    "text-embedding-3-large": "myEmbeddingDeployment"
-  }
-}
-```
-
-### Option 2: Set default deployments at the resource level
-
-Alternatively, you can define default model deployments at the resource level by using a `PATCH` request. When you set defaults, you don't need to pass model deployments with every analyzer request.
+You can define default model deployments at the resource level by using a `PATCH` request. When you set defaults, you don't need to pass model deployments with every analyzer request.
 
 **Step 1:** Set the default deployments on the resource.
 
@@ -112,6 +54,28 @@ POST /myReceipt:analyze
 ```
 
 When you have defaults defined on the resource, you can still override them for a specific request by providing `modelDeployments` in the analyze call.
+
+## Define models for your analyzer
+
+When you create a custom analyzer, specify which chat completion and embeddings models the analyzer should use. This configuration provides the flexibility of picking a model that provides the best results at the lowest cost. The analyzer definition associates a model name with the analyzer definition but not a specific model deployment. 
+
+``` json
+{
+  "analyzerId": "myReceipt",
+  "models": {
+    // Specifies the completion and embedding models used by this analyzer. 
+    "completion": "gpt-4.1",
+    "embedding": "text-embedding-ada-002"
+  },
+  "config": {
+    
+  }
+  // Complete analyzer definition
+}
+```
+
+> [!TIP]
+> GPT-4.1 is a recommended model for use with Foundry and the Studio. You can experiment or use any of the supported chat completion models in addition to GPT-4.1. The embeddings models are used when you use labeled samples or in-context learning to improve the quality of your analyzer.
 
 ## Test the analyzer and review usage
 

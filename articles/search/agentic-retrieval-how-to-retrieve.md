@@ -7,16 +7,16 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/10/2025
+ms.date: 01/15/2026
 ---
 
-# Retrieve data using a knowledge base in Azure AI Search
+# Retrieve data by using a knowledge base in Azure AI Search
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
 In an agentic retrieval multi-query pipeline, query execution is through the [**retrieve action**](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true) on a knowledge base that invokes parallel query processing. This request structure is updated for the new 2025-11-01-preview, which introduces breaking changes from previous previews. For help with breaking changes, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md).
 
-This article explains how to set up a retrieve action. It also covers the three components of the retrieval response: 
+This article explains how to set up a retrieve action. It also describes the three components of the retrieval response: 
 
 + *extracted response for the LLM*
 + *referenced results*
@@ -24,11 +24,13 @@ This article explains how to set up a retrieve action. It also covers the three 
 
 A retrieve request can include instructions for query processing that override the default instructions set on the knowledge base. A retrieve action has core parameters that are supported on any request, plus parameters that are specific to a knowledge source.
 
+You can also use optional [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md) to bring LLM answer formulation into the query pipeline, returning a concise or formatted answer to an agent or app.
+
 ## Prerequisites
 
 + A [supported knowledge source](agentic-knowledge-source-overview.md#supported-knowledge-sources) that wraps a searchable index or points to an external source for native data retrieval.
 
-+ A [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) represents one or more knowledge sources, plus a chat completion model if you want intelligent query planning and answer formulation.
++ A [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) that represents one or more knowledge sources. If you want intelligent query planning and answer formulation, include a chat completion model.
 
 + Azure AI Search in any [region that provides agentic retrieval](search-region-support.md).
 
@@ -38,12 +40,9 @@ A retrieve request can include instructions for query processing that override t
 
 To follow the steps in this guide, we recommend [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for sending REST API calls to Azure AI Search.
 
-> [!NOTE]
-> Although you can use the Azure portal to retrieve data from knowledge bases, the portal uses the 2025-08-01-preview, which uses the previous "knowledge agent" terminology and doesn't support all 2025-11-01-preview features. For help with breaking changes, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md).
-
 ## Set up the retrieve action
 
-A retrieve action is specified on a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md). The knowledge base has one or more knowledge sources. Retrieval can return a synthesized answer in natural language or raw grounding chunks from the knowledge sources.
+Specify a retrieve action on a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md). The knowledge base has one or more knowledge sources. Retrieval can return a synthesized answer in natural language or raw grounding chunks from the knowledge sources.
 
 + Review your knowledge base definition to understand which knowledge sources are in scope.
 
@@ -55,9 +54,9 @@ For knowledge sources that have default retrieval instructions, you can override
 
 ### Retrieval from a search index
 
-For knowledge sources that target a search index, all `searchable` fields are in-scope for query execution. If the index includes vector fields, your index should have a valid [vectorizer definition](vector-search-how-to-configure-vectorizer.md) so that the agentic retrieval engine can vectorize the query inputs. Otherwise, vector fields are ignored. The implied query type is `semantic`, and there's no search mode.
+For knowledge sources that target a search index, all `searchable` fields are in scope for query execution. If the index includes vector fields, your index should have a valid [vectorizer definition](vector-search-how-to-configure-vectorizer.md) so that the agentic retrieval engine can vectorize the query inputs. Otherwise, vector fields are ignored. The implied query type is `semantic`, and there's no search mode.
 
-The input for the retrieval route is chat conversation history in natural language, where the `messages` array contains the conversation. Messages are only supported if the [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md) is either low or medium.
+The input for the retrieval route is chat conversation history in natural language, where the `messages` array contains the conversation. The agentic retrieval engine supports messages only if the [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md) is either low or medium.
 
 ```http
 @search-url=<YOUR SEARCH SERVICE URL>
@@ -97,7 +96,7 @@ POST https://{{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-
 
 ### Responses
 
-Successful retrieval returns a `200 OK` status code. If the knowledge base fails to retrieve from one or more knowledge sources, a `206 Partial Content` status code is returned, and the response only includes results from sources that succeeded. Details about the partial response appear as [errors in the activity array](#review-the-activity-array).
+Successful retrieval returns a `200 OK` status code. If the knowledge base fails to retrieve from one or more knowledge sources, a `206 Partial Content` status code returns. The response only includes results from sources that succeeded. Details about the partial response appear as [errors in the activity array](#review-the-activity-array).
 
 ### Retrieve parameters
 
@@ -185,7 +184,7 @@ Content-Type: application/json
 
 ### Example: minimal reasoning effort
 
-In this example, there's no chat completion model for intelligent query planning or answer formulation. The query string is passed to the agentic retrieval engine for keyword search or hybrid search.
+In this example, there's no chat completion model for intelligent query planning or answer formulation. The query string goes to the agentic retrieval engine for keyword search or hybrid search.
 
 ```http
 POST {{url}}/knowledgebases/kb-minimal/retrieve?api-version={{api-version}}
@@ -204,9 +203,9 @@ Content-Type: application/json
 
 ## Review the extracted response
 
-The *extracted response* is single unified string that's typically passed to an LLM that consumes it as grounding data, using it to formulate a response. Your API call to the LLM includes the unified string and instructions for model, such as whether to use the grounding exclusively or as a supplement.
+The *extracted response* is a single unified string that you typically pass to an LLM. The LLM consumes it as grounding data and uses it to formulate a response. Your API call to the LLM includes the unified string and instructions for the model, such as whether to use the grounding exclusively or as a supplement.
 
-The body of the response is also structured in the chat message style format. Currently in this preview release, the content is serialized JSON.
+The body of the response is also structured in the chat message style format. Currently, in this preview release, the content is serialized JSON.
 
 ```http
 "response": [
@@ -226,9 +225,9 @@ The body of the response is also structured in the chat message style format. Cu
 
 + `content.text` is a JSON array. It's a single string composed of the most relevant documents (or chunks) found in the search index, given the query and chat history inputs. This array is your grounding data that a chat completion model uses to formulate a response to the user's question.
 
-  This portion of the response consists of the 200 chunks or less, excluding any results that fail to meet the minimum threshold of a 2.5 reranker score.
+  This portion of the response consists of 200 chunks or fewer, excluding any results that fail to meet the minimum threshold of a 2.5 reranker score.
 
-  The string starts with the reference ID of the chunk (used for citation purposes), and any fields specified in the semantic configuration of the target index. In this example, you should assume the semantic configuration in the target index has a "title" field, a "terms" field, and a "content" field.
+  The string starts with the reference ID of the chunk (used for citation purposes), and any fields specified in the semantic configuration of the target index. In this example, assume the semantic configuration in the target index has a "title" field, a "terms" field, and a "content" field.
 
 + `content.type` has one valid value in this preview: `text`. 
 
@@ -248,9 +247,9 @@ The output includes the following components.
 | agenticReasoningEffort | For each retrieve action, you can specify the degree of LLM support. Use minimal to bypass an LLM, low for constrained LLM processing, and medium for full LLM processing. | 
 | modelAnswerSynthesis | For knowledge bases that specify answer formulation, this section reports on the token count for formulating the answer, and the token count of the answer output. |
 
-Output reports on the token consumption for agentic reasoning during retrieval at the specified [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md).
+The output reports on the token consumption for agentic reasoning during retrieval at the specified [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md).
 
-Output also includes the following information:
+The output also includes the following information:
 
 + Subqueries sent to the retrieval pipeline.
 + Errors for any retrieval failures, such as inaccessible knowledge sources.
@@ -317,9 +316,9 @@ Here's an example of an activity array.
 
 ## Review the references array
 
-The `references` array is a direct reference from the underlying grounding data and includes the `sourceData` used to generate the response. It consists of every single document that was found and semantically ranked by the agentic retrieval engine. Fields in the `sourceData` include an `id` and semantic fields: `title`, `terms`, `content`.
+The `references` array comes directly from the underlying grounding data. It includes the `sourceData` used to generate the response. It consists of every document that the agentic retrieval engine finds and semantically ranks. Fields in the `sourceData` include an `id` and semantic fields: `title`, `terms`, and `content`.
 
-The `id` is a reference ID for an item within a specific response. It's not the document key in the search index. It's used for providing citations.
+The `id` acts as a reference ID for an item within a specific response. It's not the document key in the search index. You use it for providing citations.
 
 The purpose of this array is to provide a chat message style structure for easy integration. For example, if you want to serialize the results into a different structure or you require some programmatic manipulation of the data before you returned it to the user.
 

@@ -14,6 +14,8 @@ ms.custom: build-2025
 
 # Deploy a fine-tuned model for testing
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 After you've fine-tuned a model, you may want to test its quality via the Chat Completions API or the [Evaluations](./evaluations.md) service.
 
 A Developer Tier deployment allows you to deploy your new model without the hourly hosting fee incurred by Standard or Global deployments. The only charges incurred are per-token. Consult the [pricing page](https://aka.ms/aoaipricing) for the most up-to-date pricing.
@@ -112,7 +114,7 @@ curl -X POST "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resource
 | resource_group | The resource group name for your Azure OpenAI resource. |
 | resource_name | The Azure OpenAI resource name. |
 | model_deployment_name | The custom name for your new fine-tuned model deployment. This is the name that will be referenced in your code when making chat completion calls. |
-| fine_tuned_model | Retrieve this value from your fine-tuning job results in the previous step. It will look like `gpt-35-turbo-0125.ft-b044a9d3cf9c4228b5d393567f693b83`. You'll need to add that value to the deploy_data json. Alternatively you can also deploy a checkpoint, by passing the checkpoint ID which will appear in the format `ftchkpt-e559c011ecc04fc68eaa339d8227d02d` |
+| fine_tuned_model | Retrieve this value from your fine-tuning job results in the previous step. It will look like `gpt-4.1-mini-2025-04-14.ft-b044a9d3cf9c4228b5d393567f693b83`. You'll need to add that value to the deploy_data json. Alternatively you can also deploy a checkpoint, by passing the checkpoint ID which will appear in the format `ftchkpt-e559c011ecc04fc68eaa339d8227d02d` |
 
 
 ### Deploy a model with Azure CLI

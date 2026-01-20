@@ -42,7 +42,7 @@ In this quickstart, use the following features to analyze and extract data and v
 
 :::moniker range="doc-intel-4.0.0"
 
-* An AI Services or Document Intelligence resource. Once you have your Azure subscription, create a [single-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) or [Azure multi-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) resource, in the Azure portal, to get your key and endpoint.
+* A Foundry Tools or Document Intelligence resource. Once you have your Azure subscription, create a [single-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) or [Azure multi-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) resource, in the Azure portal, to get your key and endpoint.
 
 * You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 
@@ -57,7 +57,7 @@ In this quickstart, use the following features to analyze and extract data and v
 
 :::moniker range="doc-intel-3.1.0 || doc-intel-3.0.0"
 
-* An AI Services or Document Intelligence resource. Once you have your Azure subscription, create a [single-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) or [Azure multi-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) resource, in the Azure portal, to get your key and endpoint.
+* A Foundry Tools or Document Intelligence resource. Once you have your Azure subscription, create a [single-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) or [Azure multi-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) resource, in the Azure portal, to get your key and endpoint.
 
 * You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 

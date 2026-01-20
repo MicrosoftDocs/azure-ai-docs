@@ -7,7 +7,7 @@ ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: skohlmeier
-ms.date: 11/18/2025
+ms.date: 01/16/2026
 ms.service: azure-ai-foundry
 ms.topic: concept-article
 ms.custom:
@@ -30,6 +30,8 @@ In today's AI-driven world, Generative AI Operations (GenAIOps) is revolutionizi
 - Vulnerable to security exploits
 
 This is where observability becomes essential. These capabilities measure both the frequency and severity of risks in AI outputs, enabling teams to systematically address quality, safety, and security concerns throughout the entire AI development journey—from selecting the right model to monitoring production performance, quality, and safety.
+
+[!INCLUDE [evaluation-preview](../includes/evaluation-preview.md)]
 
 ## What is observability?
 
@@ -67,15 +69,15 @@ To learn more, see [Textual similarity evaluators](./evaluation-evaluators/textu
 | Evaluator | Purpose | Inputs |
 |--|--|--|
 | Retrieval | Measures how effectively the system retrieves relevant information. | Query, context |
-| Document Retrieval (preview) | Measures accuracy in retrieval results given ground truth. | Ground truth, retrieved documents |
+| Document Retrieval| Measures accuracy in retrieval results given ground truth. | Ground truth, retrieved documents |
 | Groundedness | Measures how consistent the response is with respect to the retrieved context. |  Query (optional), context, response |
-| Groundedness Pro (preview)  | Measures whether the response is consistent with respect to the retrieved context. | Query, context, response |
+| Groundedness Pro (preview) | Measures whether the response is consistent with respect to the retrieved context. | Query, context, response |
 | Relevance | Measures how relevant the response is with respect to the query. | Query, response| 
-| Response Completeness (preview) | Measures to what extent the response is complete (not missing critical information) with respect to the ground truth. | Response, ground truth |
+| Response Completeness | Measures to what extent the response is complete (not missing critical information) with respect to the ground truth. | Response, ground truth |
 
 To learn more, see [Retrieval-augmented Generation (RAG) evaluators](./evaluation-evaluators/rag-evaluators.md).
 
-### Safety and security (preview)
+### Safety and security
 
 | Evaluator | Purpose | Inputs |
 |--|--|--|
@@ -90,7 +92,7 @@ To learn more, see [Retrieval-augmented Generation (RAG) evaluators](./evaluatio
 
 To learn more, see [Risk and safety evaluators](./evaluation-evaluators/risk-safety-evaluators.md).
 
-### Agents (preview)
+### Agents
 
 ::: moniker range="foundry-classic"
 
@@ -106,21 +108,21 @@ To learn more, see [Risk and safety evaluators](./evaluation-evaluators/risk-saf
 
 | Evaluator | Purpose | Inputs |
 |--|--|--|
-| Task Adherence | Measures whether the agent follows through on identified tasks according to system instructions. | Query, Response, Tool definitions (Optional) |
-| Task Completion | Measures whether the agent successfully completed the requested task end-to-end. | Query, Response, Tool definitions (Optional) |
+| Task Adherence  | Measures whether the agent follows through on identified tasks according to system instructions. | Query, Response, Tool definitions (Optional) |
+| Task Completion (preview)| Measures whether the agent successfully completed the requested task end-to-end. | Query, Response, Tool definitions (Optional) |
 | Intent Resolution | Measures how accurately the agent identifies and addresses user intentions. | Query, Response, Tool definitions (Optional)  |
-| Task Navigation Efficiency | Determines whether the agent's sequence of steps matches an optimal or expected path to measure efficiency. | Response, Ground truth |
+| Task Navigation Efficiency (preview) | Determines whether the agent's sequence of steps matches an optimal or expected path to measure efficiency. | Response, Ground truth |
 | Tool Call Accuracy | Measures the overall quality of tool calls including selection, parameter correctness, and efficiency. | Query, Tool definitions, Tool calls (Optional), Response |
-| Tool Selection | Measures whether the agent selected the most appropriate and efficient tools for a task. | Query, Tool definitions, Tool calls (Optional), Response |
-| Tool Input Accuracy | Validates that all tool call parameters are correct with strict criteria including grounding, type, format, completeness, and appropriateness. | Query, Response, Tool definitions |
-| Tool Output Utilization | Measures whether the agent correctly interprets and uses tool outputs contextually in responses and subsequent calls. | Query, Response, Tool definitions (Optional) |
-| Tool Call Success | Evaluates whether all tool calls executed successfully without technical failures. | Response, Tool definitions (Optional) |
+| Tool Selection (preview) | Measures whether the agent selected the most appropriate and efficient tools for a task. | Query, Tool definitions, Tool calls (Optional), Response |
+| Tool Input Accuracy (preview)| Validates that all tool call parameters are correct with strict criteria including grounding, type, format, completeness, and appropriateness. | Query, Response, Tool definitions |
+| Tool Output Utilization (preview)| Measures whether the agent correctly interprets and uses tool outputs contextually in responses and subsequent calls. | Query, Response, Tool definitions (Optional) |
+| Tool Call Success (preview) | Evaluates whether all tool calls executed successfully without technical failures. | Response, Tool definitions (Optional) |
 
 ::: moniker-end
 
 To learn more, see [Agent evaluators](./evaluation-evaluators/agent-evaluators.md).
 
-### Azure OpenAI graders (preview)
+### Azure OpenAI graders
 
 | Evaluator | Purpose |  Inputs |
 |--|--|--|
@@ -190,7 +192,7 @@ Alternatively, you can also use [the Foundry portal](../how-to/evaluate-generati
 
 - Simulators and AI red teaming agent: If you don't have evaluation data (test data), simulators can help by generating topic-related or adversarial queries. These simulators test the model's response to situation-appropriate or attack-like queries (edge cases).
 
-  - [AI red teaming agent](../how-to/develop/run-scans-ai-red-teaming-agent.md) simulates complex adversarial attacks against your AI system using a broad range of safety and security attacks using Microsoft's open framework for Python Risk Identification Tool or PyRIT.
+  [AI red teaming agent](../how-to/develop/run-scans-ai-red-teaming-agent.md) simulates complex adversarial attacks against your AI system using a broad range of safety and security attacks using Microsoft's open framework for Python Risk Identification Tool or PyRIT.
   
   Automated scans using the AI red teaming agent enhances preproduction risk assessment by systematically testing AI applications for risks. This process involves simulated attack scenarios to identify weaknesses in model responses before real-world deployment. By running AI red teaming scans, you can detect and mitigate potential safety issues before deployment. This tool is recommended to be used with human-in-the-loop processes such as conventional AI red teaming probing to help accelerate risk identification and aid in the assessment by a human expert.
 
@@ -233,7 +235,7 @@ GenAIOps establishes a reliable process for managing AI applications throughout 
 
 ::: moniker range="foundry-classic"
 
-| Purpose |  Process | Parameters |
+| Purpose | Process | Parameters, guidance, and samples |
 | -----| -----| ----|
 | What are you evaluating for? | Identify or build relevant evaluators | - [Quality and performance sample notebook](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/blob/main/src/evaluation/evaluate.py) <br> </br> - [Agents Response Quality](https://github.com/Azure-Samples/azureai-samples/tree/main/scenarios/evaluate/Supported_Evaluation_Metrics/Agent_Evaluation) <br> </br> - [Safety and Security](./evaluation-evaluators/risk-safety-evaluators.md) ([Safety and Security sample notebook](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/blob/main/src/evaluation/evaluatesafetyrisks.py)) <br> </br> - [Custom](./evaluation-evaluators/custom-evaluators.md) ([Custom sample notebook](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/blob/main/src/evaluation/evaluate.py)) |
 | What data should you use?  | Upload or generate relevant dataset | - [Generic simulator for measuring Quality and Performance](./concept-synthetic-data.md) ([Generic simulator sample notebook](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/system/finetune/Llama-notebooks/datagen/synthetic-data-generation.ipynb)) <br></br> - [Adversarial simulator for measuring Safety and Security](../how-to/develop/simulator-interaction-data.md) ([Adversarial simulator sample notebook](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/blob/main/src/evaluation/simulate_and_evaluate_online_endpoint.ipynb)) <br></br> - AI red teaming agent for running automated scans to assess safety and security vulnerabilities ([AI red teaming agent sample notebook](https://github.com/Azure-Samples/azureai-samples/blob/main/scenarios/evaluate/AI_RedTeaming/AI_RedTeaming.ipynb))|
@@ -245,7 +247,7 @@ GenAIOps establishes a reliable process for managing AI applications throughout 
 
 ::: moniker range="foundry"
 
-| Purpose |  Process | Parameters |
+| Purpose | Process | Parameters, guidance, and samples  |
 | -----| -----| ----|
 | What are you evaluating for? | Identify or build relevant evaluators | - [RAG Quality](https://aka.ms/rag-evaluators-samples) <br> </br> - [Agents Quality](https://aka.ms/agent-evaluator-samples) <br> </br> - [Safety and Security](./evaluation-evaluators/risk-safety-evaluators.md) ([Safety and Security sample notebook](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/blob/main/src/evaluation/evaluatesafetyrisks.py)) <br> </br> - [Custom](./evaluation-evaluators/custom-evaluators.md) ([Custom sample notebook](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/blob/main/src/evaluation/evaluate.py)) |
 | What data should you use?  | Upload or generate relevant dataset | - [Synthetic dataset generation](../how-to/evaluate-generative-ai-app.md#select-or-create-a-dataset) <br></br> - AI red teaming agent for running automated scans to assess safety and security vulnerabilities ([AI red teaming agent sample notebook](https://aka.ms/airedteamingagent-sample))|
@@ -260,22 +262,14 @@ GenAIOps establishes a reliable process for managing AI applications throughout 
 For network isolation purposes you can bring your own virtual network for evaluation. To learn more, see [How to configure a private link](../how-to/configure-private-link.md).
 
 > [!NOTE]
-> Evaluation data is sent to Application Insights if Application Insights is connected. Virtual Network support for Application Insights isn't available yet and coming.
+> Evaluation data is sent to Application Insights if Application Insights is connected. Virtual network support for Application Insights and tracing isn't available. Inline datasource is not supported.
+
+> [!IMPORTANT]
+> To prevent evaluation and red teaming run failures, assign the Azure AI User role to the project's Managed Identity during initial project setup.
 
 ### Virtual network region support
 
-| Geography | Supported Azure region|
-|--|--|
-| US | westus, westus3, eastus, eastus2 |
-| Australia | australiaeast |
-| France | francecentral
-| India | southindia |
-| Japan | japaneast |
-| Norway | norwayeast |
-| Sweden | swedencentral |
-| Switzerland | switzerlandnorth |
-| UAE | uaenorth |
-| UK | uksouth |
+Bring your own virtual network for evaluation is supported in all regions except for Central India, East Asia, North Europe and Qatar Central.
 
 ## Region support
 

@@ -24,6 +24,8 @@ AI systems might generate textual responses that are incoherent, or lack the gen
 - [Coherence](#coherence)
 - [Fluency](#fluency)
 
+[!INCLUDE [evaluation-preview](../../includes/evaluation-preview.md)]
+
 ::: moniker range="foundry-classic"
 
 If you have a question-answering (QA) scenario with both `context` and `ground truth` data in addition to `query` and `response`, you can also use our [QAEvaluator](#question-answering-composite-evaluator), which is a composite evaluator that uses relevant evaluators for judgment.
@@ -315,7 +317,7 @@ if __name__ == "__main__":
     main()
 ```
 
-For more details, see the [complete working sample.](https://github.com/Azure/azure-sdk-for-python/blob/evaluation_samples_graders/sdk/ai/azure-ai-projects/samples/evaluation/agentic_evaluators/sample_coherence.py)
+For more details, see the [complete working sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_coherence.py).
 
 ::: moniker-end
 

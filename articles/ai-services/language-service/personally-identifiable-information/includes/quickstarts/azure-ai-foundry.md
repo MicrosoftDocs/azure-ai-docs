@@ -12,7 +12,7 @@ ms.custom: language-service-pii
 > [!TIP]
 >
 > * If you already have an Azure Language in Foundry Tools or multi-service resource—whether used on its own or through Language Studio—you can continue to use those existing Language resources within the Microsoft Foundry portal. 
-> * For more information, see [How to use Foundry Tools in the Foundry portal](/azure/ai-services/connect-services-ai-foundry-portal).
+> * For more information, see [How to use Foundry Tools in the Foundry portal](/azure/ai-services/connect-services-foundry-portal).
 > * We highly recommended that you use a Foundry resource in the Foundry; however, you can also follow these instructions using a Language resource.
 
 * **Azure subscription**. If you don't have one, you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
@@ -112,7 +112,7 @@ After your operation is completed, the type of entity is displayed beneath each 
 ### [Foundry (new)](#tab/foundry-new)
 
 > [!NOTE]
-> This content refers to the [Foundry (new)](https://ai.azure.com/) portal, which supports only [Foundry projects](/azure/ai-foundry/what-is-azure-ai-foundry) and provides streamlined access to models, agents, and tools. To confirm that you're using Foundry (new), make sure the version toggle in the portal banner is in the **on** position. :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/new-foundry.png" border="false":::
+> This content refers to the [Foundry (new)](https://ai.azure.com/) portal, which supports only [Foundry projects](/azure/ai-foundry/what-is-foundry) and provides streamlined access to models, agents, and tools. To confirm that you're using Foundry (new), make sure the version toggle in the portal banner is in the **on** position. :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/new-foundry.png" border="false":::
 
 
 You can use [Foundry (new)](https://ai.azure.com/) to:

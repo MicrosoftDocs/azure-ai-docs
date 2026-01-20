@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
-ms.date: 09/30/2025
+ms.date: 12/6/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -14,6 +14,8 @@ ms.custom:
 ---
 
 # Azure OpenAI in Microsoft Foundry Models REST API preview reference
+
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 This article provides details on the inference REST API endpoints for Azure OpenAI.
 

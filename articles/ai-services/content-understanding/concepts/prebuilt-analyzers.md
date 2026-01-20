@@ -3,9 +3,9 @@ title: Azure Content Understanding in Foundry Tools prebuilt analyzers
 titleSuffix: Foundry Tools
 description: Learn about prebuilt analyzers, base analyzers, RAG analyzers, vertical analyzers, and how to use and customize them in Azure Content Understanding in Foundry Tools.
 author: PatrickFarley 
-ms.author: jfilcik
+ms.author: pafarley
 manager: nitinme
-ms.date: 05/19/2025
+ms.date: 12/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: overview
 ms.custom:
@@ -14,7 +14,7 @@ ms.custom:
 
 # Prebuilt analyzers in Azure Content Understanding in Foundry Tools
 
-Azure Content Understanding in Foundry Tools prebuilt analyzers provide a rich set of domain specific extraction capabilities. These prebuilt analyzers go beyond predefined schemas. They're powered by rich knowledge bases of thousands of real-world document examples. This means they don't just extract data. They understand how information is structured and used, adapting to the nuances of each content type.
+Azure Content Understanding prebuilt analyzers provide a rich set of domain-specific extraction capabilities that go beyond predefined schemas. They're powered by rich knowledge bases of thousands of real-world document examples. They understand how information is structured and used, adapting to the nuances of each content type.
 
 Prebuilt analyzers are ready-to-use tools that streamline common content processing tasks. You can use them for content ingestion in search and retrieval-augmented generation (RAG) workflows. You can also use them for intelligent document processing (IDP) to extract data from invoices or analyze call center recordings. These analyzers can also be used in agentic flows as tools for extracting structured representations from input files. You can also [customize these analyzers](../tutorial/create-custom-analyzer.md) to extract other fields or refine outputs to better fit your specific workflow requirements.
 
@@ -38,7 +38,7 @@ Content extraction analyzers focus on optical character recognition and layout a
 * Provides basic optical character recognition (OCR) capabilities
 * Foundational text extraction without layout analysis
 
-This prebuilt doesn't require a large language model (LLM) or Embeddings model
+This prebuilt doesn't require a large language model (LLM) or Embeddings model.
 
 #### `prebuilt-layout`
 
@@ -49,11 +49,11 @@ This prebuilt doesn't require a large language model (LLM) or Embeddings model
 * Provides detailed layout information beyond basic text extraction
 * Detects all figure types including charts, diagrams, pictures, icons, and other images providing location information (PDF files only)
 
-This prebuilt doesn't require a large language model (LLM) or Embeddings model
+This prebuilt doesn't require a large language model (LLM) or Embeddings model.
 
 ### Base analyzers
 
-Base analyzers provide fundamental content processing capabilities specific to a content type. They're intended primarily as a parent to inherit from when [creating custom analyzers](../tutorial/create-custom-analyzer.md). When creating a custom analyzer, you include one of these base analyzers using the baseAnalyzerId property. 
+Base analyzers provide fundamental content processing capabilities specific to a content type. Use them primarily as a parent to inherit from when [creating custom analyzers](../tutorial/create-custom-analyzer.md). When you create a custom analyzer, include one of these base analyzers by using the `baseAnalyzerId` property. 
 
 * `prebuilt-audio` - Base audio processing
 * `prebuilt-document` - Base document processing
@@ -69,36 +69,36 @@ Content understanding provides a set of analyzers optimized for retrieval-augmen
 
 #### `prebuilt-documentSearch`
 
-* Extracts various content and layout elements such as paragraphs, tables, and figures from documents
-* Provides detailed figure descriptions with textual explanations of images, charts, and diagrams<sup>1</sup>
-* Analyzes charts and diagrams, providing structured output as chart.js syntax for charts or mermaid.js syntax for diagrams<sup>1</sup>
-* Captures hand-written annotations and markup on the document
-* Generates a one-paragraph summary of the entire document content
-* Supports a wide range of file formats including PDF, images, Office documents, and text files
-* Recommended for document ingestion in RAG workflows
+* Extracts various content and layout elements such as paragraphs, tables, and figures from documents.
+* Provides detailed figure descriptions with textual explanations of images, charts, and diagrams<sup>1</sup>.
+* Analyzes charts and diagrams, providing structured output as chart.js syntax for charts or mermaid.js syntax for diagrams<sup>1</sup>.
+* Captures hand-written annotations and markup on the document.
+* Generates a one-paragraph summary of the entire document content.
+* Supports a [wide range of file formats](/azure/ai-services/content-understanding/service-limits#input-file-limits) including PDF, images, Office documents, and text files.
+* Recommended for document ingestion in RAG workflows.
 
 <sup>1</sup> Figure analysis is only supported for PDF and image file formats.
 
 #### `prebuilt-imageSearch`
 
-* Analyzes images to generate descriptions and insights
-* Generates a one-paragraph description of the image content
-* Extracts visual content for search and retrieval applications
+* Analyzes images to generate descriptions and insights.
+* Generates a one-paragraph description of the image content.
+* Extracts visual content for search and retrieval applications.
 
 #### `prebuilt-audioSearch`
 
-* Transcribes conversations from audio and video files
-* Generates a one-paragraph summary of the conversation content
-* Supports multiple locales for international content processing
-* Optimized for conversation analysis and content extraction
+* Transcribes conversations from audio and video files.
+* Generates a one-paragraph summary of the conversation content.
+* Supports multiple locales for international content processing.
+* Optimized for conversation analysis and content extraction.
 
 #### `prebuilt-videoSearch`
 
-* Analyzes videos to extract transcripts and descriptions for each segment
-* Automatically segments videos into meaningful sections based on topic shifts, scene changes, or visual cues
-* Generates detailed summaries focusing on people, places, and actions for each segment
-* Supports scene splitting and comprehensive video content analysis
-* Provides transcript extraction along with contextual segment descriptions
+* Analyzes videos to extract transcripts and descriptions for each segment.
+* Automatically segments videos into meaningful sections based on topic shifts, scene changes, or visual cues.
+* Generates detailed summaries focusing on people, places, and actions for each segment.
+* Supports scene splitting and comprehensive video content analysis.
+* Provides transcript extraction along with contextual segment descriptions.
 
 ### Domain-specific analyzers
 
@@ -106,11 +106,11 @@ Domain-specific analyzers are preconfigured for common document categories in po
 
 Key categories include:
 
-* **Finance and tax**: Extract structured data from invoices, receipts, bank statements, credit card statements, and comprehensive US tax forms including 1040, W-2, 1099 variants, and 1098 series. Tuned schemas capture amounts, dates, tax identifiers, and financial entities. See the [financial documents](#financial-documents) and [tax documents](#tax-documents-us) sections below.
-* **Identity verification**: Process passports, driver's licenses, ID cards, health insurance cards, and identity documents from multiple countries/regions with `prebuilt-idDocument` and related analyzers. Extract personal information, document numbers, and verification details with support for worldwide formats. See the [identity documents](#identity-documents) section below.
-* **Mortgage and lending**: Automate extraction from US mortgage applications (Form 1003), appraisal reports (Form 1004), verification of employment (Form 1005), and closing disclosures. Capture borrower details, property information, loan terms, and financial disclosures. See the [mortgage documents](#mortgage-documents-us) section below.
-* **Procurement and contracts**: Process purchase orders, contracts, procurement documents, and credit memos to extract vendor information, line items, pricing, terms, and contractual obligations. See the [procurement documents](#procurement-documents) and [legal and business documents](#legal-and-business-documents) sections below.
-* **Utilities and billing**: Extract structured data from utility bills, invoices, and billing statements across industries, capturing account information, usage details, and payment data. See the [financial documents](#financial-documents) and [other specialized analyzers](#other-specialized-analyzers) sections below.
+* **Finance and tax**: Extract structured data from invoices, receipts, bank statements, credit card statements, and comprehensive US tax forms including 1040, W-2, 1099 variants, and 1098 series. Tuned schemas capture amounts, dates, tax identifiers, and financial entities. See the [financial documents](#financial-documents) and [tax documents](#tax-documents-us) sections.
+* **Identity verification**: Process passports, driver's licenses, ID cards, health insurance cards, and identity documents from multiple countries and regions with `prebuilt-idDocument` and related analyzers. Extract personal information, document numbers, and verification details with support for worldwide formats. See the [identity documents](#identity-documents) section.
+* **Mortgage and lending**: Automate extraction from US mortgage applications (Form 1003), appraisal reports (Form 1004), verification of employment (Form 1005), and closing disclosures. Capture borrower details, property information, loan terms, and financial disclosures. See the [mortgage documents](#mortgage-documents-us) section.
+* **Procurement and contracts**: Process purchase orders, contracts, procurement documents, and credit memos to extract vendor information, line items, pricing, terms, and contractual obligations. See the [procurement documents](#procurement-documents) and [legal and business documents](#legal-and-business-documents) sections.
+* **Utilities and billing**: Extract structured data from utility bills, invoices, and billing statements across industries, capturing account information, usage details, and payment data. See the [financial documents](#financial-documents) and [other specialized analyzers](#other-specialized-analyzers) sections.
 
 See the [complete list of domain-specific analyzers](#domain-specific-analyzer-reference) at the end of this article.
 
@@ -130,7 +130,7 @@ Utility analyzers provide specialized functionality for schema generation and fi
 
 ## Use prebuilt analyzers
 
-To analyze content with a prebuilt analyzer, make a POST request to the analyze endpoint:
+To analyze content by using a prebuilt analyzer, make a POST request to the analyze endpoint:
 
 ```http
 POST /analyzers/prebuilt-idDocument:analyze
@@ -140,7 +140,7 @@ Replace `prebuilt-idDocument` with the analyzer ID that matches your scenario.
 
 ## Customize prebuilt analyzers
 
-You can use any prebuilt analyzer as a template for creating a custom analyzer that better fits your specific needs.
+Use any prebuilt analyzer as a template for creating a custom analyzer that better fits your specific needs.
 
 ### Get an analyzer definition
 
@@ -160,14 +160,14 @@ After retrieving and modifying an analyzer definition:
 PUT /analyzers/prebuilt-myIdDocument
 ```
 
-Include your modified analyzer definition in the request body. See [Create a custom analyzer](../tutorial/create-custom-analyzer.md) for detailed instructions.
+Include your modified analyzer definition in the request body. For detailed instructions, see [Create a custom analyzer](../tutorial/create-custom-analyzer.md).
 
 > [!IMPORTANT]
-> Prebuilt analyzer definitions are subject to change across API versions. To ensure consistent behavior, make a copy of the prebuilt analyzer rather than relying on the prebuilt version directly in production scenarios.
+> Prebuilt analyzer definitions can change across API versions. To ensure consistent behavior, make a copy of the prebuilt analyzer instead of relying on the prebuilt version directly in production scenarios.
 
 ### Lock analyzer behavior
 
-The definition of Prebuilt analyzers may change in the next API version of Content Understanding. To create a stable copy of a prebuilt analyzer that doesn't change with API updates, use the Copy operations by calling it as follows:
+The definition of prebuilt analyzers might change in the next API version of Content Understanding. To create a stable copy of a prebuilt analyzer that doesn't change with API updates, use the Copy operations by calling it as follows:
 
 ```http
 POST /analyzers/myIdDocument:copy

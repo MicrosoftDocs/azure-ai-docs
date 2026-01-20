@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 10/29/2025
+ms.date: 12/03/2025
 author: ssalgadodev
 ms.author: ssalgado
 recommendations: false
@@ -16,6 +16,8 @@ ms.custom: FY25Q1-Linter
 
 # Configure content filters
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 The content filtering system integrated into Microsoft Foundry runs alongside the core models, including image generation models. It uses an ensemble of multi-class classification models to detect four categories of harmful content (violence, hate, sexual, and self-harm) at four severity levels respectively (safe, low, medium, and high), and optional binary classifiers for detecting jailbreak risk, existing text, and code in public repositories. 
 
 The default content filtering configuration is set to filter at the medium severity threshold for all four content harms categories for both prompts and completions. That means that content that is detected at severity level medium or high is filtered, while content detected at severity level low or safe is not filtered by the content filters. Learn more about content categories, severity levels, and the behavior of the content filtering system [here](../concepts/content-filter.md). 
@@ -24,9 +26,6 @@ Prompt shields and protected text and code models are optional and on by default
 
 > [!NOTE]
 > All customers have the ability to modify the content filters and configure the severity thresholds (low, medium, high). Approval is required for turning the content filters partially or fully off. Managed customers only may apply for full content filtering control via this form: [Limited Access Review: Modified Content Filters](https://ncv.microsoft.com/uEfCgnITdR). At this time, it is not possible to become a managed customer.
-
-> [!IMPORTANT]
-> The GPT-image-1 series models do not support content filtering configuration: only the default content filter is used.
 
 Content filters can be configured at the resource level. Once a new configuration is created, it can be associated with one or more deployments. For more information about model deployment, see the [resource deployment guide](create-resource.md).
 

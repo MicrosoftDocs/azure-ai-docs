@@ -7,7 +7,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 11/18/2025
+ms.date: 12/15/2025
 ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python
@@ -15,11 +15,12 @@ ms.custom: language-service-health, mode-api, devx-track-extended-java, devx-tra
 keywords: text mining, health, text analytics for health
 zone_pivot_groups: programming-languages-text-analytics
 ---
+<!-- markdownlint-disable MD025 -->
 # Quickstart: Using Text Analytics for health client library and REST API
 
 This article contains Text Analytics for health quickstarts that help with using the supported client libraries, C#, Java, NodeJS, and Python and the REST API.
 
-[!INCLUDE [Use Language Studio](../includes/use-language-studio.md)]
+[!INCLUDE [Use Microsoft Foundry](../includes/microsoft-foundry/tip-you-can-use-foundry.md)]
 ::: zone pivot="programming-language-csharp"
 
 [!INCLUDE [C# quickstart](includes/quickstarts/csharp-sdk.md)]
@@ -62,8 +63,6 @@ To clean up and remove an Azure AI resource, you can delete either the individua
 
 * [Azure portal](../../multi-service-resource.md?pivots=azportal#clean-up-resources)
 * [Azure CLI](../../multi-service-resource.md?pivots=azcli#clean-up-resources)
-
-
 
 ## Next steps
 

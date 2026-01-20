@@ -13,6 +13,8 @@ ai-usage: ai-assisted
 
 # View trace results for AI applications using OpenAI SDK
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 Learn how to view trace results that provide visibility into AI application execution. Use traces to diagnose inaccurate tool calls, misleading prompts, latency bottlenecks, and low-quality evaluation scores.
 
 In this article, you learn how to:
@@ -66,7 +68,7 @@ The following steps show how to configure your resource:
     1. Once the connection is configured, you're ready to use tracing in any project within the resource.
 
     > [!TIP]
-    > Make sure you have the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader) assigned in your Application Insights resource. To learn more on how to assign roles, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal). Use [Microsoft Entra groups](../../concepts/rbac-azure-ai-foundry.md#use-microsoft-entra-groups-with-foundry) to more easily manage access for users.
+    > Make sure you have the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader) assigned in your Application Insights resource. To learn more on how to assign roles, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal). Use [Microsoft Entra groups](../../concepts/rbac-foundry.md#use-microsoft-entra-groups-with-foundry) to more easily manage access for users.
 
 1. Go to the landing page of your project and copy the project's endpoint URI. You need it later.
 

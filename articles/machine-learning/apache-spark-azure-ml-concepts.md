@@ -8,8 +8,8 @@ ms.subservice: mldata
 ms.topic: concept-article
 author: s-polly
 ms.author: scottpolly 
-ms.reviewer: sooryar
-ms.date: 10/31/2025
+ms.reviewer: soumyapatro
+ms.date: 11/13/2025
 ms.custom: cliv2, sdkv2, build-2023
 #Customer intent: As a full-stack machine learning pro, I want to use Apache Spark in Azure Machine Learning.
 ---
@@ -43,9 +43,9 @@ Advantages:
 
 Disadvantages:
 
-- A persistent Hive metastore is missing. Serverless Spark compute supports only in-memory Spark SQL.
+- No persistent Hive metastore. Serverless Spark compute supports only in-memory Spark SQL.
 - No available tables or databases.
-- Missing Azure Purview integration.
+- No Azure Purview integration.
 - No available linked services.
 - Fewer data sources and connectors.
 - No pool-level configuration.
@@ -67,7 +67,7 @@ After the system tears down the serverless Spark compute resource, submission of
 :::image type="content" source="./media/apache-spark-azure-ml-concepts/spark-session-timeout-teardown.png" lightbox="./media/apache-spark-azure-ml-concepts/spark-session-timeout-teardown.png" alt-text="Expandable diagram that shows scenarios for Apache Spark session inactivity period and cluster teardown.":::
 
 ### Session-level Conda packages
-A Conda dependency YAML file can define many session-level Conda packages in a session configuration. A session times out if it needs more than 15 minutes to install the Conda packages defined in the YAML file. It's important to first check whether a required package is already available in the Azure Synapse base image. To do this, visit these resources to determine *packages available in the base image for* the Apache Spark version in use:
+A Conda dependency YAML file can define many session-level Conda packages in a session configuration. A session times out if it needs more than 15 minutes to install the Conda packages defined in the YAML file. Check whether a required package is already available in the Azure Synapse base image. To do this, visit these resources to determine *packages available in the base image for* the Apache Spark version in use:
 - [Azure Synapse Runtime for Apache Spark 3.5](https://github.com/microsoft/synapse-spark-runtime/tree/main/Synapse/spark3.5)
 - [Azure Synapse Runtime for Apache Spark 3.4](https://github.com/microsoft/synapse-spark-runtime/tree/main/Synapse/spark3.4)
 - [Azure Synapse Runtime for Apache Spark 3.3](https://github.com/microsoft/synapse-spark-runtime/tree/main/Synapse/spark3.3)
@@ -83,7 +83,7 @@ A Conda dependency YAML file can define many session-level Conda packages in a s
 > - Docker images aren't supported.
 
 ### Improving session cold start time while using session-level Conda packages
-You can set the `spark.hadoop.aml.enable_cache` configuration variable to `true`, to improve the Spark session *cold start* time. With session level Conda packages, the session *cold start* typically takes 10 to 15 minutes when the session starts for the first time. However, subsequent session *cold starts* take three to five minutes. Define the configuration variable in the **Configure session** user interface, under **Configuration settings**.
+Set the `spark.hadoop.aml.enable_cache` configuration variable to `true` to improve the Spark session *cold start* time. With session-level Conda packages, the session *cold start* typically takes 10 to 15 minutes when the session starts for the first time. However, subsequent session *cold starts* take three to five minutes. Define the configuration variable in the **Configure session** user interface, under **Configuration settings**.
 
 :::image type="content" source="./media/apache-spark-azure-ml-concepts/spark-session-enable-cache.png" lightbox="./media/apache-spark-azure-ml-concepts/spark-session-enable-cache.png" alt-text="Expandable diagram that shows the Spark session configuration tag that enables cache.":::
 

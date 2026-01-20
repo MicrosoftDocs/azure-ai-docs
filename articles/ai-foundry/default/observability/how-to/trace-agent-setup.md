@@ -11,16 +11,18 @@ ms.date: 11/18/2025
 ms.topic: how-to
 ---
 
-# How to set up tracing in Microsoft Foundry
+# How to set up tracing in Microsoft Foundry (preview)
 
-Tracing is a powerful tool to understand how your agent works. It helps you identify issues like latency, runtime exceptions, incorrect prompts, poor retrieval, and more.
+[!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
+
+Tracing (preview) is a powerful tool to understand how your agent works. It helps you identify issues like latency, runtime exceptions, incorrect prompts, poor retrieval, and more.
 
 ## Enable tracing in Foundry project
 
 Microsoft Foundry stores traces in [Azure Application Insights](/azure/azure-monitor/app/app-insights-overview) using [OpenTelemetry Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/gen-ai/). To enable tracing and monitoring in your Foundry project, create or connect an Application Insights resource in monitor settings. After configuring the connection, tracing is ready to use for your Foundry project.
 
 > [!IMPORTANT]
-> Make sure you have the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader) assigned in your Application Insights resource. To learn more about assigning roles, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal), and use [Microsoft Entra groups](../../../concepts/rbac-azure-ai-foundry.md#use-microsoft-entra-groups-with-foundry) to manage user access more easily.
+> Make sure you have the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader) assigned in your Application Insights resource. To learn more about assigning roles, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal), and use [Microsoft Entra groups](../../../concepts/rbac-foundry.md#use-microsoft-entra-groups-with-foundry) to manage user access more easily.
 > Using a project's endpoint requires configuring Microsoft Entra ID in your application. If you don't configure Entra ID, use the Azure Application Insights connection string.
 
 ## Instrumenting AI Agents
@@ -42,7 +44,7 @@ pip install azure-ai-projects azure-identity opentelemetry-sdk azure-core-tracin
 
 After running your agent, you can begin to [view and analyze traces in Foundry portal](#view-traces-in-the-foundry-portal).
 
-For detailed instructions and SDK-specific code examples, see [instructions](https://github.com/Azure/azure-sdk-for-python/tree/feature/azure-ai-projects/2.0.0b1/sdk/ai/azure-ai-projects#tracing) and [samples](https://github.com/Azure/azure-sdk-for-python/tree/feature/azure-ai-projects/2.0.0b1/sdk/ai/azure-ai-projects/samples/agents/telemetry).
+For detailed instructions and SDK-specific code examples, see [instructions](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects#tracing) and [samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/agents/telemetry).
 
 ### Trace locally with AI Toolkit in VS Code
 

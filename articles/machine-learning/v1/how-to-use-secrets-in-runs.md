@@ -5,6 +5,7 @@ description: Learn how to pass secrets to training jobs in secure fashion using 
 services: machine-learning
 author: s-polly
 ms.author: scottpolly
+ms.reviewer: shshubhe
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.date: 09/12/2024

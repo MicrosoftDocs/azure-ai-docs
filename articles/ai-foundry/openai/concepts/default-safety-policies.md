@@ -8,7 +8,7 @@ manager: nitinme
 ms.date: 11/06/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: conceptual
+ms.topic: article
 ms.custom:
   - build-2025
 monikerRange: 'foundry-classic || foundry'
@@ -16,6 +16,8 @@ ai-usage: ai-assisted
 ---
 
 # Default Guidelines & controls policies
+
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 ::: moniker range="foundry"
 

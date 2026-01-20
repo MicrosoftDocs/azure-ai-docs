@@ -8,7 +8,7 @@ ms.custom:
   - build-2024
   - references_regions
 ms.topic: how-to
-ms.date: 08/20/2025
+ms.date: 12/23/2025
 ms.reviewer: minthigpen
 ms.author: lagayhar
 author: lgayhardt
@@ -17,6 +17,8 @@ ai-usage: ai-assisted
 ---
 
 # Generate synthetic and simulated data for evaluation (preview)
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 

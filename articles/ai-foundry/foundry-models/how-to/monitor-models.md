@@ -7,6 +7,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
 ms.date: 10/13/2025
+monikerRange: 'foundry-classic || foundry'
 ms.reviewer: fasantia
 reviewer: santiagxf
 ---
@@ -18,6 +19,13 @@ reviewer: santiagxf
 When you have critical applications and business processes that rely on Azure resources, you need to monitor and get alerts for your system. The Azure Monitor service collects and aggregates metrics and logs from every component of your system, including Foundry Models deployments. You can use this information to view availability, performance, and resilience, and get notifications of issues.
 
 This article explains how you can use metrics and logs to monitor model deployments in Foundry Models.
+
+::: moniker range="foundry-classic"
+
+> [!NOTE]
+> Monitoring is only supported for OpenAI, Globalbatch sku & non-whisper models.
+
+::: moniker-end
 
 ## Prerequisites
 

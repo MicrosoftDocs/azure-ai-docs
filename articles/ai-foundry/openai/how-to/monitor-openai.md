@@ -1,7 +1,7 @@
 ---
 title: Monitor Azure OpenAI in Microsoft Foundry Models
 description: Start here to learn how to use Azure Monitor tools like Log Analytics to capture and analyze metrics and data logs for your Azure OpenAI.
-ms.date: 09/30/2025
+ms.date: 11/6/2025
 ms.custom: horz-monitor, subject-monitoring
 ms.topic: conceptual
 author: mrbullwinkle
@@ -11,6 +11,8 @@ ms.subservice: azure-ai-foundry-openai
 ---
 
 # Monitor Azure OpenAI
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 [!INCLUDE [horz-monitor-intro](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-intro.md)]
 
@@ -24,6 +26,8 @@ Azure OpenAI provides out-of-box dashboards for each of your Azure OpenAI resour
 To access the monitoring dashboards, sign in to the [Azure portal](https://portal.azure.com) and then select the overview pane for one of your Azure OpenAI resources. To see the Foundry metrics dashboard from the Azure portal, select the overview pane and **Go to Microsoft Foundry portal**. Under tools, select the metrics dashboard.   
 
 :::image type="content" source="../media/monitoring/dashboard.png" alt-text="Screenshot that shows out-of-box dashboards for an Azure OpenAI resource in the Azure portal." lightbox="../media/monitoring/dashboard.png" border="false":::
+
+
 
 The dashboards are grouped into four categories: **HTTP Requests**, **Tokens-Based Usage**, **PTU Utilization**, and **Fine-tuning**.
 

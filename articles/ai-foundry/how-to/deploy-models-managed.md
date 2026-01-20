@@ -3,6 +3,7 @@ title: How to deploy and inference a managed compute deployment
 titleSuffix: Microsoft Foundry
 description: Learn how to deploy large language models on managed compute in Microsoft Foundry and perform real-time inference for generative AI applications.
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.custom:
   - build-2024
 ms.topic: how-to
@@ -20,6 +21,8 @@ ai-usage: ai-assisted
 
 # How to deploy and infer with a managed compute deployment
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 The Microsoft Foundry portal [model catalog](../how-to/model-catalog-overview.md) offers over 1,600 models. A common way to deploy these models is to use the managed compute deployment option. This option is also sometimes referred to as a managed online deployment. 
 
 When you deploy a large language model (LLM), you make it available for use in a website, an application, or other production environment. Deployment typically involves hosting the model on a server or in the cloud and creating an API or other interface for users to interact with the model. You can invoke the deployment for real-time inference of generative AI applications such as chat and copilot.
@@ -34,7 +37,7 @@ In this article, you learn to deploy models with the managed compute deployment 
 
 - Foundry [Models from Partners and Community](../model-inference/concepts/models.md#models-from-partners-and-community) require access to Azure Marketplace, while Foundry [Models Sold Directly by Azure](../model-inference/concepts/models.md#models-sold-directly-by-azure) don't have this requirement. Ensure your Azure subscription has the permissions required to subscribe to model offerings in Azure Marketplace. See [Enable Azure Marketplace purchases](/azure/cost-management-billing/manage/enable-marketplace-purchases) to learn more.
 
-- Azure role-based access controls (Azure RBAC) grant access to operations in Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, see [Role-based access control in Foundry portal](../concepts/rbac-azure-ai-foundry.md).
+- Azure role-based access controls (Azure RBAC) grant access to operations in Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, see [Role-based access control in Foundry portal](../concepts/rbac-foundry.md).
 
 
 ## Find your model in the model catalog
@@ -222,5 +225,5 @@ To deploy and perform inferencing with real-time endpoints, you consume Virtual 
 
 ## Related content
 
-- Learn more about what you can do in [Foundry](../what-is-azure-ai-foundry.md)
+- Learn more about what you can do in [Foundry](../what-is-foundry.md)
 - Get answers to frequently asked questions in the [Azure AI FAQ article](../faq.yml)

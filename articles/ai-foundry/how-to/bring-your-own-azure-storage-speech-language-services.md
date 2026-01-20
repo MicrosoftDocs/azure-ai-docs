@@ -157,7 +157,7 @@ resource "azurerm_cognitive_account" "foundry" {
 
 ### Sample repository
 
-See the infrastructure examples (including Speech/Language storage) in the [Foundry samples repository](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/02-storage-speech-language).
+See the infrastructure examples (including Speech/Language storage) in the [Foundry samples repository](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/02-storage-speech-language).
 
 ## Speech integration details
 
@@ -189,6 +189,6 @@ Speech and Language share the same storage account (different container naming c
 - [Capability hosts for Agents](../agents/concepts/capability-hosts.md)
 - [Recover a storage account](/azure/storage/common/storage-account-recover)
 - [Azure Storage documentation](/azure/storage/)
-- [Samples: infrastructure setup](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup)
+- [Samples: infrastructure setup](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples)
 - [Terraform cognitive_account](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cognitive_account)
 - [Speech BYOS resource guidance](../../ai-services/speech-service/bring-your-own-storage-speech-resource.md?tabs=portal)

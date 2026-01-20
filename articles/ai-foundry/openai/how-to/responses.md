@@ -5,10 +5,10 @@ description: Learn how to use Azure OpenAI's new stateful Responses API.
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 10/10/2025
+ms.date: 01/14/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: include
+ms.topic: how-to
 ms.custom:
   - references_regions
   - build-2025
@@ -18,81 +18,6 @@ monikerRange: 'foundry-classic || foundry'
 # Azure OpenAI Responses API
 
 The Responses API is a new stateful API from Azure OpenAI. It brings together the best capabilities from the chat completions and assistants API in one unified experience. The Responses API also adds support for the new `computer-use-preview` model which powers the [Computer use](../how-to/computer-use.md) capability.
-
-## Responses API
-
-### API support
-
-- [v1 API is required for access to the latest features](../api-version-lifecycle.md#api-evolution)
-
-### Region Availability
-
-The responses API is currently available in the following regions:
-
-- australiaeast
-- brazilsouth
-- canadacentral
-- canadaeast  
-- eastus
-- eastus2
-- francecentral
-- germanywestcentral
-- italynorth
-- japaneast
-- koreacentral
-- northcentralus
-- norwayeast
-- polandcentral
-- southafricanorth
-- southcentralus
-- southeastasia
-- southindia
-- spaincentral
-- swedencentral
-- switzerlandnorth
-- uaenorth
-- uksouth
-- westus
-- westus3
-
-### Model support
-
-- `gpt-5-pro` (Version: `2025-10-06`)
-- `gpt-5-codex`  (Version: `2025-09-11`)
-- `gpt-5` (Version: `2025-08-07`)
-- `gpt-5-mini` (Version: `2025-08-07`)
-- `gpt-5-nano` (Version: `2025-08-07`)
-- `gpt-5-chat` (Version: `2025-08-07`)
-- `gpt-5-chat` (Version: `2025-10-03`)
-- `gpt-5-codex` (Version: `2025-09-15`)
-- `gpt-4o` (Versions: `2024-11-20`, `2024-08-06`, `2024-05-13`)
-- `gpt-4o-mini` (Version: `2024-07-18`)
-- `computer-use-preview`
-- `gpt-4.1` (Version: `2025-04-14`)
-- `gpt-4.1-nano` (Version: `2025-04-14`)
-- `gpt-4.1-mini` (Version: `2025-04-14`)
-- `gpt-image-1` (Version: `2025-04-15`)
-- `gpt-image-1-mini` (Version: `2025-10-06`)
-- `o1` (Version: `2024-12-17`)
-- `o3-mini` (Version: `2025-01-31`)
-- `o3` (Version: `2025-04-16`)
-- `o4-mini` (Version: `2025-04-16`)
-
-Not every model is available in the regions supported by the responses API. Check the [models page](../concepts/models.md) for model region availability.
-
-> [!NOTE]
-> Not currently supported:
-> - The web search tool
-> - Image generation using multi-turn editing and streaming - coming soon
-> - Images can't be uploaded as a file and then referenced as input. Coming soon.
->
-> There's a known issue with the following:
-> - PDF as an input file [is now supported](#file-input), but setting file upload purpose to `user_data` is not currently supported.
-> - Performance issues when background mode is used with streaming. The issue is expected to be resolved soon.
-
-### Reference documentation
-
-- [Responses API reference documentation](/azure/ai-foundry/openai/reference-preview-latest?#create-response)
 
 ## Getting started with the responses API
 
@@ -700,6 +625,7 @@ print(response.model_dump_json(indent=2))
 ```
 
 ## Image input
+For vision-enabled models, images in PNG (.png), JPEG (.jpeg and .jpg), WEBP (.webp) are supported.
 
 ### Image url
 
@@ -1057,6 +983,11 @@ response = client.responses.create(
 
 ### Authentication
 
+> [!IMPORTANT]
+> - The MCP client within the Responses API requires TLS 1.2 or greater.
+> - mutual TLS (mTLS) is currently not supported.
+> - [Azure service tags](/azure/virtual-network/service-tags-overview) are currently not supported for MCP client traffic.
+
 Unlike the GitHub MCP server, most remote MCP servers require authentication. The MCP tool in the Responses API supports custom headers, allowing you to securely connect to these servers using the authentication scheme they require.
 
 You can specify headers such as API keys, OAuth access tokens, or other credentials directly in your request. The most commonly used header is the `Authorization` header.
@@ -1283,7 +1214,7 @@ Compared to the standalone Image API, the Responses API offers several advantage
 * **Flexible inputs**: Accept image File IDs as inputs, in addition to raw image bytes.
 
 > [!NOTE]
-> The image generation tool in the Responses API is only supported by the `gpt-image-1` series models. You can however call this model from this list of supported models - `gpt-4o`, `gpt-4o-mini`, `gpt-4.1`, `gpt-4.1-mini`, `gpt-4.1-nano`, `o3`, and `gpt-5` series models.<br><br>The Responses API image generation tool does not currently support streaming mode. To use streaming mode and generate partial images, call the [image generation API](./dall-e.md) directly outside of the Responses API.
+> The image generation tool in the Responses API is only supported by the `gpt-image-1`-series models. You can however call this model from this list of supported models - `gpt-4o`, `gpt-4o-mini`, `gpt-4.1`, `gpt-4.1-mini`, `gpt-4.1-nano`, `o3`, `gpt-5` and `gpt-5.1` series models.<br><br>The Responses API image generation tool does not currently support streaming mode. To use streaming mode and generate partial images, call the [image generation API](./dall-e.md) directly outside of the Responses API.
 
 Use the Responses API if you want to build conversational image experiences with GPT Image.
 
@@ -1299,7 +1230,7 @@ token_provider = get_bearer_token_provider(
 client = OpenAI(  
   base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
   api_key=token_provider,
-  default_headers={"x-ms-oai-image-generation-deployment":"gpt-image-1", "api_version":"preview"}
+  default_headers={"x-ms-oai-image-generation-deployment":"gpt-image-1.5", "api_version":"preview"}
 )
 
 response = client.responses.create(
@@ -1327,4 +1258,88 @@ For examples of how to use reasoning models with the responses API see the [reas
 
 ## Computer use
 
-Computer use with Playwright has moved to the [dedicated computer use model guide](./computer-use.md#playwright-integration)
+Computer use with Playwright has moved to the [dedicated computer use model guide](computer-use.md#playwright-integration)
+
+## Responses API
+
+### API support
+
+- [v1 API is required for access to the latest features](../api-version-lifecycle.md#api-evolution)
+
+### Region Availability
+
+The responses API is currently available in the following regions:
+
+- australiaeast
+- brazilsouth
+- canadacentral
+- canadaeast  
+- eastus
+- eastus2
+- francecentral
+- germanywestcentral
+- italynorth
+- japaneast
+- koreacentral
+- northcentralus
+- norwayeast
+- polandcentral
+- southafricanorth
+- southcentralus
+- southeastasia
+- southindia
+- spaincentral
+- swedencentral
+- switzerlandnorth
+- uaenorth
+- uksouth
+- westus
+- westus3
+
+### Model support
+
+- `gpt-5.2-codex` (Version: `2026-01-14`)
+- `gpt-5.2` (Version: `2025-12-11`)
+- `gpt-5.2-chat` (Version: `2025-12-11`)
+- `gpt-5.1-codex-max` (Version: `2025-12-04`)
+- `gpt-5.1` (Version: `2025-11-13`)
+- `gpt-5.1-chat` (Version: `2025-11-13`)
+- `gpt-5.1-codex` (Version: `2025-11-13`)
+- `gpt-5.1-codex-mini` (Version: `2025-11-13`)
+- `gpt-5-pro` (Version: `2025-10-06`)
+- `gpt-5-codex`  (Version: `2025-09-11`)
+- `gpt-5` (Version: `2025-08-07`)
+- `gpt-5-mini` (Version: `2025-08-07`)
+- `gpt-5-nano` (Version: `2025-08-07`)
+- `gpt-5-chat` (Version: `2025-08-07`)
+- `gpt-5-chat` (Version: `2025-10-03`)
+- `gpt-5-codex` (Version: `2025-09-15`)
+- `gpt-4o` (Versions: `2024-11-20`, `2024-08-06`, `2024-05-13`)
+- `gpt-4o-mini` (Version: `2024-07-18`)
+- `computer-use-preview`
+- `gpt-4.1` (Version: `2025-04-14`)
+- `gpt-4.1-nano` (Version: `2025-04-14`)
+- `gpt-4.1-mini` (Version: `2025-04-14`)
+- `gpt-image-1` (Version: `2025-04-15`)
+- `gpt-image-1-mini` (Version: `2025-10-06`)
+- `gpt-image-1.5` (Version: `2025-12-16`)
+- `o1` (Version: `2024-12-17`)
+- `o3-mini` (Version: `2025-01-31`)
+- `o3` (Version: `2025-04-16`)
+- `o4-mini` (Version: `2025-04-16`)
+
+Not every model is available in the regions supported by the responses API. Check the [models page](../concepts/models.md) for model region availability.
+
+> [!NOTE]
+> Not currently supported:
+> - Compaction with `/responses/compact` 
+> - Image generation using multi-turn editing and streaming.
+> - Images can't be uploaded as a file and then referenced as input.
+>
+> There's a known issue with the following:
+> - PDF as an input file [is now supported](#file-input), but setting file upload purpose to `user_data` is not currently supported.
+> - Performance issues when background mode is used with streaming. The issue is expected to be resolved soon.
+
+### Reference documentation
+
+- [Responses API reference documentation](/azure/ai-foundry/openai/reference-preview-latest?#create-response)

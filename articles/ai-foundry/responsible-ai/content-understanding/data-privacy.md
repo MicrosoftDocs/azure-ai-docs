@@ -31,7 +31,7 @@ Content Understanding first requires users to authenticate access to Content Und
 
 ### Secure data in transit 
 
-All Foundry Tools endpoints use HTTPS URLs for encrypting data during transit. The client operating system needs to support Transport Layer Security (TLS) 1.2 for calling the end points. For more information, see [Transport Layer Security](/azure/ai-services/security-features?tabs=command-line%2Ccsharp#transport-layer-security-tls). The incoming data is processed in the same region where the Azure resource was created. 
+All Foundry Tools endpoints use HTTPS URLs for encrypting data during transit. The client operating system needs to support Transport Layer Security (TLS) 1.3 for calling the end points. For more information, see [Transport Layer Security](/azure/ai-services/security-features?tabs=command-line%2Ccsharp#transport-layer-security-tls). The incoming data is processed in the same region where the Azure resource was created. 
 
 
 ### Encrypts input data for processing 
@@ -55,11 +55,7 @@ Input documents and intermediate representations are written to secure Microsoft
 
  
 
-### Regional Process 
 
-Data doesn't get stored outside the designated region that the user selected for the Content Understanding resource, even temporarily. However, based on OpenAI availability, we may route traffic to another region within the same geo moving forward. 
-
- 
 
 ### Face 
 
@@ -69,4 +65,4 @@ Face is a gated feature as it processes biometric data. We detect faces in the i
 
 ### Azure OpenAI 
 
-Content Understanding also utilizes Azure OpenAI model once each modality input is processed through the underlying AI services. Refer to the [Azure OpenAI Data, privacy, and security documentation](/azure/ai-foundry/responsible-ai/openai/data-privacy) for more information. 
+Content Understanding also utilizes Azure OpenAI model once each modality input is processed through the underlying Foundry Tools. Refer to the [Azure OpenAI Data, privacy, and security documentation](/azure/ai-foundry/responsible-ai/openai/data-privacy) for more information. 

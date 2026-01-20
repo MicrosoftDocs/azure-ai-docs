@@ -4,6 +4,7 @@ titleSuffix: Microsoft Foundry
 description: This article provides instructions on how to manage and increase quotas for resources with Microsoft Foundry.
 monikerRange: 'foundry-classic || foundry'
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.custom:
   - ignite-2023
   - build-2024
@@ -28,7 +29,7 @@ ai-usage: ai-assisted
 > [!TIP]
 > An alternate hub-focused quota article is available: [Manage and increase quotas for hub resources](hub-quota.md).
 
-Quota provides the flexibility to actively manage the allocation of rate limits across the deployments within your subscription. This article walks through the process of managing quota for your Microsoft Foundry Models (Foundry projects). Hub-level quota guidance has moved to `hub-quota.md`.
+Quota provides the flexibility to actively manage the allocation of rate limits across the deployments within your subscription. This article walks through the process of managing quota for your Microsoft Foundry Models (Foundry projects).
 
 ::: moniker-end
 
@@ -100,6 +101,16 @@ Use quotas to manage model quota allocation between multiple [!INCLUDE [fdp](../
 ::: moniker-end
 
 ## Related content
+
+::: moniker range="foundry-classic"
  
 - [Plan to manage costs](./costs-plan-manage.md)
 - [Create a project](../how-to/create-projects.md)
+
+::: moniker-end
+
+::: moniker range="foundry"
+ 
+- [Create a project](../how-to/create-projects.md)
+
+::: moniker-end

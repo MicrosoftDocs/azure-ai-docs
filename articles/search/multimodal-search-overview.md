@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Learn what multimodal search is, how Azure AI Search supports it for text and image content, and where to find detailed concepts, tutorials, and samples.
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 11/04/2025
+ms.date: 11/21/2025
 author: gmndrg
 ms.author: gimondra
 ---
@@ -35,7 +35,7 @@ Azure AI Search addresses these challenges by integrating images into the same r
 
 Multimodal search is ideal for [retrieval-augmented generation (RAG)](retrieval-augmented-generation-overview.md) scenarios. By interpreting the structural logic of images, multimodal search makes your RAG application or AI agent less likely overlook important visual details. It also provides your users with detailed answers that can be traced back to their original sources, regardless of the source's modality.
 
-## How multimodal search works in Azure AI Search
+## How does multimodal search work?
 
 To simplify the creation of a multimodal pipeline, Azure AI Search offers the **Import data (new)** wizard in the Azure portal. The wizard helps you configure a data source, define extraction and enrichment settings, and generate a multimodal index that contains text, embedded image references, and vector embeddings. For more information, see [Quickstart: Multimodal search in the Azure portal](search-get-started-portal-image-search.md).
 

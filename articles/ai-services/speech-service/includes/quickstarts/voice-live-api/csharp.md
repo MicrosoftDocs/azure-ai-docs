@@ -1,15 +1,16 @@
 ---
 manager: nitinme
-author: goergenj
-ms.author: jagoerge
+author: PatrickFarley
+ms.author: pafarley
 reviewer: patrickfarley
 ms.reviewer: pafarley
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 10/30/2025
+ms.subservice: azure-ai-foundry-openai
 ---
 
-In this article, you learn how to use Azure Speech in Foundry Tools voice live with Microsoft Foundry models using the VoiceLive SDK for C#.
+In this article, you learn how to use voice live with Microsoft Foundry models using the VoiceLive SDK for C#.
 
 [!INCLUDE [Header](../../common/voice-live-csharp.md)]
 
@@ -17,7 +18,7 @@ In this article, you learn how to use Azure Speech in Foundry Tools voice live w
 
 ## Prerequisites
 
-- An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Microsoft Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see the [voice live overview documentation](../../../voice-live.md).
 - [.NET SDK](https://dotnet.microsoft.com/download) version 6.0 or later installed.
 

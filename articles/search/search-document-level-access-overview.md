@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Conceptual overview of document-level permissions in Azure AI Search.
 author: gmndrg
 ms.author: gimondra
-ms.date: 11/10/2025
+ms.date: 11/18/2025
 ms.service: azure-ai-search
 ms.topic: conceptual
 ms.custom:
@@ -14,7 +14,6 @@ ms.custom:
 # Document-level access control in Azure AI Search  
   
 Azure AI Search supports document-level access control, enabling organizations to enforce fine-grained permissions at the document level, from data ingestion through query execution. This capability is essential for building secure AI agentic systems grounding data, Retrieval-Augmented Generation (RAG) applications, and enterprise search solutions that require authorization checks at the document level.  
-
   
 ## Approaches for document-level access control
 
@@ -44,7 +43,7 @@ This approach is useful for systems with custom access models or non-Microsoft s
 
 Native support is based on Microsoft Entra users and groups affiliated with documents that you want to index and query. 
 
-Azure Data Lake Storage (ADLS) Gen2 containers support ACLs on the container and on files. For ADLS Gen2, RBAC scope preservation at document level is natively supported when you use the [ADLS Gen2 indexer](search-how-to-index-azure-data-lake-storage.md) and the preview API version 2025-11-01-preview to ingest content. For Azure blobs using the [Azure blob indexer](search-blob-indexer-role-based-access.md), RBAC scope preservation is at the container level.
+Azure Data Lake Storage (ADLS) Gen2 containers support ACLs on the container and on files. For ADLS Gen2, RBAC scope preservation at document level is natively supported when you use an [ADLS Gen2 indexer](search-how-to-index-azure-data-lake-storage.md) or a [Blob knowledge source (supports ADLS Gen2)](agentic-knowledge-source-how-to-blob.md) and a preview API to ingest content. For Azure blobs using the [Azure blob indexer](search-blob-indexer-role-based-access.md) or knowledge source, RBAC scope preservation is at the container level.
 
 For ACL-secured content, we recommend group access over individual user access for ease of management. The pattern includes the following components:
 
@@ -81,11 +80,10 @@ For the [push model approach](search-index-access-control-lists-and-rbac-push-ap
 1. Consider using the Microsoft Graph SDK to get group or user identities.
 1. Use the [Index Documents](/rest/api/searchservice/documents/?view=rest-searchservice-2025-11-01-preview&preserve-view=true#indexdocumentsresult) or equivalent Azure SDK API to push documents and their associated permission metadata into the search index. 
 
-For the [pull model ADLS Gen2 indexer approach](search-indexer-access-control-lists-and-role-based-access.md):
+For the [pull model ADLS Gen2 indexer approach](search-indexer-access-control-lists-and-role-based-access.md) or [Blob (ADLS Gen2) knowledge source](agentic-knowledge-source-how-to-blob.md):
 
 1. Verify that files in the directory are secured using the [ADLS Gen2 access control model](/azure/storage/blobs/data-lake-storage-access-control-model).
-1. Use the [Create Indexer](/rest/api/searchservice/indexers/create?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or equivalent Azure SDK API to create the indexer, index, and data source.
-
+1. Use the [Create Indexer REST API](/rest/api/searchservice/indexers/create?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or [Create Knowledge Source REST API](/rest/api/searchservice/knowledge-sources/create?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or equivalent Azure SDK API to create the indexer, index, and data source.
 
 ## Pattern for SharePoint in Microsoft 365 basic ACL permissions ingestion (preview)
 
@@ -107,7 +105,7 @@ During preview, only the following principal types are supported in SharePoint A
 - Microsoft 365 groups  
 - Mail-enabled security groups  
 
-SharePoint groups are not supported in the preview release. 
+SharePoint groups aren't supported in the preview release. 
 
 For configuration details and full limitations, see [How to index SharePoint in Microsoft 365 document-level permissions (preview)](https://aka.ms/azs-sharepoint-indexer-acls).
 
@@ -136,7 +134,7 @@ For more information, see [Use Azure AI Search indexers to ingest Microsoft Purv
 
 With native [token-based querying](https://aka.ms/azs-query-preserving-permissions), Azure AI Search validates a user's [Microsoft Entra token](/Entra/identity/devices/concept-tokens-microsoft-Entra-id), trimming result sets to include only documents the user is authorized to access. 
 
-You can achieve automatic trimming by attaching the user's Microsoft Entra token to your query request. For more information, see [Query-Time ACL and RBAC enforcement in Azure AI Search](search-query-access-control-rbac-enforcement.md).
+You can achieve automatic trimming by attaching the user's Microsoft Entra token to your query request. For more information, see [Query-time ACL and RBAC enforcement in Azure AI Search](search-query-access-control-rbac-enforcement.md).
 
 ## Benefits of document-level access control  
   
@@ -151,7 +149,7 @@ Document-level permissions in Azure AI Search provide a structured framework for
 Take a closer look at document-level access control in Azure AI Search with more articles and samples.
 
 - [Tutorial: Index ADLS Gen2 permissions metadata using an indexer](tutorial-adls-gen2-indexer-acls.md)
-- [azure-search-rest-samples/Quickstart-ACL](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-ACL)
+- [azure-search-rest-samples/acl](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/acl)
 - [azure-search-python-samples/Quickstart-Document-Permissions-Push-API](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/Quickstart-Document-Permissions-Push-API)
 - [azure-search-python-samples/Quickstart-Document-Permissions-Pull-API](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/Quickstart-Document-Permissions-Pull-API)
 - [Demo app: Ingesting and honoring sensitivity labels](https://aka.ms/Ignite25/aisearch-purview-sensitivity-labels-repo)

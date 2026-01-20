@@ -3,6 +3,7 @@ title: How to deploy and use CXRReportGen healthcare AI model with Microsoft Fou
 titleSuffix: Microsoft Foundry
 description: Learn how to use CXRReportGen Healthcare AI Model with Microsoft Foundry.
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
 ms.date: 09/15/2025
 ms.reviewer: itarapov
@@ -15,6 +16,8 @@ author: msakande
 ---
 
 # How to use CXRReportGen Healthcare AI model to generate grounded findings
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 [!INCLUDE [health-ai-models-meddev-disclaimer](../../includes/health-ai-models-meddev-disclaimer.md)]
 
@@ -95,7 +98,7 @@ input_data = {
     data = {
         "input_data": {
             "columns": list(input_data.keys()),
-            #  IMPORANT: Modify the index as needed
+            #  IMPORTANT: Modify the index as needed
             "index": [0],  # 1, 2],
             "data": [
                 list(input_data.values()),

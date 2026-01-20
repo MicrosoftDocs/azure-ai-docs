@@ -13,6 +13,8 @@ ms.custom: include
 :::moniker range="foundry-classic"
 
 > [!NOTE]
-> The information in this article is specific to a **[!INCLUDE [hub](hub-project-name.md)]**, and doesn't apply to a **[!INCLUDE [fdp](fdp-project-name.md)]**. See [How do I know which type of project I have?](../what-is-azure-ai-foundry.md#how-do-i-know) and [Create a hub-based project](../how-to/create-projects.md?pivots="hub-project").
+> This document refers to the [Microsoft Foundry (classic)](../what-is-foundry.md#microsoft-foundry-portals) portal only. 
+>
+> This document  is also specific to a **[!INCLUDE [hub](hub-project-name.md)]**, and doesn't apply to a **[!INCLUDE [fdp](fdp-project-name.md)]**. See [How do I know which type of project I have?](../what-is-foundry.md#how-do-i-know-which-type-of-project-i-have) and [Create a hub-based project](../how-to/create-projects.md?pivots="hub-project").
 
 :::moniker-end

@@ -1,11 +1,11 @@
 ---
 title: "How to migrate to the new agent service"
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: Learn how to migrate to the latest agents API in the Microsoft Foundry.
 author: aahill
 ms.author: aahi
 manager: nitinme
-ms.date: 11/17/2025
+ms.date: 12/09/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
@@ -13,6 +13,9 @@ ms.topic: how-to
 
 
 # Upgrading to the new agents developer experience 
+
+> [!TIP]
+> You can use the [available migration tool](https://aka.ms/agent/migrate/tool) to migrate from the Assistants API to Agents.
 
 The new agents offer an upgraded experience which enables developers and enterprises to design intelligent agents that are easy to build, version, operate, and observe. It introduces a modernized API and SDK, new enterprise-grade capabilities, and preserves the identity, governance, and observability features customers rely on today. 
 
@@ -44,9 +47,6 @@ The new agents provide the following benefits:
 | Threads | Conversations | Supports streams of items and not just messages. |
 | Runs | Responses | Responses send input items or use a conversation object and receive output items. Tool call loops are explicitly managed. |
 | Assistants / agents | agents (new) | Support for enterprise ready prompt workflow and hosted agents, stateful context by default to use with any Azure Foundry Model | 
-
-> [!TIP]
-> You can use the [available migration tool](https://aka.ms/agent/migrate/tool) to migrate from the Assistants API to Agents.
 
 ## Threads to conversations 
 
@@ -358,7 +358,7 @@ agent = client.agents.create_version(
 
 ## Migrating to new agents 
 
-You can use the provided tool available on GitHub to migrate your agents and assistants to the new agents. It will only migrate code such as: agent definitions, thread creation, message creation, and run creation. It will not migrate state data like past runs, threads, or messages. After migration, you can run the new code, and any new state data will be created in the updated format. 
+You can use the provided tool [available on GitHub](https://aka.ms/agent/migrate/tool) to migrate your agents and assistants to the new agents. It will only migrate code such as: agent definitions, thread creation, message creation, and run creation. It will not migrate state data like past runs, threads, or messages. After migration, you can run the new code, and any new state data will be created in the updated format. 
 
 The following is an example of the previous and current format. 
 

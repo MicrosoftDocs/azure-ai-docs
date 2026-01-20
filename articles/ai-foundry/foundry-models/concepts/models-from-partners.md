@@ -5,10 +5,10 @@ description: Learn about Microsoft Foundry Models from partners and community, t
 author: msakande
 ms.author: mopeakande
 manager: nitinme
-ms.date: 09/05/2025
+ms.date: 01/07/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
-ms.topic: conceptual
+ms.topic: article
 ms.custom:
   - references_regions
   - tool_generated
@@ -28,7 +28,7 @@ zone_pivot_groups: azure-ai-model-categories
 This article lists a selection of Microsoft Foundry Models from partners and community along with their capabilities, [deployment types, and regions of availability](deployment-types.md), excluding [deprecated and legacy models](../../concepts/model-lifecycle-retirement.md#deprecated). 
 Most Foundry Models come from partners and community. Trusted third-party organizations, partners, research labs, and community contributors provide these models. 
 
-Depending on the [kind of project](../../what-is-azure-ai-foundry.md?view=foundry-classic&preserve-view=true#work-in-a-foundry-project) you use in Azure AI Foundry, you see a different selection of models.
+Depending on the [kind of project](../../what-is-foundry.md?view=foundry-classic&preserve-view=true#work-in-a-foundry-project) you use in Microsoft Foundry, you see a different selection of models.
 To learn more about attributes of Foundry Models from partners and community, see [Explore Foundry Models](../../concepts/foundry-models-overview.md#models-from-partners-and-community).
 
 > [!NOTE]
@@ -42,17 +42,16 @@ Anthropic's flagship product is Claude, a frontier AI model trusted by leading e
 
 To work with Claude models in Foundry, see [Deploy and use Claude models in Microsoft Foundry](../how-to/use-foundry-models-claude.md). 
 
-Claude models are also supported for use in the [Foundry Agent Service](../../agents/concepts/model-region-support.md).
+[!INCLUDE [claude-usage-restriction](../includes/claude-usage-restriction.md)]
 
 ::: moniker range="foundry-classic"
 
 | Model  | Type | Capabilities | Project type |
 | ------ | ---- | ------------ | ------------ |
-| [claude-haiku-4-5](https://aka.ms/claude-haiku-4-5) | Messages | - **Input:**  text and image  <br /> - **Output:** text (64,000 max tokens) <br /> - **Context window:** 200,000   <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text, JSON| Foundry, Hub-based |
-| [claude-opus-4-1](https://aka.ms/claude-opus-4-1) | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text (32,000 max tokens) <br /> - **Context window:** 200,000  <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text, JSON| Foundry, Hub-based |
-| [claude-sonnet-4-5](https://aka.ms/claude-sonnet-4-5) | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text (max 64,000 tokens) <br /> - **Context window:** 200,000  <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text, JSON| Foundry, Hub-based |
-
-See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models).
+| [claude-haiku-4-5](https://aka.ms/claude-haiku-4-5) <br><br> **(Preview)** | Messages | - **Input:**  text and image  <br /> - **Output:** text (64,000 max tokens) <br /> - **Context window:** 200,000   <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text, JSON| Foundry, Hub-based |
+| [claude-opus-4-1](https://aka.ms/claude-opus-4-1) <br><br> **(Preview)** | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text (32,000 max tokens) <br /> - **Context window:** 200,000  <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text, JSON| Foundry, Hub-based |
+| [claude-sonnet-4-5](https://aka.ms/claude-sonnet-4-5) <br><br> **(Preview)** | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text (max 64,000 tokens) <br /> - **Context window:** 200,000  <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text, JSON| Foundry, Hub-based |
+| [claude-opus-4-5](https://aka.ms/claude-opus-4-5) <br><br> **(Preview)** | Messages | - **Input:**  text and imag, and code  <br /> - **Output:** text (64,000 max tokens) <br /> - **Context window:** 200,000   <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text, JSON| Foundry, Hub-based |
 
 ::: moniker-end
 
@@ -60,13 +59,14 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 
 | Model  | Type | Capabilities |
 | ------ | ---- | ------------ |
-| `claude-haiku-4-5` | Messages | - **Input:**  text and image  <br /> - **Output:** text (64,000 max tokens) <br /> - **Context window:** 200,000   <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text, JSON |
-| `claude-opus-4-1` | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text (32,000 max tokens) <br /> - **Context window:** 200,000  <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text, JSON |
-| `claude-sonnet-4-5` | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text (max 64,000 tokens) <br /> - **Context window:** 200,000   <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text, JSON |
-
-See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models).
+| `claude-haiku-4-5` <br><br> **(Preview)** | Messages | - **Input:**  text and image  <br /> - **Output:** text (64,000 max tokens) <br /> - **Context window:** 200,000   <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text, JSON |
+| `claude-opus-4-1` <br><br> **(Preview)** | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text (32,000 max tokens) <br /> - **Context window:** 200,000  <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text, JSON |
+| `claude-sonnet-4-5` <br><br> **(Preview)** | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text (max 64,000 tokens) <br /> - **Context window:** 200,000   <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text, JSON |
+| `claude-opus-4-5` <br><br> **(Preview)** | Messages | - **Input:**  text and imag, and code  <br /> - **Output:** text (64,000 max tokens) <br /> - **Context window:** 200,000   <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text, JSON|
 
 ::: moniker-end
+
+See [the Anthropic model collection in the Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=anthropic/?cid=learnDocs).
 
 ## Cohere
 
@@ -76,10 +76,8 @@ The Cohere family of models includes various models optimized for different use 
 
 | Model  | Type | Capabilities | Project type |
 | ------ | ---- | ------------ | ------------ |
-| [Cohere-command-a](https://ai.azure.com/explore/models/Cohere-command-a/version/1/registry/azureml-cohere/?cid=learnDocs) | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:** text (8,182 tokens) <br /> - **Languages:** `en`, `fr`, `es`, `it`, `de`, `pt-br`, `ja`, `ko`, `zh-cn`, and `ar` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON | Foundry, Hub-based |
 | [Cohere-command-r-plus-08-2024](https://ai.azure.com/explore/models/Cohere-command-r-plus-08-2024/version/1/registry/azureml-cohere/?cid=learnDocs) | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Languages:** `en`, `fr`, `es`, `it`, `de`, `pt-br`, `ja`, `ko`, `zh-cn`, and `ar` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON | Foundry, Hub-based |
 | [Cohere-command-r-08-2024](https://ai.azure.com/explore/models/Cohere-command-r-08-2024/version/1/registry/azureml-cohere/?cid=learnDocs) | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Languages:** `en`, `fr`, `es`, `it`, `de`, `pt-br`, `ja`, `ko`, `zh-cn`, and `ar` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON | Foundry, Hub-based |
-| [embed-v-4-0](https://ai.azure.com/explore/models/embed-v-4-0/version/4/registry/azureml-cohere/?cid=learnDocs) | embeddings | - **Input:** text (512 tokens) and images (2MM pixels) <br /> - **Output:** Vector (256, 512, 1024, 1536 dim.) <br /> - **Languages:** `en`, `fr`, `es`, `it`, `de`, `pt-br`, `ja`, `ko`, `zh-cn`, and `ar` | Foundry, Hub-based |
 | [Cohere-embed-v3-english](https://ai.azure.com/explore/models/Cohere-embed-v3-english/version/1/registry/azureml-cohere/?cid=learnDocs) | embeddings | - **Input:** text and images (512 tokens) <br /> - **Output:** Vector (1024 dim.) <br /> - **Languages:** `en` | Foundry, Hub-based |
 | [Cohere-embed-v3-multilingual](https://ai.azure.com/explore/models/Cohere-embed-v3-multilingual/version/1/registry/azureml-cohere/?cid=learnDocs) | embeddings | - **Input:** text (512 tokens) <br /> - **Output:** Vector (1024 dim.) <br /> - **Languages:** `en`, `fr`, `es`, `it`, `de`, `pt-br`, `ja`, `ko`, `zh-cn`, and `ar` | Foundry, Hub-based |
 
@@ -89,10 +87,8 @@ The Cohere family of models includes various models optimized for different use 
 
 | Model  | Type | Capabilities |
 | ------ | ---- | ------------ |
-| `Cohere-command-a` | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:** text (8,182 tokens) <br /> - **Languages:** `en`, `fr`, `es`, `it`, `de`, `pt-br`, `ja`, `ko`, `zh-cn`, and `ar` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
 | `Cohere-command-r-plus-08-2024` | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Languages:** `en`, `fr`, `es`, `it`, `de`, `pt-br`, `ja`, `ko`, `zh-cn`, and `ar` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
 | `Cohere-command-r-08-2024` | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Languages:** `en`, `fr`, `es`, `it`, `de`, `pt-br`, `ja`, `ko`, `zh-cn`, and `ar` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
-| `embed-v-4-0` | embeddings | - **Input:** text (512 tokens) and images (2MM pixels) <br /> - **Output:** Vector (256, 512, 1024, 1536 dim.) <br /> - **Languages:** `en`, `fr`, `es`, `it`, `de`, `pt-br`, `ja`, `ko`, `zh-cn`, and `ar` |
 | `Cohere-embed-v3-english` | embeddings | - **Input:** text and images (512 tokens) <br /> - **Output:** Vector (1024 dim.) <br /> - **Languages:** `en` |
 | `Cohere-embed-v3-multilingual` | embeddings | - **Input:** text (512 tokens) <br /> - **Output:** Vector (1024 dim.) <br /> - **Languages:** `en`, `fr`, `es`, `it`, `de`, `pt-br`, `ja`, `ko`, `zh-cn`, and `ar` |
 

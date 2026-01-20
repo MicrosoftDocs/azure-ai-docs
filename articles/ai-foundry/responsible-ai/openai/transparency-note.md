@@ -5,7 +5,8 @@ description: Transparency Note for Azure OpenAI
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: article
 monikerRange: 'foundry-classic || foundry'
 ms.date: 04/16/2025
@@ -23,7 +24,7 @@ Microsoft's Transparency Notes are part of a broader effort at Microsoft to put 
 
 ## The basics of the Azure OpenAI Models
 
-Azure OpenAI provides customers with a fully managed AI service that lets developers and data scientists apply OpenAI's powerful models including models that can generate natural language, code, and images. Within the Azure OpenAI Service, the OpenAI models are integrated with Microsoft-developed Guardrails (previously content filters) and abuse detection models. Learn more about Guardrails (previously content filters) [here](/azure/ai-foundry/openai/concepts/content-filter) and abuse detection [here](/azure/ai-foundry/responsible-ai/openai/data-privacy).
+Azure OpenAI provides customers with a fully managed Foundry Tool that lets developers and data scientists apply OpenAI's powerful models including models that can generate natural language, code, and images. Within the Azure OpenAI Service, the OpenAI models are integrated with Microsoft-developed Guardrails (previously content filters) and abuse detection models. Learn more about Guardrails (previously content filters) [here](/azure/ai-foundry/openai/concepts/content-filter) and abuse detection [here](/azure/ai-foundry/responsible-ai/openai/data-privacy).
 
 
 ### Introduction
@@ -39,6 +40,7 @@ Azure OpenAI provides customers with a fully managed AI service that lets develo
 | GPT-4.1</br>GPT-4.1-mini</br>GPT-4.1-nano | ✅ | ✅ |  |
 | GPT-4.5 | ✅ | ✅ |  |
 | GPT-5 | ✅ | ✅ |  |
+| GPT-5.1-Codex-Max | ✅ | ✅ |  |
 | GPT-oss-120b | ✅ |  |  |
 | o1 series | ✅ | ✅ |  |
 | o3/o3-pro | ✅ | ✅| | 

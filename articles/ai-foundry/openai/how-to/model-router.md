@@ -6,7 +6,7 @@ ms.author: pafarley
 manager: nitinme
 ms.date: 09/02/2025
 ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
 ms.custom:
   - build-2025
@@ -27,8 +27,10 @@ Use model router through the Chat Completions API like you'd use a single base m
 
 ::: moniker range="foundry-classic"
 > [!TIP]
-> The [Microsoft Foundry (new)](../../what-is-azure-ai-foundry.md#portals) portal offers enhanced configuration options for model router. [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) to see the latest features.
+> The [Microsoft Foundry (new)](../../what-is-foundry.md#microsoft-foundry-portals) portal offers enhanced configuration options for model router. [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) to see the latest features.
 ::: moniker-end
+
+[!INCLUDE [model-router-supported](../includes/model-router-supported.md)]
 
 ## Deploy a model router model
 
@@ -49,23 +51,32 @@ In the model catalog, find `model-router` in the **Models** list and select it. 
 > Your deployment settings apply to all underlying chat models that model router uses.
 > - Don't deploy the underlying chat models separately. Model router works independently of your other deployed models.
 > - Select a content filter when you deploy the model router model or apply a filter later. The content filter applies to all content passed to and from the model router; don't set content filters for each underlying chat model.
-> - Your tokens-per-minute rate limit setting applies to all activity to and from the model router; don't set rate limits for each underlying chat model.## Use model router in chats
+> - Your tokens-per-minute rate limit setting applies to all activity to and from the model router; don't set rate limits for each underlying chat model.
 
 ::: moniker range="foundry"
 
-## Select a routing mode
+### Select a routing mode
+
+> [!NOTE]
+> Changes to the routing mode can take up to five minutes to take effect.
 
 Use the **Routing mode** dropdown to select a routing profile. This sets the routing logic for your deployment.
 
 :::image type="content" source="media/working-with-models/model-router-routing-mode.png" alt-text="Screenshot of model router routing mode selection.":::
 
-## Select your model subset
+### Select your model subset
+
+> [!NOTE]
+> Changes to the model subset can take up to five minutes to take effect.
 
 The latest version of model router supports custom subsets: you can specify which underlying models to include in routing decisions. This gives you more control over cost, compliance, and performance characteristics. 
 
 In the model router deployment pane, select **Route to a subset of models**. Then select the underlying models you want to enable.
 
 :::image type="content" source="media/working-with-models/model-router-model-subset.png" alt-text="Screenshot of model router subset selection.":::
+
+> [!IMPORTANT]
+> To include models by Anthropic (Claude) in your model router deployment, you need to deploy them yourself to your Foundry resource. See [Deploy and use Claude models](/azure/ai-foundry/foundry-models/how-to/use-foundry-models-claude?view=foundry&preserve-view=true).
 
 New models introduced later are excluded by default until explicitly added.
 
@@ -85,7 +96,7 @@ In the [Foundry portal](https://ai.azure.com/?cid=learnDocs), go to your model r
 > The parameters `stop`, `presence_penalty`, `frequency_penalty`, `logit_bias`, and `logprobs` are similarly dropped for o-series models but used otherwise.
 
 > [!IMPORTANT]
-> The `reasoning_effort` parameter (see the [Reasoning models guide](/azure/ai-foundry/openai/how-to/reasoning?tabs=python-secure#reasoning-effort)) isn't supported in model router. If the model router selects a reasoning model for your prompt, it also selects a `reasoning_effort` input value based on the complexity of the prompt.
+> Starting with the `2025-11-18` version, the `reasoning_effort` parameter (see the [Reasoning models guide](/azure/ai-foundry/openai/how-to/reasoning?tabs=python-secure#reasoning-effort)) is now **supported** in model router. If the model router selects a reasoning model for your prompt, it will use your `reasoning_effort` input value with the underlying model.
 
 ::: moniker range="foundry"
 

@@ -5,7 +5,7 @@ description: Learn about the data, region, and throughput limits for Conversatio
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
+ms.topic: limits-and-quotas
 ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-clu, references_regions

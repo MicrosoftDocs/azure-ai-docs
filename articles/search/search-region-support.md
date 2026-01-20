@@ -5,7 +5,7 @@ description: Learn about the regions that offer Azure AI Search and the features
 author: haileytap
 ms.author: haileytapia
 manager: nitinme
-ms.date: 11/10/2025
+ms.date: 11/19/2025
 ms.service: azure-ai-search
 ms.topic: conceptual
 ms.custom:
@@ -35,7 +35,7 @@ When you create an Azure AI Search service, your region selection might depend o
 
 ## Azure Public regions
 
-You can create an Azure AI Search service in any of the following Azure public regions. Almost all of these regions support [higher-capacity tiers](search-limits-quotas-capacity.md#service-limits). Exceptions are noted where they apply.
+You can create an Azure AI Search service in any of the following Azure public regions. Almost all of these regions support [higher-capacity tiers](search-limits-quotas-capacity.md#service-limits). Exceptions are noted where applicable.
 
 ### Americas
 
@@ -45,19 +45,21 @@ You can create an Azure AI Search service in any of the following Azure public r
 | Canada Central​​ <sup>1</sup> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Canada East​​ ​<sup>1</sup> |  |  | ✅ |  | ✅ |  |
 | ​Central US​​ | ✅ | ✅ | ✅ |  | ✅ | ✅ |
-| East US​ <sup>1</sup> | ✅ | ✅ | ✅ |  | ✅ |  |
+| East US​ <sup>1, 2</sup> | ✅ | ✅ | ✅ |  | ✅ |  |
 | East US 2 <sup>1</sup> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Mexico Central |  | ✅ |  |  |  |  |
 | North Central US​ <sup>1</sup> ​| ✅ |  | ✅ |  | ✅ | ✅ |
 | South Central US​ <sup>1</sup> | ✅ | ✅ | ✅ |  | ✅ | ✅ |
 | West US​​ <sup>1</sup> | ✅ |  | ✅ |  | ✅ | ✅ |
-| West US 2​ <sup>2</sup> ​| ✅ | ✅ | ✅ |  | ✅ | ✅ |
+| West US 2​ <sup>3</sup> ​| ✅ | ✅ | ✅ |  | ✅ | ✅ |
 | West US 3​ | ✅ | ✅ | ✅ |  | ✅ | ✅ |
 | West Central US​ ​<sup>1</sup>| ✅ |  | ✅ |  | ✅ |  |
 
-<sup>1</sup> Supports [agentic retrieval](agentic-retrieval-overview.md) and [semantic ranker](semantic-search-overview.md) on the free tier.
+<sup>1</sup> This region supports [agentic retrieval](agentic-retrieval-overview.md) and [semantic ranker](semantic-search-overview.md) on the free tier.
 
-<sup>2</sup> There's no indexer support in West US 2 for [Microsoft Purview sensitivity labels](search-indexer-sensitivity-labels.md).
+<sup>2</sup> This region is experiencing capacity constraints that prevent the creation of new search services for Basic and S1 tiers. Please choose a different region.
+
+<sup>3</sup> This region doesn't have indexer support for [Microsoft Purview sensitivity labels](search-indexer-sensitivity-labels.md).
 
 ### Europe
 
@@ -77,7 +79,7 @@ You can create an Azure AI Search service in any of the following Azure public r
 | UK West​ ​|  |  | ✅ |  | ✅ |  |
 | West Europe​​ <sup>1</sup> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 
-<sup>1</sup> Supports [agentic retrieval](agentic-retrieval-overview.md) and [semantic ranker](semantic-search-overview.md) on the free tier.
+<sup>1</sup> This region supports [agentic retrieval](agentic-retrieval-overview.md) and [semantic ranker](semantic-search-overview.md) on the free tier.
 
 <sup>2</sup> [Higher storage limits](search-limits-quotas-capacity.md#service-limits) aren't available in this region. If you want higher limits, choose a different region.
 
@@ -85,15 +87,15 @@ You can create an Azure AI Search service in any of the following Azure public r
 
 | Region | AI enrichment | Availability zones | Agentic retrieval | Confidential computing | Semantic ranker | Query rewrite |
 |--|--|--|--|--|--|--|
-| Israel Central​ <sup>2</sup> |  | ✅ |  |  |  |  |
-| Qatar Central​ <sup>2</sup> |  | ✅ | ✅ |  | ✅ |  |
-| UAE North​​ <sup>1, 3</sup> | ✅ | ✅ | ✅ | ✅ | ✅ |  |
+| Israel Central​ <sup>1</sup> |  | ✅ |  |  |  |  |
+| Qatar Central​ <sup>1</sup> |  | ✅ | ✅ |  | ✅ |  |
+| UAE North​​ <sup>2, 3</sup> | ✅ | ✅ | ✅ | ✅ | ✅ |  |
 
-<sup>1</sup> Supports [agentic retrieval](agentic-retrieval-overview.md) and [semantic ranker](semantic-search-overview.md) on the free tier.
+<sup>1</sup> [Higher storage limits](search-limits-quotas-capacity.md#service-limits) aren't available in this region. If you want higher limits, choose a different region.
 
-<sup>2</sup> [Higher storage limits](search-limits-quotas-capacity.md#service-limits) aren't available in this region. If you want higher limits, choose a different region.
+<sup>2</sup> This region supports [agentic retrieval](agentic-retrieval-overview.md) and [semantic ranker](semantic-search-overview.md) on the free tier.
 
-<sup>3</sup> This region is experiencing constraints on capacity that prevents the creation of new search services. Please choose a different region.
+<sup>3</sup> This region is experiencing capacity constraints that prevent the creation of new search services. Please choose a different region.
 
 ### Africa
 
@@ -101,7 +103,7 @@ You can create an Azure AI Search service in any of the following Azure public r
 |--|--|--|--|--|--|--|
 | South Africa North​ <sup>1</sup> | ✅ | ✅ | ✅ | ✅ | ✅ |  |
 
-<sup>1</sup> Supports [agentic retrieval](agentic-retrieval-overview.md) and [semantic ranker](semantic-search-overview.md) on the free tier.
+<sup>1</sup> This region supports [agentic retrieval](agentic-retrieval-overview.md) and [semantic ranker](semantic-search-overview.md) on the free tier.
 
 ### Asia Pacific
 
@@ -123,7 +125,7 @@ You can create an Azure AI Search service in any of the following Azure public r
 | South India |  | ✅ |  |  |  |  |
 | Southeast Asia​​ | ✅ | ✅ | ✅ |  | ✅ | ✅ |
 
-<sup>1</sup> Supports [agentic retrieval](agentic-retrieval-overview.md) and [semantic ranker](semantic-search-overview.md) on the free tier.
+<sup>1</sup> This region supports [agentic retrieval](agentic-retrieval-overview.md) and [semantic ranker](semantic-search-overview.md) on the free tier.
 
 ## Azure Government regions
 

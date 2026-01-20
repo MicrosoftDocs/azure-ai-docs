@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: tutorial
 author: swatig007
-ms.author: swatig
-ms.reviewer: nibaccam
+ms.author: scottpolly
+ms.reviewer: sooryar
 ms.date: 10/06/2021
 ms.custom: UpdateFrequency5, devx-track-python, automl, sdkv1
 ---

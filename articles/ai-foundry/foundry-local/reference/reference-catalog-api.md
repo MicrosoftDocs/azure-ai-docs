@@ -1,12 +1,12 @@
 ---
-title: Catalog API Reference
+title: Catalog API reference
 titleSuffix: Foundry Local
 description: Complete reference guide for the Foundry Local Model Catalog API.
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
-ms.custom: build-2025
+ms.custom: build-2025, dev-focus
 ms.topic: reference
-ms.date: 10/01/2025
+ms.date: 01/05/2026
 ms.author: jburchel
 reviewer: maanavdalal
 author: jonburchel
@@ -23,46 +23,25 @@ Foundry Local lets you build and integrate your own catalog service. This articl
 - Model format required for the catalog API
 - Request and response format required for your catalog API to integrate with Foundry Local
 
+## Prerequisites
+
+- You have Foundry Local installed.
+- You can run a web service that exposes a `POST` endpoint.
+- Your model artifacts are available in ONNX format.
+- Azure role-based access control (RBAC): Not applicable.
+
 ## Model format
 
-Model files in your model catalog must be in the [Open Neural Network Exchange (ONNX)](https://onnx.ai/) format to work with Foundry Local. To learn how to compile Hugging Face and PyTorch models to ONNX, see [Compile Hugging Face models to run on Foundry Local](../how-to/how-to-compile-hugging-face-models.md).
+To work with Foundry Local, your model catalog must contain model files in the [Open Neural Network Exchange (ONNX)](https://onnx.ai/) format. To learn how to compile Hugging Face and PyTorch models to ONNX, see [Compile Hugging Face models to run on Foundry Local](../how-to/how-to-compile-hugging-face-models.md).
 
 ## API format
 
 ### Request
 
-Implement a POST endpoint that accepts a JSON request body in your catalog service. The request format for the catalog API is as follows:
+Implement a POST endpoint in your catalog service that accepts a JSON request body. The request format for the catalog API is as follows:
 
 - **Method**: `POST`
 - **Content-Type**: `application/json`
-
-The request body must be a JSON object with the following fields:
-
-- `resourceIds`: An array of resource IDs that specify the resources to be queried
-    - `resourceId`: The ID of the resource
-    - `entityContainerType`: The type of entity container (for example, `Registry`, `Workspace`, etc.)
-- `indexEntitiesRequest`: An object that contains the search parameters.
-  - `filters`: An array of filter objects that specify the criteria for filtering the search results
-      - `field`: The field to filter on (for example, `type`, `kind`, etc.)
-      - `operator`: The operator to use for the filter. For example, `eq` (equals), `ne` (not equals), `gt` (greater than), `lt` (less than), etc.
-      - `values`: An array of values to match against the field
-  - `orderBy`: An array of fields to order the results by
-  - `searchText`: A string to search for in the results
-  - `pageSize`: The maximum number of results to return (for pagination)
-  - `skip`: The number of results to skip (for pagination)
-  - `continuationToken`: A token for pagination to continue from a previous request
-
-#### Filterable fields (optional)
-
-Implement the catalog API so it accepts the [Request](#request) format. Server-side filtering is optional. Skipping server-side filtering is faster to implement but is less efficient for searching models.
-
-If you implement server-side filtering, use the following fields:
-
-- `type`: The type of the model (for example, `models`, `datasets`, etc.).
-- `kind`: The kind of the model (for example, `Versioned`, `Unversioned`, etc.).
-- `properties/variantInfo/variantMetadata/device`: The device type (for example, `cpu`, `gpu`, etc.).
-- `properties/variantInfo/variantMetadata/executionProvider`: The execution provider (for example, `cpuexecutionprovider`, `webgpuexecutionprovider`, etc.).
-
 
 #### Example request
 
@@ -116,9 +95,78 @@ curl -X POST <your-catalog-api-endpoint> \
 }'
 ```
 
+Replace `<your-catalog-api-endpoint>` with your catalog service URL.
+
+**What to expect**
+
+- A successful response includes an `indexEntitiesResponse` object.
+- Search results are returned in `indexEntitiesResponse.value`.
+
+Reference:
+
+- [Foundry Local REST API reference](reference-rest.md)
+- [Best practices and troubleshooting](reference-best-practice.md)
+
+The request body must be a JSON object with the following fields:
+
+- `resourceIds`: An array of resource IDs that specify the resources to query. Each item includes:
+  - `resourceId`: The ID of the resource.
+  - `entityContainerType`: The type of entity container, such as `Registry`, `Workspace`, and others.
+- `indexEntitiesRequest`: An object that contains the search parameters.
+  - `filters`: An array of filter objects that specify the criteria for filtering the search results. Each filter includes:
+    - `field`: The field to filter on, such as `type`, `kind`, and others.
+    - `operator`: The operator to use for the filter. For example, `eq` (equals), `ne` (not equals), `gt` (greater than), `lt` (less than), and others.
+    - `values`: An array of values to match against the field.
+  - `orderBy`: An array of fields to order the results by.
+  - `searchText`: A string to search for in the results.
+  - `pageSize`: The maximum number of results to return (for pagination).
+  - `skip`: The number of results to skip (for pagination).
+  - `continuationToken`: A token for pagination to continue from a previous request.
+
+#### Filterable fields (optional)
+
+Implement the catalog API so it accepts the [Request](#request) format. Server-side filtering is optional. Skipping server-side filtering is faster to implement but is less efficient for searching models.
+
+If you implement server-side filtering, use the following fields:
+
+- `type`: The type of the model, such as `models`, `datasets`, and others.
+- `kind`: The kind of the model, such as `Versioned`, `Unversioned`, and others.
+- `properties/variantInfo/variantMetadata/device`: The device type, such as `cpu`, `gpu`, and others.
+- `properties/variantInfo/variantMetadata/executionProvider`: The execution provider, such as `cpuexecutionprovider`, `webgpuexecutionprovider`, and others.
+
 ### Response
 
-The response from the catalog API is a JSON object that contains the search results. The response schema is as follows:
+The catalog API returns a JSON object that contains the search results.
+
+#### Example response
+
+```json
+{
+  "indexEntitiesResponse": {
+    "totalCount": 1,
+    "value": [
+      {
+        "assetId": "example-asset-id",
+        "version": "1",
+        "properties": {
+          "name": "example-model",
+          "version": 1,
+          "variantInfo": {
+            "variantMetadata": {
+              "device": "cpu",
+              "executionProvider": "cpuexecutionprovider"
+            }
+          }
+        }
+      }
+    ],
+    "nextSkip": null,
+    "continuationToken": null
+  }
+}
+```
+
+#### Response schema
 
 ```json
 {
@@ -145,7 +193,7 @@ The response from the catalog API is a JSON object that contains the search resu
         },
         "continuationToken": {
           "type": "string",
-                    "description": "A token to continue fetching results."
+          "description": "A token to continue fetching results."
         }
       }
     }
@@ -226,3 +274,8 @@ The response from the catalog API is a JSON object that contains the search resu
   }
 }
 ```
+
+Reference:
+
+- [Get started](../get-started.md)
+- [What is Foundry Local?](../what-is-foundry-local.md)

@@ -18,6 +18,8 @@ author: lgayhardt
 
 # Monitor quality and token usage of deployed prompt flow applications
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 Monitoring applications that are deployed to production is an essential part of the generative AI application lifecycle. Changes in data and consumer behavior can influence your application over time. The changes can result in outdated systems that negatively affect business outcomes. Such systems expose organizations to compliance, economic, and reputation risks.
@@ -42,7 +44,7 @@ Integrations for monitoring a prompt flow deployment allow you to:
 
 [!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
 - A prompt flow ready for deployment. If you don't have one, see [Develop a prompt flow](flow-develop.md).
-- Azure role-based access controls are used to grant access to operations in the Foundry portal. For this article, your user account must be assigned the Azure AI Developer role on the resource group. For more information, see [Role-based access control for Foundry](../concepts/rbac-azure-ai-foundry.md).
+- Azure role-based access controls are used to grant access to operations in the Foundry portal. For this article, your user account must be assigned the Azure AI Developer role on the resource group. For more information, see [Role-based access control for Foundry](../concepts/rbac-foundry.md).
 
 # [Python SDK](#tab/python)
 
@@ -376,7 +378,7 @@ deployment_name = "INSERT YOUR DEPLOYMENT NAME"
 monitor_name ="gen_ai_monitor_tokens" 
 defaulttokenstatisticssignalname ="token-usage-signal" 
 
-# Determine the frequency to run the monitor, and the emails to recieve email alerts
+# Determine the frequency to run the monitor, and the emails to receive email alerts
 trigger_schedule = CronTrigger(expression="15 10 * * *")
 notification_emails_list = ["test@example.com", "def@example.com"]
 
@@ -534,5 +536,5 @@ After you create your monitor from the SDK, you can [consume the monitoring resu
 
 ## Related content
 
-- Learn more about what you can do in [Foundry](../what-is-azure-ai-foundry.md).
+- Learn more about what you can do in [Foundry](../what-is-foundry.md).
 - Get answers to frequently asked questions in the [Foundry FAQ](../faq.yml).

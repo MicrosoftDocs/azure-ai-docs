@@ -10,4 +10,5 @@ ms.date: 11/04/2025
 ms.custom: include
 ---
 
-ℹ️ Code uses **Agents v2 API (preview)**.
+> [!TIP]
+> Code uses **Foundry project (new) API (preview)** and is incompatible with the Foundry project (classic) API.

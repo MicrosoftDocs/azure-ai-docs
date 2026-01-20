@@ -22,6 +22,8 @@ ai-usage: ai-assisted
 
 To start evaluating your application's generations, built-in evaluators are great out of the box. To cater to your evaluation needs, you can build your own code-based or prompt-based evaluator.
 
+[!INCLUDE [evaluation-preview](../../includes/evaluation-preview.md)]
+
 ## Code-based evaluators
 
 ::: moniker range="foundry-classic"

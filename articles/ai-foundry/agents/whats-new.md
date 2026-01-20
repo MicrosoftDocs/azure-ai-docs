@@ -14,6 +14,8 @@ ms.custom: azure-ai-agents
 
 # What's new in Foundry Agent Service
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 This article provides a summary of the latest releases and major documentation updates for Foundry Agent Service.
 
 ## October 2025

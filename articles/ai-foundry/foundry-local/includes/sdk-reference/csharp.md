@@ -1,12 +1,60 @@
 ---
 ms.service: azure-ai-foundry
 ms.topic: include
-ms.date: 06/09/2025
+ms.date: 01/05/2026
 ms.author: samkemp
 author: samuel100
+ai-usage: ai-assisted
 ---
 
 ## C# SDK Reference
+
+### Project setup guide
+
+There are two NuGet packages for the Foundry Local SDK - a WinML and a cross-platform package - that have the same API surface but are optimized for different platforms:
+
+- **Windows**: Uses the `Microsoft.AI.Foundry.Local.WinML` package that's specific to Windows applications, which uses the Windows Machine Learning (WinML) framework.
+- **Cross-platform**: Uses the `Microsoft.AI.Foundry.Local` package that can be used for cross-platform applications (Windows, Linux, macOS).
+
+Depending on your target platform, follow these instructions to create a new C# application and add the necessary dependencies:
+
+[!INCLUDE [project-setup](./../csharp-project-setup.md)]
+
+### Quickstart
+
+Use this snippet to verify that the SDK can initialize and access the local model catalog.
+
+```csharp
+using Microsoft.AI.Foundry.Local;
+using Microsoft.Extensions.Logging;
+using System.Linq;
+
+var config = new Configuration
+{
+  AppName = "app-name",
+  LogLevel = Microsoft.AI.Foundry.Local.LogLevel.Information,
+};
+
+using var loggerFactory = LoggerFactory.Create(builder =>
+{
+  builder.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Information);
+});
+var logger = loggerFactory.CreateLogger<Program>();
+
+await FoundryLocalManager.CreateAsync(config, logger);
+var manager = FoundryLocalManager.Instance;
+
+var catalog = await manager.GetCatalogAsync();
+var models = await catalog.ListModelsAsync();
+
+Console.WriteLine($"Models available: {models.Count()}");
+```
+
+This example prints the number of models available for your hardware.
+
+References:
+
+- [Integrate with inference SDKs](../../how-to/how-to-integrate-with-inference-sdks.md)
 
 ### Redesign
 
@@ -14,8 +62,6 @@ To improve your ability to ship applications using on-device AI, there are subst
 
 > [!NOTE]
 > In the SDK version `0.8.0` and later, there are breaking changes in the API from previous versions.
-
-#### Architecture changes
 
 The following diagram shows how the previous architecture - for versions earlier than `0.8.0` - relied heavily on using a REST webserver to manage models and inference like chat completions:
 
@@ -43,31 +89,31 @@ In this new architecture:
 
 Version `0.8.0` and later provides a more object-orientated and composable API. The main entry point continues to be the `FoundryLocalManager` class, but instead of being a flat set of methods that operate via static calls to a stateless HTTP API, the SDK now exposes methods on the `FoundryLocalManager` instance that maintain state about the service and models.
 
-| Primitive           | Versions < 0.8.0 | Versions >= 0.8.0 |
-|---------------------|-------------------|-------------------|
-| **Configuration**    | N/A | `config = Configuration(...)` |
-| **Get Manager**     | `mgr = FoundryLocalManager();`| `await FoundryLocalManager.CreateAsync(config, logger);`<br>`var mgr = FoundryLocalManager.Instance;`  |
-| **Get Catalog**   | N/A | `catalog = await mgr.GetCatalogAsync();` |
-| **List Models**            | `mgr.ListCatalogModelsAsync();`| `catalog.ListModelsAsync();`                           |
-| **Get Model**  | `mgr.GetModelInfoAsync("aliasOrModelId");`| `catalog.GetModelAsync(alias: "alias");`     |
-| **Get Variant**| N/A  | `model.SelectedVariant;` |
-| **Set Variant**| N/A  | `model.SelectVariant();` |
-| **Download a model**| `mgr.DownloadModelAsync("aliasOrModelId");` | `model.DownloadAsync()`                                                               |
-| **Load a model**    | `mgr.LoadModelAsync("aliasOrModelId");`     | `model.LoadAsync()`                                                                   |
-| **Unload a Model**  | `mgr.UnloadModelAsync("aliasOrModelId");`   | `model.UnloadAsync()`                                                                 |
-| **List Loaded Models**   | `mgr.ListLoadedModelsAsync();`             | `catalog.GetLoadedModelsAsync();`                                                               |
-| **Get Model Path**  | N/A                                        | `model.GetPathAsync()`                                                                |
-| **Start service**   | `mgr.StartServiceAsync();`                 | `mgr.StartWebServerAsync();` |
-| **Stop Service**    | `mgr.StopServiceAsync();`                | `mgr.StopWebServerAsync();`      |
-| **Cache Location**  | `mgr.GetCacheLocationAsync();`        | `config.ModelCacheDir`                           |
-| **List Cached Models** | `mgr.ListCachedModelsAsync();`     | `catalog.GetCachedModelsAsync();`               |
+| Primitive | Versions < 0.8.0 | Versions >= 0.8.0 |
+| --- | --- | --- |
+| **Configuration** | N/A | `config = Configuration(...)` |
+| **Get Manager** | `mgr = FoundryLocalManager();` | `await FoundryLocalManager.CreateAsync(config, logger);`<br>`var mgr = FoundryLocalManager.Instance;` |
+| **Get Catalog** | N/A | `catalog = await mgr.GetCatalogAsync();` |
+| **List Models** | `mgr.ListCatalogModelsAsync();` | `catalog.ListModelsAsync();` |
+| **Get Model** | `mgr.GetModelInfoAsync("aliasOrModelId");` | `catalog.GetModelAsync(alias: "alias");` |
+| **Get Variant** | N/A | `model.SelectedVariant;` |
+| **Set Variant** | N/A | `model.SelectVariant();` |
+| **Download a model** | `mgr.DownloadModelAsync("aliasOrModelId");` | `model.DownloadAsync()` |
+| **Load a model** | `mgr.LoadModelAsync("aliasOrModelId");` | `model.LoadAsync()` |
+| **Unload a model** | `mgr.UnloadModelAsync("aliasOrModelId");` | `model.UnloadAsync()` |
+| **List loaded models** | `mgr.ListLoadedModelsAsync();` | `catalog.GetLoadedModelsAsync();` |
+| **Get model path** | N/A | `model.GetPathAsync()` |
+| **Start service** | `mgr.StartServiceAsync();` | `mgr.StartWebServerAsync();` |
+| **Stop service** | `mgr.StopServiceAsync();` | `mgr.StopWebServerAsync();` |
+| **Cache location** | `mgr.GetCacheLocationAsync();` | `config.ModelCacheDir` |
+| **List cached models** | `mgr.ListCachedModelsAsync();` | `catalog.GetCachedModelsAsync();` |
 
 The API allows Foundry Local to be more configurable over the web server, logging, cache location, and model variant selection. For example, the `Configuration` class allows you to set up the application name, logging level, web server URLs, and directories for application data, model cache, and logs:
 
 ```csharp
 var config = new Configuration
 {
-    AppName = "my-app-name",
+    AppName = "app-name",
     LogLevel = Microsoft.AI.Foundry.Local.LogLevel.Information,
     Web = new Configuration.WebService
     {
@@ -79,211 +125,118 @@ var config = new Configuration
 };
 ```
 
+References:
+
+- [Integrate with inference SDKs](../../how-to/how-to-integrate-with-inference-sdks.md)
+
 In the previous version of the Foundry Local C# SDK, you couldn't configure these settings directly through the SDK, which limited your ability to customize the behavior of the service.
 
+### Reduce application package size
 
-### Project setup
+The Foundry Local SDK pulls in `Microsoft.ML.OnnxRuntime.Foundry` NuGet package as a dependency. The `Microsoft.ML.OnnxRuntime.Foundry` package provides the *inference runtime bundle*, which is the set of libraries required to efficiently run inference on specific vendor hardware devices. The inference runtime bundle includes the following components:
 
-To use Foundry Local in your C# project, you need to set up your project with the appropriate NuGet packages. Depending on your target platform, follow these instructions to create a new C# console application and add the necessary dependencies:
+- **ONNX Runtime library**: The core inference engine (`onnxruntime.dll`).
+- **ONNX Runtime Execution Provider (EP) library**. A hardware-specific backend in ONNX Runtime that optimizes and executes parts of a machine learning model a hardware accelerator. For example:
+    - CUDA EP: `onnxruntime_providers_cuda.dll`
+    - QNN EP: `onnxruntime_providers_qnn.dll`
+- **Independent Hardware Vendor (IHV) libraries**. For example:
+    - WebGPU: DirectX dependencies (`dxcompiler.dll`, `dxil.dll`)
+    - QNN: Qualcomm QNN dependencies (`QnnSystem.dll`, etc.)
 
-#### [Windows](#tab/windows)
+The following table summarizes what EP and IHV libraries are bundled with your application and what WinML will download/install at runtime:
 
-First, create a new C# project and navigate into it:
+![Illustration of a table showing EP and IHV libraries.](../../media/execution-provider-bundle.png)
 
-```bash
-dotnet new console -n hello-foundry-local
-cd hello-foundry-local
-```
+In all platforms and architectures, the CPU EP is required. The WebGPU EP and IHV libraries are small in size (for example, WebGPU only adds ~7MB to your application package) and are required in Windows and macOS. However, the CUDA and QNN EPs are large in size (for example, CUDA adds ~1GB to your application package) so we recommend excluding these EPs from your application package. WinML will download/install CUDA and QNN at runtime if the end user has compatible hardware.
 
-Next, open the `hello-foundry-local.csproj` file and modify it to include the required WinAppSDK parameters (such as `TargetFramework` and `WindowsAppSDKSelfContained`) and NuGet packages for Foundry Local and OpenAI SDK:
+> [!NOTE]
+> We're working on removing the CUDA and QNN EPs from the `Microsoft.ML.OnnxRuntime.Foundry` package in future releases so that you don't need to include an `ExcludeExtraLibs.props` file to remove them from your application package.
+
+To reduce the size of your application package, you can create an `ExcludeExtraLibs.props` file in your project directory with the following content, which excludes the CUDA and QNN EP and IHV libraries when you publish your application:
 
 ```xml
-<Project Sdk="Microsoft.NET.Sdk">
+<Project>
+  <!-- we want to ensure we're using the onnxruntime libraries from Foundry Local Core so 
+  we delete the WindowsAppSdk versions once they're unzipped. -->
+  <Target Name="ExcludeOnnxRuntimeLibs" AfterTargets="ExtractMicrosoftWindowsAppSDKMsixFiles">
+    <Delete Files="$(MicrosoftWindowsAppSDKMsixContent)\onnxruntime.dll"/>
+    <Delete Files="$(MicrosoftWindowsAppSDKMsixContent)\onnxruntime_providers_shared.dll"/>
+    <Message Importance="Normal" Text="Deleted onnxruntime libraries from $(MicrosoftWindowsAppSDKMsixContent)." />
+  </Target>
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0-windows10.0.26100</TargetFramework>
-    <RootNamespace>hello-foundry-local</RootNamespace>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
-  </PropertyGroup>
+  <!-- Remove CUDA EP and IHV libraries on Windows x64 -->
+  <Target Name="ExcludeCudaLibs" Condition="'$(RuntimeIdentifier)'=='win-x64'" AfterTargets="ResolvePackageAssets">
+    <ItemGroup>
+      <!-- match onnxruntime*cuda.* (we're matching %(Filename) which excludes the extension) -->
+      <NativeCopyLocalItems Remove="@(NativeCopyLocalItems)"
+                            Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('%(Filename)', 
+                                      '^onnxruntime.*cuda.*', RegexOptions.IgnoreCase))" />
+    </ItemGroup>
+    <Message Importance="Normal" Text="Excluded onnxruntime CUDA libraries from package." />
+  </Target>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AI.Foundry.Local.WinML" Version="0.8.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.10" />
-    <PackageReference Include="OpenAI" Version="2.5.0" />
+  <!-- Remove QNN EP and IHV libraries on Windows arm64 -->
+  <Target Name="ExcludeQnnLibs" Condition="'$(RuntimeIdentifier)'=='win-arm64'" AfterTargets="ResolvePackageAssets">
+    <ItemGroup>
+      <NativeCopyLocalItems Remove="@(NativeCopyLocalItems)"
+                            Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('%(Filename)%(Extension)', 
+                                      '^QNN.*\.dll', RegexOptions.IgnoreCase))" />
+      <NativeCopyLocalItems Remove="@(NativeCopyLocalItems)"
+                            Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('%(Filename)', 
+                                      '^libQNNhtp.*', RegexOptions.IgnoreCase))" />
+      <NativeCopyLocalItems Remove="@(NativeCopyLocalItems)"
+                            Condition="'%(FileName)%(Extension)' == 'onnxruntime_providers_qnn.dll'" />
+    </ItemGroup>
+    <Message Importance="Normal" Text="Excluded onnxruntime QNN libraries from package." />
+  </Target>
+
+  <!-- need to manually copy on linux-x64 due to the nuget packages not having the correct props file setup -->
+  <ItemGroup Condition="'$(RuntimeIdentifier)' == 'linux-x64'">
+    <!-- 'Update' as the Core package will add these dependencies, but we want to be explicit about the version -->
+    <PackageReference Update="Microsoft.ML.OnnxRuntime.Gpu" />
+    <PackageReference Update="Microsoft.ML.OnnxRuntimeGenAI.Cuda" />
+    <OrtNativeLibs Include="$(NuGetPackageRoot)microsoft.ml.onnxruntime.gpu.linux/$(OnnxRuntimeVersion)/runtimes/$(RuntimeIdentifier)/native/*" />
+    <OrtGenAINativeLibs Include="$(NuGetPackageRoot)microsoft.ml.onnxruntimegenai.cuda/$(OnnxRuntimeGenAIVersion)/runtimes/$(RuntimeIdentifier)/native/*" />
   </ItemGroup>
 
+  <Target Name="CopyOrtNativeLibs" AfterTargets="Build" Condition=" '$(RuntimeIdentifier)' == 'linux-x64'">
+    <Copy SourceFiles="@(OrtNativeLibs)" DestinationFolder="$(OutputPath)"></Copy>
+    <Copy SourceFiles="@(OrtGenAINativeLibs)" DestinationFolder="$(OutputPath)"></Copy>
+  </Target>
 </Project>
 ```
 
-The Windows-specific package `Microsoft.AI.Foundry.Local.WinML` includes support for Windows ML hardware acceleration. On initialization, Foundry Local automatically detects compatible hardware and uses it for model inference. If the host machine is missing the correct runtimes and drivers for the available hardware, Foundry Local automatically downloads and installs them on initialization. You can also override the automatic runtime/driver download behavior and manage the download in your application logic. By keeping the runtimes and drivers separated from the Foundry Local SDK package, we ensure only the necessary components are installed on the host machine, which reduces your application's size.
+In your project file (`.csproj`), add the following line to import the `ExcludeExtraLibs.props` file:
 
-For an up-to-date list of supported hardware accelerators, see [Supported execution providers in Windows ML](/windows/ai/new-windows-ml/supported-execution-providers).
-
-#### [macOS](#tab/macos)
-
-First, create a new C# project and navigate into it:
-
-```bash
-dotnet new console -n hello-foundry-local
-cd hello-foundry-local
-```
-
-Next, add the required NuGet packages for Foundry Local and OpenAI SDK:
-
-```bash
-dotnet add package Microsoft.AI.Foundry.Local --version 0.8.0
-dotnet add package OpenAI --version 2.5.0
-```
-
-On macOS, Foundry Local supports hardware acceleration for Apple Silicon CPU and GPU (default). Foundry Local uses [Apple Metal](https://developer.apple.com/metal/) for acceleration via the WebGPU execution provider in ONNX Runtime. The WebGPU execution provider uses a library called Dawn that converts from the WebGPU shader language to Metal.
-
-#### [Linux](#tab/linux)
-
-First, create a new C# project and navigate into it:
-
-```bash
-dotnet new console -n hello-foundry-local
-cd hello-foundry-local
-```
-
-Next, add the required NuGet packages for Foundry Local and OpenAI SDK:
-
-```bash
-dotnet add package Microsoft.AI.Foundry.Local --version 0.8.0
-dotnet add package OpenAI --version 2.5.0
-```
-
-On Linux, Foundry Local supports hardware acceleration for CPU and Nvidia CUDA-enabled GPUs. For Nvidia GPUs, you need to install the appropriate CUDA drivers and libraries.
-
----
-
-### Example usage
-
-After [Project setup](#project-setup), you can use the following example code to get started with Foundry Local:
-
-```csharp
-using Microsoft.AI.Foundry.Local;
-using Betalgo.Ranul.OpenAI.ObjectModels.RequestModels;
-using Microsoft.Extensions.Logging;
-
-CancellationToken ct = new CancellationToken();
-
-var config = new Configuration
-{
-    AppName = "my-app-name",
-    LogLevel = Microsoft.AI.Foundry.Local.LogLevel.Debug
-};
-
-using var loggerFactory = LoggerFactory.Create(builder =>
-{
-    builder.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Debug);
-});
-var logger = loggerFactory.CreateLogger<Program>();
-
-// Initialize the singleton instance.
-await FoundryLocalManager.CreateAsync(config, logger);
-var mgr = FoundryLocalManager.Instance;
-
-// Get the model catalog
-var catalog = await mgr.GetCatalogAsync();
-
-// List available models
-Console.WriteLine("Available models for your hardware:");
-var models = await catalog.ListModelsAsync();
-foreach (var availableModel in models)
-{
-    foreach (var variant in availableModel.Variants)
-    {
-        Console.WriteLine($"  - Alias: {variant.Alias} (Id: {string.Join(", ", variant.Id)})");
-    }
-}
-
-// Get a model using an alias
-var model = await catalog.GetModelAsync("qwen2.5-0.5b") ?? throw new Exception("Model not found");
-
-// is model cached
-Console.WriteLine($"Is model cached: {await model.IsCachedAsync()}");
-
-// print out cached models
-var cachedModels = await catalog.GetCachedModelsAsync();
-Console.WriteLine("Cached models:");
-foreach (var cachedModel in cachedModels)
-{
-    Console.WriteLine($"- {cachedModel.Alias} ({cachedModel.Id})");
-}
-
-// Download the model (the method skips download if already cached)
-await model.DownloadAsync(progress =>
-{
-    Console.Write($"\rDownloading model: {progress:F2}%");
-    if (progress >= 100f)
-    {
-        Console.WriteLine();
-    }
-});
-
-// Load the model
-await model.LoadAsync();
-
-// Get a chat client
-var chatClient = await model.GetChatClientAsync();
-
-// Create a chat message
-List<ChatMessage> messages = new()
-{
-    new ChatMessage { Role = "user", Content = "Why is the sky blue?" }
-};
-
-
-var streamingResponse = chatClient.CompleteChatStreamingAsync(messages, ct);
-await foreach (var chunk in streamingResponse)
-{
-    Console.Write(chunk.Choices[0].Message.Content);
-    Console.Out.Flush();
-}
-Console.WriteLine();
-
-// Tidy up - unload the model
-await model.UnloadAsync();
-```
-
-To run the example, execute the following command in your project directory:
-
-### [Windows](#tab/windows)
-
-If your architecture is `x64`, use the following command:
-
-```bash
-dotnet run -r:win-x64
-```
-
-If your architecture is `arm64`, use the following command:
-
-```bash
-dotnet run -r:win-arm64
+```xml
+<!-- other project file content -->
+  
+<Import Project="ExcludeExtraLibs.props" />
 ```
 
 
-### [macOS](#tab/macos)
+#### Windows: CUDA dependencies
 
-For macOS, use the following command:
+The CUDA EP is pulled into your Linux application via `Microsoft.ML.OnnxRuntime.Foundry`, but we don't include the IHV libraries. If you want to allow your end users with CUDA-enabled devices to benefit from higher performance, you need *add* the following CUDA IHV libraries to your application:
 
-```bash
-dotnet run -r:osx-arm64
-```
+- CUBLAS v12.8.4 ([download from NVIDIA Developer](https://developer.download.nvidia.com/compute/cuda/redist/libcublas/windows-x86_64/libcublas-windows-x86_64-12.8.4.1-archive.zip))
+    - cublas64_12.dll
+    - cublasLt64_12.dll
+- CUDA RT v12.8.90 ([download from NVIDIA Developer](https://developer.download.nvidia.com/compute/cuda/redist/cuda_cudart/windows-x86_64/cuda_cudart-windows-x86_64-12.8.90-archive.zip))
+    - cudart64_12.dll
+- CUDNN v9.8.0 ([download from NVIDIA Developer](https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/windows-x86_64/cudnn-windows-x86_64-9.8.0.87_cuda12-archive.zip))
+    - cudnn_graph64_9.dll
+    - cudnn_ops64_9.dll
+    - cudnn64_9.dll
+- CUDA FFT v11.3.3.83 ([download from NVIDIA Developer](https://developer.download.nvidia.com/compute/cuda/redist/libcufft/windows-x86_64/libcufft-windows-x86_64-11.3.3.83-archive.zip))
+    - cufft64_11.dll
 
-### [Linux](#tab/linux)
+> [!WARNING]
+> Adding the CUDA EP and IHV libraries to your application increase the size of your application package by 1GB.
 
-For Linux, use the following command:
+### Samples
 
-```bash
-dotnet run -r:linux-x64
-```
-
----
+- For sample applications that demonstrate how to use the Foundry Local C# SDK, see the [Foundry Local C# SDK Samples GitHub repository](https://aka.ms/foundrylocalSDK).
 
 ### API reference
 

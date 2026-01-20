@@ -4,13 +4,13 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 06/23/2025
+ms.date: 11/20/2025
 ---
 
 [!INCLUDE [Full text introduction](full-text-intro.md)]
 
 > [!TIP]
-> You can download and run a [finished notebook](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/Quickstart).
+> You can download the [source code](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/Quickstart-Keyword-Search) to start with a finished project or follow these steps to create your own.
 
 ## Prerequisites
 
@@ -28,7 +28,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you must:
 
 - Assign the `Search Service Contributor` and `Search Index Data Contributor` roles to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**. For more information, see [Connect to Azure AI Search using roles](../../search-security-rbac.md).
 
-## Retrieve resource information
+## Get service information
 
 [!INCLUDE [resource authentication](../resource-authentication.md)]
 
@@ -36,7 +36,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you must:
 
 You run the sample code in a Jupyter notebook. So, you need to set up your environment to run Jupyter notebooks.
 
-1. Download or copy the [sample notebook from GitHub](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/Quickstart).
+1. Download or copy the [sample notebook from GitHub](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/Quickstart-Keyword-Search).
 
 1. Open the notebook in Visual Studio Code.
 
@@ -85,7 +85,7 @@ You run the sample code in a Jupyter notebook. So, you need to set up your envir
 
 ## Create, load, and query a search index
 
-In this section, you add code to create a search index, load it with documents, and run queries. You run the program to see the results in the console. For a detailed explanation of the code, see the [explaining the code](#explaining-the-code) section.
+In this section, you add code to create a search index, load it with documents, and run queries. You run the program to see the results in the console. For a detailed explanation of the code, see the [Explaining the code](#explaining-the-code) section.
 
 1. Make sure the notebook is open in the `.venv` kernel as described in the previous section.
 1. Run the first code cell to install the required packages, including [azure-search-documents](/python/api/azure-search-documents). 

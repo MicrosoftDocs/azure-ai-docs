@@ -2,12 +2,12 @@
 title: Content Understanding audiovisual modality markdown representation
 titleSuffix: Foundry Tools
 description: Description of the markdown representation returned as part of the Content Understanding audiovisual response for both audio and video inputs and how to use the response in your applications.
-author: laujan
-ms.author: paulhsu
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.date: 06/19/2025
 ms.service: azure-ai-content-understanding
-ms.topic: conceptual
+ms.topic: article
 ms.custom:
   - build-2025
 ---
@@ -16,11 +16,6 @@ ms.custom:
 
 Azure Content Understanding in Foundry Tools converts unstructured audio and video content into richly formatted [GitHub Flavored Markdown](https://github.github.com/gfm), while preserving temporal relationships and content structure for accurate downstream use. This document describes how each audiovisual content element is represented in markdown for both audio and video inputs.
 
-> [!IMPORTANT]
->
-> * Azure Content Understanding is available in preview. Public preview releases provide early access to features that are in active development.
-> * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
-> * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
 ## Overview
 
@@ -29,6 +24,9 @@ The markdown representation from Content Understanding generates structured mark
 The markdown format differs based on input type:
 - **Audio inputs**: Focus on transcript content, timing, and speaker information
 - **Video inputs**: Include all audio elements plus key frames
+
+For complete details about supported file types, file size limits, and other constraints, see [service quotas and limits](../service-limits.md).
+
 
 ## Document structure and metadata
 

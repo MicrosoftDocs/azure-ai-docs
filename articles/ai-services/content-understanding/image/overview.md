@@ -5,20 +5,15 @@ description: Learn how to use Azure Content Understanding in Foundry Tools image
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
-ms.date: 09/16/2025
+ms.date: 12/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: how-to
 ms.custom:
   - build-2025
 ---
 
-# Azure Content Understanding in Foundry Tools image solutions (preview)
+# Azure Content Understanding in Foundry Tools image solutions
 
-> [!IMPORTANT]
->
-> * Azure Content Understanding in Foundry Tools is available in preview. Public preview releases provide early access to features that are in active development.
-> * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
-> * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
 Azure Content Understanding standardizes the extraction of data from images, making it easier to analyze large volumes of unstructured image data. Standardized extraction speeds up time-to-value and simplifies integration into downstream analytical workflows. With the Content Understanding APIs, you can define schemas to specify the fields, descriptions, and output types for extraction. The service then analyzes your images and provides structured data that can be applied in various use cases, such as:
 
@@ -46,7 +41,7 @@ Content Understanding offers several key benefits for extracting information fro
 
 > [!NOTE]
 >
->  This feature is limited access; customers need to register for access at [Face Recognition](https://aka.ms/facerecognition).
+>  This feature is limited access; customers need to request to disable face blur for Azure OpenAI models with an Azure support request. Learn more [Manage an Azure support request](/azure/azure-portal/supportability/how-to-manage-azure-support-request).
 
 The field extraction capability can optionally be enhanced to provide detailed descriptions of faces in the images. This capability includes attributes such as facial hair, facial expression, and the presence of celebrities, which can be crucial for various analytical and indexing purposes. To enable face description capabilities set `disableFaceBlurring : true` in the analyzer configuration.
 
@@ -65,7 +60,7 @@ Get started with processing images with Content Understanding by following our [
 
 
 > [!IMPORTANT]
-> If you're using Microsoft products or services to process Biometric Data, you're responsible for: (i) providing notice to data subjects, including with respect to retention periods and destruction; (ii) obtaining consent from data subjects; and (iii) deleting the Biometric Data, all as appropriate, and required under applicable Data Protection Requirements. "Biometric Data" has the meaning articulated in Article 4 of the GDPR and, if applicable, equivalent terms in other data protection requirements. For related information, see [Data and Privacy for Face](/azure/ai-foundry/responsible-ai/face/data-privacy-security).
+> If you're using Microsoft products or services to process Biometric Data, you're responsible for: (i) providing notice to data subjects, including with respect to retention periods and destruction; (ii) obtaining consent from data subjects; and (iii) deleting the Biometric Data, all as appropriate, and required under applicable Data Protection Requirements. <!--"Biometric Data" has the meaning articulated in Article 4 of the GDPR and, if applicable, equivalent terms in other data protection requirements.--> For related information, see [Data and Privacy for Face](/azure/ai-foundry/responsible-ai/face/data-privacy-security).
 
 ## Related content
 

@@ -8,8 +8,8 @@ ms.service: azure-ai-search
 ms.custom:
   - references_regions
   - ignite-2024
-ms.topic: reference
-ms.date: 10/21/2025
+ms.topic: article
+ms.date: 11/19/2025
 ms.update-cycle: 365-days
 ---
 
@@ -40,15 +40,17 @@ This skill has the following limitations:
 
 ## Supported regions
 
-The Document Layout skill calls the [Azure Document Intelligence 2024-11-30 API](/rest/api/aiservices/operation-groups).
+The Document Layout skill calls the [Azure Document Intelligence 2024-11-30 API version V4.0](/rest/api/aiservices/operation-groups).
 
-Supported regions vary by modality and how the skill connects to the Azure Document Intelligence layout model.
+Supported regions vary by modality and how the skill connects to the Azure Document Intelligence layout model. 
 
 | Approach | Requirement |
 |----------|-------------|
 | [**Import data (new)** wizard](search-import-data-portal.md) | Create a Foundry resource in one of these regions to get the portal experience: **East US**, **West Europe**, **North Central US**. | 
 | Programmatic, using [Microsoft Entra ID authentication (preview)](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) for billing |  Create Azure AI Search in one of the regions where the service is supported, according to [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table). <br>Create the Foundry resource in any region listed in the [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table) table.|
 | Programmatic, using a [Foundry resource key](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) for billing | Create your Azure AI Search service and Foundry resource in the same region. This means that the region chosen must have support for both [Azure AI Search and Azure Document Intelligence services](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table). |
+
+The implemented version of Document Layout model doesn't have support for [21Vianet](/azure/china/overview-operations) regions at this time.
 
 ## Supported file formats
 

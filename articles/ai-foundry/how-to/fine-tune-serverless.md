@@ -3,6 +3,7 @@ title: Deploy Fine-Tuned Models with Serverless API in Microsoft Foundry
 titleSuffix: Microsoft Foundry
 description: Deploy fine-tuned models using serverless API in Microsoft Foundry. Learn how to fine-tune, train, and deploy custom large language models with cost-effective serverless options.
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
 ms.date: 09/25/2025
 ms.reviewer: rasavage
@@ -16,6 +17,8 @@ ai-usage: ai-assisted
 ---
 
 # Fine-tune models by using serverless API deployments in Microsoft Foundry
+
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
@@ -31,13 +34,13 @@ This article explains how to fine-tune models that are deployed using serverless
 
 ## Prerequisites
 
-- An Azure subscription with a valid payment method. Free or trial Azure subscriptions don't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=payg) to begin.
+- An Azure subscription with a valid payment method. Free or trial Azure subscriptions don't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - Access to the [Azure portal](https://portal.azure.com).
 
 - A [Foundry project](create-projects.md).
 
-- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Foundry portal. To perform the steps in this article, your user account must be assigned the __owner__ or __contributor__ role for the Azure subscription. For more information on permissions, see [role-based access control in Foundry portal](../concepts/rbac-azure-ai-foundry.md).
+- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Foundry portal. To perform the steps in this article, your user account must be assigned the __owner__ or __contributor__ role for the Azure subscription. For more information on permissions, see [role-based access control in Foundry portal](../concepts/rbac-foundry.md).
 
 ## Verify registration of subscription provider
 
@@ -745,6 +748,6 @@ To learn more about Azure AI Content Safety, see [Content filtering in Foundry p
 
 ## Related content
 
-- [What is Foundry?](../what-is-azure-ai-foundry.md)
+- [What is Foundry?](../what-is-foundry.md)
 - [Learn more about deploying Mistral models](./deploy-models-mistral.md)
 - [Foundry frequently asked questions](../faq.yml)

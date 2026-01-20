@@ -5,7 +5,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual 
-ms.date: 09/30/2025
+ms.date: 12/6/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -69,7 +69,7 @@ You can also stack techniques: first using SFT to create a customized model – 
 
 ## Challenges and limitations of fine-tuning
 
-Fine-tuning large language models scan be a powerful technique to adapt them to specific domains and tasks. However, fine-tuning also comes with some challenges and disadvantages that need to be considered before applying it to a real-world problem. Below are a few of these challenges and disadvantages. 
+Fine-tuning large language models can be a powerful technique to adapt them to specific domains and tasks. However, fine-tuning also comes with some challenges and disadvantages that need to be considered before applying it to a real-world problem. Below are a few of these challenges and disadvantages. 
 
 - Fine-tuning requires high-quality, sufficiently large, and representative training data matching the target domain and task. Quality data is relevant, accurate, consistent, and diverse enough to cover the possible scenarios and variations the model will encounter in the real world. Poor-quality or unrepresentative data leads to over-fitting, under-fitting, or bias in the fine-tuned model, which harms its generalization and robustness.
 - Fine-tuning large language models means extra costs associated with training and hosting the custom model.

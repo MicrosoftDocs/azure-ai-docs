@@ -19,7 +19,7 @@ The Content Understanding GA API introduces several new capabilities and updates
 
 ## Prerequisite
 
-- Deploy a supported completion model and embedding model to use with the `2025-11-01` Content Understanding GA API (See [Support Models](../concepts/models-deployments.md#supported-models)). To start, try deploying a GPT-4.1 completion model and a text-embedding-3-large embedding model. For directions on how to deploy models, see [Create model deployments in Microsoft Foundry portal](/articles/ai-foundry/foundry-models/how-to/create-model-deployments.md?pivots=ai-foundry-portal).
+* [!INCLUDE [foundry-model-deployment-setup](../includes/foundry-model-deployment-setup.md)]
 
 ## Updating analyzers
 
@@ -88,9 +88,12 @@ Here, ```path``` can include:
 * contents/{contentIndex}/pages/{pageNumber} - DocumentContent.pages[*].pageNumber
 * contents/{contentIndex}/figures/{figureId} - DocumentContent.figures[*].id
 
-4. The **Analyze** operation now only supports analyzing files by URL. Use the new **analyzeBinary** operation to upload files as part of the request body as a base64 encoded string. If you previously used the analyze operation to upload files inline in your code, you need to update your code to use the analyzeBinary operation instead. Learn more about the [Analyze operation](/rest/api/contentunderstanding/content-analyzers/analyzebinary).
+4. The **Analyze** operation now only supports analyzing files by URL. Use the new **analyzeBinary** operation to upload files as part of the request body as a base64 encoded string. If you previously used the analyze operation to upload files inline in your code, you need to update your code to use the analyzeBinary operation instead. Learn more about the [Analyze Binary operation](/rest/api/contentunderstanding/content-analyzers/analyze-binary).
 
-5. The **Analyze** operation JSON payload schema is updated to add an inputs array that contains the information on the files to be analyzed. Each input element contains a url pointer to a file. Learn more about the [Analyze operation](/rest/api/contentunderstanding/content-analyzers/analyze).
+5. The **Analyze** operation JSON payload schema is updated to add an inputs array that contains the information on the file to be analyzed. Each input element contains a url pointer to a file. Learn more about the [Analyze operation](/rest/api/contentunderstanding/content-analyzers/analyze).
+
+> [!NOTE]
+> The inputs array only supports a single item in the `2025-11-01` version.
 
 Here's an example of the updated schema for PUT /analyzers/{analyzerName}
 
@@ -101,11 +104,7 @@ Here's an example of the updated schema for PUT /analyzers/{analyzerName}
       {
         "url": "https://documentintelligence.ai.azure.com/documents/samples/read/read-healthcare.png" /*This is the file to be analyzed*/
       }
-      ],
-      "modelDeployments":{
-        "gpt-4.1": "myDeployment-gpt-4.1", /*generative capabilities will be processed using this deployment*/
-        "text-embedding-3-large":  "myEmbeddingDeployment"
-      } 
+      ]
 }
 ```
 

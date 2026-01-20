@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 11/18/2025
+ms.date: 12/05/2025
 ms.author: lajanuar
 ms.custom: language-service-clu, mode-other
 zone_pivot_groups: foundry-rest-api
@@ -17,7 +17,7 @@ Microsoft Foundry offers a unified platform for building, managing, and deployin
 
 Use this article to get started with Conversational Language understanding using Foundry or the REST API.
 
-::: zone pivot="azure-ai-foundry"
+::: zone pivot="microsoft-foundry"
 
 [!INCLUDE [Foundry quickstart](includes/quickstarts/azure-ai-foundry.md)]
 

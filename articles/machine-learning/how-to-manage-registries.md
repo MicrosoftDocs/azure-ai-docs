@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: kritifaujdar
-ms.date: 10/10/2024
+ms.reviewer: jturuk
+ms.date: 12/18/2025
 ms.topic: how-to
 ms.custom: build-2023
 # Customer intent: As an admin, I want to understand how to create and manage Azure Machine Learning registries so that I can share assets across workspaces.
@@ -82,7 +82,7 @@ For more information on the structure of the YAML file, see the [registry YAML r
 
 Run the registry create command.
 
-`az ml registry create --file registry.yml`
+`az ml registry create --file registry.yml --resource-group <resource-group-name>`
 
 # [Azure Machine Learning studio](#tab/studio)
 

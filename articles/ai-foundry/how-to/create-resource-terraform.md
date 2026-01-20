@@ -8,7 +8,9 @@ ms.service: azure-ai-foundry
 ms.reviewer: deeikele 
 ms.author: sgilley
 author: sdgilley
-ms.custom: devx-track-terraform
+ms.custom: 
+  - devx-track-terraform
+  - update-code
 monikerRange: foundry-classic || foundry
 content_well_notification: 
   - AI-contribution
@@ -48,15 +50,15 @@ You can use either the Terraform [AzAPI Provider](/azure/developer/terraform/ove
 
 1. Create a file named `providers.tf` and insert the following code.
 
-    :::code language="Terraform" source="~/foundry-samples-main/samples/microsoft/infrastructure-setup-terraform/00-basic/code/providers.tf":::
+    :::code language="Terraform" source="~/foundry-samples-main/infrastructure/infrastructure-setup-terraform/00-basic/code/providers.tf":::
 
 1. Create a file named `main.tf` and insert the following code.
 
-    :::code language="Terraform" source="~/foundry-samples-main/samples/microsoft/infrastructure-setup-terraform/00-basic/code/main.tf":::
+    :::code language="Terraform" source="~/foundry-samples-main/infrastructure/infrastructure-setup-terraform/00-basic/code/main.tf":::
 
 1. Create a file named `variables.tf` and insert the following code.
 
-    :::code language="Terraform" source="~/foundry-samples-main/samples/microsoft/infrastructure-setup-terraform/00-basic/code/variables.tf"::: 
+    :::code language="Terraform" source="~/foundry-samples-main/infrastructure/infrastructure-setup-terraform/00-basic/code/variables.tf"::: 
 
 # [AzureRM Provider](#tab/azurerm)
 
@@ -64,15 +66,15 @@ You can use either the Terraform [AzAPI Provider](/azure/developer/terraform/ove
 
 1. Create a file named `providers.tf` and insert the following code.
 
-    :::code language="Terraform" source="~/foundry-samples-main/samples/microsoft/infrastructure-setup-terraform/00-basic-azurerm/code/providers.tf":::
+    :::code language="Terraform" source="~/foundry-samples-main/infrastructure/infrastructure-setup-terraform/00-basic-azurerm/code/providers.tf":::
 
 1. Create a file named `main.tf` and insert the following code.
 
-    :::code language="Terraform" source="~/foundry-samples-main/samples/microsoft/infrastructure-setup-terraform/00-basic-azurerm/code/main.tf":::
+    :::code language="Terraform" source="~/foundry-samples-main/infrastructure/infrastructure-setup-terraform/00-basic-azurerm/code/main.tf":::
 
 1. Create a file named `variables.tf` and insert the following code.
 
-    :::code language="Terraform" source="~/foundry-samples-main/samples/microsoft/infrastructure-setup-terraform/00-basic-azurerm/code/variables.tf"::: 
+    :::code language="Terraform" source="~/foundry-samples-main/infrastructure/infrastructure-setup-terraform/00-basic-azurerm/code/variables.tf"::: 
 
 ---
 
