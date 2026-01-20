@@ -23,22 +23,12 @@ Foundry Agent Service supports persistent threads, runs, and messages. These com
 
 When you use an agent, the following steps are involved:
 
-<<<<<<< HEAD
-- **Creating an agent:** You create an agent to start sending messages and receiving responses.
-- **Creating a thread:** You create a thread once and append messages to it as users reply. This ensures that the conversation history is maintained and managed automatically.
-- **Sending messages:** Messages can be sent by both the agent and the user. These messages can include text, images, and other files, such as text prompts and image attachments used during an agent run.
-<!-- Changed to replace a marketing-style phrase with a concrete, factual example. -->
-- **Running the agent:** When a run is initiated, the agent processes the messages in the thread and performs tasks based on its configuration. It may append new messages to the thread as part of its response.
-- **Check the run status:** Monitor the run until it has completed. 
-- **Getting the response:** After the agent has created a response, display it to the user.
-=======
 - **Create an agent:** Create an agent to start sending messages and receiving responses.
 - **Create a thread:** Create a thread once and append messages to it as users reply. The conversation history is maintained and managed automatically.
 - **Send messages:** Both the agent and the user can send messages. These messages can include text, images, and other files.
 - **Run the agent:** When you initiate a run, the agent processes the messages in the thread and performs tasks based on its configuration. It might append new messages to the thread as part of its response.
 - **Monitor the run status:** Monitor the run until it completes.
 - **Get the response:** After the agent creates a response, display it to the user.
->>>>>>> 1c918c8ac8fc056977ea8c93a6229eb8a49742e4
 
 :::image type="content" source="../media\run-thread-model.png" alt-text="A diagram showing an example of an agent run." lightbox="../media\run-thread-model.png":::
 
@@ -52,12 +42,8 @@ Threads are conversation sessions between an agent and a user. They store messag
 
 ## Messages
 
-<<<<<<< HEAD
 Messages are the individual pieces of communication within a thread. They can be created by either the agent or the user and can include text, or other files. Messages are stored as a list within the thread, allowing for a structured and organized conversation flow.
 <!-- Removed the duplicated statement about the maximum number of messages per thread to eliminate redundancy with the Threads section. -->
-=======
-Messages are the individual pieces of communication within a thread. Either the agent or the user can create messages. Messages can include text or other files. The thread stores messages as a list, so the conversation flow stays structured and organized. You can attach up to 100,000 messages to a single thread.
->>>>>>> 1c918c8ac8fc056977ea8c93a6229eb8a49742e4
 
 ## Runs
 
