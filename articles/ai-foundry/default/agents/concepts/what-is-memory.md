@@ -22,12 +22,6 @@ Memory in Microsoft Foundry Agent Service is a managed, long-term memory solutio
 
 This article provides an overview of agent memory, including its concepts, use cases, best practices, and limitations. For usage instructions, see [Create and use memory in Foundry Agent Service](../how-to/memory-usage.md).
 
-## Prerequisites
-
-- A [Microsoft Foundry project](../../../how-to/create-projects.md).
-- An Azure OpenAI chat model deployment and an embedding model deployment in your project.
-
-For the full list and setup steps, see [Prerequisites](../how-to/memory-usage.md#prerequisites).
 
 ## Supported models and regions
 
