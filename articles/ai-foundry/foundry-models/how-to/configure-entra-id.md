@@ -6,7 +6,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
 ms.date: 09/26/2025
-ms.custom: ignite-2024, github-universe-2024
+ms.custom: ignite-2024, github-universe-2024, dev-focus
 author: msakande
 ms.author: mopeakande
 recommendations: false
