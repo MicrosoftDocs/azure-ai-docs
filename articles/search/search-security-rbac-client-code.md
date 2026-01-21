@@ -1,13 +1,14 @@
 ---
-title: Use keyless connections in search apps
+title: Configure apps for role-based security
 description: Use keyless connections with an Azure Identity library for Microsoft Entra ID authentication and authorization with Azure AI Search.
 ms.topic: how-to
-ms.date: 06/17/2025
+ms.date: 01/20/2026
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 author: HeidiSteen
 ms.author: heidist
-ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-js, devx-track-python, Keyless-dotnet, Keyless-java, Keyless-js, Keyless-python, build-2024-intelligent-apps
+ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-js, devx-track-python, Keyless-dotnet, Keyless-java, Keyless-js, Keyless-python, build-2024-intelligent-apps, dev-focus
+ai-usage: ai-assisted
 #customer intent: As a developer, I want to use keyless connections so that I don't leak secrets.
 ---
 
@@ -15,7 +16,9 @@ ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-js, devx-trac
 
 In your application code, you can set up a keyless connection to Azure AI Search that uses Microsoft Entra ID and roles for authentication and authorization. Application requests to most Azure services must be authenticated with keys or keyless connections. Developers must be diligent to never expose the keys in an unsecure location. Anyone who gains access to the key is able to authenticate to the service. Keyless authentication offers improved management and security benefits over the account key because there's no key (or connection string) to store.
 
-Keyless connections are enabled with the following steps: 
+This article explains how to use `DefaultAzureCredential` in your application code.
+
+To implement keyless connections in your code, follow these steps: 
 
 * Enable role-based access on your search service
 * Set environment variables, as needed. 
@@ -23,11 +26,15 @@ Keyless connections are enabled with the following steps:
 
 ## Prerequisites
 
-The following steps need to be completed for both local development and production workloads:
++ [Azure AI Search](search-create-service-portal.md), any region but it must be a billable tier (basic or higher).
 
-* [Create an AI Search resource](search-create-service-portal.md)
-* [Enable role-based access on your search service](search-security-enable-roles.md)
-* [Install Azure Identity client library](#install-azure-identity-client-library)
++ [Role-based access enabled](search-security-enable-roles.md) on your search service.
+
++ Role assignments on Azure AI Search. Assign these roles to your identity:
+  + **Search Service Contributor** and **Search Index Data Contributor** for local development (full access)
+  + **Search Index Data Reader** for production read-only queries
+
+  For step-by-step instructions, see [Assign roles for development](search-security-rbac.md#assign-roles-for-development).
 
 ## Install Azure Identity client library
 
@@ -35,15 +42,16 @@ To use a keyless approach, update your AI Search enabled code with the Azure Ide
 
 ### [.NET](#tab/csharp)
 
-Install the [Azure Identity client library for .NET](https://www.nuget.org/packages/Azure.Identity):
+Install the [Azure Identity client library for .NET](https://www.nuget.org/packages/Azure.Identity) and the [Azure Search Documents client library](https://www.nuget.org/packages/Azure.Search.Documents):
 
 ```dotnetcli
 dotnet add package Azure.Identity
+dotnet add package Azure.Search.Documents
 ```
 
 ### [Java](#tab/java)
 
-Install the [Azure Identity client library for Java](https://mvnrepository.com/artifact/com.azure/azure-identity) with the following POM file:
+Install the [Azure Identity client library for Java](https://mvnrepository.com/artifact/com.azure/azure-identity) and the [Azure Search Documents client library](https://mvnrepository.com/artifact/com.azure/azure-search-documents) with the following POM file:
 
 ```xml
 <dependencyManagement>
@@ -53,24 +61,29 @@ Install the [Azure Identity client library for Java](https://mvnrepository.com/a
             <artifactId>azure-identity</artifactId>
             <version>1.15.1</version>
         </dependency>
+        <dependency>
+            <groupId>com.azure</groupId>
+            <artifactId>azure-search-documents</artifactId>
+            <version>11.7.0</version>
+        </dependency>
     </dependencies>
 </dependencyManagement>
 ```
 
 ### [JavaScript](#tab/javascript)
 
-Install the [Azure Identity client library for JavaScript](https://www.npmjs.com/package/@azure/identity):
+Install the [Azure Identity client library for JavaScript](https://www.npmjs.com/package/@azure/identity) and the [Azure Search Documents client library](https://www.npmjs.com/package/@azure/search-documents):
 
 ```console
-npm install --save @azure/identity
+npm install --save @azure/identity @azure/search-documents
 ```
 
 ### [Python](#tab/python)
 
-Install the [Azure Identity client library for Python](https://pypi.org/project/azure-identity/):
+Install the [Azure Identity client library for Python](https://pypi.org/project/azure-identity/) and the [Azure Search Documents client library](https://pypi.org/project/azure-search-documents/):
 
 ```console
-pip install azure-identity
+pip install azure-identity azure-search-documents
 ```
 
 ---
@@ -100,6 +113,8 @@ DefaultAzureCredential credential = new();
 SearchClient searchClient = new(new Uri(endpoint), indexName, credential);
 SearchIndexClient searchIndexClient = new(endpoint, credential);
 ```
+
+**Reference:** [SearchClient](/dotnet/api/azure.search.documents.searchclient), [SearchIndexClient](/dotnet/api/azure.search.documents.indexes.searchindexclient), [DefaultAzureCredential](/dotnet/api/azure.identity.defaultazurecredential)
 
 ### [Java](#tab/java)
 
@@ -145,6 +160,8 @@ SearchIndexAsyncClient searchIndexAsyncClient = new SearchIndexClientBuilder()
     .buildAsyncClient();
 ```
 
+**Reference:** [SearchClient](/java/api/com.azure.search.documents.searchclient), [SearchIndexClient](/java/api/com.azure.search.documents.indexes.searchindexclient), [DefaultAzureCredential](/java/api/com.azure.identity.defaultazurecredential)
+
 ### [JavaScript](#tab/javascript)
 
 For more information on `DefaultAzureCredential` for JavaScript, see [Azure Identity client library for JavaScript](/javascript/api/overview/azure/identity-readme#defaultazurecredential).
@@ -175,6 +192,8 @@ const indexClient = new SearchIndexClient(
 );
 ```
 
+**Reference:** [SearchClient](/javascript/api/@azure/search-documents/searchclient), [SearchIndexClient](/javascript/api/@azure/search-documents/searchindexclient), [DefaultAzureCredential](/javascript/api/@azure/identity/defaultazurecredential)
+
 ### [Python](#tab/python)
 
 For more information on `DefaultAzureCredential` for Python, see [Azure Identity client library for Python](/python/api/overview/azure/identity-readme#defaultazurecredential).
@@ -204,10 +223,57 @@ search_index_client = SearchIndexClient(
     audience=audience)
 ```
 
+**Reference:** [SearchClient](/python/api/azure-search-documents/azure.search.documents.searchclient), [SearchIndexClient](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient), [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential)
+
+---
+
+## Verify your connection
+
+After setting up the client, verify your connection by running a simple operation. The following example lists indexes on your search service:
+
+### [.NET](#tab/csharp)
+
+```csharp
+// List indexes to verify connection
+var indexes = searchIndexClient.GetIndexNames();
+foreach (var name in indexes)
+{
+    Console.WriteLine(name);
+}
+```
+
+### [Java](#tab/java)
+
+```java
+// List indexes to verify connection
+searchIndexClient.listIndexNames().forEach(System.out::println);
+```
+
+### [JavaScript](#tab/javascript)
+
+```javascript
+// List indexes to verify connection
+for await (const name of indexClient.listIndexesNames()) {
+  console.log(name);
+}
+```
+
+### [Python](#tab/python)
+
+```python
+# List indexes to verify connection
+for index in search_index_client.list_index_names():
+    print(index)
+```
+
+---
+
+A successful connection prints the names of your indexes (or an empty list if no indexes exist). If you receive an authentication error, verify that role-based access is enabled and your identity has the required role assignments.
+
 The default authority is Azure public cloud. Custom `audience` values for sovereign or specialized clouds include:
 
 * `https://search.azure.us` for Azure Government
-* `https://search.azure.cn` for Azure China
+* `https://search.azure.cn` for Azure operated by 21Vianet
 * `https://search.microsoftazure.de` for Azure Germany
 
 ---
@@ -231,11 +297,15 @@ Find your personal identity with one of the following tools. Use that identity a
 
 #### [Azure CLI](#tab/azure-cli)
 
+Replace placeholders `<role-name>`, `<identity-id>`, `<subscription-id>`, and `<resource-group-name>` with your actual values in the following commands.
+
 1. Sign in to Azure CLI.
 
     ```azurecli
     az login
     ```
+
+    A browser window opens for authentication. After successful sign-in, the terminal displays your subscription information.
 
 2. Get your personal identity.
 
@@ -243,6 +313,8 @@ Find your personal identity with one of the following tools. Use that identity a
     az ad signed-in-user show \
         --query id -o tsv
     ```
+
+    The command returns your user object ID (a GUID). Save this value for the next step.
 
 3. Assign the role-based access control (RBAC) role to the identity for the resource group.  
 
@@ -253,7 +325,11 @@ Find your personal identity with one of the following tools. Use that identity a
         --scope "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>"
     ```
 
+    A successful assignment returns a JSON object with the role assignment details.
+
 #### [Azure PowerShell](#tab/azure-powershell)
+
+Replace placeholders `<role-name>`, `<identity-id>`, `<subscription-id>`, and `<resource-group-name>` with your actual values in the following commands.
 
 1. Sign in with PowerShell.
 
@@ -261,17 +337,23 @@ Find your personal identity with one of the following tools. Use that identity a
     Connect-AzAccount
     ```
 
+    A browser window opens for authentication. After successful sign-in, the terminal displays your account and subscription information.
+
 2. Get your personal identity.
 
     ```azurepowershell
     (Get-AzContext).Account.ExtendedProperties.HomeAccountId.Split('.')[0]
     ```
 
+    The command returns your user object ID (a GUID). Save this value for the next step.
+
 3. Assign the role-based access control (RBAC) role to the identity for the resource group.  
 
     ```azurepowershell
     New-AzRoleAssignment -ObjectId "<identity-id>" -RoleDefinitionName "<role-name>" -Scope "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>"
     ```
+
+    A successful assignment returns the role assignment object with details including the `RoleAssignmentId`.
 
 #### [Azure portal](#tab/portal)
 
@@ -281,29 +363,11 @@ Find your personal identity with one of the following tools. Use that identity a
 
 ---
 
-Where applicable, replace `<identity-id>`, `<subscription-id>`, and `<resource-group-name>` with your actual values. 
-
 ### Authentication for local development
 
-Use a tool in your local development environment to authentication to Azure identity. Once you're authenticated, the `DefaultAzureCredential` instance in your source code finds and uses the authentication.  
-
-#### [.NET](#tab/csharp)
-
-Select a tool for [authentication during local development](/dotnet/api/overview/azure/identity-readme#authenticate-the-client).
-
-#### [Java](#tab/java)
-
-Select a tool for [authentication during local development](/java/api/overview/azure/identity-readme#authenticate-the-client).
-
-#### [JavaScript](#tab/javascript)
-
-Select a tool for [authentication during local development](/javascript/api/overview/azure/identity-readme#authenticate-the-client-in-development-environment).
-
-#### [Python](#tab/python)
+Use a tool in your local development environment to authentication to Azure identity. Once you're authenticated, the `DefaultAzureCredential` instance in your source code finds and uses your identity for authentication purposes.
 
 Select a tool for [authentication during local development](/python/api/overview/azure/identity-readme#authenticate-during-local-development).
-
----
 
 ### Configure environment variables for local development
 
@@ -384,6 +448,16 @@ Create environment variables for your deployed and keyless Azure AI Search resou
 
 - `AZURE_SEARCH_ENDPOINT`: This URL is the access point for your Azure AI Search resource. This URL generally has the format `https://<YOUR-RESOURCE-NAME>.search.windows.net/`.   
 - `AZURE_CLIENT_ID`: This is the identity to authenticate as.
+
+## Troubleshoot common errors
+
+| Error | Cause | Solution |
+| ----- | ----- | -------- |
+| `AuthenticationFailedException` | Missing or invalid credentials | Ensure you're signed in with `az login` (CLI) or `Connect-AzAccount` (PowerShell). Verify your Azure account has access to the subscription. |
+| `403 Forbidden` | Identity lacks required role | Assign the appropriate role (Search Index Data Reader for queries, Search Index Data Contributor for indexing). Role assignments can take up to 10 minutes to propagate. |
+| `401 Unauthorized` | RBAC not enabled on search service | Enable role-based access in the Azure portal under **Settings** > **Keys** > **Role-based access control**. |
+| `ResourceNotFoundException` | Invalid endpoint or index name | Verify the `AZURE_SEARCH_ENDPOINT` environment variable matches your search service URL (format: `https://<service-name>.search.windows.net`). |
+| `CredentialUnavailableException` | No valid credential found | `DefaultAzureCredential` tries multiple authentication methods. Ensure at least one is configured (Azure CLI, Visual Studio, environment variables). |
 
 ## Related content
 

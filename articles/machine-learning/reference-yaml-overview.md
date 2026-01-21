@@ -94,6 +94,7 @@ The Azure Machine Learning CLI (v2), an extension to the Azure CLI, often uses a
 | [Managed online (real-time)](reference-yaml-deployment-managed-online.md) | https://azuremlschemas.azureedge.net/latest/managedOnlineDeployment.schema.json |
 | [Kubernetes online (real-time)](reference-yaml-deployment-kubernetes-online.md) | https://azuremlschemas.azureedge.net/latest/kubernetesOnlineDeployment.schema.json |
 | [Batch](reference-yaml-deployment-batch.md) | https://azuremlschemas.azureedge.net/latest/batchDeployment.schema.json |
+| [Deployment template](reference-yaml-deployment-template.md) | https://azuremlschemas.azureedge.net/latest/deploymentTemplate.schema.json |
 
 ## Component
 
