@@ -16,7 +16,7 @@ Before troubleshooting, verify that you have the right permissions assigned:
 
 1. Type the name of the user or identity you're using to connect to the service.
 
-1. Verify that the role **Cognitive Services User** is listed (or a role that contains the required permissions as explained in [Prerequisites](#prerequisites)).
+1. Verify that the role **Cognitive Services User** is listed (or a role that contains the required permissions, as explained in the Prerequisites section).
 
     > [!IMPORTANT]
     > Roles like **Owner** or **Contributor** don't provide access via Microsoft Entra ID.

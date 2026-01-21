@@ -5,7 +5,7 @@ description: Learn how to configure key-less authorization to use Microsoft Foun
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 09/26/2025
+ms.date: 01/21/2026
 ms.custom: ignite-2024, github-universe-2024, dev-focus, time-to-complete=15
 author: msakande
 ms.author: mopeakande

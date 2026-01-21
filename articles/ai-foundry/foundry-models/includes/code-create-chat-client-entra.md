@@ -243,7 +243,7 @@ curl -X POST https://<resource>.openai.azure.com/openai/v1/chat/completions \
       "model": "MAI-DS-R1",
       "messages": [
       {
-        "role": "developer",
+        "role": "system",
         "content": "You are a helpful assistant."
       },
       {
