@@ -1,16 +1,16 @@
 ---
 title: Use an AI Search index with the agents API
 titleSuffix: Microsoft Foundry
-description: Learn how to use the Azure AI Search tool to connect agents to search indexes, retrieve indexed documents, and ground responses in your proprietary content.
+description: Learn how to use the Azure AI Search tool in Foundry Agent Service to retrieve indexed content and ground agent responses with citations.
 services: azure-ai-agent-service
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 12/15/2025
+ms.date: 01/20/2026
 author: alvinashcraft
 ms.author: aashcraft
-ms.custom: azure-ai-agents, dev-focus
+ms.custom: azure-ai-agents, dev-focus, pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 zone_pivot_groups: selection-ai-search-tool
 ---
@@ -19,45 +19,65 @@ zone_pivot_groups: selection-ai-search-tool
 
 > [!NOTE]
 > - There are new ways to add knowledge to your agent. For the latest recommended approach, see [Connect a Foundry IQ knowledge base to Foundry Agent Service](./knowledge-retrieval.md).
-> - See [best practices](../../concepts/tool-best-practice.md) for information on optimizing tool usage.
+> - For information on optimizing tool usage, see [best practices](../../concepts/tool-best-practice.md).
 
-The [Azure AI Search](/azure/search/search-what-is-azure-search) tool in Microsoft Foundry Agent Service connects an agent to a new or existing search index. Use this tool to retrieve and summarize your indexed documents, grounding the agent's responses in your proprietary content.
+The [Azure AI Search](../../../../../search/search-what-is-azure-search.md) tool in Microsoft Foundry Agent Service connects an agent to an Azure AI Search index. Use this tool to retrieve indexed documents so the agent can ground responses in your proprietary content with citations.
 
 ## Usage support
 
-| Microsoft Foundry support  | Python SDK |	C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
-|---------|---------|---------|---------|---------|---------|---------|---------|
-| ✔️  | ✔️ | ✔️ | ✔️ | - |  ✔️ | ✔️ | ✔️ | 
+| Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
+
+Java SDK samples aren't available yet.
 
 ## Prerequisites
 
-- The latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for installation details.
+- A [basic or standard agent environment](../../../../agents/environment-setup.md).
+- The latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#get-ready-to-code) for details.
+  - **Python**: `pip install azure-ai-projects --pre`
+  - **C#**: Install the `Azure.AI.Projects` NuGet package (prerelease)
+  - **JavaScript/TypeScript**: `npm install @azure/ai-projects`
 - An Azure subscription and Microsoft Foundry project with:
-  - Project endpoint URL
+  - Project endpoint
   - Model deployment name
-  - Authentication credentials (DefaultAzureCredential or API key)
+  - Authentication configured (for example, `DefaultAzureCredential`)
 - An [Azure AI Search index configured for vector search](../../../../../search/search-get-started-portal-import-vectors.md) with:
-  - One or more `Edm.String` (text) fields attributed as searchable and retrievable
-  - One or more `Collection(Edm.Single)` (vector) fields attributed as searchable
-- A connection between your Foundry project and Azure AI Search service (see [Setup](#setup) section)
-- For keyless authentication, the following Azure role-based access control (RBAC) roles assigned to your project's managed identity:
-  - **Search Index Data Contributor** - Allows reading and writing to search indexes
-  - **Search Service Contributor** - Allows managing search service resources
+  - One or more `Edm.String` fields that are searchable and retrievable
+  - One or more `Collection(Edm.Single)` vector fields that are searchable
+  - At least one retrievable text field that contains the content you want the agent to cite
+  - A retrievable field that contains a source URL (and optionally a title) so citations can include a link
+- A connection between your Foundry project and your Azure AI Search service (see [Setup](#setup)).
+- For keyless authentication, assign the following Azure role-based access control (RBAC) roles to your project's managed identity:
+  - **Search Index Data Contributor**
+  - **Search Service Contributor**
+
+### Environment variables used in this article
+
+| Variable | Description |
+| --- | --- |
+| `FOUNDRY_PROJECT_ENDPOINT` | Your Foundry project endpoint. |
+| `FOUNDRY_MODEL_DEPLOYMENT_NAME` | Your model deployment name. |
+| `AZURE_AI_SEARCH_CONNECTION_NAME` | The name of your project connection to Azure AI Search (used by the SDK samples to look up the connection ID). |
+| `AZURE_AI_SEARCH_CONNECTION_ID` | The resource ID of your project connection to Azure AI Search (used by the TypeScript and REST samples). |
+| `AI_SEARCH_INDEX_NAME` | Your Azure AI Search index name. |
  
-## Parameters in AI Search tool
-| Agents AI Search tool parameter | Status in Agents | Note | 
-|---|---|---|
-| `index_connection_id` | Required | Agents uses Connections to manage Search endpoints and authentication.
-| `index_name`| Required | Name of the index in your search resource.
-| `top_k` | Optional | Default value is 5.
-| `query_type` | Optional | The default value is `vector_sematic_hybrid`. Other supported values: `simple`, `vector`, `semantic`, `vector_simple_hybrid`.
-| `filter` | Optional | Note that this filter will apply for all calls the agent makes to the search index, across all threads run by that agent.
+## Parameters for the Azure AI Search tool
+
+| Azure AI Search tool parameter | Required | Notes |
+| --- | --- | --- |
+| `project_connection_id` | Yes | The resource ID of the project connection to Azure AI Search. |
+| `index_name` | Yes | The name of the index in your Azure AI Search resource. |
+| `top_k` | No | Defaults to 5. |
+| `query_type` | No | Defaults to `vector_semantic_hybrid`. Supported values: `simple`, `vector`, `semantic`, `vector_simple_hybrid`, `vector_semantic_hybrid`. |
+| `filter` | No | Applies to all queries the agent makes to the index. |
 
 ## Code example
 
 > [!NOTE]
-> - You need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
-> - Your connection ID should be in the format of `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`.
+> - You need the latest prerelease package. For more information, see the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#get-ready-to-code).
+> - If you're using the REST or TypeScript sample, the connection ID is in the format `/subscriptions/{{subscriptionId}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{connectionName}}`.
+> - If you're using the Python or C# sample, you can provide the connection name and retrieve the connection ID with the SDK.
 
 :::zone pivot="python"
 ## Use agents with Azure AI Search tool
@@ -78,7 +98,7 @@ from azure.ai.projects.models import (
 load_dotenv()
 
 project_client = AIProjectClient(
-    endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
+  endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
     credential=DefaultAzureCredential(),
 )
 
@@ -86,14 +106,14 @@ openai_client = project_client.get_openai_client()
 
 with project_client:
 
-    azs_connection = project_client.connections.get(os.environ["AI_SEARCH_PROJECT_CONNECTION_NAME"])
+    azs_connection = project_client.connections.get(os.environ["AZURE_AI_SEARCH_CONNECTION_NAME"])
     connection_id = azs_connection.id
     print(f"Azure AI Search connection ID: {connection_id}")
 
     agent = project_client.agents.create_version(
         agent_name="MyAgent",
         definition=PromptAgentDefinition(
-            model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+          model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
             instructions="""You are a helpful assistant. You must always provide citations for
             answers using the tool and render them as: `[message_idx:search_idx†source]`.""",
             tools=[
@@ -169,18 +189,22 @@ This example shows how to use the Azure AI Search tool with agents to query an i
 
 ```csharp
 // Read the environment variables to be used in the next steps.
-var projectEndpoint = System.Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
-var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
-var aiSearchConnectionName = System.Environment.GetEnvironmentVariable("AI_SEARCH_CONNECTION_NAME");
+var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
+var aiSearchConnectionName = System.Environment.GetEnvironmentVariable("AZURE_AI_SEARCH_CONNECTION_NAME");
+var aiSearchIndexName = System.Environment.GetEnvironmentVariable("AI_SEARCH_INDEX_NAME");
 
 // Create an AIProjectClient object that will be used to create the agent and query the index.
 AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
 
+// Resolve the project connection ID from the connection name.
+AIProjectConnection aiSearchConnection = projectClient.Connections.GetConnection(connectionName: aiSearchConnectionName);
+
 // Create an AzureAISearchToolIndex object that defines the index and the search parameters.
 AzureAISearchToolIndex index = new()
 {
-    ProjectConnectionId = aiSearchConnectionName,
-    IndexName = "sample_index",
+  ProjectConnectionId = aiSearchConnection.Id,
+  IndexName = aiSearchIndexName,
     TopK = 5,
     Filter = "category eq 'sleeping bag'",
     QueryType = AzureAISearchQueryType.Simple
@@ -245,18 +269,22 @@ This example shows how to use the Azure AI Search tool with agents to query an i
 
 ```csharp
 // Read the environment variables to be used in the next steps
-var projectEndpoint = System.Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
-var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
-var aiSearchConnectionName = System.Environment.GetEnvironmentVariable("AI_SEARCH_CONNECTION_NAME");
+var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
+var aiSearchConnectionName = System.Environment.GetEnvironmentVariable("AZURE_AI_SEARCH_CONNECTION_NAME");
+var aiSearchIndexName = System.Environment.GetEnvironmentVariable("AI_SEARCH_INDEX_NAME");
 
 // Create an AIProjectClient object that will be used to create the agent and query the index.
 AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
 
+// Resolve the project connection ID from the connection name.
+AIProjectConnection aiSearchConnection = projectClient.Connections.GetConnection(connectionName: aiSearchConnectionName);
+
 // Create an AzureAISearchToolIndex object that defines the index and the search parameters.
 AzureAISearchToolIndex index = new()
 {
-    ProjectConnectionId = aiSearchConnectionName,
-    IndexName = "sample_index",
+  ProjectConnectionId = aiSearchConnection.Id,
+  IndexName = aiSearchIndexName,
     TopK = 5,
     Filter = "category eq 'sleeping bag'",
     QueryType = AzureAISearchQueryType.Simple
@@ -346,29 +374,29 @@ The following example shows how to use the Azure AI Search tool with the REST AP
 
 ```bash
 curl --request POST \
-  --url "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
-  --H "Authorization: Bearer $AGENT_TOKEN" \
-  --H "Content-Type: application/json" \
-  --d '{
-"model": "$AZURE_AI_MODEL_DEPLOYMENT_NAME",
-"input": "Tell me about the mental health services available from Premera",
-"tools": [
-  {
-   "type": "azure_ai_search",
-   "azure_ai_search": {
-        "indexes": [
-              {
-                  "project_connection_id": "/subscriptions/${SUBSCRIPTION_ID}/resourceGroups/${RESOURCE_GROUP}/providers/Microsoft.MachineLearningServices/workspaces/${PROJECT_NAME}/connections/${AI_SEARCH_PROJECT_CONNECTION_ID}",
-                  "index_name": "${AI_SEARCH_INDEX_NAME}",
-                  "query_type": "semantic",
-                  "top_k": 5,
-                  "filter": ""                                    
-              }
+  --url "$FOUNDRY_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -H "Content-Type: application/json" \
+  --data '{
+    "model": "$FOUNDRY_MODEL_DEPLOYMENT_NAME",
+    "input": "Tell me about the mental health services available from Premera.",
+    "tool_choice": "required",
+    "tools": [
+      {
+        "type": "azure_ai_search",
+        "azure_ai_search": {
+          "indexes": [
+            {
+              "project_connection_id": "$AZURE_AI_SEARCH_CONNECTION_ID",
+              "index_name": "$AI_SEARCH_INDEX_NAME",
+              "query_type": "semantic",
+              "top_k": 5
+            }
           ]
         }
-}
-]
-}'
+      }
+    ]
+  }'
 ```
 
 ### Expected outcome
@@ -379,7 +407,7 @@ The API returns a JSON response containing the agent's answer about mental healt
 :::zone pivot="typescript"
 ## Use agents with Azure AI Search tool
 
-This sample demonstrates how to create an AI agent with Azure AI Search capabilities using the `AzureAISearchAgentTool` and synchronous Azure AI Projects client. The agent can search indexed content and provide responses with citations from search results.
+This sample demonstrates how to create an AI agent with Azure AI Search capabilities by using the `AzureAISearchAgentTool` and synchronous Azure AI Projects client. The agent can search indexed content and provide responses with citations from search results.
 
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";
@@ -503,13 +531,18 @@ The application creates an agent with Azure AI Search capabilities, prompts for 
 
 ## Limitations
 
-+ To use the Azure AI Search tool in the Microsoft Foundry portal behind a virtual network, you must create an agent by using the SDK or REST API. After you create the agent programmatically, you can use it in the portal. 
+- To use the Azure AI Search tool in the Microsoft Foundry portal behind a virtual network, create an agent by using the SDK or REST API. After you create the agent programmatically, you can use it in the portal.
+- The Azure AI Search tool can only target one index.
+- A Microsoft Foundry resource with basic agent deployments doesn't support private Azure AI Search resources, nor Azure AI Search with public network access disabled and a private endpoint. To use a private Azure AI Search tool with your agents, deploy the standard agent with virtual network injection.
+- Your Azure AI Search resource and your Microsoft Foundry Agent must be in the same tenant.
 
-+ The Azure AI Search tool can only target one index.
-  
-+ A Microsoft Foundry resource with basic agent deployments doesn't support private Azure AI Search resources, nor Azure AI Search with public network access disabled and a private endpoint. To use a private Azure AI Search tool with your agents, deploy the standard agent with virtual network injection.
+## Verify results
 
-+ Your Azure AI Search resource and Microsoft Foundry Agent need to be in the same tenant.
+After you run a sample, validate that the agent is grounding responses from your index.
+
+1. Ask a question that you know is answered in a specific indexed document.
+1. Confirm the response includes citations.
+1. If you're streaming, confirm you see `url_citation` annotations in the response.
 
 ## Setup
 
@@ -540,7 +573,7 @@ Select the tab for your desired authentication method.
     1. From the left pane, select **Settings** > **Keys**.
     1. Select **Both** to enable both key-based and keyless authentication, which is recommended for most scenarios.
 
-       :::image type="content" source="../../../../agents/media/tools/ai-search\azure-portal.png" alt-text="A screenshot of an AI Search resource Keys tab in the Azure portal." lightbox="../../../../agents/media/tools/ai-search\azure-portal.png":::
+      :::image type="content" source="../../../../agents/media/tools/ai-search/azure-portal.png" alt-text="A screenshot of an AI Search resource Keys tab in the Azure portal." lightbox="../../../../agents/media/tools/ai-search/azure-portal.png":::
 
     1. Make a note of one of the keys under **Manage admin keys**.
 
@@ -557,7 +590,7 @@ Select the tab for your desired authentication method.
     1. From the left pane, select **Settings** > **Keys**.
     1. Select **Both** to enable both key-based and keyless authentication, which is recommended for most scenarios.
 
-       :::image type="content" source="../../../../agents/media/tools/ai-search\azure-portal.png" alt-text="A screenshot of an AI Search resource Keys tab in the Azure portal." lightbox="../../../../agents/media/tools/ai-search\azure-portal.png":::
+      :::image type="content" source="../../../../agents/media/tools/ai-search/azure-portal.png" alt-text="A screenshot of an AI Search resource Keys tab in the Azure portal." lightbox="../../../../agents/media/tools/ai-search/azure-portal.png":::
 
 1. To assign the necessary roles:
     1. From the left pane, select **Access control (IAM)**.
@@ -569,13 +602,13 @@ Select the tab for your desired authentication method.
 
 ### Create the project connection
 
-Next, create the project connection by using the search service details you gathered. The connection name must be the name of your search index.
+Next, create the project connection by using the search service details you gathered.
 
-You can use the Microsoft Foundry portal, or one of the following options.
+Use one of the following options.
 
 #### [Azure CLI](#tab/azurecli)
 
-**Create the following connections.yml file:**
+**Create the following connection.yml file:**
 
 You can use a YAML configuration file for both key-based and keyless authentication. Replace the `name`, `endpoint`, and `api_key` (optional) placeholders with your search service details. For more information, see the [Azure AI Search connection YAML schema](../../../../../machine-learning/reference-yaml-connection-ai-search.md). 
 
@@ -588,6 +621,9 @@ endpoint: https://contoso.search.windows.net/
 api_key: XXXXXXXXXXXXXXX
 ```
 
+> [!IMPORTANT]
+> Don't put real keys in source control. Store secrets in a secure store (for example, Azure Key Vault) and inject them at deployment time.
+
 Here's a keyless example:
 
 ```yml    
@@ -598,10 +634,10 @@ endpoint: https://contoso.search.windows.net/
 
 **Then, run the following command:**
 
-Replace `my_resource` with the resource group that contains your project and `my_project_name` with the name of your project.
+Replace the placeholders with the resource group and project name.
 
 ```azurecli
-az ml connection create --file {connection.yml} --resource-group {my_resource_group} --workspace-name {my_project_name}
+az ml connection create --file connection.yml --resource-group <resource-group> --workspace-name <project-name>
 ```
 
 #### [Python](#tab/pythonsdk)
@@ -609,6 +645,8 @@ az ml connection create --file {connection.yml} --resource-group {my_resource_gr
 Replace the `my_connection_name`, `my_endpoint`, and `my_key` (optional) placeholders with your search service details, and then run the following code:
 
 ```python
+from azure.identity import DefaultAzureCredential
+from azure.ai.ml import MLClient
 from azure.ai.ml.entities import AzureAISearchConnection
 
 # Create an Azure AI Search project connection
@@ -620,8 +658,74 @@ my_connection = AzureAISearchConnection(name=my_connection_name,
                                     endpoint=my_endpoint, 
                                     api_key= my_api_keys)
 
+# Create MLClient
+ml_client = MLClient(
+  credential=DefaultAzureCredential(),
+  subscription_id="<subscription-id>",
+  resource_group_name="<resource-group>",
+  workspace_name="<project-name>",
+)
+
 # Create the connection
 ml_client.connections.create_or_update(my_connection)
 ```
 
 ---
+
+### Confirm the connection ID
+
+If you use the REST or TypeScript sample, you need the project connection ID.
+
+**Python**
+
+```python
+import os
+from dotenv import load_dotenv
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+
+load_dotenv()
+
+project_client = AIProjectClient(
+  endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
+  credential=DefaultAzureCredential(),
+)
+
+connection = project_client.connections.get(os.environ["AZURE_AI_SEARCH_CONNECTION_NAME"])
+print(connection.id)
+```
+
+**C#**
+
+```csharp
+var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
+var aiSearchConnectionName = System.Environment.GetEnvironmentVariable("AZURE_AI_SEARCH_CONNECTION_NAME");
+
+AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+AIProjectConnection connection = projectClient.Connections.GetConnection(connectionName: aiSearchConnectionName);
+Console.WriteLine(connection.Id);
+```
+
+## Troubleshooting
+
+### The response has no citations
+
+- Confirm your agent instructions request citations.
+- If you're streaming, confirm you receive `url_citation` annotations.
+
+### The tool can't access the index (401/403)
+
+- If you use keyless authentication, confirm the managed identity for your Foundry project has the **Search Index Data Contributor** and **Search Service Contributor** roles on the Azure AI Search resource.
+- If you use key-based authentication, confirm the API key is correct and enabled.
+- For role guidance, see [Azure role-based access control in Foundry](../../../../concepts/rbac-foundry.md).
+
+### The tool returns "index not found"
+
+- Confirm `AI_SEARCH_INDEX_NAME` matches the index name in your Azure AI Search resource.
+- Confirm the project connection points to the Azure AI Search resource that contains the index.
+
+## Related content
+
+[Connect a Foundry IQ knowledge base to Foundry Agent Service](./knowledge-retrieval.md)
+
+[Tool best practices](../../concepts/tool-best-practice.md)
