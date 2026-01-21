@@ -146,7 +146,7 @@ Indexers can connect to a table using the following connections.
 | The SAS should have the list and read permissions on the container. For more information, see [Grant limited access to Azure Storage resources using shared access signatures (SAS)](/azure/storage/common/storage-sas-overview). |
 
 > [!NOTE]
-> If you use SAS credentials, you'll need to update the data source credentials periodically with renewed signatures to prevent their expiration. When SAS credentials expire, the indexer will fail with an error message similar to "Credentials provided in the connection string are invalid or have expired".  
+> If you use SAS credentials, you need to update the data source credentials periodically with renewed signatures to prevent their expiration. If SAS credentials expire, the indexer fails with an error message similar to "Credentials provided in the connection string are invalid or have expired".
 
 <a name="Performance"></a>
 

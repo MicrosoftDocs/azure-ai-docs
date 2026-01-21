@@ -31,7 +31,7 @@ This article explains how to find the IP address of your search service and conf
 
 1. From the left pane, select **Overview**.
 
-1. Copy the fully qualified domain name (FQDN) of your search service, which looks like `my-search-service.search.windows.net`.
+1. Copy the fully qualified domain name (FQDN) of your search service, which should look like `my-search-service.search.windows.net`.
 
    :::image type="content" source="media/search-get-started-rest/get-endpoint.png" alt-text="Screenshot of the search service Overview page." border="true" lightbox="media/search-get-started-rest/get-endpoint.png":::
 
@@ -62,11 +62,11 @@ Add your client IP address to allow access to the service from the Azure portal 
 
 1. On the **Firewall and virtual networks** tab, set **Public network access** to **Selected IP addresses**.
 
-   :::image type="content" source="media\service-configure-firewall\azure-portal-firewall.png" alt-text="Screenshot of adding client ip to search service firewall" border="true":::
+   :::image type="content" source="media\service-configure-firewall\azure-portal-firewall.png" alt-text="Screenshot of the option to allow public network access from selected IP addresses in the Azure portal." border="true":::
 
 1. Under **IP Firewall**, select **Add your client IP address**.
 
-   :::image type="content" source="media\service-configure-firewall\azure-portal-firewall-all.png" alt-text="Screenshot of adding client ip to search service firewall" border="true":::
+   :::image type="content" source="media\service-configure-firewall\azure-portal-firewall-all.png" alt-text="Screenshot of the option to add your client IP address in the Azure portal." border="true":::
 
 1. Save your changes.
 

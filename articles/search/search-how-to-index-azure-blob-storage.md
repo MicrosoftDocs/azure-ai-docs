@@ -1,7 +1,7 @@
 ---
 title: Azure Blob Indexer
 titleSuffix: Azure AI Search
-description: Learn how to set up an Azure Blob indexer to automate indexing of blob content for full-text search, knowledge mining, and other scenarios in Azure AI Search.
+description: Learn how to set up a blob indexer to automate indexing of Azure Blob Storage content for full-text search, knowledge mining, and other scenarios in Azure AI Search.
 author: gmndrg
 ms.author: gimondra
 manager: vinodva
@@ -22,11 +22,10 @@ In this article, you learn how to configure an [indexer](search-indexer-overview
 This article uses the [Search Service REST APIs](/rest/api/searchservice) to demonstrate how to configure and run the indexer. However, you can also use:
 
 + An Azure SDK package (any version)
-+ [**Import data** wizard](search-get-started-portal.md) in the Azure portal
 + [**Import data (new)** wizard](search-get-started-portal-import-vectors.md) in the Azure portal
 
 > [!NOTE]
-> Azure AI Search can now ingest RBAC scope during indexing and transfer those permissions to indexed content in the search index. For more information about RBAC scope during indexing, see [Use a blob indexer or knowledge source to ingest RBAC scopes metadata](search-blob-indexer-role-based-access.md).
+> Azure AI Search can ingest role-based access control (RBAC) scope during indexing and transfer those permissions to indexed content in a search index. For more information, see [Use a blob indexer or knowledge source to ingest RBAC scopes metadata](search-blob-indexer-role-based-access.md).
 
 ## Prerequisites
 
@@ -34,7 +33,7 @@ This article uses the [Search Service REST APIs](/rest/api/searchservice) to dem
 
 + [Access tiers](/azure/storage/blobs/access-tiers-overview) include hot, cool, cold, and archive. Indexers can retrieve blobs on hot, cool, and cold access tiers. 
 
-+ Blobs providing text content and metadata. If blobs contain binary content or unstructured text, consider adding [AI enrichment](cognitive-search-concept-intro.md) for image and natural language processing. Blob content can't exceed the [indexer limits](search-limits-quotas-capacity.md#indexer-limits) for your search service tier.
++ Blobs providing text content and metadata. If blobs contain binary content or unstructured text, consider adding [AI enrichment](cognitive-search-concept-intro.md) for image and natural language processing. Blob content can't exceed the [indexer limits](search-limits-quotas-capacity.md#indexer-limits) for your pricing tier.
 
 + A supported network configuration and data access. At a minimum, you need read permissions in Azure Storage. A storage connection string that includes an access key gives you read access to storage content. If instead you're using Microsoft Entra logins and roles, make sure the [search service's managed identity](search-how-to-managed-identities.md) has **Storage Blob Data Reader** permissions.
 
@@ -48,7 +47,7 @@ You can use this indexer for the following tasks:
 
 + **Data indexing and incremental indexing:** The indexer can index files and associated metadata from blob containers and folders. It detects new and updated files and metadata through built-in change detection. You can configure data refresh on a schedule or on demand. 
 + **Deletion detection:** The indexer can [detect deletions through native soft delete or through custom metadata](search-how-to-index-azure-blob-changed-deleted.md).
-+ **Applied AI through skillsets:** The indexer fully supports [skillsets](cognitive-search-concept-intro.md). This support includes key features like [integrated vectorization](vector-search-integrated-vectorization.md) that adds data chunking and embedding steps.
++ **Applied AI through skillsets:** The indexer fully supports [skillsets](cognitive-search-concept-intro.md). This support includes key features like [integrated vectorization](vector-search-integrated-vectorization.md), which adds data chunking and embedding.
 + **Parsing modes:** The indexer supports [JSON parsing modes](search-how-to-index-azure-blob-json.md) if you want to parse JSON arrays or lines into individual search documents. It also supports [Markdown parsing mode](search-how-to-index-azure-blob-markdown.md).
 + **Compatibility with other features:** The indexer works seamlessly with other indexer features, such as [debug sessions](cognitive-search-debug-session.md), [indexer cache for incremental enrichments](enrichment-cache-how-to-configure.md), and [knowledge store](knowledge-store-concept-intro.md).
 
@@ -68,7 +67,7 @@ Before you set up indexing, review your source data to determine whether you nee
 
 + Include or exclude blobs by file type. The [supported document formats list](#SupportedFormats) can help you determine which blobs to exclude. For example, you might want to exclude image or audio files that don't provide searchable text. You control this capability through [configuration settings](#configure-and-run-the-blob-indexer) in the indexer.
 
-+ Include or exclude arbitrary blobs. To skip a specific blob, add the following metadata properties and values to blobs in Blob Storage. When an indexer encounters this property, it skips the blob or its content in the indexing run.
++ Include or exclude arbitrary blobs. To skip a specific blob, add the following metadata properties and values to blobs in Azure Blob Storage. When an indexer encounters this property, it skips the blob or its content in the indexing run.
 
   | Property name | Property value | Explanation |
   | ------------- | -------------- | ----------- |
@@ -83,7 +82,6 @@ A compound or embedded document (such as a ZIP archive, a Word document with emb
 
 The indexer extracts the textual content of a document into a string field named `content`. You can also extract standard and user-defined metadata.
 
-
 <a name="indexing-blob-metadata"></a>
 
 ### Indexing blob metadata
@@ -92,7 +90,7 @@ You can also index blob metadata. This feature is helpful if you think any of th
 
 The indexer extracts user-specified metadata properties verbatim. To receive the values, you must define a field in the search index of type `Edm.String` with the same name as the metadata key of the blob. For example, if a blob has a metadata key of `Sensitivity` with value `High`, define a field named `Sensitivity` in your search index. The index field populates with the value `High`.
 
-You can extract standard blob metadata properties into similarly named and typed fields, as listed in the following section. The blob indexer automatically creates internal field mappings for these blob metadata properties, converting the original hyphenated name (`metadata-storage-name`) to an underscored equivalent name (`metadata_storage_name`).
+You can extract standard blob metadata properties into similarly named and typed fields, as listed below. The blob indexer automatically creates internal field mappings for these blob metadata properties, converting the original hyphenated name (`metadata-storage-name`) to an underscored equivalent name (`metadata_storage_name`).
 
 You still have to add the underscored fields to the index definition, but you can omit field mappings because the indexer makes the association automatically.
 
@@ -164,7 +162,7 @@ Indexers can connect to a blob container by using the following connections.
 | The SAS should have the list and read permissions on the container. For more information, see [Grant limited access to Azure Storage resources using shared access signatures (SAS)](/azure/storage/common/storage-sas-overview). |
 
 > [!NOTE]
-> If you use SAS credentials, you need to update the data source credentials periodically with renewed signatures to prevent their expiration. If SAS credentials expire, the indexer fails with an error message similar to "Credentials provided in the connection string are invalid or have expired".  
+> If you use SAS credentials, you need to update the data source credentials periodically with renewed signatures to prevent their expiration. If SAS credentials expire, the indexer fails with an error message similar to "Credentials provided in the connection string are invalid or have expired".
 
 ## Add search fields to an index
 
@@ -320,7 +318,7 @@ GET https://myservice.search.windows.net/indexers/myindexer/status?api-version=2
   api-key: [admin key]
 ```
 
-The response includes status and the number of items processed. It looks similar to the following example:
+The response includes status and the number of items processed. It should look similar to the following example:
 
 ```json
     {
@@ -364,7 +362,7 @@ Errors that commonly occur during indexing include unsupported content types, mi
 
 By default, the blob indexer stops as soon as it encounters a blob with an unsupported content type (for example, an audio file). You can use the `excludedFileNameExtensions` parameter to skip certain content types. However, you might want indexing to proceed even if errors occur, and then debug individual documents later. For more information about indexer errors, see [Indexer troubleshooting guidance](search-indexer-troubleshooting.md) and [Indexer errors and warnings](cognitive-search-common-errors-warnings.md).
 
-Five indexer properties control the indexer's response when errors occur. 
+When errors occur, five indexer parameters control the indexer's response:
 
 ```http
 PUT /indexers/[indexer name]?api-version=2025-09-01

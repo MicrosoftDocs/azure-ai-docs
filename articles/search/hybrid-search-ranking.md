@@ -25,7 +25,7 @@ Here's a simple explanation of the RRF process:
 
 1. Get ranked search results from multiple queries running in parallel.
 
-1. Assign reciprocal rank scores for results in each of the ranked lists. RRF generates a new `@search.score` for each match in each result set. For each document in the search results, the engine assigns a reciprocal rank score based on its position in the list. The score is calculated as `1/(rank + k)`, where `rank` is the position of the document in the list and `k` is a constant. Experiments show the algorithm performs best when you set `k` to a small value like 60. **Note that this `k` value is a constant in the RRF algorithm and entirely separate from the `k` that controls the number of nearest neighbors.**
+1. Assign reciprocal rank scores for results in each of the ranked lists. RRF generates a new `@search.score` for each match in each result set. For each document in the search results, the engine assigns a reciprocal rank score based on its position in the list. The score is calculated as `1/(rank + k)`, where `rank` is the position of the document in the list and `k` is a constant. Experiments show the algorithm performs best when you set `k` to a small value, such as 60. **Note that this `k` value is a constant in the RRF algorithm and entirely separate from the `k` that controls the number of nearest neighbors.**
 
 1. Combine scores. For each document, the engine sums the reciprocal rank scores obtained from each search system, producing a combined score for each document. 
 

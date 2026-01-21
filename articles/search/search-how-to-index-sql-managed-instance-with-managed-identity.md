@@ -21,10 +21,7 @@ This article describes how to set up an Azure AI Search indexer connection to [S
 
 You can use a system-assigned managed identity or a user-assigned managed identity (preview). Managed identities are Microsoft Entra logins and require Azure role assignments to access data in SQL Managed Instance.
 
-Before you learn more about this feature, you should understand what an indexer is and how to set up an indexer for your data source. For more information, see the following articles:
-
-* [Indexer overview](search-indexer-overview.md)
-* [SQL Managed Instance indexer](search-how-to-index-sql-database.md)
+Before you learn more about this feature, you should understand what an indexer is and how to set up an indexer for your data source. For more information, see [Indexers in Azure AI Search](search-indexer-overview.md) and [Index data from Azure SQL Database](search-how-to-index-sql-database.md).
 
 ## Prerequisites
 
