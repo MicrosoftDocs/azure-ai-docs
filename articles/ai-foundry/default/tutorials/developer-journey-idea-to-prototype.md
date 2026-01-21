@@ -3,7 +3,7 @@ title: "Tutorial: Idea to prototype - Build and evaluate an enterprise agent"
 description: "Prototype an enterprise agent: build a single agent with SharePoint grounding and Model Context Protocol (MCP) tools, run batch evaluation, extend to multi-agent, and deploy to Microsoft Foundry."
 ms.service: azure-ai-foundry
 ms.topic: tutorial
-ms.date: 11/18/2025
+ms.date: 01/21/2026
 ms.author: jburchel
 author: jonburchel
 ms.reviewer: dantaylo
@@ -48,8 +48,8 @@ This minimal sample demonstrates enterprise-ready patterns with realistic busine
 - .NET SDK (for the C# sample)
 - SharePoint connection configured in your project ([SharePoint tool documentation](../agents/how-to/tools/sharepoint.md))
 
-> [!NOTE]
-> To configure your Foundry project for SharePoint connectivity, see the [SharePoint tool documentation](../agents/how-to/tools/sharepoint.md).
+  > [!NOTE]
+  > To configure your Foundry project for SharePoint connectivity, see the [SharePoint tool documentation](../agents/how-to/tools/sharepoint.md).
 
 - (Optional) Git installed for cloning the sample repository
 
@@ -65,7 +65,7 @@ Instead of navigating a large repository tree, use one of these approaches:
 # [Python](#tab/python)
 
 ```bash
-git clone --depth 1 https://github.com/azure-ai-foundry/foundry-samples.git
+git clone --depth 1 https://github.com/microsoft-foundry/foundry-samples.git
 cd foundry-samples/samples/python/enterprise-agent-tutorial/1-idea-to-prototype
 ```
 
@@ -83,7 +83,7 @@ cd foundry-samples/samples/csharp/enterprise-agent-tutorial/1-idea-to-prototype
 # [Python](#tab/python)
 
 ```bash
-git clone --no-checkout https://github.com/azure-ai-foundry/foundry-samples.git
+git clone --no-checkout https://github.com/microsoft-foundry/foundry-samples.git
 cd foundry-samples
 git sparse-checkout init --cone
 git sparse-checkout set samples/python/enterprise-agent-tutorial/1-idea-to-prototype
@@ -114,7 +114,7 @@ Download the repository ZIP, extract it to your local environment, and go to the
 # [Python](#tab/python)
 
 > [!div class="nextstepaction"] 
-> [Download the Python code now](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/python/enterprise-agent-tutorial/1-idea-to-prototype)
+> [Download the Python code now](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/enterprise-agent-tutorial/1-idea-to-prototype)
 
 After you extract the ZIP, go to `samples/python/enterprise-agent-tutorial/1-idea-to-prototype`.
 
@@ -134,18 +134,18 @@ The minimal structure contains only essential files:
 ```text
 enterprise-agent-tutorial/
 └── 1-idea-to-prototype/
-    ├── main.py                          # Modern Workplace Assistant
-    ├── evaluate.py                      # Business evaluation framework
-    ├── questions.jsonl                  # Business test scenarios (4 questions)
-    ├── requirements.txt                 # Python dependencies
-    ├── .env.template                    # Environment variables template
-    ├── README.md                        # Complete setup instructions
-    ├── MCP_SERVERS.md                   # MCP server configuration guide
-    ├── sharepoint-sample-data           # Sample business documents for SharePoint
-        └── collaboration-standards.docx # Sample content for policies
-        └── remote-work-policy.docx      # Sample content for policies
-        └── security-guidelines.docx     # Sample content for policies
-        └── data-governance-policy.docx  # Sample content for policies
+   ├── .env                             # Create this file (local environment variables)
+   ├── .gitkeep
+   ├── evaluate.py                      # Business evaluation framework
+   ├── evaluation_results.json
+   ├── main.py                          # Modern Workplace Assistant
+   ├── questions.jsonl                  # Business test scenarios (4 questions)
+   ├── requirements.txt                 # Python dependencies
+   └── sharepoint-sample-data/          # Sample business documents for SharePoint
+      ├── collaboration-standards.docx
+      ├── data-governance-policy.docx
+      ├── remote-work-policy.docx
+      └── security-guidelines.docx
 ```
 
 # [C#](#tab/csharp)
@@ -175,7 +175,16 @@ Start by running the agent so you see working functionality before diving into i
 
 1. Install the required language runtimes, global tools, and VS Code extensions as described in [Prepare your development environment](../../how-to/develop/install-cli-sdk.md).
 
-1. Install the sample dependencies.
+1. Verify that your `requirements.txt` uses these published package versions (MCP support requires a prerelease of `azure-ai-agents`):
+
+   ```text
+   azure-ai-agents==1.2.0b6
+   azure-ai-projects==1.0.0
+   azure-identity
+   python-dotenv
+   ```
+
+1. Install dependencies:
 
 # [Python](#tab/python)
 
@@ -665,7 +674,7 @@ These patterns reduce prototype-to-production friction: you can add data sources
 This tutorial demonstrates **Stage 1** of the developer journey - from idea to prototype. This minimal sample provides the foundation for enterprise AI development. To continue your journey, explore the next stages:
 
 ### Suggested additional enhancements
-- Add more data sources ([Azure AI Search](../../agents/how-to/tools/azure-ai-search.md), [other sources](../../how-to/connections-add.md)).
+- Add more data sources ([Azure AI Search](../agents/how-to/tools/ai-search.md), [other sources](../../how-to/connections-add.md)).
 - Implement advanced evaluation methods ([AI-assisted evaluation](../../how-to/develop/evaluate-sdk.md)).
 - Create [custom tools](../agents/how-to/private-tool-catalog.md) for business-specific operations.
 - Add [conversation memory and personalization](/azure/cosmos-db/gen-ai/azure-agent-service).
@@ -687,6 +696,6 @@ This tutorial demonstrates **Stage 1** of the developer journey - from idea to p
 ## Related content
 
 - [Foundry Agent Service overview](../../agents/overview.md)
-- [SharePoint tool documentation](../../agents/how-to/tools/sharepoint.md)
-- [MCP tool integration](../../agents/how-to/tools/model-context-protocol.md)
+- [SharePoint tool documentation](../agents/how-to/tools/sharepoint.md)
+- [MCP tool integration](../agents/how-to/tools/model-context-protocol.md)
 - [Multi-agent patterns](../../agents/how-to/connected-agents.md)
