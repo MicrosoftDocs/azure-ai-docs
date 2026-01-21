@@ -23,7 +23,7 @@ Sign in using the CLI `az login` command to authenticate before running your Pyt
 
 # [C#](#tab/csharp)
 
-> Follow along below or get the code:
+Follow along below or get the code:
 > [!div class="nextstepaction"]
 > [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/csharp/quickstart)
 

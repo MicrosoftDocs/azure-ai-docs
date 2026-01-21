@@ -13,15 +13,17 @@ ms.custom: include
 
 In this quickstart, you use [!INCLUDE [foundry-link](../includes/foundry-link.md)] to interact with a Foundry model, create, and chat with an agent.
 
+> [!NOTE]
+> This quickstart shows you how to build an agent with a basic setup. For more advanced scenarios that use your own resources, see [Set up your environment for agent development](../../agents/environment-setup.md).
+
 ## Prerequisites
 
-* A model deployed in Microsoft Foundry. If you don't have one, first complete [Quickstart: Set up Microsoft Foundry resources](../tutorials/quickstart-create-foundry-resources.md).
-* The [endpoint for the model](../tutorials/quickstart-create-foundry-resources.md#get-your-project-connection-details).
-* Install the required language runtimes, global tools, and Visual Studio Code extensions as described in [Prepare your development environment](../../how-to/develop/install-cli-sdk.md).
+* A model deployed in Microsoft Foundry. If you don't have a model, first complete [Quickstart: Set up Microsoft Foundry resources](../tutorials/quickstart-create-foundry-resources.md).
+* The required language runtimes, global tools, and Visual Studio Code extensions as described in [Prepare your development environment](../../how-to/develop/install-cli-sdk.md).
 
 ## Set environment variables and get the code
 
-Store the endpoint as an environment variable. Also set these values for use in your scripts.
+Store [your project endpoint](../tutorials/quickstart-create-foundry-resources.md#get-your-project-connection-details) as an environment variable. Also set these values for use in your scripts.
 
 ```plaintext
 PROJECT_ENDPOINT=<endpoint copied from welcome screen>
@@ -39,13 +41,13 @@ MODEL_DEPLOYMENT_NAME="gpt-4.1-mini"
 
 [!INCLUDE [quickstart-v2-chat](../includes/quickstart-v2-chat.md)]
 
-<!-- ## Create an agent
+## Create an agent
 
 [!INCLUDE [quickstart-v2-create-agent](../includes/quickstart-v2-create-agent.md)]
 
 ## Chat with an agent
 
-[!INCLUDE [quickstart-v2-agent-chat](../includes/quickstart-v2-agent-chat.md)] -->
+[!INCLUDE [quickstart-v2-agent-chat](../includes/quickstart-v2-agent-chat.md)]
 
 ## Clean up resources
 
