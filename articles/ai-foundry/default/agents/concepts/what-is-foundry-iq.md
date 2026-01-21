@@ -26,37 +26,21 @@ Use Foundry IQ when you want:
 + Agentic retrieval that outperforms traditional retrieval-augmented generation (RAG) in response quality.
 + Permission-aware responses that enforce your organization's access controls.
 
-## Benefits
+## Capabilities
 
-Foundry IQ addresses three core challenges of building knowledge-equipped AI agents:
++ Create a knowledge base once, and then connect it to multiple agents. Supported knowledge sources include internal data stores (such as Azure Blob Storage, SharePoint, and OneLake) and public web data.
 
-### Connect to enterprise knowledge
++ Automate document chunking, vector embedding generation, and metadata extraction for indexed knowledge sources. Schedule recurring indexer runs for incremental data refresh.
 
-+ Create a knowledge base once, and then plug the knowledge base into multiple agents and applications.
++ Issue keyword, vector, or hybrid queries across indexed and remote knowledge sources.
 
-+ Unify data access across Azure, SharePoint, OneLake, MCP servers, and the web. You can create multiple knowledge sources for a knowledge base.
++ Use the agentic retrieval engine to select sources, execute parallel searches, and aggregate results. With an LLM, enable query planning and iterative retrieval. Set the retrieval reasoning effort (minimal, low, or medium) to control LLM involvement.
 
-+ Skip manual preprocessing for index-bound content. The automated indexing pipeline handles chunking and vectorization tuned per data type.
++ Return extractive data with citations so agents can reason over raw content and trace answers to source documents.
 
-### Deliver quality answers
++ Synchronize ACLs and Microsoft Purview sensitivity labels during indexing. Enforce both at query time so agents return only authorized content.
 
-+ Get better answers without wasting tokens. The agentic retrieval engine plans, selects sources, searches, responds, and iterates automatically.
-
-+ Achieve [36% better response quality](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/foundry-iq-boost-response-relevance-by-36-with-agentic-retrieval/4470720) than traditional RAG engines in benchmark testing.
-
-+ Adjust the retrieval reasoning effort to optimize for latency or quality. Let the system adapt automatically or fully customize your RAG stack.
-
-+ Choose between answer synthesis (LLM-generated answers) and extractive data (verbatim content) to match your application requirements. For agent integration, use extractive data.
-
-+ Handle indexed and remote data with multiple retrieval techniques, including keyword, vector, hybrid, and multimodal search.
-
-### Enforce enterprise-grade security
-
-+ Respect user permissions automatically. Document-level ACL synchronization and query-time trimming ensure agents retrieve only what each user is authorized to see.
-
-+ Preserve end-to-end governance. Microsoft Purview sensitivity labels are extracted during indexing, enforced at query time, and preserved across supported knowledge sources.
-
-+ Eliminate credential exposure. All queries run under each user's Microsoft Entra identity using managed identities.
++ Execute queries under the caller's Microsoft Entra identity for end-to-end permission enforcement.
 
 ## Architecture and components
 
@@ -68,7 +52,7 @@ Rather than a separate cloud service, Foundry IQ is a workflow that combines exi
 | [Azure OpenAI in Foundry Models](/azure/cognitive-services/openai/overview) | GPT-4 and GPT-5-series models perform optional query planning, reasoning, iterative retrieval, and answer synthesis. You can use any supported text embedding model for vectorization. |
 | [Foundry Agent Service](/ai-foundry/default/agents/overview) | Hosts agents that call the knowledge base through a single retrieval API. |
 
-Although Foundry IQ's agentic retrieval pipeline has native integrations with Foundry Agent Service, it's also available directly through the Azure AI Search REST APIs and Azure SDKs. This means you can use Foundry IQ knowledge bases with other agent frameworks, such as  LlamaIndex, LangChain, Semantic Kernel, AutoGen, and Haystack.
+You can use Foundry IQ knowledge bases and knowledge sources in custom solutions that include non-Foundry technology, such as LlamaIndex, LangChain, AutoGen, and Haystack. The latest versions of the Azure AI Search REST APIs and client libraries in the Azure SDKs support knowledge bases and knowledge sources.
 
 ## Workflow
 

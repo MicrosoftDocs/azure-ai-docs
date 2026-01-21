@@ -7,7 +7,7 @@ metadata:
   manager: nitinme
   ms.service: azure-ai-foundry
   ms.topic: faq
-  ms.date: 01/20/2026
+  ms.date: 01/21/2026
   ai-usage: ai-assisted
 title: Foundry IQ frequently asked questions
 summary: |
@@ -21,13 +21,19 @@ sections:
           
           Azure AI Search provides the core components: a knowledge base that consists of one or more knowledge sources and an agentic retrieval engine. Azure OpenAI in Foundry Models adds optional query planning and reasoning. Agents built in Foundry Agent Service or other frameworks call the knowledge base to retrieve relevant content.
 
-      - question: "Is Foundry IQ a standalone service?"
+      - question: "What is the difference between Foundry IQ and agentic retrieval?"
         answer: |
-          No. Foundry IQ is a workload that's built on Azure AI Search and available in Microsoft Foundry. You can
+          Foundry IQ is designed for a specific, powerful scenario: combining the latest agentic retrieval engine from Azure AI Search with an LLM from Azure OpenAI in Foundry Models and an agent from Foundry Agent Service. You can easily create this workoad in the Microsoft Foundry (new) portal, which is foundational to the Foundry IQ experience. Foundry IQ integration requires a Microsoft Foundry project.
+          
+          You can also use agentic retrieval (and an LLM) without a Microsoft Foundry agent or project. In that case, you're using agentic retrieval as a standalone feature in Azure AI Search.
+          
+          In short, the value of Foundry IQ lies in its integration with agents from Foundry Agent Service and its provision of a rich knowledge domain to those agents.
 
       - question: "How is Foundry IQ different from existing RAG patterns or Azure OpenAI On Your Data?"
         answer: |
-          With Foundry IQ, you point to one knowledge base to access multiple sources, removing the need to connect each agent to each source individually. The agentic retrieval engine plans which sources to query and performs iterative search if initial results don't meet relevance standards. Indexing and data syncing are triggered automatically.
+          With Foundry IQ, you point to one knowledge base to access multiple sources, removing the need to connect each agent to each source individually.
+          
+          The agentic retrieval engine plans which sources to query and performs iterative search if initial results don't meet relevance standards. Indexing and data synchronization are triggered automatically. Iterative search depends on specifying a medium [retrieval reasoning effort](/azure/search/agentic-retrieval-how-to-set-retrieval-reasoning-effort) in the knowledge base.
 
   - name: "Components and requirements"
     questions:
@@ -35,19 +41,33 @@ sections:
         answer: |
           Yes. Foundry IQ is built on Azure AI Search's agentic retrieval capabilities. You must create a knowledge base in Azure AI Search to use Foundry IQ.
 
-      - question: "Is Azure OpenAI in Foundry Models required for Foundry IQ?"
-        answer: |
-          No. An LLM is optional for query planning and reasoning. You can use Foundry IQ with the minimal retrieval reasoning effort to bypass LLM invocations. However, using an LLM with low or medium retrieval reasoning effort improves response quality.
-
       - question: "Is Foundry Agent Service required for Foundry IQ?"
         answer: |
           No. You can call the knowledge base directly from LlamaIndex, LangChain, Semantic Kernel, AutoGen, Haystack, or any application that supports the Azure AI Search REST APIs or Azure SDKs. However, Foundry Agent Service provides a turnkey agent hosting platform with built-in support for Foundry IQ knowledge bases.
+
+      - question: "Do Foundry IQ and agentic retrieval have a hard dependency on LLMs?"
+        answer: |
+          LLM usage for query planning is optional. However, without an LLM, agentic retrieval behaves like single-shot RAG in Azure AI Search: you still get semantic ranking for a query input, but the query input is a single string.
+          
+          To benefit from parallel processing of multiple subqueries, LLM query planning is required. The agentic retrieval engine only accepts multiple subqueries from an LLM.
 
   - name: "Agentic retrieval"
     questions:
       - question: "What is agentic retrieval?"
         answer: |
-          [Agentic retrieval](/azure/search/agentic-retrieval-overview) is Azure AI Search's multi-turn retrieval engine for knowledge bases. It selects which knowledge sources to query, routes requests appropriately, and can automatically iterate when initial results are incomplete. When configured with an LLM, agentic retrieval also performs query planning and higher‑level reasoning to refine the search process. Benchmarks show approximately 36% higher response quality compared to traditional single‑shot RAG.
+          [Agentic retrieval](/azure/search/agentic-retrieval-overview) is Azure AI Search's multi-turn retrieval engine for knowledge bases. It selects which knowledge sources to query, routes requests appropriately, and can automatically iterate when initial results are incomplete. 
+          
+          When configured with an LLM, agentic retrieval also performs query planning and higher-level reasoning to refine the search process. Benchmarks show approximately [36% higher response quality](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/foundry-iq-boost-response-relevance-by-36-with-agentic-retrieval/4470720) than traditional single-shot RAG.
+
+      - question: "What is query planning in agentic retrieval?"
+        answer: |
+          Query planning is the process by which an LLM breaks down a complex query into smaller, more focused subqueries for broader coverage of your search corpus. It also includes the logic for selecting one knowledge source over another.
+          
+          You can influence knowledge source selection by specifying index descriptions and retrieval instructions in a knowledge base. For example, you might specify "use the employee-handbook-index for questions about time off" and "use the health-insurance-index for questions about medical coverage."
+
+      - question: "How is query planning invoked?"
+        answer: |
+          Query planning is invoked when you specify the low or medium retrieval reasoning effort in a knowledge base.
 
       - question: "What is the retrieval reasoning effort?"
         answer: |
@@ -63,7 +83,7 @@ sections:
     questions:
       - question: "What is a knowledge base?"
         answer: |
-            A [knowledge base](/azure/search/agentic-retrieval-how-to-create-knowledge-base) is an Azure AI Search object that unifies access to one or more knowledge sources. At query time, the knowledge base uses agentic retrieval to select relevant sources, generate and route subqueries, and aggregate the results. When used with an LLM, the retrieval engine can also perform query planning and multi‑turn iteration. All retrieval operations enforce user‑level access controls inherited from the connected sources.
+            A [knowledge base](/azure/search/agentic-retrieval-how-to-create-knowledge-base) is an Azure AI Search object that unifies access to one or more knowledge sources. At query time, the knowledge base uses agentic retrieval to select relevant sources, generate and route subqueries, and aggregate the results. When used with an LLM, the retrieval engine can also perform query planning and multi-turn iteration. All retrieval operations enforce user‑level access controls inherited from the connected sources.
 
       - question: "What knowledge sources are supported?"
         answer: |
@@ -114,7 +134,7 @@ sections:
 
   - name: "Troubleshooting"
     questions:
-      - question: "Why isn't my agent returning results from the knowledge base?"
+      - question: "Why isn't my agent returning results from my knowledge base?"
         answer: |
           Common causes include:
           
@@ -123,7 +143,7 @@ sections:
           + Incorrect project connection configuration.
           + Empty or misconfigured knowledge sources.
           
-          To isolate the issue, test queries directly against the knowledge base in the Azure portal.
+          To isolate the issue, test queries directly against your knowledge base in the Azure portal.
 
       - question: "How do I debug agentic retrieval queries?"
         answer: |
