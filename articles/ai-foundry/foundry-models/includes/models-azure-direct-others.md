@@ -4,7 +4,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: include
-ms.date: 12/09/2025
+ms.date: 1/20/2026
 ms.author: mopeakande
 author: msakande
 monikerRange: 'foundry-classic || foundry'
@@ -19,6 +19,9 @@ ai-usage: ai-assisted
 The Black Forest Labs (BFL) collection of image generation models includes FLUX.2 [pro] for image generation and editing through both text and image prompts, FLUX.1 Kontext [pro] for in-context generation and editing, and FLUX1.1 [pro] for text-to-image generation.  
 
 You can run these models through the BFL service provider API and through the [images/generations and images/edits endpoints](../../openai/reference-preview.md). 
+
+> [!NOTE]
+> See the [GitHub sample for image generation with FLUX models in Microsoft Foundry](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/black-forest-labs/flux/README.md) and its associated [notebook](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/black-forest-labs/flux/AIFoundry_ImageGeneration_FLUX.ipynb) that showcases how to create high-quality images from textual prompts.
 
 ::: moniker range="foundry-classic"
 
