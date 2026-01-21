@@ -42,8 +42,7 @@ When the page loads successfully, you see dashboard tiles for costs, usage, quot
 
 - **Accumulated costs**
 
-   View your costs over time by subscription or resource type (for example, **$1,250/month for Azure OpenAI**). Identify trends, track experiments, and drill into **Cost management** for deeper analysis.
-<!-- Added a concrete cost example to make the feature description more actionable and specific. -->
+   View your costs over time by subscription or resource type. Identify trends, track experiments, and drill into **Cost management** for deeper analysis.
 
 - **Active resources by cost**
 
@@ -60,16 +59,12 @@ When the page loads successfully, you see dashboard tiles for costs, usage, quot
 - **Quota utilization**
 
   Monitor quota usage by model and region (for example, **gpt-4o: 9,500 of 10,000 TPM in West US**). Stay ahead of capacity problems with quick links to **Quota management** for requesting increases.
-<!-- Enhanced the description with a concrete quota utilization example to improve clarity and usefulness. -->
 
 ## Why use the consolidated view?
 
-- **Faster visibility**: Check cost (for example, **$42/day**), quota (for example, **72% of regional limit**), and resource usage (for example, **1.3M tokens/hour**) at a glance.
-<!-- Changed to include concrete example metrics for cost, quota, and usage to replace generic marketing phrasing. -->
+- **Faster visibility**: Check cost, quota (for example, **72% of regional limit**), and resource usage (for example, **1.3M tokens/hour**) at a glance.
 - **Built-in governance**: Spot early warning signs such as **quota usage >80%** or **day-over-day cost increases >15%** before they become blockers.
-<!-- Updated to add specific, measurable governance signals instead of general descriptions. -->
 - **Lightweight experience**: No new resource types or setup steps required; the view aggregates **existing subscriptions and resources only**.
-<!-- Clarified the lightweight nature with a concrete, verifiable statement about scope and setup. -->
 
 ## Visual layout of the consolidated view
 

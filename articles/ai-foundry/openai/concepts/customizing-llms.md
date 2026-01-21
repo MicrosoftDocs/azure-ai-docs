@@ -16,8 +16,7 @@ recommendations: false
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
-There are three primary techniques for adapting a pre-trained language model to a specific task or domain: prompt engineering, RAG (Retrieval Augmented Generation), and fine-tuning. These techniques can be used independently or combined within a single solution. This article defines each technique, outlines typical use cases, highlights key constraints, and links to resources for getting started.
-<!-- Edited to tighten scope and replace low-signal phrasing with a concise description of techniques, usage patterns, and constraints. -->
+There are several techniques for adapting a pre-trained language model to suit a specific task or domain. These include prompt engineering, RAG (Retrieval Augmented Generation), and fine-tuning. These three techniques are not mutually exclusive but are complementary methods that in combination can be applicable to a specific use case. In this article, we'll explore these techniques, illustrative use cases, things to consider, and provide links to resources to learn more and get started with each.
 
 ## Prompt engineering
 
@@ -86,8 +85,7 @@ They fine-tune GPT-4o mini with hundreds of requests and correct responses and p
 
 ### Things to consider
 
-- Fine-tuning is an advanced capability that adapts a base model using a fixed training dataset and does not provide dynamic access to new or external data. Evaluate baseline accuracy, latency, and cost of a standard model against your task requirements before introducing fine-tuning.
-<!-- Edited to replace abstract phrasing with concrete constraints about data access, evaluation criteria, and operational trade-offs. -->
+- Fine-tuning is an advanced capability; it enhances LLM with after-cutoff-date knowledge and/or domain specific knowledge. Start by evaluating the baseline performance of a standard model against their requirements before considering this option.
 
 - Having a baseline for performance without fine-tuning is essential for knowing whether fine-tuning has improved model performance. Fine-tuning with bad data makes the base model worse, but without a baseline, it's hard to detect regressions.
 

@@ -21,8 +21,7 @@ An embedding is a special format of data representation that machine learning mo
 
 ## Embedding models
 
-Embeddings make it easier to do machine learning on large inputs representing words by capturing the semantic similarities in a vector space. Therefore, you can use embeddings to determine if two text chunks are semantically related or similar, and provide a score to assess similarity. For example, many text embedding models output a fixed-length vector with hundreds to a few thousand dimensions (such as 1,536 floating‑point values), where vectors that are numerically closer—often measured using cosine similarity—indicate higher semantic similarity.
-<!-- Added a concrete numeric example to increase semantic density and clarify typical embedding dimensionality and similarity behavior. -->
+Embeddings make it easier to do machine learning on large inputs representing words by capturing the semantic similarities in a vector space. Therefore, you can use embeddings to determine if two text chunks are semantically related or similar, and provide a score to assess similarity.
 
 ## Cosine similarity
 

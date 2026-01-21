@@ -76,10 +76,8 @@ Provides 5 endpoints, each with distinct capabilities.
 |------------|------|------------|
 | **Prompt** | String (required) | Natural-language description of the shot. Include shot type, subject, action, setting, lighting, and any desired camera motion to reduce ambiguity. Keep it *single-purpose* for best adherence. | 
 | **Model** | String (optional) | `Sora-2` (default) |
-| **Size (Output resolution, width × height)** | String (optional, response-visible) | Output frame size. Allowed values: `720×1280` (portrait), `1280×720` (landscape). **Units:** pixels. **Default:** `720×1280`. |
-<!-- Changed to clarify units, allowed values, default, and response visibility per agent feedback -->
-| **Seconds** | String (optional, response-visible) | Duration of the output video in seconds. Allowed values: `4`, `8`, `12`. **Units:** seconds. **Default:** `4`. | 
-<!-- Changed to clarify meaning, units, allowed values, default, and response visibility per agent feedback -->
+| **Size (Output resolution in width × height)** | String (optional) | Portrait: `720×1280`  <br> Landscape: `1280×720`  <br> **Default:** 720×1280 |
+| **Seconds** | String (optional) | `4 / 8 / 12`  <br> **Default:** 4 | 
 | **Input reference** | File (optional) | Single reference image used as a visual anchor for the first frame. <br> Accepted MIME types: `image/jpeg`, `image/png`, `image/webp`. Must match size exactly. | 
 | **Remix_video_id** | String (optional) | ID of a previously completed video (e.g., `video_...`) to reuse structure, motion, and framing. Same as Sora 2 |
 
@@ -175,9 +173,6 @@ Expected states are `queued`, `in_progress`, `completed`, and `failed`.
 
 # [Microsoft Entra ID](#tab/python-entra)
 
-Authentication and environment variable configuration are the same as described in the earlier Environment Variables section.
-<!-- Deduplicated authentication and environment variable boilerplate per agent feedback -->
-
 **Synchronous:**
 
 Use this version if testing in Jupyter Notebooks to avoid `RuntimeError: asyncio.run() cannot be called from a running event loop`
@@ -186,7 +181,621 @@ Use this version if testing in Jupyter Notebooks to avoid `RuntimeError: asyncio
 import time
 from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-...
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = OpenAI(  
+    base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+    api_key=token_provider,
+)
+
+# Create the video (don't use create_and_poll)
+video = client.videos.create(
+    model="sora-2", # Replace with Sora 2 model deployment name
+    prompt="A video of a cat on a motorcycle",
+)
+
+print(f"Video creation started. ID: {video.id}")
+print(f"Initial status: {video.status}")
+
+# Poll every 20 seconds
+while video.status not in ["completed", "failed", "cancelled"]:
+    print(f"Status: {video.status}. Waiting 20 seconds...")
+    time.sleep(20)
+    
+    # Retrieve the latest status
+    video = client.videos.retrieve(video.id)
+
+# Final status
+if video.status == "completed":
+    print("Video successfully completed!")
+    print(video)
+else:
+    print(f"Video creation ended with status: {video.status}")
+    print(video)
 ```
 
-*(rest of section content unchanged)*
+**Async:**
+
+```python
+import asyncio
+from openai import AsyncOpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = AsyncOpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key=token_provider,
+)
+
+async def main() -> None:
+    video = await client.videos.create_and_poll(
+        model="sora-2", # Replace with Sora 2 model deployment name
+        prompt="A video of a cat on a motorcycle",
+    )
+
+    if video.status == "completed":
+        print("Video successfully completed: ", video)
+    else:
+        print("Video creation failed. Status: ", video.status)
+
+
+asyncio.run(main())
+```
+
+# [API Key](#tab/python-key)
+
+**Synchronous:**
+
+Use this version if testing in Jupyter Notebooks to avoid `RuntimeError: asyncio.run() cannot be called from a running event loop`
+
+
+```python
+import asyncio
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+)
+
+# Create the video (don't use create_and_poll)
+video = client.videos.create(
+    model="sora-2", # Replace with Sora 2 model deployment name
+    prompt="A video of a cat on a motorcycle",
+)
+
+print(f"Video creation started. ID: {video.id}")
+print(f"Initial status: {video.status}")
+
+# Poll every 20 seconds
+while video.status not in ["completed", "failed", "cancelled"]:
+    print(f"Status: {video.status}. Waiting 20 seconds...")
+    time.sleep(20)
+    
+    # Retrieve the latest status
+    video = client.videos.retrieve(video.id)
+
+# Final status
+if video.status == "completed":
+    print("Video successfully completed!")
+    print(video)
+else:
+    print(f"Video creation ended with status: {video.status}")
+    print(video)
+```
+
+**Async:**
+
+```python
+import asyncio
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+)
+
+async def main() -> None:
+    video = await client.videos.create_and_poll(
+        model="sora-2", # Replace with Sora 2 model deployment name 
+        prompt="A video of a cat on a motorcycle",
+    )
+
+    if video.status == "completed":
+        print("Video successfully completed: ", video)
+    else:
+        print("Video creation failed. Status: ", video.status)
+
+
+asyncio.run(main())
+```
+
+# [Environment Variables](#tab/python-env)
+
+If you use the default environment variables of:
+
+- `OPENAI_BASE_URL`
+- `OPENAI_API_KEY` 
+
+These environment variables are automatically used by the client with no further configuration required.
+
+| Environment Variable | Value |
+|----------------|-------------|
+| `OPENAI_BASE_URL`    | `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/`|
+| `OPENAI_API_KEY`     | Azure OpenAI or Foundry API key. |
+
+**Synchronous:**
+
+Use this version if testing in Jupyter Notebooks to avoid `RuntimeError: asyncio.run() cannot be called from a running event loop`
+
+```python
+from openai import OpenAI
+
+client = OpenAI()
+
+# Create the video (don't use create_and_poll)
+video = client.videos.create(
+    model="sora-2", # Replace with Sora 2 model deployment name
+    prompt="A video of a cat on a motorcycle",
+)
+
+print(f"Video creation started. ID: {video.id}")
+print(f"Initial status: {video.status}")
+
+# Poll every 20 seconds
+while video.status not in ["completed", "failed", "cancelled"]:
+    print(f"Status: {video.status}. Waiting 20 seconds...")
+    time.sleep(20)
+    
+    # Retrieve the latest status
+    video = client.videos.retrieve(video.id)
+
+# Final status
+if video.status == "completed":
+    print("Video successfully completed!")
+    print(video)
+else:
+    print(f"Video creation ended with status: {video.status}")
+    print(video)
+```
+
+**Async:**
+
+```python
+from openai import OpenAI
+
+client = OpenAI()
+
+async def main() -> None:
+    video = await client.videos.create_and_poll(
+        model="sora-2", # Replace with Sora 2 model deployment name
+        prompt="A video of a cat on a motorcycle",
+    )
+
+    if video.status == "completed":
+        print("Video successfully completed: ", video)
+    else:
+        print("Video creation failed. Status: ", video.status)
+
+
+asyncio.run(main())
+```
+
+# [Response](#tab/python-output)
+
+Response will vary based on if the synchronous or asynchronous version of the code is used. 
+
+```json
+Video creation started. ID: video_68f10c5428708190a98980c2d2b21a78
+Initial status: queued
+Status: queued. Waiting 20 seconds...
+Status: in_progress. Waiting 20 seconds...
+Status: in_progress. Waiting 20 seconds...
+Status: in_progress. Waiting 20 seconds...
+Video successfully completed!
+Video(id='video_68f10c5428708190a98980c2d2b21a78', completed_at=1760627863, created_at=1760627796, error=None, expires_at=1760714196, model='sora-2', object='video', progress=100, remixed_from_video_id=None, seconds='4', size='720x1280', status='completed')
+```
+
+---
+
+### Download video
+
+# [Microsoft Entra ID](#tab/python-entra)
+
+```python
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key=token_provider,
+)
+
+video_id = "your_video_id_here"
+
+content = client.videos.download_content(video_id, variant="video")
+content.write_to_file("video.mp4")
+
+print("Saved video.mp4")
+```
+
+
+# [API Key](#tab/python-key)
+
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+)
+
+video_id = "your_video_id_here"
+
+content = client.videos.download_content(video_id, variant="video")
+content.write_to_file("video.mp4")
+
+print("Saved video.mp4")
+
+
+```
+
+# [Environment Variables](#tab/python-env)
+
+If you use the default environment variables of:
+
+- `OPENAI_BASE_URL`
+- `OPENAI_API_KEY` 
+
+These environment variables are automatically used by the client with no further configuration required.
+
+| Environment Variable | Value |
+|----------------|-------------|
+| `OPENAI_BASE_URL`    | `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/`|
+| `OPENAI_API_KEY`     | Azure OpenAI or Foundry API key. |
+
+```python
+from openai import OpenAI
+
+client = OpenAI()
+
+video_id = "your_video_id_here"
+
+content = client.videos.download_content(video_id, variant="video")
+content.write_to_file("video.mp4")
+
+print("Saved video.mp4")
+
+```
+
+# [Response](#tab/python-output)
+
+```json
+Saved video.mp4
+```
+
+---
+
+### Video generation from reference source
+
+The `input_reference` parameter allows you to transform existing images using Sora 2. The resolution of the source image and final video must match. Supported values are `720x1280`, and `1280x720`.
+
+# [Microsoft Entra ID](#tab/python-entra)
+
+**Local reference file:**
+
+```python
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key=token_provider,
+)
+
+# With local file
+video = client.videos.create(
+    model="sora-2",
+    prompt="Describe your desired output within the context of the reference image/video",
+    size="1280x720",
+    seconds=8,
+    input_reference=open("test.png", "rb"), # This assumes the image test.png is in the same directory as the executing code
+)
+
+print("Video generation started:", video)
+
+```
+
+**URL based reference file:**
+
+```python
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import requests
+from io import BytesIO
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key=token_provider,
+)
+
+# With image URL
+image_url = "https://path-to-your-file/image_file_name.jpg"
+response = requests.get(image_url)
+image_data = BytesIO(response.content)
+image_data.name = "image_file_name.jpg"
+
+video = client.videos.create(
+    model="sora-2",
+    prompt="Describe your desired output within the context of the reference image/video",
+    size="1280x720",
+    seconds=8,
+    input_reference=image_data,
+)
+
+print("Video generation started:", video)
+```
+
+# [API Key](#tab/python-key)
+
+**Local reference file:**
+
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+)
+
+# With local file
+video = client.videos.create(
+    model="sora-2",
+    prompt="Describe your desired output within the context of the reference image/video",
+    size="1280x720",
+    seconds=8,
+    input_reference=open("test.png", "rb"), # This assumes the image test.png is in the same directory as the executing code
+)
+
+print("Video generation started:", video)
+
+```
+
+**URL based reference file:**
+
+```python
+import os
+from openai import OpenAI
+import requests
+from io import BytesIO
+
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+)
+
+# With image URL
+image_url = "https://path-to-your-file/image_file_name.jpg"
+response = requests.get(image_url)
+image_data = BytesIO(response.content)
+image_data.name = "image_file_name.jpg"
+
+video = client.videos.create(
+    model="sora-2",
+    prompt="Describe your desired output within the context of the reference image/video",
+    size="1280x720",
+    seconds=8,
+    input_reference=image_data,
+)
+
+print("Video generation started:", video)
+```
+
+# [Environment Variables](#tab/python-env)
+
+If you use the default environment variables of:
+
+- `OPENAI_BASE_URL`
+- `OPENAI_API_KEY` 
+
+These environment variables are automatically used by the client with no further configuration required.
+
+| Environment Variable | Value |
+|----------------|-------------|
+| `OPENAI_BASE_URL`    | `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/`|
+| `OPENAI_API_KEY`     | Azure OpenAI or Foundry API key. |
+
+**Local reference file:**
+
+```python
+from openai import OpenAI
+
+client = OpenAI()
+
+# With local file
+video = client.videos.create(
+    model="sora-2",
+    prompt="Describe your desired output within the context of the reference image/video",
+    size="1280x720",
+    seconds=8,
+    input_reference=open("test.png", "rb"), # This assumes the image test.png is in the same directory as the executing code
+)
+
+print("Video generation started:", video)
+
+```
+
+**URL based reference file:**
+
+```python
+from openai import OpenAI
+import requests
+from io import BytesIO
+
+client = OpenAI()
+
+# With image URL
+image_url = "https://path-to-your-file/image_file_name.jpg"
+response = requests.get(image_url)
+image_data = BytesIO(response.content)
+image_data.name = "image_file_name.jpg"
+
+video = client.videos.create(
+    model="sora-2",
+    prompt="Describe your desired output within the context of the reference image/video",
+    size="1280x720",
+    seconds=8,
+    input_reference=image_data,
+)
+
+print("Video generation started:", video)
+```
+
+# [Response](#tab/python-output)
+
+```json
+Video generation started: Video(id='video_68ff672709d481908f1fa7c53265d835', completed_at=None, created_at=1761568551, error=None, expires_at=None, model='sora-2', object='video', progress=0, remixed_from_video_id=None, seconds='8', size='1280x720', status='queued')
+```
+
+---
+
+### Remix video
+
+The remix feature allows you to modify specific aspects of an existing video while preserving its core elements. By referencing the previous video `id` from a successfully completed generation, and supplying an updated prompt the system maintains the original video's framework, scene transitions, and visual layout while implementing your requested changes. For optimal results, limit your modifications to one clearly articulated adjustment—narrow, precise edits retain greater fidelity to the source material and minimize the likelihood of generating visual defects.
+
+
+# [Microsoft Entra ID](#tab/python-entra)
+
+```python
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key=token_provider,
+)
+
+video = client.videos.remix(
+    video_id="<previous_video_id>",
+    prompt="Shift the color palette to teal, sand, and rust, with a warm backlight."
+)
+
+print("Video generation started:", video)
+```
+
+# [API Key](#tab/python-key)
+
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+)
+
+video = client.videos.remix(
+    video_id="<previous_video_id>",
+    prompt="Shift the color palette to teal, sand, and rust, with a warm backlight."
+)
+
+print("Video generation started:", video)
+```
+
+# [Environment Variables](#tab/python-env)
+
+If you use the default environment variables of:
+
+- `OPENAI_BASE_URL`
+- `OPENAI_API_KEY` 
+
+These environment variables are automatically used by the client with no further configuration required.
+
+| Environment Variable | Value |
+|----------------|-------------|
+| `OPENAI_BASE_URL`    | `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/`|
+| `OPENAI_API_KEY`     | Azure OpenAI or Foundry API key. |
+
+```python
+from openai import OpenAI
+
+client = OpenAI()
+
+video = client.videos.remix(
+    video_id="<previous_video_id>",
+    prompt="Shift the color palette to teal, sand, and rust, with a warm backlight."
+)
+
+print("Video generation started:", video)
+```
+
+# [Response](#tab/python-output)
+
+```json
+Video generation started: Video(id='video_68ff7cef76cc8190b7eab9395e936d9e', completed_at=None, created_at=1761574127, error=None, expires_at=None, model='sora-2', object='video', progress=0, remixed_from_video_id='video_68ff61490a908190a6808139c0c753d0', seconds='8', size='1280x720', status='queued')
+```
+
+---
+
+## How it works
+
+Video generation is an asynchronous process. You create a job request with your text prompt and video format specifications, and the model processes the request in the background. You can check the status of the video generation job and, once it finishes, retrieve the generated video through a download URL.
+
+## Best practices for prompts
+
+Write text prompts in English or other Latin script languages for the best video generation performance.  
+
+
+## Limitations
+
+### Content quality limitations
+
+Sora might have difficulty with complex physics, causal relationships (for example, bite marks on a cookie), spatial reasoning (for example, knowing left from right), and precise time-based event sequencing such as camera movement.
+
+### Sora 2 Technical Limitations 
+
+- Please see Sora 2 API details above 
+- Jobs are available for up to 24 hours after they're created. After that, you must create a new job to generate the video again.
+- You can have two video creation jobs running at the same time. You must wait for one of the jobs to finish before you can create another.
+
+### Sora 1 Technical limitations
+
+- Sora supports the following output resolution dimensions: 
+480x480, 480x854, 854x480, 720x720, 720x1280, 1280x720, 1080x1080, 1080x1920, 1920x1080.
+- Sora can produce videos between 1 and 20 seconds long.
+- You can request multiple video variants in a single job: for 1080p resolutions, this feature is disabled; for 720p, the maximum is two variants; for other resolutions, the maximum is four variants.
+- You can have two video creation jobs running at the same time. You must wait for one of the jobs to finish before you can create another.
+- Jobs are available for up to 24 hours after they're created. After that, you must create a new job to generate the video again.
+- You can use up to two images as input (the generated video interpolates content between them).
+- You can use one video up to five seconds as input.
+
+
+## Related content
+- [Video generation quickstart](../video-generation-quickstart.md)
+- [Image generation quickstart](../dall-e-quickstart.md)

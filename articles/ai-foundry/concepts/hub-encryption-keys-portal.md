@@ -56,7 +56,6 @@ Supported keys: RSA / RSA-HSM 2048.
 ## Create a hub with customer-managed keys
 
 For customers in highly regulated industries, creating a hub with customer-managed keys (CMK) is a critical requirement.  
-<!-- Comment: Removed repeated advisory language about permanence and deferred authoritative constraints to the consolidated section below. -->
 
 ### Prerequisites
 
@@ -95,12 +94,10 @@ After the hub is created, the system assigns a managed identity that receives Ge
 - CMK must be configured at hub creation time; you cannot add CMK to an existing hub.
 - You cannot switch between customer-managed keys and Microsoft-managed keys after creation.
 - Key rotation is supported only within the same Azure Key Vault; changing Key Vaults is not supported.  
-<!-- Comment: Consolidated all permanent CMK limitations into a single authoritative constraints section and replaced advisory phrasing with explicit constraints. -->
 
 ## Rotation
 
 Rotate within the same Key Vault by updating the hub to a new key URI. Existing data isn't re-encrypted; new data uses the new key.  
-<!-- Comment: Clarified rotation behavior while aligning with the consolidated Key Vault constraint above. -->
 
 ## Revocation
 

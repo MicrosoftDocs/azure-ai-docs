@@ -19,7 +19,6 @@ ai-usage: ai-assisted
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
 This guide outlines key decisions for rolling out Microsoft Foundry, including environment setup, data isolation, integration with other Azure services, capacity management, and monitoring. Use this guide as a starting point and adapt it to your needs. For implementation details, see the linked articles for further guidance.
-<!-- Removed a low-signal, generic sentence to increase information density, per agent feedback. -->
 
 ## Example organization
 

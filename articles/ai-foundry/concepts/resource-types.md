@@ -21,12 +21,10 @@ ms.custom:
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
 An Azure resource defines the scope for configuring, securing, and monitoring AI capabilities (such as models, agents, and storage) in Azure. Microsoft Foundry portal and SDK clients support multiple resource types, each optimized for a specific development or operational scenario.
-<!-- Condensed introductory marketing-style content into a single concise definition with clear scope, per agent feedback. -->
 
 ## Resource Types supported with Foundry portal and SDK clients
 
 * **Foundry** – An Azure resource that scopes design, deployment, governance, and runtime access for generative AI applications and agents, including agent service, Microsoft‑ and partner‑provided models, evaluations, Foundry Tools, and Azure OpenAI–compatible APIs. It is the default resource type for projects built in the Foundry portal.
-<!-- Replaced marketing-heavy description with a concise, scoped definition that focuses on what the resource controls and where it applies, per agent feedback. -->
  
   Get started by [creating a first Foundry resource](../../ai-services/multi-service-resource.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json).
 
