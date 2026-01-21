@@ -17,7 +17,7 @@ ai-usage: ai-assisted
 
 When you build agentic applications by using open-source frameworks, you typically manage containerization, web server setup, security integration, memory persistence, infrastructure scaling, data transmission, instrumentation, and version rollbacks. These tasks become even more challenging in heterogeneous cloud environments.
 
-Hosted agents in Foundry Agent Service in Microsoft Foundry solve these challenges. By using this managed platform, you can deploy and operate AI agents securely and at scale. You can use your custom agent code or a preferred agent framework with streamlined deployment and management.
+Hosted agents in Foundry Agent Service solve these challenges for Microsoft Foundry users. By using this managed platform, you can deploy and operate AI agents securely and at scale. You can use your custom agent code or a preferred agent framework with streamlined deployment and management.
 
 ## Prerequisites
 
@@ -94,12 +94,12 @@ The hosting adapter provides several key benefits for developers:
 
 Agent Service handles:
 
-- Provisioning and autoscaling of agents.
-- Conversation orchestration and state management.
-- Identity management.
-- Integration with Foundry tools and models.
-- Built-in observability and evaluation capabilities.
-- Enterprise-grade security, compliance, and governance.
+- Provisioning and autoscaling of agents
+- Conversation orchestration and state management
+- Identity management
+- Integration with Foundry tools and models
+- Built-in observability and evaluation capabilities
+- Enterprise-grade security, compliance, and governance
 
 > [!IMPORTANT]
 > If you use Agent Service to host agents that interact with non-Microsoft servers or agents, you take on the risk. Review all data that you share with non-Microsoft servers or agents. Be aware of non-Microsoft practices for retention and location of data. You're responsible for managing whether your data flows outside your organization's Azure compliance and geographic boundaries, along with any related implications.
@@ -448,7 +448,7 @@ az cognitiveservices agent update --account-name myAccount --project-name myProj
 
 ### Start an agent deployment
 
-After you create your hosted agent version, start the deployment by using the `az` CLI extension to make it available for requests. You can also start a hosted agent that's stopped.
+After you create your hosted agent version, start the deployment by using the `az` CLI extension to make it available for requests. You can also start a hosted agent that you previously stopped.
 
 ```bash
 az cognitiveservices agent start
@@ -482,7 +482,7 @@ When you start an agent:
 
 ### Stop an agent deployment
 
-To stop the hosted agent, override the maximum replica configured for your agent deployment by setting it to zero and use the following command:
+To stop the hosted agent, set the maximum replica for your agent deployment to zero and use the following command:
 
 ```bash
 az cognitiveservices agent stop
@@ -586,7 +586,7 @@ The arguments for this command include:
 
 ### Invoke hosted agents
 
-You can view and test hosted agents in the agent playground UI. Hosted agents expose an API that's compatible with OpenAI Responses. Use the Azure AI Projects SDK to invoke this API.
+You can view and test hosted agents in the agent playground UI. Hosted agents expose an API that's compatible with OpenAI responses. Use the Azure AI Projects SDK to invoke this API.
 
 ```python
 #!/usr/bin/env python3
@@ -621,7 +621,7 @@ Reference: [Azure AI Projects SDK for Python](/python/api/overview/azure/ai-proj
 
 ### Use tools with hosted agents
 
-Before your hosted agent can run with Foundry tools, you need to create a connection to your remote Model Context Protocol (MCP) server on Foundry.
+Before your hosted agent can run with Foundry tools, create a connection to your remote Model Context Protocol (MCP) server on Foundry.
 
 The `RemoteMCPTool` connection supports these authentication mechanisms:
 
@@ -767,7 +767,7 @@ Microsoft Foundry provides comprehensive evaluation and testing capabilities tha
 
 **Development testing**: Test your hosted agent locally during development by using the agent playground and local testing tools before deployment.
 
-**Staging validation**: Deploy to a staging environment to validate behavior with real Foundry infrastructure while maintaining isolation from production.
+**Staging validation**: Deploy to a staging environment to validate behavior by using real Foundry infrastructure while maintaining isolation from production.
 
 **Production monitoring**: Continuously monitor deployed hosted agents by using automated evaluation runs to detect performance degradation or problems.
 
