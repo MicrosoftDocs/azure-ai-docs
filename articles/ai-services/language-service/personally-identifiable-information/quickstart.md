@@ -11,12 +11,12 @@ ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python
 ms.custom:
-	- language-service-pii
-	- mode-other
-	- devx-track-extended-java
-	- devx-track-js
-	- devx-track-python
-	- pilot-ai-workflow-jan-2026
+- language-service-pii
+- mode-other
+- devx-track-extended-java
+- devx-track-js
+- devx-track-python
+- pilot-ai-workflow-jan-2026
 keywords: pii, personally identifiable information, redaction, text analytics
 zone_pivot_groups: programming-languages-text-analytics
 ai-usage: ai-assisted
