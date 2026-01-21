@@ -44,7 +44,6 @@ Integrations for monitoring a prompt flow deployment allow you to:
 
 [!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
 - A prompt flow ready for deployment. If you don't have one, see [Develop a prompt flow](flow-develop.md).
-- [!INCLUDE [rbac-dev](../includes/rbac-dev.md)]
 
 # [Python SDK](#tab/python)
 

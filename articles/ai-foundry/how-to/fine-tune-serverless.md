@@ -38,7 +38,6 @@ This article explains how to fine-tune models that are deployed using serverless
 
 - A [Foundry project](create-projects.md).
 
-- [!INCLUDE [rbac-dev](../includes/rbac-dev.md)]
 
 ## Verify registration of subscription provider
 

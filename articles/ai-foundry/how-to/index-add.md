@@ -29,7 +29,6 @@ A vector index isn't required for RAG, but a vector query can match on semantica
 ## Prerequisites
 
 - A [Foundry project](create-projects.md).
-- [!INCLUDE [rbac-dev](../includes/rbac-dev.md)]
 
 - An [Azure AI Search resource](/azure/search/search-create-service-portal).
 
