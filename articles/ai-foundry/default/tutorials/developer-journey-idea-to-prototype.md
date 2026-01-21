@@ -7,7 +7,7 @@ ms.date: 11/18/2025
 ms.author: jburchel
 author: jonburchel
 ms.reviewer: dantaylo
-ai.usage: ai-assisted
+ai-usage: ai-assisted
 #customer intent: As a developer I want to quickly prototype an enterprise-grade agent with real data, tools, evaluation, and a deployment path so I can validate feasibility before scaling.
 ---
 
@@ -45,10 +45,11 @@ This minimal sample demonstrates enterprise-ready patterns with realistic busine
 - Azure CLI 2.67.0 or later (check with `az version`)
 - A Foundry **project** with a deployed model (for example, `gpt-4o-mini`). If you don't have one: [Create a project](../../how-to/create-projects.md) and then deploy a model (see model overview: [Model catalog](../../concepts/foundry-models-overview.md)). 
 - Python 3.10 or later
-- SharePoint connection configured in your project ([SharePoint tool documentation](../../agents/how-to/tools/sharepoint.md))
+- .NET SDK (for the C# sample)
+- SharePoint connection configured in your project ([SharePoint tool documentation](../agents/how-to/tools/sharepoint.md))
 
-  > [!NOTE]
-  > To configure your Foundry project for SharePoint connectivity, see the [SharePoint tool documentation](../../agents/how-to/tools/sharepoint.md).
+> [!NOTE]
+> To configure your Foundry project for SharePoint connectivity, see the [SharePoint tool documentation](../agents/how-to/tools/sharepoint.md).
 
 - (Optional) Git installed for cloning the sample repository
 
@@ -61,12 +62,25 @@ Instead of navigating a large repository tree, use one of these approaches:
 
 [!INCLUDE [agent-v2](../includes/agent-v2.md)]
 
+# [Python](#tab/python)
+
 ```bash
 git clone --depth 1 https://github.com/azure-ai-foundry/foundry-samples.git
 cd foundry-samples/samples/python/enterprise-agent-tutorial/1-idea-to-prototype
 ```
 
+# [C#](#tab/csharp)
+
+```bash
+git clone --depth 1 https://github.com/azure-ai-foundry/foundry-samples.git
+cd foundry-samples/samples/csharp/enterprise-agent-tutorial/1-idea-to-prototype
+```
+
+---
+
 #### Option B (sparse checkout only this tutorial - reduced download)
+
+# [Python](#tab/python)
 
 ```bash
 git clone --no-checkout https://github.com/azure-ai-foundry/foundry-samples.git
@@ -77,7 +91,18 @@ git checkout
 cd samples/python/enterprise-agent-tutorial/1-idea-to-prototype
 ```
 
-Repeat the path for `csharp` or `java` variants as needed.
+# [C#](#tab/csharp)
+
+```bash
+git clone --no-checkout https://github.com/azure-ai-foundry/foundry-samples.git
+cd foundry-samples
+git sparse-checkout init --cone
+git sparse-checkout set samples/csharp/enterprise-agent-tutorial/1-idea-to-prototype
+git checkout
+cd samples/csharp/enterprise-agent-tutorial/1-idea-to-prototype
+```
+
+---
 
 #### Option C (Download ZIP of repository)
 
@@ -85,10 +110,26 @@ Download the repository ZIP, extract it to your local environment, and go to the
 
 > [!IMPORTANT]
 > For production adoption, use a standalone repository. This tutorial uses the shared samples repo. Sparse checkout minimizes local noise.
+
+# [Python](#tab/python)
+
 > [!div class="nextstepaction"] 
 > [Download the Python code now](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/python/enterprise-agent-tutorial/1-idea-to-prototype)
 
+After you extract the ZIP, go to `samples/python/enterprise-agent-tutorial/1-idea-to-prototype`.
+
+# [C#](#tab/csharp)
+
+> [!div class="nextstepaction"] 
+> [Download the C# code now](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/csharp/enterprise-agent-tutorial/1-idea-to-prototype)
+
+After you extract the ZIP, go to `samples/csharp/enterprise-agent-tutorial/1-idea-to-prototype`.
+
+---
+
 The minimal structure contains only essential files:
+
+# [Python](#tab/python)
 
 ```text
 enterprise-agent-tutorial/
@@ -107,6 +148,25 @@ enterprise-agent-tutorial/
         └── data-governance-policy.docx  # Sample content for policies
 ```
 
+# [C#](#tab/csharp)
+
+```text
+enterprise-agent-tutorial/
+└── 1-idea-to-prototype/
+   ├── ModernWorkplaceAssistant/        # Modern Workplace Assistant
+   │   ├── Program.cs                   # Agent implementation with SharePoint + MCP
+   │   ├── ModernWorkplaceAssistant.csproj
+   │   └── .env                         # Environment variables (create this)
+   ├── Evaluate/                        # Business evaluation framework
+   │   ├── Program.cs                   # Batch evaluation with keyword matching
+   │   ├── Evaluate.csproj
+   │   └── evaluation_results.json      # Example output (generated)
+   ├── questions.jsonl                  # Business test scenarios
+   └── README.md                        # Complete setup instructions
+```
+
+---
+
 ## Step 2: Run the sample immediately
 
 Start by running the agent so you see working functionality before diving into implementation details.
@@ -115,47 +175,103 @@ Start by running the agent so you see working functionality before diving into i
 
 1. Install the required language runtimes, global tools, and VS Code extensions as described in [Prepare your development environment](../../how-to/develop/install-cli-sdk.md).
 
-1. Install dependencies from `requirements.txt`:
+1. Install the sample dependencies.
 
-   ```bash
-   pip install -r requirements.txt
-   ```
+# [Python](#tab/python)
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+# [C#](#tab/csharp)
+
+```bash
+cd ModernWorkplaceAssistant
+dotnet restore
+
+cd ../Evaluate
+dotnet restore
+```
+
+---
 
 1. [!INCLUDE [find-endpoint](../includes/find-endpoint.md)] 
 1. Configure `.env`.
 
-   Copy `.env.template` to `.env` and configure:
-  
-   ```bash
-   # Foundry Configuration  
-   PROJECT_ENDPOINT=https://<your-project>.aiservices.azure.com
-   MODEL_DEPLOYMENT_NAME=gpt-4o-mini
-   AI_FOUNDRY_TENANT_ID=<your-tenant-id>
-   
-   # The Microsoft Learn MCP Server (public authoritative Microsoft docs index)
-   MCP_SERVER_URL=https://learn.microsoft.com/api/mcp
-   
-   # SharePoint Integration (Optional - requires connection setup)
-   SHAREPOINT_RESOURCE_NAME=your-sharepoint-connection
-   SHAREPOINT_SITE_URL=https://<your-company>.sharepoint.com/teams/your-site
-   ```
-   
-   > [!TIP]
-   > To get your **tenant ID**, run:
-   > 
-   > ```bash
-   > # Get tenant ID
-   > az account show --query tenantId -o tsv
-   > ```
-   > 
-   > To get your **project endpoint**, open your project in the [Foundry portal](https://ai.azure.com) and copy the value shown there.
+   Configure the environment values required for your language.
+
+# [Python](#tab/python)
+
+Copy `.env.template` to `.env`.
+
+# [C#](#tab/csharp)
+
+Create a `.env` file in the `ModernWorkplaceAssistant` directory.
+
+---
+
+# [Python](#tab/python)
+
+```dotenv
+# Foundry configuration
+PROJECT_ENDPOINT=https://<your-project>.aiservices.azure.com
+MODEL_DEPLOYMENT_NAME=gpt-4o-mini
+
+# The Microsoft Learn MCP Server (optional)
+MCP_SERVER_URL=https://learn.microsoft.com/api/mcp
+
+# SharePoint integration (optional - requires connection setup)
+SHAREPOINT_RESOURCE_NAME=<your-sharepoint-connection-name>
+```
+
+# [C#](#tab/csharp)
+
+```dotenv
+# Foundry configuration
+PROJECT_ENDPOINT=https://<your-project>.aiservices.azure.com
+MODEL_DEPLOYMENT_NAME=gpt-4o-mini
+
+# SharePoint integration (optional - requires full ARM resource ID)
+SHAREPOINT_CONNECTION_ID=/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.MachineLearningServices/workspaces/<workspace-name>/connections/<connection-name>
+
+# The Microsoft Learn MCP Server (optional)
+MCP_SERVER_URL=https://learn.microsoft.com/api/mcp
+```
+
+---
+
+> [!TIP]
+> To get your **tenant ID**, run:
+>
+> ```bash
+> # Get tenant ID
+> az account show --query tenantId -o tsv
+> ```
+>
+> To get your **project endpoint**, open your project in the [Foundry portal](https://ai.azure.com) and copy the value shown there.
 
 ### Run agent and evaluation
+
+# [Python](#tab/python)
 
 ```bash
 python main.py
 python evaluate.py
 ```
+
+# [C#](#tab/csharp)
+
+```bash
+cd ModernWorkplaceAssistant
+dotnet restore
+dotnet run
+
+cd ../Evaluate
+dotnet restore
+dotnet run
+```
+
+---
 
 ### Expected output (agent first run)
 
@@ -199,7 +315,7 @@ Now that you have a working agent, the next sections explain how it works. You d
 
 ## Step 4: Understand the assistant implementation
 
-This section explains the core code in `main.py`. You already ran the agent; this section is conceptual and requires no changes. After reading it, you can:
+This section explains the core code in `main.py` (Python) or `ModernWorkplaceAssistant/Program.cs` (C#). You already ran the agent; this section is conceptual and requires no changes. After reading it, you can:
 - Add new internal and external data tools.
 - Extend dynamic instructions.
 - Introduce multi-agent orchestration.
@@ -220,35 +336,83 @@ The code breaks down into the following main sections, ordered as they appear in
 
 The code uses several client libraries from the Microsoft Foundry SDK to create a robust enterprise agent.
 
+# [Python](#tab/python)
+
 :::code language="python" source="~/foundry-samples-main/samples/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" id="imports_and_includes":::
+
+# [C#](#tab/csharp)
+
+:::code language="csharp" source="~/foundry-samples-main/samples/csharp/enterprise-agent-tutorial/1-idea-to-prototype/ModernWorkplaceAssistant/Program.cs" id="imports_and_includes":::
+
+---
 
 ### Configure authentication in Azure
 
 Before you create your agent, set up authentication to the Foundry.
 
+# [Python](#tab/python)
+
 :::code language="python" source="~/foundry-samples-main/samples/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" id="agent_authentication":::
+
+# [C#](#tab/csharp)
+
+:::code language="csharp" source="~/foundry-samples-main/samples/csharp/enterprise-agent-tutorial/1-idea-to-prototype/ModernWorkplaceAssistant/Program.cs" id="agent_authentication":::
+
+---
 
 ### Create the SharePoint tool for the agent
 
 The agent uses SharePoint and can access company policy and procedure documents stored there. Set up the connection to SharePoint in your code.
 
+# [Python](#tab/python)
+
 :::code language="python" source="~/foundry-samples-main/samples/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" id="sharepoint_tool_setup":::
+
+# [C#](#tab/csharp)
+
+:::code language="csharp" source="~/foundry-samples-main/samples/csharp/enterprise-agent-tutorial/1-idea-to-prototype/ModernWorkplaceAssistant/Program.cs" id="sharepoint_tool_setup":::
+
+---
 
 ### Create the MCP tool for the agent
 
+# [Python](#tab/python)
+
 :::code language="python" source="~/foundry-samples-main/samples/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" id="mcp_tool_setup":::
+
+# [C#](#tab/csharp)
+
+:::code language="csharp" source="~/foundry-samples-main/samples/csharp/enterprise-agent-tutorial/1-idea-to-prototype/ModernWorkplaceAssistant/Program.cs" id="mcp_tool_setup":::
+
+---
 
 ### Create the agent and connect the tools
 
 Now, create the agent and connect the SharePoint and MCP tools.
 
+# [Python](#tab/python)
+
 :::code language="python" source="~/foundry-samples-main/samples/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" id="create_agent_with_tools":::
+
+# [C#](#tab/csharp)
+
+:::code language="csharp" source="~/foundry-samples-main/samples/csharp/enterprise-agent-tutorial/1-idea-to-prototype/ModernWorkplaceAssistant/Program.cs" id="create_agent_with_tools":::
+
+---
 
 ### Converse with the agent
 
 Finally, implement an interactive loop to converse with the agent.
 
+# [Python](#tab/python)
+
 :::code language="python" source="~/foundry-samples-main/samples/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" id="agent_conversation":::
+
+# [C#](#tab/csharp)
+
+:::code language="csharp" source="~/foundry-samples-main/samples/csharp/enterprise-agent-tutorial/1-idea-to-prototype/ModernWorkplaceAssistant/Program.cs" id="agent_conversation":::
+
+---
 
 ### Expected output from agent sample code (main.py)
 
@@ -364,15 +528,39 @@ In this section, the evaluation framework loads test questions from `questions.j
 
 :::code language="jsonl" source="~/foundry-samples-main/samples/python/enterprise-agent-tutorial/1-idea-to-prototype/questions.jsonl":::
 
+# [Python](#tab/python)
+
 :::code language="python" source="~/foundry-samples-main/samples/python/enterprise-agent-tutorial/1-idea-to-prototype/evaluate.py" id="load_test_data":::
+
+# [C#](#tab/csharp)
+
+:::code language="csharp" source="~/foundry-samples-main/samples/csharp/enterprise-agent-tutorial/1-idea-to-prototype/Evaluate/Program.cs" id="load_test_data":::
+
+---
 
 ### Run batch evaluation
 
+# [Python](#tab/python)
+
 :::code language="python" source="~/foundry-samples-main/samples/python/enterprise-agent-tutorial/1-idea-to-prototype/evaluate.py" id="run_batch_evaluation":::
+
+# [C#](#tab/csharp)
+
+:::code language="csharp" source="~/foundry-samples-main/samples/csharp/enterprise-agent-tutorial/1-idea-to-prototype/Evaluate/Program.cs" id="run_batch_evaluation":::
+
+---
 
 ### Compile evaluation results
 
+# [Python](#tab/python)
+
 :::code language="python" source="~/foundry-samples-main/samples/python/enterprise-agent-tutorial/1-idea-to-prototype/evaluate.py" id="evaluation_results":::
+
+# [C#](#tab/csharp)
+
+:::code language="csharp" source="~/foundry-samples-main/samples/csharp/enterprise-agent-tutorial/1-idea-to-prototype/Evaluate/Program.cs" id="evaluation_results":::
+
+---
 
 ### Expected output from evaluation sample code (evaluate.py)
 
