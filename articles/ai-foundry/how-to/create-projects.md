@@ -119,14 +119,11 @@ If your organization requires customized Azure configurations like alternative n
     # [Azure CLI](#tab/azurecli)
     
     - Install the [Azure CLI](/cli/azure/install-azure-cli). 
-    - Set default values for `subscription` and `resource group`.
+    - Set default values for `subscription`.
     
       ```azurecli
         # Set your default subscription
         az account set --subscription "{subscription-name}"
-    
-        # Set default resource group
-        az config set defaults.group={resource-group-name}
        ```
     
     ---
@@ -305,8 +302,8 @@ Run the following command:
 
 ```azurecli
 az cognitiveservices account project delete \
---name {foundry_resource_name} \
---project-name {my_project_name}
+--name my-foundry-rg \
+--project-name my-foundry-project
 ```
 
 References: [az cognitiveservices account project delete](/cli/azure/cognitiveservices/account/project#az-cognitiveservices-account-project-delete).

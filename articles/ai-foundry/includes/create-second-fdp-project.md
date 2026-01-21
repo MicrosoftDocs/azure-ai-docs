@@ -89,13 +89,13 @@ While not all Foundry capabilities support organizing work in projects yet, your
     While this code can add additional projects to a resource, you won't be able to view them in the Foundry (new) portal. Only the default project for a resource is available in the Foundry (new) portal.
     ::: moniker-end
 
-    Use your existing values for {foundry_resource_name} to add another project to the resource:
+    To add a new project to `my-foundry-resource`:
     
     ```azurecli
      az cognitiveservices account project create \
-     --name {foundry_resource_name} \
-     --project-name {my_project_name} \
-     --location {location}
+     --name my-foundry-resource \
+     --project-name {new_project_name} \
+     --location eastus
     ```
 
     ---
