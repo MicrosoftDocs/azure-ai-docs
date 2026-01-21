@@ -23,7 +23,7 @@ On your Azure AI Search service:
 
 1. [Create a system-assigned managed identity](../../search-how-to-managed-identities.md#create-a-system-managed-identity).
 
-1. [Assign the following roles](../../search-security-rbac.md#how-to-assign-roles-in-the-azure-portal) to yourself.
+1. [Assign the following roles](../../search-security-rbac.md) to yourself.
 
     + **Search Service Contributor**
 

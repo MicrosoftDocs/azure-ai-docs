@@ -28,11 +28,11 @@ A vector index isn't required for RAG, but a vector query can match on semantica
 
 ## Prerequisites
 
-You must have:
-
 - A [Foundry project](create-projects.md).
 
 - An [Azure AI Search resource](/azure/search/search-create-service-portal).
+
+- You should have content in a supported format that provides sufficient information for a chat experience. It can be an existing index on Azure AI Search, or you can create a new index using content files in Azure Blob Storage, your local system, or data in Foundry.
 
 - You should have content in a supported format that provides sufficient information for a chat experience. It can be an existing index on Azure AI Search, or you can create a new index using content files in Azure Blob Storage, your local system, or data in Foundry.
 

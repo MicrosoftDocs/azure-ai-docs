@@ -6,7 +6,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.custom:
 ms.topic: how-to
-ms.date: 12/11/2025
+ms.date: 1/20/2026
 ms.reviewer: ambadal
 reviewer: AmarBadal
 ms.author: mopeakande
@@ -121,6 +121,12 @@ A Foundry project with ingress Public Network Access disabled can only support a
 ## Supported models 
 
 The following sections list the supported models for managed compute deployment with pay-as-you-go billing, grouped by collection.
+
+### Boson AI
+
+| Model | Task |
+|--|--|
+| [Higgs-Audio-v2.5](https://ai.azure.com/explore/models/Higgs-Audio-v2.5/version/1/registry/azureml-bosonai-p/?cid=learnDocs) | Audio generation |
 
 ### Cohere
 

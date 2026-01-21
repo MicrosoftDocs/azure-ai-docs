@@ -469,7 +469,7 @@ Authorization: Bearer {{token}}
 }
 ```
 
-Reference: [Indexes - Create](/rest/api/searchservice/indexes/create)
+**Reference:** [Indexes - Create](/rest/api/searchservice/indexes/create)
 
 ### Upload documents to the index
 
@@ -505,7 +505,7 @@ Authorization: Bearer {{token}}
 }
 ```
 
-Reference: [Documents - Index](/rest/api/searchservice/documents/index)
+**Reference:** [Documents - Index](/rest/api/searchservice/documents/index)
 
 ### Create a knowledge source
 
@@ -534,7 +534,7 @@ Authorization: Bearer {{token}}
 }
 ```
 
-Reference: [Knowledge Sources - Create](/rest/api/searchservice/knowledge-sources/create?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+**Reference:** [Knowledge Sources - Create](/rest/api/searchservice/knowledge-sources/create?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
 
 ### Create a knowledge base
 
@@ -570,7 +570,7 @@ Authorization: Bearer {{token}}
 }
 ```
 
-Reference: [Knowledge Bases - Create](/rest/api/searchservice/knowledge-bases/create?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+**Reference:** [Knowledge Bases - Create](/rest/api/searchservice/knowledge-bases/create?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
 
 ### Run the retrieval pipeline
 
@@ -615,7 +615,7 @@ Authorization: Bearer {{token}}
 }
 ```
 
-Reference: [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+**Reference:** [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
 
 The output should contain the following components:
 
