@@ -18,7 +18,10 @@ ai-usage: ai-assisted
 
 # Quickstart: Set up Microsoft Foundry resources
 
-In this article, you create a [Microsoft Foundry](https://ai.azure.com) project and deploy a model. If you're managing a team, you also grant access to team members. After you complete these steps, you or your team can start building AI applications using the deployed model.
+In this quickstart, you create a [Microsoft Foundry](https://ai.azure.com) project and deploy a model. If you're managing a team, you also grant access to team members. After you complete these steps, you or your team can start building AI applications using the deployed model.
+
+> [!TIP]
+> This quickstart shows you how to create resources to build an agent with a basic setup. For more advanced scenarios that use your own resources, see [Set up your environment for agent development](../../agents/environment-setup.md).
 
 ## Prerequisites
 
