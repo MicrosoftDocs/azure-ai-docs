@@ -40,6 +40,17 @@ A _data plane operation_ uses data to interact with an online endpoint without c
 
 Run this snippet to verify that your credentials and RBAC permissions are correctly configured:
 
+### [Azure CLI](#tab/azure-cli)
+
+```azurecli
+az login
+az ml online-endpoint list --resource-group <RESOURCE_GROUP> --workspace-name <WORKSPACE_NAME>
+```
+
+Expected output: JSON array of endpoints (empty `[]` if no endpoints exist yet).
+
+Reference: [az ml online-endpoint list](/cli/azure/ml/online-endpoint#az-ml-online-endpoint-list)
+
 ### [Python](#tab/python)
 
 ```python
@@ -62,17 +73,6 @@ print("Existing endpoints:", [ep.name for ep in endpoints])
 Expected output: A list of endpoint names (empty list `[]` if no endpoints exist yet).
 
 Reference: [MLClient](/python/api/azure-ai-ml/azure.ai.ml.mlclient), [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential)
-
-### [Azure CLI](#tab/azure-cli)
-
-```azurecli
-az login
-az ml online-endpoint list --resource-group <RESOURCE_GROUP> --workspace-name <WORKSPACE_NAME>
-```
-
-Expected output: JSON array of endpoints (empty `[]` if no endpoints exist yet).
-
-Reference: [az ml online-endpoint list](/cli/azure/ml/online-endpoint#az-ml-online-endpoint-list)
 
 ### [REST](#tab/rest)
 
@@ -245,26 +245,6 @@ If you plan to use other methods, like Azure CLI with the ml extension v2, Pytho
 
 You can retrieve the Microsoft Entra token for control plane operations from the Azure resource endpoint: `https://management.azure.com`.
 
-### [Python](#tab/python)
-
-```python
-from azure.identity import DefaultAzureCredential, InteractiveBrowserCredential
-
-try:
-    credential = DefaultAzureCredential()
-    # Check whether given credential can get token.
-    access_token = credential.get_token("https://management.azure.com/.default")
-    print(access_token)
-except Exception as ex:
-    # Fall back to InteractiveBrowserCredential in case DefaultAzureCredential doesn't work.
-    # This will open a browser page. 
-    credential = InteractiveBrowserCredential()
-```
-
-Reference: [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential), [InteractiveBrowserCredential](/python/api/azure-identity/azure.identity.interactivebrowsercredential)
-
-For more information, see [Get a token using the Azure Identity client library](/entra/identity/managed-identities-azure-resources/how-to-use-vm-token#get-a-token-using-the-azure-identity-client-library).
-
 ### [Azure CLI](#tab/azure-cli)
 
 1. Sign in to Azure.
@@ -288,6 +268,26 @@ For more information, see [Get a token using the Azure Identity client library](
     ```
 
 Reference: [az login](/cli/azure/reference-index#az-login), [az account get-access-token](/cli/azure/account#az-account-get-access-token)
+
+### [Python](#tab/python)
+
+```python
+from azure.identity import DefaultAzureCredential, InteractiveBrowserCredential
+
+try:
+    credential = DefaultAzureCredential()
+    # Check whether given credential can get token.
+    access_token = credential.get_token("https://management.azure.com/.default")
+    print(access_token)
+except Exception as ex:
+    # Fall back to InteractiveBrowserCredential in case DefaultAzureCredential doesn't work.
+    # This will open a browser page. 
+    credential = InteractiveBrowserCredential()
+```
+
+Reference: [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential), [InteractiveBrowserCredential](/python/api/azure-identity/azure.identity.interactivebrowsercredential)
+
+For more information, see [Get a token using the Azure Identity client library](/entra/identity/managed-identities-azure-resources/how-to-use-vm-token#get-a-token-using-the-azure-identity-client-library).
 
 ### [REST](#tab/rest)
 
@@ -343,42 +343,6 @@ After you retrieve the Microsoft Entra token, you can verify that the token is f
 
 The following example creates the endpoint with a system-assigned identity as the endpoint identity. The system-assigned identity is the default identity type of the managed identity for endpoints. Some basic roles are automatically assigned for the system-assigned identity. For more information on role assignment for a system-assigned identity, see [Automatic role assignment for endpoint identity](concept-endpoints-online-auth.md#automatic-role-assignment-for-endpoint-identity).
 
-### [Python](#tab/python)
-
-Python SDK doesn't require you to explicitly provide the control plane token. Rather, the SDK `MLClient` authenticates you during sign in, and the token is automatically retrieved and passed for you.
-
-```python
-from azure.ai.ml import MLClient
-from azure.ai.ml.entities import (
-    ManagedOnlineEndpoint,
-    ManagedOnlineDeployment,
-    Model,
-    Environment,
-    CodeConfiguration,
-)
-from azure.identity import DefaultAzureCredential
-
-subscription_id = "<SUBSCRIPTION_ID>"
-resource_group = "<RESOURCE_GROUP>"
-workspace = "<WORKSPACE_NAME>"
-
-ml_client = MLClient(
-    DefaultAzureCredential(), subscription_id, resource_group, workspace
-)
-
-endpoint = ManagedOnlineEndpoint(
-    name="my-endpoint",
-    description="this is a sample online endpoint",
-    auth_mode="aad_token",
-    tags={"foo": "bar"},
-)
-ml_client.online_endpoints.begin_create_or_update(endpoint).result()
-```
-
-You can replace `auth_mode` with `key` for key authentication or with `aml_token` for Azure Machine Learning token authentication. The example uses `aad_token` for Microsoft Entra token authentication.
-
-Reference: [MLClient](/python/api/azure-ai-ml/azure.ai.ml.mlclient), [ManagedOnlineEndpoint](/python/api/azure-ai-ml/azure.ai.ml.entities.managedonlineendpoint), [begin_create_or_update](/python/api/azure-ai-ml/azure.ai.ml.operations.onlineendpointoperations#azure-ai-ml-operations-onlineendpointoperations-begin-create-or-update)
-
 ### [Azure CLI](#tab/azure-cli)
 
 The CLI doesn't require you to explicitly provide the control plane token. Instead, the CLI `az login` command authenticates you during sign in, and the token is automatically retrieved and passed for you.
@@ -418,6 +382,42 @@ The CLI doesn't require you to explicitly provide the control plane token. Inste
     ```
 
 Reference: [az ml online-endpoint create](/cli/azure/ml/online-endpoint#az-ml-online-endpoint-create), [az ml online-endpoint show](/cli/azure/ml/online-endpoint#az-ml-online-endpoint-show), [az ml online-endpoint update](/cli/azure/ml/online-endpoint#az-ml-online-endpoint-update)
+
+### [Python](#tab/python)
+
+Python SDK doesn't require you to explicitly provide the control plane token. Rather, the SDK `MLClient` authenticates you during sign in, and the token is automatically retrieved and passed for you.
+
+```python
+from azure.ai.ml import MLClient
+from azure.ai.ml.entities import (
+    ManagedOnlineEndpoint,
+    ManagedOnlineDeployment,
+    Model,
+    Environment,
+    CodeConfiguration,
+)
+from azure.identity import DefaultAzureCredential
+
+subscription_id = "<SUBSCRIPTION_ID>"
+resource_group = "<RESOURCE_GROUP>"
+workspace = "<WORKSPACE_NAME>"
+
+ml_client = MLClient(
+    DefaultAzureCredential(), subscription_id, resource_group, workspace
+)
+
+endpoint = ManagedOnlineEndpoint(
+    name="my-endpoint",
+    description="this is a sample online endpoint",
+    auth_mode="aad_token",
+    tags={"foo": "bar"},
+)
+ml_client.online_endpoints.begin_create_or_update(endpoint).result()
+```
+
+You can replace `auth_mode` with `key` for key authentication or with `aml_token` for Azure Machine Learning token authentication. The example uses `aad_token` for Microsoft Entra token authentication.
+
+Reference: [MLClient](/python/api/azure-ai-ml/azure.ai.ml.mlclient), [ManagedOnlineEndpoint](/python/api/azure-ai-ml/azure.ai.ml.entities.managedonlineendpoint), [begin_create_or_update](/python/api/azure-ai-ml/azure.ai.ml.operations.onlineendpointoperations#azure-ai-ml-operations-onlineendpointoperations-begin-create-or-update)
 
 ### [REST](#tab/rest)
 
@@ -478,10 +478,6 @@ For more information on deploying online endpoints, see [Deploy a machine learni
 
 To create a deployment, see [Deploy a machine learning model with an online endpoint](how-to-deploy-online-endpoints.md) or [Use REST to deploy a model as an online endpoint](how-to-deploy-with-rest.md). There's no difference in how you create deployments for different authentication modes. 
 
-### [Python](#tab/python)
-
-For more information on deploying online endpoints, see [Deploy a machine learning model with an online endpoint (via SDK)](how-to-deploy-online-endpoints.md?tabs=python#deploy-to-azure).
-
 ### [Azure CLI](#tab/azure-cli)
 
 The following code is an example of how to create a deployment. For more information on deploying online endpoints, see [Deploy a machine learning model with an online endpoint (via CLI)](how-to-deploy-online-endpoints.md?tabs=azure-cli#deploy-to-azure).
@@ -512,6 +508,10 @@ The following code is an example of how to create a deployment. For more informa
 
 Reference: [az ml online-deployment create](/cli/azure/ml/online-deployment#az-ml-online-deployment-create)
 
+### [Python](#tab/python)
+
+For more information on deploying online endpoints, see [Deploy a machine learning model with an online endpoint (via SDK)](how-to-deploy-online-endpoints.md?tabs=python#deploy-to-azure).
+
 ### [REST](#tab/rest)
 
 For more information on deploying online endpoints by using REST, see [Use REST to deploy a model as an online endpoint](how-to-deploy-with-rest.md).
@@ -525,16 +525,6 @@ For more information on deploying online endpoints, see [Deploy a machine learni
 
 ## Get the scoring URI for the endpoint
 
-### [Python](#tab/python)
-
-If you plan to use the Python SDK to invoke the endpoint, you don't need to get the scoring URI explicitly because the SDK provides it for you. However, you can still use the SDK to get the scoring URI so that you can use it with other channels, such as the REST API.
-
-```python
-scoring_uri = ml_client.online_endpoints.get(name=endpoint_name).scoring_uri
-```
-
-Reference: [OnlineEndpointOperations.get](/python/api/azure-ai-ml/azure.ai.ml.operations.onlineendpointoperations#azure-ai-ml-operations-onlineendpointoperations-get)
-
 ### [Azure CLI](#tab/azure-cli)
 
 If you use `az ml online-endpoint invoke` to call the endpoint, the CLI resolves the scoring URI automatically, so you don't need to retrieve it manually.
@@ -546,6 +536,16 @@ scoringUri=$(az ml online-endpoint show -n my-endpoint --query "scoring_uri")
 ```
 
 Reference: [az ml online-endpoint show](/cli/azure/ml/online-endpoint#az-ml-online-endpoint-show)
+
+### [Python](#tab/python)
+
+If you plan to use the Python SDK to invoke the endpoint, you don't need to get the scoring URI explicitly because the SDK provides it for you. However, you can still use the SDK to get the scoring URI so that you can use it with other channels, such as the REST API.
+
+```python
+scoring_uri = ml_client.online_endpoints.get(name=endpoint_name).scoring_uri
+```
+
+Reference: [OnlineEndpointOperations.get](/python/api/azure-ai-ml/azure.ai.ml.operations.onlineendpointoperations#azure-ai-ml-operations-onlineendpointoperations-get)
 
 ### [REST](#tab/rest)
 
@@ -582,47 +582,6 @@ You can use a key or token for data plane operations, even though the process of
 
 To get the key or Azure Machine Learning token, the user identity that's requesting it needs to have the correct role assigned to it, as described in [Authorization for control plane operations](concept-endpoints-online-auth.md#control-plane-operations).
 The user identity doesn't need any extra roles to get the Microsoft Entra token.
-
-### [Python](#tab/python)
-
-If you use the SDK's `invoke()` method to call the endpoint, the SDK handles authentication automatically, so you don't need to retrieve keys or tokens manually.
-
-However, if you need to retrieve keys or tokens for use with other tools (such as REST API or custom HTTP clients), you can use the [get_keys](/python/api/azure-ai-ml/azure.ai.ml.operations.onlineendpointoperations#azure-ai-ml-operations-onlineendpointoperations-get-keys) method in the `OnlineEndpointOperations` class. This method returns an object that includes keys and token.
-
-__When the `auth_mode` of the endpoint is `key`__
-
-- Keys are returned in the `primary_key` and `secondary_key` fields.
-
-   ```python
-   DATA_PLANE_TOKEN = ml_client.online_endpoints.get_keys(name=endpoint_name).primary_key
-   DATA_PLANE_TOKEN2 = ml_client.online_endpoints.get_keys(name=endpoint_name).secondary_key
-   ```
-
-__When the `auth_mode` of the endpoint is `aml_token`__
-
-- The token is returned in the `access_token` field.
-- The token expiration time is returned in the `expiry_time_utc` field.
-- The token refresh time is returned in the `refresh_after_time_utc` field.
-
-   ```python
-   DATA_PLANE_TOKEN = ml_client.online_endpoints.get_keys(name=endpoint_name).access_token
-   EXPIRY_TIME_UTC = ml_client.online_endpoints.get_keys(name=endpoint_name).expiry_time_utc
-   REFRESH_AFTER_TIME_UTC = ml_client.online_endpoints.get_keys(name=endpoint_name).refresh_after_time_utc
-   ```
-
-__When the `auth_mode` of the endpoint is `aad_token`__
-
-- The token is returned in the `access_token` field.
-- The token expiration time is returned in the `expiry_time_utc` field.
-
-   ```python
-   DATA_PLANE_TOKEN = ml_client.online_endpoints.get_keys(name=endpoint_name).access_token
-   EXPIRY_TIME_UTC = ml_client.online_endpoints.get_keys(name=endpoint_name).expiry_time_utc
-   ```
-
-Reference: [OnlineEndpointOperations.get_keys](/python/api/azure-ai-ml/azure.ai.ml.operations.onlineendpointoperations#azure-ai-ml-operations-onlineendpointoperations-get-keys)
-
-For more information, see [Get a token using the Azure identity client library](/entra/identity/managed-identities-azure-resources/how-to-use-vm-token#get-a-token-using-the-azure-identity-client-library).
 
 ### [Azure CLI](#tab/azure-cli)
 
@@ -665,6 +624,47 @@ __When the `auth_mode` of the endpoint is `aad_token`__
    ```
 
 Reference: [az ml online-endpoint get-credentials](/cli/azure/ml/online-endpoint#az-ml-online-endpoint-get-credentials)
+
+### [Python](#tab/python)
+
+If you use the SDK's `invoke()` method to call the endpoint, the SDK handles authentication automatically, so you don't need to retrieve keys or tokens manually.
+
+However, if you need to retrieve keys or tokens for use with other tools (such as REST API or custom HTTP clients), you can use the [get_keys](/python/api/azure-ai-ml/azure.ai.ml.operations.onlineendpointoperations#azure-ai-ml-operations-onlineendpointoperations-get-keys) method in the `OnlineEndpointOperations` class. This method returns an object that includes keys and token.
+
+__When the `auth_mode` of the endpoint is `key`__
+
+- Keys are returned in the `primary_key` and `secondary_key` fields.
+
+   ```python
+   DATA_PLANE_TOKEN = ml_client.online_endpoints.get_keys(name=endpoint_name).primary_key
+   DATA_PLANE_TOKEN2 = ml_client.online_endpoints.get_keys(name=endpoint_name).secondary_key
+   ```
+
+__When the `auth_mode` of the endpoint is `aml_token`__
+
+- The token is returned in the `access_token` field.
+- The token expiration time is returned in the `expiry_time_utc` field.
+- The token refresh time is returned in the `refresh_after_time_utc` field.
+
+   ```python
+   DATA_PLANE_TOKEN = ml_client.online_endpoints.get_keys(name=endpoint_name).access_token
+   EXPIRY_TIME_UTC = ml_client.online_endpoints.get_keys(name=endpoint_name).expiry_time_utc
+   REFRESH_AFTER_TIME_UTC = ml_client.online_endpoints.get_keys(name=endpoint_name).refresh_after_time_utc
+   ```
+
+__When the `auth_mode` of the endpoint is `aad_token`__
+
+- The token is returned in the `access_token` field.
+- The token expiration time is returned in the `expiry_time_utc` field.
+
+   ```python
+   DATA_PLANE_TOKEN = ml_client.online_endpoints.get_keys(name=endpoint_name).access_token
+   EXPIRY_TIME_UTC = ml_client.online_endpoints.get_keys(name=endpoint_name).expiry_time_utc
+   ```
+
+Reference: [OnlineEndpointOperations.get_keys](/python/api/azure-ai-ml/azure.ai.ml.operations.onlineendpointoperations#azure-ai-ml-operations-onlineendpointoperations-get-keys)
+
+For more information, see [Get a token using the Azure identity client library](/entra/identity/managed-identities-azure-resources/how-to-use-vm-token#get-a-token-using-the-azure-identity-client-library).
 
 ### [REST](#tab/rest)
 
@@ -767,6 +767,16 @@ After getting the Entra token, you can verify that the token is for the right Az
 
 ## Score data using the key or token
 
+### [Azure CLI](#tab/azure-cli)
+
+You can use `az ml online-endpoint invoke` for endpoints with a key, an Azure Machine Learning token, or a Microsoft Entra token. The CLI provides the key or token automatically so you don't need to pass it explicitly.
+
+```azurecli
+az ml online-endpoint invoke -n my-endpoint -r request.json
+```
+
+Reference: [az ml online-endpoint invoke](/cli/azure/ml/online-endpoint#az-ml-online-endpoint-invoke)
+
 ### [Python](#tab/python)
 
 Azure Machine Learning SDK `ml_client.online_endpoints.invoke()` is supported for keys, Azure Machine Learning tokens, and Microsoft Entra tokens.
@@ -815,16 +825,6 @@ ml_client.online_endpoints.invoke(
 ```
 
 Reference: [OnlineEndpointOperations.invoke](/python/api/azure-ai-ml/azure.ai.ml.operations.onlineendpointoperations#azure-ai-ml-operations-onlineendpointoperations-invoke)
-
-### [Azure CLI](#tab/azure-cli)
-
-You can use `az ml online-endpoint invoke` for endpoints with a key, an Azure Machine Learning token, or a Microsoft Entra token. The CLI provides the key or token automatically so you don't need to pass it explicitly.
-
-```azurecli
-az ml online-endpoint invoke -n my-endpoint -r request.json
-```
-
-Reference: [az ml online-endpoint invoke](/cli/azure/ml/online-endpoint#az-ml-online-endpoint-invoke)
 
 ### [REST](#tab/rest)
 
