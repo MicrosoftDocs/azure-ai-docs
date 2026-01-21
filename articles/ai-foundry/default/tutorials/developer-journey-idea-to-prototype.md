@@ -414,12 +414,11 @@ Finally, implement an interactive loop to converse with the agent.
 
 ---
 
-### Expected output from agent sample code (main.py)
+### Expected output from agent sample code
 
 When you run the agent, you see output similar to the following example. The output shows successful tool configuration and agent responses to business scenarios:
 
 ```bash
-$ python main.py
 ✅ Connected to Foundry
 🚀 Foundry - Modern Workplace Assistant
 Tutorial 1: Building Enterprise Agents with Agent SDK v2
