@@ -155,7 +155,7 @@ In this section, you create a travel agent model and deploy it using Quick Deplo
 1. In the main window, select **Add Intent**.
 
 1. The **Add Intent** window contains two required fields:
-   * Intent name(Pascal case)
+   * Intent name (Pascal case)
    * Intent description (required for Quick Deploy)
 
 1. After completing these fields, select **+ Add** to create your intents.
@@ -177,7 +177,7 @@ In this section, you create a travel agent model and deploy it using Quick Deplo
 1. Select the **Entities** tab, then select **Add entity**.
 
 1. The **Add an entity** window contains two required fields:
-   * Entity name (Pascal case)|
+   * Entity name (Pascal case)
    * Entity description
 1. After completing the entity fields, select **Add an entity**.
 
