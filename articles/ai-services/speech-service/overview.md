@@ -13,7 +13,7 @@ ms.author: pafarley
 
 # What is Azure Speech?
 
-Azure Speech in Foundry Tools provides speech to text, text to speech, and other capabilities through a [Microsoft Foundry resource](~/articles/ai-services/multi-service-resource.md?pivots=azportal). You can transcribe speech to text with high accuracy, produce natural-sounding text-to-speech voices, translate spoken audio, and conduct live AI voice conversations.
+[Azure Speech in Foundry Tools](./speech-features-foundry.md) provides speech to text, text to speech, and other capabilities through a [Microsoft Foundry resource](~/articles/ai-services/multi-service-resource.md?pivots=azportal). You can transcribe speech to text with high accuracy, produce natural-sounding text-to-speech voices, translate spoken audio, and conduct live AI voice conversations.
 
 :::image type="content" border="false" source="media/overview/speech-features-highlight.png" alt-text="Screenshot of tiles that highlight some Azure Speech features.":::
 
