@@ -38,11 +38,11 @@ Model leaderboards (preview) in Foundry portal help you compare models in the Fo
 You can review detailed benchmarking methodology for each leaderboard category:
 
 - [Quality benchmarking](#quality-benchmarks-of-language-models) of language models to understand how well models perform on cores tasks including reasoning, knowledge, question answering, math, and coding;
-	- [Safety benchmarking](#safety-benchmarks-of-language-models) of language models to understand how safe models are against harmful behavior generation;
-	- [Performance benchmarking](#performance-benchmarks-of-language-models) of language models to understand how models perform in terms of latency and throughput.
-	- [Cost benchmarking](#cost-benchmarks-of-language-models) of language models to understand the estimated cost of using models.
-	- [Scenario leaderboard benchmarking](#scenario-leaderboard-benchmarking) of language models to help you find the best model for your specific use case or scenario.
-	- [Quality benchmarking](#quality-benchmarks-of-embedding-models) of embedding models to understand how well models perform on embedding-based tasks including search and retrieval.
+- [Safety benchmarking](#safety-benchmarks-of-language-models) of language models to understand how safe models are against harmful behavior generation;
+- [Performance benchmarking](#performance-benchmarks-of-language-models) of language models to understand how models perform in terms of latency and throughput.
+- [Cost benchmarking](#cost-benchmarks-of-language-models) of language models to understand the estimated cost of using models.
+- [Scenario leaderboard benchmarking](#scenario-leaderboard-benchmarking) of language models to help you find the best model for your specific use case or scenario.
+- [Quality benchmarking](#quality-benchmarks-of-embedding-models) of embedding models to understand how well models perform on embedding-based tasks including search and retrieval.
 
 ::: moniker-end
 
