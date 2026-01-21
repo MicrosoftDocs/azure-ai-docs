@@ -125,8 +125,8 @@ By using the cross-lingual feature, you can transfer your custom voice model to 
 
 For the cross-lingual feature, we categorize locales into two tiers:
 
-- A tier that includes source languages that support the cross-lingual feature.
-- A tier that comprises locales designated as target languages for cross-lingual transfer.
+- A tier that includes source languages that support the cross-lingual feature
+- A tier that comprises locales designated as target languages for cross-lingual transfer
 
 The following table distinguishes locales that function as both cross-lingual sources and targets from locales that are eligible solely as target locales for cross-lingual transfer.
 

@@ -31,7 +31,7 @@ Common scenarios for speech include:
 - [Language learning](language-learning-overview.md): Provide pronunciation assessment feedback to language learners, support real-time transcription for remote learning conversations, and read aloud teaching materials with neural voices.
 - [Voice live](voice-live.md): Create natural, humanlike conversational interfaces for applications and experiences. The voice live feature provides fast, reliable interaction between a human and an agent implementation.
 
-Microsoft uses Azure Speech for many scenarios, such as captioning in Teams, dictation in Office 365, and Read Aloud in the Microsoft Edge browser.
+Microsoft uses Azure Speech for many scenarios, such as captioning in Microsoft Teams, dictation in Microsoft Office 365, and Read Aloud in the Microsoft Edge browser.
 
 :::image type="content" border="false" source="media/overview/microsoft-uses-speech.png" alt-text="Screenshot that shows logos of Microsoft products that use Azure Speech.":::
 
@@ -51,12 +51,12 @@ The base model might not be sufficient if the audio contains ambient noise or in
 
 ### Text to speech
 
-With [text to speech](text-to-speech.md), you can convert input text into humanlike synthesized speech. Use neural voices, which are humanlike voices powered by deep neural networks. Use the [Speech Synthesis Markup Language (SSML)](speech-synthesis-markup.md) to fine-tune the pitch, pronunciation, speaking rate, volume, and more.
+With [text to speech](text-to-speech.md), you can convert input text into humanlike synthesized speech. Use neural voices, which are humanlike voices powered by deep neural networks. Use [Speech Synthesis Markup Language (SSML)](speech-synthesis-markup.md) to fine-tune the pitch, pronunciation, speaking rate, volume, and more.
 
 Voice options include:
 
-- Standard voice: You can choose among highly natural out-of-the-box voices. Check the standard voice samples in the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery) and determine the right voice for your business needs.
-- Custom voice: You can create a [custom voice](custom-neural-voice.md) that's recognizable and unique to your brand or product. Custom voices are private and can offer a competitive advantage. Check the [custom voice samples](https://aka.ms/customvoice).
+- **Standard voice**: You can choose among highly natural out-of-the-box voices. Check the standard voice samples in the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery) and determine the right voice for your business needs.
+- **Custom voice**: You can create a [custom voice](custom-neural-voice.md) that's recognizable and unique to your brand or product. Custom voices are private and can offer a competitive advantage. Check the [custom voice samples](https://aka.ms/customvoice).
 
 ### Speech translation
 
@@ -93,9 +93,9 @@ Azure Speech deployment in sovereign clouds is available for some government ent
 
 [Speech Studio](speech-studio-overview.md) is a set of UI-based tools for building and integrating features from Azure Speech in your applications. You create projects in Speech Studio by using a no-code approach. You can then reference those assets in your applications by using:
 
-- The [Speech SDK](speech-sdk.md). The Speech SDK exposes many of the Azure Speech capabilities that you can use to develop speech-enabled applications. The Speech SDK is available in many programming languages and across all platforms.
+- [Speech SDK](speech-sdk.md). This SDK exposes many of the Azure Speech capabilities that you can use to develop speech-enabled applications. The Speech SDK is available in many programming languages and across all platforms.
 
-- The [Speech CLI](spx-overview.md). The Speech CLI is a command-line tool for using Azure Speech without having to write any code. Most features in the Speech SDK are available in the Speech CLI, and some advanced features and customizations are simplified in the Speech CLI.
+- [Speech CLI](spx-overview.md). With this command-line tool, you can use Azure Speech without having to write any code. Most features in the Speech SDK are available in the Speech CLI, and some advanced features and customizations are simplified in the Speech CLI.
 
 - [REST APIs](./rest-speech-to-text.md). In some cases, you can't or shouldn't use the Speech SDK. In those cases, you can use REST APIs to access Azure Speech. For example, use REST APIs for [batch transcription](batch-transcription.md).
 

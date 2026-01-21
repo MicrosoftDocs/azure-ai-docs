@@ -9,7 +9,7 @@ ms.reviewer: pafarley
 ms.custom: references_regions
 ---
 
-| Locale (BCP-47) | Language | Text to speech voices |
+| Locale (BCP-47) | Language | Text-to-speech voices |
 | ----- | ----- | ----- |
 | `af-ZA` | Afrikaans (South Africa) | `af-ZA-AdriNeural`<sup>3</sup> (Female)<br/>`af-ZA-WillemNeural`<sup>3</sup> (Male) |
 | `am-ET` | Amharic (Ethiopia) | `am-ET-MekdesNeural`<sup>3</sup> (Female)<br/>`am-ET-AmehaNeural`<sup>3</sup> (Male) |

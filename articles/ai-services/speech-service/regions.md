@@ -162,7 +162,7 @@ The regions in the following tables support most of the core features of Azure S
 | `westeurope` | ✅ | ✅ | ✅ | ✅ |
 | `westus2` | ✅ | ✅ | ✅ | ✅ |
 
-<sup>1</sup>Voice sync for avatars is currently supported in the Southeast Asia, West Europe, and West US 2 regions.
+<sup>1</sup> Voice sync for avatars is currently supported in the Southeast Asia, West Europe, and West US 2 regions.
 
 # [Speech translation](#tab/speech-translation)
 

@@ -6,8 +6,8 @@ ms.topic: include
 ms.author: pafarley
 ---
 
-|Voice|Styles|Roles|
-|-----|------|-----|
+| Voice | Styles | Roles |
+| ----- | ------ | ----- |
 |`de-DE-ConradNeural`|`cheerful`, `sad`|Not supported|
 |`en-GB-RyanNeural`|`chat`, `cheerful`, `sad`, `whispering`|Not supported|
 |`en-GB-SoniaNeural`|`cheerful`, `sad`|Not supported|
