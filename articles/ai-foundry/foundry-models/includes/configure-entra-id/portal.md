@@ -54,6 +54,16 @@ Follow these steps to configure Microsoft Entra ID for inference:
     > [!TIP]
     > Azure role assignments can take up to five minutes to propagate. When working with security groups, adding or removing users from the security group propagates immediately.
 
+1. Verify the role assignment:
+
+   1. On the left pane in the Azure portal, select **Access control (IAM)**.
+   
+   1. Select **Check access**.
+   
+   1. Search for the user or security group you assigned the role to.
+   
+   1. Verify that **Cognitive Services User** appears in their assigned roles.
+
 Key-based access is still possible for users that already have keys available to them. To revoke the keys, in the Azure portal, on the left navigation, select **Resource Management** > **Keys and Endpoints** > **Regenerate Key1** and **Regenerate Key2**.
 
 ## Use Microsoft Entra ID in your code

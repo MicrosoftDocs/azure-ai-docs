@@ -89,6 +89,15 @@ Follow these steps to configure Microsoft Entra ID for inference:
     > [!TIP]
     > Keep in mind that Azure role assignments can take up to five minutes to propagate. Adding or removing users from a security group propagates immediately.
 
+1. Verify the role assignment:
+
+    ```azurecli
+    # List role assignments for the resource to verify
+    az role assignment list --scope $RESOURCE_ID --assignee $OBJECT_ID --query "[?roleDefinitionName=='Cognitive Services User'].{principalName:principalName, roleDefinitionName:roleDefinitionName}" --output table
+    ```
+
+    The output should show the **Cognitive Services User** role assigned to your principal.
+
 
 ## Use Microsoft Entra ID in your code
 
