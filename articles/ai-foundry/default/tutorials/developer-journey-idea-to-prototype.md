@@ -198,7 +198,7 @@ dotnet restore
 1. [!INCLUDE [find-endpoint](../includes/find-endpoint.md)] 
 1. Configure `.env`.
 
-   Configure the environment values required for your language.
+   Set the environment values required for your language.
 
 # [Python](#tab/python)
 
@@ -315,7 +315,7 @@ Now that you have a working agent, the next sections explain how it works. You d
 
 ## Step 4: Understand the assistant implementation
 
-This section explains the core code in `main.py` (Python) or `ModernWorkplaceAssistant/Program.cs` (C#). You already ran the agent; this section is conceptual and requires no changes. After reading it, you can:
+This section explains the core code in `main.py` (Python) or `ModernWorkplaceAssistant/Program.cs` (C#). You already ran the agent. This section is conceptual and requires no changes. After reading it, you can:
 - Add new internal and external data tools.
 - Extend dynamic instructions.
 - Introduce multi-agent orchestration.
@@ -388,7 +388,7 @@ The agent uses SharePoint and can access company policy and procedure documents 
 
 ### Create the agent and connect the tools
 
-Now, create the agent and connect the SharePoint and MCP tools.
+Create the agent and connect the SharePoint and MCP tools.
 
 # [Python](#tab/python)
 
@@ -655,7 +655,7 @@ Here's a sample of the JSON output structure:
 You now have:
 - A working single-agent prototype grounded in internal and external knowledge.
 - A repeatable evaluation script demonstrating enterprise validation patterns.
-- Clear upgrade path: more tools, multi-agent orchestration, richer evaluation, deployment.
+- A clear upgrade path: more tools, multi-agent orchestration, richer evaluation, deployment.
 
 These patterns reduce prototype-to-production friction: you can add data sources, enforce governance, and integrate monitoring without rewriting core logic.
 
