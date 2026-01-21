@@ -64,10 +64,6 @@ After you configure Microsoft Entra ID in your resource, update your code to use
 
 [!INCLUDE [about-credentials](about-credentials.md)]
 
-## Troubleshooting
-
-[!INCLUDE [troubleshooting](troubleshooting.md)]
-
 ## Use Microsoft Entra ID in your project
 
 Even when your resource has Microsoft Entra ID configured, your projects might still use keys to consume predictions from the resource. When you use the Foundry playground, the credentials associated with the connection in your project are used. 
@@ -93,3 +89,5 @@ To change this behavior, update the connections in your projects to use Microsof
 ## Disable key-based authentication in the resource
 
 Disable key-based authentication when you implement Microsoft Entra ID and fully address compatibility or fallback concerns in all the applications that consume the service. You can disable key-based authentication using the Azure CLI and when deploying with Bicep or ARM.
+
+Key-based access is still possible for users that already have keys available to them. To revoke the keys, in the Azure portal, on the left navigation, select **Resource Management** > **Keys and Endpoints** > **Regenerate Key1** and **Regenerate Key2**.

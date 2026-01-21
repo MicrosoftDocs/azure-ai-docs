@@ -111,10 +111,6 @@ After you configure Microsoft Entra ID in your resource, update your code to use
 
 [!INCLUDE [about-credentials](about-credentials.md)]
 
-## Troubleshooting
-
-[!INCLUDE [troubleshooting](troubleshooting.md)]
-
 ## Disable key-based authentication in the resource
 
 Disable key-based authentication when you implement Microsoft Entra ID and fully address compatibility or fallback concerns in all the applications that consume the service. Change the `disableLocalAuth` property to disable key-based authentication.

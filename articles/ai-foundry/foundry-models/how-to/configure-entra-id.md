@@ -33,37 +33,46 @@ To complete this article, you need:
 
 [!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)] 
 
-#### Required Azure roles
+### Required Azure roles and permissions
 
-To understand roles in the context of Azure resources, see [Understand roles in the context of resource in Azure](#understand-roles-in-the-context-of-resource-in-azure).
+Microsoft Entra ID uses role-based access control (RBAC) to manage access to Azure resources. You need different roles depending on whether you're setting up authentication (administrator) or using it to make API calls (developer).
 
-* **For role assignment** (subscription owner or administrator): An account with `Microsoft.Authorization/roleAssignments/write` and `Microsoft.Authorization/roleAssignments/delete` permissions, such as the **Administrator** role-based access control.
+#### For setting up authentication
 
-* **For inference access** (developers): The **Cognitive Services User** role assigned to the Foundry Tools resource. This role is required to authenticate and make API calls using Microsoft Entra ID.
+* **Subscription owner or administrator**: An account with `Microsoft.Authorization/roleAssignments/write` and `Microsoft.Authorization/roleAssignments/delete` permissions, such as the **Owner** or **User Access Administrator** role. Required to assign the **Cognitive Services User** role to developers.
 
-#### Role assignment elements
+#### For making authenticated API calls
 
-To assign a role, you must specify three elements: 
-  
-  * Security principal: your user account, service principal, or security group.
-  * Role definition: the **Cognitive Services User** role.
-  * Scope: the Foundry Tools resource.
+* **Cognitive Services User** role: Required for developers to authenticate and make inference API calls using Microsoft Entra ID. This role must be assigned at the scope of your Foundry resource (formerly known as Azure AI Services resource).
+
+#### Role assignment requirements
+
+When assigning roles, specify these three elements:
+
+* **Security principal**: Your user account, service principal, or security group (recommended for managing multiple users)
+* **Role definition**: The **Cognitive Services User** role
+* **Scope**: Your specific Foundry resource
+
+> [!TIP]
+> Azure role assignments can take up to five minutes to propagate. When using security groups, changes to group membership propagate immediately.
 
 #### Custom role (optional)
 
-If you want to create a custom role definition instead of using the **Cognitive Services User** role, ensure the role has the following permissions:
+If you prefer a custom role instead of **Cognitive Services User**, ensure it includes these permissions:
 
-  ```json
-  {
-    "permissions": [
-      {
-        "dataActions": [
-          "Microsoft.CognitiveServices/accounts/MaaS/*"
-        ]
-      }
-    ]
-  }
-  ```
+```json
+{
+  "permissions": [
+    {
+      "dataActions": [
+        "Microsoft.CognitiveServices/accounts/MaaS/*"
+      ]
+    }
+  ]
+}
+```
+
+For more context on how roles work with Azure resources, see [Understand roles in the context of resource in Azure](#understand-roles-in-the-context-of-resource-in-azure).
 
 
 ::: zone pivot="ai-foundry-portal"
@@ -94,6 +103,10 @@ In Azure, Microsoft Entra ID always performs administration operations. Roles li
 
 > [!IMPORTANT]
 > Having administration access to a resource doesn't necessarily grant developer access to it. Explicit access by granting roles is still required. It's analogous to how database servers work. Having administrator access to the database server doesn't mean you can read the data inside of a database.
+
+## Troubleshooting
+
+[!INCLUDE [troubleshooting](../includes/configure-entra-id/troubleshooting.md)]
 
 ## Next step
 
