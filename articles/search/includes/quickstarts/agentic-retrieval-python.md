@@ -514,7 +514,7 @@ index_client.create_or_update_index(index)
 print(f"Index '{index_name}' created or updated successfully.")
 ```
 
-Reference: [SearchField](/python/api/azure-search-documents/azure.search.documents.indexes.models.searchfield), [VectorSearch](/python/api/azure-search-documents/azure.search.documents.indexes.models.vectorsearch), [SemanticSearch](/python/api/azure-search-documents/azure.search.documents.indexes.models.semanticsearch), [SearchIndex](/python/api/azure-search-documents/azure.search.documents.indexes.models.searchindex), [SearchIndexClient](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient)
+**Reference:** [SearchField](/python/api/azure-search-documents/azure.search.documents.indexes.models.searchfield), [VectorSearch](/python/api/azure-search-documents/azure.search.documents.indexes.models.vectorsearch), [SemanticSearch](/python/api/azure-search-documents/azure.search.documents.indexes.models.semanticsearch), [SearchIndex](/python/api/azure-search-documents/azure.search.documents.indexes.models.searchindex), [SearchIndexClient](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient)
 
 ### Upload documents to the index
 
@@ -531,7 +531,7 @@ with SearchIndexingBufferedSender(endpoint=search_endpoint, index_name=index_nam
 print(f"Documents uploaded to index '{index_name}' successfully.")
 ```
 
-Reference: [SearchIndexingBufferedSender](/python/api/azure-search-documents/azure.search.documents.searchindexingbufferedsender)
+**Reference:** [SearchIndexingBufferedSender](/python/api/azure-search-documents/azure.search.documents.searchindexingbufferedsender)
 
 ### Create a knowledge source
 
@@ -555,7 +555,7 @@ index_client.create_or_update_knowledge_source(knowledge_source=ks)
 print(f"Knowledge source '{knowledge_source_name}' created or updated successfully.")
 ```
 
-Reference: [SearchIndexKnowledgeSource](/python/api/azure-search-documents/azure.search.documents.indexes.models.searchindexknowledgesource)
+**Reference:** [SearchIndexKnowledgeSource](/python/api/azure-search-documents/azure.search.documents.indexes.models.searchindexknowledgesource)
 
 ### Create a knowledge base
 
@@ -588,7 +588,7 @@ index_client.create_or_update_knowledge_base(knowledge_base)
 print(f"Knowledge base '{knowledge_base_name}' created or updated successfully.")
 ```
 
-Reference: [KnowledgeBase](/python/api/azure-search-documents/azure.search.documents.indexes.models.knowledgebase)
+**Reference:** [KnowledgeBase](/python/api/azure-search-documents/azure.search.documents.indexes.models.knowledgebase)
 
 ### Set up messages
 
@@ -657,7 +657,7 @@ result = agent_client.retrieve(retrieval_request=req)
 print(f"Retrieved content from '{knowledge_base_name}' successfully.")
 ```
 
-Reference: [KnowledgeBaseRetrievalClient](/python/api/azure-search-documents/azure.search.documents.knowledgebases.knowledgebaseretrievalclient), [KnowledgeBaseRetrievalRequest](/python/api/azure-search-documents/azure.search.documents.knowledgebases.models.knowledgebaseretrievalrequest)
+**Reference:** [KnowledgeBaseRetrievalClient](/python/api/azure-search-documents/azure.search.documents.knowledgebases.knowledgebaseretrievalclient), [KnowledgeBaseRetrievalRequest](/python/api/azure-search-documents/azure.search.documents.knowledgebases.models.knowledgebaseretrievalrequest)
 
 #### Review the response, activity, and references
 

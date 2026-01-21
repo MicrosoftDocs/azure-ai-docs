@@ -234,7 +234,7 @@ ai-custom-data-demo/
              .forEach(gen -> {
                  final var role = gen.getInfo().getOrDefault(ROLE_INFO_KEY, MessageType.ASSISTANT.getValue());
 
-                 System.out.println(String.format("Generated respose from \"%s\": %s", role, gen.getText()));
+                 System.out.println(String.format("Generated response from \"%s\": %s", role, gen.getText()));
              });
 
        }

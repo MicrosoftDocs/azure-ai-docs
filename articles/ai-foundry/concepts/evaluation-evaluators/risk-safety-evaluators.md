@@ -15,11 +15,11 @@ ms.custom:
   - build-2025
 ---
 
-# Risk and safety evaluators (preview)
+# Risk and safety evaluators
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+[!INCLUDE [evaluation-preview](../../includes/evaluation-preview.md)]
 
 Risk and safety evaluators draw on insights gained from our previous large language model (LLM) projects such as GitHub Copilot and Bing. This approach ensures a comprehensive approach to evaluating generated responses for risk and safety severity scores.
 

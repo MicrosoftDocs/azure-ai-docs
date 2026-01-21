@@ -23,7 +23,7 @@ On your Azure AI Search service:
 
 1. [Create a system-assigned managed identity](../../search-how-to-managed-identities.md#create-a-system-managed-identity).
 
-1. [Assign the following roles](../../search-security-rbac.md#how-to-assign-roles-in-the-azure-portal) to yourself.
+1. [Assign the following roles](../../search-security-rbac.md) to yourself.
 
     + **Search Service Contributor**
 
@@ -83,4 +83,4 @@ For this quickstart, you must deploy two Azure OpenAI models to your Microsoft F
 
 + An LLM for query planning and answer generation. This quickstart uses `gpt-5-mini`, but you can use any [supported LLM for agentic retrieval](../../agentic-retrieval-how-to-create-knowledge-base.md#supported-models).
 
-For deployment instructions, see [Deploy Azure OpenAI models with Microsoft Foundry](/azure/ai-foundry/how-to/deploy-models-openai).
+For deployment instructions, see [Deploy Microsoft Foundry Models in the Foundry portal](/azure/ai-foundry/how-to/deploy-models-openai).
