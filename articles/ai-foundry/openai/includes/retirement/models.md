@@ -81,8 +81,9 @@ ms.custom: references_regions, build-2025
 | `dall-e-3` | 3 | Generally Available | n/a | 2026-02-18 | `gpt-image-1-mini` |
 | `gpt-image-1` | 2025-04-15 | Preview | n/a | No earlier than 2026-03-31 | `gpt-image-1-mini` |
 | `gpt-image-1-mini` | 2025-10-06 | Generally Available | 2026-10-06 | 2027-04-07 |  |
-| `sora` | 2025-05-02 | Preview | n/a | No earlier than 2026-02-15 | `sora-2` |
-| `gpt-image-1.5`    | 2025-12-16   | Preview    | n/a | No earlier than December 16, 2026 |  |
+| `sora` | 2025-05-02 | Preview | n/a | No earlier than 2026-02-28 | `sora-2` |
+| `gpt-image-1.5`    | 2025-12-16   | Preview    | n/a | No earlier than 2026-12-16 |  |
+| `sora-2` | 2025-10-15 | Preview | n/a | No earlier than 2026-04-30 |  |
 
 
 # [Embedding](#tab/embedding)

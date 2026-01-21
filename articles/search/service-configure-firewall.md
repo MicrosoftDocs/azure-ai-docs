@@ -157,7 +157,7 @@ To set up a managed identity for a Foundry resource:
 
 ### Trusted resources must have a role assignment
 
-Once your Azure resource has a managed identity, [assign roles on Azure AI Search](keyless-connections.md) to grant permissions to data and operations. 
+Once your Azure resource has a managed identity, [assign roles on Azure AI Search](search-security-rbac-client-code.md) to grant permissions to data and operations. 
 
 The trusted services are used for vectorization workloads: generating vectors from text and image content, and sending payloads back to the search service for query execution or indexing. Connections from a trusted service are used to deliver payloads to Azure AI search.
 
