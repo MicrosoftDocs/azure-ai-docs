@@ -8,9 +8,10 @@ ms.subservice: mlops
 ms.topic: how-to
 author: s-polly
 ms.author: scottpolly
-ms.date: 12/31/2025
+ms.date: 01/21/2026
 ms.reviewer: jturuk
-ms.custom: devplatv2, build-2023
+ms.custom: devplatv2, build-2023, dev-focus
+ai-usage: ai-assisted
 ---
 
 # Collect production data from models for real-time inferencing
@@ -210,17 +211,17 @@ If you want to use your own unique ID for logging with your production data, we 
 
 ### Update your dependencies
 
-Before you can create your deployment with the updated scoring script, you need to create your environment with the base image `mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu20.04` and the appropriate conda dependencies. Thereafter, you can build the environment by using the specification in the following YAML.
+Before you can create your deployment with the updated scoring script, you need to create your environment with the base image `mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu22.04` and the appropriate conda dependencies. Thereafter, you can build the environment by using the specification in the following YAML.
 
 ```yml
 channels:
   - conda-forge
 dependencies:
-  - python=3.8
-  - pip=22.3.1
+  - python=3.10
+  - pip
   - pip:
-      - azureml-defaults==1.38.0
-      - azureml-ai-monitoring~=0.1.0b1
+      - azureml-defaults
+      - azureml-ai-monitoring
 name: model-env
 ```
 
@@ -245,7 +246,7 @@ name: blue
 endpoint_name: my_endpoint
 model: azureml:iris_mlflow_model@latest
 environment:
-  image: mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu20.04
+  image: mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu22.04
   conda_file: model/conda.yaml
 code_configuration:
   code: scripts
@@ -325,7 +326,7 @@ In addition to implementing custom logging by using the provided Python SDK, you
 1. To enable payload logging, in your deployment YAML, use the names `request` and `response`:
 
     ```yml
-    $schema: http://azureml/sdk-2-0/OnlineDeployment.json
+    $schema: https://azuremlschemas.azureedge.net/latest/managedOnlineDeployment.schema.json
     
     endpoint_name: my_endpoint 
     name: blue 
