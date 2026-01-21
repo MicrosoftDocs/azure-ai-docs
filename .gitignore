@@ -21,3 +21,9 @@ _repo.*/
 .github/prompts/*.zip
 .github/patterns/*.md
 .github/chatmodes/*.*
+
+# Dev-kit instructions and prompts
+.github/AGENTS.md
+.github/agents/*.md
+.github/instructions/*md
+.github/skills/
