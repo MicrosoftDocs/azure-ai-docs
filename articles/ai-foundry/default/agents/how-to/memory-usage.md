@@ -35,10 +35,10 @@ This article explains how to create, manage, and use memory stores. For conceptu
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- A [Microsoft Foundry project](../../../../how-to/create-projects.md) with [authorization and permissions](#authorization-and-permissions) configured.
-- [Chat model deployment](../../../../foundry-models/how-to/create-model-deployments.md) (for example, `gpt-4.1`) in your project.
-- [Embedding model deployment](../../../../openai/tutorials/embeddings.md) (for example, `text-embedding-3-small`) in your project.
-- Python 3.8 or later with a [configured environment](../../../../quickstarts/get-started-code.md?tabs=python&view=foundry&preserve-view=true).
+- A [Microsoft Foundry project](../../../how-to/create-projects.md) with [authorization and permissions](#authorization-and-permissions) configured.
+- [Chat model deployment](../../../foundry-models/how-to/create-model-deployments.md) (for example, `gpt-4.1`) in your project.
+- [Embedding model deployment](../../../openai/tutorials/embeddings.md) (for example, `text-embedding-3-small`) in your project.
+- Python 3.8 or later with a [configured environment](../../../quickstarts/get-started-code.md?tabs=python&view=foundry&preserve-view=true).
 - For REST API examples, Azure CLI authenticated to your subscription.
 
 For the Python examples in this article, set an environment variable for your project endpoint:
@@ -53,7 +53,7 @@ $env:FOUNDRY_PROJECT_ENDPOINT = "https://{your-ai-services-account}.services.ai.
 
 ### Authorization and permissions
 
-We recommend [role-based access control](../../../../concepts/rbac-foundry.md) for production deployments. If roles aren't feasible, skip this section and use key-based authentication instead.
+We recommend [role-based access control](../../../concepts/rbac-foundry.md) for production deployments. If roles aren't feasible, skip this section and use key-based authentication instead.
 
 To configure role-based access:
 
@@ -625,7 +625,7 @@ curl -X DELETE "${ENDPOINT}/memory_stores/my_memory_store?api-version=${API_VERS
 ## Next steps
 
 - [Memory in Foundry Agent Service](../concepts/what-is-memory.md)
-- [Memory store REST API reference](../../../../reference/foundry-project-rest-preview.md)
-- [Build an agent with Microsoft Foundry](../../../../agents/quickstart.md)
+- [Memory store REST API reference](../../../reference/foundry-project-rest-preview.md)
+- [Build an agent with Microsoft Foundry](../../../agents/quickstart.md)
 - [Python code samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/memories)
 - [Microsoft Agent Framework overview](/agent-framework/overview/agent-framework-overview)
