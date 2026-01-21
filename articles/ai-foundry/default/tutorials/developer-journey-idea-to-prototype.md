@@ -503,7 +503,7 @@ This tutorial demonstrates **Stage 1** of the developer journey - from idea to p
 - [Collect trace data and user feedback from production deployments](../observability/how-to/trace-agent-framework.md).
 - [Fine-tune models and generate evaluation insights for continuous improvement](../../openai/how-to/fine-tuning.md).
 - [Integrate Azure API Management gateway with continuous quality monitoring](../configuration/enable-ai-api-management-gateway-portal.md).
-- [Implement fleet governance, compliance controls, and cost optimization](https://learn.microsoft.com/azure/cloud-adoption-framework/scenarios/ai/platform/governance).
+- [Implement fleet governance, compliance controls, and cost optimization](/azure/cloud-adoption-framework/scenarios/ai/platform/governance).
 
 ## Related content
 
