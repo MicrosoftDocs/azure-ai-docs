@@ -36,3 +36,8 @@ articles/ai-foundry/toc-files/setup-management/toc.yml
 .env
 .env.example
 requirements.txt
+# Dev-kit instructions and prompts
+.github/AGENTS.md
+.github/agents/*.md
+.github/instructions/*md
+.github/skills/
