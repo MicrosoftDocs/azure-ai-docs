@@ -255,7 +255,7 @@ The code interpreter tool for the Foundry projects (new) API isn't available in 
 
 ## Sandboxed execution environment
 
-Code Interpreter runs Python code in a Microsoft-managed sandbox. The sandbox is designed for running untrusted code and is implemented using [dynamic sessions (code interpreter sessions) in Azure Container Apps](https://learn.microsoft.com/azure/container-apps/sessions-code-interpreter), where each session is isolated by a Hyper-V boundary.
+Code Interpreter runs Python code in a Microsoft-managed sandbox. The sandbox is designed for running untrusted code and is implemented using [dynamic sessions (code interpreter sessions) in Azure Container Apps](/azure/container-apps/sessions-code-interpreter), where each session is isolated by a Hyper-V boundary.
 
 Key behaviors to plan for:
 
