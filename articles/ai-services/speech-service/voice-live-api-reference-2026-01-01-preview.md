@@ -5,12 +5,12 @@ description: Complete reference for the Voice live API events, models, and confi
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: reference
-ms.date: 9/26/2025
+ms.date: 1/20/2026
 author: PatrickFarley
 ms.author: pafarley
 ---
 
-# Voice live API Reference
+# Voice live API Reference Version 2026-01-01-preview (preview)
 
 The Voice live API provides real-time, bidirectional communication for voice-enabled applications using WebSocket connections. This API supports advanced features including speech recognition, text-to-speech synthesis, avatar streaming, animation data, and comprehensive audio processing capabilities.
 

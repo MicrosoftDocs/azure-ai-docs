@@ -325,7 +325,11 @@ items:
     - name: Reference
       items:
       - name: Voice live API reference
-        href: voice-live-api-reference.md
+        items:
+        - name: '2025-10-01'
+          href: voice-live-api-reference-2025-10-01.md
+        - name: '2026-01-01-preview'
+          href: voice-live-api-reference-2026-01-01-preview.md          
       - name: Voice Live SDK
         items:
           - name: 'C#'
