@@ -68,7 +68,7 @@ Ensure the following information is correct for your MCP server:
 
 ### Apply policies
 
-Navigate to the [Azure portal](https://portal.azure.com/) page for your resource. Select **API Management** to apply needed policies for governance. [Policies](https://learn.microsoft.com/azure/api-management/api-management-howto-policies) must be applied through API Management. Common policies include:
+Navigate to the [Azure portal](https://portal.azure.com/) page for your resource. Select **API Management** to apply needed policies for governance. [Policies](/azure/api-management/api-management-howto-policies) must be applied through API Management. Common policies include:
 
 - Rate limiting - limit how many calls a project or user can make a minute.
     
