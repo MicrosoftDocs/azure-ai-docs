@@ -36,4 +36,4 @@ ms.subservice: azure-ai-foundry-openai
 
 - Try the [Voice live agents quickstart](./voice-live-agents-quickstart.md)
 - Learn more about [How to use the Voice live API](./voice-live-how-to.md)
-- See the [Voice live API reference](./voice-live-api-reference.md)
+- See the [Voice live API reference](./voice-live-api-reference-2025-10-01.md)
