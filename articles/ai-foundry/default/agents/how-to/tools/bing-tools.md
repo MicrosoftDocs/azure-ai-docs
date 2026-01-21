@@ -72,7 +72,7 @@ If you already have a project connection ID for the Bing resource you want to us
 
 1. Add the appropriate connection to your project.
 
-  For step-by-step instructions, see [Add a new connection to your project](../../../../how-to/connections-add.md?view=foundry&preserve-view=true).
+   For step-by-step instructions, see [Add a new connection to your project](../../../../how-to/connections-add.md?view=foundry&preserve-view=true).
 
 1. Get the project connection ID from the connection details and set it as an environment variable.
 
@@ -535,42 +535,42 @@ The following REST API examples demonstrate how to use Grounding with Bing Searc
 Before running REST API calls, configure authentication:
 
 1. Set environment variables:
-  - `AZURE_AI_PROJECT_ENDPOINT`: Your Foundry project endpoint URL.
-  - `API_VERSION`: API version (for example, `2025-11-15-preview`).
+   - `AZURE_AI_PROJECT_ENDPOINT`: Your Foundry project endpoint URL.
+   - `API_VERSION`: API version (for example, `2025-11-15-preview`).
    - `AZURE_AI_MODEL_DEPLOYMENT_NAME`: Your deployed model name.
-  - `BING_PROJECT_CONNECTION_ID`: Your Grounding with Bing Search project connection ID.
+   - `BING_PROJECT_CONNECTION_ID`: Your Grounding with Bing Search project connection ID.
 1. Obtain a bearer token:
-  ```azurecli
-  az account get-access-token --scope https://ai.azure.com/.default --query accessToken -o tsv
-  ```
+   ```azurecli
+   az account get-access-token --scope https://ai.azure.com/.default --query accessToken -o tsv
+   ```
 
-```bash
-curl --request POST \
-  --url "$AZURE_AI_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
-  -H "Authorization: Bearer $AGENT_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{
-  "model": "'$AZURE_AI_MODEL_DEPLOYMENT_NAME'",
-  "input": "How does Wikipedia explain Euler\u0027s identity?",
-  "tool_choice": "required",
-  "tools": [
-    {
-      "type": "bing_grounding",
-      "bing_grounding": {
-        "search_configurations": [
-          {
-            "project_connection_id": "'$BING_PROJECT_CONNECTION_ID'",
-            "count": 7,
-            "market": "en-US",
-            "set_lang": "en",
-            "freshness": "7d"
-          }
-        ]
-      }
-    }
-  ]
-}'
-```
+   ```bash
+   curl --request POST \
+     --url "$AZURE_AI_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
+     -H "Authorization: Bearer $AGENT_TOKEN" \
+     -H "Content-Type: application/json" \
+     -d '{
+     "model": "'$AZURE_AI_MODEL_DEPLOYMENT_NAME'",
+     "input": "How does Wikipedia explain Euler\u0027s identity?",
+     "tool_choice": "required",
+     "tools": [
+       {
+         "type": "bing_grounding",
+         "bing_grounding": {
+           "search_configurations": [
+             {
+               "project_connection_id": "'$BING_PROJECT_CONNECTION_ID'",
+               "count": 7,
+               "market": "en-US",
+               "set_lang": "en",
+               "freshness": "7d"
+             }
+           ]
+         }
+       }
+     ]
+   }'
+   ```
 
 ### What this code does
 
@@ -1009,7 +1009,7 @@ Replace all placeholder values (including `{{` and `}}`) with your actual resour
 **Solution**: 
 1. Verify you have the required RBAC roles:
    - **Contributor** or **Owner** role for creating Bing resources
-  - **Azure AI Project Manager** role for creating project connections
+   - **Azure AI Project Manager** role for creating project connections
 1. Check that your Azure credentials are properly configured:
    - For Python/TypeScript: `DefaultAzureCredential` can authenticate
    - For REST: Bearer token is valid and not expired
