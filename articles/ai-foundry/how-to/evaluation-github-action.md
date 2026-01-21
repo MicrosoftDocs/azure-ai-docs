@@ -50,7 +50,7 @@ To use this action, provide a data set with test queries and a list of evaluator
 - You need a [Foundry agent](../agents/overview.md).
 
 > [!TIP]
-> The recommended way to authenticate is by using Microsoft Entra ID, which allows you to securely connect to your Azure resources. You can automate the authentication process using the [Azure Login GitHub action](/azure/developer/github/connect-from-azure). To learn more, see [Azure Login action with OpenID Connect](/developer/github/connect-from-azure-openid-connect)
+> The recommended way to authenticate is by using Microsoft Entra ID, which allows you to securely connect to your Azure resources. You can automate the authentication process using the [Azure Login GitHub action](/azure/developer/github/connect-from-azure). To learn more, see [Azure Login action with OpenID Connect](/azure/developer/github/connect-from-azure-openid-connect)
 
 ::: moniker range="foundry-classic"
 
