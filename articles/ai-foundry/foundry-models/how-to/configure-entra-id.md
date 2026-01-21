@@ -31,7 +31,13 @@ This article explains how to configure Microsoft Entra ID for inference in Found
 
 To complete this article, you need:
 
-[!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)] 
+- An Azure subscription. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Microsoft Foundry Models](../how-to/quickstart-github-models.md) if that's your case.
+
+- A Foundry project. This kind of project is managed under a Foundry resource. If you don't have a Foundry project, see [Create a project for Foundry (Foundry projects)](../../how-to/create-projects.md).
+
+- The endpoint's URL.
+
+- An account with `Microsoft.Authorization/roleAssignments/write` and `Microsoft.Authorization/roleAssignments/delete` permissions, such as the **Administrator** role-based access control. See the next section on [Required Azure roles and permissions](#required-azure-roles-and-permissions) for more details.
 
 ### Required Azure roles and permissions
 
