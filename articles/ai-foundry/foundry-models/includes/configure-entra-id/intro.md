@@ -36,15 +36,23 @@ To complete this article, you need:
 
 [!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)] 
 
-* An account with `Microsoft.Authorization/roleAssignments/write` and `Microsoft.Authorization/roleAssignments/delete` permissions, such as the **Administrator** role-based access control.
+### Required Azure roles
 
-* To assign a role, you must specify three elements: 
+* **For role assignment** (subscription owner or administrator): An account with `Microsoft.Authorization/roleAssignments/write` and `Microsoft.Authorization/roleAssignments/delete` permissions, such as the **Administrator** role-based access control.
+
+* **For inference access** (developers): The **Cognitive Services User** role assigned to the Foundry Tools resource. This role is required to authenticate and make API calls using Microsoft Entra ID.
+
+### Role assignment elements
+
+To assign a role, you must specify three elements: 
   
-  * Security principal: your user account.
-  * Role definition: the *Cognitive Services User* role.
+  * Security principal: your user account, service principal, or security group.
+  * Role definition: the **Cognitive Services User** role.
   * Scope: the Foundry Tools resource.
 
-* If you want to create a custom role definition instead of using the *Cognitive Services User* role, ensure the role has the following permissions:
+### Custom role (optional)
+
+If you want to create a custom role definition instead of using the **Cognitive Services User** role, ensure the role has the following permissions:
 
   ```json
   {

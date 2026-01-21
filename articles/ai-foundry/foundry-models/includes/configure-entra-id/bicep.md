@@ -92,6 +92,18 @@ In your console, follow these steps:
 
 1. The template outputs the Foundry Models endpoint that you can use to consume any of the model deployments you created.
 
+1. Verify the deployment and role assignment are working:
+
+    ```azurecli
+    # Get the endpoint from deployment output
+    ENDPOINT=$(az deployment group show --resource-group $RESOURCE_GROUP --name deploy-entra-id --query properties.outputs.endpoint.value --output tsv)
+    
+    # Test authentication by getting an access token
+    az account get-access-token --resource https://cognitiveservices.azure.com --query "accessToken" --output tsv
+    ```
+
+    If successful, you see an access token. You can now use this endpoint and Microsoft Entra ID authentication in your code.
+
 
 ## Use Microsoft Entra ID in your code
 

@@ -30,18 +30,21 @@ Follow these steps to configure Microsoft Entra ID for inference:
 1. Sign in to your Azure subscription.
 
     ```azurecli
+    # Authenticate with Azure and sign in interactively
     az login
     ```
 
 1. If you have more than one subscription, select the subscription where your resource is located.
 
     ```azurecli
+    # Set the active subscription context
     az account set --subscription "<subscription-id>"
     ```
 
 1. Set the following environment variables with the name of the Foundry resource you plan to use and resource group.
 
     ```azurecli
+    # Store resource identifiers for reuse in subsequent commands
     ACCOUNT_NAME="<ai-services-resource-name>"
     RESOURCE_GROUP="<resource-group>"
     ```
@@ -49,6 +52,7 @@ Follow these steps to configure Microsoft Entra ID for inference:
 1. Get the full name of your resource.
 
     ```azurecli
+    # Retrieve the full Azure Resource Manager ID for role assignment scoping
     RESOURCE_ID=$(az resource show -g $RESOURCE_GROUP -n $ACCOUNT_NAME --resource-type "Microsoft.CognitiveServices/accounts" --query id --output tsv)
     ```
 
@@ -57,24 +61,28 @@ Follow these steps to configure Microsoft Entra ID for inference:
     **Your own signed in account:**
 
     ```azurecli
+    # Get your user's Microsoft Entra ID object ID
     OBJECT_ID=$(az ad signed-in-user show --query id --output tsv)
     ```
 
     **A security group:**
 
     ```azurecli
+    # Get the object ID for a security group (recommended for production)
     OBJECT_ID=$(az ad group show --group "<group-name>" --query id --output tsv)
     ```
 
     **A service principal:**
 
     ```azurecli
+    # Get the object ID for a service principal (for app authentication)
     OBJECT_ID=$(az ad sp show --id "<service-principal-guid>" --query id --output tsv)
     ```
     
 1. Assign the **Cognitive Services User** role to the service principal (scoped to the resource). By assigning a role, you grant the service principal access to this resource.
 
     ```azurecli
+    # Grant inference access by assigning the Cognitive Services User role
     az role assignment create --assignee-object-id $OBJECT_ID --role "Cognitive Services User" --scope $RESOURCE_ID
     ```
 
