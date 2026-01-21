@@ -165,7 +165,7 @@ To configure an MCP tool to authenticate by using an agent identity:
 
     You can create the connection by using either the REST API or the Foundry portal:
 
-    **REST API**
+    #### [REST API](#tab/rest-api)
 
     To get an access token, run the commands `az login` and then `az account get-access-token`.
 
@@ -195,9 +195,8 @@ To configure an MCP tool to authenticate by using an agent identity:
         }
     }
     ```
-
-    **Foundry portal**
-
+    
+    #### [Foundry portal](#tab/foundry-portal)
     1. [!INCLUDE [foundry-sign-in](../../includes/foundry-sign-in.md)]
 
     1. Select **Build**.
@@ -213,6 +212,8 @@ To configure an MCP tool to authenticate by using an agent identity:
     1. Under **Authentication**, select **Microsoft Entra**. Under  **Type**, select **Agent identity**.
 
     1. Fill in the endpoint and audience information, and then select **Connect**.
+
+    ---
 
 1. Assign to the agent identity the required permissions for its actions by using the `agentIdentityId` value that you copied. For example:
 
