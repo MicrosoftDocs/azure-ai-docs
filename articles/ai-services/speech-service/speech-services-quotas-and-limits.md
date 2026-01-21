@@ -108,7 +108,7 @@ You can use real-time text to speech with the [Speech SDK](speech-sdk.md) or the
 | Quota | Free (F0) | Standard (S0) |
 | ----- | --------- | ------------- |
 | Maximum number of transactions per time period for standard voices and custom voices | 20 transactions per 60 seconds<br/><br/>This limit isn't adjustable. | 200 transactions per second (TPS) (default value)<br/><br/>The rate is adjustable up to 1,000 TPS for Standard (S0) resources. See [more explanations](#detailed-description-quota-adjustment-and-best-practices), [best practices](#general-best-practices-to-mitigate-throttling-during-autoscaling), and [adjustment instructions](#text-to-speech-increase-the-real-time-tps-limit) later in this article. |
-| Maximum audio length produced per request | 10 min | 10 min |
+| Maximum audio length produced per request | 10 minutes | 10 minutes |
 | Maximum total number of distinct `<voice>` and `<audio>` tags in SSML | 50 | 50 |
 | Maximum SSML message size per turn for WebSocket | 64 KB | 64 KB |
 
@@ -185,13 +185,13 @@ Some Azure Speech quotas are adjustable. This section provides more explanations
 
 The following quotas are adjustable for Standard (S0) resources. The Free (F0) request limits aren't adjustable.
 
-- Voice live API: [New connections per minute](#voice-live-quotas-and-limits-per-resource). Adjusting new connections also adjusts the token limit.
-- Speech to text: [Concurrent request limit](#real-time-speech-to-text-and-speech-translation) for the base model endpoint and custom endpoint.
-- Fast transcription: [Maximum number of requests per minute](#fast-transcription).
-- Speech translation: [Concurrent request limit](#real-time-speech-to-text-and-speech-translation).
-- Text to speech: [Maximum number of transactions per time period](#text-to-speech-quotas-and-limits-per-resource) for standard voices and custom voices.
-- Batch text-to-speech avatar: [Maximum requests per minute](#batch-text-to-speech-avatar).
-- Real-time text-to-speech avatar: [New connections per minute](#real-time-text-to-speech-avatar).
+- **Voice live API**: [New connections per minute](#voice-live-quotas-and-limits-per-resource). Adjusting new connections also adjusts the token limit.
+- **Speech to text**: [Concurrent request limit](#real-time-speech-to-text-and-speech-translation) for the base model endpoint and custom endpoint.
+- **Fast transcription**: [Maximum number of requests per minute](#fast-transcription).
+- **Speech translation**: [Concurrent request limit](#real-time-speech-to-text-and-speech-translation).
+- **Text to speech**: [Maximum number of transactions per time period](#text-to-speech-quotas-and-limits-per-resource) for standard voices and custom voices.
+- **Batch text-to-speech avatar**: [Maximum requests per minute](#batch-text-to-speech-avatar).
+- **Real-time text-to-speech avatar**: [New connections per minute](#real-time-text-to-speech-avatar).
 
 Before you request a quota increase (where applicable), check your current transactions per second (TPS) or tokens per minute (TPM) and ensure that you need to increase the quota.
 
@@ -200,7 +200,7 @@ Before you request a quota increase (where applicable), check your current trans
 
 Azure Speech uses autoscaling technologies to bring the required computational resources in on-demand mode. At the same time, Azure Speech tries to keep your costs low by not maintaining an excessive amount of hardware capacity.
 
-Let's look at an example. Suppose that your application receives response code 429, which indicates that there are too many requests. Your application receives this response even though your workload is within the limits defined in the earlier [Reference for quotas and limits](#reference-for-quotas-and-limits) section. The most likely explanation is that Azure Speech is scaling up to your demand and didn't reach the required scale yet. So, Azure Speech doesn't immediately have enough resources to serve the request. In such cases, increasing the quota doesn't help. In most cases, Azure Speech will scale up soon, and the issue that's causing response code 429 will be resolved.
+Let's look at an example. Suppose that your application receives response code 429, which indicates that there are too many requests. Your application receives this response even though your workload is within the limits defined in the earlier [Reference for quotas and limits](#reference-for-quotas-and-limits) section. The most likely explanation is that Azure Speech is scaling up to your demand and didn't reach the required scale yet. So, Azure Speech doesn't immediately have enough resources to serve the request. In such cases, increasing the quota doesn't help. In most cases, Azure Speech will scale up soon and resolve the issue that's causing response code 429.
 
 As a best practice, every implementation should gracefully handle 429 errors with retry logic to ensure best performance and to handle autoscaling. Consider implementing this best practice before you request additional quota, as described in the next section.
 
@@ -209,8 +209,12 @@ As a best practice, every implementation should gracefully handle 429 errors wit
 To minimize issues related to throttling, it's a good idea to use the following techniques:
 
 - Implement retry logic in your application to handle 429 errors.
-- Avoid sharp changes in the workload. Increase the workload gradually. For example, let's say your application is using text to speech, and your current workload is 5 TPS. The next second, you increase the load to 20 TPS (that is, four times more). Azure Speech immediately starts scaling up to fulfill the new load, but it can't scale as needed within one second. Some of the requests get response code 429 (too many requests).
+
+- Avoid sharp changes in the workload. Increase the workload gradually.
+
+  For example, let's say your application is using text to speech, and your current workload is 5 TPS. The next second, you increase the load to 20 TPS (that is, four times more). Azure Speech immediately starts scaling up to fulfill the new load, but it can't scale as needed within one second. Some of the requests get response code 429 (too many requests).
 - Test different patterns for load increases. For more information, see the [workload pattern example](#example-of-a-best-practice-for-workload-patterns) in this article.
+
 - Create more Azure Speech resources in *different* regions, and distribute the workload among them. Creating multiple Azure Speech resources in the same region doesn't affect the performance, because the same backend cluster serves all resources.
 
 Later sections describe specific cases of adjusting quotas.
@@ -397,7 +401,7 @@ Initiate the increase of the limit for concurrent requests for your resource by 
     1. Foundry Tools resource region
 1. Provide the requested quota increase:
 
-    1. New quota limit requested (limit value you're requesting as integer only; for example, 300, 500, or 1,000)
+    1. New quota limit requested (integer only; for example, 300, 500, or 1,000)
     1. Business justification for the limit increase
 
 1. Select the Foundry Tools product **Azure Speech**, and then select **Next**.
