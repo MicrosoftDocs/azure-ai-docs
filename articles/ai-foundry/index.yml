@@ -42,7 +42,7 @@ productDirectory:
     - title: Create apps with code
       imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.png
       links:
-        - url: ./quickstarts/get-started-code.md?view=foundry
+        - url: ./default/tutorials/quickstart-create-foundry-resources.md
           text: Quickstart for Microsoft Foundry (new)
         - url: ./quickstarts/get-started-code.md?view=foundry-classic
           text: Quickstart for Microsoft Foundry (classic)
