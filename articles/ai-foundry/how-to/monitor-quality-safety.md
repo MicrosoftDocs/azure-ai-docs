@@ -44,6 +44,7 @@ Integrations for monitoring a prompt flow deployment allow you to:
 
 [!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
 - A prompt flow ready for deployment. If you don't have one, see [Develop a prompt flow](flow-develop.md).
+- Azure role-based access controls are used to grant access to operations in the Foundry portal. For this article, your user account must be assigned the Azure AI Developer role on the resource group. For more information, see [Role-based access control for Foundry](../concepts/rbac-foundry.md).
 
 # [Python SDK](#tab/python)
 
