@@ -13,7 +13,7 @@ ms.custom: include
 
 In this quickstart, you use [!INCLUDE [foundry-link](../includes/foundry-link.md)] to interact with a Foundry model, create, and chat with an agent.
 
-> [!NOTE]
+> [!TIP]
 > This quickstart shows you how to build an agent with a basic setup. For more advanced scenarios that use your own resources, see [Set up your environment for agent development](../../agents/environment-setup.md).
 
 ## Prerequisites
