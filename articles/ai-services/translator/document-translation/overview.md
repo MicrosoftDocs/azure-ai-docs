@@ -102,6 +102,9 @@ For request details and examples, see [Synchronous document translation](referen
 
 Add document translation to your projects and applications using the following development options.
 
+> [!NOTE]
+> Microsoft Foundry currently supports synchronous (single-file) document translation only. Use the REST API or client libraries for asynchronous batch document translation.
+
 ### [Asynchronous (batch)](#tab/async)
 
 Use asynchronous workflows to translate multiple documents and large files.
@@ -117,7 +120,8 @@ Use synchronous document translation to translate a single file and return the t
 
 |Development option|Description|
 |---|---|
-|**Microsoft Foundry**|Use the [Translator playground](https://ai.azure.com/build/playground/translator) to translate a single file. For more information, see [What is Microsoft Foundry?](../../../ai-foundry/what-is-foundry.md).|
+|**Microsoft Foundry (classic)**|Use Microsoft Foundry to try synchronous document translation in the Translator playground. In the **Classic** portal, upload your own document and translate the document end-to-end. To open the Translator playground, go to [Microsoft Foundry](https://ai.azure.com/), ensure **New Foundry** is not selected, then **Playgrounds** > **Translator**.|
+|**Microsoft Foundry (new)**|The **New** Microsoft Foundry portal uses a sample document and translates only into a predefined set of languages. Does not support customer-provided documents. For more information, see [What is Microsoft Foundry?](../../../ai-foundry/what-is-foundry.md).|
 |**REST API**|Integrate synchronous document translation into your applications using the [REST API](reference/translate-document.md).|
 |**Client libraries (SDKs)**|Get started integrating translation capabilities into your applications using the [client libraries (SDKs)](quickstarts/client-library-sdks.md).|
 | **Docker container** | &bullet; To use the Translator container, you must complete and submit the [**Foundry Tools application for Gated Services**](https://aka.ms/csgate-translator) online request form for approval for access to the container.<br>&bullet; The [**Translator container image**](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/about) supports limited features compared to cloud offerings.<br>For more information, *see* [Container: Translate Documents](../containers/translate-document-parameters.md).|
