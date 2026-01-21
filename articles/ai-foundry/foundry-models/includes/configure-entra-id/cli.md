@@ -9,15 +9,13 @@ ms.topic: include
 zone_pivot_groups: azure-ai-models-deployment
 ---
 
-[!INCLUDE [Header](intro.md)]  
-
 * Install the [Azure CLI](/cli/azure/).
 
 * Identify the following information:
 
   * Your Azure subscription ID.
 
-  * Your Microsoft Foundry resource (formerly known as Azure AI Services resource) name.
+  * Your Microsoft Foundry resource name.
 
   * The resource group where you deployed the Foundry resource.
 

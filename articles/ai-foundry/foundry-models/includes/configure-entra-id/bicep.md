@@ -9,8 +9,6 @@ ms.topic: include
 zone_pivot_groups: azure-ai-models-deployment
 ---
 
-[!INCLUDE [Header](intro.md)]
-
 * Install the [Azure CLI](/cli/azure/).
 
 * Identify the following information:

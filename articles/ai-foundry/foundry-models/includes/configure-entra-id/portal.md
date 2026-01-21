@@ -9,13 +9,12 @@ ms.topic: include
 zone_pivot_groups: azure-ai-models-deployment
 ---
 
-[!INCLUDE [Header](intro.md)]
 
 ## Configure Microsoft Entra ID for inference
 
 Follow these steps to configure Microsoft Entra ID for inference: 
 
-1. Go to the [Azure portal](https://portal.azure.com) and locate the **Microsoft Foundry resource** (formerly known as Azure AI Services resource) you're using. If you're using Foundry with projects or hubs, you can navigate to it by:
+1. Go to the [Azure portal](https://portal.azure.com) and locate the **Microsoft Foundry resource** you're using. If you're using Foundry with projects or hubs, you can navigate to it by:
 
    1. Go to the [Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
