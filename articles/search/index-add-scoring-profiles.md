@@ -3,13 +3,15 @@ title: Add scoring profiles
 titleSuffix: Azure AI Search
 description: Boost search relevance scores for Azure AI Search results by adding scoring profiles to a search index.
 manager: nitinme
-author: shmed
-ms.author: ramero
+author: HeidiSteen
+ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
+  - dev-focus
+ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 11/23/2025
+ms.date: 01/20/2026
 ms.update-cycle: 365-days
 ---
 
@@ -27,9 +29,25 @@ Scoring profiles are used to boost or suppress the ranking of matching documents
 
 You can add a scoring profile to an index by editing its JSON definition in the Azure portal or programmatically through APIs like [Create or Update Index REST](/rest/api/searchservice/indexes/create-or-update) or equivalent index update APIs in any Azure SDK. There's no index rebuild requirements so you can add, modify, or delete a scoring profile with no effect on indexed documents.
 
+By the end of this article, you can create and apply scoring profiles to boost search relevance based on field weights, freshness, distance, or custom criteria.
+
 ## Prerequisites
 
++ An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
+
++ An Azure AI Search service. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
+
 + A search index with text or numeric (nonvector) fields.
+
++ **Permissions**: You need **Search Index Data Contributor** to create or update an index with scoring profiles. To query using a scoring profile, you need **Search Index Data Reader**. For more information, see [Connect using roles](search-security-rbac.md).
+
++ **SDK installation (optional)**:
+
+  + Python: `pip install azure-search-documents`
+  + C#: `dotnet add package Azure.Search.Documents`
+
+> [!TIP]
+> For immediate code examples, skip to [Scoring profile definition](#scoring-profile-definition).
 
 ## Rules for scoring profiles
 
@@ -76,6 +94,8 @@ The following definition shows a simple profile named "geo". This example boosts
 ]
 ```  
 
+**Reference**: [scoringProfiles](/rest/api/searchservice/indexes/create#scoringprofile) | [scoringFunction](/rest/api/searchservice/indexes/create#scoringfunction) | [distance function](/rest/api/searchservice/indexes/create#distancescoringfunction)
+
 To use this scoring profile, your query is formulated to specify `scoringProfile` parameter in the request. If you're using the REST API, queries are specified through GET and POST requests. In the following example, "currentLocation" has a delimiter of a single dash (`-`). It's followed by longitude and latitude coordinates, where longitude is a negative value.
 
 ```http
@@ -87,9 +107,78 @@ POST /indexes/hotels/docs&api-version=2025-09-01
 }
 ```  
 
+**Reference**: [Search Documents (REST)](/rest/api/searchservice/documents/search-post) | [scoringProfile parameter](/rest/api/searchservice/documents/search-post#searchrequest) | [scoringParameters](/rest/api/searchservice/documents/search-post#searchrequest)
+
 Query parameters, including `scoringParameters`, are described in [Search Documents (REST API)](/rest/api/searchservice/documents/search-post).  
 
 For more scenarios, see the examples for [freshness and distance](#example-boosting-by-freshness-or-distance) and [weighted text and functions](#example-boosting-by-weighted-text-and-functions) in this article.
+
+### Query with a scoring profile using the SDKs
+
+#### [Python](#tab/python)
+
+```python
+import os
+from azure.identity import DefaultAzureCredential
+from azure.search.documents import SearchClient
+
+# Set up the client
+endpoint = os.environ["AZURE_SEARCH_ENDPOINT"]
+index_name = "hotels"
+credential = DefaultAzureCredential()
+
+client = SearchClient(endpoint=endpoint, index_name=index_name, credential=credential)
+
+# Execute search with scoring profile
+results = client.search(
+    search_text="inn",
+    scoring_profile="geo",
+    scoring_parameters=["currentLocation--122.123,44.77233"],
+    select=["HotelName", "Description", "Rating"]
+)
+
+for result in results:
+    print(f"{result['HotelName']} (Score: {result['@search.score']})")
+```
+
+**Reference**: [SearchClient.search](/python/api/azure-search-documents/azure.search.documents.searchclient#azure-search-documents-searchclient-search) | [scoring_profile parameter](/python/api/azure-search-documents/azure.search.documents.searchclient)
+
+#### [C#](#tab/csharp)
+
+```csharp
+using Azure;
+using Azure.Identity;
+using Azure.Search.Documents;
+using Azure.Search.Documents.Models;
+
+// Set up the client
+string endpoint = Environment.GetEnvironmentVariable("AZURE_SEARCH_ENDPOINT");
+string indexName = "hotels";
+
+SearchClient client = new SearchClient(
+    new Uri(endpoint),
+    indexName,
+    new DefaultAzureCredential());
+
+// Execute search with scoring profile
+SearchResults<SearchDocument> results = client.Search<SearchDocument>(
+    "inn",
+    new SearchOptions
+    {
+        ScoringProfile = "geo",
+        ScoringParameters = { "currentLocation--122.123,44.77233" },
+        Select = { "HotelName", "Description", "Rating" }
+    });
+
+await foreach (SearchResult<SearchDocument> result in results.GetResultsAsync())
+{
+    Console.WriteLine($"{result.Document["HotelName"]} (Score: {result.Score})");
+}
+```
+
+**Reference**: [SearchClient.Search](/dotnet/api/azure.search.documents.searchclient.search) | [SearchOptions.ScoringProfile](/dotnet/api/azure.search.documents.searchoptions.scoringprofile)
+
+---
 
 ## Add a scoring profile to a search index
 
@@ -293,6 +382,8 @@ In the next example, a linear interpolation provides a steady preference for mos
   ]
 }
 ```
+
+**Reference**: [freshness function](/rest/api/searchservice/indexes/create#freshnessscoringfunction) | [boostingDuration](/rest/api/searchservice/indexes/create#freshnessscoringparameters)
 
 ## Example: boosting by weighted text and functions
 
@@ -591,3 +682,26 @@ The top response for this query is "Gastronomic Landscape Hotel" with a search s
   + logarithmic when you want a gentle preference.
 
 + Aggregation: If combining multiple functions, sum is easiest; switch to max when you want a single signal to dominate
+
+## Troubleshoot scoring profiles
+
+Use the following table to diagnose common issues with scoring profiles.
+
+| Issue | Possible cause | Resolution |
+| ------- | --------------- | ------------ |
+| Scoring profile not applied | Profile name not specified in query | Add `scoringProfile` parameter to your search request with the exact profile name. |
+| No boost effect observed | Field isn't marked as `filterable` | Functions can only be applied to fields attributed as `filterable`. Update your index schema. |
+| Unexpected ranking results | Boost value too low or high | Start with boost values in the 1.25–2.0 range and adjust based on testing. |
+| Freshness not boosting recent docs | `boostingDuration` too short or wrong format | Verify the duration format (e.g., "P30D" for 30 days) and extend the window if needed. |
+| Distance function not working | Field isn't `Edm.GeographyPoint` | The distance function only works with `Edm.GeographyPoint` fields. |
+| Tag function returns no boost | Tags don't match query values | Verify the `tagsParameter` matches values in the search request's `scoringParameters`. |
+| Profile exists but query fails | Invalid field name in profile | Ensure all field names in the scoring profile exist in the index schema. |
+
+## Related content
+
++ [Relevance and scoring in Azure AI Search](index-similarity-and-scoring.md)
++ [Scoring profile REST API reference](/rest/api/searchservice/indexes/create#scoringprofile)
++ [Search Documents REST API](/rest/api/searchservice/documents/search-post)
++ [Semantic ranking](semantic-how-to-query-request.md)
++ [ScoringProfile class (.NET)](/dotnet/api/azure.search.documents.indexes.models.scoringprofile)
++ [ScoringProfile class (Python)](/python/api/azure-search-documents/azure.search.documents.indexes.models.scoringprofile)
