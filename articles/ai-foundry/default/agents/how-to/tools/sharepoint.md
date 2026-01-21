@@ -517,7 +517,7 @@ SharePoint agent sample completed!
 
 1. Add a SharePoint connection.
 
-  For step-by-step instructions, see [Add a new connection to your project](../../../../how-to/connections-add.md?view=foundry&preserve-view=true).
+   For step-by-step instructions, see [Add a new connection to your project](../../../../how-to/connections-add.md?view=foundry&preserve-view=true).
 
   1. In the SharePoint connection configuration, enter the site URL or folder URL.
 
