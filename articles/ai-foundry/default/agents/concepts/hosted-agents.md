@@ -9,7 +9,7 @@ ms.manager: nitinme
 ms.topic: concept-article
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
-ms.custom: pilot-ai-workflow-jan-2026
+ms.custom: references_regions, pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 ---
 
@@ -157,7 +157,7 @@ This local testing approach lets you:
 
 ## Create a hosted agent
 
-## Create a hosted agent by using the Azure Developer CLI
+### Create a hosted agent by using the Azure Developer CLI
 
 Developers can use the Azure Developer CLI `ai agent` extension for seamless and rapid provisioning and deployment of their agentic applications on Microsoft Foundry.
 
@@ -677,7 +677,7 @@ agent = client.agents.create_version(
     )
 )
 ```
-Start the agent by using Azure CognitiveServices CLI or from within Agent Builder in the new Foundry UI. 
+Start the agent by using Azure Cognitive Services CLI or from within Agent Builder in the new Foundry UI. 
 
 Currently supported built-in Foundry tools include:
 
