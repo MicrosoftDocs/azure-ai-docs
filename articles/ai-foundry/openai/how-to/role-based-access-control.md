@@ -149,7 +149,7 @@ All the capabilities of Cognitive Services Contributor plus the ability to:
 |Create or edit model deployments|❌|✅|✅| ➖ |
 |Create or deploy custom fine-tuned models|❌|✅|✅| ➖ |
 |Upload datasets for fine-tuning|❌|✅|✅| ➖ |
-|View, query, filter Stored competions data|❌|✅|✅| ➖ |
+|View, query, filter Stored completions data|❌|✅|✅| ➖ |
 |Create new Azure OpenAI resources|❌|❌|✅| ➖ |
 |View/Copy/Regenerate keys under “Keys and Endpoint”|❌|❌|✅| ➖ |
 |Create customized guardrails|❌|❌|✅| ➖ |

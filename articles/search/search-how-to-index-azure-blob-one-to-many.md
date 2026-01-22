@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 05/19/2025
+ms.date: 01/14/2026
 ms.update-cycle: 365-days
 ---
 
@@ -17,7 +17,7 @@ ms.update-cycle: 365-days
 
 **Applies to**: [Blob indexers](search-how-to-index-azure-blob-storage.md), [File indexers](search-file-storage-integration.md)
 
-By default, an indexer treats the contents of a blob or file as a single search document. If you want a more granular representation in a search index, you can set **parsingMode** values to create multiple search documents from one blob or file. The **parsingMode** values that result in many search documents include `delimitedText` (for [CSV](search-how-to-index-azure-blob-csv.md)), and `jsonArray` or `jsonLines` (for [JSON](search-how-to-index-azure-blob-json.md)).
+By default, an indexer treats the contents of a blob or file as a single search document. If you want a more granular representation in a search index, you can set **parsingMode** values to create multiple search documents from one blob or file. The **parsingMode** values that result in many search documents include `delimitedText` (for [CSV](search-how-to-index-azure-blob-csv.md)), `jsonArray` or `jsonLines` (for [JSON](search-how-to-index-azure-blob-json.md)), or `markdown` with sub-mode `oneToMany` for [markdown](search-how-to-index-azure-blob-markdown.md).
 
 When you use any of these parsing modes, the new search documents that emerge must have unique document keys, and a problem arises in determining where that value comes from. The parent blob has at least one unique value in the form of `metadata_storage_path property`, but if it contributes that value to more than one search document, the key is no longer unique in the index.
 

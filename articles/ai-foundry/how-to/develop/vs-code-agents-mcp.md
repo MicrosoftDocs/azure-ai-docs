@@ -77,7 +77,7 @@ After you add an MCP tool, you can create an agent directly on Foundry by using 
 
 ## View the details of a deployed AI agent
 
-Selecting the deployed agent opens the **AGENT PERFERENCES** pane in a view-only mode. You can:
+Selecting the deployed agent opens the **AGENT PREFERENCES** pane in a view-only mode. You can:
 
 - Select the **Edit Agent** button to view the agent designer and the .yaml definition of the agent for editing.
 - Select the **Open Code File** button to create a sample code file that uses the agent.
@@ -87,7 +87,7 @@ Selecting the deployed agent opens the **AGENT PERFERENCES** pane in a view-only
 
 ### Edit and update the deployed AI agent
 
-1. On the **AGENT PERFERENCES** pane, select the **Edit Agent** button. The agent designer opens with the agent's .yaml file.
+1. On the **AGENT PREFERENCES** pane, select the **Edit Agent** button. The agent designer opens with the agent's .yaml file.
 
 1. Edit the agent's configuration, such as the model, tools, and instructions.
 

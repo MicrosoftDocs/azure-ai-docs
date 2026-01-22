@@ -8,7 +8,13 @@ ms.author: pafarley
 ms.custom: references_regions
 ---
 
-### November 2025
+### December 2025 release
+
+Speech to text 5.1.0
+- General availability of real time diarization using the speech to text container.
+- Resolved vulnerabilities
+
+### November 2025 release
 
 * LLM speech API is public preview now. It uses a large-language-model-enhanced speech model that delivers improved quality, deep contextual understanding, multilingual support, and prompt-tuning capabilities. It currently supports the following speech tasks:
    - `transcribe`: Convert pre-recorded audio into text.
@@ -30,6 +36,14 @@ The speech to text REST API version 2025-10-15 is released for general availabil
 #### Phrase list weight control for Speech SDK
 
 You can now control the influence of phrase lists on speech recognition results when using the Speech SDK with Real-time transcription. The new phrase list weight feature allows you to set a bias level between 0.0 (disabled) and 2.0 (maximum influence) to fine-tune how much priority phrase list terms receive over the default dictionary. For more information, see [Improve recognition accuracy with phrase list](../../improve-accuracy-phrase-list.md).
+
+### September 2025 release
+
+Speech to text 5.0.3-preview
+- Fixed vulnerabilities
+- Support user set redis endpoint for diarization.
+- STT backend/frontend engine update
+- Added coverage of locales previously supported in version 4.12.
 
 ### August 2025 release
 

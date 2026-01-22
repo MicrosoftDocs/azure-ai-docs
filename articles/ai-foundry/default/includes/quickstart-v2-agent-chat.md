@@ -12,7 +12,6 @@ ms.custom: include
 
 Use the previously created agent named "MyAgent" to interact by asking a question and a related follow-up. The conversation maintains history across these interactions. 
 
-[!INCLUDE [agent-v2-switch](agent-v2-switch.md)]
 
 # [Python](#tab/python)
 
@@ -45,3 +44,5 @@ Interact with your agent.
 1. Follow up with "How about a haiku?"
 
 ---
+
+[!INCLUDE [agent-v2-switch](agent-v2-switch.md)]

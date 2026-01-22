@@ -390,17 +390,17 @@ Unload a model from memory.
 
 **URI Parameters:**
 
-- `name` (string)  
+- `name` (string)
   The model name to unload.
 
 **Query Parameters:**
 
-- `force` (boolean, optional)  
+- `force` (boolean, optional)
   If `true`, ignores TTL settings and unloads immediately.
 
 **Response:**
 
-- 200 OK  
+- 200 OK
   Empty response body
 
 **Example:**
@@ -409,7 +409,7 @@ Request URI
 
 ```http
 GET /openai/unload/Phi-4-mini-instruct-generic-cpu?force=true
-```
+````
 
 ## GET /openai/unloadall
 
