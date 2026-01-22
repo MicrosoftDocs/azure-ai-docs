@@ -63,9 +63,9 @@ Before migrating to Microsoft Foundry, export all custom projects you want to tr
 
 ### Export other custom projects
 
-For **Custom Named Entity Recognition (CNER)** and **Custom text classification** projects, exporting directly from Language Studio isn't supported. Instead, you need to export the training data and configuration using the REST API. For more information, see the respective technical guides:
+For **Custom Named Entity Recognition (CNER)** and **Custom Text Classification** projects, exporting directly from Language Studio isn't supported. Instead, you need to export the training data and configuration using the REST API. For more information, see the respective technical guides:
 
-* [Export your Custom text classification project](custom-text-classification/fail-over.md#export-your-primary-project-assets)
+* [Export your Custom Text Classification project](custom-text-classification/fail-over.md#export-your-primary-project-assets)
 * [Export your Custom Named Entity Recognition project](custom-named-entity-recognition/fail-over.md#export-your-primary-project-assets)
 
 ## Step 2: Set up your Foundry environment
@@ -99,7 +99,7 @@ To use Azure AI Language capabilities with a **Foundry project**, you first need
 |[**Custom Question Answering (CQA)**](question-answering/quickstart/sdk.md)|&bullet; Foundry resource and Foundry project created in the Azure portal.</br>&bullet; Azure AI Search resource connected to your hub or hub-based project via the Foundry Management Center. For more information, *see* [Create a new connection](/azure/ai-foundry/how-to/connections-add?view=foundry-classic&preserve-view=true&tabs=foundry-portal#create-a-new-connection).|Available in supported Azure regions. For more information, *see* [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).|
 |[**Custom Question Answering agent**](question-answering/how-to/deploy-agent.md)|&bullet; Foundry resource and Foundry project created in the Azure portal.</br>&bullet; Azure AI Search resource connected to your hub or hub-based project via the Foundry Management Center. For more information, *see* [Create a new connection](/azure/ai-foundry/how-to/connections-add?view=foundry-classic&preserve-view=true&tabs=foundry-portal#create-a-new-connection).</br>&bullet; Deployed knowledge base.</br>&bullet; Deployed Azure OpenAI model in Microsoft Foundry.</br>&bullet; API key connected to your hub or hub-based project.|Available in supported Azure regions. For more information, *see* [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).|
 |[**Custom Named Entity Recognition (CNER)**](custom-named-entity-recognition/quickstart.md)|&bullet; Language resource with a storage account linked during resource creation.</br>&bullet; Foundry hub-based project created in the Azure portal.|Limited to select Azure regions. Some regions support both authoring and prediction; others support prediction only. For more information, *see* [Region support for CNER](concepts/regional-support.md#custom-named-entity-recognition).|
-|[**Orchestration workflow**](orchestration-workflow/quickstart.md)|&bullet; Foundry resource and Foundry project, or Language resource and Foundry hub-based project.</br>&bullet; A `CLU` or `CQA` project created in the same resource.|Limited to select Azure regions. Some regions support both authoring and prediction; others support prediction only. For more information, *see* [Region support for Orchestration workflow](concepts/regional-support.md#conversational-language-understanding-and-orchestration-workflow).|
+|[**Orchestration Workflow**](orchestration-workflow/quickstart.md)|&bullet; Foundry resource and Foundry project, or Language resource and Foundry hub-based project.</br>&bullet; A `CLU` or `CQA` project created in the same resource.|Limited to select Azure regions. Some regions support both authoring and prediction; others support prediction only. For more information, *see* [Region support for Orchestration workflow](concepts/regional-support.md#conversational-language-understanding-and-orchestration-workflow).|
 
 ### [**Language resource**](#tab/studio)
 
@@ -145,7 +145,7 @@ The following table lists the pretrained (prebuilt) capabilities available in Mi
 > [!NOTE]
 > The following Azure AI Language features aren't available in the Microsoft Foundry portal. To use these capabilities, call the Azure AI Language REST API directly:
 >
-> * **Custom text classification**. For regional availability, *see* [Region support for custom text classification](concepts/regional-support.md).
+> * **Custom Text Classification**. For regional availability, *see* [Region support for Custom Text Classification](concepts/regional-support.md).
 > * **Entity linking**. Available in all [supported Azure regions](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=cognitive-services).
 
 ## Step 3: Connect your Azure Language or Foundry resource to Microsoft Foundry
