@@ -91,7 +91,7 @@ To configure Microsoft Entra ID for inference, follow these steps:
 
 1. Verify the role assignment:
 
-        ```azurecli
+    ```azurecli
     az role assignment list --scope $RESOURCE_ID --assignee $OBJECT_ID --query "[?roleDefinitionName=='Cognitive Services User'].{principalName:principalName, roleDefinitionName:roleDefinitionName}" --output table
     ```
 

@@ -39,7 +39,9 @@ If you're in the Foundry portal, you can navigate to the Foundry resource page i
 
 ::: moniker range="foundry"
 
-:::image type="content" source="../../media/configure-entra-id/locate-resource-ai-services.png" alt-text="Screenshot showing the resource to which we configure Microsoft Entra ID." lightbox="../../media/configure-entra-id/locate-resource-ai-services.png":::
+1. Open your Foundry resource's page in the Azure portal.
+
+   :::image type="content" source="../../media/configure-entra-id/locate-resource-ai-services.png" alt-text="Screenshot showing the resource to which we configure Microsoft Entra ID." lightbox="../../media/configure-entra-id/locate-resource-ai-services.png":::
 
 ::: moniker-end
 
