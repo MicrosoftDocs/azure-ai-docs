@@ -5,6 +5,7 @@ ms.service: azure-ai-language
 ms.topic: include
 ms.date: 11/18/2025
 ms.author: lajanuar
+ai-usage: ai-assisted
 ---
 [Reference documentation](/dotnet/api/azure.ai.textanalytics?preserve-view=true&view=azure-dotnet-preview) | [More samples](https://github.com/Azure/azure-sdk-for-net/tree/master/sdk/textanalytics/Azure.AI.TextAnalytics/samples) | [Package (NuGet)](https://www.nuget.org/packages/Azure.AI.TextAnalytics/5.2.0) | [Library source code](https://github.com/Azure/azure-sdk-for-net/tree/master/sdk/textanalytics/Azure.AI.TextAnalytics)
 
@@ -50,14 +51,7 @@ namespace LanguageDetectionExample
 {
     class Program
     {
-        // This example requires environment variables named "LANGUAGE_KEY" and "LANGUAGE_ENDPOINT"
-        static string languageKey = Environment.GetEnvironmentVariable("LANGUAGE_KEY");
-        static string languageEndpoint = Environment.GetEnvironmentVariable("LANGUAGE_ENDPOINT");
-
-        private static readonly AzureKeyCredential credentials = new AzureKeyCredential(languageKey);
-        private static readonly Uri endpoint = new Uri(languageEndpoint);
-
-        // Example method for detecting the language of text
+        // This example requires environment variables named "LANGUAGE_KEY" and "LANGUAGE_ENDPOINT".
         static void LanguageDetectionExample(TextAnalyticsClient client)
         {
             DetectedLanguage detectedLanguage = client.DetectLanguage("Ce document est rédigé en Français.");
@@ -67,7 +61,19 @@ namespace LanguageDetectionExample
 
         static void Main(string[] args)
         {
-            var client = new TextAnalyticsClient(languageEndpoint, languageKey);
+            string languageKey = Environment.GetEnvironmentVariable("LANGUAGE_KEY");
+            string languageEndpoint = Environment.GetEnvironmentVariable("LANGUAGE_ENDPOINT");
+
+            if (string.IsNullOrWhiteSpace(languageKey) || string.IsNullOrWhiteSpace(languageEndpoint))
+            {
+                Console.WriteLine("Set the LANGUAGE_KEY and LANGUAGE_ENDPOINT environment variables before running this sample.");
+                return;
+            }
+
+            var endpoint = new Uri(languageEndpoint);
+            var credentials = new AzureKeyCredential(languageKey);
+            var client = new TextAnalyticsClient(endpoint, credentials);
+
             LanguageDetectionExample(client);
 
             Console.Write("Press any key to exit.");
