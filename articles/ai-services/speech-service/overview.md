@@ -58,6 +58,12 @@ Voice options include:
 - **Standard voice**: You can choose among highly natural out-of-the-box voices. Check the standard voice samples in the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery) and determine the right voice for your business needs.
 - **Custom voice**: You can create a [custom voice](custom-neural-voice.md) that's recognizable and unique to your brand or product. Custom voices are private and can offer a competitive advantage. Check the [custom voice samples](https://aka.ms/customvoice).
 
+### Text-to-speech avatar
+
+[Text-to-speech avatar](what-is-text-to-speech-avatar.md) converts text into a digital video of a photorealistic human speaking with a natural-sounding voice. The video can be synthesized asynchronously or in real time. You can build applications integrated with text-to-speech avatar through an API, or use text-to-speech avatar in Foundry to create video content without coding. The feature empowers you to deliver lifelike and high-quality synthetic talking avatar videos for various applications while adhering to responsible AI practices.
+
+You can choose from a range of standard voices for the avatar. The language support for text-to-speech avatar is the same as the language support for text to speech.
+
 ### Speech translation
 
 [Speech translation](speech-translation.md) enables real-time, multilingual translation of speech to your applications, tools, and devices. Use this feature for speech-to-speech and speech-to-text translation.
