@@ -16,14 +16,16 @@ monikerRange: 'foundry-classic || foundry'
 
 # System message design
 
-This guide describes concrete techniques for writing system messages, including when to use short constraints versus multi-line rule sets.  
+This guide walks you through some techniques in system message design. 
+
+
 
 ## What is a system message?
 
 A system message is a feature-specific set of instructions or contextual frameworks given to a generative AI model to direct and improve the quality and safety of a model’s output. This is particularly helpful in situations that need certain degrees of formality, technical language, or industry-specific terms.  
 
 
-There is no prescribed length; use one sentence for a single behavioral constraint, or multiple lines when defining rules, formatting requirements, or refusal behavior:  
+There is no prescribed length. A system message can be one short sentence:  
 
 ```
 You are a helpful AI assistant.
@@ -55,4 +57,6 @@ Some other examples of system messages are:
 }
 ```
 
-An important detail to understand is that even if you instruct a model in the system message to answer **I don't know** when unsure of an answer this doesn't guarantee that the request will be honored. A well designed system message can increase the likelihood of a certain outcome, but it's still possible that an incorrect response could be generated that contradicts the intent of the instruction in the system message. 
+An important detail to understand is that even if you instruct a model in the system message to answer **I don't know** when unsure of an answer this doesn't guarantee that the request will be honored. A well designed system message can increase the likelihood of a certain outcome, but it's still possible that an incorrect response could be generated that contradicts the intent of the instruction in the system message.
+
+
