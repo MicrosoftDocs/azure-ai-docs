@@ -32,15 +32,15 @@ Content Understanding first requires users to authenticate access to Content Und
 
 ### Secure data in transit 
 
-All Foundry Tools endpoints use HTTPS URLs for encrypting data during transit. The client operating system needs to support Transport Layer Security (TLS) 1.3 for calling the end points. For more information, see [Transport Layer Security](/azure/ai-services/security-features?tabs=command-line%2Ccsharp#transport-layer-security-tls). Customer data is stored in the same region where the Content Understanding resource is created. 
+All Foundry Tools endpoints use HTTPS URLs for encrypting data during transit. The client operating system needs to support Transport Layer Security (TLS) 1.3 for calling the end points. For more information, see [Transport Layer Security](/azure/ai-services/security-features?tabs=command-line%2Ccsharp#transport-layer-security-tls). 
 
 ### Encrypts input data for processing 
 
-When you submit your files to a Content Understanding operation, it starts the process of analyzing the input. Your data and results are then temporarily encrypted and stored in Azure Storage before it's sent to Azure OpenAI for further processing. While compute resources aren't dedicated per customer, requests are processed in logically isolated, sandboxed containers to ensure workload separation and prevent cross-tenant data exposure. 
+When you submit your files to a Content Understanding operation, it starts the process of analyzing the input. Your data and results are then temporarily encrypted and stored in Azure Storage in the same region as your Content Understanding resource before being sent to Azure OpenAI for further processing. While compute resources aren't dedicated per customer, requests are processed in logically isolated, sandboxed containers to ensure workload separation and prevent cross-tenant data exposure. 
 
 ### Data at rest and processing locations 
 
-Content Understanding stores customer data at rest in the same geographic region as the Content Understanding resource.
+Content Understanding stores customer data at rest in the same region as the Content Understanding resource.
 
 Processing locations depend on the type of operation:
 
