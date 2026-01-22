@@ -48,7 +48,7 @@ Use the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculato
 
 ## Costs associated with Foundry
 
-When you create a Foundry resource, you pay for the Azure services you use, such as Azure OpenAI, Azure Speech in Foundry, Content Safety, Azure Vision in Foundry, Azure Document Intelligence, and Azure Language in Foundry. Costs vary by service and feature. For details, see the [Azure AI services pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/).
+When you create a Foundry resource, you pay for the Azure services you use, such as Azure OpenAI, Azure Speech in Foundry, Content Safety, Azure Vision in Foundry, Azure Document Intelligence, and Azure Language in Foundry. Costs vary by service and feature. For details, see the [Foundry Tools pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/).
 
 ## Understand billing models for Foundry
 
