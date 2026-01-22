@@ -6,6 +6,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.custom:
   - build-2024
+  - dev-focus
 ms.topic: how-to
 ms.date: 01/22/2026
 ms.author: mopeakande
@@ -21,10 +22,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
-The Microsoft Foundry portal [model catalog](../how-to/model-catalog-overview.md) offers over 1,600 models. A common way to deploy these models is to use the managed compute deployment option. This option is also sometimes referred to as a managed online deployment. 
-
-When you deploy a large language model (LLM), you make it available for use in a website, an application, or other production environment. Deployment typically involves hosting the model on a server or in the cloud and creating an API or other interface for users to interact with the model. You can invoke the deployment for real-time inference of generative AI applications such as chat and copilot.
-
+The Microsoft Foundry portal [model catalog](../how-to/model-catalog-overview.md) offers over 1,600 models that you can deploy using managed compute (also called managed online deployment) for real-time inference in production environments. 
 In this article, you learn to deploy models with the managed compute deployment option and to perform inference on the deployed model.
 
 ## Prerequisites
@@ -37,6 +35,10 @@ In this article, you learn to deploy models with the managed compute deployment 
 
 - Azure role-based access controls (Azure RBAC) grant access to operations in Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, see [Role-based access control in Foundry portal](../concepts/rbac-foundry.md).
 
+- Virtual Machine (VM) quota in your Azure subscription for the specific VM SKUs needed to run your model. Each deployment consumes VM core quota on a per-region basis. See [Quota considerations](#quota-considerations) for details on quota requirements and how to request increases.
+
+- For deployments with Python SDK: Python 3.8 or later installed. You also need the Azure Machine Learning SDK (`azure-ai-ml`) and Azure Identity library (`azure-identity`).
+
 
 ## Find your model in the model catalog
 
@@ -46,7 +48,7 @@ In this article, you learn to deploy models with the managed compute deployment 
 
     [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
-    :::image type="content" source="../media/deploy-models-managed/catalog-filter-managed-compute.png" alt-text="A screenshot of the model catalog showing how to filter for models that can be deployed via managed compute." lightbox="../media/deploy-models-managed/catalog-filter-managed-compute.png"::: 
+    :::image type="content" source="../media/deploy-models-managed/catalog-filter-managed-compute.png" alt-text="Screenshot of the model catalog interface with the Deployment options filter panel open, on the left showing Managed compute selected, and a grid of available model cards displayed on the right." lightbox="../media/deploy-models-managed/catalog-filter-managed-compute.png"::: 
 
 1. Select a model to open its model card. In this article, use the model `deepset-roberta-base-squad2`.
 
@@ -58,17 +60,21 @@ In this article, you learn to deploy models with the managed compute deployment 
 1. From the model's page, select **Use this model** to open the deployment window. 
 1. The deployment window is pre-filled with some selections and parameter values. You can either keep them or change them as desired. You can also select an existing endpoint for the deployment or create a new one. For this example, specify an instance count of `1` and create a new endpoint for the deployment.
 
-    :::image type="content" source="../media/deploy-models-managed/deployment-configuration.png" alt-text="Screenshot of the deployment configuration screen for managed compute deployment in Foundry." lightbox="../media/deploy-models-managed/deployment-configuration.png":::
+    :::image type="content" source="../media/deploy-models-managed/deployment-configuration.png" alt-text="Screenshot of the deployment configuration dialog showing fields for deployment name, endpoint selection, virtual machine selection, and instance count set to 1, with a Deploy button at the bottom." lightbox="../media/deploy-models-managed/deployment-configuration.png":::
 
 1. Select **Deploy** to create your deployment. The creation process might take a few minutes to complete. When it's complete, the portal opens the model deployment page.
 
     > [!TIP]
     > To see endpoints deployed to your project, go to the **My assets** section of the left pane and select **Models + endpoints**.
 
+1. Verify your deployment succeeded. On the deployment details page, check that the **Provisioning state** shows **Succeeded** and the **Deployment state** shows **Healthy**. If you see any errors, refer to the [Troubleshooting](#troubleshooting) section.
+
 1. The created endpoint uses key authentication for authorization. To get the keys associated with a given endpoint, follow these steps:
 
     1. Select the deployment, and note the endpoint's Target URI and Key.
     1. Use these credentials to call the deployment and generate predictions.
+
+    The Target URI follows this format: `https://<endpoint-name>.<region>.inference.ml.azure.com/score`
  
 
 ## Consume deployments
@@ -111,6 +117,10 @@ After you create your deployment, follow these steps to consume it:
     )
     ```
 
+    This code authenticates with Azure using interactive browser credentials and creates a client to interact with your Foundry project. When you run this code, a browser window opens for authentication.
+
+    **Reference:** [MLClient](/python/api/azure-ai-ml/azure.ai.ml.mlclient), [InteractiveBrowserCredential](/python/api/azure-identity/azure.identity.interactivebrowsercredential)
+
 1. Create an endpoint. For the managed compute deployment option, you need to create an endpoint before a model deployment. Think of an endpoint as a container that can house multiple model deployments. The endpoint names need to be unique in a region, so in this example use the timestamp to create a unique endpoint name.
 
     ```python
@@ -132,6 +142,10 @@ After you create your deployment, follow these steps to consume it:
     )
     workspace_ml_client.online_endpoints.begin_create_or_update(endpoint).wait()
     ```
+
+    This code creates a managed online endpoint with key-based authentication. The operation typically takes 2-3 minutes. When complete, you'll have an endpoint URL where you can deploy models.
+
+    **Reference:** [ManagedOnlineEndpoint](/python/api/azure-ai-ml/azure.ai.ml.entities.managedonlineendpoint), [online_endpoints.begin_create_or_update](/python/api/azure-ai-ml/azure.ai.ml.operations.onlineendpointoperations#azure-ai-ml-operations-onlineendpointoperations-begin-create-or-update)
 
 1. Create a deployment. Replace the model ID in the next code with the model ID that you copied from the details page of the model you selected in the [Find your model in the model catalog](#find-your-model-in-the-model-catalog) section.
 
@@ -164,9 +178,13 @@ After you create your deployment, follow these steps to consume it:
     workspace_ml_client.online_endpoints.begin_create_or_update(endpoint).result()
     ```
 
+    This code deploys the model to your endpoint with 2 Standard_DS3_v2 VM instances. The deployment includes liveness and readiness probes for health monitoring. Traffic is set to 100% for this deployment. The operation takes several minutes to complete. When finished, your model is ready to accept inference requests.
+
+    **Reference:** [ManagedOnlineDeployment](/python/api/azure-ai-ml/azure.ai.ml.entities.managedonlinedeployment), [ProbeSettings](/python/api/azure-ai-ml/azure.ai.ml.entities.probesettings), [online_deployments.begin_create_or_update](/python/api/azure-ai-ml/azure.ai.ml.operations.onlinedeploymentoperations#azure-ai-ml-operations-onlinedeploymentoperations-begin-create-or-update)
+
 ## Inference the deployment
 
-1. You need a sample json data to test inferencing. Create `sample_score.json` with the following example. 
+1. You need sample JSON data to test inferencing. Create a file named `sample_score.json` in your working directory with the following content: 
 
     ```json
     {
@@ -187,9 +205,11 @@ After you create your deployment, follow these steps to consume it:
     }
     ```
 
-1. Inference with `sample_score.json`. Change the location of the scoring file in the next code, based on where you saved your sample json file.
+1. Inference with `sample_score.json`. Change the location of the scoring file in the next code, based on where you saved your sample JSON file.
 
     ```python
+    import json
+    
     scoring_file = "./sample_score.json" 
     response = workspace_ml_client.online_endpoints.invoke(
         endpoint_name=online_endpoint_name,
@@ -199,6 +219,10 @@ After you create your deployment, follow these steps to consume it:
     response_json = json.loads(response)
     print(json.dumps(response_json, indent=2))
     ```
+
+    This code sends the sample questions and context to your deployed model and prints the answers. The model performs question-answering by extracting relevant text from the provided context. Expected output includes answer text and confidence scores for each question.
+
+    **Reference:** [online_endpoints.invoke](/python/api/azure-ai-ml/azure.ai.ml.operations.onlineendpointoperations#azure-ai-ml-operations-onlineendpointoperations-invoke)
 
 
 ::: zone-end
@@ -220,6 +244,52 @@ To delete deployments in the Foundry portal, select **Delete deployment** on the
 ## Quota considerations
 
 To deploy and perform inferencing with real-time endpoints, you consume Virtual Machine (VM) core quota that Azure assigns to your subscription on a per-region basis. When you sign up for Foundry, you receive a default VM quota for several VM families available in the region. You can continue to create deployments until you reach your quota limit. Once that happens, you can request a quota increase.  
+
+## Troubleshooting
+
+This section provides solutions to common issues you might encounter when deploying models with managed compute.
+
+### Deployment fails with quota exceeded error
+
+**Issue:** You receive an error indicating insufficient quota when creating a deployment.
+
+**Solution:** 
+- Check your current quota usage in the Azure portal under your subscription's quota settings
+- Request a quota increase through the Azure portal for the specific VM SKU you need
+- Consider using a different VM SKU that has available quota
+- See [Manage and increase quotas for resources with Azure Machine Learning](/azure/machine-learning/how-to-manage-quotas) for detailed guidance
+
+### Authentication errors when invoking the endpoint
+
+**Issue:** You receive authentication errors (401 Unauthorized) when calling the deployed endpoint.
+
+**Solution:**
+- Verify you're using the correct endpoint URI and authentication key from the deployment details page
+- Check that the key hasn't been regenerated since you copied it
+- Ensure your Azure RBAC permissions haven't changed
+- For SDK calls, confirm your credential object is properly initialized
+
+### Deployment provisioning fails or times out
+
+**Issue:** The deployment stays in a provisioning state for an extended period or fails with a timeout error.
+
+**Solution:**
+- Check the deployment logs in the Foundry portal for specific error messages
+- Verify that your hub's managed network settings allow access to required resources
+- Ensure the model ID is correct and the model is still available in the catalog
+- Try deploying with a different VM SKU or reducing the instance count
+
+### Model returns unexpected or incorrect responses
+
+**Issue:** The deployed model responds but returns unexpected results.
+
+**Solution:**
+- Verify your input data format matches the model's expected schema
+- Check the model card documentation for input/output specifications
+- Test with the sample data provided in the model's documentation
+- Review the request and response in the Test tab of the Foundry portal
+
+For additional troubleshooting assistance, see [Troubleshoot online endpoint deployment](/azure/machine-learning/how-to-troubleshoot-online-endpoints).
 
 ## Related content
 
