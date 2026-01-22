@@ -60,7 +60,7 @@ Voice options include:
 
 ### Text-to-speech avatar
 
-[Text-to-speech avatar](what-is-text-to-speech-avatar.md) converts text into a digital video of a photorealistic human speaking with a natural-sounding voice. The video can be synthesized asynchronously or in real time. You can build applications integrated with text-to-speech avatar through an API, or use text-to-speech avatar in Foundry to create video content without coding. The feature empowers you to deliver lifelike and high-quality synthetic talking avatar videos for various applications while adhering to responsible AI practices.
+[Text-to-speech avatar](/azure/ai-services/speech-service/text-to-speech-avatar/what-is-text-to-speech-avatar) converts text into a digital video of a photorealistic human speaking with a natural-sounding voice. The video can be synthesized asynchronously or in real time. You can build applications integrated with text-to-speech avatar through an API, or use text-to-speech avatar in Foundry to create video content without coding. The feature empowers you to deliver lifelike and high-quality synthetic talking avatar videos for various applications while adhering to responsible AI practices.
 
 You can choose from a range of standard voices for the avatar. The language support for text-to-speech avatar is the same as the language support for text to speech.
 
