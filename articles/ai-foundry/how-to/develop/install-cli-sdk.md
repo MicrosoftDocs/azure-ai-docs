@@ -22,12 +22,20 @@ monikerRange: 'foundry-classic || foundry'
 
 Set up your development environment to use the Microsoft Foundry SDK. You also need Azure CLI for authentication so that your code can access your user credentials.
 
+:::moniker range="foundry-classic"
 
 > [!IMPORTANT]  
 > This article covers **general prerequisites** only, such as language runtimes, global tools, and VS Code and extension setup.  
 > It doesn't cover scenario-specific steps like SDK installation or authentication.  
 > When your environment is ready, continue to the [quickstart](../../quickstarts/get-started-code.md) for those instructions.
+:::moniker-end
+:::moniker range="foundry"
 
+> [!IMPORTANT]  
+> This article covers **general prerequisites** only, such as language runtimes, global tools, and VS Code and extension setup.  
+> It doesn't cover scenario-specific steps like SDK installation or authentication.  
+> When your environment is ready, continue to the [quickstart](../../default/tutorials/quickstart-create-foundry-resources.md) for those instructions.
+:::moniker-end
 
 ## Prerequisites
 
