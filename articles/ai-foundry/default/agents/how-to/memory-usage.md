@@ -1,5 +1,5 @@
 ---
-title: Create and use memory
+title: Create and Use Memory
 titleSuffix: Microsoft Foundry
 description: Learn how to create and manage memory in Foundry Agent Service to enable AI agents to retain context across sessions and personalize user interactions.
 author: haileytap
@@ -7,7 +7,7 @@ ms.author: haileytapia
 ms.reviewer: liulewis
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 01/20/2026
+ms.date: 01/22/2026
 ms.custom: pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 #customer intent: As a developer, I want to attach a memory store to my AI agent so that it can access and update memories during interactions.
@@ -38,18 +38,8 @@ This article explains how to create, manage, and use memory stores. For conceptu
 - A [Microsoft Foundry project](../../../how-to/create-projects.md) with [authorization and permissions](#authorization-and-permissions) configured.
 - [Chat model deployment](../../../foundry-models/how-to/create-model-deployments.md) (for example, `gpt-4.1`) in your project.
 - [Embedding model deployment](../../../openai/tutorials/embeddings.md) (for example, `text-embedding-3-small`) in your project.
-- Python 3.8 or later with a [configured environment](../../../quickstarts/get-started-code.md?tabs=python&view=foundry&preserve-view=true).
+- For Python examples, Python 3.8 or later with a [configured environment](../../../quickstarts/get-started-code.md?tabs=python&view=foundry&preserve-view=true).
 - For REST API examples, Azure CLI authenticated to your subscription.
-
-For the Python examples in this article, set an environment variable for your project endpoint:
-
-```bash
-export FOUNDRY_PROJECT_ENDPOINT="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
-```
-
-```powershell
-$env:FOUNDRY_PROJECT_ENDPOINT = "https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
-```
 
 ### Authorization and permissions
 
@@ -65,6 +55,18 @@ To configure role-based access:
     1. From the left pane, select **Access control (IAM)**.
     1. Select **Add** > **Add role assignment**.
     1. Assign **Azure AI User** to the managed identity of your project.
+
+### Set project endpoint
+
+For the Python examples in this article, set an environment variable for your project endpoint:
+
+```bash
+export FOUNDRY_PROJECT_ENDPOINT="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
+```
+
+```powershell
+$env:FOUNDRY_PROJECT_ENDPOINT = "https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
+```
 
 ## Understand scope
 
@@ -356,22 +358,6 @@ curl -X POST "${ENDPOINT}/openai/responses?api-version=${API_VERSION}" \
 
 ---
 
-## Verify memory is working
-
-Use the following checks to confirm memory is configured correctly:
-
-1. Confirm the memory store is created.
-
-   The create call returns the memory store name (for example, `my_memory_store`).
-
-2. Confirm a memory update completes.
-
-   In the Python SDK, `begin_update_memories(...).result()` returns one or more memory operations. In REST, poll the update status endpoint until it returns a completed result.
-
-3. Confirm a new conversation uses the stored memory.
-
-   Start a new conversation and ask a question that depends on the memory (for example, "order my usual"). The agent response should reflect the stored preference.
-
 ## Use memories via APIs
 
 You can interact with a memory store directly using the memory store APIs. Start by adding memories from conversation content to the memory store, and then search for relevant memories to provide context for agent interactions.
@@ -617,15 +603,14 @@ curl -X DELETE "${ENDPOINT}/memory_stores/my_memory_store?api-version=${API_VERS
 
 | Issue | Cause | Resolution |
 |---|---|---|
-| Requests fail with an authentication or authorization error | Your identity or the project managed identity doesn’t have the required roles. | Verify the roles in [Authorization and permissions](#authorization-and-permissions). For REST calls, generate a fresh access token and retry. |
-| Memories don’t appear after a conversation | Memory updates are debounced or still processing. | Increase the wait time, or call the update API with `update_delay` set to `0` to trigger processing immediately. |
-| Memory search returns no results | The `scope` value doesn’t match the scope used when memories were stored. | Use the same scope for update and search. If you map scope to users, use a stable user identifier. |
-| The agent response doesn’t use stored memory | The agent isn’t configured with the memory tool, or the memory store name is incorrect. | Confirm the agent definition includes the `memory_search` tool and references the correct memory store name. |
+| Requests fail with an authentication or authorization error. | Your identity or the project managed identity doesn’t have the required roles. | Verify the roles in [Authorization and permissions](#authorization-and-permissions). For REST calls, generate a fresh access token and retry. |
+| Memories don’t appear after a conversation. | Memory updates are debounced or still processing. | Increase the wait time or call the update API with `update_delay` set to `0` to trigger processing immediately. |
+| Memory search returns no results. | The `scope` value doesn’t match the scope used when memories were stored. | Use the same scope for update and search. If you map scope to users, use a stable user identifier. |
+| The agent response doesn’t use stored memory. | The agent isn’t configured with the memory search tool, or the memory store name is incorrect. | Confirm the agent definition includes the `memory_search` tool and references the correct memory store name. |
 
-## Next steps
+## Related content
 
-- [Memory in Foundry Agent Service](../concepts/what-is-memory.md)
-- [Memory store REST API reference](../../../reference/foundry-project-rest-preview.md)
-- [Build an agent with Microsoft Foundry](../../../agents/quickstart.md)
 - [Python code samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/memories)
-- [Microsoft Agent Framework overview](/agent-framework/overview/agent-framework-overview)
+- [Memory store REST API reference](../../../reference/foundry-project-rest-preview.md)
+- [Memory in Foundry Agent Service](../concepts/what-is-memory.md)
+- [Build an agent with Microsoft Foundry](../../../agents/quickstart.md)
