@@ -5,7 +5,7 @@ description: Microsoft Foundry safety evaluations intended purpose, capabilities
 ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
-ms.topic: article
+ms.topic: concept-article
 ms.date: 12/23/2025
 ms.reviewer: mithigpe
 ms.author: lagayhar

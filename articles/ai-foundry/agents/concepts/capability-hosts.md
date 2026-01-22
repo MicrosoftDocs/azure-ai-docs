@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 12/04/2025
 author: aahill
 ms.author: aahi
