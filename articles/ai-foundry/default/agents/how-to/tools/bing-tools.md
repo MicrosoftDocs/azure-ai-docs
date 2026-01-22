@@ -524,7 +524,7 @@ Before running REST API calls, configure authentication:
    - `BING_SEARCH_PROJECT_CONNECTION_ID`: Your Bing connection ID.
 1. Obtain bearer token:
    ```bash
-   az account get-access-token --resource https://management.azure.com --query accessToken -o tsv
+   az account get-access-token --resource https://ai.azure.com --query accessToken -o tsv
    ```
 
 ```bash
