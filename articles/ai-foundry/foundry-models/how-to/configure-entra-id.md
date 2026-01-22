@@ -5,8 +5,9 @@ description: Learn how to configure keyless authorization to use Microsoft Found
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 01/21/2026
+ms.date: 01/22/2026
 ms.custom: ignite-2024, github-universe-2024, dev-focus, time-to-complete=15
+monikerRange: 'foundry-classic || foundry'
 author: msakande
 ms.author: mopeakande
 recommendations: false
@@ -20,9 +21,7 @@ ai-usage: ai-assisted
 
 # Configure keyless authentication with Microsoft Entra ID
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
-
-[!INCLUDE [migrate-model-inference-to-v1-openai](../../includes/migrate-model-inference-to-v1-openai.md)]
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 This article explains how to configure Microsoft Entra ID for inference in Foundry Models. Keyless authorization with Microsoft Entra ID enhances security, simplifies the user experience, reduces operational complexity, and provides robust compliance support for modern development. It's a strong choice for organizations adopting secure and scalable identity management solutions.
 
@@ -116,4 +115,4 @@ In Azure, Microsoft Entra ID always performs administration operations. Roles li
 
 ## Next step
 
-* [Develop applications using Microsoft Foundry Models](../../model-inference/supported-languages.md)
+- [Azure OpenAI supported programming languages](../../openai/supported-languages.md)
