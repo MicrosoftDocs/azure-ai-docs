@@ -29,7 +29,7 @@ The migration process consists of the following steps:
 
 1. [**Export your custom projects from Language Studio.**](#step-1-export-your-projects-from-language-studio)
 1. [**Set up your Foundry environment.**](#step-2-set-up-your-foundry-environment)
-1. [**Connect your Language resource or Foundry resource to Microsoft Foundry.**](#step-3-connect-your-azure-language-or-foundry-resource-to-microsoft-foundry)
+1. [**Connect your Language resource or Foundry resource to Microsoft Foundry.**](#step-3-connect-your-azure-language-resource-to-your-foundry-hub)
 1. [**Import your projects into Foundry.**](#step-4-import-your-projects-into-foundry)
 1. [**Validate and test your migrated projects.**](#step-5-validate-and-test-your-migrated-projects)
 
@@ -164,6 +164,10 @@ The following table lists the pretrained (prebuilt) capabilities available in Mi
 > * **Entity linking**. Available in all [supported Azure regions](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=cognitive-services).
 
 ## Step 3: Connect your Azure Language resource to your Foundry hub
+
+>[!IMPORTANT]
+> This step is required only if you're using an existing Azure Language resource with a Foundry hub-based project. If you're using a Foundry resource, you can skip this step.
+>
 
 To access and manage your existing Language resource projects in Microsoft Foundry, you must establish a connection between your Azure Language resource and your Foundry Hub. This connection enables Microsoft Foundry to authenticate with your resources and provides access to your custom models, training data, and deployed endpoints.
 
