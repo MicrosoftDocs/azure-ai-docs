@@ -585,7 +585,9 @@ The file search tool uses several retrieval best practices to help you extract t
 
 Vector store objects give the file search tool the ability to search your files. When you add a file to a vector store, the process automatically parses, chunks, embeds, and stores the file in a vector database that supports both keyword and semantic search. Each vector store can hold up to 10,000 files. You can attach vector stores to both agents and conversations. Currently, you can attach at most one vector store to an agent and at most one vector store to a conversation.
 
-You can remove files from a vector store in two ways:
+For background concepts and lifecycle guidance (readiness, deletion behavior, and expiration policies), see [Vector stores for file search](../../concepts/vector-stores.md).
+
+You can remove files from a vector store by either:
 
 - Delete the vector store file object.
 - Delete the underlying file object. This action removes the file from all `vector_store` and `code_interpreter` configurations across all agents and conversations in your organization.
