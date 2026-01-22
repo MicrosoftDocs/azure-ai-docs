@@ -1,5 +1,5 @@
 ---
-title: Migrate from Azure Language Studio to Microsoft Foundry Tools
+title: Migrate from Azure Language Studio to Microsoft Foundry
 titleSuffix: Foundry Tools
 description: Learn how to migrate your Azure AI Language projects from Language Studio to Microsoft Foundry, including export, import, and validation steps.
 author: laujan
@@ -10,7 +10,7 @@ ms.date: 01/20/2026
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD025 -->
-# Migrate from Azure Language Studio to Microsoft Foundry Tools
+# Migrate from Azure Language Studio to Microsoft Foundry
 
 As of 2026, Azure Language Studio is retired and no longer accessible. All existing capabilities, along with new feature enhancements, are fully available in Microsoft Foundry. This guide provides step-by-step migration instructions to ensure uninterrupted access to Azure AI Language features and seamless project continuity within the Foundry environment.
 
@@ -29,13 +29,20 @@ The migration process consists of the following steps:
 
 1. [**Export your custom projects from Language Studio.**](#step-1-export-your-projects-from-language-studio)
 1. [**Set up your Foundry environment.**](#step-2-set-up-your-foundry-environment)
-1. [**Connect your Language resource or Foundry resource to Microsoft Foundry.**](#step-3-connect-your-azure-language-resource-to-your-foundry-hub)
-1. [**Import your projects into Foundry.**](#step-4-import-your-projects-into-foundry)
-1. [**Validate and test your migrated projects.**](#step-5-validate-and-test-your-migrated-projects)
+1. [**Import your projects into Foundry.**](#step-3-import-your-projects-into-foundry)
+1. [**Validate and test your migrated projects.**](#step-4-validate-and-test-your-migrated-projects)
 
 ## Prerequisites
 
-Before you begin the migration process, ensure you have the following resources:
+> [!NOTE]
+>
+> * If you already have an Azure Language resource, you can continue to use your existing Language resources within the Microsoft Foundry portal **via a Foundry Hub** and **Foundry Hub project**. For more information, *see* [Which type of project do I need?](/azure/ai-foundry/what-is-foundry?view=foundry-classic#which-type-of-project-do-i-need).
+>
+> * If you plan to use a Foundry resource, you can create a new Foundry resource directly in the Microsoft Foundry portal when creating a new project. For more information, *see* [Create a Foundry project](/azure/ai-foundry/how-to/create-projects?view=foundry-classic&preserve-view=true&tabs=foundry).
+>
+> * In the Foundry, a **fine-tuning task** serves as your workspace when customizing your custom models. Previously, a **fine-tuning task** was referred to as a project. You might encounter both terms used interchangeably in older documentation.
+
+Before you begin the migration process, ensure that the following resources and permissions are in place to complete the steps in this guide:
 
 * **Azure subscription**. If you don't have one, you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
@@ -43,7 +50,9 @@ Before you begin the migration process, ensure you have the following resources:
 
 ## Step 1: Export your projects from Language Studio
 
-Before migrating to Microsoft Foundry, export all custom projects you want to transfer. The export process preserves your project configuration, training data, and model settings for import into Foundry.
+Before migrating to Microsoft Foundry, export all custom projects you want to transfer. The export process preserves your project configuration, training data, and model settings for import into Foundry:
+
+:::image type="content" source="media/export-studio-project.png" alt-text="Screenshot of Export Studio Project button.":::
 
 ### Export a Custom Question Answering project
 
@@ -51,22 +60,15 @@ Before migrating to Microsoft Foundry, export all custom projects you want to tr
 1. Select the Azure Language resource containing the project you want to export.
 1. Navigate to **Custom Question Answering**.
 1. On the **Projects** page, select the project to export.
-1. Choose the export format (Excel or TSV). The file is exported as a `.zip` file containing your project contents.
+1. Choose the export format (**Excel** or **TSV**). The file is exported as a `.zip` file containing your project contents.
 
-### Export a Conversational Language Understanding (CLU) project
+### Export a Conversational Language Understanding, Custom Named Entity Recognition, Custom Text Classification, or Orchestration Workflow project
 
 1. Sign in to [Language Studio](https://language.azure.com/).
 1. Select the Azure Language resource containing your CLU project.
-1. Navigate to your CLU project.
+1. Navigate to your **Conversational Language Understanding** project.
 1. On the project home page, select your project from the right page ribbon area.
 1. Select **Download config file** to download the project as a `config.json` file.
-
-### Export other custom projects
-
-For **Custom Named Entity Recognition (CNER)** and **Custom Text Classification** projects, exporting directly from Language Studio isn't supported. Instead, you need to export the training data and configuration using the REST API. For more information, see the respective technical guides:
-
-* [Export your Custom Text Classification project](custom-text-classification/fail-over.md#export-your-primary-project-assets)
-* [Export your Custom Named Entity Recognition project](custom-named-entity-recognition/fail-over.md#export-your-primary-project-assets)
 
 ## Step 2: Set up your Foundry environment
 
@@ -139,6 +141,24 @@ The following table lists the custom capabilities available in Microsoft Foundry
 |[**Custom Named Entity Recognition (CNER)**](custom-named-entity-recognition/quickstart.md)|&bullet; Language resource with a storage account linked during resource creation.</br>&bullet; Foundry hub-based project created in the Azure portal.|Limited to select Azure regions. Some regions support both authoring and prediction; others support prediction only. For more information, *see* [Region support for CNER](concepts/regional-support.md).|
 |[**Orchestration workflow**](orchestration-workflow/quickstart.md)|&bullet; Foundry resource and Foundry project, or Language resource and Foundry hub-based project.</br>&bullet; A `CLU` or `CQA` project created in the same resource.|Limited to select Azure regions. Some regions support both authoring and prediction; others support prediction only. For more information, *see* [Region support for Orchestration workflow](concepts/regional-support.md).|
 
+### Connect your Azure Language resource to your Foundry hub
+
+>[!IMPORTANT]
+> This is required only if you're using an existing Azure Language resource with a Foundry hub-based project.
+>
+
+To access and manage your existing Language resource projects in Microsoft Foundry, you must establish a connection between your Azure Language resource and your Foundry Hub. This connection enables Microsoft Foundry to authenticate with your resources and provides access to your custom models, training data, and deployed endpoints.
+
+1. Sign in to [**Microsoft Foundry**](https://ai.azure.com/) using your Azure account.
+1. Select or create the project where you want to connect your Language resource.
+1. In the bottom left corner, select **Management Center**.
+1. Under **Connected resources**, select **+ New connection**.
+1. Select **Azure Language** or **Foundry** as the resource type.
+1. Select your Azure Language resource or Foundry resource from the list.
+1. Select **Add connection**.
+
+For more information, *see* [Connect Foundry Tools to a Foundry project](/azure/ai-foundry/how-to/connections-add?view=foundry-classic&preserve-view=true&tabs=foundry-portal).
+
 ---
 
 ### Pretrained models (prebuilt) supported in Microsoft Foundry
@@ -163,25 +183,7 @@ The following table lists the pretrained (prebuilt) capabilities available in Mi
 > * **Custom Text Classification**. For regional availability, *see* [Region support for Custom Text Classification](concepts/regional-support.md).
 > * **Entity linking**. Available in all [supported Azure regions](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=cognitive-services).
 
-## Step 3: Connect your Azure Language resource to your Foundry hub
-
->[!IMPORTANT]
-> This step is required only if you're using an existing Azure Language resource with a Foundry hub-based project. If you're using a Foundry resource, you can skip this step.
->
-
-To access and manage your existing Language resource projects in Microsoft Foundry, you must establish a connection between your Azure Language resource and your Foundry Hub. This connection enables Microsoft Foundry to authenticate with your resources and provides access to your custom models, training data, and deployed endpoints.
-
-1. Sign in to [**Microsoft Foundry**](https://ai.azure.com/) using your Azure account.
-1. Select or create the project where you want to connect your Language resource.
-1. In the bottom left corner, select **Management Center**.
-1. Under **Connected resources**, select **+ New connection**.
-1. Select **Azure Language** or **Foundry** as the resource type.
-1. Select your Azure Language resource or Foundry resource from the list.
-1. Select **Add connection**.
-
-For more information, *see* [Connect Foundry Tools to a Foundry project](/azure/ai-foundry/how-to/connections-add?view=foundry-classic&preserve-view=true&tabs=foundry-portal).
-
-## Step 4: Import your projects into Foundry
+## Step 3: Import your projects into Foundry
 
 After you connect your Language resource or Foundry resource, your existing projects are accessible within Foundry. For new projects or to import exported projects:
 
@@ -234,7 +236,7 @@ After importing, you can train and deploy the CLU project using the **Getting st
 
 After importing, you can train and deploy the Orchestration project using the **Getting started** workflow in Foundry.
 
-## Step 5: Validate and test your migrated projects
+## Step 4: Validate and test your migrated projects
 
 After importing your projects, validate that the migration is successful:
 
