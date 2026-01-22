@@ -16,16 +16,15 @@ Stay informed about recent releases and enhancements designed to help you get th
 
 ## January 2026
 
-* **Orchestration workflow available in the [Foundry Classic portal](https://ai.azure.com/)**. [Orchestration workflow](orchestration-workflow/quickstart.md) is now available in Microsoft Foundry (classic). 
+* **Orchestration workflow available in [Microsoft Foundry (classic)](https://ai.azure.com/)**. [Orchestration workflow](orchestration-workflow/quickstart.md) is now supported in Microsoft Foundry (classic).
 
-  * The updated user experience streamlines the process of linking [Conversational Language Understanding (CLU)](conversational-language-understanding/quickstart.md) and [Custom Question Answering (CQA)](question-answering/quickstart/sdk.md) tasks. This integration enables efficient orchestration of user utterances across multiple conversational applications within a unified workflow.
-  * Developers can configure intent-based routing to direct user queries to the appropriate **CLU** or **CQA** project, to improve response accuracy and reduce development complexity.
+  * The redesigned interface streamlines integration between [Conversational Language Understanding (CLU)](conversational-language-understanding/quickstart.md) and [Custom Question Answering (CQA)](question-answering/quickstart/sdk.md) projects. This capability enables efficient orchestration of user utterances across multiple conversational applications within a unified workflow.
+  * Configure intent-based routing to direct user queries to the appropriate **CLU** or **CQA** project, improving response accuracy and reducing development complexity.
 
-* **Azure AI Language capabilities are now fully available in the [Foundry Classic portal](https://ai.azure.com/)**.
+* **Azure AI Language capabilities fully available in [Microsoft Foundry (classic)](https://ai.azure.com/)**. With the addition of orchestration workflow, all Azure AI Language capabilities are now accessible in Microsoft Foundry (classic).
 
-  * With the addition of orchestration workflow, all Azure AI Language capabilities are now accessible in Microsoft Foundry (classic), and Language Studio features are integrated to provide a unified development experience.
-  * Authoring and testing capabilities from Language Studio—including project management, model training, and deployment workflows—are now part of the platform.
-  * We recommend transitioning to Microsoft Foundry to access the full range of Language features, the latest enhancements, and the benefits of a unified AI development platform. 
+  * Language Studio features are integrated to provide a unified development experience. The authoring and testing capabilities—including project management, model training, and deployment workflows—are now part of the Foundry platform.
+  * Transition to Microsoft Foundry to access the full range of Language features, the latest enhancements, and a unified AI development platform. For step-by-step migration instructions, *see* [Migrate from Azure Language Studio to Microsoft Foundry](migration-studio-to-foundry.md).
 
 ## December 2025
 
@@ -35,7 +34,7 @@ Stay informed about recent releases and enhancements designed to help you get th
 
   * [Azure.AI.Language.Conversation.Authoring 2.0.0-beta.5](https://www.nuget.org/packages/Azure.AI.Language.Conversations/2.0.0-beta.5)
 
-* **Language Studio deprecation**. Azure Language Studio is scheduled for deprecation in the near future. All existing features, along with upcoming enhancements, will be accessible through Microsoft Foundry. If you need guidance on exporting your projects from Language Studio, *see* [Export project](question-answering/how-to/migrate-knowledge-base.md#export-a-project). 
+* **Language Studio deprecation**. Azure Language Studio is scheduled for deprecation soon. All existing features, along with upcoming enhancements, are accessible through Microsoft Foundry. If you need guidance on exporting your projects from Language Studio, *see* [Export project](question-answering/how-to/migrate-knowledge-base.md#export-a-project).
 
 ## November 2025
 
@@ -84,7 +83,7 @@ Stay informed about recent releases and enhancements designed to help you get th
 
 * **Summarization model 2025-06-10 generally available**. The [Summarization model](summarization/overview.md) version 2025-06-10 is now generally available. This model is fine-tuned using the [Phi open model family](https://azure.microsoft.com/products/phi), delivering enhanced performance for Issue and Resolution summary generation.
 
-* **Expanded Azure Language in Foundry Tools MCP server capabilities**. The Model Context Protocol (MCP) server for Azure Language now provides eight additional NLP tools: [Named Entity Recognition](named-entity-recognition/overview.md), [Text Analytics for health](text-analytics-for-health/overview.md), [Conversational Language Understanding](conversational-language-understanding/overview.md), [Custom Question Answering](question-answering/overview.md), [Language Detection](language-detection/overview.md), [Sentiment Analysis](sentiment-opinion-mining/overview.md), [Summarization](summarization/overview.md), and [Key Phrase Extraction](key-phrase-extraction/overview.md). These tools complement the existing PII Detection capability.
+* **Expanded Azure Language in Foundry Tools MCP server capabilities**. The Model Context Protocol (MCP) server for Azure Language now provides eight added Natural Language Processing (NLP) tools: [Named Entity Recognition](named-entity-recognition/overview.md), [Text Analytics for health](text-analytics-for-health/overview.md), [Conversational Language Understanding](conversational-language-understanding/overview.md), [Custom Question Answering](question-answering/overview.md), [Language Detection](language-detection/overview.md), [Sentiment Analysis](sentiment-opinion-mining/overview.md), [Summarization](summarization/overview.md), and [Key Phrase Extraction](key-phrase-extraction/overview.md). These tools complement the existing PII Detection capability.
 
 ## September 2025
 
@@ -269,4 +268,4 @@ Stay informed about recent releases and enhancements designed to help you get th
 
 * See the [previous updates](./concepts/previous-updates.md) article for service updates not listed here.
 
-* For a list of changes to the Azure Language SDKs, see the [release history](reference/release-history.md) article.
+* For a list of changes to the Azure Language library (`SDK`s), see the [release history](reference/release-history.md) article.
