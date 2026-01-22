@@ -141,20 +141,20 @@ productDirectory:
 
 tools:
   title: Software development kits (SDKs)
-  summary: Get started with the most popular Azure AI SDKs in your favorite programming language.
+  summary: Get started with the Azure AI Project SDKs in your favorite programming language.
   items:
   - title: C#
     imageSrc: /media/logos/logo_Csharp.svg
-    url: /dotnet/api/azure.ai.inference
+    url: /dotnet/api/azure.ai.projects
   - title: Java
     imageSrc: /media/logos/logo_java.svg
-    url: /java/api/overview/azure/ai-inference-readme
+    url: /java/api/overview/azure/ai-projects-readme
   - title: JavaScript
     imageSrc: /media/logos/logo_js.svg
-    url: /javascript/api/%40azure-rest/ai-inference
+    url: /javascript/api/%40azure/ai-projects
   - title: Python
     imageSrc: /media/logos/logo_python.svg
-    url: /python/api/overview/azure/ai-inference-readme
+    url: /python/api/overview/azure/ai-projects-readme
 
 additionalContent:
   sections:
