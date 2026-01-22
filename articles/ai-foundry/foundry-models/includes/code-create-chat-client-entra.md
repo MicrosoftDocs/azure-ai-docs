@@ -3,14 +3,14 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: include
-ms.date: 09/26/2025
+ms.date: 01/22/2026
 ms.author: fasantia
 author: santiagxf
 ---
 
 # [Python](#tab/python)
 
-Install the OpenAI SDK, using a package manager like pip:
+Install the OpenAI SDK using a package manager like pip:
 
 ```bash
 pip install openai
@@ -22,9 +22,9 @@ For Microsoft Entra ID authentication, also install:
 pip install azure-identity
 ```
 
-Then, use the package to consume the model. The following example shows how to create a client to consume chat completions with Microsoft Entra ID, and then make a test call to the chat completions endpoint with your model deployment.
+Use the package to consume the model. The following example shows how to create a client to consume chat completions with Microsoft Entra ID and make a test call to the chat completions endpoint with your model deployment.
 
-Replace `<resource>` with your Foundry resource name (find it in the Azure portal or by running `az cognitiveservices account list`). Replace `DeepSeek-V3.1` with your actual deployment name.
+Replace `<resource>` with your Foundry resource name. Find it in the Azure portal or by running `az cognitiveservices account list`. Replace `DeepSeek-V3.1` with your actual deployment name.
 
 ```python
 from openai import OpenAI
@@ -51,13 +51,13 @@ completion = client.chat.completions.create(
 print(completion.choices[0].message.content)
 ```
 
-Expected output:
+Expected output
 
 ```output
 Azure AI is a comprehensive suite of artificial intelligence services and tools from Microsoft that enables developers to build intelligent applications. It includes services for natural language processing, computer vision, speech recognition, and machine learning capabilities.
 ```
 
-Reference: [OpenAI Python SDK](https://github.com/openai/openai-python), [DefaultAzureCredential class](/python/api/azure-identity/azure.identity.defaultazurecredential)
+Reference: [OpenAI Python SDK](https://github.com/openai/openai-python) and [DefaultAzureCredential class](/python/api/azure-identity/azure.identity.defaultazurecredential).
 
 # [C#](#tab/csharp)
 
@@ -117,7 +117,7 @@ Expected output:
 Azure AI is a comprehensive suite of artificial intelligence services and tools from Microsoft that enables developers to build intelligent applications. It includes services for natural language processing, computer vision, speech recognition, and machine learning capabilities.
 ```
 
-Reference: [OpenAI .NET SDK](https://github.com/openai/openai-dotnet), [DefaultAzureCredential class](/dotnet/api/azure.identity.defaultazurecredential)
+Reference: [OpenAI .NET SDK](https://github.com/openai/openai-dotnet) and [DefaultAzureCredential class](/dotnet/api/azure.identity.defaultazurecredential).
 
 # [JavaScript](#tab/javascript)
 
@@ -168,7 +168,7 @@ Expected output:
 Azure AI is a comprehensive suite of artificial intelligence services and tools from Microsoft that enables developers to build intelligent applications. It includes services for natural language processing, computer vision, speech recognition, and machine learning capabilities.
 ```
 
-Reference: [OpenAI Node.js SDK](https://github.com/openai/openai-node), [DefaultAzureCredential class](/javascript/api/@azure/identity/defaultazurecredential)
+Reference: [OpenAI Node.js SDK](https://github.com/openai/openai-node) and [DefaultAzureCredential class](/javascript/api/@azure/identity/defaultazurecredential).
 
 # [Java](#tab/java)
 
@@ -223,11 +223,11 @@ Expected output:
 Azure AI is a comprehensive suite of artificial intelligence services and tools from Microsoft that enables developers to build intelligent applications. It includes services for natural language processing, computer vision, speech recognition, and machine learning capabilities.
 ```
 
-Reference: [OpenAI Java SDK](https://github.com/openai/openai-java), [DefaultAzureCredential class](/java/api/com.azure.identity.defaultazurecredential)
+Reference: [OpenAI Java SDK](https://github.com/openai/openai-java) and [DefaultAzureCredential class](/java/api/com.azure.identity.defaultazurecredential).
 
 # [REST](#tab/rest)
 
-Use the reference section to explore the API design and see which parameters are available. Indicate the authentication token in the header `Authorization`. For example, the reference section for [Chat completion](../../openai/latest.md#create-chat-completion) details how to use the route `/chat/completions` to generate predictions based on chat-formatted instructions. The path `/models` is included in the root of the URL:
+Explore the API design in the reference section to see which parameters are available. Indicate the authentication token in the header `Authorization`. For example, the [Chat completion](../../openai/latest.md#create-chat-completion) reference section details how to use the `/chat/completions` route to generate predictions based on chat-formatted instructions. The path `/models` is included in the root of the URL:
 
 __Request__
 

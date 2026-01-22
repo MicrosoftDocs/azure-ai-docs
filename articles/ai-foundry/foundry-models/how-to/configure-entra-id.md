@@ -1,7 +1,7 @@
 ---
-title: Configure key-less authentication with Microsoft Entra ID
+title: Configure keyless authentication with Microsoft Entra ID
 titleSuffix: Microsoft Foundry
-description: Learn how to configure keyless authorization to use Microsoft Foundry Models with Microsoft Entra ID and enhance security.
+description: Learn how to configure keyless authentication with Microsoft Entra ID for Microsoft Foundry Models. Eliminate the need for API keys, enhance security with RBAC, and simplify compliance.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
@@ -23,8 +23,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-This article explains how to configure Microsoft Entra ID for inference in Foundry Models. Keyless authorization with Microsoft Entra ID enhances security, simplifies the user experience, reduces operational complexity, and provides robust compliance support for modern development. It's a strong choice for organizations adopting secure and scalable identity management solutions.
-
+This article explains how to configure keyless authentication with Microsoft Entra ID for Microsoft Foundry Models. Keyless authentication enhances security by eliminating the need for API keys, simplifies the user experience with role-based access control (RBAC), and reduces operational complexity while providing robust compliance support.
 
 ## Prerequisites
 
@@ -48,7 +47,7 @@ Microsoft Entra ID uses role-based access control (RBAC) to manage access to Azu
 
 #### For making authenticated API calls
 
-* **Cognitive Services User** role: Required for developers to authenticate and make inference API calls using Microsoft Entra ID. This role must be assigned at the scope of your Foundry resource (formerly known as Azure AI Services resource).
+* **Cognitive Services User** role: Required for developers to authenticate and make inference API calls using Microsoft Entra ID. This role must be assigned at the scope of your Foundry resource.
 
 #### Role assignment requirements
 

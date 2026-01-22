@@ -4,7 +4,7 @@ author: santiagxf
 ms.author: fasantia 
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
-ms.date: 01/22/2025
+ms.date: 01/22/2026
 ms.topic: include
 zone_pivot_groups: azure-ai-models-deployment
 monikerRange: 'foundry-classic || foundry'
@@ -13,13 +13,19 @@ monikerRange: 'foundry-classic || foundry'
 
 ## Configure Microsoft Entra ID for inference
 
-This section lists the steps to configure Microsoft Entra ID for inference from the Microsoft Foundry resource's page in the [Azure portal](https://portal.azure.com).
+This section lists the steps to configure Microsoft Entra ID for inference from the Microsoft Foundry resource page in the [Azure portal](https://portal.azure.com).
+
+::: moniker range="foundry"
+
+:::image type="content" source="../../media/configure-entra-id/locate-resource-ai-services.png" alt-text="Screenshot showing the resource to which we configure Microsoft Entra ID." lightbox="../../media/configure-entra-id/locate-resource-ai-services.png":::
+
+::: moniker-end
 
 ::: moniker range="foundry-classic"
 
-From the Foundry portal, you can navigate to the Foundry resource's page in the Azure portal as follows:
+From the Foundry portal, you can navigate to the Foundry resource page in the Azure portal as follows:
 
-1. [!INCLUDE [version-sign-in](../../../includes/version-sign-in.md)]
+[!INCLUDE [version-sign-in](../../../includes/version-sign-in.md)]
 
 1. On the landing page, select **Management center**.
 
@@ -29,9 +35,9 @@ From the Foundry portal, you can navigate to the Foundry resource's page in the 
 
 1. On the **Connection details** section, under **Resource**, select the name of the Azure resource. This action opens the resource in the Azure portal.
 
-::: moniker-end
-
    :::image type="content" source="../../media/configure-entra-id/locate-resource-ai-services.png" alt-text="Screenshot showing the resource to which we configure Microsoft Entra ID." lightbox="../../media/configure-entra-id/locate-resource-ai-services.png":::
+
+::: moniker-end
 
 1. In the left pane, select **Access control (IAM)**, and then select **Add** > **Add role assignment**.
 
@@ -46,7 +52,7 @@ From the Foundry portal, you can navigate to the Foundry resource's page in the 
 
 1. Select the role and select **Next**.
 
-1. On **Members**, select the user or group you want to grant access to. Use security groups whenever possible as they're easier to manage and maintain. 
+1. On **Members**, select the user or group you want to grant access to. Use security groups whenever possible because they're easier to manage and maintain.
 
    :::image type="content" source="../../media/configure-entra-id/select-user.png" alt-text="Screenshot showing how to select the user to whom assign the role." lightbox="../../media/configure-entra-id/select-user.png":::
 
@@ -67,11 +73,11 @@ From the Foundry portal, you can navigate to the Foundry resource's page in the 
    
    1. Verify that **Cognitive Services User** appears in their assigned roles.
 
-Key-based access is still possible for users that already have keys available to them. To revoke the keys, in the Azure portal, on the left navigation, select **Resource Management** > **Keys and Endpoints** > **Regenerate Key1** and **Regenerate Key2**.
+Key-based access is still possible for users who already have keys available to them. To revoke the keys, in Azure portal, on the left navigation, select **Resource Management** > **Keys and Endpoints** > **Regenerate Key1** and **Regenerate Key2**.
 
 ## Use Microsoft Entra ID in your code
 
-After you configure Microsoft Entra ID in your resource, update your code to use it when consuming the inference endpoint. The following example shows how to use a chat completions model:
+After you configure Microsoft Entra ID in your resource, update your code to use it when you consume the inference endpoint. This example shows how to use a chat completions model:
 
 [!INCLUDE [code](../code-create-chat-client-entra.md)]
 
@@ -81,7 +87,7 @@ After you configure Microsoft Entra ID in your resource, update your code to use
 
 ## Use Microsoft Entra ID in your project
 
-Even when your resource has Microsoft Entra ID configured, your projects might still use keys to consume predictions from the resource. When you use the Foundry playground, the credentials associated with the connection in your project are used. 
+Even when your resource has Microsoft Entra ID configured, your projects might still use keys to consume predictions from the resource. When you use the Foundry playground, Foundry uses the credentials associated with the connection in your project. 
 
 To change this behavior, update the connections in your projects to use Microsoft Entra ID. Follow these steps:
 
@@ -99,12 +105,12 @@ To change this behavior, update the connections in your projects to use Microsof
 
 1. Select **Update**.
 
-1. Your connection is now configured to work with Microsoft Entra ID.
+1. Your connection is configured to work with Microsoft Entra ID.
 
 ::: moniker-end
 
 ## Disable key-based authentication in the resource
 
-Disable key-based authentication when you implement Microsoft Entra ID and fully address compatibility or fallback concerns in all the applications that consume the service. You can disable key-based authentication using the Azure CLI and when deploying with Bicep or ARM.
+Disable key-based authentication when you implement Microsoft Entra ID and fully address compatibility or fallback concerns in all applications that consume the service. You can disable key-based authentication by using Azure CLI or when deploying with Bicep or ARM.
 
 Key-based access is still possible for users that already have keys available to them. To revoke the keys, in the Azure portal, on the left navigation, select **Resource Management** > **Keys and Endpoints** > **Regenerate Key1** and **Regenerate Key2**.
