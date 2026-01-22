@@ -130,7 +130,7 @@ The [Weapons of Mass Destruction Proxy](https://github.com/centerforaisafety/wmd
 
 ### Limitations of safety benchmarks
 
-We understand and acknowledge that safety is a complex topic and has several dimensions. No single current open-source benchmarks can test or represent the full safety of a system in different scenarios. Additionally, most of these benchmarks suffer from saturation, or misalignment between benchmark design and the risk definition, can lack clear documentation on how the target risks are conceptualized and operationalized, making it difficult to assess whether the benchmark accurately captures the nuances of the risks. This limitation can lead to either overestimating or underestimating model performance in real-world safety scenarios
+We understand and acknowledge that safety is a complex topic and has several dimensions. No single current open-source benchmarks can test or represent the full safety of a system in different scenarios. Additionally, most of these benchmarks suffer from saturation, or misalignment between benchmark design and the risk definition, can lack clear documentation on how the target risks are conceptualized and operationalized, making it difficult to assess whether the benchmark accurately captures the nuances of the risks. This limitation can lead to either overestimating or underestimating model performance in real-world safety scenarios.
 
 ## Performance benchmarks of language models
 
@@ -149,7 +149,7 @@ Performance metrics are aggregated over 14 days using 24 trails per day, with tw
 | Region | East US/East US2 | serverless API deployments and Azure OpenAI |
 | Deployment type | serverless API | Applicable only for Azure OpenAI |
 | Streaming | True | Applies to serverless API deployments and Azure OpenAI. For models deployed via [managed compute](../how-to/model-catalog-overview.md#managed-compute), or for endpoints when streaming isn't supported TTFT is represented as P50 of latency metric. |
-| SKU | Standard_NC24ads_A100_v4 (24 cores, 220GB RAM, 64GB storage) | Applicable only for Managed Compute (to estimate the cost and perf metrics) |
+| SKU | Standard_NC24ads_A100_v4 (24 cores, 220GB RAM, 64GB storage) | Applicable only for Managed Compute (to estimate the cost and performance metrics) |
 	
 The performance of LLMs and SLMs is assessed across the following metrics:
 

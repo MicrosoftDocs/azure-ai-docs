@@ -243,7 +243,7 @@ Therefore you should...
 
 Microsoft Entra ID provides several ways to manage access to resources, applications, and tasks. By using Microsoft Entra groups, you can grant access and permissions to a group of users instead of to each individual user. Enterprise IT admins can create Microsoft Entra groups in the Azure portal to simplify the role assignment process for developers. When you create a Microsoft Entra group, you can minimize the number of role assignments required for new developers working on Foundry projects by assigning the group the required role assignment on the necessary resource.
 
-Complete the following steps to use Entra ID groups with Foundry:
+Complete the following steps to use Microsoft Entra ID groups with Foundry:
 
 1. Go to **Groups** in the Azure portal.
 1. Create a new **Security** group in the Groups portal.
@@ -260,7 +260,7 @@ Complete the following steps to use Entra ID groups with Foundry:
 1. Assign access to "User, group, or service principal" and select the new Security group.
 1. Review and assign. Role assignment now applies to all user principals assigned to the group.
 
-To learn more about Entra ID groups, prerequisites, and limitations, refer to:
+To learn more about Microsoft Entra ID groups, prerequisites, and limitations, refer to:
 
 - [Learn about groups, group membership, and access in Microsoft Entra](/entra/fundamentals/concept-learn-about-groups).
 - [How to manage groups in Microsoft Entra](/entra/fundamentals/how-to-manage-groups).

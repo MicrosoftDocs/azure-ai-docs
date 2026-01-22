@@ -28,7 +28,7 @@ Prompt shields analyzes LLM inputs and detects adversarial user input attacks.
 
 Prompt shields are a feature of the Azure OpenAI content filtering system that helps detect and mitigate user prompt attacks. These attacks occur when a user attempts to manipulate the model's behavior by embedding harmful or inappropriate content within their input.
 
-Prompt shields analyze LLM inputs and detects adversarial user input attacks.
+Prompt shields analyzes LLM inputs and detects adversarial user input attacks.
 
 [!INCLUDE [prompt-shield-attack-info](../../../ai-services/content-safety/includes/prompt-shield-attack-info.md)]
 

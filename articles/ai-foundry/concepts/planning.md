@@ -46,7 +46,7 @@ Foundry is built on the Azure platform, so you can customize security controls t
 
 - **Identity**: Use Microsoft Entra ID to manage user and service access. Foundry supports managed identities to allow secure, passwordless authentication to other Azure services. You can assign managed identities at the **Foundry resource level** and optionally at the **project level** for fine-grained control. [Learn more about managed identities.](/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline)
 
-- **Networking**: Deploy Foundry into a Virtual Network (VNet) to isolate traffic and control access by using Network Security Groups (NSGs). [Learn more about networking security.](/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline)
+- **Networking**: Deploy Foundry into a Virtual Network to isolate traffic and control access by using Network Security Groups (NSGs). [Learn more about networking security.](/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline)
 
 - **Customer-Managed Keys (CMK)**: Azure supports CMK for encrypting data at rest. Foundry supports CMK optionally for customers with strict compliance needs. [Learn more about CMK](/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline).
 
@@ -58,7 +58,7 @@ Foundry is built on the Azure platform, so you can customize security controls t
 
 ## Example: Contoso's security approach
 
-Contoso secures its Foundry deployments by using private networking with Enterprise IT managing a central hub network. Each business group connects via a spoke VNet. They use built-in Role Based Access Control (RBAC) to separate access:
+Contoso secures its Foundry deployments by using private networking with Enterprise IT managing a central hub network. Each business group connects via a spoke virtual network. They use built-in Role Based Access Control (RBAC) to separate access:
 
 * **Admins** manage deployments, connections, and shared resources
 * **Project Managers** oversee specific projects
@@ -101,7 +101,7 @@ Configure connection authentication to use either shared access tokens, such as 
 
 - Contoso creates a Foundry resource for every business group, ensuring projects with similar data needs share the same connected resources.
 - By default, connected resources use shared authentication tokens and are shared across all projects.
-- Projects that use sensitive data workloads connect to data sources with project-scoped connections and EntraID passthrough authentication.
+- Projects that use sensitive data workloads connect to data sources with project-scoped connections and Microsoft Entra ID passthrough authentication.
 
 ## Governance
 
