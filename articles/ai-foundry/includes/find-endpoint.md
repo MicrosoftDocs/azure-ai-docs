@@ -20,7 +20,7 @@ Copy the **Foundry project endpoint** in the **Overview** section of your projec
 > If you don't see the **Foundry project endpoint**, you're using a [!INCLUDE [hub-project-name](hub-project-name.md)]. (See [Types of projects](../what-is-foundry.md#types-of-projects)). Switch to a [!INCLUDE [fdp-project-name](fdp-project-name.md)], or use the preceding steps to create one.
 ::: moniker-end
 
-::: moniker range="foundry"
+<!-- ::: moniker range="foundry"
 1. Select **Home** from the upper-right navigation.
 1. Select **Keys** and copy the **Endpoint**. You'll use it in a moment.
-::: moniker-end
+::: moniker-end -->

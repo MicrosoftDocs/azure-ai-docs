@@ -1,7 +1,7 @@
 ---
-title: Index binary vectors for vector search
+title: Index Binary Vectors for Vector Search
 titleSuffix: Azure AI Search
-description: Explains how to configure fields for binary vectors and the vector search configuration for querying the fields.
+description: Learn how to configure fields for binary vectors and the vector search configuration for querying the fields.
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
@@ -10,12 +10,12 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 05/08/2025
+ms.date: 01/16/2026
 ---
 
 # Index binary vectors for vector search
 
-Azure AI Search supports a packed binary type of `Collection(Edm.Byte)` for further reducing the storage and memory footprint of vector data. You can use this data type for output from models such as [Cohere's Embed v3 binary embedding models](https://cohere.com/blog/introducing-embed-v3) or any other embedding model or process that outputs vectors as binary bytes.
+Azure AI Search supports the `Collection(Edm.Byte)` packed binary type to further reduce the storage and memory footprint of vector data. You can use this data type for the output of models such as [Cohere's Embed v3 binary embedding models](https://cohere.com/blog/int8-binary-embeddings) or any other embedding model or process that outputs vectors as binary bytes.
 
 There are three steps to configuring an index for binary vectors:
 
@@ -24,35 +24,38 @@ There are three steps to configuring an index for binary vectors:
 > + Add a vector profile that points to the algorithm
 > + Add a vector field of type `Collection(Edm.Byte)` and assign the Hamming distance
 
-This article assumes you're familiar with [creating an index in Azure AI Search](search-how-to-create-search-index.md) and [adding vector fields](vector-search-how-to-create-index.md). It uses the REST APIs to illustrate each step, but you could also add a binary field to an index in the Azure portal or Azure SDK.
-
-The binary data type is assigned to fields using the [Create Index](/rest/api/searchservice/indexes/create) or [Create Or Update Index](/rest/api/searchservice/indexes/create-or-update) APIs.
+This article uses the REST APIs for illustration, but you can also use an Azure SDK or the Azure portal to add a binary field to an index. You assign the binary data type to fields by using the [Indexes - Create](/rest/api/searchservice/indexes/create) or [Indexes - Create Or Update](/rest/api/searchservice/indexes/create-or-update) REST APIs.
 
 > [!TIP]
 > If you're investigating binary vector support for its smaller footprint, you might also consider the vector quantization and storage reduction features in Azure AI Search. Inputs are float32 or float16 embeddings. Output is stored data in a much smaller format. For more information, see [Compress using binary or scalar quantization](vector-search-how-to-quantization.md) and [Assign narrow data types](vector-search-how-to-assign-narrow-data-types.md).
 
 ## Prerequisites
 
-+ Binary vectors, with 1 bit per dimension, packaged in uint8 values with 8 bits per value. These can be obtained by using models that directly generate *packaged binary* vectors, or by quantizing vectors into binary vectors client-side during indexing and searching.
++ Familiarity with [creating an index](search-how-to-create-search-index.md) and [adding vector fields](vector-search-how-to-create-index.md).
+
++ Binary vectors, with one bit per dimension, packaged in uint8 values with eight bits per value. You can get these vectors by using models that directly generate *packaged binary* vectors or by quantizing vectors into binary vectors in your client application during indexing and retrieval.
 
 ## Limitations
 
 + No Azure portal support in the **Import data (new)** wizard.
-+ No support for binary fields in the [AML skill](cognitive-search-aml-skill.md) that's used for integrated vectorization of models in the Microsoft Foundry model catalog.
+
++ No support for binary fields in the [AML skill](cognitive-search-aml-skill.md) that's used for integrated vectorization of models from the Microsoft Foundry model catalog.
 
 ## Add a vector search algorithm and vector profile
 
-Vector search algorithms are used to create the query navigation structures during indexing. For binary vector fields, vector comparisons are performed using the Hamming distance metric. 
+Vector search algorithms create the query navigation structures during indexing. For binary vector fields, the system uses the Hamming distance metric to perform vector comparisons. 
 
-1. To add a binary field to an index, set up a [`Create or Update Index`](/rest/api/searchservice/indexes/create-or-update) request using the REST API or the Azure portal.
+To configure vector search for binary vectors:
+
+1. Set up an [Indexes - Create or Update](/rest/api/searchservice/indexes/create-or-update) (REST API) request.
 
 1. In the index schema, add a `vectorSearch` section that specifies profiles and algorithms.
 
-1. Add one or more [vector search algorithms](vector-search-ranking.md) that have a similarity metric of `hamming`. It's common to use Hierarchical Navigable Small Worlds (HNSW), but you can also use Hamming distance with exhaustive K-Nearest Neighbors (KNN).
+1. Add one or more [vector search algorithms](vector-search-ranking.md) that use a similarity metric of `hamming`. The Hierarchical Navigable Small Worlds (HNSW) algorithm is common, but you can also use Hamming distance with exhaustive K-Nearest Neighbors (KNN).
 
 1. Add one or more vector profiles that specify the algorithm.
 
-The following example shows a basic `vectorSearch` configuration:
+The following example shows a basic `vectorSearch` configuration.
 
 ```json
   "vectorSearch": { 
@@ -85,19 +88,25 @@ The following example shows a basic `vectorSearch` configuration:
 
 ## Add a binary field to an index
 
-The fields collection of an index must include a field for the document key, vector fields, and any other fields that you need for hybrid search scenarios.
+The fields collection of an index must include a field for the document key, vector fields, and any other fields you need for hybrid search scenarios.
 
-Binary fields are of type `Collection(Edm.Byte)` and contain embeddings in packed form. For example, if the original embedding dimension is `1024`, the packed binary vector length is `ceiling(1024 / 8) = 128`. You get the packed form by setting the `vectorEncoding` property on the field.
+Binary fields use the `Collection(Edm.Byte)` type and contain embeddings in packed form. For example, if the original embedding dimension is `1024`, the packed binary vector length is `ceiling(1024 / 8) = 128`. You get the packed form by setting the `vectorEncoding` property on the field.
 
-> [!div class="checklist"]
-> + Add a field to the fields collection and give it name.
-> + Set data type to `Collection(Edm.Byte)`.
-> + Set `vectorEncoding` to `packedBit` for binary encoding. 
-> + Set `dimensions` to `1024`. Specify the original (unpacked) vector dimension.
-> + Set `vectorSearchProfile` to a profile you defined in the previous step.
-> + Make the field searchable.
+To add a binary vector field to an index:
 
-The following field definition is an example of the properties you should set:
+1. Add a field to the fields collection and give it a name.
+
+1. Set the data type to `Collection(Edm.Byte)`.
+
+1. Set `vectorEncoding` to `packedBit` for binary encoding.
+
+1. Set `dimensions` to `1024`. Specify the original (unpacked) vector dimension.
+
+1. Set `vectorSearchProfile` to a profile you defined in the previous step.
+
+1. Set `searchable` to `true`.
+
+The following field definition is an example of a binary vector field in an index schema.
 
 ```json
   "fields": [ 
@@ -114,8 +123,8 @@ The following field definition is an example of the properties you should set:
   ]
 ```
 
-## See also
+## Related content
 
-Code samples in the [azure-search-vector-samples](https://github.com/Azure/azure-search-vector-samples) repository demonstrate end-to-end workflows that include schema definition, vectorization, indexing, and queries.
++ Review the [azure-search-vector-samples](https://github.com/Azure/azure-search-vector-samples) repository for end-to-end workflows that include schema definition, vectorization, indexing, and queries.
 
-There's demo code for [Python](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-python), [C#](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-dotnet), and [JavaScript](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-javascript).
++ Review the vector search demo code for [C#](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-dotnet), [Python](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-python), and [JavaScript](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-javascript).
