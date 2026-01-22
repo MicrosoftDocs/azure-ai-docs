@@ -43,6 +43,8 @@ If you're in the Foundry portal, you can navigate to the Foundry resource page i
 
 ::: moniker-end
 
+1. Select the resource name to open it.
+ 
 1. In the left pane, select **Access control (IAM)**, and then select **Add** > **Add role assignment**.
 
    :::image type="content" source="../../media/configure-entra-id/resource-aim.png" alt-text="Screenshot showing how to add a role assignment in the Access control section of the resource in the Azure portal." lightbox="../../media/configure-entra-id/resource-aim.png":::
