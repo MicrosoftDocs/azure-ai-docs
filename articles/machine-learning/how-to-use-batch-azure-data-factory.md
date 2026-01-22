@@ -135,7 +135,7 @@ To create this pipeline in your existing Azure Data Factory and invoke batch end
 
 1. Ensure the compute where the batch endpoint runs has permissions to mount the data Azure Data Factory provides as input. The entity that invokes the endpoint still grants access.
 
-   In this case, it's Azure Data Factory. However, the compute where the batch endpoint runs needs to have permission to mount the storage account your Azure Data Factory provides. See [Accessing storage services](how-to-identity-based-service-authentication.md#accessing-storage-services) for details.
+   In this case, it's Azure Data Factory. However, the compute where the batch endpoint runs needs to have permission to mount the storage account your Azure Data Factory provides. See [Accessing storage services](how-to-identity-based-service-authentication.md#access-storage-services) for details.
 
 1. Open Azure Data Factory Studio. Select the pencil icon to open the Author pane and, under **Factory Resources**, select the plus sign.
 
