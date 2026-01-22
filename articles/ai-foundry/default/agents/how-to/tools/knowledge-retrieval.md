@@ -64,13 +64,13 @@ Use the following values in the code samples.
 
 | Value | Where to get it | Example |
 |---|---|---|
-| Project endpoint (`project_endpoint`) | Find it in your project details in the Foundry portal. | `https://your-resource.services.ai.azure.com/api/projects/your-project` |
-| Project resource ID (`project_resource_id`) | Copy the project ARM resource ID from Azure portal, or use Azure CLI to query the resource ID. | `/subscriptions/.../resourceGroups/.../providers/Microsoft.MachineLearningServices/workspaces/.../projects/...` |
-| Azure AI Search endpoint (`search_service_endpoint`) | Find it on your Azure AI Search service overview page (the service URL). | `https://your-search-service.search.windows.net` |
+| Project endpoint (`project_endpoint`) | Find it in your project details in the Microsoft Foundry portal. | `https://your-resource.services.ai.azure.com/api/projects/your-project` |
+| Project resource ID (`project_resource_id`) | Copy the project ARM resource ID from Azure portal or use Azure CLI to query the resource ID. | `/subscriptions/.../resourceGroups/.../providers/Microsoft.MachineLearningServices/workspaces/.../projects/...` |
+| Azure AI Search endpoint (`search_service_endpoint`) | Find it on your Azure AI Search service **Overview** page (the service URL) in the Azure portal. | `https://your-search-service.search.windows.net` |
 | Knowledge base name (`knowledge_base_name`) | Use the knowledge base name you created in Azure AI Search. | `hr-policy-kb` |
 | Project connection name (`project_connection_name`) | Choose a name for the project connection you create. | `my-kb-mcp-connection` |
 | Agent name (`agent_name`) | Choose a name for the agent version you create. | `hr-assistant` |
-| Model deployment name (`deployed_LLM`) | Find it in your Foundry project model deployments. | `gpt-4.1-mini` |
+| Model deployment name (`deployed_LLM`) | Find it in your Microsoft Foundry project model deployments. | `gpt-4.1-mini` |
 
 ## Understand Foundry IQ
 
@@ -475,13 +475,13 @@ This section helps you troubleshoot common issues when connecting Foundry Agent 
 
 ### Authorization failures (401/403)
 
-- If you get a 403 from Azure AI Search, confirm your project's managed identity has the **Search Index Data Reader** role on your search service (and **Search Index Data Contributor** if you write to indexes).
+- If you get a 403 from Azure AI Search, confirm the project's managed identity has the **Search Index Data Reader** role on the search service (and **Search Index Data Contributor** if you write to indexes).
 - If you get a 403 from Azure Resource Manager when you create or delete the project connection, confirm your user or service principal has permissions on the Microsoft Foundry resource and project.
 - If you use keyless authentication, confirm your environment is signed in to the correct tenant and subscription.
 
 ### MCP endpoint errors (400/404)
 
-- Confirm `search_service_endpoint` is your Azure AI Search service URL, such as `https://<name>.search.windows.net`.
+- Confirm `search_service_endpoint` is the Azure AI Search service URL, such as `https://<name>.search.windows.net`.
 - Confirm `knowledge_base_name` matches the knowledge base you created in Azure AI Search.
 - Confirm you use the `2025-11-01-preview` API version for the knowledge base MCP endpoint.
 
