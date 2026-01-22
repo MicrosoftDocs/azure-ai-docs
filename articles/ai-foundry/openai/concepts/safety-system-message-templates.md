@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: This article contains recommended safety system messages for your generative AI systems, to help reduce the propensity of harm in various concern areas.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: article
+ms.topic: how-to
 ms.date: 12/01/2025
 ms.custom:
 manager: nitinme
