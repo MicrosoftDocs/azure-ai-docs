@@ -15,11 +15,13 @@ monikerRange: 'foundry-classic || foundry'
 
 Follow these steps to configure Microsoft Entra ID for inference: 
 
-1. Go to the [Azure portal](https://portal.azure.com) and locate the **Microsoft Foundry resource** you're using. 
+1. Go to the [Azure portal](https://portal.azure.com) and locate the **Microsoft Foundry resource** you're using.
 
-   ::: moniker range="foundry-classic"
+::: moniker range="foundry-classic"
 
-   1. You can also navigate to it from the Foundry portal by: [!INCLUDE [version-sign-in](../../../includes/version-sign-in.md)]
+   You can also navigate to the Foundry resource from the Foundry portal as follows:
+
+   1. [!INCLUDE [version-sign-in](../../../includes/version-sign-in.md)]
 
    1. On the landing page, select **Management center**.
 
@@ -29,7 +31,7 @@ Follow these steps to configure Microsoft Entra ID for inference:
 
    1. On the **Connection details** section, under **Resource**, select the name of the Azure resource. This action opens the resource in the Azure portal.
 
-   ::: moniker-end
+::: moniker-end
 
    :::image type="content" source="../../media/configure-entra-id/locate-resource-ai-services.png" alt-text="Screenshot showing the resource to which we configure Microsoft Entra ID." lightbox="../../media/configure-entra-id/locate-resource-ai-services.png":::
 
