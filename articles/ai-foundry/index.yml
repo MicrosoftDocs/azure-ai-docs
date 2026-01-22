@@ -145,16 +145,16 @@ tools:
   items:
   - title: Python
     imageSrc: /media/logos/logo_python.svg
-    url: ./how-to/develop/sdk-overview?pivots=programming-language-python
+    url: ./how-to/develop/sdk-overview.md?pivots=programming-language-python
   - title: C#
     imageSrc: /media/logos/logo_Csharp.svg
-    url: ./how-to/develop/sdk-overview?pivots=programming-language-csharp
+    url: ./how-to/develop/sdk-overview.md?pivots=programming-language-csharp
   - title: JavaScript
     imageSrc: /media/logos/logo_js.svg
-    url: ./how-to/develop/sdk-overview?pivots=programming-language-javascript
+    url: ./how-to/develop/sdk-overview.md?pivots=programming-language-javascript
   - title: Java
     imageSrc: /media/logos/logo_java.svg
-    url: ./how-to/develop/sdk-overview?pivots=programming-language-java
+    url: ./how-to/develop/sdk-overview.md?pivots=programming-language-java
 
 
 additionalContent:
