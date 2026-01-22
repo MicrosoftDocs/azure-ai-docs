@@ -59,7 +59,7 @@ Transactions with your Grounding with Bing resource are counted by the number of
 ## Setup 
 
 > [!NOTE]
-> Grounding with Bing Search tool will work in your network secured Foundry, but the tool does not respect your VPN or Private Endpoints to Foundry. It will act as a public endpoint. Please make this security consideration when using network secured Foundry with this tool.
+> Grounding with Bing Search tool works in your network secured Foundry, but the tool doesn't respect your VPN or Private Endpoints to Foundry. It acts as a public endpoint. Please make this security consideration when you use network secured Foundry with this tool.
 
 1. Create an Azure AI Agent by following the steps in the [quickstart](../../quickstart.md). 
 
