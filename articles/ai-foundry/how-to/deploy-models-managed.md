@@ -1,7 +1,8 @@
 ---
-title: How to deploy and inference a managed compute deployment
+title: Deploy models with managed compute
 titleSuffix: Microsoft Foundry
-description: Learn how to deploy large language models on managed compute in Microsoft Foundry and perform real-time inference for generative AI applications.
+description: "Learn how to deploy large language models using managed compute in Microsoft Foundry. Perform real-time inference for production generative AI applications."
+#customer intent: As an Azure AI developer, I want to deploy large language models on managed compute in Microsoft Foundry so that I can enable real-time generative AI applications in production.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.custom:
@@ -10,6 +11,7 @@ ms.custom:
 ms.topic: how-to
 ms.date: 01/22/2026
 ms.author: mopeakande
+ms.reviewer: mopeakande
 manager: nitinme
 author: msakande
 zone_pivot_groups: azure-ai-managed-compute-deployment
@@ -22,22 +24,23 @@ ai-usage: ai-assisted
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
-The Microsoft Foundry portal [model catalog](../how-to/model-catalog-overview.md) offers over 1,600 models that you can deploy using managed compute (also called managed online deployment) for real-time inference in production environments. 
-In this article, you learn to deploy models with the managed compute deployment option and to perform inference on the deployed model.
+The Microsoft Foundry portal model catalog offers over 1,600 models that you can deploy using managed compute (also called managed online deployment) for real-time inference in production environments. With managed compute deployments, you get scalable, production-ready infrastructure for your large language models.
+
+In this article, you learn how to deploy models with the managed compute deployment option and perform inference on the deployed model.
 
 ## Prerequisites
 
-- An Azure subscription with a valid payment method. Free or trial Azure subscriptions don't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
+- An Azure subscription with a valid payment method. Free or trial Azure subscriptions don't work. If you don't have an Azure subscription, [create a paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go).
 
-- If you don't have one, [create a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]](hub-create-projects.md).
+- If you don't have one, create a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]. For more information, see [Create a project](hub-create-projects.md).
 
-- Foundry [Models from Partners and Community](../model-inference/concepts/models.md#models-from-partners-and-community) require access to Azure Marketplace, while Foundry [Models Sold Directly by Azure](../model-inference/concepts/models.md#models-sold-directly-by-azure) don't have this requirement. Ensure your Azure subscription has the permissions required to subscribe to model offerings in Azure Marketplace. See [Enable Azure Marketplace purchases](/azure/cost-management-billing/manage/enable-marketplace-purchases) to learn more.
+- Foundry [Models from Partners and Community](../model-inference/concepts/models.md#models-from-partners-and-community) require access to Azure Marketplace, while Foundry [Models Sold Directly by Azure](../model-inference/concepts/models.md#models-sold-directly-by-azure) don't have this requirement. Ensure your Azure subscription has the permissions required to subscribe to model offerings in Azure Marketplace. For more information, see [Enable Azure Marketplace purchases](/azure/cost-management-billing/manage/enable-marketplace-purchases).
 
-- Azure role-based access controls (Azure RBAC) grant access to operations in Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, see [Role-based access control in Foundry portal](../concepts/rbac-foundry.md).
+- Azure role-based access controls (Azure RBAC) grant access to operations in Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information, see [Role-based access control in Foundry portal](../concepts/rbac-foundry.md).
 
-- Virtual Machine (VM) quota in your Azure subscription for the specific VM SKUs needed to run your model. Each deployment consumes VM core quota on a per-region basis. See [Quota considerations](#quota-considerations) for details on quota requirements and how to request increases.
+- Virtual machine (VM) quota in your Azure subscription for the specific VM SKUs needed to run your model. Each deployment consumes VM core quota on a per-region basis. For more information, see [Quota considerations](#quota-considerations), including quota requirements and how to request increases.
 
-- For deployments with Python SDK: Python 3.8 or later installed. You also need the Azure Machine Learning SDK (`azure-ai-ml`) and Azure Identity library (`azure-identity`).
+- For deployments with Python SDK: Python 3.8 or later installed, including the Azure Machine Learning SDK (`azure-ai-ml`) and Azure Identity library (`azure-identity`).
 
 
 ## Find your model in the model catalog
@@ -50,14 +53,14 @@ In this article, you learn to deploy models with the managed compute deployment 
 
     :::image type="content" source="../media/deploy-models-managed/catalog-filter-managed-compute.png" alt-text="Screenshot of the model catalog interface with the Deployment options filter panel open, on the left showing Managed compute selected, and a grid of available model cards displayed on the right." lightbox="../media/deploy-models-managed/catalog-filter-managed-compute.png"::: 
 
-1. Select a model to open its model card. In this article, use the model `deepset-roberta-base-squad2`.
+1. Select a model to open its model card. In this article, you use the model `deepset-roberta-base-squad2`.
 
 
 ::: zone pivot="ai-foundry-portal"
 
 ## Deploy the model
 
-1. From the model's page, select **Use this model** to open the deployment window. 
+1. On the model's page, select **Use this model** to open the deployment window. 
 1. The deployment window is pre-filled with some selections and parameter values. You can either keep them or change them as desired. You can also select an existing endpoint for the deployment or create a new one. For this example, specify an instance count of `1` and create a new endpoint for the deployment.
 
     :::image type="content" source="../media/deploy-models-managed/deployment-configuration.png" alt-text="Screenshot of the deployment configuration dialog showing fields for deployment name, endpoint selection, virtual machine selection, and instance count set to 1, with a Deploy button at the bottom." lightbox="../media/deploy-models-managed/deployment-configuration.png":::
@@ -71,7 +74,7 @@ In this article, you learn to deploy models with the managed compute deployment 
 
 1. The created endpoint uses key authentication for authorization. To get the keys associated with a given endpoint, follow these steps:
 
-    1. Select the deployment, and note the endpoint's Target URI and Key.
+    1. Select the deployment and note the endpoint's Target URI and Key.
     1. Use these credentials to call the deployment and generate predictions.
 
     The Target URI follows this format: `https://<endpoint-name>.<region>.inference.ml.azure.com/score`
@@ -98,7 +101,7 @@ After you create your deployment, follow these steps to consume it:
 
 1.  Install the Azure Machine Learning SDK.
 
-    ```python
+    ```bash
     pip install azure-ai-ml
     pip install azure-identity
     ```
@@ -182,7 +185,7 @@ After you create your deployment, follow these steps to consume it:
 
     **Reference:** [ManagedOnlineDeployment](/python/api/azure-ai-ml/azure.ai.ml.entities.managedonlinedeployment), [ProbeSettings](/python/api/azure-ai-ml/azure.ai.ml.entities.probesettings), [online_deployments.begin_create_or_update](/python/api/azure-ai-ml/azure.ai.ml.operations.onlinedeploymentoperations#azure-ai-ml-operations-onlinedeploymentoperations-begin-create-or-update)
 
-## Inference the deployment
+## Perform inference the deployment
 
 1. You need sample JSON data to test inferencing. Create a file named `sample_score.json` in your working directory with the following content: 
 
