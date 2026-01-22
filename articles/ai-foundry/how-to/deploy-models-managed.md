@@ -7,9 +7,7 @@ ms.subservice: azure-ai-foundry-model-inference
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 09/15/2025
-ms.reviewer: fasantia 
-reviewer: santiagxf
+ms.date: 01/22/2026
 ms.author: mopeakande
 manager: nitinme
 author: msakande
@@ -106,7 +104,7 @@ After you create your deployment, follow these steps to consume it:
     from azure.identity import InteractiveBrowserCredential
     
     workspace_ml_client = MLClient(
-        credential=InteractiveBrowserCredential,
+        credential=InteractiveBrowserCredential(),
         subscription_id="your subscription ID goes here",
         resource_group_name="your resource group name goes here",
         workspace_name="your project name goes here",
@@ -170,7 +168,7 @@ After you create your deployment, follow these steps to consume it:
 
 1. You need a sample json data to test inferencing. Create `sample_score.json` with the following example. 
 
-    ```python
+    ```json
     {
       "inputs": {
         "question": [
