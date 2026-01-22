@@ -58,7 +58,7 @@ Before you begin, make sure you have:
   - `BING_PROJECT_CONNECTION_ID` or `BING_CUSTOM_SEARCH_PROJECT_CONNECTION_ID`: Your Bing connection ID in the format `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`.
   - For Bing Custom Search: `BING_CUSTOM_SEARCH_INSTANCE_NAME`: Your custom search instance name.
 - A Bing Grounding or Bing Custom Search resource created and connected to your Foundry project. A paid subscription is required to create a Grounding with Bing Search or Grounding with Bing Custom Search resource.
-- Normal network access (Bing grounding tools don't work with VPN or Private Endpoints).
+- The Grounding with Bing Search tool works in your network secured Foundry, but the tool doesn't respect your VPN or Private Endpoints. It acts as a public endpoint. Please make this security consideration when you use network secured Foundry with this tool.
 
 ## Available tools
 
@@ -524,7 +524,7 @@ Before running REST API calls, configure authentication:
    - `BING_SEARCH_PROJECT_CONNECTION_ID`: Your Bing connection ID.
 1. Obtain bearer token:
    ```bash
-   az account get-access-token --resource https://management.azure.com --query accessToken -o tsv
+   az account get-access-token --resource https://ai.azure.com --query accessToken -o tsv
    ```
 
 ```bash
