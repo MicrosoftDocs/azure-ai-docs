@@ -30,7 +30,7 @@ Azure Machine Learning is composed of multiple Azure services. Multiple methods 
 
 [!INCLUDE [cli & sdk v2](includes/machine-learning-cli-sdk-v2-prereqs.md)]
 
-* To assign roles, the sign in for your Azure subscription must have the [Managed Identity Operator](/azure/role-based-access-control/built-in-roles#managed-identity-operator) role, or other role that grants the required actions (such as __Owner__).
+* To assign roles, the sign in for your Azure subscription must have the [Managed Identity Operator](/azure/role-based-access-control/built-in-roles#managed-identity-operator) role, or another role that grants the required actions (such as __Owner__).
 
 * You must be familiar with creating and working with [Managed Identities](/azure/active-directory/managed-identities-azure-resources/overview).
 
@@ -40,7 +40,7 @@ Depending on your scenario, you need specific Azure RBAC roles:
 
 | Scenario | Required roles |
 |----------|----------------|
-| Workspace with user-assigned identity | Contributor on workspace, Storage Blob Data Contributor on storage, Key Vault Administrator or access policies on key vault, Contributor on ACR |
+| Workspace with user-assigned identity | Contributor on workspace, Storage Blob Data Contributor on storage, Key Vault Administrator, or access policies on key vault, Contributor on ACR |
 | Compute cluster accessing storage | Storage Blob Data Reader (minimum) on storage account |
 | Identity-based data access | Storage Blob Data Reader on Azure Blob Storage, Azure Data Lake Storage Gen1, or Gen2 |
 | Pulling images from ACR | ACRPull on the container registry |
@@ -111,13 +111,13 @@ print(f"Identity type: {workspace.identity.type}")
 print(f"Principal ID: {workspace.identity.principal_id}")
 ```
 
-**Expected result**: Prints the identity type and principal ID. If using user-assigned identities, also prints the user-assigned identity resource IDs.
+**Expected result**: Prints the identity type and principal ID. If you use user-assigned identities, also prints the user-assigned identity resource IDs.
 
 **Reference**: [MLClient.workspaces.get](/python/api/azure-ai-ml/azure.ai.ml.operations.workspaceoperations#azure-ai-ml-operations-workspaceoperations-get)
 
 # [Studio](#tab/azure-portal)
 
-1. Navigate to [Azure Machine Learning studio](https://ml.azure.com).
+1. Go to [Azure Machine Learning studio](https://ml.azure.com).
 1. Select your workspace.
 1. Select **Settings** > **Properties**.
 1. Verify the **Managed identity** section shows the expected identity type and principal ID.
@@ -131,7 +131,7 @@ The Azure Machine Learning workspace uses a __managed identity__ to communicate 
 | Managed identity type | Role assignment creation | Purpose |
 | ---- | :----: | :----: |
 | System-assigned (SAI) | Managed by Microsoft | Lifecycle tied to resource; single resource use; simple to get started |
-| System-assigned+user-assigned (SAI+UAI) | [Managed by you](#user-assigned-managed-identity) | Independent lifecycle for user-assigned identity; multi-resource use; controls least privileged access; access data in training jobs. |
+| System-assigned +user-assigned (SAI+UAI) | [Managed by you](#user-assigned-managed-identity) | Independent lifecycle for user-assigned identity; multiresource use; controls least privileged access; access data in training jobs. |
 
 After you create a workspace with the SAI identity type, you can update it to SAI+UAI. You can't update a workspace from SAI+UAI to SAI. You can assign multiple user-assigned identities to the same workspace. 
 
@@ -332,7 +332,7 @@ When you enable data isolation, the workspace applies the following configuratio
 
 Azure Machine Learning supports different workspace kinds for different organizational patterns:
 
-- **default**: A standalone workspace for individual projects or teams. This is the standard workspace type.
+- **default**: A standalone workspace for individual projects or teams. This workspace kind is the standard workspace type.
 - **hub**: A central workspace that manages shared resources, policies, and connections for multiple related projects. For more information, see [hub workspaces](concept-hub-workspace.md).
 - **project**: A lightweight workspace that inherits resources and settings from a parent hub workspace.
 
@@ -348,11 +348,11 @@ The default value for data isolation depends on the workspace kind:
 
 Enable data isolation when:
 
-- Multiple workspaces share the same storage account, key vault, or container registry
-- You need to prevent naming conflicts for artifacts (such as Docker images or secrets) created with the same name across workspaces
-- You require stricter access control to ensure workspace identities can only access their own data
+- Multiple workspaces share the same storage account, key vault, or container registry.
+- You need to prevent naming conflicts for artifacts (such as Docker images or secrets) created with the same name across workspaces.
+- You require stricter access control to ensure workspace identities can only access their own data.
 
-For hub and project workspaces, data isolation is enabled by default to support the shared resource model. For more information, see [What is an Azure Machine Learning hub workspace?](concept-hub-workspace.md)
+For hub and project workspaces, enable data isolation by default to support the shared resource model. For more information, see [What is an Azure Machine Learning hub workspace?](concept-hub-workspace.md)
 
 ### Enable data isolation when creating a workspace
 
@@ -516,7 +516,7 @@ except Exception:
 
 # [Studio](#tab/azure-portal)
 
-During cluster creation or when editing compute cluster details, in the **Advanced settings**, toggle **Assign a managed identity** and specify a system-assigned identity or user-assigned identity.
+During cluster creation or when you edit compute cluster details, in the **Advanced settings**, toggle **Assign a managed identity** and specify a system-assigned identity or user-assigned identity.
 
 ---
 
@@ -600,7 +600,7 @@ To access these storage services, you must have at least [Storage Blob Data Read
 
 Certain machine learning scenarios involve working with private data. In such cases, data scientists might not have direct access to data as Microsoft Entra users. In this scenario, use the managed identity of a compute for data access authentication. You can only access the data from a compute instance or a machine learning compute cluster executing a training job. By using this approach, the admin grants the compute instance or compute cluster managed identity Storage Blob Data Reader permissions on the storage. The individual data scientists don't need to be granted access.
 
-To enable authentication with compute managed identity:
+To enable authentication by using compute managed identity:
 
  * Create compute with managed identity enabled. See the [compute cluster](#compute-cluster) section, or for compute instance, the [Assign managed identity](how-to-create-compute-instance.md#assign-managed-identity) section.
 
@@ -625,7 +625,7 @@ When you train on [Azure Machine Learning compute clusters](how-to-create-attach
 
 This authentication mode enables you to: 
 * Set up fine-grained permissions, where different workspace users can access different storage accounts or folders within storage accounts.
-* Let data scientists re-use existing permissions on storage systems.
+* Let data scientists reuse existing permissions on storage systems.
 * Audit storage access because the storage logs show which identities were used to access data.
 
 > [!IMPORTANT] 
@@ -699,13 +699,13 @@ To set up data access by using user identity for training jobs on compute cluste
 
 By default, Azure Machine Learning can't communicate with a storage account that's behind a firewall or in a virtual network.
 
-You can configure storage accounts to allow access only from within specific virtual networks. This configuration requires extra steps to ensure data isn't leaked outside of the network. This behavior is the same for credential-based data access. For more information, see [How to prevent data exfiltration](how-to-prevent-data-loss-exfiltration.md). 
+You can configure storage accounts to allow access only from specific virtual networks. This configuration requires extra steps to ensure data isn't leaked outside of the network. This behavior is the same for credential-based data access. For more information, see [How to prevent data exfiltration](how-to-prevent-data-loss-exfiltration.md). 
 
 If your storage account has virtual network settings, those settings dictate what identity type and permissions access is needed. For example, for data preview and data profile, the virtual network settings determine what type of identity is used to authenticate data access. 
  
-* In scenarios where only certain IPs and subnets are allowed to access the storage, Azure Machine Learning uses the workspace MSI to accomplish data previews and profiles.
+* In scenarios where only certain IPs and subnets can access the storage, Azure Machine Learning uses the workspace MSI to accomplish data previews and profiles.
 
-* If your storage is ADLS Gen 2 or Blob and has virtual network settings, you can use either user identity or workspace MSI depending on the datastore settings defined during creation. 
+* If your storage is ADLS Gen2 or Blob and has virtual network settings, you can use either user identity or workspace MSI depending on the datastore settings defined during creation. 
 
 * If the virtual network setting is **Allow Azure services on the trusted services list to access this storage account**, Workspace MSI is used. 
 
@@ -713,10 +713,10 @@ If your storage account has virtual network settings, those settings dictate wha
 
 When you disable the admin user for ACR, Azure Machine Learning uses a managed identity to build and pull Docker images. There are two workflows when configuring Azure Machine Learning to use an ACR with the admin user disabled:
 
-* Allow Azure Machine Learning to create the ACR instance and then disable the admin user afterwards.
+* Allow Azure Machine Learning to create the ACR instance and then disable the admin user.
 * Bring an existing ACR with the admin user already disabled.
 
-### Azure Machine Learning with auto-created ACR instance
+### Azure Machine Learning with autocreated ACR instance
 
 1. Create a new Azure Machine Learning workspace.
 1. Perform an action that requires Azure Container Registry. For example, see the [Tutorial: Train your first model](tutorial-1st-experiment-sdk-train.md).
@@ -849,7 +849,7 @@ To use a custom base image internal to your enterprise, use managed identities t
     az ml compute update --name <cluster name> --user-assigned-identities <my-identity-id>
     ```
 
-1. To allow the compute cluster to pull the base images, grant the managed service identity (for the workspace or compute) ACRPull role on the private ACR
+1. To allow the compute cluster to pull the base images, grant the managed service identity (for the workspace or compute) ACRPull role on the private ACR.
 
     [!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
 
@@ -906,7 +906,7 @@ Replace `<principal-id>` with the managed identity's principal ID from the [Veri
 
 **Resolution**: 
 1. Verify the compute cluster has a managed identity enabled. See [Compute cluster](#compute-cluster).
-2. In your code, retrieve the client ID from the environment:
+1. In your code, retrieve the client ID from the environment:
 
 ```python
 import os
@@ -927,7 +927,7 @@ credential = ManagedIdentityCredential(client_id=client_id)
 
 **Resolution**: Configure the storage account to allow access from trusted Azure services:
 
-1. In Azure portal, navigate to your storage account.
+1. In Azure portal, go to your storage account.
 1. Select **Networking** > **Firewalls and virtual networks**.
 1. Under **Exceptions**, select **Allow Azure services on the trusted services list to access this storage account**.
 
@@ -953,9 +953,9 @@ az role assignment create \
 
 ### User identity authentication fails in job
 
-**Symptom**: Jobs using user identity for data access fail during checksum validation.
+**Symptom**: Jobs that use user identity for data access fail during checksum validation.
 
-**Cause**: Pipeline components created before enabling user identity authentication need to be re-uploaded.
+**Cause**: Pipeline components need to be re-uploaded when you create them before enabling user identity authentication.
 
 **Resolution**: Re-upload pipeline components to regenerate checksums:
 
