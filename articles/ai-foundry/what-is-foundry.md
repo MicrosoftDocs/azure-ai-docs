@@ -139,20 +139,21 @@ This table summarizes features available in the two project types:
 | Agents | ✅ (GA) | ✅ (Preview only) |
 | Models sold directly by Azure - Azure OpenAI, DeepSeek, xAI, etc. | ✅ | Available via connections |
 | Partner & Community Models sold through Marketplace - Stability, Cohere, etc. | ✅ | Available via connections |
-| Models deployed on managed compute (e.g. HuggingFace) |  | ✅ |
+| Models deployed on managed compute (e.g. HuggingFace) | | ✅ |
 | Foundry SDK and API | ✅ | Limited* |
 | OpenAI SDK and API | ✅ | Available via connections |
 | Evaluations | ✅ (preview) | ✅ |
 | Playgrounds | ✅ | ✅ |
-| Content understanding  | ✅ | ✅ |
-| Model router  | ✅ | ✅ |
-| Datasets  | ✅ | ✅ |
-| Indexes  | ✅ | ✅ |
+| Content understanding | ✅ | ✅ |
+| Azure Language resource | | ✅ |
+| Model router | ✅ | ✅ |
+| Datasets | ✅ | ✅ |
+| Indexes | ✅ | ✅ |
 | Project files API (Foundry-managed storage) | ✅ | Limited |
 | Project-level isolation of files and outputs | ✅ | Limited |
 | Bring-your-own Key Vault to store connection secrets | ✅ | ✅ |
-| Bring-your-own Storage for Agent service  | ✅ | ✅ |
-| Prompt flow |  | ✅ |
+| Bring-your-own Storage for Agent service | ✅ | ✅ |
+| Prompt flow | | ✅ |
 
 *New feature enhancements primarily land on the [Microsoft Foundry resource type](../ai-foundry/concepts/resource-types.md). 
 
