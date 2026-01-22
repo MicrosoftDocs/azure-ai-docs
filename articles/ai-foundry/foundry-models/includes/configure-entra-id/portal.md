@@ -4,7 +4,7 @@ author: santiagxf
 ms.author: fasantia 
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
-ms.date: 01/22/2026
+ms.date: 01/22/2025
 ms.topic: include
 zone_pivot_groups: azure-ai-models-deployment
 monikerRange: 'foundry-classic || foundry'
@@ -13,36 +13,34 @@ monikerRange: 'foundry-classic || foundry'
 
 ## Configure Microsoft Entra ID for inference
 
-Follow these steps to configure Microsoft Entra ID for inference: 
-
-1. Go to the [Azure portal](https://portal.azure.com) and locate the **Microsoft Foundry resource** you're using.
+This section lists the steps to configure Microsoft Entra ID for inference from the Microsoft Foundry resource's page in the [Azure portal](https://portal.azure.com).
 
 ::: moniker range="foundry-classic"
 
-   You can also navigate to the Foundry resource from the Foundry portal as follows:
+From the Foundry portal, you can navigate to the Foundry resource's page in the Azure portal as follows:
 
-   1. [!INCLUDE [version-sign-in](../../../includes/version-sign-in.md)]
+1. [!INCLUDE [version-sign-in](../../../includes/version-sign-in.md)]
 
-   1. On the landing page, select **Management center**.
+1. On the landing page, select **Management center**.
 
-   1. Go to the section **Connected resources** and select the connection to the Foundry resource that you want to configure. If it isn't listed, select **View all** to see the full list.
+1. Go to the **Connected resources** section and select the connection to the Foundry resource that you want to configure. If it isn't listed, select **View all** to see the full list.
 
-      :::image type="content" source="../../media/configure-entra-id/resource-behind-select.png" alt-text="Screenshot showing how to navigate to the details of the connection in Foundry in the management center." lightbox="../../media/configure-entra-id/resource-behind-select.png":::
+   :::image type="content" source="../../media/configure-entra-id/resource-behind-select.png" alt-text="Screenshot showing how to navigate to the details of the connection in Foundry in the management center." lightbox="../../media/configure-entra-id/resource-behind-select.png":::
 
-   1. On the **Connection details** section, under **Resource**, select the name of the Azure resource. This action opens the resource in the Azure portal.
+1. On the **Connection details** section, under **Resource**, select the name of the Azure resource. This action opens the resource in the Azure portal.
 
 ::: moniker-end
 
    :::image type="content" source="../../media/configure-entra-id/locate-resource-ai-services.png" alt-text="Screenshot showing the resource to which we configure Microsoft Entra ID." lightbox="../../media/configure-entra-id/locate-resource-ai-services.png":::
 
-1. On the left pane, select **Access control (IAM)** and then select **Add** > **Add role assignment**.
+1. In the left pane, select **Access control (IAM)**, and then select **Add** > **Add role assignment**.
 
    :::image type="content" source="../../media/configure-entra-id/resource-aim.png" alt-text="Screenshot showing how to add a role assignment in the Access control section of the resource in the Azure portal." lightbox="../../media/configure-entra-id/resource-aim.png":::
 
    > [!TIP]
    > Use the **View my access** option to verify which roles are already assigned to you.
 
-1. On **Job function roles**, type **Cognitive Services User**.
+1. In **Job function roles**, type **Cognitive Services User**.
 
    :::image type="content" source="../../media/configure-entra-id/cognitive-services-user.png" alt-text="Screenshot showing how to select the Cognitive Services User role assignment." lightbox="../../media/configure-entra-id/cognitive-services-user.png":::
 
