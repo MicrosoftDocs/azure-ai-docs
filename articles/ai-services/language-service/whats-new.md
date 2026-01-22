@@ -19,12 +19,14 @@ Stay informed about recent releases and enhancements designed to help you get th
 * **Orchestration workflow available in [Microsoft Foundry (classic)](https://ai.azure.com/)**. [Orchestration workflow](orchestration-workflow/quickstart.md) is now supported in Microsoft Foundry (classic).
 
   * The redesigned interface streamlines integration between [Conversational Language Understanding (CLU)](conversational-language-understanding/quickstart.md) and [Custom Question Answering (CQA)](question-answering/quickstart/sdk.md) projects. This capability enables efficient orchestration of user utterances across multiple conversational applications within a unified workflow.
+
   * Configure intent-based routing to direct user queries to the appropriate **CLU** or **CQA** project, improving response accuracy and reducing development complexity.
 
-* **Azure AI Language capabilities fully available in [Microsoft Foundry (classic)](https://ai.azure.com/)**. With the addition of orchestration workflow, all Azure AI Language capabilities are now accessible in Microsoft Foundry (classic).
+* **Azure AI Language capabilities fully available in [Microsoft Foundry (classic)](https://ai.azure.com/)**. All Azure AI Language capabilities are now accessible in Microsoft Foundry (classic), delivering a complete, unified development experience.
 
-  * Language Studio features are integrated to provide a unified development experience. The authoring and testing capabilities—including project management, model training, and deployment workflows—are now part of the Foundry platform.
-  * Transition to Microsoft Foundry to access the full range of Language features, the latest enhancements, and a unified AI development platform. For step-by-step migration instructions, *see* [Migrate from Azure Language Studio to Microsoft Foundry](migration-studio-to-foundry.md).
+  * Language Studio authoring and testing capabilities—including project management, model training, and deployment workflows—are now fully integrated into the Foundry platform.
+
+  * **Transition now** to Microsoft Foundry to take advantage of the full range of Language features, the latest enhancements, and a unified AI development platform. For step-by-step migration instructions, *see* [**Migrate from Azure Language Studio to Microsoft Foundry**](migration-studio-to-foundry.md).
 
 ## December 2025
 
