@@ -240,7 +240,12 @@ You need an [Azure account](https://azure.microsoft.com/pricing/purchase-options
 
 ## Related content
 
+:::moniker range="foundry"
+- [Quickstart: Get started with Microsoft Foundry](./default/tutorials/quickstart-create-foundry-resources.md)
+:::moniker-end
+:::moniker range="foundry-classic"
 - [Quickstart: Get started with Microsoft Foundry](quickstarts/get-started-code.md)
+:::moniker-end
 - [Create a project](./how-to/create-projects.md)
 - [Get started with an AI template](how-to/develop/ai-template-get-started.md)
 - [What's new in Microsoft Foundry documentation?](whats-new-foundry.md)
