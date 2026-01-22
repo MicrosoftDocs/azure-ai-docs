@@ -23,7 +23,8 @@ To block *all* data plane access to the public endpoint, use [private endpoints]
 
 ## Prerequisites
 
-+ A search service, any region, at the Basic tier or higher.
++ + [Azure AI Search service](search-create-service-portal.md) (Basic tier or higher). Firewall configuration isn't supported on the Free tier.
+
 + **Owner** or **Contributor** role on the search service resource.
 + You can also use the [Management REST API](/rest/api/searchmanagement/), [Azure PowerShell](/powershell/module/az.search), or the [Azure CLI](/cli/azure/search) instead of the Azure portal.
 

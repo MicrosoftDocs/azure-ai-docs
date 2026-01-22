@@ -20,9 +20,8 @@ This article explains how to configure a private connection to Azure AI Search s
 
 ## Prerequisites
 
-+ An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
++ [Azure AI Search service](search-create-service-portal.md) (Basic tier or higher). Private endpoints aren't supported on the Free tier.
 + **Contributor** or **Owner** role on the resource group where you create resources.
-+ Azure AI Search (Basic tier or higher). Private endpoints aren't supported on the Free tier.
 + A [common region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table) with availability for Azure AI Search, a virtual network, and a virtual machine. All three resources must reside in the same region.
 + Familiarity with [Azure Virtual Network](/azure/virtual-network/virtual-networks-overview) concepts (optional but recommended).
 
