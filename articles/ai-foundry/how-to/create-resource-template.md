@@ -45,7 +45,7 @@ Use a [Microsoft Bicep](/azure/azure-resource-manager/bicep/overview) file (temp
     ---
 
 - The Bicep command-line tools. To install the Bicep CLI, see [Install the Bicep CLI](/azure/azure-resource-manager/bicep/install).
-- **Azure role**: Owner role on the subscription or resource group where you deploy resources.
+- [!INCLUDE [rbac-assign-roles](../includes/rbac-assign-roles.md)]
 
 
 ## Deploy the Bicep file

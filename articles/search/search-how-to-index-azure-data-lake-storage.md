@@ -145,7 +145,7 @@ Indexers can connect to a blob container using the following connections.
 | The SAS should have the list and read permissions on containers and objects (blobs in this case). |
 
 > [!NOTE]
-> If you use SAS credentials, you will need to update the data source credentials periodically with renewed signatures to prevent their expiration. If SAS credentials expire, the indexer will fail with an error message similar to "Credentials provided in the connection string are invalid or have expired".  
+> If you use SAS credentials, you need to update the data source credentials periodically with renewed signatures to prevent their expiration. If SAS credentials expire, the indexer fails with an error message similar to "Credentials provided in the connection string are invalid or have expired".
 
 ## Add search fields to an index
 

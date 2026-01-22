@@ -10,7 +10,7 @@ metadata:
   author: sdgilley
   ms.author: sgilley
   manager: mcleans
-  ms.date: 12/17/2025
+  ms.date: 01/14/2026
   ms.service: azure-ai-foundry
   ms.topic: hub-page
   ms.custom:
@@ -40,9 +40,9 @@ productDirectory:
   items:
     # Card
     - title: Create apps with code
-      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.svg
+      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.png
       links:
-        - url: ./quickstarts/get-started-code.md?view=foundry
+        - url: ./default/tutorials/quickstart-create-foundry-resources.md
           text: Quickstart for Microsoft Foundry (new)
         - url: ./quickstarts/get-started-code.md?view=foundry-classic
           text: Quickstart for Microsoft Foundry (classic)
@@ -50,7 +50,7 @@ productDirectory:
           text: Start with an AI template
     # Card
     - title: Microsoft Foundry Models
-      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.svg
+      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/azure-foundry-models.png
       links:
         - url: foundry-models/concepts/models.md
           text: Foundry Models sold directly by Azure
@@ -64,7 +64,7 @@ productDirectory:
           text: Learn how to fine-tune models
     # Card
     - title: Foundry Agent Service
-      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/ai-agents.png
+      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/ai-agents.svg
       links:
         - url: ../ai-services/agents/overview.md
           text: Orchestrate and host AI agents to automate and execute business processes
@@ -76,7 +76,7 @@ productDirectory:
           text: AI Red Teaming Agent (preview)
     # Card
     - title: Protect and govern
-      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.svg
+      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry-control-plane-protect-govern.svg
       links:
         - url: responsible-use-of-ai-overview.md
           text: Trustworthy AI
@@ -89,20 +89,20 @@ productDirectory:
         - url: ./how-to/monitor-applications.md
           text: Monitor your generative AI applications
     # Card
-    - title: Azure AI Search
-      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/search.svg
+    - title: Foundry IQ
+      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/foundry-iq.png
       links:
-        - url: /azure/search/search-get-started-agentic-retrieval
+        - url: /azure/search/agentic-retrieval-overview
           text: Agentic retrieval
-        - url: /azure/search
-          text: Bring AI-powered cloud search to your mobile and web applications
-        - url: /azure/search/tutorial-rag-build-solution
-          text: Build a RAG solution using Azure AI Search
-        - url: ../ai-services/agents/how-to/tools/azure-ai-search.md
-          text: Azure AI Search tool for agents
+        - url: /azure/search/agentic-retrieval-how-to-create-knowledge-base
+          text: Create a knowledge base for agentic retrieval
+        - url: /azure/ai-foundry/agents/how-to/tools/knowledge-retrieval
+          text: Connect an agent to a knowledge base
+        - url: /azure/search/agentic-retrieval-how-to-create-pipeline
+          text: "Tutorial: Create an end-to-end retrieval solution"
     # Card
     - title: Foundry Tools
-      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/azure.svg
+      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry-tools.png
       links:
         - url: ../ai-services/speech-service/index.yml
           text: Speech
@@ -118,7 +118,7 @@ productDirectory:
           text: Content Understanding
     # Card
     - title: Azure Machine Learning
-      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-studio/machine-learning.svg
+      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/azure-machine-learning.png
       links:
         - url: /azure/machine-learning/concept-train-machine-learning-model
           text: Learn how to train models
@@ -128,7 +128,7 @@ productDirectory:
           text: What is automated machine learning (AutoML)?
     # Card
     - title: Foundry Local
-      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.svg
+      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/azure-foundry-local.png
       links:
         - url: ./foundry-local/get-started.md
           text: Run LLMs on your device for free

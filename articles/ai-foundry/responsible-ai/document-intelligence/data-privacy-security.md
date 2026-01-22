@@ -25,7 +25,7 @@ The most common way to authenticate access to Document Intelligence is by using 
 
 ### Secure data in transit (for scanning)
 
-All Foundry Tools endpoints, including the Document Intelligence API URLs, use HTTPS URLs for encrypting data during transit. The client operating system needs to support Transport Layer Security (TLS) 1.2 for calling the endpoints. For more information, see [Foundry Tools security](/azure/security/fundamentals/double-encryption).
+All Foundry Tools endpoints, including the Document Intelligence API URLs, use HTTPS URLs for encrypting data during transit. The client operating system needs to support Transport Layer Security (TLS) 1.3 for calling the endpoints. For more information, see [Foundry Tools security](/azure/security/fundamentals/double-encryption).
 
 ### Encrypts input data for processing
 

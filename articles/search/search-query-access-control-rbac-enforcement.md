@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Learn how query-time ACL and RBAC enforcement ensures secure document retrieval in Azure AI Search for indexes containing permission filters from data sources such as Azure Data Lake Storage (ADLS) Gen2 and SharePoint in Microsoft 365.  
 ms.service: azure-ai-search  
 ms.topic: article  
-ms.date: 12/01/2025  
+ms.date: 01/15/2026  
 author: mattgotteiner  
 ms.author: magottei 
 ---  
@@ -115,11 +115,13 @@ You can accomplish these tasks by adding a custom header, `x-ms-enable-elevated-
 
 ### Permissions for elevated-read requests
 
-Currently, you must [create a custom role](search-security-rbac.md#create-a-custom-role) to run queries with elevated permissions. Add the `Microsoft.Search/searchServices/indexes/contentSecurity/elevatedOperations/read` permission to run the queries.
+You must have [Search Index Data Contributor](search-security-rbac.md#built-in-roles-used-in-search) permissions or a [custom role](search-security-rbac.md#create-a-custom-role) that includes the Elevate Read permission.
+
+Queries are a data plane operation, so the custom role can only consist of atomic data plane permissions. For a custom role, add the `Microsoft.Search/searchServices/indexes/contentSecurity/elevatedOperations/read` permission.
 
 ### Add an elevated-read header to a query
 
-The following example is a query request against a search index.
+After you set up permissions, you can run the query. The following example is a query request against a search index.
 
 ```http
 POST {endpoint}/indexes('{indexName}')/search.post.search?api-version=2025-11-01-preview
@@ -136,7 +138,6 @@ x-ms-enable-elevated-read: true
 
 > [!IMPORTANT]
 > The `x-ms-enable-elevated-read` header only works on Search POST actions. You can't perform an elevated read query on a [knowledge base retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true) action.
-
 
 ### Important ACL functionality behavior change in specific preview API versions
 
