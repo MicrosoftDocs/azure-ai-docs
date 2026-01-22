@@ -4,6 +4,7 @@ description: "Best practices for configuring and using agent tools in Microsoft 
 author: aahill
 ms.author: aahi
 ms.date: 01/20/2026
+ms.custom: references_regions
 ms.manager: nitinme
 ms.topic: concept-article
 ms.service: azure-ai-foundry
