@@ -5,7 +5,7 @@ description: Learn about AI models that are applicable to the health and life sc
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: concept-article
-ms.date: 08/13/2025
+ms.date: 01/23/2026
 ms.reviewer: itarapov
 reviewer: ivantarapov
 ms.author: mopeakande
