@@ -25,8 +25,8 @@ This article explains how to find the IP address of your search service and conf
 ## Prerequisites
 
 + [Azure AI Search service](search-create-service-portal.md) (Basic tier or higher). You can't set firewall rules on the Free tier.
-+ An existing target Azure resource protected b a firewall.
-+ **Contributor** or **Owner** role on the search service to configure firewall rules and permissions on the external to add firewall rules.
++ An existing target Azure resource protected by a firewall.
++ **Contributor** or **Owner** role on the search service.
 
 > [!NOTE]
 > + Applicable to Azure Storage only. To define IP firewall rules, your storage account and search service must be in different regions. If your setup doesn't permit different regions, try the [trusted service exception](search-indexer-howto-access-trusted-service-exception.md) or [resource instance rule](/azure/storage/common/storage-network-security#grant-access-from-azure-resource-instances) instead.
@@ -145,7 +145,7 @@ You can get this IP address range from the `AzureCognitiveSearch` service tag.
 
     Copy all IP addresses in the `addressPrefixes` array for your region.
 
-1. For IP addresses have the "/32" suffix, drop the "/32" (40.91.93.84/32 becomes 40.91.93.84 in the rule definition). All other IP addresses can be used verbatim.
+1. For IP addresses having the "/32" suffix, drop the "/32" (40.91.93.84/32 becomes 40.91.93.84 in the rule definition). All other IP addresses can be used verbatim.
 
 1. Copy all of the IP addresses for the region.
 

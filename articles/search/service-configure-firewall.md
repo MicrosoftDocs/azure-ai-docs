@@ -159,11 +159,13 @@ The trusted services are used for vectorization workloads: generating vectors fr
 
 Consider the following when configuring network access:
 
-+ Some workflows require access to a public endpoint. Specifically, the [**Import data wizard**](search-import-data-portal.md) in the Azure portal connect to built-in (hosted) sample data and embedding models over the public endpoint. You can switch to code or script to complete the same tasks when firewall rules are in place. For more information, see [Secure connections in the import wizards](search-import-data-portal.md#secure-connections).
-
-+ Network rules are scoped to data plane operations against the search service's public endpoint (creating or querying indexes, and all other actions described by the [Search REST APIs](/rest/api/searchservice/)). Control plane operations target service administration and are subject to the [network protections supported by Azure Resource Manager](/security/benchmark/azure/baselines/azure-resource-manager-security-baseline).
++ Some workflows require access to a public endpoint. Specifically, the [**Import data wizard**](search-import-data-portal.md) in the Azure portal connects to built-in (hosted) sample data and embedding models over a public endpoint. For more information, see [Secure connections in the import wizards](search-import-data-portal.md#secure-connections).
 
 + If you're in early stages of proof-of-concept testing with sample data, you might want to defer network access controls until you actually need them.
+
++ Network rules are scoped to data plane operations against the search service's public endpoint (creating or querying indexes, and all other actions described by the [Search REST APIs](/rest/api/searchservice/)).
+
++ For control plane operations that target service administration, refer to the [network protections supported by Azure Resource Manager](/security/benchmark/azure/baselines/azure-resource-manager-security-baseline).
 
 ## Next steps
 
