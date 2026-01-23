@@ -4,7 +4,7 @@ description: Learn about configurability options for content filtering in Azure 
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 01/15/2026
 author: ssalgadodev
 ms.author: ssalgado

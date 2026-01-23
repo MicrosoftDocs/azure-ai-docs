@@ -4,7 +4,7 @@ description: Learn how to embed documents in prompts for Azure OpenAI, including
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 01/15/2026
 author: ssalgadodev
 ms.author: ssalgado

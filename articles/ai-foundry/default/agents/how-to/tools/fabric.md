@@ -1,17 +1,18 @@
 ---
-title: Use Fabric Data Agent with Foundry Agents
+title: Use the Microsoft Fabric data agent with Foundry agents
 titleSuffix: Microsoft Foundry
-description: Learn how to connect a Microsoft Fabric data agent to Foundry Agent Service to analyze enterprise data in chat with identity passthrough. Try the sample code.
+description: Learn how to connect a Microsoft Fabric data agent to Foundry Agent Service so your agent can analyze enterprise data by using identity passthrough.
 author: alvinashcraft
 ms.author: aashcraft
 manager: nitinme
-ms.date: 12/11/2025
+ms.date: 01/20/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.custom:
   - build-2025
   - dev-focus
+  - pilot-ai-workflow-jan-2026
 zone_pivot_groups: selection-fabric-tool
 ai-usage: ai-assisted
 ---
@@ -23,14 +24,14 @@ ai-usage: ai-assisted
 > [!NOTE]
 > See [best practices](../../concepts/tool-best-practice.md) for information on optimizing tool usage.
 
-By integrating your agent in Foundry Agent Service with the [**Microsoft Fabric data agent**](https://go.microsoft.com/fwlink/?linkid=2312815), you unlock powerful data analysis capabilities. The Fabric data agent transforms enterprise data into conversational question and answer systems. Users can interact with the data through chat and uncover data-driven and actionable insights.
+Use the [**Microsoft Fabric data agent**](https://go.microsoft.com/fwlink/?linkid=2312815) with Foundry Agent Service to analyze enterprise data in chat. The Fabric data agent turns enterprise data into a conversational question and answer experience.
 
 First, build and publish a Fabric data agent. Then, connect your Fabric data agent with the published endpoint. When a user sends a query, the agent determines if it should use the Fabric data agent. If so, it uses the end user's identity to generate queries over data they have access to. Lastly, the agent generates responses based on queries returned from Fabric data agents. By using Identity Passthrough (On-Behalf-Of) authorization, this integration simplifies access to enterprise data in Fabric while maintaining robust security, ensuring proper access control and enterprise-grade protection.
 
 ### Usage support
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
-|---------|---------|---------|---------|---------|---------|---------|---------|
+| --- | --- | --- | --- | --- | --- | --- | --- |
 | ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
@@ -40,42 +41,51 @@ First, build and publish a Fabric data agent. Then, connect your Fabric data age
 > - To help your agent invoke the Fabric tool reliably, include clear tool guidance in your agent instructions (for example, "For customer and product sales data, use the Fabric tool"). You can also force tool use with `tool_choice`.
 
 - Create and publish a [Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312910).
-- Assign developers and end users at least the `Azure AI User` Azure RBAC role.
+- Assign developers and end users at least the `Azure AI User` Azure RBAC role. For more information, see [Azure role-based access control in Foundry](../../../../concepts/rbac-foundry.md).
 - Give developers and end users at least `READ` access to the Fabric data agent and the underlying data sources it connects to.
 - Ensure your Fabric data agent and Foundry project are in the same tenant.
 - Use user identity authentication. Service principal authentication isn't supported for the Fabric data agent.
 - Get these values before you run the samples:
-  - Your Foundry project endpoint for SDK samples: `AZURE_AI_PROJECT_ENDPOINT`.
-  - Your model deployment name:
-    - Python sample: `AZURE_AI_MODEL_DEPLOYMENT_NAME`.
-    - TypeScript sample: `MODEL_DEPLOYMENT_NAME`.
+  - Your Foundry project endpoint: `AZURE_AI_PROJECT_ENDPOINT`.
+  - Your model deployment name: `AZURE_AI_MODEL_DEPLOYMENT_NAME`.
   - Your Fabric connection ID (project connection ID): `FABRIC_PROJECT_CONNECTION_ID`.
 - For the REST sample, also set:
-  - `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT`.
   - `API_VERSION`.
   - `AGENT_TOKEN` (a bearer token). You can get a temporary token with Azure CLI:
 
     ```azurecli
     az account get-access-token --scope https://ai.azure.com/.default
     ```
-## Troubleshooting
 
-**Create assistant failed**: {"requestId":"","errorCode":"BadRequest","message":"Artifact Id should not be empty and needs to be a valid GUID.","relatedResource":{"resourceId":"","resourceType":"MLModel"}} 
-- Please check if you have provided the right artifact id and workspace id when configuring the Fabric tool. The URL of the opened page looks like `https://msit.powerbi.com/groups/%workspace_id%/aiskills/%artifact_id%?experience=power-bi`, where `workspace_id` and `artifact_id` are GUIDs in a form like `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb`.
+  ## Set up the Microsoft Fabric connection
 
-**Add message failed with status BadRequest**:"Can't add messages to thread_ABC while a run run_123 is active.", 
-- Start a new response or conversation in Foundry Agent Service and try again.
+  Before you run the samples, create a project connection to your Fabric data agent.
 
-**unauthorized**
-- Make sure the end user has access to the Fabric Data Agent and its underlying data sources.
+  1. In Microsoft Fabric, open your data agent.
+  1. Copy the `workspace_id` and `artifact_id` values from the URL.
 
-**Cannot find the requested item/configuration not found**
-- Make sure your Fabric Data Agent is published and active and your data sources are still valid.
+    The URL path looks similar to `.../groups/<workspace_id>/aiskills/<artifact_id>...`. Both values are GUIDs.
+
+  1. In the Foundry portal, open your project.
+  1. In the left pane, select **Management center**, and then select **Connected resources**.
+  1. Create a connection of type **Microsoft Fabric**.
+  1. Enter the `workspace_id` and `artifact_id` values.
+  1. Save the connection, and then copy the connection **ID**.
+
+    Use the connection ID as the value for `FABRIC_PROJECT_CONNECTION_ID`. The value looks like `/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.CognitiveServices/accounts/<foundryAccountName>/projects/<foundryProjectName>/connections/<connectionName>`.
+
+  ## Identity passthrough and access control
+
+  This integration uses identity passthrough (On-Behalf-Of). The Fabric tool runs queries by using the identity of the signed-in user.
+
+  - Give each end user access to the Fabric data agent and its underlying data sources, or the tool call fails.
+  - Use user identity authentication. Service principal authentication isn't supported for the Fabric data agent.
+  - For more information about how agent identity works, see [Agent identity](../../concepts/agent-identity.md).
     
 ## Code example
 
 > [!NOTE]
-> - To run this code, you need the latest prerelease package. For more information, see the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate).
+> - To run this code, you need the latest prerelease package. For more information, see [Get ready to code](../../../../quickstarts/get-started-code.md#get-ready-to-code).
 > - Your connection ID should be in the format of `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`.
 
 :::zone pivot="python"
@@ -101,9 +111,8 @@ project_client = AIProjectClient(
 openai_client = project_client.get_openai_client()
 
 with project_client:
-    fabric_connection = project_client.connections.get(os.environ["FABRIC_PROJECT_CONNECTION_NAME"])
-    connection_id = fabric_connection.id
-    print(f"Fabric connection ID: {connection_id}")
+  connection_id = os.environ["FABRIC_PROJECT_CONNECTION_ID"]
+  print(f"Fabric connection ID: {connection_id}")
 
     agent = project_client.agents.create_version(
         agent_name="MyAgent",
@@ -156,63 +165,20 @@ For more details, see the [full Python sample for Fabric data agent](https://git
 :::zone-end
 
 :::zone pivot="csharp"
-## Sample for use of an agent with Fabric Data Agent
+## Create an agent with the Fabric data agent tool
 
-As a prerequisite for this example, you need to create Microsoft Fabric with a Lakehouse data repository. For guidance, see the end-to-end tutorials on [using Microsoft Fabric](/fabric/fundamentals/end-to-end-tutorials).
-
-### Create a Fabric Capacity
-
-1. Create a **Fabric Capacity** resource in the Azure portal. Charges apply.
-1. Create the workspace in [Power BI portal](https://msit.powerbi.com/home) by selecting the **Workspaces** icon on the left panel.
-1. At the bottom, select **+ New workspace**.
-1. In the right panel, enter the name of the workspace, select **Fabric capacity** as the **License mode**. In the **Capacity** dropdown, select the Fabric Capacity resource you just created.
-1. Select **Apply**.
-
-### Create a Lakehouse data repository
-
-1. Select a **Lakehouse** icon in the **Other items you can create with Microsoft Fabric** section and name the new data repository.
-1. Download the [public holidays data set](https://github.com/microsoft/fabric-samples/raw/refs/heads/main/docs-samples/data-engineering/Lakehouse/PublicholidaysSample/publicHolidays.parquet).
-1. In the Lakehouse menu, select **Get data > Upload files** and upload the `publicHolidays.parquet` file.
-1. In the **Files** section, select the three dots next to the uploaded file and select **Load to Tables > new table** and then **Load** in the opened window.
-1. Delete the uploaded file by selecting the three dots and selecting **Delete**.
-
-### Add a data agent to the Fabric
-
-1. In the top panel, select **Add to data agent > New data agent** and name the newly created Agent.
-1. In the open view on the left panel, select the Lakehouse "publicholidays" table and set a checkbox next to it.
-1. Ask the question you will further use in the Requests API: "What was the number of public holidays in Norway in 2024?"
-1. The Agent shows a table containing one column called "NumberOfPublicHolidays" with the single row, containing number 62.
-1. Select **Publish** and in the description add "Agent has data about public holidays." If you omit this stage, an error saying "Stage configuration not found." is returned during sample run.
-
-### Create a Fabric connection in Microsoft Foundry
-
-After you create the Fabric data agent, connect Fabric to Microsoft Foundry.
-1. Open the [Power BI](https://msit.powerbi.com/home) and select the workspace you created.
-1. In the open view, select the agent you created.
-1. The URL of the opened page looks like `https://msit.powerbi.com/groups/%workspace_id%/aiskills/%artifact_id%?experience=power-bi`, where `workspace_id` and `artifact_id` are GUIDs in a form like `811acded-d5f7-11f0-90a4-04d3b0c6010a`.
-1. In **Microsoft Foundry** you're using for the experimentation, on the left panel select **Management center**.
-1. Choose **Connected resources**.
-1. Create a new connection of type **Microsoft Fabric**.
-1. Populate **workspace-id** and **artifact-id** fields with GUIDs found in the Microsoft Data Agent URL and name the new connection.
-
-### Create the sample
-
-To enable your Agent to access Microsoft Fabric Data Agent, use `MicrosoftFabricAgentTool`.
+To enable your agent to access the Fabric data agent, use `MicrosoftFabricAgentTool`.
 
 ```csharp
 // Create an Agent client and read the environment variables, which will be used in the next steps.
-var projectEndpoint = System.Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
-var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
-var fabricConnectionName = System.Environment.GetEnvironmentVariable("FABRIC_CONNECTION_NAME");
+var projectEndpoint = System.Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME");
+var fabricProjectConnectionId = System.Environment.GetEnvironmentVariable("FABRIC_PROJECT_CONNECTION_ID");
 AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
 
-// Use the Microsoft Fabric connection name as it is shown in the connections section
-// of Microsoft Foundry to get the connection. Get the connection ID to initialize
-// the FabricDataAgentToolOptions, which will be used to create MicrosoftFabricAgentTool.
-AIProjectConnection fabricConnection = projectClient.Connections.GetConnection(fabricConnectionName);
 FabricDataAgentToolOptions fabricToolOption = new()
 {
-    ProjectConnections = { new ToolProjectConnection(projectConnectionId: fabricConnection.Id) }
+  ProjectConnections = { new ToolProjectConnection(projectConnectionId: fabricProjectConnectionId) }
 };
 PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
 {
@@ -242,61 +208,19 @@ projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersi
 ### What this code does
 
 1. Creates an `AIProjectClient` using `DefaultAzureCredential`.
-1. Looks up your Microsoft Fabric project connection and uses it to configure the Fabric data agent tool.
+1. Configures the Fabric data agent tool by using your project connection ID.
 1. Creates an agent version.
 1. Sends a question through the agent and forces tool usage.
 1. Writes the response text and deletes the agent version.
 
 ### Required inputs
 
-- Environment variables: `PROJECT_ENDPOINT`, `MODEL_DEPLOYMENT_NAME`, `FABRIC_CONNECTION_NAME`.
+- Environment variables: `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`, `FABRIC_PROJECT_CONNECTION_ID`.
 - Authentication: `DefaultAzureCredential` must be able to obtain a token (for example, via `az login`).
 
 ### Expected output
 
 - The response text printed to the console. For the sample question, the response should include the number of public holidays (for example, `62`).
-:::zone-end
-
-:::zone pivot="rest"
-The following example shows how to call the Foundry Agent REST API by using the Fabric data agent tool.
-
-```bash
-curl --request POST \
-  --url "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
-  -H "Authorization: Bearer $AGENT_TOKEN" \
-  -H "Content-Type: application/json" \
-  --data '{
-  "model": "'$AZURE_AI_MODEL_DEPLOYMENT_NAME'",
-  "input": "Tell me about sales records for the last quarter.",
-  "tool_choice": "required",
-  "tools": [
-    {
-      "type": "fabric_dataagent_preview",
-      "fabric_dataagent_preview": {
-        "project_connections": [
-          {
-            "project_connection_id": "'$FABRIC_PROJECT_CONNECTION_ID'"
-          }
-        ]
-      }
-    }
-  ]
-}'
-```
-
-### What this code does
-
-1. Calls the Responses API.
-1. Configures the request to use the Fabric data agent tool.
-1. Forces tool usage by using `tool_choice`.
-
-### Required inputs
-
-- Environment variables: `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT`, `API_VERSION`, `AGENT_TOKEN`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`, `FABRIC_PROJECT_CONNECTION_ID`.
-
-### Expected output
-
-- A `200` response with a JSON body that contains the model output.
 :::zone-end
 
 :::zone pivot="typescript"
@@ -309,7 +233,8 @@ import * as readline from "readline";
 import "dotenv/config";
 
 const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "<project endpoint>";
-const deploymentName = process.env["MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
+const deploymentName =
+  process.env["AZURE_AI_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
 const fabricProjectConnectionId =
   process.env["FABRIC_PROJECT_CONNECTION_ID"] || "<fabric project connection id>";
 
@@ -395,7 +320,7 @@ main().catch((err) => {
 
 ### Required inputs
 
-- Environment variables: `AZURE_AI_PROJECT_ENDPOINT`, `MODEL_DEPLOYMENT_NAME`, `FABRIC_PROJECT_CONNECTION_ID`.
+- Environment variables: `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`, `FABRIC_PROJECT_CONNECTION_ID`.
 - Authentication: `DefaultAzureCredential` must be able to obtain a token (for example, via `az login`).
 
 ### Expected output
@@ -404,3 +329,68 @@ main().catch((err) => {
 - A line that starts with `Response output:` followed by the response text.
 - A final confirmation that the agent was deleted.
 :::zone-end
+
+:::zone pivot="rest"
+The following example shows how to call the Foundry Agent REST API by using the Fabric data agent tool.
+
+> [!IMPORTANT]
+> `AGENT_TOKEN` is a credential. Keep it secret and avoid checking it into source control.
+
+```bash
+curl --request POST \
+  --url "$AZURE_AI_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -H "Content-Type: application/json" \
+  --data '{
+  "model": "'$AZURE_AI_MODEL_DEPLOYMENT_NAME'",
+  "input": "Tell me about sales records for the last quarter.",
+  "tool_choice": "required",
+  "tools": [
+    {
+      "type": "fabric_dataagent_preview",
+      "fabric_dataagent_preview": {
+        "project_connections": [
+          {
+            "project_connection_id": "'$FABRIC_PROJECT_CONNECTION_ID'"
+          }
+        ]
+      }
+    }
+  ]
+}'
+```
+
+### What this code does
+
+1. Calls the Responses API.
+1. Configures the request to use the Fabric data agent tool.
+1. Forces tool usage by using `tool_choice`.
+
+### Required inputs
+
+- Environment variables: `AZURE_AI_PROJECT_ENDPOINT`, `API_VERSION`, `AGENT_TOKEN`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`, `FABRIC_PROJECT_CONNECTION_ID`.
+
+### Expected output
+
+- A `200` response with a JSON body that contains the model output.
+:::zone-end
+
+## Troubleshooting
+
+| Issue | Cause | Resolution |
+| --- | --- | --- |
+| Create assistant failed: `Artifact Id should not be empty and needs to be a valid GUID.` | The Fabric connection was created with an invalid `workspace_id` or `artifact_id`. | Recreate the Fabric connection. Copy `workspace_id` and `artifact_id` from the data agent URL path `.../groups/<workspace_id>/aiskills/<artifact_id>...`. |
+| Add message failed: `Can't add messages to thread_... while a run ... is active.` | A run is still active for the thread. | Start a new conversation or wait for the active run to finish, and then try again. |
+| `unauthorized` | The end user doesn't have access to the Fabric data agent or its underlying data sources. | Grant the end user access in Fabric, and confirm you're using user identity authentication. |
+| `Cannot find the requested item` or `configuration not found` | The Fabric data agent isn't published, or its configuration changed. | Publish the Fabric data agent and confirm it's active and its data sources are valid. |
+
+## Next steps
+
+> [!div class="nextstepaction"]
+> [Tool use best practices](../../concepts/tool-best-practice.md)
+
+> [!div class="nextstepaction"]
+> [Agent identity](../../concepts/agent-identity.md)
+
+> [!div class="nextstepaction"]
+> [Get started with the SDK](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true)

@@ -7,7 +7,7 @@ author: fosteramanda
 ms.author: fosteramanda
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 12/19/2025
 ms.custom: azure-ai-agents
 monikerRange: 'foundry-classic || foundry'
@@ -17,7 +17,7 @@ monikerRange: 'foundry-classic || foundry'
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-Standard Agent Setup offers enterprise-grade security, compliance, and control. This configuration uses customer-managed, single-tenant resources to store agent state and ensures all data remains within your control.  
+Standard Agent Setup uses customer-managed, single-tenant Azure resources to store agent state and keep all agent data under your control.  
 
 In this setup: 
 * Agent states (conversations, responses) are stored in your own Azure resources. 
