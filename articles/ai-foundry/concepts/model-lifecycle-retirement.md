@@ -7,12 +7,12 @@ ai-usage: ai-assisted
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: concept-article
-ms.date: 01/13/2026
+ms.date: 01/23/2026
 ms.author: mopeakande
 manager: nitinme
 author: msakande
-ms.reviewer: kritifaujdar
-reviewer: fkriti
+ms.reviewer: rasavage
+reviewer: rsavage2
 
 #Customer intent: As a data scientist, I want to learn about the lifecycle of models that are available in the model catalog.
 ---
