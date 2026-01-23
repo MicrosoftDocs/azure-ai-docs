@@ -10,7 +10,7 @@ ms.custom:
   - devx-track-extended-java
   - devx-track-js
   - devx-track-python
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/18/2025
 ms.author: lajanuar
 monikerRange: 'doc-intel-4.0.0'
