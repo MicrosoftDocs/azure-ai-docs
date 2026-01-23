@@ -7,7 +7,7 @@ ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.date: 01/15/2025
-ms.topic: conceptual
+ms.topic: concept-article
 ---
 
 # Shared responsibility for Face liveness detection
