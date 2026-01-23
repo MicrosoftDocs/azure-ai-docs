@@ -20,15 +20,15 @@ ai-usage: ai-assisted
 
 ::: moniker range="foundry-classic"
 
-Similar to the [Azure AI evaluation in GitHub Actions](evaluation-github-action.md), an Azure DevOps extension is also available in the Azure DevOps Marketplace. This extension enables offline evaluation of AI agents within your CI/CD pipelines.
+Similar to the [Azure AI evaluation in GitHub Actions](evaluation-github-action.md), an Azure DevOps extension is also available in the Azure DevOps Marketplace. By using this extension, you can evaluate AI agents offline within your CI/CD pipelines.
 
 ::: moniker-end
 
 ::: moniker range="foundry"
 
-This [Azure DevOps extension](https://marketplace.visualstudio.com/items?itemName=ms-azure-exp-external.microsoft-extension-ai-agent-evaluation) enables offline evaluation of [Microsoft Foundry Agents](../agents/overview.md) within your CI/CD pipelines. It's designed to streamline the offline evaluation process, allowing you to identify potential issues and make improvements before releasing an update to production.
+This [Azure DevOps extension](https://marketplace.visualstudio.com/items?itemName=ms-azure-exp-external.microsoft-extension-ai-agent-evaluation) enables offline evaluation of [Microsoft Foundry Agents](../agents/overview.md) within your CI/CD pipelines. It streamlines the offline evaluation process, so you can identify potential problems and make improvements before releasing an update to production.
 
-To use this extension, all you need to provide is a data set with test queries and a list of evaluators. This task invokes your agent(s) with the queries, evaluate, and generate a summary report.
+To use this extension, provide a data set with test queries and a list of evaluators. This task invokes your agents with the queries, evaluates them, and generates a summary report.
 
 ::: moniker-end
 
@@ -48,7 +48,7 @@ To use this extension, all you need to provide is a data set with test queries a
 ::: moniker range="foundry"
 
 - A project. To learn more, see [Create a project](create-projects.md).
-- Install the [AI Agent AI evaluation extension](https://marketplace.visualstudio.com/items?itemName=ms-azure-exp-external.microsoft-extension-ai-agent-evaluation) .
+- Install the [AI Agent AI evaluation extension](https://marketplace.visualstudio.com/items?itemName=ms-azure-exp-external.microsoft-extension-ai-agent-evaluation).
 
 ::: moniker-end
 
@@ -181,9 +181,9 @@ Commit and run the pipeline in Azure DevOps.
 
 ## View results
 
-- Select the run and go to "Azure AI Evaluation" tab.
+- Select the run and go to the **Azure AI Evaluation** tab.
 - The results are shown in this format:
-  - The top section summarizes the overview of two AI agent variants. You can select it on the agent ID link, and it directs you to the agent setting page in Microsoft Foundry portal. You can also select the link for Evaluation Results, and it directs you to Foundry portal to view individual result in detail.
+  - The top section summarizes the overview of two AI agent variants. You can select it on the agent ID link, and it directs you to the agent setting page in Microsoft Foundry portal. You can also select the link for **Evaluation Results**, and it directs you to Foundry portal to view individual result in detail.
   - The second section includes evaluation scores and comparison between different variants on statistical significance (for multiple agents) and confidence intervals (for single agent).
 
 Evaluation results and comparisons from multiple AI agents:
@@ -277,7 +277,7 @@ steps:
 
 Evaluation results appear in the Azure DevOps pipeline summary with detailed metrics and comparisons between agents when multiple are evaluated.
 
-Evaluation results will be output to the summary section for each AI Evaluation task run in your Azure DevOps pipeline.
+Evaluation results output to the summary section for each AI Evaluation task run in your Azure DevOps pipeline.
 
 The following screenshot is a sample report for comparing two agents.
 

@@ -46,11 +46,11 @@ To use this action, provide a data set with test queries and a list of evaluator
 
 ## Prerequisites
 
-- You need a project. To learn more, see [Create a project](create-projects.md).
-- You need a [Foundry agent](../agents/overview.md).
+- A project. To learn more, see [Create a project](create-projects.md).
+- A [Foundry agent](../agents/overview.md).
 
 > [!TIP]
-> The recommended way to authenticate is by using Microsoft Entra ID, which allows you to securely connect to your Azure resources. You can automate the authentication process using the [Azure Login GitHub action](/azure/developer/github/connect-from-azure). To learn more, see [Azure Login action with OpenID Connect](/azure/developer/github/connect-from-azure-openid-connect)
+> The recommended way to authenticate is by using Microsoft Entra ID, which allows you to securely connect to your Azure resources. You can automate the authentication process by using the [Azure Login GitHub action](/azure/developer/github/connect-from-azure). To learn more, see [Azure Login action with OpenID Connect](/azure/developer/github/connect-from-azure-openid-connect).
 
 ::: moniker range="foundry-classic"
 
@@ -76,11 +76,11 @@ The input of ai-agent-evals includes:
 
 # [Foundry project](#tab/foundry-project)
 
-- `azure-ai-project-endpoint`: The endpoint of the Foundry project. This is used to connect to your AI project to simulate conversations with each agent, and to connect to the Azure AI evaluation SDK to perform the evaluation.
+- `azure-ai-project-endpoint`: The endpoint of the Foundry project. Use this endpoint to connect to your AI project, simulate conversations with each agent, and connect to the Azure AI evaluation SDK to perform the evaluation.
 
 # [Hub-based project](#tab/hub-project)
 
-- `azure-aiproject-connection-string`: The connection string of the Foundry project. This is used to connect to your AI project to simulate conversations with each agent, and to connect to the Azure AI evaluation SDK to perform the evaluation.
+- `azure-aiproject-connection-string`: The connection string of the Foundry project. Use this string to connect to your AI project, simulate conversations with each agent, and connect to the Azure AI evaluation SDK to perform the evaluation.
 
 ---
 
