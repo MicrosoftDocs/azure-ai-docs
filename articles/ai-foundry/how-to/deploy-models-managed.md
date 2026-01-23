@@ -185,7 +185,7 @@ After you create your deployment, follow these steps to consume it:
 
     **Reference:** [ManagedOnlineDeployment](/python/api/azure-ai-ml/azure.ai.ml.entities.managedonlinedeployment), [ProbeSettings](/python/api/azure-ai-ml/azure.ai.ml.entities.probesettings), [online_deployments.begin_create_or_update](/python/api/azure-ai-ml/azure.ai.ml.operations.onlinedeploymentoperations#azure-ai-ml-operations-onlinedeploymentoperations-begin-create-or-update)
 
-## Perform inference the deployment
+## Perform inference on the deployment
 
 1. You need sample JSON data to test inferencing. Create a file named `sample_score.json` in your working directory with the following content: 
 
