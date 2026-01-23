@@ -1,7 +1,7 @@
 ---
 title: How to run an evaluation in Azure DevOps
 titleSuffix: Microsoft Foundry
-description: How to run evaluation in Azure DevOps which enables offline evaluation of AI models within your CI/CD pipelines in Azure DevOps. 
+description: How to run evaluation in Azure DevOps, which enables offline evaluation of AI models within your CI/CD pipelines in Azure DevOps. 
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 01/16/2026
@@ -26,9 +26,9 @@ Similar to the [Azure AI evaluation in GitHub Actions](evaluation-github-action.
 
 ::: moniker range="foundry"
 
-This [Azure DevOps extension](https://marketplace.visualstudio.com/items?itemName=ms-azure-exp-external.microsoft-extension-ai-agent-evaluation) enables offline evaluation of [Microsoft Foundry Agents](../agents/overview.md) within your CI/CD pipelines. It is designed to streamline the offline evaluation process, allowing you to identify potential issues and make improvements before releasing an update to production.
+This [Azure DevOps extension](https://marketplace.visualstudio.com/items?itemName=ms-azure-exp-external.microsoft-extension-ai-agent-evaluation) enables offline evaluation of [Microsoft Foundry Agents](../agents/overview.md) within your CI/CD pipelines. It's designed to streamline the offline evaluation process, allowing you to identify potential issues and make improvements before releasing an update to production.
 
-To use this extension, all you need to provide is a data set with test queries and a list of evaluators. This task will invoke your agent(s) with the queries, evaluate, and generate a summary report.
+To use this extension, all you need to provide is a data set with test queries and a list of evaluators. This task invokes your agent(s) with the queries, evaluate, and generate a summary report.
 
 ::: moniker-end
 
@@ -273,15 +273,13 @@ steps:
       agent-ids: "$(AgentIds)"
 ```
 
-## Evaluation results and outputs 
+## Evaluation results and outputs
 
-Evaluation results will appear in the Azure DevOps pipeline summary with detailed metrics and comparisons between agents when multiple are evaluated.
-
-## Evaluation outputs
+Evaluation results appear in the Azure DevOps pipeline summary with detailed metrics and comparisons between agents when multiple are evaluated.
 
 Evaluation results will be output to the summary section for each AI Evaluation task run in your Azure DevOps pipeline.
 
-Below is a sample report for comparing two agents.
+The following screenshot is a sample report for comparing two agents.
 
 :::image type="content" source="../default/media/observability/github-action-agent-output.png" alt-text="Screenshot of agent evaluation result." lightbox="../default/media/observability/github-action-agent-output.png":::
 
