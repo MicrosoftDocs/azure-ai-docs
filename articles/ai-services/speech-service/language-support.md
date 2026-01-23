@@ -5,7 +5,7 @@ description: See language and voice support in the Speech service for speech to 
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: reference
+ms.topic: concept-article
 ms.date: 12/19/2025
 ms.author: pafarley
 ms.custom: references_regions, build-2024
