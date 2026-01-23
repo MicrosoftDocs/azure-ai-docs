@@ -9,7 +9,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
   - dev-focus
-ms.topic: concept
+ms.topic: concept-article
 ms.date: 01/23/2026
 ai-usage: ai-assisted
 #customer intent: As an admin, I want a central location where I can perform governance and management activities.
