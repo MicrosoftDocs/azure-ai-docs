@@ -5,7 +5,7 @@ description: Definitions and terms you may encounter when building AI models usi
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
+ms.topic: glossary
 ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-ner
