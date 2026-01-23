@@ -103,7 +103,7 @@ Aliases:  stamp2.ext.search.windows.net
 
 The `Address` field (52.252.175.48) is the Azure portal IP address for your region.
 
-Services in different regions connects to different traffic managers. Regardless of the domain name, the IP address returned from the ping is the correct one to use when defining an inbound firewall rule for the Azure portal in your region.
+Services in different regions connect to different traffic managers. Regardless of the domain name, the IP address returned from the ping is the correct one to use when defining an inbound firewall rule for the Azure portal in your region.
 
 For ping, the request times out, but the IP address is visible in the response. For example, in the message `Pinging azsyrie.northcentralus.cloudapp.azure.com [52.252.175.48]`, the IP address is `52.252.175.48`.
 
