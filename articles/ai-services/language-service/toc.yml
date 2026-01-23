@@ -25,7 +25,7 @@ items:
   - name: Configure Azure resources
     href: conversational-language-understanding/how-to/configure-azure-resources.md
     displayName: configuration, fine-tuning, azure ai foundry, azure portal
-  - name: Microsoft Foundry migration guide
+  - name: Microsoft Foundry migration 🆕
     href: migration-studio-to-foundry.md
     displayName: migrate, foundry, studio, permissions, roles, access, requisites, requirements
 - name: Azure Language in Foundry Tools capabilities
