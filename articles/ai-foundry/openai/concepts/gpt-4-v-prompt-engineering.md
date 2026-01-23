@@ -6,7 +6,7 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: best-practice 
+ms.topic: concept-article
 ms.date: 09/16/2025
 manager: nitinme
 monikerRange: 'foundry-classic || foundry'
