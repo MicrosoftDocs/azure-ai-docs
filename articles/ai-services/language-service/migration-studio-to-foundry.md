@@ -144,7 +144,7 @@ The following table lists the custom capabilities available in Microsoft Foundry
 ### Connect your Azure Language resource to your Foundry hub
 
 >[!IMPORTANT]
-> This is required only if you're using an existing Azure Language resource with a Foundry hub-based project.
+> This step is required only if you're using an existing Azure Language resource with a Foundry hub-based project.
 >
 
 To access and manage your existing Language resource projects in Microsoft Foundry, you must establish a connection between your Azure Language resource and your Foundry Hub. This connection enables Microsoft Foundry to authenticate with your resources and provides access to your custom models, training data, and deployed endpoints.
