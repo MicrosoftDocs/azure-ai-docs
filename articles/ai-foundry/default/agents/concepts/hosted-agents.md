@@ -229,7 +229,7 @@ Make sure you have RBAC enabled so that `azd` can provision the services and mod
 
 * If you have everything configured in the project to deploy a hosted agent, you need **Reader** on the Foundry account and **Azure AI User** on the project. 
 
-Refer to [this article](../../../concepts/authentication-authorization-foundry#built-in-roles-overview) to learn more about built-in roles in Foundry.
+Refer to [this article](../../../concepts/authentication-authorization-foundry.md#built-in-roles-overview) to learn more about built-in roles in Foundry.
 
 ### Resource cleanup
 
@@ -305,15 +305,9 @@ Before you create the agent, give your project's managed identity access to pull
 
 2. On the left pane, select **Identity**.
 
-<<<<<<< HEAD
 3. Under **System assigned**, copy the **Object (principal) ID** value. This value is the managed identity that you'll assign the Azure Container Instances role to.
 
 4. Grant pull permissions by assigning the Container Registry Repository Reader role to your project's managed identity on the container registry. For detailed steps, see [Azure Container Registry roles and permissions](/azure/container-registry/container-registry-roles).
-=======
-1. Under **System assigned**, copy the **Object (principal) ID** value. This value is the managed identity that you assign the Azure Container Instances role to.
-
-1. Grant pull permissions by assigning the **Container Registry Repository Reader** role to your project's managed identity on the container registry. For guidance, see [Azure Container Registry roles and permissions](/azure/container-registry/container-registry-roles).
->>>>>>> 003fabe375d35cc62bc106126ee5cf7daa5373f4
 
 ### Create an account-level capability host
 
@@ -351,12 +345,6 @@ az rest --method put `
     }'
 ```
 
-<<<<<<< HEAD
-=======
----
-
-
->>>>>>> 003fabe375d35cc62bc106126ee5cf7daa5373f4
 ### Create the hosted agent version
 
 Install version>=2.0.0b2 of the Azure AI Projects SDK.
