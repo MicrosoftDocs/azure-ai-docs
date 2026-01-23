@@ -79,12 +79,12 @@ You can view and reset your authoring keys from the Azure portal, where you adde
 1. Go to the language resource in the Azure portal and select the resource that has the *Foundry Tools* type:
 
     > [!div class="mx-imgBorder"]
-    > ![Screenshot of custom question answering resource list.](../../../qnamaker/media/qnamaker-how-to-setup-service/resources-created-question-answering.png)
+    > ![Screenshot of custom question answering resource list.](../media/qnamaker-how-to-setup-service/resources-created-question-answering.png)
 
 2. Go to **Keys and Endpoint**:
 
     > [!div class="mx-imgBorder"]
-    > ![Screenshot of subscription key.](../../../qnamaker/media/qnamaker-how-to-key-management/custom-qna-keys-and-endpoint.png)
+    > ![Screenshot of subscription key.](../media/qnamaker-how-to-key-management/custom-qna-keys-and-endpoint.png)
 
 ### Management service region
 
