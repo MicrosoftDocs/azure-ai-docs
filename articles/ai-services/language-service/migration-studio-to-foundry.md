@@ -36,7 +36,7 @@ The migration process consists of the following steps:
 
 > [!NOTE]
 >
-> * If you already have an Azure Language resource, you can continue to use your existing Language resources within the Microsoft Foundry portal **via a Foundry Hub** and **Foundry Hub project**. For more information, *see* [Which type of project do I need?](/azure/ai-foundry/what-is-foundry?view=foundry-classic#which-type-of-project-do-i-need).
+> * If you already have an Azure Language resource, you can continue to use your existing Language resources within the Microsoft Foundry portal **via a Foundry Hub** and **Foundry Hub project**. For more information, *see* [Which type of project do I need?](/azure/ai-foundry/what-is-foundry?view=foundry-classic&preserve-view=true#which-type-of-project-do-i-need).
 >
 > * If you plan to use a Foundry resource, you can create a new Foundry resource directly in the Microsoft Foundry portal when creating a new project. For more information, *see* [Create a Foundry project](/azure/ai-foundry/how-to/create-projects?view=foundry-classic&preserve-view=true&tabs=foundry).
 >
