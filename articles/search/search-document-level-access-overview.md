@@ -6,7 +6,7 @@ author: gmndrg
 ms.author: gimondra
 ms.date: 11/18/2025
 ms.service: azure-ai-search
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom:
   - build-2025
 ---
