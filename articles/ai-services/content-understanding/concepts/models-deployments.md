@@ -7,7 +7,7 @@ ms.author: pafarley
 manager: nitinme
 ms.date: 10/26/2025
 ms.service: azure-ai-content-understanding
-ms.topic: concept-article
+ms.topic: how-to
 ms.custom:
   - ignite-2025
 ---
