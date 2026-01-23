@@ -200,7 +200,7 @@ Make sure you have [RBAC](/azure/role-based-access-control/built-in-roles) enabl
 
 * If you have everything configured in the project to deploy a hosted agent, you need **Reader** on the Foundry account and **Azure AI User** on the project. 
 
-Refer to [this article](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/authentication-authorization-foundry?view=foundry#built-in-roles-overview) to learn more about built-in roles in Foundry.
+Refer to [this article](../../../concepts/authentication-authorization-foundry#built-in-roles-overview) to learn more about built-in roles in Foundry.
 
 ### Resource cleanup
 
