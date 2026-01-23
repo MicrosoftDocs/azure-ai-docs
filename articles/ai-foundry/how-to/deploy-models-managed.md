@@ -53,14 +53,22 @@ In this article, you learn how to deploy models with the managed compute deploym
 
     :::image type="content" source="../media/deploy-models-managed/catalog-filter-managed-compute.png" alt-text="Screenshot of the model catalog interface with the Deployment options filter panel open, on the left showing Managed compute selected, and a grid of available model cards displayed on the right." lightbox="../media/deploy-models-managed/catalog-filter-managed-compute.png"::: 
 
-1. Select a model to open its model card. In this article, you use the model `deepset-roberta-base-squad2`.
+1. Select a model to open its model card. In this article, you use the model `Phi-4`.
 
 
 ::: zone pivot="ai-foundry-portal"
 
 ## Deploy the model
 
-1. On the model's page, select **Use this model** to open the deployment window. 
+1. On the model's page, select **Use this model**. This action opens the deployment window if the selected model can be deployed to a managed compute only. 
+
+1. If you've selected a model that also supports another deployment option, you land on the "Purchase options" window. Select the **Managed Compute** purchase option to open the deployment window. 
+
+    > [!NOTE]
+    > For deployment to a self-hosted managed compute, you must have enough quota in your subscription. If you don't have enough quota available, you can use our temporary quota access by selecting the option **I want to use shared quota and I acknowledge that this endpoint will be deleted in 168 hours.**
+
+1. Select the checkbox in the deployment window to use the temporary shared quota.
+
 1. The deployment window is pre-filled with some selections and parameter values. You can either keep them or change them as desired. You can also select an existing endpoint for the deployment or create a new one. For this example, specify an instance count of `1` and create a new endpoint for the deployment.
 
     :::image type="content" source="../media/deploy-models-managed/deployment-configuration.png" alt-text="Screenshot of the deployment configuration dialog showing fields for deployment name, endpoint selection, virtual machine selection, and instance count set to 1, with a Deploy button at the bottom." lightbox="../media/deploy-models-managed/deployment-configuration.png":::
@@ -94,7 +102,7 @@ After you create your deployment, follow these steps to consume it:
 
 
 ::: zone pivot="python-sdk"
-6. Copy the model ID from the details page of the model you selected. It looks like this for the selected model: `azureml://registries/azureml/models/deepset-roberta-base-squad2/versions/17`.
+6. Copy the model ID from the details page of the model you selected. It looks like this for the selected model: `azureml://registries/azureml/models/Phi-4/versions/8`.
 
 
 ## Deploy the model
@@ -153,7 +161,7 @@ After you create your deployment, follow these steps to consume it:
 1. Create a deployment. Replace the model ID in the next code with the model ID that you copied from the details page of the model you selected in the [Find your model in the model catalog](#find-your-model-in-the-model-catalog) section.
 
     ```python
-    model_name = "azureml://registries/azureml/models/deepset-roberta-base-squad2/versions/17" 
+    model_name = "azureml://registries/azureml/models/Phi-4/versions/8" 
     
     demo_deployment = ManagedOnlineDeployment(
         name="demo",
