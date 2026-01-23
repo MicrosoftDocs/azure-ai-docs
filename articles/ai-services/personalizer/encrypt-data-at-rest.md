@@ -5,7 +5,7 @@ description: Learn about the keys that you use for data-at-rest encryption in Pe
 author: jcodella
 manager: venkyv
 ms.service: azure-ai-personalizer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 01/19/2024
 ms.author: jacodel
 ms.custom: kr2b-contr-experiment
