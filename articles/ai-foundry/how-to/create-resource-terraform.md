@@ -2,7 +2,7 @@
 title: 'Use Terraform to create Microsoft Foundry'
 description: In this article, you create a Microsoft Foundry resource, a Microsoft Foundry project, using Terraform infrastructure as code templates.
 ms.topic: how-to
-ms.date: 10/27/2025
+ms.date: 01/23/2026
 titleSuffix: Microsoft Foundry 
 ms.service: azure-ai-foundry
 ms.reviewer: deeikele 
@@ -46,33 +46,33 @@ You can use either the Terraform [AzAPI Provider](/azure/developer/terraform/ove
 
 # [AzAPI Provider](#tab/azapi)
 
-1. Create a directory in which to test and run the sample Terraform code and make it the current directory.
+1. Create a directory to test and run the sample Terraform code. Make this directory your current directory.
 
-1. Create a file named `providers.tf` and insert the following code.
+1. Create a file named `providers.tf` and add the following code.
 
     :::code language="Terraform" source="~/foundry-samples-main/infrastructure/infrastructure-setup-terraform/00-basic/code/providers.tf":::
 
-1. Create a file named `main.tf` and insert the following code.
+1. Create a file named `main.tf` and add the following code.
 
     :::code language="Terraform" source="~/foundry-samples-main/infrastructure/infrastructure-setup-terraform/00-basic/code/main.tf":::
 
-1. Create a file named `variables.tf` and insert the following code.
+1. Create a file named `variables.tf` and add the following code.
 
     :::code language="Terraform" source="~/foundry-samples-main/infrastructure/infrastructure-setup-terraform/00-basic/code/variables.tf"::: 
 
 # [AzureRM Provider](#tab/azurerm)
 
-1. Create a directory in which to test and run the sample Terraform code and make it the current directory.
+1. Create a directory to test and run the sample Terraform code. Make this directory your current directory.
 
-1. Create a file named `providers.tf` and insert the following code.
+1. Create a file named `providers.tf` and add the following code.
 
     :::code language="Terraform" source="~/foundry-samples-main/infrastructure/infrastructure-setup-terraform/00-basic-azurerm/code/providers.tf":::
 
-1. Create a file named `main.tf` and insert the following code.
+1. Create a file named `main.tf` and add the following code.
 
     :::code language="Terraform" source="~/foundry-samples-main/infrastructure/infrastructure-setup-terraform/00-basic-azurerm/code/main.tf":::
 
-1. Create a file named `variables.tf` and insert the following code.
+1. Create a file named `variables.tf` and add the following code.
 
     :::code language="Terraform" source="~/foundry-samples-main/infrastructure/infrastructure-setup-terraform/00-basic-azurerm/code/variables.tf"::: 
 
@@ -92,9 +92,9 @@ You can use either the Terraform [AzAPI Provider](/azure/developer/terraform/ove
 
 ## Customize with security and compliance controls
 
-To meet security and compliance requirements, you may customize Foundry with security configurations and by bringing your own storage resources. For example, when using the Agent service, you may opt to bring your own Azure CosmosDB database, Azure AI Search instance, and Azure Storage Account to store your threads and messages.
+To meet security and compliance requirements, customize Foundry with security configurations and by bringing your own storage resources. For example, when using the Agent service, you can opt to bring your own Azure CosmosDB database, Azure AI Search instance, and Azure Storage Account to store your threads and messages.
 
-Refer to the below repositories for advanced setup samples:
+For advanced setup samples, see the following repositories:
 
 - [Foundry Samples](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup-terraform) repository contains example Terraform configurations for the most common enterprise security configurations.
 - [Terraform Azure Verified Module (Cognitive Services account)](https://registry.terraform.io/modules/Azure/avm-res-cognitiveservices-account/azurerm/latest) is a generic module set to manage the Azure resource type used by Foundry, Azure OpenAI, Azure Speech, Azure Language.
