@@ -65,10 +65,10 @@ The other benefit of this architecture is that it allows you to stack Standard d
 
 ## BCDR for agents
 
-To support service resilience, the Agents service relies on customer-provisioned Cosmos DB accounts. This ensures that your agent state can be preserved and recovered if there is a regional outage.
+To support service reliability, the Agents service relies on customer-provisioned Cosmos DB accounts. This ensures that your agent state can be preserved and recovered if there is a regional outage.
 
 1. As an Azure Standard customer, you provision and manage your own single-tenant Cosmos DB account.
-1. All of the agent state is stored in your Cosmos DB. Backup and recovery rely on Cosmos DB’s native capabilities, which you control.
+1. All of the agent state is stored in your Cosmos DB. Backup and recovery rely on Cosmos DB's native capabilities, which you control.
 1. If the primary region becomes unavailable, the agent will automatically become available in the secondary region by connecting to the same Cosmos DB account.
     Since all history is preserved in Cosmos DB, the agent can continue operation with minimal disruption.
 

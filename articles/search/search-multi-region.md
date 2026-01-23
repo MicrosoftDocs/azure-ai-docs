@@ -120,4 +120,4 @@ As you evaluate these load-balancing options, consider the following points:
 ## Related content
 
 + [Reliability in Azure AI Search](/azure/reliability/reliability-ai-search)
-+ [Design reliable Azure applications](/azure/architecture/framework/resiliency/app-design)
++ [Design reliable Azure applications](/azure/well-architected/reliability/checklist)
