@@ -6,7 +6,7 @@ author: erindormier
 manager: venkyv
 
 ms.service: azure-ai-custom-vision
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 01/29/2025
 ms.author: egeaney
 ms.custom: cogserv-non-critical-vision
