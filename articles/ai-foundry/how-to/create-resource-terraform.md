@@ -105,7 +105,7 @@ Run `terraform state identities -json` to display the deployed resources. The la
 
 ## Customize security and compliance
 
-To meet security and compliance requirements, customize Foundry with security configurations and by bringing your own storage resources. For example, when using the Agent service, you can opt to bring your own Azure CosmosDB database, Azure AI Search instance, and Azure Storage Account to store your threads and messages.
+To meet security and compliance requirements, customize Foundry with security configurations and by bringing your own storage resources. For example, when using the Agent service, you can opt to bring your own Azure Cosmos DB database, Azure AI Search instance, and Azure Storage Account to store your threads and messages.
 
 For advanced setup samples, see the following repositories:
 
