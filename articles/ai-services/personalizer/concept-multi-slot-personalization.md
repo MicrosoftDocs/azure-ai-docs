@@ -5,7 +5,7 @@ author: jcodella
 ms.author: jacodel
 manager: nitinme
 ms.service: azure-ai-personalizer
-ms.topic: concept-article
+ms.topic: how-to
 ms.date: 01/19/2024
 ms.custom: mode-other
 ---
