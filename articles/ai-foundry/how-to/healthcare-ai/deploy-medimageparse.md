@@ -5,7 +5,7 @@ description: Learn how to use MedImageParse and MedImageParse 3D Healthcare AI m
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 09/15/2025
+ms.date: 01/23/2026
 ms.reviewer: itarapov
 reviewer: ivantarapov
 ms.author: mopeakande
@@ -56,22 +56,7 @@ Similar to the MedImageParse model, MedImageParse 3D uses a combination of a tex
 
 ## Deploy the model to a managed compute
 
-Deployment to a self-hosted managed inference solution lets you customize and control all the details about how the model is served. You can deploy the model from its model card in the catalog UI of [Foundry](https://aka.ms/healthcaremodelstudio) or [Azure Machine Learning studio](https://ml.azure.com/model/catalog) or [deploy it programmatically](../deploy-models-managed.md).
-
-To __deploy the model through the UI__:
-
-1. Go to the model catalog.
-1. Search for the model and select its model card.
-1. On the model's overview page, select __Use this model__ to open the deployment window. 
-    
-    > [!NOTE]
-    > For deployment to a self-hosted managed compute, you must have enough quota in your subscription. If you don't have enough quota available, you can use our temporary quota access by selecting the option **I want to use shared quota and I acknowledge that this endpoint will be deleted in 168 hours.**
-
-1. Select the checkbox in the deployment window to use the temporary shared quota.
-1. The deployment window displays settings that include a virtual machine selection, an endpoint name, and a deployment name. You can modify these settings. Once you're satisfied with them, select **Deploy**.
-
-To __deploy the model programmatically__, see [How to deploy and inference a managed compute deployment with code](../deploy-models-managed.md).
-
+Deployment to a self-hosted managed inference solution lets you customize and control all the details about how the model is served. To deploy the model programatically or from its model card in Microsoft Foundry, see [How to deploy and infer with a managed compute deployment](../deploy-models-managed.md).
 
 ## Work with a segmentation model
 
