@@ -15,7 +15,7 @@ ms.custom:
   - build-2025
 ---
 
-# Azure OpenAI graders (preview)
+# Azure OpenAI graders
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
@@ -43,7 +43,7 @@ Azure OpenAI graders are a new set of evaluation tools in the Microsoft Foundry 
 
 You can run graders locally or remotely. Each grader assesses specific aspects of AI models and their outputs.
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+[!INCLUDE [evaluation-preview](../../includes/evaluation-preview.md)]
 
 ::: moniker range="foundry-classic"
 

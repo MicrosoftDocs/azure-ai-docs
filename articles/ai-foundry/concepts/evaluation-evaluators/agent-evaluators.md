@@ -21,13 +21,15 @@ ms.custom:
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
+[!INCLUDE [evaluation-preview](../../includes/evaluation-preview.md)]
+
 ::: moniker range="foundry-classic"
 
 Agents are powerful productivity assistants. They plan, make decisions, and execute actions. Agents typically [reason through user intents in conversations](#intent-resolution), [select the correct tools](#tool-call-accuracy) to satisfy user requests, and [complete tasks](#task-adherence) according to instructions. Microsoft Foundry supports these agent-specific evaluators for agentic workflows:
 
-- [Intent resolution](#intent-resolution)
-- [Tool call accuracy](#tool-call-accuracy)
-- [Task adherence](#task-adherence)
+- [Intent resolution (preview)](#intent-resolution)
+- [Tool call accuracy (preview)](#tool-call-accuracy)
+- [Task adherence (preview)](#task-adherence)
 
 ## Evaluating Azure AI agents
 
@@ -314,10 +316,10 @@ Foundry provides built-in agent evaluators that function like unit tests for age
 | Evaluator | Best practice | Use when | Purpose | Inputs | Output |
 |--|--|--|--|--|--|
 | Task Completion (preview) | System evaluation | Assessing end-to-end task success in workflow automation, goal-oriented AI interactions, or any scenario where full task completion is critical | Measures if the agent completed the requested task with a usable deliverable that meets all user requirements | Query, Response, Tool definitions (Optional) | Binary: Pass/Fail |
-| Task Adherence | System evaluation | Ensuring agents follow system instructions validating compliance in regulated environments | Measures if the agent's actions adhere to its assigned tasks according to rules, procedures, and policy constraints, based on its system message and prior steps | Query, Response, Tool definitions (Optional) | Binary: Pass/Fail |
+| Task Adherence (preview) | System evaluation | Ensuring agents follow system instructions validating compliance in regulated environments | Measures if the agent's actions adhere to its assigned tasks according to rules, procedures, and policy constraints, based on its system message and prior steps | Query, Response, Tool definitions (Optional) | Binary: Pass/Fail |
 | Task Navigation Efficiency (preview) | System evaluation | Optimizing agent workflows, reducing unnecessary steps, validating against known optimal paths (requires ground truth) | Measures whether the agent made tool calls efficiently to complete a task by comparing them to expected tool sequences | Response, Ground truth | Binary: Pass/Fail |
-| Intent Resolution | System evaluation | Customer support scenarios, conversational AI, FAQ systems where understanding user intent is essential | Measures whether the agent correctly identifies the user's intent | Query, Response, Tool definitions (Optional) | Binary: Pass/Fail based on threshold (1-5 scale)
-| Tool Call Accuracy | Process evaluation | Overall tool call quality assessment in agent systems with tool integration, API interactions to complete its tasks | Measures whether the agent made the right tool calls with correct parameters to complete its task| Query, Tool definitions, Tool calls (Optional), Response | Binary: Pass/Fail based on threshold (1-5 scale) |
+| Intent Resolution (preview) | System evaluation | Customer support scenarios, conversational AI, FAQ systems where understanding user intent is essential | Measures whether the agent correctly identifies the user's intent | Query, Response, Tool definitions (Optional) | Binary: Pass/Fail based on threshold (1-5 scale)
+| Tool Call Accuracy (preview)| Process evaluation | Overall tool call quality assessment in agent systems with tool integration, API interactions to complete its tasks | Measures whether the agent made the right tool calls with correct parameters to complete its task| Query, Tool definitions, Tool calls (Optional), Response | Binary: Pass/Fail based on threshold (1-5 scale) |
 | Tool Selection (preview) | Process evaluation | Validating tool choice quality in orchestration platforms, ensuring efficient tool usage without redundancy | Measures whether the agent selected the correct tools without selecting unnecessary ones | Query, Tool definitions, Tool calls (Optional), Response | Binary: Pass/Fail |
 | Tool Input Accuracy (preview) | Process evaluation |  Strict validation of tool parameters in production environments, API integration tests, critical workflows requiring 100% parameter correctness | Measures if all tool call parameters are correct across six strict criteria: groundedness, type compliance, format compliance, required parameters, no unexpected parameters, and value appropriateness | Query, Response, Tool definitions | Binary: Pass/Fail  |
 | Tool Output Utilization (preview) | Process evaluation | Validating correct use of API responses, database query results, search outputs in agent reasoning and responses | Measures if the agent correctly understood and used tool call results contextually in its reasoning and final response | Query, Response,  Tool definitions (Optional)| Binary: Pass/Fail |
@@ -337,9 +339,9 @@ Specifically, for textual outputs from agents, you can also apply RAG quality ev
 Examples:
 
 - [Task completion (preview) sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_task_completion.py)
-- [Task adherence (preview) sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_task_adherence.py)
+- [Task adherence sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_task_adherence.py)
 - [Task navigation efficiency (preview) sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_task_navigation_efficiency.py)
-- [Intent resolution (preview) sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_intent_resolution.py)
+- [Intent resolution sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_intent_resolution.py)
 
 ## Process evaluation
 

@@ -28,6 +28,8 @@ To build production-ready agentic applications and ensure observability and tran
 
 An event like a user querying "weather tomorrow" triggers an agentic workflow. To produce a final response, the workflow includes reasoning through user intents, calling tools, and using retrieval-augmented generation.
 
+[!INCLUDE [evaluation-preview](../../includes/evaluation-preview.md)]
+
 ::: moniker range="foundry-classic"
 
 In this process, evaluating each step of the workflow and the quality and safety of the final output is crucial.

@@ -25,14 +25,7 @@ Microsoft Foundry portal and SDK clients support multiple Azure resource types, 
 
 ## Resource types supported with Foundry portal and SDK clients
 
-* **Foundry** – The primary resource type for designing, deploying, and managing generative AI applications and agents. Foundry is the recommended resource type for most applications.
-
-  Key capabilities:
-  - Agent service
-  - Models from Microsoft and partners
-  - Evaluations
-  - Foundry Tools
-  - Azure OpenAI service capabilities
+* **Foundry** – An Azure resource that scopes design, deployment, governance, and runtime access for generative AI applications and agents, including agent service, Microsoft‑ and partner‑provided models, evaluations, Foundry Tools, and Azure OpenAI–compatible APIs. It is the default resource type for projects built in the Foundry portal.
  
   [Create your first Foundry resource](../../ai-services/multi-service-resource.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json).
 

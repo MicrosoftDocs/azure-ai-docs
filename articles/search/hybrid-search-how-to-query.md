@@ -1,5 +1,5 @@
 ---
-title: Hybrid query
+title: Create a hybrid query
 titleSuffix: Azure AI Search
 description: Learn how to build queries for hybrid search.
 author: HeidiSteen
@@ -7,8 +7,10 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
+  - dev-focus
+ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 08/28/2025
+ms.date: 01/20/2026
 ---
 
 # Create a hybrid query in Azure AI Search
@@ -22,9 +24,25 @@ In this article, learn how to:
 + Improve relevance using semantic ranking or vector weights
 + Optimize query behaviors by controlling inputs (`maxTextRecallSize`)
 
+By the end of this article, you can execute hybrid queries that combine keyword and vector search with optional semantic ranking.
+
+> [!TIP]
+> For immediate code examples, skip to [Set up a hybrid query](#set-up-a-hybrid-query).
+
 ## Prerequisites
 
++ An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
+
++ An Azure AI Search service. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
+
 + A search index containing `searchable` vector and nonvector fields. We recommend the [**Import data (new)** wizard](search-import-data-portal.md) to create an index quickly. Otherwise, see [Create an index](search-how-to-create-search-index.md) and [Add vector fields to a search index](vector-search-how-to-create-index.md).
+
++ **Permissions**: You need **Search Index Data Reader** to query an index. To create or update an index, you need **Search Index Data Contributor**. For more information, see [Connect using roles](search-security-rbac.md).
+
++ **SDK installation (optional)**:
+
+  + Python: `pip install azure-search-documents`
+  + C#: `dotnet add package Azure.Search.Documents`
 
 + (Optional) If you want the [semantic ranker](semantic-search-overview.md), your search service must have the [semantic ranker enabled](semantic-how-to-enable-disable.md).
 
@@ -149,9 +167,103 @@ api-key: {{admin-api-key}}
 
 + Keyword search is specified through `search` property. It executes in parallel with the vector query.
 
+**Reference**: [Search Documents (REST)](/rest/api/searchservice/documents/search-post) | [vectorQueries](/rest/api/searchservice/documents/search-post#vectorquery)
+
 + `k` determines how many nearest neighbor matches are returned from the vector query and provided to the RRF ranker.
 
 + `top` determines how many matches are returned in the response all-up. In this example, the response includes 10 results, assuming there are at least 10 matches in the merged results.
+
+### [**Python**](#tab/python)
+
+The following example shows a hybrid query using the Azure SDK for Python.
+
+```python
+import os
+from azure.identity import DefaultAzureCredential
+from azure.search.documents import SearchClient
+from azure.search.documents.models import VectorizedQuery
+
+# Set up the client
+endpoint = os.environ["AZURE_SEARCH_ENDPOINT"]
+index_name = "hotels-sample-index"
+credential = DefaultAzureCredential()
+
+client = SearchClient(endpoint=endpoint, index_name=index_name, credential=credential)
+
+# Define your vector (typically from an embedding model)
+query_vector = [-0.009154141, 0.018708462, ...]  # Your embedding values
+
+# Create the vector query
+vector_query = VectorizedQuery(
+    vector=query_vector,
+    k_nearest_neighbors=10,
+    fields="DescriptionVector",
+    exhaustive=True
+)
+
+# Execute hybrid search
+results = client.search(
+    search_text="historic hotel walk to restaurants and shopping",
+    vector_queries=[vector_query],
+    select=["HotelName", "Description", "Address/City"],
+    top=10
+)
+
+for result in results:
+    print(f"{result['HotelName']}: {result['Description']}")
+```
+
+**Reference**: [SearchClient](/python/api/azure-search-documents/azure.search.documents.searchclient) | [VectorizedQuery](/python/api/azure-search-documents/azure.search.documents.models.vectorizedquery)
+
+### [**C#**](#tab/csharp)
+
+The following example shows a hybrid query using the Azure SDK for .NET.
+
+```csharp
+using Azure;
+using Azure.Identity;
+using Azure.Search.Documents;
+using Azure.Search.Documents.Models;
+
+// Set up the client
+string endpoint = Environment.GetEnvironmentVariable("AZURE_SEARCH_ENDPOINT");
+string indexName = "hotels-sample-index";
+
+SearchClient client = new SearchClient(
+    new Uri(endpoint),
+    indexName,
+    new DefaultAzureCredential());
+
+// Define your vector (typically from an embedding model)
+float[] queryVector = new float[] { -0.009154141f, 0.018708462f, /* ... */ };
+
+// Execute hybrid search
+SearchResults<SearchDocument> results = client.Search<SearchDocument>(
+    "historic hotel walk to restaurants and shopping",
+    new SearchOptions
+    {
+        VectorSearch = new()
+        {
+            Queries = {
+                new VectorizedQuery(queryVector)
+                {
+                    KNearestNeighborsCount = 10,
+                    Fields = { "DescriptionVector" },
+                    Exhaustive = true
+                }
+            }
+        },
+        Select = { "HotelName", "Description", "Address/City" },
+        Size = 10
+    });
+
+await foreach (SearchResult<SearchDocument> result in results.GetResultsAsync())
+{
+    Console.WriteLine($"{result.Document["HotelName"]}: {result.Document["Description"]}");
+}
+```
+
+**Reference**: [SearchClient](/dotnet/api/azure.search.documents.searchclient) | [VectorizedQuery](/dotnet/api/azure.search.documents.models.vectorizedquery)
 
 ---
 
@@ -187,7 +299,7 @@ The following REST examples show two use-cases for setting `maxTextRecallSize`.
 The first example reduces `maxTextRecallSize` to 100, limiting the text side of the hybrid query to just 100 document. It also sets `countAndFacetMode` to include only those results from `maxTextRecallSize`.
 
 ```http
-POST https://[service-name].search.windows.net/indexes/[index-name]/docs/search?api-version=2024-05-01-Preview 
+POST https://[service-name].search.windows.net/indexes/[index-name]/docs/search?api-version=2025-11-01-preview 
 
     { 
       "vectorQueries": [ 
@@ -209,7 +321,7 @@ POST https://[service-name].search.windows.net/indexes/[index-name]/docs/search?
 The second example raises `maxTextRecallSize` to 5,000. It also uses top, skip, and next to pull results from large result sets. In this case, the request pulls in BM25-ranked results starting at position 1,500 through 2,000 as the text query contribution to the RRF composite result set.
 
 ```http
-POST https://[service-name].search.windows.net/indexes/[index-name]/docs/search?api-version=2024-05-01-Preview 
+POST https://[service-name].search.windows.net/indexes/[index-name]/docs/search?api-version=2025-11-01-preview 
 
     { 
       "vectorQueries": [ 
@@ -230,6 +342,8 @@ POST https://[service-name].search.windows.net/indexes/[index-name]/docs/search?
       } 
     } 
 ```
+
+**Reference**: [hybridSearch](/rest/api/searchservice/documents/search-post#hybridsearch) | [maxTextRecallSize](/rest/api/searchservice/documents/search-post#hybridsearch) | [countAndFacetMode](/rest/api/searchservice/documents/search-post#hybridsearch)
 
 ## Examples of hybrid queries
 
@@ -273,6 +387,8 @@ api-key: {{admin-api-key}}
 
 + When you postfilter query results, the number of results might be less than top-n.
 
+**Reference**: [filter](/rest/api/searchservice/documents/search-post#searchrequest) | [vectorFilterMode](/rest/api/searchservice/documents/search-post#vectorfiltermode)
+
 ### Example: Hybrid search with filters targeting vector subqueries (preview)
 
 Using the [latest preview REST API](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-11-01-preview&preserve-view=true), you can override a global filter on the search request by applying a secondary filter that targets just the vector subqueries in a hybrid request.
@@ -311,7 +427,7 @@ POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/d
     ],
     "search": "historic hotel walk to restaurants and shopping",
     "select": "HotelName, Description, Address/City, Rating",
-    "filter": "Rating gt 3"
+    "filter": "Rating gt 3",
     "debug": "vector",
     "top": 10
 }
@@ -360,6 +476,8 @@ api-key: {{admin-api-key}}
 
 + "captions" and "answers" are optional. Values are extracted from verbatim text in the results. An answer is only returned if the results include content having the characteristics of an answer to the query.
 
+**Reference**: [queryType](/rest/api/searchservice/documents/search-post#querytype) | [semanticConfiguration](/rest/api/searchservice/documents/search-post#searchrequest) | [captions](/rest/api/searchservice/documents/search-post#querycaption) | [answers](/rest/api/searchservice/documents/search-post#queryanswer)
+
 ### Example: Semantic hybrid search with filter
 
 Here's the last query in the collection. It's the same semantic hybrid query as the previous example, but with a filter.
@@ -389,7 +507,7 @@ api-key: {{admin-api-key}}
     "semanticConfiguration": "my-semantic-config",
     "captions": "extractive",
     "answers": "extractive",
-    "filter": "ParkingIsIncluded'",
+    "filter": "ParkingIncluded",
     "vectorFilterMode": "preFilter",
     "top": "50"
 }
@@ -482,6 +600,25 @@ In this section, compare the responses between single vector search and simple h
 }
 ```
 
-## Next step
+## Troubleshoot hybrid queries
 
-We recommend reviewing vector demo code for [Python](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-python), [C#](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-dotnet) or [JavaScript](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-javascript).
+Use the following table to diagnose common issues with hybrid queries.
+
+| Issue | Possible cause | Resolution |
+|-------|---------------|------------|
+| Empty results | Vector field name mismatch or missing index data | Verify `fields` in `vectorQueries` matches a vector field in your index schema. Check that documents contain vector data. |
+| Low RRF scores | Normal RRF behavior | RRF scores are inherently lower than similarity scores. A score of 0.03 can still indicate a strong match. |
+| Vector results dominate | Text query underperforming | Increase `maxTextRecallSize` to include more BM25 results, or adjust vector weighting. |
+| Text results dominate | Vector similarity too low | Check embedding quality. Ensure query vector uses the same model as document vectors. |
+| Semantic ranker returns fewer results | Insufficient input documents | Set `k` to at least 50 when using semantic ranking. Check that filters aren't too restrictive. |
+| Filter not applied to vectors | Using global filter only | For vector-specific filtering, use `filterOverride` in the vector query (preview). |
+| Unexpected field in results | `select` parameter missing | Add `select` to specify which fields to return. Exclude vector fields for readability. |
+
+## Related content
+
++ [Hybrid search overview](hybrid-search-overview.md)
++ [Hybrid search ranking with RRF](hybrid-search-ranking.md)
++ [Vector search how-to](vector-search-how-to-query.md)
++ [Semantic ranking](semantic-how-to-query-request.md)
++ [Vector search filters](vector-search-filters.md)
++ Review vector demo code for [Python](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-python), [C#](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-dotnet), or [JavaScript](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-javascript)

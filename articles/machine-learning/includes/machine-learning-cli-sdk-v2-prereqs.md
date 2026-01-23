@@ -18,6 +18,8 @@ ms.author: scottpolly
 
     # [Python SDK](#tab/python)
 
+    * Python 3.10 or later.
+
     To install the Python SDK v2, use the following command:
 
     ```bash

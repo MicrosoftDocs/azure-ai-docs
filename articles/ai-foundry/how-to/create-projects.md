@@ -30,18 +30,6 @@ This article describes how to create a Foundry project in [Microsoft Foundry](ht
 
 * [!INCLUDE [fdp-description](../includes/fdp-description.md)]
 
-* This project type gives you access to the latest generative AI features in Foundry, including:
-
-    * Agents 
-    * Foundry SDK and API to build agents and switch easily between models
-    * Models sold directly by Azure - Azure OpenAI, Mistral, xAI, DeepSeek, and more.
-    * Partner and community models sold through Marketplace - Stability, Cohere, and more. 
-    * Content understanding
-    * Evaluations
-    * Fine-tuning
-    * OpenAI SDK and API including Batch and Stored Completions
-    * Foundry Tools
-
 * If you need access to open-source models or PromptFlow, [create a hub project type](../how-to/hub-create-projects.md) instead.
 
 * For more information about the different project types, see [Types of projects](../what-is-foundry.md#types-of-projects).
@@ -55,11 +43,12 @@ If your organization requires customized Azure configurations like alternative n
 * [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 
 :::moniker range="foundry"
-* **Permissions**: You need access to a role that allows you to create a Foundry resource, such as **Azure Account AI Owner** or **Azure AI Owner** on the subscription or resource group. For more details about permissions, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md#permissions-for-each-built-in-role).
+* [!INCLUDE [rbac-create](../includes/rbac-create.md)]
 :::moniker-end
 
 :::moniker range="foundry-classic"
-* **Permissions**: You need access to a role that allows you to create a Foundry resource, such as **Azure Account AI Owner** or **Azure AI Owner** on the subscription or resource group. For more details about permissions, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md#permissions-for-each-built-in-role).
+* [!INCLUDE [rbac-create](../includes/rbac-create.md)]
+
     If you lack this role, request your subscription administrator to [create a Foundry resource](../../ai-services/multi-service-resource.md) and then skip to [Create multiple projects on the same resource](#create-multiple-projects-on-the-same-resource).
 :::moniker-end
 
@@ -130,14 +119,11 @@ If your organization requires customized Azure configurations like alternative n
     # [Azure CLI](#tab/azurecli)
     
     - Install the [Azure CLI](/cli/azure/install-azure-cli). 
-    - Set default values for `subscription` and `resource group`.
+    - Set default values for `subscription`.
     
       ```azurecli
         # Set your default subscription
         az account set --subscription "{subscription-name}"
-    
-        # Set default resource group
-        az config set defaults.group={resource-group-name}
        ```
     
     ---
@@ -175,6 +161,7 @@ To create a Foundry project, follow these steps:
 
 ::: moniker-end
 
+
 ### Advanced options
 
 1. You create a Foundry project on a `Foundry` resource. The portal automatically creates this resource when you create the project. Select an existing **Resource group** to use, or leave the default to create a new resource group.
@@ -185,6 +172,7 @@ To create a Foundry project, follow these steps:
 1. Select a **Location** or use the default. The location is the region where the project resources are hosted. 
 
 1. Select **Create**. You see the progress of resource creation. The project is created when the process is complete.
+
 
 # [Python SDK](#tab/python)
 
@@ -200,39 +188,8 @@ To create a Foundry project:
 
 # [Azure CLI](#tab/azurecli)
 
-1. Authenticate to your Azure subscription from the Azure CLI by using the following command:
+[!INCLUDE [create-project-cli](../default/includes/create-project-cli.md)]
 
-    ```azurecli
-    az login
-    ```
-
-    For more information on authenticating, see [Authentication methods](/cli/azure/authenticate-azure-cli).
-
-1. Create a resource group, for example in East US:
-
-    ```azurecli
-    az group create --name {my_resource_group} --location eastus
-    ```
-
-1. Create a Foundry resource
-
-    ```azurecli
-    az cognitiveservices account create \
-    --name {your-foundry-resource-name} \
-    --kind AIServices \
-    --location eastus \
-    --sku s0 \
-    --allow-project-management
-    ```
-
-1. Create a project:
-
-    ```azurecli
-    az cognitiveservices account project create \
-    --name {your-foundry-resource-name} \
-    --project-name {your-project-name} \
-    --location eastus
-    ```
 ---
 
 ## Create multiple projects on the same resource
@@ -271,8 +228,8 @@ To view settings for the project, use the `az cognitiveservices account connecti
 
 ```azurecli
 az cognitiveservices account connection show \
---name <my_project_name> \
---resource-group <my_resource_group>
+--name my-foundry-project \
+--resource-group my-foundry-rg
 ```
 
 ---
@@ -345,8 +302,8 @@ Run the following command:
 
 ```azurecli
 az cognitiveservices account project delete \
---name {foundry_resource_name} \
---project-name {my_project_name}
+--name my-foundry-rg \
+--project-name my-foundry-project
 ```
 
 References: [az cognitiveservices account project delete](/cli/azure/cognitiveservices/account/project#az-cognitiveservices-account-project-delete).
