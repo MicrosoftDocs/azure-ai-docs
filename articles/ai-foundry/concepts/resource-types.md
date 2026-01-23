@@ -26,28 +26,28 @@ An Azure resource is required to use and manage services in Azure. It defines th
 
 Microsoft Foundry portal and SDK clients support multiple distinct Azure resource types, each designed to serve different development and operational needs.
 
-## Resource Types supported with Foundry portal and SDK clients
+## Resource types supported with Foundry portal and SDK clients
 
 * **Foundry** – The primary resource type for designing, deploying, and managing generative AI applications and agents. It provides access to the superset of Azure AI capabilities. This includes agent service, models sold by Microsoft and its partners, evaluations, Foundry Tools and Azure OpenAI service capabilities. Foundry is the recommended resource type for most applications built in Foundry. 
  
-  Get started by [creating a first Foundry resource](../../ai-services/multi-service-resource.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json).
+  [Create your first Foundry resource](../../ai-services/multi-service-resource.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json).
 
   :::image type="content" source="../media/concepts/foundry-resource.png" alt-text="Screenshot shows how Foundry resource type provided access to the superset of Azure AI capabilities including agent service, a wide selection of models, and Azure OpenAI capabilities.":::
 
-* **Azure AI Search** – A resource used to index and retrieve data for grounding AI applications. It can be [connected](../how-to/connections-add.md) to Foundry agents to enable retrieval-augmented generation (RAG) and semantic search experiences.
+* **Azure AI Search** – A resource you use to index and retrieve data for grounding AI applications. You can [connect](../how-to/connections-add.md) it to Foundry agents to enable retrieval-augmented generation (RAG) and semantic search experiences.
 
-* **Azure OpenAI** – A specialized resource type that provides access to OpenAI models and APIs only. For most use cases, it's recommended to use the Foundry resource, which offers backwards compatibility with all Azure OpenAI APIs.
+* **Azure OpenAI** – A specialized resource type that provides access to OpenAI models and APIs only. For most use cases, use the Foundry resource, which offers backward compatibility with all Azure OpenAI APIs.
 
   > [!NOTE]
-  > If your IT security team hasn't enabled the superset of Foundry capabilities in your environment, then the standalone Azure OpenAI resource may still be required for you.
+  > If your IT security team doesn't enable the superset of Foundry capabilities in your environment, you might need the standalone Azure OpenAI resource.
 
   [An upgrade option from Azure OpenAI to Foundry](../how-to/upgrade-azure-openai.md) is available to access all Foundry capabilities and models while keeping your existing Azure OpenAI API endpoint, state of work, and security configurations.
 
 ::: moniker range="foundry-classic"
 
-* **Azure AI Hub** - In June 2025, we started to move most of Hub's capabilities under "Foundry" resource type. This change brings agents, models, and their tools together for development, management and governance, under a dedicated Azure resource type for Foundry.
+* **Azure AI Hub** - In June 2025, Microsoft started to move most of Hub's capabilities under "Foundry" resource type. This change brings agents, models, and their tools together for development, management and governance, under a dedicated Azure resource type for Foundry.
 
-  New features will primarily land on Foundry resource type. To learn more, see [migrate from hub-based to Foundry projects](../how-to/migrate-project.md). [Select use cases](../what-is-foundry.md#which-type-of-project-do-i-need), including open source model deployments, currently still require a hub resource.
+  New features primarily land on Foundry resource type. To learn more, see [migrate from hub-based to Foundry projects](../how-to/migrate-project.md). [Select use cases](../what-is-foundry.md#which-type-of-project-do-i-need), including open source model deployments, currently still require a hub resource.
 
 ::: moniker-end
 
