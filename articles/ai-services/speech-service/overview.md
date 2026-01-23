@@ -30,6 +30,8 @@ Common scenarios for speech include:
 - [Call center](call-center-overview.md): Transcribe calls in real time or process a batch of calls, redact personal information, and extract insights such as sentiment to help with your call-center use case.
 - [Language learning](language-learning-overview.md): Provide pronunciation assessment feedback to language learners, support real-time transcription for remote learning conversations, and read aloud teaching materials with neural voices.
 - [Voice live](voice-live.md): Create natural, humanlike conversational interfaces for applications and experiences. The voice live feature provides fast, reliable interaction between a human and an agent implementation.
+- [Speech translation](speech-translation.md): Generate high-quality speech-to-speech translation in real time, or automatically generate translated videos in a broad range of languages.
+- [Video avatar creation](/azure/ai-services/speech-service/text-to-speech-avatar/what-is-text-to-speech-avatar): Create lifelike and high-quality synthetic talking avatar videos for various real-time and batch applications while adhering to responsible AI practices.
 
 Microsoft uses Azure Speech for many scenarios, such as captioning in Microsoft Teams, dictation in Microsoft Office 365, and Read Aloud in the Microsoft Edge browser.
 
