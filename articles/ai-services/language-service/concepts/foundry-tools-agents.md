@@ -29,7 +29,7 @@ This article introduces the Azure Language integrations that are available in Fo
 - **Model Context Protocol (MCP)**: An open protocol for exposing tools and contextual data to agents and large language models.
 - **Connected resources and connections**: Configuration in Microsoft Foundry that lets an agent access external services (including credentials).
 
-## Azure Language MCP server
+## Azure Language MCP server 🆕
 
 The Azure Language MCP server in the [Microsoft Foundry portal](https://ai.azure.com/) connects agents to Azure Language services through the Model Context Protocol (MCP). This integration helps you build conversational applications that can call Azure Language capabilities as tools.
 
@@ -68,7 +68,7 @@ If you authenticate with API keys, treat keys as secrets:
 
 Some Microsoft Foundry configurations restrict which MCP servers you can use. For example, network-secured Foundry projects can require publicly accessible MCP servers. For details, see [Connect to Model Context Protocol servers (preview)](../../../ai-foundry/default/agents/how-to/tools/model-context-protocol.md).
 
-## Azure Language intent routing agent
+## Azure Language intent routing agent 🆕
 
 The intent routing agent in the [Microsoft Foundry portal](https://ai.azure.com/) manages conversation flows by combining intent classification with answer delivery. It helps you route user questions to curated answers when possible, and fall back to other approaches when needed.
 
@@ -115,7 +115,7 @@ Before setting up the Intent Routing agent, ensure you have the following resour
         azd ai agent init -m azureml://registries/azureml-staging/agentmanifests/intent_routing_agent/versions/1
     ```
 
-## Azure Language exact question answering agent
+## Azure Language exact question answering agent 🆕
 
 The Exact Question Answering agent in [**Foundry**](https://ai.azure.com/) delivers responses to frequently asked business questions through a fully managed, no-code solution. This agent provides consistent answers to queries while maintaining governance and quality control.
 
