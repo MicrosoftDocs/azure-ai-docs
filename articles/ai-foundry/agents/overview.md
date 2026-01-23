@@ -133,7 +133,7 @@ If it's your first time using the service, start with the [environment setup](en
 
 :::moniker range="foundry"
 
-If it's your first time using the service, start with the [environment setup](environment-setup.md) and [quickstart](../quickstarts/get-started-code.md) guides.
+If it's your first time using the service, start with the [environment setup](environment-setup.md) and [quickstart](../default/tutorials/quickstart-create-foundry-resources.md) guides.
 
 :::moniker-end
 

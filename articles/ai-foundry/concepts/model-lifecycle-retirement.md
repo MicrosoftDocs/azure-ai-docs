@@ -40,9 +40,9 @@ Models in the model catalog belong to one of these stages:
 
 Models labeled _Preview_ are experimental in nature. A model's weights, runtime, and API schema can change while the model is in preview. Models in preview aren't guaranteed to become generally available. Models in preview have a _Preview_ label next to their name in the model catalog.  
 
-### Generally available
+### Generally available (GA)
 
-This stage is the default model stage. Models that don't include a lifecycle label next to their name are generally available and suitable for use in production environments. In this stage, model weights and APIs are fixed. However, model containers or runtimes with vulnerabilities might get patched, but patches don't affect model outputs.  
+This stage is the default model stage. Models that don't include a lifecycle label next to their name are GA and suitable for use in production environments. In this stage, model weights and APIs are fixed. However, model containers or runtimes with vulnerabilities might get patched, but patches don't affect model outputs.  
  
 ### Legacy
 
