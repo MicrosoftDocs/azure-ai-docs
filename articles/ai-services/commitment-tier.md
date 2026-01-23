@@ -8,7 +8,7 @@ ms.custom:
   - mode-other
   - ignite-2023
 ms.service: azure-ai-services
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 10/02/2025
 ---
 

@@ -4,7 +4,7 @@ description: Learn more about what you should take into consideration before fin
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: conceptual 
+ms.topic: concept-article 
 ms.date: 12/6/2025
 author: mrbullwinkle
 ms.author: mbullwin
