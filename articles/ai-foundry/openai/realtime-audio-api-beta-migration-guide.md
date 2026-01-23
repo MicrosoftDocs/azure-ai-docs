@@ -80,7 +80,7 @@ ws.on("open", function open() {
                 model: "gpt-realtime",
                 <...>
 ```
-The `session.update` event changed format, and some properties are in different locations. See the API reference TODO for details.
+The `session.update` event changed format, and some properties are now in different locations. See the API reference TODO for details.
 
 The following event names changed:
 
