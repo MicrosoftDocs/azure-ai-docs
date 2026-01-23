@@ -1,7 +1,7 @@
 ---
-title: MedImageParse and MedImageParse 3D healthcare AI models with Microsoft Foundry
+title: "MedImageParse: Medical Image Segmentation Models"
 titleSuffix: Microsoft Foundry
-description: Learn how to use MedImageParse and MedImageParse 3D Healthcare AI models with Microsoft Foundry.
+description: Learn how to use MedImageParse and MedImageParse 3D healthcare AI models for medical image segmentation with Microsoft Foundry.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
@@ -23,19 +23,20 @@ ai-usage: ai-assisted
 
 [!INCLUDE [health-ai-models-meddev-disclaimer](../../includes/health-ai-models-meddev-disclaimer.md)]
 
-In this article, you learn how to deploy prompt-based image segmentation models, MedImageParse and MedImageParse 3D, as online endpoints for real-time inference. You also see how to issue basic calls to the API. The steps you take are:
+MedImageParse and MedImageParse 3D are healthcare AI models for medical image segmentation using simple text prompts. In this article, you learn how to deploy these prompt-based segmentation models as online endpoints for real-time inference and issue basic calls to the API. The steps you take are:
 
-* Deploy the model to a self-hosted managed compute.
-* Grant permissions to the endpoint.
-* Send test data to the model, receive, and interpret results.
+1. Deploy the model to a self-hosted managed compute.
+1. Grant permissions to the endpoint.
+1. Send test data to the model, receive, and interpret results.
+
 
 # [MedImageParse](#tab/medimageparse)
 
 ## MedImageParse
 
-MedImageParse unifies segmentation, detection, and recognition tasks through image parsing, allowing you to segment medical images using simple text prompts without manually specifying bounding boxes.
+MedImageParse unifies segmentation, detection, and recognition tasks through image parsing. You can segment medical images by using simple text prompts without manually specifying bounding boxes.
 
-# [MedImageParse 3D](#tab/medimageparse-3d)
+There should be content following this heading. The heading alone doesn't provide sufficient information for the reader.
 
 ## MedImageParse 3D
 
@@ -43,26 +44,26 @@ MedImageParse 3D processes entire 3D medical volumes (such as CT or MRI scans) a
 
 ---
 
-To learn more about these models, see the [Learn more about the models](#learn-more-about-the-models) section.
+To learn more about these models, see [Learn more about the models](#learn-more-about-the-models).
 
 ## Prerequisites
 
-- An Azure subscription with a valid payment method. Free or trial Azure subscriptions don't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
+- An Azure subscription with a valid payment method. Free or trial Azure subscriptions don't work. If you don't have an Azure subscription, [create a paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
 
-- If you don't have one, [create a [!INCLUDE [hub](../../includes/hub-project-name.md)]](../hub-create-projects.md).
+- If you don't have one, [create a [!INCLUDE [hub](../../includes/hub-project-name.md)]](../hub-create-projects.md)
 
-- Azure role-based access controls (Azure RBAC) grant access to operations in Microsoft Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. This role is required for deploying models and invoking endpoints. For more information on permissions, see [Role-based access control in Foundry portal](../../concepts/rbac-ai-foundry.md).
+- Azure role-based access controls (Azure RBAC) grant access to operations in Microsoft Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. Deploying models and invoking endpoints requires this role. For more information, see [Role-based access control in Foundry portal](../../concepts/rbac-ai-foundry.md).
 
 ## Sample notebooks
 
 For complete working examples, see these interactive Python notebooks:
 
 * [Deploying and Using MedImageParse](https://aka.ms/healthcare-ai-examples-mip-deploy): Learn how to deploy the MedImageParse model and integrate it into your workflow.
-* [Generating Segmentation for a Variety of Imaging Modalities](https://aka.ms/healthcare-ai-examples-mip-examples): Understand how to use MedImageParse to segment different medical images and learn prompting techniques.
+* [Generating Segmentation for a Variety of Imaging Modalities](https://aka.ms/healthcare-ai-examples-mip-examples): Learn how to use MedImageParse to segment different medical images and learn prompting techniques.
 
 ## Deploy the model to a managed compute
 
-Deployment to a self-hosted managed inference solution lets you customize and control all the details about how the model is served. To deploy the model programatically or from its model card in Microsoft Foundry, see [How to deploy and infer with a managed compute deployment](../deploy-models-managed.md).
+Deployment to a self-hosted managed inference solution lets you customize and control all the details about how the model is served. To deploy the model programmatically or from its model card in Microsoft Foundry, see [How to deploy and infer with a managed compute deployment](../deploy-models-managed.md).
 
 ## Send inference requests to the segmentation model
 
@@ -70,7 +71,7 @@ In this section, you consume the model and make basic calls to it.
 
 ### Use REST API to consume the model
 
-Consume the model as a REST API, using simple GET requests or by creating a client as follows:
+Use the model as a REST API, using simple GET requests or by creating a client as follows:
 
 ```python
 import base64
@@ -83,7 +84,7 @@ credential = DefaultAzureCredential()
 ml_client_workspace = MLClient.from_config(credential)
 ```
 
-In the deployment configuration, you choose an authentication method. This example uses Azure Machine Learning token-based authentication. For more authentication options, see the [corresponding documentation page](../../../machine-learning/how-to-setup-authentication.md). Also, the client is created from a configuration file that's created automatically for Azure Machine Learning virtual machines (VMs). Learn more on the [corresponding API documentation page](/python/api/azure-ai-ml/azure.ai.ml.mlclient#azure-ai-ml-mlclient-from-config).
+In the deployment configuration, choose an authentication method. This example uses Azure Machine Learning token-based authentication. For more authentication options, see [Set up authentication](../../../machine-learning/how-to-setup-authentication.md). The client is created from a configuration file that's created automatically for Azure Machine Learning virtual machines (VMs). Learn more in the [MLClient.from_config API reference](/python/api/azure-ai-ml/azure.ai.ml.mlclient#azure-ai-ml-mlclient-from-config).
 
 ### Make basic calls to the model
 
@@ -173,7 +174,7 @@ headers = {
 
 req = urllib.request.Request(url, body, headers)
 
-# Make sure decode_base64_to_nifti() and plot_segmentation_masks() are defined above
+# Ensure that decode_base64_to_nifti() and plot_segmentation_masks() are defined above
 try:
     response = urllib.request.urlopen(req)
     result = response.read()
@@ -429,13 +430,13 @@ The deployed model API supports volumes encoded in NIfTI format.
 
 # [MedImageParse](#tab/medimageparse)
 
-Biomedical image analysis is crucial for discovery in fields like cell biology, pathology, and radiology. Traditionally, tasks such as segmentation, detection, and recognition of relevant objects are addressed separately, which can limit the overall effectiveness of image analysis. However, MedImageParse unifies these tasks through image parsing by jointly conducting segmentation, detection, and recognition across numerous object types and imaging modalities. By applying the interdependencies among these subtasks—such as the semantic labels of segmented objects—the model enhances accuracy and enables novel applications. For example, it allows users to segment all relevant objects in an image by using a simple text prompt. This approach eliminates the need to manually specify bounding boxes for each object.
+Biomedical image analysis is crucial for discovery in fields like cell biology, pathology, and radiology. Traditionally, tasks such as segmentation, detection, and recognition of relevant objects are addressed separately, which can limit the overall effectiveness of image analysis. However, MedImageParse unifies these tasks through image parsing by jointly conducting segmentation, detection, and recognition across numerous object types and imaging modalities. By using the interdependencies among these subtasks—such as the semantic labels of segmented objects—the model enhances accuracy and enables novel applications. For example, it lets users segment all relevant objects in an image by using a simple text prompt. This approach eliminates the need to manually specify bounding boxes for each object.
 
 The following image shows the conceptual architecture of the MedImageParse model where an image embedding model is augmented with a task adaptation layer to produce segmentation masks and textual descriptions.
 
 :::image type="content" source="../../media/how-to/healthcare-ai/medimageparse-flow.gif" alt-text="Animated diagram showing a medical image entering the MedImageParse model, flowing through a task adaptation layer, and outputting multiple segmentation masks with corresponding text labels.":::
 
-Remarkably, the segmentation masks and textual descriptions are achieved by using only standard segmentation datasets, augmented by natural-language labels, or descriptions harmonized with established biomedical object ontologies. This approach not only improves individual task performance but also offers an all-in-one tool for biomedical image analysis, paving the way for more efficient and accurate image-based biomedical discovery.
+The segmentation masks and textual descriptions are achieved by using only standard segmentation datasets, augmented by natural-language labels, or descriptions harmonized with established biomedical object ontologies. This approach improves individual task performance and offers an all-in-one tool for biomedical image analysis, paving the way for more efficient and accurate image-based biomedical discovery.
 
 # [MedImageParse 3D](#tab/medimageparse-3d)
 
