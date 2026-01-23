@@ -80,9 +80,9 @@ ws.on("open", function open() {
                 model: "gpt-realtime",
                 <...>
 ```
-The format of the session.update event has also changed, and some properties have been moved. See the API reference TODO for details.
+The `session.update` event changed format, and some properties are in different locations. See the API reference TODO for details.
 
-The following event names have changed:
+The following event names changed:
 
 - From `response.text.delta` to `response.output_text.delta`
 - From `response.audio.delta` to `response.output_audio.delta`
@@ -92,11 +92,11 @@ All conversation item events now have `object=realtime.item` field.
 
 A status field can be added to the function call output item. This field has no effect on the conversation.
 
-The types of the message content have been changed for assistant responses:
+The types of the message content for assistant responses changed like this:
 
 - From `type=text` to `type=output_text`
 - From `type=audio` to `type=output_audio`
 
 ### New events
 
-The `conversation.item.added` and `conversation.item.done` events have been added to better handle long-running operations such as MCP tool listing.
+The `conversation.item.added` and `conversation.item.done` events were added to better handle long-running operations such as MCP tool listing.
