@@ -27,3 +27,26 @@ _repo.*/
 .github/agents/*.md
 .github/instructions/*md
 .github/skills/
+
+# DocKit
+.env.*
+requirements.txt
+.dockit/*
+.github/evaluate/*
+.github/data/*
+.github/agents/*
+.github/AGENTS.md
+.github/instructions/*
+.github/skills/*
+.roo/*
+
+# Doc-Kit workspace files
+.github/agents/
+.github/instructions/
+.github/prompts/
+.github/skills/
+.vscode/settings.json
+.dockit/
+.env
+.env.example
+.dockitignores.md
