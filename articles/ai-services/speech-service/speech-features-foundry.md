@@ -5,7 +5,7 @@ description: Try Azure Speech features in Microsoft Foundry using a simple web i
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: concept-article
+ms.topic: how-to
 ms.date: 01/09/2026
 ms.author: pafarley
 ai-usage: ai-assisted
