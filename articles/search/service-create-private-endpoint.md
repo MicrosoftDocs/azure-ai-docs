@@ -1,39 +1,42 @@
 ---
 title: Create a private endpoint for a secure connection
 titleSuffix: Azure AI Search
-description: Set up a private endpoint in a virtual network for a secure connection to an Azure AI Search service.
+description: Set up a private endpoint in a virtual network for a secure client connection to an Azure AI Search service.
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
-ms.date: 09/23/2025
+  - dev-focus
+ms.topic: how-to
+ms.date: 01/21/2026
+ai-usage: ai-assisted
 ---
 
 # Create a private endpoint for a secure connection to Azure AI Search
 
-This article explains how to configure a private connection to Azure AI Search so that it admits requests from clients in a virtual network instead of over a public internet connection:
+This article explains how to configure a private connection to Azure AI Search so that it admits requests from clients in a virtual network instead of over a public internet connection.
 
-+ [Create an Azure virtual network](#create-the-virtual-network), or use an existing one
-+ [Configure a search service to use a private endpoint](#create-a-search-service-with-a-private-endpoint)
-+ [Create an Azure virtual machine (client) in the same virtual network](#create-a-virtual-machine)
-+ [Test using a browser session on the virtual machine](#connect-to-the-vm)
+## Prerequisites
 
-Other Azure resources that might privately connect to Azure AI Search include Azure OpenAI for "use your own data" scenarios. Microsoft Foundry doesn't run in a virtual network, but it can be configured on the backend to send requests over the Microsoft backbone network. Configuration for this traffic pattern is enabled by Microsoft when your request is submitted and approved. For this scenario:
++ [Azure AI Search service](search-create-service-portal.md) (Basic tier or higher). Private endpoints aren't supported on the Free tier.
++ **Contributor** or **Owner** role on the resource group where you create resources.
++ A [common region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table) with availability for Azure AI Search, a virtual network, and a virtual machine. All three resources must reside in the same region.
++ Familiarity with [Azure Virtual Network](/azure/virtual-network/virtual-networks-overview) concepts (optional but recommended).
 
-+ Follow the instructions in this article to set up the private endpoint.
-+ [Enable trusted service](/azure/ai-services/openai/how-to/use-your-data-securely#enable-trusted-service-1) of your search resource from the Azure portal.
-+ Optionally, [disable public network access](#disable-public-network-access) if connections should only originate from clients in virtual network or from Azure OpenAI over a private endpoint connection.
+## Overview
 
-## Key points about private endpoints
+This article walks you through these steps:
 
-Private endpoints are provided by [Azure Private Link](/azure/private-link/private-link-overview), as a separate billable service. For more information about costs, see [Azure Private Link pricing](https://azure.microsoft.com/pricing/details/private-link/).
+1. [Create an Azure virtual network](#create-the-virtual-network) (or use an existing one)
+1. [Configure a search service with a private endpoint](#create-a-search-service-with-a-private-endpoint)
+1. [Create an Azure virtual machine](#create-a-virtual-machine) in the same virtual network
+1. [Test the connection](#connect-to-the-vm) from the virtual machine
 
-Once a search service has a private endpoint, portal access to that service must be initiated from a browser session on a virtual machine inside the virtual network. See [this step](#portal-access-private-search-service) for details.
+Private endpoints are provided by [Azure Private Link](/azure/private-link/private-link-overview), as a separate billable service. For more information about costs, see [Azure Private Link pricing](https://azure.microsoft.com/pricing/details/private-link/). 
 
-You can create a private endpoint for a search service in the Azure portal, as described in this article. Alternatively, you can use the [Management REST API](/rest/api/searchmanagement/), [Azure PowerShell](/powershell/module/az.search), or the [Azure CLI](/cli/azure/search).
+You can create a private endpoint using the Azure portal (described in this article), [Management REST API](/rest/api/searchmanagement/), [Azure PowerShell](/powershell/module/az.search), or [Azure CLI](/cli/azure/search).
 
 ## Why use a private endpoint?
 
@@ -49,7 +52,7 @@ Private endpoints for your search service allow you to:
 
 In this section, you create a virtual network and subnet to host the VM that will be used to access your search service's private endpoint.
 
-1. From the Azure portal home tab, select **Create a resource** > **Networking** > **Virtual network**.
+1. From the Azure portal home tab, select **Create a resource** > **Infrastructure Services** > **Virtual network**.
 
 1. In **Create virtual network**, enter or select the following values:
 
@@ -66,7 +69,7 @@ In this section, you create a virtual network and subnet to host the VM that wil
 
 In this section, you create a new Azure AI Search service with a private endpoint.
 
-1. On the upper-left side of the screen in the Azure portal, select **Create a resource** > **AI + machine learning** > **AI Search**.
+1. On the upper-left side of the screen in the Azure portal, select **Create a resource** > **Machine learning** > **AI Search**.
 
 1. In **Create a search service - Basics**, enter or select the following values:
 
@@ -77,7 +80,7 @@ In this section, you create a new Azure AI Search service with a private endpoin
     | Resource group | Use the resource group that you created in the previous step|
     | **INSTANCE DETAILS** |  |
     | URL | Enter a unique name |
-    | Location | Select your region |
+    | Location | Select your region. [Choose a region](search-region-support.md) that provides Azure AI Search. |
     | Pricing tier | Select **Change Pricing Tier** and choose your desired service tier. Private endpoints aren't supported on the  **Free** tier. You must select **Basic** or higher. |
   
 1. Select **Next: Scale**.
@@ -94,14 +97,14 @@ In this section, you create a new Azure AI Search service with a private endpoin
     | ------- | ----- |
     | Subscription | Select your subscription |
     | Resource group | Use the resource group that you created in the previous step |
-    | Location | Select a region |
+    | Location | Select a region. Choose the same region used by the virtual network.|
     | Name | Enter a name, such as *myPrivateEndpoint*  |
     | Target subresource | Accept the default **searchService** |
     | **NETWORKING** |  |
     | Virtual network  | Select the virtual network you created in the previous step |
     | Subnet | Select the default |
     | **PRIVATE DNS INTEGRATION** |  |
-    | Enable Private DNS Integration  | Select the checkbox |
+    | Integrate with private DNS zone  | Select **Yes**. |
     | Private DNS zone  | Accept the default **(New) privatelink.search.windows.net** |
 
 1. Select **Add**.
@@ -120,7 +123,7 @@ In this section, you create a new Azure AI Search service with a private endpoin
 
 ## Create a virtual machine
 
-1. On the upper-left side of the screen in the Azure portal, select **Create a resource** > **Compute** > **Virtual machine**.
+1. On the upper-left side of the screen in the Azure portal, select **Create a resource** > **Infrastructure Services** > **Virtual machine**.
 
 1. In **Create a virtual machine - Basics**, enter or select the following values:
 
@@ -133,7 +136,8 @@ In this section, you create a new Azure AI Search service with a private endpoin
     | Virtual machine name | Enter a name, such as *my-vm* |
     | Region | Select your region |
     | Availability options | You can choose **No infrastructure redundancy required**, or select another option if you need the functionality |
-    | Image | Select **Windows Server 2022 Datacenter: Azure Edition - Gen2** |
+    | Security type | Accept the default **Trusted launch virtual machines** |
+    | Image | Select **Windows Server 2025 Datacenter: Azure Edition - x64 Gen2** |
     | VM architecture | Accept the default **x64** |
     | Size | Accept the default **Standard D2S v3** |
     | **ADMINISTRATOR ACCOUNT** |  |
@@ -207,7 +211,7 @@ When the search service endpoint is private, some portal features are disabled. 
 
     You'll receive a message similar to this:
 
-    ```
+    ```powershell
     Server:  UnKnown
     Address:  168.63.129.16
     Non-authoritative answer:
@@ -216,7 +220,11 @@ When the search service endpoint is private, some portal features are disabled. 
     Aliases:  [search service name].search.windows.net
     ```
 
+    The `privatelink` in the Name field and the private IP address (10.x.x.x) in the Address field confirm that the private endpoint is configured correctly.
+
 1. From the VM, connect to the search service and create an index. You can follow this [quickstart](search-get-started-text.md) to create a new search index in your service using the REST API. Setting up requests from a Web API test tool requires the search service endpoint `(https://[search service name].search.windows.net)` and the admin api-key you copied in a previous step.
+
+    **Reference:** [Create Index (REST API)](/rest/api/searchservice/indexes/create)
 
 1. Completing the quickstart from the VM is your confirmation that the service is fully operational.
 
@@ -230,7 +238,7 @@ When the search service endpoint is private, some portal features are disabled. 
 
 When the search service endpoint is private, some portal features are disabled. You can view and manage service level information, but index, indexer, and skillset information are hidden for security reasons. 
 
-To work around this restriction, connect to Azure portal from a browser on a virtual machine inside the virtual network. the Azure portal uses the private endpoint on the connection and gives you visibility into content and operations.
+To work around this restriction, connect to Azure portal from a browser on a virtual machine inside the virtual network. The Azure portal uses the private endpoint on the connection and gives you visibility into content and operations.
 
 1. Follow the [steps to provision a VM that can access the search service through a private endpoint](#create-virtual-machine-private-endpoint).
 

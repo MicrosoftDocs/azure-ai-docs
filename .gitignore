@@ -21,9 +21,31 @@ _repo.*/
 .github/prompts/*.zip
 .github/patterns/*.md
 .github/chatmodes/*.*
+.github/*.*
 
-# Dev-kit instructions and prompts
+
+articles/ai-foundry/includes/get-started-fdp.md
+articles/ai-foundry/toc-files/setup-management/toc.yml
+# Doc-Kit workspace files
 .github/AGENTS.md
-.github/agents/*.md
-.github/instructions/*md
+.github/agents/
+.github/instructions/
+.github/prompts/
 .github/skills/
+.vscode/settings.json
+.dockit/
+.env
+.env.example
+requirements.txt
+# Dev-kit instructions and prompts
+# Doc-Kit workspace files
+.github/AGENTS.md
+.github/agents/
+.github/instructions/
+.github/prompts/
+.github/skills/
+.vscode/settings.json
+.dockit/
+.env
+.env.example
+requirements.txt
