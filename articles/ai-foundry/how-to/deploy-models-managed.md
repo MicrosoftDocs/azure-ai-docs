@@ -62,12 +62,9 @@ In this article, you learn how to deploy models with the managed compute deploym
 
 1. On the model's page, select **Use this model**. This action opens the deployment window if the selected model can be deployed to a managed compute only. 
 
-1. If you've selected a model that also supports another deployment option, you land on the "Purchase options" window. Select the **Managed Compute** purchase option to open the deployment window. 
+1. Alternatively, if you've selected a model that also supports another deployment option, you land on the "Purchase options" window. Select the **Managed Compute** purchase option to open the deployment window. 
 
-    > [!NOTE]
-    > For deployment to a self-hosted managed compute, you must have enough quota in your subscription. If you don't have enough quota available, you can use our temporary quota access by selecting the option **I want to use shared quota and I acknowledge that this endpoint will be deleted in 168 hours.**
-
-1. Select the checkbox in the deployment window to use the temporary shared quota.
+    -  Select the checkbox in the deployment window to use the temporary shared quota. For deployment to a self-hosted managed compute, you must have enough quota in your subscription. If you don't have enough quota available, you can use our temporary quota access by selecting the option **I want to use shared quota and I acknowledge that this endpoint will be deleted in 168 hours.**
 
 1. The deployment window is pre-filled with some selections and parameter values. You can either keep them or change them as desired. You can also select an existing endpoint for the deployment or create a new one. For this example, specify an instance count of `1` and create a new endpoint for the deployment.
 
