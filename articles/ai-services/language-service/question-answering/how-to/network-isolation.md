@@ -23,28 +23,28 @@ Private endpoints are provided by [Azure Private Link](/azure/private-link/priva
 1. Assign the *contributor* role to your resource in the Azure Search Service instance. This operation requires *Owner* access to the subscription. Go to Identity tab in the service resource to get the identity.
 
 > [!div class="mx-imgBorder"]
-> ![Text Analytics Identity](../../../QnAMaker/media/qnamaker-reference-private-endpoints/private-endpoints-identity.png)
+> ![Text Analytics Identity](../media/qnamaker-reference-private-endpoints/private-endpoints-identity.png)
 
 2. Add the above identity as *Contributor* by going to the Azure Search Service access control tab.
 
-![Managed service IAM](../../../QnAMaker/media/qnamaker-reference-private-endpoints/private-endpoint-access-control.png)
+![Managed service IAM](../media/qnamaker-reference-private-endpoints/private-endpoint-access-control.png)
 
 3. Select on *Add role assignments*, add the identity and select *Save*.
 
-![Managed role assignment](../../../QnAMaker/media/qnamaker-reference-private-endpoints/private-endpoint-role-assignment.png)
+![Managed role assignment](../media/qnamaker-reference-private-endpoints/private-endpoint-role-assignment.png)
 
 4. Now, go to *Networking* tab in the Azure Search Service instance and switch Endpoint connectivity data from *Public* to *Private*. This operation is a long running process and can take up to 30 mins to complete. 
 
-![Managed Azure search networking](../../../QnAMaker/media/qnamaker-reference-private-endpoints/private-endpoint-networking.png)
+![Managed Azure search networking](../media/qnamaker-reference-private-endpoints/private-endpoint-networking.png)
 
 5. Go to *Networking* tab of language resource and under the *Allow access from*, select the *Selected Networks and private endpoints* option and select *save*.
  
 > [!div class="mx-imgBorder"]
-> ![Text Analytics networking](../../../QnAMaker/media/qnamaker-reference-private-endpoints/private-endpoint-networking-custom-qna.png)
+> ![Text Analytics networking](../media/qnamaker-reference-private-endpoints/private-endpoint-networking-custom-qna.png)
 
 This will establish a private endpoint connection between language resource and Azure AI Search service instance. You can verify the Private endpoint connection on the *Networking* tab of the Azure AI Search service instance. Once the whole operation is completed, you're good to use your language resource with question answering enabled.
 
-![Managed Networking Service](../../../QnAMaker/media/qnamaker-reference-private-endpoints/private-endpoint-networking-3.png)
+![Managed Networking Service](../media/qnamaker-reference-private-endpoints/private-endpoint-networking-3.png)
 
 ## Support details
  * We don't support changes to Azure AI Search service once you enable private access to your language resources. If you change the Azure AI Search service via 'Features' tab after you have enabled private access, the language resource will become unusable.
@@ -56,4 +56,4 @@ This will establish a private endpoint connection between language resource and 
 Follow these steps to restrict public access to custom question answering language resources. Protect a Foundry resource from public access by [configuring the virtual network](../../../cognitive-services-virtual-networks.md?tabs=portal).
 
   > [!div class="mx-imgBorder"]
-  > [![Screenshot of firewall and virtual networks configuration UI](../../../qnamaker/media/network-isolation/firewall.png)](../../../qnamaker/media/network-isolation/firewall.png#lightbox)
+  > [![Screenshot of firewall and virtual networks configuration UI](../media/network-isolation/firewall.png)](../media/network-isolation/firewall.png#lightbox)
