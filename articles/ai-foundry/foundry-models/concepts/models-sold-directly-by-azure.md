@@ -8,7 +8,7 @@ manager: nitinme
 ms.date: 11/13/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
-ms.topic: concept-article
+ms.topic: product-comparison
 ms.custom:
   - references_regions
   - tool_generated
