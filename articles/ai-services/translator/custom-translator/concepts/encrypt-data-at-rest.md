@@ -5,7 +5,7 @@ description: Microsoft lets you manage your Foundry Tools subscriptions with you
 author: erindormier
 manager: nitinme
 ms.service: azure-ai-translator
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/18/2025
 ms.author: egeaney
 #Customer intent: As a user of the Translator service, I want to learn how encryption at rest works.
