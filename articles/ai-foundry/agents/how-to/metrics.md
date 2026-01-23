@@ -3,7 +3,7 @@ title: Monitor Foundry Agent Service
 description: Start here to learn how to use Azure Monitor to capture and analyze metrics for your Foundry Agent Service.
 ms.date: 12/04/2025
 ms.custom: horz-monitor, subject-monitoring
-ms.topic: how-to
+ms.topic: concept-article
 author: aahill
 ms.author: aahi
 ms.service: azure-ai-foundry
