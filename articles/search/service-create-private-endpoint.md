@@ -8,7 +8,7 @@ manager: nitinme
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 09/23/2025
 ---
 

@@ -6,7 +6,7 @@ manager: nitinme
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
-ms.topic: conceptual
+ms.topic: limits-and-quotas
 ms.date: 01/09/2026
 ms.update-cycle: 180-days
 ms.custom:
