@@ -298,7 +298,7 @@ The `segmentation_mask` contains the following fields:
 
 | Key           | Type           |  Description |
 | ------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `data`       | `string` | A base64-encoded NumPy array containing the one-hot encoded segmentation mask. The array can include multiple instances of objects. Use `np.frombuffer` to deserialize after decoding. The array contains a three-dimensional matrix. The array's size is `1024x1024` (matching the input image dimensions), with the third dimension representing the number of input sentences provides. See the provided [sample notebooks](#learn-more-from-samples) for decoding and usage examples. |
+| `data`       | `string` | A base64-encoded NumPy array containing the one-hot encoded segmentation mask. The array can include multiple instances of objects. Use `np.frombuffer` to deserialize after decoding. The array contains a three-dimensional matrix. The array's size is `1024x1024` (matching the input image dimensions), with the third dimension representing the number of input sentences provides. See the provided [sample notebooks](#sample-notebooks) for decoding and usage examples. |
 | `shape`       | `list[int]` | A list representing the shape of the array (typically `[NUM_PROMPTS, 1024, 1024]`) |
 | `dtype`       | `string` | An instance of the [NumPy dtype class](https://numpy.org/doc/stable/reference/arrays.dtypes.html) serialized to a string. Describes the data packing in the data array. |
 
