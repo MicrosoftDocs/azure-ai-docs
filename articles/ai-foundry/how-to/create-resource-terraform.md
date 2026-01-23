@@ -29,7 +29,7 @@ You can use either the Terraform [AzAPI Provider](/azure/developer/terraform/ove
 | Create a resource group | ✅ | ✅ |
 | Create a Foundry resource | ✅ | ✅ |
 | Configure deployments | ✅ | ✅ |
-| Configure projects | ✅ | - |
+| Configure projects | ✅ | ✅ |
 | Configure a connection to knowledge and tools | ✅ | - |
 | Configure a capability host (for advanced tool configurations like [Agent standard setup](../agents/concepts/capability-hosts.md)) | ✅ | - |
 
