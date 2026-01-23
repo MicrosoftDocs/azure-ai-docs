@@ -5,7 +5,7 @@ description: Learn how to move your Text Analytics applications to use the lates
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 01/15/2026
 ms.author: lajanuar
 ---

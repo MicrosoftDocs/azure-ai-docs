@@ -4,7 +4,7 @@ titleSuffix: Microsoft Foundry
 description: Learn about the harm categories and severity levels used by the content safety system in Microsoft Foundry to detect and filter harmful content.
 manager: nitinme
 ms.service: azure-ai-foundry
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 10/30/2025
 author: ssalgadodev
 ms.author: ssalgado

@@ -6,7 +6,7 @@ author: goergenj
 ms.author: jagoerge
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: article
+ms.topic: limits-and-quotas
 ms.date: 12/08/2025
 ms.reviewer: jagoerge
 #Customer intent: As a developer, I want to learn about the quotas and limits for the Speech service in Foundry Tools.

@@ -6,7 +6,7 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: article 
+ms.topic: concept-article 
 ms.date: 11/21/2025
 ms.custom: template-concept
 manager: nitinme

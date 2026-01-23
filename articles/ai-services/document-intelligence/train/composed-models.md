@@ -5,7 +5,7 @@ description: Compose several custom models into a single model for easier data e
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/18/2025
 ms.author: lajanuar
 ---
