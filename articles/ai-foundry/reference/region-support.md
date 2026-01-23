@@ -9,7 +9,7 @@ ms.reviewer: deeikele
 ms.author: sgilley
 author: sdgilley
 monikerRange: 'foundry-classic || foundry'
-ms.custom: references_regions, build-2024, copilot-scenario-highlight
+ms.custom: references_regions, build-2024, copilot-scenario-highlight, dev-focus
 ---
 
 # Microsoft Foundry feature availability across cloud regions
