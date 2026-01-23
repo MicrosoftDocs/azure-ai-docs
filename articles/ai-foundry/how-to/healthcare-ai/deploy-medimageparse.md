@@ -38,6 +38,8 @@ MedImageParse unifies segmentation, detection, and recognition tasks through ima
 
 There should be content following this heading. The heading alone doesn't provide sufficient information for the reader.
 
+# [MedImageParse 3D](#tab/medimageparse-3d)
+
 ## MedImageParse 3D
 
 MedImageParse 3D processes entire 3D medical volumes (such as CT or MRI scans) and generates three-dimensional segmentation masks using text prompts.
