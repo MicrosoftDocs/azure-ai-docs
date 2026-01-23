@@ -6,7 +6,7 @@ author: mrbullwinkle
 ms.author: mbullwin 
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: conceptual 
+ms.topic: concept-article 
 ms.date: 01/20/2026
 manager: nitinme
 keywords: system message, system prompt, metaprompt, prompt engineering, safety, grounding
