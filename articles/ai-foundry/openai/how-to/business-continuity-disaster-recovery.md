@@ -21,7 +21,7 @@ Azure OpenAI is available in multiple regions. When you create an Azure OpenAI r
 
 It's rare, but not impossible, to encounter a network issue that hits an entire region. If your service needs to always be available, then you should design it to either failover into another region or split the workload between two or more regions. Both approaches require at least two Azure OpenAI resources in different regions. This article provides general recommendations for how to implement Business Continuity and Disaster Recovery (BCDR) for your Azure OpenAI applications.
 
-By default, the Azure OpenAI provides a [default service level agreement](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services?lang=1). While the default resiliency may be sufficient for many applications, applications requiring high degrees of resiliency and business continuity should take extra steps to further strengthen their model infrastructure.
+By default, the Azure OpenAI provides a [default service level agreement](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services?lang=1). While the default reliability may be sufficient for many applications, applications requiring high degrees of business continuity should take extra steps to further strengthen their model infrastructure.
 
 ## Standard Deployments
 

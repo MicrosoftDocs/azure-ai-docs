@@ -60,7 +60,7 @@ The following guidelines can help you understand and improve the performance of 
    * The dimensions of the image must be greater than 50 x 50 pixels
 For information see [Image requirements](/azure/ai-services/computer-vision/overview-image-analysis#image-requirements).
 
-* Although Image Analysis is resilient, factors such as resolution, light exposure, contrast, and image quality may affect the accuracy of your results. Refer to the product specifications and test Azure Vision on your images to validate the fit for your situation.
+* Although Image Analysis is robust, factors such as resolution, light exposure, contrast, and image quality may affect the accuracy of your results. Refer to the product specifications and test Azure Vision on your images to validate the fit for your situation.
 
 * Before a large-scale deployment or rollout of any Image Analysis system, system owners should conduct an evaluation phase in the context where the system will be used, and with the people who will interact with the system. This will ensure system accuracy and will help you to take actions to improve system accuracy if applicable.
 
