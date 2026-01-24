@@ -60,7 +60,7 @@ Before migrating to Microsoft Foundry, export all custom projects you want to tr
 1. Select the Azure Language resource containing the project you want to export.
 1. Navigate to **Custom Question Answering**.
 1. On the **Projects** page, select the project to export.
-1. Choose the export format (**Excel** or **TSV**). The file is exported as a `.zip` file containing your project contents.
+1. Choose the export format (**Excel** or **TSV**). The file is exported as a **`.zip`** file containing your project contents.
 
 ### Export a Conversational Language Understanding, Custom Named Entity Recognition, Custom Text Classification, or Orchestration Workflow project
 
