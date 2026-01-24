@@ -4,7 +4,7 @@ description: Learn how to secure Azure Translator, with best practices for prote
 author: laujan
 ms.author: lajanuar
 ms.service: azure-ai-translator
-ms.topic: conceptual
+ms.topic: best-practice
 ms.custom: horz-security
 ms.date: 11/18/2025
 ---
