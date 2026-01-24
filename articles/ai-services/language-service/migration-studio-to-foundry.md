@@ -10,7 +10,7 @@ ms.date: 01/20/2026
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD025 -->
-# Migrate from Azure Language Studio to Microsoft Foundry
+# Migrate from Language Studio to Microsoft Foundry
 
 Azure Language Studio retires on February 16, 2026. The service is no longer available after this date. All existing capabilities, along with new feature enhancements, are fully available in Microsoft Foundry. This guide provides step-by-step migration instructions to ensure uninterrupted access to Azure AI Language features and seamless project continuity within the Foundry environment.
 
@@ -66,13 +66,13 @@ Before migrating to Microsoft Foundry, export all custom projects you want to tr
 
 1. Sign in to [Language Studio](https://language.azure.com/).
 1. Select the Azure Language resource containing your CLU project.
-1. Navigate to your **Conversational Language Understanding** project.
+1. Navigate to your project.
 1. On the project home page, select your project from the right page ribbon area.
-1. Select **Download config file** to download the project as a `config.json` file.
+1. Select **Download config file** to download the project as a **`config.json`** file.
 
 ## Step 2: Set up your Foundry environment
 
-Before migrating your Azure AI Language projects to Microsoft Foundry, you need to complete several configuration tasks:
+Before migrating your Azure Language projects to Microsoft Foundry, you need to complete several configuration tasks:
 
 * **Configure Azure resources**. Create the required Foundry or Language resources in the Azure portal.
 * **Establish access control**. Assign the appropriate role-based access control (RBAC) permissions to your resources.
