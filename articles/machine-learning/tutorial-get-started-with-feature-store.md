@@ -16,14 +16,16 @@ ms.custom:
   - ignite-2023
   - update-code2
   - sfi-image-nochange
-#Customer intent: As a data scientist, I want to learn about the managed feature store so I can build and deploy a model with Azure Machine Learning by using Python or Python and CLI in a Jupyter Notebook.
+#Customer intent: As a data scientist, I want to learn about the managed feature store so I can build and deploy a model with Azure Machine Learning by using Python software development kits (SDKs) or Python and CLI in a notebook.
 ---
 
 # Managed feature store tutorial 1: Develop and register a feature set
 
-In this tutorial series, you learn how to use the managed feature store to discover, create, and operationalize Azure Machine Learning features. Features seamlessly integrate the prototyping, training, and operationalization phases of the machine learning lifecycle. In the prototyping phase, you experiment with various features, and in the operationalization phase, you deploy models that use inference steps to look up feature data. Features serve as the connective tissue in the lifecycle.
+In this tutorial series, you learn how to use the managed feature store to discover, create, and operationalize Azure Machine Learning features. Features seamlessly integrate the prototyping, training, and operationalization phases of the machine learning lifecycle.
 
-You use an Azure Machine Learning project workspace to train inference models by using features from feature stores. Many project workspaces can share and reuse the same feature store. For more information about managed feature store, see [What is managed feature store?](concept-what-is-managed-feature-store.md) and [Understand top-level entities in managed feature store](concept-top-level-entities-in-managed-feature-store.md).
+In the prototyping phase, you experiment with various features, and in the operationalization phase, you deploy models that use inference steps to look up feature data. Features serve as the connective tissue in the lifecycle.
+
+You use an Azure Machine Learning project workspace to train inference models by using features from feature stores. Many project workspaces can share and reuse the same feature store. For more information about managed feature store, see [What is managed feature store](concept-what-is-managed-feature-store.md) and [Understand top-level entities in managed feature store](concept-top-level-entities-in-managed-feature-store.md).
 
 ## Prerequisites
 
@@ -80,11 +82,6 @@ This first tutorial walks through creating a feature set specification with cust
 > * Generate a sample training DataFrame by using the features you created.
 > * Enable offline materialization on the feature sets, and backfill the feature data.
 
-  > [!NOTE]
-  > Materialization computes the feature values for a feature window and stores those values in a materialization store. All feature queries can then use those values from the materialization store.
-  > 
-  > Without materialization, a feature set query applies transformations to the source on the fly and computes the features before returning the values. This process works well for the prototyping phase. However, for training and inference operations in a production environment, materializing the features provides greater reliability and availability.
-
 <a name="prepare-the-notebook-environment"></a>
 ## Clone the notebook
 
@@ -94,24 +91,23 @@ This first tutorial walks through creating a feature set specification with cust
    :::image type="content" source="media/tutorial-get-started-with-feature-store/clone-featurestore-example-notebooks.png" alt-text="Screenshot that shows selection of the sample directory in Azure Machine Learning studio.":::
 
 1. On the **Select target directory** pane, make sure **Users** > **\<your_username>** > **featurestore_sample** appears, and select **Clone**. The **featurestore_sample** downloads to your user directory.
-1. Download the *conda.yml* file so you can later upload it to the server environment.
-   1. In your cloned notebook on the **Files** tab of the **Notebook** page, navigate to **Users** > **\<your_username>** > **featurestore_sample** > **project**, and expand **env**.
-   1. Right-click the **conda.yml** file and select **Download** to download the file to your computer.
+1. In your cloned notebook on the **Files** tab of the **Notebook** page, expand **Users** > **\<your_username>** > **featurestore_sample** > **project** > **env**.
+1. Right-click the **conda.yml** file and select **Download** to download it to your computer, so you can later upload it to the server environment.
 
-      :::image type="content" source="media/tutorial-get-started-with-feature-store/download-conda-file.png" alt-text="Screenshot that shows selection of the Conda YAML file in Azure Machine Learning studio.":::
+   :::image type="content" source="media/tutorial-get-started-with-feature-store/download-conda-file.png" alt-text="Screenshot that shows selection of the Conda YAML file in Azure Machine Learning studio.":::
 
 ## Prepare and start the notebook
 
-1. On the left pane in the **Files** tab, navigate to **featurestore_sample** > **notebooks** > **sdk_and_cli** or **sdk_only**, depending on the track you want to run.
-1. Select the first chapter of the tutorial to open it.
+1. On the left pane in the **Files** tab, expand **featurestore_sample** > **notebooks** > **sdk_and_cli** or **sdk_only**, depending on the track you want to run.
+1. Open the first chapter of the tutorial by selecting it.
 1. In the upper right area of the **Notebook** page, select the dropdown arrow next to **Compute**, and select **Serverless Spark Compute - Available**. It might take a minute or two to attach the compute.
 1. On the top bar above the notebook file, select **Configure session**.
 
    :::image type="content" source="media/tutorial-get-started-with-feature-store/open-configure-session.png" lightbox="media/tutorial-get-started-with-feature-store/open-configure-session.png" alt-text="Screenshot that shows selections for configuring a session for a notebook.":::
 
-1. On the **Configure session** pane, select **Python packages** on the left.
+1. On the **Configure session** screen, select **Python packages** on the left pane.
 1. Select **Upload conda file**, and under **Select conda file**, browse to and open the *conda.yml* file you downloaded.
-1. Optionally, you can select **Settings** on the left and increase the **Session timeout** length to help prevent the serverless Spark startup time from timing out.
+1. Optionally, select **Settings** in the left pane and increase the **Session timeout** length to help prevent the serverless Spark startup time from timing out.
 1. Select **Apply**.
 
    :::image type="content" source="media/tutorial-get-started-with-feature-store/upload-conda-file.png" alt-text="Screenshot that shows the Conda file upload.":::
@@ -151,13 +147,13 @@ This first tutorial walks through creating a feature set specification with cust
    [!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/1.Develop-feature-set-and-register.ipynb?name=fs-params)]
 
 1. Create the feature store.
-
+   
    #### [SDK-only](#tab/SDK-track)
    [!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/1.Develop-feature-set-and-register.ipynb?name=create-fs)]
-
+   
    #### [SDK + CLI](#tab/SDK-and-CLI-track)
    [!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_and_cli/1.Develop-feature-set-and-register.ipynb?name=create-fs-cli)]
-
+   
    ---
 
 1. Initialize a feature store core SDK client for Azure Machine Learning. The client is used to develop and consume features.
@@ -170,7 +166,139 @@ This first tutorial walks through creating a feature set specification with cust
 
    For more information about access control, see [Manage access control for managed feature store](./how-to-setup-access-control-feature-store.md).
 
-### Offline_store and materialization_identity
+## Prototype and develop a feature set
+
+This notebook uses sample data hosted in a publicly accessible blob container, which you can read into Spark only through a `wasbs` driver. When you create feature sets by using your own source data, host them in an Azure Data Lake Storage account, and use an `abfss` driver in the data path.
+
+### Explore the transactions source data
+
+Build a feature set named `transactions` that has rolling window aggregate-based features.
+   [!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/1.Develop-feature-set-and-register.ipynb?name=explore-txn-src-data)]
+
+### Locally develop the feature set
+
+A feature set specification is a self-contained definition of a feature set that you can locally develop and test. Create the following rolling window aggregate features:
+
+* `transactions three-day count`
+* `transactions amount three-day avg`
+* `transactions amount three-day sum`
+* `transactions seven-day count`
+* `transactions amount seven-day avg`
+* `transactions amount seven-day sum`
+
+[!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/1.Develop-feature-set-and-register.ipynb?name=develop-txn-fset-locally)]
+
+Review the feature transformation code file: *featurestore/featuresets/transactions/transformation_code/transaction_transform.py*. Note the rolling aggregation defined for the features. This file is a Spark transformer.
+
+For more information about the feature set and transformations, see [What is managed feature store?](./concept-what-is-managed-feature-store.md)
+
+### Export as a feature set specification
+
+To register the feature set specification with the feature store, you must save that specification in a specific format. To see the *featurestore/featuresets/accounts/spec/FeaturesetSpec.yaml* specification, open the generated `transactions` feature set specification from the file tree.
+
+The specification contains these elements:
+
+* `source`: A reference to a storage resource. In this case, it's a parquet file in a blob storage resource.
+* `features`: A list of features and their datatypes. If you provide transformation code, the code must return a DataFrame that maps to the features and datatypes.
+* `index_columns`: The join keys required to access values from the feature set.
+
+Another benefit of persisting the feature set specification is that the specification supports source control.
+
+[!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/1.Develop-feature-set-and-register.ipynb?name=dump-transactions-fs-spec)]
+
+## Register a feature store entity
+
+Entities help enforce the best practice of using the same join key definition across feature sets that use the same logical entities. Examples of entities include `accounts` and `customers`. Entities are typically created once and then reused across feature sets. To learn more, see [Understand top-level entities in managed feature store](./concept-top-level-entities-in-managed-feature-store.md).
+
+#### [SDK + CLI](#tab/SDK-and-CLI-track)
+
+Create an `account` entity that has the join key `accountID` of type `string`. Register the `account` entity with the feature store.
+
+[!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_and_cli/1.Develop-feature-set-and-register.ipynb?name=register-acct-entity-cli)]
+
+#### [SDK-only](#tab/SDK-track)
+
+`MLClient` is used to create, read, update, and delete a feature store asset. This notebook code cell sample searches for the feature store you created in an earlier step. You can't reuse the same `ml_client` value that you used earlier, because that value is scoped at the resource group level. Proper scoping is essential for feature store creation.
+
+1. Initialize the feature store CRUD client. In the following code sample, the client is scoped at feature store level.
+   [!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/1.Develop-feature-set-and-register.ipynb?name=init-fset-crud-client)]
+
+1. Create an `account` entity that has the join key `accountID` of type `string`. Register the `account` entity with the feature store.
+   [!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/1.Develop-feature-set-and-register.ipynb?name=register-acct-entity)]
+
+---
+
+## Register the feature set with the feature store
+
+The following code registers a feature set asset with the feature store. You can then reuse that asset and easily share it. Registration of a feature set asset offers managed capabilities, including versioning and materialization. Later tutorials in this series cover managed capabilities.
+
+#### [SDK + CLI](#tab/SDK-and-CLI-track)
+
+[!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_and_cli/1.Develop-feature-set-and-register.ipynb?name=register-txn-fset-cli)]
+
+#### [SDK-only](#tab/SDK-track)
+
+[!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/1.Develop-feature-set-and-register.ipynb?name=register-txn-fset)]
+
+---
+
+## Explore the feature store UI
+
+Feature store asset creation and updates can happen only through the SDK and CLI. You can use the UI to search or browse through the feature store.
+
+1. Open the [Azure Machine Learning global landing page](https://ml.azure.com/home).
+1. Select **Feature stores** on the left pane.
+1. From the list of accessible feature stores, select the feature store you created earlier in this tutorial.
+
+## Assign the Storage Blob Data Reader role
+
+The **Storage Blob Data Reader** role must be assigned to your user account to ensure that the user account can read materialized feature data from the offline materialization store.
+
+Get information about the offline materialization store from the Feature Store **Overview** page. The values for the storage account subscription ID, storage account resource group name, and storage account name for offline materialization store are located in the **Offline materialization store** card.
+
+   :::image type="content" source="media/tutorial-get-started-with-feature-store/offline-store-information.png" lightbox="media/tutorial-get-started-with-feature-store/offline-store-information.png" alt-text="Screenshot that shows offline store account information on feature store Overview page.":::
+
+#### [SDK + CLI](#tab/SDK-and-CLI-track)
+
+Run the following code cell for role assignment. The permissions might need some time to propagate.
+[!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_and_cli/1.Develop-feature-set-and-register.ipynb?name=grant-rbac-to-user-identity-cli)]
+
+#### [SDK-only](#tab/SDK-track)
+
+1. Get your Microsoft Entra object ID value from the Azure portal as described in [Find the user object ID](/partner-center/find-ids-and-domain-names#find-the-user-object-id).
+
+1. Run the following code cell for role assignment. The permissions might need some time to propagate.
+   [!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/1.Develop-feature-set-and-register.ipynb?name=grant-rbac-to-user-identity)]
+
+---
+
+For more information about access control, see [Manage access control for managed feature store](how-to-setup-access-control-feature-store.md).
+
+## Generate a training data DataFrame
+
+Generate a training data DataFrame by using the registered feature set
+
+1. Load observation data.
+
+   Observation data typically involves the core data used for training and inferencing. This data joins with the feature data to create the full training data resource.
+
+   Observation data is data captured during the event itself. The following data has core transaction data, including transaction ID, account ID, and transaction amount values. Because you use the data for training, it also has an appended target variable `is_fraud`.
+
+   [!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/1.Develop-feature-set-and-register.ipynb?name=load-obs-data)]
+
+1. Get the registered feature set and list its features.
+   [!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/1.Develop-feature-set-and-register.ipynb?name=get-txn-fset)]
+
+   [!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/1.Develop-feature-set-and-register.ipynb?name=print-txn-fset-sample-values)]
+
+1. Select the features to become part of the training data, and use the feature store SDK to generate the training data itself. A point-in-time join appends the features to the training data.
+   [!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/1.Develop-feature-set-and-register.ipynb?name=select-features-and-gen-training-data)]
+
+## Enable offline materialization
+
+Materialization computes the feature values for a feature window and stores those values in a materialization store. All feature queries can then use those values from the materialization store.
+
+Without materialization, a feature set query applies transformations to the source on the fly and computes the features before returning the values. This process works well for the prototyping phase. However, for training and inference operations in a production environment, materializing the features provides greater reliability and availability.
 
 The default blob store for the feature store is an Azure Data Lake Storage (ADLS) container. A feature store is always created with an offline materialization store and a user-assigned managed identity (UAI).
 
@@ -262,137 +390,7 @@ The following code sample shows the creation of a feature store with user-define
    print(fs_poller.result()) 
 ```
 
-## Prototype and develop a feature set
-
-This notebook uses sample data hosted in a publicly accessible blob container, which you can read into Spark only through a `wasbs` driver. When you create feature sets by using your own source data, host them in an Azure Data Lake Storage account, and use an `abfss` driver in the data path.
-
-### Explore the transactions source data
-
-Build a feature set named `transactions` that has rolling window aggregate-based features.
-   [!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/1.Develop-feature-set-and-register.ipynb?name=explore-txn-src-data)]
-
-### Locally develop the feature set
-
-A feature set specification is a self-contained definition of a feature set that you can locally develop and test. Create the following rolling window aggregate features:
-
-* `transactions three-day count`
-* `transactions amount three-day avg`
-* `transactions amount three-day sum`
-* `transactions seven-day count`
-* `transactions amount seven-day avg`
-* `transactions amount seven-day sum`
-
-[!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/1.Develop-feature-set-and-register.ipynb?name=develop-txn-fset-locally)]
-
-Review the feature transformation code file: *featurestore/featuresets/transactions/transformation_code/transaction_transform.py*. Note the rolling aggregation defined for the features. This file is a Spark transformer.
-
-For more information about the feature set and transformations, see [What is managed feature store?](./concept-what-is-managed-feature-store.md)
-
-### Export as a feature set specification
-
-To register the feature set specification with the feature store, you must save that specification in a specific format. Open the generated `transactions` feature set specification from the file tree to see the *featurestore/featuresets/accounts/spec/FeaturesetSpec.yaml* specification.
-
-The specification contains these elements:
-
-* `source`: A reference to a storage resource. In this case, it's a parquet file in a blob storage resource.
-* `features`: A list of features and their datatypes. If you provide transformation code, the code must return a DataFrame that maps to the features and datatypes.
-* `index_columns`: The join keys required to access values from the feature set.
-
-Another benefit of persisting the feature set specification is that the specification supports source control.
-
-[!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/1.Develop-feature-set-and-register.ipynb?name=dump-transactions-fs-spec)]
-
-## Register a feature store entity
-
-Entities help enforce the best practice of using the same join key definition across feature sets that use the same logical entities. Examples of entities include `accounts` and `customers`. Entities are typically created once and then reused across feature sets. To learn more, see [Understand top-level entities in managed feature store](./concept-top-level-entities-in-managed-feature-store.md).
-
-#### [SDK + CLI](#tab/SDK-and-CLI-track)
-
-Create an `account` entity that has the join key `accountID` of type `string`. Register the `account` entity with the feature store.
-
-[!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_and_cli/1.Develop-feature-set-and-register.ipynb?name=register-acct-entity-cli)]
-
-#### [SDK-only](#tab/SDK-track)
-
-`MLClient` is used to create, read, update, and delete a feature store asset. This notebook code cell sample searches for the feature store you created in an earlier step. You can't reuse the same `ml_client` value that you used earlier, because that value is scoped at the resource group level. Proper scoping is essential for feature store creation.
-
-1. Initialize the feature store CRUD client. In the following code sample, the client is scoped at feature store level.
-   [!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/1.Develop-feature-set-and-register.ipynb?name=init-fset-crud-client)]
-
-1. Create an `account` entity that has the join key `accountID` of type `string`. Register the `account` entity with the feature store.
-   [!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/1.Develop-feature-set-and-register.ipynb?name=register-acct-entity)]
-
----
-
-## Register the feature set with the feature store
-
-The following code registers a feature set asset with the feature store. You can then reuse that asset and easily share it. Registration of a feature set asset offers managed capabilities, including versioning and materialization. Later tutorials in this series cover managed capabilities.
-
-#### [SDK + CLI](#tab/SDK-and-CLI-track)
-
-[!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_and_cli/1.Develop-feature-set-and-register.ipynb?name=register-txn-fset-cli)]
-
-#### [SDK-only](#tab/SDK-track)
-
-[!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/1.Develop-feature-set-and-register.ipynb?name=register-txn-fset)]
-
----
-
-## Explore the feature store UI
-
-Feature store asset creation and updates can happen only through the SDK and CLI. You can use the UI to search or browse through the feature store.
-
-1. Open the [Azure Machine Learning global landing page](https://ml.azure.com/home).
-1. Select **Feature stores** on the left pane.
-1. From the list of accessible feature stores, select the feature store you created earlier in this tutorial.
-
-## Grant your user account the Storage Blob Data Reader role
-
-The **Storage Blob Data Reader** role must be assigned to your user account to ensure that the user account can read materialized feature data from the offline materialization store.
-
-Get information about the offline materialization store from the Feature Store **Overview** page. The values for the storage account subscription ID, storage account resource group name, and storage account name for offline materialization store are located in the **Offline materialization store** card.
-
-   :::image type="content" source="media/tutorial-get-started-with-feature-store/offline-store-information.png" lightbox="media/tutorial-get-started-with-feature-store/offline-store-information.png" alt-text="Screenshot that shows offline store account information on feature store Overview page.":::
-
-#### [SDK + CLI](#tab/SDK-and-CLI-track)
-
-Run the following code cell for role assignment. The permissions might need some time to propagate.
-[!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_and_cli/1.Develop-feature-set-and-register.ipynb?name=grant-rbac-to-user-identity-cli)]
-
-#### [SDK-only](#tab/SDK-track)
-
-1. Get your Microsoft Entra object ID value from the Azure portal as described in [Find the user object ID](/partner-center/find-ids-and-domain-names#find-the-user-object-id).
-
-1. Run the following code cell for role assignment. The permissions might need some time to propagate.
-   [!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/1.Develop-feature-set-and-register.ipynb?name=grant-rbac-to-user-identity)]
-
----
-
-For more information about access control, see [Manage access control for managed feature store](how-to-setup-access-control-feature-store.md).
-
-## Generate a training data DataFrame
-
-Generate a training data DataFrame by using the registered feature set
-
-1. Load observation data.
-
-   Observation data typically involves the core data used for training and inferencing. This data joins with the feature data to create the full training data resource.
-
-   Observation data is data captured during the event itself. The following data has core transaction data, including transaction ID, account ID, and transaction amount values. Because you use the data for training, it also has an appended target variable `is_fraud`.
-
-   [!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/1.Develop-feature-set-and-register.ipynb?name=load-obs-data)]
-
-1. Get the registered feature set and list its features.
-   [!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/1.Develop-feature-set-and-register.ipynb?name=get-txn-fset)]
-
-   [!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/1.Develop-feature-set-and-register.ipynb?name=print-txn-fset-sample-values)]
-
-1. Select the features to become part of the training data, and use the feature store SDK to generate the training data itself. A point-in-time join appends the features to the training data.
-   [!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/1.Develop-feature-set-and-register.ipynb?name=select-features-and-gen-training-data)]
-
-## Enable offline materialization
-
-After you enable feature set materialization on the transactions feature set, you can perform a backfill. You can also schedule recurrent materialization jobs. For more information, see the third tutorial in this series, [Enable recurrent materialization and run batch inference](tutorial-enable-recurrent-materialization-run-batch-inference.md).
+After you enable feature set materialization on the transactions feature set, you can perform a backfill. You can also schedule recurrent materialization jobs. For more information, see the third tutorial in this series, [Enable recurrent materialization & run batch inference](tutorial-enable-recurrent-materialization-run-batch-inference.md).
 
 ### Set spark.sql.shuffle.partitions in the YAML file
 
@@ -466,7 +464,7 @@ Data materialization status can be:
 
 A *data interval* represents a contiguous portion of data with same data materialization status. For example, the earlier snapshot has 16 data intervals in the offline materialization store. The data can have a maximum of 2,000 data intervals. If your data contains more than 2,000 data intervals, create a new feature set version.
 
-During backfill, a new materialization job is submitted for each data interval that falls within the defined feature window. If a materialization job is pending, or is running for a data interval that hasn't yet been backfilled, a new job isn't submitted for that data interval.
+During backfill, a new materialization job is submitted for each data interval that falls within the defined feature window. If a materialization job is pending or running for a data interval that isn't backfilled, a new job isn't submitted for that data interval.
 
 You can retry a failed materialization job.
 
