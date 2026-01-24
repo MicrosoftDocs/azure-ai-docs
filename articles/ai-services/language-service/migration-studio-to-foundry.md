@@ -178,7 +178,7 @@ The following table lists the pretrained (prebuilt) capabilities available in Mi
 |**Text Analytics for health (Foundry classic)**|On the Playground tab, you can upload a file or type text directly into the sample window. A storage account isn't required. For more information, *see* [**Text Analytics for health in Foundry**](text-analytics-for-health/quickstart.md).|Available in all [supported Azure regions](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=cognitive-services).|
 
 > [!NOTE]
-> The following Azure AI Language features aren't available in the Microsoft Foundry portal. To use these capabilities, call the [**Azure Language REST API**](rest/api/language/) directly:
+> The following Azure AI Language features aren't available in the Microsoft Foundry portal. To use these capabilities, call the [**Azure Language REST API**](/rest/api/language/) directly:
 >
 > * [**Custom Text Classification**](/azure/ai-services/language-service/custom-text-classification/quickstart?tabs=multi-classification). For regional availability, *see* [Region support for Custom Text Classification](concepts/regional-support.md).
 > * [**Entity linking**](/azure/ai-services/language-service/entity-linking/quickstart?tabs=windows&pivots=rest-api). Available in all [supported Azure regions](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=cognitive-services).
