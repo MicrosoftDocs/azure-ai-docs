@@ -36,13 +36,13 @@ The migration process consists of the following steps:
 
 > [!NOTE]
 >
-> * If you already have an Azure Language resource, you can continue to use your existing Language resources within the Microsoft Foundry portal **via a Foundry Hub** and **Foundry Hub project**. For more information, *see* [Which type of project do I need?](/azure/ai-foundry/what-is-foundry?view=foundry-classic&preserve-view=true#which-type-of-project-do-i-need).
+> * If you already have an Azure Language resource, you can continue to use your existing Language resources within the Microsoft Foundry portal via a **Foundry Hub** and **Hub project**. For more information, *see* [Which type of project do I need?](/azure/ai-foundry/what-is-foundry?view=foundry-classic&preserve-view=true#which-type-of-project-do-i-need).
 >
 > * If you plan to use a Foundry resource, you can create a new Foundry resource directly in the Microsoft Foundry portal when creating a new project. For more information, *see* [Create a Foundry project](/azure/ai-foundry/how-to/create-projects?view=foundry-classic&preserve-view=true&tabs=foundry).
 >
-> * In the Foundry, a **fine-tuning task** serves as your workspace when customizing your custom models. Previously, a **fine-tuning task** was referred to as a project. You might encounter both terms used interchangeably in older documentation.
+> * In the Foundry, a **fine-tuning task** serves as your workspace when customizing your custom models. Previously, a **fine-tuning task** was referred to as a project. You might encounter both terms used interchangeably in some documentation.
 
-Before you begin the migration process, ensure that the following resources and permissions are in place to complete the steps in this guide:
+**Before you begin the migration process, ensure that the following resources and permissions are in place to complete the steps in this guide:**
 
 * **Azure subscription**. If you don't have one, you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
@@ -78,7 +78,7 @@ Before migrating your Azure Language projects to Microsoft Foundry, you need to 
 * **Establish access control**. Assign the appropriate role-based access control (RBAC) permissions to your resources.
 * **Verify region availability**. Confirm that your target capabilities are supported in your chosen Azure region.
 
-The following sections outline the prerequisites and permissions for both custom model training (fine-tuning) and pretrained model access.
+The following sections outline the necessary prerequisites and permissions for both custom model training (fine-tuning) and pretrained model access.
 
 ### Custom model training (fine-tuning) in Microsoft Foundry
 
@@ -178,10 +178,10 @@ The following table lists the pretrained (prebuilt) capabilities available in Mi
 |**Text Analytics for health (Foundry classic)**|On the Playground tab, you can upload a file or type text directly into the sample window. A storage account isn't required. For more information, *see* [**Text Analytics for health in Foundry**](text-analytics-for-health/quickstart.md).|Available in all [supported Azure regions](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=cognitive-services).|
 
 > [!NOTE]
-> The following Azure AI Language features aren't available in the Microsoft Foundry portal. To use these capabilities, call the Azure AI Language REST API directly:
+> The following Azure AI Language features aren't available in the Microsoft Foundry portal. To use these capabilities, call the [**Azure Language REST API**](rest/api/language/) directly:
 >
-> * **Custom Text Classification**. For regional availability, *see* [Region support for Custom Text Classification](concepts/regional-support.md).
-> * **Entity linking**. Available in all [supported Azure regions](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=cognitive-services).
+> * [**Custom Text Classification**](/azure/ai-services/language-service/custom-text-classification/quickstart?tabs=multi-classification). For regional availability, *see* [Region support for Custom Text Classification](concepts/regional-support.md).
+> * [**Entity linking**](/azure/ai-services/language-service/entity-linking/quickstart?tabs=windows&pivots=rest-api). Available in all [supported Azure regions](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=cognitive-services).
 
 ## Step 3: Import your projects into Foundry
 
@@ -222,7 +222,7 @@ After adding your source files, you can train and deploy the `CQA` project using
 1. Drag and drop or browse to the `config.json` file you exported from Language Studio.
 1. Select **Create** to import the project.
 
-After importing, you can train and deploy the CLU project using the **Getting started** workflow in Foundry.
+After importing, you can train and deploy your `CLU` project using the **Getting started** workflow in Foundry.
 
 ### Import an Orchestration Workflow project
 
@@ -261,7 +261,7 @@ If you encounter issues connecting your Language resource to Foundry:
 If project import fails:
 
 * Verify the export file format matches the expected import format.
-* Check for any data corruption in the exported `.zip` file.
+* Check for any data corruption in the exported `.zip` or `config,json` file.
 * Ensure the project name doesn't conflict with existing projects.
 
 ## Related content
