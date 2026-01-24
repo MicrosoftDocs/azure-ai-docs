@@ -30,7 +30,7 @@ Offline evaluation involves testing AI models and agents by using test datasets 
 
 This [GitHub Action](https://github.com/microsoft/ai-agent-evals) enables offline evaluation of [Microsoft Foundry Agents](../agents/overview.md) within your CI/CD pipelines. It's designed to streamline the offline evaluation process, so you can identify potential problems and make improvements before releasing an update to production.
 
-To use this action, provide a data set with test queries and a list of evaluators. This action invokes your agents with the queries, collects the performance data including latency and token counts, runs the evaluations, and generates a summary report.
+To use this action, provide a data set with test queries and a list of evaluators. This action invokes your agents with the queries, runs the evaluations, and generates a summary report.
 
 ::: moniker-end
 
