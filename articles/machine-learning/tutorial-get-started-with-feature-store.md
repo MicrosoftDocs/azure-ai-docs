@@ -147,14 +147,16 @@ This first tutorial walks through creating a feature set specification with cust
    [!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/1.Develop-feature-set-and-register.ipynb?name=fs-params)]
 
 1. Create the feature store.
-   
-   #### [SDK-only](#tab/SDK-track)
-   [!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/1.Develop-feature-set-and-register.ipynb?name=create-fs)]
-   
-   #### [SDK + CLI](#tab/SDK-and-CLI-track)
+
+   ### [SDK and CLI track](#tab/SDK-and-CLI-track)
+
    [!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_and_cli/1.Develop-feature-set-and-register.ipynb?name=create-fs-cli)]
-   
-   ---
+
+   ### [SDK track](#tab/SDK-track)
+
+   [!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/1.Develop-feature-set-and-register.ipynb?name=create-fs)]
+
+ 
 
 1. Initialize a feature store core SDK client for Azure Machine Learning. The client is used to develop and consume features.
    [!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/1.Develop-feature-set-and-register.ipynb?name=init-fs-core-sdk)]
@@ -464,7 +466,7 @@ Data materialization status can be:
 
 A *data interval* represents a contiguous portion of data with same data materialization status. For example, the earlier snapshot has 16 data intervals in the offline materialization store. The data can have a maximum of 2,000 data intervals. If your data contains more than 2,000 data intervals, create a new feature set version.
 
-During backfill, a new materialization job is submitted for each data interval that falls within the defined feature window. If a materialization job is pending or running for a data interval that isn't backfilled, a new job isn't submitted for that data interval.
+During backfill, a new materialization job is submitted for each data interval that falls within the defined feature window. If a materialization job is pending or running for a data interval that isn't backfilled, no new job is submitted for that data interval.
 
 You can retry a failed materialization job.
 
