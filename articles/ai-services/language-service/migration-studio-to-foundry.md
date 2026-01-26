@@ -6,13 +6,21 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: upgrade-and-migration-article
-ms.date: 01/20/2026
+ms.date: 01/26/2026
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD025 -->
 # Migrate from Language Studio to Microsoft Foundry
 
 Azure Language Studio retires on February 16, 2026 and is no longer available after this date. All existing capabilities, along with new feature enhancements, are fully available in Microsoft Foundry. This guide provides step-by-step migration instructions to ensure uninterrupted access to Azure AI Language features and seamless project continuity within the Foundry environment.
+
+> [!IMPORTANT]
+>
+> * **Post-retirement project recreation**. After the February 16, 2026 retirement date, Language Studio export functionality is no longer available. However, you can recreate your custom projects directly in Microsoft Foundry.
+>
+> * **Existing Azure Language resources**. You can access and continue to use your current Azure Language resources within the Microsoft Foundry portal by creating a **Foundry hub** and an associated **hub-based project**. For more information, *see* [Create a hub in the Azure portal](/azure/ai-foundry/how-to/create-azure-ai-resource?view=foundry-classic&preserve-view=true&tabs=portal#create-a-hub-in-the-azure-portal).
+>
+> * **Existing Foundry resource-based projects**. You can access your current **Foundry projects** directly in the Microsoft Foundry portal. Alternatively, create a new project and transfer your project assets to the new environment. For more information, *see* [Create a Foundry project](/azure/ai-foundry/how-to/create-projects?view=foundry-classic&preserve-view=true&tabs=foundry).
 
 ## Why migrate to Microsoft Foundry?
 
@@ -35,12 +43,7 @@ The migration process consists of the following steps:
 ## Prerequisites
 
 > [!NOTE]
->
-> * If you already have an Azure Language resource, you can continue to use your existing Language resources within the Microsoft Foundry portal via a **Foundry Hub** and **Hub project**. For more information, *see* [Which type of project do I need?](/azure/ai-foundry/what-is-foundry?view=foundry-classic&preserve-view=true#which-type-of-project-do-i-need).
->
-> * If you plan to use a Foundry resource, you can create a new Foundry resource directly in the Microsoft Foundry portal when creating a new project. For more information, *see* [Create a Foundry project](/azure/ai-foundry/how-to/create-projects?view=foundry-classic&preserve-view=true&tabs=foundry).
->
-> * In the Foundry, a **fine-tuning task** serves as your workspace when customizing your custom models. Previously, a **fine-tuning task** was referred to as a project. You might encounter both terms used interchangeably in some documentation.
+> In the Foundry, a **fine-tuning task** serves as your workspace when customizing your custom models. Previously, a **fine-tuning task** was referred to as a project. You might encounter both terms used interchangeably in some documentation.
 
 **Before you begin the migration process, ensure that the following resources and permissions are in place to complete the steps in this guide:**
 
