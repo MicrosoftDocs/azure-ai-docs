@@ -1,9 +1,7 @@
 ---
 title: About the Voice live SDK - Speech service
 titleSuffix: Foundry Tools
-description: The Voice live software development kit (SDK) exposes Azure Voice live
-  capabilities, making it easier to build low-latency speech-to-speech voice
-  agents.
+description: The Voice live software development kit (SDK) exposes Azure Voice live capabilities, making it easier to build low-latency speech-to-speech voice agents.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
@@ -16,7 +14,7 @@ ai-usage: ai-assisted
 
 # What is the Voice live SDK?
 
-The Voice live software development kit (SDK) exposes Azure Voice live, a managed service that enables low-latency, high-quality speech-to-speech interactions for voice agents. The API consolidates speech recognition, generative AI, and text-to-speech into a single, unified interface, so you can build end-to-end voice experiences with less integration work.
+The Voice live software development kit (SDK) exposes [Azure Voice live](/azure/ai-services/speech-service/voice-live), a managed service that enables low-latency, high-quality speech-to-speech interactions for voice agents. Voice live consolidates speech recognition, generative AI, and text-to-speech into a single, unified interface, so you can build end-to-end voice experiences with less integration work.
 
 Use the Voice live SDK to:
 
