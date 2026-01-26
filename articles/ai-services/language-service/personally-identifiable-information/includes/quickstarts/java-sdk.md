@@ -9,9 +9,10 @@ ms.custom:
   - language-service-pii
   - ignite-2024
   - build-2025
+ai-usage: ai-assisted
 ---
 <!-- markdownlint-disable MD041 -->
-[Reference documentation](/java/api/overview/azure/ai-textanalytics-readme?preserve-view=true&view=azure-java-stable) | [More samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/textanalytics/azure-ai-textanalytics/src/samples) | [Package (Maven)](https://mvnrepository.com/artifact/com.azure/azure-ai-textanalytics/5.2.0) | [Library source code](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/textanalytics/azure-ai-textanalytics)
+[Reference documentation](/java/api/overview/azure/ai-textanalytics-readme?view=azure-java-stable&preserve-view=true) | [More samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/textanalytics/azure-ai-textanalytics/src/samples) | [Package (Maven)](https://mvnrepository.com/artifact/com.azure/azure-ai-textanalytics/5.2.0) | [Library source code](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/textanalytics/azure-ai-textanalytics)
 
 Use this quickstart to create a Personally Identifiable Information (PII) detection application with the client library for Java. In the following example, you create a Java application that can identify [recognized sensitive information](../../concepts/entity-categories.md) in text.
 
@@ -24,6 +25,10 @@ Use this quickstart to create a Personally Identifiable Information (PII) detect
 * [Java Development Kit (JDK)](https://www.oracle.com/technetwork/java/javase/downloads/index.html) with version 8 or above
 
 ## Setting up
+
+[!INCLUDE [Create an Azure resource](../../../includes/create-resource.md)]
+
+[!INCLUDE [Get your key and endpoint](../../../includes/get-key-endpoint.md)]
 
 [!INCLUDE [Create environment variables](../../../includes/environment-variables.md)]
 
@@ -58,6 +63,9 @@ public class Example {
     private static String languageEndpoint = System.getenv("LANGUAGE_ENDPOINT");
 
     public static void main(String[] args) {
+        if (languageKey == null || languageKey.isBlank() || languageEndpoint == null || languageEndpoint.isBlank()) {
+            throw new IllegalArgumentException("Missing LANGUAGE_KEY or LANGUAGE_ENDPOINT environment variables");
+        }
         TextAnalyticsClient client = authenticateClient(languageKey, languageEndpoint);
         recognizePiiEntitiesExample(client);
     }

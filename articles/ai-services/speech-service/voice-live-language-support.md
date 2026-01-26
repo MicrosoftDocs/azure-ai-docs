@@ -8,7 +8,7 @@ ms.author: pafarley
 reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.service: azure-ai-speech
-ms.topic: article
+ms.topic: concept-article
 ms.date: 10/31/2025
 ms.custom: languages
 # Customer intent: As a developer, I want to learn about which languages are supported by the Voice live API and how to configure them.

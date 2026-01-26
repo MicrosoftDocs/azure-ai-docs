@@ -5,7 +5,7 @@ description: Skillsets are used to apply AI processing to indexing pipelines in 
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 07/11/2025
 ms.update-cycle: 180-days
 ---

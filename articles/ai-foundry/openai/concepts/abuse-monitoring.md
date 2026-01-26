@@ -6,7 +6,7 @@ author: mrbullwinkle
 ms.author: mbullwin
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 12/6/2025
 ms.custom: template-concept, ignite-2024
 manager: nitinme

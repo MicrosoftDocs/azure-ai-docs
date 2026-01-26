@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-custom-vision
-ms.topic: conceptual
+ms.topic: limits-and-quotas
 ms.date: 01/22/2025
 ms.author: pafarley
 ---

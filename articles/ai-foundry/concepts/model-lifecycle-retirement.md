@@ -7,12 +7,12 @@ ai-usage: ai-assisted
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: concept-article
-ms.date: 01/13/2026
+ms.date: 01/23/2026
 ms.author: mopeakande
 manager: nitinme
 author: msakande
-ms.reviewer: kritifaujdar
-reviewer: fkriti
+ms.reviewer: rasavage
+reviewer: rsavage2
 
 #Customer intent: As a data scientist, I want to learn about the lifecycle of models that are available in the model catalog.
 ---
@@ -40,9 +40,9 @@ Models in the model catalog belong to one of these stages:
 
 Models labeled _Preview_ are experimental in nature. A model's weights, runtime, and API schema can change while the model is in preview. Models in preview aren't guaranteed to become generally available. Models in preview have a _Preview_ label next to their name in the model catalog.  
 
-### Generally available
+### Generally available (GA)
 
-This stage is the default model stage. Models that don't include a lifecycle label next to their name are generally available and suitable for use in production environments. In this stage, model weights and APIs are fixed. However, model containers or runtimes with vulnerabilities might get patched, but patches don't affect model outputs.  
+This stage is the default model stage. Models that don't include a lifecycle label next to their name are GA and suitable for use in production environments. In this stage, model weights and APIs are fixed. However, model containers or runtimes with vulnerabilities might get patched, but patches don't affect model outputs.  
  
 ### Legacy
 
@@ -145,6 +145,7 @@ The following tables list the timelines for models that are on track for retirem
 
 | Model | Legacy date (UTC) | Deprecation date (UTC) | Retirement date (UTC) | Suggested replacement model |
 |-------|-------------------|------------------------|-----------------------|-----------------------------|
+| [MAI-DS-R1](https://ai.azure.com/explore/models/MAI-DS-R1/version/1/registry/azureml/?cid=learnDocs) | January 16, 2026 | January 27, 2026 | February 27, 2026 | Any DeepSeek model available in the Model catalog |
 | [Phi-3-medium-4k-instruct](https://ai.azure.com/explore/models/Phi-3-medium-4k-instruct/version/6/registry/azureml/?cid=learnDocs)     | June 9, 2025          | June 30, 2025              | August 30, 2025           | [Phi-4](https://ai.azure.com/explore/models/Phi-4/version/8/registry/azureml/?cid=learnDocs)                             |
 | [Phi-3-medium-128k-instruct](https://ai.azure.com/explore/models/Phi-3-medium-128k-instruct/version/7/registry/azureml/?cid=learnDocs) | June 9, 2025          | June 30, 2025              | August 30, 2025           | [Phi-4](https://ai.azure.com/explore/models/Phi-4/version/8/registry/azureml/?cid=learnDocs)                             |
 | [Phi-3-mini-4k-instruct](https://ai.azure.com/explore/models/Phi-3-mini-4k-instruct/version/15/registry/azureml/?cid=learnDocs)        | June 9, 2025          | June 30, 2025              | August 30, 2025           | [Phi-4-mini-instruct](https://ai.azure.com/explore/models/Phi-4-mini-instruct/version/1/registry/azureml/?cid=learnDocs) |
