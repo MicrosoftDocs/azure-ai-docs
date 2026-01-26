@@ -4,7 +4,7 @@ description: Deploy and manage containerized agents on Foundry Agent Service (pr
 titleSuffix: Microsoft Foundry
 author: aahill
 ms.author: aahi
-ms.date: 01/21/2026
+ms.date: 01/23/2026
 ms.manager: nitinme
 ms.topic: concept-article
 ms.service: azure-ai-foundry
@@ -227,7 +227,9 @@ Make sure you have RBAC enabled so that `azd` can provision the services and mod
 
 * If you have an existing project and want to create the model deployment and container registry in the project, you need **Azure AI Owner**  role on Foundry in addition to the **Contributor** role on the Azure subscription.
 
-* If you have everything configured in the project to deploy a hosted agent, you need **Reader** on the Foundry account and **Azure AI User** on the project.
+* If you have everything configured in the project to deploy a hosted agent, you need **Reader** on the Foundry account and **Azure AI User** on the project. 
+
+Refer to [this article](../../../concepts/authentication-authorization-foundry.md#built-in-roles-overview) to learn more about built-in roles in Foundry.
 
 ### Resource cleanup
 
@@ -301,11 +303,11 @@ Before you create the agent, give your project's managed identity access to pull
 
 1. In the [Azure portal](https://portal.azure.com), go to your Foundry project resource.
 
-1. On the left pane, select **Identity**.
+2. On the left pane, select **Identity**.
 
-1. Under **System assigned**, copy the **Object (principal) ID** value. This value is the managed identity that you assign the Azure Container Instances role to.
+3. Under **System assigned**, copy the **Object (principal) ID** value. This value is the managed identity that you'll assign the Azure Container Instances role to.
 
-1. Grant pull permissions by assigning the **Container Registry Repository Reader** role to your project's managed identity on the container registry. For guidance, see [Azure Container Registry roles and permissions](/azure/container-registry/container-registry-roles).
+4. Grant pull permissions by assigning the Container Registry Repository Reader role to your project's managed identity on the container registry. For detailed steps, see [Azure Container Registry roles and permissions](/azure/container-registry/container-registry-roles).
 
 ### Create an account-level capability host
 
@@ -342,9 +344,6 @@ az rest --method put `
         }
     }'
 ```
-
----
-
 
 ### Create the hosted agent version
 
@@ -479,6 +478,72 @@ When you start an agent:
 - Allowed operation: **Start**
 - Transitory status: **Starting**
 - Final status: **Started** (if successful) or **Failed** (if unsuccessful)
+
+### View container Log Stream
+
+The container Logstream API for hosted agents gives you access to the system and console logs of the azure container app deployed on your behalf in Microsoft's Azure environment to enable self-serve debuggability for agent startup and runtime errors during deployment. 
+
+#### REST API Details
+
+| Item | Value |
+| --- | --- |
+| **Method** | `GET` |
+| **Route** | `/agents/v2.0/subscriptions/{subscription}/resourceGroups/{resourceGroup}/providers/Microsoft.MachineLearningServices/workspaces/{workspace}/agents/{agentName}/versions/{agentVersion}/containers/default:logstream` |
+| **Description** | Streams console or system logs for a specific hosted agent replica. |
+| **Content-Type** | `text/plain` (chunked streaming) |
+
+#### Path parameters
+
+- `subscription`, `resourceGroup`, `workspace`: identify the AML workspace hosting the agent.
+- `agentName`, `agentVersion`: specify the agent deployment/version whose container logs are requested.
+
+#### Query parameters
+
+| Name | Default | Notes |
+| --- | --- | --- |
+| `kind` | `console` | `console` returns container stdout/stderr, `system` returns container app event stream. |
+| `replica_name` | empty | When omitted, the server chooses the first replica for console logs. Required to target a specific replica. |
+| `tail` | `20` | Number of trailing lines returned. Enforced to `1-300`. |
+
+#### Timeout Settings
+
+- Max Connection Duration: The maximum duration for a log stream connection is `10 minutes`. After this period, the server will automatically close the client connection.
+- Idle Timeout: This timeout is set to `1 minute`. It applies when there is no response from the client, or if there is no activity after the previous response during the log stream. If the connection remains idle for 1 minute, it will be closed by the server.
+
+#### Response status codes
+
+- `200 OK`: Plain-text stream of log lines, one per line.
+- `404 Not Found`: Agent version, replica, or container log endpoint was not found.
+- `401/403`: Caller lacks authorization.
+- `5xx`: Propagated from downstream Container Apps calls when details or tokens cannot be fetched.
+
+#### Response samples
+
+#### 200 OK (console logs)
+
+```http
+HTTP/1.1 200 OK
+Content-Type: text/plain; charset=utf-8
+Transfer-Encoding: chunked
+
+2025-12-15T08:43:48.72656  Connecting to the container 'agent-container'...
+2025-12-15T08:43:48.75451  Successfully Connected to container: 'agent-container' [Revision: 'je90fe655aa742ef9a188b9fd14d6764--7tca06b', Replica: 'je90fe655aa742ef9a188b9fd14d6764--7tca06b-6898b9c89f-mpkjc']
+2025-12-15T08:33:59.0671054Z stdout F INFO:     127.0.0.1:42588 - "GET /readiness HTTP/1.1" 200 OK
+2025-12-15T08:34:29.0649033Z stdout F INFO:     127.0.0.1:60246 - "GET /readiness HTTP/1.1" 200 OK
+2025-12-15T08:34:59.0644467Z stdout F INFO:     127.0.0.1:43994 - "GET /readiness HTTP/1.1" 200 OK
+2025-12-15T08:35:29.0651892Z stdout F INFO:     127.0.0.1:59368 - "GET /readiness HTTP/1.1" 200 OK
+2025-12-15T08:35:59.0644637Z stdout F INFO:     127.0.0.1:57488 - "GET /readiness HTTP/1.1" 200 OK
+```
+
+#### 200 OK (system logs)
+
+```http
+HTTP/1.1 200 OK
+Content-Type: text/plain; charset=utf-8
+Transfer-Encoding: chunked
+
+{"TimeStamp":"2025-12-15T16:51:33Z","Type":"Normal","ContainerAppName":null,"RevisionName":null,"ReplicaName":null,"Msg":"Connecting to the events collector...","Reason":"StartingGettingEvents","EventSource":"ContainerAppController","Count":1}
+{"TimeStamp":"2025-12-15T16:51:34Z","Type":"Normal","ContainerAppName":null,"RevisionName":null,"ReplicaName":null,"Msg":"Successfully connected to events server","Reason":"ConnectedToEventsServer","EventSource":"ContainerAppController","Count":1}
 
 ### Stop an agent deployment
 
@@ -872,11 +937,11 @@ Currently, you can't create hosted agents by using the standard setup within net
 
 ## Related content
 
-- [Python code samples](https://github.com/azure-ai-foundry/foundry-samples/tree/hosted-agents/pyaf-samples/samples/microsoft/python/getting-started-agents/hosted-agents)
-- [C# code samples](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/csharp/hosted-agents)
+- [Python code samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents)
+- [C# code samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/hosted-agents)
 - [Agent runtime components](./runtime-components.md)
 - [Agent development lifecycle](./development-lifecycle.md)
 - [Agent identity concepts in Microsoft Foundry](./agent-identity.md)
 - [Discover tools in Foundry Tools](./tool-catalog.md)
 - [Publish and share agents in Microsoft Foundry](../how-to/publish-agent.md)
-- [Azure Container Registry](https://azure.microsoft.com/services/container-registry/)
+- [Azure Container Registry documentation](/azure/container-registry/)

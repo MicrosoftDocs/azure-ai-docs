@@ -49,3 +49,4 @@ requirements.txt
 .env
 .env.example
 requirements.txt
+.roo/*

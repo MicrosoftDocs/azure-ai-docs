@@ -5,7 +5,7 @@ description: Microsoft offers Microsoft-managed encryption keys, and also lets y
 author: erindormier
 manager: venkyv
 ms.service: azure-ai-document-intelligence
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 11/18/2025
 monikerRange: '<=doc-intel-4.0.0'
 ---

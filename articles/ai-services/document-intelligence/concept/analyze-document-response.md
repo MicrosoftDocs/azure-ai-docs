@@ -5,7 +5,7 @@ description: Description of the different objects returned as part of the Analyz
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/18/2025
 ms.author: vikurpad
 ms.custom:

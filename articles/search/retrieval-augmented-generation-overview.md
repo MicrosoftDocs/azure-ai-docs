@@ -7,7 +7,7 @@ ms.author: heidist
 manager: nitinme
 ms.date: 01/15/2026
 ms.service: azure-ai-search
-ms.topic: article
+ms.topic: concept-article
 ms.custom:
   - ignite-2023
   - ignite-2024

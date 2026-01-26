@@ -5,7 +5,7 @@ description: Use this article to find the natural languages supported by Key Phr
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-key-phrase

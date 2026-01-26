@@ -5,7 +5,7 @@ description: Learn how Azure Language integrates with Foundry Tools, including M
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 01/21/2026
 ms.author: lajanuar
 ms.custom: pilot-ai-workflow-jan-2026
