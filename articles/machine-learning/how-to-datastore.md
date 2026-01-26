@@ -27,8 +27,8 @@ In this article, you learn how to connect to Azure data storage services by usin
 - The [Azure Machine Learning SDK for Python](https://aka.ms/sdk-v2-install).
 - A Machine Learning workspace.
 - The required permissions to create datastores in your workspace and access your storage account (for example, workspace **Contributor** and storage **Storage Blob Data Contributor**). 
-    - Workspace roles: [Access control in Azure Machine Learning](/azure/machine-learning/how-to-assign-roles?view=azureml-api-2)
-    - Storage roles: [Authorize access to blob data with Microsoft Entra ID](/azure/storage/blobs/authorize-access-azure-active-directory?tabs=azure-portal)
+    - Workspace roles: [Access control in Azure Machine Learning](/azure/machine-learning/how-to-assign-roles)
+    - Storage roles: [Authorize access to blob data with Microsoft Entra ID](/azure/storage/blobs/authorize-access-azure-active-directory)
 
 > [!NOTE]
 > Machine Learning datastores don't create the underlying storage account resources. Instead, they link an *existing* storage account for Machine Learning use. You don't need Machine Learning datastores. If you have access to the underlying data, you can use storage URIs directly.
@@ -47,7 +47,7 @@ for datastore in ml_client.datastores.list():
 
 Lists the datastores in your workspace to confirm authentication and access.
 
-Reference: [`MLClient`](/python/api/azure-ai-ml/azure.ai.ml.mlclient?view=azure-python), [`DatastoreOperations.list`](/python/api/azure-ai-ml/azure.ai.ml.operations.datastoreoperations?view=azure-python#list)
+Reference: [`MLClient`](/python/api/azure-ai-ml/azure.ai.ml.mlclient), [`DatastoreOperations.list`](/python/api/azure-ai-ml/azure.ai.ml.operations.datastoreoperations#list)
 
 ## Create an Azure Blob datastore
 
@@ -72,7 +72,7 @@ ml_client.create_or_update(store)
 
 Creates or updates a datastore that points to the specified blob container by using identity-based access.
 
-Reference: [`AzureBlobDatastore`](/python/api/azure-ai-ml/azure.ai.ml.entities.azureblobdatastore?view=azure-python), [`MLClient`](/python/api/azure-ai-ml/azure.ai.ml.mlclient?view=azure-python)
+Reference: [`AzureBlobDatastore`](/python/api/azure-ai-ml/azure.ai.ml.entities.azureblobdatastore), [`MLClient`](/python/api/azure-ai-ml/azure.ai.ml.mlclient)
 
 # [Python SDK: Account key](#tab/sdk-account-key)
 
@@ -100,7 +100,7 @@ ml_client.create_or_update(store)
 
 Creates or updates a datastore that points to the specified blob container by using an account key.
 
-Reference: [`AzureBlobDatastore`](/python/api/azure-ai-ml/azure.ai.ml.entities.azureblobdatastore?view=azure-python), [`AccountKeyConfiguration`](/python/api/azure-ai-ml/azure.ai.ml.entities.accountkeyconfiguration?view=azure-python), [`MLClient`](/python/api/azure-ai-ml/azure.ai.ml.mlclient?view=azure-python)
+Reference: [`AzureBlobDatastore`](/python/api/azure-ai-ml/azure.ai.ml.entities.azureblobdatastore), [`AccountKeyConfiguration`](/python/api/azure-ai-ml/azure.ai.ml.entities.accountkeyconfiguration), [`MLClient`](/python/api/azure-ai-ml/azure.ai.ml.mlclient)
 
 # [Python SDK: SAS](#tab/sdk-SAS)
 
@@ -127,7 +127,7 @@ ml_client.create_or_update(store)
 
 Creates or updates a datastore that points to the specified blob container by using a SAS token.
 
-Reference: [`AzureBlobDatastore`](/python/api/azure-ai-ml/azure.ai.ml.entities.azureblobdatastore?view=azure-python), [`SasTokenConfiguration`](/python/api/azure-ai-ml/azure.ai.ml.entities.sastokenconfiguration?view=azure-python), [`MLClient`](/python/api/azure-ai-ml/azure.ai.ml.mlclient?view=azure-python)
+Reference: [`AzureBlobDatastore`](/python/api/azure-ai-ml/azure.ai.ml.entities.azureblobdatastore), [`SasTokenConfiguration`](/python/api/azure-ai-ml/azure.ai.ml.entities.sastokenconfiguration), [`MLClient`](/python/api/azure-ai-ml/azure.ai.ml.mlclient)
 
 # [CLI: Identity-based access](#tab/cli-identity-based-access)
 Create the following YAML file (update the appropriate values):
@@ -154,7 +154,7 @@ az ml datastore create --file my_blob_datastore.yml
 
 Creates or updates the blob datastore in your workspace by using the YAML file.
 
-Reference: [`az ml datastore create`](/cli/azure/ml/datastore?view=azure-cli-latest)
+Reference: [`az ml datastore create`](/cli/azure/ml/datastore)
 
 # [CLI: Account key](#tab/cli-account-key)
 Create this YAML file (update the appropriate values):
@@ -183,7 +183,7 @@ az ml datastore create --file my_blob_datastore.yml
 
 Creates or updates the blob datastore in your workspace by using the YAML file.
 
-Reference: [`az ml datastore create`](/cli/azure/ml/datastore?view=azure-cli-latest)
+Reference: [`az ml datastore create`](/cli/azure/ml/datastore)
 
 # [CLI: SAS](#tab/cli-sas)
 Create this YAML file (update the appropriate values):
@@ -212,7 +212,7 @@ az ml datastore create --file my_blob_datastore.yml
 
 Creates or updates the blob datastore in your workspace by using the YAML file.
 
-Reference: [`az ml datastore create`](/cli/azure/ml/datastore?view=azure-cli-latest)
+Reference: [`az ml datastore create`](/cli/azure/ml/datastore)
 ---
 
 ## Create an Azure Data Lake Storage Gen2 datastore
@@ -238,7 +238,7 @@ ml_client.create_or_update(store)
 
 Creates or updates a datastore that points to the specified ADLS Gen2 filesystem by using identity-based access.
 
-Reference: [`AzureDataLakeGen2Datastore`](/python/api/azure-ai-ml/azure.ai.ml.entities.azuredatalakegen2datastore?view=azure-python), [`MLClient`](/python/api/azure-ai-ml/azure.ai.ml.mlclient?view=azure-python)
+Reference: [`AzureDataLakeGen2Datastore`](/python/api/azure-ai-ml/azure.ai.ml.entities.azuredatalakegen2datastore), [`MLClient`](/python/api/azure-ai-ml/azure.ai.ml.mlclient)
 
 # [Python SDK: Service principal](#tab/sdk-adls-sp)
 
@@ -268,7 +268,7 @@ ml_client.create_or_update(store)
 
 Creates or updates a datastore that points to the specified ADLS Gen2 filesystem by using a service principal.
 
-Reference: [`AzureDataLakeGen2Datastore`](/python/api/azure-ai-ml/azure.ai.ml.entities.azuredatalakegen2datastore?view=azure-python), [`MLClient`](/python/api/azure-ai-ml/azure.ai.ml.mlclient?view=azure-python)
+Reference: [`AzureDataLakeGen2Datastore`](/python/api/azure-ai-ml/azure.ai.ml.entities.azuredatalakegen2datastore), [`MLClient`](/python/api/azure-ai-ml/azure.ai.ml.mlclient)
 
 # [CLI: Identity-based access](#tab/cli-adls-identity-based-access)
 Create this YAML file (update the values):
@@ -295,7 +295,7 @@ az ml datastore create --file my_adls_datastore.yml
 
 Creates or updates the ADLS Gen2 datastore in your workspace by using the YAML file.
 
-Reference: [`az ml datastore create`](/cli/azure/ml/datastore?view=azure-cli-latest)
+Reference: [`az ml datastore create`](/cli/azure/ml/datastore)
 
 # [CLI: Service principal](#tab/cli-adls-sp)
 Create this YAML file (update the values):
@@ -326,7 +326,7 @@ az ml datastore create --file my_adls_datastore.yml
 
 Creates or updates the ADLS Gen2 datastore in your workspace by using the YAML file.
 
-Reference: [`az ml datastore create`](/cli/azure/ml/datastore?view=azure-cli-latest)
+Reference: [`az ml datastore create`](/cli/azure/ml/datastore)
 ---
 
 ## Create an Azure Files datastore
@@ -356,7 +356,7 @@ ml_client.create_or_update(store)
 
 Creates or updates a datastore that points to the specified Azure Files share by using an account key.
 
-Reference: [`AzureFileDatastore`](/python/api/azure-ai-ml/azure.ai.ml.entities.azurefiledatastore?view=azure-python), [`AccountKeyConfiguration`](/python/api/azure-ai-ml/azure.ai.ml.entities.accountkeyconfiguration?view=azure-python), [`MLClient`](/python/api/azure-ai-ml/azure.ai.ml.mlclient?view=azure-python)
+Reference: [`AzureFileDatastore`](/python/api/azure-ai-ml/azure.ai.ml.entities.azurefiledatastore), [`AccountKeyConfiguration`](/python/api/azure-ai-ml/azure.ai.ml.entities.accountkeyconfiguration), [`MLClient`](/python/api/azure-ai-ml/azure.ai.ml.mlclient)
 
 # [Python SDK: SAS](#tab/sdk-azfiles-sas)
 
@@ -383,7 +383,7 @@ ml_client.create_or_update(store)
 
 Creates or updates a datastore that points to the specified Azure Files share by using a SAS token.
 
-Reference: [`AzureFileDatastore`](/python/api/azure-ai-ml/azure.ai.ml.entities.azurefiledatastore?view=azure-python), [`SasTokenConfiguration`](/python/api/azure-ai-ml/azure.ai.ml.entities.sastokenconfiguration?view=azure-python), [`MLClient`](/python/api/azure-ai-ml/azure.ai.ml.mlclient?view=azure-python)
+Reference: [`AzureFileDatastore`](/python/api/azure-ai-ml/azure.ai.ml.entities.azurefiledatastore), [`SasTokenConfiguration`](/python/api/azure-ai-ml/azure.ai.ml.entities.sastokenconfiguration), [`MLClient`](/python/api/azure-ai-ml/azure.ai.ml.mlclient)
 
 # [CLI: Account key](#tab/cli-azfiles-account-key)
 Create this YAML file (update the values):
@@ -412,7 +412,7 @@ az ml datastore create --file my_files_datastore.yml
 
 Creates or updates the Azure Files datastore in your workspace by using the YAML file.
 
-Reference: [`az ml datastore create`](/cli/azure/ml/datastore?view=azure-cli-latest)
+Reference: [`az ml datastore create`](/cli/azure/ml/datastore)
 
 # [CLI: SAS](#tab/cli-azfiles-sas)
 Create this YAML file (update the values):
@@ -441,7 +441,7 @@ az ml datastore create --file my_files_datastore.yml
 
 Creates or updates the Azure Files datastore in your workspace by using the YAML file.
 
-Reference: [`az ml datastore create`](/cli/azure/ml/datastore?view=azure-cli-latest)
+Reference: [`az ml datastore create`](/cli/azure/ml/datastore)
 ---
 
 ## Create a OneLake (Microsoft Fabric) datastore (preview)
@@ -492,7 +492,7 @@ ml_client.create_or_update(store)
 
 Creates or updates a OneLake datastore that points to the specified lakehouse by using identity-based access.
 
-Reference: [`OneLakeDatastore`](/python/api/azure-ai-ml/azure.ai.ml.entities.onelakedatastore?view=azure-python), [`OneLakeArtifact`](/python/api/azure-ai-ml/azure.ai.ml.entities.onelakeartifact?view=azure-python), [`MLClient`](/python/api/azure-ai-ml/azure.ai.ml.mlclient?view=azure-python)
+Reference: [`OneLakeDatastore`](/python/api/azure-ai-ml/azure.ai.ml.entities.onelakedatastore), [`OneLakeArtifact`](/python/api/azure-ai-ml/azure.ai.ml.entities.onelakeartifact), [`MLClient`](/python/api/azure-ai-ml/azure.ai.ml.mlclient)
 
 # [Python SDK: Service principal](#tab/sdk-onelake-sp)
 
@@ -525,7 +525,7 @@ ml_client.create_or_update(store)
 
 Creates or updates a OneLake datastore that points to the specified lakehouse by using a service principal.
 
-Reference: [`OneLakeDatastore`](/python/api/azure-ai-ml/azure.ai.ml.entities.onelakedatastore?view=azure-python), [`OneLakeArtifact`](/python/api/azure-ai-ml/azure.ai.ml.entities.onelakeartifact?view=azure-python), [`MLClient`](/python/api/azure-ai-ml/azure.ai.ml.mlclient?view=azure-python)
+Reference: [`OneLakeDatastore`](/python/api/azure-ai-ml/azure.ai.ml.entities.onelakedatastore), [`OneLakeArtifact`](/python/api/azure-ai-ml/azure.ai.ml.entities.onelakeartifact), [`MLClient`](/python/api/azure-ai-ml/azure.ai.ml.mlclient)
 
 # [CLI: Identity-based access](#tab/cli-onelake-identity-based-access)
 Create the following YAML file. Update the values:
@@ -555,7 +555,7 @@ az ml datastore create --file my_onelake_datastore.yml
 
 Creates or updates the OneLake datastore in your workspace by using the YAML file.
 
-Reference: [`az ml datastore create`](/cli/azure/ml/datastore?view=azure-cli-latest)
+Reference: [`az ml datastore create`](/cli/azure/ml/datastore)
 
 # [CLI: Service principal](#tab/cli-onelake-sp)
 Create the following YAML file. Update the values:
@@ -589,7 +589,7 @@ az ml datastore create --file my_onelakesp_datastore.yml
 
 Creates or updates the OneLake datastore in your workspace by using the YAML file.
 
-Reference: [`az ml datastore create`](/cli/azure/ml/datastore?view=azure-cli-latest)
+Reference: [`az ml datastore create`](/cli/azure/ml/datastore)
 ---
 
 ## Troubleshooting
