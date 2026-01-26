@@ -10,7 +10,7 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 07/16/2025
+ms.date: 01/23/2026
 ---
 
 # Security filters for trimming results in Azure AI Search
