@@ -39,9 +39,20 @@ Though the AI Red Teaming Agent can be run [locally](run-scans-ai-red-teaming-ag
 
 ## Prerequisites
 
+::: moniker range="foundry-classic"
+
 [!INCLUDE [uses-fdp-only](../../includes/uses-fdp-only.md)]
 
 [!INCLUDE [evaluation-foundry-project-storage](../../includes/evaluation-foundry-project-storage.md)]
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+- A Foundry project. For more information, see [Create a Foundry project](/azure/ai-foundry/how-to/create-projects).
+
+::: moniker-end
+
 
 ## Getting started
 

@@ -7,7 +7,7 @@ ms.author: pafarley
 manager: nitinme
 ms.date: 12/19/2025
 ms.service: azure-ai-content-understanding
-ms.topic: article
+ms.topic: limits-and-quotas
 ms.custom:
   - build-2025
 ---

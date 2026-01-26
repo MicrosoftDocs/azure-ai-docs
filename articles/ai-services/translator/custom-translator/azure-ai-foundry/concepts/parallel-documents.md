@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-translator
 ms.date: 11/18/2025
 ms.author: lajanuar
-ms.topic: conceptual
+ms.topic: concept-article
 #Customer intent: As a custom translation, I want to understand how to use parallel documents to build a custom translation model.
 ---
 
