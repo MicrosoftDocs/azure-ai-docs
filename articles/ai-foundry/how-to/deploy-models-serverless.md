@@ -5,7 +5,7 @@ description: Learn to deploy models as serverless API deployments, using Microso
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 09/15/2025
+ms.date: 1/26/2026
 author: ssalgadodev
 ms.author: ssalgado
 manager: nitinme
