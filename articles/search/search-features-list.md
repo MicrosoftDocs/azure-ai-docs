@@ -8,7 +8,7 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 08/13/2025
 ---
 
