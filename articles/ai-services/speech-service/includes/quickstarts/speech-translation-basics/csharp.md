@@ -79,7 +79,7 @@ Follow these steps to create a new console application and install the Speech SD
     
         async static Task Main(string[] args)
         {
-            var speechTranslationConfig = SpeechTranslationConfig.FromEndpoint(speechKey, endpoint);       
+            var speechTranslationConfig = SpeechTranslationConfig.FromEndpoint(new Uri(endpoint), speechKey);        
             speechTranslationConfig.SpeechRecognitionLanguage = "en-US";
             speechTranslationConfig.AddTargetLanguage("it");
     
