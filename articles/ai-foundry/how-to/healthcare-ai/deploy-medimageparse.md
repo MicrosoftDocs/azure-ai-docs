@@ -36,8 +36,6 @@ MedImageParse and MedImageParse 3D are healthcare AI models for medical image se
 
 MedImageParse unifies segmentation, detection, and recognition tasks through image parsing. You can segment medical images by using simple text prompts without manually specifying bounding boxes.
 
-There should be content following this heading. The heading alone doesn't provide sufficient information for the reader.
-
 # [MedImageParse 3D](#tab/medimageparse-3d)
 
 ## MedImageParse 3D
