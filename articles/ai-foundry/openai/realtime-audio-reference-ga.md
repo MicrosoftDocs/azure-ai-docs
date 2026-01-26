@@ -1,7 +1,7 @@
 ---
 title: Audio events reference GA
 titleSuffix: Azure OpenAI
-description: Learn how to use events with the Realtime API and Voice Live API.
+description: Learn how to use events with the Realtime API and Voice Live API (GA version).
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -30,16 +30,16 @@ There are 11 client events that you can send from the client to the server:
 | Event | Description |
 |-------|-------------|
 | [`session.update`](#sessionupdate) | Send `session.update` to update the session configuration. |
-| [`input_audio_buffer.append`](#inputaudiobufferappend) | Send `input_audio_buffer.append` to append base64 audio bytes to the input audio buffer. |
-| [`input_audio_buffer.commit`](#inputaudiobuffercommit) | Send `input_audio_buffer.commit` to commit the input audio buffer and create a new user message item. |
-| [`input_audio_buffer.clear`](#inputaudiobufferclear) | Send `input_audio_buffer.clear` to clear the audio bytes in the input buffer. |
+| [`input_audio_buffer.append`](#input_audio_bufferappend) | Send `input_audio_buffer.append` to append base64 audio bytes to the input audio buffer. |
+| [`input_audio_buffer.commit`](#input_audio_buffercommit) | Send `input_audio_buffer.commit` to commit the input audio buffer and create a new user message item. |
+| [`input_audio_buffer.clear`](#input_audio_bufferclear) | Send `input_audio_buffer.clear` to clear the audio bytes in the input buffer. |
 | [`conversation.item.create`](#conversationitemcreate) | Send `conversation.item.create` to add a new item to the conversation context (messages, function calls, and function call responses). |
 | [`conversation.item.retrieve`](#conversationitemretrieve) | Send `conversation.item.retrieve` to retrieve the server representation of an item in the conversation history. |
 | [`conversation.item.truncate`](#conversationitemtruncate) | Send `conversation.item.truncate` to truncate a previous assistant message’s audio and synchronize playback state. |
 | [`conversation.item.delete`](#conversationitemdelete) | Send `conversation.item.delete` to remove an item from the conversation history. |
 | [`response.create`](#responsecreate) | Send `response.create` to trigger model inference and create a response. |
 | [`response.cancel`](#responsecancel) | Send `response.cancel` to cancel an in-progress response. |
-| [`output_audio_buffer.clear`](#outputaudiobufferclear) | Send `output_audio_buffer.clear` to cut off the current audio response. This event is only applicable to WebRTC/SIP. |
+| [`output_audio_buffer.clear`](#output_audio_bufferclear) | Send `output_audio_buffer.clear` to cut off the current audio response. This event is only applicable to WebRTC/SIP. |
 
 ### session.update
 
@@ -399,29 +399,11 @@ This event should be preceded by a `response.cancel` client event to stop genera
 | event_id | string | The unique ID of the client event used for error handling. |
 
 
-## Notes and constraints
-
-- For `session.update`, you can update any field except `voice` and `model`. You can update `voice` only if there have been no other audio outputs yet.
-- For `session.update`, clear fields by sending an empty string (`instructions`), an empty array (`tools`), or `null` (`turn_detection`).
-- For `input_audio_buffer.append`, you can send up to 15 MiB of audio per event.
-- For `input_audio_buffer.append`, the server doesn't send a confirmation response.
-- For `output_audio_buffer.clear`, the event is only applicable for WebRTC/SIP, and you should send `response.cancel` first to stop generating the current response.
-
-
----
-ai-usage: ai-assisted
----
-
-# Realtime server events reference
+## Server events
 
 Realtime server events are JSON objects the server emits to report updates in real time. These events help you track input audio buffering and transcription, conversation history changes, response generation progress, and output audio streaming.
 
 This reference covers the server events listed in the **Server events** section.
-
-Applicable APIs:
-- [TO VERIFY: Add applicable API names and links.]
-
-## Server events
 
 There are 38 server events that you can receive from the server:
 
@@ -1715,6 +1697,7 @@ A single rate limit entry emitted in `rate_limits.updated`.
 
 ## Notes and constraints
 
+Client:
 - Input audio transcription starts when the input audio buffer is committed by the client or server (when VAD is enabled).
 - Input audio transcription runs asynchronously with response creation, so transcription events might arrive before or after response events.
 - Input transcription runs on a separate ASR model, and the transcript might diverge from the realtime model’s interpretation.
@@ -1722,6 +1705,15 @@ A single rate limit entry emitted in `rate_limits.updated`.
 - `input_audio_buffer.speech_started`, `input_audio_buffer.speech_stopped`, and `input_audio_buffer.timeout_triggered` apply to server VAD mode (`server_vad`).
 - `output_audio_buffer.started`, `output_audio_buffer.stopped`, and `output_audio_buffer.cleared` are only applicable for WebRTC/SIP.
 - The response object in `response.done` omits raw audio data.
+
+Server:
+- For `session.update`, you can update any field except `voice` and `model`. You can update `voice` only if there have been no other audio outputs yet.
+- For `session.update`, clear fields by sending an empty string (`instructions`), an empty array (`tools`), or `null` (`turn_detection`).
+- For `input_audio_buffer.append`, you can send up to 15 MiB of audio per event.
+- For `input_audio_buffer.append`, the server doesn't send a confirmation response.
+- For `output_audio_buffer.clear`, the event is only applicable for WebRTC/SIP, and you should send `response.cancel` first to stop generating the current response.
+
+
 
 ## Related content
 
