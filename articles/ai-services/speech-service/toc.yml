@@ -70,6 +70,8 @@ items:
     - name: Generate a REST API client library
       href: swagger-documentation.md
       displayName: rest, swagger
+  - name: Voice live SDK
+    href: voice-live-sdk.md
   - name: Speech Transcription SDK
     href: transcription-sdk.md
 - name: Speech to text

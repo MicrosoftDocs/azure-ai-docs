@@ -66,13 +66,16 @@ Before you begin, make sure you have:
 
 ## Setup
 
-In this section, you add a project connection for the Bing resource and capture the project connection ID that the tool configuration requires.
+In this section, you add a project connection for the Bing resource and capture the project connection ID that the tool configuration requires. You can use this [bicep template](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/45-basic-agent-bing) to create a basic agent with Grounding with Bing Search tool enabled. 
 
 If you already have a project connection ID for the Bing resource you want to use, skip this section.
 
 1. Add the appropriate connection to your project.
 
    For step-by-step instructions, see [Add a new connection to your project](../../../../how-to/connections-add.md?view=foundry&preserve-view=true).
+   >[!IMPORTANT]
+   > - You will need **Contributor** or **Owner** role at the subscription or resource group level to create Bing resources and get resource keys.
+   > - If you want to find the resource keys yourself, you can go to your Grounding with Bing resource in [Azure Portal](https://portal.azure.com) -> Resource Management -> Keys and get your keys manually.
 
 1. Get the project connection ID from the connection details and set it as an environment variable.
 
