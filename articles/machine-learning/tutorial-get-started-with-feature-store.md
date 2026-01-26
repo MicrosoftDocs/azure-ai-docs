@@ -8,7 +8,7 @@ ms.subservice: core
 ms.topic: tutorial
 author: s-polly
 ms.author: scottpolly
-ms.date: 01/23/2026
+ms.date: 01/26/2026
 ms.reviewer: seramasu
 ms.custom:
   - sdkv2
@@ -16,7 +16,7 @@ ms.custom:
   - ignite-2023
   - update-code2
   - sfi-image-nochange
-#Customer intent: As a data scientist, I want to learn about the managed feature store so I can build and deploy a model with Azure Machine Learning by using Python software development kits (SDKs) or Python and CLI in a notebook.
+#Customer intent: As a data scientist, I want to learn about the managed feature store so I can build and deploy a model with Azure Machine Learning by using Python and CLI or Python SDKs only in a notebook.
 ---
 
 # Managed feature store tutorial 1: Develop and register a feature set
@@ -90,8 +90,8 @@ This first tutorial walks through creating a feature set specification with cust
 
    :::image type="content" source="media/tutorial-get-started-with-feature-store/clone-featurestore-example-notebooks.png" alt-text="Screenshot that shows selection of the sample directory in Azure Machine Learning studio.":::
 
-1. On the **Select target directory** pane, make sure **Users** > **\<your_username>** > **featurestore_sample** appears, and select **Clone**. The **featurestore_sample** downloads to your user directory.
-1. In your cloned notebook on the **Files** tab of the **Notebook** page, expand **Users** > **\<your_username>** > **featurestore_sample** > **project** > **env**.
+1. On the **Select target directory** pane, make sure **Users** > **\<your_username>** > **featurestore_sample** appears, and select **Clone**. The **featurestore_sample** clones to your workspace user directory.
+1. Go to your cloned notebook on the **Files** tab of the **Notebook** page, and expand **Users** > **\<your_username>** > **featurestore_sample** > **project** > **env**.
 1. Right-click the **conda.yml** file and select **Download** to download it to your computer, so you can later upload it to the server environment.
 
    :::image type="content" source="media/tutorial-get-started-with-feature-store/download-conda-file.png" alt-text="Screenshot that shows selection of the Conda YAML file in Azure Machine Learning studio.":::
@@ -163,14 +163,14 @@ This first tutorial walks through creating a feature set specification with cust
 
 1. Grant your user identity the **AzureML Data Scientist** role on the feature store. Get your Microsoft Entra object ID value from the Azure portal as described in [Find the user object ID](/partner-center/find-ids-and-domain-names#find-the-user-object-id).
 
-1. Assign the **AzureML Data Scientist** role to your user identity, so that it can create resources in the feature store workspace. The permissions might need some time to propagate.
+1. Run the following cell to assign the **AzureML Data Scientist** role to your user identity, so that it can create resources in the feature store workspace. Replace the `<USER_AAD_OBJECTID>` placeholder with your Microsoft Entra object ID. The permissions might need some time to propagate.
    [!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_and_cli/1.Develop-feature-set-and-register.ipynb?name=assign-aad-ds-role-cli)]  
 
    For more information about access control, see [Manage access control for managed feature store](./how-to-setup-access-control-feature-store.md).
 
 ## Prototype and develop a feature set
 
-This notebook uses sample data hosted in a publicly accessible blob container, which you can read into Spark only through a `wasbs` driver. When you create feature sets by using your own source data, host them in an Azure Data Lake Storage account, and use an `abfss` driver in the data path.
+This notebook uses sample data hosted in a publicly accessible blob container, which you can read into Spark only through a `wasbs` driver. If you create feature sets by using your own source data, host them in an Azure Data Lake Storage account, and use an `abfss` driver in the data path.
 
 ### Explore the transactions source data
 
@@ -190,23 +190,18 @@ A feature set specification is a self-contained definition of a feature set that
 
 [!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/1.Develop-feature-set-and-register.ipynb?name=develop-txn-fset-locally)]
 
-Review the feature transformation code file: *featurestore/featuresets/transactions/transformation_code/transaction_transform.py*. Note the rolling aggregation defined for the features. This file is a Spark transformer.
-
-For more information about the feature set and transformations, see [What is managed feature store?](./concept-what-is-managed-feature-store.md)
+Review the feature transformation code file: *featurestore/featuresets/transactions/transformation_code/transaction_transform.py*. Note the rolling aggregation defined for the features. This file is a Spark transformer. For more information about the feature set and transformations, see [What is managed feature store?](./concept-what-is-managed-feature-store.md)
 
 ### Export as a feature set specification
 
-To register the feature set specification with the feature store, you must save that specification in a specific format. To see the *featurestore/featuresets/accounts/spec/FeaturesetSpec.yaml* specification, open the generated `transactions` feature set specification from the file tree.
+To register the feature set specification with the feature store, you save that specification in a specified location and format, which supports source control.
+[!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/1.Develop-feature-set-and-register.ipynb?name=dump-transactions-fs-spec)]
 
-The specification contains these elements:
+To see the *featurestore/featuresets/accounts/spec/FeaturesetSpec.yaml* specification, open the generated `transactions` feature set specification from the file tree.The specification contains these elements:
 
 * `source`: A reference to a storage resource. In this case, it's a parquet file in a blob storage resource.
 * `features`: A list of features and their datatypes. If you provide transformation code, the code must return a DataFrame that maps to the features and datatypes.
 * `index_columns`: The join keys required to access values from the feature set.
-
-Another benefit of persisting the feature set specification is that the specification supports source control.
-
-[!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/1.Develop-feature-set-and-register.ipynb?name=dump-transactions-fs-spec)]
 
 ## Register a feature store entity
 
@@ -246,7 +241,7 @@ The following code registers a feature set asset with the feature store. You can
 
 ## Explore the feature store UI
 
-Feature store asset creation and updates can happen only through the SDK and CLI. You can use the UI to search or browse through the feature store.
+Feature store asset creation and updates can happen only through the SDK and CLI. You can use the Machine Learning UI to search or browse through the feature store.
 
 1. Open the [Azure Machine Learning global landing page](https://ml.azure.com/home).
 1. Select **Feature stores** on the left pane.
@@ -256,7 +251,7 @@ Feature store asset creation and updates can happen only through the SDK and CLI
 
 The **Storage Blob Data Reader** role must be assigned to your user account to ensure that the user account can read materialized feature data from the offline materialization store.
 
-Get information about the offline materialization store from the Feature Store **Overview** page. The values for the storage account subscription ID, storage account resource group name, and storage account name for offline materialization store are located in the **Offline materialization store** card.
+Get information about the offline materialization store from the feature store UI **Overview** page. The values for the storage account `<SUBSCRIPTION_ID>`, storage account `<RESOURCE_GROUP>`, and `<STORAGE_ACCOUNT_NAME>` for the offline materialization store are located in the **Offline materialization store** card.
 
    :::image type="content" source="media/tutorial-get-started-with-feature-store/offline-store-information.png" lightbox="media/tutorial-get-started-with-feature-store/offline-store-information.png" alt-text="Screenshot that shows offline store account information on feature store Overview page.":::
 
@@ -278,13 +273,11 @@ For more information about access control, see [Manage access control for manage
 
 ## Generate a training data DataFrame
 
-Generate a training data DataFrame by using the registered feature set
+Generate a training data DataFrame by using the registered feature set.
 
-1. Load observation data.
+1. Load observation data captured during the event itself.
 
-   Observation data typically involves the core data used for training and inferencing. This data joins with the feature data to create the full training data resource.
-
-   Observation data is data captured during the event itself. The following data has core transaction data, including transaction ID, account ID, and transaction amount values. Because you use the data for training, it also has an appended target variable `is_fraud`.
+   Observation data typically involves the core data used for training and inferencing, which joins with the feature data to create the full training data resource. The following data has core transaction data including transaction ID, account ID, and transaction amount values. Because you use the data for training, it also has an appended target variable `is_fraud`.
 
    [!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/1.Develop-feature-set-and-register.ipynb?name=load-obs-data)]
 
@@ -466,7 +459,7 @@ Data materialization status can be:
 
 A *data interval* represents a contiguous portion of data with same data materialization status. For example, the earlier snapshot has 16 data intervals in the offline materialization store. The data can have a maximum of 2,000 data intervals. If your data contains more than 2,000 data intervals, create a new feature set version.
 
-During backfill, a new materialization job is submitted for each data interval that falls within the defined feature window. If a materialization job is pending or running for a data interval that isn't backfilled, no new job is submitted for that data interval.
+During backfill, a new materialization job is submitted for each data interval that falls within the defined feature window. No job is submitted if a materialization job is already pending or running for a data interval that isn't backfilled.
 
 You can retry a failed materialization job.
 
