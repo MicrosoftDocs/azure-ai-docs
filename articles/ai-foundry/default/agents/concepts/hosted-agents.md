@@ -937,15 +937,11 @@ Currently, you can't create hosted agents by using the standard setup within net
 
 ## Related content
 
-- [Python code samples](https://github.com/azure-ai-foundry/foundry-samples/tree/hosted-agents/pyaf-samples/samples/microsoft/python/getting-started-agents/hosted-agents)
-- [C# code samples](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/csharp/hosted-agents)
+- [Python code samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents)
+- [C# code samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/hosted-agents)
 - [Agent runtime components](./runtime-components.md)
 - [Agent development lifecycle](./development-lifecycle.md)
 - [Agent identity concepts in Microsoft Foundry](./agent-identity.md)
 - [Discover tools in Foundry Tools](./tool-catalog.md)
 - [Publish and share agents in Microsoft Foundry](../how-to/publish-agent.md)
-<<<<<<< HEAD
 - [Azure Container Registry documentation](/azure/container-registry/)
-=======
-- [Azure Container Registry](https://azure.microsoft.com/services/container-registry/)
->>>>>>> 003fabe375d35cc62bc106126ee5cf7daa5373f4
