@@ -356,7 +356,7 @@ Before running the following commands, make sure that you:
 1. Are signed in to Azure by using `az login`. 
 1. Have Owner or Contributor access to the subscription. 
 
-### Disable Web Search 
+### Disable Bing Web Search 
 
 To disable the web search tool for all accounts in a subscription, run the following command: 
 
@@ -369,7 +369,7 @@ az feature register \
 
 This command disables web search across all accounts in the specified subscription. 
 
-### Enable Web Search 
+### Enable Bing Web Search 
 
 To enable the web search tool, run the following command: 
 
