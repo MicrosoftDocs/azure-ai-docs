@@ -7,7 +7,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 01/09/2026
+ms.date: 01/26/2026
 ms.update-cycle: 180-days
 ms.custom:
   - references_regions
@@ -188,14 +188,17 @@ Maximum number of [index aliases](search-how-to-alias.md) varies by tier and [se
 
 ## Agentic retrieval limits
 
-Each [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) contains [knowledge sources](agentic-knowledge-source-overview.md), which are data source connections, and configurations that agents consume for [agentic retrieval](agentic-retrieval-overview.md). The following limits apply to knowledge sources and knowledge bases per service tier.
+Each [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) contains [knowledge sources](agentic-knowledge-source-overview.md) and configurations that agents consume for [agentic retrieval](agentic-retrieval-overview.md). The following limits apply to each pricing tier.
 
 | Resource | Free | Basic <sup>1</sup> | S1 | S2 | S3 | S3 HD | L1 | L2 |
 |--|--|--|--|--|--|--|--|--|
-| Maximum knowledge sources | 3 | 5 or 15 | 50 | 200 | 200 | 0 | 10 | 10 |
-| Maximum knowledge bases | 3 | 5 or 15 | 50 | 200 | 200 | 0 | 10 | 10 |
+| Maximum knowledge sources per service | 3 | 5 or 15 | 50 | 200 | 200 | 0 | 10 | 10 |
+| Maximum knowledge bases per service | 3 | 5 or 15 | 50 | 200 | 200 | 0 | 10 | 10 |
+| Maximum knowledge sources per knowledge base <sup>2</sup> | 3 | 5 or 10 | 10 | 10 | 10 | 0 | 10 | 10 |
 
-<sup>1</sup> Basic services created before April 3, 2024 have lower limits (5 instead of 15) on knowledge sources and knowledge bases.
+<sup>1</sup> Basic services created before April 3, 2024 have lower limits (5 instead of 10 or 15) on knowledge sources and knowledge bases.
+
+<sup>2</sup> The limits in this row apply to the `minimal` [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). Across all pricing tiers, `low` supports a maximum of three knowledge sources per knowledge base, and `medium` supports a maximum of five knowledge sources per knowledge base. The service-level maximum in the first row takes precedence when it's lower than these limits.
 
 ## Data limits (AI enrichment)
 
