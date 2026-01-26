@@ -48,7 +48,7 @@ CXRReportGen generates a list of findings from a chest X-ray study and also perf
 
 ## Sample notebook
 
-For a complete working example, see these interactive Python notebook:
+For a complete working example, see this interactive Python notebook:
 
 * [Deploying and Using CXRReportGen](https://aka.ms/healthcare-ai-examples-cxr-deploy): Learn how to deploy the CXRReportGen model and integrate it into your workflow. This notebook also covers bounding-box parsing and visualization techniques.
 
