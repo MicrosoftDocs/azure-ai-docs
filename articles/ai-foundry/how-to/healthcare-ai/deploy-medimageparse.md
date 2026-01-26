@@ -5,7 +5,7 @@ description: Learn how to use MedImageParse and MedImageParse 3D healthcare AI m
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 01/23/2026
+ms.date: 01/26/2026
 ms.custom: dev-focus
 ms.reviewer: itarapov
 reviewer: ivantarapov
@@ -27,7 +27,7 @@ MedImageParse and MedImageParse 3D are healthcare AI models for medical image se
 
 1. Deploy the model to a self-hosted managed compute.
 1. Grant permissions to the endpoint.
-1. Send test data to the model, receive, and interpret results.
+1. Send test data to the model, receive results, and interpret them.
 
 
 # [MedImageParse](#tab/medimageparse)
@@ -72,7 +72,7 @@ For complete working examples, see these interactive Python notebooks:
 
 ## Deploy the model to a managed compute
 
-Deployment to a self-hosted managed inference solution lets you customize and control all the details about how the model is served. The deployment process creates an online endpoint with a unique scoring URI and authentication keys. You configure the compute resources (such as GPU-enabled VMs) and set deployment parameters like instance count and request timeout values.
+Deployment to a self-hosted managed inference solution lets you customize and control all the details about how the model's served. The deployment process creates an online endpoint with a unique scoring URI and authentication keys. This endpoint lets you send inference requests to your model. You configure the compute resources (such as GPU-enabled VMs) and set deployment parameters like instance count and request timeout values.
 
 To deploy the model programmatically or from its model card in Microsoft Foundry, see [How to deploy and infer with a managed compute deployment](../deploy-models-managed.md). After deployment completes, note your endpoint name and deployment name for use in the inference code.
 
@@ -82,7 +82,7 @@ In this section, you consume the model and make basic calls to it.
 
 ### Use REST API to consume the model
 
-Use the model as a REST API, using simple GET requests or by creating a client as follows:
+Use the model as a REST API, by using simple GET requests or by creating a client as follows:
 
 ```python
 from azure.ai.ml import MLClient
@@ -96,11 +96,11 @@ credential = DefaultAzureCredential()
 ml_client_workspace = MLClient.from_config(credential)
 ```
 
-This code authenticates your session and creates a workspace client that you use to invoke the deployed endpoint. The `DefaultAzureCredential` automatically uses available authentication methods in your environment (managed identity, Azure CLI, environment variables).
+This code authenticates your session and creates a workspace client that you use to invoke the deployed endpoint. The `DefaultAzureCredential` automatically uses available authentication methods in your environment (managed identity, Azure CLI, and environment variables).
 
 Reference: [MLClient](/python/api/azure-ai-ml/azure.ai.ml.mlclient), [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential)
 
-In the deployment configuration, choose an authentication method. This example uses Azure Machine Learning token-based authentication. For more authentication options, see [Set up authentication](../../../machine-learning/how-to-setup-authentication.md). The client is created from a configuration file that's created automatically for Azure Machine Learning virtual machines (VMs). Learn more in the [MLClient.from_config API reference](/python/api/azure-ai-ml/azure.ai.ml.mlclient#azure-ai-ml-mlclient-from-config).
+In the deployment configuration, select an authentication method. This example uses Azure Machine Learning token-based authentication. For more authentication options, see [Set up authentication](../../../machine-learning/how-to-setup-authentication.md). The client is created from a configuration file that's created automatically for Azure Machine Learning virtual machines (VMs). Learn more in the [MLClient.from_config API reference](/python/api/azure-ai-ml/azure.ai.ml.mlclient#azure-ai-ml-mlclient-from-config).
 
 ### Make basic calls to the model
 
@@ -452,7 +452,7 @@ Biomedical image analysis is crucial for discovery in fields like cell biology, 
 
 The following image shows the conceptual architecture of the MedImageParse model where an image embedding model is augmented with a task adaptation layer to produce segmentation masks and textual descriptions.
 
-:::image type="content" source="../../media/how-to/healthcare-ai/medimageparse-flow.gif" alt-text="Animated diagram showing a medical image entering the MedImageParse model, flowing through a task adaptation layer, and outputting multiple segmentation masks with corresponding text labels.":::
+:::image type="content" source="../../media/how-to/healthcare-ai/medimageparse-flow.gif" alt-text="Screenshot of an animated diagram showing a medical image entering the MedImageParse model, flowing through a task adaptation layer, and outputting multiple segmentation masks with corresponding text labels.":::
 
 The segmentation masks and textual descriptions are achieved by using only standard segmentation datasets, augmented by natural-language labels, or descriptions harmonized with established biomedical object ontologies. This approach improves individual task performance and offers an all-in-one tool for biomedical image analysis, paving the way for more efficient and accurate image-based biomedical discovery.
 

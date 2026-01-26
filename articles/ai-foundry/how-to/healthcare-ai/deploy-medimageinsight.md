@@ -1,7 +1,7 @@
 ---
-title: How to deploy and use MedImageInsight healthcare AI model with Microsoft Foundry
+title: Deploy MedImageInsight for Medical Image Embeddings
 titleSuffix: Microsoft Foundry
-description: Learn how to use MedImageInsight healthcare AI model with Microsoft Foundry.
+description: Deploy MedImageInsight to generate medical image embeddings for X-Ray, CT, MRI, and more. Get step-by-step deployment guidance and API examples.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
@@ -14,7 +14,7 @@ author: msakande
 ms.custom: dev-focus
 ai-usage: ai-assisted
 
-#Customer intent: As a Data Scientist I want to learn how to use the MedImageInsight healthcare AI model to generate medical image embeddings.
+#customer intent: As a data scientist, I want to deploy the MedImageInsight healthcare AI model so that I can generate embeddings for medical images.
 ---
 
 # How to use MedImageInsight healthcare AI model for medical image embedding generation
@@ -23,11 +23,11 @@ ai-usage: ai-assisted
 
 [!INCLUDE [health-ai-models-meddev-disclaimer](../../includes/health-ai-models-meddev-disclaimer.md)]
 
-MedImageInsight is a medical imaging embedding model that processes X-Ray, CT, MRI, clinical photography, dermoscopy, histopathology, ultrasound, and mammography images. In this article, you learn how to deploy this model as an online endpoint for real-time inference and issue a basic call to the API. The steps you take are:
+MedImageInsight is a healthcare AI model that generates embeddings for medical images including X-Ray, CT, MRI, clinical photography, dermoscopy, histopathology, ultrasound, and mammography. This article shows you how to deploy MedImageInsight as an online endpoint for real-time inference and send API requests to generate medical image embeddings. The steps you take are:
 
 1. Deploy the model to a self-hosted managed compute.
 1. Grant permissions to the endpoint.
-1. Send test data to the model, receive, and interpret results.
+1. Send test data to the model, receive results, and interpret them.
 
 To learn more about MedImageInsight, see [Learn more about the model](#learn-more-about-the-model).
 
@@ -39,12 +39,12 @@ To learn more about MedImageInsight, see [Learn more about the model](#learn-mor
 
 - Azure role-based access controls (Azure RBAC) grant access to operations in Microsoft Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. Deploying models and invoking endpoints requires this role. For more information, see [Role-based access control in Foundry portal](../../concepts/rbac-ai-foundry.md).
 
-- Python 3.8 or later.
+- Python 3.8 or later
 
-- Install the required Python packages:
-  ```bash
-  pip install azure-ai-ml azure-identity
-  ```
+1. Install the required Python packages:
+   ```bash
+   pip install azure-ai-ml azure-identity
+   ```
 
 ## Sample notebooks
 
@@ -52,26 +52,26 @@ For complete working examples, see these interactive Python notebooks:
 
 * Getting started
 
-    * [Deploying and Using MedImageInsight](https://aka.ms/healthcare-ai-examples-mi2-deploy): Learn how to deploy the MedImageInsight model programmatically and issue an API call to it.
+    * [Deploying and Using MedImageInsight](https://aka.ms/healthcare-ai-examples-mi2-deploy): Deploy the MedImageInsight model programmatically and issue an API call to it.
 
 * Classification techniques
 
-    * [Building a Zero-Shot Classifier](https://aka.ms/healthcare-ai-examples-mi2-zero-shot): Discover how to use MedImageInsight to create a classifier without the need for training or large amount of labeled ground truth data.
+    * [Building a Zero-Shot Classifier](https://aka.ms/healthcare-ai-examples-mi2-zero-shot): Use MedImageInsight to create a classifier without the need for training or large amounts of labeled ground truth data.
     
     * [Enhancing Classification with Adapter Networks](https://aka.ms/healthcare-ai-examples-mi2-adapter): Improve classification performance by building a small adapter network on top of MedImageInsight.
 
 * Advanced applications
 
-    * [Inferring MRI Acquisition Parameters from Pixel Data](https://aka.ms/healthcare-ai-examples-mi2-exam-parameter): Understand how to extract MRI exam acquisition parameters directly from imaging data.
+    * [Inferring MRI Acquisition Parameters from Pixel Data](https://aka.ms/healthcare-ai-examples-mi2-exam-parameter): Extract MRI exam acquisition parameters directly from imaging data.
     
-    * [Scalable MedImageInsight Endpoint Usage](https://aka.ms/healthcare-ai-examples-mi2-advanced-call): Learn how to generate embeddings of medical images at scale using the MedImageInsight API while handling potential network issues gracefully.
+    * [Scalable MedImageInsight Endpoint Usage](https://aka.ms/healthcare-ai-examples-mi2-advanced-call): Generate embeddings of medical images at scale using the MedImageInsight API while handling potential network issues gracefully.
 
 
 ## Deploy the model to a managed compute
 
-Deployment to a self-hosted managed inference solution lets you customize and control all the details about how the model is served. The deployment process creates an online endpoint with a unique scoring URI and authentication keys. You configure the compute resources (such as GPU-enabled VMs) and set deployment parameters like instance count and request timeout values.
+Deployment to a self-hosted managed inference solution lets you customize and control all the details about how the model's served. The deployment process creates an online endpoint with a unique scoring URI and authentication keys. This endpoint lets you send inference requests to your model. You configure the compute resources (such as GPU-enabled VMs) and set deployment parameters like instance count and request timeout values.
 
-To deploy the model programmatically or from its model card in Microsoft Foundry, see [How to deploy and infer with a managed compute deployment](../deploy-models-managed.md). After deployment completes, note your endpoint name and deployment name for use in the inference code.
+To deploy the model programmatically or from its model card in Microsoft Foundry, see [How to deploy and infer with a managed compute deployment](../deploy-models-managed.md). After deployment's complete, note your endpoint name and deployment name for use in the inference code.
 
 
 ## Send inference requests to the embedding model
@@ -80,7 +80,7 @@ In this section, you consume the model and make basic calls to it.
 
 ### Use REST API to consume the model
 
-Use the model as a REST API, using simple GET requests or by creating a client as follows:
+Use the model as a REST API by using simple GET requests or by creating a client as follows:
 
 ```python
 from azure.ai.ml import MLClient
@@ -94,15 +94,15 @@ credential = DefaultAzureCredential()
 ml_client_workspace = MLClient.from_config(credential)
 ```
 
-This code authenticates your session and creates a workspace client that you use to invoke the deployed endpoint. The `DefaultAzureCredential` automatically uses available authentication methods in your environment (managed identity, Azure CLI, environment variables).
+This code authenticates your session and creates a workspace client that you use to invoke the deployed endpoint. The `DefaultAzureCredential` automatically uses available authentication methods in your environment (managed identity, Azure CLI, and environment variables).
 
-Reference: [MLClient](/python/api/azure-ai-ml/azure.ai.ml.mlclient), [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential)
+**References**: [MLClient](/python/api/azure-ai-ml/azure.ai.ml.mlclient) | [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential)
 
-In the deployment configuration, choose an authentication method. This example uses Azure Machine Learning token-based authentication. For more authentication options, see [Set up authentication](../../../machine-learning/how-to-setup-authentication.md). The client is created from a configuration file that's created automatically for Azure Machine Learning virtual machines (VMs). Learn more in the [MLClient.from_config API reference](/python/api/azure-ai-ml/azure.ai.ml.mlclient#azure-ai-ml-mlclient-from-config).
+In the deployment configuration, select an authentication method. This example uses Azure Machine Learning token-based authentication. For more authentication options, see [Set up authentication](../../../machine-learning/how-to-setup-authentication.md). The client is created from a configuration file that's created automatically for Azure Machine Learning virtual machines (VMs). Learn more in the [MLClient.from_config API reference](/python/api/azure-ai-ml/azure.ai.ml.mlclient#azure-ai-ml-mlclient-from-config).
 
 ### Make basic calls to the model
 
-After deploying the model, use the following code to send data and get embeddings.
+After you deploy the model, use the following code to send data and get embeddings.
 
 ```python
 import base64
@@ -147,7 +147,7 @@ response = ml_client_workspace.online_endpoints.invoke(
 )
 ```
 
-This code reads an X-ray image, encodes it as base64, and sends it with descriptive text to the embedding endpoint. The response contains `image_features` (a 1024-dimensional vector representing the image), `text_features` (vector for the text), and an optional `scaling_factor` used for classification tasks.
+This code reads an X-ray image, encodes it as base64, and sends it with descriptive text to the embedding endpoint. The response contains `image_features` (a 1,024-dimensional vector representing the image), `text_features` (vector for the text), and an optional `scaling_factor` used for classification tasks.
 
 **References**: [MLClient](/python/api/azure-ai-ml/azure.ai.ml.mlclient) | [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential) | [online_endpoints.invoke](/python/api/azure-ai-ml/azure.ai.ml.operations.onlineendpointoperations#azure-ai-ml-operations-onlineendpointoperations-invoke)
 
@@ -176,11 +176,11 @@ The `params` object contains the following fields:
 
 | Key           | Type           | Required/Default | Allowed values    | Description |
 | ------------- | -------------- | :-----------------:| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `get_scaling_factor`   | `boolean` | N<br/>`True` | `"True"` OR `"False"` | Whether the model should return "temperature" scaling factor. This factor is useful when you're planning to compare multiple cosine similarity values in an application like classification. It's essential for correct implementation of "zero-shot" type of scenarios. For usage, refer to the zero-shot classification example linked in the [Classification techniques](#classification-techniques) section. |
+| `get_scaling_factor`   | `boolean` | N<br/>`True` | `"True"` or `"False"` | Whether the model should return "temperature" scaling factor. This factor is useful when you're planning to compare multiple cosine similarity values in an application like classification. It's essential for correct implementation of "zero-shot" type of scenarios. For usage, refer to the zero-shot classification example linked in the [Classification techniques](#classification-techniques) section. |
 
 ### Request example
 
-**A simple inference requesting embedding of a single string** 
+**A simple inference that requests embedding of a single string** 
 ```JSON
 {
   "input_data": {
@@ -227,7 +227,7 @@ The response payload is a JSON-formatted string that contains the following fiel
 | `scaling_factor`   | `float` |  If requested, the scaling factor |
 
 ### Response example
-**A simple inference requesting embedding of a single string** 
+**A simple inference that requests embedding of a single string** 
 ```JSON
 {
   "image_features": [[0.029661938548088074, -0.027228673920035362, ... , -0.0328846238553524]],
@@ -237,27 +237,27 @@ The response payload is a JSON-formatted string that contains the following fiel
 ```
 
 ### Other implementation considerations
-The maximum number of tokens processed in the input string is 77. The system removes any tokens beyond 77 before passing the input to the model. The model uses a Contrastive Language-Image Pre-Training (CLIP) tokenizer, which uses about three Latin characters per token.
+The maximum number of tokens processed in the input string is 77. The system removes any tokens beyond 77 before it passes the input to the model. The model uses a Contrastive Language-Image Pre-Training (CLIP) tokenizer, which uses about three Latin characters per token.
 
-The model embeds the submitted text into the same latent space as the image. As a result, strings describing medical images of certain body parts obtained with certain imaging modalities are embedded close to such images. Also, when building systems on top of a MedImageInsight model, make sure that all your embedding strings are consistent with one another (word order and punctuation). For best results with the base model, strings should follow the pattern `<image modality> <anatomy> <exam parameters> <condition/pathology>.`, for example: `x-ray chest anteroposterior Atelectasis.`. 
+The model embeds the submitted text into the same latent space as the image. As a result, strings describing medical images of certain body parts obtained with certain imaging modalities are embedded close to such images. Also, when you build systems on top of a MedImageInsight model, make sure that all your embedding strings are consistent with one another (word order and punctuation). For best results with the base model, strings should follow the pattern `<image modality> <anatomy> <exam parameters> <condition/pathology>.`, for example: `x-ray chest anteroposterior Atelectasis.`. 
 
 If you fine-tune the model, you can change these parameters to better suit your application needs.
 
 ### Supported image formats
 The deployed model API supports images encoded in PNG format. 
 
-When the model receives the images, it preprocesses the images by compressing and resizing them to `512x512` pixels.
+When the model receives the images, it preprocesses them by compressing and resizing them to `512x512` pixels.
 
-The preferred compression format is lossless PNG, containing either an 8-bit monochromatic or RGB image. For optimization purposes, you can perform resizing on the client side to reduce network traffic.
+The preferred compression format is lossless PNG that contains either an 8-bit monochromatic or RGB image. For optimization purposes, you can perform resizing on the client side to reduce network traffic.
 
 
 ## Learn more about the model
 
-MedImageInsight foundation model for health is a powerful model that can process a wide variety of medical images. These images include X-Ray, CT, MRI, clinical photography, dermoscopy, histopathology, ultrasound, and mammography images. Rigorous evaluations demonstrate MedImageInsight's ability to achieve state-of-the-art (SOTA) or human expert-level performance across classification, image-to-image search, and fine-tuning tasks. Specifically, on public datasets, MedImageInsight achieves or exceeds SOTA performance in chest X-ray disease classification and search, dermatology classification and search, Optical coherence tomography (OCT) classification and search, and 3D medical image retrieval. The model also achieves near-SOTA performance for histopathology classification and search.  
+The MedImageInsight foundation model for health is a powerful model that can process a wide variety of medical images. These images include X-Ray, CT, MRI, clinical photography, dermoscopy, histopathology, ultrasound, and mammography images. Rigorous evaluations demonstrate MedImageInsight's ability to achieve state-of-the-art (SOTA) or human expert-level performance across classification, image-to-image search, and fine-tuning tasks. Specifically, on public datasets, MedImageInsight achieves or exceeds SOTA performance in chest X-ray disease classification and search, dermatology classification and search, optical coherence tomography (OCT) classification and search, and 3D medical image retrieval. The model also achieves near-SOTA performance for histopathology classification and search.  
 
 An embedding model can serve as the basis of many different solutions—from classification to more complex scenarios like group matching or outlier detection. The following animation shows an embedding model being used for image similarity search and to detect images that are outliers.
 
-:::image type="content" source="../../media/how-to/healthcare-ai/healthcare-embedding-capabilities.gif" alt-text="Animation that shows an embedding model capable of supporting similarity search and quality control scenarios.":::
+:::image type="content" source="../../media/how-to/healthcare-ai/healthcare-embedding-capabilities.gif" alt-text="Screenshot of an animated diagram that shows an embedding model capable of supporting similarity search and quality control scenarios.":::
 
 ## Related content
 

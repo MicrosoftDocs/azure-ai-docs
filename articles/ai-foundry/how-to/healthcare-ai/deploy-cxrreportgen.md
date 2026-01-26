@@ -1,7 +1,7 @@
 ---
-title: How to deploy and use CXRReportGen healthcare AI model with Microsoft Foundry
+title: Deploy CXRReportGen Healthcare AI Model in Foundry
 titleSuffix: Microsoft Foundry
-description: Learn how to use CXRReportGen healthcare AI model with Microsoft Foundry.
+description: Learn how to deploy and use the CXRReportGen healthcare AI model with Microsoft Foundry to generate grounded findings from chest X-ray studies. Follow step-by-step instructions to deploy, configure, and invoke the model endpoint.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
@@ -13,7 +13,7 @@ manager: nitinme
 author: msakande
 ms.custom: dev-focus
 ai-usage: ai-assisted
-#Customer intent: As a Data Scientist I want to learn how to use the CXRReportGen healthcare AI model to generate grounded findings.
+#customer intent: As a data scientist, I want to deploy the CXRReportGen healthcare AI model so that I can generate grounded findings from chest X-ray studies.
 
 ---
 
@@ -27,9 +27,9 @@ CXRReportGen is a multimodal model that generates grounded findings from chest X
 
 1. Deploy the model to a self-hosted managed compute.
 1. Grant permissions to the endpoint.
-1. Send test data to the model, receive, and interpret results.
+1. Send test data to the model, receive results, and interpret them.
 
-CXRReportGen generates a list of findings from a chest X-ray study and also performs a *grounded report generation or grounding task*. That task incorporates the localization of individual findings on the image. The CXRReportGen model combines a radiology-specific image encoder with a large language model and takes as inputs a more comprehensive set of data than many traditional approaches to enhance report quality and reduce incorrect information. To learn more about the model, see [Learn more about the model](#learn-more-about-the-model).
+CXRReportGen generates a list of findings from a chest X-ray study and also performs a *grounded report generation or grounding task*. That task incorporates the localization of individual findings on the image. The model combines a radiology-specific image encoder with a large language model and takes as inputs a more comprehensive set of data than many traditional approaches to enhance report quality and reduce incorrect information. To learn more about the model, see [Learn more about the model](#learn-more-about-the-model).
 
 ## Prerequisites
 
@@ -55,7 +55,7 @@ For a complete working example, see these interactive Python notebook:
 
 ## Deploy the model to a managed compute
 
-Deployment to a self-hosted managed inference solution lets you customize and control all the details about how the model is served. The deployment process creates an online endpoint with a unique scoring URI and authentication keys. You configure the compute resources (such as GPU-enabled VMs) and set deployment parameters like instance count and request timeout values.
+Deployment to a self-hosted managed inference solution lets you customize and control all the details about how the model's served. The deployment process creates an online endpoint with a unique scoring URI and authentication keys. This endpoint lets you send inference requests to your model. You configure the compute resources (such as GPU-enabled VMs) and set deployment parameters like instance count and request timeout values.
 
 To deploy the model programmatically or from its model card in Microsoft Foundry, see [How to deploy and infer with a managed compute deployment](../deploy-models-managed.md). After deployment completes, note your endpoint name and deployment name for use in the inference code.
 
@@ -65,7 +65,7 @@ In this section, you consume the model and make basic calls to it.
 
 ### Use REST API to consume the model
 
-Use the model as a REST API, using simple GET requests or by creating a client as follows:
+Use the model as a REST API, by using simple GET requests or by creating a client as follows:
 
 ```python
 from azure.ai.ml import MLClient
@@ -79,11 +79,11 @@ credential = DefaultAzureCredential()
 ml_client_workspace = MLClient.from_config(credential)
 ```
 
-This code authenticates your session and creates a workspace client that you use to invoke the deployed endpoint. The `DefaultAzureCredential` automatically uses available authentication methods in your environment (managed identity, Azure CLI, environment variables).
+This code authenticates your session and creates a workspace client that you use to invoke the deployed endpoint. The `DefaultAzureCredential` automatically uses available authentication methods in your environment (managed identity, Azure CLI, and environment variables).
 
 Reference: [MLClient](/python/api/azure-ai-ml/azure.ai.ml.mlclient), [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential)
 
-In the deployment configuration, choose an authentication method. This example uses Azure Machine Learning token-based authentication. For more authentication options, see [Set up authentication](../../../machine-learning/how-to-setup-authentication.md). The client is created from a configuration file that's created automatically for Azure Machine Learning virtual machines (VMs). Learn more in the [MLClient.from_config API reference](/python/api/azure-ai-ml/azure.ai.ml.mlclient#azure-ai-ml-mlclient-from-config).
+In the deployment configuration, select an authentication method. This example uses Azure Machine Learning token-based authentication. For more authentication options, see [Set up authentication](../../../machine-learning/how-to-setup-authentication.md). The client is created from a configuration file that's created automatically for Azure Machine Learning virtual machines (VMs). Learn more in the [MLClient.from_config API reference](/python/api/azure-ai-ml/azure.ai.ml.mlclient#azure-ai-ml-mlclient-from-config).
 
 ### Make basic calls to the model
 
@@ -253,7 +253,7 @@ Radiology reporting demands detailed image understanding, integration of multipl
 
 The following animation demonstrates the conceptual architecture of the CXRReportGen model, which consists of an embedding model paired with a general reasoner large language model (LLM). 
 
-:::image type="content" source="../../media/how-to/healthcare-ai/healthcare-reportgen.gif" alt-text="Animated diagram showing the CXRReportGen model architecture with a radiology-specific image encoder processing chest X-ray inputs, followed by a large language model that generates findings with bounding box coordinates for grounded report generation.":::
+:::image type="content" source="../../media/how-to/healthcare-ai/healthcare-reportgen.gif" alt-text="Screenshot of an animated diagram showing the CXRReportGen model architecture with a radiology-specific image encoder processing chest X-ray inputs, followed by a large language model that generates findings with bounding box coordinates for grounded report generation.":::
 
 The CXRReportGen model combines a radiology-specific image encoder with a large language model and takes as inputs a more comprehensive set of data than many traditional approaches. The input data includes the current frontal image, the current lateral image, the prior frontal image, the prior report, and the indication, technique, and comparison sections of the current report. These additions significantly enhance report quality and reduce incorrect information. They ultimately demonstrate the feasibility of grounded reporting as a novel and richer task in automated radiology.
 
