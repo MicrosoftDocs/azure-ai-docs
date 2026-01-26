@@ -979,7 +979,7 @@ Grounding with Bing Custom Search is a powerful tool that you can use to select 
  
 ## Optional parameters
 
-When you add the Grounding with Bing Search tool to your agent, you can pass the following parameters. These parameters will impact the Grounding with Bing Search tool output, and the AI model might not fully use all of the outputs. See the [code examples](bing-code-samples.md) for information on API version support and how to pass these parameters.
+When you add the Grounding with Bing Search or Grounding with Bing Custom Search tool to your agent, you can pass the following parameters. These parameters will impact the tool output, and the AI model might not fully use all of the outputs. See the code examples for information on API version support and how to pass these parameters.
 
 |Name|Value|Type|Required |
 |-|-|-|- |
