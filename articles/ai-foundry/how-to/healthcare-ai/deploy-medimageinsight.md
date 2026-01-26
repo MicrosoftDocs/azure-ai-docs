@@ -39,6 +39,8 @@ To learn more about MedImageInsight, see [Learn more about the model](#learn-mor
 
 - Azure role-based access controls (Azure RBAC) grant access to operations in Microsoft Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. Deploying models and invoking endpoints requires this role. For more information, see [Role-based access control in Foundry portal](../../concepts/rbac-ai-foundry.md).
 
+- Python 3.8 or later.
+
 - Install the required Python packages:
   ```bash
   pip install azure-ai-ml azure-identity
@@ -48,24 +50,29 @@ To learn more about MedImageInsight, see [Learn more about the model](#learn-mor
 
 For complete working examples, see these interactive Python notebooks:
 
-#### Getting started
-* [Deploying and Using MedImageInsight](https://aka.ms/healthcare-ai-examples-mi2-deploy): Learn how to deploy the MedImageInsight model programmatically and issue an API call to it.
+* Getting started
 
-#### Classification techniques
-* [Building a Zero-Shot Classifier](https://aka.ms/healthcare-ai-examples-mi2-zero-shot): Discover how to use MedImageInsight to create a classifier without the need for training or large amount of labeled ground truth data.
+    * [Deploying and Using MedImageInsight](https://aka.ms/healthcare-ai-examples-mi2-deploy): Learn how to deploy the MedImageInsight model programmatically and issue an API call to it.
 
-* [Enhancing Classification with Adapter Networks](https://aka.ms/healthcare-ai-examples-mi2-adapter): Improve classification performance by building a small adapter network on top of MedImageInsight.
+* Classification techniques
 
-#### Advanced applications
+    * [Building a Zero-Shot Classifier](https://aka.ms/healthcare-ai-examples-mi2-zero-shot): Discover how to use MedImageInsight to create a classifier without the need for training or large amount of labeled ground truth data.
+    
+    * [Enhancing Classification with Adapter Networks](https://aka.ms/healthcare-ai-examples-mi2-adapter): Improve classification performance by building a small adapter network on top of MedImageInsight.
 
-* [Inferring MRI Acquisition Parameters from Pixel Data](https://aka.ms/healthcare-ai-examples-mi2-exam-parameter): Understand how to extract MRI exam acquisition parameters directly from imaging data.
+* Advanced applications
 
-* [Scalable MedImageInsight Endpoint Usage](https://aka.ms/healthcare-ai-examples-mi2-advanced-call): Learn how to generate embeddings of medical images at scale using the MedImageInsight API while handling potential network issues gracefully.
+    * [Inferring MRI Acquisition Parameters from Pixel Data](https://aka.ms/healthcare-ai-examples-mi2-exam-parameter): Understand how to extract MRI exam acquisition parameters directly from imaging data.
+    
+    * [Scalable MedImageInsight Endpoint Usage](https://aka.ms/healthcare-ai-examples-mi2-advanced-call): Learn how to generate embeddings of medical images at scale using the MedImageInsight API while handling potential network issues gracefully.
 
 
 ## Deploy the model to a managed compute
 
-Deployment to a self-hosted managed inference solution lets you customize and control all the details about how the model is served. To deploy the model programmatically or from its model card in Microsoft Foundry, see [How to deploy and infer with a managed compute deployment](../deploy-models-managed.md).
+Deployment to a self-hosted managed inference solution lets you customize and control all the details about how the model is served. The deployment process creates an online endpoint with a unique scoring URI and authentication keys. You configure the compute resources (such as GPU-enabled VMs) and set deployment parameters like instance count and request timeout values.
+
+To deploy the model programmatically or from its model card in Microsoft Foundry, see [How to deploy and infer with a managed compute deployment](../deploy-models-managed.md). After deployment completes, note your endpoint name and deployment name for use in the inference code.
+
 
 ## Send inference requests to the embedding model
 
@@ -76,15 +83,20 @@ In this section, you consume the model and make basic calls to it.
 Use the model as a REST API, using simple GET requests or by creating a client as follows:
 
 ```python
-import base64
-import json
 from azure.ai.ml import MLClient
 from azure.identity import DefaultAzureCredential
 
+# Authenticate using Azure credentials
 credential = DefaultAzureCredential()
 
+# Create ML client from workspace configuration file (config.json)
+# The config file is automatically created on Azure ML compute instances
 ml_client_workspace = MLClient.from_config(credential)
 ```
+
+This code authenticates your session and creates a workspace client that you use to invoke the deployed endpoint. The `DefaultAzureCredential` automatically uses available authentication methods in your environment (managed identity, Azure CLI, environment variables).
+
+Reference: [MLClient](/python/api/azure-ai-ml/azure.ai.ml.mlclient), [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential)
 
 In the deployment configuration, choose an authentication method. This example uses Azure Machine Learning token-based authentication. For more authentication options, see [Set up authentication](../../../machine-learning/how-to-setup-authentication.md). The client is created from a configuration file that's created automatically for Azure Machine Learning virtual machines (VMs). Learn more in the [MLClient.from_config API reference](/python/api/azure-ai-ml/azure.ai.ml.mlclient#azure-ai-ml-mlclient-from-config).
 
@@ -97,6 +109,7 @@ import base64
 import json
 import os
 
+# Configure your endpoint details
 endpoint_name = "medimageinsight"
 deployment_name = "medimageinsight-v1"
 
@@ -106,6 +119,7 @@ def read_image(image_path):
     with open(image_path, "rb") as f:
         return f.read()
 
+# Prepare the request payload
 data = {
     "input_data": {
         "columns": ["image", "text"],

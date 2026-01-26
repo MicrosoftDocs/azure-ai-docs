@@ -39,6 +39,8 @@ CXRReportGen generates a list of findings from a chest X-ray study and also perf
 
 - Azure role-based access controls (Azure RBAC) grant access to operations in Microsoft Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. Deploying models and invoking endpoints requires this role. For more information, see [Role-based access control in Foundry portal](../../concepts/rbac-ai-foundry.md).
 
+- Python 3.8 or later.
+
 - Install the required Python packages:
   ```bash
   pip install azure-ai-ml azure-identity
@@ -53,9 +55,9 @@ For a complete working example, see these interactive Python notebook:
 
 ## Deploy the model to a managed compute
 
-Deployment to a self-hosted managed inference solution lets you customize and control all the details about how the model is served. To deploy the model programmatically or from its model card in Microsoft Foundry, see [How to deploy and infer with a managed compute deployment](../deploy-models-managed.md).
+Deployment to a self-hosted managed inference solution lets you customize and control all the details about how the model is served. The deployment process creates an online endpoint with a unique scoring URI and authentication keys. You configure the compute resources (such as GPU-enabled VMs) and set deployment parameters like instance count and request timeout values.
 
-
+To deploy the model programmatically or from its model card in Microsoft Foundry, see [How to deploy and infer with a managed compute deployment](../deploy-models-managed.md). After deployment completes, note your endpoint name and deployment name for use in the inference code.
 
 ## Send inference requests to the grounded report generation model
 
@@ -66,15 +68,20 @@ In this section, you consume the model and make basic calls to it.
 Use the model as a REST API, using simple GET requests or by creating a client as follows:
 
 ```python
-import base64
-import json
 from azure.ai.ml import MLClient
 from azure.identity import DefaultAzureCredential
 
+# Authenticate using Azure credentials
 credential = DefaultAzureCredential()
 
+# Create ML client from workspace configuration file (config.json)
+# The config file is automatically created on Azure ML compute instances
 ml_client_workspace = MLClient.from_config(credential)
 ```
+
+This code authenticates your session and creates a workspace client that you use to invoke the deployed endpoint. The `DefaultAzureCredential` automatically uses available authentication methods in your environment (managed identity, Azure CLI, environment variables).
+
+Reference: [MLClient](/python/api/azure-ai-ml/azure.ai.ml.mlclient), [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential)
 
 In the deployment configuration, choose an authentication method. This example uses Azure Machine Learning token-based authentication. For more authentication options, see [Set up authentication](../../../machine-learning/how-to-setup-authentication.md). The client is created from a configuration file that's created automatically for Azure Machine Learning virtual machines (VMs). Learn more in the [MLClient.from_config API reference](/python/api/azure-ai-ml/azure.ai.ml.mlclient#azure-ai-ml-mlclient-from-config).
 
@@ -83,36 +90,78 @@ In the deployment configuration, choose an authentication method. This example u
 After you deploy the model, use the following code to send data and get a list of findings and the corresponding bounding boxes.
 
 ```python
+import base64
+import json
+import os
+from azure.ai.ml import MLClient
+from azure.identity import DefaultAzureCredential
+
+# Helper function to read image as bytes
+def read_image(image_path):
+    with open(image_path, "rb") as f:
+        return f.read()
+
+# Set your endpoint and deployment names from the deployment step
+endpoint_name = "your-endpoint-name"  # Replace with your endpoint name
+deployment_name = "your-deployment-name"  # Replace with your deployment name
+
+# Set paths to your chest X-ray images
+frontal_path = "path/to/frontal_image.png"  # Replace with your frontal image path
+lateral_path = "path/to/lateral_image.png"  # Replace with your lateral image path (optional)
+
+# Set clinical context
+indication = "Cough and wheezing for 5 months"
+technique = "PA and lateral views of the chest were obtained"
+comparison = "None"
+
+# Encode images to base64 and prepare input data
 input_data = {
-        "frontal_image": base64.encodebytes(read_image(frontal_path)).decode("utf-8"),
-        "lateral_image": base64.encodebytes(read_image(lateral_path)).decode("utf-8"),
-        "indication": indication,
-        "technique": technique,
-        "comparison": comparison,
+    "frontal_image": base64.encodebytes(read_image(frontal_path)).decode("utf-8"),
+    "lateral_image": base64.encodebytes(read_image(lateral_path)).decode("utf-8"),
+    "indication": indication,
+    "technique": technique,
+    "comparison": comparison,
+}
+
+# Structure data according to the model's expected schema
+data = {
+    "input_data": {
+        "columns": list(input_data.keys()),
+        "index": [0],  # Set to number of concurrent requests (keep under 10)
+        "data": [
+            list(input_data.values()),
+        ],
     }
+}
 
-    data = {
-        "input_data": {
-            "columns": list(input_data.keys()),
-            #  IMPORTANT: Modify the index as needed
-            "index": [0],  # 1, 2],
-            "data": [
-                list(input_data.values()),
-            ],
-        }
-    }
+# Create request JSON file
+request_file_name = "sample_request_data.json"
+with open(request_file_name, "w") as request_file:
+    json.dump(data, request_file)
 
-    # Create request json
-    request_file_name = "sample_request_data.json"
-    with open(request_file_name, "w") as request_file:
-        json.dump(data, request_file)
+# Authenticate and create workspace client
+credential = DefaultAzureCredential()
+ml_client_workspace = MLClient.from_config(credential)
 
-    response = ml_client_workspace.online_endpoints.invoke(
-        endpoint_name=endpoint_name,
-        deployment_name=deployment_name,
-        request_file=request_file_name,
-    )
+# Invoke the endpoint
+response = ml_client_workspace.online_endpoints.invoke(
+    endpoint_name=endpoint_name,
+    deployment_name=deployment_name,
+    request_file=request_file_name,
+)
+
+# Parse and display the response
+result = json.loads(response)
+print("Generated Findings:")
+for finding_text, bounding_boxes in result["output"]:
+    print(f"- {finding_text}")
+    if bounding_boxes:
+        print(f"  Bounding boxes: {bounding_boxes}")
 ```
+
+This code prepares a request with chest X-ray images and clinical context, sends it to your deployed endpoint, and receives a structured response. The model returns a list of clinical findings, each with optional bounding box coordinates indicating where on the image the finding is located. Bounding box coordinates are normalized (0-1 range), so multiply by image dimensions to get pixel coordinates.
+
+Reference: [MLClient.online_endpoints](/python/api/azure-ai-ml/azure.ai.ml.operations.onlineendpointoperations), [base64 module](https://docs.python.org/3/library/base64.html)
 
 ## Reference for REST API
 
