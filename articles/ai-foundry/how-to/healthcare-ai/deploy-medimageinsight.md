@@ -176,7 +176,7 @@ The `params` object contains the following fields:
 
 | Key           | Type           | Required/Default | Allowed values    | Description |
 | ------------- | -------------- | :-----------------:| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `get_scaling_factor`   | `boolean` | N<br/>`True` | `"True"` or `"False"` | Whether the model should return "temperature" scaling factor. This factor is useful when you're planning to compare multiple cosine similarity values in an application like classification. It's essential for correct implementation of "zero-shot" type of scenarios. For usage, refer to the zero-shot classification example linked in the [Classification techniques](#classification-techniques) section. |
+| `get_scaling_factor`   | `boolean` | N<br/>`True` | `"True"` or `"False"` | Whether the model should return "temperature" scaling factor. This factor is useful when you're planning to compare multiple cosine similarity values in an application like classification. It's essential for correct implementation of "zero-shot" type of scenarios. For usage, refer to the zero-shot classification example linked in the "Classification techniques" section of [Sample notebooks](#sample-notebooks). |
 
 ### Request example
 
