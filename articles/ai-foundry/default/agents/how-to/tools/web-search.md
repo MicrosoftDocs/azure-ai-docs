@@ -19,7 +19,7 @@ ai-usage: ai-assisted
 zone_pivot_groups: selection-web-search
 ---
 
-# Web search (preview)
+# Web search tool (preview)
 
 [!INCLUDE [feature-preview](../../../../includes/feature-preview.md)]
 
