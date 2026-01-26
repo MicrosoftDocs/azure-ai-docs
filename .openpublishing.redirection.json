@@ -1,6 +1,21 @@
 {
   "redirections": [
     {
+      "source_path": "articles/ai-services/luis/context/context.yml",
+      "redirect_url": "/previous-versions/azure/ai-services/luis",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/how-to/migrate-from-luis.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/context/context.yml",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/ai-services/luis/app-schema-definition.md",
       "redirect_url": "/previous-versions/azure/ai-services/luis/app-schema-definition",
       "redirect_document_id": false

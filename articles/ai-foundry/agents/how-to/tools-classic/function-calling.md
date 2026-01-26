@@ -34,6 +34,71 @@ By using Azure AI Agents function calling, you can extend agent capabilities by 
 |---------|---------|---------|---------|---------|---------|---------|
 |      | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
+## Best practices
+
+### Multi-turn function calling
+
+The agent may require multiple function calls to complete a single user request. For example, if a user asks "What's the weather like in my favorite city?", the agent might:
+
+1. First call `getUserFavoriteCity()` to determine the city
+2. Then call `getWeather(location)` with the result
+
+Your polling loop must handle multiple `requires_action` states in sequence. Don't assume the run completes after submitting one function result—continue polling until the run status is `completed` or a terminal state (`failed`, `cancelled`, `expired`).
+
+### Error handling in functions
+
+When your function execution fails, you have two options:
+
+1. **Return an error message** - Submit a descriptive error as the tool output. The agent can use this to provide a helpful response to the user.
+2. **Cancel the run** - If the error is unrecoverable, cancel the run and handle it in your application.
+
+```python
+# Example: Returning an error message
+if error_occurred:
+    tool_outputs.append({
+        "tool_call_id": tool_call.id,
+        "output": json.dumps({"error": "Location not found. Please provide a valid city name."})
+    })
+```
+
+### Timeout considerations
+
+Runs expire **10 minutes** after creation. Plan your function implementations accordingly:
+
+- If your function makes external API calls, set appropriate timeouts
+- For long-running operations, consider returning a partial result or status update
+- Monitor run status and handle `expired` status gracefully
+
+### Polling with backoff
+
+Instead of polling with a fixed delay, consider exponential backoff to reduce API calls:
+
+```python
+# Example: Exponential backoff polling
+import time
+
+delay = 0.5  # Start with 500ms
+max_delay = 5  # Cap at 5 seconds
+
+while run.status in ["queued", "in_progress", "requires_action"]:
+    time.sleep(delay)
+    run = project_client.agents.runs.get(thread_id=thread.id, run_id=run.id)
+
+    if run.status == "requires_action":
+        # Handle function call, reset delay after action
+        delay = 0.5
+    else:
+        # Increase delay for next poll
+        delay = min(delay * 1.5, max_delay)
+```
+
+### Function definition best practices
+
+- **Use clear descriptions** - The agent uses your function descriptions to decide when to call them. Be specific about what each function does and when it should be used.
+- **Validate required parameters** - Mark parameters as `required` in your schema if they're necessary for the function to work correctly.
+- **Keep parameter names intuitive** - Use names like `location`, `temperature_unit` rather than abbreviations.
+- **Return structured JSON** - Return JSON objects rather than plain strings to give the agent more context about the result.
+
 ::: zone pivot="python"
 ## Function calling code example
 

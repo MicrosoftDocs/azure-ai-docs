@@ -8,7 +8,7 @@ ms.service: azure-data-science-virtual-machines
 
 author: s-polly 
 ms.author: scottpolly
-ms.topic: conceptual
+ms.topic: sample
 ms.reviewer: tklimmer
 ms.date: 04/16/2024
 ms.custom:

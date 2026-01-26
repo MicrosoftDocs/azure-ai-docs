@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 11/20/2025
+ms.date: 01/23/2026
 ---
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]
@@ -28,7 +28,7 @@ The generated indexer conforms to the *OneLake indexer*, whose prerequisites, su
 
 + Completion of the [OneLake indexer data preparation](../../search-how-to-index-onelake-files.md#prepare-data-for-indexing).
 
-+ The latest preview version of the [`azure-search-documents` client library](https://pypi.org/project/azure-search-documents/11.7.0b2/) for C#.
++ The latest preview version of the [`Azure.Search.Documents` client library](https://www.nuget.org/packages/Azure.Search.Documents/11.8.0-beta.1) for the .NET SDK.
 
 + Permission to create and use objects on Azure AI Search. We recommend [role-based access](../../search-security-rbac.md), but you can use [API keys](../../search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](../../search-get-started-rbac.md).
 

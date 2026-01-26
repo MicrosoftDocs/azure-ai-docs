@@ -5,7 +5,7 @@ description: Get answers to frequently asked questions about the Azure Translato
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.topic: conceptual
+ms.topic: faq
 ms.date: 11/18/2025
 ms.author: lajanuar
 ---

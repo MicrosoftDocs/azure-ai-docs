@@ -6,7 +6,7 @@ manager: nitinme
 author: arv100kri
 ms.author: arjagann
 ms.service: azure-ai-search
-ms.topic: conceptual
+ms.topic: troubleshooting-general
 ms.date: 06/04/2025
 ms.update-cycle: 365-days
 ms.custom:

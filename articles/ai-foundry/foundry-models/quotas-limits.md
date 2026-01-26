@@ -25,13 +25,13 @@ This article provides a quick reference and detailed description of the quotas a
 
 Azure uses quotas and limits to prevent budget overruns due to fraud and to honor Azure capacity constraints. Consider these limits as you scale for production workloads. The following sections provide a quick guide to the default quotas and limits that apply to Azure AI model inference service in Foundry:
 
-### Resource limits
+### Resource limits (per Azure subscription, per region)
 
 | Limit name | Limit value |
 |--|--|
 | Foundry resources per region per Azure subscription | 100 |
 | Max projects per resource | 250 |
-| Max deployments per resource | 32 | 
+| Max deployments per resource (model deployments within a Foundry resource) | 32 | 
 
 ### Rate limits
 
@@ -91,7 +91,7 @@ We recommend explicitly setting the client side timeout as follows.
 > [!NOTE]
 > If not explicitly set, the client side timeout exists as per the library used, and may not be the same limits as above.
 
-- Reasoning models: up to 29 minutes. 
+- Reasoning models (models that generate intermediate reasoning tokens before producing a summarized response): up to 29 minutes. 
 - Non-reasoning models: 
     - For streaming, up to 60 seconds.
     - For non-streaming requests, up to 29 minutes.

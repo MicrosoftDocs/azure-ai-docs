@@ -5,7 +5,7 @@ description: Microsoft offers Microsoft-managed encryption keys, and also lets y
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: article
+ms.topic: concept-article
 ms.date: 08/07/2025
 ms.author: pafarley
 #Customer intent: As a developer, I want to learn about data encryption at rest for Speech service.

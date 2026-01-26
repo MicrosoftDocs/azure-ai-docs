@@ -1,12 +1,12 @@
 ---
-title: Connect to Azure SQL Managed Instance using managed identity
+title: Connect to Azure SQL Managed Instance Using a Managed Identity
 titleSuffix: Azure AI Search
-description: Learn how to set up an Azure AI Search indexer connection to an Azure SQL Managed Instance using a managed identity
+description: Learn how to set up an Azure AI Search indexer connection to an Azure SQL Managed Instance using a managed identity.
 author: gmndrg
 ms.author: gimondra
 ms.service: azure-ai-search
-ms.topic: conceptual
-ms.date: 06/04/2025
+ms.topic: how-to
+ms.date: 01/21/2026
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
@@ -21,10 +21,7 @@ This article describes how to set up an Azure AI Search indexer connection to [S
 
 You can use a system-assigned managed identity or a user-assigned managed identity (preview). Managed identities are Microsoft Entra logins and require Azure role assignments to access data in SQL Managed Instance.
 
-Before learning more about this feature, we recommended that you understand what an indexer is and how to set up an indexer for your data source. More information can be found at the following links:
-
-* [Indexer overview](search-indexer-overview.md)
-* [SQL Managed Instance indexer](search-how-to-index-sql-database.md)
+Before you learn more about this feature, you should understand what an indexer is and how to set up an indexer for your data source. For more information, see [Indexers in Azure AI Search](search-indexer-overview.md) and [Index data from Azure SQL Database](search-how-to-index-sql-database.md).
 
 ## Prerequisites
 
@@ -45,7 +42,7 @@ Follow these steps to assign the search service system managed identity permissi
     - [Configure a point-to-site connection from on-premises](/azure/azure-sql/managed-instance/point-to-site-p2s-configure)
     - [Configure an Azure virtual machine](/azure/azure-sql/managed-instance/connect-vm-instance-configure)
 
-1. Authenticate with your Microsoft Entra account.
+1. Authenticate by using your Microsoft Entra account.
 
    :::image type="content" source="./media/search-index-azure-sql-managed-instance-with-managed-identity/sql-login.png" alt-text="Showing screenshot of the Connect to Server dialog.":::
 
@@ -62,7 +59,7 @@ Follow these steps to assign the search service system managed identity permissi
 
     :::image type="content" source="./media/search-index-azure-sql-managed-instance-with-managed-identity/execute-sql-query.png" alt-text="Showing screenshot of how to execute SQL query.":::
 
-If you later change the search service system identity after assigning permissions, you must remove the role membership and remove the user in the SQL database, then repeat the permission assignment. Removing the role membership and user can be accomplished by running the following commands:
+If you later change the search service system identity after assigning permissions, you must remove the role membership and remove the user in the SQL database, then repeat the permission assignment. To remove the role membership and user, run the following commands:
 
 ```sql
 sp_droprolemember 'db_datareader', [insert your search service name or user-assigned managed identity name];
@@ -74,17 +71,17 @@ DROP USER IF EXISTS [insert your search service name or user-assigned managed id
 
 In this step, you give your Azure AI Search service permission to read data from your SQL Managed Instance.
 
-1. In the Azure portal, navigate to your SQL Managed Instance page.
+1. In the Azure portal, go to your SQL Managed Instance page.
 1. Select **Access control (IAM)**.
-1. Select **Add** then **Add role assignment**.
+1. Select **Add** > **Add role assignment**.
 
    :::image type="content" source="./media/search-index-azure-sql-managed-instance-with-managed-identity/access-control-add-role-assignment.png" alt-text="Showing screenshot of the Access Control page." lightbox="media/search-index-azure-sql-managed-instance-with-managed-identity/access-control-add-role-assignment.png":::
 
-1. Select **Reader** role.
+1. Select the **Reader** role.
 1. Leave **Assign access to** as **Microsoft Entra user, group, or service principal**.
-1. If you're using a system-assigned managed identity, search for your search service, then select it. If you're using a user-assigned managed identity, search for the name of the user-assigned managed identity, then select it. Select **Save**.
+1. If you're using a system-assigned managed identity, search for your search service and select it. If you're using a user-assigned managed identity, search for the name of the user-assigned managed identity and select it. Select **Save**.
 
-    Example for SQL Managed Instance using a system-assigned managed identity:
+    Here's an example for SQL Managed Instance using a system-assigned managed identity:
 
     :::image type="content" source="./media/search-index-azure-sql-managed-instance-with-managed-identity/add-role-assignment.png" alt-text="Showing screenshot of the member role assignment.":::
 
@@ -96,9 +93,9 @@ Create the data source and provide a system-assigned managed identity.
 
 The [REST API](/rest/api/searchservice/data-sources/create), Azure portal, and the [.NET SDK](/dotnet/api/azure.search.documents.indexes.models.searchindexerdatasourceconnection) support system-assigned managed identity.
 
-When you're connecting with a system-assigned managed identity, the only change to the data source definition is the format of the "credentials" property. You provide an Initial Catalog or Database name and a `ResourceId` that has no account key or password. The `ResourceId` must include the subscription ID of SQL Managed Instance, the resource group of SQL Managed instance, and the name of the SQL database.
+When you connect by using a system-assigned managed identity, the only change to the data source definition is the format of the "credentials" property. You provide an Initial Catalog or Database name and a `ResourceId` that has no account key or password. The `ResourceId` must include the subscription ID of SQL Managed Instance, the resource group of SQL Managed instance, and the name of the SQL database.
 
-Here's an example of how to create a data source to index data from a storage account using the [Create Data Source](/rest/api/searchservice/data-sources/create) REST API and a managed identity connection string. The managed identity connection string format is the same for the REST API, .NET SDK, and the Azure portal.  
+Here's an example of how to create a data source to index data from a SQL Managed Instance using the [Create Data Source](/rest/api/searchservice/data-sources/create) REST API and a managed identity connection string. The managed identity connection string format is the same for the REST API, .NET SDK, and the Azure portal.  
 
 ```http
 POST https://[service name].search.windows.net/datasources?api-version=2025-09-01
@@ -139,7 +136,7 @@ api-key: [admin key]
 
 ## Create the indexer
 
-An indexer connects a data source with a target search index, and provides a schedule to automate the data refresh. Once the index and data source are created, you're ready to create the indexer.
+An indexer connects a data source with a target search index and provides a schedule to automate the data refresh. After you create the index and data source, create the indexer.
 
 Here's a [Create Indexer](/rest/api/searchservice/indexers/create) REST API call with an Azure SQL indexer definition. The indexer runs when you submit the request.
 
@@ -159,7 +156,7 @@ api-key: [admin key]
 
 If you get an error when the indexer tries to connect to the data source that says that the client isn't allowed to access the server, see the [common indexer errors](./search-indexer-troubleshooting.md).
 
-You can also rule out any firewall issues by trying the connection with and without restrictions in place.
+You can also rule out any firewall problems by trying the connection with and without restrictions in place.
 
 ## See also
 

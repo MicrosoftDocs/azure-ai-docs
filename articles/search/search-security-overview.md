@@ -10,7 +10,7 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
   - horz-security
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 09/25/2025
 ---
 

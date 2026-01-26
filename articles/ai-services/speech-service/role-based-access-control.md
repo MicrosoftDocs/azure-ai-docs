@@ -5,7 +5,7 @@ description: Learn how to assign access roles for an AI Speech resource.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: article
+ms.topic: concept-article
 ms.date: 12/19/2025
 ms.author: pafarley
 # Customer intent: As a developer, I want to learn how to assign access roles for an AI Speech resource.

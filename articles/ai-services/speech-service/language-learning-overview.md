@@ -5,7 +5,7 @@ description: Learn about how Azure Speech in Foundry Tools can be used to learn 
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: article
+ms.topic: concept-article
 ms.date: 08/07/2025
 ms.author: pafarley
 #Customer intent: As a language learner, I want to learn how to use Azure Speech in Foundry Tools to improve my language skills.

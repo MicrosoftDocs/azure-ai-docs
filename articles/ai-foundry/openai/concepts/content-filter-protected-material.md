@@ -4,7 +4,7 @@ description: Learn about the Protected Material Detection Filter for identifying
 author: ssalgadodev
 ms.author: ssalgado
 ms.date: 11/05/2025
-ms.topic: conceptual
+ms.topic: concept-article
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 monikerRange: 'foundry-classic || foundry'

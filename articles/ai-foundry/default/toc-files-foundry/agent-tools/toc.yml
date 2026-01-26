@@ -96,6 +96,3 @@ items:
     href: ../../agents/how-to/tools/openapi.md
   - name: Function calling
     href: ../../agents/how-to/tools/function-calling.md
-
-- name: Enable token limits with API gateways
-  href: ../../configuration/enable-ai-api-management-gateway-portal.md

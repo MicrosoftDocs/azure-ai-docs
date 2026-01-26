@@ -1,7 +1,7 @@
 ---
-title: "Quickstart: Use Azure Language Detection client library"
+title: "Quickstart: Use the Azure Language Detection client library"
 titleSuffix: Foundry Tools
-description: Use this quickstart to start using Language Detection.
+description: Detect the language of text with Azure Language Detection using SDKs, the REST API, or the Foundry portal.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
@@ -13,8 +13,9 @@ ms.devlang: csharp
 ms.custom: language-service-language-detection, mode-api, devx-track-extended-java, devx-track-js, devx-track-python
 keywords: text mining, language detection
 zone_pivot_groups: programming-languages-text-analytics
+ai-usage: ai-assisted
 ---
-# Quickstart: using Azure Language Detection client library and REST API
+# Quickstart: Use the Azure Language Detection client library and REST API
 
 ::: zone pivot="programming-language-csharp"
 
@@ -52,6 +53,14 @@ zone_pivot_groups: programming-languages-text-analytics
 
 ::: zone-end
 
+## Troubleshooting
+
+| Issue | Resolution |
+|---|---|
+| You get a `401` or `403` error when calling the API. | Confirm your key and endpoint are correct for the same Azure AI resource. If you recently changed role assignments, wait a few minutes and try again. |
+| You get an error about missing environment variables. | Confirm `LANGUAGE_KEY` and `LANGUAGE_ENDPOINT` are set in your environment before you run the sample. |
+| The Foundry experience doesn't match the steps. | In the Foundry portal, use the version toggle to switch between Foundry (classic) and Foundry (new), then follow the matching tab in the Foundry section. |
+
 ## Clean up resources
 
 To clean up and remove an Azure AI resource, you can delete either the individual resource or the entire resource group. If you delete the resource group, all resources contained within are also deleted.
@@ -62,3 +71,6 @@ To clean up and remove an Azure AI resource, you can delete either the individua
 ## Next steps
 
 * [Language detection overview](overview.md)
+* [Call the Language Detection API](how-to/call-api.md)
+* [Language support](language-support.md)
+* [Use containers](how-to/use-containers.md)

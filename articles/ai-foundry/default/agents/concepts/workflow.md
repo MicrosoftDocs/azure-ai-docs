@@ -1,31 +1,47 @@
 ---
-title: Build a Workflow in Microsoft Foundry
+title: Build a workflow in Microsoft Foundry
 titleSuffix: Microsoft Foundry
-description: This article explains how to build a workflow in Microsoft Foundry by using agents. 
+description: Learn how to build a workflow in Microsoft Foundry to orchestrate agents, add nodes, and use Power Fx and JSON schema outputs.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.custom:
   - build-2025
   - code01
+  - pilot-ai-workflow-jan-2026 
 ms.topic: how-to
 ms.date: 11/05/2025
 ms.reviewer: fniedtner
 ms.author: ssalgado
 manager: nitinme
 author: ssalgadodev
+ai-usage: ai-assisted
 #customer intent: As a developer, I want to learn how to build a workflow so that I can solve real-world problems collaboratively.
 ---
 
 # Build a workflow in Microsoft Foundry
 
-Workflows are UI-based tools in Microsoft Foundry. You can use them to create declarative, predefined sequences of actions that include agents, as in Microsoft Agent Framework workflows.
+Workflows are UI-based tools in Microsoft Foundry. Use them to create declarative, predefined sequences of actions that orchestrate agents and business logic in a visual builder.
 
 Workflows enable you to build intelligent automation systems that seamlessly blend AI agents with business processes in a visual manner. Traditional single-agent systems are limited in their ability to handle complex, multifaceted tasks. By orchestrating multiple agents, each with specialized skills or roles, you can create systems that are more robust, adaptive, and capable of solving real-world problems collaboratively.
 
 ## Prerequisites
 
 - [!INCLUDE [azure-subscription](../../../includes/azure-subscription.md)]
-- A project in Microsoft Foundry.
+- A project in Microsoft Foundry. For more information, see [Create projects](../../../how-to/create-projects.md).
+- Access to create and run workflows in your Foundry project. For more information, see [Azure role-based access control (RBAC) in Foundry](../../../concepts/rbac-foundry.md).
+
+## When to use workflows
+
+Use workflows when you want to:
+
+- Orchestrate multiple agents in a repeatable process.
+- Add branching logic (for example, if/else) and variable handling without writing code.
+- Create human-in-the-loop steps (for example, approvals or clarifying questions).
+
+If you want to edit workflow YAML in Visual Studio Code or run workflows in a local playground, see:
+
+- [Work with Declarative (Low-code) Agent workflows in Visual Studio Code](../how-to/vs-code-agents-workflow-low-code.md)
+- [Work with Hosted (Pro-code) Agent workflows in Visual Studio Code](../how-to/vs-code-agents-workflow-pro-code.md)
 
 ## Workflow concepts
 
@@ -33,7 +49,7 @@ To create a workflow in Foundry, you can begin with a blank workflow or select o
 
 | Pattern    | Description                                                        | Typical use case                                         |
 |------------|--------------------------------------------------------------------|----------------------------------------------------------|
-| Human in the loop  | Asks the user a question and awaits user input to proceed | Creating approval requests during workflow execution and waiting for human approval, or obtaining information form the user |
+| Human in the loop  | Asks the user a question and awaits user input to proceed | Creating approval requests during workflow execution and waiting for human approval, or obtaining information from the user |
 | Sequential | Passes the result from one agent to the next in a defined order   | Step-by-step workflows, pipelines, or multiple-stage processing |
 | Group chat    | Dynamically passes control between agents based on context or rules| Dynamic workflows, escalation, fallback, or expert handoff scenarios |
 
@@ -61,6 +77,14 @@ The following steps show you how to create a sequential type of workflow as an e
 1. Interact with the workflow in the chat window.
 
 1. Optionally, add new nodes to your workflow. The next section in this article provides information about nodes.
+
+## Verify your workflow run
+
+After you select **Run Workflow**, verify that:
+
+- Each node completes in the visualizer.
+- You see the expected responses in the chat window.
+- Any variables you save (for example, JSON output from an agent node) contain the values you expect.
 
 ## Add nodes to your workflow
 
@@ -123,44 +147,47 @@ For advanced options and comprehensive information about agent creation, go to t
 
    :::image type="content" source="../../media/workflows/response-format.png" alt-text="Screenshot that shows the addition of a response format in JSON." lightbox="../../media/workflows/response-format.png":::
 
-    ```json
-    {
-      "name": "math_response",
-      "schema": {
-        "type": "object",
-        "properties": {
-          "steps": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "explanation": {
-                  "type": "string"
-                },
-                "output": {
-                  "type": "string"
-                }
+  > [!IMPORTANT]
+  > Don't include secrets (passwords, keys, tokens) in JSON schemas, prompts, or saved workflow variables.
+
+  ```json
+  {
+    "name": "math_response",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "explanation": {
+                "type": "string"
               },
-              "required": [
-                "explanation",
-                "output"
-              ],
-              "additionalProperties": false
-            }
-          },
-          "final_answer": {
-            "type": "string"
+              "output": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "explanation",
+              "output"
+            ],
+            "additionalProperties": false
           }
         },
-        "additionalProperties": false,
-        "required": [
-          "steps",
-          "final_answer"
-        ]
+        "final_answer": {
+          "type": "string"
+        }
       },
-      "strict": true
-    }
-    ```
+      "additionalProperties": false,
+      "required": [
+        "steps",
+        "final_answer"
+      ]
+    },
+    "strict": true
+  }
+  ```
 
 1. Select **Action settings**. Then select **Save output json_object/json_schema as**.
 
@@ -261,18 +288,30 @@ In this example, a Power Fx expression stores and outputs the customer's name in
 
 ## Use Power Fx to create if/else flows
 
-In this example, a Power Fx expression stores and outputs the customer's name in capital letters.
+In this example, you add an if/else flow and build a condition by using system variables.
 
 1. Create a workflow and add an **Ask a question** node.
 
 1. Select the **+** icon and add an **if/else** flow.
-1. Type `System.` in the **Condition** text box to create a condition statement for each if/else combination.
+
+1. Type `System.` in the **Condition** box to build a condition statement for each if/else branch.
+
    :::image type="content" source="../../media/workflows/if-else-condition.png" alt-text="A screenshot showing the system variables in the if-else condition text box." lightbox="../../media/workflows/if-else-condition.png":::
-1. Select a **Next Action** for the next desired step in the workflow.
-1. Select **Done**. Select **Save** to save your workflow
+
+1. Select a **Next Action** for the next step in the workflow.
+
+1. Select **Done**. Select **Save** to save your workflow.
+
+## Troubleshooting
+
+- If you don't see **Workflows** or you can't create or edit workflows, confirm your project access and permissions. See [Azure role-based access control (RBAC) in Foundry](../../../concepts/rbac-foundry.md).
+- If your changes don't appear, confirm you selected **Save** in the visualizer.
+- If a workflow run doesn't produce the output you expect, verify that each agent node has an agent assigned and that any saved outputs (for example, JSON schema outputs) are valid.
 
 
 ## Related content
 
-
-- [Microsoft Foundry Agent Service FAQ](../../../agents/faq.yml)
+- [Foundry Agent Service FAQ](../../../agents/faq.yml)
+- [Tool best practices for Foundry agents](tool-best-practice.md)
+- [Work with Declarative (Low-code) Agent workflows in Visual Studio Code](../how-to/vs-code-agents-workflow-low-code.md)
+- [Work with Hosted (Pro-code) Agent workflows in Visual Studio Code](../how-to/vs-code-agents-workflow-pro-code.md)

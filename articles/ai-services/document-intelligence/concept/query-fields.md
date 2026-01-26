@@ -5,7 +5,7 @@ description: Use Document Intelligence query fields to extend model schema.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/18/2025
 ms.author: nitinme
 monikerRange: 'doc-intel-4.0.0'

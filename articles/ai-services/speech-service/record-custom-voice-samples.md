@@ -5,7 +5,7 @@ description: Make a production-quality custom voice by preparing a robust script
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: article
+ms.topic: concept-article
 ms.date: 08/07/2025
 ms.author: pafarley
 # Customer intent: As a developer, I want to learn how to record custom voice samples.

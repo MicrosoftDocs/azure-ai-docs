@@ -6,7 +6,7 @@ author: PatrickFarley
 ms.service: azure-ai-services
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 10/02/2025
 ms.author: pafarley
 ---
@@ -87,5 +87,4 @@ Each virtual machine also has a local temporary disk for OS operations. If you w
 
 ## Related content
 
-* [Foundry Tools Customer-Managed Key Request Form](https://aka.ms/cogsvc-cmk) is still required for Speech and Content Moderator.
 * [What is Azure Key Vault](/azure/key-vault/general/overview)?

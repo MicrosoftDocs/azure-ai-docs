@@ -5,7 +5,7 @@ description: Learn about cost management and pricing for Azure AI Metrics Adviso
 author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-metrics-advisor
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 06/12/2025
 ms.author: mbullwin
 ---

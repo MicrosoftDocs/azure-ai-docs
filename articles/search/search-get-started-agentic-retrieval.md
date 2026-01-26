@@ -6,12 +6,14 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 10/21/2025
+ms.date: 01/14/2026
+ms.custom: dev-focus
+ai-usage: ai-assisted
 zone_pivot_groups: search-get-started-agentic-retrieval
-# Customer intent: I want to learn how to use agentic retrieval to create a knowledge base that processes multi-turn conversations. The knowledge base should retrieve relevant information from a knowledge source that points to an Azure AI Search index and use an Azure OpenAI chat completion model to synthesize answers.
+# Customer intent: I want to learn how to use agentic retrieval to create a knowledge base that processes multi-turn conversations. The knowledge base should retrieve relevant information from a knowledge source that points to an Azure AI Search index and use an Azure OpenAI LLM to synthesize answers.
 ---
 
-# Quickstart: Use agentic retrieval in Azure AI Search
+# Quickstart: Agentic retrieval
 
 ::: zone pivot="programming-language-csharp"
 [!INCLUDE [C# quickstart](includes/quickstarts/agentic-retrieval-csharp.md)]

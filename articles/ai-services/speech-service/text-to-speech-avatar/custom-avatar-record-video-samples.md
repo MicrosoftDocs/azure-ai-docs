@@ -5,7 +5,7 @@ description: Learn how to prepare high-quality video samples for creating a cust
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: article
+ms.topic: best-practice
 ms.date: 08/07/2025
 ms.author: pafarley
 keywords: how to record video samples for custom text to speech avatar

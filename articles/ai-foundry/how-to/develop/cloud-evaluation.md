@@ -30,7 +30,7 @@ When you use the Foundry SDK, it logs evaluation results in your Foundry project
 
 ## Prerequisites
 
-- Microsoft Foundry project in the same supported [regions](../../concepts/evaluation-evaluators/risk-safety-evaluators.md#foundry-project-configuration-and-region-support) as risk and safety evaluators (preview). If you don't have a project, create one. See [Create a project for Foundry](../create-projects.md?tabs=ai-studio).
+- Microsoft Foundry project in the same supported [regions](../../concepts/evaluation-evaluators/risk-safety-evaluators.md#foundry-project-configuration-and-region-support) as risk and safety evaluators. If you don't have a project, create one. See [Create a project for Foundry](../create-projects.md?tabs=ai-studio).
 - Azure OpenAI deployment with GPT model supporting `chat completion`, such as `gpt-4`.
 - Sign in to your Azure subscription by running `az login`.
 

@@ -5,7 +5,7 @@ description: Use the custom classification model to train a model to identify an
 author: vkurpad
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom:

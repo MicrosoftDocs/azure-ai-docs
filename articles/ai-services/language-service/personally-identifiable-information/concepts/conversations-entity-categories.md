@@ -5,7 +5,7 @@ description: Learn about the entities the Conversational PII feature can recogni
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-pii, build-2024

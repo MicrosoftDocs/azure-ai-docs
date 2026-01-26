@@ -5,7 +5,7 @@ description: Learn how to use Azure OpenAI's new stateful Responses API.
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 12/09/2025
+ms.date: 01/14/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
@@ -18,89 +18,6 @@ monikerRange: 'foundry-classic || foundry'
 # Azure OpenAI Responses API
 
 The Responses API is a new stateful API from Azure OpenAI. It brings together the best capabilities from the chat completions and assistants API in one unified experience. The Responses API also adds support for the new `computer-use-preview` model which powers the [Computer use](../how-to/computer-use.md) capability.
-
-## Responses API
-
-### API support
-
-- [v1 API is required for access to the latest features](../api-version-lifecycle.md#api-evolution)
-
-### Region Availability
-
-The responses API is currently available in the following regions:
-
-- australiaeast
-- brazilsouth
-- canadacentral
-- canadaeast  
-- eastus
-- eastus2
-- francecentral
-- germanywestcentral
-- italynorth
-- japaneast
-- koreacentral
-- northcentralus
-- norwayeast
-- polandcentral
-- southafricanorth
-- southcentralus
-- southeastasia
-- southindia
-- spaincentral
-- swedencentral
-- switzerlandnorth
-- uaenorth
-- uksouth
-- westus
-- westus3
-
-### Model support
-
-- `gpt-5.2` (Version: `2025-12-11`)
-- `gpt-5.2-chat` (Version: `2025-12-11`)
-- `gpt-5.1-codex-max` (Version: `2025-12-04`)
-- `gpt-5.1` (Version: `2025-11-13`)
-- `gpt-5.1-chat` (Version: `2025-11-13`)
-- `gpt-5.1-codex` (Version: `2025-11-13`)
-- `gpt-5.1-codex-mini` (Version: `2025-11-13`)
-- `gpt-5-pro` (Version: `2025-10-06`)
-- `gpt-5-codex`  (Version: `2025-09-11`)
-- `gpt-5` (Version: `2025-08-07`)
-- `gpt-5-mini` (Version: `2025-08-07`)
-- `gpt-5-nano` (Version: `2025-08-07`)
-- `gpt-5-chat` (Version: `2025-08-07`)
-- `gpt-5-chat` (Version: `2025-10-03`)
-- `gpt-5-codex` (Version: `2025-09-15`)
-- `gpt-4o` (Versions: `2024-11-20`, `2024-08-06`, `2024-05-13`)
-- `gpt-4o-mini` (Version: `2024-07-18`)
-- `computer-use-preview`
-- `gpt-4.1` (Version: `2025-04-14`)
-- `gpt-4.1-nano` (Version: `2025-04-14`)
-- `gpt-4.1-mini` (Version: `2025-04-14`)
-- `gpt-image-1` (Version: `2025-04-15`)
-- `gpt-image-1-mini` (Version: `2025-10-06`)
-- `gpt-image-1.5` (Version: `2025-12-16`)
-- `o1` (Version: `2024-12-17`)
-- `o3-mini` (Version: `2025-01-31`)
-- `o3` (Version: `2025-04-16`)
-- `o4-mini` (Version: `2025-04-16`)
-
-Not every model is available in the regions supported by the responses API. Check the [models page](../concepts/models.md) for model region availability.
-
-> [!NOTE]
-> Not currently supported:
-> - Compaction with `/responses/compact` 
-> - Image generation using multi-turn editing and streaming.
-> - Images can't be uploaded as a file and then referenced as input.
->
-> There's a known issue with the following:
-> - PDF as an input file [is now supported](#file-input), but setting file upload purpose to `user_data` is not currently supported.
-> - Performance issues when background mode is used with streaming. The issue is expected to be resolved soon.
-
-### Reference documentation
-
-- [Responses API reference documentation](/azure/ai-foundry/openai/reference-preview-latest?#create-response)
 
 ## Getting started with the responses API
 
@@ -1342,3 +1259,87 @@ For examples of how to use reasoning models with the responses API see the [reas
 ## Computer use
 
 Computer use with Playwright has moved to the [dedicated computer use model guide](computer-use.md#playwright-integration)
+
+## Responses API
+
+### API support
+
+- [v1 API is required for access to the latest features](../api-version-lifecycle.md#api-evolution)
+
+### Region Availability
+
+The responses API is currently available in the following regions:
+
+- australiaeast
+- brazilsouth
+- canadacentral
+- canadaeast  
+- eastus
+- eastus2
+- francecentral
+- germanywestcentral
+- italynorth
+- japaneast
+- koreacentral
+- northcentralus
+- norwayeast
+- polandcentral
+- southafricanorth
+- southcentralus
+- southeastasia
+- southindia
+- spaincentral
+- swedencentral
+- switzerlandnorth
+- uaenorth
+- uksouth
+- westus
+- westus3
+
+### Model support
+
+- `gpt-5.2-codex` (Version: `2026-01-14`)
+- `gpt-5.2` (Version: `2025-12-11`)
+- `gpt-5.2-chat` (Version: `2025-12-11`)
+- `gpt-5.1-codex-max` (Version: `2025-12-04`)
+- `gpt-5.1` (Version: `2025-11-13`)
+- `gpt-5.1-chat` (Version: `2025-11-13`)
+- `gpt-5.1-codex` (Version: `2025-11-13`)
+- `gpt-5.1-codex-mini` (Version: `2025-11-13`)
+- `gpt-5-pro` (Version: `2025-10-06`)
+- `gpt-5-codex`  (Version: `2025-09-11`)
+- `gpt-5` (Version: `2025-08-07`)
+- `gpt-5-mini` (Version: `2025-08-07`)
+- `gpt-5-nano` (Version: `2025-08-07`)
+- `gpt-5-chat` (Version: `2025-08-07`)
+- `gpt-5-chat` (Version: `2025-10-03`)
+- `gpt-5-codex` (Version: `2025-09-15`)
+- `gpt-4o` (Versions: `2024-11-20`, `2024-08-06`, `2024-05-13`)
+- `gpt-4o-mini` (Version: `2024-07-18`)
+- `computer-use-preview`
+- `gpt-4.1` (Version: `2025-04-14`)
+- `gpt-4.1-nano` (Version: `2025-04-14`)
+- `gpt-4.1-mini` (Version: `2025-04-14`)
+- `gpt-image-1` (Version: `2025-04-15`)
+- `gpt-image-1-mini` (Version: `2025-10-06`)
+- `gpt-image-1.5` (Version: `2025-12-16`)
+- `o1` (Version: `2024-12-17`)
+- `o3-mini` (Version: `2025-01-31`)
+- `o3` (Version: `2025-04-16`)
+- `o4-mini` (Version: `2025-04-16`)
+
+Not every model is available in the regions supported by the responses API. Check the [models page](../concepts/models.md) for model region availability.
+
+> [!NOTE]
+> Not currently supported:
+> - Compaction with `/responses/compact` 
+> - Image generation using multi-turn editing and streaming.
+> - Images can't be uploaded as a file and then referenced as input.
+>
+> There's a known issue with the following:
+> - PDF as an input file [is now supported](#file-input), but setting file upload purpose to `user_data` is not currently supported.
+> - Performance issues when background mode is used with streaming. The issue is expected to be resolved soon.
+
+### Reference documentation
+
+- [Responses API reference documentation](/azure/ai-foundry/openai/reference-preview-latest?#create-response)

@@ -132,6 +132,16 @@ Connection: close
 
 Use the `Operation-Location` from the [`POST` response](#post-response) and retrieve the result of the analysis.
 
+> [!NOTE]
+> When using the video analyzer, keyframes are returned as URLs in the JSON response (for example, under `result.contents.frames[]`).  
+> You can download these keyframes using a standard HTTP `GET` request for each keyframe URL.  
+> Example (Bash):  
+> ```bash
+> curl -O "<keyframeUrl>"
+> ```
+> Repeat this command for each keyframe URL you want to save.
+
+
 #### GET request
 ```bash
 curl -i -X GET "{endpoint}/contentunderstanding/analyzerResults/{request-id}?api-version=2025-11-01" \

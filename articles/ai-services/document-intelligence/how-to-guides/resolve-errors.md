@@ -5,7 +5,7 @@ description: Learn how errors are represented in Document Intelligence and find 
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.topic: conceptual
+ms.topic: error-reference
 ms.date: 11/18/2025
 ms.author: paulhsu
 monikerRange: '>=doc-intel-3.0.0'

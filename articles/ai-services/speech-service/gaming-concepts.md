@@ -5,7 +5,7 @@ description: Concepts for game development with Azure Speech in Foundry Tools.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: article
+ms.topic: concept-article
 ms.date: 08/07/2025
 ms.author: pafarley
 ---

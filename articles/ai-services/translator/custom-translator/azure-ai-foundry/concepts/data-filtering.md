@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-translator
 ms.date: 11/18/2025
 ms.author: lajanuar
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom: cogserv-non-critical-translator
 #Customer intent: As a custom translation, I want to understand how data is filtered before training a model.
 ---

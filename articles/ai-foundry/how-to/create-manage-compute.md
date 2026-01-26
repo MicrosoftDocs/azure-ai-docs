@@ -19,7 +19,7 @@ ai-usage: ai-assisted
 
 # Create and manage compute instances
 
-[!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 In this article, you learn how to create and manage a compute instance in Foundry portal. A compute instance is required to use prompt flow, create indexes, or access Visual Studio Code in Foundry portal for hub-based projects.
 

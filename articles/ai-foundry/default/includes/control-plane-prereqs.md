@@ -10,5 +10,5 @@ ms.custom: include file
 ---
 
 - [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
+
 - A Foundry project. If you don't have one, [create a project](../../how-to/create-projects.md).
-- At least one agent deployed in your Foundry project and registered in Foundry Control Plane.

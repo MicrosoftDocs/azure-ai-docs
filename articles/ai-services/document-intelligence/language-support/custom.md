@@ -5,7 +5,7 @@ description: Document Intelligence custom model language extraction and detectio
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/18/2025
 ---
 

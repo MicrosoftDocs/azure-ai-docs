@@ -88,7 +88,7 @@ Scored results are indicated for each match in the query response. This table li
 |-------|-------|-------------|
 | `@search.score` | 0 through unlimited | [BM25 ranking algorithm](index-similarity-and-scoring.md#scores-in-a-text-results) for text search |
 | `@search.score` | 0.333 - 1.00 | [HNSW or exhaustive KNN algorithm](vector-search-ranking.md#scores-in-a-vector-search-results) for vector search |
-| `@search.score` | 0 through an upper limit determined by the number of queries | [RRF algorithm](hybrid-search-ranking.md#scores-in-a-hybrid-search-results) |
+| `@search.score` | 0 through an upper limit determined by the number of queries | [RRF algorithm](hybrid-search-ranking.md#scores-in-hybrid-search-results) |
 | `@search.rerankerScore` | 0.00 - 4.00 | [Semantic ranking algorithm](semantic-search-overview.md#how-results-are-scored) for L2 ranking |
 | `@search.rerankerBoostedScore` | 0 through unlimited  | [Semantic ranking with scoring profile boosting](semantic-how-to-enable-scoring-profiles.md) (scores can be significantly higher than 4) |
 

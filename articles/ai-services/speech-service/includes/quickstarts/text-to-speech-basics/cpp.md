@@ -46,15 +46,15 @@ Follow these steps to create a console application and install the Speech SDK.
         auto speechKey = GetEnvironmentVariable("SPEECH_KEY");
         auto endpoint = GetEnvironmentVariable("ENDPOINT");
 
-        if ((size(speechKey) == 0) || (size(endpoint) == 0)) {
+        if (std::string(speechKey).empty() || std::string(endpoint).empty()) {
             std::cout << "Please set both SPEECH_KEY and ENDPOINT environment variables." << std::endl;
             return -1;
         }
 
-        auto speechConfig = SpeechConfig::FromEndpoint(speechKey, endpoint);
+        auto speechConfig = SpeechConfig::FromEndpoint(endpoint, speechKey);
 
         // The neural multilingual voice can speak different languages based on the input text.
-        speechConfig->SetSpeechSynthesisVoiceName("en-US-Ava:DragonHDLatestNeural");
+        speechConfig->SetSpeechSynthesisVoiceName("en-US-AriaNeural");
 
         auto speechSynthesizer = SpeechSynthesizer::FromConfig(speechConfig);
 

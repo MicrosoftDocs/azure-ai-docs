@@ -38,7 +38,7 @@ A Conversational Language Understanding (CLU) fine-tuning task is a workspace pr
 1. If you aren't already signed in, the portal prompts you to do so with your Azure credentials.
 1. Once signed in, you can create or access your existing projects within Foundry.
 1. If you're not already at your project for this task, select it.
-1. Select Fine-tuning from the left navigation panel.
+1. Select Fine-tuning from the left navigation pane.
 
    :::image type="content" source="../media/select-fine-tuning.png" alt-text="Screenshot of fine-tuning selector in the Foundry.":::
 

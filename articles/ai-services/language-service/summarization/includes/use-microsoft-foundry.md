@@ -10,4 +10,4 @@
 ms.custom: include, build-2024, ignite-2024
 ---
 > [!TIP]
-> You can use [**Microsoft Foundry**](https://ai.azure.com/) to try summarization without needing to write code. 
+> You can try the [**Microsoft Foundry**](https://ai.azure.com/) platform to perform summarization tasks without the need to write code.

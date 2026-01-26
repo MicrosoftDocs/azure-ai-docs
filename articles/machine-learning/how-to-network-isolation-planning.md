@@ -7,7 +7,7 @@ ms.author: scottpolly
 ms.reviewer: shshubhe
 ms.service: azure-machine-learning
 ms.topic: concept-article #Don't change.
-ms.date: 01/13/2025
+ms.date: 01/08/2026
 
 #customer intent: As an admin, I want to understand the network isolation options available to me so that I can architect our solution to meet my business requirements.
 
@@ -24,7 +24,7 @@ Network isolation is a security strategy that involves dividing a network into s
 ## Inbound and outbound access
 
 Consider network isolation in three areas within Azure Machine Learning: 
-- Inbound access to the Azure Machine Learning workspace. For example, for your Data Scientists to securely access the workspace.
+- Inbound access to the Azure Machine Learning workspace. For example, for your data scientists to securely access the workspace.
 - Outbound access from the Azure Machine Learning workspace. For example, to access other Azure services.
 - Outbound access from the Azure Machine Learning compute resources. For example, to access data sources, Python package repositories, or other resources.
 
@@ -34,7 +34,7 @@ The following diagram breaks down the inbound and outbound communication.
 
 ### Inbound access to Azure Machine Learning
 
-Set inbound access to a secured Azure Machine Learning workspace by using the public network access (PNA) flag. The PNA flag setting decides if your workspace requires a private endpoint to access the workspace. There's an extra setting between public and private: Enabled from selected IP addresses. This setting allows access to your workspace from the IP addresses you specify. For more information, see [Enable Public Access only from internet IP ranges](how-to-configure-private-link.md#enable-public-access-only-from-internet-ip-ranges).
+Set inbound access to a secured Azure Machine Learning workspace by using the public network access (PNA) flag. The PNA flag setting decides if your workspace requires a private endpoint to access the workspace. An extra setting between public and private is **Enabled from selected IP addresses**. This setting allows access to your workspace from the IP addresses you specify. For more information, see [Enable Public Access only from internet IP ranges](how-to-configure-private-link.md#enable-public-access-only-from-internet-ip-ranges).
 
 ### Outbound access
 
@@ -48,9 +48,9 @@ You secure outbound access from your Azure Machine Learning service to other Paa
 
 #### Outbound from computes to the internet and other Azure PaaS resources
 
-IaaS components are the compute resources, such as compute instances and clusters, and Azure Kubernetes Service (AKS) or managed online endpoints. For these IaaS resources, you secure outbound access to the internet through a firewall. You secure outbound access to other PaaS resources with Private Link and private endpoints. A managed virtual network makes it easier to set up control for outbound access from computes.
+IaaS components are the compute resources, such as compute instances and clusters, and Azure Kubernetes Service (AKS) or managed online endpoints. For these IaaS resources, you secure outbound access to the internet through a firewall. You secure outbound access to other PaaS resources by using Private Link and private endpoints. A managed virtual network makes it easier to set up control for outbound access from computes.
 
-If you aren't using a managed virtual network, you can secure outbound control with your own virtual network and subnet set. If you have a standalone virtual network, you can straightforwardly configure it by using a network security group. However, you might have a hub-spoke or mesh network architecture, firewall, network virtual appliance, proxy, and user defined routing. In either case, make sure to allow inbound and outbound access with your network security components. 
+If you aren't using a managed virtual network, you can secure outbound control by using your own virtual network and subnet set. If you have a standalone virtual network, you can straightforwardly configure it by using a network security group. However, you might have a hub-spoke or mesh network architecture, firewall, network virtual appliance, proxy, and user defined routing. In either case, make sure to allow inbound and outbound access by using your network security components. 
 
 :::image type="content" source="media/how-to-network-isolation-planning/hub-spoke-network-diagram.png" alt-text="Diagram of hub-spoke network with outbound through firewall.":::
 
@@ -61,7 +61,7 @@ In this diagram, you have a hub and spoke network architecture. The spoke virtua
 
 ## Network isolation offerings for outbound access from computes
 
-Now that you understand what access needs to be secured, let's look at how you can secure your machine learning workspace with network isolation. Azure Machine Learning offers network isolation options for outbound access from computing resources.
+Now that you understand what access needs to be secured, let's look at how you can secure your machine learning workspace by using network isolation. Azure Machine Learning offers network isolation options for outbound access from computing resources.
 
 ### Managed network isolation (recommended)
 
@@ -80,28 +80,28 @@ Using a managed virtual network makes it easier to configure network isolation. 
 
 ### Custom network isolation
 
-If you have a specific requirement or company policy that prevents you from using a managed virtual network, you can use an Azure virtual network for network isolation. 
+If you have a specific requirement or company policy that prevents you from using a managed virtual network, use an Azure virtual network for network isolation. 
 
-The following diagram is our recommended architecture to make all resources private but allow outbound internet access from your virtual network. This diagram describes the following architecture: 
+The following diagram is the recommended architecture to make all resources private but allow outbound internet access from your virtual network. This diagram describes the following architecture: 
 
 - Put all resources in the same region.
 - A hub virtual network, which contains your firewall and custom DNS set-up.
 - A spoke virtual network, which contains the following resources:
     - A training subnet contains compute instances and clusters used for training ML models. These resources are configured for no public IP.
     - A scoring subnet contains an AKS cluster.
-    - A 'pe' subnet contains private endpoints that connect to the workspace and private resources used by the workspace (storage, key vault, container registry, etc.)
-- To secure your managed online endpoints with custom virtual network, enable the legacy managed online endpoint managed virtual network. We don't recommend this method.  
+    - A 'pe' subnet contains private endpoints that connect to the workspace and private resources used by the workspace (storage, key vault, container registry, and more).
+- To secure your managed online endpoints by using a custom virtual network, enable the legacy managed online endpoint managed virtual network. This method isn't recommended.  
 
 This architecture balances your network security and your ML engineers' productivity.
 
 :::image type="content" source="./media/how-to-network-isolation-planning/custom-network-diagram.png" alt-text="Diagram of a custom network isolation configuration.":::
 
 > [!NOTE]
-> If you want to remove the firewall requirement, you can use network security groups and Azure Virtual Network NAT to allow internet outbound from your private compute resources.
+> To remove the firewall requirement, use network security groups and Azure Virtual Network NAT to allow internet outbound from your private compute resources.
 
 #### Data exfiltration prevention
 
-This diagram shows the recommended architecture to make all resources private and control outbound destinations to prevent data exfiltration. We recommend this architecture when using Azure Machine Learning with your sensitive data in production. This diagram describes the following architecture:
+This diagram shows the recommended architecture to make all resources private and control outbound destinations to prevent data exfiltration. Use this architecture when using Azure Machine Learning with your sensitive data in production. This diagram describes the following architecture:
 
 - Put all resources in the same region.
 - A hub virtual network, which contains your firewall.
@@ -109,20 +109,20 @@ This diagram shows the recommended architecture to make all resources private an
 - A spoke virtual network, which contains the following resources:
     - A training subnet contains compute instances and clusters used for training ML models. These resources are configured for no public IP. Additionally, a service endpoint and service endpoint policy are in place to prevent data exfiltration.
     - A scoring subnet contains an AKS cluster.
-    - A 'pe' subnet contains private endpoints that connect to the workspace and private resources used by the workspace (storage, key vault, container registry, etc.)
+    - A 'pe' subnet contains private endpoints that connect to the workspace and private resources used by the workspace (storage, key vault, container registry, and more).
 - Managed online endpoints use the private endpoint of the workspace to process incoming requests. A private endpoint is also used to allow managed online endpoint deployments to access private storage.
 
 :::image type="content" source="./media/how-to-network-isolation-planning/custom-network-data-exfiltration.png" alt-text="Diagram of a custom network isolation configuration to prevent data exfiltration.":::
 
 ## Comparison of network isolation options
 
-Both managed network isolation and custom network isolation are similar offerings. The following table describes all the similarities and differences between the two offerings in terms of their set-up. The one key difference in their set-up is where the virtual network for computes itself is hosted. For custom network isolation, the virtual network for computes is in your tenant while for managed network isolation, the virtual network for computes is located in the Microsoft tenant.  
+Managed network isolation and custom network isolation offer similar features. The following table describes the similarities and differences between the two offerings in terms of their set-up. The key difference in their set-up is where the virtual network for computes is hosted. For custom network isolation, the virtual network for computes is in your tenant. For managed network isolation, the virtual network for computes is in the Microsoft tenant.  
 
 | Similarities | Differences |
 | --- | --- |
-| - Network is dedicated to you and not shared with any other customers. </br>- Data is protected in the virtual network. </br>- Full control on egress with outbound rules. </br>- Required ServiceTags. | - Where the virtual network is hosted; in your tenant for custom network isolation or in the Microsoft tenant for managed network isolation. |
+| - You get a dedicated network that you don't share with other customers. </br>- Data is protected in the virtual network. </br>- You have full control on egress with outbound rules. </br>- Required ServiceTags. | - Where the virtual network is hosted; in your tenant for custom network isolation or in the Microsoft tenant for managed network isolation. |
 
-To make the right decision on which networking set-up works best for your scenario, consider what features within Azure Machine Learning you want to use. For more information regarding the differences between our network isolation offerings, see [Compare network isolation configurations](concept-network-isolation-configurations.md).
+To decide which networking set-up works best for your scenario, consider what features within Azure Machine Learning you want to use. For more information regarding the differences between the network isolation offerings, see [Compare network isolation configurations](concept-network-isolation-configurations.md).
 
 ### Comparison of configurations
 
@@ -139,7 +139,7 @@ You can use a public workspace if you're OK with Microsoft Entra ID authenticati
 
 ### DNS resolution of private link resources and application on compute instance 
 
-If you have your own DNS server hosted in Azure or on-premises, you need to create a conditional forwarder in your DNS server. The conditional forwarder sends DNS requests to the Azure DNS for all private link enabled PaaS services. For more information, see the DNS configuration scenarios and Azure Machine Learning specific DNS configuration articles. 
+If you have your own DNS server hosted in Azure or on-premises, you need to create a conditional forwarder in your DNS server. The conditional forwarder sends DNS requests to the Azure DNS for all private link enabled PaaS services. For more information, see the [Azure Private Endpoint DNS integration scenarios](/azure/private-link/private-endpoint-dns-integration) and [Azure Machine Learning custom DNS configuration](how-to-custom-dns.md) articles. 
 
 ### Data exfiltration protection 
 
@@ -174,7 +174,7 @@ In this diagram, your main virtual network requires the IPs for private endpoint
 
 ### Network policy enforcement
 
-You can use built-in policies if you want to control network isolation parameters with self-service workspace and computing resources creation or create a custom policy for more fine-grained controls. For more on policies, see [Azure Policy regulatory compliance controls](security-controls-policy.md).  
+To control network isolation parameters for self-service workspace and computing resources creation, use built-in policies or create a custom policy for more fine-grained controls. For more information on policies, see [Azure Policy regulatory compliance controls](security-controls-policy.md).  
 
 ## Related content
 

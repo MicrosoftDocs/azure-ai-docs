@@ -9,7 +9,7 @@ ms.custom: devx-track-python
 
 author: s-polly 
 ms.author: scottpolly 
-ms.topic: conceptual
+ms.topic: concept-article
 ms.reviewer: tklimmer
 ms.date: 04/17/2024
 ---

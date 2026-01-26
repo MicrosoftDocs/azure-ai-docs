@@ -5,7 +5,7 @@ description: Use the Microsoft Translator Hub to build your own machine translat
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/18/2025
 ms.author: lajanuar
 ---

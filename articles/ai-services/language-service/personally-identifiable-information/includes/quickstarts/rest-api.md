@@ -9,6 +9,7 @@ ms.custom:
   - language-service-pii
   - ignite-2024
   - build-2025
+ai-usage: ai-assisted
 ---
 [Reference documentation](https://go.microsoft.com/fwlink/?linkid=2239169)
 
@@ -20,6 +21,10 @@ Use this quickstart to send Personally Identifiable Information (PII) detection 
 * Once you have your Azure subscription, [create a Foundry resource](../../../../../ai-services/multi-service-resource.md?pivots=azportal).
 
 ## Setting up
+
+[!INCLUDE [Create an Azure resource](../../../includes/create-resource.md)]
+
+[!INCLUDE [Get your key and endpoint](../../../includes/get-key-endpoint.md)]
 
 [!INCLUDE [Create environment variables](../../../includes/environment-variables.md)]
 
@@ -43,7 +48,6 @@ In a code editor, create a new file named `test_pii_payload.json` and copy the f
         ]
     }
 }
-'
 ```
 
 Save `test_pii_payload.json` somewhere on your computer. For example, your desktop.  
@@ -52,11 +56,11 @@ Save `test_pii_payload.json` somewhere on your computer. For example, your deskt
 
 Use the following commands to send the API request using the program you're using. Copy the command into your terminal, and run it.
 
-|parameter  |Description  |
+|Parameter  |Description  |
 |---------|---------|
 |`-X POST <endpoint>`     | Specifies your endpoint for accessing the API.        |
 |`-H Content-Type: application/json`     | The content type for sending JSON data.          |
-|`-H "Ocp-Apim-Subscription-Key:<key>`    | Specifies the key for accessing the API.        |
+|`-H "Ocp-Apim-Subscription-Key: <key>"`    | Specifies the key for accessing the API.        |
 |`-d <documents>`     | The JSON containing the documents you want to send.         |
 
 # [Windows](#tab/windows)
@@ -81,9 +85,9 @@ curl.exe -X POST $env:LANGUAGE_ENDPOINT/language/:analyze-text?api-version=2022-
 -d "@C:\Users\<myaccount>\Desktop\test_pii_payload.json"
 ```
 
-#### [Linux](#tab/linux)
+# [Linux](#tab/linux)
 
-Use the following commands to send the API request using the program you're using. Replace `/home/mydir/test_sentiment_payload.json` with the location of the example JSON request file you created in the previous step.
+Use the following commands to send the API request using the program you're using. Replace `/home/mydir/test_pii_payload.json` with the location of the example JSON request file you created in the previous step.
 
 ```terminal
 curl -X POST $LANGUAGE_ENDPOINT/language/:analyze-text?api-version=2022-05-01 \
@@ -92,7 +96,7 @@ curl -X POST $LANGUAGE_ENDPOINT/language/:analyze-text?api-version=2022-05-01 \
 -d "@/home/mydir/test_pii_payload.json"
 ```
 
-#### [macOS](#tab/macos)
+# [macOS](#tab/macos)
 
 Use the following commands to send the API request using the program you're using. Replace `/home/mydir/test_pii_payload.json` with the location of the example JSON request file you created in the previous step.
 

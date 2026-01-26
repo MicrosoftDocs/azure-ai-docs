@@ -5,7 +5,7 @@ description: Define the data structures in a knowledge store by creating data sh
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 10/21/2025
 ms.update-cycle: 365-days
 ms.custom:

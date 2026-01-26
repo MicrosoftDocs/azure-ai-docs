@@ -4,7 +4,9 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 11/14/2025
+ms.date: 01/14/2026
+ms.custom: dev-focus
+ai-usage: ai-assisted
 ---
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]
@@ -486,70 +488,7 @@ Reference Type: KnowledgeBaseSearchIndexReference
   "SourceData": {},
   "RerankerScore": 2.6344998
 }
-Reference Type: KnowledgeBaseSearchIndexReference
-{
-  "DocKey": "earth_at_night_508_page_194_verbalized",
-  "Id": "1",
-  "ActivitySource": 3,
-  "SourceData": {},
-  "RerankerScore": 2.630955
-}
-Reference Type: KnowledgeBaseSearchIndexReference
-{
-  "DocKey": "earth_at_night_508_page_105_verbalized",
-  "Id": "3",
-  "ActivitySource": 2,
-  "SourceData": {},
-  "RerankerScore": 2.5884187
-}
-Reference Type: KnowledgeBaseSearchIndexReference
-{
-  "DocKey": "earth_at_night_508_page_189_verbalized",
-  "Id": "4",
-  "ActivitySource": 3,
-  "SourceData": {},
-  "RerankerScore": 2.465418
-}
-Reference Type: KnowledgeBaseSearchIndexReference
-{
-  "DocKey": "earth_at_night_508_page_193_verbalized",
-  "Id": "6",
-  "ActivitySource": 3,
-  "SourceData": {},
-  "RerankerScore": 2.4560246
-}
-Reference Type: KnowledgeBaseSearchIndexReference
-{
-  "DocKey": "earth_at_night_508_page_174_verbalized",
-  "Id": "2",
-  "ActivitySource": 1,
-  "SourceData": {},
-  "RerankerScore": 2.3254027
-}
-Reference Type: KnowledgeBaseSearchIndexReference
-{
-  "DocKey": "earth_at_night_508_page_176_verbalized",
-  "Id": "5",
-  "ActivitySource": 1,
-  "SourceData": {},
-  "RerankerScore": 2.257256
-}
-Reference Type: KnowledgeBaseSearchIndexReference
-{
-  "DocKey": "earth_at_night_508_page_177_verbalized",
-  "Id": "7",
-  "ActivitySource": 1,
-  "SourceData": {},
-  "RerankerScore": 2.1968744
-}
-Reference Type: KnowledgeBaseSearchIndexReference
-{
-  "DocKey": "earth_at_night_508_page_125_verbalized",
-  "Id": "8",
-  "ActivitySource": 2,
-  "SourceData": {},
-  "RerankerScore": 2.086579
-}
+... // Trimmed for brevity
 Response:
 ... // Trimmed for brevity
 Activity:
@@ -575,7 +514,7 @@ Now that you've run the code, let's break down the key steps:
 
 ### Create a search index
 
-In Azure AI Search, an index is a structured collection of data. The following code defines an index named `earth-at-night`, which you previously specified using the `indexName` variable.
+In Azure AI Search, an index is a structured collection of data. The following code defines an index named `earth-at-night`.
 
 The index schema contains fields for document identification and page content, embeddings, and numbers. The schema also includes configurations for semantic ranking and vector search, which uses your `text-embedding-3-large` deployment to vectorize text and match documents based on semantic or conceptual similarity.
 
@@ -652,6 +591,8 @@ await indexClient.CreateOrUpdateIndexAsync(index);
 Console.WriteLine($"Index '{indexName}' created or updated successfully.");
 ```
 
+**Reference:** [SearchField](/dotnet/api/azure.search.documents.indexes.models.searchfield), [SimpleField](/dotnet/api/azure.search.documents.indexes.models.simplefield), [VectorSearch](/dotnet/api/azure.search.documents.indexes.models.vectorsearch), [SemanticSearch](/dotnet/api/azure.search.documents.indexes.models.semanticsearch), [SearchIndex](/dotnet/api/azure.search.documents.indexes.models.searchindex), [SearchIndexClient](/dotnet/api/azure.search.documents.indexes.searchindexclient)
+
 ### Upload documents to the index
 
 Currently, the `earth-at-night` index is empty. The following code populates the index with JSON documents from [NASA's Earth at Night e-book](https://raw.githubusercontent.com/Azure-Samples/azure-search-sample-data/refs/heads/main/nasa-e-book/earth-at-night-json/documents.json). As required by Azure AI Search, each document conforms to the fields and data types defined in the index schema.
@@ -678,11 +619,13 @@ await searchIndexingBufferedSender.FlushAsync();
 Console.WriteLine($"Documents uploaded to index '{indexName}' successfully.");
 ```
 
+**Reference:** [SearchClient](/dotnet/api/azure.search.documents.searchclient), [SearchIndexingBufferedSender](/dotnet/api/azure.search.documents.searchindexingbufferedsender-1)
+
 ### Create a knowledge source
 
 A knowledge source is a reusable reference to source data. The following code defines a knowledge source named `earth-knowledge-source` that targets the `earth-at-night` index.
 
-`SourceDataFields` specifies which index fields are included in citation references. Our example includes only human-readable fields to avoid lengthy, uninterpretable embeddings in responses.
+`SourceDataFields` specifies which index fields are included in citation references. This example includes only human-readable fields to avoid lengthy, uninterpretable embeddings in responses.
 
 ```csharp
 // Create a knowledge source
@@ -698,9 +641,11 @@ await indexClient.CreateOrUpdateKnowledgeSourceAsync(indexKnowledgeSource);
 Console.WriteLine($"Knowledge source '{knowledgeSourceName}' created or updated successfully.");
 ```
 
+**Reference:** [SearchIndexKnowledgeSource](/dotnet/api/azure.search.documents.indexes.models.searchindexknowledgesource)
+
 ### Create a knowledge base
 
-To target `earth-knowledge-source` and your `gpt-5-mini` deployment at query time, you need a knowledge base. The following code defines a knowledge base named `earth-knowledge-base`, which you previously specified using the `knowledgeBaseName` variable.
+To target `earth-knowledge-source` and your `gpt-5-mini` deployment at query time, you need a knowledge base. The following code defines a knowledge base named `earth-knowledge-base`.
 
 `OutputMode` is set to `AnswerSynthesis`, enabling natural-language answers that cite the retrieved documents and follow the provided `AnswerInstructions`.
 
@@ -729,6 +674,8 @@ var knowledgeBase = new KnowledgeBase(
 await indexClient.CreateOrUpdateKnowledgeBaseAsync(knowledgeBase);
 Console.WriteLine($"Knowledge base '{knowledgeBaseName}' created or updated successfully.");
 ```
+
+**Reference:** [KnowledgeBaseAzureOpenAIModel](/dotnet/api/azure.search.documents.indexes.models.knowledgebaseazureopenaimodel), [KnowledgeBase](/dotnet/api/azure.search.documents.indexes.models.knowledgebase)
 
 ### Set up messages
 
@@ -790,6 +737,8 @@ messages.Add(new Dictionary<string, string>
     { "content", (retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent).Text }
 });
 ```
+
+**Reference:** [KnowledgeBaseRetrievalClient](/dotnet/api/azure.search.documents.knowledgebases.knowledgebaseretrievalclient?view=azure-dotnet-preview&preserve-view=true), [KnowledgeBaseRetrievalRequest](/dotnet/api/azure.search.documents.knowledgebases.models.knowledgebaseretrievalrequest?view=azure-dotnet-preview&preserve-view=true)
 
 #### Review the response, activity, and references
 

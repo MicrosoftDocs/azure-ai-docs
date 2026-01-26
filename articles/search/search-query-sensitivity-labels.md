@@ -3,7 +3,7 @@ title: Query-Time Microsoft Purview Sensitivity Label Enforcement in Azure AI Se
 titleSuffix: Azure AI Search  
 description: Learn how query-time enforcement of Microsoft Purview sensitivity labels ensures secure document retrieval in Azure AI Search for indexes containing label metadata.  
 ms.service: azure-ai-search  
-ms.topic: conceptual  
+ms.topic: concept-article  
 ms.date: 11/18/2025  
 author: gmndrg  
 ms.author: gimondra  

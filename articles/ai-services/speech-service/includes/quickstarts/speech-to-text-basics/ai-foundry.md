@@ -13,7 +13,7 @@ In this quickstart, you try real-time speech to text in [Microsoft Foundry](http
 
 ## Prerequisites
 
-- An Azure subscription.
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A Foundry project. If you need to create a project, see [Create a Microsoft Foundry project](../../../../../ai-foundry/how-to/create-projects.md).
 
 ## Try real-time speech to text
@@ -28,6 +28,11 @@ In this quickstart, you try real-time speech to text in [Microsoft Foundry](http
 1. Use the **Upload files** section to select your audio file. Then select **Start**.
 1. View the transcription output in the **Transcript** tab. Optionally view the raw API response output in the **JSON** tab.
 1. Switch to the **Code** tab to get the sample code for using the speech to text feature in your application.
+
+## Other Foundry (new) features
+
+
+[!INCLUDE [speech-features-foundry](../../../../../ai-foundry/default/includes/speech-features-foundry.md)]
 
 #### [Foundry (classic) portal](#tab/classic-foundry)
 

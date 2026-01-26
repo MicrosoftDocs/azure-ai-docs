@@ -86,11 +86,11 @@ Foundry offers a unified platform where you can easily build, manage, and deploy
 
 ## Step 3: Create a fine-tuning task with connected resources
 
-1. Navigate to **Go to project** at the end of the left navigation panel.
+1. Navigate to **Go to project** at the end of the left navigation pane.
 
    :::image type="content" source="../media/configure-resources/go-to-project.png" alt-text="Screenshot the go-to-project button in the Foundry.":::
 
-1. Select **Fine-tuning** from the left navigation panel, choose the **AI Service fine-tuning** tab, and then select the **+ Fine-tune** button.
+1. Select **Fine-tuning** from the left navigation pane, choose the **AI Service fine-tuning** tab, and then select the **+ Fine-tune** button.
 
    :::image type="content" source="../media/configure-resources/fine-tuning.png" alt-text="Screenshot of the fine tuning selector in the Foundry.":::
 

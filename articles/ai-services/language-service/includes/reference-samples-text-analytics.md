@@ -1,7 +1,7 @@
 ---
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 01/18/2026
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -12,7 +12,7 @@ As you use this feature in your applications, see the following reference docume
 
 |Development option / language  |Reference documentation |Samples  |
 |---------|---------|---------|
-|REST API     | [REST API documentation](https://go.microsoft.com/fwlink/?linkid=2239169)        |         |
+|REST API     | [REST API documentation](/rest/api/language/)        |         |
 |C#     | [C# documentation](/dotnet/api/azure.ai.textanalytics?view=azure-dotnet-preview&preserve-view=true)        | [C# samples](https://github.com/Azure/azure-sdk-for-net/tree/master/sdk/textanalytics/Azure.AI.TextAnalytics/samples)        |
 | Java     | [Java documentation](/java/api/overview/azure/ai-textanalytics-readme?view=azure-java-preview&preserve-view=true)        | [Java Samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/textanalytics/azure-ai-textanalytics/src/samples) |
 |JavaScript     | [JavaScript documentation](/javascript/api/overview/azure/ai-language-text-readme)        | [JavaScript samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/cognitivelanguage/ai-language-text/samples/v1) |

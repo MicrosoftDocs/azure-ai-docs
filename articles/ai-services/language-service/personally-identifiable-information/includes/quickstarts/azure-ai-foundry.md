@@ -6,19 +6,20 @@ ms.topic: include
 ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-pii
+ai-usage: ai-assisted
 ---
 ## Prerequisites
 
 > [!TIP]
 >
 > * If you already have an Azure Language in Foundry Tools or multi-service resource—whether used on its own or through Language Studio—you can continue to use those existing Language resources within the Microsoft Foundry portal. 
-> * For more information, see [How to use Foundry Tools in the Foundry portal](/azure/ai-services/connect-services-foundry-portal).
-> * We highly recommended that you use a Foundry resource in the Foundry; however, you can also follow these instructions using a Language resource.
+> * For more information, see [Connect services in the Microsoft Foundry portal](../../../../connect-services-foundry-portal.md).
+> * We recommend that you use a Foundry resource. You can also follow these instructions with a Language resource.
 
 * **Azure subscription**. If you don't have one, you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-* **Requisite permissions**. Make sure the person establishing the account and project is assigned as the Azure AI Account Owner role at the subscription level. Alternatively, having either the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, *see* [Role based access control (RBAC)](/azure/ai-foundry/openai/how-to/role-based-access-control#cognitive-services-contributor).
-*  [Foundry resource](/azure/ai-services/multi-service-resource). For more information, *see* [Configure a Foundry resource](../../../concepts/configure-azure-resources.md). Alternately, you can use a [Language resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics).
-* **A Foundry project created in the Foundry**. For more information, *see* [Create a Foundry project](/azure/ai-foundry/how-to/create-projects).
+* **Requisite permissions**. Make sure the person establishing the account and project is assigned as the Azure AI Account Owner role at the subscription level. Alternatively, having either the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, see [Role based access control (RBAC)](../../../../../ai-foundry/openai/how-to/role-based-access-control.md#cognitive-services-contributor).
+*  [Foundry resource](../../../../multi-service-resource.md). For more information, see [Configure a Foundry resource](../../../concepts/configure-azure-resources.md). Alternately, you can use a [Language resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics).
+* **A Foundry project**. For more information, see [Create a Foundry project](../../../../../ai-foundry/how-to/create-projects.md).
 
 
 ### [Foundry (classic)](#tab/foundry-classic)
@@ -41,16 +42,16 @@ You can use [Foundry (classic)](https://ai.azure.com/) to:
 
 Using the left side pane, select **Playgrounds**. Then select the **Try Azure Language Playground** button.
 
-:::image type="content" source="../../media/quickstarts/azure-ai-foundry/foundry-playground-navigation.png" alt-text="The development lifecycle" lightbox="../../media/quickstarts/azure-ai-foundry/foundry-playground-navigation.png":::
+:::image type="content" source="../../media/quickstarts/azure-ai-foundry/foundry-playground-navigation.png" alt-text="Screenshot showing the Playgrounds navigation and the Try Azure Language Playground button in Foundry (classic)." lightbox="../../media/quickstarts/azure-ai-foundry/foundry-playground-navigation.png":::
 
 ## Use PII in the Foundry Playground
 
 The **Language Playground** consists of four sections:
 
-* Top banner: You can select any of the currently available Languages here.
-* Right pane: This pane is where you can find the **Configuration** options for the service, such as the API and model version, along with features specific to the service.
-* Center pane: This pane is where you enter your text for processing. After the operation is run, some results will be shown here.
-* Right pane: This pane is where **Details** of the run operation are shown.
+* Top banner: You can select any of the currently available languages here.
+* Left pane: This pane contains **Configuration** options for the service, such as the API version and model version.
+* Center pane: This pane is where you enter text for processing and review results.
+* Right pane: This pane shows **Details** about the run.
 
 Here you can select from two Personally Identifying Information (PII) detection capabilities by choosing the top banner tiles, **Extract PII from conversation** or **Extract PII from text**. Each is for a different scenario.
 
@@ -112,7 +113,7 @@ After your operation is completed, the type of entity is displayed beneath each 
 ### [Foundry (new)](#tab/foundry-new)
 
 > [!NOTE]
-> This content refers to the [Foundry (new)](https://ai.azure.com/) portal, which supports only [Foundry projects](/azure/ai-foundry/what-is-foundry) and provides streamlined access to models, agents, and tools. To confirm that you're using Foundry (new), make sure the version toggle in the portal banner is in the **on** position. :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/new-foundry.png" border="false":::
+> This content refers to the [Foundry (new)](https://ai.azure.com/) portal, which supports only [Foundry projects](../../../../../ai-foundry/what-is-foundry.md) and provides streamlined access to models, agents, and tools. To confirm that you're using Foundry (new), make sure the version toggle in the portal banner is in the **on** position. :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/new-foundry.png" border="false":::
 
 
 You can use [Foundry (new)](https://ai.azure.com/) to:

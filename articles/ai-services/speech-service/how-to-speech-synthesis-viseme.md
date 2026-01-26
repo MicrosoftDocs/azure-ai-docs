@@ -79,7 +79,7 @@ Visemes vary by language and locale. Each locale has a set of visemes that corre
 
 For 2D characters, you can design a character that suits your scenario and use Scalable Vector Graphics (SVG) for each viseme ID to get a time-based face position.
 
-With temporal tags that are provided in a viseme event, these well-designed SVGs is processed with smoothing modifications, and provide robust animation to the users. For example, the following illustration shows a red-lipped character designed for language learning.
+With temporal tags that are provided in a viseme event, these well-designed SVGs are processed with smoothing modifications, and provide robust animation to the users. For example, the following illustration shows a red-lipped character designed for language learning.
 
 ![Screenshot showing a 2D rendering example of four red-lipped mouths, each representing a different viseme ID that corresponds to a phoneme.](media/text-to-speech/viseme-demo-2D.png)
 

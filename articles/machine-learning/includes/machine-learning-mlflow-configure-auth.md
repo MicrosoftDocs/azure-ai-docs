@@ -38,4 +38,4 @@ export AZURE_CLIENT_SECRET="<Azure-client-secret>"
 > [!TIP]
 > When you work in shared environments, we recommend that you configure these environment variables at the compute level. As a best practice, manage them as secrets in an instance of Azure Key Vault.
 >
-> For instance, in an Azure Databricks cluster configuration, you can use secrets in environment variables in the following way: `AZURE_CLIENT_SECRET={{secrets/<scope-name>/<secret-name>}}`. For more information about implementing this approach in Azure Databricks, see [Reference a secret in an environment variable](/azure/databricks/security/secrets/secrets#reference-a-secret-in-an-environment-variable), or refer to documentation for your platform.
+> For instance, in an Azure Databricks cluster configuration, you can use secrets in environment variables in the following way: `AZURE_CLIENT_SECRET={{secrets/<scope-name>/<secret-name>}}`. For more information about implementing this approach in Azure Databricks, see [Reference a secret in an environment variable](/azure/databricks/security/secrets/secrets-spark-conf-env-var), or refer to documentation for your platform.

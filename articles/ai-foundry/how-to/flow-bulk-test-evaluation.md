@@ -19,6 +19,8 @@ ms.update-cycle: 180-days
 
 # Submit a batch run and evaluate a flow
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 To evaluate how well your flow performs with a large dataset, you can submit batch run and use an evaluation method in prompt flow.

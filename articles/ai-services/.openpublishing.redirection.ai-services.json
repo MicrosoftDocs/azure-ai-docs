@@ -2999,6 +2999,16 @@
       "source_path_from_root": "/articles/ai-services/language-service/conversational-language-understanding/how-to/migrate-from-luis.md",
       "redirect_url": "/azure/ai-services/luis/how-to/migrate-from-luis",
       "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/concepts/migrate-language-service-latest.md ",
+      "redirect_url": "/azure/ai-services/language-service/reference/migrate-language-service-latest",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/concepts/migrate.md",
+      "redirect_url": "/azure/ai-services/language-service/reference/migrate",
+      "redirect_document_id": true
     }
 
   ]

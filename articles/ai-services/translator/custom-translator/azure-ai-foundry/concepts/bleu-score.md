@@ -5,7 +5,7 @@ description: The BLEU score measures the differences between machine translation
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: cogserv-non-critical-translator

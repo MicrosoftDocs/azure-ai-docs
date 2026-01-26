@@ -4,7 +4,7 @@ description: Learn about the Personally Identifiable Information (PII) filter fo
 author: ssalgadodev
 ms.author: ssalgado
 ms.date: 11/21/2025
-ms.topic: article
+ms.topic: concept-article
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 monikerRange: 'foundry-classic || foundry'

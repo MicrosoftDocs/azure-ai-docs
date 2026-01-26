@@ -4,23 +4,25 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 09/16/2025
+ms.date: 01/15/2026
 ---
 
 > [!IMPORTANT]
 > The **Import data (new)** wizard now supports keyword search, which was previously only available in the **Import data** wizard. We recommend the new wizard for an improved search experience. For more information about how we're consolidating the wizards, see [Import data wizards in the Azure portal](../../search-import-data-portal.md).
 
-In this quickstart, you use the **Import data (new)** wizard and sample data about fictitious hotels to create your first search index. The wizard requires no code to create an index, helping you write interesting queries within minutes.
+In this quickstart, you use the **Import data (new)** wizard and sample data about fictitious hotels to get started with [full-text search](../../search-lucene-query-architecture.md), also known as keyword search. The wizard requires no code to create an index, helping you write interesting queries within minutes.
 
-The wizard creates multiple objects on your search service, including a searchable [index](../../search-what-is-an-index.md), an [indexer](../../search-indexer-overview.md), and a data source connection for automated data retrieval. At the end of this quickstart, you review each object.
+The wizard creates multiple objects on your search service, including a searchable index, an indexer, and a data source connection for automated data retrieval. At the end of this quickstart, you review each object.
 
 ## Prerequisites
 
 + An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-+ An Azure AI Search service. [Create a service](../../search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription. You can use a free service for this quickstart.
++ An [Azure AI Search service](../../search-create-service-portal.md). You can use the Free tier for this quickstart.
 
 + An [Azure Storage account](/azure/storage/common/storage-account-create). Use Azure Blob Storage or Azure Data Lake Storage Gen2 (storage account with a hierarchical namespace) on a standard performance (general-purpose v2) account. To avoid bandwidth charges, use the same region as Azure AI Search.
+
++ Familiarity with the wizard. See [Import data wizards in the Azure portal](../../search-import-data-portal.md).
 
 ### Check for network access
 
@@ -50,7 +52,11 @@ To prepare the sample data for this quickstart:
 
 1. Upload the `HotelsData_toAzureBlobs.json` file to the container.
 
-## Start the wizard
+## Run the wizard
+
+The wizard walks you through several configuration steps. This section covers each step in sequence.
+
+### Start the wizard
 
 To start the wizard for this quickstart:
 
@@ -68,10 +74,6 @@ To start the wizard for this quickstart:
 
    :::image type="content" source="../../media/search-get-started-portal/keyword-search-tile.png" alt-text="Screenshot of the keyword search tile in the Azure portal." border="true" lightbox="../../media/search-get-started-portal/keyword-search-tile.png":::
 
-## Create and load a search index
-
-In this section, you create and load an index in five steps.
-
 ### Connect to a data source
 
 Azure AI Search requires a connection to a data source for content ingestion and indexing. In this case, the data source is your Azure Storage account.
@@ -88,7 +90,7 @@ To connect to the sample data:
 
 1. Select **Next**.
 
-### Skip configuration for skills
+### Skip AI enrichment
 
 The wizard supports skillset creation and [AI enrichment](../../cognitive-search-concept-intro.md) during indexing, which are beyond the scope of this quickstart. Skip this step by selecting **Next**.
 
@@ -140,11 +142,11 @@ If you want autocomplete or suggested queries, specify **Suggesters**.
 
 The wizard offers advanced settings for semantic ranking and index scheduling, which are beyond the scope of this quickstart. Skip this step by selecting **Next**.
 
-### Review and create the objects
+### Finish the wizard
 
 The last step is to review your configuration and create the index, indexer, and data source on your search service. The indexer automates the process of extracting content from your data source and loading it into the index, enabling keyword search.
 
-To review and create the objects:
+To finish the wizard:
 
 1. Change the object name prefix to **hotels-sample**.
 

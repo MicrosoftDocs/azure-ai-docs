@@ -137,8 +137,6 @@ foundry --help
 ```
 
 ```bash
-
-```bash
 foundry model --help
 ```
 

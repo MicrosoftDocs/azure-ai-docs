@@ -4,8 +4,8 @@ description: Learn about annotations for content filtering in Azure OpenAI, incl
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: conceptual
-ms.date: 09/16/2025
+ms.topic: concept-article
+ms.date: 01/15/2025
 author: ssalgadodev
 ms.author: ssalgado
 monikerRange: 'foundry-classic || foundry'

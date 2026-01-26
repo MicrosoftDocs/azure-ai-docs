@@ -5,7 +5,7 @@ description: Use Document Intelligence prebuilt models to analyze and extract ke
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/18/2025
 ms.author: lajanuar
 monikerRange: '>=doc-intel-4.0.0'

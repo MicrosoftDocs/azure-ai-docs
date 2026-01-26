@@ -19,6 +19,8 @@ ai-usage: ai-assisted
 
 # Tutorial: Deploy an enterprise chat web app
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 In this article, you deploy an enterprise chat web app that uses your data with a large language model in Microsoft Foundry portal.
 
 Your data source grounds the model with specific data. Grounding means the model uses your data to understand the context of your question. You don't change the deployed model itself. Your data stays separate and secure in your original data source.
@@ -243,5 +245,5 @@ To avoid unnecessary Azure costs, delete the resources you created in this quick
 
 ## Related content
 
-- [Get started building a chat app using the prompt flow SDK](../quickstarts/get-started-code.md)
+- [Get started building a chat app](../quickstarts/get-started-code.md)
 - [Build a custom chat app with the Azure AI SDK](./copilot-sdk-create-resources.md)

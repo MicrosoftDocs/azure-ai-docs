@@ -5,7 +5,7 @@ description: Use existing code samples or build your own tools for working with 
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 07/28/2025
 ms.update-cycle: 365-days
 ---

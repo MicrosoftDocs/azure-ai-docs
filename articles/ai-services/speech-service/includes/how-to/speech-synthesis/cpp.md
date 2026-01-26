@@ -222,7 +222,7 @@ int main()
     auto speechKey = getEnvironmentVariable("SPEECH_KEY");
     auto speechRegion = getEnvironmentVariable("SPEECH_REGION");
 
-    if ((size(speechKey) == 0) || (size(speechRegion) == 0)) {
+    if (std::string(speechKey).empty() || std::string(endpoint).empty()) {
         std::cout << "Please set both SPEECH_KEY and SPEECH_REGION environment variables." << std::endl;
         return -1;
     }

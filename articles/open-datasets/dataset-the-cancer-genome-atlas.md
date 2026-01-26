@@ -4,8 +4,8 @@ titleSuffix: Azure Open Datasets
 description: Learn how to use the TCGA open dataset in Azure Open Datasets.
 ms.service: azure-open-datasets
 ms.topic: sample
-author: mamtagiri
-ms.author: mamtagiri
+author: s-polly
+ms.author: scottpolly
 ms.custom: references_regions
 ms.date: 09/22/2022
 ---

@@ -372,4 +372,4 @@ If you implement the workaround, be sure to test extensively.
 Use an import wizard with sample data to guide you through creating, loading, and querying an index.
 
 > [!div class="nextstepaction"]
-> [Quickstart: Create a search index in the Azure portal](search-get-started-portal.md)
+> [Quickstart: Full-text search in the Azure portal](search-get-started-portal.md)

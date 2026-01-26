@@ -20,7 +20,7 @@ The quickstart assumes the following is available on your computer:
 - [TypeScript](https://www.typescriptlang.org/) for writing the sample code.
 
 > [!TIP]
-> You can download the [source code](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart-semantic-ranking-js) to start with a finished project or follow these steps to create your own.
+> You can download the [source code](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart-semantic-ranking-ts) to start with a finished project or follow these steps to create your own.
 
 ### Set up local development environment
 

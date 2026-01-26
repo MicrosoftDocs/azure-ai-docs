@@ -19,6 +19,8 @@ ai-usage: ai-assisted
 
 # How to add and manage data in your Microsoft Foundry hub-based project
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 This article describes how to create and manage data in Microsoft Foundry hub-based projects. Use data as a source for indexing in Microsoft Foundry portal.

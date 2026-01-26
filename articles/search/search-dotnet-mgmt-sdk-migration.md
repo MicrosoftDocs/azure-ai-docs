@@ -10,7 +10,7 @@ ms.devlang: csharp
 ms.custom:
   - devx-track-dotnet
   - ignite-2023
-ms.topic: conceptual
+ms.topic: upgrade-and-migration-article
 ms.date: 02/24/2025
 ms.update-cycle: 365-days
 ---

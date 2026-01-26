@@ -1,7 +1,7 @@
 ---
 title: How to select a machine learning algorithm
 titleSuffix: Azure Machine Learning
-description: How to select Azure Machine Learning algorithms for supervised and unsupervised learning in clustering, classification, or regression experiments.
+description: Learn how to select Azure Machine Learning algorithms for supervised and unsupervised learning in clustering, classification, or regression experiments.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: training
@@ -9,7 +9,8 @@ ms.topic: how-to
 author: lgayhardt
 ms.author: scottpolly
 ms.reviewer: sooryar
-ms.date: 09/30/2024
+ms.date: 01/09/2026
+#customer intent: As a data scientist using Azure Machine Learning, I need to understand how to choose the right algorithms for the scenarios I explore.
 ---
 
 # How to select algorithms for Azure Machine Learning
@@ -24,14 +25,14 @@ If you're wondering which machine learning algorithm to use, the answer depends 
 
 :::image type="content" source="media/how-to-select-algorithms/how-to-select-algorithms.png" alt-text="Diagram that shows considerations for choosing machine learning algorithms.":::
 
->[!Note]
+> [!NOTE]
 > The Azure Machine Learning designer supports two types of components: classic prebuilt components (v1) and custom components (v2). These two types of components are NOT compatible.
 >
-> Classic prebuilt components are primarily for data processing and traditional machine learning tasks like regression and classification. This type of component continues to be supported but will not have any new components added.
+> Classic prebuilt components are primarily for data processing and traditional machine learning tasks like regression and classification. This type of component continues to be supported but won't have any new components added.
 >
 > Custom components allow you to wrap your own code as a component. They support sharing components across workspaces and seamless authoring across Studio, CLI v2, and SDK v2 interfaces.
 >
-> For new projects, we strongly advise that you use custom components, which are compatible with AzureML V2 and will keep receiving new updates.
+> For new projects, we strongly recommend that you use custom components, which are compatible with AzureML V2 and will receive new updates.
 >
 > This article applies to classic prebuilt components and isn't compatible with CLI v2 and SDK v2.
 
@@ -42,13 +43,21 @@ The [Azure Machine Learning Algorithm Cheat Sheet](./algorithm-cheat-sheet.md?WT
 > [!NOTE]
 > You can download the [Machine Learning Algorithm Cheat Sheet](https://download.microsoft.com/download/3/5/b/35bb997f-a8c7-485d-8c56-19444dafd757/azure-machine-learning-algorithm-cheat-sheet-july-2021.pdf).
 
-The designer provides a comprehensive portfolio of algorithms, such as [Multiclass Decision Forest](../algorithm-module-reference/multiclass-decision-forest.md?WT.mc_id=docs-article-lazzeri), [Recommendation systems](../algorithm-module-reference/evaluate-recommender.md?WT.mc_id=docs-article-lazzeri), [Neural Network Regression](../algorithm-module-reference/neural-network-regression.md?WT.mc_id=docs-article-lazzeri), [Multiclass Neural Network](../algorithm-module-reference/multiclass-neural-network.md?WT.mc_id=docs-article-lazzeri), and [K-Means Clustering](../algorithm-module-reference/k-means-clustering.md?WT.mc_id=docs-article-lazzeri). Each algorithm is designed to address a different type of machine learning problem. See the [algorithm and component reference](../component-reference/component-reference.md?WT.mc_id=docs-article-lazzeri) for a complete list along with documentation about how each algorithm works and how to tune parameters to optimize the algorithm.
+The designer provides a comprehensive portfolio of algorithms, including:
 
-Along with this guidance, keep other requirements in mind when choosing a machine learning algorithm. Following are additional factors to consider, such as the accuracy, training time, linearity, number of parameters and number of features.
+- [Multiclass Decision Forest](../algorithm-module-reference/multiclass-decision-forest.md?WT.mc_id=docs-article-lazzeri)
+- [Recommendation systems](../algorithm-module-reference/evaluate-recommender.md?WT.mc_id=docs-article-lazzeri)
+- [Neural Network Regression](../algorithm-module-reference/neural-network-regression.md?WT.mc_id=docs-article-lazzeri)
+- [Multiclass Neural Network](../algorithm-module-reference/multiclass-neural-network.md?WT.mc_id=docs-article-lazzeri)
+- [K-Means Clustering](../algorithm-module-reference/k-means-clustering.md?WT.mc_id=docs-article-lazzeri)
+
+Each algorithm is designed to address a different type of machine learning problem. For a complete list along with documentation about how each algorithm works and how to tune parameters to optimize the algorithm, see the [algorithm and component reference](../component-reference/component-reference.md?WT.mc_id=docs-article-lazzeri).
+
+Along with this guidance, keep other requirements in mind when you choose a machine learning algorithm. Following are other factors to consider, such as the accuracy, training time, linearity, number of parameters and number of features.
 
 ### Comparison of machine learning algorithms
 
-Some algorithms make particular assumptions about the structure of the data or the desired results. If you can find one that fits your needs, it can give you more useful results, more accurate predictions, or faster training times.
+Some algorithms make particular assumptions about the structure of the data or the desired results. If you can find one that fits your needs, it can give more useful results, more accurate predictions, or faster training times.
 
 The following table summarizes some of the most important characteristics of algorithms from the classification, regression, and clustering families:
 
@@ -56,7 +65,7 @@ The following table summarizes some of the most important characteristics of alg
 | --- |:---:|:---:|:---:|:---:| --- |
 | **Classification family** | | | | | |
 | [Two-class logistic regression](../algorithm-module-reference/two-class-logistic-regression.md?WT.mc_id=docs-article-lazzeri) |Good  |Fast |Yes |4 | |
-| [Two-class decision forest](../algorithm-module-reference/two-class-decision-forest.md?WT.mc_id=docs-article-lazzeri) |Excellent |Moderate |No |5 |Shows slower scoring times. We suggest not working with One-vs-All Multiclass, because of slower scoring times caused by thread locking in accumulating tree predictions |
+| [Two-class decision forest](../algorithm-module-reference/two-class-decision-forest.md?WT.mc_id=docs-article-lazzeri) |Excellent |Moderate |No |5 |Shows slower scoring times. We suggest not working with One-vs-All Multiclass, because of slower scoring times caused by thread locking in accumulating tree predictions. |
 | [Two-class boosted decision tree](../algorithm-module-reference/two-class-boosted-decision-tree.md?WT.mc_id=docs-article-lazzeri) |Excellent |Moderate |No |6 |Large memory footprint |
 | [Two-class neural network](../algorithm-module-reference/two-class-neural-network.md?WT.mc_id=docs-article-lazzeri) |Good |Moderate |No |8 | |
 | [Two-class averaged perceptron](../algorithm-module-reference/two-class-averaged-perceptron.md?WT.mc_id=docs-article-lazzeri) |Good |Moderate |Yes |4 | |
@@ -76,7 +85,7 @@ The following table summarizes some of the most important characteristics of alg
 
 ## Data science scenario requirements
 
-Once you know what you want to do with your data, you need to determine other requirements for your data science scenario.
+After you know what you want to do with your data, you need to determine other requirements for your data science scenario.
 
 Make choices and possibly trade-offs for the following requirements:
 
@@ -94,7 +103,7 @@ Getting the most accurate answer possible isn’t always necessary. Sometimes an
 
 There are three ways to use the Evaluate Model component:
 
-- Generate scores over your training data in order to evaluate the model.
+- Generate scores over your training data to evaluate the model.
 - Generate scores on the model, but compare those scores to scores on a reserved testing set.
 - Compare scores for two different but related models, using the same set of data.
 
@@ -116,7 +125,7 @@ In the designer, creating and using a machine learning model is typically a thre
 
 ### Linearity
 
-Linearity in statistics and machine learning means that there's a linear relationship between a variable and a constant in your dataset. For example, linear classification algorithms assume that classes can be separated by a straight line (or its higher-dimensional analog).
+Linearity in statistics and machine learning means that there's a linear relationship between a variable and a constant in your dataset. For example, linear classification algorithms assume that a straight line or its higher-dimensional analog can separate classes.
 
 Lots of machine learning algorithms make use of linearity. In Azure Machine Learning designer, they include:
 
@@ -136,17 +145,19 @@ Linear regression algorithms assume that data trends follow a straight line. Thi
 
 ### Number of parameters
 
-Parameters are the knobs that a data scientist gets to turn when setting up an algorithm. They're numbers that affect the algorithm’s behavior, such as error tolerance or number of iterations, or options between variants of how the algorithm behaves. The training time and accuracy of the algorithm can sometimes be sensitive to getting just the right settings. Typically, algorithms with large numbers of parameters require the most trial and error to find a good combination.
+Parameters are the knobs that a data scientist gets to turn when setting up an algorithm. They're numbers that affect the algorithm’s behavior. Examples include error tolerance or number of iterations, and options between variants of how the algorithm behaves.
+
+The training time and accuracy of the algorithm can be sensitive to getting just the right settings. Typically, algorithms with large numbers of parameters require the most trial and error to find a good combination.
 
 Alternatively, there's the [Tune Model Hyperparameters component](../algorithm-module-reference/tune-model-hyperparameters.md?WT.mc_id=docs-article-lazzeri) in the designer. The goal of this component is to determine the optimum hyperparameters for a machine learning model. The component builds and tests multiple models by using different combinations of settings. It compares metrics over all models to get the combinations of settings.
 
-While this is a great way to make sure you spanned the parameter space, the time required to train a model increases exponentially with the number of parameters. The upside is that having many parameters typically indicates that an algorithm has greater flexibility. It can often achieve very good accuracy, provided you can find the right combination of parameter settings.
+While this approach is a great way to make sure you spanned the parameter space, the time required to train a model increases exponentially with the number of parameters. The upside is that having many parameters typically indicates that an algorithm has greater flexibility. It can often achieve very good accuracy, provided you can find the right combination of parameter settings.
 
 ### Number of features
 
-In machine learning, a feature is a quantifiable variable of the phenomenon you're trying to analyze. For certain types of data, the number of features can be very large compared to the number of data points. This is often the case with genetics or textual data.
+In machine learning, a feature is a quantifiable variable of the phenomenon you're trying to analyze. For certain types of data, the number of features can be very large compared to the number of data points. This situation is often the case with genetics or textual data.
 
-A large number of features can bog down some learning algorithms, making training time unfeasibly long. [Support vector machines](../algorithm-module-reference/two-class-support-vector-machine.md?WT.mc_id=docs-article-lazzeri) are well suited to scenarios with a high number of features. For this reason, they have been used in many applications from information retrieval to text and image classification. Support vector machines can be used for both classification and regression tasks.
+A large number of features can bog down some learning algorithms, making training time unfeasibly long. [Support vector machines](../algorithm-module-reference/two-class-support-vector-machine.md?WT.mc_id=docs-article-lazzeri) are well suited to scenarios with a high number of features. For this reason, they're used in many applications from information retrieval to text and image classification. Support vector machines can be used for both classification and regression tasks.
 
 Feature selection refers to the process of applying statistical tests to inputs, given a specified output. The goal is to determine which columns are more predictive of the output. The [Filter Based Feature Selection component](../algorithm-module-reference/filter-based-feature-selection.md?WT.mc_id=docs-article-lazzeri) in the designer provides multiple feature selection algorithms to choose from. The component includes correlation methods such as Pearson correlation and chi-squared values.
 

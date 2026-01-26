@@ -19,6 +19,8 @@ ms.update-cycle: 180-days
 
 # Guardrails & controls tool for flows in Microsoft Foundry portal
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 The prompt flow Content Safety tool enables you to use Azure AI Content Safety in Microsoft Foundry portal.

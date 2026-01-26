@@ -25,7 +25,7 @@ The `moreLikeThis` parameter isn't supported for [complex types](search-howto-co
 
 ## Examples
 
-All following examples use the hotels sample from [Quickstart: Create a search index in the Azure portal](search-get-started-portal.md).
+All following examples use the hotels sample from [Quickstart: Full-text search in the Azure portal](search-get-started-portal.md).
 
 ### Simple query
 

@@ -1,5 +1,9 @@
 {
     "redirections": [
+        { "source_path_from_root": "/articles/ai-foundry/openai/concepts/gov-provisioned.md",
+          "redirect_url": "/azure/ai-foundry/openai/azure-government",
+          "redirect_document_id": false
+        },
         {
           "source_path_from_root": "/articles/ai-foundry/foundry-agent/ask-foundry-agent.md",
           "redirect_url": "/azure/ai-foundry/concepts/ask-ai",
@@ -1547,6 +1551,11 @@
           "source_path_from_root": "/articles/ai-foundry/default/agents/concepts/agent-memory.md",
           "redirect_url": "/azure/ai-foundry/agents/concepts/what-is-memory",
           "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/default/agents/how-to/how-to-monitor-agents-dashboard.md",
+          "redirect_url": "/azure/ai-foundry/observability/how-to/how-to-monitor-agents-dashboard",
+          "redirect_document_id": true
         }
     ]
 }

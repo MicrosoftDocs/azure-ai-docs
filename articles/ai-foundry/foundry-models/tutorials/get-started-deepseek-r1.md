@@ -1,14 +1,15 @@
 ---
 title: "Tutorial: Getting started with DeepSeek-R1 reasoning model in Microsoft Foundry Models"
 titleSuffix: Microsoft Foundry
-description: Learn how to deploy and use DeepSeek-R1 reasoning model in Microsoft Foundry Models with step-by-step guidance and code examples.
+description: "Learn how to deploy and use DeepSeek-R1 reasoning model in Microsoft Foundry Models. Get step-by-step guidance, code examples, and best practices for AI reasoning."
 monikerRange: 'foundry-classic || foundry'
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: tutorial
-ms.date: 10/30/2025
+ms.date: 01/15/2026
 ms.author: mopeakande
 author: msakande
+ms.custom: dev-focus
 ai-usage: ai-assisted
 #CustomerIntent: As a developer or data scientist, I want to learn how to deploy and use the DeepSeek-R1 reasoning model in Microsoft Foundry Models so that I can build applications that leverage advanced reasoning capabilities for complex problem-solving tasks.
 ---
@@ -19,25 +20,35 @@ ai-usage: ai-assisted
 
 In this tutorial, you learn how to deploy and use a DeepSeek reasoning model in Microsoft Foundry. This tutorial uses [DeepSeek-R1](https://ai.azure.com/explore/models/deepseek-r1/version/1/registry/azureml-deepseek?cid=learnDocs) for illustration. However, the content also applies to the newer [DeepSeek-R1-0528](https://ai.azure.com/explore/models/deepseek-r1-0528/version/1/registry/azureml-deepseek?cid=learnDocs) reasoning model.
 
+**What you'll accomplish:**
+
+In this tutorial, you'll deploy the DeepSeek-R1 reasoning model, send inference requests programmatically using code, and parse the reasoning output to understand how the model arrives at its answers.
+
 The steps you perform in this tutorial are:
 
 * Create and configure the Azure resources to use DeepSeek-R1 in Foundry Models.
 * Configure the model deployment.
-* Use DeepSeek-R1 with the next generation v1 Azure OpenAI APIs to consume the model in code
-
+* Use DeepSeek-R1 with the next generation v1 Azure OpenAI APIs to consume the model in code.
 
 ## Prerequisites
 
 To complete this article, you need:
 
-- An Azure subscription. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Foundry Models](../../model-inference/how-to/quickstart-github-models.md), if that applies to you.
+- An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can [upgrade from GitHub Models to Microsoft Foundry Models](../how-to/quickstart-github-models.md) and create an Azure subscription in the process.
 
+- Access to Microsoft Foundry with appropriate permissions to create and manage resources. Typically requires Contributor or Owner role on the resource group for creating resources and deploying models.
 
-[!INCLUDE [about-reasoning](../../foundry-models/includes/use-chat-reasoning/about-reasoning.md)]
+- Install the Azure OpenAI SDK for your programming language:
+  - **Python**: `pip install openai azure-identity`
+  - **.NET**: `dotnet add package Azure.Identity` and install the OpenAI package
+  - **JavaScript**: `npm install openai @azure/identity`
+  - **Java**: Add the Azure Identity package (see code examples for details)
+
+DeepSeek-R1 is a reasoning model that generates explanations alongside answers—see [About reasoning models](#about-reasoning-models) for details.
 
 ## Create the resources
 
-To create a Foundry project that supports deployment for DeepSeek-R1, follow these steps. You can also create the resources by using [Azure CLI](../how-to/quickstart-create-resources.md?pivots=programming-language-cli) or [infrastructure as code, with Bicep](../how-to/quickstart-create-resources.md?pivots=programming-language-bicep).
+To create a Foundry project that supports deployment for DeepSeek-R1, follow these steps. You can also create the resources using [Azure CLI](../how-to/quickstart-create-resources.md?pivots=programming-language-cli) or [infrastructure as code, with Bicep](../how-to/quickstart-create-resources.md?pivots=programming-language-bicep).
 
 ::: moniker range="foundry-classic"
 
@@ -45,27 +56,29 @@ To create a Foundry project that supports deployment for DeepSeek-R1, follow the
 
 1. [!INCLUDE [version-sign-in](../../includes/version-sign-in.md)]
 
-1. On the landing page, go to the "Explore models and capabilities" section and select **Go to full model catalog** to open the model catalog.
+1. On the landing page, go to the "Explore models and capabilities" section.
+
     :::image type="content" source="../media/quickstart-get-started-deepseek-r1/foundry-homepage-model-catalog-section.png" alt-text="A screenshot of the homepage of the Foundry portal showing the model catalog section." lightbox="../media/quickstart-get-started-deepseek-r1/foundry-homepage-model-catalog-section.png":::
 
-1. Search for the **DeepSeek-R1** model and open its model card.
-    
-1. Select **Use this model**. This action opens up a wizard to create a Foundry project and resources that you'll work in. You can keep the default name for the project or change it.
+1. Use the search box on the screen to search for the **DeepSeek-R1** model and open its model card.
+
+   Select **Use this model**. This action opens a wizard to create a Foundry project and resources for you to work in. You can keep the default name for the project or change it.
+
 
     > [!TIP]
-    > **Are you using Azure OpenAI in Foundry Models?** When you're connected to Foundry portal using an Azure OpenAI resource, only Azure OpenAI models show up in the catalog. To view the full list of models, including DeepSeek-R1, use the top **Announcements** section and locate the card with the option **Explore more models**.
+    > **Are you using Azure OpenAI in Foundry Models?** When you're connected to the Foundry portal using an Azure OpenAI resource, only Azure OpenAI models show up in the catalog. To view the full list of models, including DeepSeek-R1, use the top **Announcements** section and locate the card with the option **Explore more models**.
     >
     > :::image type="content" source="../media/quickstart-get-started-deepseek-r1/explore-more-models.png" alt-text="Screenshot showing the card with the option to explore all the models from the catalog." lightbox="../media/quickstart-get-started-deepseek-r1/explore-more-models.png":::
     >
-    > A new window shows up with the full list of models. Select **DeepSeek-R1** from the list and select **Deploy**. The wizard asks to create a new project.
+    > A new window opens with the full list of models. Select **DeepSeek-R1** from the list and select **Deploy**. The wizard asks to create a new project.
 
 1. Select the dropdown in the "Advanced options" section of the wizard to see details about settings and other defaults created alongside the project. These defaults are selected for optimal functionality and include:
 
     | Property       | Description |
     | -------------- | ----------- |
-    | Resource group | The main container for all the resources in Azure. This container helps you organize resources that work together. It also helps to have a scope for the costs associated with the entire project. |
+    | Resource group | The main container for all the resources in Azure. This container helps you organize resources that work together. It also helps you have a scope for the costs associated with the entire project. |
     | Region     | The region of the resources that you're creating. |
-    | Foundry resource    | The resource enabling access to the flagship models in Foundry model catalog. In this tutorial, a new account is created, but Foundry resources (formerly known as Azure AI Services resource) can be shared across multiple hubs and projects. Hubs use a connection to the resource to have access to the model deployments available there. To learn how you can create connections to Foundry resources to consume models, see [Connect your AI project](../../model-inference/how-to/configure-project-connection.md). |
+    | Foundry resource    | The resource enabling access to the flagship models in the Foundry model catalog. In this tutorial, a new account is created, but Foundry resources (formerly known as Azure AI Services resource) can be shared across multiple hubs and projects. Hubs use a connection to the resource to have access to the model deployments available there. To learn how you can create connections to Foundry resources to consume models, see [Connect your AI project](../../model-inference/how-to/configure-project-connection.md). |
 
 1. Select **Create** to create the Foundry project alongside the other defaults. Wait until the project creation is complete. This process takes a few minutes.
 
@@ -74,7 +87,7 @@ To create a Foundry project that supports deployment for DeepSeek-R1, follow the
 ::: moniker range="foundry"
 
 1. [!INCLUDE [version-sign-in](../../includes/version-sign-in.md)]
-1. The project you are working on appears in the upper-left corner.  
+1. The project you're working on appears in the upper-left corner.  
 1. To create a new project, select the project name, then  **Create new project**.
 1. Give your project a name and select **Create project**.
 
@@ -84,62 +97,35 @@ To create a Foundry project that supports deployment for DeepSeek-R1, follow the
 
 ::: moniker range="foundry-classic"
 
-1. When you create the project and resources, a deployment wizard appears. DeepSeek-R1 is available as a Foundry Model sold directly by Azure. You can review the pricing details for the model by selecting the DeepSeek tab on the [Foundry Models pricing page](https://azure.microsoft.com/pricing/details/phi-3/).
+1. When you create the project and resources, a deployment wizard opens. DeepSeek-R1 is available as a Foundry Model sold directly by Azure. You can review the pricing details for the model by selecting the DeepSeek tab on the [Foundry Models pricing page](https://azure.microsoft.com/pricing/details/ai-foundry-models/deepseek/).
 
-1. Configure the deployment settings. By default, the deployment receives the name of the model you're deploying. The deployment name is used in the `model` parameter for requests to route to this particular model deployment. This setup allows you to configure specific names for your models when you attach specific configurations.
+1. Configure the deployment settings. By default, the deployment receives the name of the model you're deploying. The deployment name is used in the `model` parameter for requests to route to this particular model deployment. This setup lets you configure specific names for your models when you attach specific configurations.
 
-1. Foundry automatically selects the Foundry resource you created earlier with your project. Use the **Customize** option to change the connection based on your needs. DeepSeek-R1 is currently offered under the **Global Standard** deployment type, which offers higher throughput and performance.
+1. Foundry automatically selects the Foundry resource you created earlier with your project. Use the **Customize** option to change the connection based on your needs. DeepSeek-R1 is currently available under the **Global Standard** deployment type, which provides higher throughput and performance.
 
    :::image type="content" source="../media/quickstart-get-started-deepseek-r1/deployment-wizard.png" alt-text="Screenshot showing how to deploy the model." lightbox="../media/quickstart-get-started-deepseek-r1/deployment-wizard.png":::
 
 1. Select **Deploy**.
 
-1. When the deployment completes, the deployment **Details** page opens. Now the new model is ready for use.
+1. When the deployment finishes, the deployment **Details** page opens. Now the new model is ready for use.
 
 ::: moniker-end
 
 ::: moniker range="foundry"
 
-1. Add a model to your project.  Select **Build** in the middle of the page, then **Model**.
+1. Add a model to your project. Select **Build** in the middle of the page, then **Model**.
 1. Select **Deploy base model** to open the model catalog.
-1. Find and select the **DeepSeek-R1** model tile to open its model card and select **Deploy**. You can select **Quick deploy** to use the defaults or select **Customize deployment** to see and change the deployment settings.
+1. Find and select the **DeepSeek-R1** model tile to open its model card and select **Deploy**. You can select **Quick deploy** to use the defaults, or select **Customize deployment** to see and change the deployment settings.
 
-When the deployment completes, you land on its playground, where you can begin to interact with the deployment.
-
-::: moniker-end
-
-
-## Use the model in the playground
-
-You can get started by using the model in the playground to get an idea of the model's capabilities.
-
-::: moniker range="foundry-classic"
-
-1. On the deployment details page, select **Open in playground** in the top bar. This action opens the chat playground.
-
-1. In the **Deployment** drop down of the chat playground, the deployment you created is already automatically selected.
-
-1. Configure the system prompt as needed. In general, reasoning models don't use system messages in the same way as other types of models.
-
-   :::image type="content" source="../media/quickstart-get-started-deepseek-r1/playground-chat-models.png" alt-text="Screenshot showing how to select a model deployment to use in playground, configure the system message, and test it out." lightbox="../media/quickstart-get-started-deepseek-r1/playground-chat-models.png":::
-
-1. Type your prompt and see the outputs.
-
-1. Use **View code** to see details about how to access the model deployment programmatically.
+When the deployment finishes, you land on its playground, where you can start to interact with the deployment.
 
 ::: moniker-end
 
-::: moniker range="foundry"
-
-1. Insert your prompts, such as "How many languages are in the world?" in the playground.
-
-::: moniker-end
-
-[!INCLUDE [best-practices](../../foundry-models/includes/use-chat-reasoning/best-practices.md)]
+If you prefer to explore the model interactively first, skip to [Use the model in the playground](#use-the-model-in-the-playground).
 
 ## Use the model in code
 
-Use the Foundry Models endpoint and credentials to connect to the model:
+Use the Foundry Models endpoint and credentials to connect to the model.
 
 ::: moniker range="foundry-classic"
 
@@ -154,15 +140,52 @@ Use the Foundry Models endpoint and credentials to connect to the model:
 
 ::: moniker-end
 
-Use the next generation v1 Azure OpenAI APIs to consume the model in your code. These code examples use a secure, keyless authentication approach, Microsoft Entra ID, via the [Azure Identity library](/dotnet/api/overview/azure/identity-readme?view=azure-dotnet&preserve-view=true ).
+Use the next generation v1 Azure OpenAI APIs to consume the model in your code. These code examples use a secure, keyless authentication approach, Microsoft Entra ID, via the [Azure Identity library](/dotnet/api/overview/azure/identity-readme?view=azure-dotnet&preserve-view=true).
+
+
+The following code examples demonstrate how to:
+1. Authenticate with Microsoft Entra ID using `DefaultAzureCredential`, which automatically attempts multiple authentication methods in sequence:
+
+    1. **Environment variables** - Checks for service principal credentials in environment variables
+    1. **Managed identity** - Uses managed identity if running in Azure (App Service, Functions, VM, etc.)
+    1. **Azure CLI** - Falls back to Azure CLI credentials if you're authenticated locally
+    1. **Other methods** - Continues through additional authentication methods as needed
+    
+    > [!TIP]
+    > For local development, ensure you're authenticated with Azure CLI by running `az login`. For production deployments in Azure, configure managed identity for your application.
+
+1. Create a chat completion client connected to your model deployment
+1. Send a basic prompt to the DeepSeek-R1 model
+1. Receive and display the response
+
+**Expected output:** A JSON response containing the model's answer, reasoning process (within `<think>` tags), token usage statistics (prompt tokens, completion tokens, total tokens), and model information.
 
 [!INCLUDE [code-create-chat-client-request](../../foundry-models/includes/code-create-chat-client-request.md)]
 
-Reasoning might generate longer responses and consume a larger number of tokens. You can see the [rate limits](../../model-inference/quotas-limits.md) that apply to DeepSeek-R1 models. Consider having a retry strategy to handle rate limits. You can also [request increases to the default limits](../quotas-limits.md#request-increases-to-the-default-limits).
+**API Reference:**
+- [OpenAI Python client](https://github.com/openai/openai-python)
+- [OpenAI JavaScript client](https://github.com/openai/openai-node)
+- [OpenAI .NET client](https://github.com/openai/openai-dotnet)
+- [DefaultAzureCredential class](/dotnet/api/azure.identity.defaultazurecredential)
+- [Chat completions API reference](../../openai/latest.md#create-chat-completion)
+- [Azure Identity library overview](/dotnet/api/overview/azure/identity-readme)
+
+Reasoning might generate longer responses and consume a larger number of tokens. See the [rate limits](../../model-inference/quotas-limits.md) that apply to DeepSeek-R1 models. Consider having a retry strategy to handle rate limits. You can also [request increases to the default limits](../quotas-limits.md#request-increases-to-the-default-limits).
+
+## About reasoning models
+
+Reasoning models can reach higher levels of performance in domains like math, coding, science, strategy, and logistics. The way these models produce outputs is by explicitly using chain of thought to explore all possible paths before generating an answer. They verify their answers as they produce them, which helps to arrive at more accurate conclusions. As a result, reasoning models might require less context prompts in order to produce effective results. 
+
+Reasoning models produce two types of content as outputs:
+
+* Reasoning completions
+* Output completions
+
+Both of these completions count towards content generated from the model. Therefore, they contribute to the token limits and costs associated with the model. Some models, like `DeepSeek-R1`, might respond with the reasoning content. Others, like `o1`, output only the completions.
 
 ### Reasoning content
 
-Some reasoning models, like DeepSeek-R1, generate completions and include the reasoning behind them. The reasoning associated with the completion is included in the response's content within the tags `<think>` and `</think>`. The model might select the scenarios for which to generate reasoning content. The following example shows how to generate the reasoning content, using Python:
+Some reasoning models, like DeepSeek-R1, generate completions and include the reasoning behind them. The reasoning associated with the completion is included in the response's content within the tags `<think>` and `</think>`. The model can select the scenarios for which to generate reasoning content. The following example shows how to generate the reasoning content, using Python:
 
 ```python
 import re
@@ -193,15 +216,80 @@ Usage:
   Completion tokens: 886
 ```
 
+**API Reference:**
+- [Python re module documentation](https://docs.python.org/3/library/re.html)
+- [ChatCompletion object reference](https://github.com/openai/openai-python/blob/main/src/openai/types/chat/chat_completion.py)
+
+
+[!INCLUDE [best-practices](../../foundry-models/includes/use-chat-reasoning/best-practices.md)]
 
 ### Parameters
 
-In general, reasoning models don't support the following parameters that you can find in chat completion models:
+Reasoning models support a subset of the standard chat completion parameters to maintain the integrity of their reasoning process.
 
-* Temperature
-* Presence penalty
-* Repetition penalty
-* Parameter `top_p`
+**Supported parameters:**
+- `max_tokens` - Maximum number of tokens to generate in the response
+- `stop` - Sequences where the API stops generating tokens
+- `stream` - Enable streaming responses
+- `n` - Number of completions to generate
+- `frequency_penalty` - Reduces repetition of token sequences
+
+**Unsupported parameters** (reasoning models don't support these):
+- `temperature` - Fixed to optimize reasoning quality
+- `top_p` - Not configurable for reasoning models
+- `presence_penalty` - Not available
+- `repetition_penalty` - Use `frequency_penalty` instead
+
+**Example using `max_tokens`:**
+
+```python
+response = client.chat.completions.create(
+    model="DeepSeek-R1",
+    messages=[
+        {"role": "user", "content": "Explain quantum computing"}
+    ],
+    max_tokens=1000  # Limit response length
+)
+```
+
+For the complete list of supported parameters, see the [Chat completions API reference](../../openai/latest.md#create-chat-completion).
+
+## Use the model in the playground
+
+Use the model in the playground to get an idea of the model's capabilities.
+
+::: moniker range="foundry-classic"
+
+1. On the deployment details page, select **Open in playground** in the top bar. This action opens the chat playground.
+
+1. In the **Deployment** drop down of the chat playground, the deployment you created is already automatically selected.
+
+1. Configure the system prompt as needed.
+
+   :::image type="content" source="../media/quickstart-get-started-deepseek-r1/playground-chat-models.png" alt-text="Screenshot showing how to select a model deployment to use in playground, configure the system message, and test it out." lightbox="../media/quickstart-get-started-deepseek-r1/playground-chat-models.png":::
+
+1. Enter your prompt and see the outputs.
+
+1. Select **View code** to see details about how to access the model deployment programmatically.
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+As stated previously, immediately a model deployment is complete, you land on the model's playground, where you can start to interact with the deployment. For example, you can enter your prompts, such as "How many languages are in the world?" in the playground.
+
+::: moniker-end
+
+## What you learned
+
+In this tutorial, you accomplished the following:
+
+> [!div class="checklist"]
+> * Created Foundry resources for hosting AI models
+> * Deployed the DeepSeek-R1 reasoning model
+> * Made authenticated API calls using Microsoft Entra ID
+> * Sent inference requests and received reasoning outputs
+> * Parsed reasoning content from model responses to understand the model's thought process
 
 ## Related content
 

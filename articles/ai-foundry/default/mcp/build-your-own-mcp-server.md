@@ -2,24 +2,27 @@
 title: Build and register a Model Context Protocol (MCP) server
 ms.reviewer: samuelzhang
 description: Learn how to build a custom MCP server using Azure Functions, register it in your organizational tool catalog, and connect it to Foundry Agent Service.
+keywords: Model Context Protocol, MCP server, Azure Functions, Azure API Center, tool catalog, Foundry Agent Service
 #customer intent: As a developer, I want to build a custom MCP server using Azure Functions so that I can integrate internal APIs with Foundry Agent Service.
 author: jonburchel
 ms.author: jburchel
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 11/07/2025
+ms.date: 01/20/2026
+ai-usage: ai-assisted
 ms.custom: ai-assisted
 ---
 
 # Build and register a Model Context Protocol (MCP) server
 
-Model Context Protocol (MCP) provides a standard interface for AI agents to interact with APIs and external services. When you need to integrate private or internal enterprise systems that don't have existing MCP server implementations, you can build your own custom server. This article shows you how to create a remote MCP server using Azure Functions, register it in a private organizational tool catalog using Azure API Center, and connect it to Foundry Agent Service.
+The [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) provides a standard interface for AI agents to interact with APIs and external services. When you need to integrate private or internal enterprise systems that don't have existing MCP server implementations, you can build your own custom server. This article shows you how to create a remote MCP server using Azure Functions, register it in a private organizational tool catalog using Azure API Center, and connect it to Foundry Agent Service.
 
 This approach enables you to securely integrate internal APIs and services into the Microsoft Foundry ecosystem, allowing agents to call your enterprise-specific tools through a standardized MCP interface.
 
 ## Prerequisites
 
 - A Foundry project with Agent Service enabled. For setup instructions, see [Quickstart: Get started with Agent Service](../../agents/quickstart.md).
+- An Azure subscription and permissions to create resources. At minimum, you typically need the Contributor role on the target resource group.
 - [Python](https://www.python.org/downloads/) version 3.11 or higher installed on your local development machine.
 - [Azure Functions Core Tools](/azure/azure-functions/functions-run-local?pivots=programming-language-python#install-the-azure-functions-core-tools) version 4.0.7030 or higher.
 - [Azure Developer CLI](https://aka.ms/azd) installed for deployment automation.
@@ -27,6 +30,19 @@ This approach enables you to securely integrate internal APIs and services into 
   - [Visual Studio Code](https://code.visualstudio.com/)
   - [Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions) for Visual Studio Code
 - An [Azure API Center resource](/azure/api-center/overview) (optional, required only for organizational tool catalog registration).
+
+> [!NOTE]
+> Agent Service connects only to publicly accessible MCP server endpoints.
+
+## Understand the request flow
+
+The high-level flow looks like this:
+
+1. You deploy an MCP server (this article uses Azure Functions) that exposes one or more MCP tools.
+1. You optionally register the server in Azure API Center so it shows up in an organizational tool catalog.
+1. In Foundry portal, you connect the MCP server to Agent Service.
+1. When an agent needs a tool, Agent Service calls your MCP server endpoint.
+1. Your MCP server validates the request, calls your internal API, and returns the tool result.
 
 ## Build an MCP server by using Azure Functions
 
@@ -64,12 +80,25 @@ Azure Functions is a serverless compute service that provides scale-to-zero capa
 
 1. After deployment completes, save the following information for later steps:
 
-   | Item | Example or value |
-   |------|------------------|
-   | Remote MCP server endpoint | `https://{function_app_name}.azurewebsites.net/runtime/webhooks/mcp` |
-   | Authentication information | For access key authentication, note the `mcp_extension` system key from the Azure portal |
+   - Remote MCP server endpoint: `https://{function_app_name}.azurewebsites.net/runtime/webhooks/mcp`
+   - Authentication information: For access key authentication, note the `mcp_extension` system key in the Azure portal.
+
+   If you prefer a CLI workflow to retrieve function access keys, see [Work with access keys in Azure Functions](/azure/azure-functions/function-keys-how-to?tabs=azure-cli#get-your-function-access-keys).
 
 For detailed implementation guidance, see [Quickstart: Build a custom remote MCP server using Azure Functions](/azure/azure-functions/scenario-custom-remote-mcp-server?pivots=programming-language-python).
+
+## Secure your MCP server endpoint
+
+Before you share your MCP server with others, define and apply a security baseline:
+
+- Require authentication. Avoid anonymous access unless your scenario explicitly needs it.
+- Treat credentials as secrets. Don't hard-code keys in code or check them into source control. Store secrets in a secure store such as [Azure Key Vault](/azure/key-vault/general/overview).
+- Implement least privilege for downstream calls. If your MCP server calls internal APIs, scope permissions to only what the exposed tools need.
+- Log and monitor tool calls. Use Azure Functions logging to trace requests and troubleshoot failures.
+
+For Agent Service authentication patterns (for example, key-based authentication, Microsoft Entra identities, and OAuth identity passthrough), see [MCP server authentication](../agents/how-to/mcp-authentication.md).
+
+For governance and operational guidance when you run MCP tools, see [Foundry MCP Server best practices and security guidance](security-best-practices.md).
 
 ## Register your MCP server in the organizational tool catalog
 
@@ -153,21 +182,50 @@ If you don't register your MCP server in the organizational catalog, add it dire
 
 1. Select **Connect** to register the custom MCP tool.
 
-For detailed configuration steps, see [Connect to a Model Context Protocol server endpoint in Agent Service](../../agents/how-to/tools/model-context-protocol.md).
+For detailed configuration steps (including project connections and approval workflows), see [Connect to Model Context Protocol servers (preview)](../agents/how-to/tools/model-context-protocol.md).
 
-After connecting your MCP server, agents in your Foundry project can call the tools and functions exposed by your custom server. Test the connection by creating an agent and verifying it can successfully invoke your MCP server's capabilities.
+After connecting your MCP server, agents in your Foundry project can call the tools and functions exposed by your custom server.
+
+## Verify the MCP server works end to end
+
+After you deploy and connect the server, verify that the server is discoverable and that an agent can successfully invoke a tool.
+
+1. In Foundry portal, confirm the MCP server appears in your project tool list.
+1. Create an agent (or open an existing agent) and add the MCP server tool.
+1. Run a prompt that should require one of your MCP tools.
+1. If approval is enabled, review the tool name and arguments, then approve the call.
+1. Confirm the tool call succeeds.
+
+   If the tool call fails, open the Function App logs in Azure portal to confirm the MCP endpoint was invoked and to diagnose errors.
 
 ## Troubleshooting
 
 Here are some common issues you might encounter when building and connecting your MCP server:
 
-- **MCP server connection fails**: Ensure that your Azure Function is running and accessible. Check the function logs in the Azure portal for any errors.
-- **Authentication errors**: Verify that you're using the correct system key or API key. If using API Key authentication, ensure the key is correctly configured in the Foundry connection settings.
-- **Tool not found**: If you registered your MCP server in the organizational catalog, make sure you've added it to your agent. If using a custom tool, verify the endpoint URL and tool name.
+- **MCP server connection fails**: Confirm the server URL is publicly reachable and uses the MCP webhook path (`/runtime/webhooks/mcp`). Check the Function App logs in Azure portal for errors.
+- **Authentication errors (401/403)**: Verify you're using the correct key or token for the authentication method you selected. Rotate keys that might have been exposed, and update any saved credentials.
+- **Tool discovery problems**: If you registered the server in Azure API Center, confirm the API is published and you have access to it. If you added a custom tool, confirm the endpoint URL is correct.
+- **Tool call succeeds but an internal API fails**: Review your MCP server logs to confirm what request was sent to the downstream API. Verify the MCP server identity or API credentials have the required permissions.
+
+## Clean up resources
+
+When you're done, delete Azure resources created by the template to avoid ongoing charges.
+
+1. In your MCP server project folder, run:
+
+   ```bash
+   azd down --purge
+   ```
+
+1. If you registered the server in Azure API Center, remove the API entry if you no longer need it.
 
 ## Related content
 
 - [Get started with Agent Service](../../agents/quickstart.md)
-- [Connect to Model Context Protocol servers](../../agents/how-to/tools/model-context-protocol.md)
+- [Connect to Model Context Protocol servers (preview)](../agents/how-to/tools/model-context-protocol.md)
+- [MCP server authentication](../agents/how-to/mcp-authentication.md)
+- [Get started with Foundry MCP Server (preview) using Visual Studio Code](get-started.md)
+- [Foundry MCP Server best practices and security guidance](security-best-practices.md)
+- [Explore available tools and example prompts for Foundry MCP Server (preview)](available-tools.md)
 - [Add environments and deployments in Azure API Center](/azure/api-center/configure-environments-deployments)
 - [Azure Functions Python developer guide](/azure/azure-functions/functions-reference-python)

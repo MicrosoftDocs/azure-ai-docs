@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI
 description: Learn about model versions in Azure OpenAI. 
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: conceptual 
+ms.topic: concept-article 
 ms.date: 11/26/2025
 manager: nitinme
 author: mrbullwinkle #ChrisHMSFT

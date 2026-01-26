@@ -11,4 +11,4 @@ ms.custom: include
 ---
 
 > [!TIP]
-> Code uses **Foundry project (new) API (preview)** and is incompatible with the Foundry project (classic) API.
+> Code uses **Azure AI Projects 2.x (preview)** and is incompatible with Azure AI Projects 1.x. 

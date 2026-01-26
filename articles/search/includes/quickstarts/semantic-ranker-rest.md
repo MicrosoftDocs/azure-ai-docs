@@ -16,9 +16,9 @@ In this quickstart, you use a REST client and the [Azure AI Search REST APIs](/r
 We recommend [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for this quickstart.
 
 > [!TIP]
-> You can download the [source code](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-semantic-search) to start with a finished project or follow these steps to create your own.
+> You can download the [source code](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-semantic-ranking) to start with a finished project or follow these steps to create your own.
 
-1. Start Visual Studio Code and open the [semantic-search-index-update.rest](https://github.com/Azure-Samples/azure-search-rest-samples/blob/main/Quickstart-semantic-search/semantic-search-index-update.rest) file or create a new file.
+1. Start Visual Studio Code and open the [semantic-index-update.rest](https://github.com/Azure-Samples/azure-search-rest-samples/blob/main/Quickstart-semantic-ranking/semantic-index-update.rest) file or create a new file.
 
 1. At the top, set environment variables for your search service, authorization, and index name.
 
@@ -141,7 +141,7 @@ To update an index using the REST API, you must provide the entire schema, plus 
 
 Required semantic parameters include `query_type` and `semantic_configuration_name`. Here's an example of a basic semantic query using the minimum parameters.
 
-1. Open the [semantic-search-query.rest](https://github.com/Azure-Samples/azure-search-rest-samples/blob/main/Quickstart-semantic-search/semantic-search-query.rest) file or create a new file.
+1. Open the [semantic-query.rest](https://github.com/Azure-Samples/azure-search-rest-samples/blob/main/Quickstart-semantic-ranking/semantic-query.rest) file or create a new file.
 
 1. At the top of the file, set environment variables for your search service, authorization, and index name.
 

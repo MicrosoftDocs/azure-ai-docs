@@ -5,7 +5,7 @@ description: Learn how to enable priority processing for Microsoft Foundry model
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 12/01/2025
 ms.author: mopeakande
 author: msakande

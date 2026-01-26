@@ -1,5 +1,5 @@
 ---
-title: "Quickstart: Keyword Search in the Azure portal"
+title: "Quickstart: Full-Text Search in the Azure portal"
 titleSuffix: Azure AI Search
 description: Learn how to create, load, and query your first search index using an import wizard in the Azure portal. This quickstart uses a fictitious hotel dataset for sample data.
 manager: nitinme
@@ -14,7 +14,7 @@ ms.custom:
   - ignite-2024
 ---
 
-# Quickstart: Create a search index in the Azure portal
+# Quickstart: Full-text search in the Azure portal
 
 [!INCLUDE [Import data (new) instructions](includes/quickstarts/search-get-started-portal-new-wizard.md)]
 

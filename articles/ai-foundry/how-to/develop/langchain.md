@@ -5,30 +5,29 @@ description: Learn how to use LangChain with models deployed in Microsoft Foundr
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
-  - update-code
+  - update-code-2
   - dev-focus
 ms.topic: how-to
 ms.date: 12/29/2025
 ms.reviewer: fasantia
 ms.author: sgilley
 author: sdgilley
-monikerRange: foundry-classic || foundry
 ai-usage: ai-assisted
 ---
 
 # Develop applications with LangChain and Microsoft Foundry
 
-[!INCLUDE [version-banner](../../includes/version-banner.md)]
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 LangChain is a developer ecosystem that makes it easier to build reasoning applications. It includes multiple components, and most of them can be used independently, so you can pick and choose the pieces you need.
 
-::: moniker range="foundry-classic"
+<!-- ::: moniker range="foundry-classic" -->
 You can use models deployed to [!INCLUDE [classic-link](../../includes/classic-link.md)] with LangChain in two ways:
-::: moniker-end
+<!-- ::: moniker-end
 
 ::: moniker range="foundry"
 You can use models deployed to [!INCLUDE [foundry-link](../../default/includes/foundry-link.md)] with LangChain in two ways:
-::: moniker-end
+::: moniker-end -->
 
 - **Use the model provider's API:** Some models, such as OpenAI, Cohere, or Mistral, offer their own APIs and LangChain extensions. These extensions might include model-specific capabilities and are suitable if you need to use them. Install the extension for your chosen model, such as `langchain-openai` or `langchain-cohere`.
 
@@ -45,20 +44,20 @@ To run this tutorial, you need:
 
 * [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
 
-:::moniker range="foundry-classic"
+<!-- :::moniker range="foundry-classic" -->
 * Required role: 
     * **Owner** or **Contributor** on the Foundry resource or AI Hub to deploy models
     * **Azure AI User** to use the model in a Foundry project
     * **Azure AI Developer** to use the model in a hub-based project
-:::moniker-end
+<!-- :::moniker-end
 
 :::moniker range="foundry"
 * Required role: 
     * **Owner** or **Contributor** on the Foundry resource to deploy models
     * **Azure AI User** to use the model in a Foundry project
-:::moniker-end
+:::moniker-end -->
 
-* A model deployment that supports the [Model Inference API](https://aka.ms/azureai/modelinference). This article uses `Mistral-Large-2411` in code examples, but this model is deprecated. Deploy a more recent Mistral model such as `Mistral-Large-3` or `Mistral-Nemo` from the Foundry model catalog instead, and substitute your model name in the code examples.
+* A model deployment that supports the [Model Inference API](https://aka.ms/azureai/modelinference). This article uses `Mistral-Large-3`.
 
 * Python 3.9 or later installed, including pip.
 * LangChain installed. You can install it by using the following command:
@@ -77,13 +76,13 @@ To run this tutorial, you need:
 
 ## Configure the environment
 
-::: moniker range="foundry-classic"
+<!-- ::: moniker range="foundry-classic" -->
 [!INCLUDE [set-endpoint](../../includes/set-endpoint.md)]
-::: moniker-end
+<!-- ::: moniker-end -->
 
-::: moniker range="foundry"
+<!-- ::: moniker range="foundry"
 [!INCLUDE [set-endpoint](../../default/includes/set-endpoint.md)]
-::: moniker-end
+::: moniker-end -->
 
 
 Create a client to connect to the chat model by using the `AzureAIChatCompletionsModel` class.
@@ -110,7 +109,7 @@ from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
 model = AzureAIChatCompletionsModel(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
     credential=DefaultAzureCredential(),
-    model="Mistral-Large-2411",
+    model="Mistral-Large-3",
 )
 ```
 
@@ -128,7 +127,7 @@ from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
 model = AzureAIChatCompletionsModel(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
     credential=DefaultAzureCredentialAsync(),
-    model="Mistral-Large-2411",
+    model="Mistral-Large-3",
 )
 ```
 
@@ -211,7 +210,7 @@ In the following example, you create two model clients: one producer and one ver
 
 [!notebook-python[](~/azureai-samples-main/scenarios/langchain/getting-started-with-langchain-chat-models.ipynb?name=create_producer_verifier)]
 
-**What this snippet does:** Instantiates two separate `AzureAIChatCompletionsModel` clients: one using `Mistral-Large-2411` for content generation and another using `Mistral-Small` for verification, demonstrating how to choose different models for different tasks.
+**What this snippet does:** Instantiates two separate `AzureAIChatCompletionsModel` clients: one using `Mistral-Large-3` for content generation and another using `Mistral-Small` for verification, demonstrating how to choose different models for different tasks.
 
 **References:**
 - [LangChain Azure AI integration](https://python.langchain.com/docs/integrations/chat/azure_ai)
@@ -347,7 +346,7 @@ Use tracing in Foundry by creating a tracer. Logs are stored in Azure Applicatio
 
 ### Get your instrumentation connection string
 
-::: moniker range="foundry-classic"
+<!-- ::: moniker range="foundry-classic" -->
 
 [!INCLUDE [tip-left-pane](../../includes/tip-left-pane.md)]
 
@@ -386,10 +385,10 @@ You can configure your application to send telemetry to Azure Application Insigh
         
         application_insights_connection_string = project_client.telemetry.get_application_insights_connection_string()
         ```
-::: moniker-end
+<!-- ::: moniker-end
 ::: moniker range="foundry"
 
-::: moniker-end
+::: moniker-end -->
 
 ### Configure tracing for Foundry
 
@@ -426,8 +425,8 @@ chain.invoke({"topic": "living in a foreign country"})
 
 To see traces:
 
-::: moniker range="foundry-classic"
-1. [!INCLUDE [version-sign-in](../../includes/version-sign-in.md)]
+<!-- ::: moniker range="foundry-classic" -->
+1. [!INCLUDE [classic-sign-in](../../includes/classic-sign-in.md)]
 
 1. Go to the **Tracing** section.
 
@@ -435,7 +434,7 @@ To see traces:
 
     :::image type="content" source="../../media/how-to/develop-langchain/langchain-portal-tracing-example.png" alt-text="A screenshot showing the trace of a chain." lightbox="../../media/how-to/develop-langchain/langchain-portal-tracing-example.png":::
 
-::: moniker-end
+<!-- ::: moniker-end
 
 ::: moniker range="foundry"
 1. [!INCLUDE [version-sign-in](../../includes/version-sign-in.md)]
@@ -443,7 +442,7 @@ To see traces:
 1. Go to the **Tracing** section.
 
 1. Find the trace you created. It might take a couple of seconds for the trace to show.
-::: moniker-end
+::: moniker-end -->
 
 
 

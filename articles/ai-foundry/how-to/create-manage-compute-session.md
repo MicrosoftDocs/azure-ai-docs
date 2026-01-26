@@ -22,7 +22,7 @@ ms.update-cycle: 180-days
 
 # Create and manage prompt flow compute sessions in Microsoft Foundry portal
 
-[!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 

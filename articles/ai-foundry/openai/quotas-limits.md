@@ -4,7 +4,7 @@ description: This article features detailed descriptions and best practices on t
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 12/10/2025
+ms.date: 01/14/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: article
@@ -39,10 +39,10 @@ The following section provides you with a quick guide to the default quotas and 
 |--|--|
 | Azure OpenAI resources per region, per Azure subscription | 30. |
 | Default DALL-E 2 quota limits | 2 concurrent requests. |
-| Default DALL-E 3 quota limits| 2 capacity units (6 requests per minute).|
-| Default GPT-image-1 quota limits | 3 capacity units (9 requests per minute). |
-| Default GPT-image-1-mini quota limits | 4 capacity units (12 requests per minute). |
-| Default GPT-image-1.5 quota limits | 3 capacity units (9 requests per minute). |
+| Default DALL-E 3 quota limits| 6 requests per minute |
+| Default GPT-image-1 quota limits | 9 requests per minute |
+| Default GPT-image-1-mini quota limits | 12 requests per minute |
+| Default GPT-image-1.5 quota limits | 9 requests per minute |
 | Default Sora quota limits | 60 requests per minute. |
 | Default Sora 2 quota limits | 2 parallel tasks | 
 | Default speech-to-text audio API quota limits | 3 requests per minute. |
@@ -63,12 +63,12 @@ The following section provides you with a quick guide to the default quotas and 
 | Maximum number of `/chat completions` tools | 128. |
 | Maximum number of provisioned throughput units per deployment | 100,000. |
 | Maximum files per assistant or thread | 10,000 when using the API or the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).|
-| Maximum file size for assistants and fine-tuning | 512 MB<br/><br/>200 MB via the [Foundry portal](https://ai.azure.com/?cid=learnDocs). |
+| Maximum file size for assistants and fine-tuning | 512 MB via the API<br/><br/>200 MB via the [Foundry portal](https://ai.azure.com/?cid=learnDocs). |
 | Maximum file upload requests per resource | 30 requests per second. |
 | Maximum size for all uploaded files for assistants |200 GB. |
 | Assistants token limit | 2,000,000 token limit. |
 | `GPT-4o` and `GPT-4.1` maximum images per request (number of images in the messages array or conversation history) | 50. |
-| `GPT-4` `vision-preview` and `GPT-4` `turbo-2024-04-09` default maximum tokens | 16. <br><br> Increase the `max_tokens` parameter value to avoid truncated responses. `GPT-4o` maximum tokens defaults to 4,096. |
+| `GPT-4 vision-preview` and `GPT-4 turbo-2024-04-09` default maximum tokens | 16. <br><br> Increase the `max_tokens` parameter value to avoid truncated responses. `GPT-4o` maximum tokens defaults to 4,096. |
 | Maximum number of custom headers in API requests<sup>1</sup> | 10. |
 | Message character limit | 1,048,576. |
 | Message size for audio files | 20 MB. |
@@ -82,8 +82,10 @@ The following section provides you with a quick guide to the default quotas and 
 
 | Model                | Deployment Type | Default RPM | Default TPM | Enterprise and MCA-E RPM | Enterprise and MCA-E TPM |
 |:---------------------|:----------------|:-----------:|:-----------:|:------------------------:|:------------------------:|
+| `gpt-5.2`            | DataZoneStandard| 3,000       | 300,000     | 30,000                   | 3,000,000                |
 | `gpt-5.2`            | GlobalStandard  | 10,000      | 1,000,000   | 100,000                  | 10,000,000               |
 | `gpt-5.2-chat`       | GlobalStandard  | 10,000      | 1,000,000   | 50,000                   | 5,000,000                |
+| `gpt-5.2-codex`      | GlobalStandard  | 1,000       | 1,000,000   | 10,000                   | 10,000,000               |
 
 ## GPT-5.1 series
 
@@ -293,7 +295,6 @@ The following section provides you with a quick guide to the default quotas and 
 |`gpt-image-1` |Medium  | N/A | 18 |
 |`gpt-image-1` |High  | N/A | 60 |
 
-
 ## Usage tiers
 
 Global Standard deployments use the global infrastructure of Azure. They dynamically route customer traffic to the data center with the best availability for the customer's inference requests. Similarly, Data Zone Standard deployments allow you to use the global infrastructure of Azure to dynamically route traffic to the data center within the Microsoft-defined data zone with the best availability for each request. This practice enables more consistent latency for customers with low to medium levels of traffic. Customers with high sustained levels of usage might see greater variability in response latency.
@@ -349,9 +350,9 @@ If your Azure subscription is linked to certain [offer types](https://azure.micr
 |Tier| Quota limit in tokens per minute |
 |---|:---|
 |`Azure for Students` | 1K (all models) <br>Exception o-series, GPT-4.1, and GPT 4.5 Preview: 0|
-| `MSDN` | GPT-4o-mini: 200K <br> GPT 3.5 Turbo Series: 200K <br> GPT-4 series: 50K <br>computer-use-preview: 8K <br> gpt-4o-realtime-preview: 1K <br> o-series: 0 <br> GPT 4.5 Preview: 0 <br> GPT-4.1: 50K <br> GPT-4.1-nano: 200K  |
-|`Standard`& `Pay-as-you-go` | GPT-4o-mini: 200K <br> GPT 3.5 Turbo Series: 200K <br> GPT-4 series: 50K <br>computer-use-preview: 30K <br> o-series: 0 <br> GPT 4.5 Preview: 0  <br> GPT-4.1: 50K <br> GPT-4.1-nano: 200K  |
-| `Azure_MS-AZR-0111P`  <br> `Azure_MS-AZR-0035P` <br> `Azure_MS-AZR-0025P` <br> `Azure_MS-AZR-0052P` <br>| GPT-4o-mini: 200K <br> GPT 3.5 Turbo Series: 200K <br> GPT-4 series: 50K |
+| `MSDN` | GPT-4o-mini: 200K <br>computer-use-preview: 8K <br> gpt-4o-realtime-preview: 1K <br> o-series: 0 <br> GPT 4.5 Preview: 0 <br> GPT-4.1: 50K <br> GPT-4.1-nano: 200K  |
+|`Standard`& `Pay-as-you-go` | GPT-4o-mini: 200K <br>computer-use-preview: 30K <br> o-series: 0 <br> GPT 4.5 Preview: 0  <br> GPT-4.1: 50K <br> GPT-4.1-nano: 200K  |
+| `Azure_MS-AZR-0111P`  <br> `Azure_MS-AZR-0035P` <br> `Azure_MS-AZR-0025P` <br> `Azure_MS-AZR-0052P` <br>| GPT-4o-mini: 200K |
 | `CSP Integration Sandbox` <sup>*</sup> | All models: 0 |
 | `Lightweight trial`<br>`Free trials`<br>`Azure Pass`  | All models: 0 |
 

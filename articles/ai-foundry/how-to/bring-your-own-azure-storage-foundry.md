@@ -241,5 +241,5 @@ After these steps all features (Agents, Evaluations, Datasets, Content Understan
 - [Add connections to your project](connections-add.md)
 - [Recover a storage account](/azure/storage/common/storage-account-recover)
 - [Azure Storage documentation](/azure/storage/)
-- [Infrastructure setup samples](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup)
+- [Infrastructure setup samples](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples)
 - [Connect storage for Speech/Language](../../ai-services/speech-service/bring-your-own-storage-speech-resource.md?tabs=portal)

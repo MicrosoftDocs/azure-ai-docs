@@ -55,7 +55,7 @@ Autoscale feature is available in the paid subscription tier of the following se
 * [Metrics Advisor](metrics-advisor/overview.md)
 * [Personalizer](personalizer/what-is-personalizer.md)
 * [QnAMaker](qnamaker/overview/overview.md)
-* [Document Intelligence](document-intelligence/overview.md?tabs=v3-0)
+* [Document Intelligence](document-intelligence/overview.md?tabs=v3-0)(only available get operations, list operations and model management operations)
 
 ### Can I test this feature using a free subscription?
 

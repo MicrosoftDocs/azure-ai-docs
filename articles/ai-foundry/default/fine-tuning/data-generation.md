@@ -102,11 +102,14 @@ In this preview, only one reference file is supported. If you have multiple docu
    2. Define the generation parameters if applicable
    3. Upload your reference file
    4. Select the number of samples to generate for your dataset (between 50 and 1000)
-   5. Select the model you want to use for data generation. If a model you selected is not deployed, a new deployment will be made for you automatically. 
-   6. Select if you want to perform 80/20 train-validation split on the generated dataset automatically
-   7. (Optional) Provide a custom identifiable name to append to the end of the data generation job ID
-   8. Submit your generation job by clicking the "Generate" button in the wizard
-6. Review generated data by selecting it after the job is complete. A preview panel will open on the right side of the screen to show you sample outputs and cost metrics.
+   5. Select the model you want to use for data generation. If a model you selected is not deployed, a new deployment will be made for you automatically.
+   1. Select if you want to perform 80/20 train-validation split on the generated dataset automatically
+   1. (Optional) Provide a custom identifiable name to append to the end of the data generation job ID
+   1. Submit your generation job by clicking the "Generate" button in the wizard
+1. Review generated data by selecting it after the job is complete. A preview panel will open on the right side of the screen to show you sample outputs and cost metrics.
+
+> [!IMPROTANT]
+> If you don't have an available generator model, you need to ask your admin to deploy one or you need to be assigned as `Azure AI owner` role to deploy models.
 
 ### Use your generated synthetic data for fine-tuning
 

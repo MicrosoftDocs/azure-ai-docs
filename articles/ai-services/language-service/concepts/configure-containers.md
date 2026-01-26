@@ -8,7 +8,7 @@ ms.custom:
   - ignite-2023
   - ignite-2024
 ms.service: azure-ai-language
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 12/05/2025
 ms.author: lajanuar
 ---

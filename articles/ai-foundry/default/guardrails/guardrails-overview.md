@@ -4,7 +4,7 @@ titleSuffix: Microsoft Foundry
 description: Learn about safety and security guardrails that can be applied to models and agents in Microsoft Foundry, including risks, intervention points, and response actions.
 manager: nitinme
 ms.service: azure-ai-foundry
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/05/2025
 author: ssalgadodev
 ms.author: ssalgado

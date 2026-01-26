@@ -14,7 +14,6 @@ Create an agent using your deployed model.
 
 An agent defines core behavior. Once created, it ensures consistent responses in user interactions without repeating instructions each time. You can update or delete agents anytime. 
 
-[!INCLUDE [agent-v2-switch](agent-v2-switch.md)]
 
 # [Python](#tab/python)
 
@@ -46,3 +45,5 @@ Now create an agent and interact with it.
 1. Select **Create agent** and give it a name.
 
 ---
+
+[!INCLUDE [agent-v2-switch](agent-v2-switch.md)]

@@ -5,7 +5,7 @@ description: Incrementally train custom classifiers by adding new samples to exi
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/18/2025
 ms.author: vikurpad
 ms.custom:

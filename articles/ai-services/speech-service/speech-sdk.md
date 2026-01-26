@@ -62,7 +62,7 @@ In depth samples are available in the [Azure-Samples/cognitive-services-speech-s
 
 ## Help options
 
-The [Microsoft Q&A](/answers/topics/azure-speech.html) and [Stack Overflow](https://stackoverflow.com/questions/tagged/azure-speech) forums are available for the developer community to ask and answer questions about Azure Cognitive Speech and other services. Microsoft monitors the forums and replies to questions that the community hasn't yet answered. To make sure that we see your question, tag it with 'azure-speech'.  
+The [Stack Overflow](https://stackoverflow.com/questions/tagged/azure-speech) forums are available for the developer community to ask and answer questions about Azure Cognitive Speech and other services. Microsoft monitors the forums and replies to questions that the community hasn't yet answered. To make sure that we see your question, tag it with 'azure-speech'.  
 
 You can suggest an idea or report a bug by creating an issue on GitHub:
 - [Azure-Samples/cognitive-services-speech-sdk](https://aka.ms/GHspeechissues)

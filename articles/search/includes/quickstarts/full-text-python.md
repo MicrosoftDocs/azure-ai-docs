@@ -10,7 +10,7 @@ ms.date: 11/20/2025
 [!INCLUDE [Full text introduction](full-text-intro.md)]
 
 > [!TIP]
-> You can download the [source code](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/Quickstart)  to start with a finished project or follow these steps to create your own.
+> You can download the [source code](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/Quickstart-Keyword-Search) to start with a finished project or follow these steps to create your own.
 
 ## Prerequisites
 
@@ -36,7 +36,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you must:
 
 You run the sample code in a Jupyter notebook. So, you need to set up your environment to run Jupyter notebooks.
 
-1. Download or copy the [sample notebook from GitHub](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/Quickstart).
+1. Download or copy the [sample notebook from GitHub](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/Quickstart-Keyword-Search).
 
 1. Open the notebook in Visual Studio Code.
 

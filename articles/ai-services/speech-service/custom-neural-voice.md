@@ -5,7 +5,7 @@ description: Custom voice is a text to speech feature that allows you to create 
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: article
+ms.topic: concept-article
 ms.date: 08/07/2025
 ms.author: pafarley
 ---

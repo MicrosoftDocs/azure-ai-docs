@@ -9,7 +9,7 @@ ms.topic: tutorial
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: keli19
-ms.date: 09/09/2025
+ms.date: 01/07/2026
 ms.custom:
   - sdkv2
   - build-2023
@@ -23,30 +23,32 @@ ms.custom:
 [!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
 
 > [!NOTE]
-> For a tutorial that uses SDK v1 to build a pipeline, see [Tutorial: Build an Azure Machine Learning pipeline for image classification](v1/tutorial-pipeline-python-sdk.md)
+> For a tutorial that uses SDK v1 to build a pipeline, see [Tutorial: Build an Azure Machine Learning pipeline for image classification](v1/tutorial-pipeline-python-sdk.md?view=azureml-api-1&preserve-view=true).
 
-The core of a machine learning pipeline is to split a complete machine learning task into a multistep workflow. Each step is a manageable component that can be developed, optimized, configured, and automated individually. Steps are connected through well-defined interfaces. The Azure Machine Learning pipeline service automatically orchestrates all the dependencies between pipeline steps. The benefits of using a pipeline are standardized the MLOps practice, scalable team collaboration, training efficiency, and cost reduction. To learn more about the benefits of pipelines, see [What are Azure Machine Learning pipelines](concept-ml-pipelines.md).
+A machine learning pipeline splits a complete machine learning task into a multistep workflow. Each step is a manageable component that you can develop, optimize, configure, and automate individually. Well-defined interfaces connect steps. The Azure Machine Learning pipeline service orchestrates all the dependencies between pipeline steps.
 
-In this tutorial, you use Azure Machine Learning to create a production-ready machine learning project, using Azure Machine Learning Python SDK v2. This means you are able to use the Azure Machine Learning Python SDK to:
+The benefits of using a pipeline are standardized MLOps practice, scalable team collaboration, training efficiency, and cost reduction. To learn more about the benefits of pipelines, see [What are Azure Machine Learning pipelines](concept-ml-pipelines.md).
+
+In this tutorial, you use Azure Machine Learning to create a production-ready machine learning project, using Azure Machine Learning Python SDK v2. After this tutorial, you're able to use the Azure Machine Learning Python SDK to:
 
 > [!div class="checklist"]
 > - Get a handle to your Azure Machine Learning workspace
 > - Create Azure Machine Learning data assets
 > - Create reusable Azure Machine Learning components
-> - Create, validate and run Azure Machine Learning pipelines
+> - Create, validate, and run Azure Machine Learning pipelines
 
 During this tutorial, you create an Azure Machine Learning pipeline to train a model for credit default prediction. The pipeline handles two steps: 
 
 1. Data preparation
 1. Training and registering the trained model
 
-The next image shows a simple pipeline as you'll see it in the Azure studio once submitted.
+The next image shows a simple pipeline as you see it in the Azure studio after you submit it.
 
-The two steps are first data preparation and second training.
+The two steps are data preparation and training.
 
 :::image type="content" source="media/tutorial-pipeline-python-sdk/pipeline-overview.jpg" alt-text="Diagram shows overview of the pipeline.":::
 
-This video shows how to get started in Azure Machine Learning studio so that you can follow the steps in the tutorial. The video shows how to create a notebook, create a compute instance, and clone the notebook. The steps are also described in the following sections.
+This video shows how to get started in Azure Machine Learning studio so that you can follow the steps in the tutorial. The video shows how to create a notebook, create a compute instance, and clone the notebook. The following sections also describe these steps.
 
 > [!VIDEO https://learn-video.azurefd.net/vod/player?id=0d201750-ff0a-4665-90c5-a00aca350210]
 
@@ -56,38 +58,35 @@ This video shows how to get started in Azure Machine Learning studio so that you
 
 1. [!INCLUDE [sign in](includes/prereq-sign-in.md)]
 
-1. Complete the tutorial [Upload, access and explore your data](tutorial-explore-data.md) to create the data asset you need in this tutorial.  Make sure you run all the code to create the initial data asset.  Explore the data and revise it if you wish, but you only need the initial data in this tutorial.
+1. Complete the tutorial [Upload, access and explore your data](tutorial-explore-data.md) to create the data asset you need in this tutorial. Make sure you run all the code to create the initial data asset. Explore the data and revise it if you want, but you only need the initial data in this tutorial.
 
 1. [!INCLUDE [open or create  notebook](includes/prereq-open-or-create.md)]
-    * [!INCLUDE [new notebook](includes/prereq-new-notebook.md)]
-    * Or, open **tutorials/get-started-notebooks/pipeline.ipynb** from the **Samples** section of studio. [!INCLUDE [clone notebook](includes/prereq-clone-notebook.md)]
+    - [!INCLUDE [new notebook](includes/prereq-new-notebook.md)]
+    - Or, open **tutorials/get-started-notebooks/pipeline.ipynb** from the **Samples** section of studio. [!INCLUDE [clone notebook](includes/prereq-clone-notebook.md)]
 
 [!INCLUDE [notebook set kernel](includes/prereq-set-kernel.md)] 
 
 <!-- nbstart https://raw.githubusercontent.com/Azure/azureml-examples/main/tutorials/get-started-notebooks/pipeline.ipynb -->
 
-
 ## Set up the pipeline resources
 
-The Azure Machine Learning framework can be used from CLI, Python SDK, or studio interface. In this example, you use the Azure Machine Learning Python SDK v2 to create a pipeline. 
+The Azure Machine Learning framework can be used from the Azure CLI, Python SDK, or studio interface. In this example, you use the Azure Machine Learning Python SDK v2 to create a pipeline. 
 
-Before creating the pipeline, you need these resources:
+Before you create the pipeline, you need these resources:
 
-* The data asset for training
-* The software environment to run the pipeline
-* A compute resource to where the job runs
+- The data asset for training
+- The software environment to run the pipeline
+- A compute resource where the job runs
 
 ## Create handle to workspace
 
-Before we dive in the code, you need a way to reference your workspace. You create `ml_client` for a handle to the workspace. You then use `ml_client` to manage resources and jobs.
+Before you use the code, you need a way to reference your workspace. Create `ml_client` as a handle to the workspace. You then use `ml_client` to manage resources and jobs.
 
 In the next cell, enter your Subscription ID, Resource Group name, and Workspace name. To find these values:
 
 1. In the upper right Azure Machine Learning studio toolbar, select your workspace name.
 1. Copy the value for workspace, resource group, and subscription ID into the code.
-1. You need to copy one value, close the area, and paste, then come back for the next one.
-
-
+   You need to copy one value, close the area, and paste, then come back for the next one.
 
 ```python
 from azure.ai.ml import MLClient
@@ -113,10 +112,9 @@ ml_client = MLClient(
 - [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential)
 
 > [!NOTE]
-> Creating MLClient won't connect to the workspace. The client initialization is lazy, it will wait for the first time it needs to make a call (this will happen in the next code cell).
+> Creating MLClient doesn't connect to the workspace. The client initialization is lazy. It waits for the first time it needs to make a call. Initialization happens in the next code cell.
 
-Verify the connection by making a call to `ml_client`. Since this is the first time that you're making a call to the workspace, you might be asked to authenticate. 
-
+Verify the connection by making a call to `ml_client`. Since this call is the first time that you make a call to the workspace, you might be asked to authenticate.
 
 ```python
 # Verify that the handle works correctly.
@@ -132,7 +130,9 @@ print(ws.location, ":", ws.resource_group)
 
 Start by getting the data that you previously registered in [Tutorial: Upload, access and explore your data in Azure Machine Learning](tutorial-explore-data.md).
 
-* Azure Machine Learning uses a `Data` object to register a reusable definition of data, and consume data within a pipeline.
+> [!NOTE]
+>
+> Azure Machine Learning uses a `Data` object to register a reusable definition of data, and consume data within a pipeline.
 
 
 ```python
@@ -148,9 +148,7 @@ print(f"Data asset URI: {credit_data.path}")
 
 So far, you've created a development environment on the compute instance, your development machine. You also need an environment to use for each step of the pipeline. Each step can have its own environment, or you can use some common environments for multiple steps.
 
-In this example, you create a conda environment for your jobs, using a conda yaml file.
-First, create a directory to store the file in.
-
+In this example, you create a conda environment for your jobs, using a conda yaml file. First, create a directory to store the file in.
 
 ```python
 import os
@@ -160,7 +158,6 @@ os.makedirs(dependencies_dir, exist_ok=True)
 ```
 
 Now, create the file in the dependencies directory.
-
 
 ```python
 %%writefile {dependencies_dir}/conda.yaml
@@ -181,13 +178,11 @@ dependencies:
     - azureml-mlflow==1.51.0
 ```
 
-The specification contains some usual packages, that you use in your pipeline (numpy, pip), together with some Azure Machine Learning specific packages (azureml-mlflow).
+The specification contains some usual packages that you use in your pipeline (**numpy**, **pip**), together with some Azure Machine Learning specific packages (**azureml-mlflow**).
 
-The Azure Machine Learning packages aren't mandatory to run Azure Machine Learning jobs. However, adding these packages lets you interact with Azure Machine Learning for logging metrics and registering models, all inside the Azure Machine Learning job. You use them in the training script later in this tutorial.
+The Azure Machine Learning packages aren't required to run Azure Machine Learning jobs. Adding these packages lets you interact with Azure Machine Learning for logging metrics and registering models, all inside the Azure Machine Learning job. You use them in the training script later in this tutorial.
 
 Use the *yaml* file to create and register this custom environment in your workspace:
-
-
 
 ```python
 from azure.ai.ml.entities import Environment
@@ -225,17 +220,16 @@ Azure Machine Learning pipelines are reusable ML workflows that usually consist 
 - Implement the pipeline using the component's inputs, outputs, and parameters.
 - Submit the pipeline.
 
-You can create a component in two ways: programmatic and yaml definition. The next two sections walk you through creating a component both ways. You can either create the two components trying both options or pick your preferred method.
+You can create a component in two ways: *programmatic definition* and *yaml definition*. The next two sections walk you through creating a component both ways. You can either create the two components trying both options or pick your preferred method.
 
 > [!NOTE]
-> In this tutorial for simplicity, we're using the same compute for all components. However, you can set different computes for each component, for example by adding a line like `train_step.compute = "cpu-cluster"`. To view an example of building a pipeline with different computes for each component, see the [Basic pipeline job section in the cifar-10 pipeline tutorial](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/pipelines/2b_train_cifar_10_with_pytorch/train_cifar_10_with_pytorch.ipynb).
+> In this tutorial for simplicity, you use the same compute for all components. However, you can set different computes for each component, for example, by adding a line like `train_step.compute = "cpu-cluster"`. To view an example of building a pipeline with different computes for each component, see the [Basic pipeline job section in the cifar-10 pipeline tutorial](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/pipelines/2b_train_cifar_10_with_pytorch/train_cifar_10_with_pytorch.ipynb).
 
 ### Create component 1: data prep (using programmatic definition)
 
 Start by creating the first component. This component handles the preprocessing of the data. The preprocessing task is performed in the *data_prep.py* Python file.
 
 First create a source folder for the data_prep component:
-
 
 ```python
 import os
@@ -244,10 +238,9 @@ data_prep_src_dir = "./components/data_prep"
 os.makedirs(data_prep_src_dir, exist_ok=True)
 ```
 
-This script performs the simple task of splitting the data into train and test datasets. Azure Machine Learning mounts datasets as folders to the computes, therefore, we created an auxiliary `select_first_file` function to access the data file inside the mounted input folder. 
+This script performs the simple task of splitting the data into train and test datasets. Azure Machine Learning mounts datasets as folders to the computes. You created an auxiliary `select_first_file` function to access the data file inside the mounted input folder. 
 
-[MLFlow](concept-mlflow.md) is used to log the parameters and metrics during our pipeline run.
-
+[MLFlow](concept-mlflow.md) is used to log the parameters and metrics during your pipeline run.
 
 ```python
 %%writefile {data_prep_src_dir}/data_prep.py
@@ -302,9 +295,7 @@ if __name__ == "__main__":
 
 Now that you have a script that can perform the desired task, create an Azure Machine Learning Component from it.
 
-Use the general purpose `CommandComponent` that can run command line actions. This command line action can directly call system commands or run a script. The inputs/outputs are specified on the command line via the `${{ ... }}` notation.
-
-
+Use the general purpose `CommandComponent` that can run command line actions. This command line action can directly call system commands or run a script. The inputs/outputs are specified on the command line by using the `${{ ... }}` notation.
 
 ```python
 from azure.ai.ml import command
@@ -339,8 +330,6 @@ data_prep_component = command(
 
 Optionally, register the component in the workspace for future reuse.
 
-
-
 ```python
 # Now register the component to the workspace
 data_prep_component = ml_client.create_or_update(data_prep_component.component)
@@ -356,12 +345,11 @@ print(
 
 ### Create component 2: training (using yaml definition)
 
-The second component that you create consumes the training and test data, train a tree based model and return the output model. Use Azure Machine Learning logging capabilities to record and visualize the learning progress.
+The second component that you create consumes the training and test data, trains a tree based model, and returns the output model. Use Azure Machine Learning logging capabilities to record and visualize the learning progress.
 
-You used the `CommandComponent` class to create your first component. This time you use the yaml definition to define the second component. Each method has its own advantages. A yaml definition can actually be checked in along the code and provides readable history tracking. The programmatic method using `CommandComponent` can be easier with built-in class documentation and code completion.
+You used the `CommandComponent` class to create your first component. This time you use the yaml definition to define the second component. Each method has its own advantages. A yaml definition can be checked in along the code and provides readable history tracking. The programmatic method using `CommandComponent` can be easier with built-in class documentation and code completion.
 
 Create the directory for this component:
-
 
 ```python
 import os
@@ -371,8 +359,6 @@ os.makedirs(train_src_dir, exist_ok=True)
 ```
 
 Create the training script in the directory:
-
-
 
 ```python
 %%writefile {train_src_dir}/train.py
@@ -468,11 +454,11 @@ if __name__ == "__main__":
     main()
 ```
 
-As you can see in this training script, once the model is trained, the model file is saved and registered to the workspace. Now you can use the registered model in inferencing endpoints.
+As you can see in this training script, after the model is trained, the model file is saved and registered to the workspace. Now you can use the registered model in inferencing endpoints.
 
-For the environment of this step, you use one of the built-in (curated) Azure Machine Learning environments. The tag `azureml`, tells the system to use look for the name in curated environments.
+For the environment of this step, you use one of the built-in (curated) Azure Machine Learning environments. The tag `azureml` tells the system to look for the name in curated environments.
+
 First, create the *yaml* file describing the component:
-
 
 ```python
 %%writefile {train_src_dir}/train.yml
@@ -508,8 +494,7 @@ command: >-
 
 ```
 
-Now create and register the component.  Registering it allows you to reuse it in other pipelines.  Also, anyone else with access to your workspace can use the registered component.
-
+Now create and register the component. Registering it allows you to reuse it in other pipelines. Anyone else with access to your workspace can also use the registered component.
 
 ```python
 # importing the Component Package
@@ -535,16 +520,11 @@ print(
 
 Now that both your components are defined and registered, you can start implementing the pipeline.
 
-
-Here, you use *input data*, *split ratio*, and *registered model name* as input variables. Then call the components and connect them via their inputs/outputs identifiers. The outputs of each step can be accessed via the `.outputs` property.
-
-
-The Python functions returned by `load_component()` work as any regular Python function that you use within a pipeline to call each step.
+The Python functions returned by `load_component()` work like any regular Python function that you use in a pipeline to call each step.
 
 To code the pipeline, you use a specific `@dsl.pipeline` decorator that identifies the Azure Machine Learning pipelines. In the decorator, you can specify the pipeline description and default resources like compute and storage. Like a Python function, pipelines can have inputs. You can then create multiple instances of a single pipeline with different inputs.
 
-Here, you use *input data*, *split ratio*, and *registered model name* as input variables. You then call the components and connect them via their inputs/outputs identifiers. The outputs of each step can be accessed via the `.outputs` property.
-
+Here, you use *input data*, *split ratio*, and *registered model name* as input variables. You then call the components and connect them by using their inputs/outputs identifiers. The outputs of each step can be accessed with the `.outputs` property.
 
 ```python
 # the dsl decorator tells the sdk that we are defining an Azure Machine Learning pipeline
@@ -588,8 +568,7 @@ def credit_defaults_pipeline(
 - [Input](/python/api/azure-ai-ml/azure.ai.ml.input)
 - [Output](/python/api/azure-ai-ml/azure.ai.ml.output)
 
-Now use your pipeline definition to instantiate a pipeline with your dataset, split rate of choice and the name you picked for your model.
-
+Now use your pipeline definition to instantiate a pipeline with your dataset, split rate of choice, and the name you picked for your model.
 
 ```python
 registered_model_name = "credit_defaults_model"
@@ -608,12 +587,11 @@ pipeline = credit_defaults_pipeline(
 
 ## Submit the job 
 
-It's now time to submit the job to run in Azure Machine Learning. This time you use `create_or_update`  on `ml_client.jobs`.
+Now submit the job to run in Azure Machine Learning. This time you use `create_or_update` on `ml_client.jobs`.
 
-Here you also pass an experiment name. An experiment is a container for all the iterations one does on a certain project. All the jobs submitted under the same experiment name would be listed next to each other in Azure Machine Learning studio.
+Here you also pass an experiment name. An *experiment* is a container for all the iterations one does on a certain project. All the jobs submitted under the same experiment name are listed next to each other in Azure Machine Learning studio.
 
-Once completed, the pipeline registers a model in your workspace as a result of training.
-
+After it finishes, the pipeline registers a model in your workspace as a result of training.
 
 ```python
 # submit the pipeline job
@@ -629,31 +607,32 @@ ml_client.jobs.stream(pipeline_job.name)
 - [JobOperations.create_or_update](/python/api/azure-ai-ml/azure.ai.ml.operations.joboperations#azure-ai-ml-operations-joboperations-create-or-update)
 - [JobOperations.stream](/python/api/azure-ai-ml/azure.ai.ml.operations.joboperations#azure-ai-ml-operations-joboperations-stream)
 
-You can track the progress of your pipeline, by using the link generated in the previous cell. When you first select this link, you might see that the pipeline is still running. Once it's complete, you can examine each component's results.
+You can track the progress of your pipeline by using the link generated in the previous cell. When you first select this link, you might see that the pipeline is still running. When it's complete, you can examine each component's results.
 
 Double-click the **Train Credit Defaults Model** component. 
 
 There are two important results you want to see about training:
 
-* View your logs:
-    1. Select the **Outputs+logs** tab.
-    1. Open the folders to `user_logs` > `std_log.txt`
-    This section shows the script run stdout.
-    :::image type="content" source="media/tutorial-pipeline-python-sdk/user-logs.jpg" alt-text="Screenshot of std_log.txt." lightbox="media/tutorial-pipeline-python-sdk/user-logs.jpg":::
-* View your metrics: Select the **Metrics** tab.  This section shows different logged metrics. In this example, mlflow `autologging` has automatically logged the training metrics.
+- View your logs:
+
+  1. Select the **Outputs+logs** tab.
+  1. Open the folders to `user_logs` > `std_log.txt`
+     This section shows the script run stdout.
+     :::image type="content" source="media/tutorial-pipeline-python-sdk/user-logs.jpg" alt-text="Screenshot of std_log.txt." lightbox="media/tutorial-pipeline-python-sdk/user-logs.jpg":::
+
+- View your metrics: Select the **Metrics** tab. This section shows different logged metrics. In this example, mlflow `autologging` automatically logs the training metrics.
     
     :::image type="content" source="media/tutorial-pipeline-python-sdk/metrics.jpg" alt-text="Screenshot shows logged metrics.txt." lightbox="media/tutorial-pipeline-python-sdk/metrics.jpg":::
 
 ## Deploy the model as an online endpoint
+
 To learn how to deploy your model to an online endpoint, see [Deploy a model as an online endpoint tutorial](tutorial-deploy-model.md).
 
 <!-- nbend -->
 
-
-
 ## Clean up resources
 
-If you plan to continue now to other tutorials, skip to [Next steps](#next-steps).
+If you plan to continue now to other tutorials, skip to [Next step](#next-step).
 
 ### Stop compute instance
 
@@ -668,7 +647,7 @@ If you aren't going to use it now, stop the compute instance:
 
 [!INCLUDE [aml-delete-resource-group](includes/aml-delete-resource-group.md)]
 
-## Next steps
+## Next step
 
 > [!div class="nextstepaction"]
-> Learn how to [Schedule machine learning pipeline jobs](how-to-schedule-pipeline-job.md)
+> [Schedule machine learning pipeline jobs](how-to-schedule-pipeline-job.md)

@@ -166,7 +166,7 @@ Fine-tuning based on function calling examples can also be used to improve the m
 {
     "messages": [
         {"role": "user", "content": "What is the weather in San Francisco?"},
-        {"role": "assistant", "function_call": {"name": "get_current_weather", "arguments": "{\"location\": \"San Francisco, USA\", \"format\": \"celcius\"}"}}
+        {"role": "assistant", "function_call": {"name": "get_current_weather", "arguments": "{\"location\": \"San Francisco, USA\", \"format\": \"celsius\"}"}}
         {"role": "function", "name": "get_current_weather", "content": "21.0"},
         {"role": "assistant", "content": "It is 21 degrees celsius in San Francisco, CA"}
     ],
@@ -177,7 +177,7 @@ Fine-tuning based on function calling examples can also be used to improve the m
 As with the example before, this example is artificially expanded for readability. The actual entry in the `.jsonl` training file would be a single line:
 
 ```jsonl
-{"messages": [{"role": "user", "content": "What is the weather in San Francisco?"}, {"role": "assistant", "function_call": {"name": "get_current_weather", "arguments": "{\"location\": \"San Francisco, USA\", \"format\": \"celcius\"}"}}, {"role": "function", "name": "get_current_weather", "content": "21.0"}, {"role": "assistant", "content": "It is 21 degrees celsius in San Francisco, CA"}], "functions": []}
+{"messages": [{"role": "user", "content": "What is the weather in San Francisco?"}, {"role": "assistant", "function_call": {"name": "get_current_weather", "arguments": "{\"location\": \"San Francisco, USA\", \"format\": \"celsius\"}"}}, {"role": "function", "name": "get_current_weather", "content": "21.0"}, {"role": "assistant", "content": "It is 21 degrees celsius in San Francisco, CA"}], "functions": []}
 ```
 
 
