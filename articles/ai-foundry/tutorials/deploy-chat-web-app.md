@@ -245,5 +245,5 @@ To avoid unnecessary Azure costs, delete the resources you created in this quick
 
 ## Related content
 
-- [Get started building a chat app using the prompt flow SDK](../quickstarts/get-started-code.md)
+- [Get started building a chat app](../quickstarts/get-started-code.md)
 - [Build a custom chat app with the Azure AI SDK](./copilot-sdk-create-resources.md)
