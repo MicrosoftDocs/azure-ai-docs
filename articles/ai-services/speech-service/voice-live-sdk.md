@@ -66,7 +66,7 @@ The developer community can use the [Stack Overflow](https://stackoverflow.com/q
 
 You can suggest an idea or report a bug by creating an issue on GitHub.
 
-See also [Foundry Tools support and help options](../cognitive-services-support-options.md?context=/azure/ai-services/speech-service/context/context)to get support, stay up-to-date, give feedback, and report bugs for Foundry Tools.
+See also [Foundry Tools support and help options](../cognitive-services-support-options.md?context=/azure/ai-services/speech-service/context/context) to get support, stay up-to-date, give feedback, and report bugs for Foundry Tools.
 
 ## Next steps
 
