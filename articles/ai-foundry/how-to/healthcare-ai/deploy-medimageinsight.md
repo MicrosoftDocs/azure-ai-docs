@@ -1,7 +1,7 @@
 ---
 title: How to deploy and use MedImageInsight healthcare AI model with Microsoft Foundry
 titleSuffix: Microsoft Foundry
-description: Learn how to use MedImageInsight Healthcare AI Model with Microsoft Foundry.
+description: Learn how to use MedImageInsight healthcare AI model with Microsoft Foundry.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
@@ -11,6 +11,8 @@ reviewer: ivantarapov
 ms.author: mopeakande
 manager: nitinme
 author: msakande
+ms.custom: dev-focus
+ai-usage: ai-assisted
 
 #Customer intent: As a Data Scientist I want to learn how to use the MedImageInsight healthcare AI model to generate medical image embeddings.
 ---
@@ -21,55 +23,61 @@ author: msakande
 
 [!INCLUDE [health-ai-models-meddev-disclaimer](../../includes/health-ai-models-meddev-disclaimer.md)]
 
-In this article, you learn how to deploy MedImageInsight from the model catalog as an online endpoint for real-time inference. You also learn how to issue a basic call to the API. The steps you take are:
+MedImageInsight is a medical imaging embedding model that processes X-Ray, CT, MRI, clinical photography, dermoscopy, histopathology, ultrasound, and mammography images. In this article, you learn how to deploy this model as an online endpoint for real-time inference and issue a basic call to the API. The steps you take are:
 
-* Deploy the model to a self-hosted managed compute.
-* Grant permissions to the endpoint.
-* Send test data to the model, receive, and interpret results.
+1. Deploy the model to a self-hosted managed compute.
+1. Grant permissions to the endpoint.
+1. Send test data to the model, receive, and interpret results.
 
-## MedImageInsight - the medical imaging embedding model
-MedImageInsight foundation model for health is a powerful model that can process a wide variety of medical images. These images include X-Ray, CT, MRI, clinical photography, dermoscopy, histopathology, ultrasound, and mammography images. Rigorous evaluations demonstrate MedImageInsight's ability to achieve state-of-the-art (SOTA) or human expert-level performance across classification, image-to-image search, and fine-tuning tasks. Specifically, on public datasets, MedImageInsight achieves or exceeds SOTA performance in chest X-ray disease classification and search, dermatology classification and search, Optical coherence tomography (OCT) classification and search, and 3D medical image retrieval. The model also achieves near-SOTA performance for histopathology classification and search.  
-
-An embedding model can serve as the basis of many different solutions—from classification to more complex scenarios like group matching or outlier detection. The following animation shows an embedding model being used for image similarity search and to detect images that are outliers.
-
-:::image type="content" source="../../media/how-to/healthcare-ai/healthcare-embedding-capabilities.gif" alt-text="Animation that shows an embedding model capable of supporting similarity search and quality control scenarios.":::
+To learn more about MedImageInsight, see [Learn more about the model](#learn-more-about-the-model).
 
 ## Prerequisites
 
-- An Azure subscription with a valid payment method. Free or trial Azure subscriptions don't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
+- An Azure subscription with a valid payment method. Free or trial Azure subscriptions don't work. If you don't have an Azure subscription, [create a paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
 
-- If you don't have one, [create a [!INCLUDE [hub](../../includes/hub-project-name.md)]](../hub-create-projects.md).
+- If you don't have one, [create a [!INCLUDE [hub](../../includes/hub-project-name.md)]](../hub-create-projects.md)
 
+- Azure role-based access controls (Azure RBAC) grant access to operations in Microsoft Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. Deploying models and invoking endpoints requires this role. For more information, see [Role-based access control in Foundry portal](../../concepts/rbac-ai-foundry.md).
 
-- Azure role-based access controls (Azure RBAC) to grant access to operations in Microsoft Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, see [Role-based access control in Foundry portal](../../concepts/rbac-ai-foundry.md).
+- Install the required Python packages:
+  ```bash
+  pip install azure-ai-ml azure-identity
+  ```
+
+## Sample notebooks
+
+For complete working examples, see these interactive Python notebooks:
+
+#### Getting started
+* [Deploying and Using MedImageInsight](https://aka.ms/healthcare-ai-examples-mi2-deploy): Learn how to deploy the MedImageInsight model programmatically and issue an API call to it.
+
+#### Classification techniques
+* [Building a Zero-Shot Classifier](https://aka.ms/healthcare-ai-examples-mi2-zero-shot): Discover how to use MedImageInsight to create a classifier without the need for training or large amount of labeled ground truth data.
+
+* [Enhancing Classification with Adapter Networks](https://aka.ms/healthcare-ai-examples-mi2-adapter): Improve classification performance by building a small adapter network on top of MedImageInsight.
+
+#### Advanced applications
+
+* [Inferring MRI Acquisition Parameters from Pixel Data](https://aka.ms/healthcare-ai-examples-mi2-exam-parameter): Understand how to extract MRI exam acquisition parameters directly from imaging data.
+
+* [Scalable MedImageInsight Endpoint Usage](https://aka.ms/healthcare-ai-examples-mi2-advanced-call): Learn how to generate embeddings of medical images at scale using the MedImageInsight API while handling potential network issues gracefully.
+
 
 ## Deploy the model to a managed compute
 
-Deploying to a self-hosted managed inference solution lets you customize and control all the details about how the model is served. You can deploy the model from its model card in the catalog UI of [Foundry](https://aka.ms/healthcaremodelstudio), [Azure Machine Learning studio](https://ml.azure.com/model/catalog), or [deploy it programmatically](../deploy-models-managed.md).
+Deployment to a self-hosted managed inference solution lets you customize and control all the details about how the model is served. To deploy the model programmatically or from its model card in Microsoft Foundry, see [How to deploy and infer with a managed compute deployment](../deploy-models-managed.md).
 
-To __deploy the model through the UI__:
-
-1. Go to the model catalog.
-1. Search for the _MedImageInsight_ model and select its model card.
-1. On the model's overview page, select __Use this model__ to open the deployment window. 
-    
-    > [!NOTE]
-    > For deployment to a self-hosted managed compute, you must have enough quota in your subscription. If you don't have enough quota available, you can use our temporary quota access by selecting the option **I want to use shared quota and I acknowledge that this endpoint will be deleted in 168 hours.**
-
-1. Select the checkbox in the deployment window to use the temporary shared quota.
-1. The deployment window displays settings that include a virtual machine selection, an endpoint name, and a deployment name. You can modify these settings. Once you're satisfied with them, select **Deploy**.
-
-To __deploy the model programmatically__, see [How to deploy and inference a managed compute deployment with code](../deploy-models-managed.md).
-
-## Work with an embedding model
+## Send inference requests to the embedding model
 
 In this section, you consume the model and make basic calls to it.
 
 ### Use REST API to consume the model
 
-Consume the MedImageInsight embedding model as a REST API, using simple GET requests or by creating a client as follows:
+Use the model as a REST API, using simple GET requests or by creating a client as follows:
 
 ```python
+import base64
+import json
 from azure.ai.ml import MLClient
 from azure.identity import DefaultAzureCredential
 
@@ -78,7 +86,7 @@ credential = DefaultAzureCredential()
 ml_client_workspace = MLClient.from_config(credential)
 ```
 
-In the deployment configuration, you choose an authentication method. This example uses Azure Machine Learning token-based authentication. For more authentication options, see the [corresponding documentation page](../../../machine-learning/how-to-setup-authentication.md). Also, the client is created from a configuration file that's created automatically for Azure Machine Learning virtual machines (VMs). Learn more on the [corresponding API documentation page](/python/api/azure-ai-ml/azure.ai.ml.mlclient#azure-ai-ml-mlclient-from-config).
+In the deployment configuration, choose an authentication method. This example uses Azure Machine Learning token-based authentication. For more authentication options, see [Set up authentication](../../../machine-learning/how-to-setup-authentication.md). The client is created from a configuration file that's created automatically for Azure Machine Learning virtual machines (VMs). Learn more in the [MLClient.from_config API reference](/python/api/azure-ai-ml/azure.ai.ml.mlclient#azure-ai-ml-mlclient-from-config).
 
 ### Make basic calls to the model
 
@@ -125,7 +133,12 @@ response = ml_client_workspace.online_endpoints.invoke(
 )
 ```
 
-## Use MedImageInsight REST API
+This code reads an X-ray image, encodes it as base64, and sends it with descriptive text to the embedding endpoint. The response contains `image_features` (a 1024-dimensional vector representing the image), `text_features` (vector for the text), and an optional `scaling_factor` used for classification tasks.
+
+**References**: [MLClient](/python/api/azure-ai-ml/azure.ai.ml.mlclient) | [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential) | [online_endpoints.invoke](/python/api/azure-ai-ml/azure.ai.ml.operations.onlineendpointoperations#azure-ai-ml-operations-onlineendpointoperations-invoke)
+
+## Reference for REST API
+
 The MedImageInsight model works with a simple single-turn interaction. One request gets one response. 
 
 ### Request schema
@@ -223,22 +236,14 @@ When the model receives the images, it preprocesses the images by compressing an
 
 The preferred compression format is lossless PNG, containing either an 8-bit monochromatic or RGB image. For optimization purposes, you can perform resizing on the client side to reduce network traffic.
 
-## Learn more from samples
-MedImageInsight is a versatile model that you can apply to a wide range of tasks and imaging modalities. For more specific examples of solving various tasks with MedImageInsight, see the following interactive Python notebooks. 
 
-#### Getting started
-* [Deploying and Using MedImageInsight](https://aka.ms/healthcare-ai-examples-mi2-deploy): Learn how to deploy the MedImageInsight model programmatically and issue an API call to it.
+## Learn more about the model
 
-#### Classification techniques
-* [Building a Zero-Shot Classifier](https://aka.ms/healthcare-ai-examples-mi2-zero-shot): Discover how to use MedImageInsight to create a classifier without the need for training or large amount of labeled ground truth data.
+MedImageInsight foundation model for health is a powerful model that can process a wide variety of medical images. These images include X-Ray, CT, MRI, clinical photography, dermoscopy, histopathology, ultrasound, and mammography images. Rigorous evaluations demonstrate MedImageInsight's ability to achieve state-of-the-art (SOTA) or human expert-level performance across classification, image-to-image search, and fine-tuning tasks. Specifically, on public datasets, MedImageInsight achieves or exceeds SOTA performance in chest X-ray disease classification and search, dermatology classification and search, Optical coherence tomography (OCT) classification and search, and 3D medical image retrieval. The model also achieves near-SOTA performance for histopathology classification and search.  
 
-* [Enhancing Classification with Adapter Networks](https://aka.ms/healthcare-ai-examples-mi2-adapter): Improve classification performance by building a small adapter network on top of MedImageInsight.
+An embedding model can serve as the basis of many different solutions—from classification to more complex scenarios like group matching or outlier detection. The following animation shows an embedding model being used for image similarity search and to detect images that are outliers.
 
-#### Advanced applications
-
-* [Inferring MRI Acquisition Parameters from Pixel Data](https://aka.ms/healthcare-ai-examples-mi2-exam-parameter): Understand how to extract MRI exam acquisition parameters directly from imaging data.
-
-* [Scalable MedImageInsight Endpoint Usage](https://aka.ms/healthcare-ai-examples-mi2-advanced-call): Learn how to generate embeddings of medical images at scale using the MedImageInsight API while handling potential network issues gracefully.
+:::image type="content" source="../../media/how-to/healthcare-ai/healthcare-embedding-capabilities.gif" alt-text="Animation that shows an embedding model capable of supporting similarity search and quality control scenarios.":::
 
 ## Related content
 

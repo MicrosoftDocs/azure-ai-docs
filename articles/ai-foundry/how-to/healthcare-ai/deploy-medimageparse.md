@@ -54,6 +54,11 @@ To learn more about these models, see [Learn more about the models](#learn-more-
 
 - Azure role-based access controls (Azure RBAC) grant access to operations in Microsoft Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. Deploying models and invoking endpoints requires this role. For more information, see [Role-based access control in Foundry portal](../../concepts/rbac-ai-foundry.md).
 
+- Install the required Python packages:
+  ```bash
+  pip install azure-ai-ml azure-identity
+  ```
+
 ## Sample notebooks
 
 For complete working examples, see these interactive Python notebooks:
@@ -200,8 +205,6 @@ except urllib.error.HTTPError as error:
 MedImageParse and MedImageParse 3D models assume a simple single-turn interaction where one request produces one response. 
 
 ### Request schema
-
-
 
 The request payload is a JSON-formatted string containing the following parameters:
 
