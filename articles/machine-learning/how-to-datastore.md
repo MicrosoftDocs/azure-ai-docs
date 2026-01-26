@@ -545,7 +545,6 @@ artifact:
 
 Defines the OneLake datastore configuration in a YAML file. Provide the workspace, endpoint, and artifact values.
 
-Reference: [OneLakeDatastore.json](http://azureml/sdk-2-0/OneLakeDatastore.json)
 
 Create the Machine Learning datastore in the CLI:
 
@@ -579,7 +578,6 @@ credentials:
 
 Defines the OneLake datastore configuration that uses a service principal for access.
 
-Reference: [OneLakeDatastore.json](http://azureml/sdk-2-0/OneLakeDatastore.json)
 
 Create the Machine Learning datastore in the CLI:
 
