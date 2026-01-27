@@ -52,3 +52,7 @@ The grounding process involves several key steps:
 | **Pre-defined domains**       | Supported — use `custom_search_configuration` to pre‑define allowed/blocked domains (requires creating a Bing Custom Search resource + instance)|
 | **Other parameters**          |  - `count`: the maximum of results returned by Bing <br>- `freshness`: specifies the period for the search results<br>- `market`: specifies the region for the search results <br>- `set_lang`: specifies the language for the search results <br> Learn more [here](./bing-tools.md#optional-parameters) |
 | **Supported models**          |  Azure OpenAI models and Azure direct models                                                             |
+
+## Next Steps
+- use  [Web Search tool(preview)](./web-search.md)
+- use [Grounding with Bing Custom Search tool(preview)](./bing-tools.md)
