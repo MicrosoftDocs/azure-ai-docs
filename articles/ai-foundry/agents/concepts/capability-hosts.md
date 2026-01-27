@@ -1,17 +1,19 @@
 ---
-title: 'Learn what is a capability host'
+title: Capability hosts for Foundry Agent Service
 titleSuffix: Microsoft Foundry
-description: Learn how to create and delete capability hosts
+description: Learn how capability hosts route agent data to Microsoft-managed or your own Azure resources, and how to configure and troubleshoot them.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
-ms.topic: conceptual
-ms.date: 12/04/2025
+ms.topic: concept-article
+ms.date: 01/20/2026
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
 monikerRange: 'foundry-classic || foundry'
+ms.custom: pilot-ai-workflow-jan-2026
+ai-usage: ai-assisted
 ---
 
 # Capability hosts
@@ -21,10 +23,18 @@ monikerRange: 'foundry-classic || foundry'
 > [!NOTE]
 > Updating capability hosts is not supported. To modify a capability host, you must delete the existing one and recreate it with the new configuration.
 
-Capability hosts are sub-resources that you define at both the Microsoft Foundry Account and Foundry project scopes. They specify where the Foundry Agent Service should store and process your agent data, including:
+Capability hosts are sub-resources that you configure at both the Microsoft Foundry account and Foundry project scopes. They tell Foundry Agent Service where to store and process agent data, including:
 - **Conversation history (threads)** 
 - **File uploads** 
 - **Vector stores** 
+
+## Prerequisites
+
+- A [Microsoft Foundry project](../../how-to/create-projects.md)
+- If you use your own resources for agent data (standard agent setup), create the required Azure resources and connections:
+  - [Use your own resources](../how-to/use-your-own-resources.md)
+  - [Add a new connection to your project](../../how-to/connections-add.md)
+- Permissions to create the resources and, for standard agent setup, assign access to the required Azure resources. For details, see [Required permissions](../environment-setup.md#required-permissions) and [Role-based access control (RBAC) in Microsoft Foundry](../../concepts/rbac-foundry.md).
 
 ## Why use capability hosts?
 
@@ -36,7 +46,7 @@ Capability hosts allow you to **bring your own Azure resources** instead of usin
 
 ## How do capability hosts work?
 
-Creating capability hosts is not required. However if you do want agents to use your own resources, you must create a capability host on both the account and project. 
+Creating capability hosts isn't required. If you want agents to use your own Azure resources, create capability hosts at both the account and project scopes.
 
 ### Default behavior (Microsoft-managed resources)
 If you don't create an account-level and project-level capability host, the Agent Service automatically uses Microsoft-managed Azure resources for:
@@ -45,10 +55,12 @@ If you don't create an account-level and project-level capability host, the Agen
 - Vector search (embeddings and retrieval)
 
 ### Bring-your-own resources
-When you create capability hosts at both the account and project levels, all agent data is stored and processed using your own Azure resources within your subscription. This configuration is called a **standard agent setup**. For this set-up, all Foundry workspace resources should be in the same region as the VNet, including CosmosDB, Storage Account, AI Search, Foundry Account, Project, and Managed Identity.
+When you create capability hosts at both the account and project levels, agent data is stored and processed using your Azure resources in your subscription. This configuration is called **standard agent setup**. For network-secured standard agent setup, deploy all related resources in the same region as your virtual network (VNet). For guidance, see [Create a new network-secured environment with user-managed identity](../how-to/virtual-networks.md).
+
+To learn more about standard agent setup, see [Built-in enterprise readiness with standard agent setup](standard-agent-setup.md).
 
 > [!NOTE]
-> When it comes to **standard agent set-up** versus the **basic agent set-up** with managed agent data resources, we reccomend creating different Foundry resources for each set-up. If you want to create **standard agents** in Foundry, create your account and project capability host with the bring-your-own resources defined. If you want to create **basic agents** in Foundry, create your account and project capability host without bring-your-own resources defined. We do not reccomend mixing both agent set-ups within one Foundry account. 
+> We recommend using separate Foundry accounts and projects for standard agent setup and basic agent setup. Avoid mixing setup types within the same Foundry account.
 
 #### Configuration hierarchy
 
@@ -66,11 +78,23 @@ When creating capability hosts, be aware of these important constraints to avoid
 
 - **Configuration updates are not supported**: If you need to change configuration, you must delete the existing capability host and recreate it.
 
-## Recommended setup 
+## Create connections for capability hosts
 
-### Required properties
+Capability hosts reference connection names that you create in your Foundry account and project. Before you configure a project capability host for standard agent setup, create connections for the resources that store agent data:
 
-A capability host must be configured with the following three properties at either the account or project level:
+- **Thread storage**: Azure Cosmos DB connection
+- **File storage**: Azure Storage connection
+- **Vector store**: Azure AI Search connection
+
+If you want to use model deployments from your own Azure OpenAI resource, also create an Azure OpenAI connection.
+
+To add connections in the Foundry portal, see [Add a new connection to your project](../../how-to/connections-add.md).
+
+## Configure capability hosts
+
+### Required properties (project capability host)
+
+To use your own resources for agent data (standard agent setup), configure the project capability host with the following properties:
 
 | Property | Purpose | Required Azure resource | Example connection name |
 |----------|---------|------------------------|------------------------|
@@ -85,6 +109,9 @@ A capability host must be configured with the following three properties at eith
 | `aiServicesConnections` | Use your own model deployments | Azure OpenAI | When you want to use models from your existing Azure OpenAI resource instead of the built-in account level ones. |
 
 **Account capability host**
+
+Use an account capability host to enable Agent Service and (optionally) define defaults that projects can inherit.
+
 ```http
 PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/capabilityHosts/{name}?api-version=2025-06-01
 
@@ -94,6 +121,8 @@ PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
   }
 }
 ```
+
+Reference: [Foundry account management REST API](/rest/api/aifoundry/accountmanagement/operation-groups)
 
 **Project capability host**
 
@@ -107,10 +136,12 @@ PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
     "threadStorageConnections": ["my-cosmos-db-connection"],
     "vectorStoreConnections": ["my-ai-search-connection"],
     "storageConnections": ["my-storage-account-connection"],
-    "aiServicesConnections": ["my-azure-openai-connection"]  // Optional
+    "aiServicesConnections": ["my-azure-openai-connection"]
   }
 }
 ```
+
+Reference: [Project Capability Hosts - Create or update](/rest/api/aifoundry/accountmanagement/project-capability-hosts/create-or-update)
 
 ### Optional: account-level defaults with project overrides
 
@@ -122,8 +153,6 @@ PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
 {
   "properties": {
     "capabilityHostKind": "Agents",
-
-    // Optional: define shared BYO resources for every project. All foundry projects under this account will uses these Azure resources  
     "threadStorageConnections": ["shared-cosmosdb-connection"],
     "vectorStoreConnections": ["shared-ai-search-connection"],
     "storageConnections": ["shared-storage-connection"]
@@ -132,6 +161,24 @@ PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
 ```
 > [!NOTE]
 > All Foundry projects will inherit these settings. Then override specific settings at the project level as needed.
+
+## Verify your configuration
+
+Use these steps to confirm that capability hosts are configured the way you expect:
+
+1. Get the account capability host and confirm it exists.
+
+   ```http
+   GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/capabilityHosts?api-version=2025-06-01
+   ```
+
+2. Get the project capability host and confirm it references the expected connection names.
+
+   ```http
+   GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/capabilityHosts?api-version=2025-06-01
+   ```
+
+3. If you update connections or want to change where data is stored, delete and recreate the capability hosts with the updated configuration.
 
 ## Delete capability hosts
 
@@ -178,13 +225,7 @@ If you're experiencing issues when creating capability hosts, this section provi
 3. **Review your requirements** - Determine if the existing capability host meets your needs
 
 **Validation steps:**
-```http
-# For account-level capability hosts
-GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/capabilityHosts?api-version=2025-06-01
-
-# For project-level capability hosts  
-GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/capabilityHosts?api-version=2025-06-01
-```
+Use the GET requests in [Verify your configuration](#verify-your-configuration) to confirm whether a capability host already exists at the target scope.
 
 #### Problem: Concurrent operations in progress
 
@@ -205,7 +246,7 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
 **Solution:**
 1. **Wait for current operation to complete** - Check the status of ongoing operations
 2. **Monitor operation progress** - Use the operations API to track completion
-3. **Implement retry logic** - Add exponential backoff for temporary conflicts
+3. **Implement retry logic** - Use exponential backoff for temporary conflicts
 
 **Operation monitoring:**
 ```http
@@ -265,5 +306,6 @@ Since updates aren't supported, follow this sequence for configuration changes:
 
 
 ## Next steps
-- Learn more about the [Standard Agent Setup](standard-agent-setup.md) 
-- Get started with [Agent Service](../environment-setup.md)
+- Learn about [standard agent setup](standard-agent-setup.md).
+- Set up your account and project: [Set up your environment](../environment-setup.md).
+- Add and manage connections: [Add a new connection to your project](../../how-to/connections-add.md).

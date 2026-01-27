@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 # Continuously evaluate your AI agents (preview)
 
 > [!NOTE]
-> This document refers to the Microsoft Foundry (classic) portal. To continuously evaluate using the Microsoft Foundry (new) portal, see [Setup continuous evaluation](../default/observability/how-to/how-to-monitor-agents-dashboard.md#setup-continuous-evaluation).
+> This document refers to the Microsoft Foundry (classic) portal. To continuously evaluate using the Microsoft Foundry (new) portal, see [Setup continuous evaluation](../default/observability/how-to/how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation-python-sdk).
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 

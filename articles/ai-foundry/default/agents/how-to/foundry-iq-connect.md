@@ -1,13 +1,14 @@
 ---
 title: Connect Agents to Foundry IQ Knowledge Bases
 titleSuffix: Microsoft Foundry
-description: Learn how to connect Microsoft Foundry agents to Foundry IQ knowledge bases, which use Azure AI Search for knowledge retrieval. The integration enables grounded retrieval and citation-backed responses.
+description: Connect Foundry Agent Service to a Foundry IQ knowledge base (Azure AI Search) for grounded retrieval and citation-backed responses.
 author: haileytap
 ms.author: haileytapia
 ms.reviewer: fsunavala
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 12/18/2025
+ms.date: 01/22/2026
+ms.custom: pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 ---
 
@@ -15,7 +16,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
-In this article, you learn how to connect a knowledge base in [Foundry IQ](../concepts/what-is-foundry-iq.md) to an agent in Microsoft Foundry. The connection uses Model Context Protocol (MCP) to facilitate tool calls. When invoked by the agent, the knowledge base orchestrates the following operations:
+In this article, you learn how to connect an agent in Microsoft Foundry to a knowledge base in Foundry IQ, an agentic retrieval workload powered by Azure AI Search. The connection uses the [Model Context Protocol (MCP)](./model-context-protocol.md) to facilitate tool calls. When invoked by the agent, the knowledge base orchestrates the following operations:
 
 - Plans and decomposes a user query into subqueries.
 - Processes the subqueries simultaneously using keyword, vector, or hybrid techniques.
@@ -57,6 +58,39 @@ We recommend role-based access control for production deployments. If roles aren
 
 ---
 
+### Required values
+
+Use the following values in the code samples.
+
+| Value | Where to get it | Example |
+|---|---|---|
+| Project endpoint (`project_endpoint`) | Find it in your project details in the Microsoft Foundry portal. | `https://your-resource.services.ai.azure.com/api/projects/your-project` |
+| Project resource ID (`project_resource_id`) | Copy the project ARM resource ID from Azure portal or use Azure CLI to query the resource ID. | `/subscriptions/.../resourceGroups/.../providers/Microsoft.MachineLearningServices/workspaces/.../projects/...` |
+| Azure AI Search endpoint (`search_service_endpoint`) | Find it on your Azure AI Search service **Overview** page (the service URL) in the Azure portal. | `https://your-search-service.search.windows.net` |
+| Knowledge base name (`knowledge_base_name`) | Use the knowledge base name you created in Azure AI Search. | `hr-policy-kb` |
+| Project connection name (`project_connection_name`) | Choose a name for the project connection you create. | `my-kb-mcp-connection` |
+| Agent name (`agent_name`) | Choose a name for the agent version you create. | `hr-assistant` |
+| Model deployment name (`deployed_LLM`) | Find it in your Microsoft Foundry project model deployments. | `gpt-4.1-mini` |
+
+## Understand Foundry IQ
+
+Foundry IQ creates a separation of concerns between domain knowledge and agent logic, enabling retrieval-augmented generation (RAG) and grounding at scale. Instead of bundling retrieval complexity into each agent, you create a knowledge base that represents a complete domain of knowledge, such as human resources or sales. Your agents then call the knowledge base to ground their responses in relevant, up-to-date information.
+
+This separation has two key benefits:
+
++ You can independently update a knowledge base without modifying agents.
++ Multiple agents can share the same knowledge base, avoiding duplicate configurations.
+
+### How Foundry IQ works
+
+Powered by [Azure AI Search](/azure/search/search-what-is-azure-search), Foundry IQ consists of knowledge sources (*what* to retrieve) and knowledge bases (*how* to retrieve). The knowledge base plans and executes subqueries and outputs formatted results with citations.
+
+Although knowledge bases support [answer synthesis](/azure/search/agentic-retrieval-how-to-answer-synthesis), we recommend the extractive data output mode for integration with Foundry Agent Service. This mode ensures the agent receives verbatim content instead of pre-generated answers, providing full control over response format and quality.
+
+### How Foundry Agent Service uses knowledge bases
+
+[Foundry Agent Service](../../../../agents/overview.md) orchestrates calls to the knowledge base via the MCP tool and synthesizes the final answer. At runtime, the agent calls only the knowledge base, not the data platform (such as Azure Blob Storage or Microsoft OneLake) that underlies the knowledge source. The knowledge base handles all retrieval operations.
+
 ## Create a project connection
 
 Create a `RemoteTool` connection on your Microsoft Foundry project. This connection uses the project's managed identity to target the MCP endpoint of the knowledge base, allowing the agent to securely communicate with Azure AI Search for retrieval operations.
@@ -84,7 +118,7 @@ response = requests.put(
   f"https://management.azure.com{project_resource_id}/connections/{project_connection_name}?api-version=2025-10-01-preview",
   headers = headers,
   json = {
-    "name": "project_connection_name",
+    "name": project_connection_name,
     "type": "Microsoft.MachineLearningServices/workspaces/connections",
     "properties": {
       "authType": "ProjectManagedIdentity",
@@ -103,13 +137,13 @@ print(f"Connection '{project_connection_name}' created or updated successfully."
 
 ### [REST](#tab/rest)
 
-Use the [Azure CLI](/cli/azure/what-is-azure-cli) to get an access token for Azure API Management:
+Use the [Azure CLI](/cli/azure/what-is-azure-cli) to get an access token for Azure Resource Manager:
 
 ```azurecli
 az account get-access-token --scope https://management.azure.com/.default --query accessToken -o tsv
 ```
 
-Create the project connection by making a `PUT` request to Azure API Management:
+Create the project connection by making a `PUT` request to Azure Resource Manager:
 
 ```HTTP
 PUT https://management.azure.com/{project_resource_id}/connections/{project_connection_name}?api-version=2025-10-01-preview
@@ -136,18 +170,21 @@ Content-Type: application/json
 
 ## Optimize agent instructions for knowledge retrieval
 
-To maximize the accuracy of knowledge base invocations and ensure proper citation formatting, use optimized agent instructions. Based on our experiments, we recommend the following instruction template as a starting point:
+To improve knowledge base invocations and produce citation-backed answers, start with instructions like the following:
 
 ```plaintext
-You are a helpful assistant that must use the knowledge base to answer all the questions from user. You must never answer from your own knowledge under any circumstances.
-Every answer must always provide annotations for using the MCP knowledge base tool and render them as: `【message_idx:search_idx†source_name】`
-If you cannot find the answer in the provided knowledge base you must respond with "I don't know".
+You are a helpful assistant.
+
+Use the knowledge base tool to answer user questions.
+If the knowledge base doesn't contain the answer, respond with "I don't know".
+
+When you use information from the knowledge base, include citations to the retrieved sources.
 ```
 
 This instruction template optimizes for:
 
 - **Higher MCP tool invocation rates**: Explicit directives ensure the agent consistently calls the knowledge base tool rather than relying on its training data.
-- **Proper annotation formatting**: The specified citation format ensures the agent includes provenance information in responses, making it clear which knowledge sources were used.
+- **Clear source attribution**: Citations make it easier to validate where information came from.
 
 > [!TIP]
 > While this template provides a strong foundation, evaluate and iterate on the instructions based on your specific use case and objectives. Test different variations to find what works best for your scenario.
@@ -396,13 +433,22 @@ References:
 project_client.agents.delete_version(agent.name, agent.version)
 print(f"Agent '{agent.name}' version '{agent.version}' deleted successfully.")
 
-# Delete the project connection
-mgmt_client.project_connections.delete(
-    resource_group_name = resource_group,
-    account_name = account_name,
-    project_name = project_name,
-    connection_name = project_connection_name
+# Delete the project connection (Azure Resource Manager)
+import requests
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+credential = DefaultAzureCredential()
+project_resource_id = "{project_resource_id}"
+project_connection_name = "{project_connection_name}"
+
+bearer_token_provider = get_bearer_token_provider(credential, "https://management.azure.com/.default")
+headers = {"Authorization": f"Bearer {bearer_token_provider()}"}
+
+response = requests.delete(
+  f"https://management.azure.com{project_resource_id}/connections/{project_connection_name}?api-version=2025-10-01-preview",
+  headers=headers,
 )
+response.raise_for_status()
 print(f"Project connection '{project_connection_name}' deleted successfully.")
 ```
 
@@ -423,9 +469,30 @@ Authorization: Bearer {management_access_token}
 > [!NOTE]
 > Deleting your agent and project connection doesn't delete your knowledge base or its knowledge sources. You must delete these objects separately on your Azure AI Search service. For more information, see [Delete a knowledge base](/azure/search/agentic-retrieval-how-to-create-knowledge-base?#delete-a-knowledge-base) and [Delete a knowledge source](/azure/search/agentic-knowledge-source-how-to-search-index#delete-a-knowledge-source).
 
+## Troubleshooting
+
+This section helps you troubleshoot common issues when connecting Foundry Agent Service to a Foundry IQ knowledge base.
+
+### Authorization failures (401/403)
+
+- If you get a 403 from Azure AI Search, confirm the project's managed identity has the **Search Index Data Reader** role on the search service (and **Search Index Data Contributor** if you write to indexes).
+- If you get a 403 from Azure Resource Manager when you create or delete the project connection, confirm your user or service principal has permissions on the Microsoft Foundry resource and project.
+- If you use keyless authentication, confirm your environment is signed in to the correct tenant and subscription.
+
+### MCP endpoint errors (400/404)
+
+- Confirm `search_service_endpoint` is the Azure AI Search service URL, such as `https://<name>.search.windows.net`.
+- Confirm `knowledge_base_name` matches the knowledge base you created in Azure AI Search.
+- Confirm you use the `2025-11-01-preview` API version for the knowledge base MCP endpoint.
+
+### The agent doesn't ground answers
+
+- Confirm the agent has the MCP tool configured and `allowed_tools` includes `knowledge_base_retrieve`.
+- Update your agent instructions to explicitly require using the knowledge base and to return "I don't know" when retrieval doesn't contain the answer.
+
 ## Related content
 
-- [Create a knowledge source in Azure AI Search](/azure/search/agentic-knowledge-source-overview)
 - [Create a knowledge base in Azure AI Search](/azure/search/agentic-retrieval-how-to-create-knowledge-base)
 - [Tutorial: Build an end-to-end agentic retrieval solution](/azure/search/agentic-retrieval-how-to-create-pipeline)
 - [Foundry IQ: Unlocking ubiquitous knowledge for agents](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/foundry-iq-unlocking-ubiquitous-knowledge-for-agents/4470812)
+- [Tool best practices](../../concepts/tool-best-practice.md)

@@ -7,10 +7,10 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 12/12/2025
+ms.date: 01/19/2026
 author: alvinashcraft
 ms.author: aashcraft
-ms.custom: azure-ai-agents, dev-focus
+ms.custom: azure-ai-agents, dev-focus, pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 zone_pivot_groups: selection-browser-tool
 ---
@@ -20,19 +20,19 @@ zone_pivot_groups: selection-browser-tool
 [!INCLUDE [feature-preview](../../../../includes/feature-preview.md)]
 
 > [!WARNING]
-> The Browser Automation tool comes with significant security risks. Both errors in judgment by the AI and the presence of malicious or confusing instructions on web pages which the AI encounters may cause it to execute commands you or others do not intend, which could compromise the security of your or other users' browsers, computers, and any accounts to which the browser or AI has access, including personal, financial, or enterprise systems. By using the Browser Automation tool, you are acknowledging that you bear responsibility and liability for any use of it and of any resulting agents you create with it, including with respect to any other users to whom you make Browser Automation tool functionality available, including through resulting agents. We strongly recommend using the Browser Automation tool on low-privilege virtual machines with no access to sensitive data or critical resources.
+> The Browser Automation tool comes with significant security risks. Both errors in judgment by the AI and the presence of malicious or confusing instructions on web pages that the AI encounters can cause it to execute commands you or others don't intend. These actions can compromise the security of your or other users' browsers, computers, and any accounts to which the browser or AI has access, including personal, financial, or enterprise systems. By using the Browser Automation tool, you acknowledge that you bear responsibility and liability for any use of it and of any resulting agents you create with it. This responsibility extends to any other users to whom you make Browser Automation tool functionality available, including through resulting agents. Use the Browser Automation tool on low-privilege virtual machines with no access to sensitive data or critical resources.
 
 > [!NOTE]
-> For information on optimizing tool usage, see [best practices](../../concepts/tool-best-practice.md).
+> To learn more about optimizing tool usage, see [best practices](../../concepts/tool-best-practice.md).
 
 In Microsoft Foundry, the Browser Automation tool enables you to perform real-world browser tasks through natural language prompts. When you use it with Foundry Agent Service, it creates isolated browser sessions in your provisioned Playwright workspace.
 
-By using [Microsoft Playwright Workspaces](/azure/playwright-testing/overview-what-is-microsoft-playwright-testing), you can automate browser-based workflows such as searching, navigating, filling forms, and booking.
+By using [Microsoft Playwright Workspaces](https://aka.ms/pww/docs/manage-workspaces), you can automate browser-based workflows such as searching, navigating, filling forms, and booking.
 
 ### Usage support
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
-|---------|---------|---------|---------|---------|---------|---------|---------|
+| --- | --- | --- | --- | --- | --- | --- | --- |
 | ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
@@ -51,7 +51,7 @@ For the SDK examples, set these environment variables:
 - `FOUNDRY_MODEL_DEPLOYMENT_NAME`: Your deployed model name.
 - `BROWSER_AUTOMATION_PROJECT_CONNECTION_ID`: The connection resource ID for the Playwright workspace connection.
 
-Your connection ID should be in the following format: `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`.
+Use the following format for your connection ID: `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`.
 
 ## Set up Browser Automation
 
@@ -69,8 +69,10 @@ Your connection ID should be in the following format: `/subscriptions/{{subscrip
 
 ## Code example
 
+After you run a sample, verify the tool was called by using tracing in Microsoft Foundry. For guidance on validating tool invocation, see [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md). If you use streaming, you can also look for `browser_automation_preview_call` events.
+
 > [!NOTE]
-> - You need the latest prerelease package. For more information, see the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate).
+> - You need the latest prerelease package. For more information, see the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true).
 > - This article assumes you already created the Playwright workspace connection. See the prerequisites section.
 
 :::zone pivot="python"
@@ -100,9 +102,7 @@ project_client = AIProjectClient(
 
 openai_client = project_client.get_openai_client()
 
-browser_automation_connection = project_client.connections.get(os.environ["BROWSER_AUTOMATION_PROJECT_CONNECTION_NAME"])
-connection_id = browser_automation_connection.id
-print(f"Browser Automation connection ID: {connection_id}")
+connection_id = os.environ["BROWSER_AUTOMATION_PROJECT_CONNECTION_ID"]
 
 tool = BrowserAutomationAgentTool(
     browser_automation_preview=BrowserAutomationToolParameters(
@@ -171,7 +171,7 @@ This example creates an agent version with the Browser Automation tool enabled, 
 
 ### Expected output
 
-When the agent is created, you see output similar to:
+When you create the agent, you see output similar to:
 
 ```console
 Agent created (id: ..., name: ..., version: ...)
@@ -183,7 +183,7 @@ During streaming, you might also see deltas and tool-call details. Output varies
 :::zone pivot="csharp"
 ## Use BrowserAutomationAgentTool with agents example
 
-[Playwright](https://playwright.dev/) is a Node.js library for browser automation. Microsoft provides the [Azure Playwright workspace](/javascript/api/overview/azure/playwright-readme), which can execute Playwright-based tasks triggered by an agent using the BrowserAutomationAgentTool.
+[Playwright](https://playwright.dev/) is a Node.js library for browser automation. Microsoft provides [Microsoft Playwright Workspaces](https://aka.ms/pww/docs/manage-workspaces), which can execute Playwright-based tasks triggered by an agent using the BrowserAutomationAgentTool.
 
 ### Create Azure Playwright workspace
 
@@ -212,7 +212,7 @@ The following C# example demonstrates how to create an AI agent with Browser Aut
 // and require the request timeout to be at least 5 minutes.
 var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
 var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
-var playwrightConnectionName = System.Environment.GetEnvironmentVariable("BROWSER_AUTOMATION_PROJECT_CONNECTION_ID");
+var playwrightConnectionId = System.Environment.GetEnvironmentVariable("BROWSER_AUTOMATION_PROJECT_CONNECTION_ID");
 AIProjectClientOptions options = new()
 {
     NetworkTimeout = TimeSpan.FromMinutes(5)
@@ -220,10 +220,9 @@ AIProjectClientOptions options = new()
 AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential(), options: options);
 
 // Create the Browser Automation tool using the Playwright connection.
-AIProjectConnection playwrightConnection = projectClient.Connections.GetConnection(playwrightConnectionName);
 BrowserAutomationAgentTool playwrightTool = new(
     new BrowserAutomationToolParameters(
-        new BrowserAutomationToolConnectionParameters(playwrightConnection.Id)
+    new BrowserAutomationToolConnectionParameters(playwrightConnectionId)
     ));
 
 // Create the Agent version with the Browser Automation tool.
@@ -293,7 +292,7 @@ This example creates an agent version with the Browser Automation tool enabled, 
 
 ### Expected output
 
-You see streaming progress messages (for example, text deltas) and a completed response. Output varies based on the website content and model behavior.
+You see streaming progress messages, such as text deltas, and a completed response. The output varies based on the website content and model behavior.
 :::zone-end
 
 :::zone pivot="rest"
@@ -456,7 +455,7 @@ main().catch((err) => {
 
 ### What this code does
 
-This example creates an agent version with the Browser Automation tool enabled, sends a prompt that requires tool usage, and processes streaming events (including browser automation call events) as they arrive.
+This example creates an agent version with the Browser Automation tool enabled, sends a prompt that requires tool usage, and processes streaming events, including browser automation call events, as they arrive.
 
 ### Required inputs
 
@@ -464,8 +463,45 @@ This example creates an agent version with the Browser Automation tool enabled, 
 
 ### Expected output
 
-You see an "Agent created ..." message, streaming text output, and (optionally) browser call details when the tool is invoked. Output varies based on the website content and model behavior.
+You see an "Agent created ..." message, streaming text output, and optionally, browser call details when the tool is invoked. The output varies based on the website content and model behavior.
 :::zone-end
+
+## Limitations
+
+- Use this tool only with sites you trust. Avoid browsing pages that prompt for credentials, payments, or other sensitive actions.
+- Web pages can change at any time. Your agent might fail if the page layout, labels, or flows change.
+
+## Cost considerations
+
+This tool uses a Playwright workspace resource to run browser sessions. Review the Playwright workspace documentation for pricing and usage details.
+
+## Troubleshooting
+
+### The agent doesn't use the tool
+
+- Confirm you created the agent with the Browser Automation tool enabled.
+- In your request, require tool usage (for example, `tool_choice="required"`).
+- Use tracing in Microsoft Foundry to confirm whether a tool call occurred. For guidance, see [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md).
+
+### Connection or authorization errors
+
+- Confirm `BROWSER_AUTOMATION_PROJECT_CONNECTION_ID` matches the Playwright workspace connection resource ID in your project.
+- Confirm the project identity has access to the Playwright workspace resource.
+- If you recently rotated the Playwright access token, update the Foundry project connection key.
+
+### Requests time out
+
+Browser automation can take longer than typical requests.
+
+- Increase the client timeout (the C# sample sets a 5-minute timeout).
+- Reduce the scope of your prompt (for example, fewer pages and fewer interactions).
+
+## Clean up
+
+- Delete the agent version you created for testing.
+- Revoke or rotate the Playwright access token if you no longer need it.
+- Remove the project connection if it’s no longer required. For more information, see [Add a connection in Microsoft Foundry](../../../../how-to/connections-add.md).
+
 
 ## How it works
 
@@ -495,6 +531,12 @@ An example flow is:
 
 ## Transparency note
 
-Review the [transparency note](/azure/ai-foundry/responsible-ai/agents/transparency-note#enabling-autonomous-actions-with-or-without-human-input-through-action-tools) when using this tool. The Browser Automation tool is a tool that can perform real-world browser tasks through natural language prompts, enabling automated browsing activities without human intervention.
+Review the [transparency note](../../../../responsible-ai/agents/transparency-note.md#enabling-autonomous-actions-with-or-without-human-input-through-action-tools) when using this tool. The Browser Automation tool is a tool that can perform real-world browser tasks through natural language prompts, enabling automated browsing activities without human intervention.
 
-Review the [responsible AI considerations](/azure/ai-foundry/responsible-ai/agents/transparency-note#considerations-when-choosing-a-use-case) when using this tool.
+Review the [responsible AI considerations](../../../../responsible-ai/agents/transparency-note.md#considerations-when-choosing-a-use-case) when using this tool.
+
+## Related content
+
+- [Add a connection in Microsoft Foundry](../../../../how-to/connections-add.md)
+- [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md)
+- [Computer use tool for agents](computer-use.md)

@@ -1,40 +1,73 @@
 ---
-title: Agent Tracing Integrations
+title: Tracing integrations for agent frameworks
 titleSuffix: Microsoft Foundry
-description: "Discover how Microsoft Foundry simplifies agent tracing with integrations for Microsoft Agent Framework, Semantic Kernel, LangChain, LangGraph, and OpenAI Agent SDK."
+description: Set up agent tracing integrations in Microsoft Foundry for Microsoft Agent Framework, Semantic Kernel, LangChain, LangGraph, and OpenAI Agents SDK.
 ai-usage: ai-assisted
 author: yanchen-ms
 ms.author: lagayhar
 ms.reviewer: ychen
-ms.date: 11/18/2025
+ms.date: 01/20/2026
 ms.service: azure-ai-foundry
 ms.topic: how-to
+ms.custom: pilot-ai-workflow-jan-2026
 ---
 # Tracing integrations (preview)
 
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
-Microsoft Foundry makes it easy to log traces with minimal changes by using our tracing integrations with Microsoft Agent Framework, Semantic Kernel, LangChain, LangGraph, and OpenAI Agent SDK.
+Microsoft Foundry makes it easy to capture agent traces with minimal code changes by using integrations with Microsoft Agent Framework, Semantic Kernel, LangChain, LangGraph, and OpenAI Agents SDK.
+
+## Prerequisites
+
+- A Foundry project. For more information, see [Create a Foundry project](../../../how-to/create-projects.md).
+- Tracing connected to an Azure Monitor Application Insights resource. To set it up, see [Set up tracing in Microsoft Foundry](trace-agent-setup.md).
+- Access to the connected Application Insights resource. For log-based queries, you might also need access to the associated Log Analytics workspace.
+- If you use LangChain or LangGraph, a Python environment.
+
+### Confirm you can view telemetry
+
+To view trace data, make sure your account has access to the connected Application Insights resource.
+
+1. In the Azure portal, open the Application Insights resource connected to your Foundry project.
+1. Select **Access control (IAM)**.
+1. Assign an appropriate role to your user or group.
+
+    If you use log-based queries, start by granting the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader).
+
+> [!NOTE]
+> Agent tracing availability varies by region. For current limitations, see [Availability and limitations](../concepts/trace-agent-concept.md#availability-and-limitations).
+
+## Security and privacy
+
+Tracing can capture sensitive information (for example, user inputs, model outputs, and tool arguments and results).
+
+- Enable content recording only when you need it. In the samples in this article, this is controlled by settings like `enable_content_recording` and `OTEL_RECORD_CONTENT`.
+- Don't store secrets, credentials, or tokens in prompts or tool arguments.
+
+For more guidance, see [Security and privacy](../concepts/trace-agent-concept.md#security-and-privacy).
 
 ## Microsoft Agent Framework
 
-Foundry has native integrations with Microsoft Agent Framework. Agents built on Microsoft Agent frameworks get out-of-the-box tracing in Observability.
+Foundry has native integrations with Microsoft Agent Framework. Agents built with Microsoft Agent Framework get out-of-the-box tracing in observability after you enable tracing for your Foundry project.
 
-To learn more about tracing and observability in the Microsoft Agent Framework see, [Microsoft Agent Framework Workflows - Observability](/agent-framework/user-guide/workflows/observability).
+To learn more about tracing and observability in Microsoft Agent Framework, see [Microsoft Agent Framework Workflows - Observability](/agent-framework/user-guide/workflows/observability).
 
 ## Semantic Kernel
 
-Foundry has native integrations with Microsoft Semantic Kernel. Agents built on Microsoft Semantic Kernel get out-of-the-box tracing in Observability.
+Foundry has native integrations with Semantic Kernel. Agents built with Semantic Kernel get out-of-the-box tracing in observability after you enable tracing for your Foundry project.
 
-Learn more about tracing and observability in [Semantic Kernel](/semantic-kernel/concepts/enterprise-readiness/observability) 
+Learn more about tracing and observability in [Semantic Kernel](/semantic-kernel/concepts/enterprise-readiness/observability).
 
 ## LangChain & LangGraph
 
 > [!NOTE]
 > Tracing integration for LangChain and LangGraph is currently available only in Python.
-> LangChain and LangGraph "v1" releases are currently under active development. API surface and tracing behavior can change as part of this release. Track updates at the [LangChain v1.0 release notes page](https://docs.langchain.com/oss/python/releases/langchain-v1)
+> LangChain and LangGraph "v1" releases are currently under active development. API surface and tracing behavior can change as part of this release. Track updates at the [LangChain v1.0 release notes page](https://docs.langchain.com/oss/python/releases/langchain-v1).
 
-You can enable tracing for LangChain that follows [OpenTelemetry standards](https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/) per [opentelemetry-instrumentation-langchain](https://pypi.org/project/langchain-azure-ai/). Once necessary packages are installed, you can easily begin to [Instrument tracing in your code](https://pypi.org/project/langchain-azure-ai/).
+Use the `langchain-azure-ai` package to emit OpenTelemetry-compliant spans for LangChain and LangGraph operations so you can view rich traces in Foundry.
+
+- OpenTelemetry semantic conventions: <https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/>
+- Package and usage guidance: <https://pypi.org/project/langchain-azure-ai/>
 
 ### Sample: LangChain v1 agent with Azure AI tracing
 
@@ -436,6 +469,27 @@ with tracer.start_as_current_span("agent_session[openai.agents]"):
     pass
 ```
 
-## Related content
+## Verify traces appear
+
+1. [!INCLUDE [foundry-sign-in](../../includes/foundry-sign-in.md)]
+1. Confirm tracing is connected for your project. If needed, follow [Set up tracing in Microsoft Foundry](trace-agent-setup.md).
+1. Run your agent at least once.
+1. In your Foundry project, open the traces view and confirm a new trace appears.
+
+If you don't see new traces, wait a few minutes and refresh, and then see [Troubleshooting](#troubleshooting).
+
+## Troubleshooting
+
+| Issue | Cause | Resolution |
+|---|---|---|
+| You don't see traces in Foundry | Tracing isn't connected, there is no recent traffic, or ingestion is delayed | Confirm the Application Insights connection, generate new traffic, and refresh after a few minutes. |
+| You don't see LangChain or LangGraph spans | Tracing callbacks aren't attached to the run | Confirm you pass the tracer in `callbacks` (for example, `config = {"callbacks": [azure_tracer]}`) for the run you want to trace. |
+| You see authorization errors when you query telemetry | Missing RBAC permissions on Application Insights or Log Analytics | Confirm access in **Access control (IAM)** for the connected resources. For log queries, assign the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader). |
+| Sensitive content appears in traces | Content recording is enabled and prompts, tool arguments, or outputs include sensitive data | Disable content recording when you don't need it and redact sensitive data before it enters telemetry. |
+
+## Next steps
 
 - [Agent tracing overview](../concepts/trace-agent-concept.md)
+- [Set up tracing in Microsoft Foundry](trace-agent-setup.md)
+- [Monitor AI agents with the Agent Monitoring Dashboard](how-to-monitor-agents-dashboard.md)
+- [Observability in generative AI](../../../concepts/observability.md)

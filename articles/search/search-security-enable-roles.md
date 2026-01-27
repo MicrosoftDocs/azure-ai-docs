@@ -7,31 +7,29 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 07/31/2025
+ms.date: 01/22/2026
 ms.update-cycle: 180-days
-#customer intent: As a developer, I want to enable role-based access control for token authentication using Microsoft Entra ID on Azure AI Search so that I can secure my search service.
+ms.custom:
+  - dev-focus
+ai-usage: ai-assisted
 ---
 
 # Enable or disable role-based access control in Azure AI Search
 
-Azure AI Search supports both identity-based and [key-based authentication](search-security-api-keys.md) for all data plane operations. You can use Microsoft Entra ID authentication and role-based authorization to enable identity-based access to operations and content.
+This article explains how to enable role-based access control (RBAC) for data plane operations on Azure AI Search. With RBAC enabled, you can use Microsoft Entra ID authentication instead of API keys.
 
 > [!IMPORTANT]
 > When you create a search service, key-based authentication is the default, but it's not the most secure option. We recommend that you replace it with role-based access as described in this article.
 
-Before you can assign roles for authorized data plane access to Azure AI Search, you must enable role-based access control on your search service. Roles for service administration (control plane) are built in and can't be enabled or disabled. 
+Only [data plane](/azure/azure-resource-manager/management/control-plane-and-data-plane) roles can be disabled. Roles for service administration (control plane) are built in and can't be enabled or disabled. 
 
-*Data plane* refers to operations against the search service endpoint, such as indexing or queries, or any other operation specified in the [Search Service REST APIs](/rest/api/searchservice/) or equivalent Azure SDK client libraries. 
-
-*Control plane* refers to Azure resource management, such as creating or configuring a search service, or any other operation specified in the [Search Management REST APIs](/rest/api/searchmanagement/). 
-
-You can only enable or disable role-based access control for data plane operations. Control plane operations always use Owner, Contributor, or Reader roles. If you observe key-related activity, such as Get Admin Keys, in the **Activity Log** on a roles-only search service, those actions are initiated on the control plane and don't affect your content or content-related operations.
+If you observe key-related activity, such as Get Admin Keys, in the **Activity Log** on a roles-only search service, those actions are initiated on the control plane and don't affect your content or content-related operations.
 
 ## Prerequisites
 
 + A search service in any region, on any tier, including free.
-
-+ Owner, User Access Administrator, or a custom role with [Microsoft.Authorization/roleAssignments/write](/azure/templates/microsoft.authorization/roleassignments) permissions.
++ **Owner**, **User Access Administrator**, or a custom role with [Microsoft.Authorization/roleAssignments/write](/azure/templates/microsoft.authorization/roleassignments) permissions to enable RBAC.
++ After enabling RBAC, you need data plane roles to access content: **Search Service Contributor**, **Search Index Data Contributor**, and **Search Index Data Reader**. See [Assign roles](search-security-rbac.md) for details.
 
 ## Enable role-based access for data plane operations
 
@@ -68,21 +66,23 @@ The default failure mode for unauthorized requests is `http401WithBearerChalleng
 Run this script to support roles only:
 
 ```azurecli
-az search service update `
-  --name YOUR-SEARCH-SERVICE-NAME `
-  --resource-group YOUR-RESOURCE-GROUP-NAME `
+az search service update \
+  --name YOUR-SEARCH-SERVICE-NAME \
+  --resource-group YOUR-RESOURCE-GROUP-NAME \
   --disable-local-auth
 ```
 
 Or, run this script to support both keys and roles:
 
 ```azurecli
-az search service update `
-  --name YOUR-SEARCH-SERVICE-NAME `
-  --resource-group YOUR-RESOURCE-GROUP-NAME `
-  --aad-auth-failure-mode http401WithBearerChallenge `
+az search service update \
+  --name YOUR-SEARCH-SERVICE-NAME \
+  --resource-group YOUR-RESOURCE-GROUP-NAME \
+  --aad-auth-failure-mode http401WithBearerChallenge \
   --auth-options aadOrApiKey
 ```
+
+**Reference:** [az search service update](/cli/azure/search/service#az-search-service-update)
 
 For more information, see [Manage your Azure AI Search service with the Azure CLI](search-manage-azure-cli.md).
 
@@ -105,6 +105,8 @@ Set-AzSearchService `
   -ResourceGroupName YOUR-RESOURCE-GROUP-NAME `
   -AuthOption AadOrApiKey
 ```
+
+**Reference:** [Set-AzSearchService](/powershell/module/az.search/set-azsearchservice)
 
 For more information, see [Manage your Azure AI Search service with PowerShell](search-manage-powershell.md).
 
@@ -139,6 +141,10 @@ All calls to the Management REST API are authenticated through Microsoft Entra I
         }
     }
     ```
+
+    A successful request returns `200 OK` with the updated service configuration.
+
+    **Reference:** [Services - Create Or Update](/rest/api/searchmanagement/services/create-or-update)
 
 ---
 
@@ -177,9 +183,9 @@ The change is effective immediately, but wait a few seconds before testing. Assu
 To disable key-based authentication, set -disableLocalAuth to true. This is the same syntax as the "enable roles only" script presented in the previous section.
 
 ```azurecli
-az search service update `
-  --name YOUR-SEARCH-SERVICE-NAME `
-  --resource-group YOUR-RESOURCE-GROUP-NAME `
+az search service update \
+  --name YOUR-SEARCH-SERVICE-NAME \
+  --resource-group YOUR-RESOURCE-GROUP-NAME \
   --disable-local-auth
 ```
 
@@ -223,7 +229,11 @@ To disable key-based authentication, set "disableLocalAuth" to true.
     }
     ```
 
+    A successful request returns `200 OK` with the updated service configuration.
+
 To re-enable key authentication, set "disableLocalAuth" to false. The search service resumes acceptance of API keys on the request automatically (assuming they're specified).
+
+**Reference:** [Services - Create Or Update](/rest/api/searchmanagement/services/create-or-update)
 
 ---
 

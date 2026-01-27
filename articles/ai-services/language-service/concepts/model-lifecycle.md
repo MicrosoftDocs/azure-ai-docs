@@ -5,10 +5,11 @@ description: This article describes the timelines for models and model versions 
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
-ms.date: 11/18/2025
+ms.topic: concept-article
+ms.date: 01/26/2026
 ms.author: lajanuar
 ---
+<!-- markdownlint-disable MD025 -->
 # Model lifecycle
 
 Language features utilize AI models. We update Azure Language with new model versions to improve accuracy, support, and quality. As models become older, they're retired. Use this article for information on that process, and what you can expect for your applications.
@@ -36,19 +37,18 @@ By default, API and SDK requests use the latest Generally Available model. To us
 
 Use the following table to find which model versions support each feature:
 
-| Feature | Supported generally available (GA) version | Latest supported preview versions | Other supported verision |
-|--|--|--|--|
-| Sentiment Analysis and opinion mining | `latest` |  |  |
-| Language Detection | `latest` |  |  |
-| Entity Linking | `latest` |  |  |
+| Feature | Supported generally available (GA) version | Latest supported preview versions | Other supported version |
+| ---- | ---- | ---- | ---- |
+| Sentiment Analysis and opinion mining | `latest` | | |
+| Language Detection | `latest` | | |
+| Entity Linking| `latest` | | |
 | Named Entity Recognition (NER) | `latest` | `2025-08-01-preview` | `2025-04-15-preview` |
 | Personally Identifiable Information (PII) detection | `latest` | `2025-08-01-preview` | `2025-04-15-preview` |
 | PII detection for conversations | `latest` | `2024-11-01-preview` | `2023-04-15-preview` |
-| Question answering | `latest` |  |  |
-| Text Analytics for health | `latest` | `2023-04-15-preview` |  |
-| Key phrase extraction | `latest` |  |  |
-| Summarization | `latest`. **Note**: `2025-06-10` is only available for `issue` and `resolution` aspects in conversation summarization.  | |  |
-
+| Question answering | `latest` | | |
+| Text Analytics for health | `latest` | `2023-04-15-preview` | |
+| Key phrase extraction | `latest` | | |
+| Summarization | `latest`. **Note**: `2025-06-10` is only available for `issue` and `resolution` aspects in conversation summarization. | | |
 
 ## Custom features
 
@@ -75,7 +75,6 @@ Training configurations are typically available for **six months** after its rel
 After the **training config expiration** date, you have to use another supported training configuration version to submit any training or deployment jobs. After the **deployment expiration** date, your deployed model is unavailable to be used for prediction.
 
 After training config version expires, API calls returns an error when called or used if called with an expired configuration version. By default, training requests use the latest available training configuration version. To change the configuration version, use the `trainingConfigVersion` parameter when submitting a training job and assign the version you want.
-
 
 ## API versions
 

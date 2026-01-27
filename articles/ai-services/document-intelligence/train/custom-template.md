@@ -5,7 +5,7 @@ description: Use the custom template document model to train a model to extract 
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/18/2025
 ms.author: lajanuar
 monikerRange: 'doc-intel-4.0.0 || <=doc-intel-3.1.0'
