@@ -7,7 +7,7 @@ manager: nitinme
 ms.date: 01/14/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: article
+ms.topic: limits-and-quotas
 ms.custom:
   - ignite-2023
   - references_regions
