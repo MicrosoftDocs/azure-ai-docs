@@ -63,7 +63,7 @@ items:
   - name: FAQ
     href: ../../agents/concepts/foundry-iq-faq.yml
   - name: Connect a knowledge base to agents
-    href: ../../agents/how-to/tools/knowledge-retrieval.md
+    href: ../../agents/how-to/foundry-iq-connect.md
   
 # Azure AI Services Integration
 - name: Foundry Tools
