@@ -5,9 +5,10 @@ description: Connect Foundry Agent Service to a Foundry IQ knowledge base (Azure
 author: haileytap
 ms.author: haileytapia
 ms.reviewer: fsunavala
+manager: nitinme
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 01/22/2026
+ms.date: 01/27/2026
 ms.custom: pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 ---
@@ -284,6 +285,8 @@ Content-Type: application/json
 ---
 
 ### Connect to a remote SharePoint knowledge source
+
+[!INCLUDE [foundry-iq-agent-trimming](../../../includes/foundry-iq-agent-trimming.md)]
 
 Optionally, if your knowledge base includes a [remote SharePoint knowledge source](/azure/search/agentic-knowledge-source-how-to-sharepoint-remote), you must also include the `x-ms-query-source-authorization` header in the MCP tool connection.
 
