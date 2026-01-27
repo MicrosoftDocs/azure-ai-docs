@@ -11,6 +11,6 @@ ms.custom: include file
 ---
 
 > [!IMPORTANT]
-> Foundry Agent Service doesn't currently support per-user security trimming. This affects knowledge bases that require user-delegated authorization via `x-ms-query-source-authorization`, such as remote SharePoint knowledge sources.
+> In this preview, Foundry Agent Service doesn't support per-request headers for MCP tools. Headers set in agent definitions apply to all invocations and can't vary by user or request.
 >
 > For per-user authorization, use the [Azure OpenAI Responses API](/azure/ai-foundry/openai/how-to/responses) instead.
