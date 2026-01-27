@@ -40,7 +40,7 @@ A knowledge base consists of *knowledge sources* (connections to internal and ex
 A Foundry IQ knowledge base contains knowledge sources and uses agentic retrieval (with optional LLM reasoning) to process queries. Azure AI Search provides the underlying indexing and retrieval infrastructure.
 
 | Component | Description |
-| -- | -- |
+|--|--|
 | [Knowledge base](/azure/search/agentic-retrieval-how-to-create-knowledge-base) | Top-level resource that orchestrates agentic retrieval. Defines which knowledge sources to query and parameters that control retrieval behavior. |
 | [Knowledge sources](/azure/search/agentic-knowledge-source-overview) | Connections to indexed or remote content. A knowledge base can reference one or more knowledge sources. |
 | [Agentic retrieval](/azure/search/agentic-retrieval-overview) | Multi-query pipeline that decomposes complex questions into subqueries, executes them in parallel, semantically reranks results, and returns unified responses. Uses an optional LLM for query planning. |
@@ -94,12 +94,11 @@ You can set up Foundry IQ through a portal or programmatically. The following st
 
 To support enterprises in building agent-native systems, Microsoft provides an intelligence layer composed of three IQ workloads:
 
-+ [**Fabric IQ**](/fabric/iq/overview) is a semantic intelligence layer for Microsoft Fabric. It models business data (ontologies, semantic models, and graphs) so agents can reason over analytics in OneLake and Power BI.
++ [Fabric IQ](/fabric/iq/overview) is a semantic intelligence layer for Microsoft Fabric. It models business data (ontologies, semantic models, and graphs) so agents can reason over analytics in OneLake and Power BI.
 
-+ [**Work IQ**](/copilot/microsoft-365/microsoft-365-copilot-overview) is a contextual intelligence layer for Microsoft 365. It captures collaboration signals from documents, meetings, chats, and workflows, providing agents with insight into how your organization operates.
++ [Work IQ](/copilot/microsoft-365/microsoft-365-copilot-overview) is a contextual intelligence layer for Microsoft 365. It captures collaboration signals from documents, meetings, chats, and workflows, providing agents with insight into how your organization operates.
 
-+ [**Foundry IQ**](#capabilities) is a managed knowledge layer for enterprise data. It connects structured and unstructured data across Azure, SharePoint, OneLake, and the web so agents can access permission-aware knowledge.
-
++ [Foundry IQ](#capabilities) is a managed knowledge layer for enterprise data. It connects structured and unstructured data across Azure, SharePoint, OneLake, and the web so agents can access permission-aware knowledge.
 Each IQ workload is standalone, but you can use them together to answer virtually any question from an AI agent or application.
 
 ## Get started

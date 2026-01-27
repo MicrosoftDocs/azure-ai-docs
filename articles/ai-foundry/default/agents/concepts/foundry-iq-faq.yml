@@ -19,9 +19,9 @@ sections:
     questions:
       - question: "What is Foundry IQ?"
         answer: |
-          Foundry IQ is a unified knowledge layer for agents that's designed to improve response quality, automate retrieval-augmented generation (RAG) workflows, and enable enterprise-ready grounding.
+          Foundry IQ is a unified knowledge layer for agents designed to improve response quality, automate retrieval-augmented generation (RAG) workflows, and enable enterprise-ready grounding.
           
-          With Foundry IQ, you create a knowledge base that connects to one or more knowledge sources. An agentic retrieval engine processes queries, and an optional LLM from Azure OpenAI in Foundry Models adds query planning and reasoning. Agents built in Foundry Agent Service or other frameworks call the knowledge base to retrieve relevant content.
+          With Foundry IQ, you create a knowledge base that connects to one or more knowledge sources. The agentic retrieval engine processes queries, and an optional large language model (LLM) from Azure OpenAI in Foundry Models adds query planning and reasoning. Agents built in Foundry Agent Service or other frameworks call the knowledge base to retrieve relevant content.
       
       - question: "What is the difference between Foundry IQ and agentic retrieval?"
         answer: |
@@ -43,7 +43,7 @@ sections:
 
       - question: "Is Foundry Agent Service required for Foundry IQ?"
         answer: |
-          No. You can call the knowledge base directly from LlamaIndex, LangChain, Semantic Kernel, AutoGen, Haystack, or any application that supports the Azure AI Search REST APIs or Azure SDKs. However, [Foundry Agent Service](../../overview.md) provides a turnkey agent hosting platform with built-in support for Foundry IQ knowledge bases.
+          No. You can call the knowledge base directly from LlamaIndex, LangChain, Semantic Kernel, AutoGen, Haystack, or any application that supports the Azure AI Search REST APIs or Azure SDKs. However, Foundry Agent Service provides a turnkey agent hosting platform with built-in support for Foundry IQ knowledge bases.
 
       - question: "Do Foundry IQ and agentic retrieval have a hard dependency on LLMs?"
         answer: |
@@ -85,7 +85,7 @@ sections:
 
       - question: "What is the retrieval reasoning effort?"
         answer: |
-            The [retrieval reasoning effort](/azure/search/agentic-retrieval-how-to-set-retrieval-reasoning-effort) determines how much LLM-driven planning is used during agentic retrieval. Levels range from minimal to medium, influencing how deeply the system interprets the query, selects sources, and decides whether additional retrieval steps are needed.
+            The [retrieval reasoning effort](/azure/search/agentic-retrieval-how-to-set-retrieval-reasoning-effort) determines how much LLM-driven planning is used during agentic retrieval. Levels range from minimal to medium, influencing how deeply the system interprets the query, selects sources, and decides whether more retrieval steps are needed.
 
       - question: "What is answer synthesis? Should I use it for a Foundry IQ knowledge base?"
         answer: |
