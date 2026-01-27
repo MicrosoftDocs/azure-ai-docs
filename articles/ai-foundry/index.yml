@@ -97,7 +97,7 @@ productDirectory:
         - url: /azure/ai-foundry/agents/concepts/foundry-iq-faq
           text: Frequently asked questions
         - url: /azure/ai-foundry/agents/how-to/foundry-iq-connect
-          text: Connect knowledge bases to agents
+          text: Connect knowledge base to agents
     
     # Card
     - title: Foundry Tools
