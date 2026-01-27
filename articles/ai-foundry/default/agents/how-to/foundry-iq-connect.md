@@ -16,7 +16,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
-In this article, you learn how to connect an agent in Microsoft Foundry to a knowledge base in Foundry IQ, an agentic retrieval workload powered by Azure AI Search. The connection uses the [Model Context Protocol (MCP)](./model-context-protocol.md) to facilitate tool calls. When invoked by the agent, the knowledge base orchestrates the following operations:
+In this article, you learn how to connect a knowledge base in Foundry IQ to an agent in Foundry Agent Service. The connection uses the [Model Context Protocol (MCP)](./tools/model-context-protocol.md) to facilitate tool calls. When invoked by the agent, the knowledge base orchestrates the following operations:
 
 - Plans and decomposes a user query into subqueries.
 - Processes the subqueries simultaneously using keyword, vector, or hybrid techniques.
@@ -89,7 +89,7 @@ Although knowledge bases support [answer synthesis](/azure/search/agentic-retrie
 
 ### How Foundry Agent Service uses knowledge bases
 
-[Foundry Agent Service](../../../../agents/overview.md) orchestrates calls to the knowledge base via the MCP tool and synthesizes the final answer. At runtime, the agent calls only the knowledge base, not the data platform (such as Azure Blob Storage or Microsoft OneLake) that underlies the knowledge source. The knowledge base handles all retrieval operations.
+[Foundry Agent Service](/azure/ai-foundry/agents/overview) orchestrates calls to the knowledge base via the MCP tool and synthesizes the final answer. At runtime, the agent calls only the knowledge base, not the data platform (such as Azure Blob Storage or Microsoft OneLake) that underlies the knowledge source. The knowledge base handles all retrieval operations.
 
 ## Create a project connection
 
@@ -495,4 +495,4 @@ This section helps you troubleshoot common issues when connecting Foundry Agent 
 - [Create a knowledge base in Azure AI Search](/azure/search/agentic-retrieval-how-to-create-knowledge-base)
 - [Tutorial: Build an end-to-end agentic retrieval solution](/azure/search/agentic-retrieval-how-to-create-pipeline)
 - [Foundry IQ: Unlocking ubiquitous knowledge for agents](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/foundry-iq-unlocking-ubiquitous-knowledge-for-agents/4470812)
-- [Tool best practices](../../concepts/tool-best-practice.md)
+- [Tool best practices](../concepts/tool-best-practice.md)

@@ -94,7 +94,7 @@ productDirectory:
       links:
         - url: /azure/ai-foundry/agents/concepts/what-is-foundry-iq
           text: What is Foundry IQ?
-        - url: /azure/ai-foundry/agents/concepts/foundry-iq-faq
+        - url: /azure/ai-foundry/agents/concepts/foundry-iq-faq.yaml
           text: Frequently asked questions
         - url: /azure/ai-foundry/agents/how-to/foundry-iq-connect
           text: Connect knowledge bases to agents

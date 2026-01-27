@@ -61,7 +61,7 @@ items:
   - name: What is Foundry IQ?
     href: ../../agents/concepts/what-is-foundry-iq.md
   - name: FAQ
-    href: ../../agents/concepts/foundry-iq-faq.md
+    href: ../../agents/concepts/foundry-iq-faq.yaml
   - name: Connect knowledge bases to agents
     href: ../../agents/how-to/tools/knowledge-retrieval.md
   
