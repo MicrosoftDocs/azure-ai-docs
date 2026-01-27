@@ -5,7 +5,7 @@ description: Use an Azure Logic Apps workflow for automated indexing in Azure AI
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 09/28/2025
+ms.date: 01/23/2026
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.custom:
@@ -130,7 +130,6 @@ It also supports the following query actions:
 + Deletion detection isn't supported. You must manually [delete orphaned documents](search-how-to-delete-documents.md#delete-a-single-document) from the index.
 + Duplicate documents in the search index are a known issue in this preview. Consider deleting objects and starting over if this becomes an issue.
 + No support for private endpoints in the logic app workflow created by the portal wizard. The workflow is hosted using the [**Consumption** hosting option](/azure/logic-apps/single-tenant-overview-compare) and is subject to its constraints. To use the **Standard** hosting option, use a programmatic approach to creating the workflow.
-+ All actions are generally available except for 
 
 ## Create a logic app workflow
 
