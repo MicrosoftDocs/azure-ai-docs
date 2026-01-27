@@ -74,7 +74,7 @@ Voices with names that include `MultilingualNeural`, `DragonHDLatestNeural`, or 
 
 The table below lists all supported speaking languages for each multilingual voice. If a voice does not support the language of the input text, the Speech service does not return synthesized audio. The table is sorted in descending order by the number of supported languages.
 
-The locale prefix indicates the voice’s primary locale. For example, for the voice en‑US‑AndrewMultilingualNeural, the locale prefix is en‑US, which is the first segment of the voice name.
+The locale prefix indicates the voice’s primary locale. For example, for the voice `en‑US‑AndrewMultilingualNeural`, the locale prefix is `en‑US`, which is the first segment of the voice name.
 
 [!INCLUDE [Language support include](includes/language-support/multilingual-voices.md)]
 
