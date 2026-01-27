@@ -65,7 +65,7 @@ Create an evaluation script that generates a target function wrapper, loads your
 
     :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/evaluate.py" id="evaluate_wrapper":::
 
-    References: [azure-ai-evaluation](https://pypi.org/project/azure-ai-evaluation/), [evaluation target functions](https://github.com/Azure/azure-ai-evaluation).
+    References: [azure-ai-evaluation](https://pypi.org/project/azure-ai-evaluation/), evaluation target functions.
 
 1. Finally, add code to run the evaluation, view the results locally, and get a link to the evaluation results in Foundry portal:
  
@@ -100,7 +100,7 @@ In Part 1 of this tutorial series, you created an **.env** file that specifies t
     pip install azure-ai-evaluation[remote]
     ```
 
-    References: [azure-ai-evaluation SDK](https://pypi.org/project/azure-ai-evaluation/), [Evaluation SDK documentation](https://github.com/Azure/azure-ai-evaluation).
+    References: [azure-ai-evaluation SDK](https://pypi.org/project/azure-ai-evaluation/), Evaluation SDK documentation.
 
 ### Verify your evaluation setup
 

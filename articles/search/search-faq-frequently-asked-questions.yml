@@ -217,7 +217,7 @@ sections:
       - question: |
           Can I use the Azure portal to view and manage search content if my search service is behind an IP firewall or private endpoint?
         answer: |
-          You can use the Azure portal on a network-protected search service if you create a network exception that allows client and portal access. For more information, see [Connect through an IP firewall](./service-configure-firewall.md#allow-access-from-your-client-and-portal-ip) or [Connect through a private endpoint](./service-create-private-endpoint.md#portal-access-private-search-service).
+          You can use the Azure portal on a network-protected search service if you create a network exception that allows client and portal access. For more information, see [Connect through an IP firewall](./service-configure-firewall.md#allow-access-from-the-azure-portal-ip-address) or [Connect through a private endpoint](./service-create-private-endpoint.md#portal-access-private-search-service).
 
 additionalContent: |
 

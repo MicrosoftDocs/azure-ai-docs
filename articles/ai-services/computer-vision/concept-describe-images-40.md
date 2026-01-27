@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 09/16/2025
 ms.author: pafarley
 ---

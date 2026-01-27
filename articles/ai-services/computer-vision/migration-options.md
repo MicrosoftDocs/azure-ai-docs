@@ -4,7 +4,7 @@ description: Guidance for migrating from Azure Vision - Image Analysis API to al
 author: PatrickFarley
 ms.author: pafarley
 ms.date: 10/01/2025
-ms.topic: article
+ms.topic: upgrade-and-migration-article
 ms.service: azure-ai-vision
 ms.custom: ai-migration, vision
 ---

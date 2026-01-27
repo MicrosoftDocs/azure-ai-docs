@@ -98,9 +98,9 @@ To learn more, see [Risk and safety evaluators](./evaluation-evaluators/risk-saf
 
 | Evaluator | Purpose | Inputs |
 |--|--|--|
-| Intent Resolution | Measures how accurately the agent identifies and addresses user intentions. | Query, response |
-| Task Adherence | Measures how well the agent follows through on identified tasks. | Query, response, tool definitions (optional) |
-| Tool Call Accuracy | Measures how well the agent selects and calls the correct tools to. | Query, either response or tool calls, tool definitions |
+| Intent Resolution (preview) | Measures how accurately the agent identifies and addresses user intentions. | Query, response |
+| Task Adherence (preview)| Measures how well the agent follows through on identified tasks. | Query, response, tool definitions (optional) |
+| Tool Call Accuracy (preview) | Measures how well the agent selects and calls the correct tools to. | Query, either response or tool calls, tool definitions |
 
 ::: moniker-end
 
@@ -108,11 +108,11 @@ To learn more, see [Risk and safety evaluators](./evaluation-evaluators/risk-saf
 
 | Evaluator | Purpose | Inputs |
 |--|--|--|
-| Task Adherence  | Measures whether the agent follows through on identified tasks according to system instructions. | Query, Response, Tool definitions (Optional) |
+| Task Adherence (preview)  | Measures whether the agent follows through on identified tasks according to system instructions. | Query, Response, Tool definitions (Optional) |
 | Task Completion (preview)| Measures whether the agent successfully completed the requested task end-to-end. | Query, Response, Tool definitions (Optional) |
-| Intent Resolution | Measures how accurately the agent identifies and addresses user intentions. | Query, Response, Tool definitions (Optional)  |
+| Intent Resolution (preview) | Measures how accurately the agent identifies and addresses user intentions. | Query, Response, Tool definitions (Optional)  |
 | Task Navigation Efficiency (preview) | Determines whether the agent's sequence of steps matches an optimal or expected path to measure efficiency. | Response, Ground truth |
-| Tool Call Accuracy | Measures the overall quality of tool calls including selection, parameter correctness, and efficiency. | Query, Tool definitions, Tool calls (Optional), Response |
+| Tool Call Accuracy (preview) | Measures the overall quality of tool calls including selection, parameter correctness, and efficiency. | Query, Tool definitions, Tool calls (Optional), Response |
 | Tool Selection (preview) | Measures whether the agent selected the most appropriate and efficient tools for a task. | Query, Tool definitions, Tool calls (Optional), Response |
 | Tool Input Accuracy (preview)| Validates that all tool call parameters are correct with strict criteria including grounding, type, format, completeness, and appropriateness. | Query, Response, Tool definitions |
 | Tool Output Utilization (preview)| Measures whether the agent correctly interprets and uses tool outputs contextually in responses and subsequent calls. | Query, Response, Tool definitions (Optional) |

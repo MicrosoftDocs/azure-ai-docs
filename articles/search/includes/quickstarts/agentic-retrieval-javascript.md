@@ -666,7 +666,7 @@ const searchClient = new SearchClient(process.env.AZURE_SEARCH_ENDPOINT, 'earth_
 await searchIndexClient.createOrUpdateIndex(index);
 ```
 
-Reference: [SearchField](/javascript/api/@azure/search-documents/searchfield), [VectorSearch](/javascript/api/@azure/search-documents/vectorsearch), [SemanticSearch](/javascript/api/@azure/search-documents/semanticsearch), [SearchIndex](/javascript/api/@azure/search-documents/searchindex), [SearchIndexClient](/javascript/api/@azure/search-documents/searchindexclient), [SearchClient](/javascript/api/@azure/search-documents/searchclient), [DefaultAzureCredential](/javascript/api/@azure/identity/defaultazurecredential)
+**Reference:** [SearchField](/javascript/api/@azure/search-documents/searchfield), [VectorSearch](/javascript/api/@azure/search-documents/vectorsearch), [SemanticSearch](/javascript/api/@azure/search-documents/semanticsearch), [SearchIndex](/javascript/api/@azure/search-documents/searchindex), [SearchIndexClient](/javascript/api/@azure/search-documents/searchindexclient), [SearchClient](/javascript/api/@azure/search-documents/searchclient), [DefaultAzureCredential](/javascript/api/@azure/identity/defaultazurecredential)
 
 ### Upload documents to the index
 
@@ -708,7 +708,7 @@ while (count !== documents.length) {
 console.log(`✓ All ${documents.length} documents indexed successfully!`);
 ```
 
-Reference: [SearchIndexingBufferedSender](/javascript/api/@azure/search-documents/searchindexingbufferedsender)
+**Reference:** [SearchIndexingBufferedSender](/javascript/api/@azure/search-documents/searchindexingbufferedsender)
 
 ### Create a knowledge source
 
@@ -733,7 +733,7 @@ await searchIndexClient.createKnowledgeSource({
 console.log(`✅ Knowledge source 'earth-knowledge-source' created successfully.`);
 ```
 
-Reference: [SearchIndexKnowledgeSource](/javascript/api/@azure/search-documents/searchindexknowledgesource)
+**Reference:** [SearchIndexKnowledgeSource](/javascript/api/@azure/search-documents/searchindexknowledgesource)
 
 ### Create a knowledge base
 
@@ -766,7 +766,7 @@ await searchIndexClient.createKnowledgeBase({
 console.log(`✅ Knowledge base 'earth-knowledge-base' created successfully.`);
 ```
 
-Reference: [KnowledgeBase](/javascript/api/@azure/search-documents/knowledgebase)
+**Reference:** [KnowledgeBase](/javascript/api/@azure/search-documents/knowledgebase)
 
 ### Run the retrieval pipeline
 
@@ -816,7 +816,7 @@ const retrievalRequest = {
 const result = await knowledgeRetrievalClient.retrieveKnowledge(retrievalRequest);
 ```
 
-Reference: [KnowledgeRetrievalClient](/javascript/api/@azure/search-documents/knowledgeretrievalclient), [KnowledgeBaseRetrievalRequest](/javascript/api/@azure/search-documents/knowledgebaseretrievalrequest)
+**Reference:** [KnowledgeRetrievalClient](/javascript/api/@azure/search-documents/knowledgeretrievalclient), [KnowledgeBaseRetrievalRequest](/javascript/api/@azure/search-documents/knowledgebaseretrievalrequest)
 
 ### Review the response, activity, and references
 

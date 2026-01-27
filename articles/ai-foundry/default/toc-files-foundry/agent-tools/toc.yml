@@ -46,10 +46,14 @@ items:
     href: ../../agents/how-to/tools/knowledge-retrieval.md
   - name: SharePoint (preview)
     href: ../../agents/how-to/tools/sharepoint.md
-  - name: Web search (preview)
-    href: ../../agents/how-to/tools/web-search.md
-  - name: Grounding with Bing tools
-    href: ../../agents/how-to/tools/bing-tools.md
+  - name: Web search capabilities
+    items:
+    - name: Web search overview
+      href: ../../agents/how-to/tools/web-overview.md
+    - name: Web search tool (preview)
+      href: ../../agents/how-to/tools/web-search.md
+    - name: Grounding with Bing tools
+      href: ../../agents/how-to/tools/bing-tools.md
   - name: Fabric data agent (preview)
     href: ../../agents/how-to/tools/fabric.md
 

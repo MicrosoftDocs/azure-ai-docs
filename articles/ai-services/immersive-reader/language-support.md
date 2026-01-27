@@ -5,7 +5,7 @@ description: Learn more about the human languages that Immersive Reader supports
 author: rwallerms
 manager: nitinme
 ms.service: azure-ai-immersive-reader
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 02/07/2024
 ms.author: rwaller
 ---

@@ -8,7 +8,9 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: how-to
-ms.date: 08/27/2025
+ms.date: 01/20/2026
+ms.custom: dev-focus
+ai-usage: ai-assisted
 ---
 
 # Create an index in Azure AI Search
@@ -17,15 +19,166 @@ In this article, learn the steps for defining a schema for a [**search index**](
 
 ## Prerequisites
 
-+ Write permissions as a [**Search Service Contributor**](search-security-rbac.md) or an [admin API key](search-security-api-keys.md) for key-based authentication.
++ An Azure subscription. [Create one for free](https://azure.microsoft.com/free/cognitive-services).
 
-+ An understanding of the data you want to index. A search index is based on external content that you want to make searchable. Searchable content is stored as fields in an index. You should have a clear idea of which source fields you want to make searchable, retrievable, filterable, facetable, and sortable on Azure AI Search. See the [schema checklist](#schema-checklist) for guidance.
++ An [Azure AI Search service](search-create-service-portal.md), any region and tier, but it must be a billable tier (Basic or higher) for role-based access.
 
-+ You must also have a unique field in source data that can be used as the [document key (or ID)](#document-keys) in the index.
++ Permissions to create an index: **Search Service Contributor** role or an [admin API key](search-security-api-keys.md) for key-based authentication.
 
-+ A stable index location. Moving an existing index to a different search service isn't supported out-of-the-box. Revisit application requirements and make sure that your existing search service (capacity and region), are sufficient for your needs. If you're taking a dependency on Foundry Tools or Azure OpenAI, [choose a region](search-create-service-portal.md#checklist-for-choosing-a-region) that provides all of the necessary resources.
++ A unique field in your source data that can be used as the [document key](#document-keys) in the index.
 
-+ Finally, all service tiers have [index limits](search-limits-quotas-capacity.md#index-limits) on the number of objects that you can create. For example, if you're experimenting on the Free tier, you can only have three indexes at any given time. Within the index itself, there are [limits on vectors](search-limits-quotas-capacity.md#vector-index-size-limits) and [index limits](search-limits-quotas-capacity.md#index-limits) on the number of simple and complex fields.
++ An understanding of your data schema. See the [schema checklist](#schema-checklist) for design guidance on making fields searchable, retrievable, filterable, facetable, and sortable.
+
+## Create an index
+
+When you're ready to create the index, use a search client that can send the request. You can use the Azure portal or REST APIs for early development and proof-of-concept testing, otherwise it's common to use the Azure SDKs.
+
+During development, plan on frequent rebuilds. Because physical structures are created in the service, [dropping and re-creating indexes](search-howto-reindex.md) is necessary for many modifications. You might consider working with a subset of your data to make rebuilds go faster.
+
+### [**Azure portal**](#tab/portal)
+
+Index design through the Azure portal enforces requirements and schema rules for specific data types, such as disallowing full text search capabilities on numeric fields. 
+
+1. Sign in to the [Azure portal](https://portal.azure.com).
+
+1. Check for space. Search services are subject to [maximum number of indexes](search-limits-quotas-capacity.md), varying by service tier. Make sure you have room for a second index.
+
+1. In the search service **Overview** page, choose either option for creating a search index:
+
+   + **Add index**, an embedded editor for specifying an index schema
+   + [**Import wizards**](search-import-data-portal.md)
+
+   The wizard is an end-to-end workflow that creates an indexer, a data source, and a finished index. It also loads the data. If this is more than what you want, use **Add index** instead.
+
+The following screenshot highlights where the **Add index**, **Import data**, and **Import data (new)** wizards appear on the command bar.
+
+:::image type="content" source="media/search-what-is-an-index/add-index.png" alt-text="Screenshot of the options to add an index." border="true":::
+
+After an index is created, you can find it again on the **Indexes** page from the left pane.
+
+> [!TIP]
+> After creating an index in the Azure portal, you can copy the JSON representation and add it to your application code.
+
+### [**REST**](#tab/index-rest)
+
+[**Create Index (REST API)**](/rest/api/searchservice/indexes/create) is used to create an index. You need a REST client to connect to your search service and send requests. See [Quickstart: Full-text search using REST](search-get-started-text.md) or [Quickstart: Vector search using REST](search-get-started-vector.md) to get started.
+
+The REST API provides defaults for field attribution. For example, all `Edm.String` fields are searchable by default. Attributes are shown in full below for illustrative purposes, but you can omit attribution in cases where the default values apply.
+
+```json
+POST https://[servicename].search.windows.net/indexes?api-version=[api-version] 
+{
+  "name": "hotels",
+  "fields": [
+    { "name": "HotelId", "type": "Edm.String", "key": true, "retrievable": true, "searchable": true, "filterable": true },
+    { "name": "HotelName", "type": "Edm.String", "retrievable": true, "searchable": true, "filterable": false, "sortable": true, "facetable": false },
+    { "name": "Description", "type": "Edm.String", "retrievable": true, "searchable": true, "filterable": false, "sortable": false, "facetable": false, "analyzer": "en.microsoft" },
+    { "name": "Description_fr", "type": "Edm.String", "retrievable": true, "searchable": true, "filterable": false, "sortable": false, "facetable": false, "analyzer": "fr.microsoft" },
+    { "name": "Address", "type": "Edm.ComplexType", 
+      "fields": [
+          { "name": "StreetAddress", "type": "Edm.String", "retrievable": true, "filterable": false, "sortable": false, "facetable": false, "searchable": true },
+          { "name": "City", "type": "Edm.String", "retrievable": true, "searchable": true, "filterable": true, "sortable": true, "facetable": true },
+          { "name": "StateProvince", "type": "Edm.String", "retrievable": true, "searchable": true, "filterable": true, "sortable": true, "facetable": true }
+        ]
+    }
+  ],
+  "suggesters": [ ],
+  "scoringProfiles": [ ],
+  "analyzers":(optional)[ ... ]
+}
+```
+
+A successful response returns HTTP 201 Created with the index definition.
+
+**Reference:** [Indexes - Create](/rest/api/searchservice/indexes/create)
+
+### [**.NET SDK**](#tab/index-csharp)
+
+The Azure SDK for .NET has [**SearchIndexClient**](/dotnet/api/azure.search.documents.indexes.searchindexclient) with methods for creating and updating indexes.
+
+```csharp
+using Azure.Search.Documents.Indexes;
+using Azure.Search.Documents.Indexes.Models;
+
+// Create the index
+string indexName = "hotels";
+SearchIndex index = new SearchIndex(indexName)
+{
+    Fields =
+    {
+        new SimpleField("hotelId", SearchFieldDataType.String) { IsKey = true, IsFilterable = true, IsSortable = true },
+        new SearchableField("hotelName") { IsFilterable = true, IsSortable = true },
+        new SearchableField("description") { AnalyzerName = LexicalAnalyzerName.EnLucene },
+        new SearchableField("descriptionFr") { AnalyzerName = LexicalAnalyzerName.FrLucene },
+        new ComplexField("address")
+        {
+            Fields =
+            {
+                new SearchableField("streetAddress"),
+                new SearchableField("city") { IsFilterable = true, IsSortable = true, IsFacetable = true },
+                new SearchableField("stateProvince") { IsFilterable = true, IsSortable = true, IsFacetable = true },
+                new SearchableField("country") { SynonymMapNames = new[] { synonymMapName }, IsFilterable = true, IsSortable = true, IsFacetable = true },
+                new SearchableField("postalCode") { IsFilterable = true, IsSortable = true, IsFacetable = true }
+            }
+        }
+    }
+};
+
+await indexClient.CreateIndexAsync(index);
+```
+
+For more examples, see [azure-search-dotnet-samples/quickstart-keyword-search/v11](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-keyword-search/AzureSearchQuickstart).
+
+**Reference:** [SearchIndex](/dotnet/api/azure.search.documents.indexes.models.searchindex), [SimpleField](/dotnet/api/azure.search.documents.indexes.models.simplefield), [SearchableField](/dotnet/api/azure.search.documents.indexes.models.searchablefield), [SearchIndexClient.CreateIndexAsync](/dotnet/api/azure.search.documents.indexes.searchindexclient.createindexasync)
+
+### [**Other SDKs**](#tab/index-other-sdks)
+
+For Azure AI Search, the Azure SDKs implement generally available features. As such, you can use any of the SDKs to create a search index. All of them provide a **SearchIndexClient** that has methods for creating and updating indexes.
+
+| Azure SDK | Client | Examples |
+|-----------|--------|----------|
+| Java | [SearchIndexClient](/java/api/com.azure.search.documents.indexes.searchindexclient) | [CreateIndexExample.java](https://github.com/Azure/azure-sdk-for-java/blob/azure-search-documents_11.1.3/sdk/search/azure-search-documents/src/samples/java/com/azure/search/documents/indexes/CreateIndexExample.java) |
+| JavaScript | [SearchIndexClient](/javascript/api/@azure/search-documents/searchindexclient) | [Indexes](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/search/search-documents/samples/v11/javascript) |
+| Python | [SearchIndexClient](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient) | [sample_index_crud_operations.py](https://github.com/Azure/azure-sdk-for-python/blob/7cd31ac01fed9c790cec71de438af9c45cb45821/sdk/search/azure-search-documents/samples/sample_index_crud_operations.py) |
+
+---
+
+## Verify index creation
+
+After creating an index, verify it exists by listing the indexes on your search service.
+
+### [**Azure portal**](#tab/portal)
+
+1. In the Azure portal, go to your search service.
+
+1. Under **Search management**, select **Indexes**.
+
+1. Confirm your new index appears in the list. If you don't see it, refresh the page.
+
+### [**REST**](#tab/index-rest)
+
+```http
+GET https://[servicename].search.windows.net/indexes?api-version=[api-version]
+```
+
+A successful response returns a list of all indexes on the service, including your newly created index.
+
+### [**.NET SDK**](#tab/index-csharp)
+
+```csharp
+// List all indexes to verify creation
+var indexNames = indexClient.GetIndexNames();
+foreach (var name in indexNames)
+{
+    Console.WriteLine(name);
+}
+```
+
+### [**Other SDKs**](#tab/index-other-sdks)
+
+Use the `GetIndexNames()` or `list_index_names()` method on your SDK's `SearchIndexClient` to retrieve and display all index names.
+
+---
 
 ## Document keys
 
@@ -128,137 +281,10 @@ Field attributes are described in the following table.
 |sortable| Indicates whether to enable the field to be referenced in `$orderby` expressions. By default Azure AI Search sorts results by score, but in many experiences users want to sort by fields in the documents. A simple field can be sortable only if it's single-valued (it has a single value in the scope of the parent document). </br></br>Simple collection fields can't be sortable, since they're multi-valued. Simple subfields of complex collections are also multi-valued, and therefore can't be sortable. This is true whether it's an immediate parent field, or an ancestor field, that's the complex collection. Complex fields can't be sortable and the sortable attribute must be `null` for such fields. The default for sortable is `true` for single-valued simple fields, `false` for multi-valued simple fields, and `null` for complex fields.|  
 |facetable| Indicates whether to enable the field to be referenced in facet queries. Typically used in a presentation of search results that includes hit count by category (for example, search for digital cameras and see hits by brand, by megapixels, by price, and so on). This attribute must be `null` for complex fields. Fields of type `Edm.GeographyPoint` or `Collection(Edm.GeographyPoint)` can't be facetable. Default is `true` for all other simple fields. To reduce index size, set this attribute to `false` on fields that you won't be faceting on. |
 |analyzer|Sets the lexical analyzer for tokenizing strings during indexing and query operations. Valid values for this property include [language analyzers](index-add-language-analyzers.md), [built-in analyzers](index-add-custom-analyzers.md#built-in-analyzers), and [custom analyzers](index-add-custom-analyzers.md). The default is `standard.lucene`. This attribute can only be used with searchable string fields, and it can't be set together with either searchAnalyzer or indexAnalyzer. Once the analyzer is chosen and the field is created in the index, it can't be changed for the field. Must be `null` for [complex fields](search-howto-complex-data-types.md). |  
-|searchAnalyzer|Set this property together with indexAnalyzer to specify different lexical analyzers for indexing and queries. If you use this property, set analyzer to `null` and make sure indexAnalyzer is set to an allowed value. Valid values for this property include built-in analyzers and custom analyzers. This attribute can be used only with searchable fields. The search analyzer can be updated on an existing field since it's only used at query-time. Must be `null` for complex fields].|
+|searchAnalyzer|Set this property together with indexAnalyzer to specify different lexical analyzers for indexing and queries. If you use this property, set analyzer to `null` and make sure indexAnalyzer is set to an allowed value. Valid values for this property include built-in analyzers and custom analyzers. This attribute can be used only with searchable fields. The search analyzer can be updated on an existing field since it's only used at query-time. Must be `null` for complex fields.|
 |indexAnalyzer|Set this property together with searchAnalyzer to specify different lexical analyzers for indexing and queries.  If you use this property, set analyzer to `null` and make sure searchAnalyzer is set to an allowed value. Valid values for this property include built-in analyzers and custom analyzers. This attribute can be used only with searchable fields. Once the index analyzer is chosen, it can't be changed for the field. Must be `null` for complex fields.|
 |synonymMaps|A list of the names of synonym maps to associate with this field. This attribute can be used only with searchable fields. Currently only one synonym map per field is supported. Assigning a synonym map to a field ensures that query terms targeting that field are expanded at query-time using the rules in the synonym map. This attribute can be changed on existing fields. Must be `null` or an empty collection for complex fields.|
 |fields|A list of subfields if this is a field of type `Edm.ComplexType` or `Collection(Edm.ComplexType)`. Must be `null` or empty for simple fields. See [How to model complex data types in Azure AI Search](search-howto-complex-data-types.md) for more information on how and when to use subfields.|
-
-## Create an index
-
-When you're ready to create the index, use a search client that can send the request. You can use the Azure portal or REST APIs for early development and proof-of-concept testing, otherwise it's common to use the Azure SDKs.
-
-During development, plan on frequent rebuilds. Because physical structures are created in the service, [dropping and re-creating indexes](search-howto-reindex.md) is necessary for many modifications. You might consider working with a subset of your data to make rebuilds go faster.
-
-### [**Azure portal**](#tab/portal)
-
-Index design through the Azure portal enforces requirements and schema rules for specific data types, such as disallowing full text search capabilities on numeric fields. 
-
-1. Sign in to the [Azure portal](https://portal.azure.com).
-
-1. Check for space. Search services are subject to [maximum number of indexes](search-limits-quotas-capacity.md), varying by service tier. Make sure you have room for a second index.
-
-1. In the search service **Overview** page, choose either option for creating a search index:
-
-   + **Add index**, an embedded editor for specifying an index schema
-   + [**Import wizards**](search-import-data-portal.md)
-
-   The wizard is an end-to-end workflow that creates an indexer, a data source, and a finished index. It also loads the data. If this is more than what you want, use **Add index** instead.
-
-The following screenshot highlights where the **Add index**, **Import data**, and **Import data (new)** wizards appear on the command bar.
-
-:::image type="content" source="media/search-what-is-an-index/add-index.png" alt-text="Screenshot of the options to add an index." border="true":::
-
-After an index is created, you can find it again on the **Indexes** page from the left pane.
-
-> [!TIP]
-> After creating an index in the Azure portal, you can copy the JSON representation and add it to your application code.
-
-### [**REST**](#tab/index-rest)
-
-[**Create Index (REST API)**](/rest/api/searchservice/indexes/create) is used to create an index. You need a REST client to connect to your search service and send requests. See [Quickstart: Full-text search using REST](search-get-started-text.md) or [Quickstart: Vector search using REST](search-get-started-vector.md) to get started.
-
-The REST API provides defaults for field attribution. For example, all `Edm.String` fields are searchable by default. Attributes are shown in full below for illustrative purposes, but you can omit attribution in cases where the default values apply.
-
-```json
-POST https://[servicename].search.windows.net/indexes?api-version=[api-version] 
-{
-  "name": "hotels",
-  "fields": [
-    { "name": "HotelId", "type": "Edm.String", "key": true, "retrievable": true, "searchable": true, "filterable": true },
-    { "name": "HotelName", "type": "Edm.String", "retrievable": true, "searchable": true, "filterable": false, "sortable": true, "facetable": false },
-    { "name": "Description", "type": "Edm.String", "retrievable": true, "searchable": true, "filterable": false, "sortable": false, "facetable": false, "analyzer": "en.microsoft" },
-    { "name": "Description_fr", "type": "Edm.String", "retrievable": true, "searchable": true, "filterable": false, "sortable": false, "facetable": false, "analyzer": "fr.microsoft" },
-    { "name": "Address", "type": "Edm.ComplexType", 
-      "fields": [
-          { "name": "StreetAddress", "type": "Edm.String", "retrievable": true, "filterable": false, "sortable": false, "facetable": false, "searchable": true },
-          { "name": "City", "type": "Edm.String", "retrievable": true, "searchable": true, "filterable": true, "sortable": true, "facetable": true },
-          { "name": "StateProvince", "type": "Edm.String", "retrievable": true, "searchable": true, "filterable": true, "sortable": true, "facetable": true }
-        ]
-    }
-  ],
-  "suggesters": [ ],
-  "scoringProfiles": [ ],
-  "analyzers":(optional)[ ... ]
-}
-```
-
-### [**.NET SDK**](#tab/index-csharp)
-
-The Azure SDK for .NET has [**SearchIndexClient**](/dotnet/api/azure.search.documents.indexes.searchindexclient) with methods for creating and updating indexes.
-
-```csharp
-// Create the index
-string indexName = "hotels";
-SearchIndex index = new SearchIndex(indexName)
-{
-    Fields =
-    {
-        new SimpleField("hotelId", SearchFieldDataType.String) { IsKey = true, IsFilterable = true, IsSortable = true },
-        new SearchableField("hotelName") { IsFilterable = true, IsSortable = true },
-        new SearchableField("description") { AnalyzerName = LexicalAnalyzerName.EnLucene },
-        new SearchableField("descriptionFr") { AnalyzerName = LexicalAnalyzerName.FrLucene }
-        new ComplexField("address")
-        {
-            Fields =
-            {
-                new SearchableField("streetAddress"),
-                new SearchableField("city") { IsFilterable = true, IsSortable = true, IsFacetable = true },
-                new SearchableField("stateProvince") { IsFilterable = true, IsSortable = true, IsFacetable = true },
-                new SearchableField("country") { SynonymMapNames = new[] { synonymMapName }, IsFilterable = true, IsSortable = true, IsFacetable = true },
-                new SearchableField("postalCode") { IsFilterable = true, IsSortable = true, IsFacetable = true }
-            }
-        }
-    }
-};
-
-await indexClient.CreateIndexAsync(index);
-```
-
-For more examples, see [azure-search-dotnet-samples/quickstart-keyword-search/v11](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-keyword-search/AzureSearchQuickstart).
-
-### [**Other SDKs**](#tab/index-other-sdks)
-
-For Azure AI Search, the Azure SDKs implement generally available features. As such, you can use any of the SDKs to create a search index. All of them provide a **SearchIndexClient** that has methods for creating and updating indexes.
-
-| Azure SDK | Client | Examples |
-|-----------|--------|----------|
-| Java | [SearchIndexClient](/java/api/com.azure.search.documents.indexes.searchindexclient) | [CreateIndexExample.java](https://github.com/Azure/azure-sdk-for-java/blob/azure-search-documents_11.1.3/sdk/search/azure-search-documents/src/samples/java/com/azure/search/documents/indexes/CreateIndexExample.java) |
-| JavaScript | [SearchIndexClient](/javascript/api/@azure/search-documents/searchindexclient) | [Indexes](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/search/search-documents/samples/v11/javascript) |
-| Python | [SearchIndexClient](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient) | [sample_index_crud_operations.py](https://github.com/Azure/azure-sdk-for-python/blob/7cd31ac01fed9c790cec71de438af9c45cb45821/sdk/search/azure-search-documents/samples/sample_index_crud_operations.py) |
-
----
-
-<a name="corsoptions"></a>
-
-## Set `corsOptions` for cross-origin queries
-
-Index schemas include a section for setting `corsOptions`. By default, client-side JavaScript can't call any APIs because browsers prevent all cross-origin requests. To allow cross-origin queries through to your index, enable CORS (Cross-Origin Resource Sharing) by setting the **corsOptions** attribute. For security reasons, only [query APIs](search-query-create.md#choose-query-methods) support CORS.
-
-```json
-"corsOptions": {
-  "allowedOrigins": [
-    "*"
-  ],
-  "maxAgeInSeconds": 300
-```
-
-The following properties can be set for CORS:
-
-+ **allowedOrigins** (required): This is a list of origins that are allowed access to your index. JavaScript code served from these origins is allowed to query your index (assuming the caller provides a valid key or has permissions). Each origin is typically of the form `protocol://<fully-qualified-domain-name>:<port>` although `<port>` is often omitted. For more information, see [Cross-origin resource sharing (Wikipedia)](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing).
-
-  If you want to allow access to all origins, include `*` as a single item in the **allowedOrigins** array. *This isn't a recommended practice for production search services* but it's often useful for development and debugging.
-
-+ **maxAgeInSeconds** (optional): Browsers use this value to determine the duration (in seconds) to cache CORS preflight responses. This must be a non-negative integer. A longer cache period delivers better performance, but it extends the amount of time a CORS policy needs to take effect. If this value isn't set, a default duration of five minutes is used.
 
 ## Allowed updates on existing indexes
 
@@ -283,6 +309,28 @@ To minimize churn in the design process, the following table describes which ele
 | [Encryption](search-security-manage-encryption-keys.md) | Yes, you can update all parts of an *existing* encryption definition. |
 | [Synonym maps](search-synonyms.md) | Yes, you can create and edit synonym maps with no rebuild. |
 | [Semantic configuration](semantic-how-to-configure.md) | Yes, you can create and edit semantic configurations with no rebuild. |
+
+<a name="corsoptions"></a>
+
+## Set `corsOptions` for cross-origin queries
+
+Index schemas include a section for setting `corsOptions`. By default, client-side JavaScript can't call any APIs because browsers prevent all cross-origin requests. To allow cross-origin queries through to your index, enable CORS (Cross-Origin Resource Sharing) by setting the **corsOptions** attribute. For security reasons, only [query APIs](search-query-create.md#choose-query-methods) support CORS.
+
+```json
+"corsOptions": {
+  "allowedOrigins": [
+    "*"
+  ],
+  "maxAgeInSeconds": 300
+```
+
+The following properties can be set for CORS:
+
++ **allowedOrigins** (required): This is a list of origins that are allowed access to your index. JavaScript code served from these origins is allowed to query your index (assuming the caller provides a valid key or has permissions). Each origin is typically of the form `protocol://<fully-qualified-domain-name>:<port>` although `<port>` is often omitted. For more information, see [Cross-origin resource sharing (Wikipedia)](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing).
+
+  If you want to allow access to all origins, include `*` as a single item in the **allowedOrigins** array. *This isn't a recommended practice for production search services* but it's often useful for development and debugging.
+
++ **maxAgeInSeconds** (optional): Browsers use this value to determine the duration (in seconds) to cache CORS preflight responses. This must be a non-negative integer. A longer cache period delivers better performance, but it extends the amount of time a CORS policy needs to take effect. If this value isn't set, a default duration of five minutes is used.
 
 ## Next steps
 
