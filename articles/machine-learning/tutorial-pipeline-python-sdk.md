@@ -327,8 +327,8 @@ data_prep_component = command(
 
 **SDK Reference:**
 - [command](/python/api/azure-ai-ml/azure.ai.ml#azure-ai-ml-command)
-- [Input](/python/api/azure-ai-ml/azure.ai-ml.input)
-- [Output](/python/api/azure-api-azure-ai-ml/azure.ai.ml.output)
+- [Input](/python/api/azure-ai-ml/azure.ai.ml#azure-ai-ml-input)
+- [Output](/python/api/azure-ai-ml/azure.ai.ml#azure-ai-ml-output)
 
 Optionally, register the component in the workspace for future reuse.
 
@@ -567,8 +567,8 @@ def credit_defaults_pipeline(
 
 **SDK Reference:**
 - [dsl.pipeline](/python/api/azure-ai-ml/azure.ai.ml.dsl#azure-ai-ml-dsl-pipeline)
-- [Input](/python/api/azure-ai-ml/azure.ai.ml.input?view=azure-python)
-- [Output](/python/api/azure-ai-ml/azure.ai.ml.output?view=azure-python)
+- [Input](/python/api/azure-ai-ml/azure.ai.ml#azure-ai-ml-input)
+- [Output](/python/api/azure-ai-ml/azure.ai.ml#azure-ai-ml-output)
 
 Now use your pipeline definition to instantiate a pipeline with your dataset, split rate of choice, and the name you picked for your model.
 
@@ -585,7 +585,7 @@ pipeline = credit_defaults_pipeline(
 ```
 
 **SDK Reference:**
-- [Input](/python/api/azure-ai-ml/azure.ai.ml.input?view=azure-python)
+- [Input](/python/api/azure-ai-ml/azure.ai.ml#azure-ai-ml-input)
 
 ## Submit the job 
 
