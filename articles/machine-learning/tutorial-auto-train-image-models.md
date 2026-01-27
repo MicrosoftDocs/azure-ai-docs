@@ -66,9 +66,6 @@ notebook.
         pip install azure-ai-ml azure-identity
         ```
     
-    > [!NOTE]
-    > Python 3.6 and higher are compatible with automated ML support for computer vision tasks. 
-    
     ---
 
 ## Compute target setup
