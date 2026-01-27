@@ -16,6 +16,7 @@ ms.date: 01/27/2025
 | Maximum Batch input files - (no expiration)  | 500 |
 | Maximum Batch input files - (expiration set) | 10,000 |
 | Maximum input file size | 200 MB |
+| Maximum input file size - [Bring your own storage (BYOS)](../how-to/batch-blob-storage.md) | 1 GB |
 | Maximum requests per file | 100,000 |
 
 > [!NOTE]
