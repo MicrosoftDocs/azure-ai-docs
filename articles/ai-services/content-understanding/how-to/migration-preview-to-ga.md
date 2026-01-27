@@ -49,7 +49,7 @@ The analyzer definition might look something like this if it was created with th
 
 You need to make the following changes so that the analyzer works with the GA API.
 
-1. Add or update the `BaseAnalyzerID` property so that it's included at the top-level of the analyzer definition and set to one of the four supported values: `prebuilt-document`, `prebuilt-audio`, `prebuilt-video`, `prebuilt-image`. Select the one that corresponds with the files that you plan to process with this analyzer. The `Scenario` property from the preview release is deprecated. The replacement is `baseAnalyzerId`.
+1. Add or update the `BaseAnalyzerID` property so that it's included at the top-level of the analyzer definition and set to one of the four supported values: `prebuilt-document`, `prebuilt-audio`, `prebuilt-video`, or `prebuilt-image`. Select the one that corresponds with the files that you plan to process with this analyzer. The `Scenario` property from the preview release is deprecated. The replacement is `baseAnalyzerId`.
 
 1. Add a models object and specify the completion and embeddings model. This object specifies the default generative models that this analyzer uses.
 
@@ -84,20 +84,20 @@ You can use the updated definition to create a new analyzer. Call `PUT /analyzer
 
 1. Confidence and grounding are now optional properties for fields. The default field definition doesn't return confidence and grounding. To add confidence and grounding, set the `estimateFieldSourceAndConfidence` to `true`. This behavior is unchanged from the `2025-05-01-preview` API.
 
-1. Simplified the request to `GET` specific components of the Analyze result. `GET` the embedded images or content with the API call.
+1. Simplify the request to use the `GET` function to get specific components of the Analyze result. Use the `GET` function to get the embedded images or content with the API call.
 
 ``` JSON
 GET /analyzerResults/{operationId}/files/{path}
 ```
 
-Here, ```path``` can include:
+Here, the ```path``` value can include:
 
-- contents/{contentIndex}/pages/{pageNumber} - DocumentContent.pages[*].pageNumber
-- contents/{contentIndex}/figures/{figureId} - DocumentContent.figures[*].id
+- `contents/{contentIndex}/pages/{pageNumber} - DocumentContent.pages[*].pageNumber`
+- `contents/{contentIndex}/figures/{figureId} - DocumentContent.figures[*].id`
 
 1. The **Analyze** operation now supports only analyzing files by URL. Use the new **analyzeBinary** operation to upload files as part of the request body as a base64-encoded string. If you previously used the **Analyze** operation to upload files inline in your code, you need to update your code to instead use the **analyzeBinary** operation. Learn more about the [analyzeBinary operation](/rest/api/contentunderstanding/content-analyzers/analyze-binary).
 
-1. The **Analyze** operation's JSON payload schema is updated. There's now an inputs array that contains the information on the file to be analyzed. Each input element contains a url pointer to a file. Learn more about the [Analyze operation](/rest/api/contentunderstanding/content-analyzers/analyze).
+1. The **Analyze** operation's JSON payload schema is updated. There's now an inputs array that contains the information on the file to be analyzed. Each input element contains a URL pointer to a file. Learn more about the [Analyze operation](/rest/api/contentunderstanding/content-analyzers/analyze).
 
 > [!NOTE]
 > The inputs array only supports a single item in the `2025-11-01` version.
@@ -121,7 +121,7 @@ Here's an example of the updated schema for `PUT /analyzers/{analyzerName}`:
 
 ### New features
 
-- The field extraction method is now optional. When not set, the analyzer determines the approach (extract or generate). The best practice is to not add the method property to the analyzer and only set the method to extract if you need the value to be extracted verbatim.
+- The field extraction method is now optional. When not set, the analyzer determines the approach (extract or generate). The best practice is to not add the method property to the analyzer. Set the method to extract only if you need the value to be extracted verbatim.
 - There's added support for confidence scores and source grounding for fields in document analyzers that have the method set to generate.
 - There are now increased field limits to 1,000 fields per analyzer.
 - For documents, classification and segmentation supports up to 200 distinct types.
