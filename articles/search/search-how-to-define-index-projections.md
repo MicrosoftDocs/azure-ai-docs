@@ -8,23 +8,17 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 05/08/2025
+ms.date: 01/26/2026
 ms.update-cycle: 180-days
 ---
 
 # Define an index projection for parent-child indexing
 
-For indexes containing chunked documents, an *index projection* specifies how parent-child content is mapped to fields in a search index for one-to-many indexing. Through an index projection, you can send content to:
+If you're chunking content for either a RAG pattern or vectorization, you can specify an *index projection* to control whether elements of the parent document, such as a file name or creation date, repeat for each child (chunk) or are indexed as standalone search documents in a second index.
 
-- A single index, where the parent fields repeat for each chunk, but the grain of the index is at the chunk level. The [classic RAG example](https://github.com/Azure-Samples/azure-search-classic-rag/blob/main/README.md) shows this approach.
+We recommend repeating fields in a single index because splitting content into two indexes can be difficult to query, especially in classic search where index joins aren't supported.
 
-- Two or more indexes, where the parent index has fields related to the parent document, and the child index is organized around chunks. The child index is the primary search corpus, but the parent index could be used for [lookup queries](/rest/api/searchservice/documents/get) when you want to retrieve the parent fields of a particular chunk, or for independent queries.
-
-Most implementations are a single index organized around chunks with parent fields, such as the document filename, repeating for each chunk. However, the system is designed to support separate and multiple child indexes if that's your requirement. Azure AI Search doesn't support index joins so your application code must handle which index to use.
-
-An index projection is defined in a [skillset](cognitive-search-working-with-skillsets.md). It's responsible for coordinating the indexing process that sends chunks of content to a search index, along with the parent content associated with each chunk. It improves how native data chunking works by giving your more options for controlling how parent-child content is indexed.
-
-This article explains how to create a single index schema and indexer projection patterns for one-to-many indexing.
+In Azure AI Search, chunking is performed by skills and thus depends on indexers. To define an index projection, specify it in a [skillset](cognitive-search-working-with-skillsets.md). 
 
 ## Prerequisites
 
@@ -32,24 +26,21 @@ This article explains how to create a single index schema and indexer projection
 
 - An index (one or more) that accepts the output of the indexer pipeline.
 
-- A [supported data source](search-indexer-overview.md#supported-data-sources) having content that you want to chunk. It can be vector or nonvector content.
+- A [supported data source](search-indexer-overview.md#supported-data-sources) having content that you want to chunk.
 
 - A skill that splits content into chunks, either the [Text Split skill](cognitive-search-skill-textsplit.md) or a custom skill that provides equivalent functionality. 
 
 The skillset contains the indexer projection that shapes the data for one-to-many indexing. A skillset could also have other skills, such as an embedding skill like [AzureOpenAIEmbedding](cognitive-search-skill-azure-openai-embedding.md) if your scenario includes integrated vectorization.
 
-### Dependency on indexer processing
+### Choose an approach
 
-One-to-many indexing takes a dependency on skillsets and indexer-based indexing that includes the following four components:
+Through an index projection, you can send content to:
 
-- A data source
-- One or more indexes for your searchable content
-- A skillset that contains an index projection*
-- An indexer
+- A single index, where the parent fields repeat for each chunk, but the grain of the index is at the chunk level. The [classic RAG example](https://github.com/Azure-Samples/azure-search-classic-rag/blob/main/README.md) shows this approach.
 
-Your data can originate from any supported data source, but the assumption is that the content is large enough that you want to chunk it, and the reason for chunking it is that you're implementing a RAG pattern that provides grounding data to a chat model. Or, you're implementing vector search and need to meet the smaller input size requirements of embedding models.
+- Two or more indexes, where the parent index has fields related to the parent document, and the child index is organized around chunks. The child index is the primary search corpus, but the parent index could be used for [lookup queries](/rest/api/searchservice/documents/get) when you want to retrieve the parent fields of a particular chunk, or for independent queries.
 
-Indexers load indexed data into a predefined index. How you define the schema and whether to use one or more indexes is the first decision to make in a one-to-many indexing scenario. The next section covers index design.
+Most implementations are a single index organized around chunks with parent fields, such as the document filename, repeating for each chunk. However, the system is designed to support separate and multiple child indexes if that's your requirement. Azure AI Search doesn't support index joins so your application code must handle which index to use.
 
 ## Create an index for one-to-many indexing
 

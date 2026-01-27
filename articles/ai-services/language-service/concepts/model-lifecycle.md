@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: concept-article
-ms.date: 11/18/2025
+ms.date: 01/26/2026
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD025 -->
