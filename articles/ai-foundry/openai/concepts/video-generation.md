@@ -782,7 +782,7 @@ Sora might have difficulty with complex physics, causal relationships (for examp
 
 - Please see Sora 2 API details above 
 - Jobs are available for up to 24 hours after they're created. After that, you must create a new job to generate the video again.
-- You can have two video creation jobs running at the same time. You must wait for one of the jobs to finish before you can create another.
+- You can create two video job requests per minute. The Sora 2 quota only counts video job requests: other types of requests are not rate-limited.
 
 ### Sora 1 Technical limitations
 
