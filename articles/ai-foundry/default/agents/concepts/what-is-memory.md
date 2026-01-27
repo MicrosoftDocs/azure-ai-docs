@@ -46,7 +46,7 @@ Here's an example of how memory can improve and personalize interactions between
 :::image type="content" source="../media/memory/agent-memory-diagram.svg" alt-text="A diagram illustrating memory integration." lightbox="../media/memory/agent-memory-diagram.svg":::
 
 > [!TIP]
-> Memory isn't designed for general-purpose document ingestion, storage, or retrieval. To provide an agent with grounding data, consider using a [Foundry IQ knowledge base](../how-to/foundry-iq-usage.md).
+> Memory isn't designed for general-purpose document ingestion, storage, or retrieval. To provide an agent with grounding data, consider using a [Foundry IQ knowledge base](../how-to/foundry-iq-connect.md).
 
 ## Memory types
 

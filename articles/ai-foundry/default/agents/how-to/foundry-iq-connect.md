@@ -15,7 +15,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
-In this article, you learn how to connect an agent in Microsoft Foundry to a knowledge base in [Foundry IQ](../concepts/what-is-foundry-iq.md), an agentic retrieval workload powered by Azure AI Search. The connection uses Model Context Protocol (MCP) to facilitate tool calls. When invoked by the agent, the knowledge base orchestrates the following operations:
+In this article, you learn how to connect a knowledge base in [Foundry IQ](../concepts/what-is-foundry-iq.md) to an agent in Microsoft Foundry. The connection uses Model Context Protocol (MCP) to facilitate tool calls. When invoked by the agent, the knowledge base orchestrates the following operations:
 
 - Plans and decomposes a user query into subqueries.
 - Processes the subqueries simultaneously using keyword, vector, or hybrid techniques.

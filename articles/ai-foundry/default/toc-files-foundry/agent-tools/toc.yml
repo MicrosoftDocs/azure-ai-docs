@@ -42,8 +42,6 @@ items:
     href: ../../agents/how-to/tools/file-search.md
   - name: Vector stores for file search
     href: ../../agents/concepts/vector-stores.md
-  - name: Foundry IQ (preview)
-    href: ../../agents/how-to/foundry-iq-usage.md
   - name: SharePoint (preview)
     href: ../../agents/how-to/tools/sharepoint.md
   - name: Web search (preview)
@@ -53,6 +51,16 @@ items:
   - name: Fabric data agent (preview)
     href: ../../agents/how-to/tools/fabric.md
 
+# Foundry IQ
+- name: Foundry IQ (preview)
+  items:
+  - name: What is Foundry IQ?
+    href: ../../agents/concepts/what-is-foundry-iq.md
+  - name: FAQ
+    href: ../../agents/concepts/foundry-iq-faq.md
+  - name: Connect knowledge bases to agents
+    href: ../../agents/how-to/tools/knowledge-retrieval.md
+  
 # Azure AI Services Integration
 - name: Foundry Tools
   items:
