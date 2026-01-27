@@ -1,6 +1,7 @@
 # Operating System files
 .DS_Store
 Thumbs.db
+
 log/
 obj/
 _site/
