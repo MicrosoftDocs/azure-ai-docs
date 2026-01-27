@@ -5,7 +5,7 @@ description: Learn how to use global batch with Azure OpenAI
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 11/26/2025
+ms.date: 01/27/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
@@ -66,20 +66,9 @@ Registration is required for access to `gpt-5` and `o3`. For more information se
 
 ---
 
-The following models support global batch:
-
-| Model | Version | Input format |
-|---|---|---|
-| `gpt-5` | `2025-08-7`  | text + image |
-| `o3` | `2025-04-16`  | text + image   |
-| `o3-mini` | 2025-01-31 | text |
-|`gpt-4o` | 2024-08-06 |text + image |
-|`gpt-4o-mini`| 2024-07-18 | text + image |
-|`gpt-4o` | 2024-05-13 |text + image |
-
 
 > [!NOTE]
-> While Global Batch supports older API versions, some models require newer preview API versions. For example, `o3-mini` isn't supported with `2024-10-21` since it was released after this date. To access the newer models with global batch use the latest preview API version.
+> While Global Batch supports older API versions, some models require newer API versions. For example, `o3-mini` isn't supported with `2024-10-21` since it was released after this date. To access the newer models with global batch use the v1 API.<br><br> All batch models support text and image input except `o3-mini`.
 
 ### Feature support
 

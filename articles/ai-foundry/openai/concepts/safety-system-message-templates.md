@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Use these safety system message templates as a starting point to reduce harmful and ungrounded outputs in your Azure OpenAI apps.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: article
+ms.topic: how-to
 ms.date: 01/20/2026
 ms.custom: 
   - pilot-ai-workflow-jan-2026

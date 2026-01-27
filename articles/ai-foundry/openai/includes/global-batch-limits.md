@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
-ms.date: 01/14/2025
+ms.date: 01/27/2025
 ---
 
 ## Batch limits
@@ -39,6 +39,7 @@ The table shows the batch quota limit. Quota values for global batch are represe
 | `o3-mini`| 15B | 1B | 50M | 90K | N/A |
 | `o4-mini` | 15B | 1B | 50M | 90K | N/A |
 | `gpt-5`| 5B | 200M | 50M | 90K | N/A |
+| `gpt-5.1`| 5B | 200M | 50M | 90K | N/A |
 
 B = billion | M = million | K = thousand
 
@@ -52,3 +53,4 @@ B = billion | M = million | K = thousand
 | `gpt-4o-mini` | 1.5B | 100M | 50M | 90K | N/A |
 | `o3-mini` | 1.5B | 100M | 50M | 90K | N/A |
 | `gpt-5`| 5B | 200M | 50M | 90K | N/A |
+| `gpt-5.1`| 5B | 200M | 50M | 90K | N/A |
