@@ -68,7 +68,7 @@ Registration is required for access to `gpt-5` and `o3`. For more information se
 
 
 > [!NOTE]
-> While Global Batch supports older API versions, some models require newer API versions. For example, `o3-mini` isn't supported with `2024-10-21` since it was released after this date. To access the newer models with global batch use the v1 API.<br> All batch models support text and image input except `o3-mini`.
+> While Global Batch supports older API versions, some models require newer API versions. For example, `o3-mini` isn't supported with `2024-10-21` since it was released after this date. To access the newer models with global batch use the v1 API.<br><br> All batch models support text and image input except `o3-mini`.
 
 ### Feature support
 
