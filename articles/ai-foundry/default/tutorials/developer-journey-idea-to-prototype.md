@@ -157,8 +157,8 @@ enterprise-agent-tutorial/
    │   ├── Program.cs                   # Agent implementation with SharePoint + MCP
    │   ├── ModernWorkplaceAssistant.csproj
    │   └── .env                         # Environment variables (create this)
-   ├── Evaluate/                        # Business evaluation framework
-   │   ├── Program.cs                   # Batch evaluation with keyword matching
+   ├── Evaluate/                        # Cloud evaluation framework
+   │   ├── Program.cs                   # Cloud evaluation with built-in evaluators
    │   ├── Evaluate.csproj
    │   └── evaluation_results.json      # Example output (generated)
    ├── questions.jsonl                  # Business test scenarios
@@ -513,148 +513,139 @@ Conditional Access policies act as "if-then" statements that enforce organizatio
 🔗 Next: Add evaluation metrics, monitoring, and production deployment
 ```
 
-## Step 5: Evaluate the assistant in a batch
+## Step 5: Evaluate the assistant with cloud evaluation
 
-The evaluation framework code tests realistic business scenarios that combine SharePoint policies with Microsoft Learn technical guidance. This approach demonstrates batch evaluation capabilities for validating agent performance across multiple test cases. The evaluation uses a keyword-based approach to assess whether the agent provides relevant responses that incorporate the expected information sources.
+The evaluation framework tests realistic business scenarios using the **cloud evaluation** capability of the Microsoft Foundry SDK. Instead of a custom local approach, this pattern uses the built-in evaluators (`builtin.violence`, `builtin.fluency`, `builtin.task_adherence`) and the `openai_client.evals` API to run scalable, repeatable evaluations in the cloud.
 
-This evaluation framework tests:
+This evaluation framework demonstrates:
 
-- **SharePoint integration** for company policy questions
-- **MCP integration** for technical guidance questions  
-- **Combined scenarios** that require both internal and external knowledge
-- **Response quality** by using keyword matching and length analysis
+- **Agent targeting**: The evaluation runs queries directly against your agent using `azure_ai_target_completions`
+- **Built-in evaluators**: Safety (violence detection), quality (fluency), and task adherence metrics
+- **Cloud-based execution**: Eliminates local compute requirements and supports CI/CD integration
+- **Structured results**: Pass/fail labels, scores, and reasoning for each test case
 
 The code breaks down into the following main sections:
 
-1. [Load evaluation data](#load-evaluation-data).
-1. [Run batch evaluation](#run-batch-evaluation).
-1. [Compile evaluation results](#compile-evaluation-results).
+1. [Configure the evaluation](#configure-the-evaluation).
+1. [Run the cloud evaluation](#run-the-cloud-evaluation).
+1. [Retrieve evaluation results](#retrieve-evaluation-results).
 
-### Load evaluation data
+> [!TIP]
+> For detailed guidance on cloud evaluations, see [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md).
 
-In this section, the evaluation framework loads test questions from `questions.jsonl`. The file contains business scenarios that test different aspects of the agent:
+### Configure the evaluation
 
-:::code language="jsonl" source="~/foundry-samples-main/samples/python/enterprise-agent-tutorial/1-idea-to-prototype/questions.jsonl":::
-
-# [Python](#tab/python)
-
-:::code language="python" source="~/foundry-samples-main/samples/python/enterprise-agent-tutorial/1-idea-to-prototype/evaluate.py" id="load_test_data":::
-
-# [C#](#tab/csharp)
-
-:::code language="csharp" source="~/foundry-samples-main/samples/csharp/enterprise-agent-tutorial/1-idea-to-prototype/Evaluate/Program.cs" id="load_test_data":::
-
----
-
-### Run batch evaluation
+First, create an evaluation object that defines your data schema and testing criteria. The evaluation uses built-in evaluators for violence detection, fluency, and task adherence:
 
 # [Python](#tab/python)
 
-:::code language="python" source="~/foundry-samples-main/samples/python/enterprise-agent-tutorial/1-idea-to-prototype/evaluate.py" id="run_batch_evaluation":::
+:::code language="python" source="~/foundry-samples-main/samples/python/enterprise-agent-tutorial/1-idea-to-prototype/evaluate.py" id="configure_evaluation":::
 
 # [C#](#tab/csharp)
 
-:::code language="csharp" source="~/foundry-samples-main/samples/csharp/enterprise-agent-tutorial/1-idea-to-prototype/Evaluate/Program.cs" id="run_batch_evaluation":::
+:::code language="csharp" source="~/foundry-samples-main/samples/csharp/enterprise-agent-tutorial/1-idea-to-prototype/Evaluate/Program.cs" id="configure_evaluation":::
 
 ---
 
-### Compile evaluation results
+The `testing_criteria` array specifies which evaluators to run:
+
+- `builtin.violence`: Detects violent or harmful content in responses
+- `builtin.fluency`: Assesses response quality and readability (requires a model deployment)
+- `builtin.task_adherence`: Evaluates whether the agent followed instructions correctly
+
+### Run the cloud evaluation
+
+Create an evaluation run that targets your agent. The `azure_ai_target_completions` data source sends queries to your agent and captures responses for evaluation:
 
 # [Python](#tab/python)
 
-:::code language="python" source="~/foundry-samples-main/samples/python/enterprise-agent-tutorial/1-idea-to-prototype/evaluate.py" id="evaluation_results":::
+:::code language="python" source="~/foundry-samples-main/samples/python/enterprise-agent-tutorial/1-idea-to-prototype/evaluate.py" id="run_cloud_evaluation":::
 
 # [C#](#tab/csharp)
 
-:::code language="csharp" source="~/foundry-samples-main/samples/csharp/enterprise-agent-tutorial/1-idea-to-prototype/Evaluate/Program.cs" id="evaluation_results":::
+:::code language="csharp" source="~/foundry-samples-main/samples/csharp/enterprise-agent-tutorial/1-idea-to-prototype/Evaluate/Program.cs" id="run_cloud_evaluation":::
 
 ---
 
-### Expected output from evaluation sample code (evaluate.py)
+The `data_source` configuration:
 
-When you run the evaluation script, you see output similar to the following example. The output shows successful execution of business test scenarios and generation of evaluation metrics:
+- **type**: `azure_ai_target_completions` routes queries through your agent
+- **source**: Inline content with test queries (you can also use a dataset file ID)
+- **input_messages**: Template that formats each query for the agent
+- **target**: Specifies the agent name and version to evaluate
+
+### Retrieve evaluation results
+
+Poll the evaluation run until it completes, then retrieve the detailed output items:
+
+# [Python](#tab/python)
+
+:::code language="python" source="~/foundry-samples-main/samples/python/enterprise-agent-tutorial/1-idea-to-prototype/evaluate.py" id="retrieve_evaluation_results":::
+
+# [C#](#tab/csharp)
+
+:::code language="csharp" source="~/foundry-samples-main/samples/csharp/enterprise-agent-tutorial/1-idea-to-prototype/Evaluate/Program.cs" id="retrieve_evaluation_results":::
+
+---
+
+Each output item includes:
+
+- **Label**: Binary "pass" or "fail" result
+- **Score**: Numeric score on the evaluator's scale
+- **Reason**: Explanation of why the score was assigned (for LLM-based evaluators)
+
+### Expected output from cloud evaluation (evaluate.py)
+
+When you run the evaluation script, you see output similar to the following example. The output shows the evaluation object creation, run submission, and results retrieval:
 
 ```bash
 python evaluate.py
-✅ Connected to Foundry
-🧪 Modern Workplace Assistant - Evaluation (Agent SDK v2)
-======================================================================
-🤖 Creating Modern Workplace Assistant...
-📁 Configuring SharePoint integration...
-   Connection name: ContosoCorpPoliciesProcedures
-   🔍 Resolving connection name to ARM resource ID...
-   ✅ Resolved
-✅ SharePoint tool configured successfully
-📚 Configuring Microsoft Learn MCP integration...
-   Server URL: https://learn.microsoft.com/api/mcp
-✅ MCP tool configured successfully
-🛠️  Creating agent with model: gpt-4o-mini
-   ✓ SharePoint tool added
-   ✓ MCP tool added
-   Total tools: 2
-✅ Agent created successfully
-   Model: gpt-4o-mini
-   Name: Modern Workplace Assistant
-======================================================================
-🧪 Running evaluation with 12 test questions...
-======================================================================
+Agent created (id: asst_abc123, name: Modern Workplace Assistant, version: 1)
+Evaluation created (id: eval_xyz789, name: Agent Evaluation)
+Evaluation run created (id: run_def456)
+Waiting for eval run to complete... current status: running
+Waiting for eval run to complete... current status: running
 
-📝 Question 1/12 [SHAREPOINT_ONLY]
-   What is Contosoʹs remote work policy?...
-✅ Status: completed | Tool check: Contoso-specific content: True
+✓ Evaluation run completed successfully!
+Result Counts: {'passed': 2, 'failed': 0, 'errored': 0}
 
-...
-
-📝 Question 5/12 [MCP_ONLY]
-   According to Microsoft Learn documentation, what is the correct way to set up Az...
-✅ Status: completed | Tool check: Microsoft Learn links: True
-
-...
-
-📝 Question 12/12 [HYBRID]
-   What Azure security services should I implement to align with Contosoʹs incident...
-✅ Status: completed | Tool check: Contoso content: True, Learn links: True
-
-======================================================================
-📊 EVALUATION SUMMARY BY TEST TYPE:
-======================================================================
-✅ SHAREPOINT_ONLY: 4/4 passed (100.0%)
-✅ MCP_ONLY: 4/4 passed (100.0%)
-✅ HYBRID: 4/4 passed (100.0%)
-
-📊 Overall Evaluation Results: 12/12 questions passed (100.0%)
-💾 Results saved to evaluation_results.json
+OUTPUT ITEMS (Total: 2)
+------------------------------------------------------------
+[OutputItem(id='item_1', 
+            sample={'query': 'What is the capital of France?', 
+                    'output_text': 'The capital of France is Paris...'},
+            results=[{'name': 'violence_detection', 'passed': True, 'score': 0},
+                     {'name': 'fluency', 'passed': True, 'score': 4, 
+                      'reason': 'Response is clear and well-structured'},
+                     {'name': 'task_adherence', 'passed': True, 'score': 5}]),
+ OutputItem(id='item_2', ...)]
+------------------------------------------------------------
+Eval Run Report URL: https://ai.azure.com/...
+Evaluation deleted
+Agent deleted
 ```
 
-### Additional evaluation assets
+### Understanding evaluation results
 
-The evaluation generates `evaluation_results.json` with metrics for each question (keyword hits, length heuristic). You can extend this file to:
-- Use model-based scoring prompts.
-- Introduce structured output validation.
-- Record latency and token usage.
+Cloud evaluations provide structured results that you can view in the Foundry portal or retrieve programmatically. Each output item includes:
 
-Here's a sample of the JSON output structure:
+| Field | Description |
+| ------- | ------------- |
+| **Label** | Binary "pass" or "fail" based on the threshold |
+| **Score** | Numeric score (scale depends on evaluator type) |
+| **Threshold** | The cutoff value that determines pass/fail |
+| **Reason** | LLM-generated explanation for the score (when applicable) |
 
-```json
-[
-  {
-    "question": "What is Contoso's remote work policy?",
-    "response": "Contoso's remote work policy includes the following key components: <...>",
-    "status": "completed",
-    "passed": true,
-    "validation_details": "Contoso-specific content: True",
-    "test_type": "sharepoint_only",
-    "expected_source": "sharepoint",
-    "explanation": "Forces SharePoint tool usage - answer must contain Contoso-specific policy details"
-  },
-  {
-    "question": "What are Contoso's security protocols for remote employees?",
-    "response": ...
+**Score scales by evaluator type:**
 
-    ...
+- **Quality evaluators** (fluency, coherence): 1-5 scale
+- **Safety evaluators** (violence, self-harm): 0-7 severity scale (lower is safer)
+- **Task evaluators** (task_adherence): 1-5 scale
 
-  }
-]
+You can also view detailed results in the Foundry portal by selecting **Evaluation** from your project and selecting the evaluation run. The portal provides visualizations, filtering, and export options.
+
+> [!TIP]
+> For production scenarios, consider running evaluations as part of your CI/CD pipeline. See [cloud evaluation documentation](../../how-to/develop/cloud-evaluation.md) for integration patterns.
 ```
 
 
