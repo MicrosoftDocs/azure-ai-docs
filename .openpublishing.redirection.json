@@ -1258,7 +1258,7 @@
     {
       "source_path": "articles/ai-foundry/default/agents/how-to/tools/knowledge-retrieval.md",
       "redirect_url": "/azure/ai-foundry/agents/how-to/foundry-iq-connect",
-      "redirect_document_id": false
+      "redirect_document_id": true
     }
   ]
 }
