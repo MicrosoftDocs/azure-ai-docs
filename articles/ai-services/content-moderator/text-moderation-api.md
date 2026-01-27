@@ -5,7 +5,7 @@ description: Use text moderation to detect potentially unwanted text, personal d
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-moderator
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 06/12/2025
 ms.author: pafarley
 
