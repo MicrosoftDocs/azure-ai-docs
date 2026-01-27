@@ -1,20 +1,6 @@
-# Operating System files
-.DS_Store
-Thumbs.db
-
-log/
-obj/
-_site/
-.optemp/
-_themes*/
-_repo.*/
-
 .openpublishing.buildcore.ps1
-
 .vscode/
-
 *sec.endpointdlp
-
 # CoPilot instructions and prompts
 .github/copilot-instructions.md
 .github/prompts/*.md
@@ -22,8 +8,6 @@ _repo.*/
 .github/patterns/*.md
 .github/chatmodes/*.*
 .github/*.*
-
-
 articles/ai-foundry/includes/get-started-fdp.md
 articles/ai-foundry/toc-files/setup-management/toc.yml
 # Doc-Kit workspace files
@@ -32,20 +16,14 @@ articles/ai-foundry/toc-files/setup-management/toc.yml
 .github/instructions/
 .github/prompts/
 .github/skills/
-
-# DocKit
-.env.*
+.vscode/settings.json
+.dockit/
+.env
+.env.example
 requirements.txt
-.dockit/*
-.github/evaluate/*
-.github/data/*
-.github/agents/*
-.github/AGENTS.md
-.github/instructions/*
-.github/skills/*
-.roo/*
-
+# Dev-kit instructions and prompts
 # Doc-Kit workspace files
+.github/AGENTS.md
 .github/agents/
 .github/instructions/
 .github/prompts/
@@ -54,4 +32,4 @@ requirements.txt
 .dockit/
 .env
 .env.example
-.dockitignores.md
+requirements.txt
