@@ -8,7 +8,7 @@ ms.subservice: core
 ms.topic: tutorial
 author: s-polly
 ms.author: scottpolly
-ms.date: 01/26/2026
+ms.date: 01/27/2026
 ms.reviewer: seramasu
 ms.custom:
   - sdkv2
@@ -197,7 +197,7 @@ Review the feature transformation code file: *featurestore/featuresets/transacti
 To register the feature set specification with the feature store, you save that specification in a specified location and format, which supports source control.
 [!Notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/1.Develop-feature-set-and-register.ipynb?name=dump-transactions-fs-spec)]
 
-To see the *featurestore/featuresets/accounts/spec/FeaturesetSpec.yaml* specification, open the generated `transactions` feature set specification from the file tree.The specification contains these elements:
+To see the *featurestore/featuresets/accounts/spec/FeaturesetSpec.yaml* specification, open the generated `transactions` feature set specification from the file tree. The specification contains these elements:
 
 * `source`: A reference to a storage resource. In this case, it's a parquet file in a blob storage resource.
 * `features`: A list of features and their datatypes. If you provide transformation code, the code must return a DataFrame that maps to the features and datatypes.
