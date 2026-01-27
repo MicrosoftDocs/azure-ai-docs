@@ -26,11 +26,17 @@ ai.usage: ai-assisted
 
 In this article, you learn about role-based access control (RBAC) in your Microsoft Foundry resource and how to assign roles that control access to resources.  
 
+> [!TIP]
+> RBAC roles apply when you authenticate using Microsoft Entra ID. If you use key-based authentication instead, the key grants full access without role restrictions. Microsoft recommends using Entra ID authentication for improved security and granular access control.
+
 ::: moniker-end
 
 ::: moniker range="foundry"
 
 In this article, you learn how to manage access to Microsoft Foundry resources using role-based access control (RBAC).  
+
+> [!TIP]
+> RBAC roles apply when you authenticate using Microsoft Entra ID. If you use key-based authentication instead, the key grants full access without role restrictions. Microsoft recommends using Entra ID authentication for improved security and granular access control.
 
 For more information about authentication and authorization in Microsoft Foundry, see [Authentication and Authorization](../concepts/authentication-authorization-foundry.md). This article mentions terminology explained in the previous article. 
 

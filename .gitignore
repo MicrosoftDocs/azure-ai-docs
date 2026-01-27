@@ -54,4 +54,5 @@ requirements.txt
 .dockit/
 .env
 .env.example
-.dockitignores.md
+requirements.txt
+.roo/*

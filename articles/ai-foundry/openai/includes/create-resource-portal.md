@@ -119,4 +119,4 @@ To deploy a model, follow these steps:
     > When you access the model via the API, you need to refer to the deployment name rather than the underlying model name in API calls, which is one of the [key differences](../how-to/switching-endpoints.yml) between OpenAI and Azure OpenAI. OpenAI only requires the model name. Azure OpenAI always requires deployment name, even when using the model parameter. In our documentation, we often have examples where deployment names are represented as identical to model names to help indicate which model works with a particular API endpoint. Ultimately your deployment names can follow whatever naming convention is best for your use case.
 
 1. Select **Deploy**.
-1. Deployment **Details** shows all the information of your new deployment. hen the deployment completes, your model **Provisioning** state changes to _Succeeded_.
+1. Deployment **Details** shows all the information of your new deployment. When the deployment completes, your model **Provisioning** state changes to _Succeeded_.
