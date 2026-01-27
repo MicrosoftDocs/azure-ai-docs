@@ -46,3 +46,5 @@ requirements.txt
 .vscode/settings.json
 .dockit/
 .env
+.env.example
+requirements.txt
