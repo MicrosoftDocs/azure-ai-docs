@@ -61,15 +61,16 @@ More remarks for text to speech locales are included in the [voice styles and ro
 > [!TIP]
 > Try out the [Azure Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit) to easily build and run samples on Visual Studio Code.
 
+
 [!INCLUDE [Language support include](includes/language-support/tts.md)]
 
-### DragonHD voices
+## DragonHD voices
 
 These voices are LLM-based neural high definition (HD) voices. The HD voices are multilingual, understand the content, automatically detect emotions in the input text, and adjust the speaking tone in real time to match the sentiment. HD voices maintain a consistent voice persona with their neural (and non-HD) counterparts, and deliver more value through enhanced features.
 
 [!INCLUDE [Language support include](includes/language-support/multilingual-voices.md)]
 
-### Multilingual voices
+## Multilingual voices
 
 Multilingual voices support more languages. This expansion enhances your ability to express content in various languages, helping you overcome language barriers and foster a more inclusive global communication environment. 
 
@@ -77,7 +78,7 @@ Use this table to see all supported speaking languages for each multilingual voi
 
 [!INCLUDE [Language support include](includes/language-support/multilingual-voices.md)]
 
-### Multi-talker voices
+## Multi-talker voices
 
 Multi-talker voices enable natural, dynamic conversations with multiple distinct speakers. This innovation enhances the realism of synthesized dialogues by preserving contextual flow, emotional consistency, and natural speech patterns.
 
@@ -87,7 +88,7 @@ Use this capability to generate engaging, podcast-style speech or conversational
 
 For more information about how to use multi-talker voices via Speech Synthesis Markup Language (SSML), see [Multi-talker voice](speech-synthesis-markup-voice.md#multi-talker-voice-example).
 
-### Voice styles and roles
+## Voice styles and roles
 
 In some cases, you can adjust the speaking style to express different emotions like cheerfulness, empathy, and calm. All standard voices with speaking styles and multi-style custom voices support style degree adjustment. You can optimize the voice for different scenarios like customer service, newscast, and voice assistant. With roles, the same voice can act as a different age and gender.
 
@@ -98,13 +99,13 @@ Use the following table to determine supported styles and roles for each voice.
 [!INCLUDE [Language support include](includes/language-support/voice-styles-and-roles.md)]
 
 
-### Viseme
+## Viseme
 
 This table lists all the locales supported for [viseme](speech-synthesis-markup-voice.md#viseme-element). For more information about viseme, see [Get facial position with viseme](how-to-speech-synthesis-viseme.md) and [Viseme element](speech-synthesis-markup-voice.md#viseme-element). 
 
 [!INCLUDE [Language support include](includes/language-support/viseme.md)]
 
-### Standard voices
+## Standard voices
 
 Each standard voice supports a specific language and dialect, identified by locale. You can try the demo and hear the voices in the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery).
 
@@ -113,7 +114,7 @@ Each standard voice supports a specific language and dialect, identified by loca
 
 Each standard voice model is available at 24 kHz and high-fidelity 48 kHz. You can get other sample rates through upsampling or downsampling when synthesizing.
 
-### Professional voice
+## Professional voice
 
 [Professional voice fine-tuning](./professional-voice-create-project.md) lets you create synthetic voices that are rich in speaking styles. You can create a unique brand voice in multiple languages and styles by using a small set of recording data. Multi-style custom voices support style degree adjustment. 
 
@@ -124,14 +125,14 @@ By using the cross-lingual feature, you can transfer your custom voice model to 
 [!INCLUDE [Language support include](includes/language-support/tts-cnv.md)]
 
 
-### Personal voice
+## Personal voice
 
 [Personal voice](personal-voice-overview.md) is a feature that lets you create a voice that sounds like you or your users. The following table summarizes the locales supported for personal voice. 
 
 [!INCLUDE [Language support include](includes/language-support/personal-voice.md)]
 
 
-### Voice conversion
+## Voice conversion
 
 [Voice conversion](voice-conversion.md) is a feature that lets you transform the voice characteristics of a given audio to a target voice speaker. The following table summarizes the locales supported for voice conversion, and each language is available on all [voice conversion regions](regions.md#regions).
 
