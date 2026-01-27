@@ -25,7 +25,7 @@ This article supports developers who want to use the inference server to debug l
 
 ## Prerequisites
 
-- Python 3.8 or later
+- Python 3.10 or later
 - Anaconda
 
 The inference server runs on Windows and Linux-based operating systems.

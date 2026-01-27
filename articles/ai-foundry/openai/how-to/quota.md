@@ -67,7 +67,7 @@ Post deployment you can adjust your TPM allocation by selecting and editing your
 
 ## Request more quota
 
-Quota increase requests can be submitted via the [quota increase request form](https://aka.ms/oai/stuquotarequest). Due to high demand, quota increase requests are being accepted and will be filled in the order they're received. Priority is given to customers who generate traffic that consumes the existing quota allocation, and your request might be denied if this condition isn't met.
+[!INCLUDE [quota-increase-request](../includes/quota-increase-request.md)]
 
 ## Model specific settings
 
