@@ -1,3 +1,14 @@
+# Operating System files
+.DS_Store
+Thumbs.db
+
+log/
+obj/
+_site/
+.optemp/
+_themes*/
+_repo.*/
+
 .openpublishing.buildcore.ps1
 .vscode/
 *sec.endpointdlp
