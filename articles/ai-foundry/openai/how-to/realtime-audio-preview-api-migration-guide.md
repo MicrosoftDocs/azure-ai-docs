@@ -45,13 +45,13 @@ Example of GA endpoint format:
 https://<your-resource>.openai.azure.com/openai/v1/
 ```
 
-See detailed information on the endpoint format in [this article](how-to/realtime-audio-websockets.md#connection-and-authentication). See example of GA endpoint format usage in [Quick start on GPT Realtime API for speech and audio](realtime-audio-quickstart.md).
+See detailed information on the endpoint format in [this article](realtime-audio-websockets.md#connection-and-authentication). See example of GA endpoint format usage in [Quick start on GPT Realtime API for speech and audio](../realtime-audio-quickstart.md).
 
 ## Ephemeral Keys and WebRTC URLs
 
-Ephemeral keys for WebRTC requests are now created with a `POST /openai/v1/realtime/client_secrets` request on your Azure OpenAI endpoint (see details in [Step-by-step guide](how-to/realtime-audio-webrtc.md#step-1-set-up-service-to-procure-ephemeral-token)).
+Ephemeral keys for WebRTC requests are now created with a `POST /openai/v1/realtime/client_secrets` request on your Azure OpenAI endpoint (see details in [Step-by-step guide](realtime-audio-webrtc.md#step-1-set-up-service-to-procure-ephemeral-token)).
 
-The URL for initializing the WebRTC connection in the browser is now `/openai/v1/realtime/calls` (see details in [Step-by-step guide](how-to/realtime-audio-webrtc.md#step-2-set-up-your-browser-application)).
+The URL for initializing the WebRTC connection in the browser is now `/openai/v1/realtime/calls` (see details in [Step-by-step guide](realtime-audio-webrtc.md#step-2-set-up-your-browser-application)).
 
 ## Custom Clients
 
