@@ -55,7 +55,7 @@ You can optionally configure the Spark session by setting or changing several va
    - Change the **Session timeout** value in minutes to a higher number to help prevent session timeouts.
    - Under **Configuration settings**, add the `spark.hadoop.aml.enable_cache` property set to `true`. This setting can shorten the session cold start time.
      > [!TIP]
-     > If you use session-level Conda packages, you can [improve the Spark session cold start time](apache-spark-azure-ml-concepts.md#improving-session-cold-start-time-while-using-session-level-conda-packages) by setting the `spark.hadoop.aml.enable_cache`configuration variable. A session cold start with session level Conda packages typically takes 10 to 15 minutes the first time. Subsequent session cold starts with the configuration variable set to true typically take three to five minutes.
+     > If you use session-level Conda packages, you can [improve the Spark session cold start time](apache-spark-azure-ml-concepts.md#improving-session-cold-start-time-while-using-session-level-conda-packages) by setting the `spark.hadoop.aml.enable_cache` configuration variable. A session cold start with session level Conda packages typically takes 10 to 15 minutes the first time. Subsequent session cold starts with the configuration variable set to true typically take three to five minutes.
    In the **Python packages** pane:
    - To use a Conda file to configure your session, select **Upload conda file**, select **Browse** next to **Select conda file**, and then browse to and open the *conda.yml* file on your machine.
    - Or to use a custom environment, select **Custom environment** and select a custom environment under **Environment type**. For more information, see [Manage software environments](how-to-manage-environments-in-studio.md).
@@ -64,7 +64,7 @@ You can optionally configure the Spark session by setting or changing several va
 
 ## Access data on the default file share
 
-In Azure Machine Learning studio, your default workspace file share is the directory tree under the **Files** tab in **Notebooks**. Notebook code can directly access files stored in this file share with the `file://` protocol, using the absolute path of the file, without more configuration. The default file share is mounted to both serverless Spark compute and attached Synapse Spark pools.
+In Azure Machine Learning studio, your default workspace file share is the directory tree under the **Files** tab in **Notebooks**. Notebook code can directly access files stored in this file share with the `file://` protocol, using the absolute path of the file without other configuration. The default file share is mounted to both serverless Spark compute and attached Synapse Spark pools.
 
 :::image type="content" source="media/interactive-data-wrangling-with-apache-spark-azure-ml/default-file-share.png" lightbox="media/interactive-data-wrangling-with-apache-spark-azure-ml/default-file-share.png" alt-text="Screenshot showing use of a file share.":::
 
@@ -89,7 +89,7 @@ df.to_csv(output_path, index_col="PassengerId")
 ```
 
 >[!NOTE]
->The preceding code snippet requires the *titantic.csv* file to be in a *data* folder immediately under the `<USER` folder. If you use file from the [data wrangling notebook](https://github.com/Azure/azureml-examples/tree/main/sdk/python/data-wrangling), be sure to copy it into the required location or update the file path in the snippet.
+>The preceding code snippet requires the *titanic.csv* file to be in a *data* folder immediately under the `<USER` folder. If you use the file from the [data wrangling notebook](https://github.com/Azure/azureml-examples/tree/main/sdk/python/data-wrangling), be sure to copy it into the required location or else update the file path in the snippet.
 
 ## Import and wrangle data from Azure Data Lake Storage
 
@@ -251,7 +251,7 @@ df.to_csv(
 )
 ```
 
-Azure Machine Learning datastores can access data using a Azure storage account access key, SAS token, service principal credentials, or credentialless data access. To ensure data access, select the appropriate authentication mechanism depending on datastore type and underlying Azure storage account type. The following table summarizes the authentication mechanisms for accessing data in Azure Machine Learning datastores:
+Azure Machine Learning datastores can access data using an Azure storage account access key, SAS token, service principal credentials, or credentialless data access. To ensure data access, select the appropriate authentication mechanism depending on datastore type and underlying Azure storage account type. The following table summarizes the authentication mechanisms for accessing data in Azure Machine Learning datastores:
 
 |Storage account type|Credentialless data access|Data access mechanism|Role assignments|
 | ------------------------ | ------------------------ | ------------------------ | ------------------------ |
