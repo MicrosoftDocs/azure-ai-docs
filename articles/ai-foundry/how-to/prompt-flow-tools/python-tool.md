@@ -10,8 +10,8 @@ ms.custom:
   - build-2024
   - ignite-2024
   - hub-only
-ms.topic: reference
-ms.date: 6/30/2025
+ms.topic: article
+ms.date: 01/27/2026
 ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
@@ -25,7 +25,7 @@ ms.update-cycle: 180-days
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-The prompt flow Python tool offers customized code snippets as self-contained executable nodes. You can quickly create Python tools, edit code, and verify results.
+The prompt flow Python tool provides customized code snippets as self-contained executable nodes. You can quickly create Python tools, edit code, and verify results.
 
 ## Prerequisites
 
@@ -38,7 +38,7 @@ The prompt flow Python tool offers customized code snippets as self-contained ex
 
     :::image type="content" source="../../media/prompt-flow/python-tool.png" alt-text="Screenshot that shows the Python tool added to a flow in Foundry portal." lightbox="../../media/prompt-flow/python-tool.png":::
 
-1. Enter values for the Python tool input parameters that are described in the [Inputs table](#inputs). For example, in the **Code** input text box, you can enter the following Python code:
+1. Enter values for the Python tool input parameters that are described in the [Inputs table](#inputs). For example, in the **Code** input text box, enter the following Python code:
 
     ```python
     from promptflow import tool
@@ -55,7 +55,7 @@ The prompt flow Python tool offers customized code snippets as self-contained ex
 
 ## Inputs
 
-The list of inputs change based on the arguments of the tool function, after you save the code. Adding type to arguments and `return` values helps the tool show the types properly.
+The list of inputs changes based on the arguments of the tool function, after you save the code. Adding type to arguments and `return` values helps the tool show the types properly.
 
 | Name   | Type   | Description                                          | Required |
 |--------|--------|------------------------------------------------------|---------|
@@ -88,22 +88,22 @@ If the input message is "world," the output is `hello world`.
 | object                                              | param: dict or param: Dict[K, V] | Object type                                |
 | Connection                                          | param: CustomConnection         | Connection type is handled specially. |
 
-Parameters with `Connection` type annotation are treated as connection inputs, which means:
+Treat parameters with the `Connection` type annotation as connection inputs. This treatment means:
 
 - The prompt flow extension shows a selector to select the connection.
-- During execution time, the prompt flow tries to find the connection with the same name from the parameter value that was passed in.
+- During execution time, the prompt flow tries to find the connection with the same name from the parameter value that you pass in.
 
 > [!NOTE]
-> The `Union[...]` type annotation is only supported for connection type. An example is `param: Union[CustomConnection, OpenAIConnection]`.
+> The `Union[...]` type annotation supports only connection type. An example is `param: Union[CustomConnection, OpenAIConnection]`.
 
 ## Python code input requirements
 
-This section describes requirements of the Python code input for the Python tool.
+This section describes requirements for the Python code input for the Python tool.
 
-- Python tool code should consist of a complete Python code, including any necessary module imports.
-- Python tool code must contain a function decorated with `@tool` (tool function), serving as the entry point for execution. The `@tool` decorator should be applied only once within the snippet.
-- Python tool function parameters must be assigned in the `Inputs` section.
-- Python tool function shall have a return statement and value, which is the output of the tool.
+- Python tool code should consist of complete Python code, including any necessary module imports.
+- Python tool code must contain a function decorated with `@tool` (tool function), serving as the entry point for execution. Apply the `@tool` decorator only once within the snippet.
+- Assign Python tool function parameters in the `Inputs` section.
+- Python tool function must have a return statement and value, which is the output of the tool.
 
 The following Python code is an example of best practices:
 
@@ -117,7 +117,7 @@ def my_python_tool(message: str) -> str:
 
 ## Consume a custom connection in the Python tool
 
-If you're developing a Python tool that requires calling external services with authentication, you can use the custom connection in a prompt flow. It allows you to securely store the access key and then retrieve it in your Python code.
+If you're developing a Python tool that requires calling external services with authentication, use the custom connection in a prompt flow. By using this connection, you can securely store the access key and then retrieve it in your Python code.
 
 ### Create a custom connection
 
@@ -128,16 +128,16 @@ Create a custom connection that stores all your large language model API key or 
 1. Go to the **Management center** page for your project. 
 1. Under either the **Hub** or **Project** heading, select **Connected resources**.
 1. Select **+ New Connection**.
-1. Select **Custom** service. You can define your connection name. You can add multiple key-value pairs to store your credentials and keys by selecting **Add key-value pairs**.
+1. Select **Custom** service. You can define your connection name. Select **Add key-value pairs** to add multiple key-value pairs to store your credentials and keys.
 
     > [!NOTE]
-    > Make sure at least one key-value pair is set as secret. Otherwise, the connection won't be created successfully. To set one key-value pair as secret, select **is secret** to encrypt and store your key value.
+    > Make sure at least one key-value pair is set as secret. Otherwise, the connection isn't created successfully. To set one key-value pair as secret, select **is secret** to encrypt and store your key value.
 
 ### Consume a custom connection in Python
 
 To consume a custom connection in your Python code:
 
-1. In the code section in your Python node, import the custom connection library `from promptflow.connections import CustomConnection`. Define an input parameter of the type `CustomConnection` in the tool function.
+1. In the code section of your Python node, import the custom connection library by using `from promptflow.connections import CustomConnection`. Define an input parameter of the type `CustomConnection` in the tool function.
 1. Parse the input to the input section. Then select your target custom connection in the value dropdown list.
 
 For example:

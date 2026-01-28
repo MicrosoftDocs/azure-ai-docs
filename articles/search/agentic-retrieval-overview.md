@@ -147,7 +147,7 @@ Currently, the portal only supports creating search index and blob knowledge sou
 
 ## Availability and pricing
 
-Agentic retrieval is available in [selected regions](search-region-support.md). Knowledge sources and knowledge bases also have [maximum limits](search-limits-quotas-capacity.md#agentic-retrieval-limits) that vary by service tier.
+Agentic retrieval is available in [selected regions](search-region-support.md). Knowledge sources and knowledge bases also have [maximum limits](search-limits-quotas-capacity.md#agentic-retrieval-limits) that vary by pricing tier and retrieval reasoning effort.
 
 It has a dependency on premium features. If you disable semantic ranker for your search service, you effectively disable agentic retrieval.
 

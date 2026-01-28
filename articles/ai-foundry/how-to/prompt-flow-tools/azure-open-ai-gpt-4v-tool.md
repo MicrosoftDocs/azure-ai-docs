@@ -7,8 +7,8 @@ ms.subservice: azure-ai-prompt-flow
 ms.custom:
   - build-2024
   - hub-only
-ms.topic: reference
-ms.date: 06/30/2025
+ms.topic: article
+ms.date: 01/27/2026
 ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
@@ -22,7 +22,7 @@ ms.update-cycle: 180-days
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-The prompt flow Azure OpenAI GPT-4 Turbo with Vision tool enables you to use your Azure OpenAI GPT-4 Turbo with Vision model deployment to analyze images and provide textual responses to questions about them.
+By using the prompt flow Azure OpenAI GPT-4 Turbo with Vision tool, you can use your Azure OpenAI GPT-4 Turbo with Vision model deployment to analyze images and provide textual responses to questions about them.
 
 ## Prerequisites
 
@@ -77,9 +77,9 @@ The following input parameters are available.
 
 | Name | Type | Description | Required |
 | ---- | ---- | ----------- | -------- |
-| connection             | AzureOpenAI | The Azure OpenAI connection to be used in the tool.                                              | Yes      |
+| connection             | AzureOpenAI | The Azure OpenAI connection to use in the tool.                                              | Yes      |
 | deployment\_name       | string      | The language model to use.                                                                      | Yes      |
-| prompt                 | string      | The text prompt that the language model uses to generate its response. The Jinja template for composing prompts in this tool follows a similar structure to the chat API in the large language model (LLM) tool. To represent an image input within your prompt, you can use the syntax `![image]({{INPUT NAME}})`. Image input can be passed in the `user`, `system`, and `assistant` messages.                 | Yes      |
+| prompt                 | string      | The text prompt that the language model uses to generate its response. The Jinja template for composing prompts in this tool follows a similar structure to the chat API in the large language model (LLM) tool. To represent an image input within your prompt, use the syntax `![image]({{INPUT NAME}})`. You can pass image input in the `user`, `system`, and `assistant` messages.                 | Yes      |
 | max\_tokens            | integer     | The maximum number of tokens to generate in the response. Default is 512.                      | No       |
 | temperature            | float       | The randomness of the generated text. Default is 1.                                            | No       |
 | stop                   | list        | The stopping sequence for the generated text. Default is null.                                 | No       |

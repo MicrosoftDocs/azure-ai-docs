@@ -5,9 +5,10 @@ description: Connect Foundry Agent Service to a Foundry IQ knowledge base (Azure
 author: haileytap
 ms.author: haileytapia
 ms.reviewer: fsunavala
+manager: nitinme
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 01/22/2026
+ms.date: 01/27/2026
 ms.custom: pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 ---
@@ -47,14 +48,20 @@ We recommend role-based access control for production deployments. If roles aren
 #### [Microsoft Foundry](#tab/foundry)
 
 - On the parent resource of your project, you need the **Azure AI User** role to access model deployments and create agents. **Owners** automatically get this role when they create the resource. Other users need a specific role assignment. For more information, see [Role-based access control in Foundry portal](/azure/ai-foundry/concepts/rbac-foundry).
+
 - On the parent resource of your project, you need the **Azure AI Project Manager** role to create a project connection for MCP authentication and either **Azure AI User** or **Azure AI Project Manager** to use the MCP tool in agents.
+
 - On your project, create a system-assigned managed identity for interactions with Azure AI Search.
 
 #### [Azure AI Search](#tab/search)
 
 - On your search service, assign the **Search Index Data Reader** role to your project's managed identity for read-only access to search indexes.
+
 - If your agent needs to write documents to search indexes, also assign the **Search Index Data Contributor** role.
-- For per-user trimming, include ACL fields in your search index and pass user tokens in MCP tool calls via the `x-ms-query-source-authorization` header. This step is required for remote SharePoint knowledge sources.
+
+- For indexed content with access control lists (ACLs), include [permission metadata fields](/azure/search/search-document-level-access-overview) in your search index and pass user tokens via the `x-ms-query-source-authorization` header at query time to filter results based on the user's identity. For more information, see [Query-time ACL and RBAC enforcement](/azure/search/search-query-access-control-rbac-enforcement).
+
+- For remote SharePoint knowledge sources, the `x-ms-query-source-authorization` header passes the user's identity, enabling SharePoint to enforce document permissions at query time. Content isn't indexed. Instead, SharePoint applies permissions directly via the Copilot Retrieval API. For more information, see [Create a remote SharePoint knowledge source](/azure/search/agentic-knowledge-source-how-to-sharepoint-remote).
 
 ---
 
@@ -265,6 +272,8 @@ Content-Type: application/json
 ---
 
 ### Connect to a remote SharePoint knowledge source
+
+[!INCLUDE [foundry-iq-limitation](../../../includes/foundry-iq-limitation.md)]
 
 Optionally, if your knowledge base includes a [remote SharePoint knowledge source](/azure/search/agentic-knowledge-source-how-to-sharepoint-remote), you must also include the `x-ms-query-source-authorization` header in the MCP tool connection.
 
