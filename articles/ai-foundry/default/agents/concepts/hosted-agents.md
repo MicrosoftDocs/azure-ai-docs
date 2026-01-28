@@ -17,6 +17,9 @@ ai-usage: ai-assisted
 
 When you build agentic applications by using open-source frameworks, you typically manage containerization, web server setup, security integration, memory persistence, infrastructure scaling, data transmission, instrumentation, and version rollbacks. These tasks become even more challenging in heterogeneous cloud environments.
 
+> [!IMPORTANT]
+> Hosted agents are currently in **public preview** and available only in North Central US. See [Limits, pricing, and availability (preview)](#limits-pricing-and-availability-preview) for current constraints.
+
 Hosted agents in Foundry Agent Service solve these challenges for Microsoft Foundry users. By using this managed platform, you can deploy and operate AI agents securely and at scale. You can use your custom agent code or a preferred agent framework with streamlined deployment and management.
 
 ## Prerequisites
@@ -275,7 +278,7 @@ To build your agent as a Docker container and upload it to Azure Container Regis
     ```bash
     docker build -t myagent:v1 .
     ```
-    Refer to sample Dockerfile for [Python](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/python/hosted-agents/agents_in_workflow/Dockerfile) and [C#](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/csharp/hosted-agents/AgentsInWorkflows/Dockerfile).
+    Refer to sample Dockerfile for [Python (LangGraph)](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/python/hosted-agents/langgraph/calculator-agent/Dockerfile) and [C#](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/csharp/hosted-agents/AgentsInWorkflows/Dockerfile).
    
 1. Sign in to Azure Container Registry:
 
@@ -347,7 +350,7 @@ az rest --method put `
 
 ### Create the hosted agent version
 
-Install version>=2.0.0b2 of the Azure AI Projects SDK.
+Install version>=2.0.0b2 of the Azure AI Projects SDK. Python 3.9 or later is required.
 
 ```bash
 pip install --pre azure-ai-projects==2.0.0b2
