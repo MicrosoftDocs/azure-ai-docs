@@ -41,11 +41,11 @@ Supported embedding models from the model catalog vary by usage method:
 
 ## Deploy an embedding model from the model catalog
 
-1. Follow [these instructions](/azure/ai-foundry/how-to/deploy-models-openai) to deploy a supported model to your project.
+1. Follow [these portal instructions](/azure/ai-foundry/how-to/deploy-models-openai) to deploy a supported model to your project.
 
 1. Make a note of the target URI, key, and model name. You need these values for the vectorizer definition in a search index and for the skillset that calls the model endpoints during indexing.
 
-    If you prefer [token authentication](#connect-using-token-authentication) to key-based authentication, you only need to copy the URI and model name. However, make a note of the region to which the model is deployed.
+    If you prefer [token authentication](#connect-using-token-authentication) to key-based authentication, you only need to copy the model name. However, make a note of the region to which the model is deployed.
 
 1. Configure a search index and indexer to use the deployed model.
 
