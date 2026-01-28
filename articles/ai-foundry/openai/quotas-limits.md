@@ -48,11 +48,11 @@ The following section provides you with a quick guide to the default quotas and 
 | Default speech-to-text audio API quota limits | 3 requests per minute. |
 | Maximum prompt tokens per request | Varies per model. For more information, see [Azure OpenAI models](./concepts/models.md).|
 | Maximum standard deployments per resource | 32. |
-| Maximum fine-tuned model deployments | 5. |
+| Maximum fine-tuned model deployments | 10. |
 | Total number of training jobs per resource | 100. |
-| Maximum simultaneously running training jobs per resource | 1. |
+| Maximum simultaneously running training jobs per resource | Standard global training: 3; <br> Developer training: 5 |
 | Maximum training jobs queued | 20. |
-| Maximum files per resource (fine-tuning) | 50. |
+| Maximum files per resource (fine-tuning) | 100. |
 | Total size of all files per resource (fine-tuning) | 1 GB. |
 | Maximum training job time (job fails if exceeded) | 720 hours. |
 | Maximum training job size `(tokens in training file) x (# of epochs)` | 2 billion. |
