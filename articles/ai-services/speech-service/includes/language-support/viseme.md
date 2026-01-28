@@ -109,4 +109,4 @@ ms.author: pafarley
 | `vi-VN`           | Vietnamese (Vietnam) |Viseme ID|
 | `zh-CN`           | Chinese (Mandarin, Simplified)  |Viseme ID <br> Blend shapes|
 | `zh-HK`           | Chinese (Cantonese, Traditional)|Viseme ID|
-| `h-HK`            | Chinese (Taiwanese Mandarin, Traditional)|Viseme ID (except `zh-TW-HsiaoYuNeural`)|
+| `zh-HK`            | Chinese (Taiwanese Mandarin, Traditional)|Viseme ID (except `zh-TW-HsiaoYuNeural`)|
