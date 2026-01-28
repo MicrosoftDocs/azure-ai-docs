@@ -1,7 +1,7 @@
 ---
 title: Search index overview
 titleSuffix: Azure AI Search
-description: Explains what is a search index in Azure AI Search and describes content, construction, physical expression, and the index schema.
+description: Explains index content, construction, physical expression, and schema.
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
@@ -9,13 +9,13 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 06/20/2025
+ms.date: 01/27/2026
 ms.update-cycle: 365-days
 ---
 
 # Search indexes in Azure AI Search
 
-In Azure AI Search, a *search index* is your searchable content, available to the search engine for indexing, agentic search, full-text search, vector search, hybrid search, and filtered queries. An index is defined by a schema and saved to the search service, with data ingestion following as a second step. Indexed content exists within your search service, apart from your primary external data stores, which is necessary for the millisecond response times expected in modern search applications. Except for indexer-driven indexing scenarios, the search service never connects to or queries your external source data.
+In Azure AI Search, a *search index* is your searchable content on a search service, available to the local search engine for indexing, agentic retrieval, full-text search, vector search, hybrid search, and filtered queries. An index is defined by a schema that's saved to your search service, with data ingestion following as a second step. Indexed content exists on your search service, apart from your primary external data stores, which is necessary for the millisecond response times expected in modern search applications. Except for remote agentic retrieval and indexer-driven indexing scenarios, the search service never connects to or queries your external source data.
 
 This article covers the key concepts for creating and managing a search index, including:
 
@@ -24,13 +24,17 @@ This article covers the key concepts for creating and managing a search index, i
 + Basic operations
 
 > [!TIP]
-> Want to get started right away? See [Create a search index](search-how-to-create-search-index.md).
+> **Quick summary:**
+> - An index stores your searchable content
+> - Schema defines fields and their behaviors
+> - Documents are individual searchable items (similar to rows in a database)
+> - [Jump to creating an index →](search-how-to-create-search-index.md)
 
 ## Schema of a search index
 
 In Azure AI Search, indexes contain *search documents*. Conceptually, a document is a single unit of searchable data in your index. For example, a retailer might have a document for each product, a university might have a document for each class, a travel site might have a document for each hotel and destination, and so forth. Mapping these concepts to more familiar database equivalents: a *search index* equates to a *table*, and *documents* are roughly equivalent to *rows* in a table.
 
-The structure of a document is determined by the *index schema*, as illustrated in the following example. The "fields" collection is typically the largest part of an index, where each field is named, assigned a [data type](/rest/api/searchservice/Supported-data-types), and attributed with allowable behaviors that determine how it's used.
+The structure of a document is determined by the *index schema*, as illustrated in the following example. The "fields" collection is typically the largest part of an index, where each field is named, assigned a [data type](/rest/api/searchservice/Supported-data-types), and attributed with allowable behaviors that determine how it's used at query time.
 
 ```json
 {
@@ -95,9 +99,9 @@ String fields are often marked as "searchable" and "retrievable". Fields used to
 
 |Attribute|Description|  
 |---------------|-----------------|  
-|"searchable" |Full-text or vector searchable. Text fields are subject to lexical analysis such as word-breaking during indexing. If you set a searchable field to a value like "sunny day", internally it's split into the individual tokens "sunny" and "day". For details, see [How full text search works](search-lucene-query-architecture.md).|  
-|"filterable" |Referenced in $filter queries. Filterable fields of type `Edm.String` or `Collection(Edm.String)` don't undergo word-breaking, so comparisons are for exact matches only. For example, if you set such a field f to "sunny day", `$filter=f eq 'sunny'` finds no matches, but `$filter=f eq 'sunny day'` will. |  
-|"sortable" |By default the system sorts results by score, but you can configure sort based on fields in the documents. Fields of type `Collection(Edm.String)` can't be "sortable". |  
+|"searchable" |Full-text or vector searchable. Text fields are subject to lexical analysis such as word-breaking during indexing. For details, see [How full text search works](search-lucene-query-architecture.md).|  
+|"filterable" |Referenced in $filter queries. Filterable fields of type `Edm.String` or `Collection(Edm.String)` don't undergo word-breaking, so comparisons are for exact matches only. Given the string "sunny day", `$filter=f eq 'sunny'` finds no matches, but `$filter=f eq 'sunny day'` succeeds. |  
+|"sortable" |By default the system sorts by a search score, but you can configure an explicit sort based on fields in the documents. Fields of type `Collection(Edm.String)` can't be "sortable". |  
 |"facetable" |Typically used in a presentation of search results that includes a hit count by category (for example, hotels in a specific city). This option can't be used with fields of type `Edm.GeographyPoint`. Fields of type `Edm.String` that are filterable, "sortable", or "facetable" can be at most 32 kilobytes in length. For details, see [Create Index (REST API)](/rest/api/searchservice/indexes/create).|  
 |"key" |Unique identifier for documents within the index. Exactly one field must be chosen as the key field and it must be of type `Edm.String`.|  
 |"retrievable" |Determines whether the field can be returned in a search result. This is useful when you want to use a field (such as *profit margin*) as a filter, sorting, or scoring mechanism, but don't want the field to be visible to the end user. This attribute must be `true` for `key` fields.|  
@@ -114,6 +118,9 @@ Although you can add new fields at any time, existing field definitions are lock
 In Azure AI Search, the physical structure of an index is largely an internal implementation. You can access its schema, load and query its content, monitor its size, and manage its capacity. However, Microsoft manages the infrastructure and physical data structures stored with your search service.
 
 You can monitor index size on the **Search management > Indexes** page in the Azure portal. Alternatively, you can issue a [GET INDEX request](/rest/api/searchservice/indexes/get) against your search service or a [Service Statistics request](/rest/api/searchservice/get-service-statistics/get-service-statistics) to check the value of storage size.
+
+> [!NOTE]
+> If you're actively [deleting content](search-how-to-delete-documents.md) from an index, index storage and size are updated every few minutes. Deletion runs as a background process so you should expect a small delay on metric updates.
 
 The size of an index is determined by the:
 
