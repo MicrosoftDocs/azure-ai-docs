@@ -171,11 +171,11 @@ The wizards have the following limitations:
 
 ## Secure connections
 
-The wizards use the Azure portal controller and public endpoints to make outbound connections. You can't use the wizards if Azure resources are accessed over a private connection or through a shared private link.
+The Import data wizards use public endpoints to make outbound connections. You can't use the wizards if Azure resources are accessed over a private connection or through a shared private link.
 
-You can use the wizards over restricted public connections, but not all functionality is available.
+If you're connecting over a restricted public connection, not all functionality is available.
 
-+ On supported Azure data sources protected by firewalls, you can retrieve data if you have the right firewall rules in place.
++ For supported Azure data sources protected by firewalls, you can retrieve data if you have the right firewall rules in place.
 
   The Azure resource must admit network requests from the IP address of the device used on the connection. You should also list Azure AI Search as a trusted service on the resource's network configuration. For example, in Azure Storage, you can list `Microsoft.Search/searchServices` as a trusted service.
 
