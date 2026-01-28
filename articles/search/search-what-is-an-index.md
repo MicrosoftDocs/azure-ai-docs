@@ -34,11 +34,12 @@ This article covers the key concepts for creating and managing a search index, i
 
 In Azure AI Search, indexes contain *search documents*. Conceptually, a document is a single unit of searchable data in your index. For example, a retailer might have a document for each product, a university might have a document for each class, a travel site might have a document for each hotel and destination, and so forth. Mapping these concepts to more familiar database equivalents: a *search index* equates to a *table*, and *documents* are roughly equivalent to *rows* in a table.
 
-Here's an example of what an *index schema* looks like. 
+Here's an example of what an index schema looks like.
+
 ```json
 {
   "name": "name_of_index, unique across the service",
-  "description" : "Health plan coverage for standard and premium plans for Northwind and Contoso employees."
+  "description" : "Health plan coverage for standard and premium plans for Northwind and Contoso employees.",
   "fields": [
     {
       "name": "name_of_field",
@@ -47,15 +48,15 @@ Here's an example of what an *index schema* looks like.
       "filterable": true (default) | false,
       "sortable": true (default where applicable) | false (Collection(Edm.String) fields cannot be sortable),
       "facetable": true (default where applicable) | false (Edm.GeographyPoint fields cannot be facetable),
-      "key": true | false (default, only Edm.String fields can be keys),
+      "key": true (only Edm.String fields can be keys) | false (default where applicable),
       "retrievable": true (default) | false,
-      "analyzer": "name_of_analyzer_for_search_and_indexing", (only if 'searchAnalyzer' and 'indexAnalyzer' are not set)
-      "searchAnalyzer": "name_of_search_analyzer", (only if 'indexAnalyzer' is set and 'analyzer' is not set)
-      "indexAnalyzer": "name_of_indexing_analyzer", (only if 'searchAnalyzer' is set and 'analyzer' is not set)
-      "normalizer":  "name_of_normalizer", (applies to fields that are filterable)
-      "synonymMaps": "name_of_synonym_map", (optional, only one synonym map per field is currently supported)
-      "dimensions": "number of dimensions used by an embedding models", (applies to vector fields only, of type Collection(Edm.Single))
-      "vectorSearchProfile": "name_of_vector_profile" (indexes can have many configurations, a field can use just one)
+      "analyzer": "name_of_analyzer_for_search_and_indexing" (only if 'searchAnalyzer' and 'indexAnalyzer' are not set),
+      "searchAnalyzer": "name_of_search_analyzer" (only if 'indexAnalyzer' is set and 'analyzer' is not set),
+      "indexAnalyzer": "name_of_indexing_analyzer" (only if 'searchAnalyzer' is set and 'analyzer' is not set),
+      "normalizer":  "name_of_normalizer" (applies to fields that are filterable),
+      "synonymMaps": "name_of_synonym_map" (optional, only one synonym map per field is currently supported),
+      "dimensions": "number of dimensions used by an embedding models" (applies to vector fields of type Collection(Edm.Single)),
+      "vectorSearchProfile": "name_of_vector_profile" (indexes can have many configurations but a field can use just one)
     }
   ],
   "suggesters": [ ],
@@ -96,9 +97,8 @@ If incoming data is hierarchical in nature, you can represent it within an index
 
 Field attributes determine how a field is used, such as whether it's used in full text search, faceted navigation, sort operations, and so forth. 
 
-String fields are often marked as `searchable` and `retrievable`. 
-
-Fields used to narrow or order search results are marked as `sortable`, `filterable`, and `facetable`.
++ String fields are often marked as `searchable` and `retrievable`. 
++ Fields used to narrow or order search results are marked as `sortable`, `filterable`, and `facetable`.
 
 |Attribute|Description|  
 |---------------|-----------------|  
