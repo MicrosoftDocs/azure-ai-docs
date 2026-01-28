@@ -513,16 +513,16 @@ Conditional Access policies act as "if-then" statements that enforce organizatio
 🔗 Next: Add evaluation metrics, monitoring, and production deployment
 ```
 
-## Step 5: Evaluate the assistant with cloud evaluation
+## Step 5: Evaluate the assistant by using cloud evaluation
 
-The evaluation framework tests realistic business scenarios using the **cloud evaluation** capability of the Microsoft Foundry SDK. Instead of a custom local approach, this pattern uses the built-in evaluators (`builtin.violence`, `builtin.fluency`, `builtin.task_adherence`) and the `openai_client.evals` API to run scalable, repeatable evaluations in the cloud.
+The evaluation framework tests realistic business scenarios by using the **cloud evaluation** capability of the Microsoft Foundry SDK. Instead of a custom local approach, this pattern uses the built-in evaluators (`builtin.violence`, `builtin.fluency`, `builtin.task_adherence`) and the `openai_client.evals` API to run scalable, repeatable evaluations in the cloud.
 
 This evaluation framework demonstrates:
 
-- **Agent targeting**: The evaluation runs queries directly against your agent using `azure_ai_target_completions`
-- **Built-in evaluators**: Safety (violence detection), quality (fluency), and task adherence metrics
-- **Cloud-based execution**: Eliminates local compute requirements and supports CI/CD integration
-- **Structured results**: Pass/fail labels, scores, and reasoning for each test case
+- **Agent targeting**: The evaluation runs queries directly against your agent by using `azure_ai_target_completions`.
+- **Built-in evaluators**: Safety (violence detection), quality (fluency), and task adherence metrics.
+- **Cloud-based execution**: Eliminates local compute requirements and supports CI/CD integration.
+- **Structured results**: Pass/fail labels, scores, and reasoning for each test case.
 
 The code breaks down into the following main sections:
 
@@ -534,13 +534,13 @@ The code breaks down into the following main sections:
 > For detailed guidance on cloud evaluations, see [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md).
 
 > [!NOTE]
-> The C# SDK uses **protocol methods** with `BinaryData` and `BinaryContent` instead of typed objects. This requires helper methods to parse JSON responses. See the [C# Evaluations SDK sample](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects/samples/Sample21_Evaluations.md) for the complete pattern.
+> The C# SDK uses **protocol methods** with `BinaryData` and `BinaryContent` instead of typed objects. This approach requires helper methods to parse JSON responses. See the [C# Evaluations SDK sample](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects/samples/Sample21_Evaluations.md) for the complete pattern.
 
 ### Configure the evaluation
 
 First, create an evaluation object that defines your data schema and testing criteria. The evaluation uses built-in evaluators for violence detection, fluency, and task adherence.
 
-In Python, you use the OpenAI client directly. In C#, you obtain an `EvaluationClient` from the project client:
+In Python, use the OpenAI client directly. In C#, get an `EvaluationClient` from the project client:
 
 # [Python](#tab/python)
 
@@ -554,9 +554,9 @@ In Python, you use the OpenAI client directly. In C#, you obtain an `EvaluationC
 
 The `testing_criteria` array specifies which evaluators to run:
 
-- `builtin.violence`: Detects violent or harmful content in responses
-- `builtin.fluency`: Assesses response quality and readability (requires a model deployment)
-- `builtin.task_adherence`: Evaluates whether the agent followed instructions correctly
+- `builtin.violence`: Detects violent or harmful content in responses.
+- `builtin.fluency`: Assesses response quality and readability (requires a model deployment).
+- `builtin.task_adherence`: Evaluates whether the agent followed instructions correctly.
 
 ### Run the cloud evaluation
 
