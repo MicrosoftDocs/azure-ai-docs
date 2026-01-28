@@ -280,13 +280,13 @@ When you submit a job, you need to upload the training scripts and data to a clo
 
 1. Create the environment that the cluster uses to run the training script. In this example, use a curated or ready-made environment provided by Azure Machine Learning called `AzureML-lightgbm-3.3`.
 
-        Azure Resource Manager doesn't support an `@latest` shortcut for environment IDs. The following command lists the environment versions and selects the most recently modified version ID, which is then stored in the `$ENVIRONMENT` variable.
+Azure Resource Manager doesn't support an `@latest` shortcut for environment IDs. The following command lists the environment versions and selects the most recently modified version ID, which is then stored in the `$ENVIRONMENT` variable.
 
-        ```bash
-        ENVIRONMENT_NAME="AzureML-lightgbm-3.3"
-        ENVIRONMENT=$(curl --location --request GET "https://management.azure.com/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.MachineLearningServices/workspaces/$WORKSPACE/environments/$ENVIRONMENT_NAME/versions?api-version=$API_VERSION" \
-            --header "Authorization: Bearer $TOKEN" | jq -r '.value | sort_by(.systemData.lastModifiedAt) | last | .id')
-        ```
+    ```bash
+    ENVIRONMENT_NAME="AzureML-lightgbm-3.3"
+    ENVIRONMENT=$(curl --location --request GET "https://management.azure.com/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.MachineLearningServices/workspaces/$WORKSPACE/environments/$ENVIRONMENT_NAME/versions?api-version=$API_VERSION" \
+        --header "Authorization: Bearer $TOKEN" | jq -r '.value | sort_by(.systemData.lastModifiedAt) | last | .id')
+    ```
 
 1. Finally, submit the job. The following example shows how to submit the job, reference the training code ID, environment ID, URL for the input data, and the ID of the compute cluster. The job output location is stored in the `$JOB_OUTPUT` variable:
 
