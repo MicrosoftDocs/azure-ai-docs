@@ -533,9 +533,14 @@ The code breaks down into the following main sections:
 > [!TIP]
 > For detailed guidance on cloud evaluations, see [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md).
 
+> [!NOTE]
+> The C# SDK uses **protocol methods** with `BinaryData` and `BinaryContent` instead of typed objects. This requires helper methods to parse JSON responses. See the [C# Evaluations SDK sample](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects/samples/Sample21_Evaluations.md) for the complete pattern.
+
 ### Configure the evaluation
 
-First, create an evaluation object that defines your data schema and testing criteria. The evaluation uses built-in evaluators for violence detection, fluency, and task adherence:
+First, create an evaluation object that defines your data schema and testing criteria. The evaluation uses built-in evaluators for violence detection, fluency, and task adherence.
+
+In Python, you use the OpenAI client directly. In C#, you obtain an `EvaluationClient` from the project client:
 
 # [Python](#tab/python)
 
