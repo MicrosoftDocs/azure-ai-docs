@@ -16,14 +16,14 @@ ai-usage: ai-assisted
 
 # Migration from Beta to GA version of Realtime API protocol
 
-You need to use Generally Available (GA) version of Azure OpenAI GPT Realtime API protocol in your applications. The Beta version of the protocol used during the Preview phase of the Service is deprecated starting TODO.
+You need to use Generally Available (GA) version of Azure OpenAI GPT Realtime API protocol in your applications. The Beta version of the protocol used during the Preview phase of the Service is deprecated starting April 30, 2026.
 
 ## SDK Support
 
 For Realtime GA API protocol, you need to use a supported SDK and the right API version.
 
 > [!CAUTION]
-> The Realtime GA API protocol and message format are only supported in SDKs provided by OpenAI. Realtime Preview SDKs previously released by Microsoft don't support GA API protocol.
+> The Realtime GA API protocol and message format are only supported in the SDKs provided by OpenAI. Realtime Preview SDKs previously released by Microsoft don't support GA API protocol.
 
 **List of SDKs**:
 
@@ -80,7 +80,7 @@ ws.on("open", function open() {
                 model: "gpt-realtime",
                 <...>
 ```
-The `session.update` event changed format, and some properties are now in different locations. See the API reference TODO for details.
+The `session.update` event changed format, and some properties are now in different locations. See the [API reference](https://platform.openai.com/docs/api-reference/realtime) for details.
 
 The following event names changed:
 
