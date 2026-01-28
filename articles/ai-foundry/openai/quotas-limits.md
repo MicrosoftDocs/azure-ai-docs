@@ -50,7 +50,7 @@ The following section provides you with a quick guide to the default quotas and 
 | Maximum standard deployments per resource | 32. |
 | Maximum fine-tuned model deployments | 10. |
 | Total number of training jobs per resource | 100. |
-| Maximum simultaneously running training jobs per resource | Standard global training: 3; <br> Developer training: 5 |
+| Maximum simultaneously running training jobs per resource | Standard and global training: 3; <br> Developer training: 5 |
 | Maximum training jobs queued | 20. |
 | Maximum files per resource (fine-tuning) | 100. |
 | Total size of all files per resource (fine-tuning) | 1 GB. |
