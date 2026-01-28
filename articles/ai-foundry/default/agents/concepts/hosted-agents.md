@@ -946,7 +946,33 @@ Billing for managed hosting runtime is enabled no earlier than February 1, 2026,
 
 ### Region availability
 
-Currently, North Central US is the only supported region for hosted agents.
+Hosted Agents are supported in the following regions: 
+
+- Brazil South	
+- Canada East	
+- East US	
+- France Central	
+- Germany West Central	
+- Italy North	
+- North Central US	
+- South Africa North	
+- South Central US	
+- South India	
+- Spain Central	
+- Sweden Central	
+- Canada Central	
+- Korea Central	
+- Southeast Asia	
+- Australia East	
+- East US 2	
+- Japan East	
+- UAE North	
+- UK South	
+- West US	
+- West US 3	
+- Norway East	
+- Poland Central	
+- Switzerland North
 
 ### Private networking support
 
