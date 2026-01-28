@@ -5,7 +5,7 @@ description: Use this article to learn about using your data for better text gen
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: article
+ms.topic: concept-article
 author: aahill
 ms.author: aahi
 ms.date: 12/02/2025

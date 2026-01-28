@@ -8,8 +8,8 @@ ms.custom:
   - ignite-2023
   - build-2024
   - hub-only
-ms.topic: reference
-ms.date: 6/30/2025
+ms.topic: article
+ms.date: 01/27/2026
 ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
@@ -29,7 +29,7 @@ The prompt flow Prompt tool offers a collection of textual templates that serve 
 
 [!INCLUDE [hub-only-prereq](../../includes/hub-only-prereq.md)]
 
-Prepare a prompt. The [LLM tool](llm-tool.md) and Prompt tool both support [Jinja](https://jinja.palletsprojects.com/en/stable/) templates.
+Prepare a prompt. Both the [LLM tool](llm-tool.md) and Prompt tool support [Jinja](https://jinja.palletsprojects.com/en/stable/) templates.
 
 In this example, the prompt incorporates Jinja templating syntax to dynamically generate the welcome message and personalize it based on the user's name. It also presents a menu of options for the user to choose from. Depending on whether the `user_name` variable is provided, it either addresses the user by name or uses a generic greeting.
     

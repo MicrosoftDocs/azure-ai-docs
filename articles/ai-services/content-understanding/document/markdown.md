@@ -7,7 +7,7 @@ ms.author: paulhsu
 manager: nitinme
 ms.date: 05/19/2025
 ms.service: azure-ai-content-understanding
-ms.topic: article
+ms.topic: concept-article
 ms.custom:
   - build-2025
 ---

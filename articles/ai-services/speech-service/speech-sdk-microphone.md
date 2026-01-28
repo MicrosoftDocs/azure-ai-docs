@@ -5,7 +5,7 @@ description: Speech SDK microphone array recommendations. These array geometries
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: article
+ms.topic: best-practice
 ms.date: 08/07/2025
 ms.author: pafarley
 #Customer intent: As a developer, I want to learn about the microphone array recommendations for the Speech service.

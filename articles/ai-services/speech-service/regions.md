@@ -5,7 +5,7 @@ description: This article provides a list of available regions and endpoints for
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: article
+ms.topic: concept-article
 ms.date: 11/09/2025
 ms.author: pafarley
 ms.custom: references_regions

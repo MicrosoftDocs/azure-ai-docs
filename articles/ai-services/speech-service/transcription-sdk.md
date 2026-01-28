@@ -33,7 +33,7 @@ Speech Transcription SDK code samples are available in the documentation and Git
 
 ### Docs samples
 
-At the top of documentation pages that contain samples, options to select include Java or Python.
+At the top of documentation pages that contain samples use the options to select your programming language.
 
 :::image type="content" source="./media/sdk/pivot-programming-languages-speech-sdk.png" alt-text="Screenshot showing how to select a programming language in the documentation.":::
 
@@ -41,7 +41,7 @@ If a sample isn't available in your preferred programming language, you can sele
 
 ### GitHub samples
 
-Samples can be found for each programming language in the respective GitHub repositories.
+You can find samples for each programming language in the respective GitHub repositories.
 
 | Programming language | Samples Repository |
 |----------------------|--------------------|
@@ -50,7 +50,7 @@ Samples can be found for each programming language in the respective GitHub repo
 
 ## Help options
 
-The [Stack Overflow](https://stackoverflow.com/questions/tagged/azure-speech) forums are available for the developer community to ask and answer questions about Azure Cognitive Speech and other services. Microsoft monitors the forums and replies to questions that the community didn't yet answer. To make sure that we see your question, tag it with 'azure-speech'.
+The developer community can use the [Stack Overflow](https://stackoverflow.com/questions/tagged/azure-speech) forums to ask and answer questions about Azure Cognitive Speech and other services. Microsoft monitors the forums and replies to questions that the community didn't yet answer. To make sure that Microsoft sees your question, tag it with 'azure-speech'.
 
 You can suggest an idea or report a bug by creating an issue on GitHub.
 

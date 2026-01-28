@@ -7,7 +7,7 @@ ms.author: gimondra
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: article
+ms.topic: reference
 ms.date: 09/17/2025
 ---
 

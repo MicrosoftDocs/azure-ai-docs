@@ -1710,7 +1710,7 @@ Ensure that you have a working MPI installation (preference for MPI-3 support an
 * If needed, follow these [steps on building MPI](https://mpi4py.readthedocs.io/en/stable/develop.html#building)
 
 Ensure that you're using a compatible python version
-* Python 3.8+ is recommended due to older versions reaching end-of-life
+* Python 3.10 or later is recommended due to older versions reaching end-of-life
 * See [mpi4py installation](https://aka.ms/azureml/environment/install-mpi4py)
 
 **Resources**

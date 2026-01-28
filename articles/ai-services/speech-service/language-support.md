@@ -5,7 +5,7 @@ description: Learn about language and voice support in Azure Speech for speech t
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: article
+ms.topic: concept-article
 ms.date: 12/19/2025
 ms.author: pafarley
 ms.custom: references_regions, build-2024
@@ -62,21 +62,17 @@ More remarks for text-to-speech locales are included in the [Voice styles and ro
 
 [!INCLUDE [Language support include](includes/language-support/tts.md)]
 
-### Dragon HD voices
-
-Dragon high definition (HD) voices are neural voices based on large language models. HD voices are multilingual, understand the content, automatically detect emotions in the input text, and adjust the speaking tone in real time to match the sentiment.
-
-HD voices maintain a consistent voice persona with their neural (and non-HD) counterparts. They deliver more value through enhanced features.
-
-[!INCLUDE [Language support include](includes/language-support/multilingual-voices.md)]
-
 ### Multilingual voices
 
-Multilingual voices support more languages. This expansion enhances your ability to express content in various languages. It helps you overcome language barriers and foster a global communication environment that's more inclusive.
+Voices with names that include `MultilingualNeural`, `DragonHDLatestNeural`, or `DragonHDOmniLatestNeural` support multiple languages. These voices enable expressive speech synthesis across languages, which helps reduce language barriers and support inclusive global communication.
 
-Use this table to see all supported speaking languages for each multilingual voice. If the voice doesn't speak the language of the input text, Azure Speech doesn't produce synthesized audio as output.
+`DragonHDLatestNeural` and `DragonHDOmniLatestNeural` are neural high‑definition (HD) voices that are based on large language models (LLMs). They can understand the semantic content of the input text, automatically detect emotional cues, and adjust speaking style and tone in real time to better match the sentiment. HD voices maintain a consistent voice persona with their non‑HD (neural) counterparts while providing enhanced capabilities through improved contextual understanding.
 
-The table is sorted by the number of supported languages in descending order. The locale prefix indicates the primary locale. For example, for the voice `en-US-AndrewMultilingualNeural`, the locale prefix is `en-US`. The locale prefix is the first part of the voice name.
+`MultilingualNeural` voices represent an earlier generation of multilingual technology. They offer high naturalness but don't have the same level of contextual awareness as HD voices.
+
+The following table lists all supported speaking languages for each multilingual voice. If a voice doesn't support the language of the input text, Azure Speech doesn't return synthesized audio. The table is sorted in descending order by the number of supported languages.
+
+The locale prefix indicates the voice's primary locale. For example, for the voice `en‑US‑AndrewMultilingualNeural`, the locale prefix is `en‑US`, which is the first segment of the voice name.
 
 [!INCLUDE [Language support include](includes/language-support/multilingual-voices.md)]
 
