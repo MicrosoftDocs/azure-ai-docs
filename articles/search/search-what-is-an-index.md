@@ -34,8 +34,7 @@ This article covers the key concepts for creating and managing a search index, i
 
 In Azure AI Search, indexes contain *search documents*. Conceptually, a document is a single unit of searchable data in your index. For example, a retailer might have a document for each product, a university might have a document for each class, a travel site might have a document for each hotel and destination, and so forth. Mapping these concepts to more familiar database equivalents: a *search index* equates to a *table*, and *documents* are roughly equivalent to *rows* in a table.
 
-The structure of a document is determined by the *index schema*, as illustrated in the following example. The `fields` collection is typically the largest part of an index, where each field is named, assigned a [data type](/rest/api/searchservice/Supported-data-types), and attributed with allowable behaviors that determine how it's used at query time.
-
+Here's an example of what an *index schema* looks like. 
 ```json
 {
   "name": "name_of_index, unique across the service",
@@ -73,6 +72,8 @@ The structure of a document is determined by the *index schema*, as illustrated 
 }
 ```
 
+The `fields` collection is typically the largest part. Each field has a name, [data type](/rest/api/searchservice/Supported-data-types), and attributes that determine usage at query time.
+
 Other elements are collapsed for brevity, but the following links provide details: 
 
 + [suggesters](index-add-suggesters.md) support type-ahead queries like autocomplete.
@@ -85,7 +86,7 @@ Other elements are collapsed for brevity, but the following links provide detail
 
 ### Field definitions
 
-A search document is defined by the `fields` collection in the body of [Create Index request](/rest/api/searchservice/indexes/create). You need fields for document identification (keys), storing searchable text, and fields for supporting filters, facets, and sorting. You might also need fields for data that a user never sees. For example, you might want fields for profit margins or marketing promotions that you can use in a scoring profile to boost a search score.
+A search document is defined by the `fields` collection in the body of [Create Index request](/rest/api/searchservice/indexes/create). You need fields for document identification (keys), storing searchable text, and fields for supporting filters, facets, and sorting. You might also need fields for data that a user never sees. For example, you might want fields for profit margins or marketing promotions that you can use in a [scoring profile](index-add-scoring-profiles.md) to boost a search score.
 
 If incoming data is hierarchical in nature, you can represent it within an index as a [complex type](search-howto-complex-data-types.md), used for nested structures. The sample data set, [Hotels](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/hotels), illustrates complex types using an Address (contains multiple subfields) that has a one-to-one relationship with each hotel, and a Rooms complex collection, where multiple rooms are associated with each hotel. 
 
@@ -172,6 +173,7 @@ All indexing and query requests target an index. Endpoints are usually one of th
 
 1. Try other clients for programmatic access. We recommend the quickstarts for first steps:
 
+   + [Quickstart: Connect to a search service](search-get-started-rbac.md)
    + [Quickstart: REST](search-get-started-text.md)
    + [Quickstart: Full-text search](search-get-started-text.md)
    + [Quickstart: Agentic retrieval](search-get-started-agentic-retrieval.md)
