@@ -19,20 +19,9 @@ Azure Language Studio will begin migrating traffic to Microsoft Foundry on Febru
 Microsoft Foundry offers a unified platform for building, managing, and deploying AI solutions with a wide array of models and tools. Migrating to Foundry provides the following benefits:
 
 * **Unified development experience**. Access all Azure AI Language features alongside other AI services in one environment.
-* **Enhanced capabilities**. Use features like **Quick Deploy** for rapid fine-tuning and **Suggest Utterances** to expand training data with generative AI.
+* **Enhanced capabilities**. Use features like **Quick Deploy** for rapid fine-tuning with generative AI.
 * **Continuous updates**. Benefit from new features continually added to Foundry.
 * **Integration with Foundry Tools**. Build conversational AI applications using the Azure Language `MCP` server, Intent Routing agent, and Exact Question Answering agent.
-
-## Migration overview
-
-The migration process consists of the following steps:
-
-1. Create a Foundry hub and project.
-1. Confirm prerequisites and region support.
-1. Connect your Azure Language resource to your Foundry hub.
-1. Validate and test your projects in Foundry.
-
-You may alternatively choose to export your projects and create a Foundry resource to start using a single resource for accessing all of your favorite AI features, which provides access to both Foundry classic and the new Foundry experiences. For more information, *see* [Option 2: Export your projects to a new Foundry resource](#option-2-export-your-projects-to-a-new-foundry-resource).
 
 ## Prerequisites
 
@@ -42,15 +31,29 @@ You may alternatively choose to export your projects and create a Foundry resour
 
 * **Azure account** with a role that allows you to create resources, such as **Contributor** or **Owner** at the subscription level.
 
+## Migration overview
+
+You can migrate to Microsoft Foundry using one of two approaches:
+
+* **[Option 1: Use your existing Language resource](#option-i-start-using-foundry-with-an-existing-language-resource)**. Create a Foundry hub, connect your existing Azure Language resource, and access your projects directly in Foundry. This approach preserves your current resource configuration and requires no data export or import.
+
+* **[Option 2: Migrate to a new Foundry resource](#option-2-migrate-to-a-new-foundry-resource)**. Export your projects from Language Studio and import them into a new Foundry resource. This approach consolidates your AI capabilities into a single resource and provides access to both Foundry classic and the new Foundry experiences.
+
+
+
 ---
 
-# Option 1: Start using Foundry with an existing Language resource
+
+
+## Option I: Start using Foundry with an existing Language resource
+
+If you have an existing Azure Language resource with custom projects, you can continue using it within Microsoft Foundry by creating a Foundry hub and connecting your resource. This approach preserves your current resource configuration and allows you to access your projects in Foundry without exporting or reimporting data.
 
 > [!IMPORTANT]
 > This configuration is supported only in Foundry classic.
 > Microsoft Foundry can automatically provision and manage Azure Language resources. However, manually configuring your hub-based Foundry resource in the Azure portal ensures correct role-based access control (RBAC) assignments, managed identity configurations, and network security settings.
 
-## Step 1: Create a Foundry hub and project
+### Step 1: Create a Foundry hub and project
 
 To use Azure AI Language capabilities with a Language resource, you need a Foundry hub and an associated hub-based project. Set up these resources using either of the following approaches:
 
@@ -58,7 +61,7 @@ To use Azure AI Language capabilities with a Language resource, you need a Found
 
 * **Microsoft Foundry portal**. Create a hub-based project directly in Microsoft Foundry, which automatically provisions the underlying hub. This approach streamlines setup by handling hub creation automatically. For step-by-step instructions, *see* [Create a project](/azure/ai-foundry/how-to/create-projects?view=foundry-classic&preserve-view=true&tabs=foundry).
 
-## Step 2: Confirm prerequisites and region support
+### Step 2: Confirm prerequisites and region support
 
 The following table lists the custom capabilities available in Microsoft Foundry along with their required prerequisites and supported regions. Ensure these prerequisites are in place before proceeding with the migration.
 
@@ -69,7 +72,7 @@ The following table lists the custom capabilities available in Microsoft Foundry
 |[**Orchestration workflow**](orchestration-workflow/quickstart.md)|&bullet; Foundry resource and Foundry project, or Language resource and Foundry hub-based project.</br>&bullet; A `CLU` or `CQA` project created in the same resource.|Limited to select Azure regions. Some regions support both authoring and prediction; others support prediction only. For more information, *see* [Region support for Orchestration workflow](concepts/regional-support.md).|
 |[**Custom Named Entity Recognition (CNER)**](custom-named-entity-recognition/quickstart.md)|&bullet; Language resource with a storage account linked during resource creation.</br>&bullet; Foundry hub-based project created in the Azure portal.|Limited to select Azure regions. Some regions support both authoring and prediction; others support prediction only. For more information, *see* [Region support for CNER](concepts/regional-support.md).|
 
-## Step 3: Connect your Azure Language resource to your Foundry hub
+### Step 3: Connect your Azure Language resource to your Foundry hub
 
 > [!IMPORTANT]
 > This step is required only if you're using an existing Azure Language resource with a Foundry hub-based project.
@@ -86,7 +89,7 @@ To access and manage your existing Language resource projects in Microsoft Found
 
 For more information, *see* [Connect Foundry Tools to a Foundry project](/azure/ai-foundry/how-to/connections-add?view=foundry-classic&preserve-view=true&tabs=foundry-portal).
 
-## Step 4: Validate and test your migrated projects
+### Step 4: Validate and test your migrated projects
 
 After importing your projects, validate that the migration is successful:
 
@@ -96,34 +99,15 @@ After importing your projects, validate that the migration is successful:
 
 ---
 
-# Option 2: Export your projects to a new Foundry resource
+## Option 2: Migrate to a new Foundry resource
 
-## Step 1: Export your projects from Language Studio
+This option enables you to create a new Foundry resource and migrate your projects by exporting them from Language Studio and importing them into the new environment. With a Foundry resource, you can access both Foundry classic and the new Foundry experiences, and take advantage of the latest features and unified resource management capabilities.
+
+### Step 1: Export your projects from Language Studio
 
 Before migrating to Microsoft Foundry, export all custom projects you want to transfer. The export process preserves your project configuration, training data, and model settings for import into Foundry:
 
 :::image type="content" source="media/export-studio-project.png" alt-text="Screenshot of Export Studio Project button.":::
-
-### Pretrained models (prebuilt) supported in Microsoft Foundry
-
-The following table lists the pretrained (prebuilt) capabilities available in Microsoft Foundry, required prerequisites, and supported regions. Ensure these prerequisites are in place before proceeding with the migration.
-
-|Capability|Input|Region support|
-|---|---|---|
-|**Language detection (Foundry classic)**|On the Playground tab, you can choose a text sample from the drop-down menu, choose the paperclip icon to upload your own text, or type your text directly into the sample window. For more information, *see* [**Language detection in Foundry**](language-detection/quickstart.md).|Available in supported Azure regions. For more information, *see* [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).|
-|**Language detection (Foundry new)**|On the Playground tab, you can choose a text sample from the drop-down menu, choose the paperclip icon to upload your own text, or type your text directly into the sample window. For more information, *see* [**Language detection in Foundry**](language-detection/quickstart.md).|Available in supported Azure regions. For more information, *see* [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).|
-|**Key phrase extraction (Foundry classic)**|On the Playground tab, you can upload a file or type text directly into the sample window. For more information, *see* [**Key phrase extraction**](key-phrase-extraction/quickstart.md).|Available in supported Azure regions. For more information, *see* [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).|
-|**Named Entity Recognition (Foundry classic)**|On the Playground tab, you can upload a file or type text directly into the sample window. For more information, *see* [**Named Entity Recognition in Foundry**](named-entity-recognition/quickstart.md).|Available in supported Azure regions. For more information, *see* [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).|
-|**PII detection for text or conversation (Foundry classic)**|On the Playground tab, you can choose a text sample from the drop-down menu, choose the paperclip icon to upload your own text, or type your text directly into the sample window. For more information, *see* [**PII detection in Foundry**](personally-identifiable-information/quickstart.md).|Available in supported Azure regions. For more information, *see* [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).|
-|**PII detection for text (Foundry new)**|On the Playground tab, you can choose a text sample from the drop-down menu, choose the paperclip icon to upload your own text, or type your text directly into the sample window. For more information, *see* [**PII detection in Foundry**](personally-identifiable-information/quickstart.md).|Available in supported Azure regions. For more information, *see* [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).|
-|**Sentiment analysis (Foundry classic)**|On the Playground tab, you can upload a file or type text directly into the sample window. For more information, *see* [**Sentiment analysis in Foundry**](sentiment-opinion-mining/quickstart.md).|Available in all [supported Azure regions](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=cognitive-services).|
-|**Summarization (Foundry classic)**</br></br>&bullet;    **Conversation**</br>&bullet;    **Call center**</br>&bullet;    **Text**|On the Playground tab, you can choose a text sample from the drop-down menu, choose the paperclip icon to upload your own text, or type your text directly into the sample window. For more information, *see* [**Summarization in Foundry**](summarization/quickstart.md).|Region support is limited to select Azure regions. For more information, *see* [Region support for summarization](concepts/regional-support.md#summarization)|
-|**Text Analytics for health (Foundry classic)**|On the Playground tab, you can upload a file or type text directly into the sample window. A storage account isn't required. For more information, *see* [**Text Analytics for health in Foundry**](text-analytics-for-health/quickstart.md).|Available in all [supported Azure regions](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=cognitive-services).|
-
-### Custom features supported in Microsoft Foundry
-
-> [!NOTE]
-> In the Foundry, a **fine-tuning task** serves as your workspace when customizing your custom models. Previously, a **fine-tuning task** was referred to as a project. You might encounter both terms used interchangeably in some documentation.
 
 #### Export a Custom Question Answering project
 
@@ -141,7 +125,7 @@ The following table lists the pretrained (prebuilt) capabilities available in Mi
 1. On the project home page, select your project from the right page ribbon area.
 1. Select **Download config file** to download the project as a **`config.json`** file.
 
-## Step 2: Set up your Foundry environment
+### Step 2: Set up your Foundry environment
 
 Before migrating your Azure Language projects to Microsoft Foundry, you need to complete several configuration tasks:
 
@@ -166,25 +150,11 @@ To use Azure AI Language capabilities with a Foundry resource, you need both the
 > [!IMPORTANT]
 > **Custom NER (CNER)** requires a storage account to be linked to the Foundry resource during initial resource creation. To establish this link, you must configure the Foundry resource in the [Azure portal](https://portal.azure.com/).
 
-|Capability|Required prerequisites|Region support|
-|---|---|---|
-|[**Conversational Language Understanding (CLU)**](conversational-language-understanding/quickstart.md)|&bullet; Foundry resource and Foundry project created in the Azure portal.|Limited to select Azure regions. Some regions support both authoring and prediction; others support prediction only. For more information, *see* [Region support for Conversational Language Understanding](concepts/regional-support.md#conversational-language-understanding-and-orchestration-workflow).|
-|[**Custom Question Answering (CQA)**](question-answering/quickstart/sdk.md)|&bullet; Foundry resource and Foundry project created in the Azure portal.</br>&bullet; Azure AI Search resource connected to your project via the Foundry Management Center. For more information, *see* [Create a new connection](/azure/ai-foundry/how-to/connections-add?view=foundry-classic&preserve-view=true&tabs=foundry-portal#create-a-new-connection).|Available in supported Azure regions. For more information, *see* [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).|
-|[**Custom Question Answering agent**](question-answering/how-to/deploy-agent.md)|&bullet; Foundry resource and Foundry project created in the Azure portal.</br>&bullet; Azure AI Search resource connected to your project via the Foundry Management Center. For more information, *see* [Create a new connection](/azure/ai-foundry/how-to/connections-add?view=foundry-classic&preserve-view=true&tabs=foundry-portal#create-a-new-connection).</br>&bullet; Deployed knowledge base.</br>&bullet; Deployed Azure OpenAI model in Microsoft Foundry.</br>&bullet; API key connected to your project.|Available in supported Azure regions. For more information, *see* [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).|
-|[**Custom Named Entity Recognition (CNER)**](custom-named-entity-recognition/quickstart.md)|&bullet; Language resource with a storage account **linked during resource creation** in the Foundry portal.</br>&bullet; Foundry project created in the Azure portal.|Limited to select Azure regions. Some regions support both authoring and prediction; others support prediction only. For more information, *see* [Region support for CNER](concepts/regional-support.md#custom-named-entity-recognition).|
-|[**Orchestration Workflow**](orchestration-workflow/quickstart.md)|&bullet; Foundry resource and Foundry project, or Language resource and Foundry hub-based project.</br>&bullet; A `CLU` or `CQA` project created in the same resource.|Limited to select Azure regions. Some regions support both authoring and prediction; others support prediction only. For more information, *see* [Region support for Orchestration workflow](concepts/regional-support.md#conversational-language-understanding-and-orchestration-workflow).|
-
-> [!NOTE]
-> The following Azure AI Language features aren't available in the Microsoft Foundry portal. To use these capabilities, call the [**Azure Language REST API**](/rest/api/language/) directly:
->
-> * [**Custom Text Classification**](/azure/ai-services/language-service/custom-text-classification/quickstart?tabs=multi-classification). For regional availability, *see* [Region support for Custom Text Classification](concepts/regional-support.md).
-> * [**Entity linking**](/azure/ai-services/language-service/entity-linking/quickstart?tabs=windows&pivots=rest-api). Available in all [supported Azure regions](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=cognitive-services).
-
-## Step 3: Import your projects into Foundry
+### Step 3: Import your projects into Foundry
 
 After you connect your Language resource or Foundry resource, your existing projects are accessible within Foundry. For new projects or to import exported projects:
 
-### Import Custom Named Entity Recognition (CNER) project assets
+#### Import Custom Named Entity Recognition (CNER) project assets
 
 1. In the Azure portal, grant the Foundry managed identity permissions to the storage account by assigning the **Storage Blob Data Contributor** role under **Access Control (IAM)**.
 1. Sign in to the [Microsoft Foundry portal](https://ai.azure.com/) and select your project.
@@ -194,7 +164,7 @@ After you connect your Language resource or Foundry resource, your existing proj
 
 You can now train and deploy your `CNER` project using the **Getting started** workflow in Foundry.
 
-### Import a Custom Question Answering (CQA) project
+#### Import a Custom Question Answering (CQA) project
 
 1. In Foundry, navigate to your project.
 1. Select **Fine-tuning** from the left navigation pane.
@@ -208,7 +178,7 @@ You can now train and deploy your `CNER` project using the **Getting started** w
 
 After adding your source files, you can train and deploy the `CQA` project using the **Getting started** workflow in Foundry.
 
-### Import a Conversational Language Understanding (CLU) project
+#### Import a Conversational Language Understanding (CLU) project
 
 1. In Foundry, navigate to your project.
 1. Select **Fine-tuning** from the left navigation pane.
@@ -221,7 +191,7 @@ After adding your source files, you can train and deploy the `CQA` project using
 
 After importing, you can train and deploy your `CLU` project using the **Getting started** workflow in Foundry.
 
-### Import an Orchestration Workflow project
+#### Import an Orchestration Workflow project
 
 1. In Foundry, navigate to your project.
 1. Select **Fine-tuning** from the left navigation pane.
@@ -233,7 +203,7 @@ After importing, you can train and deploy your `CLU` project using the **Getting
 
 After importing, you can train and deploy the Orchestration project using the **Getting started** workflow in Foundry.
 
-## Step 4: Validate and test your imported projects
+### Step 4: Validate and test your imported projects
 
 After importing your projects, validate that the migration is successful:
 
@@ -248,6 +218,41 @@ After importing your projects, validate that the migration is successful:
 > * **Existing Azure Language resources**. You can access and continue to use your current Azure Language resources within the Microsoft Foundry portal by creating a **Foundry hub** and an associated **hub-based project**. For more information, *see* [Create a hub in the Azure portal](/azure/ai-foundry/how-to/create-azure-ai-resource?view=foundry-classic&preserve-view=true&tabs=portal#create-a-hub-in-the-azure-portal).
 >
 > * **Existing Foundry resource-based projects**. You can access your current **Foundry projects** directly in the Microsoft Foundry portal. Alternatively, create a new project and transfer your project assets to the new environment. For more information, *see* [Create a Foundry project](/azure/ai-foundry/how-to/create-projects?view=foundry-classic&preserve-view=true&tabs=foundry).
+
+#### Pretrained models (prebuilt) supported in Microsoft Foundry
+
+The following table lists the pretrained (prebuilt) capabilities available in Microsoft Foundry, required prerequisites, and supported regions. Ensure these prerequisites are in place before proceeding with the migration.
+
+|Capability|Input|Region support|
+|---|---|---|
+|**Language detection (Foundry classic)**|On the Playground tab, you can choose a text sample from the drop-down menu, choose the paperclip icon to upload your own text, or type your text directly into the sample window. For more information, *see* [**Language detection in Foundry**](language-detection/quickstart.md).|Available in supported Azure regions. For more information, *see* [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).|
+|**Language detection (Foundry new)**|On the Playground tab, you can choose a text sample from the drop-down menu, choose the paperclip icon to upload your own text, or type your text directly into the sample window. For more information, *see* [**Language detection in Foundry**](language-detection/quickstart.md).|Available in supported Azure regions. For more information, *see* [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).|
+|**Key phrase extraction (Foundry classic)**|On the Playground tab, you can upload a file or type text directly into the sample window. For more information, *see* [**Key phrase extraction**](key-phrase-extraction/quickstart.md).|Available in supported Azure regions. For more information, *see* [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).|
+|**Named Entity Recognition (Foundry classic)**|On the Playground tab, you can upload a file or type text directly into the sample window. For more information, *see* [**Named Entity Recognition in Foundry**](named-entity-recognition/quickstart.md).|Available in supported Azure regions. For more information, *see* [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).|
+|**PII detection for text or conversation (Foundry classic)**|On the Playground tab, you can choose a text sample from the drop-down menu, choose the paperclip icon to upload your own text, or type your text directly into the sample window. For more information, *see* [**PII detection in Foundry**](personally-identifiable-information/quickstart.md).|Available in supported Azure regions. For more information, *see* [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).|
+|**PII detection for text (Foundry new)**|On the Playground tab, you can choose a text sample from the drop-down menu, choose the paperclip icon to upload your own text, or type your text directly into the sample window. For more information, *see* [**PII detection in Foundry**](personally-identifiable-information/quickstart.md).|Available in supported Azure regions. For more information, *see* [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).|
+|**Sentiment analysis (Foundry classic)**|On the Playground tab, you can upload a file or type text directly into the sample window. For more information, *see* [**Sentiment analysis in Foundry**](sentiment-opinion-mining/quickstart.md).|Available in all [supported Azure regions](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=cognitive-services).|
+|**Summarization (Foundry classic)**</br></br>&bullet;    **Conversation**</br>&bullet;    **Call center**</br>&bullet;    **Text**|On the Playground tab, you can choose a text sample from the drop-down menu, choose the paperclip icon to upload your own text, or type your text directly into the sample window. For more information, *see* [**Summarization in Foundry**](summarization/quickstart.md).|Region support is limited to select Azure regions. For more information, *see* [Region support for summarization](concepts/regional-support.md#summarization)|
+|**Text Analytics for health (Foundry classic)**|On the Playground tab, you can upload a file or type text directly into the sample window. A storage account isn't required. For more information, *see* [**Text Analytics for health in Foundry**](text-analytics-for-health/quickstart.md).|Available in all [supported Azure regions](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=cognitive-services).|
+
+#### Custom features supported in Microsoft Foundry
+
+> [!NOTE]
+> In the Foundry, a **fine-tuning task** serves as your workspace when customizing your custom models. Previously, a **fine-tuning task** was referred to as a project. You might encounter both terms used interchangeably in some documentation.
+
+|Capability|Required prerequisites|Region support|
+|---|---|---|
+|[**Conversational Language Understanding (CLU)**](conversational-language-understanding/quickstart.md)|&bullet; Foundry resource and Foundry project created in the Azure portal.|Limited to select Azure regions. Some regions support both authoring and prediction; others support prediction only. For more information, *see* [Region support for Conversational Language Understanding](concepts/regional-support.md#conversational-language-understanding-and-orchestration-workflow).|
+|[**Custom Question Answering (CQA)**](question-answering/quickstart/sdk.md)|&bullet; Foundry resource and Foundry project created in the Azure portal.</br>&bullet; Azure AI Search resource connected to your project via the Foundry Management Center. For more information, *see* [Create a new connection](/azure/ai-foundry/how-to/connections-add?view=foundry-classic&preserve-view=true&tabs=foundry-portal#create-a-new-connection).|Available in supported Azure regions. For more information, *see* [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).|
+|[**Custom Question Answering agent**](question-answering/how-to/deploy-agent.md)|&bullet; Foundry resource and Foundry project created in the Azure portal.</br>&bullet; Azure AI Search resource connected to your project via the Foundry Management Center. For more information, *see* [Create a new connection](/azure/ai-foundry/how-to/connections-add?view=foundry-classic&preserve-view=true&tabs=foundry-portal#create-a-new-connection).</br>&bullet; Deployed knowledge base.</br>&bullet; Deployed Azure OpenAI model in Microsoft Foundry.</br>&bullet; API key connected to your project.|Available in supported Azure regions. For more information, *see* [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).|
+|[**Custom Named Entity Recognition (CNER)**](custom-named-entity-recognition/quickstart.md)|&bullet; Language resource with a storage account **linked during resource creation** in the Foundry portal.</br>&bullet; Foundry project created in the Azure portal.|Limited to select Azure regions. Some regions support both authoring and prediction; others support prediction only. For more information, *see* [Region support for CNER](concepts/regional-support.md#custom-named-entity-recognition).|
+|[**Orchestration Workflow**](orchestration-workflow/quickstart.md)|&bullet; Foundry resource and Foundry project, or Language resource and Foundry hub-based project.</br>&bullet; A `CLU` or `CQA` project created in the same resource.|Limited to select Azure regions. Some regions support both authoring and prediction; others support prediction only. For more information, *see* [Region support for Orchestration workflow](concepts/regional-support.md#conversational-language-understanding-and-orchestration-workflow).|
+
+> [!NOTE]
+> The following Azure AI Language features aren't available in the Microsoft Foundry portal. To use these capabilities, call the [**Azure Language REST API**](/rest/api/language/) directly:
+>
+> * [**Custom Text Classification**](/azure/ai-services/language-service/custom-text-classification/quickstart?tabs=multi-classification). For regional availability, *see* [Region support for Custom Text Classification](concepts/regional-support.md).
+> * [**Entity linking**](/azure/ai-services/language-service/entity-linking/quickstart?tabs=windows&pivots=rest-api). Available in all [supported Azure regions](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=cognitive-services).
 
 ## Troubleshooting
 
