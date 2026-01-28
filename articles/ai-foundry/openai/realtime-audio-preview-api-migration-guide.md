@@ -14,9 +14,9 @@ monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ---
 
-# Migration from Beta to GA version of Realtime API protocol
+# Migration from Preview to GA version of Realtime API
 
-You need to use Generally Available (GA) version of Azure OpenAI GPT Realtime API protocol in your applications. The Beta version of the protocol used during the Preview phase of the Service is deprecated starting April 30, 2026.
+You need to use Generally Available (GA) version of Azure OpenAI GPT Realtime API in your applications. The Beta version of the API used during the Preview phase of the Service is deprecated starting April 30, 2026.
 
 ## SDK Support
 
