@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 11/21/2025
+ms.date: 01/28/2026
 ---
 
 # Use embedding models from the Microsoft Foundry model catalog for integrated vectorization
@@ -80,6 +80,67 @@ Supported embedding models from the model catalog vary by usage method:
 
    + To use the model as a vectorizer at query time, see [Configure a vectorizer](vector-search-how-to-configure-vectorizer.md). Be sure to use the [Microsoft Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md) for this step.
 -->
+
+## Deploy an embedding model as a serverless deployment
+
+The AML skill and Microsoft Foundry model catalog vectorizer only accept serverless deployments of Cohere embedding models. Serverless deployments via the Microsoft Foundry portal aren't supported for these models, so use the Azure CLI to create the deployment. For more information, see [Deploy models as serverless API deployments](/azure/ai-foundry/how-to/deploy-models-serverless).
+
+To create a Cohere serverless deployment:
+
+1. Install the Azure CLI with the `ml` extension.
+
+    ```azurecli
+    az extension add -n ml
+    ```
+
+1. Sign in and set your defaults.
+
+    ```azurecli
+    az login
+    az account set --subscription <subscription-id>
+    az configure --defaults workspace=<project-name> group=<resource-group>
+    ```
+
+1. Create a `subscribe.yaml` file to subscribe to the marketplace subscription for the model.
+
+    ```yaml
+    name: cohere-embed-v3-english-subscription
+    model_id: azureml://registries/azureml-cohere/models/Cohere-embed-v3-english
+    ```
+
+    For other supported models, replace the model ID with one of the following values.
+    
+    | Model | Model ID |
+    | ----- | -------- |
+    | Cohere-embed-v3-english | `azureml://registries/azureml-cohere/models/Cohere-embed-v3-english` |
+    | Cohere-embed-v3-multilingual | `azureml://registries/azureml-cohere/models/Cohere-embed-v3-multilingual` |
+    | Cohere-embed-v4 | `azureml://registries/azureml-cohere/models/Cohere-embed-v4` |
+
+1. Run the following command to create the subscription.
+
+    ```azurecli
+    az ml marketplace-subscription create --file subscribe.yaml
+    ```
+
+1. Create an `endpoint.yaml` file to create the serverless endpoint.
+
+    ```yaml
+    name: cohere-embed-v3-english-endpoint
+    model_id: azureml://registries/azureml-cohere/models/Cohere-embed-v3-english
+    ```
+
+1. Run the following command to create the endpoint.
+
+    ```azurecli
+    az ml serverless-endpoint create --file endpoint.yaml
+    ```
+
+1. For key-based authentication, get the endpoint URI and key for use in the skill or vectorizer.
+
+    ```azurecli
+    az ml serverless-endpoint show --name cohere-embed-v3-english-endpoint --query "scoring_uri"
+    az ml serverless-endpoint get-credentials --name cohere-embed-v3-english-endpoint
+    ```
 
 ## Sample AML skill payload
 
