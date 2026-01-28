@@ -6,7 +6,7 @@ author: gmndrg
 ms.author: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 01/28/2025
+ms.date: 01/28/2026
 ms.custom:
   - ignite-2025
   - sfi-image-nochange
