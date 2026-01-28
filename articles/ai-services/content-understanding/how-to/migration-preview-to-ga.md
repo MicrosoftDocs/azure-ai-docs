@@ -80,44 +80,44 @@ You can use the updated definition to create a new analyzer. Call `PUT /analyzer
 
 ## Consider these other API changes
 
-1. Content classifiers and video segmentation are now merged into content analyzers. To segment and classify content, use the `contentCategories` properties of the analyzer. See [build a robotic process automation (RPA) solution](../tutorial/robotic-process-automation.md) and [video segmentation](../video/overview.md#segmentation-mode) for guidance on how to classify or classify and analyze.
+- Content classifiers and video segmentation are now merged into content analyzers. To segment and classify content, use the `contentCategories` properties of the analyzer. See [build a robotic process automation (RPA) solution](../tutorial/robotic-process-automation.md) and [video segmentation](../video/overview.md#segmentation-mode) for guidance on how to classify or classify and analyze.
 
-1. Confidence and grounding are now optional properties for fields. The default field definition doesn't return confidence and grounding. To add confidence and grounding, set the `estimateFieldSourceAndConfidence` to `true`. This behavior is unchanged from the `2025-05-01-preview` API.
+- Confidence and grounding are now optional properties for fields. The default field definition doesn't return confidence and grounding. To add confidence and grounding, set the `estimateFieldSourceAndConfidence` to `true`. This behavior is unchanged from the `2025-05-01-preview` API.
 
-1. Simplify the request to use the `GET` function to get specific components of the Analyze result. Use the `GET` function to get the embedded images or content with the API call.
+- The request to use the `GET` function to get specific components of the Analyze result is simplified. Use the `GET` function to get the embedded images or content with the API call.
 
-``` JSON
-GET /analyzerResults/{operationId}/files/{path}
-```
+  ``` JSON
+  GET /analyzerResults/{operationId}/files/{path}
+  ```
 
-Here, the ```path``` value can include:
+  Here, the ```path``` value can include:
 
-- `contents/{contentIndex}/pages/{pageNumber} - DocumentContent.pages[*].pageNumber`
-- `contents/{contentIndex}/figures/{figureId} - DocumentContent.figures[*].id`
+  - `contents/{contentIndex}/pages/{pageNumber} - DocumentContent.pages[*].pageNumber`
+  - `contents/{contentIndex}/figures/{figureId} - DocumentContent.figures[*].id`
 
-1. The **Analyze** operation now supports only analyzing files by URL. Use the new **analyzeBinary** operation to upload files as part of the request body as a base64-encoded string. If you previously used the **Analyze** operation to upload files inline in your code, you need to update your code to instead use the **analyzeBinary** operation. Learn more about the [analyzeBinary operation](/rest/api/contentunderstanding/content-analyzers/analyze-binary).
+- The **Analyze** operation now supports only analyzing files by URL. Use the new **analyzeBinary** operation to upload files as part of the request body as a base64-encoded string. If you previously used the **Analyze** operation to upload files inline in your code, you need to update your code to instead use the **analyzeBinary** operation. Learn more about the [analyzeBinary operation](/rest/api/contentunderstanding/content-analyzers/analyze-binary).
 
-1. The **Analyze** operation's JSON payload schema is updated. There's now an inputs array that contains the information on the file to be analyzed. Each input element contains a URL pointer to a file. Learn more about the [Analyze operation](/rest/api/contentunderstanding/content-analyzers/analyze).
+- The **Analyze** operation's JSON payload schema is updated. There's now an inputs array that contains the information on the file to be analyzed. Each input element contains a URL pointer to a file. Learn more about the [Analyze operation](/rest/api/contentunderstanding/content-analyzers/analyze).
 
-> [!NOTE]
-> The inputs array only supports a single item in the `2025-11-01` version.
+  > [!NOTE]
+  > The inputs array only supports a single item in the `2025-11-01` version.
 
-Here's an example of the updated schema for `PUT /analyzers/{analyzerName}`:
+  Here's an example of the updated schema for `PUT /analyzers/{analyzerName}`:
 
-``` jsonc
+  ``` jsonc
 
-{
-      "inputs":[
-      {
-        "url": "https://documentintelligence.ai.azure.com/documents/samples/read/read-healthcare.png" /*This is the file to be analyzed*/
-      }
-      ]
-}
-```
+  {
+        "inputs":[
+        {
+          "url": "https://documentintelligence.ai.azure.com/documents/samples/read/read-healthcare.png" /*This is the file to be analyzed*/
+        }
+        ]
+  }
+  ```
 
-1. If you used in-context learning or labeled data, the API payload that defines the labeled dataset now specifies the labeled data as a type of ```knowledgeSources```. For more information on how to define an analyzer to use labeled data, see [`knowledgeSources`](/rest/api/contentunderstanding/content-analyzers/create-or-replace).
+- If you used in-context learning or labeled data, the API payload that defines the labeled dataset now specifies the labeled data as a type of ```knowledgeSources```. For more information on how to define an analyzer to use labeled data, see [`knowledgeSources`](/rest/api/contentunderstanding/content-analyzers/create-or-replace).
 
-1. For video modality analyzers, the key frames are now returned as an array of ```keyFrames```. Learn more about the [analyzer response](/rest/api/contentunderstanding/content-analyzers/analyze).
+- For video modality analyzers, the key frames are now returned as an array of ```keyFrames```. Learn more about the [analyzer response](/rest/api/contentunderstanding/content-analyzers/analyze).
 
 ### New features
 
