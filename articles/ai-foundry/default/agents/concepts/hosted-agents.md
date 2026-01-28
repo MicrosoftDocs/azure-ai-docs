@@ -481,21 +481,27 @@ When you start an agent:
 
 ### View container Log Stream
 
-The container Logstream API for hosted agents gives you access to the system and console logs of the azure container app deployed on your behalf in Microsoft's Azure environment to enable self-serve debuggability for agent startup and runtime errors during deployment. 
+The container Logstream API for hosted agents gives you access to the system and console logs of the container deployed on your behalf in Microsoft's Azure environment to enable self-serve debuging for agent startup and runtime errors during deployment. 
 
 #### REST API Details
 
 | Item | Value |
 | --- | --- |
 | **Method** | `GET` |
-| **Route** | `/agents/v2.0/subscriptions/{subscription}/resourceGroups/{resourceGroup}/providers/Microsoft.MachineLearningServices/workspaces/{workspace}/agents/{agentName}/versions/{agentVersion}/containers/default:logstream` |
+| **Route** | `https://{endpoint}/api/projects/{projectName}/agents/{agentName}/versions/{agentVersion}/containers/default:logstream` |
 | **Description** | Streams console or system logs for a specific hosted agent replica. |
 | **Content-Type** | `text/plain` (chunked streaming) |
 
 #### Path parameters
 
-- `subscription`, `resourceGroup`, `workspace`: identify the AML workspace hosting the agent.
-- `agentName`, `agentVersion`: specify the agent deployment/version whose container logs are requested.
+| Name | Description | Example |
+| --- | --- | --- |
+|  `api-version` | Required | API version, for example: `2025-11-15-preview` |
+| `kind` | `console` | `console` returns container `stdout`/`stderr`, `system` returns container system event stream. |
+| `endpoint` | Your Foundry service endpoint | `myservice.services.ai.azure.com` |
+| `projectName` | The Foundry project name | `myproject` |
+| `agentName` | The agent deployment name | `sample1` |
+| `agentVersion` | The agent version number | `1` |
 
 #### Query parameters
 
@@ -515,7 +521,17 @@ The container Logstream API for hosted agents gives you access to the system and
 - `200 OK`: Plain-text stream of log lines, one per line.
 - `404 Not Found`: Agent version, replica, or container log endpoint was not found.
 - `401/403`: Caller lacks authorization.
-- `5xx`: Propagated from downstream Container Apps calls when details or tokens cannot be fetched.
+- `5xx`: Propagated from downstream container calls when details or tokens cannot be fetched.
+
+#### Example: Fetch logs using curl
+
+```bash
+curl -N "https://{endpoint}/api/projects/{projectName}/agents/{agentName}/versions/{agentVersion}/containers/default:logstream?kind=console&tail=500&api-version=2025-11-15-preview" \
+  -H "Authorization: Bearer $(az account get-access-token --resource https://ai.azure.com --query accessToken -o tsv)"
+```
+
+**Flags:**
+- `-N` disables output buffering (important for streaming logs in real-time)
 
 #### Response samples
 
@@ -544,6 +560,7 @@ Transfer-Encoding: chunked
 
 {"TimeStamp":"2025-12-15T16:51:33Z","Type":"Normal","ContainerAppName":null,"RevisionName":null,"ReplicaName":null,"Msg":"Connecting to the events collector...","Reason":"StartingGettingEvents","EventSource":"ContainerAppController","Count":1}
 {"TimeStamp":"2025-12-15T16:51:34Z","Type":"Normal","ContainerAppName":null,"RevisionName":null,"ReplicaName":null,"Msg":"Successfully connected to events server","Reason":"ConnectedToEventsServer","EventSource":"ContainerAppController","Count":1}
+```
 
 ### Stop an agent deployment
 
@@ -929,7 +946,33 @@ Billing for managed hosting runtime is enabled no earlier than February 1, 2026,
 
 ### Region availability
 
-Currently, North Central US is the only supported region for hosted agents.
+Hosted Agents are supported in the following regions: 
+
+- Brazil South	
+- Canada East	
+- East US	
+- France Central	
+- Germany West Central	
+- Italy North	
+- North Central US	
+- South Africa North	
+- South Central US	
+- South India	
+- Spain Central	
+- Sweden Central	
+- Canada Central	
+- Korea Central	
+- Southeast Asia	
+- Australia East	
+- East US 2	
+- Japan East	
+- UAE North	
+- UK South	
+- West US	
+- West US 3	
+- Norway East	
+- Poland Central	
+- Switzerland North
 
 ### Private networking support
 

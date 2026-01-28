@@ -19,7 +19,7 @@ reviewer: haakar
 
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
-This article provides a quick reference and detailed description of the quotas and limits for Microsoft Foundry Models. For quotas and limits specific to the Azure OpenAI in Foundry Models, see [Quota and limits in Azure OpenAI](../openai/quotas-limits.md).
+This article provides a quick reference and detailed description of the quotas and limits for [Foundry Models sold directly by Azure](concepts/models-sold-directly-by-azure.md). For quotas and limits specific to the Azure OpenAI in Foundry Models, see [Quota and limits in Azure OpenAI](../openai/quotas-limits.md).
 
 ## Quotas and limits reference
 
@@ -73,7 +73,7 @@ The Usage Limit determines the level of usage above which customers might see la
 
 ## Request increases to the default limits
 
-[!INCLUDE [quota-increase- request](../openai/includes/quota-increase-request.md)]
+[!INCLUDE [quota-increase-request](../openai/includes/quota-increase-request.md)]
 
 ## General best practices to stay within rate limits
 
