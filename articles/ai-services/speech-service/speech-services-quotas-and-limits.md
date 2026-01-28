@@ -27,9 +27,9 @@ For information about adjustable quotas for Standard (S0) Azure Speech resources
 > [!IMPORTANT]
 > If you switch a Foundry resource for Azure Speech from the Free (F0) pricing tier to Standard (S0), the change of the corresponding quotas might take up to several hours.
 
-### Voice live quotas and limits per resource
+### Voice Live quotas and limits per resource
 
-The following table summarizes the quotas and limits for voice live per Azure Speech resource. For information about adjustable quotas, see [more explanations](#detailed-description-quota-adjustment-and-best-practices) later in this article.
+The following table summarizes the quotas and limits for Voice Live per Azure Speech resource. For information about adjustable quotas, see [more explanations](#detailed-description-quota-adjustment-and-best-practices) later in this article.
 
 | Quota | Free (F0) | Standard (S0) |
 | ----- | --------- | ------------- |
@@ -37,7 +37,7 @@ The following table summarizes the quotas and limits for voice live per Azure Sp
 | Maximum connection length | Not applicable | <= 60 minutes per session |
 | Tokens per minute | Not applicable | <= 120,000 |
 
-Avatars used in voice live follow the quotas and limits described in [Real-time text-to-speech avatar](#real-time-text-to-speech-avatar) later this article.
+Avatars used in Voice Live follow the quotas and limits described in [Real-time text-to-speech avatar](#real-time-text-to-speech-avatar) later this article.
 
 ### LLM speech (preview) quotas and limits per resource
 
@@ -185,7 +185,7 @@ Some Azure Speech quotas are adjustable. This section provides more explanations
 
 The following quotas are adjustable for Standard (S0) resources. The Free (F0) request limits aren't adjustable.
 
-- **Voice live API**: [New connections per minute](#voice-live-quotas-and-limits-per-resource). Adjusting new connections also adjusts the token limit.
+- **Voice Live API**: [New connections per minute](#voice-live-quotas-and-limits-per-resource). Adjusting new connections also adjusts the token limit.
 - **Speech to text**: [Concurrent request limit](#real-time-speech-to-text-and-speech-translation) for the base model endpoint and custom endpoint.
 - **Fast transcription**: [Maximum number of requests per minute](#fast-transcription).
 - **Speech translation**: [Concurrent request limit](#real-time-speech-to-text-and-speech-translation).
@@ -227,7 +227,7 @@ Suppose that an Azure Speech resource has the concurrent request limit set to 30
 
 Generally, it's a good idea to test the workload and the workload patterns before you go to production.
 
-### Voice live: Increase the real-time speech-to-text concurrent request limit
+### Voice Live: Increase the real-time speech-to-text concurrent request limit
 
 #### Prepare the required information
 
@@ -416,7 +416,7 @@ Initiate the increase of the limit for concurrent requests for your resource by 
     - Concurrent request limit for speech translation
     - Maximum requests per minute for batch text-to-speech avatar
     - New connections per minute for real-time text-to-speech avatar
-    - Voice live API tokens per minute
+    - Voice Live API tokens per minute
 
 1. Add the additional feature-specific information requested in the form, and then select **Next**.
 

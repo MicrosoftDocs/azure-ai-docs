@@ -212,7 +212,7 @@ The regions in the following tables support most of the core features of Azure S
 | `southeastasia` | ✅ | ✅ |
 | `westus` | ✅ | ✅ |
 
-# [Voice live](#tab/voice-live)
+# [Voice Live](#tab/voice-live)
 
 | Region | gpt-realtime | gpt-realtime-mini | gpt-4o | gpt-4o-mini | gpt-4.1 | gpt-4.1-mini | gpt-5.2 | gpt-5.2-chat | gpt-5.1 | gpt-5.1-chat | gpt-5 | gpt-5-mini | gpt-5-nano | gpt-5-chat | phi4-mm-realtime (preview) | phi4-mini (preview) | Agent support |
 | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
@@ -242,9 +242,9 @@ The regions in the following tables support most of the core features of Azure S
 | `westus2` | Cross-region<sup>2</sup> | Cross-region<sup>2</sup> | Data zone standard | Data zone standard | Data zone standard | Data zone standard | - | - | - | - | Data zone standard | Data zone standard | Data zone standard | - | Regional | Regional | ✅ |
 | `westus3` | - | - | Data zone standard | Data zone standard | Data zone standard | Data zone standard | - | - | - | - | Data zone standard | Data zone standard | Data zone standard | - | - | - | ✅ |
 
-<sup>1</sup> The Microsoft Foundry resource must be in Central India. Azure Speech features remain in Central India. The API for voice live uses Sweden Central as needed for generative AI load balancing.
+<sup>1</sup> The Microsoft Foundry resource must be in Central India. Azure Speech features remain in Central India. The API for Voice Live uses Sweden Central as needed for generative AI load balancing.
 
-<sup>2</sup> The resource must be in West US 2. Azure Speech features remain in West US 2. The API for voice live uses East US 2 as needed for generative AI load balancing.
+<sup>2</sup> The resource must be in West US 2. Azure Speech features remain in West US 2. The API for Voice Live uses East US 2 as needed for generative AI load balancing.
 
 # [Keyword recognition](#tab/keyword-recognition)
 
