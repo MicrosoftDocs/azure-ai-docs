@@ -38,7 +38,7 @@ This article shows you how to use Foundry Control Plane capabilities to track ag
 
 ## How monitoring works
 
-Foundry Control Plane discovers all the agents that you have access to. It then uses Application Insights resources that host your agents to help you monitor and diagnose those agents.
+Foundry Control Plane discovers all the agents that you have access to. It then uses the Application Insights resources that host your agents to help you monitor and diagnose those agents.
 
 Foundry Control Plane supports:
 
@@ -94,7 +94,7 @@ You can view aggregated metrics for all agents within a selected project by usin
 
 1. [!INCLUDE [foundry-sign-in](../includes/foundry-sign-in.md)]
 
-1. On the upper-right side of the Foundry workspace, select **Operate**.
+1. Select **Operate**.
 
 1. The **Overview** pane displays common metrics and insights for all discovered agents within the subscription by default.
 
@@ -110,9 +110,7 @@ You can view all your assets under a specific project, along with top-level metr
 
 1. [!INCLUDE [foundry-sign-in](../includes/foundry-sign-in.md)]
 
-1. On the upper-right side of the Foundry workspace, select **Operate**.
-
-1. On the left pane, select **Assets**.
+1. Select **Operate** > **Assets**.
 
 1. Select the **Agents** tab.
 

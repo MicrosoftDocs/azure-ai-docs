@@ -59,19 +59,19 @@ You can use Foundry Control Plane for the following tasks.
 
 ## Key features
 
-The Foundry Control Plane experience begins on the **Operate** tab, your command center on the upper-right side of the Foundry workspace. From **Operate**, you can monitor, govern, and optimize every agent, model, and deployment within your subscription.
+The Foundry Control Plane experience begins when you select **Operate** on the upper-right toolbar of the Foundry workspace. From **Operate**, you can monitor, govern, and optimize every agent, model, and deployment within your subscription.
 
-Each tab within **Operate** is designed around a specific job to be done. These tabs help various roles, from builders to administrators, manage AI systems confidently at scale.
+Each pane within **Operate** is designed around a specific job to be done. These panes help various roles, from builders to administrators, manage AI systems confidently at scale.
 
-:::image type="content" source="media/overview/control-plane-operate.png" alt-text="Screenshot that shows the Operate tab in the Foundry workspace." lightbox="media/overview/control-plane-operate.png":::
+:::image type="content" source="media/overview/control-plane-operate.png" alt-text="Screenshot that shows the Operate toolbar button and the Overview pane in the Foundry workspace." lightbox="media/overview/control-plane-operate.png":::
 
 ### Overview
 
-Use the **Overview** tab to understand fleet health, performance, and compliance at a glance.
+Use the **Overview** pane to understand fleet health, performance, and compliance at a glance.
 
-:::image type="content" source="media/overview/control-plane-overview.gif" alt-text="Animation of the Overview tab that displays trend-based health scores, alert summaries, and aggregated compliance metrics for a fleet." lightbox="media/overview/control-plane-overview.gif":::
+:::image type="content" source="media/overview/control-plane-overview.gif" alt-text="Animation of the Overview pane that displays trend-based health scores, alert summaries, and aggregated compliance metrics for a fleet." lightbox="media/overview/control-plane-overview.gif":::
 
-This tab provides a high-level snapshot of your AI estate by aggregating key operational and compliance metrics in one view. You can:
+This pane provides a high-level snapshot of your AI estate by aggregating key operational and compliance metrics in one view. You can:
 
 - View key statistics such as active agents, cost trends, run completion rate, and prevented behaviors.
 - Drill into anomalies or cost spikes through contextual charts and direct links to inventory, observability, or policy information.
@@ -79,11 +79,11 @@ This tab provides a high-level snapshot of your AI estate by aggregating key ope
 
 ### Assets
 
-Use the **Assets** tab to track, analyze, and manage every agent, model, and tool from one place.
+Use the **Assets** pane to track, analyze, and manage every agent, model, and tool from one place.
 
 :::image type="content" source="media/overview/assets-view.png" alt-text="Screenshot of an agent inventory table with filters and sort options applied to display metadata and health indicators for AI assets." lightbox="media/overview/assets-view.png":::
 
-This tab provides a unified, searchable table of all AI assets across projects within a subscription. It brings together critical metadata and health indicators, so you can assess and act on your AI estate efficiently. You can:
+This pane provides a unified, searchable table of all AI assets across projects within a subscription. It brings together critical metadata and health indicators, so you can assess and act on your AI estate efficiently. You can:
 
 - Filter and sort by key attributes such as version, tags, health score (percentage), cost, alerts, and token usage to locate assets quickly.
 - Drill down from any entry in the agent inventory table into the [Evaluation](../../how-to/continuous-evaluation-agents.md) or [Monitoring](../../how-to/monitor-applications.md) tab for pre-deployment and post-deployment insights.
@@ -93,15 +93,15 @@ This tab provides a unified, searchable table of all AI assets across projects w
 - Integrate with the [AI Red Teaming Agent](../../concepts/ai-red-teaming-agent.md) to automate vulnerability probing, regression testing, and issue reproduction.
 - Observe and modify model and agent guardrails.
 
-Together, these capabilities turn the **Assets** tab into the operational backbone of the control plane. It's a single pane where you can understand, improve, and secure every AI asset in your environment.
+Together, these capabilities turn the **Assets** pane into the operational backbone of the control plane. It's a single pane where you can understand, improve, and secure every AI asset in your environment.
 
 ### Compliance
 
-Use the **Compliance** tab to govern your AI systems and enforce the right guardrails.
+Use the **Compliance** pane to govern your AI systems and enforce the right guardrails.
 
-:::image type="content" source="media/overview/compliance.png" alt-text="Screenshot of the Compliance tab that shows options to define, apply, and monitor AI compliance policies with Azure Policy, Microsoft Defender, and Microsoft Purview integrations." lightbox="media/overview/compliance.png":::
+:::image type="content" source="media/overview/compliance.png" alt-text="Screenshot of the Compliance pane that shows options to define, apply, and monitor AI compliance policies with Azure Policy, Microsoft Defender, and Microsoft Purview integrations." lightbox="media/overview/compliance.png":::
 
-The **Compliance** tab empowers organizations to define, apply, and continuously monitor guardrails and compliance policies across their AI estate. It provides a unified interface to operationalize responsible AI principles while helping to ensure enterprise-grade safety and regulatory alignment. You can:
+The **Compliance** pane empowers organizations to define, apply, and continuously monitor guardrails and compliance policies across their AI estate. It provides a unified interface to operationalize responsible AI principles while helping to ensure enterprise-grade safety and regulatory alignment. You can:
 
 - Define and enforce protections through deep integrations with Azure Policy, Microsoft Defender, and Microsoft Purview. These integrations help ensure that identity, data, and threat safeguards work in concert.
 - Apply versioned policies and track assignments to maintain full auditability and traceability across agents and environments.
@@ -111,19 +111,19 @@ Policy management in Foundry enables administrators and developers alike to embe
 
 ### Quota
 
-Use the **Quota** tab to view, adjust, and request quotas.
+Use the **Quota** pane to view, adjust, and request quotas.
 
-:::image type="content" source="media/overview/quota-view.png" alt-text="Screenshot of the Quota tab that shows model deployments, their quota usage, and usage patterns with options to adjust or request additional quotas." lightbox="media/overview/quota-view.png":::
+:::image type="content" source="media/overview/quota-view.png" alt-text="Screenshot of the Quota pane that shows model deployments, their quota usage, and usage patterns with options to adjust or request additional quotas." lightbox="media/overview/quota-view.png":::
 
-The **Quota** tab enables customers to easily see their model deployments and how much quota each deployment is consuming. It gives insights into usage patterns and helps you manage resources effectively.
+The **Quota** pane enables customers to easily see their model deployments and how much quota each deployment is consuming. It gives insights into usage patterns and helps you manage resources effectively.
 
 ### Admin
 
-Use the **Admin** tab to view, organize, and administer all projects, users, and connected resources across your Foundry environment.
+Use the **Admin** pane to view, organize, and administer all projects, users, and connected resources across your Foundry environment.
 
-:::image type="content" source="media/overview/admin-tab-overview.png" alt-text="Screenshot of the Admin tab that shows a list of projects with details like owners, region, connected services, and compliance status." lightbox="media/overview/admin-tab-overview.png":::
+:::image type="content" source="media/overview/admin-tab-overview.png" alt-text="Screenshot of the Admin pane that shows a list of projects with details like owners, region, connected services, and compliance status." lightbox="media/overview/admin-tab-overview.png":::
 
-This tab extends your operational view beyond a single project. Whereas most work in Foundry takes place within a project context, **Admin** provides an enterprise-level lens to oversee and configure multiple projects, user permissions, and linked Azure resources from one place.
+This pane extends your operational view beyond a single project. Whereas most work in Foundry takes place within a project context, **Admin** provides an enterprise-level lens to oversee and configure multiple projects, user permissions, and linked Azure resources from one place.
 
 From **Admin**, administrators and power users can:
 
