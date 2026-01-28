@@ -169,7 +169,7 @@ items:
         - name: Realtime API via WebSockets
           href: ../../openai/how-to/realtime-audio-websockets.md
         - name: Realtime API migration from Preview to GA
-          href: ../../openai/realtime-audio-preview-api-migration-guide.md
+          href: ../../openai/how-to/realtime-audio-preview-api-migration-guide.md
   - name: Batch
     items:
        - name: Getting started with batch
