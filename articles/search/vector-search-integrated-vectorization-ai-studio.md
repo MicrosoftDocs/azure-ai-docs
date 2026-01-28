@@ -93,7 +93,7 @@ To create a Cohere serverless deployment:
     az extension add -n ml
     ```
 
-1. Sign in and set your defaults.
+1. Sign in to Azure and set your defaults.
 
     ```azurecli
     az login
