@@ -8,7 +8,7 @@ ms.reviewer: soumyapatro
 ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.topic: how-to
-ms.date: 12/18/2025
+ms.date: 01/27/2026
 ms.custom: data4ml
 monikerRange: 'azureml-api-1 || azureml-api-2'
 # Customer intent: As a project manager, I want to set up a project to label images in the project. I want to enable machine learning-assisted labeling to help with the task.

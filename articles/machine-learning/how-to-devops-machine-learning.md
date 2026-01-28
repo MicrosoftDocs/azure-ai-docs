@@ -102,7 +102,7 @@ You need an Azure Resource Manager connection to authenticate with the Azure por
 
 Delete the starter pipeline and replace it with the following YAML code. In this pipeline, you'll:
 
-* Use the Python version task to set up Python 3.8 and install the SDK requirements.
+* Use the Python version task to set up Python 3.10 and install the SDK requirements.
 * Use the Bash task to run bash scripts for the Azure Machine Learning SDK and CLI.
 * Use the Azure CLI task to submit an Azure Machine Learning job. 
 

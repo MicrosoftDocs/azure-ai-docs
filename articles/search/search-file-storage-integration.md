@@ -7,7 +7,7 @@ author: mattgotteiner
 ms.author: magottei
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/08/2025
+ms.date: 01/23/2026
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
