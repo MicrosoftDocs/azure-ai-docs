@@ -273,7 +273,7 @@ Content-Type: application/json
 
 ### Connect to a remote SharePoint knowledge source
 
-[!INCLUDE [foundry-iq-limitation](../../../includes/foundry-iq-limitation.md)]
+[!INCLUDE [foundry-iq-limitation](../../includes/foundry-iq-limitation.md)]
 
 Optionally, if your knowledge base includes a [remote SharePoint knowledge source](/azure/search/agentic-knowledge-source-how-to-sharepoint-remote), you must also include the `x-ms-query-source-authorization` header in the MCP tool connection.
 
