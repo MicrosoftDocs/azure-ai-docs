@@ -8,8 +8,9 @@ ms.reviewer: soumyapatro
 ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.topic: how-to
-ms.date: 01/28/2026
+ms.date: 01/29/2026
 ms.custom: template-how-to
+#customer intent: As a data scientist, I want to learn how to set up and configure Spark serverless compute sessions in Azure Machine Learning studio so I can easily access and wrangle data from various sources.
 ---
 
 # Interactive data wrangling with Apache Spark
@@ -40,13 +41,13 @@ For more information, see:
 
 Using a serverless Spark compute is the easiest way to access a Spark cluster for interactive data wrangling. A fully managed serverless Spark compute attached to a [Synapse Spark pool](how-to-manage-synapse-spark-pool.md) is directly available in Azure Machine Learning notebooks.
 
-To use any of the following data access and wrangling methods, attach the Spark serverless compute by selecting **Serverless Spark Compute - Available** under **Azure Machine Learning Serverless Spark** next to **Compute** at the top of the file or notebook page. It can take a minute or two for the compute to attach to the session.
+To use any of the following data access and wrangling sources and methods, attach the Spark serverless compute by selecting **Serverless Spark Compute - Available** under **Azure Machine Learning Serverless Spark** next to **Compute** at the top of the file or notebook page. It can take a minute or two for the compute to attach to the session.
 
 ### Configure a serverless Spark session
 
 Once you attach the serverless Spark compute, you can optionally configure the Spark session by setting or changing several values. To configure the Spark session:
 
-1. Select **Configure session** at upper left.
+1. Select **Configure session** at upper left on the file or notebook page.
 1. On the **Configure session** screen, change any of the following settings:
    - In the **Compute** pane:
      - Change the machine size by selecting a different size from the dropdown menu under **Node size**. 
@@ -57,17 +58,16 @@ Once you attach the serverless Spark compute, you can optionally configure the S
    - In the **Settings** pane:
      - Change the **Apache Spark version** to a different version than 3.4 if available.
      - Change the **Session timeout** value in minutes to a higher number to help prevent session timeouts.
-     - Under **Configuration settings**, add the `spark.hadoop.aml.enable_cache` property set to `true`. This setting can shorten the session cold start time.
-     - You can also configure credentials and secrets by adding them as name/value **Property** settings, as described in the following sections.
+     - Under **Configuration settings**, add **Property** name/value settings to configure the session as needed.
        >[!TIP]
-       >If you use session-level Conda packages, setting the `spark.hadoop.aml.enable_cache` configuration variable can [improve the Spark session cold start time](apache-spark-azure-ml-concepts.md#improving-session-cold-start-time-while-using-session-level-conda-packages). A session cold start with session level Conda packages typically takes 10 to 15 minutes the first time. Subsequent session cold starts with the configuration variable set to true typically take three to five minutes.
+       >If you use session-level Conda packages, adding the `spark.hadoop.aml.enable_cache` configuration property with value `true` can [improve the Spark session cold start time](apache-spark-azure-ml-concepts.md#improving-session-cold-start-time-while-using-session-level-conda-packages). A session cold start with session level Conda packages typically takes 10 to 15 minutes the first time. Subsequent session cold starts with the configuration variable set to true typically take three to five minutes.
 
    - In the **Python packages** pane:
-     - To use a Conda file to configure your session, select **Upload conda file**, select **Browse** next to **Select conda file**, and then browse to and open the *conda.yml* file on your machine.
+     - To use a Conda file to configure your session, select **Upload conda file**. Next to **Select conda file**, select **Browse**, and then browse to and open the *conda.yml* file on your machine to upload it.
      - Or to use a custom environment, select **Custom environment** and select a custom environment under **Environment type**. For more information, see [Manage software environments](how-to-manage-environments-in-studio.md).
 1. To apply all configurations, select **Apply**.
 
-The session configuration changes persist and are available to other notebook sessions that use the serverless Spark compute.
+The session configuration changes persist and are available to other notebook sessions that use the attached serverless Spark compute.
 
 ## Access data on the default file share
 
@@ -101,7 +101,7 @@ To access and wrangle data stored in Azure Data Lake Storage storage accounts, y
 
 To use either method, the user identity or service principal must have **Contributor** and **Storage Blob Data Contributor** [role assignments](apache-spark-environment-configuration.md#add-role-assignments-in-azure-storage-accounts) in the Azure Data Lake Storage account.
 
-Run the following data wrangling code sample to use a data URI in format `abfss://<FILE_SYSTEM_NAME>@<STORAGE_ACCOUNT_NAME>.dfs.core.windows.net/<PATH_TO_DATA>` with `pyspark.pandas` and `pyspark.ml.feature.Imputer`. Replace the `<STORAGE_ACCOUNT>` placeholder with the name of your Azure Data Lake Storage account and `<FILE_SYSTEM_NAME>` with the name of the data container.
+Run the following data wrangling code sample to use a data URI in format `abfss://<FILE_SYSTEM_NAME>@<STORAGE_ACCOUNT_NAME>.dfs.core.windows.net/<PATH_TO_DATA>` with `pyspark.pandas` and `pyspark.ml.feature.Imputer`. Replace the `<STORAGE_ACCOUNT_NAME>` placeholder with the name of your Azure Data Lake Storage account and `<FILE_SYSTEM_NAME>` with the name of the data container.
 
 ```python
 import pyspark.pandas as pd
@@ -124,19 +124,21 @@ df.to_csv(
 )
 ```
 
-### Access and wrangle data through a service principal
+### Use a service principal
 
-To use a service principal to access and wrangle data from Azure Data Lake Storage, first set up the service principal.
+To use a service principal to access and wrangle data from Azure Data Lake Storage, first set up the service principal as follows:
 
 1. [Create a service principal](/azure/active-directory/develop/howto-create-service-principal-portal) and [assign it the necessary Storage Blob Data Contributor and Key Vault Secrets User roles](/azure/active-directory/develop/howto-create-service-principal-portal#assign-a-role-to-the-application).
 1. Obtain the service principal tenant ID, client ID, and client secret values from the app registration and [create Azure Key Vault secrets](apache-spark-environment-configuration.md#store-azure-storage-account-credentials-as-secrets-in-azure-key-vault) for the values.
-1. Set the service principal tenant ID, client ID, and client secret as property names/values in the Spark session configuration before you start the session:
+1. Set the following property name/value pairs for the service principal tenant ID, client ID, and client secret in the session configuration before you start the Spark session. Replace `<STORAGE_ACCOUNT_NAME>` with your storage account name and <TENANT_ID>` with the service principal tenant ID.
 
    |Property name|Value|
    |-------------|-----|
    |`fs.azure.account.oauth2.client.id.<STORAGE_ACCOUNT_NAME>.dfs.core.windows.net`|Application (client) id value|
    |`fs.azure.account.oauth2.client.endpoint.<STORAGE_ACCOUNT_NAME>.dfs.core.windows.net`|`https://login.microsoftonline.com/<TENANT_ID>/oauth2/token`|
    |`fs.azure.account.oauth2.client.secret.<STORAGE_ACCOUNT_NAME>.dfs.core.windows.net`|Client secret value|
+
+1. Run the preceding *titanic.csv* data wrangling code sample that uses the `abfss://<FILE_SYSTEM_NAME>@<STORAGE_ACCOUNT_NAME>.dfs.core.windows.net/<PATH_TO_DATA>` data URI with `pyspark.pandas` and `pyspark.ml.feature.Imputer`. Replace the placeholders with your values.
 
 <!--The `get_secret()` call in the following code depends on the name of the key vault and the names of the key vault secrets created for the service principal tenant ID, client ID and client secret.
 
@@ -174,13 +176,11 @@ To use a service principal to access and wrangle data from Azure Data Lake Stora
    ```
    -->
 
-1. Run the preceding *titanic.csv* data wrangling code sample using the `abfss://<FILE_SYSTEM_NAME>@<STORAGE_ACCOUNT_NAME>.dfs.core.windows.net/<PATH_TO_DATA>` data URI with `pyspark.pandas` and `pyspark.ml.feature.Imputer`. Replace the placeholders with your values.
-
 ## Import and wrangle data from Azure Blob storage
 
-You can access Azure Blob storage data with either a *storage account access key* or a *shared access signature (SAS) token*. [Store the credential in Azure Key Vault as a secret](apache-spark-environment-configuration.md#store-azure-storage-account-credentials-as-secrets-in-azure-key-vault), and set it as a property in the session configuration.
+You can access Azure Blob storage data with either the *storage account access key* or a *shared access signature (SAS) token*. [Store the credential in Azure Key Vault as a secret](apache-spark-environment-configuration.md#store-azure-storage-account-credentials-as-secrets-in-azure-key-vault), and set it as a property in the Spark session configuration.
 
-1. Run one of the following code snippets. The `get_secret()` calls in the code snippets require the name of the key vault and the names of the secrets created for the Azure Blob storage account access key or SAS token.
+<!--1. Run one of the following code snippets. The `get_secret()` calls in the code snippets require the name of the key vault and the names of the secrets created for the Azure Blob storage account access key or SAS token.
 
    - To configure a storage account access key, set the `fs.azure.account.key.<STORAGE_ACCOUNT_NAME>.blob.core.windows.net` property as shown in the following code snippet:
 
@@ -208,6 +208,14 @@ You can access Azure Blob storage data with either a *storage account access key
          sas_token,
      )
      ```
+-->
+
+1. In the Spark session configuration, set a property name/value pair for the storage account key or SAS token, depending on which access method you want to use. Replace `<STORAGE_ACCOUNT_NAME>` with your storage account name and <BLOB_CONTAINER_NAME>` with the name of the Blob container.
+
+   |Credential|Property name|Value|
+   |---------------|-------------|-----|
+   |Access key|`fs.azure.account.key.<STORAGE_ACCOUNT_NAME>.blob.core.windows.net`|Storage account key value|
+   |SAS token|`fs.azure.sas.<BLOB_CONTAINER_NAME>.<STORAGE_ACCOUNT_NAME>.blob.core.windows.net`|SAS token value|
 
 1. Run the following data wrangling code with the data URI formatted as `wasbs://<BLOB_CONTAINER_NAME>@<STORAGE_ACCOUNT_NAME>.blob.core.windows.net/<PATH_TO_DATA>`.
 
