@@ -2,9 +2,10 @@
 author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 10/17/2024
+ms.date: 1/29/2026
 ms.custom: devx-track-java
 ms.author: pafarley
+ai-usage: ai-assisted
 ---
 
 [!INCLUDE [Header](../../common/java.md)]

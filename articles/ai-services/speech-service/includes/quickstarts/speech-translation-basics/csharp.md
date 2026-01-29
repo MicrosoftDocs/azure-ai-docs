@@ -4,6 +4,7 @@ ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 1/29/2026
 ms.author: pafarley
+ai-usage: ai-assisted
 ---
 
 [!INCLUDE [Header](../../common/csharp.md)]
