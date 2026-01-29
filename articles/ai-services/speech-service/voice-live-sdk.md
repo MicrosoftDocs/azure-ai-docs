@@ -1,7 +1,7 @@
 ---
-title: About the Voice live SDK - Speech service
+title: About the Voice Live SDK - Speech service
 titleSuffix: Foundry Tools
-description: The Voice live software development kit (SDK) exposes Azure Voice live capabilities, making it easier to build low-latency speech-to-speech voice agents.
+description: The Voice Live software development kit (SDK) exposes Azure Voice Live capabilities, making it easier to build low-latency speech-to-speech voice agents.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
@@ -9,14 +9,14 @@ ms.topic: overview
 ms.date: 01/26/2026
 ms.author: pafarley
 ai-usage: ai-assisted
-#Customer intent: As a developer, I want to learn about the Voice live SDK.
+#Customer intent: As a developer, I want to learn about the Voice Live SDK.
 ---
 
-# What is the Voice live SDK?
+# What is the Voice Live SDK?
 
-The Voice live software development kit (SDK) exposes [Azure Voice live](/azure/ai-services/speech-service/voice-live), a managed service that enables low-latency, high-quality speech-to-speech interactions for voice agents. Voice live consolidates speech recognition, generative AI, and text-to-speech into a single, unified interface, so you can build end-to-end voice experiences with less integration work.
+The Voice Live software development kit (SDK) exposes [Azure Voice Live](/azure/ai-services/speech-service/voice-live), a managed service that enables low-latency, high-quality speech-to-speech interactions for voice agents. Voice Live consolidates speech recognition, generative AI, and text-to-speech into a single, unified interface, so you can build end-to-end voice experiences with less integration work.
 
-Use the Voice live SDK to:
+Use the Voice Live SDK to:
 
 - Create real-time voice assistants and conversational agents.
 - Build speech-to-speech applications with minimal latency.
@@ -27,7 +27,7 @@ Use the Voice live SDK to:
 
 ## Supported languages
 
-The Voice live SDK supports the following languages and platforms:
+The Voice Live SDK supports the following languages and platforms:
 
 | Programming language | Reference | Platform support |
 |----------------------|-----------|------------------|
@@ -38,7 +38,7 @@ The Voice live SDK supports the following languages and platforms:
 
 ## Code samples
 
-Voice live SDK code samples are available in the documentation and GitHub.
+Voice Live SDK code samples are available in the documentation and GitHub.
 
 ### Docs samples
 
@@ -70,5 +70,5 @@ See also [Foundry Tools support and help options](../cognitive-services-support-
 
 ## Next steps
 
-- [Voice live overview](/azure/ai-services/speech-service/voice-live?view=foundry)
-- [Try the Voice live API quickstart](./voice-live-quickstart.md)
+- [Voice Live overview](/azure/ai-services/speech-service/voice-live?view=foundry)
+- [Try the Voice Live API quickstart](./voice-live-quickstart.md)
