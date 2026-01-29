@@ -8,6 +8,7 @@ ms-reviewer: pafarley
 ms.topic: how-to
 ms.service: azure-ai-voicelive
 ms.date: 01/28/2026
+ai-usage: ai-assisted
 ---
 
 # How to add proactive messages to a Voice Live real-time voice agent
@@ -37,6 +38,9 @@ Before starting, we recommend you have:
 - Completed the [Quickstart: Create a voice live real-time voice agent](./voice-live-quickstart.md).
 - A working Voice Live setup.
 - A working event loop handling Voice Live events.
+
+> [!NOTE]
+> The Java SDK (`azure-ai-voicelive`) and JavaScript SDK (`@azure/ai-voicelive`) are currently in preview. Features and APIs may change before general availability. For the latest SDK version and installation instructions, see the [Voice Live quickstart](./voice-live-quickstart.md).
 
 ## How proactive messages integrate with the event loop
 
@@ -257,7 +261,7 @@ await session.sendEvent({
         preGeneratedAssistantMessage: {
             content: [
                 {
-                    type: "output_text",
+                    type: "text",
                     text: "Hi Lisa, welcome back! How can I assist you today?"
                 }
             ]
@@ -543,30 +547,36 @@ const subscription = session.subscribe({
 ::: zone pivot="programming-language-python"
 ```python
 async def send_pre_generated_greeting(conn):
-    await conn.response.create(
-        response=ResponseCreateParams(
-            pre_generated_assistant_message=AssistantMessageItem(
+    try:
+        await conn.response.create(
+            response=ResponseCreateParams(
+                pre_generated_assistant_message=AssistantMessageItem(
+                    content=[
+                        OutputTextContentPart(
+                            text="Welcome! I'm here to help you get started."
+                        )
+                    ]
+                )
+            )
+        )
+    except Exception as e:
+        print(f"Failed to send pre-generated greeting: {e}")
+
+async def send_llm_generated_greeting(conn):
+    try:
+        await conn.conversation.item.create(
+            item=MessageItem(
+                role="system",
                 content=[
-                    OutputTextContentPart(
-                        text="Welcome! I'm here to help you get started."
+                    InputTextContentPart(
+                        text="Greet the user warmly and briefly explain how you can help."
                     )
                 ]
             )
         )
-    )
-
-async def send_llm_generated_greeting(conn):
-    await conn.conversation.item.create(
-        item=MessageItem(
-            role="system",
-            content=[
-                InputTextContentPart(
-                    text="Greet the user warmly and briefly explain how you can help."
-                )
-            ]
-        )
-    )
-    await conn.response.create()
+        await conn.response.create()
+    except Exception as e:
+        print(f"Failed to send LLM-generated greeting: {e}")
 ```
 ::: zone-end
 
@@ -576,47 +586,61 @@ private async Task SendPreGeneratedGreetingAsync(
     VoiceLiveSession session, 
     CancellationToken cancellationToken)
 {
-    var greeting = "Welcome! I'm here to help you get started.";
-    var responseCreatePayload = new
+    try
     {
-        type = "response.create",
-        response = new
+        var greeting = "Welcome! I'm here to help you get started.";
+        var responseCreatePayload = new
         {
-            pre_generated_assistant_message = new
+            type = "response.create",
+            response = new
             {
-                type = "message",
-                role = "assistant",
-                content = new[]
+                pre_generated_assistant_message = new
                 {
-                    new { type = "text", text = greeting }
+                    type = "message",
+                    role = "assistant",
+                    content = new[]
+                    {
+                        new { type = "text", text = greeting }
+                    }
                 }
             }
-        }
-    };
-    BinaryData eventData = BinaryData.FromObjectAsJson(responseCreatePayload);
-    await session.SendCommandAsync(eventData, cancellationToken).ConfigureAwait(false);
+        };
+        BinaryData eventData = BinaryData.FromObjectAsJson(responseCreatePayload);
+        await session.SendCommandAsync(eventData, cancellationToken).ConfigureAwait(false);
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Failed to send pre-generated greeting: {ex.Message}");
+    }
 }
 
 private async Task SendLlmGeneratedGreetingAsync(
     VoiceLiveSession session, 
     CancellationToken cancellationToken)
 {
-    var conversationItemPayload = new
+    try
     {
-        type = "conversation.item.create",
-        item = new
+        var conversationItemPayload = new
         {
-            type = "message",
-            role = "system",
-            content = new[]
+            type = "conversation.item.create",
+            item = new
             {
-                new { type = "input_text", text = "Greet the user warmly and briefly explain how you can help." }
+                type = "message",
+                role = "system",
+                content = new[]
+                {
+                    new { type = "input_text", text = "Greet the user warmly and briefly explain how you can help." }
+                }
             }
-        }
-    };
-    BinaryData itemEventData = BinaryData.FromObjectAsJson(conversationItemPayload);
-    await session.SendCommandAsync(itemEventData, cancellationToken).ConfigureAwait(false);
-    await session.StartResponseAsync().ConfigureAwait(false);
+        };
+        BinaryData itemEventData = BinaryData.FromObjectAsJson(conversationItemPayload);
+        await session.SendCommandAsync(itemEventData, cancellationToken).ConfigureAwait(false);
+        await session.StartResponseAsync().ConfigureAwait(false);
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Failed to send LLM-generated greeting: {ex.Message}");
+    }
 }
 ```
 ::: zone-end
@@ -624,27 +648,41 @@ private async Task SendLlmGeneratedGreetingAsync(
 ::: zone pivot="programming-language-java"
 ```java
 private void sendPreGeneratedGreeting(VoiceLiveSessionAsyncClient session) {
-    ResponseCreateOptions responseOptions = new ResponseCreateOptions()
-        .setPreGeneratedAssistantMessage(new AssistantMessageItem()
-            .setContent(Arrays.asList(
-                new OutputTextContentPart()
-                    .setText("Welcome! I'm here to help you get started.")
-            ))
-        );
+    try {
+        ResponseCreateOptions responseOptions = new ResponseCreateOptions()
+            .setPreGeneratedAssistantMessage(new AssistantMessageItem()
+                .setContent(Arrays.asList(
+                    new OutputTextContentPart()
+                        .setText("Welcome! I'm here to help you get started.")
+                ))
+            );
 
-    session.sendEvent(new ClientEventResponseCreate().setResponse(responseOptions)).subscribe();
+        session.sendEvent(new ClientEventResponseCreate().setResponse(responseOptions))
+            .doOnError(error -> System.err.println("Failed to send pre-generated greeting: " + error.getMessage()))
+            .subscribe();
+    } catch (Exception e) {
+        System.err.println("Failed to send pre-generated greeting: " + e.getMessage());
+    }
 }
 
 private void sendLlmGeneratedGreeting(VoiceLiveSessionAsyncClient session) {
-    MessageItem messageItem = new MessageItem()
-        .setRole("system")
-        .setContent(Arrays.asList(
-            new InputTextContentPart()
-                .setText("Greet the user warmly and briefly explain how you can help.")
-        ));
+    try {
+        MessageItem messageItem = new MessageItem()
+            .setRole("system")
+            .setContent(Arrays.asList(
+                new InputTextContentPart()
+                    .setText("Greet the user warmly and briefly explain how you can help.")
+            ));
 
-    session.sendEvent(new ClientEventConversationItemCreate().setItem(messageItem)).subscribe();
-    session.sendEvent(new ClientEventResponseCreate()).subscribe();
+        session.sendEvent(new ClientEventConversationItemCreate().setItem(messageItem))
+            .doOnError(error -> System.err.println("Failed to add conversation item: " + error.getMessage()))
+            .subscribe();
+        session.sendEvent(new ClientEventResponseCreate())
+            .doOnError(error -> System.err.println("Failed to create response: " + error.getMessage()))
+            .subscribe();
+    } catch (Exception e) {
+        System.err.println("Failed to send LLM-generated greeting: " + e.getMessage());
+    }
 }
 ```
 ::: zone-end
@@ -652,35 +690,43 @@ private void sendLlmGeneratedGreeting(VoiceLiveSessionAsyncClient session) {
 ::: zone pivot="programming-language-javascript"
 ```javascript
 async function sendPreGeneratedGreeting(session) {
-    await session.sendEvent({
-        type: "response.create",
-        response: {
-            preGeneratedAssistantMessage: {
-                content: [
-                    {
-                        type: "output_text",
-                        text: "Welcome! I'm here to help you get started."
-                    }
-                ]
+    try {
+        await session.sendEvent({
+            type: "response.create",
+            response: {
+                preGeneratedAssistantMessage: {
+                    content: [
+                        {
+                            type: "text",
+                            text: "Welcome! I'm here to help you get started."
+                        }
+                    ]
+                }
             }
-        }
-    });
+        });
+    } catch (error) {
+        console.error("Failed to send pre-generated greeting:", error.message);
+    }
 }
 
 async function sendLlmGeneratedGreeting(session) {
-    await session.addConversationItem({
-        type: "message",
-        role: "system",
-        content: [
-            {
-                type: "input_text",
-                text: "Greet the user warmly and briefly explain how you can help."
-            }
-        ]
-    });
-    await session.sendEvent({
-        type: "response.create"
-    });
+    try {
+        await session.addConversationItem({
+            type: "message",
+            role: "system",
+            content: [
+                {
+                    type: "input_text",
+                    text: "Greet the user warmly and briefly explain how you can help."
+                }
+            ]
+        });
+        await session.sendEvent({
+            type: "response.create"
+        });
+    } catch (error) {
+        console.error("Failed to send LLM-generated greeting:", error.message);
+    }
 }
 ```
 ::: zone-end
