@@ -13,6 +13,8 @@ ai-usage: ai-assisted
 
 # How to add proactive messages to a Voice Live real-time voice agent (preview)
 
+[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+
 Proactive engagement allows your Voice Live agent to **speak first**, before the user interacts with the system. This can make agents feel more natural, more helpful, and more responsive at the start of a conversation.  
 
 This article shows how to implement proactive messages, building on the event‑loop pattern introduced in the *Get started with Voice Live for real-time voice agents* quickstart.  
@@ -55,7 +57,7 @@ Before starting, we recommend you have:
 ::: zone pivot="programming-language-csharp"
 
 > [!IMPORTANT]
-> Proactive messaging with `PreGeneratedAssistantMessage` requires `Azure.AI.VoiceLive >= 1.2.0-beta.2` and API version `2026-01-01-preview`. Install the preview SDK with:
+> Proactive messaging with `PreGeneratedAssistantMessage` requires `Azure.AI.VoiceLive >= 1.1.0-beta.1` and API version `2026-01-01-preview`. Install the preview SDK with:
 >
 > ```dotnetcli
 > dotnet add package Azure.AI.VoiceLive --prerelease
@@ -85,10 +87,10 @@ Before starting, we recommend you have:
 ::: zone pivot="programming-language-javascript"
 
 > [!IMPORTANT]
-> Proactive messaging with `preGeneratedAssistantMessage` requires `@azure/ai-voicelive >= 1.2.0-beta.2` and API version `2026-01-01-preview`. Install the preview SDK with:
+> Proactive messaging with `preGeneratedAssistantMessage` requires `@azure/ai-voicelive >= 1.0.0-beta.2` and API version `2026-01-01-preview`. This SDK requires Node.js 20 or later. Install the preview SDK with:
 >
 > ```bash
-> npm install @azure/ai-voicelive@next
+> npm install @azure/ai-voicelive@1.0.0-beta.2
 > ```
 >
 > This SDK is currently in preview. Features and APIs may change before general availability.
@@ -368,24 +370,12 @@ await conn.response.create()
 
 ::: zone pivot="programming-language-csharp"
 ```csharp
-using System.Text.Json;
+using Azure.AI.VoiceLive;
 
 // Add an instruction telling the LLM to greet the user
-var conversationItemPayload = new
-{
-    type = "conversation.item.create",
-    item = new
-    {
-        type = "message",
-        role = "system",
-        content = new[]
-        {
-            new { type = "input_text", text = "Say something to welcome the user." }
-        }
-    }
-};
-BinaryData itemEventData = BinaryData.FromObjectAsJson(conversationItemPayload);
-await session.SendCommandAsync(itemEventData, cancellationToken).ConfigureAwait(false);
+var systemMessage = new SystemMessageItem(
+    new InputTextContentPart("Say something to welcome the user."));
+await session.AddItemAsync(systemMessage, cancellationToken).ConfigureAwait(false);
 
 // Trigger LLM-generated greeting
 await session.StartResponseAsync().ConfigureAwait(false);
@@ -671,21 +661,9 @@ private async Task SendLlmGeneratedGreetingAsync(
 {
     try
     {
-        var conversationItemPayload = new
-        {
-            type = "conversation.item.create",
-            item = new
-            {
-                type = "message",
-                role = "system",
-                content = new[]
-                {
-                    new { type = "input_text", text = "Greet the user warmly and briefly explain how you can help." }
-                }
-            }
-        };
-        BinaryData itemEventData = BinaryData.FromObjectAsJson(conversationItemPayload);
-        await session.SendCommandAsync(itemEventData, cancellationToken).ConfigureAwait(false);
+        var systemMessage = new SystemMessageItem(
+            new InputTextContentPart("Greet the user warmly and briefly explain how you can help."));
+        await session.AddItemAsync(systemMessage, cancellationToken).ConfigureAwait(false);
         await session.StartResponseAsync().ConfigureAwait(false);
     }
     catch (Exception ex)
