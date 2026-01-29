@@ -11,4 +11,4 @@ ai-usage: ai-assisted
 ---
 
 > [!CAUTION]
-> Azure AI Image Analysis is deprecated and will be retired on September 25, 2028, after which calls made to the service will fail. We recommend you switch to one of the available alternatives outlined in the [Migration guide](../migration-options.md).
+> The Image Analysis service in Azure Vision in Foundry Tools is deprecated and will be retired on September 25, 2028, after which calls made to the service will fail. We recommend you switch to one of the available alternatives outlined in the [Migration guide](../migration-options.md).
