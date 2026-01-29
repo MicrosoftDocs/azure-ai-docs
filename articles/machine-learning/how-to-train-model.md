@@ -8,7 +8,7 @@ ms.author: scottpolly
 ms.reviewer: sooryar
 ms.service: azure-machine-learning
 ms.subservice: training
-ms.date: 12/22/2025
+ms.date: 01/27/2026
 ms.topic: how-to
 ai-usage: ai-assisted
 ms.custom:
@@ -122,13 +122,19 @@ The REST API examples in this article use `$SUBSCRIPTION_ID`, `$RESOURCE_GROUP`,
 * `$WORKSPACE`: The name of your Azure Machine Learning workspace.
 * `$COMPUTE_NAME`: The name of your Azure Machine Learning compute cluster.
 
-Administrative REST requests a [service principal authentication token](how-to-manage-rest.md#retrieve-a-service-principal-authentication-token). You can retrieve a token with the following command. The token is stored in the `$TOKEN` environment variable:
+Administrative REST requests require a [service principal authentication token](how-to-manage-rest.md#retrieve-a-service-principal-authentication-token). You can retrieve a token with the following command. The token is stored in the `$TOKEN` environment variable:
 
 :::code language="azurecli" source="~/azureml-examples-main/deploy-arm-templates-az-cli.sh" id="get_access_token":::
 
-The service provider uses the `api-version` argument to ensure compatibility. The `api-version` argument varies from service to service. Set the API version as a variable to accommodate future versions:
+The service provider uses the `api-version` argument to ensure compatibility. The `api-version` argument varies from service to service.
 
-:::code language="rest-api" source="~/azureml-examples-main/cli/deploy-rest.sh" id="api_version":::
+This article uses Azure Resource Manager endpoints (`management.azure.com`). Set `API_VERSION` to the current Azure Machine Learning Resource Manager version:
+
+```bash
+API_VERSION="2025-09-01"
+```
+
+If you use Azure Machine Learning data plane APIs, they can use a different version. For example, the Azure AI Assets data plane reference uses `2024-04-01-preview`. For more information, see the REST operation groups for [Azure Machine Learning (Resource Manager)](/rest/api/azureml/operation-groups?view=rest-azureml-2025-09-01&preserve-view=true) and [Azure AI Assets (data plane)](/rest/api/ai-assets/operation-groups?view=rest-ai-assets-2024-04-01-preview&preserve-view=true).
 
 When you train by using the REST API, you must upload data and training scripts to a storage account that the workspace can access. The following example gets the storage information for your workspace and saves it into variables so you can use it later:
 
@@ -200,10 +206,10 @@ To run this script, use a `command` that executes the main.py Python script loca
 In the preceding examples, you configured:
 - `code` - path where the code to run the command is located.
 - `command` - command that needs to run.
-- `environment` - the environment needed to run the training script. In this example, use a curated or ready-made environment provided by Azure Machine Learning called `AzureML-lightgbm-3.2-ubuntu18.04-py37-cpu`. Use the latest version of this environment by using the `@latest` directive. You can also use custom environments by specifying a base docker image and specifying a conda yaml on top of it.
+- `environment` - the environment needed to run the training script. In this example, use a curated or ready-made environment provided by Azure Machine Learning called `AzureML-lightgbm-3.3@latest`. You can also use custom environments by specifying a base docker image and specifying a conda yaml on top of it.
 - `inputs` - dictionary of inputs using name value pairs to the command. The key is a name for the input within the context of the job and the value is the input value. Reference inputs in the `command` by using the `${{inputs.<input_name>}}` expression. To use files or folders as inputs, use the `Input` class. For more information, see [SDK and CLI v2 expressions](concept-expressions.md).
 
-For more information, see the [reference documentation](/python/api/azure-ai-ml/azure.ai.ml#azure-ai-ml-command).
+For more information, see the [reference documentation](/python/api/azure-ai-ml/azure.ai.ml?view=azure-python&preserve-view=true#azure-ai-ml-command).
 
 When you submit the job, the service returns a URL to the job status in the Azure Machine Learning studio. Use the studio UI to view the job progress. You can also use `returned_job.status` to check the current status of the job.
 
@@ -221,7 +227,7 @@ In the preceding YAML, you configured:
 - `code` - path where the code to run the command is located.
 - `command` - command that needs to be run.
 - `inputs` - dictionary of inputs using name value pairs to the command. The key is a name for the input within the context of the job and the value is the input value. Inputs are referenced in the `command` by using the `${{inputs.<input_name>}}` expression. For more information, see [SDK and CLI v2 expressions](concept-expressions.md).
-- `environment` - the environment needed to run the training script. In this example, use a curated or ready-made environment provided by Azure Machine Learning called `AzureML-lightgbm-3.3`. Use the latest version of this environment by using the `@latest` directive. You can also use custom environments by specifying a base docker image and specifying a conda yaml on top of it.
+- `environment` - the environment needed to run the training script. In this example, use a curated or ready-made environment provided by Azure Machine Learning called `AzureML-lightgbm-3.3@latest`. You can also use custom environments by specifying a base docker image and specifying a conda yaml on top of it.
 To submit the job, use the following command. The run ID (name) of the training job is stored in the `$run_id` variable:
 
 ```azurecli
@@ -272,11 +278,15 @@ When you submit a job, you need to upload the training scripts and data to a clo
     }" | jq -r '.id')
     ```
 
-1. Create the environment that the cluster uses to run the training script. In this example, use a curated or ready-made environment provided by Azure Machine Learning called `AzureML-lightgbm-3.2-ubuntu18.04-py37-cpu`. The following command retrieves a list of the environment versions, with the newest being at the top of the collection. `jq` is used to retrieve the ID of the latest (`[0]`) version, which is then stored in the `$ENVIRONMENT` variable.
+1. Create the environment that the cluster uses to run the training script. In this example, use a curated or ready-made environment provided by Azure Machine Learning called `AzureML-lightgbm-3.3`.
 
-    ```bash
-    ENVIRONMENT=$(curl --location --request GET "https://management.azure.com/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.MachineLearningServices/workspaces/$WORKSPACE/environments/AzureML-lightgbm-3.2-ubuntu18.04-py37-cpu?api-version=$API_VERSION" --header "Authorization: Bearer $TOKEN" | jq -r .id)
-    ```
+Azure Resource Manager doesn't support an `@latest` shortcut for environment IDs. The following command lists the environment versions and selects the most recently modified version ID, which is then stored in the `$ENVIRONMENT` variable.
+
+```bash
+ENVIRONMENT_NAME="AzureML-lightgbm-3.3"
+ENVIRONMENT=$(curl --location --request GET "https://management.azure.com/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.MachineLearningServices/workspaces/$WORKSPACE/environments/$ENVIRONMENT_NAME/versions?api-version=$API_VERSION" \
+    --header "Authorization: Bearer $TOKEN" | jq -r '.value | sort_by(.systemData.lastModifiedAt) | last | .id')
+```
 
 1. Finally, submit the job. The following example shows how to submit the job, reference the training code ID, environment ID, URL for the input data, and the ID of the compute cluster. The job output location is stored in the `$JOB_OUTPUT` variable:
 

@@ -8,8 +8,8 @@ ms.custom:
   - ignite-2023
   - build-2024
   - hub-only
-ms.topic: reference
-ms.date: 6/30/2025
+ms.topic: article
+ms.date: 01/27/2026
 ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
@@ -23,7 +23,7 @@ ms.update-cycle: 180-days
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-To use large language models (LLMs) for natural language processing, you use the prompt flow LLM tool.
+To use large language models (LLMs) for natural language processing, use the prompt flow LLM tool.
 
 > [!TIP]
 > For embeddings to convert text into dense vector representations for various natural language processing tasks, see [Embedding tool](embedding-tool.md).

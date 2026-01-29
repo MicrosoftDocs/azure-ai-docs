@@ -283,6 +283,9 @@ Currently certain AI-assisted evaluators are available only in the following reg
 | France Central | Supported | N/A | N/A |
 | Switzerland West | Supported | N/A | N/A |
 
+> [!NOTE]
+> Red teaming agent is only available in regions where risk and safety evaluators are supported.
+
 ### Agent playground evaluation region support
 
 | Region | Status |

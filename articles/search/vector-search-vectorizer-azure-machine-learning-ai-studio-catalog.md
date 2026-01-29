@@ -25,7 +25,7 @@ If you're using integrated vectorization to create the vector arrays, the skills
 
 + A [Microsoft Foundry hub-based project](/azure/ai-foundry/how-to/hub-create-projects) or an [AML workspace](../machine-learning/concept-workspace.md) for a custom model that you create.
 
-+ For hub-based projects only, a serverless deployment of a [supported model](#vectorizer-parameters) from the Microsoft Foundry model catalog. You can use an [ARM/Bicep template](https://github.com/Azure-Samples/azure-ai-search-multimodal-sample/blob/42b4d07f2dd9f7720fdc0b0788bf107bdac5eecb/infra/ai/modules/project.bicep#L37C1-L38C1) to provision the serverless deployment.
++ For hub-based projects only, a serverless deployment of a [supported model](#vectorizer-parameters) from the Microsoft Foundry model catalog. You can use [use the Azure CLI](vector-search-integrated-vectorization-ai-studio.md#deploy-an-embedding-model-as-a-serverless-deployment) to provision the serverless deployment.
 
 ## Vectorizer parameters
 
