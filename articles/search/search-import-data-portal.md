@@ -177,20 +177,20 @@ Network protections affect wizard connectivity. This section explains how the Az
 > If you use the legacy Import data wizard for connections to either Azure Cosmos DB or Azure SQL, restrictions and extra configuration apply. You can avoid both by using **Import data (new)** instead.
 >
 
-### Azure portal connections to a network-protected search service
+### Portal connections to a network-protected search service
 
-+ For search services accessed through a public endpoint with IP firewall protections, [add your client IP address to an inbound rule](service-configure-firewall.md#configure-network-access-and-firewall-rules-for-azure-ai-search) on the search service.
++ For a search service accessed through a public endpoint with IP firewall protections, [add your client IP address to an inbound rule](service-configure-firewall.md#configure-network-access-and-firewall-rules-for-azure-ai-search) on the search service.
 
 + For a search service configured to use a [private endpoint](service-create-private-endpoint.md), use a browser on an allow-listed virtual machine to open portal pages and run wizards.
 
-+ For a search service joined to a [network security perimeter](search-security-network-security-perimeter), portal connections to the endpoint occur within the perimeter boundary.
++ For a search service joined to a network security perimeter, [add your client IP address to an inbound rule](search-security-network-security-perimeter.md#add-an-inbound-access-rule).
 
-### Azure portal connections to network-protected external resources
+### Portal connections to network-protected external resources
 
 The portal wizards connect to external resources for:
 
 + Data retrieval during indexing
-+ AI processing for enrichment and integrated vectorization
++ AI processing for [enrichment](cognitive-search-concept-intro.md) and [integrated vectorization](vector-search-integrated-vectorization.md) performed by a Foundry resource or model
 
 From the portal wizards, almost every outbound request for data and AI processing is made using the IP address of your client, with the exception of:
 
@@ -201,13 +201,11 @@ This section explains connection requirements for outbound requests, and how to 
 
 #### Portal connections to IP-protected resources
 
-For all Import data (new) workflow and legacy Import data workflows that don't target Azure Cosmos DB or Azure SQL:
+For all Import data (new) workflows and legacy Import data workflows that *don't* target Azure Cosmos DB or Azure SQL:
 
 + Add your client IP address to the allowList of the external resource, assuming that resource is behind a firewall.
 
-+ If a resource supports it, you should list Azure AI Search as a *trusted service* on the resource's network configuration. For example, in Azure Storage, you can list `Microsoft.Search/searchServices` as a trusted service.
-
-This applies to data retrieval during indexing. It also applies to AI processing, such as [AI enrichment](cognitive-search-concept-intro.md) and [integrated data chunking and vectorization](vector-search-integrated-vectorization.md), performed by a Foundry resource or model. 
++ If a resource supports it, list Azure AI Search as a *trusted service* on the resource's network configuration. For example, in Azure Storage, you can list `Microsoft.Search/searchServices` as a trusted service.
 
 #### Private connections to external resources
 
