@@ -6,7 +6,7 @@ ms.author: ssalgado
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 10/13/2025
+ms.date: 01/29/2026
 monikerRange: 'foundry-classic || foundry'
 ms.reviewer: fasantia
 reviewer: santiagxf
