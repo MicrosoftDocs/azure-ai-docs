@@ -188,7 +188,7 @@ Resource logs provide insight into operations that were done by an Azure resourc
 
 ## Configure diagnostic settings
 
-All of the metrics are exportable with diagnostic settings in Azure Monitor. To analyze logs and metrics data with Azure Monitor Log Analytics queries, you need to configure diagnostic settings for your Foundry Tools resource. You need to perform this operation on each resource.
+All of the metrics are exportable with diagnostic settings in Azure Monitor. To analyze logs and metrics data with Azure Monitor Log Analytics queries, you can configure diagnostic settings for your Foundry Tools resource. Perform this operation on each resource.
 
 :::image type="content" source="../media/monitor-models/azmon-diagnostic.png" alt-text="Screenshot showing how to configure diagnostic logging in a resource.png":::
 
