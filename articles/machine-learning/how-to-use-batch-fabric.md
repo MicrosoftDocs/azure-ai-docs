@@ -100,7 +100,7 @@ In this section, you create or identify a storage account to use for storing the
 
     1. Select **Create**.
 
-1. Ensure that the compute where the batch endpoint is running has permission to mount the data in this storage account. Although access is still granted by the identity that invokes the endpoint, the compute where the batch endpoint runs needs to have permission to mount the storage account that you provide. For more information, see [Accessing storage services](how-to-identity-based-service-authentication.md#accessing-storage-services).
+1. Ensure that the compute where the batch endpoint is running has permission to mount the data in this storage account. Although access is still granted by the identity that invokes the endpoint, the compute where the batch endpoint runs needs to have permission to mount the storage account that you provide. For more information, see [Accessing storage services](how-to-identity-based-service-authentication.md#access-storage-services).
 
 #### Upload sample dataset
 
