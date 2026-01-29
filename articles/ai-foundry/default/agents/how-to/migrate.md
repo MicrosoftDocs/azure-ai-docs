@@ -403,21 +403,22 @@ for message in messages:
 **Current**
 
 ```python
-agent = project_client.agents.create_version( 
-    agent_name="my-agent", 
-    definition={ 
-        "kind": "prompt", 
-        "model": "gpt-4.1",  
-        "instructions": "You politely help with math questions. Use the Code Interpreter tool when asked to visualize numbers.", 
-        "tools": [{"type": "code_interpreter", "container": {"type": "auto"}}] 
-    } 
-)
-conversation = openai_client.conversations.create( 
-    items=[{"type": "message", "role": "user", "content": "Hi, Agent! Draw a graph for a line with a rate of change of 4 and y-intercept of 9."}], 
-) 
-response = openai_client.responses.create( 
-    conversation=conversation.id,
-    extra_body={"agent": {"type": "agent_reference", "name": agent.name, "version": agent.version}},
-    input = "Please address the user as Jane Doe. The user has a premium account"
-) 
+with project_client.get_openai_client() as openai_client:
+    agent = project_client.agents.create_version( 
+        agent_name="my-agent", 
+        definition={ 
+            "kind": "prompt", 
+            "model": "gpt-4.1",  
+            "instructions": "You politely help with math questions. Use the Code Interpreter tool when asked to visualize numbers.", 
+            "tools": [{"type": "code_interpreter", "container": {"type": "auto"}}] 
+        } 
+    )
+    conversation = openai_client.conversations.create( 
+        items=[{"type": "message", "role": "user", "content": "Hi, Agent! Draw a graph for a line with a rate of change of 4 and y-intercept of 9."}], 
+    ) 
+    response = openai_client.responses.create( 
+        conversation=conversation.id,
+        extra_body={"agent": {"type": "agent_reference", "name": agent.name, "version": agent.version}},
+        input="Please address the user as Jane Doe. The user has a premium account"
+    ) 
 ```
