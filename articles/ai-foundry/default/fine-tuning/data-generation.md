@@ -7,7 +7,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.custom: ignite-2025
 ms.topic: how-to
-ms.date: 10/08/2025
+ms.date: 01/29/2026
 author: ssalgadodev
 ms.author: ssalgado
 ms.reviewer: williamliang
