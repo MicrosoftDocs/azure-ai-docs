@@ -15,12 +15,12 @@ ai-usage: ai-assisted
 
 # Quickstart: Deploy your first hosted agent
 
-In this quickstart, you deploy a containerized AI agent to Foundry Agent Service. By the end, you have a running hosted agent that you can interact with through the Foundry playground.
+In this quickstart, you deploy a containerized AI agent with Foundry tools to Foundry Agent Service. The sample agent uses web search and optionally MCP tools to answer questions. By the end, you have a running hosted agent that you can interact with through the Foundry playground.
 
 **In this quickstart, you:**
 
 > [!div class="checklist"]
-> * Clone a sample hosted agent project
+> * Set up an agent sample project with Foundry tools
 > * Test the agent locally
 > * Deploy to Foundry Agent Service
 > * Interact with your agent in the playground
@@ -31,28 +31,48 @@ In this quickstart, you deploy a containerized AI agent to Foundry Agent Service
 Before you begin, you need:
 
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/free/)
+* A [Microsoft Foundry project](../../../how-to/create-projects.md) with:
+  * An Azure OpenAI model deployment (for example `gpt-4.1`)
+  * (Optional) An MCP tool connection configured in the [Foundry tool catalog](https://ai.azure.com)
 * [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) version 1.23.0 or later
+* [Azure CLI](/cli/azure/install-azure-cli) version 2.80 or later
 * [Docker Desktop](https://docs.docker.com/get-docker/) installed and running
 * [Python 3.10 or later](https://www.python.org/downloads/)
 
 > [!NOTE]
 > Hosted agents are currently in preview.
 
-## Step 1: Clone the sample project
+## Step 1: Set up the sample project
 
-Clone a sample hosted agent project that's configured for deployment:
+Initialize a new project with the Foundry starter template and configure it with the agent-with-foundry-tools sample:
 
-```bash
-azd init -t https://github.com/Azure-Samples/azd-ai-starter-basic
-```
+1. Initialize the starter template:
 
-When prompted, enter a name for your environment (for example, `my-hosted-agent`). This name creates a resource group called `rg-my-hosted-agent`.
+    ```bash
+    azd init -t https://github.com/Azure-Samples/azd-ai-starter-basic
+    ```
 
-Navigate to the project directory:
+    When prompted, enter a name for your environment (for example, `my-hosted-agent`). This name creates a resource group called `rg-my-hosted-agent`.
 
-```bash
-cd my-hosted-agent
-```
+1. Initialize the agent sample:
+
+    ```bash
+    azd ai agent init -m https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/agent-framework/agent-with-foundry-tools/agent.yaml
+    ```
+
+    When prompted, configure the following values:
+    - **AZURE_OPENAI_ENDPOINT**: Your Azure OpenAI endpoint URL
+    - **AZURE_OPENAI_CHAT_DEPLOYMENT_NAME**: Your model deployment name (for example, `gpt-4.1`)
+    - **AZURE_AI_PROJECT_ENDPOINT**: Your Foundry project endpoint
+    - **AZURE_AI_PROJECT_TOOL_CONNECTION_ID** (optional): Your MCP tool connection ID
+
+1. Provision the required Azure resources:
+
+    ```bash
+    azd provision
+    ```
+
+    This command creates the Foundry project, Container Registry, and Application Insights resources needed for deployment.
 
 ## Step 2: Test the agent locally
 
@@ -60,53 +80,76 @@ Before deploying, verify the agent works locally.
 
 1. Create and activate a Python virtual environment:
 
+    **Bash:**
+
     ```bash
     python -m venv .venv
-    source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+    source .venv/bin/activate
+    ```
+
+    **PowerShell:**
+
+    ```powershell
+    python -m venv .venv
+    .venv\Scripts\Activate.ps1
     ```
 
 1. Install dependencies:
 
     ```bash
-    pip install azure-ai-agentserver-agentframework
+    pip install -r requirements.txt
+    ```
+
+1. Set the required environment variables:
+
+    **Bash:**
+
+    ```bash
+    export AZURE_OPENAI_ENDPOINT="https://your-openai-resource.openai.azure.com/"
+    export AZURE_OPENAI_CHAT_DEPLOYMENT_NAME="gpt-4.1"
+    export AZURE_AI_PROJECT_ENDPOINT="https://your-project.services.ai.azure.com/api/projects/your-project"
+    ```
+
+    **PowerShell:**
+
+    ```powershell
+    $env:AZURE_OPENAI_ENDPOINT = "https://your-openai-resource.openai.azure.com/"
+    $env:AZURE_OPENAI_CHAT_DEPLOYMENT_NAME = "gpt-4.1"
+    $env:AZURE_AI_PROJECT_ENDPOINT = "https://your-project.services.ai.azure.com/api/projects/your-project"
+    ```
+
+1. Sign in to Azure:
+
+    ```bash
+    az login
     ```
 
 1. Run the agent locally:
 
     ```bash
-    python src/agent.py
+    python main.py
     ```
 
 1. Test with a REST client. The agent runs on `localhost:8088`:
 
-    # [Bash](#tab/bash)
+    **Bash:**
 
     ```bash
     curl -X POST http://localhost:8088/responses \
         -H "Content-Type: application/json" \
-        -d '{"input": {"messages": [{"role": "user", "content": "Hello!"}]}}'
+        -d '{"input": "What is Microsoft Foundry?"}'
     ```
 
-    # [PowerShell](#tab/powershell)
+    **PowerShell:**
 
     ```powershell
     Invoke-RestMethod -Method Post `
         -Uri "http://localhost:8088/responses" `
         -ContentType "application/json" `
-        -Body '{"input":{"messages":[{"role":"user","content":"Hello!"}]}}'
+        -Body '{"input":"What is Microsoft Foundry?"}'
     ```
 
-    ---
-
-    You should see a response like:
-
-    ```json
-    {
-        "id": "resp_abc123",
-        "status": "completed",
-        "output": [{"type": "message", "role": "assistant", "content": "Hello! How can I help you today?"}]
-    }
-    ```
+    You should see a response with web search results about Microsoft Foundry.
 
 1. Stop the local server with **Ctrl+C**.
 
@@ -135,7 +178,10 @@ The deployment takes approximately 5-10 minutes.
 After deployment completes, verify your agent is running:
 
 ```bash
-azd ai agent show --name <your-agent-name>
+az cognitiveservices agent show \
+    --account-name <your-account-name> \
+    --project-name <your-project-name> \
+    --name <your-agent-name>
 ```
 
 Look for `status: Started` in the output.
@@ -150,9 +196,7 @@ Look for `status: Started` in the output.
 
 1. Find your deployed agent and select **Open in playground**.
 
-1. Send a message to test your agent.
-
-    :::image type="content" source="../../media/agents/hosted-agent-playground.png" alt-text="Screenshot showing a hosted agent responding in the Foundry playground." lightbox="../../media/agents/hosted-agent-playground.png":::
+1. Ask a question like "What is Microsoft Foundry?" to test your agent's web search capability.
 
 ## Step 5: Clean up resources
 
@@ -168,7 +212,7 @@ This command removes all Azure resources created during deployment. The cleanup 
 
 In this quickstart, you:
 
-- Cloned a sample hosted agent project
+- Set up a hosted agent sample with Foundry tools (web search and MCP)
 - Tested the agent locally using the hosting adapter
 - Deployed to Foundry Agent Service using `azd up`
 - Verified your agent in the Foundry playground
@@ -185,4 +229,4 @@ Now that you've deployed your first hosted agent, learn how to:
 - [What are hosted agents?](../concepts/hosted-agents.md)
 - [Deploy a hosted agent](../how-to/deploy-hosted-agent.md)
 - [Agent development lifecycle](../concepts/development-lifecycle.md)
-- [Python code samples](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/python/hosted-agents)
+- [Python hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents)
