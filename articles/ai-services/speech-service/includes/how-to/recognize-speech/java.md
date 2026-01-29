@@ -21,12 +21,14 @@ To call the Speech service by using the Speech SDK, you need to create a [Speech
 ```java
 import com.microsoft.cognitiveservices.speech.*;
 import com.microsoft.cognitiveservices.speech.audio.AudioConfig;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 public class Program {
-    public static void main(String[] args) throws InterruptedException, ExecutionException {
-        SpeechConfig speechConfig = SpeechConfig.fromEndpoint("<paste-your-speech-endpoint>", "<paste-your-speech-key>");
+    public static void main(String[] args) throws InterruptedException, ExecutionException, URISyntaxException {
+        SpeechConfig speechConfig = SpeechConfig.fromEndpoint(new URI("<paste-your-speech-endpoint>"), "<paste-your-speech-key>");
     }
 }
 ```
@@ -47,12 +49,14 @@ To recognize speech by using your device microphone, create an `AudioConfig` ins
 ```java
 import com.microsoft.cognitiveservices.speech.*;
 import com.microsoft.cognitiveservices.speech.audio.AudioConfig;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 public class Program {
-    public static void main(String[] args) throws InterruptedException, ExecutionException {
-        SpeechConfig speechConfig = SpeechConfig.fromEndpoint("<paste-your-speech-endpoint>", "<paste-your-speech-key>");
+    public static void main(String[] args) throws InterruptedException, ExecutionException, URISyntaxException {
+        SpeechConfig speechConfig = SpeechConfig.fromEndpoint(new URI("<paste-your-speech-endpoint>"), "<paste-your-speech-key>");
         fromMic(speechConfig);
     }
 
@@ -77,12 +81,14 @@ If you want to recognize speech from an audio file instead of using a microphone
 ```java
 import com.microsoft.cognitiveservices.speech.*;
 import com.microsoft.cognitiveservices.speech.audio.AudioConfig;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 public class Program {
-    public static void main(String[] args) throws InterruptedException, ExecutionException {
-        SpeechConfig speechConfig = SpeechConfig.fromEndpoint("<paste-your-speech-endpoint>", "<paste-your-speech-key>");
+    public static void main(String[] args) throws InterruptedException, ExecutionException, URISyntaxException {
+        SpeechConfig speechConfig = SpeechConfig.fromEndpoint(new URI("<paste-your-speech-endpoint>"), "<paste-your-speech-key>");
         fromFile(speechConfig);
     }
 
