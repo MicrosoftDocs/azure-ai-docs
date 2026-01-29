@@ -8,7 +8,7 @@ ms.author: scottpolly
 ms.reviewer: shshubhe
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
-ms.date: 01/21/2025
+ms.date: 01/28/2026
 ms.topic: how-to
 ms.custom:
   - has-adal-ref
@@ -40,6 +40,7 @@ Microsoft Entra Conditional Access can be used to further control or restrict ac
 
 ## Prerequisites
 
+* Python 3.10 or later.
 * Create an [Azure Machine Learning workspace](how-to-manage-workspace.md).
 * [Configure your development environment](how-to-configure-environment.md) or use an [Azure Machine Learning compute instance](how-to-create-compute-instance.md) and install the [Azure Machine Learning SDK v2](https://aka.ms/sdk-v2-install).
 
@@ -280,7 +281,7 @@ You can use a service principal for Azure CLI commands. For more information, se
 The service principal can also be used to authenticate to the Azure Machine Learning [REST API](/rest/api/azureml/). You use the Microsoft Entra ID [client credentials grant flow](/azure/active-directory/develop/v2-oauth2-client-creds-grant-flow), which allow service-to-service calls for headless authentication in automated workflows. 
 
 > [!IMPORTANT]
-> If you are currently using Azure Active Directory Authentication Library (ADAL) to get credentials, we recommend that you [Migrate to the Microsoft Authentication Library (MSAL)](/azure/active-directory/develop/msal-migration). ADAL support ended June 30, 2022.
+> If you are currently using Azure Active Directory Authentication Library (ADAL) to get credentials, we recommend that you [Migrate to the Microsoft Authentication Library (MSAL)](/entra/identity-platform/msal-migration). ADAL support ended June 30, 2023.
 
 For information and samples on authenticating with MSAL, see the following articles:
 
