@@ -8,7 +8,7 @@ metadata:
   manager: nitinme
   ms.service: azure-ai-foundry
   ms.topic: faq
-  ms.date: 01/28/2026
+  ms.date: 01/29/2026
   ai-usage: ai-assisted
 title: Foundry IQ frequently asked questions
 summary: |
@@ -19,7 +19,7 @@ sections:
     questions:
       - question: "What is Foundry IQ?"
         answer: |
-          Foundry IQ offers agents a single point of entry for AI-assisted knowledge retrieval from a user-defined information domain. It automates retrieval-augmented generation (RAG) workflows and improves response quality through multi-query search and iterative refinement.
+          Foundry IQ enables agents to access, process, and act on knowledge from anywhere.
           
           With Foundry IQ, you create a *knowledge base* that connects to one or more *knowledge sources*. The *agentic retrieval* engine processes queries, and an optional large language model (LLM) from Azure OpenAI in Foundry Models adds query planning and reasoning. Agents built in Foundry Agent Service call the knowledge base to retrieve relevant content.
       
@@ -47,9 +47,9 @@ sections:
       
       - question: "Do Foundry IQ and agentic retrieval have a hard dependency on LLMs?"
         answer: |
-          LLM usage for query planning is optional but recommended. Without an LLM, agentic retrieval behaves like single-shot RAG: you still get semantic ranking for a query input, but the query input is a single string.
+          LLM usage for query planning is optional but recommended. Without an LLM, you can use the minimal retrieval reasoning effort in agentic retrieval to merge results from multiple queries across knowledge sources.
           
-          To benefit from parallel processing of multiple subqueries, LLM query planning is required. The agentic retrieval engine only accepts multiple subqueries from an LLM.
+          To benefit from parallel processing of multiple subqueries, LLM query planning is required. The agentic retrieval engine uses LLM query planning in low and medium retrieval reasoning efforts for more thorough retrieval.
 
   - name: "Knowledge bases and knowledge sources"
     questions:
@@ -71,9 +71,11 @@ sections:
     questions:
       - question: "What is agentic retrieval?"
         answer: |
-          [Agentic retrieval](/azure/search/agentic-retrieval-overview) is the query-time engine that processes requests against a knowledge base. It selects which knowledge sources to query, routes requests appropriately, and can automatically iterate when initial results are incomplete. When the knowledge base includes an LLM, agentic retrieval also performs query planning and higher-level reasoning to refine the search process.
+          [Agentic retrieval](/azure/search/agentic-retrieval-overview) is the retrieval engine that processes requests against a knowledge base.
           
-          Benchmarks show approximately [36% higher response quality](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/foundry-iq-boost-response-relevance-by-36-with-agentic-retrieval/4470720) than traditional single-shot RAG.
+          It selects which knowledge sources to query, routes requests appropriately, and can automatically iterate when initial results are incomplete. When the knowledge base includes an LLM, agentic retrieval also performs query planning and higher-level reasoning to refine the search process. You can control the cost and latency of the search process by setting the retrieval reasoning effort on the knowledge base.
+          
+          Benchmarks show that agentic retrieval achieves approximately [36% higher response quality](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/foundry-iq-boost-response-relevance-by-36-with-agentic-retrieval/4470720) than traditional single-shot RAG.
 
       - question: "What is query planning in agentic retrieval?"
         answer: |
@@ -91,7 +93,7 @@ sections:
 
       - question: "What is answer synthesis? Should I use it for a Foundry IQ knowledge base?"
         answer: |
-            [Answer synthesis](/azure/search/agentic-retrieval-how-to-answer-synthesis) uses an LLM to generate a complete, natural-language answer based on retrieved content.
+            [Answer synthesis](/azure/search/agentic-retrieval-how-to-answer-synthesis) uses an LLM to generate a complete, natural-language answer based on retrieved content. Answer synthesis is required for web knowledge sources.
             
             For most Foundry IQ scenarios, use extractive data instead of answer synthesis. Extractive data returns raw content that agents can reason over and incorporate into their responses. Reserve answer synthesis for standalone applications where the retrieval output goes directly to users without agent processing.
 
@@ -103,7 +105,9 @@ sections:
 
       - question: "Is Foundry IQ free to use?"
         answer: |
-          Azure AI Search offers a free pricing tier and free token allocation for agentic retrieval, and Foundry Agent Service doesn't charge for agent instances. However, LLM usage for query planning and answer synthesis incurs standard Azure OpenAI charges.
+          Azure AI Search offers a free pricing tier and a free token allocation for agentic retrieval. Foundry Agent Service doesn't charge for agent instances.
+
+          After you exhaust the free allocation, agentic retrieval is billed based on token consumption in Azure AI Search. LLM usage for query planning and answer synthesis incurs separate charges from Azure OpenAI in Foundry Models.
   
   - name: "Security and governance"
     questions:
