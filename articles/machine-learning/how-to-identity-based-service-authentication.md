@@ -66,7 +66,7 @@ The following table summarizes when to use each authentication approach:
 Before configuring authentication, be aware of these limitations:
 
 * **Identity type changes**: After you create a workspace with system-assigned plus user-assigned identities (SAI+UAI), you can't change it back to system-assigned only (SAI).
-* **Cross-tenant access**: Cross-tenant access to storage accounts isn't supported. If your scenario requires cross-tenant access, contact the Azure Machine Learning Data Support team at amldatasupport@microsoft.com.
+* **Cross-tenant access**: Cross-tenant access to storage accounts isn't supported. If your scenario requires cross-tenant access, [create an Azure support request](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/newsupportrequest) for assistance with a custom code solution.
 * **Compute cluster identity**: Azure Machine Learning compute clusters support only **one system-assigned identity** or **multiple user-assigned identities**, not both concurrently.
 * **Kubernetes cluster identity**: Azure Machine Learning Kubernetes clusters support only **one system-assigned identity** or **one user-assigned identity**, not both concurrently.
 * **Endpoint identity immutability**: The identity for an online endpoint is immutable. You can associate it with a system-assigned identity (default) or a user-assigned identity during creation, but you can't change it after the endpoint is created.
@@ -586,7 +586,7 @@ The same behavior applies when you work with data interactively via a Jupyter No
 To securely connect to your storage service on Azure, Azure Machine Learning requires that you have permission to access the corresponding data storage.
  
 > [!WARNING]
->  Cross tenant access to storage accounts isn't supported. If your scenario requires cross tenant access, contact the Azure Machine Learning Data Support team at amldatasupport@microsoft.com for assistance with a custom code solution.
+> Cross-tenant access to storage accounts isn't supported. If your scenario requires cross-tenant access, [create an Azure support request](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/newsupportrequest) for assistance with a custom code solution.
 
 Identity-based data access supports connections to **only** the following storage services.
 
