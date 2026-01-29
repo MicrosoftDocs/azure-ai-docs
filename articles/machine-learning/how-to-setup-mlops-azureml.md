@@ -310,7 +310,7 @@ This training pipeline contains the following steps:
 
 ## Deploying the trained model 
 
-This scenario includes prebuilt workflows for two approaches to deploying a trained model: batch scoring or deploying a model to an endpoint for real-time scoring. Run either or both of these workflows to test the performance of the model in your Azure ML workspace. In this example, you use real-time scoring.
+This scenario includes prebuilt workflows for two approaches to deploying a trained model: batch scoring or deploying a model to an endpoint for real-time scoring. Run either or both of these workflows to test the performance of the model in your Azure Machine Learning workspace. In this example, you use real-time scoring.
 
 ### Deploy ML model endpoint
 1. Go to ADO pipelines.
