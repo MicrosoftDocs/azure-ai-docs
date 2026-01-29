@@ -11,7 +11,7 @@ ms.date: 01/28/2026
 ai-usage: ai-assisted
 ---
 
-# How to add proactive messages to a Voice Live real-time voice agent
+# How to add proactive messages to a Voice Live real-time voice agent (preview)
 
 Proactive engagement allows your Voice Live agent to **speak first**, before the user interacts with the system. This can make agents feel more natural, more helpful, and more responsive at the start of a conversation.  
 
@@ -39,8 +39,61 @@ Before starting, we recommend you have:
 - A working Voice Live setup.
 - A working event loop handling Voice Live events.
 
-> [!NOTE]
-> The Java SDK (`azure-ai-voicelive`) and JavaScript SDK (`@azure/ai-voicelive`) are currently in preview. Features and APIs may change before general availability. For the latest SDK version and installation instructions, see the [Voice Live quickstart](./voice-live-quickstart.md).
+::: zone pivot="programming-language-python"
+
+> [!IMPORTANT]
+> Proactive messaging with `pre_generated_assistant_message` requires `azure-ai-voicelive >= 1.2.0b2` and API version `2026-01-01-preview`. Install the preview SDK with:
+>
+> ```bash
+> pip install azure-ai-voicelive --pre
+> ```
+>
+> This SDK is currently in preview. Features and APIs may change before general availability.
+
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
+
+> [!IMPORTANT]
+> Proactive messaging with `PreGeneratedAssistantMessage` requires `Azure.AI.VoiceLive >= 1.2.0-beta.2` and API version `2026-01-01-preview`. Install the preview SDK with:
+>
+> ```dotnetcli
+> dotnet add package Azure.AI.VoiceLive --prerelease
+> ```
+>
+> This SDK is currently in preview. Features and APIs may change before general availability.
+
+::: zone-end
+
+::: zone pivot="programming-language-java"
+
+> [!IMPORTANT]
+> Proactive messaging with `setPreGeneratedAssistantMessage` requires `azure-ai-voicelive >= 1.0.0-beta.3` and API version `2026-01-01-preview`. Add the preview dependency to your `pom.xml`:
+>
+> ```xml
+> <dependency>
+>     <groupId>com.azure</groupId>
+>     <artifactId>azure-ai-voicelive</artifactId>
+>     <version>1.0.0-beta.3</version>
+> </dependency>
+> ```
+>
+> This SDK is currently in preview. Features and APIs may change before general availability.
+
+::: zone-end
+
+::: zone pivot="programming-language-javascript"
+
+> [!IMPORTANT]
+> Proactive messaging with `preGeneratedAssistantMessage` requires `@azure/ai-voicelive >= 1.2.0-beta.2` and API version `2026-01-01-preview`. Install the preview SDK with:
+>
+> ```bash
+> npm install @azure/ai-voicelive@next
+> ```
+>
+> This SDK is currently in preview. Features and APIs may change before general availability.
+
+::: zone-end
 
 ## How proactive messages integrate with the event loop
 
@@ -238,17 +291,17 @@ await session.SendCommandAsync(eventData, cancellationToken).ConfigureAwait(fals
 ::: zone pivot="programming-language-java"
 ```java
 import com.azure.ai.voicelive.models.*;
+import java.util.Arrays;
 
 // Send a pre-generated assistant greeting
-ResponseCreateOptions responseOptions = new ResponseCreateOptions()
-    .setPreGeneratedAssistantMessage(new AssistantMessageItem()
-        .setContent(Arrays.asList(
-            new OutputTextContentPart()
-                .setText("Hi Lisa, welcome back! How can I assist you today?")
-        ))
-    );
+OutputTextContentPart textContent = new OutputTextContentPart(
+    "Hi Lisa, welcome back! How can I assist you today?");
+AssistantMessageItem assistantMessage = new AssistantMessageItem(Arrays.asList(textContent));
 
-session.sendEvent(new ClientEventResponseCreate().setResponse(responseOptions)).subscribe();
+ResponseCreateParams responseParams = new ResponseCreateParams()
+    .setPreGeneratedAssistantMessage(assistantMessage);
+
+session.sendEvent(new ClientEventResponseCreate().setResponse(responseParams)).subscribe();
 ```
 ::: zone-end
 
@@ -342,16 +395,14 @@ await session.StartResponseAsync().ConfigureAwait(false);
 ::: zone pivot="programming-language-java"
 ```java
 import com.azure.ai.voicelive.models.*;
+import java.util.Arrays;
 
 // Add an instruction telling the LLM to greet the user
-MessageItem messageItem = new MessageItem()
-    .setRole("system")
-    .setContent(Arrays.asList(
-        new InputTextContentPart()
-            .setText("Say something to welcome the user.")
-    ));
+InputTextContentPart textContent = new InputTextContentPart(
+    "Say something to welcome the user.");
+SystemMessageItem systemMessage = new SystemMessageItem(Arrays.asList(textContent));
 
-session.sendEvent(new ClientEventConversationItemCreate().setItem(messageItem)).subscribe();
+session.sendEvent(new ClientEventConversationItemCreate().setItem(systemMessage)).subscribe();
 
 // Trigger LLM-generated greeting
 session.sendEvent(new ClientEventResponseCreate()).subscribe();
@@ -649,15 +700,14 @@ private async Task SendLlmGeneratedGreetingAsync(
 ```java
 private void sendPreGeneratedGreeting(VoiceLiveSessionAsyncClient session) {
     try {
-        ResponseCreateOptions responseOptions = new ResponseCreateOptions()
-            .setPreGeneratedAssistantMessage(new AssistantMessageItem()
-                .setContent(Arrays.asList(
-                    new OutputTextContentPart()
-                        .setText("Welcome! I'm here to help you get started.")
-                ))
-            );
+        OutputTextContentPart textContent = new OutputTextContentPart(
+            "Welcome! I'm here to help you get started.");
+        AssistantMessageItem assistantMessage = new AssistantMessageItem(Arrays.asList(textContent));
 
-        session.sendEvent(new ClientEventResponseCreate().setResponse(responseOptions))
+        ResponseCreateParams responseParams = new ResponseCreateParams()
+            .setPreGeneratedAssistantMessage(assistantMessage);
+
+        session.sendEvent(new ClientEventResponseCreate().setResponse(responseParams))
             .doOnError(error -> System.err.println("Failed to send pre-generated greeting: " + error.getMessage()))
             .subscribe();
     } catch (Exception e) {
@@ -667,14 +717,11 @@ private void sendPreGeneratedGreeting(VoiceLiveSessionAsyncClient session) {
 
 private void sendLlmGeneratedGreeting(VoiceLiveSessionAsyncClient session) {
     try {
-        MessageItem messageItem = new MessageItem()
-            .setRole("system")
-            .setContent(Arrays.asList(
-                new InputTextContentPart()
-                    .setText("Greet the user warmly and briefly explain how you can help.")
-            ));
+        InputTextContentPart textContent = new InputTextContentPart(
+            "Greet the user warmly and briefly explain how you can help.");
+        SystemMessageItem systemMessage = new SystemMessageItem(Arrays.asList(textContent));
 
-        session.sendEvent(new ClientEventConversationItemCreate().setItem(messageItem))
+        session.sendEvent(new ClientEventConversationItemCreate().setItem(systemMessage))
             .doOnError(error -> System.err.println("Failed to add conversation item: " + error.getMessage()))
             .subscribe();
         session.sendEvent(new ClientEventResponseCreate())
