@@ -28,7 +28,7 @@ Common scenarios for speech include:
 - [Audio Content Creation](text-to-speech.md#more-about-neural-text-to-speech-features): Use neural voices to make interactions with chatbots and voice agents more natural and engaging, convert digital texts such as e-books into audiobooks, and enhance in-car navigation systems.
 - [Call Center](call-center-overview.md): Transcribe calls in real time or process a batch of calls, redact personally identifying information, and extract insights such as sentiment to help with your call center use case.
 - [Language learning](language-learning-overview.md): Provide pronunciation assessment feedback to language learners, support real-time transcription for remote learning conversations, and read aloud teaching materials with neural voices.
-- [Voice live](voice-live.md): Create natural, human like conversational interfaces for applications and experiences. The voice live feature provides fast, reliable interaction between a human and an agent implementation.
+- [Voice Live](voice-live.md): Create natural, human like conversational interfaces for applications and experiences. The Voice Live feature provides fast, reliable interaction between a human and an agent implementation.
 
 Microsoft uses Speech for many scenarios, such as captioning in Teams, dictation in Office 365, and Read Aloud in the Microsoft Edge browser. 
 

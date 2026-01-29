@@ -14,7 +14,7 @@ author: PatrickFarley
 
 This guide shows you how to use text to speech avatar with real-time synthesis. The avatar video is generated almost instantly after you enter text.
 
-Text to speech avatar can be used in the Voice live API to create a more personalized voice conversation. See [Voice live API overview](../voice-live.md) and [Avatar in Voice Live sample code](../voice-live-how-to.md#azure-text-to-speech-avatar) to learn more
+Text to speech avatar can be used in the Voice Live API to create a more personalized voice conversation. See [Voice Live API overview](../voice-live.md) and [Avatar in Voice Live sample code](../voice-live-how-to.md#azure-text-to-speech-avatar) to learn more
 
 ## Prerequisites
 
@@ -341,7 +341,7 @@ Find text to speech avatar code samples in the Speech SDK GitHub repository. The
     - [JavaScript](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/browser/avatar)
     - [Android](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/java/android/avatar)
     - [iOS](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/swift/ios/avatar)
-- **Voice live**
+- **Voice Live**
     - [Node.js](https://github.com/azure-ai-foundry/voicelive-samples/tree/main/javascript/voice-live-avatar)
 
 ## Next steps

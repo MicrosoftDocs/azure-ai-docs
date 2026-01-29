@@ -27,9 +27,9 @@ For information about adjustable quotas for Standard (S0) Speech resources, see 
 > [!IMPORTANT]
 > If you switch a Foundry resource for Speech from Free (F0) to Standard (S0) pricing tier, the change of the corresponding quotas may take up to several hours.
 
-### Voice live quotas and limits per resource
+### Voice Live quotas and limits per resource
 
-This section describes Voice live quotas and limits per Speech resource. For information about adjustable quotas, see [Detailed description, quota adjustment, and best practices](#detailed-description-quota-adjustment-and-best-practices).
+This section describes Voice Live quotas and limits per Speech resource. For information about adjustable quotas, see [Detailed description, quota adjustment, and best practices](#detailed-description-quota-adjustment-and-best-practices).
 
 | Quota | Free (F0) | Standard (S0) |
 |-----|-----|-----|
@@ -37,7 +37,7 @@ This section describes Voice live quotas and limits per Speech resource. For inf
 | Maximum connection length | N/A | <= 60 minutes per session |
 | Tokens per minute | N/A | <= 120,000 |
 
-Avatars used in Voice live follow the quota and limits described in [real-time text to speech avatar](#real-time-text-to-speech-avatar).
+Avatars used in Voice Live follow the quota and limits described in [real-time text to speech avatar](#real-time-text-to-speech-avatar).
 
 ### LLM Speech (preview) quotas and limits per resource
 
@@ -187,7 +187,7 @@ Some Speech service quotas are adjustable. This section provides more explanatio
 
 The following quotas are adjustable for Standard (S0) resources. The Free (F0) request limits aren't adjustable.
 
-- Voice live API [new connections per minute](#voice-live-quotas-and-limits-per-resource). Adjusting new connections also adjusts the token limit.
+- Voice Live API [new connections per minute](#voice-live-quotas-and-limits-per-resource). Adjusting new connections also adjusts the token limit.
 - Speech to text [concurrent request limit](#real-time-speech-to-text-and-speech-translation) for base model endpoint and custom endpoint
 - Fast Transcription [maximum number of requests per minute](#fast-transcription)
 - Speech translation [concurrent request limit](#real-time-speech-to-text-and-speech-translation)
@@ -226,7 +226,7 @@ Suppose that a Speech service resource has the concurrent request limit set to 3
 
 Generally, it's a good idea to test the workload and the workload patterns before going to production.
 
-### Voice live: increase real-time speech to text concurrent request limit
+### Voice Live: increase real-time speech to text concurrent request limit
 
 #### Prepare the required information
 
