@@ -8,7 +8,8 @@ ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 author: PatrickFarley
 ms.author: pafarley
-ms.date: 3/11/2025
+ms.date: 01/29/2026
+ai-usage: ai-assisted
 ---
 
 Use this guide to get started generating images with the Azure OpenAI SDK for C#.
@@ -29,10 +30,10 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 ## Set up
 
-1. Create a new folder `vision-quickstart` and go to the quickstart folder with the following command:
+1. Create a new folder `image-quickstart` and go to the quickstart folder with the following command:
 
     ```shell
-    mkdir vision-quickstart && cd vision-quickstart
+    mkdir image-quickstart && cd image-quickstart
     ```
 
 1. Create a new console application with the following command:
