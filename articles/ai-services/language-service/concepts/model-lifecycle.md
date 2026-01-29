@@ -60,10 +60,10 @@ Use the following table to find which model versions support each feature:
 
 | Feature | Supported Training Config Versions | Training Config Expiration | Deployment Expiration |
 | --- | --- | --- | --- |
-| Conversational language understanding | **2022-09-01** (latest)** | August 26, 2025 | August 26, 2026 |
-| Orchestration workflow | **2022-09-01** (latest)** | October 22, 2025 | October 22, 2026 |
-| Custom named entity recognition | **2022-05-01** (latest)** | October 22, 2025 | October 22, 2026 |
-| Custom text classification | **2022-05-01** (latest)** | October 22, 2025 | October 22, 2026 |
+| Conversational language understanding | **2022-09-01** (latest) | August 26, 2025 | August 26, 2026 |
+| Orchestration workflow | **2022-09-01** (latest) | October 22, 2025 | October 22, 2026 |
+| Custom named entity recognition | **2022-05-01** (latest) | October 22, 2025 | October 22, 2026 |
+| Custom text classification | **2022-05-01** (latest) | October 22, 2025 | October 22, 2026 |
 
 ** *For latest training configuration versions, the posted expiration dates are subject to availability of a newer model version. If no newer model versions are available, the expiration date may be extended.*
 
