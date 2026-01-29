@@ -7,8 +7,7 @@ ms.service: azure-machine-learning
 ms.subservice: core
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: fsolomon
-ms.date: 03/05/2025
+ms.date: 01/28/2026
 ms.topic: how-to
 ms.custom:
   - fasttrack-edit
@@ -33,6 +32,7 @@ As your needs change or your automation requirements increase, you can manage wo
 
 * An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) today.
 * With the Python SDK:
+   1. Python 3.10 or later.
    1. [Install the SDK v2](https://aka.ms/sdk-v2-install).
    1. Install azure-identity: `pip install azure-identity`. If in a notebook cell, use `%pip install azure-identity`.
    1. Provide your subscription details:
@@ -235,9 +235,9 @@ ws = Workspace(
     display_name="My workspace",
     description="This example shows how to create a workspace",
     customer_managed_key=CustomerManagedKey(
-        key_vault="/subscriptions/<SUBSCRIPTION_ID>/resourcegroups/<RESOURCE_GROUP>/providers/microsoft.keyvault/vaults/<VAULT_NAME>"
+        key_vault="/subscriptions/<SUBSCRIPTION_ID>/resourcegroups/<RESOURCE_GROUP>/providers/microsoft.keyvault/vaults/<VAULT_NAME>",
         key_uri="<KEY-IDENTIFIER>"
-    )
+    ),
     tags=dict(purpose="demo")
 )
 
@@ -246,7 +246,7 @@ ml_client.workspaces.begin_create(ws)
 
 # [Portal](#tab/azure-portal)
 
-1. Select **Encrypt data using a ustomer-managed key**, and then select **Click to select key**. This configuration creates Azure resources used to encrypt data in your Azure subscription. Alternatively, select **Use service-side encryption** to use service-side resources for encryption. For more information, see [Customer-managed keys](concept-customer-managed-keys.md).
+1. Select **Encrypt data using a customer-managed key**, and then select **Click to select key**. This configuration creates Azure resources used to encrypt data in your Azure subscription. Alternatively, select **Use service-side encryption** to use service-side resources for encryption. For more information, see [Customer-managed keys](concept-customer-managed-keys.md).
 
     :::image type="content" source="media/how-to-manage-workspace/advanced-workspace.png" alt-text="Screenshot of the customer-managed keys.":::
 
@@ -287,7 +287,7 @@ Tags are name/value pairs that enable you to categorize resources and view conso
 
 Assign tags for the workspace by entering the name/value pairs. For more information, see [Use tags to organize your Azure resources](/azure/azure-resource-manager/management/tag-resources).
 
-Also use tags to [enforce workspace policies)(#enforce-policies).
+Also use tags to [enforce policies](#enforce-policies).
 
 
 
