@@ -130,7 +130,7 @@ To use a service principal to access and wrangle data from Azure Data Lake Stora
 
 1. [Create a service principal](/azure/active-directory/develop/howto-create-service-principal-portal) and [assign it the necessary Storage Blob Data Contributor and Key Vault Secrets User roles](/azure/active-directory/develop/howto-create-service-principal-portal#assign-a-role-to-the-application).
 1. Obtain the service principal tenant ID, client ID, and client secret values from the app registration and [create Azure Key Vault secrets](apache-spark-environment-configuration.md#store-azure-storage-account-credentials-as-secrets-in-azure-key-vault) for the values.
-1. Set the following property name/value pairs for the service principal tenant ID, client ID, and client secret in the session configuration before you start the Spark session. Replace `<STORAGE_ACCOUNT_NAME>` with your storage account name and <TENANT_ID>` with the service principal tenant ID.
+1. Set the following property name/value pairs for the service principal tenant ID, client ID, and client secret in the session configuration before you start the Spark session. Replace `<STORAGE_ACCOUNT_NAME>` with your storage account name and `<TENANT_ID>` with the service principal tenant ID.
 
    |Property name|Value|
    |-------------|-----|
@@ -178,7 +178,7 @@ To use a service principal to access and wrangle data from Azure Data Lake Stora
 
 ## Import and wrangle data from Azure Blob storage
 
-You can access Azure Blob storage data with either the *storage account access key* or a *shared access signature (SAS) token*. [Store the credential in Azure Key Vault as a secret](apache-spark-environment-configuration.md#store-azure-storage-account-credentials-as-secrets-in-azure-key-vault), and set it as a property in the Spark session configuration.
+You can access Azure Blob storage data with either the *storage account access key* or a *shared access signature (SAS) token*. [Store the credential in Azure Key Vault as a secret](apache-spark-environment-configuration.md#store-azure-storage-account-credentials-as-secrets-in-azure-key-vault), or set it as a property in the Spark session configuration.
 
 <!--1. Run one of the following code snippets. The `get_secret()` calls in the code snippets require the name of the key vault and the names of the secrets created for the Azure Blob storage account access key or SAS token.
 
@@ -210,7 +210,7 @@ You can access Azure Blob storage data with either the *storage account access k
      ```
 -->
 
-1. In the Spark session configuration, set a property name/value pair for the storage account key or SAS token, depending on which access method you want to use. Replace `<STORAGE_ACCOUNT_NAME>` with your storage account name and <BLOB_CONTAINER_NAME>` with the name of the Blob container.
+1. In the Spark session configuration, set a property name/value pair for the storage account key or SAS token, depending on which access method you want to use. Replace `<STORAGE_ACCOUNT_NAME>` with your storage account name and `<BLOB_CONTAINER_NAME>` with the name of the Blob container.
 
    |Credential|Property name|Value|
    |---------------|-------------|-----|
