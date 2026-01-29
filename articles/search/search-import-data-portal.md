@@ -173,38 +173,36 @@ The wizards have the following limitations:
 
 Network protections affect the portal-to-endpoint connection and also the endpoint-to-external-resource connections during portal operations.
 
-### Portal connections to a network-protected search service
+### Portal connections to a search service
 
 Portal connections to a network-protected endpoint are made using your client IP address.
 
 + For a firewall-protected search service, [add your client IP address to an inbound rule](service-configure-firewall.md#configure-network-access-and-firewall-rules-for-azure-ai-search).
 
-+ For a search service configured for[private endpoint](service-create-private-endpoint.md), use a browser on an allow-listed virtual machine to open portal pages and run wizards.
++ For a search service configured for a [private endpoint](service-create-private-endpoint.md), use a browser on an allow-listed virtual machine to open portal pages and run wizards.
 
 + For a search service joined to a network security perimeter, [add your client IP address to an inbound rule](search-security-network-security-perimeter.md#add-an-inbound-access-rule).
 
 > [!TIP]
 > The portal detects your client IP address and prompts you add it to the search service firewall.
 
-### Portal connections to network-protected external resources
+### Portal connections to external resources
 
 The portal wizards connect to external resources for:
 
 + Data retrieval during indexing
 + AI processing for [enrichment](cognitive-search-concept-intro.md) and [integrated vectorization](vector-search-integrated-vectorization.md) performed by a Foundry resource or model
 
-From the portal wizards, almost every outbound request for data and AI processing is made using the IP address of your client, with the exception of:
+From the portal wizards, almost every outbound request for network-protected data and AI processing is made using the IP address of your client, with the exception of:
 
 + The legacy Import data wizard
 + Connecting to either Azure Cosmos DB or Azure SQL
 
 This section explains connection requirements for outbound requests, and how to handle the exception.
 
-#### Configure portal access to external resources
+#### Configuring portal access to external resources
 
-+ **IP-protected resources**: Add your client IP address to the external resource's allowList. 
-
-  If supported, list `Microsoft.Search/searchServices` as a trusted service. For example, in Azure Storage, you can list `Microsoft.Search/searchServices` as a trusted service.
++ **IP-protected resources**: Add your client IP address to the external resource's `allowList`. If supported, list `Microsoft.Search/searchServices` as a trusted service. For example, in Azure Storage, you can list `Microsoft.Search/searchServices` as a trusted service.
 
 + **Private connections**: The wizards use [shared private links](search-indexer-howto-access-private.md). Verify your search service meets tier and region requirements. Verify your external data source is supported for shared private links.
 
