@@ -99,7 +99,7 @@ After importing your projects, validate that the migration is successful:
 
 ---
 
-## Option 2: Migrate to a new Foundry resource
+## Option II: Migrate to a new Foundry resource
 
 This option enables you to create a new Foundry resource and migrate your projects by exporting them from Language Studio and importing them into the new environment. With a Foundry resource, you can access both Foundry classic and the new Foundry experiences, and take advantage of the latest features and unified resource management capabilities.
 
