@@ -35,9 +35,9 @@ Microsoft Foundry offers a unified platform for building, managing, and deployin
 
 You can migrate to Microsoft Foundry using one of two approaches:
 
-* **[Option 1: Use your existing Language resource](#option-i-start-using-foundry-with-an-existing-language-resource)**. Create a Foundry hub, connect your existing Azure Language resource, and access your projects directly in Foundry. This approach preserves your current resource configuration and requires no data export or import.
+* **[Option I: Use your existing Language resource](#option-i-start-using-foundry-with-an-existing-language-resource)**. Create a Foundry hub, connect your existing Azure Language resource, and access your projects directly in Foundry. This approach preserves your current resource configuration and requires no data export or import.
 
-* **[Option 2: Migrate to a new Foundry resource](#option-2-migrate-to-a-new-foundry-resource)**. Export your projects from Language Studio and import them into a new Foundry resource. This approach consolidates your AI capabilities into a single resource and provides access to both Foundry classic and the new Foundry experiences.
+* **[Option II: Migrate to a new Foundry resource](#option-ii-migrate-to-a-new-foundry-resource)**. Export your projects from Language Studio and import them into a new Foundry resource. This approach consolidates your AI capabilities into a single resource and provides access to both Foundry classic and the new Foundry experiences.
 
 
 
