@@ -22,7 +22,7 @@ ms.custom:
 > + The **Import and vectorize data** wizard is now called **Import data (new)**.
 > + The **Import data** workflow is now available in **Import data (new)**.
 >
-> The **Import data** wizard will eventually be deprecated. For now, you can still use this wizard, but we recommend the new wizard for an improved search experience that uses the latest frameworks.
+> The **Import data** wizard will be deprecated soon. For now, you can still use this wizard, but we recommend the new wizard for an improved search experience that uses the latest frameworks.
 >
 > The wizards don't have identical keyword search workflows. Certain skills and capabilities are only available in the old wizard. For more information about their similarities and differences, continue reading this article.
 
@@ -171,19 +171,20 @@ The wizards have the following limitations:
 
 ## Secure connections
 
-Network protections affect wizard connectivity. This section explains how the Azure portal connects to the search endpoint when network protections are in place. It also covers outbound connections made by portal workflows to network-protected external resources.
-
-> [!NOTE]
-> If you use the legacy Import data wizard for connections to either Azure Cosmos DB or Azure SQL, restrictions and extra configuration apply. You can avoid both by using **Import data (new)** instead.
->
+Network protections affect the portal-to-endpoint connection and also the endpoint-to-external-resource connections during portal operations.
 
 ### Portal connections to a network-protected search service
 
-+ For a search service accessed through a public endpoint with IP firewall protections, [add your client IP address to an inbound rule](service-configure-firewall.md#configure-network-access-and-firewall-rules-for-azure-ai-search) on the search service.
+Portal connections to a network-protected endpoint are made using your client IP address.
 
-+ For a search service configured to use a [private endpoint](service-create-private-endpoint.md), use a browser on an allow-listed virtual machine to open portal pages and run wizards.
++ For a firewall-protected search service, [add your client IP address to an inbound rule](service-configure-firewall.md#configure-network-access-and-firewall-rules-for-azure-ai-search).
+
++ For a search service configured for[private endpoint](service-create-private-endpoint.md), use a browser on an allow-listed virtual machine to open portal pages and run wizards.
 
 + For a search service joined to a network security perimeter, [add your client IP address to an inbound rule](search-security-network-security-perimeter.md#add-an-inbound-access-rule).
+
+> [!TIP]
+> The portal detects your client IP address and prompts you add it to the search service firewall.
 
 ### Portal connections to network-protected external resources
 
@@ -199,33 +200,21 @@ From the portal wizards, almost every outbound request for data and AI processin
 
 This section explains connection requirements for outbound requests, and how to handle the exception.
 
-#### Portal connections to IP-protected resources
+#### Configure portal access to external resources
 
-For all Import data (new) workflows and legacy Import data workflows that *don't* target Azure Cosmos DB or Azure SQL:
++ **IP-protected resources**: Add your client IP address to the external resource's allowList. 
 
-+ Add your client IP address to the allowList of the external resource, assuming that resource is behind a firewall.
+  If supported, list `Microsoft.Search/searchServices` as a trusted service. For example, in Azure Storage, you can list `Microsoft.Search/searchServices` as a trusted service.
 
-+ If a resource supports it, list Azure AI Search as a *trusted service* on the resource's network configuration. For example, in Azure Storage, you can list `Microsoft.Search/searchServices` as a trusted service.
++ **Private connections**: The wizards use [shared private links](search-indexer-howto-access-private.md). Verify your search service meets tier and region requirements. Verify your external data source is supported for shared private links.
 
-#### Private connections to external resources
+#### Exception: Legacy wizard with Cosmos DB and Azure SQL
 
-If your external resource is accessed over a private network connection, the portal wizards and indexers connect through [shared private links](search-indexer-howto-access-private.md). Make sure your search service meets the creation date, tier, and region requirements for private connections.
+The legacy wizard connects through a portal controller with its own IP address. You must use a public endpoint (no private link support) and [add the portal controller IP to inbound rules](service-configure-firewall.md#allow-access-from-the-azure-portal-ip-address).
 
-#### Exception: Legacy wizard connecting to Cosmos DB and Azure SQL
+You can avoid this restriction by using the **Import data (new)** wizard.
 
-More restrictions and extra configuration is required for legacy wizard outbound connections to Cosmos DB and Azure SQL. We recommend using the **Import data (new)** wizard to avoid constraints and extra steps.
-
-+ Restriction: The search service must be configured to use a public endpoint. There's no shared private link support for legacy wizard connections to Azure SQL or Cosmos DB over a private connection.
-
-+ Configuration: Given a public endpoint and IP firewall protections, the legacy wizard connects to Azure SQL and Cosmos DB through a separate portal controller that has it's own IP address. To allow these connections, you must [add an inbound rule for the portal controller IP](service-configure-firewall.md#allow-access-from-the-azure-portal-ip-address).
-
-If the wizards can't make outbound calls:
-
-+ In the **Import data (new)** wizard, the error is `"Access denied due to Virtual Network/Firewall rules"`. An inbound firewall rule for your client IP address is missing from network configuration.
-
-+ In the legacy **Import data** wizard, there's no error, but the skillset won't be created.
-
-If firewall settings prevent your wizard workflows from succeeding, consider scripted or programmatic approaches as a portal alternative.
+If the wizards can't connect, you'll see `"Access denied due to Virtual Network/Firewall rules"` in the new wizard, or the skillset silently fails to create in the legacy wizard. Consider scripted or programmatic approaches as an alternative.
 
 ## Workflow
 
