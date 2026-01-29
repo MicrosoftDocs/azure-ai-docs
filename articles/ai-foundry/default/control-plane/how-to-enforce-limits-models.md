@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 
 # Enforce token limits for models
 
-Microsoft Foundry Control Plane enforces tokens-per-minute (TPM) rate limits and total token quotas for model deployments at the project scope to prevent runaway token consumption and align usage with organizational guardrails. Foundry Control Plane integrates with AI gateways to provide advanced policy enforcement for models.
+Microsoft Foundry Control Plane enforces tokens-per-minute (TPM) rate limits and total token quotas for model deployments at the project scope. This enforcement prevents runaway token consumption and aligns usage with organizational guardrails. Foundry Control Plane integrates with AI gateways to provide advanced policy enforcement for models.
 
 This article explains how to configure token rate limiting and token quotas.
 
@@ -28,7 +28,9 @@ This article explains how to configure token rate limiting and token quotas.
 
 ## Understand AI gateways
 
-When you use an AI gateway with Foundry Control Plane to provide advanced policy enforcement for models, the AI gateway sits between clients and model deployments. It makes all requests flow through the API Management instance that's associated with it. Limits apply at the project level. That is, each project can have its own TPM and quota settings.
+When you use an AI gateway with Foundry Control Plane to provide advanced policy enforcement for models, the AI gateway sits between clients and model deployments. It makes all requests flow through the API Management instance that's associated with it.
+
+Limits apply at the project level. That is, each project can have its own TPM and quota settings.
 
 :::image type="content" source="..\media\enable-ai-api-management-gateway-portal\gateway-architecture-diagram.png" alt-text="Diagram of the logical flow of client requests passing through Azure API Management as an AI gateway before reaching model deployments within a project.":::
 
@@ -56,15 +58,13 @@ You can configure token limits for specific model deployments within your projec
 
 :::image type="content" source="..\media\enable-ai-api-management-gateway-portal\set-token-limits.png" alt-text="Screenshot of the project settings pane that shows input boxes for tokens per minute and total token quota limits." lightbox="..\media\enable-ai-api-management-gateway-portal\set-token-limits.png":::
 
-Subsequent requests that exceed the TPM threshold receive rate-limit responses. Requests that exceed the quota produce quota-exceeded responses that indicate `429 Too Many Requests` if the rate limit is exceeded, or `403 Forbidden` if the total token quota is exhausted.
-
 ## Understand quota windows
 
 Token limits have two complementary enforcement dimensions:
 
-- **TPM rate limit**: Limits token consumption to a configured maximum per minute. When the TPM limit is exceeded, the caller receives a `429 Too Many Requests` response status code.
+- **TPM rate limit**: Limits token consumption to a configured maximum per minute. When requests exceed the TPM limit, the caller receives a `429 Too Many Requests` response status code.
 
-- **Total token quota**: Limits token consumption to a configured maximum per quota period (for example, hourly, daily, weekly, monthly, or yearly). When the quota is exceeded, the caller receives a `403 Forbidden` response status code.
+- **Total token quota**: Limits token consumption to a configured maximum per quota period (for example, hourly, daily, weekly, monthly, or yearly). When requests exceed the quota, the caller receives a `403 Forbidden` response status code.
 
 If you send many requests concurrently, token consumption can temporarily exceed the configured limits until responses are processed.
 
@@ -82,12 +82,12 @@ For more information, see [AI gateway in Azure API Management](/azure/api-manage
 
 1. Validate that:
 
-   - `429 Too Many Requests` (rate-limited response) is returned when the TPM limit is exceeded
-   - `403 Forbidden` (quota error) is returned when the quota is exhausted.
+   - `429 Too Many Requests` (rate-limited response) is returned when requests exceed the TPM limit.
+   - `403 Forbidden` (quota error) is returned when requests exhaust the quota.
 
 ## Adjust limits
 
-1. Return to project **AI Gateway** settings.
+1. Return to the project's **AI Gateway** settings.
 
 1. Modify TPM or quota values.
 
@@ -99,7 +99,7 @@ For more information, see [AI gateway in Azure API Management](/azure/api-manage
 | --- | --- | --- |
 | API Management instance doesn't appear | Provisioning delay | Refresh after a few minutes. |
 | Limits aren't enforced | Misconfiguration or project not linked | Reopen settings and confirm that the enforcement toggle is on. Confirm that the AI gateway is enabled for the project and that correct limits are configured. |
-| High latency after enablement | API Management cold start or region mismatch | Check API Management region versus resource region. Call the model directly and compare the result with the call proxied through the AI gateway to identify if performance issues are related to the gateway. |
+| Latency is high after enablement | API Management cold start or region mismatch | Check API Management region versus resource region. Call the model directly and compare the result with the call proxied through the AI gateway to identify if performance issues are related to the gateway. |
 
 If the admin console is slow, retry after a brief interval.
 
