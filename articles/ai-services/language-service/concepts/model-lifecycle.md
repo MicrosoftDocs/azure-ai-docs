@@ -86,13 +86,13 @@ Use the following table to find which API versions support each feature:
 
 | Feature | Supported versions | Latest Generally Available version | Latest preview version |
 | --- | --- | --- | --- |
-| Custom text classification | &bullet; **2022-05-01**</br>&bullet; **2022-10-01-preview**</br>&bullet; **2023-04-01** | **2022-05-01** | **2022-10-01-preview** |
-| Conversational language understanding | &bullet; **2022-05-01**</br>&bullet; **2022-10-01-preview**</br>&bullet; **2023-04-01** | **2023-04-01** | **2022-10-01-preview** |
-| Custom named entity recognition | &bullet; **2022-05-01**</br>&bullet; **2022-10-01-preview**</br>&bullet; **2023-04-01**</br>&bullet; **2023-04-15**</br>&bullet; **2023-04-15-preview** | **2023-04-15** | **2023-04-15-preview** |
-| Orchestration workflow | &bullet; **2022-05-01**</br>&bullet; **2022-10-01-preview**</br>&bullet; **2023-04-01** | **2023-04-01** | **2022-10-01-preview** |
-| Named Entity Recognition (NER) | &bullet; **2025-05-15-preview**</br>&bullet; **2024-11-01 (GA)**</br>&bullet; **2024-11-15-preview** | **2024-11-01 (GA)** | **2025-05-15-preview** |
-| Personally Identifiable Information (PII) detection | &bullet; **2025-05-15-preview**</br>&bullet; **2024-11-01 (GA)**</br>&bullet; **2024-11-15-preview** | **2024-11-01 (GA)** | **2025-05-15-preview** |
-| PII detection for conversations | &bullet; **2025-05-15-preview**</br>&bullet; **2024-11-01 (GA)**</br>&bullet; **2024-11-15-preview** | **2024-11-01 (GA)** | **2025-05-15-preview** |
+| Custom text</br>classification | &bullet; **2022-05-01**</br>&bullet; **2022-10-01-preview**</br>&bullet; **2023-04-01** | **2022-05-01** | **2022-10-01-preview** |
+| Conversational language</br>understanding | &bullet; **2022-05-01**</br>&bullet; **2022-10-01-preview**</br>&bullet; **2023-04-01** | **2023-04-01** | **2022-10-01-preview** |
+| Custom named entity</br>recognition | &bullet; **2022-05-01**</br>&bullet; **2022-10-01-preview**</br>&bullet; **2023-04-01**</br>&bullet; **2023-04-15**</br>&bullet; **2023-04-15-preview** | **2023-04-15** | **2023-04-15-preview** |
+| Orchestration</br>workflow | &bullet; **2022-05-01**</br>&bullet; **2022-10-01-preview**</br>&bullet; **2023-04-01** | **2023-04-01** | **2022-10-01-preview** |
+| Named Entity</br>Recognition | &bullet; **2025-05-15-preview**</br>&bullet; **2024-11-01 (GA)**</br>&bullet; **2024-11-15-preview** | **2024-11-01 (GA)** | **2025-05-15-preview** |
+| PII detection</br>for text| &bullet; **2025-05-15-preview**</br>&bullet; **2024-11-01 (GA)**</br>&bullet; **2024-11-15-preview** | **2024-11-01 (GA)** | **2025-05-15-preview** |
+| PII detection</br>for conversations | &bullet; **2025-05-15-preview**</br>&bullet; **2024-11-01 (GA)**</br>&bullet; **2024-11-15-preview** | **2024-11-01 (GA)** | **2025-05-15-preview** |
 
 ## Next steps
 
