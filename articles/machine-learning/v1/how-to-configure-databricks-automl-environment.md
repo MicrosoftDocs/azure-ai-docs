@@ -8,7 +8,7 @@ author: s-polly
 ms.reviewer: sooryar
 ms.service: azure-machine-learning
 ms.subservice: automl
-ms.date: 01/21/2025
+ms.date: 01/28/2026
 ms.topic: how-to
 ms.custom: UpdateFrequency5
 monikerRange: 'azureml-api-1'
@@ -36,7 +36,7 @@ Azure Databricks integrates with Azure Machine Learning and its AutoML capabilit
 
 You can use Azure Databricks:
 
-+ To train a model using Spark MLlib and deploy the model to ACI/AKS.
++ To train a model using Spark MLlib and deploy the model to ACI/AKS. (Note: ACI/AKS deployment via SDK v1 is legacy. For new deployments, use [managed online endpoints](../how-to-deploy-online-endpoints.md) with SDK v2.)
 + With [automated machine learning](concept-automated-ml.md) capabilities using an Azure Machine Learning SDK.
 + As a compute target from an [Azure Machine Learning pipeline](../concept-ml-pipelines.md).
 
@@ -51,7 +51,7 @@ Use these settings:
 | Setting |Applies to| Value |
 |----|---|---|
 | Compute Name |always| yourcomputename |
-| Databricks Runtime Version |always| 9.1 LTS|
+| Databricks Runtime Version |always| 14.3 LTS|
 | Python version |always| 3 |
 | Worker Type <br>(determines max # of concurrent iterations) |Automated ML<br>only| Memory optimized VM preferred |
 | Workers |always| 2 or higher |
@@ -93,7 +93,7 @@ To use automated ML, skip to [Add the Azure Machine Learning SDK with AutoML](#a
    A successful install will show **Installed** under the status column.
 
 ## Add the Azure Machine Learning SDK with AutoML to Databricks
-If the compute was created with Databricks Runtime 7.3 LTS (*not* ML), run the following command in the first cell of your notebook to install the Azure Machine Learning SDK.
+If the compute was created with a standard Databricks Runtime (*not* ML), run the following command in the first cell of your notebook to install the Azure Machine Learning SDK.
 
 ```
 %pip install --upgrade --force-reinstall -r https://aka.ms/automl_linux_requirements.txt
@@ -140,30 +140,7 @@ Try it out:
 
     Alternatively, you can use init scripts if you keep facing install issues with Python libraries. This approach isn't officially supported. For more information, see [Cluster-scoped init scripts](/azure/databricks/clusters/init-scripts#cluster-scoped-init-scripts).
 
-* **Import error: cannot import name `Timedelta` from `pandas._libs.tslibs`**: If you see this error when you use automated machine learning, run the two following lines in your notebook:
-    ```
-    %sh rm -rf /databricks/python/lib/python3.7/site-packages/pandas-0.23.4.dist-info /databricks/python/lib/python3.7/site-packages/pandas
-    %sh /databricks/python/bin/pip install pandas==0.23.4
-    ```
-
-* **Import error: No module named 'pandas.core.indexes'**: If you see this error when you use automated machine learning:
-
-    1. Run this command to install two packages in your Azure Databricks compute:
-    
-       ```bash
-       scikit-learn==0.19.1
-       pandas==0.22.0
-       ```
-    
-    1. Detach and then reattach the compute to your notebook.
-    
-    If these steps don't solve the issue, try restarting the compute.
-
-* **FailToSendFeather**: If you see a `FailToSendFeather` error when reading data on Azure Databricks compute, refer to the following solutions:
-    
-    * Upgrade `azureml-sdk[automl]` package to the latest version.
-    * Add `azureml-dataprep` version 1.1.8 or above.
-    * Add `pyarrow` version 0.11 or above.
+* **FailToSendFeather**: If you see a `FailToSendFeather` error when reading data on Azure Databricks compute, upgrade the `azureml-sdk[automl]` package to the latest version.
   
 
 ## Next steps
