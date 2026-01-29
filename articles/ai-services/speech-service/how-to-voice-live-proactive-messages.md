@@ -6,8 +6,9 @@ ms.author: jagoerge
 reviewer: patrickfarley
 ms-reviewer: pafarley
 ms.topic: how-to
-ms.service: azure-ai-voicelive
+ms.service: azure-ai-speech
 ms.date: 01/28/2026
+zone_pivot_groups: how-to-voice-live-proactive-messages
 ai-usage: ai-assisted
 ---
 
