@@ -10,7 +10,7 @@ ms.service: azure-machine-learning
 ms.subservice: automl
 ms.custom: devx-track-azurecli, update-code, devx-track-python
 ms.topic: how-to
-ms.date: 01/20/2025
+ms.date: 01/28/2026
 #Customer intent: I'm a data scientist with ML knowledge in the computer vision space, looking to build ML models using image data in Azure Machine Learning with full control of the model architecture, hyperparameters, and training and deployment environments.
 ---
 
@@ -35,6 +35,8 @@ Automated ML supports model training for computer vision tasks like image classi
 # [Python SDK](#tab/python)
 
  [!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
+
+* Python 3.10 or later.
 
 * An Azure Machine Learning workspace. To create the workspace, see [Create workspace resources](quickstart-create-resources.md).
 
