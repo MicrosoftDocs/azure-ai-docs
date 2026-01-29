@@ -51,22 +51,30 @@ async for event in conn:
 
 ::: zone pivot="programming-language-csharp"
 ```csharp
-
-
+await foreach (SessionUpdate serverEvent in session.GetUpdatesAsync(cancellationToken))
+{
+    await HandleSessionUpdateAsync(serverEvent, cancellationToken);
+}
 ```
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
 ```java
-
-
+session.receiveEvents()
+    .subscribe(
+        event -> handleServerEvent(event, audioProcessor),
+        error -> System.err.println("Error: " + error.getMessage())
+    );
 ```
 ::: zone-end
 
 ::: zone pivot="programming-language-javascript"
 ```javascript
-
-
+const subscription = session.subscribe({
+    onSessionUpdated: async (event, context) => {
+        await handleEvent(event);
+    }
+});
 ```
 ::: zone-end
 
@@ -82,22 +90,19 @@ self.greeting_sent = False
 
 ::: zone pivot="programming-language-csharp"
 ```csharp
-
-
+private bool _greetingSent = false;
 ```
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
 ```java
-
-
+private AtomicBoolean greetingSent = new AtomicBoolean(false);
 ```
 ::: zone-end
 
 ::: zone pivot="programming-language-javascript"
 ```javascript
-
-
+let greetingSent = false;
 ```
 ::: zone-end
 
@@ -107,29 +112,42 @@ Inside your event handler:
 ```python
 if event.type == ServerEventType.SESSION_UPDATED:
     if not self.greeting_sent:
-        ... send proactive message ...
+        # ... send proactive message ...
         self.greeting_sent = True
 ```
 ::: zone-end
 
 ::: zone pivot="programming-language-csharp"
 ```csharp
-
-
+if (serverEvent is SessionUpdateSessionUpdated)
+{
+    if (!_greetingSent)
+    {
+        // ... send proactive message ...
+        _greetingSent = true;
+    }
+}
 ```
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
 ```java
-
-
+if (event.getType() == ServerEventType.SESSION_UPDATED) {
+    if (!greetingSent.getAndSet(true)) {
+        // ... send proactive message ...
+    }
+}
 ```
 ::: zone-end
 
 ::: zone pivot="programming-language-javascript"
 ```javascript
-
-
+if (event.type === "session.updated") {
+    if (!greetingSent) {
+        // ... send proactive message ...
+        greetingSent = true;
+    }
+}
 ```
 ::: zone-end
 
@@ -188,22 +206,64 @@ await conn.response.create(
 
 ::: zone pivot="programming-language-csharp"
 ```csharp
+using System.Text.Json;
 
-
+// Send a pre-generated assistant greeting
+var greeting = "Hi Lisa, welcome back! How can I assist you today?";
+var responseCreatePayload = new
+{
+    type = "response.create",
+    response = new
+    {
+        pre_generated_assistant_message = new
+        {
+            type = "message",
+            role = "assistant",
+            content = new[]
+            {
+                new { type = "text", text = greeting }
+            }
+        }
+    }
+};
+BinaryData eventData = BinaryData.FromObjectAsJson(responseCreatePayload);
+await session.SendCommandAsync(eventData, cancellationToken).ConfigureAwait(false);
 ```
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
 ```java
+import com.azure.ai.voicelive.models.*;
 
+// Send a pre-generated assistant greeting
+ResponseCreateOptions responseOptions = new ResponseCreateOptions()
+    .setPreGeneratedAssistantMessage(new AssistantMessageItem()
+        .setContent(Arrays.asList(
+            new OutputTextContentPart()
+                .setText("Hi Lisa, welcome back! How can I assist you today?")
+        ))
+    );
 
+session.sendEvent(new ClientEventResponseCreate().setResponse(responseOptions)).subscribe();
 ```
 ::: zone-end
 
 ::: zone pivot="programming-language-javascript"
 ```javascript
-
-
+// Send a pre-generated assistant greeting
+await session.sendEvent({
+    type: "response.create",
+    response: {
+        preGeneratedAssistantMessage: {
+            content: [
+                {
+                    type: "output_text",
+                    text: "Hi Lisa, welcome back! How can I assist you today?"
+                }
+            ]
+        }
+    }
+});
 ```
 ::: zone-end
 
@@ -251,22 +311,67 @@ await conn.response.create()
 
 ::: zone pivot="programming-language-csharp"
 ```csharp
+using System.Text.Json;
 
+// Add an instruction telling the LLM to greet the user
+var conversationItemPayload = new
+{
+    type = "conversation.item.create",
+    item = new
+    {
+        type = "message",
+        role = "system",
+        content = new[]
+        {
+            new { type = "input_text", text = "Say something to welcome the user." }
+        }
+    }
+};
+BinaryData itemEventData = BinaryData.FromObjectAsJson(conversationItemPayload);
+await session.SendCommandAsync(itemEventData, cancellationToken).ConfigureAwait(false);
 
+// Trigger LLM-generated greeting
+await session.StartResponseAsync().ConfigureAwait(false);
 ```
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
 ```java
+import com.azure.ai.voicelive.models.*;
 
+// Add an instruction telling the LLM to greet the user
+MessageItem messageItem = new MessageItem()
+    .setRole("system")
+    .setContent(Arrays.asList(
+        new InputTextContentPart()
+            .setText("Say something to welcome the user.")
+    ));
 
+session.sendEvent(new ClientEventConversationItemCreate().setItem(messageItem)).subscribe();
+
+// Trigger LLM-generated greeting
+session.sendEvent(new ClientEventResponseCreate()).subscribe();
 ```
 ::: zone-end
 
 ::: zone pivot="programming-language-javascript"
 ```javascript
+// Add an instruction telling the LLM to greet the user
+await session.addConversationItem({
+    type: "message",
+    role: "system",
+    content: [
+        {
+            type: "input_text",
+            text: "Say something to welcome the user."
+        }
+    ]
+});
 
-
+// Trigger LLM-generated greeting
+await session.sendEvent({
+    type: "response.create"
+});
 ```
 ::: zone-end
 
@@ -322,22 +427,114 @@ async def _handle_event(self, event):
 
 ::: zone pivot="programming-language-csharp"
 ```csharp
+private async Task HandleSessionUpdateAsync(SessionUpdate serverEvent, CancellationToken cancellationToken)
+{
+    if (serverEvent is SessionUpdateSessionUpdated sessionUpdated)
+    {
+        Console.WriteLine("Session is ready.");
+        _sessionReady = true;
 
+        // Start microphone capture
+        await _audioProcessor.StartCaptureAsync();
 
+        // Trigger greeting once
+        if (!_greetingSent)
+        {
+            _greetingSent = true;
+
+            // ----- Option 1: Pre-generated greeting -----
+            // await SendPreGeneratedGreetingAsync(_session, cancellationToken);
+
+            // ----- Option 2: LLM-generated greeting -----
+            // await SendLlmGeneratedGreetingAsync(_session, cancellationToken);
+        }
+    }
+    else if (serverEvent is SessionUpdateInputAudioBufferSpeechStarted)
+    {
+        Console.WriteLine("🎤 Listening...");
+        await _audioProcessor.StopPlaybackAsync();
+    }
+    else if (serverEvent is SessionUpdateResponseAudioDelta audioDelta)
+    {
+        await _audioProcessor.QueueAudioAsync(audioDelta.Delta.ToArray());
+    }
+    else if (serverEvent is SessionUpdateResponseAudioDone)
+    {
+        Console.WriteLine("🎤 Ready for next input...");
+    }
+}
 ```
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
 ```java
+private void handleServerEvent(SessionUpdate event, AudioProcessor audioProcessor) {
+    ServerEventType eventType = event.getType();
 
+    if (eventType == ServerEventType.SESSION_UPDATED) {
+        System.out.println("Session is ready.");
+        sessionReady = true;
 
+        // Start microphone capture
+        audioProcessor.startCapture();
+
+        // Trigger greeting once
+        if (!greetingSent.getAndSet(true)) {
+
+            // ----- Option 1: Pre-generated greeting -----
+            // sendPreGeneratedGreeting(session);
+
+            // ----- Option 2: LLM-generated greeting -----
+            // sendLlmGeneratedGreeting(session);
+        }
+    } else if (eventType == ServerEventType.INPUT_AUDIO_BUFFER_SPEECH_STARTED) {
+        System.out.println("🎤 Listening...");
+        audioProcessor.skipPendingAudio();
+    } else if (eventType == ServerEventType.RESPONSE_AUDIO_DELTA) {
+        SessionUpdateResponseAudioDelta audioEvent = (SessionUpdateResponseAudioDelta) event;
+        audioProcessor.queueAudio(audioEvent.getDelta());
+    } else if (eventType == ServerEventType.RESPONSE_AUDIO_DONE) {
+        System.out.println("🎤 Ready for next input...");
+    }
+}
 ```
 ::: zone-end
 
 ::: zone pivot="programming-language-javascript"
 ```javascript
+const subscription = session.subscribe({
+    onSessionUpdated: async (event, context) => {
+        console.log("Session is ready.");
+        sessionReady = true;
 
+        // Start microphone capture
+        startMicrophoneCapture();
 
+        // Trigger greeting once
+        if (!greetingSent) {
+            greetingSent = true;
+
+            // ----- Option 1: Pre-generated greeting -----
+            // await sendPreGeneratedGreeting(session);
+
+            // ----- Option 2: LLM-generated greeting -----
+            // await sendLlmGeneratedGreeting(session);
+        }
+    },
+
+    onInputAudioBufferSpeechStarted: async (event, context) => {
+        console.log("🎤 Listening...");
+        skipPendingAudio();
+    },
+
+    onResponseAudioDelta: async (event, context) => {
+        queueAudio(event.delta);
+    },
+
+    onResponseAudioDone: async (event, context) => {
+        console.log("🎤 Ready for next input...");
+    }
+});
 ```
 ::: zone-end
 
@@ -375,22 +572,116 @@ async def send_llm_generated_greeting(conn):
 
 ::: zone pivot="programming-language-csharp"
 ```csharp
+private async Task SendPreGeneratedGreetingAsync(
+    VoiceLiveSession session, 
+    CancellationToken cancellationToken)
+{
+    var greeting = "Welcome! I'm here to help you get started.";
+    var responseCreatePayload = new
+    {
+        type = "response.create",
+        response = new
+        {
+            pre_generated_assistant_message = new
+            {
+                type = "message",
+                role = "assistant",
+                content = new[]
+                {
+                    new { type = "text", text = greeting }
+                }
+            }
+        }
+    };
+    BinaryData eventData = BinaryData.FromObjectAsJson(responseCreatePayload);
+    await session.SendCommandAsync(eventData, cancellationToken).ConfigureAwait(false);
+}
 
-
+private async Task SendLlmGeneratedGreetingAsync(
+    VoiceLiveSession session, 
+    CancellationToken cancellationToken)
+{
+    var conversationItemPayload = new
+    {
+        type = "conversation.item.create",
+        item = new
+        {
+            type = "message",
+            role = "system",
+            content = new[]
+            {
+                new { type = "input_text", text = "Greet the user warmly and briefly explain how you can help." }
+            }
+        }
+    };
+    BinaryData itemEventData = BinaryData.FromObjectAsJson(conversationItemPayload);
+    await session.SendCommandAsync(itemEventData, cancellationToken).ConfigureAwait(false);
+    await session.StartResponseAsync().ConfigureAwait(false);
+}
 ```
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
 ```java
+private void sendPreGeneratedGreeting(VoiceLiveSessionAsyncClient session) {
+    ResponseCreateOptions responseOptions = new ResponseCreateOptions()
+        .setPreGeneratedAssistantMessage(new AssistantMessageItem()
+            .setContent(Arrays.asList(
+                new OutputTextContentPart()
+                    .setText("Welcome! I'm here to help you get started.")
+            ))
+        );
 
+    session.sendEvent(new ClientEventResponseCreate().setResponse(responseOptions)).subscribe();
+}
 
+private void sendLlmGeneratedGreeting(VoiceLiveSessionAsyncClient session) {
+    MessageItem messageItem = new MessageItem()
+        .setRole("system")
+        .setContent(Arrays.asList(
+            new InputTextContentPart()
+                .setText("Greet the user warmly and briefly explain how you can help.")
+        ));
+
+    session.sendEvent(new ClientEventConversationItemCreate().setItem(messageItem)).subscribe();
+    session.sendEvent(new ClientEventResponseCreate()).subscribe();
+}
 ```
 ::: zone-end
 
 ::: zone pivot="programming-language-javascript"
 ```javascript
+async function sendPreGeneratedGreeting(session) {
+    await session.sendEvent({
+        type: "response.create",
+        response: {
+            preGeneratedAssistantMessage: {
+                content: [
+                    {
+                        type: "output_text",
+                        text: "Welcome! I'm here to help you get started."
+                    }
+                ]
+            }
+        }
+    });
+}
 
-
+async function sendLlmGeneratedGreeting(session) {
+    await session.addConversationItem({
+        type: "message",
+        role: "system",
+        content: [
+            {
+                type: "input_text",
+                text: "Greet the user warmly and briefly explain how you can help."
+            }
+        ]
+    });
+    await session.sendEvent({
+        type: "response.create"
+    });
+}
 ```
 ::: zone-end
 
