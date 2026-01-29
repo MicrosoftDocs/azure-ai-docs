@@ -119,22 +119,22 @@ To edit an existing guardrail policy, follow these steps:
 
 ## Review guardrails across your subscription
 
-When you monitor your model deployments for compliance, review and compare the different guardrail controls for your assets throughout a project or subscription. Even if the controls aren't directly linked to guardrail policy compliance, this process helps you spot gaps in guardrail policy assignments, like missing controls. You can also uncover potential risks that might go unnoticed - such as subscriptions lacking content filtering entirely.
+When you monitor your model deployments for compliance, review and compare the guardrail controls for your assets throughout a project or subscription. Even if the controls aren't directly linked to guardrail policy compliance, this process helps you spot gaps in guardrail policy assignments, like missing controls. You can also uncover potential risks that might go unnoticed, such as subscriptions that lack content filtering entirely.
 
-Here's how you can do this:
+Here's how you can do this task:
 
 1. In the compliance workspace, select the **Guardrails** tab.
 
-1. Check that your scope is correct by reviewing and adjusting the subscription and project dropdowns as needed.
+1. Check that your scope is correct by reviewing and adjusting the subscription and project dropdown lists as needed.
 
-1. Examine the configurations across your projects, using column sorting to quickly find problems. For example, you can see which filters are disabled.
+1. Examine the configurations across your projects by using column sorting to quickly find problems. For example, you can see which filters are disabled.
 
 1. If you find a problem, choose one of these options:
 
    - Update individual deployments:
 
-     1. Select **Build** from the upper-right navigation.
-     1. Select **Guardrails** in the relevant project.
+     1. On the toolbar, select **Build**.
+     1. In the relevant project, select **Guardrails**.
      1. Update existing guardrail settings or add new ones for your model deployments.
 
    - Create a guardrail policy for enforcement:
@@ -146,9 +146,7 @@ Here's how you can do this:
 
 Microsoft Defender for Cloud provides security posture gaps and recommendations for remediation. Your security posture represents the overall security status of your Azure resources, including potential vulnerabilities, misconfigurations, and recommended improvements. Defender assesses your resources and workloads against built-in and custom security standards.
 
-To get security posture recommendations from Microsoft Defender for Cloud, [enable it on your Azure subscription](/azure/defender-for-cloud/connect-azure-subscription). To get threat protection alerts for jailbreak attacks based on Foundry's user input attack risk detection, [enable threat protection for Foundry Tools](/azure/defender-for-cloud/ai-onboarding). Jailbreak attacks attempt to bypass AI safety measures by using carefully crafted prompts. Foundry detects these attack patterns in user input.  
-
-### Review your security recommendations
+To get security posture recommendations from Microsoft Defender for Cloud, [enable it on your Azure subscription](/azure/defender-for-cloud/connect-azure-subscription). To get threat protection alerts for jailbreak attacks based on risk detection in Foundry for user input attacks, [enable threat protection for Foundry Tools](/azure/defender-for-cloud/ai-onboarding). Jailbreak attacks attempt to bypass AI safety measures by using carefully crafted prompts. Foundry detects these attack patterns in user input.  
 
 To review Defender security recommendations, follow these steps:
 
@@ -156,20 +154,19 @@ To review Defender security recommendations, follow these steps:
 
 1. [Enable Microsoft Defender for Cloud](/azure/defender-for-cloud/connect-azure-subscription) for your subscription if you need to do so.
 
-1. View recommendations in the **Microsoft Defender for Cloud** section, including the affected resource and the associated risk level. Recommendations might include enabling additional security features, fixing misconfigurations, or addressing potential vulnerabilities in your AI deployments.
+1. View recommendations in the **Microsoft Defender for Cloud** section, including the affected resource and the associated risk level. 
 
-1. Select a recommendation to view details and links to take action to remediate in Azure portal.
+   Recommendations might include enabling additional security features, fixing misconfigurations, or addressing potential vulnerabilities in your AI deployments.
+
+1. Select a recommendation to view details and links to take remediation action in the Azure portal.
 
 ## Enable enterprise-grade data security and compliance for Foundry with Microsoft Purview (preview)
 
-> [!NOTE]
-> This feature requires a Microsoft Purview license in the tenant. To learn about Microsoft Purview, see [Microsoft Purview DSPM for AI](/purview/ai-microsoft-purview).
-
-By enabling Microsoft Purview on your Azure subscription, you can access, process, and store prompt and response data – including associated metadata – from Microsoft Foundry apps and agents. This integration supports key data security and compliance scenarios such as:
+By enabling Microsoft Purview on your Azure subscription, you can access, process, and store prompt and response data from Microsoft Foundry apps and agents. The data includes associated metadata. This integration supports key data security and compliance scenarios, such as:
 
 - Microsoft Purview Audit
 - Sensitive information type (SIT) classification
-- Analytics and Reporting through Microsoft Purview DSPM for AI
+- Analytics and reporting through Microsoft Purview Data Security Posture Management (DSPM) for AI
 - Insider Risk Management
 - Communication Compliance
 - Data Lifecycle Management
@@ -177,13 +174,15 @@ By enabling Microsoft Purview on your Azure subscription, you can access, proces
 
 This capability helps your organization manage and monitor AI-generated data in alignment with enterprise policies and regulatory requirements. Keep these considerations in mind:
 
-- Purview Data Security Policies for Foundry Services interactions are supported for those API calls that use Microsoft Entra ID authentication with a user-context token, or for API calls that explicitly include user context. To learn more, see [Gain end-user context for Azure AI API calls](../../openai/latest.md#azureusersecuritycontext). For all other authentication scenarios, user interactions captured in Purview show up only in Purview Audit and AI Interactions with classifications within DSPM for AI Activity Explorer.
+- Microsoft Purview Data Security Policies for Foundry Services interactions are supported for those API calls that use Microsoft Entra ID authentication with a user-context token, or for API calls that explicitly include user context. To learn more, see [Gain end-user context for Azure AI API calls](../../openai/latest.md#azureusersecuritycontext). For all other authentication scenarios, user interactions captured in Microsoft Purview show up only in Microsoft Purview Audit and AI Interactions with classifications within DSPM for AI Activity Explorer.
 
-- Purview Audit is included as part of Microsoft Purview license for Foundry services. For data security policies setup in Purview by your enterprise security admins, billing is based on [pay-as-you-go](https://azure.microsoft.com/pricing/details/purview/) meters.
+- Purview Audit is included as part of Microsoft Purview license for Foundry services. For data security policies setup in Microsoft Purview by your enterprise security admins, billing is based on [pay-as-you-go](https://azure.microsoft.com/pricing/details/purview/) meters.
 
-- Integration with Purview for the above features in Microsoft Foundry doesn't yet support Network Isolation.
+- Integration with Microsoft Purview for the above features in Microsoft Foundry doesn't yet support Network Isolation.
 
-- Integration with Purview is currently available only for calls made on the OpenAI Completions API.
+- Integration with Microsoft Purview is currently available only for calls made on the OpenAI Completions API.
+
+This feature requires a Microsoft Purview license in the tenant. To learn about Microsoft Purview, see [Microsoft Purview DSPM for AI](/purview/ai-microsoft-purview).
 
 ### Enable Purview in Foundry
 
