@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 01/22/2026
+ms.date: 01/29/2026
 ms.custom:
   - ignite-2023
   - sfi-image-nochange
@@ -70,11 +70,11 @@ When requests originate from IP addresses that aren't in the allowed list, a gen
 
 ## Allow access from the Azure portal IP address
 
-The Azure portal uses your client IP address for a direct connection to Azure AI Search. If your client is in the allowed IP list, you can use almost all portal capabilities, even if Azure AI Search is protected by a firewall.
+The Azure portal uses your client IP address for a direct connection to Azure AI Search. If your client is in the allowed IP list, you can use almost all portal capabilities with no extra configuration required. However, there's an exception for the legacy Import data wizard when you *import from either Azure Cosmos DB or Azure SQL*. 
 
-The legacy Import data wizard - importing from either Azure Cosmos DB or Azure SQL - is an exception. It uses a separate IP address for the connection, requiring the following steps:
+This scenario requires a separate IP address for the connection:
 
-+ Identify the IP address used by the wizard for this connection.
++ Identify the IP address used by the legacy wizard for this connection.
 
 + Add a firewall rule on [Azure Cosmos DB](/azure/cosmos-db/how-to-configure-firewall) or [Azure SQL](/azure/azure-sql/database/firewall-configure) to accept connections from the IP address.
 

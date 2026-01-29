@@ -7,7 +7,7 @@ author: arv100kri
 ms.author: arjagann
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 01/22/2026
+ms.date: 01/29/2026
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
@@ -82,9 +82,9 @@ Add your client IP address to allow access to the service from the Azure portal 
 
 ## Get the Azure portal IP address
 
-If you're using the [legacy Import data wizard](search-import-data-portal.md) in the Azure portal to create an indexer that pulls from Azure Cosmos DB or Azure SQL, you must grant the Azure portal inbound access to your SQL Azure virtual machine. For more information, see [Allow access from the Azure portal IP address](service-configure-firewall.md#allow-access-from-the-azure-portal-ip-address).
+If you're using the [legacy Import data wizard](search-import-data-portal.md) in the Azure portal to create an indexer that pulls from Azure Cosmos DB or Azure SQL, you must grant the Azure portal IP address inbound access to your SQL Azure virtual machine. For more information, see [Allow access from the Azure portal IP address](service-configure-firewall.md#allow-access-from-the-azure-portal-ip-address).
 
-We recommend using the Import data (new) wizard to avoid this issue. 
+We recommend using the [Import data (new) wizard](search-get-started-portal.md), which doesn't have this limitation. 
 
 ## Get IP addresses for "AzureCognitiveSearch" service tag
 
