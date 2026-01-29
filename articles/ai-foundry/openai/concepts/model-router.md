@@ -24,7 +24,7 @@ monikerRange: 'foundry-classic || foundry'
 Model router is a trained language model that intelligently routes your prompts in real time to the most suitable large language model (LLM). You deploy model router like any other Foundry model. Thus, it delivers high performance while saving on costs, reducing latencies, and increasing responsiveness, while maintaining comparable quality, all packaged as a single model deployment.
 
 > [!NOTE]
-> You do not need to separately deploy the supported LLMs for use with model router, with the exception of the Claude models. To use model router with your Claude models, first deploy them from the model catalog. The deployments will get invoked by Model router if they're selected for routing.
+> You do not need to separately deploy the supported LLMs for use with model router, with the exception of the Claude models. To use model router with your Claude models, first deploy them from the model catalog. The deployments are invoked by model router if selected for routing.
 
 To try model router quickly, follow [How to use model router](../how-to/model-router.md). After you deploy model router, send a request to the deployment. Model router selects an underlying model for each request based on your routing settings.
 
@@ -34,10 +34,10 @@ To try model router quickly, follow [How to use model router](../how-to/model-ro
 ::: moniker-end
 
 ## How model router works
-As a trained language model, model router applies intelligence to analyze your prompts in real time based on the complexity, reasoning, task type, and other attributes of the prompts. It does not store your prompts. Moreover, it routes to only eligible models based on your access and deployment types, honoring data zone boundaries. 
+As a trained language model, model router analyzes your prompts in real time based on complexity, reasoning, task type, and other attributes. It does not store your prompts. It routes only to eligible models based on your access and deployment types, honoring data zone boundaries.
 
-- In Balanced mode (default), it considers all underlying models within a small quality range, for example 1-2% compared with the highest quality model for that prompt, and picks the most cost-effective model.
-- In Cost mode, it considers a larger quality band, for example 5-6% range compared with the highest quality model for that prompt, and chooses the most cost-effective model.
+- In Balanced mode (default), it considers all underlying models within a small quality range (for example, 1% to 2% compared with the highest-quality model for that prompt) and picks the most cost-effective model.
+- In Cost mode, it considers a larger quality band (for example, 5% to 6% compared with the highest-quality model for that prompt) and chooses the most cost-effective model.
 - In Quality mode, it picks the highest quality rated model for the prompt, ignoring the cost.
 
 ## Why use model router?
@@ -93,8 +93,8 @@ When new base models become available, they're not included in your selection un
 
 | Region | Deployment types supported |
 |------|-----------|
-| East US 2 | Global Standard, Data zone Standard |
-| Sweden Central | Global Standard, Data zone Standard  |
+| East US 2 | Global Standard, Data Zone Standard |
+| Sweden Central | Global Standard, Data Zone Standard |
 
 Also see [Azure OpenAI in Microsoft Foundry models](../includes/models-azure-direct-openai.md) for current region availability.
 
