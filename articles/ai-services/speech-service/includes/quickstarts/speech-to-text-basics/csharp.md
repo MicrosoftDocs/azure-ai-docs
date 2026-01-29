@@ -84,7 +84,7 @@ Follow these steps to create a console application and install the Speech SDK.
 
        async static Task Main(string[] args)
        {
-           var speechConfig = SpeechConfig.FromEndpoint(speechKey, endpoint);
+           var speechConfig = SpeechConfig.FromEndpoint(new Uri(endpoint), speechKey);
            speechConfig.SpeechRecognitionLanguage = "en-US";
 
            using var audioConfig = AudioConfig.FromDefaultMicrophoneInput();
