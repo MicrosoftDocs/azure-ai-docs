@@ -70,19 +70,19 @@ conceptualContent:
       footerLink:
         text: More
         url: index-text-to-speech.yml
-    - title: Voice live
+    - title: Voice Live
       links:
         - itemType: overview
-          text: What is Voice live?
+          text: What is Voice Live?
           url: /azure/ai-services/speech-service/voice-live
         - itemType: quickstart
-          text: Get started with Voice live models
+          text: Get started with Voice Live models
           url: /azure/ai-services/speech-service/voice-live-quickstart
         - itemType: quickstart
-          text: Get started with Voice live in Foundry agents
+          text: Get started with Voice Live in Foundry agents
           url: /azure/ai-services/speech-service/voice-live-agents-quickstart
         - itemType: how-to-guide
-          text: Customize Voice live
+          text: Customize Voice Live
           url: /azure/ai-services/speech-service/voice-live-how-to-customize
     - title: Tools
       links:
