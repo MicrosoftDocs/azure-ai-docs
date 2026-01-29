@@ -8,7 +8,7 @@ ms.topic: how-to
 author: s-polly 
 ms.author: scottpolly 
 ms.reviewer: soumyapatro
-ms.date: 01/23/2025
+ms.date: 01/28/2026
 ms.custom: template-concept, update-code2
 ---
 
@@ -51,6 +51,9 @@ To avoid the limit, users should run backfill jobs in advance to [fill the gaps]
 
 ## Data materialization jobs
 
+> [!IMPORTANT]
+> Feature store materialization jobs use Apache Spark. Azure Synapse Runtime for Apache Spark 3.3 reached end of support on March 31, 2025. Use Apache Spark 3.4 or later for your materialization jobs.
+
 Before you run a data materialization job, enable the offline and/or online data materializations at the feature set level.
 
 [!notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/4.Enable-online-store-run-inference.ipynb?name=enable-accounts-material)]
@@ -91,40 +94,40 @@ This example has these current data interval and materialization status values:
 
 | Start time | End time | Data materialization status |
 |------------|----------|-------------|
-|`2023-04-01T04:00:00.000`|`2023-04-02T04:00:00.000`|`None`|
-|`2023-04-02T04:00:00.000`|`2023-04-03T04:00:00.000`|`Incomplete`|
-|`2023-04-03T04:00:00.000`|`2023-04-04T04:00:00.000`|`None`|
-|`2023-04-04T04:00:00.000`|`2023-04-05T04:00:00.000`|`Complete`|
-|`2023-04-05T04:00:00.000`|`2023-04-06T04:00:00.000`|`None`|
+|`2025-04-01T04:00:00.000`|`2025-04-02T04:00:00.000`|`None`|
+|`2025-04-02T04:00:00.000`|`2025-04-03T04:00:00.000`|`Incomplete`|
+|`2025-04-03T04:00:00.000`|`2025-04-04T04:00:00.000`|`None`|
+|`2025-04-04T04:00:00.000`|`2025-04-05T04:00:00.000`|`Complete`|
+|`2025-04-05T04:00:00.000`|`2025-04-06T04:00:00.000`|`None`|
 
 This backfill request has these values:
 
 - Data materialization `data_status=[DataAvailabilityStatus.Complete, DataAvailabilityStatus.Incomplete]`
-- Feature window start = `2023-04-02T12:00:00.000`
-- Feature window end = `2023-04-04T12:00:00.000`
+- Feature window start = `2025-04-02T12:00:00.000`
+- Feature window end = `2025-04-04T12:00:00.000`
 
 It creates these materialization jobs:
 
-- Job 1: process feature window [`2023-04-02T12:00:00.000`, `2023-04-03T04:00:00.000`)
-- Job 2: process feature window [`2023-04-04T04:00:00.000`, `2023-04-04T12:00:00.000`)
+- Job 1: process feature window [`2025-04-02T12:00:00.000`, `2025-04-03T04:00:00.000`)
+- Job 2: process feature window [`2025-04-04T04:00:00.000`, `2025-04-04T12:00:00.000`)
 
 If both jobs complete successfully, the new data interval and materialization status values become:
 
 | Start time | End time | Data materialization status |
 |------------|----------|-------------|
-|`2023-04-01T04:00:00.000`|`2023-04-02T04:00:00.000`|`None`|
-|`2023-04-02T04:00:00.000`|`2023-04-02T12:00:00.000`|`Incomplete`|
-|`2023-04-02T12:00:00.000`|`2023-04-03T04:00:00.000`|`Complete`|
-|`2023-04-03T04:00:00.000`|`2023-04-04T04:00:00.000`|`None`|
-|`2023-04-04T04:00:00.000`|`2023-04-05T04:00:00.000`|`Complete`|
-|`2023-04-05T04:00:00.000`|`2023-04-06T04:00:00.000`|`None`|
+|`2025-04-01T04:00:00.000`|`2025-04-02T04:00:00.000`|`None`|
+|`2025-04-02T04:00:00.000`|`2025-04-02T12:00:00.000`|`Incomplete`|
+|`2025-04-02T12:00:00.000`|`2025-04-03T04:00:00.000`|`Complete`|
+|`2025-04-03T04:00:00.000`|`2025-04-04T04:00:00.000`|`None`|
+|`2025-04-04T04:00:00.000`|`2025-04-05T04:00:00.000`|`Complete`|
+|`2025-04-05T04:00:00.000`|`2025-04-06T04:00:00.000`|`None`|
 
-One new data interval is created on day *2023-04-02*, because half of that day now has a different materialization status: `Complete`. Although a new materialization job ran for half of the day *2023-04-04*, the data interval isn't changed (split) because the materialization status didn't change.
+One new data interval is created on day *2025-04-02*, because half of that day now has a different materialization status: `Complete`. Although a new materialization job ran for half of the day *2025-04-04*, the data interval isn't changed (split) because the materialization status didn't change.
 
 If the user makes a backfill request with only data materialization `data_status=[DataAvailabilityStatus.Complete, DataAvailabilityStatus.Incomplete]`, without setting the feature window start and end time, the request uses the default value of those parameters mentioned earlier in this section, and creates these jobs:
 
-- Job 1: process feature window [`2023-04-02T04:00:00.000`, `2023-04-03T04:00:00.000`)
-- Job 2: process feature window [`2023-04-04T04:00:00.000`, `2023-04-05T04:00:00.000`)
+- Job 1: process feature window [`2025-04-02T04:00:00.000`, `2025-04-03T04:00:00.000`)
+- Job 2: process feature window [`2025-04-04T04:00:00.000`, `2025-04-05T04:00:00.000`)
 
 Compare the feature window for these latest request jobs, and the request jobs shown in the previous example.
 
@@ -155,7 +158,7 @@ az ml feature-set backfill --by-job-id <JOB_ID_OF_FAILED_MATERIALIZATION_JOB> --
 ```
 ---
 
-You can submit a backfill job with the job ID of a failed or canceled materialization job. In this case, the *feature window* data status for the original failed or canceled materialization job should be `Incomplete`. If this condition isn't met, the backfill job by ID results in a user error. For example, a failed materialization job might have a *feature window* start time `2023-04-01T04:00:00.000` value, and an end time `2023-04-09T04:00:00.000` value. A backfill job submitted using the ID of this failed job succeeds only if the data status everywhere, in the time range `2023-04-01T04:00:00.000` to `2023-04-09T04:00:00.000`, is `Incomplete`.
+You can submit a backfill job with the job ID of a failed or canceled materialization job. In this case, the *feature window* data status for the original failed or canceled materialization job should be `Incomplete`. If this condition isn't met, the backfill job by ID results in a user error. For example, a failed materialization job might have a *feature window* start time `2025-04-01T04:00:00.000` value, and an end time `2025-04-09T04:00:00.000` value. A backfill job submitted using the ID of this failed job succeeds only if the data status everywhere, in the time range `2025-04-01T04:00:00.000` to `2025-04-09T04:00:00.000`, is `Incomplete`.
 
 ## Guidance and best practices
 
@@ -173,14 +176,14 @@ materialization_settings:
     type: recurrence
     interval: 1
     frequency: Day
-    start_time: "2023-04-15T04:00:00.000"
+    start_time: "2025-04-15T04:00:00.000"
 ```
 
-This example defines a daily job that triggers at 4 AM, starting on 4/15/2023. Depending on the `source_delay` setting, the job run of 5/1/2023 produces features in different time windows:
+This example defines a daily job that triggers at 4 AM, starting on 4/15/2025. Depending on the `source_delay` setting, the job run of 5/1/2025 produces features in different time windows:
 
-- `source_delay=0` produces feature values in window `[2023-04-30T04:00:00.000, 2023-05-01T04:00:00.000)`
-- `source_delay=2hours` produces feature values in window `[2023-04-30T02:00:00.000, 2023-05-01T02:00:00.000)`
-- `source_delay=4hours` produces feature values in window `[2023-04-30T00:00:00.000, 2023-05-01T00:00:00.000)`
+- `source_delay=0` produces feature values in window `[2025-04-30T04:00:00.000, 2025-05-01T04:00:00.000)`
+- `source_delay=2hours` produces feature values in window `[2025-04-30T02:00:00.000, 2025-05-01T02:00:00.000)`
+- `source_delay=4hours` produces feature values in window `[2025-04-30T00:00:00.000, 2025-05-01T00:00:00.000)`
 
 ### Update materialization store
 
@@ -198,10 +201,10 @@ Online data bootstrap is only applicable if submitted offline materialization jo
 
     | Start time | End time | Offline data status | Online data status | Online data bootstrap |
     |------------|----------|---------------------|--------------------|----------------------|
-    |`2023-04-01T04:00:00.000`|`2023-04-02T04:00:00.000`|`None`|`None`| No |
-    |`2023-04-02T04:00:00.000`|`2023-04-03T04:00:00.000`|`Incomplete`|`None`| No |
-    |`2023-04-03T04:00:00.000`|`2023-04-04T04:00:00.000`|`Pending`|`None`| No materialization job submitted |
-    |`2023-04-04T04:00:00.000`|`2023-04-05T04:00:00.000`|`Complete`|`None`| Yes |
+    |`2025-04-01T04:00:00.000`|`2025-04-02T04:00:00.000`|`None`|`None`| No |
+    |`2025-04-02T04:00:00.000`|`2025-04-03T04:00:00.000`|`Incomplete`|`None`| No |
+    |`2025-04-03T04:00:00.000`|`2025-04-04T04:00:00.000`|`Pending`|`None`| No materialization job submitted |
+    |`2025-04-04T04:00:00.000`|`2025-04-05T04:00:00.000`|`Complete`|`None`| Yes |
 
 ### Address source data errors and modifications
 
