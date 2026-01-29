@@ -12,7 +12,7 @@ zone_pivot_groups: how-to-voice-live-auto-truncation
 ai-usage: ai-assisted
 ---
 
-# How to automatically truncate conversation text results to match audio
+# How to automatically truncate conversation text results to match audio (preview)
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
