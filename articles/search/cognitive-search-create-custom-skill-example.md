@@ -5,7 +5,7 @@ description: Demonstrates using the Bing Entity Search service in a custom skill
 author: gmndrg
 ms.author: gimondra
 ms.service: azure-ai-search
-ms.topic: article
+ms.topic: how-to
 ms.date: 01/18/2025
 ms.update-cycle: 365-days
 ms.custom:

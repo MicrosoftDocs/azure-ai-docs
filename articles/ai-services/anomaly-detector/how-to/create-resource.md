@@ -5,7 +5,7 @@ description: Create an Anomaly Detector resource
 author: mrbullwinkle    
 manager: nitinme
 ms.service: azure-ai-anomaly-detector
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 06/12/2025
 ms.author: mbullwin
 ---

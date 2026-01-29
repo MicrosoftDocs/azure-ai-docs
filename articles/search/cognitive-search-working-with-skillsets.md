@@ -5,16 +5,16 @@ description: Skillsets are used to apply AI processing to indexing pipelines in 
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
-ms.topic: conceptual
-ms.date: 07/11/2025
+ms.topic: concept-article
+ms.date: 01/26/2026
 ms.update-cycle: 180-days
 ---
 
 # Skillset concepts in Azure AI Search
 
-This article is for developers who need a deeper understanding of skillset composition, and assumes familiarity with the high-level concepts of [AI enrichment](cognitive-search-concept-intro.md), or applied AI, in Azure AI Search.
+This article is for developers who need a deeper understanding of skillset composition, and assumes familiarity with the high-level concepts of [AI enrichment](cognitive-search-concept-intro.md) or how AI is applied in Azure AI Search to transform raw content during indexing.
 
-A skillset is a reusable object in Azure AI Search that's attached to [an indexer](search-indexer-overview.md). It contains one or more skills that call built-in AI or external custom processing over documents retrieved from an external data source.
+A skillset is a reusable object in Azure AI Search that's attached to [an indexer](search-indexer-overview.md). It contains one or more skills that call built-in AI or external custom processing over raw content retrieved from an external data source.
 
 The following diagram illustrates the basic data flow of skillset execution. 
 

@@ -6,7 +6,7 @@ author: PatrickFarley
 ms.service: azure-ai-services
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 10/02/2025
 ms.author: pafarley
 ---

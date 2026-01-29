@@ -8,8 +8,8 @@ ms.custom:
   - ignite-2023
   - build-2024
   - hub-only
-ms.topic: reference
-ms.date: 6/30/2025
+ms.topic: article
+ms.date: 01/27/2026
 ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
@@ -23,10 +23,10 @@ ms.update-cycle: 180-days
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-The prompt flow Embedding tool enables you to convert text into dense vector representations for various natural language processing tasks.
+The prompt flow Embedding tool converts text into dense vector representations for various natural language processing tasks.
 
 > [!TIP]
-> For chat and completion tools, learn more about the large language model [(LLM) tool](llm-tool.md).
+> For chat and completion tools, see the large language model [(LLM) tool](llm-tool.md).
 
 ## Prerequisites
 
