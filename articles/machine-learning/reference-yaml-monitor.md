@@ -81,7 +81,7 @@ Recurrence schedule defines the recurrence pattern, containing `hours`, `minutes
 | `monitoring_target.endpoint_deployment_id` | String | **Optional**. The associated Azure Machine Learning endpoint/deployment ID in format of `azureml:myEndpointName:myDeploymentName`. This field is required if your endpoint/deployment has enabled model data collection to be used for model monitoring. | | |
 | `monitoring_target.model_id` | String | **Optional**. The associated model ID for model monitoring. | | |
 | `monitoring_signals` | Object | Dictionary of monitoring signals to be included. The key is a name for monitoring signal within the context of monitor and the value is an object containing a [monitoring signal specification](#monitoring-signals). **Optional** for basic model monitoring that uses recent past production data as comparison baseline and has 3 monitoring signals: data drift, prediction drift, and data quality. | | |
-| `alert_notification` | String or Object | Description of alert notification recipients. | One of two alert destinations is allowed: String `azmonitoring` or Object `emails` containing an array of email recipients |  |
+| `alert_notification` | Object&nbsp;~~or String~~ | Description of alert notification recipients. | One of two alert destinations is allowed: Object `emails` containing an array of email recipients ~~or String `azmonitoring`~~ |  |
 | `alert_notification.emails` | Object | List of email addresses to receive alert notification. | | |
 
 ### Monitoring signals
