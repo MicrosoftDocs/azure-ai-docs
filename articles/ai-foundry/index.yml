@@ -44,7 +44,7 @@ productDirectory:
       links:
         - url: ./default/tutorials/quickstart-create-foundry-resources.md
           text: Quickstart - Create Foundry resources (new)
-        - url: ./default/tutorials/quickstart-get-started-code.md?view=foundry
+        - url: ./quickstarts/get-started-code.md?view=foundry
           text: Quickstart - Chat with an agent (new)
         - url: ./quickstarts/get-started-code.md?view=foundry-classic
           text: Quickstart for Foundry (classic)
