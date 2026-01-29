@@ -1,11 +1,12 @@
 ---
 title: "AudioVisual analysis: extracting structured content with Azure Content Understanding in Foundry Tools"
 titleSuffix: Foundry Tools
-description: Learn about Azure Content Understanding in Foundry Tools's audiovisual analysis and content extraction capabilities for both audio and video inputs
+description: Learn about Azure Content Understanding in Foundry Tools audiovisual analysis and content extraction capabilities for audio and video inputs.
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
-ms.date: 06/19/2025
+ms.date: 01/29/2026
+ai-usage: ai-assisted
 ms.service: azure-ai-content-understanding
 ms.topic: overview
 ms.custom:
@@ -13,7 +14,6 @@ ms.custom:
 ---
 
 # AudioVisual analysis: extracting structured content
-
 
 Azure Content Understanding's multimodal analysis capabilities help you transform unstructured audio and video data into structured, machine-readable information. By precisely identifying and extracting audiovisual elements while preserving their temporal relationships, you can build powerful media processing workflows for a wide range of applications.
 
@@ -27,7 +27,7 @@ For complete details about supported file types, file size limits, and other con
 
 ## JSON response structure
 
-The Content Understanding API returns analysis results in a structured JSON format. This document focused on the element in the contents array with kind set to audioVisual. Here's the overall container structure of the response:
+The Content Understanding API returns analysis results in a structured JSON format. This document focuses on the element in the `contents` array with `kind` set to `audioVisual`. Here's the overall container structure of the response:
 
 ```json
 {
@@ -37,7 +37,7 @@ The Content Understanding API returns analysis results in a structured JSON form
     "analyzerId": "my-analyzer",
     "contents": [
       {
-        "markdown": "# Video: 00:00.000 => 23:16.997\nWidth: 854\nHeight: 480\n..." 
+        "markdown": "# Video: 00:00.000 => 23:16.997\nWidth: 854\nHeight: 480\n...",
         "fields": {
           "Summary": {
             "type": "string",
@@ -47,11 +47,11 @@ The Content Understanding API returns analysis results in a structured JSON form
         "kind": "audioVisual",
         "startTimeMs": 0,
         "endTimeMs": 1000000,
-        "transcriptPhrases": [/* ... */], 
-        "width": 854, 
-        "height": 480, 
-        "keyFrameTimesMs": [/* ... */], 
-        "cameraShotTimesMs": [/* ... */], 
+        "transcriptPhrases": [/* ... */],
+        "width": 854,
+        "height": 480,
+        "keyFrameTimesMs": [/* ... */],
+        "cameraShotTimesMs": [/* ... */]
       }
     ]
   }
@@ -82,7 +82,7 @@ The contents collection contains one or more content objects that contain the da
 
 #### Transcript phrases
 
-A `transcriptPhrases` element contains the complete audio transcription, broken down into individual phrases with speaker identification, and precise timing information. This element is available for both audio and video inputs. Content Understanding supports multilingual transcription and speaker diarization. This output is included when the user sets  `"returnDetails": true` in the analyzer definition. Details of language support can be found here [Audio Language Handling](../audio/overview.md#language-handling).
+A `transcriptPhrases` element contains the complete audio transcription, broken down into individual phrases with speaker identification and precise timing information. This element is available for both audio and video inputs. Content Understanding supports multilingual transcription and speaker diarization. This output is included when the user sets `"returnDetails": true` in the analyzer definition. For details, see [Audio language handling](../audio/overview.md#language-handling).
 
 **JSON example:**
 ```json
@@ -156,7 +156,7 @@ A `keyFrameTimesMs` element represents the timestamps for the visual frames extr
 
 #### Camera shots
 
-A `cameraShotTimesMs` element identifies points in the video where camera shots change, indicating cuts, transitions, or significant changes in camera angle or perspective. This helps in understanding the video's editing structure. The values are timestamps in milliseconds from the beginning of the video. This output is included when the user sets  `"returnDetails": true` in the analyzer definition.
+A `cameraShotTimesMs` element identifies points in the video where camera shots change, indicating cuts, transitions, or significant changes in camera angle or perspective. This helps you understand the video's editing structure. The values are timestamps in milliseconds from the beginning of the video. This output is included when the user sets `"returnDetails": true` in the analyzer definition.
 
 **Camera shot detection behavior:**
 
