@@ -19,7 +19,7 @@ This article shows you how to manage hosted agent deployments in Foundry Agent S
 ## Prerequisites
 
 * A [deployed hosted agent](deploy-hosted-agent.md)
-* [Azure CLI](/cli/azure/install-azure-cli) version 2.50 or later
+* [Azure CLI](/cli/azure/install-azure-cli) version 2.80 or later
 * Azure Cognitive Services CLI extension:
 
     ```bash
@@ -89,33 +89,11 @@ Versioned updates create a new agent version. Use them for:
 - Environment variable modifications
 - Protocol version updates
 
-Create a new version using the SDK:
+You can create a new version using the Azure CLI.
 
-```python
-from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import ImageBasedHostedAgentDefinition, ProtocolVersionRecord, AgentProtocol
-from azure.identity import DefaultAzureCredential
+#### Create version using Azure CLI
 
-client = AIProjectClient(
-    endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
-    credential=DefaultAzureCredential()
-)
-
-# Create new version with updated configuration
-agent = client.agents.create_version(
-    agent_name="my-agent",
-    definition=ImageBasedHostedAgentDefinition(
-        container_protocol_versions=[ProtocolVersionRecord(protocol=AgentProtocol.RESPONSES, version="v1")],
-        cpu="2",  # Updated from 1
-        memory="4Gi",  # Updated from 2Gi
-        image="your-registry.azurecr.io/your-image:v2",  # New image tag
-        environment_variables={
-            "AZURE_AI_PROJECT_ENDPOINT": os.environ["AZURE_AI_PROJECT_ENDPOINT"],
-            "MODEL_NAME": "gpt-4"
-        }
-    )
-)
-```
+For CLI-based version creation, see [az cognitiveservices agent create](/cli/azure/cognitiveservices/agent#az-cognitiveservices-agent-create).
 
 ### Non-versioned updates
 
@@ -216,16 +194,8 @@ Access container logs for debugging startup and runtime issues.
 ### REST API
 
 ```http
-GET /agents/v2.0/subscriptions/{subscription}/resourceGroups/{resourceGroup}/providers/Microsoft.MachineLearningServices/workspaces/{workspace}/agents/{agentName}/versions/{agentVersion}/containers/default:logstream
+GET https://{endpoint}/api/projects/{projectName}/agents/{agentName}/versions/{agentVersion}/containers/default:logstream
 ```
-
-Query parameters:
-
-| Name | Default | Description |
-|------|---------|-------------|
-| `kind` | `console` | `console` for stdout/stderr, `system` for container events |
-| `replica_name` | (first replica) | Target specific replica |
-| `tail` | `20` | Number of lines (1-300) |
 
 Timeouts:
 
@@ -290,7 +260,7 @@ You can also test agents in the agent playground UI in the Foundry portal.
 ### Common pitfalls
 
 - **Forgetting ACR permissions**: The project's managed identity needs explicit pull access to the container registry
-- **Wrong SDK version**: Hosted agents require `azure-ai-projects>=2.0.0b2`
+- **Wrong SDK version**: Hosted agents require `azure-ai-projects>=2.0.0b3`
 - **Missing capability host**: Create an account-level capability host before deploying. See [Deploy a hosted agent](deploy-hosted-agent.md#create-an-account-level-capability-host)
 - **Publishing identity mismatch**: After publishing, the agent uses a different identity. Reassign RBAC permissions
 

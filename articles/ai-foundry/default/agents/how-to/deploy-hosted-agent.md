@@ -20,8 +20,8 @@ This article shows you how to deploy a containerized agent to Foundry Agent Serv
 ## Prerequisites
 
 * A [Microsoft Foundry project](../../../how-to/create-projects.md)
-* [Python 3.9 or later](https://www.python.org/downloads/) for SDK-based development
-* [Azure CLI](/cli/azure/install-azure-cli) version 2.50 or later
+* [Python 3.10 or later](https://www.python.org/downloads/) for SDK-based development
+* [Azure CLI](/cli/azure/install-azure-cli) version 2.80 or later
 * [Docker Desktop](https://docs.docker.com/get-docker/) installed for local container development
 * Familiarity with [Azure Container Registry](/azure/container-registry/container-registry-intro)
 * Agent code using a [supported framework](../concepts/hosted-agents.md#framework-and-language-support)
@@ -95,7 +95,7 @@ The Azure Developer CLI `ai agent` extension provides the fastest path to deploy
 
 ### Install and configure the Azure Developer CLI
 
-1. Verify you have Azure Developer CLI version 1.11.0 or later:
+1. Verify you have Azure Developer CLI version 1.23.0 or later:
 
     ```bash
     azd version
@@ -149,7 +149,10 @@ This command:
 ### Verify deployment
 
 ```bash
-azd ai agent show --name <your-agent-name>
+az cognitiveservices agent show \
+    --account-name <your-account-name> \
+    --project-name <your-project-name> \
+    --name <your-agent-name>
 ```
 
 A successful deployment shows `status: Started`. If the status shows `Failed`, check the deployment logs.
@@ -162,10 +165,10 @@ Use the SDK for programmatic deployments or CI/CD integration.
 
 * A container image in [Azure Container Registry](/azure/container-registry/container-registry-get-started-portal)
 * User Access Administrator or Owner permissions on the container registry
-* Azure AI Projects SDK version 2.0.0b2 or later
+* Azure AI Projects SDK version 2.0.0b3 or later
 
     ```bash
-    pip install --pre azure-ai-projects>=2.0.0b2 azure-identity
+    pip install --pre "azure-ai-projects>=2.0.0b3" azure-identity
     ```
 
 ### Build and push your container image
@@ -176,7 +179,7 @@ Use the SDK for programmatic deployments or CI/CD integration.
     docker build -t myagent:v1 .
     ```
 
-    See sample Dockerfiles for [Python (LangGraph)](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/python/hosted-agents/langgraph/calculator-agent/Dockerfile) and [C#](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/csharp/hosted-agents/AgentsInWorkflows/Dockerfile).
+    See sample Dockerfiles for [Python](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/agent-framework/agents-in-workflow/Dockerfile) and [C#](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/csharp/hosted-agents/AgentsInWorkflows/Dockerfile).
 
 1. Push to Azure Container Registry:
 
@@ -257,7 +260,7 @@ agent = client.agents.create_version(
         image="your-registry.azurecr.io/your-image:tag",
         environment_variables={
             "AZURE_AI_PROJECT_ENDPOINT": endpoint,
-            "MODEL_NAME": "gpt-4"
+            "MODEL_NAME": "gpt-4.1"
         }
     )
 )
@@ -292,7 +295,7 @@ agent = client.agents.create_version(
         ],
         environment_variables={
             "AZURE_AI_PROJECT_ENDPOINT": endpoint,
-            "MODEL_NAME": "gpt-4"
+            "MODEL_NAME": "gpt-4.1"
         }
     )
 )

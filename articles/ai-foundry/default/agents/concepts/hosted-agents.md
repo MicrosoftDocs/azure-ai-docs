@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 When you build agentic applications by using open-source frameworks, you typically manage containerization, web server setup, security integration, memory persistence, infrastructure scaling, data transmission, instrumentation, and version rollbacks. These tasks become even more challenging in heterogeneous cloud environments.
 
 > [!IMPORTANT]
-> Hosted agents are currently in **public preview** and available only in North Central US. See [Limits, pricing, and availability (preview)](#limits-pricing-and-availability-preview) for current constraints.
+> Hosted agents are currently in **public preview**. See [Limits, pricing, and availability (preview)](#limits-pricing-and-availability-preview) for current constraints.
 
 Hosted agents in Foundry Agent Service solve these challenges for Microsoft Foundry users. By using this managed platform, you can deploy and operate AI agents securely and at scale. You can use your custom agent code or a preferred agent framework with streamlined deployment and management.
 
@@ -51,7 +51,6 @@ If you want to jump to a task, see:
 
 Hosted agents are currently in preview.
 
-- **Region availability**: North Central US only.
 - **Private networking support**: You can't create hosted agents by using the standard setup for network isolation within network-isolated Foundry resources. For details, see [Configure virtual networks](../../../agents/how-to/virtual-networks.md).
 - **Preview limits**: For the full list of preview limits, see [Limitations during preview](#limitations-during-preview).
 - **Pricing**: For updates on pricing, see the Foundry [pricing page](https://azure.microsoft.com/pricing/details/ai-foundry/).
@@ -278,7 +277,7 @@ To build your agent as a Docker container and upload it to Azure Container Regis
     ```bash
     docker build -t myagent:v1 .
     ```
-    Refer to sample Dockerfile for [Python (LangGraph)](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/python/hosted-agents/langgraph/calculator-agent/Dockerfile) and [C#](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/csharp/hosted-agents/AgentsInWorkflows/Dockerfile).
+    Refer to sample Dockerfile for [Python](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/agent-framework/agents-in-workflow/Dockerfile) and [C#](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/csharp/hosted-agents/AgentsInWorkflows/Dockerfile).
    
 1. Sign in to Azure Container Registry:
 
@@ -350,10 +349,10 @@ az rest --method put `
 
 ### Create the hosted agent version
 
-Install version>=2.0.0b2 of the Azure AI Projects SDK. Python 3.9 or later is required.
+Install version>=2.0.0b3 of the Azure AI Projects SDK. Python 3.10 or later is required.
 
 ```bash
-pip install --pre azure-ai-projects==2.0.0b2
+pip install --pre "azure-ai-projects>=2.0.0b3"
 ```
 
 Use the Azure AI Projects SDK to create and register your agent:
@@ -946,10 +945,6 @@ If your agent deployment fails, view error logs by selecting **View deployment l
 ### Hosting pricing
 
 Billing for managed hosting runtime is enabled no earlier than February 1, 2026, during the preview. For updates on pricing, check the Foundry [pricing page](https://azure.microsoft.com/pricing/details/ai-foundry/).
-
-### Region availability
-
-Currently, North Central US is the only supported region for hosted agents.
 
 ### Private networking support
 

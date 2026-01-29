@@ -31,12 +31,12 @@ In this quickstart, you deploy a containerized AI agent to Foundry Agent Service
 Before you begin, you need:
 
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/free/)
-* [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) version 1.11.0 or later
+* [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) version 1.23.0 or later
 * [Docker Desktop](https://docs.docker.com/get-docker/) installed and running
-* [Python 3.9 or later](https://www.python.org/downloads/)
+* [Python 3.10 or later](https://www.python.org/downloads/)
 
 > [!NOTE]
-> Hosted agents are currently in preview and available only in **North Central US**.
+> Hosted agents are currently in preview.
 
 ## Step 1: Clone the sample project
 
@@ -79,11 +79,24 @@ Before deploying, verify the agent works locally.
 
 1. Test with a REST client. The agent runs on `localhost:8088`:
 
+    # [Bash](#tab/bash)
+
     ```bash
     curl -X POST http://localhost:8088/responses \
         -H "Content-Type: application/json" \
         -d '{"input": {"messages": [{"role": "user", "content": "Hello!"}]}}'
     ```
+
+    # [PowerShell](#tab/powershell)
+
+    ```powershell
+    Invoke-RestMethod -Method Post `
+        -Uri "http://localhost:8088/responses" `
+        -ContentType "application/json" `
+        -Body '{"input":{"messages":[{"role":"user","content":"Hello!"}]}}'
+    ```
+
+    ---
 
     You should see a response like:
 
