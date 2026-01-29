@@ -38,7 +38,7 @@ You'll learn:
 
 Before starting, we recommend you have:
 
-- Completed the [Quickstart: Create a voice live real-time voice agent](./voice-live-quickstart.md).
+- Completed the [Quickstart: Create a Voice Live real-time voice agent](./voice-live-quickstart.md).
 - A working Voice Live setup.
 - A working event loop handling Voice Live events.
 
@@ -769,6 +769,6 @@ async function sendLlmGeneratedGreeting(session) {
 
 ## Next steps
 
-- Try the Voice Live **Playground [Foundry portal](./voice-live-quickstart.md?pivots=ai-foundry-portal) to experiment with proactive engagement
+- Try the Voice Live **Playground in [Foundry portal](./voice-live-quickstart.md?pivots=ai-foundry-portal)** to experiment with proactive engagement
 - Learn more about [How to use the Voice live API](./voice-live-how-to.md)
 - See the [Voice live API reference](./voice-live-api-reference.md)

@@ -321,8 +321,8 @@ items:
         href: voice-live-how-to-customize.md
       - name: How to add proactive messages (preview)
         href: how-to-voice-live-proactive-messages.md
-      - name: How to automatically truncate conversation text results (preview)
-        href: how-to-voice-live-truncate-text-results.md
+      - name: Handle voice interruptions in chat history (preview)
+        href: how-to-voice-live-auto-truncation.md
       - name: Voice Live telephony integration
         href: voice-live-telephony.md
     - name: Voice Live FAQ

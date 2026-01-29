@@ -1,5 +1,5 @@
 ---
-title: "How to automatically truncate conversation text results to match audio"
+title: "Handle voice interruptions in chat history"
 description: "Learn how to automatically truncate conversation text results to match audio when users interrupt Voice Live agent responses during playback."
 author: goergenj
 ms.author: jagoerge
@@ -12,7 +12,7 @@ zone_pivot_groups: how-to-voice-live-auto-truncation
 ai-usage: ai-assisted
 ---
 
-# How to automatically truncate conversation text results to match audio (preview)
+# Handle voice interruptions in chat history (preview)
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
@@ -24,7 +24,7 @@ In this case, the session context should be updated to reflect what the user act
 
 Before starting, we recommend you have:
 
-- Completed the [Quickstart: Create a voice live real-time voice agent](./voice-live-quickstart.md).
+- Completed the [Quickstart: Create a Voice Live real-time voice agent](./voice-live-quickstart.md).
 - A working Voice Live setup.
 - A working event loop handling Voice Live events.
 
@@ -92,7 +92,7 @@ Two parameters are introduced to handle this scenario:
 
 When `auto_truncate` is set to `true` in VAD configuration, the service automatically truncates the last turn's response when it detects user speech during playback. The service assumes the response is played at real-time speed.
 
-**Prerequisites:**
+**Dependencies:**
 
 - `interrupt_response` must be set to `true` (default). Auto truncation only makes sense when response interruption is enabled—if the response continues playing after the user speaks, there's nothing to truncate.
 
