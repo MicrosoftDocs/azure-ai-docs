@@ -1,5 +1,5 @@
 ---
-title: Custom AML skill in skillsets
+title: Custom AML Skill in Skillsets
 titleSuffix: Azure AI Search
 description: Learn how to extend the capabilities of Azure AI Search skillsets with Microsoft Foundry or Azure Machine Learning models.
 author: gmndrg
@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
   - build-2024
-ms.topic: article
+ms.topic: concept-article
 ms.date: 10/23/2025
 ms.update-cycle: 180-days
 ---
@@ -33,7 +33,7 @@ The indexer retries two times for the following HTTP status codes:
 + `503 Service Unavailable`
 + `429 Too Many Requests`
 
-## AML skill for models in Foundry
+## AML skill for models in Microsoft Foundry
 
 Azure AI Search provides the [Microsoft Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md), which is also available in the [**Import data (new)** wizard](search-import-data-portal.md#skills), for query-time connections to the model catalog. If you want to use this vectorizer for queries, the AML skill is the *indexing counterpart* for generating embeddings using a model from the model catalog.
 
@@ -45,7 +45,7 @@ We recommend using the [**Import data (new)** wizard](search-get-started-portal-
 
 + A [Microsoft Foundry hub-based project](/azure/ai-foundry/how-to/hub-create-projects) or an [AML workspace](../machine-learning/concept-workspace.md) for a custom model that you create.
 
-+ For hub-based projects only, a serverless deployment of a [supported model](#skill-parameters) from the Microsoft Foundry model catalog. You can use an [ARM/Bicep template](https://github.com/Azure-Samples/azure-ai-search-multimodal-sample/blob/42b4d07f2dd9f7720fdc0b0788bf107bdac5eecb/infra/ai/modules/project.bicep#L37C1-L38C1) to provision the serverless deployment.
++ For hub-based projects only, a serverless deployment of a [supported model](#skill-parameters) from the Microsoft Foundry model catalog. You can use [use the Azure CLI](vector-search-integrated-vectorization-ai-studio.md#deploy-an-embedding-model-as-a-serverless-deployment) to provision the serverless deployment.
 
 ## @odata.type
 

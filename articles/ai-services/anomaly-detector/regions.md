@@ -5,7 +5,7 @@ description: A list of available regions and endpoints for the Anomaly Detector 
 author: jr-MS
 manager: nitinme
 ms.service: azure-ai-anomaly-detector
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 06/12/2025
 ms.author: jingruhan
 ms.custom: references_regions

@@ -11,7 +11,7 @@ author: s-polly
 ms.author: scottpolly
 ms.reviewer: jturuk
 ms.custom: devplatv2
-ms.date: 10/04/2024
+ms.date: 01/27/2026
 ---
 
 # Introduction to Kubernetes compute target in Azure Machine Learning
@@ -72,7 +72,7 @@ With Arc Kubernetes cluster, you can build, train, and deploy models in any on-p
 A `KubernetesCompute` target in Azure Machine Learning workloads (training and model inference) has the following limitations:
 
 - The availability of **Preview features** in Azure Machine Learning isn't guaranteed.
-- Models (including the foundational model) from the **Model Catalog** and **Registry** aren't supported on Kubernetes online endpoints.
+- Models (including foundation models) from the **Model Catalog** and **Registry** aren't supported on Kubernetes online endpoints.
 - The process of creating a model inference deployment inside the cluster has a timeout limit of **20 minutes**. This includes downloading the image, downloading the model, and initializing the user scripts.
 - Azure Machine Learning extension supports Kubernetes Baseline Pod Security Standard. 
 - Training on Kubernetes compute doesn't support auto scale nodes.
@@ -90,6 +90,9 @@ This section summarizes recommended best practices for working with a Kubernetes
 **Team/project workload isolation using Kubernetes namespace**. When you attach a Kubernetes cluster to a Machine Learning workspace, you can specify a Kubernetes namespace for the compute target. All workloads run by the compute target are placed under the specified namespace.
 
 ## Comparison of KubernetesCompute and legacy AksCompute targets
+
+> [!IMPORTANT]
+> Support for CLI v1 ended on September 30, 2025, and support for Python SDK v1 ends on June 30, 2026. If you're using `AksCompute` (legacy), migrate to `KubernetesCompute` with CLI/SDK v2.
 
 With the Azure Machine Learning CLI/Python SDK v1, you can deploy models on AKS by using the legacy `AksCompute` target. Both the `KubernetesCompute` and `AksCompute` targets support AKS integration, but the support approach is different. The following table summarizes the key differences:
 

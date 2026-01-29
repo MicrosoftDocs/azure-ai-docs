@@ -6,7 +6,7 @@ author: gmndrg
 ms.author: gimondra
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 08/27/2025
 ---
 

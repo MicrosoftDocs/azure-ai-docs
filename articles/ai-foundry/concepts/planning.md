@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
-This guide outlines key decisions for rolling out Microsoft Foundry, including environment setup, data isolation, integration with other Azure services, capacity management, and monitoring. Every organization is different. Use this guide as a starting point and adapt it to your needs. For implementation details, see the linked articles for further guidance.
+This guide outlines key decisions for rolling out Microsoft Foundry, including environment setup, data isolation, integration with other Azure services, capacity management, and monitoring. Use this guide as a starting point and adapt it to your needs. For implementation details, see the linked articles for further guidance.
 
 ## Example organization
 
@@ -46,7 +46,7 @@ Foundry is built on the Azure platform, so you can customize security controls t
 
 - **Identity**: Use Microsoft Entra ID to manage user and service access. Foundry supports managed identities to allow secure, passwordless authentication to other Azure services. You can assign managed identities at the **Foundry resource level** and optionally at the **project level** for fine-grained control. [Learn more about managed identities.](/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline)
 
-- **Networking**: Deploy Foundry into a Virtual Network (VNet) to isolate traffic and control access by using Network Security Groups (NSGs). [Learn more about networking security.](/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline)
+- **Networking**: Deploy Foundry into a Virtual Network to isolate traffic and control access by using Network Security Groups (NSGs). [Learn more about networking security.](/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline)
 
 - **Customer-Managed Keys (CMK)**: Azure supports CMK for encrypting data at rest. Foundry supports CMK optionally for customers with strict compliance needs. [Learn more about CMK](/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline).
 
@@ -58,7 +58,7 @@ Foundry is built on the Azure platform, so you can customize security controls t
 
 ## Example: Contoso's security approach
 
-Contoso secures its Foundry deployments by using private networking with Enterprise IT managing a central hub network. Each business group connects via a spoke VNet. They use built-in Role Based Access Control (RBAC) to separate access:
+Contoso secures its Foundry deployments by using private networking with Enterprise IT managing a central hub network. Each business group connects via a spoke virtual network. They use built-in Role Based Access Control (RBAC) to separate access:
 
 * **Admins** manage deployments, connections, and shared resources
 * **Project Managers** oversee specific projects
@@ -101,7 +101,7 @@ Configure connection authentication to use either shared access tokens, such as 
 
 - Contoso creates a Foundry resource for every business group, ensuring projects with similar data needs share the same connected resources.
 - By default, connected resources use shared authentication tokens and are shared across all projects.
-- Projects that use sensitive data workloads connect to data sources with project-scoped connections and EntraID passthrough authentication.
+- Projects that use sensitive data workloads connect to data sources with project-scoped connections and Microsoft Entra ID passthrough authentication.
 
 ## Governance
 
@@ -145,7 +145,7 @@ You deploy a hub resource side-by-side with your Foundry resource. The hub resou
   - Networking: [Use a virtual network with Foundry](../how-to/configure-private-link.md)
   - Identity and managed identity: [Configure managed identity in Foundry](../../ai-services/openai/how-to/managed-identity.md)
   - Customer-managed keys (CMK): [Customer-managed keys in Foundry](../concepts/encryption-keys-portal.md)
-  - Example infrastructure: [templates repository with sample infrastructure templates](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup)
+  - Example infrastructure: [templates repository with sample infrastructure templates](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples)
   - [Recover or purge deleted Foundry resources](../../ai-services/recover-purge-resources.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json)
 
 - Establish connectivity with other Azure services
@@ -157,4 +157,3 @@ You deploy a hub resource side-by-side with your Foundry resource. The hub resou
   - Model access control with Azure Policy: [Control model deployment with built-in policies](../how-to/built-in-policy-model-deployment.md)
   - Cost management: [Plan and manage costs for Foundry](../how-to/costs-plan-manage.md)
   - Azure Monitor for usage tracking: [Monitor your Generative AI applications](../how-to/monitor-applications.md)
-  

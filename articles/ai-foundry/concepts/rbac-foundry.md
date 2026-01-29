@@ -24,13 +24,19 @@ ai.usage: ai-assisted
 > [!TIP]
 > An alternate hub-focused RBAC article is available: [Role-based access control for Microsoft Foundry (Hubs and Projects)](hub-rbac-foundry.md).
 
-In this article, you learn about role-based access control (RBAC) in your Microsoft Foundry resource. Use RBAC to manage access to resources, like creating new resources or using an existing one. Assign users roles that grant access to resources. This article dives into the details about RBAC in Microsoft Foundry and how to best utilize roles assignments for your enterprise. 
+In this article, you learn about role-based access control (RBAC) in your Microsoft Foundry resource and how to assign roles that control access to resources.  
+
+> [!TIP]
+> RBAC roles apply when you authenticate using Microsoft Entra ID. If you use key-based authentication instead, the key grants full access without role restrictions. Microsoft recommends using Entra ID authentication for improved security and granular access control.
 
 ::: moniker-end
 
 ::: moniker range="foundry"
 
-In this article, you learn how to manage access to your [!INCLUDE [foundry-link](../default/includes/foundry-link.md)] resources. Use role-based access control (RBAC) to manage access to resources, like creating new resources or using an existing one. Assign users roles that grant access to resources. This article dives into the details about RBAC in Microsoft Foundry and how to best utilize roles assignments for your enterprise. 
+In this article, you learn how to manage access to Microsoft Foundry resources using role-based access control (RBAC).  
+
+> [!TIP]
+> RBAC roles apply when you authenticate using Microsoft Entra ID. If you use key-based authentication instead, the key grants full access without role restrictions. Microsoft recommends using Entra ID authentication for improved security and granular access control.
 
 For more information about authentication and authorization in Microsoft Foundry, see [Authentication and Authorization](../concepts/authentication-authorization-foundry.md). This article mentions terminology explained in the previous article. 
 
@@ -65,8 +71,6 @@ To assign a role to your user principal or to your project's managed identity, f
     1. Under **Role**, select **Azure AI User**. Under **Members**, select **Managed identity** and select the managed identity of your project and **Select**.
     1. Finally, **Review + assign** the role. 
 
-For more information, see the rest of this document for a deep dive into role-based access control in Microsoft Foundry. 
-
 ## Terminology for role-based access control in Foundry
 
 To understand role-based access control in Microsoft Foundry, consider two questions for your enterprise. 
@@ -87,7 +91,6 @@ In Microsoft Foundry, consider two scopes when completing role assignments.
 
 * **Foundry resource**: The top-level scope that defines the administrative, security, and monitoring boundary for a Microsoft Foundry environment.
 * **Foundry project**: A sub-scope within a Foundry resource used to organize work and enforce access control for Foundry APIs, tools, and developer workflows.
-
 
 ## Built-in roles 
 
@@ -119,7 +122,6 @@ Use the following table and diagram to see the permissions allowed for each buil
 :::image type="content" source="../media/how-to/network/detailed-rbac-diagram.png" alt-text="Diagram of the built-in roles in Foundry." lightbox="../media/how-to/network/detailed-rbac-diagram.png":::
  
 For more on built-in roles in Azure and Foundry, see [Azure built-in roles](/azure/role-based-access-control/built-in-roles). To learn more about conditional delegation used in the Azure AI Account Owner and Azure AI Project Manager role, see [Delegate Azure role assignment management to others with conditions](/azure/role-based-access-control/delegate-role-assignments-portal).
-
 
 ## Sample enterprise RBAC setup for projects
 
@@ -198,6 +200,7 @@ For more information on creating a custom role, see the following articles.
 * When you create a Foundry resource, the built-in role-based access control (RBAC) permissions give you access to the resource. To use resources created outside Foundry, ensure the resource has permissions that let you access it. Here are some examples: 
     * To use a new Azure Blob Storage account, add the Foundry account resource's managed identity to the Storage Blob Data Reader role on that storage account. 
     * To use a new Azure AI Search source, add Foundry to the Azure AI Search role assignments.
+* To fine-tune a model in Foundry, you need both data plane and control plane permissions. Deploying a fine-tuned model is a control plane permission. Therefore, the only built-in role with both data plane and control plane permissions is the **Azure AI Owner** role. Or, if you prefer, you can also assign the **Azure AI User** role for data plane permissions and the **Azure AI Account Owner** role for control plane permissions. 
 
 ## Related content
 
@@ -243,12 +246,11 @@ Therefore you should...
 * Grant your developer the **Reader** role on Foundry resource scope and **Azure AI User** on project scope
 * Grant your project manager the **Azure AI Project Manager** role on resource scope
 
-
 ### Use Microsoft Entra groups with Foundry
 
 Microsoft Entra ID provides several ways to manage access to resources, applications, and tasks. By using Microsoft Entra groups, you can grant access and permissions to a group of users instead of to each individual user. Enterprise IT admins can create Microsoft Entra groups in the Azure portal to simplify the role assignment process for developers. When you create a Microsoft Entra group, you can minimize the number of role assignments required for new developers working on Foundry projects by assigning the group the required role assignment on the necessary resource.
 
-Complete the following steps to use Entra ID groups with Foundry:
+Complete the following steps to use Microsoft Entra ID groups with Foundry:
 
 1. Go to **Groups** in the Azure portal.
 1. Create a new **Security** group in the Groups portal.
@@ -260,13 +262,12 @@ Complete the following steps to use Entra ID groups with Foundry:
    - **Example:** To build Agents, run traces, and more in Foundry, the minimum privilege 'Azure AI User' role must be assigned to your user principal. Assign the 'Azure AI User' role to your new Microsoft Entra group so all users in your enterprise can build in Foundry.
    - **Example:** To use Tracing and Monitoring features in Microsoft Foundry, a 'Reader' role assignment on the connected Application Insights resource is required. Assign the 'Reader' role to your new Microsoft Entra group so all users in your enterprise can use the Tracing and Monitoring feature.
 
-
 1. Go to Access Control (IAM).
 1. Select the role to assign.
 1. Assign access to "User, group, or service principal" and select the new Security group.
 1. Review and assign. Role assignment now applies to all user principals assigned to the group.
 
-To learn more about Entra ID groups, prerequisites, and limitations, refer to:
+To learn more about Microsoft Entra ID groups, prerequisites, and limitations, refer to:
 
 - [Learn about groups, group membership, and access in Microsoft Entra](/entra/fundamentals/concept-learn-about-groups).
 - [How to manage groups in Microsoft Entra](/entra/fundamentals/how-to-manage-groups).

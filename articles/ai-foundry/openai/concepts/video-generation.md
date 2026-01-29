@@ -6,7 +6,7 @@ ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: article
+ms.topic: concept-article
 monikerRange: 'foundry-classic || foundry'
 ms.date: 12/1/2025
 ---

@@ -283,6 +283,7 @@ Create an `AvatarSceneConfig` object with the following parameters:
 - **rotationX**: Rotation around the X-axis in radians.
 - **rotationY**: Rotation around the Y-axis in radians.
 - **rotationZ**: Rotation around the Z-axis in radians.
+- **amplitude**: Amplitude of the avatar movement, ranging from 0 to 1, where values less than 1 reduce movement amplitude and 1.0 (default) means full amplitude.
 
 Set the initial scene configuration when creating the avatar config:
 
@@ -297,7 +298,8 @@ avatarConfig.scene = new SpeechSDK.AvatarSceneConfig(
     0.0,  // positionY: centered
     0.0,  // rotationX: no rotation
     0.0,  // rotationY: no rotation
-    0.0   // rotationZ: no rotation
+    0.0,  // rotationZ: no rotation
+    1.0   // amplitude: full movement
 );
 ```
 
@@ -311,6 +313,7 @@ const positionY = -0.05; // 5% offset upward
 const rotationX = 10 * Math.PI / 180; // 10 degrees in radians
 const rotationY = 0;
 const rotationZ = 0;
+const amplitude = 0.8; // 80% movement amplitude
 
 const sceneConfig = new SpeechSDK.AvatarSceneConfig(
     zoom,
@@ -318,7 +321,8 @@ const sceneConfig = new SpeechSDK.AvatarSceneConfig(
     positionY,
     rotationX,
     rotationY,
-    rotationZ
+    rotationZ,
+    amplitude
 );
 ```
 

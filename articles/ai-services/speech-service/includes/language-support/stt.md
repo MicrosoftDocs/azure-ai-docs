@@ -137,7 +137,7 @@ ms.author: pafarley
 | `sv-SE` | Swedish (Sweden) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
 | `sw-KE` | Kiswahili (Kenya) | Yes | Plain text |
 | `sw-TZ` | Kiswahili (Tanzania) | No | Plain text |
-| `ta-IN` | Tamil (India) | No | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text |
+| `ta-IN` | Tamil (India) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text |
 | `te-IN` | Telugu (India) | No | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text |
 | `th-TH` | Thai (Thailand) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Phrase list |
 | `tr-TR` | Turkish (Türkiye) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format |
