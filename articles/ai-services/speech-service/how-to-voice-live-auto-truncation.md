@@ -86,7 +86,7 @@ Before starting, we recommend you have:
 
 ## Parameters
 
-Two parameters are introduced to handle this scenario:
+Two following Voice Live API parameters are used to handle this scenario:
 
 ### `auto_truncate`
 
