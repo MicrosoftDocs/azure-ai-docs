@@ -1,14 +1,14 @@
 ---
-title: "Consume models deployed in Azure Machine Learning from Fabric, using batch endpoints (preview)"
+title: "Use Fabric to consume batch model deployments (preview)"
 titleSuffix: Azure Machine Learning
-description: Learn to consume an Azure Machine Learning batch model deployment while working in Microsoft Fabric.
+description: Use Fabric to consume Azure Machine Learning batch model deployments by pointing to the same Azure Data Lake storage account.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: how-to
 author: s-polly
 ms.author: scottpolly
-ms.date: 10/10/2023
+ms.date: 01/29/2026
 ms.reviewer: jturuk
 ms.custom:
   - devplatv2
@@ -20,35 +20,36 @@ ms.custom:
 
 [!INCLUDE [ml v2](includes/machine-learning-dev-v2.md)]
 
-In this article, you learn how to consume Azure Machine Learning batch deployments from Microsoft Fabric. Although the workflow uses models that are deployed to batch endpoints, it also supports the use of batch pipeline deployments from Fabric.
+In this article, you learn how to consume Azure Machine Learning batch deployments from Microsoft Fabric. The same Fabric workflow that uses models deployed to batch endpoints also supports batch pipeline deployments from Azure Machine Learning.
 
 [!INCLUDE [machine-learning-preview-generic-disclaimer](includes/machine-learning-preview-generic-disclaimer.md)]
 
 ## Prerequisites
 
-- Get a [Microsoft Fabric subscription](/fabric/enterprise/licenses). Or sign up for a free [Microsoft Fabric trial](/fabric/get-started/fabric-trial).
-- Sign in to Microsoft Fabric.
-- An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- An Azure Machine Learning workspace. If you don't have one, use the steps in [How to manage workspaces](how-to-manage-workspace.md) to create one.
+- A [Microsoft Fabric subscription](/fabric/enterprise/licenses) or [free Microsoft Fabric trial](/fabric/get-started/fabric-trial).
+- A lakehouse created in Fabric. For more information, see [Create a lakehouse](/fabric/data-engineering/create-lakehouse). This article uses a lakehouse named **trusted**.
+- An Azure subscription. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- An Azure Machine Learning workspace. For more information, see [How to manage workspaces](how-to-manage-workspace.md).
+- A model deployed to a batch endpoint. For more information, see [Deploy models for scoring in batch endpoints](how-to-use-batch-model-deployments.md).
+- The [heart-unlabeled.csv](https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci-unlabeled/heart-unlabeled.csv) sample dataset downloaded to use for scoring.
+
     - Ensure that you have the following permissions in the workspace:
         - Create/manage batch endpoints and deployments: Use roles Owner, contributor, or custom role allowing `Microsoft.MachineLearningServices/workspaces/batchEndpoints/*`.
         - Create ARM deployments in the workspace resource group: Use roles Owner, contributor, or custom role allowing `Microsoft.Resources/deployments/write` in the resource group where the workspace is deployed.
-- A model deployed to a batch endpoint. If you don't have one, use the steps in [Deploy models for scoring in batch endpoints](how-to-use-batch-model-deployments.md) to create one.
-- Download the `https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci-unlabeled/heart-unlabeled.csv` sample dataset to use for scoring.
 
 ## Architecture
 
-Azure Machine Learning can't directly access data stored in Fabric's [OneLake](/fabric/onelake/onelake-overview). However, you can use OneLake's capability to create shortcuts within a Lakehouse to read and write data stored in [Azure Data Lake Gen2](/azure/storage/blobs/data-lake-storage-introduction). Since Azure Machine Learning supports Azure Data Lake Gen2 storage, this setup allows you to use Fabric and Azure Machine Learning together. The data architecture is as follows:
+Azure Machine Learning can't directly access data stored in Fabric [OneLake](/fabric/onelake/onelake-overview), but you can point a [OneLake shortcut](/fabric/onelake/onelake-shortcuts) and an [Azure Machine Learning datastore](concept-data.md#datastore) to the same [Azure Data Lake Gen 2 storage account](/azure/storage/blobs/data-lake-storage-introduction) to allow reading from and writing to the same underlying data without having to copy it.
+
+The following diagram shows the data architecture.
 
 :::image type="content" source="./media/how-to-use-batch-fabric/fabric-azureml-data-architecture.png" alt-text="A diagram showing how Azure Storage accounts are used to connect Fabric with Azure Machine Learning." lightbox="media/how-to-use-batch-fabric/fabric-azureml-data-architecture.png":::
 
 ## Configure data access
 
-To allow Fabric and Azure Machine Learning to read and write the same data without having to copy it, you can take advantage of [OneLake shortcuts](/fabric/onelake/onelake-shortcuts) and [Azure Machine Learning datastores](concept-data.md#datastore). By pointing a OneLake shortcut and a datastore to the same storage account, you can ensure that both Fabric and Azure Machine Learning read from and write to the same underlying data.
+In this section, you create or identify a storage account to store the information that the batch endpoint consumes and Fabric users see in OneLake. Fabric supports only hierarchical storage accounts such as Azure Data Lake Gen2.
 
-In this section, you create or identify a storage account to use for storing the information that the batch endpoint will consume and that Fabric users will see in OneLake. Fabric only supports storage accounts with hierarchical names enabled, such as Azure Data Lake Gen2.
-
-#### Create a OneLake shortcut to the storage account
+### Create a OneLake shortcut to the storage account
 
 1. Open the **Synapse Data Engineering** experience in Fabric.
 1. From the left-side panel, select your Fabric workspace to open it.
@@ -224,7 +225,7 @@ Configure the **Job outputs** section as follows:
 
 If your endpoint returns more outputs, repeat the previous steps for each of them. In this example, model deployments produce exactly one output.
 
-### (Optional) Configure the job settings
+### Optionally configure the job settings
 
 You can also configure the **Job settings** by adding the following properties:
 
@@ -245,7 +246,7 @@ __For pipeline deployments__:
 
 Once configured, you can test the pipeline.
 
-## Related links
+## Related content
 
 * [Use low priority VMs in batch deployments](how-to-use-low-priority-batch.md)
 * [Authorization on batch endpoints](how-to-authenticate-batch-endpoint.md)
