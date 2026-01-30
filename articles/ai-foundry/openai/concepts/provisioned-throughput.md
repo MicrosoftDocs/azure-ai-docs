@@ -173,9 +173,7 @@ The number of concurrent calls you can achieve on a deployment depends on each c
 
 ## Provisioned throughput capability for models sold directly by Azure  
 
-This section lists Foundry models that support the provisioned throughput capability. You can use your PTU quota and PTU reservation across the models shown in the table. 
-
-The following points are important takeaways from the table:
+This section lists Foundry Models that support the provisioned throughput capability. Use your PTU quota and PTU reservation across the models shown in the table.
 
 - The model version isn't included in this table. Check the supported version for each model when you choose the deployment option in the Foundry portal. 
 
@@ -186,6 +184,27 @@ The following points are important takeaways from the table:
 - PTUs are managed regionally and by offer type. PTU quota and any reservations must be in the region and shape (Global, Data zone, Regional) you wish to use. 
 
 - Spillover is an optional capability that manages traffic fluctuations on provisioned deployments. For more information on spillover, see [Manage traffic with spillover for provisioned deployments](../how-to/spillover-traffic-management.md).
+
+| Model Family       | Model name       | Global provisioned | Data zone provisioned | Regional provisioned | Spillover feature |
+|--------------------|------------------|--------------------|-----------------------|----------------------|-------------------|
+| **Azure OpenAI**   | Gpt 5.2          | ✅                 |                       |                      | ✅                 |
+|                    | Gpt 5.1          | ✅                 | ✅                     |                      | ✅                 |
+|                    | Gpt 5.1 codex    | ✅                 | ✅                     |                      | ✅                 |
+|                    | Gpt 5            | ✅                 | ✅                     | ✅                   | ✅                 |
+|                    | Gpt 5 mini       | ✅                 | ✅                     | ✅                   | ✅                 |
+|                    | Gpt 4.1          | ✅                 | ✅                     | ✅                   | ✅                 |
+|                    | Gpt 4.1 mini     | ✅                 | ✅                     | ✅                   | ✅                 |
+|                    | Gpt 4.1 nano     | ✅                 | ✅                     | ✅                   | ✅                 |
+|                    | Gpt 4o           | ✅                 | ✅                     | ✅                   | ✅                 |
+|                    | Gpt 4o mini      | ✅                 | ✅                     | ✅                   | ✅                 |
+|                    | Gpt 3.5 Turbo    | ✅                 | ✅                     | ✅                   | ✅                 |
+|                    | o1               | ✅                 | ✅                     | ✅                   | ✅                 |
+|                    | o3               | ✅                 | ✅                     | ✅                   | ✅                 |
+|                    | o3 mini          | ✅                 | ✅                     | ✅                   | ✅                 |
+|                    | o4 mini          | ✅                 | ✅                     | ✅                   | ✅                 |
+| **Azure DeepSeek** | DeepSeek-R1      | ✅                 |                       |                      |                   |
+|                    | DeepSeek-V3-0324 | ✅                 |                       |                      |                   |
+|                    | DeepSeek-R1-0528 | ✅                 |                       |                      |                   |
 
 ### Region availability for provisioned throughput capability
 
