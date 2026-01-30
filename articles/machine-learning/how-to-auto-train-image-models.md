@@ -879,7 +879,8 @@ az ml online-deployment create --file .\create_deployment.yml --workspace-name [
 [!Notebook-python[] (~/azureml-examples-main/sdk/python/jobs/automl-standalone-jobs/automl-image-object-detection-task-fridge-items/automl-image-object-detection-task-fridge-items.ipynb?name=create_deploy)]
 ---
 
-### update traffic
+### Update traffic
+
 By default, the current deployment is set to receive 0% traffic. Set the traffic percentage the current deployment should receive. The sum of traffic percentages of all the deployments with one endpoint can't exceed 100%.
 
 # [Azure CLI](#tab/cli)
