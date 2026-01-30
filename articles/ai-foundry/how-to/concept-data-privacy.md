@@ -6,7 +6,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.custom: references_regions, build-2024
 ms.topic: concept-article
-ms.date: 07/07/2025
+ms.date: 01/26/2026
 ms.reviewer: shubhirajMsft
 ms.author: ssalgado
 manager: nitinme
@@ -38,7 +38,7 @@ Deploying models to managed compute deploys model weights to dedicated virtual m
 
 You manage the infrastructure for these managed compute resources. Azure data, privacy, and security commitments apply. To learn more about Azure compliance offerings applicable to Foundry, see the [Azure Compliance Offerings page](https://servicetrust.microsoft.com/DocumentPage/7adf2d9e-d7b5-4e71-bad8-713e6a183cf3).
 
-Although containers for **Models Sold Directly by Azure** are scanned for vulnerabilities that could exfiltrate data, not all models available through the model catalog are scanned. To reduce the risk of data exfiltration, you can [help protect your deployment by using virtual networks](configure-managed-network.md). You can also use [Azure Policy](../../ai-services/policy-reference.md) to regulate the models that your users can deploy.
+Although containers for **Models Sold Directly by Azure** are scanned for vulnerabilities that could exfiltrate data, not all models available through the model catalog are scanned. To reduce the risk of data exfiltration, [help protect your deployment by using virtual networks](configure-managed-network.md). Also use [Azure Policy](../../ai-services/policy-reference.md) to regulate the models that your users can deploy.
 
 :::image type="content" source="../media/explore/subscription-service-cycle.png" alt-text="Diagram that shows the platform service life cycle." lightbox="../media/explore/subscription-service-cycle.png":::
 
@@ -61,7 +61,7 @@ Prompts and outputs are processed within the geography specified during deployme
 
 ## Fine-tuning a model for serverless API deployment 
 
-If a model that's available for serverless API deployments supports fine-tuning, you can upload data to (or designate data already in) a [datastore](../concepts/connections.md#connections-to-datastores) to fine-tune the model. You can then create a serverless API deployment for the fine-tuned model. The fine-tuned model can't be downloaded, but:
+If a model that's available for serverless API deployments supports fine-tuning, you can upload data to (or designate data already in) a [datastore](../concepts/connections.md#connections-to-datastores) to fine-tune the model. Then create a serverless API deployment for the fine-tuned model. The fine-tuned model can't be downloaded, but:
 
 * It's available exclusively for your use.
 * You can use double [encryption at rest](../openai/encrypt-data-at-rest.md): the default Microsoft AES-256 encryption and an optional customer-managed key.
