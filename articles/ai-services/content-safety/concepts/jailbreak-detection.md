@@ -78,7 +78,7 @@ Explore these resources to implement Prompt Shields in your application:
 > [Prompt Shields quickstart](../quickstart-jailbreak.md)
 
 **Additional resources**:
-- [Content Safety REST API reference](/rest/api/contentsafety/)
+- [Content Safety REST API reference](/rest/api/contentsafety/text-operations)
 - [Python SDK documentation](/python/api/azure-ai-contentsafety/)
 - [.NET SDK documentation](/dotnet/api/azure.ai.contentsafety)
 - [GitHub samples repository](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/contentsafety/azure-ai-contentsafety/samples)

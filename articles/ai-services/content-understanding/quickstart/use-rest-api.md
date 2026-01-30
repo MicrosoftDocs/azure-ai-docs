@@ -142,7 +142,7 @@ curl -i -X GET "{endpoint}/contentunderstanding/analyzerResults/{request-id}?api
   -H "Ocp-Apim-Subscription-Key: {key}"
 ```
 
-**Reference**: [Analyzer Results - Get](/rest/api/contentunderstanding/analyzer-results/get?view=rest-contentunderstanding-2025-11-01&preserve-view=true)
+**Reference**: [Analyzer Results - Get](/rest/api/contentunderstanding/content-analyzers/get-result?view=rest-contentunderstanding-2025-11-01&preserve-view=true)
 
 #### GET response
 

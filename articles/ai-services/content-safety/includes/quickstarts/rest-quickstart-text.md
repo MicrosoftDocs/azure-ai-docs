@@ -115,4 +115,4 @@ The JSON fields in the output are defined here:
 | **categoriesAnalysis**   | Each output class that the API predicts. Classification can be multi-labeled. For example, when a text sample is run through the text moderation model, it could be classified as both sexual content and violence. [Harm categories](../../concepts/harm-categories.md)| String |
 | **Severity** | The higher the severity of input content, the larger this value is. 	  | Integer |
 
-**References**: [Content Safety REST API](/rest/api/contentsafety/), [Text Analysis API](/rest/api/contentsafety/text-operations/analyze-text)
+**References**: [Content Safety REST API](/rest/api/contentsafety/text-operations), [Text Analysis API](/rest/api/contentsafety/text-operations/analyze-text)

@@ -108,4 +108,4 @@ Violence severity: 0
 
 Severity levels range from 0 (safe) to 6 (high risk).
 
-**References**: [ContentSafetyClient](https://docs.microsoft.com/python/api/azure-ai-contentsafety/azure.ai.contentsafety.contentsafetyclient), [AnalyzeTextOptions](https://docs.microsoft.com/python/api/azure-ai-contentsafety/azure.ai.contentsafety.models.analyzetextoptions), [TextCategory](https://docs.microsoft.com/python/api/azure-ai-contentsafety/azure.ai.contentsafety.models.textcategory)
+**References**: [ContentSafetyClient](/python/api/azure-ai-contentsafety/azure.ai.contentsafety.contentsafetyclient), [AnalyzeTextOptions](/python/api/azure-ai-contentsafety/azure.ai.contentsafety.models.analyzetextoptions), [TextCategory](/python/api/azure-ai-contentsafety/azure.ai.contentsafety.models.textcategory)

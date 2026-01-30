@@ -181,4 +181,4 @@ Violence severity: 0
 
 Severity levels range from 0 (safe) to 6 (high risk).
 
-**References**: [Content Safety REST Client](https://www.npmjs.com/package/@azure-rest/ai-content-safety), [AzureKeyCredential](https://docs.microsoft.com/javascript/api/@azure/core-auth/azurekeycredential)
+**References**: [Content Safety REST Client](https://www.npmjs.com/package/@azure-rest/ai-content-safety), [AzureKeyCredential](/javascript/api/@azure/core-auth/azurekeycredential)

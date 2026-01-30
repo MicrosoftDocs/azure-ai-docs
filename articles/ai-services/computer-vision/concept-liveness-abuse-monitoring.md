@@ -33,7 +33,7 @@ There are several components to Face liveness abuse monitoring:
 
 ## Additional components of abuse monitoring in v1.3 
 
--	Version 1.3 liveness detection introduces an extra component to improve abuse monitoring. This feature monitors matching facial templates across temporary correlation identifiers and will flag potential abuse in liveness detection results when similar facial templates are repeatedly used with different temporary correlation identifiers. Incorrectly setting up a temporary correlation identifier may also cause this feature to flag abuse. You can turn off this feature if you think it is not applicable to your use case by calling [liveness setting API](/rest/api/face/liveness-session-operations/patch-settings?view=rest-face-v1.3-preview).
+-	Version 1.3 liveness detection introduces an extra component to improve abuse monitoring. This feature monitors matching facial templates across temporary correlation identifiers and will flag potential abuse in liveness detection results when similar facial templates are repeatedly used with different temporary correlation identifiers. Incorrectly setting up a temporary correlation identifier may also cause this feature to flag abuse. You can turn off this feature if you think it is not applicable to your use case by calling [liveness setting API](/rest/api/face/liveness-session-operations/patch-settings?view=rest-face-v1.3-preview&preserve-view=true).
 
 ## Related content
 
