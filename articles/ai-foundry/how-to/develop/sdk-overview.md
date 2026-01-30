@@ -167,14 +167,20 @@ project = AIProjectClient(
 **Create an OpenAI-compatible client from your project:**
 
 ```python
-openai_client = project.inference.get_azure_openai_client(api_version="2024-10-21")
-response = openai_client.responses.create(
-    model="gpt-5.2",
-    input="What is the speed of light?",
-)
-print(response.output_text)
-```
+with project_client.get_openai_client() as openai_client:
+    response = openai_client.responses.create(
+        model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+        input="What is the size of France in square miles?",
+    )
+    print(f"Response output: {response.output_text}")
 
+    response = openai_client.responses.create(
+        model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+        input="And what is the capital city?",
+        previous_response_id=response.id,
+    )
+    print(f"Response output: {response.output_text}")
+```
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
