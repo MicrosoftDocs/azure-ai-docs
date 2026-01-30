@@ -159,7 +159,7 @@ Most apps use both clients. Use the project client for setup and configuration, 
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 
-project = AIProjectClient(
+project_client = AIProjectClient(
   endpoint="https://<resource-name>.services.ai.azure.com/api/projects/<project-name>",
   credential=DefaultAzureCredential())
 ```
