@@ -22,7 +22,7 @@ Prebuilt (also referred to as pretrained) features in Azure Language are powered
 
 Prebuilt models are updated continuously to improve prediction accuracy, expand language coverage, and enhance output quality. By default, all API requests are automatically routed to the latest Generally Available (GA) model version.
 
-### Selecting a model version
+### Choose the model version used on your data
 
 We recommend using the **latest** model version to ensure optimal accuracy and access to the most recent improvements. However, as models evolve, prediction outputs may change between versions. Deprecated model versions are no longer accepted in API requests after their retirement date.
 
