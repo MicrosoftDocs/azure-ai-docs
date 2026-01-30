@@ -41,7 +41,7 @@ For more information, see:
 
 Using a serverless Spark compute is the easiest way to access a Spark cluster for interactive data wrangling. A fully managed serverless Spark compute attached to a [Synapse Spark pool](how-to-manage-synapse-spark-pool.md) is directly available in Azure Machine Learning notebooks.
 
-To use any of the following data access and wrangling sources and methods, attach the Spark serverless compute by selecting **Serverless Spark Compute - Available** under **Azure Machine Learning Serverless Spark** next to **Compute** at the top of the file or notebook page. It can take a minute or two for the compute to attach to the session.
+To use any of the following data access and wrangling sources and methods, attach the Spark serverless compute by selecting **Azure Machine Learning Serverless Spark** > **Serverless Spark Compute - Available** next to **Compute** at the top of the file or notebook page. It can take a minute or two for the compute to attach to the session.
 
 ### Configure a serverless Spark session
 
@@ -63,8 +63,8 @@ Once you attach the serverless Spark compute, you can optionally configure the S
        >If you use session-level Conda packages, adding the `spark.hadoop.aml.enable_cache` configuration property with value `true` can [improve the Spark session cold start time](apache-spark-azure-ml-concepts.md#improving-session-cold-start-time-while-using-session-level-conda-packages). A session cold start with session level Conda packages typically takes 10 to 15 minutes the first time. Subsequent session cold starts with the configuration variable set to true typically take three to five minutes.
 
    - In the **Python packages** pane:
-     - To use a Conda file to configure your session, select **Upload conda file**. Next to **Select conda file**, select **Browse**, and then browse to and open the *conda.yml* file on your machine to upload it.
-     - Or to use a custom environment, select **Custom environment** and select a custom environment under **Environment type**. For more information, see [Manage software environments](how-to-manage-environments-in-studio.md).
+     - To use a Conda file to configure your session, select **Upload conda file**. Next to **Select conda file**, select **Browse**, and then browse to and open the appropriate Conda YAML file on your machine to upload it.
+     - To use a custom environment, select **Custom environment** and select a custom environment under **Environment type**. For more information, see [Manage software environments](how-to-manage-environments-in-studio.md).
 1. To apply all configurations, select **Apply**.
 
 The session configuration changes persist and are available to other notebook sessions that use the attached serverless Spark compute.
@@ -75,7 +75,7 @@ In Azure Machine Learning studio, your default workspace file share is the direc
 
 :::image type="content" source="media/interactive-data-wrangling-with-apache-spark-azure-ml/default-file-share.png" lightbox="media/interactive-data-wrangling-with-apache-spark-azure-ml/default-file-share.png" alt-text="Screenshot showing use of a file share.":::
 
-The following code snippet accesses and wrangles data from the *titanic.csv* file stored in the *data* folder on the default file share. Replace the `<USER>` placeholder with your username.
+The following code snippet accesses and wrangles data from the *titanic.csv* file stored in a *data* folder directly under the user name on the default file share. Replace the `<USER>` placeholder with your user name.
 
 ```python
 import os
@@ -138,7 +138,7 @@ To use a service principal to access and wrangle data from Azure Data Lake Stora
    |`fs.azure.account.oauth2.client.endpoint.<STORAGE_ACCOUNT_NAME>.dfs.core.windows.net`|`https://login.microsoftonline.com/<TENANT_ID>/oauth2/token`|
    |`fs.azure.account.oauth2.client.secret.<STORAGE_ACCOUNT_NAME>.dfs.core.windows.net`|Client secret value|
 
-1. Run the preceding *titanic.csv* data wrangling code sample that uses the `abfss://<FILE_SYSTEM_NAME>@<STORAGE_ACCOUNT_NAME>.dfs.core.windows.net/<PATH_TO_DATA>` data URI with `pyspark.pandas` and `pyspark.ml.feature.Imputer`. Replace the placeholders with your values.
+1. Run the preceding *titanic.csv* data wrangling code sample that uses the `abfss://<FILE_SYSTEM_NAME>@<STORAGE_ACCOUNT_NAME>.dfs.core.windows.net/<PATH_TO_DATA>` data URI with `pyspark.pandas` and `pyspark.ml.feature.Imputer`.
 
 <!--The `get_secret()` call in the following code depends on the name of the key vault and the names of the key vault secrets created for the service principal tenant ID, client ID and client secret.
 
