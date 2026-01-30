@@ -73,7 +73,7 @@ conceptualContent:
     - title: Voice Live
       links:
         - itemType: overview
-          text: What is voice Live?
+          text: What is Voice Live?
           url: /azure/ai-services/speech-service/voice-live
         - itemType: quickstart
           text: Get started with Voice Live models
