@@ -7,7 +7,7 @@ ai-usage: ai-assisted
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: concept-article
-ms.date: 01/23/2026
+ms.date: 01/30/2026
 ms.author: mopeakande
 manager: nitinme
 author: msakande
