@@ -8,7 +8,7 @@ ms.reviewer: soumyapatro
 ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.topic: how-to
-ms.date: 01/29/2026
+ms.date: 01/30/2026
 ms.custom: template-how-to
 #customer intent: As a data scientist, I want to learn how to set up and configure Spark serverless compute sessions in Azure Machine Learning studio so I can easily access and wrangle data from various sources.
 ---
@@ -33,9 +33,6 @@ For more information, see:
 - [Create an Azure Key Vault](/azure/key-vault/general/quick-create-portal)
 - [Create a service principal](/azure/active-directory/develop/howto-create-service-principal-portal)
 - [Attach a Synapse Spark pool in the Azure Machine Learning workspace](how-to-manage-synapse-spark-pool.md)
-
->[!NOTE]
->The code and files for this article are available in a Machine Learning notebook at [https://github.com/Azure/azureml-examples/tree/main/sdk/python/data-wrangling](https://github.com/Azure/azureml-examples/tree/main/sdk/python/data-wrangling).
 
 ## Use serverless Spark compute in notebook sessions
 
@@ -69,39 +66,13 @@ Once you attach the serverless Spark compute, you can optionally configure the S
 
 The session configuration changes persist and are available to other notebook sessions that use the attached serverless Spark compute.
 
-## Access data on the default file share
-
-In Azure Machine Learning studio, your default workspace file share is the directory tree under the **Files** tab in **Notebooks**. Notebook code can directly access files stored in this file share with the `file://` protocol, using the absolute path of the file without other configuration. The default file share is mounted to both serverless Spark compute and attached Synapse Spark pools.
-
-:::image type="content" source="media/interactive-data-wrangling-with-apache-spark-azure-ml/default-file-share.png" lightbox="media/interactive-data-wrangling-with-apache-spark-azure-ml/default-file-share.png" alt-text="Screenshot showing use of a file share.":::
-
-The following code snippet accesses and wrangles data from the *titanic.csv* file stored in a *data* folder directly under the user name on the default file share. Replace the `<USER>` placeholder with your user name.
-
-```python
-import os
-import pyspark.pandas as pd
-from pyspark.ml.feature import Imputer
-
-abspath = os.path.abspath(".")
-file = "file://" + abspath + "/Users/<USER>/data/titanic.csv"
-print(file)
-df = pd.read_csv(file, index_col="PassengerId")
-imputer = Imputer(
-    inputCols=["Age"],
-    outputCol="Age").setStrategy("mean") # Replace missing values in Age column with the mean value
-df.fillna(value={"Cabin" : "None"}, inplace=True) # Fill Cabin column with value "None" if missing
-df.dropna(inplace=True) # Drop the rows which still have any missing value
-output_path = "file://" + abspath + "/Users/<USER>/data/wrangled"
-df.to_csv(output_path, index_col="PassengerId")
-```
-
 ## Import and wrangle data from Azure Data Lake Storage
 
 To access and wrangle data stored in Azure Data Lake Storage storage accounts, you use a `abfss://` protocol URI with either *user identity passthrough* or *service principal-based* access. User identity passthrough requires no added configuration.
 
 To use either method, the user identity or service principal must have **Contributor** and **Storage Blob Data Contributor** [role assignments](apache-spark-environment-configuration.md#add-role-assignments-in-azure-storage-accounts) in the Azure Data Lake Storage account.
 
-Run the following data wrangling code sample to use a data URI in format `abfss://<FILE_SYSTEM_NAME>@<STORAGE_ACCOUNT_NAME>.dfs.core.windows.net/<PATH_TO_DATA>` with `pyspark.pandas` and `pyspark.ml.feature.Imputer`. Replace the `<STORAGE_ACCOUNT_NAME>` placeholder with the name of your Azure Data Lake Storage account and `<FILE_SYSTEM_NAME>` with the name of the data container.
+For user identity passthrough, run the following data wrangling code sample to use a data URI in format `abfss://<FILE_SYSTEM_NAME>@<STORAGE_ACCOUNT_NAME>.dfs.core.windows.net/<PATH_TO_DATA>` with `pyspark.pandas` and `pyspark.ml.feature.Imputer`. Replace the `<STORAGE_ACCOUNT_NAME>` placeholder with the name of your Azure Data Lake Storage account and `<FILE_SYSTEM_NAME>` with the name of the data container.
 
 ```python
 import pyspark.pandas as pd
@@ -130,7 +101,7 @@ To use a service principal to access and wrangle data from Azure Data Lake Stora
 
 1. [Create a service principal](/azure/active-directory/develop/howto-create-service-principal-portal) and [assign it the necessary Storage Blob Data Contributor and Key Vault Secrets User roles](/azure/active-directory/develop/howto-create-service-principal-portal#assign-a-role-to-the-application).
 1. Obtain the service principal tenant ID, client ID, and client secret values from the app registration and [create Azure Key Vault secrets](apache-spark-environment-configuration.md#store-azure-storage-account-credentials-as-secrets-in-azure-key-vault) for the values.
-1. Set the following property name/value pairs for the service principal tenant ID, client ID, and client secret in the session configuration before you start the Spark session. Replace `<STORAGE_ACCOUNT_NAME>` with your storage account name and `<TENANT_ID>` with the service principal tenant ID.
+1. Set the service principal tenant ID, client ID, and client secret by adding the following property name/value pairs in the session configuration. Replace `<STORAGE_ACCOUNT_NAME>` with your storage account name and `<TENANT_ID>` with the service principal tenant ID.
 
    |Property name|Value|
    |-------------|-----|
@@ -138,9 +109,7 @@ To use a service principal to access and wrangle data from Azure Data Lake Stora
    |`fs.azure.account.oauth2.client.endpoint.<STORAGE_ACCOUNT_NAME>.dfs.core.windows.net`|`https://login.microsoftonline.com/<TENANT_ID>/oauth2/token`|
    |`fs.azure.account.oauth2.client.secret.<STORAGE_ACCOUNT_NAME>.dfs.core.windows.net`|Client secret value|
 
-1. Run the preceding *titanic.csv* data wrangling code sample that uses the `abfss://<FILE_SYSTEM_NAME>@<STORAGE_ACCOUNT_NAME>.dfs.core.windows.net/<PATH_TO_DATA>` data URI with `pyspark.pandas` and `pyspark.ml.feature.Imputer`.
-
-<!--The `get_secret()` call in the following code depends on the name of the key vault and the names of the key vault secrets created for the service principal tenant ID, client ID and client secret.
+1. Run the following code. The `get_secret()` call in the code depends on the Key Vault name and the names of the Key Vault secrets created for the service principal tenant ID, client ID and client secret.
 
    ```python
    from pyspark.sql import SparkSession
@@ -174,13 +143,35 @@ To use a service principal to access and wrangle data from Azure Data Lake Stora
        "https://login.microsoftonline.com/" + tenant_id + "/oauth2/token",
    )
    ```
-   -->
+
+1. Import and wrangle the *titanic.csv* data using a data URI in the abfss://<FILE_SYSTEM_NAME>@<STORAGE_ACCOUNT_NAME>.dfs.core.windows.net/<PATH_TO_DATA> format, as shown in the code sample. Replace the `<STORAGE_ACCOUNT_NAME>` placeholder with the name of your Azure Data Lake Storage account and `<FILE_SYSTEM_NAME>` with the name of the data container.
+
+   ```python
+   import pyspark.pandas as pd
+   from pyspark.ml.feature import Imputer
+   
+   df = pd.read_csv(
+       "abfss://<FILE_SYSTEM_NAME>@<STORAGE_ACCOUNT_NAME>.dfs.core.windows.net/data/titanic.csv",
+       index_col="PassengerId",
+   )
+   imputer = Imputer(inputCols=["Age"], outputCol="Age").setStrategy(
+       "mean"
+   )  # Replace missing values in Age column with the mean value
+   df.fillna(
+       value={"Cabin": "None"}, inplace=True
+   )  # Fill Cabin column with value "None" if missing
+   df.dropna(inplace=True)  # Drop the rows which still have any missing value
+   df.to_csv(
+       "abfss://<FILE_SYSTEM_NAME>@<STORAGE_ACCOUNT_NAME>.dfs.core.windows.net/data/wrangled",
+       index_col="PassengerId",
+   )
+   ```
 
 ## Import and wrangle data from Azure Blob storage
 
-You can access Azure Blob storage data with either the *storage account access key* or a *shared access signature (SAS) token*. [Store the credential in Azure Key Vault as a secret](apache-spark-environment-configuration.md#store-azure-storage-account-credentials-as-secrets-in-azure-key-vault), or set it as a property in the Spark session configuration.
+You can access Azure Blob storage data with either the *storage account access key* or a *shared access signature (SAS) token*. [Store the credential in Azure Key Vault as a secret](apache-spark-environment-configuration.md#store-azure-storage-account-credentials-as-secrets-in-azure-key-vault), and set it as a property in the Spark session configuration.
 
-<!--1. Run one of the following code snippets. The `get_secret()` calls in the code snippets require the name of the key vault and the names of the secrets created for the Azure Blob storage account access key or SAS token.
+1. Run one of the following code snippets. The `get_secret()` calls in the code snippets require the name of the key vault and the names of the secrets created for the Azure Blob storage account access key or SAS token.
 
    - To configure a storage account access key, set the `fs.azure.account.key.<STORAGE_ACCOUNT_NAME>.blob.core.windows.net` property as shown in the following code snippet:
 
@@ -208,14 +199,6 @@ You can access Azure Blob storage data with either the *storage account access k
          sas_token,
      )
      ```
--->
-
-1. In the Spark session configuration, set a property name/value pair for the storage account key or SAS token, depending on which access method you want to use. Replace `<STORAGE_ACCOUNT_NAME>` with your storage account name and `<BLOB_CONTAINER_NAME>` with the name of the Blob container.
-
-   |Credential|Property name|Value|
-   |---------------|-------------|-----|
-   |Access key|`fs.azure.account.key.<STORAGE_ACCOUNT_NAME>.blob.core.windows.net`|Storage account key value|
-   |SAS token|`fs.azure.sas.<BLOB_CONTAINER_NAME>.<STORAGE_ACCOUNT_NAME>.blob.core.windows.net`|SAS token value|
 
 1. Run the following data wrangling code with the data URI formatted as `wasbs://<BLOB_CONTAINER_NAME>@<STORAGE_ACCOUNT_NAME>.blob.core.windows.net/<PATH_TO_DATA>`.
 
@@ -279,6 +262,32 @@ The following table summarizes the authentication mechanisms for accessing data 
 |Azure Data Lake Storage|Yes|User identity passthrough|User identity should have [appropriate role assignments](./apache-spark-environment-configuration.md#add-role-assignments-in-azure-storage-accounts) in the Azure Data Lake Storage storage account.|
 
 \* User identity passthrough works for credentialless datastores that point to Azure Blob storage accounts only if [soft delete](/azure/storage/blobs/soft-delete-blob-overview) isn't enabled.
+
+## Access data on the default file share
+
+In Azure Machine Learning studio, your default workspace file share is the directory tree under the **Files** tab in **Notebooks**. Notebook code can directly access files stored in this file share with the `file://` protocol, using the absolute path of the file without other configuration. The default file share is mounted to both serverless Spark compute and attached Synapse Spark pools.
+
+:::image type="content" source="media/interactive-data-wrangling-with-apache-spark-azure-ml/default-file-share.png" lightbox="media/interactive-data-wrangling-with-apache-spark-azure-ml/default-file-share.png" alt-text="Screenshot showing use of a file share.":::
+
+The following code snippet accesses and wrangles data from the *titanic.csv* file stored in a *data* folder directly under the user name on the default file share. Replace the `<USER>` placeholder with your user name.
+
+```python
+import os
+import pyspark.pandas as pd
+from pyspark.ml.feature import Imputer
+
+abspath = os.path.abspath(".")
+file = "file://" + abspath + "/Users/<USER>/data/titanic.csv"
+print(file)
+df = pd.read_csv(file, index_col="PassengerId")
+imputer = Imputer(
+    inputCols=["Age"],
+    outputCol="Age").setStrategy("mean") # Replace missing values in Age column with the mean value
+df.fillna(value={"Cabin" : "None"}, inplace=True) # Fill Cabin column with value "None" if missing
+df.dropna(inplace=True) # Drop the rows which still have any missing value
+output_path = "file://" + abspath + "/Users/<USER>/data/wrangled"
+df.to_csv(output_path, index_col="PassengerId")
+```
 
 ## Related content
 
