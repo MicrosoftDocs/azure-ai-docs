@@ -44,14 +44,14 @@ Use the compliance workspace tabs to reach the right surface quickly.
 
 ## Create, review, and manage guardrail policies
 
-You can use guardrail policies to mandate minimum guardrail controls for your model deployments across a subscription or within a resource group. Guardrail controls include content filtering, abuse monitoring, and other safety measures that protect your model deployments from generating harmful content or being misused.
+You can use guardrail policies to mandate minimum guardrail controls for your model deployments across a subscription or within a resource group. Guardrail controls include content filtering, abuse monitoring, and other safety measures that help protect your model deployments from generating harmful content or being misused.
 
 To learn more about guardrail policies, see [Guardrails and controls overview in Microsoft Foundry](../guardrails/guardrails-overview.md).
 
 Most users don't have permission to create guardrail policies because they need the appropriate Azure role-based access control (RBAC) roles for Azure Policy. See the [overview of Azure Policy](/azure/governance/policy/overview#azure-policy-and-azure-rbac). Most users in Foundry can still view the compliance status of individual guardrail policies and model deployments.
 
 > [!TIP]
-> Access the compliance workspace by selecting **Operate** on the toolbar, and then selecting **Compliance** on the left pane. Use the subscription and project filters to scope your view before switching tabs.
+> Access the compliance workspace by selecting **Operate** on the toolbar, and then selecting **Compliance** on the left pane. Use the subscription and project filters to scope your view before you switch tabs.
 
 ### View and fix compliance violations
 
@@ -67,9 +67,9 @@ Determine whether any model deployments don't comply with organizational guardra
 
 1. To update the guardrail configuration of a noncompliant asset, select **Fix now**. This selection opens the model deployment's guardrail configuration pane, where you can adjust settings to meet the guardrail policy requirements.
 
-   After you save your changes, the compliance status updates within a few minutes.
+   After you save your changes, the compliance status is updated within a few minutes.
 
-Additionally, you can review compliance status by asset rather than by guardrail policy:
+You can also review compliance status by asset rather than by guardrail policy:
 
 1. Select the **Assets** tab by using the **Policy/Assets** toggle.
 
@@ -77,13 +77,11 @@ Additionally, you can review compliance status by asset rather than by guardrail
 
 1. Examine any assets marked as **Violation detected** in the **Policy Compliance** column. Select these rows to access further details. Assets might appear multiple times if they're subject to several guardrail policies.
 
-1. Review the governing guardrail policies and the specifics of any noncompliant guardrail policy on the pane that appears.
+1. On the pane that appears, review the governing guardrail policies and the specifics of any noncompliant guardrail policy.
 
 1. Select **View in Build** to modify the guardrail configuration and bring the model deployment into compliance. Review all relevant guardrail policies for each asset to ensure that you make all necessary adjustments to achieve full compliance.
 
 ### Create a guardrail policy
-
-To create a guardrail policy, follow these steps:
 
 1. In the compliance workspace, select **Create new policy**.
 
@@ -104,8 +102,6 @@ To create a guardrail policy, follow these steps:
 After you create the guardrail policy, it's listed on the **Policies** tab. The compliance status is updated automatically as Azure Policy evaluates your resources.
 
 ### Edit a guardrail policy
-
-To edit an existing guardrail policy, follow these steps:
 
 1. In the compliance workspace, select the **Policies** tab. Locate and select the guardrail policy that you want to edit.
 
@@ -154,11 +150,9 @@ To review Defender security recommendations, follow these steps:
 
 1. [Enable Microsoft Defender for Cloud](/azure/defender-for-cloud/connect-azure-subscription) for your subscription if you need to do so.
 
-1. View recommendations in the **Microsoft Defender for Cloud** section, including the affected resource and the associated risk level. 
+1. View recommendations in the **Microsoft Defender for Cloud** section, including the affected resource and the associated risk level. Recommendations might include enabling more security features, fixing misconfigurations, or addressing potential vulnerabilities in your AI deployments.
 
-   Recommendations might include enabling additional security features, fixing misconfigurations, or addressing potential vulnerabilities in your AI deployments.
-
-1. Select a recommendation to view details and links to take remediation action in the Azure portal.
+1. Select a recommendation to view details, and select links to take remediation action in the Azure portal.
 
 ## Enable enterprise-grade data security and compliance for Foundry with Microsoft Purview (preview)
 
@@ -167,18 +161,18 @@ By enabling Microsoft Purview on your Azure subscription, you can access, proces
 - Microsoft Purview Audit
 - Sensitive information type (SIT) classification
 - Analytics and reporting through Microsoft Purview Data Security Posture Management (DSPM) for AI
-- Insider Risk Management
-- Communication Compliance
-- Data Lifecycle Management
-- eDiscovery
+- Microsoft Purview Insider Risk Management
+- Microsoft Purview Communication Compliance
+- Microsoft Purview Data Lifecycle Management
+- Microsoft Purview eDiscovery
 
 This capability helps your organization manage and monitor AI-generated data in alignment with enterprise policies and regulatory requirements. Keep these considerations in mind:
 
-- Microsoft Purview Data Security Policies for Foundry Services interactions are supported for API calls that use Microsoft Entra ID authentication with a user-context token, or for API calls that explicitly include user context. To learn more, see [AzureUserSecurityContext](../../openai/latest.md#azureusersecuritycontext). For all other authentication scenarios, user interactions captured in Microsoft Purview show up only in Microsoft Purview Audit and AI interactions with classifications within DSPM for the AI activity explorer.
+- Microsoft Purview Data Security Policies for Foundry Services interactions are supported for API calls that use Microsoft Entra ID authentication with a user-context token, or for API calls that explicitly include user context. To learn more, see [AzureUserSecurityContext](../../openai/latest.md#azureusersecuritycontext). For all other authentication scenarios, user interactions captured in Microsoft Purview appear only in Microsoft Purview Audit and AI interactions with classifications within DSPM for the AI activity explorer.
 
 - Microsoft Purview Audit is included as part of the Microsoft Purview license for Foundry services. For setup of data security policies in Microsoft Purview by your enterprise security admins, billing is based on [pay-as-you-go](https://azure.microsoft.com/pricing/details/purview/) meters.
 
-- Integration with Microsoft Purview for the preceding features in Microsoft Foundry doesn't yet support network isolation.
+- Integration with Microsoft Purview for the preceding features in Foundry doesn't yet support network isolation.
 
 - Integration with Microsoft Purview is currently available only for calls made on the OpenAI Completions API.
 
