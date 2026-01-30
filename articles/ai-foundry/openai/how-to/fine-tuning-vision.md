@@ -79,5 +79,5 @@ Images containing the following will be excluded from your dataset and not used 
 ## Next steps
 
 - [Deploy a fine-tuned model](fine-tuning-deploy.md).
-- Review fine-tuning [model regional availability](../concepts/models.md#fine-tuning-models)
+- Review fine-tuning [model regional availability](../concepts/models.md?pivots=azure-openai#fine-tuning-models)
 - Learn more about [Azure OpenAI quotas](../quotas-limits.md)
