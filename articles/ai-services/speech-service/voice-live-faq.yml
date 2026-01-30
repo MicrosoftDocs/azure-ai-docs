@@ -61,11 +61,7 @@ sections:
       - question: |
           How do I get the live transcripts from the call?
         answer: |
-<<<<<<< HEAD
           Use text output events. Details at [Voice live API reference](./voice-live-api-reference-2025-10-01.md).
-=======
-          Use text output events. Details at [Voice Live API reference](./voice-live-api-reference.md).
->>>>>>> b33b6cd07f606d6f65439781e0ed3299c6d8375f
       - question: |
           What is a phrase list?
         answer: |
