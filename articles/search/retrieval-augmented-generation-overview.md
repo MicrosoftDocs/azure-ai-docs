@@ -7,7 +7,7 @@ ms.author: heidist
 manager: nitinme
 ms.date: 01/15/2026
 ms.service: azure-ai-search
-ms.topic: article
+ms.topic: concept-article
 ms.custom:
   - ignite-2023
   - ignite-2024
@@ -239,9 +239,9 @@ There are many ways to get started, including code-first solutions and demos.
 
 ### [**Videos**](#tab/videos)
 
-+ [Foundry IQ: the future of RAG with knowledge retrieval and AI Search](https://www.youtube.com/watch?v=slDdNIQCJBQ)
++ [Foundry IQ: The future of RAG with knowledge retrieval and Azure AI Search](https://www.youtube.com/watch?v=slDdNIQCJBQ)
 
-+ [Build agents with knowledge, agentic RAG and Azure AI Search](https://www.youtube.com/watch?v=lW47o2ss3Yg) 
++ [Build agents with knowledge, agentic RAG, and Azure AI Search](https://www.youtube.com/watch?v=lW47o2ss3Yg) 
 
 + [(Classic RAG) Vector search and state of the art retrieval for Generative AI apps](https://www.youtube.com/watch?v=lSzc1MJktAo)
 

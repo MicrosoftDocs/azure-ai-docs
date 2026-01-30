@@ -5,7 +5,7 @@ description: Learn how to use events with the Realtime API and Voice Live API.
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: article
+ms.topic: reference
 ms.date: 09/16/2025
 author: PatrickFarley
 ms.author: pafarley

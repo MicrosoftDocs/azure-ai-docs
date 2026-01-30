@@ -10,7 +10,8 @@ ms.author: scottpolly
 ms.reviewer: jturuk
 ms.date: 01/14/2026
 ms.topic: how-to
-ms.custom: devops-pipelines-deploy
+ms.custom: devops-pipelines-deploy, dev-focus
+ai-usage: ai-assisted
 ---
 
 # Use Azure Pipelines with Azure Machine Learning
@@ -33,6 +34,7 @@ This tutorial uses [Azure Machine Learning Python SDK v2](/python/api/overview/a
 * Complete the [Create resources to get started tutorial](quickstart-create-resources.md) to:
     * Create a workspace
 * [Create a cloud-based compute cluster](how-to-create-attach-compute-cluster.md#create) to use for training your model.
+* Python 3.10 or later installed for running Azure ML SDK v2 scripts locally.
 * Install the Azure Machine Learning extension for Azure Pipelines. You can install this extension from the [Visual Studio marketplace](https://marketplace.visualstudio.com/items?itemName=ms-air-aiagility.azureml-v2). 
 
 ## Step 1: Get the code
@@ -100,7 +102,7 @@ You need an Azure Resource Manager connection to authenticate with the Azure por
 
 Delete the starter pipeline and replace it with the following YAML code. In this pipeline, you'll:
 
-* Use the Python version task to set up Python 3.8 and install the SDK requirements.
+* Use the Python version task to set up Python 3.10 and install the SDK requirements.
 * Use the Bash task to run bash scripts for the Azure Machine Learning SDK and CLI.
 * Use the Azure CLI task to submit an Azure Machine Learning job. 
 
@@ -127,9 +129,9 @@ jobs:
     vmImage: ubuntu-latest
   steps:
   - task: UsePythonVersion@0
-    displayName: Use Python >=3.8
+    displayName: Use Python >=3.10
     inputs:
-      versionSpec: '>=3.8'
+      versionSpec: '>=3.10'
 
   - bash: |
       set -ex
@@ -176,9 +178,9 @@ jobs:
     vmImage: ubuntu-latest
   steps:
   - task: UsePythonVersion@0
-    displayName: Use Python >=3.8
+    displayName: Use Python >=3.10
     inputs:
-      versionSpec: '>=3.8'
+      versionSpec: '>=3.10'
 
   - bash: |
       set -ex
@@ -274,7 +276,7 @@ If you're using the generic service connection, you can't use the task provided 
       method: PATCH
       body: "{ \"Properties\": { \"NotificationSetting\": { \"Webhooks\": { \"ADO_Webhook_$(system.TimelineId)\": { \"WebhookType\": \"AzureDevOps\", \"EventType\": \"RunTerminated\", \"PlanUri\": \"$(system.CollectionUri)\", \"ProjectId\": \"$(system.teamProjectId)\", \"HubName\": \"$(system.HostType)\", \"PlanId\": \"$(system.planId)\", \"JobId\": \"$(system.jobId)\", \"TimelineId\": \"$(system.TimelineId)\", \"TaskInstanceId\": \"$(system.TaskInstanceId)\", \"AuthToken\": \"$(system.AccessToken)\"}}}}}"
       headers: "{\n\"Content-Type\":\"application/json\", \n\"Authorization\":\"Bearer $(AAD_TOKEN)\" \n}"
-      urlSuffix: "subscriptions/$(subscription_id)/resourceGroups/$(resource-group)/providers/Microsoft.MachineLearningServices/workspaces/$(workspace)/jobs/$(job_name_from_submit_task)?api-version=2023-04-01-preview"
+      urlSuffix: "subscriptions/$(subscription_id)/resourceGroups/$(resource-group)/providers/Microsoft.MachineLearningServices/workspaces/$(workspace)/jobs/$(job_name_from_submit_task)?api-version=2024-04-01"
       waitForCompletion: "true"
 ```
 ---

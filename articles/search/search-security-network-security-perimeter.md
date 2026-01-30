@@ -1,7 +1,7 @@
 ---
-title: Add a search service to a network security perimeter
+title: Add a Search Service to a Network Security Perimeter
 titleSuffix: Azure AI Search
-description: Add a search service to a network security perimeter for a secure connection
+description: Learn how to add an Azure AI Search service to a network security perimeter for a secure connection.
 author: haileytap
 ms.author: haileytapia
 manager: nitinme
@@ -9,18 +9,18 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 08/18/2025
+ms.date: 01/16/2026
 ---
 
 # Add a search service to a network security perimeter
 
-A network security perimeter is a logical network boundary around your platform-as-a-service (PaaS) resources that are deployed outside of a virtual network. It establishes a perimeter for controlling public network access to resources like Azure AI Search, [Azure Storage](/azure/storage/common/storage-network-security-perimeter), and [Azure OpenAI](/azure/ai-foundry/openai/how-to/network-security-perimeter).
+A [network security perimeter](/azure/private-link/network-security-perimeter-concepts) is a logical network boundary around your platform as a service (PaaS) resources that you deploy outside of a virtual network. It establishes a perimeter for controlling public network access to resources like Azure AI Search, [Azure Storage](/azure/storage/common/storage-network-security-perimeter), and [Azure OpenAI](/azure/ai-foundry/openai/how-to/network-security-perimeter).
 
-This article explains how to join an Azure AI Search service to a [network security perimeter](/azure/private-link/network-security-perimeter-concepts) to control network access to your search service. By joining a network security perimeter, you can:
+This article explains how to join an Azure AI Search service to a network security perimeter to control network access to your search service. By joining a network security perimeter, you can:
 
 * Log all access to your search service in context with other Azure resources in the same perimeter.
 * Block any data exfiltration from a search service to other services outside the perimeter.
-* Allow access to your search service using inbound and outbound access capabilities of the network security perimeter.
+* Allow access to your search service by using the inbound and outbound access capabilities of the network security perimeter.
 
 You can add a search service to a network security perimeter in the Azure portal, as described in this article. Alternatively, you can use the [Azure Virtual Network Manager REST API](/rest/api/networkmanager/) to join a search service, and use the [Search Management REST APIs](/rest/api/searchmanagement/network-security-perimeter-configurations?view=rest-searchmanagement-2025-05-01&preserve-view=true) to view and synchronize the configuration settings.
 
@@ -32,7 +32,7 @@ You can add a search service to a network security perimeter in the Azure portal
 
 ## Limitations
 
-* For search services within a network security perimeter, indexers must use a [system or user-assigned managed identity](search-how-to-managed-identities.md) and have a role assignment that permits read-access to data sources.
+* For search services within a network security perimeter, indexers must use a [system or user-assigned managed identity](search-how-to-managed-identities.md) and have a role assignment that permits read access to data sources.
 
 * Supported indexer data sources are currently limited to [Azure Blob Storage](search-how-to-index-azure-blob-storage.md), [Azure Cosmos DB for NoSQL](./search-how-to-index-cosmosdb-sql.md), and [Azure SQL Database](search-how-to-index-sql-database.md).
 
@@ -40,7 +40,7 @@ You can add a search service to a network security perimeter in the Azure portal
 
 ## Assign a search service to a network security perimeter
 
-Azure Network Security Perimeter allows administrators to define a logical network isolation boundary for PaaS resources (for example, Azure Storage and Azure SQL Database) that are deployed outside virtual networks. It restricts communication to resources within the perimeter, and it allows non-perimeter public traffic through inbound and outbound access rules.
+By using Azure Network Security Perimeter, administrators can define a logical network isolation boundary for PaaS resources, such as Azure Storage and Azure SQL Database, that are deployed outside virtual networks. It restricts communication to resources within the perimeter, and it allows non-perimeter public traffic through inbound and outbound access rules.
 
 You can add Azure AI Search to a network security perimeter so that all indexing and query requests occur within the security boundary.
 
@@ -68,18 +68,18 @@ You can add Azure AI Search to a network security perimeter so that all indexing
 
 Network security perimeter supports two different access modes for associated resources:
 
-| **Mode** | **Description** |
-|----------------|--------|
-| **Learning mode**  | This is the default access mode. In *learning* mode, network security perimeter logs all traffic to the search service that would have been denied if the perimeter was in enforced mode. This allows network administrators to understand the existing access patterns of the search service before implementing enforcement of access rules. |
-| **Enforced mode**  | In *Enforced* mode, network security perimeter logs and denies all traffic that isn't explicitly allowed by access rules. |
+| Mode | Description |
+|--|--|
+| Learning mode | This is the default access mode. In learning mode, network security perimeter logs all traffic to the search service that would be denied if the perimeter was in enforced mode. This access mode allows network administrators to understand the existing access patterns of the search service before implementing enforcement of access rules. |
+| Enforced mode | In enforced mode, network security perimeter logs and denies all traffic that isn't explicitly allowed by access rules. |
 
 #### Network security perimeter and search service networking settings
 
 The `publicNetworkAccess` setting determines search service association with a network security perimeter.
 
-* In Learning mode, the `publicNetworkAccess` setting controls public access to the resource.
+* In learning mode, the `publicNetworkAccess` setting controls public access to the resource.
 
-* In Enforced mode, the `publicNetworkAccess` setting is overridden by the network security perimeter rules. For example, if a search service with a `publicNetworkAccess` setting of `enabled` is associated with a network security perimeter in Enforced mode, access to the search service is still controlled by network security perimeter access rules.
+* In enforced mode, the network security perimeter rules override the `publicNetworkAccess` setting. For example, if a search service with a `publicNetworkAccess` setting of `enabled` is associated with a network security perimeter in enforced mode, access to the search service is still controlled by network security perimeter access rules.
 
 #### Change the network security perimeter access mode
 
@@ -123,22 +123,22 @@ The `publicNetworkAccess` setting determines search service association with a n
 
 #### Log Analytics workspace
 
-The `network-security-perimeterAccessLogs` table contains all the logs for every log category (for example `network-security-perimeterPublicInboundResourceRulesAllowed`). Every log contains a record of the network security perimeter network access that matches the log category.
+The `network-security-perimeterAccessLogs` table contains all the logs for every log category, such as `network-security-perimeterPublicInboundResourceRulesAllowed`. Each log contains a record of the network security perimeter network access that matches the log category.
 
 Here's an example of the `network-security-perimeterPublicInboundResourceRulesAllowed` log format:
 
 | Column Name | Meaning | Example Value |
 |--|--|--|
-| ResultDescription | Name of the network access operation | POST /indexes/my-index/docs/search |
-| Profile | Which network security perimeter the search service was associated with | defaultProfile |
-| ServiceResourceId | Resource ID of the search service | `search-service-resource-id` |
-| Matched Rule | JSON description of the rule that was matched by the log | `{ "accessRule": "IP firewall" }` |
-| SourceIPAddress | Source IP of the inbound network access, if applicable | 1.1.1.1 |
-| AccessRuleVersion | Version of the network-security-perimeter access rules used to enforce the network access rules | 0 |
+| ResultDescription | Name of the network access operation. | POST /indexes/my-index/docs/search |
+| Profile | Which network security perimeter the search service was associated with. | defaultProfile |
+| ServiceResourceId | Resource ID of the search service. | `search-service-resource-id` |
+| Matched Rule | JSON description of the rule that the log matched. | `{ "accessRule": "IP firewall" }` |
+| SourceIPAddress | Source IP of the inbound network access, if applicable. | 1.1.1.1 |
+| AccessRuleVersion | Version of the network-security-perimeter access rules used to enforce the network access rules. | 0 |
 
 #### Storage Account
 
-The storage account has containers for every log category (for example `insights-logs-network-security-perimeterpublicinboundperimeterrulesallowed`). The folder structure inside the container matches the resource ID of the network security perimeter and the time the logs were taken. Each line on the JSON log file contains a record of the network security perimeter network access that matches the log category.
+The storage account has containers for every log category, such as `insights-logs-network-security-perimeterpublicinboundperimeterrulesallowed`. The folder structure inside the container matches the resource ID of the network security perimeter and the time the logs were taken. Each line on the JSON log file contains a record of the network security perimeter network access that matches the log category.
 
 For example, the inbound perimeter rules allowed category log uses the following format:
 
@@ -163,10 +163,10 @@ Within the perimeter, all resources have mutual access at the network level. You
 
 For resources outside of the network security perimeter, you must specify inbound and outbound access rules. Inbound rules specify which connections to allow in, and outbound rules specify which requests are allowed out.
 
-A search service accepts inbound requests from apps like [Foundry portal](https://ai.azure.com/?cid=learnDocs), Azure Machine Learning prompt flow, and any app that sends indexing or query requests. A search service sends outbound requests during indexer-based indexing and skillset execution. This section explains how to set up inbound and outbound access rules for Azure AI Search scenarios.
+A search service accepts inbound requests from apps like the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs), Azure Machine Learning prompt flow, and any app that sends indexing or query requests. A search service sends outbound requests during indexer-based indexing and skillset execution. This section explains how to set up inbound and outbound access rules for Azure AI Search scenarios.
 
    > [!NOTE]
-   > Any service associated with a network security perimeter implicitly allows inbound and outbound access to any other service associated with the same network security perimeter when that access is authenticated using [managed identities and role assignments](/entra/identity/managed-identities-azure-resources/overview). Access rules only need to be created when allowing access outside of the network security perimeter, or for access authenticated using API keys.
+   > When you authenticate access by using [managed identities and role assignments](/entra/identity/managed-identities-azure-resources/overview), any service associated with a network security perimeter implicitly allows inbound and outbound access to any other service associated with the same network security perimeter. You only need to create access rules when you allow access outside of the network security perimeter or for access authenticated by using API keys.
 
 ### Add an inbound access rule
 
@@ -176,7 +176,7 @@ Network security perimeter supports two types of inbound access rules:
 
 * IP address ranges. IP addresses or ranges must be in the Classless Inter-Domain Routing (CIDR) format. An example of CIDR notation is 192.0.2.0/24, which represents the IPs that range from 192.0.2.0 to 192.0.2.255. This type of rule allows inbound requests from any IP address within the range.
 
-* Subscriptions. This type of rule allows inbound access authenticated using any managed identity from the subscription.
+* Subscriptions. This type of rule allows inbound access authenticated by using any managed identity from the subscription.
 
 To add an inbound access rule in the Azure portal:
 
@@ -202,7 +202,7 @@ To add an inbound access rule in the Azure portal:
 
    | Setting | Value |
    | ------- | ----- |
-   | Rule name | The name for the inbound access rule, such as "MyInboundAccessRule."  |
+   | Rule name | The name for the inbound access rule, such as `MyInboundAccessRule`. |
    | Source type | Valid values are **IP address ranges** or **Subscriptions**. |
    | Allowed sources | If you selected **IP address ranges**, enter the IP address range in CIDR format that you want to allow inbound access from. Azure IP ranges are available at [this link](https://www.microsoft.com/download/details.aspx?id=56519). If you selected **Subscriptions**, use the subscription you want to allow inbound access from. |
 
@@ -214,9 +214,9 @@ To add an inbound access rule in the Azure portal:
 
 A search service makes outbound calls during indexer-based indexing and skillset execution. If your indexer data sources, Foundry Tools, or custom skill logic is outside of the network security perimeter, you should create an outbound access rule that allows your search service to make the connection.
 
-Recall that in public preview, Azure AI Search can only connect to Azure Storage or Azure Cosmos DB within the security perimeter. If your indexers use other data sources, you need an outbound access rule to support that connection.
+Currently, Azure AI Search can only connect to Azure Storage or Azure Cosmos DB within the security perimeter. If your indexers use other data sources, you need an outbound access rule to support that connection.
 
-Network security perimeter supports outbound access rules based on the Fully Qualified Domain Name (FQDN) of the destination. For example, you can allow outbound access from any service associated with your network security perimeter to an FQDN such as `mystorageaccount.blob.core.windows.net`.
+The network security perimeter supports outbound access rules based on the Fully Qualified Domain Name (FQDN) of the destination. For example, you can allow outbound access from any service associated with your network security perimeter to an FQDN such as `mystorageaccount.blob.core.windows.net`.
 
 To add an outbound access rule in the Azure portal:
 
@@ -226,7 +226,7 @@ To add an outbound access rule in the Azure portal:
 
    :::image type="content" source="media/search-security-network-security-perimeter/portal-network-security-perimeter-profiles.png" alt-text="Screenshot of the left hand menu with profiles option selected." border="true":::
 
-1. Select the profile you're using with your network security perimeter
+1. Select the profile you're using with your network security perimeter.
 
    :::image type="content" source="media/search-security-network-security-perimeter/portal-network-security-perimeter-select-profile.png" alt-text="Screenshot of selecting the profile from network security perimeter." border="true":::
 
@@ -252,7 +252,7 @@ To add an outbound access rule in the Azure portal:
 
 ## Test your connection through network security perimeter
 
-In order to test your connection through network security perimeter, you need access to a web browser, either on a local computer with an internet connection or an Azure VM.
+To test your connection through network security perimeter, you need access to a web browser, either on a local computer with an internet connection or an Azure VM.
 
 1. Change your network security perimeter association to [enforced mode](#network-security-perimeter-access-modes) to start enforcing network security perimeter requirements for network access to your search service.
 
@@ -260,15 +260,15 @@ In order to test your connection through network security perimeter, you need ac
    1. If you're using a local computer, you need to know your public IP address.
    1. If you're using an Azure VM, you can either use [private link](/azure/private-link/private-link-overview) or [check the IP address using the Azure portal](/azure/virtual-network/ip-services/virtual-network-network-interface-addresses).
 
-1. Using the IP address, you can create an [inbound access rule](#add-an-inbound-access-rule) for that IP address to allow access. You can skip this step if you're using private link.
+1. Using the IP address, create an [inbound access rule](#add-an-inbound-access-rule) for that IP address to allow access. You can skip this step if you're using private link.
 
 1. Finally, try navigating to the search service in the Azure portal. If you can view the indexes successfully, then the network security perimeter is configured correctly.
 
 ## View and manage network security perimeter configuration
 
-You can use the [Network Security Perimeter Configuration REST APIs](/rest/api/searchmanagement/network-security-perimeter-configurations?view=rest-searchmanagement-2025-05-01&preserve-view=true) to review and reconcile perimeter configurations.
+Use the [Network Security Perimeter Configuration REST APIs](/rest/api/searchmanagement/network-security-perimeter-configurations?view=rest-searchmanagement-2025-05-01&preserve-view=true) to review and reconcile perimeter configurations.
 
-Be sure to use `2025-05-01`, which is the latest stable REST API version. [Learn how to call the Search Management REST APIs](search-manage-rest.md).
+Be sure to use the 2025-05-01 REST API version, which is the latest stable version of the Search Management REST APIs. For more information, see [Manage your Azure AI Search service using REST APIs](search-manage-rest.md).
 
 ## Related content
 

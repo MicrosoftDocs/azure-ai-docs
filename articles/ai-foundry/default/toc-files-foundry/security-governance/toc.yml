@@ -9,7 +9,8 @@ items:
   - name: Role-based access control
     displayName: RBAC, roles, permissions
     href: ../../../concepts/rbac-foundry.md
-#-  missed from mainline: https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/how-to/configure-entra-id?tabs=python&pivots=ai-foundry-portal
+  - name: Configure keyless authentication
+    href: ../../../foundry-models/how-to/configure-entra-id.md
 
 # Network Security
 - name: Network security

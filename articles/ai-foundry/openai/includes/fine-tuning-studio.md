@@ -1,5 +1,5 @@
 ---
-title: "Customize a Model with Azure OpenAI in Microsoft Foundry Models and the Microsoft Foundry Portal"
+title: "Customize a Model with Azure OpenAI in Microsoft Foundry Models and the Microsoft Foundry portal"
 titleSuffix: Azure OpenAI
 description: Learn how to create your own custom model with Azure OpenAI by using the Microsoft Foundry portal.
 author: mrbullwinkle
@@ -18,7 +18,7 @@ ms.custom:
 - Read the [guide on when to use Azure OpenAI fine-tuning](../concepts/fine-tuning-considerations.md).
 - You need an Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - You need an Azure OpenAI resource that's located in a region that supports fine-tuning of the Azure OpenAI model. For the list of available models by region and supported functionality, check the [model summary table and region availability](../concepts/models.md#fine-tuning-models). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
-- Fine-tuning access requires the Azure AI User role.
+- Fine-tuning requires the **Azure AI Owner** role. While Azure AI Users may train (fine tune) models, only AI Owners may deploy them.
 - If you don't already have access to view quotas and deploy models in the Foundry portal, you need [more permissions](../how-to/role-based-access-control.md).
 
 ### Supported models

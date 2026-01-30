@@ -1,32 +1,38 @@
 ---
-title: "Microsoft Foundry Quickstart"
+title: Microsoft Foundry Quickstart
 titleSuffix: Microsoft Foundry
-description: Get started with Microsoft Foundry SDK to build AI applications. 
+description: Get started with Microsoft Foundry SDK building AI applications. 
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: dantaylo
 ms.date: 12/16/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
+monikerRange: 'foundry-classic || foundry'
 ms.custom:
   - build-2024
   - devx-track-azurecli
   - devx-track-python
   - ignite-2024
-  - update-code7
+  - update-code8
   - build-aifnd
   - build-2025
   - peer-review-program
 ai-usage: ai-assisted
-monikerRange: 'foundry-classic || foundry'
 # customer intent: As a developer, I want to start using the Microsoft Foundry portal and client libraries.
 ---
 
-# Microsoft Foundry Quickstart
+# Microsoft Foundry quickstart
 
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
-::: moniker range="foundry-classic"
+:::moniker range="foundry"
+
+[!INCLUDE [quickstart-v2-main](../default/includes/quickstart-v2-main.md)]
+
+:::moniker-end
+
+:::moniker range="foundry-classic"
 
 In this quickstart, you use [!INCLUDE [classic-link](../includes/classic-link.md)] to:
 
@@ -36,27 +42,11 @@ In this quickstart, you use [!INCLUDE [classic-link](../includes/classic-link.md
 > * Run a chat completion
 > * Create and run an agent
 > * Upload files to the agent
-::: moniker-end
-
-::: moniker range="foundry"
-In this quickstart, you use [!INCLUDE [foundry-link](../default/includes/foundry-link.md)] to:
-
-> [!div class="checklist"]
-> * Create a project 
-> * Deploy a model
-> * Get ready to code - install necessary packages and authenticate
-> * Chat with a model
-> * Create an agent
-> * Chat with an agent
-::: moniker-end
 
 The Microsoft Foundry SDK is available in multiple languages, including Python, Java, TypeScript, and C#. This quickstart provides instructions for each of these languages.
 
-::: moniker range="foundry-classic"
 > [!TIP]
 > The rest of this article shows how to create and use a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**. See [Quickstart: Get started with Microsoft Foundry (Hub projects)](hub-get-started-code.md) if you want to use a [!INCLUDE [hub](../includes/hub-project-name.md)] instead. [Which type of project do I need?](../what-is-foundry.md#which-type-of-project-do-i-need)
-::: moniker-end
-
 
 ## Prerequisites
 
@@ -69,11 +59,9 @@ The Microsoft Foundry SDK is available in multiple languages, including Python, 
 > This Quickstart focuses on **scenario-specific steps** like SDK installation, authentication, and running sample code.
 >
 
-[!INCLUDE [first-run](../includes/first-run-experience.md)]
+[!INCLUDE [first-run](../includes/first-run-experience-classic.md)]
 
 ## Get ready to code
-
-::: moniker range="foundry-classic"
 
 [!INCLUDE [agent-v1-switch](../includes/agent-v1-switch.md)]
 
@@ -132,7 +120,6 @@ Follow along below or get the code:
 
 # [Java](#tab/java)
 
-[!INCLUDE [code-preview](../default/includes/code-preview.md)]
 
 1. [!INCLUDE [find-endpoint](../includes/find-endpoint.md)]
 1. Set these environment variables to use in your scripts:
@@ -164,40 +151,13 @@ Follow along below or get the code:
 > [!div class="nextstepaction"]
 > [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/REST/quickstart).
 
-
 # [Foundry portal](#tab/portal)
 
 No installation is necessary to use the Foundry portal.
 
 ---
 
-::: moniker-end
-
-::: moniker range="foundry"
-
-[!INCLUDE [code-preview](../default/includes/code-preview.md)] 
-
-### Set environment variables
-
-Store the endpoint as an environment variable.  Also set these values for use in your scripts.
-
-1. [!INCLUDE [find-endpoint](../default/includes/find-endpoint.md)]
-1. Set these environment variables to use in your scripts:
-
-    ```plaintext
-    PROJECT_ENDPOINT=<endpoint copied from welcome screen>
-    AGENT_NAME="MyAgent"
-    MODEL_DEPLOYMENT_NAME="gpt-4.1-mini"
-    ```
-### Install and authenticate
-
-[!INCLUDE [quickstart-v2-install](../default/includes/quickstart-v2-install.md)]
-
-::: moniker-end
-
 ## Chat with a model
-
-::: moniker range="foundry-classic"
 
 Chat completions are the basic building block of AI applications. Using chat completions you can send a list of messages and get a response from the model.
 
@@ -234,21 +194,7 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 
 ---
 
-::: moniker-end
-
-:::moniker range="foundry"
-
-[!INCLUDE [quickstart-v2-chat](../default/includes/quickstart-v2-chat.md)]
-
-## Create an agent
-
-[!INCLUDE [quickstart-v2-create-agent](../default/includes/quickstart-v2-create-agent.md)]
-
-:::moniker-end
-
 ## Chat with an agent
-
-::: moniker range="foundry-classic"
 
 Create an agent and chat with it.
 
@@ -289,17 +235,6 @@ When you're ready to try an agent, a default agent is created for you. To chat w
 
 ---
 
-::: moniker-end
-
-::: moniker range="foundry"
-
-[!INCLUDE [quickstart-v2-agent-chat](../default/includes/quickstart-v2-agent-chat.md)]
-
-::: moniker-end
-
----
-
-::: moniker range="foundry-classic"
 ## Add files to the agent
 
 Agents have powerful capabilities through the use of tools. Let's add a file search tool that enables us to do knowledge retrieval.
@@ -344,23 +279,14 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` and `YOUR-PROJECT-NAME` with your values:
 1. To add more files, select the **...** on the AgentVectorStore, then select **Manage**.
 
 ---
-::: moniker-end
 
 ## Clean up resources
 
 [!INCLUDE [clean-up-resources](../includes/clean-up-resources.md)]
 
-::: moniker range="foundry-classic"
 ## Related content
 
 * [Quickstart: Create a new agent](../agents/quickstart.md)
 * [Client library overview](../how-to/develop/sdk-overview.md)
-::: moniker-end
 
-::: moniker range="foundry"
-## Next step
- 
-> [!div class="nextstepaction"]
-> [Idea to prototype - Build and evaluate an enterprise agent](../default/tutorials/developer-journey-idea-to-prototype.md)
-
-::: moniker-end
+:::moniker-end

@@ -4,7 +4,7 @@
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A Foundry project resource. Sign in to the [Foundry portal](https://ai.azure.com) to create one.
 - The following Python libraries: `os`, `json`, `requests`, `openai`.
-- Fine-tuning access requires the **Azure AI User** role.
+- Fine-tuning requires the **Azure AI Owner** role. While Azure AI Users may train (fine tune) models, only AI Owners may deploy them.
 - If you don't already have access to view quota and deploy models in Microsoft Foundry portal, you require [more permissions](../openai/how-to/role-based-access-control.md).
 
 ### Supported models

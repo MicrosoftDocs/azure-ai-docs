@@ -791,6 +791,12 @@ if __name__ == "__main__":
 
 ## Related content
 
+<<<<<<< HEAD
 - Try the [Voice live agents quickstart](./voice-live-agents-quickstart.md)
 - Learn more about [How to use the Voice live API](./voice-live-how-to.md)
 - See the [Voice live API reference](./voice-live-api-reference-2025-10-01.md)
+=======
+- Try the [Voice Live agents quickstart](./voice-live-agents-quickstart.md)
+- Learn more about [How to use the Voice Live API](./voice-live-how-to.md)
+- See the [Voice Live API reference](./voice-live-api-reference.md)
+>>>>>>> b33b6cd07f606d6f65439781e0ed3299c6d8375f

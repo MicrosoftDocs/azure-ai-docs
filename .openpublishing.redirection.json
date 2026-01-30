@@ -1,6 +1,21 @@
 {
   "redirections": [
     {
+      "source_path": "articles/ai-services/luis/context/context.yml",
+      "redirect_url": "/previous-versions/azure/ai-services/luis",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/how-to/migrate-from-luis.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/context/context.yml",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/ai-services/luis/app-schema-definition.md",
       "redirect_url": "/previous-versions/azure/ai-services/luis/app-schema-definition",
       "redirect_document_id": false
@@ -1239,6 +1254,11 @@
       "source_path": "articles/ai-foundry/concepts/authentication-options-ai-foundry.md",
       "redirect_url": "/azure/ai-foundry/concepts/rbac-foundry",
       "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/default/agents/how-to/tools/knowledge-retrieval.md",
+      "redirect_url": "/azure/ai-foundry/agents/how-to/foundry-iq-connect",
+      "redirect_document_id": true
     }
   ]
 }

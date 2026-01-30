@@ -14,17 +14,29 @@ monikerRange: 'foundry-classic || foundry'
 
 # How to run an evaluation in GitHub Action (preview)
 
-::: moniker range="foundry-classic"
-
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
+
+::: moniker range="foundry-classic"
 
 This GitHub Action enables offline evaluation of AI models and agents within your CI/CD pipelines. It streamlines the evaluation process, so you can assess model performance and make informed decisions before deploying to production.
 
 Offline evaluation involves testing AI models and agents by using test datasets to measure their performance on various quality and safety metrics such as fluency, coherence, and appropriateness. After you select a model in the [Foundry model catalog](https://azure.microsoft.com/products/ai-model-catalog?msockid=1f44c87dd9fa6d1e257fdd6dd8406c42) or [GitHub Model marketplace](https://github.com/marketplace/models), perform offline pre-production evaluation to validate the AI application during integration testing. This process allows developers to identify potential problems and make improvements before deploying the model or application to production, such as when creating and updating agents.
 
+::: moniker-end
+
+::: moniker range="foundry"
+
+This [GitHub Action](https://github.com/microsoft/ai-agent-evals) enables offline evaluation of [Microsoft Foundry Agents](../agents/overview.md) within your CI/CD pipelines. It's designed to streamline the offline evaluation process, so you can identify potential problems and make improvements before releasing an update to production.
+
+To use this action, provide a data set with test queries and a list of evaluators. This action invokes your agents with the queries, runs the evaluations, and generates a summary report.
+
+::: moniker-end
+
 [!INCLUDE [features](../includes/evaluation-github-action-azure-devops-features.md)]
+
+::: moniker range="foundry-classic"
 
 - **Seamless Integration**: Easily integrate with existing GitHub workflows to run evaluation based on rules that you specify in your workflows (for examples, when changes are committed to agent versions, prompt templates, or feature flag configuration).
 - **Statistical Analysis**: Evaluation results include confidence intervals and test for statistical significance to determine if changes are meaningful and not due to random variation.
@@ -32,34 +44,13 @@ Offline evaluation involves testing AI models and agents by using test datasets 
 
 ::: moniker-end
 
-::: moniker range="foundry"
-
-This GitHub Action enables offline evaluation of [Microsoft Foundry Agents](../agents/overview.md) within your CI/CD pipelines. It's designed to streamline the offline evaluation process, so you can identify potential problems and make improvements before releasing an update to production.
-
-To use this action, provide a data set with test queries and a list of evaluators. This action invokes your agents with the queries, collects the performance data including latency and token counts, runs the evaluations, and generates a summary report.
-
-Features:
-
-- **Agent Evaluation**: Automate pre-production assessment of Microsoft Foundry agents in your CI/CD workflow.
-- **Evaluators**: Use any evaluators from the Foundry evaluator catalog.
-- **Statistical Analysis**: Evaluation results include confidence intervals and test for statistical significance to determine if changes are meaningful and not due to random variation.
-
-Evaluator categories:
-
-- [Agent evaluators](../concepts/evaluation-evaluators/agent-evaluators.md): Process and system-level evaluators for agent workflows.
-- [RAG evaluators](../concepts/evaluation-evaluators/rag-evaluators.md): Evaluate end-to-end and retrieval processes in RAG systems.
-- [Risk and safety evaluators](../concepts/evaluation-evaluators/risk-safety-evaluators.md): Assess risks and safety concerns in responses.
-- [General purpose evaluators](../concepts/evaluation-evaluators/general-purpose-evaluators.md): Quality evaluation such as coherence and fluency.
-- [OpenAI-based graders](../concepts/evaluation-evaluators/azure-openai-graders.md): Use OpenAI graders including string check, text similarity, score/label model.
-- [Custom evaluators](../concepts/evaluation-evaluators/custom-evaluators.md): Define your own custom evaluators using Python code or LLM-as-a-judge patterns.
-
-To learn more see the [GitHub Action AI agent repo](https://github.com/microsoft/ai-agent-evals) or to use Azure DevOps, see the [Azure DevOps AI Agent Evaluation](https://marketplace.visualstudio.com/items?itemName=ms-azure-exp-external.microsoft-extension-ai-agent-evaluation).
-
-::: moniker-end
-
 ## Prerequisites
 
-You need a project. To learn more, see [Create a project](create-projects.md).
+- A project. To learn more, see [Create a project](create-projects.md).
+- A [Foundry agent](../agents/overview.md).
+
+> [!TIP]
+> The recommended way to authenticate is by using Microsoft Entra ID, which allows you to securely connect to your Azure resources. You can automate the authentication process by using the [Azure Login GitHub action](/azure/developer/github/connect-from-azure). To learn more, see [Azure Login action with OpenID Connect](/azure/developer/github/connect-from-azure-openid-connect).
 
 ::: moniker range="foundry-classic"
 
@@ -85,11 +76,11 @@ The input of ai-agent-evals includes:
 
 # [Foundry project](#tab/foundry-project)
 
-- `azure-ai-project-endpoint`: The endpoint of the Foundry project. This is used to connect to your AI project to simulate conversations with each agent, and to connect to the Azure AI evaluation SDK to perform the evaluation.
+- `azure-ai-project-endpoint`: The endpoint of the Foundry project. Use this endpoint to connect to your AI project, simulate conversations with each agent, and connect to the Azure AI evaluation SDK to perform the evaluation.
 
 # [Hub-based project](#tab/hub-project)
 
-- `azure-aiproject-connection-string`: The connection string of the Foundry project. This is used to connect to your AI project to simulate conversations with each agent, and to connect to the Azure AI evaluation SDK to perform the evaluation.
+- `azure-aiproject-connection-string`: The connection string of the Foundry project. Use this string to connect to your AI project, simulate conversations with each agent, and connect to the Azure AI evaluation SDK to perform the evaluation.
 
 ---
 
