@@ -5,7 +5,7 @@ description: Use these safety system message templates as a starting point to re
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 01/20/2026
+ms.date: 01/30/2026
 ms.custom: 
   - pilot-ai-workflow-jan-2026
 manager: nitinme
