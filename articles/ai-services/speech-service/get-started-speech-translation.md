@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python
 ms.topic: quickstart
-ms.date: 7/17/2025
+ms.date: 01/30/2026
 ms.author: pafarley
 zone_pivot_groups: programming-languages-speech-translation
 keywords: speech translation

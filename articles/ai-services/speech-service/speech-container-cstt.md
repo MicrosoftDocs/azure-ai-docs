@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python
 ms.topic: how-to
-ms.date: 7/1/2025
+ms.date: 01/30/2026
 ms.author: pafarley
 zone_pivot_groups: programming-languages-speech-sdk-cli
 keywords: on-premises, Docker, container
@@ -15,7 +15,7 @@ keywords: on-premises, Docker, container
 
 # Custom speech to text containers with Docker
 
-The custom speech to text container transcribes real-time speech or batch audio recordings with intermediate results. You can use a custom model that you created in the [custom speech portal](https://speech.microsoft.com/customspeech). In this article, you learn how to download, install, and run a custom speech to text container.
+The custom speech to text container transcribes real-time speech or batch audio recordings with intermediate results. You can use a custom model that you created in the [custom speech portal](https://speech.microsoft.com/customspeech). In this article, you'll learn how to download, install, and run a custom speech to text container.
 
 For more information about prerequisites, validating that a container is running, running multiple containers on the same host, and running disconnected containers, see [Install and run Speech containers with Docker](speech-container-howto.md).
 
