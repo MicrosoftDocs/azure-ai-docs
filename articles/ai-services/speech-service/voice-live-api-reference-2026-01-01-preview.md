@@ -642,6 +642,11 @@ The Voice live API sends the following server events to communicate status, resp
 | [response.mcp_call.in_progress](#responsemcp_callin_progress) | MCP call is in progress |
 | [response.mcp_call.completed](#responsemcp_callcompleted) | MCP call is completed |
 | [response.mcp_call.failed](#responsemcp_callfailed) | MCP call has failed |
+| [response.foundry_agent_call_arguments.delta](#responsefoundry_agent_call_argumentsdelta) | Streaming foundry agent call arguments |
+| [response.foundry_agent_call_arguments.done](#responsefoundry_agent_call_argumentsdone) | Foundry agent call arguments are complete |
+| [response.foundry_agent_call.in_progress](#responsefoundry_agent_callin_progress) | Foundry agent call is in progress |
+| [response.foundry_agent_call.completed](#responsefoundry_agent_callcompleted) | Foundry agent call is completed |
+| [response.foundry_agent_call.failed](#responsefoundry_agent_callfailed) | Foundry agent call has failed |
 
 ### session.created
 
@@ -2030,6 +2035,126 @@ The server `response.mcp_call.failed` event is returned when an MCP tool call fa
 | item_id | string | The ID of the [mcp tool call item](#realtimeconversationmcpcallitem). |
 | output_index | integer | The index of the output item in the response. |
 
+### response.foundry_agent_call_arguments.delta
+
+The server `response.foundry_agent_call_arguments.delta` event is returned when the model-generated foundry agent call arguments are updated.
+
+#### Event structure
+
+```json
+{
+  "type": "response.foundry_agent_call_arguments.delta",
+  "response_id": "<response_id>",
+  "item_id": "<item_id>",
+  "output_index": 0,
+  "delta": "<delta>"
+}
+```
+
+#### Properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | The event type must be `response.foundry_agent_call_arguments.delta`. |
+| response_id | string | The ID of the response. |
+| item_id | string | The ID of the [foundry agent call item](#realtimeconversationfoundryagentcallitem). |
+| output_index | integer | The index of the output item in the response. |
+| delta | string | The arguments delta as a JSON string. |
+
+### response.foundry_agent_call_arguments.done
+
+The server `response.foundry_agent_call_arguments.done` event is returned when the model-generated foundry agent call arguments are done streaming.
+
+#### Event structure
+
+```json
+{
+  "type": "response.foundry_agent_call_arguments.done",
+  "response_id": "<response_id>",
+  "item_id": "<item_id>",
+  "output_index": 0,
+  "arguments": "<arguments>"
+}
+```
+
+#### Properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | The event type must be `response.foundry_agent_call_arguments.done`. |
+| response_id | string | The ID of the response. |
+| item_id | string | The ID of the [foundry agent call item](#realtimeconversationfoundryagentcallitem). |
+| output_index | integer | The index of the output item in the response. |
+| arguments | string | The final arguments as a JSON string. |
+
+### response.foundry_agent_call.in_progress
+
+The server `response.foundry_agent_call.in_progress` event is returned when a foundry agent call starts processing.
+
+#### Event structure
+
+```json
+{
+  "type": "response.foundry_agent_call.in_progress",
+  "item_id": "<item_id>",
+  "output_index": 0
+}
+```
+
+#### Properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | The event type must be `response.foundry_agent_call.in_progress`. |
+| item_id | string | The ID of the [foundry agent call item](#realtimeconversationfoundryagentcallitem). |
+| agent_response_id | string | The response ID from the foundry agent. |
+| output_index | integer | The index of the output item in the response. |
+
+### response.foundry_agent_call.completed
+
+The server `response.foundry_agent_call.completed` event is returned when a foundry agent call completes successfully.
+
+#### Event structure
+
+```json
+{
+  "type": "response.foundry_agent_call.completed",
+  "item_id": "<item_id>",
+  "agent_response_id": "<agent_response_id>",
+  "output_index": 0
+}
+```
+
+#### Properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | The event type must be `response.foundry_agent_call.completed`. |
+| item_id | string | The ID of the [foundry agent call item](#realtimeconversationfoundryagentcallitem). |
+| output_index | integer | The index of the output item in the response. |
+
+### response.foundry_agent_call.failed
+
+The server `response.foundry_agent_call.failed` event is returned when a foundry agent call fails.
+
+#### Event structure
+
+```json
+{
+  "type": "response.foundry_agent_call.failed",
+  "item_id": "<item_id>",
+  "output_index": 0
+}
+```
+
+#### Properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | The event type must be `response.foundry_agent_call.failed`. |
+| item_id | string | The ID of the [foundry agent call item](#realtimeconversationfoundryagentcallitem). |
+| output_index | integer | The index of the output item in the response. |
+
 ### response.output_item.added
 
 The server `response.output_item.added` event is returned when a new item is created during response generation.
@@ -2488,6 +2613,7 @@ Session configuration object used in `session.update` events.
 | tool_choice | [RealtimeToolChoice](#realtimetoolchoice) | The tool choice for the session.<br><br>Allowed values: `auto`, `none`, and `required`. Otherwise, you can specify the name of the function to use. |
 | temperature | number | The sampling temperature for the model. The allowed temperature values are limited to [0.6, 1.2]. Defaults to 0.8. |
 | max_response_output_tokens | integer or "inf" | The maximum number of output tokens per assistant response, inclusive of tool calls.<br><br>Specify an integer between 1 and 4096 to limit the output tokens. Otherwise, set the value to "inf" to allow the maximum number of tokens.<br><br>For example, to limit the output tokens to 1000, set `"max_response_output_tokens": 1000`. To allow the maximum number of tokens, set `"max_response_output_tokens": "inf"`.<br><br>Defaults to `"inf"`. |
+| filler_response | [FillerResponseConfig](#fillerresponseconfig) | Optional. Configuration for filler response generation during latency or tool calls. |
 | reasoning_effort | [ReasoningEffort](#reasoningeffort) | Optional. Constrains effort on reasoning for reasoning models. Check [Azure Foundry doc](h../../../../ai-foundry/openai/how-to/reasoning?view=foundry&tabs=REST#reasoning-effort) for more details. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.  |
 | avatar | [RealtimeAvatarConfig](#realtimeavatarconfig) | Optional. Avatar configuration |
 | output_audio_timestamp_types | [RealtimeAudioTimestampType](#realtimeaudiotimestamptype)[] | Optional. Timestamp types for output audio |
@@ -2558,6 +2684,110 @@ MCP tool configuration.
 | headers | object | Optional. Additional headers to include in MCP requests. |
 | authorization | string | Optional. Authorization token for MCP requests. |
 | require_approval | string or dictionary | Optional. <br/>If set to a string, The value must be `never` or `always`. <br/>If set to a dictionary, it must be in format `{"never": ["<tool_name_1>", "<tool_name_2>"], "always": ["<tool_name_3>"]}`. <br/>Default value is `always`. <br/> When set to `always`, the tool execution requires approval, [mcp_approval_request](#realtimeconversationmcpapprovalrequestitem) will be sent to client when mcp argument done, and will only be executed when [mcp_approval_response](#realtimemcpapprovalresponseitem) with `approve=true` is received. <br/>When set to `never`, the tool will be executed automatically without approval. |
+
+#### FoundryAgentTool
+
+Tool definition for integrating a Foundry agent as a tool. This enables a chat-supervisor pattern where a realtime-based chat agent handles basic interactions while delegating complex tasks to a more intelligent Foundry agent.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | Must be `"foundry_agent"` |
+| agent_name | string | Required. The name of the Foundry agent to call. |
+| agent_version | string | Optional. The version of the Foundry agent to call. |
+| project_name | string | Required. The name of the Foundry project containing the agent. |
+| client_id | string | Optional. The client ID associated with the Foundry agent. |
+| description | string | Optional. An optional description for the Foundry agent tool. If provided, it's used instead of the agent's description in Foundry portal. |
+| foundry_resource_override | string | Optional. Override for the Foundry resource used to execute the agent. |
+| agent_context_type | string | Optional. The context type to use when invoking the Foundry agent. Possible values: `no_context`, `agent_context`. Default is `agent_context`.<br/><br/>`no_context`: Only the current user input is sent, no context maintained.<br/><br/>`agent_context`: Agent maintains its own context (thread), only current input sent per call. |
+| return_agent_response_directly | boolean | Optional. Whether to return the agent's response directly in the Voice live response. Default is `true`. When set to `false`, the response is sent to the chat agent to rephrase. |
+
+Example:
+```json
+{
+  "instructions": "You are a helpful assistant. Please respond with a short message like 'working on this' before calling the agent tool.",
+  "tools": [
+    {
+      "type": "foundry_agent",
+      "agent_name": "customer-service-agent",
+      "agent_version": "2",
+      "project_name": "my-foundry-project",
+      "description": "A helpful agent that can search online information and handle complex customer requests"
+    }
+  ]
+}
+```
+
+### Filler Response Configuration
+
+Filler responses allow the system to generate placeholder audio responses during latency or while tools are being executed, improving user experience by avoiding silence.
+
+#### FillerResponseConfig
+
+Configuration for filler response generation. This is a union type that can be one of the following:
+- [BasicFillerResponseConfig](#basicfillerresponseconfig) - Static filler responses randomly selected from a list
+- [LlmFillerResponseConfig](#llmfillerresponseconfig) - LLM-generated context-aware filler responses
+
+#### BasicFillerResponseConfig
+
+Configuration for basic/static filler response generation. Randomly selects from configured texts when any trigger condition is met.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | Must be `"static_filler"` |
+| triggers | [FillerTrigger](#fillertrigger)[] | Optional. List of triggers that can fire the filler. Any trigger can activate the filler (OR logic). Supported values: `latency`, `tool`. Default is `["latency"]`. |
+| latency_threshold_ms | integer | Optional. Latency threshold in milliseconds before triggering filler response. Default is 2000ms. Minimum value is 0. |
+| texts | string[] | Optional. List of filler text options to randomly select from. |
+
+Example:
+```json
+{
+  "filler_response": {
+    "type": "static_filler",
+    "triggers": ["latency", "tool"],
+    "latency_threshold_ms": 1500,
+    "texts": [
+      "Let me think about that...",
+      "One moment please...",
+      "Working on that for you..."
+    ]
+  }
+}
+```
+
+#### LlmFillerResponseConfig
+
+Configuration for LLM-based filler response generation. Uses LLM to generate context-aware filler responses when any trigger condition is met.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | Must be `"llm_filler"` |
+| triggers | [FillerTrigger](#fillertrigger)[] | Optional. List of triggers that can fire the filler. Any trigger can activate the filler (OR logic). Supported values: `latency`, `tool`. Default is `["latency"]`. |
+| latency_threshold_ms | integer | Optional. Latency threshold in milliseconds before triggering filler response. Default is 2000ms. Minimum value is 0. |
+| model | string | Optional. The model to use for LLM-based filler generation. Default is `gpt-4.1-mini`. |
+| instructions | string | Optional. Custom instructions for generating filler responses. If not provided, a default prompt is used. |
+| max_completion_tokens | integer | Optional. Maximum number of tokens to generate for the filler response. Default is 50. Minimum value is 1. |
+
+Example:
+```json
+{
+  "filler_response": {
+    "type": "llm_filler",
+    "triggers": ["tool"],
+    "latency_threshold_ms": 2000,
+    "model": "gpt-4.1-mini",
+    "instructions": "Generate a brief, friendly acknowledgment that you're working on the user's request.",
+    "max_completion_tokens": 30
+  }
+}
+```
+
+#### FillerTrigger
+
+Triggers that can activate filler response generation.
+
+**Allowed Values:**
+* `latency` - Trigger filler when response latency exceeds threshold
+* `tool` - Trigger filler when a tool call is being executed
 
 ### RealtimeConversationResponseItem
 
@@ -2666,6 +2896,21 @@ MCP approval request item.
 | server_label | string | The label of the MCP server. |
 | name | string | The name of the tool to call. |
 | arguments | string | The arguments for the MCP call. |
+
+#### RealtimeConversationFoundryAgentCallItem
+
+Foundry agent call response item.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| id | string | The unique ID of the item. |
+| type | string | Must be `"foundry_agent_call"` |
+| name | string | The name of the Foundry agent. |
+| call_id | string | The ID of the call. |
+| arguments | string | The arguments for the foundry agent call. |
+| agent_response_id | string | Optional. The response ID from the foundry agent. |
+| output | string | Optional. The output of the foundry agent call. |
+| error | object | Optional. The error details if the foundry agent call failed. |
 
 ### RealtimeItemStatus
 
@@ -2913,6 +3158,7 @@ The definition of a function tool as used by the realtime endpoint.
 | tool_choice | [RealtimeToolChoice](#realtimetoolchoice) | The tool choice for the session. |
 | temperature | number | The sampling temperature for the model. The allowed temperature values are limited to [0.6, 1.2]. Defaults to 0.8. |
 | max_response_output_tokens | integer or "inf" | The maximum number of output tokens per assistant response, inclusive of tool calls.<br><br>Specify an integer between 1 and 4096 to limit the output tokens. Otherwise, set the value to "inf" to allow the maximum number of tokens.<br><br>For example, to limit the output tokens to 1000, set `"max_response_output_tokens": 1000`. To allow the maximum number of tokens, set `"max_response_output_tokens": "inf"`.<br><br>Defaults to `"inf"`. |
+| filler_response | [FillerResponseConfig](#fillerresponseconfig) | Optional. Configuration for filler response generation during latency or tool calls. |
 | reasoning_effort | [ReasoningEffort](#reasoningeffort) | Optional. Constrains effort on reasoning for reasoning models. Check model documentation for supported values for each model. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. |
 | conversation | string | Controls which conversation the response is added to. The supported values are `auto` and `none`.<br><br>The `auto` value (or not setting this property) ensures that the contents of the response are added to the session's default conversation.<br><br>Set this property to `none` to create an out-of-band response where items won't be added to the default conversation. <br><br>Defaults to `"auto"` |
 | metadata | map | Set of up to 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.<br/><br/>For example: `metadata: { topic: "classification" }` |
@@ -2940,6 +3186,7 @@ The `RealtimeResponseSession` object represents a session in the Realtime API. I
 | tool_choice | [RealtimeToolChoice](#realtimetoolchoice) | The tool choice for the session. |
 | temperature | number | The sampling temperature for the model. The allowed temperature values are limited to [0.6, 1.2]. Defaults to 0.8. |
 | max_response_output_tokens | integer or "inf" | The maximum number of output tokens per assistant response, inclusive of tool calls.<br><br>Specify an integer between 1 and 4096 to limit the output tokens. Otherwise, set the value to "inf" to allow the maximum number of tokens.<br><br>For example, to limit the output tokens to 1000, set `"max_response_output_tokens": 1000`. To allow the maximum number of tokens, set `"max_response_output_tokens": "inf"`. |
+| filler_response | [FillerResponseConfig](#fillerresponseconfig) | Configuration for filler response generation during latency or tool calls. |
 
 ### RealtimeResponseStatusDetails
 
