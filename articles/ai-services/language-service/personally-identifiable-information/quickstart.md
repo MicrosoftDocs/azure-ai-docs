@@ -1,7 +1,7 @@
 ---
 title: "Quickstart: Detect personally identifiable information (PII) in text"
 titleSuffix: Foundry Tools
-description: Detect and redact personally identifiable information (PII) in text using SDKs, the REST API, or the Microsoft Foundry portal.
+description: Detect and redact personally identifiable information (PII) in text using client libraries, the REST API, or the Microsoft Foundry portal.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
@@ -26,7 +26,7 @@ ai-usage: ai-assisted
 <!-- markdownlint-disable MD025 -->
 
 > [!NOTE]
-> This quickstart guides you through the process of locating personally identifiable information (PII) in documents.". To detect PII in conversations, see [How to detect and redact PII in conversations](how-to/redact-conversation-pii.md). To detect PII in text, see [How to detect and redact PII in text](how-to/redact-text-pii.md).
+> This quickstart guides you through the process of locating personally identifiable information (PII) in documents. To detect PII in conversations, see [How to detect and redact PII in conversations](how-to/redact-conversation-pii.md). To detect PII in text, see [How to detect and redact PII in text](how-to/redact-text-pii.md).
 
 ::: zone pivot="programming-language-csharp"
 
