@@ -81,9 +81,9 @@ By default, training requests use the latest available training configuration ve
 
 ## API versions
 
-When making API calls to Azure Language features, you must specify the **API-VERSION** parameter in your request. We recommend using the latest available API version to access the most recent features and improvements.
+[**Azure AI Language REST API reference for authoring and runtime**](/rest/api/language/)
 
-[Language Studio](https://aka.ms/languageStudio) automatically uses the latest available API version. To use alternative API versions, you must make requests directly through the REST APIs or client libraries.
+When making API calls to Azure Language features, you must specify the **API-VERSION** parameter in your request. We recommend using the latest available API version to access the most recent features and improvements.
 
 The following table lists the supported API versions for each feature:
 
