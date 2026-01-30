@@ -312,8 +312,6 @@ If you encounter issues, try these solutions for common problems:
 | Agent doesn't start locally | Verify environment variables are set and run `az login` to refresh credentials. |
 | `AcrPullUnauthorized` error | Grant **AcrPull** role to the project's managed identity on the container registry. |
 
-For detailed troubleshooting steps, see [Troubleshoot hosted agent deployment](../how-to/troubleshoot-hosted-agent-deployment.md).
-
 ## What you learned
 
 In this quickstart, you:
@@ -342,6 +340,5 @@ You can see a full list of available tools in the [tool catalog](../concepts/too
 
 - [What are hosted agents?](../concepts/hosted-agents.md)
 - [Deploy a hosted agent](../how-to/deploy-hosted-agent.md)
-- [Troubleshoot hosted agent deployment](../how-to/troubleshoot-hosted-agent-deployment.md)
 - [Agent development lifecycle](../concepts/development-lifecycle.md)
 - [Python hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents)
