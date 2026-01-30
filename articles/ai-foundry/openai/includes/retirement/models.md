@@ -26,7 +26,7 @@ ms.custom: references_regions, build-2025
 | `gpt-4.1` | 2025-04-14 | `Generally Available` | 2026-04-14 | 2026-10-14 | `gpt-5` |
 | `gpt-4.1-mini` | 2025-04-14 | `Generally Available` | 2026-04-14 | 2026-10-14 | `gpt-5-mini` |
 | `gpt-4.1-nano` | 2025-04-14 | `Generally Available` | 2026-04-14 | 2026-10-14 | `gpt-5-nano` |
-| `computer-use-`Preview`` | 2025-03-11 | `Preview` | n/a | No earlier than 2026-04-14 |  |
+| `computer-use-preview` | 2025-03-11 | `Preview` | n/a | No earlier than 2026-04-14 |  |
 | `o1` | 2024-12-17 | `Generally Available` | 2025-12-17 | 2026-07-15 | `o3` |
 | `o1-pro` | 2025-03-19 | `Generally Available` | 2026-03-19 | 2026-09-18 | `o3-pro` |
 | `o3-mini` | 2025-01-31 | `Generally Available` | 2026-01-31 | 2026-08-02 | `o4-mini` |
@@ -54,10 +54,10 @@ ms.custom: references_regions, build-2025
 
 | Model Name | Model Version<sup>1</sup>  | Lifecycle Status | Deprecation Date (No New Customers) | Retirement Date | Replacement Model |
 |:--|:--|:--|:--|:--|:--|
-| `gpt-4o-audio-`Preview`` | 2024-12-17 | `Preview` | n/a | 2026-02-02 | `gpt-audio` |
-| `gpt-4o-realtime-`Preview`` | 2024-12-17 | `Preview` | n/a | 2026-02-02 | `gpt-realtime` |
-| `gpt-4o-mini-audio-`Preview`` | 2024-12-17 | `Preview` | n/a | No earlier than February 28, 2026 |  |
-| `gpt-4o-mini-realtime-`Preview`` | 2024-12-17 | `Preview` | n/a | No earlier than February 28, 2026 |  |
+| `gpt-4o-audio-preview` | 2024-12-17 | `Preview` | n/a | 2026-02-02 | `gpt-audio` |
+| `gpt-4o-realtime-preview` | 2024-12-17 | `Preview` | n/a | 2026-02-02 | `gpt-realtime` |
+| `gpt-4o-mini-audio-preview` | 2024-12-17 | `Preview` | n/a | No earlier than February 28, 2026 |  |
+| `gpt-4o-mini-realtime-preview` | 2024-12-17 | `Preview` | n/a | No earlier than February 28, 2026 |  |
 | `gpt-4o-transcribe` | 2025-03-20 | `Preview` | n/a | No earlier than February 28, 2026 |  |
 | `gpt-4o-mini-tts` | 2025-03-20 | `Preview` | n/a | No earlier than February 28, 2026 |  |
 | `gpt-4o-mini-transcribe` | 2025-03-20 | `Preview` | n/a | No earlier than February 28, 2026 |  |
@@ -101,7 +101,7 @@ ms.custom: references_regions, build-2025
 
 <sup>1</sup> For some models, the launch date is used as the value of the model version.
 
-We notify all customers with these `Preview` deployments at least 30 days before the start of the upgrades. We publish an upgrade schedule that details the order of regions and model versions that we follow during the upgrades, and link to that schedule from here.
+We notify all customers with these preview deployments at least 30 days before the start of the upgrades. We publish an upgrade schedule that details the order of regions and model versions that we follow during the upgrades, and link to that schedule from here.
 
 > [!TIP]
 > Will a model upgrade happen if the new model version isn't yet available in that region?
