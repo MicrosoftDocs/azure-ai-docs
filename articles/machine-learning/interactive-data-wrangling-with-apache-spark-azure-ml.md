@@ -104,7 +104,7 @@ To use a service principal to access and wrangle data from Azure Data Lake Stora
 
    |Property name|Value|
    |-------------|-----|
-   |`fs.azure.account.oauth2.client.id.<STORAGE_ACCOUNT_NAME>.dfs.core.windows.net`|Application (client) id value|
+   |`fs.azure.account.oauth2.client.id.<STORAGE_ACCOUNT_NAME>.dfs.core.windows.net`|Application (client) ID value|
    |`fs.azure.account.oauth2.client.endpoint.<STORAGE_ACCOUNT_NAME>.dfs.core.windows.net`|`https://login.microsoftonline.com/<TENANT_ID>/oauth2/token`|
    |`fs.azure.account.oauth2.client.secret.<STORAGE_ACCOUNT_NAME>.dfs.core.windows.net`|Client secret value|
 
