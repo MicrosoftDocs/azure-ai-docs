@@ -42,13 +42,13 @@ The skillset contains the indexer projection that shapes the data for one-to-man
 
 Through an index projection, you can send content to:
 
-- (recommended) A single index, where the parent fields repeat for each chunk, but the grain of the index is at the chunk level. The [classic RAG example](https://github.com/Azure-Samples/azure-search-classic-rag/blob/main/README.md) shows this approach.
+- (recommended) A single index, with parent fields repeating for each chunk. The grain of the index is at the chunk level and all documents are the same shape. The [classic RAG example](https://github.com/Azure-Samples/azure-search-classic-rag/blob/main/README.md) shows this approach.
 
-- A single index, but instead of repeating parent fields repeat for each chunk, extra documents are added for parent-specific content. In parent documents, chunk fields are null.
+- A single index, with extra documents for parent-specific content. Chunk documents still include a parent ID. In the parent documents, chunk fields are null.
 
-- Two indexes, where the parent index has fields related to the parent document, and the child index is organized around chunks. The child index is the primary search corpus, but the parent index could be used for [lookup queries](/rest/api/searchservice/documents/get) when you want to retrieve the parent fields of a particular chunk, or for independent queries.
+- Two indexes, where the parent index has parent-specific fields, and the child index is organized around chunks. The child index is the primary search corpus. The parent index could be used for [lookup queries](/rest/api/searchservice/documents/get) when you want to retrieve the parent fields of a particular chunk, or for independent queries.
 
-Most implementations are a single index organized around chunks with parent fields, such as the document filename, repeating for each chunk. However, the system is designed to support separate and multiple child indexes if that's your requirement. Azure AI Search doesn't support index joins so your application code must handle which index to use.
+Most implementations are a single index organized around chunks with parent fields, such as the document filename, repeating for each chunk. However, the system is designed to support alternative patterns. Azure AI Search doesn't support index joins so your application code must handle which index to use.
 
 ### A single index with repeating parent fields
 
@@ -264,7 +264,7 @@ Parameters have the following elements as part of their definition.
 
 | Parameters | Definition |
 |----------------------------|------------|
-| `parameters.projectionMode` | An optional parameter providing instructions to the indexer. Valid values include `includeIndexingParentDocuments` and `skipIndexingParentDocuments`. <br><br>The best value for this parameter is `skipIndexingParentDocuments`. You should use it when chunked documents are the primary search target. <br><br>If you don't set `skipIndexingParentDocuments` for `projectionMode` you get extra search documents in your index that are null for chunks, but populated with parent fields only. For example, if five documents contribute 100 chunks to the index, then the number of documents in the index is 105. The five documents created or parent fields have nulls for chunk (child) fields, making them substantially different from the bulk of the documents in the index. For this reason, we recommend `projectionMode` set to `skipIndexingParentDocument`. |
+| `parameters.projectionMode` | An optional parameter providing instructions to the indexer. Valid values include `includeIndexingParentDocuments` and `skipIndexingParentDocuments`. <br><br>The best value for this parameter is `skipIndexingParentDocuments`. You should use it when chunked documents are the primary search target. <br><br>If you don't set `skipIndexingParentDocuments` for `projectionMode` you get extra search documents in your index that are null for chunks, but populated with parent fields only. For example, if five documents contribute 100 chunks to the index, then the number of documents in the index is 105. The five documents created or parent fields have nulls for chunk (child) fields, making them substantially different from the bulk of the documents in the index. For this reason, we recommend `projectionMode` set to `skipIndexingParentDocuments`. |
 
 Selectors have the following elements as part of their definition.
 
@@ -415,7 +415,7 @@ This section shows an example for separate parent and child indexes. It's an unc
       "name": "my-indexer",
       "dataSourceName": "my-ds",
       "targetIndexName": "my-parent-index",
-      "skillsetName" : "my-skillset"
+      "skillsetName" : "my-skillset",
       "parameters": { },
       "fieldMappings": (optional) Maps fields in the underlying data source to fields in an index,
       "outputFieldMappings" : (required) Maps skill outputs to fields in an index,
