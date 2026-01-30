@@ -5,19 +5,21 @@ description: Get started using Azure AI Content Safety to analyze text content f
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
-ms.custom: build-2023, devx-track-python, devx-track-dotnet, devx-track-extended-java, devx-track-js
+ms.custom: build-2023, devx-track-python, devx-track-dotnet, devx-track-extended-java, devx-track-js, dev-focus
 ms.topic: quickstart
 ms.date: 11/21/2025
 ms.author: pafarley
+ai-usage: ai-assisted
 zone_pivot_groups: programming-languages-content-safety-2
 ---
 
 # QuickStart: Analyze text content
 
-Get started applying basic text moderation with the Content Safety Studio, REST API, or client libraries. The Azure AI Content Safety service provides you with AI algorithms for flagging objectionable content. To try it out, follow these steps.
+In this quickstart, you analyze text content for harmful material using Azure AI Content Safety. The Azure AI Content Safety service provides you with AI algorithms for flagging objectionable content.
 
-For more information on text moderation, see the [Harm categories concept page](./concepts/harm-categories.md). For API input limits, see the [Input requirements](./overview.md#input-requirements) section of the Overview. 
+For more information on text moderation, see the [Harm categories concept page](./concepts/harm-categories.md). For API input limits, see the [Input requirements](./overview.md#input-requirements) section of the Overview.
 
+Choose your preferred language below for detailed steps:
 
 > [!CAUTION]
 > 
