@@ -36,7 +36,7 @@ ms.custom: references_regions
 | `en-US` | English (United States) | Professional voice<br/><br/>Custom voice lite<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary<br/><br/>HD voice |
 | `en-ZA` |English (South Africa) | Professional voice |
 | `es-AR` |Spanish (Argentina)| Professional voice |
-| `es-Cl` |Spanish (Chile)| Professional voice |
+| `es-CL` |Spanish (Chile)| Professional voice |
 | `es-CO` |Spanish (Colombia)| Professional voice |
 | `es-ES` | Spanish (Spain) | Professional voice<br/><br/>Custom voice lite<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary |
 | `es-MX` | Spanish (Mexico) | Professional voice<br/><br/>Custom voice lite<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multilingual voice primary and secondary |

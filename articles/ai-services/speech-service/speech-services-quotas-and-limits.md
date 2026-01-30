@@ -37,7 +37,7 @@ The following table summarizes the quotas and limits for Voice Live per Azure Sp
 | Maximum connection length | Not applicable | <= 60 minutes per session |
 | Tokens per minute | Not applicable | <= 120,000 |
 
-Avatars used in Voice Live follow the quotas and limits described in [Real-time text-to-speech avatar](#real-time-text-to-speech-avatar) later this article.
+Avatars used in Voice Live follow the quotas and limits described in [Real-time text-to-speech avatar](#real-time-text-to-speech-avatar) later in this article.
 
 ### LLM speech (preview) quotas and limits per resource
 
