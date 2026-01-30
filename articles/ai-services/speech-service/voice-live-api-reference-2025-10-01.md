@@ -43,7 +43,6 @@ The Voice live API supports the following client events that can be sent from th
 | [conversation.item.delete](#conversationitemdelete) | Remove an item from the conversation |
 | [response.create](#realtimeclienteventresponsecreate) | Instruct the server to create a response via model inference |
 | [response.cancel](#realtimeclienteventresponsecancel) | Cancel an in-progress response |
-| [mcp_approval_response](#realtimemcpapprovalresponseitem) | Send approval or rejection for an MCP tool call that requires approval |
 
 ### session.update
 
@@ -132,7 +131,7 @@ Establish an avatar connection by providing the client's SDP (Session Descriptio
 | Field | Type | Description |
 |-------|------|-------------|
 | type | string | Must be `"session.avatar.connect"` |
-| client_sdp | string | The client's SDP offer for WebRTC connection establishment |
+| client_sdp | string | The client's SDP offer for WebRTC connection establishment, encoded with base64 |
 
 ### input_audio_buffer.append
 
@@ -241,32 +240,27 @@ Add a new item to the conversation context. This can include messages, function 
 }
 ```
 
-#### Example with Function Call
+#### Example with Function Call output
 
 ```json
 {
   "type": "conversation.item.create",
   "item": {
-    "type": "function_call",
-    "name": "get_weather",
+    "type": "function_call_output",
     "call_id": "call_123",
-    "arguments": "{\"location\": \"San Francisco\", \"unit\": \"celsius\"}"
+    "output": "{\"location\": \"San Francisco\", \"temperature\": \"70\"}"
   }
 }
 ```
 
-#### Example with MCP call
+#### Example with MCP approval response
 ```json
 {
   "type": "conversation.item.create",
   "item": {
-    "type": "mcp_call",
-    "approval_request_id": null,
-    "arguments": "",
-    "server_label": "deepwiki",
-    "name": "ask_question",
-    "output": null,
-    "error": null
+    "type": "mcp_approval_response",
+    "approval_request_id": "mcp_approval_req_456",
+    "approve": true,
   }
 }
 ```
@@ -605,6 +599,7 @@ The Voice live API sends the following server events to communicate status, resp
 | Event | Description |
 |-------|-------------|
 | [error](#error) | Indicates an error occurred during processing |
+| [warning](#warning) | Indicates a warning occurred that does not interrupt the conversation flow |
 | [session.created](#sessioncreated) | Sent when a new session is successfully established |
 | [session.updated](#sessionupdated) | Sent when session configuration is updated |
 | [session.avatar.connecting](#sessionavatarconnecting) | Indicates avatar WebRTC connection is being established |
@@ -1533,6 +1528,38 @@ The server `error` event is returned when an error occurs, which could be a clie
 | param | string | Parameter related to the error, if any. |
 | event_id | string | The ID of the client event that caused the error, if applicable. |
 
+### warning
+
+The server `warning` event is returned when a warning occurs that does not interrupt the conversation flow. Warnings are informational and the session continues normally.
+
+#### Event structure
+
+```json
+{
+  "type": "warning",
+  "warning": {
+    "code": "<code>",
+    "message": "<message>",
+    "param": "<param>"
+  }
+}
+```
+
+#### Properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | The event type must be `warning`. |
+| warning | object | Details of the warning. See nested properties in the next table. |
+
+#### Warning properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| message | string | A human-readable warning message. |
+| code | string | Optional. Warning code, if any. |
+| param | string | Optional. Parameter related to the warning, if any. |
+
 ### input_audio_buffer.cleared
 
 The server `input_audio_buffer.cleared` event is returned when the client clears the input audio buffer with a `input_audio_buffer.clear` event.
@@ -2212,6 +2239,7 @@ Azure standard voice configuration.
 | name | string | Voice name (cannot be empty) |
 | temperature | number | Optional. Temperature between 0.0 and 1.0 |
 | custom_lexicon_url | string | Optional. URL to custom lexicon |
+| custom_text_normalization_url | string | Optional. URL to custom text normalization |
 | prefer_locales | string[] | Optional. Preferred locales<br/> Prefer locales will change the accents of languages. If the value is not set, TTS will use default accent of each language. e.g. When TTS speaking English, it will use the American English accent. And when speaking Spanish, it will use the Mexican Spanish accent. <br/>If set the prefer_locales to `["en-GB", "es-ES"]`, the English accent will be British English and the Spanish accent will be European Spanish. And TTS also able to speak other languages like French, Chinese, etc. |
 | locale | string | Optional. Locale specification<br/> Enforce The locale for TTS output. If not set, TTS will always use the given locale to speak. e.g. set locale to `en-US`, TTS will always use American English accent to speak the text content, even the text content is in another language. And TTS will output silence if the text content is in Chinese. |
 | style | string | Optional. Voice style |
@@ -2230,6 +2258,7 @@ Azure custom voice configuration (preferred for custom voices).
 | endpoint_id | string | Endpoint ID (cannot be empty) |
 | temperature | number | Optional. Temperature between 0.0 and 1.0 |
 | custom_lexicon_url | string | Optional. URL to custom lexicon |
+| custom_text_normalization_url | string | Optional. URL to custom text normalization |
 | prefer_locales | string[] | Optional. Preferred locales<br/> Prefer locales will change the accents of languages. If the value is not set, TTS will use default accent of each language. e.g. When TTS speaking English, it will use the American English accent. And when speaking Spanish, it will use the Mexican Spanish accent. <br/>If set the prefer_locales to `["en-GB", "es-ES"]`, the English accent will be British English and the Spanish accent will be European Spanish. And TTS also able to speak other languages like French, Chinese, etc. |
 | locale | string | Optional. Locale specification<br/> Enforce The locale for TTS output. If not set, TTS will always use the given locale to speak. e.g. set locale to `en-US`, TTS will always use American English accent to speak the text content, even the text content is in another language. And TTS will output silence if the text content is in Chinese. |
 | style | string | Optional. Voice style |
@@ -2260,6 +2289,7 @@ Azure personal voice configuration.
 | temperature | number | Optional. Temperature between 0.0 and 1.0 |
 | model | string | Underlying neural model: `DragonLatestNeural`, `PhoenixLatestNeural`, `PhoenixV2Neural` |
 | custom_lexicon_url | string | Optional. URL to custom lexicon |
+| custom_text_normalization_url | string | Optional. URL to custom text normalization |
 | prefer_locales | string[] | Optional. Preferred locales<br/> Prefer locales will change the accents of languages. If the value is not set, TTS will use default accent of each language. e.g. When TTS speaking English, it will use the American English accent. And when speaking Spanish, it will use the Mexican Spanish accent. <br/>If set the prefer_locales to `["en-GB", "es-ES"]`, the English accent will be British English and the Spanish accent will be European Spanish. And TTS also able to speak other languages like French, Chinese, etc. |
 | locale | string | Optional. Locale specification<br/> Enforce The locale for TTS output. If not set, TTS will always use the given locale to speak. e.g. set locale to `en-US`, TTS will always use American English accent to speak the text content, even the text content is in another language. And TTS will output silence if the text content is in Chinese. |
 | pitch | string | Optional. Pitch adjustment |
@@ -2358,6 +2388,9 @@ Configuration for avatar streaming and behavior.
 | style | string | Optional. Avatar style (emotional tone, speaking style) |
 | customized | boolean | Whether the avatar is customized |
 | video | [RealtimeVideoParams](#realtimevideoparams) | Optional. Video configuration |
+| scene | [RealtimeAvatarScene](#realtimeavatarscene) | Optional. Configuration for the avatar's zoom level, position, rotation and movement amplitude in the video frame |
+| output_protocol | string | Optional. Output protocol for avatar streaming. Default is `webrtc` |
+| output_audit_audio | boolean | Optional. When enabled, forwards audit audio via WebSocket for review/debugging purposes, even when avatar output is delivered via WebRTC. Default is `false` |
 
 #### RealtimeIceServer
 
@@ -2397,6 +2430,20 @@ Video resolution specification.
 |-------|------|-------------|
 | width | integer | Width in pixels (must be > 0) |
 | height | integer | Height in pixels (must be > 0) |
+
+#### RealtimeAvatarScene
+
+Configuration for avatar's zoom level, position, rotation and movement amplitude in the video frame.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| zoom | number | Optional. Zoom level of the avatar. Range is (0, +∞). Values less than 1 zoom out, values greater than 1 zoom in. Default is 0 |
+| position_x | number | Optional. Horizontal position of the avatar. Range is [-1, 1], as a proportion of frame width. Negative values move left, positive values move right. Default is 0 |
+| position_y | number | Optional. Vertical position of the avatar. Range is [-1, 1], as a proportion of frame height. Negative values move up, positive values move down. Default is 0 |
+| rotation_x | number | Optional. Rotation around the X-axis (pitch). Range is [-π, π] in radians. Negative values rotate up, positive values rotate down. Default is 0 |
+| rotation_y | number | Optional. Rotation around the Y-axis (yaw). Range is [-π, π] in radians. Negative values rotate left, positive values rotate right. Default is 0 |
+| rotation_z | number | Optional. Rotation around the Z-axis (roll). Range is [-π, π] in radians. Negative values rotate anticlockwise, positive values rotate clockwise. Default is 0 |
+| amplitude | number | Optional. Amplitude of the avatar movement. Range is (0, 1]. Values in (0, 1) mean reduced amplitude, 1 means full amplitude. Default is 0 |
 
 ### Animation Configuration
 
@@ -2441,6 +2488,7 @@ Session configuration object used in `session.update` events.
 | tool_choice | [RealtimeToolChoice](#realtimetoolchoice) | The tool choice for the session.<br><br>Allowed values: `auto`, `none`, and `required`. Otherwise, you can specify the name of the function to use. |
 | temperature | number | The sampling temperature for the model. The allowed temperature values are limited to [0.6, 1.2]. Defaults to 0.8. |
 | max_response_output_tokens | integer or "inf" | The maximum number of output tokens per assistant response, inclusive of tool calls.<br><br>Specify an integer between 1 and 4096 to limit the output tokens. Otherwise, set the value to "inf" to allow the maximum number of tokens.<br><br>For example, to limit the output tokens to 1000, set `"max_response_output_tokens": 1000`. To allow the maximum number of tokens, set `"max_response_output_tokens": "inf"`.<br><br>Defaults to `"inf"`. |
+| reasoning_effort | [ReasoningEffort](#reasoningeffort) | Optional. Constrains effort on reasoning for reasoning models. Check [Azure Foundry doc](h../../../../ai-foundry/openai/how-to/reasoning?view=foundry&tabs=REST#reasoning-effort) for more details. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.  |
 | avatar | [RealtimeAvatarConfig](#realtimeavatarconfig) | Optional. Avatar configuration |
 | output_audio_timestamp_types | [RealtimeAudioTimestampType](#realtimeaudiotimestamptype)[] | Optional. Timestamp types for output audio |
 
@@ -2460,6 +2508,18 @@ Output timestamp types supported in audio response content.
 
 **Allowed Values:**
 * `word` - Timestamps per word in the output audio
+
+#### ReasoningEffort
+
+Constrains effort on reasoning for reasoning models. Check model documentation for supported values for each model. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.
+
+**Allowed Values:**
+* `none` - No reasoning effort
+* `minimal` - Minimal reasoning effort
+* `low` - Low reasoning effort - faster responses with less reasoning
+* `medium` - Medium reasoning effort - balanced between speed and reasoning depth
+* `high` - High reasoning effort - more thorough reasoning, may take longer
+* `xhigh` - Extra high reasoning effort - maximum reasoning depth
 
 ### Tool Configuration
 
@@ -2796,6 +2856,7 @@ An MCP approval response item.
 | type | string | The type of the item.<br><br>Allowed values: `mcp_approval_response` |
 | approve | boolean | Whether the MCP request is approved. |
 | approval_request_id | string | The ID of the MCP approval request. |
+| id | string | The unique ID of the item. The client can specify the ID to help manage server-side context. If the client doesn't provide an ID, the server generates one. |
 
 ### RealtimeFunctionTool
 
@@ -2852,6 +2913,7 @@ The definition of a function tool as used by the realtime endpoint.
 | tool_choice | [RealtimeToolChoice](#realtimetoolchoice) | The tool choice for the session. |
 | temperature | number | The sampling temperature for the model. The allowed temperature values are limited to [0.6, 1.2]. Defaults to 0.8. |
 | max_response_output_tokens | integer or "inf" | The maximum number of output tokens per assistant response, inclusive of tool calls.<br><br>Specify an integer between 1 and 4096 to limit the output tokens. Otherwise, set the value to "inf" to allow the maximum number of tokens.<br><br>For example, to limit the output tokens to 1000, set `"max_response_output_tokens": 1000`. To allow the maximum number of tokens, set `"max_response_output_tokens": "inf"`.<br><br>Defaults to `"inf"`. |
+| reasoning_effort | [ReasoningEffort](#reasoningeffort) | Optional. Constrains effort on reasoning for reasoning models. Check model documentation for supported values for each model. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. |
 | conversation | string | Controls which conversation the response is added to. The supported values are `auto` and `none`.<br><br>The `auto` value (or not setting this property) ensures that the contents of the response are added to the session's default conversation.<br><br>Set this property to `none` to create an out-of-band response where items won't be added to the default conversation. <br><br>Defaults to `"auto"` |
 | metadata | map | Set of up to 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.<br/><br/>For example: `metadata: { topic: "classification" }` |
 
