@@ -23,7 +23,7 @@ ms.custom:
 
 ### Supported models
 
-To check which regions currently support fine-tuning, consult the [article about models](../concepts/models.md#fine-tuning-models?context=/azure/ai-foundry/context/context&view=foundry&preserve-view=true).
+To check which regions currently support fine-tuning, consult the [article about models](../concepts/models.md?pivots=azure-openai#fine-tuning-models).
 
 Or you can fine-tune a previously fine-tuned model, formatted as `base-model.ft-{jobid}`.
 
