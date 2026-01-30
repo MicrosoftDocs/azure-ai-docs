@@ -1,5 +1,5 @@
 ---
-title: 'Quickstart: Generate video with Sora'
+title: "Quickstart: Generate video with Sora"
 titleSuffix: Azure OpenAI
 description: Learn how to get started generating video clips with Azure OpenAI.
 manager: nitinme
