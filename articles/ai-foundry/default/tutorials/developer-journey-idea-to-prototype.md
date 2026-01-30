@@ -430,7 +430,7 @@ When you run the agent, you see output similar to the following example. The out
 ```bash
 ✅ Connected to Foundry
 🚀 Foundry - Modern Workplace Assistant
-Tutorial 1: Building Enterprise Agents with Agent SDK v2
+Tutorial 1: Building Enterprise Agents with Microsoft Foundry Project SDK
 ======================================================================
 🤖 Creating Modern Workplace Assistant...
 📁 Configuring SharePoint integration...
@@ -501,7 +501,7 @@ Conditional Access policies act as "if-then" statements that enforce organizatio
 
 ✅ DEMONSTRATION COMPLETED!
 🎓 Key Learning Outcomes:
-   • Agent SDK v2 usage for enterprise AI
+   • Microsoft Foundry Project SDK usage for enterprise AI
    • Proper thread and message management
    • Real business value through AI assistance
    • Foundation for governance and monitoring (Tutorials 2-3)
@@ -531,7 +531,7 @@ The code breaks down into the following main sections:
 1. [Retrieve evaluation results](#retrieve-evaluation-results).
 
 > [!TIP]
-> For detailed guidance on cloud evaluations, see [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md).
+> For detailed guidance on cloud evaluations, see [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md). To find a comprehensive list of built-in evaluators available in Founrdy, see [Observability in generative AI](../../concepts/observability). 
 
 > [!NOTE]
 > The C# SDK uses **protocol methods** with `BinaryData` and `BinaryContent` instead of typed objects. This approach requires helper methods to parse JSON responses. See the [C# Evaluations SDK sample](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects/samples/Sample21_Evaluations.md) for the complete pattern.
