@@ -650,7 +650,7 @@ Cloud evaluations provide structured results that you can view in the Foundry po
 You can also view detailed results in the Foundry portal by selecting **Evaluation** from your project and selecting the evaluation run. The portal provides visualizations, filtering, and export options.
 
 > [!TIP]
-> For production scenarios, consider running evaluations as part of your CI/CD pipeline. See [cloud evaluation documentation](../../how-to/develop/cloud-evaluation.md) for integration patterns.
+> For production scenarios, consider running evaluations as part of your CI/CD pipeline. See [How to run an evaluation in Azure DevOps](../../how-to/evaluation-azure-devops), and [Continuously evaluate your AI agents](../../how-to/continuous-evaluation-agents) for integration patterns.
 ```
 
 
