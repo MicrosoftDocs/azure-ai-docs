@@ -18,7 +18,7 @@ As part of this iterative development process, older model versions are deprecat
 
 ## Prebuilt features
 
-Prebuilt (also referred to as pretrained) features in Azure Language are powered by models that have been trained on large datasets and are ready to use without additional customization. These models provide out-of-the-box natural language processing capabilities for common scenarios.
+Prebuilt (also referred to as pretrained) features in Azure Language are powered by models trained on large datasets and are ready to use without added customization. These models provide out-of-the-box natural language processing capabilities for common scenarios.
 
 Prebuilt models are updated continuously to improve prediction accuracy, expand language coverage, and enhance output quality. By default, all API requests are automatically routed to the latest Generally Available (GA) model version.
 
@@ -27,12 +27,12 @@ Prebuilt models are updated continuously to improve prediction accuracy, expand 
 We recommend using the **latest** model version to ensure optimal accuracy and access to the most recent improvements. However, as models evolve, prediction outputs may change between versions. Deprecated model versions are no longer accepted in API requests after their retirement date.
 
 > [!IMPORTANT]
-> Preview model versions do not maintain a minimum retirement period and may be deprecated at any time without advance notice.
+> Preview model versions don't maintain a minimum retirement period and may be deprecated at any time without advance notice.
 
 By default, API and SDK requests are processed using the latest Generally Available model version. To specify an alternative version, use the optional **modelVersion** parameter in your request. Specifying a preview model version for production workloads isn't recommended.
 
 > [!NOTE]
-> If you're using a model version that isn't listed in the following table, that version has been retired according to the expiration policy.
+> If you're using a model version that isn't listed in the following table, that version is retired according to the expiration policy.
 
 ## Model versions
 
@@ -89,13 +89,13 @@ The following table lists the supported API versions for each feature:
 
 | Feature | Supported versions | Latest Generally Available version | Latest preview version |
 | --- | --- | --- | --- |
-| Custom text</br>classification | &bullet; **2022-05-01**</br>&bullet; **2022-10-01-preview**</br>&bullet; **2023-04-01** | **2022-05-01** | **2022-10-01-preview** |
-| Conversational language</br>understanding | &bullet; **2022-05-01**</br>&bullet; **2022-10-01-preview**</br>&bullet; **2023-04-01** | **2023-04-01** | **2022-10-01-preview** |
-| Custom named entity</br>recognition | &bullet; **2022-05-01**</br>&bullet; **2022-10-01-preview**</br>&bullet; **2023-04-01**</br>&bullet; **2023-04-15**</br>&bullet; **2023-04-15-preview** | **2023-04-15** | **2023-04-15-preview** |
-| Orchestration</br>workflow | &bullet; **2022-05-01**</br>&bullet; **2022-10-01-preview**</br>&bullet; **2023-04-01** | **2023-04-01** | **2022-10-01-preview** |
+| Custom text </br>classification | &bullet; **2022-05-01**</br>&bullet; **2022-10-01-preview**</br>&bullet; **2023-04-01** | **2022-05-01** | **2022-10-01-preview** |
+| Conversational language </br>understanding | &bullet; **2022-05-01**</br>&bullet; **2022-10-01-preview**</br>&bullet; **2023-04-01** | **2023-04-01** | **2022-10-01-preview** |
+| Custom named entity </br>recognition | &bullet; **2022-05-01**</br>&bullet; **2022-10-01-preview**</br>&bullet; **2023-04-01**</br>&bullet; **2023-04-15**</br>&bullet; **2023-04-15-preview** | **2023-04-15** | **2023-04-15-preview** |
+| Orchestration </br>workflow | &bullet; **2022-05-01**</br>&bullet; **2022-10-01-preview**</br>&bullet; **2023-04-01** | **2023-04-01** | **2022-10-01-preview** |
 | Named Entity</br>Recognition | &bullet; **2025-05-15-preview**</br>&bullet; **2024-11-01 (GA)**</br>&bullet; **2024-11-15-preview** | **2024-11-01 (GA)** | **2025-05-15-preview** |
-| PII detection</br>for text | &bullet; **2025-05-15-preview**</br>&bullet; **2024-11-01 (GA)**</br>&bullet; **2024-11-15-preview** | **2024-11-01 (GA)** | **2025-05-15-preview** |
-| PII detection</br>for conversations | &bullet; **2025-05-15-preview**</br>&bullet; **2024-11-01 (GA)**</br>&bullet; **2024-11-15-preview** | **2024-11-01 (GA)** | **2025-05-15-preview** |
+| `PII` detection </br>for text | &bullet; **2025-05-15-preview**</br>&bullet; **2024-11-01 (GA)**</br>&bullet; **2024-11-15-preview** | **2024-11-01 (GA)** | **2025-05-15-preview** |
+| `PII` detection </br>for conversations | &bullet; **2025-05-15-preview**</br>&bullet; **2024-11-01 (GA)**</br>&bullet; **2024-11-15-preview** | **2024-11-01 (GA)** | **2025-05-15-preview** |
 
 ## Related content
 
