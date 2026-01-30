@@ -75,7 +75,7 @@ Initialize a new project with the Foundry starter template and configure it with
     | **AZURE_AI_PROJECT_TOOL_CONNECTION_ID** (optional) | Your MCP tool connection ID | In the [Foundry portal](https://ai.azure.com), go to **Management** > **Connected resources** and copy the connection ID for your MCP tool. |
 
     > [!IMPORTANT]
-    > If you aren't using an MCP server, comment out the following lines in the `agent.yaml` file:
+    > If you aren't using an MCP server, comment out or remove the following lines in the `agent.yaml` file:
     >
     > ```yaml
     > - name: AZURE_AI_PROJECT_TOOL_CONNECTION_ID
