@@ -97,6 +97,18 @@ The following table lists the supported API versions for each feature:
 | `PII` detection </br>for text | &bullet; **2025-05-15-preview**</br>&bullet; **2024-11-01 (GA)**</br>&bullet; **2024-11-15-preview** | **2024-11-01 (GA)** | **2025-05-15-preview** |
 | `PII` detection </br>for conversations | &bullet; **2025-05-15-preview**</br>&bullet; **2024-11-01 (GA)**</br>&bullet; **2024-11-15-preview** | **2024-11-01 (GA)** | **2025-05-15-preview** |
 
+### Model version and API version comparison
+
+Understanding the distinction between model versions and API versions is essential for managing your Azure Language implementations effectively.
+
+| Aspect | API version | Model version |
+| --- | --- | --- |
+| **Definition** | Defines the service endpoint contract, including request/response schemas and available operations. | Specifies the underlying machine learning algorithm and trained weights used for predictions. |
+| **REST call location** | Required `api-version` query parameter in the request URL. | Optional `modelVersion` parameter in the request body. |
+| **Update frequency** | Released when interface changes or new features are introduced. | Released regularly to improve prediction accuracy and language coverage. |
+| **Update impact** | Breaking changes require a new API version to maintain backward compatibility. | Updates typically enhance results without requiring API version changes. |
+| **Default behavior** | Must be explicitly specified; SDK/client libraries default to a specific supported version. | Automatically defaults to the latest GA model version if not specified. |
+
 ## Related content
 
 * [Azure Language overview](../overview.md)
