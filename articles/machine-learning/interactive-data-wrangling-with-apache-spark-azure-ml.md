@@ -143,7 +143,7 @@ To use a service principal to access and wrangle data from Azure Data Lake Stora
    )
    ```
 
-1. Import and wrangle the *titanic.csv* data using a data URI in the abfss://<FILE_SYSTEM_NAME>@<STORAGE_ACCOUNT_NAME>.dfs.core.windows.net/<PATH_TO_DATA> format, as shown in the code sample. Replace the `<STORAGE_ACCOUNT_NAME>` placeholder with the name of your Azure Data Lake Storage account and `<FILE_SYSTEM_NAME>` with the name of the data container.
+1. Import and wrangle the *titanic.csv* data using a data URI in the `abfss://<FILE_SYSTEM_NAME>@<STORAGE_ACCOUNT_NAME>.dfs.core.windows.net/<PATH_TO_DATA>` format, as shown in the code sample. Replace the `<STORAGE_ACCOUNT_NAME>` placeholder with the name of your Azure Data Lake Storage account and `<FILE_SYSTEM_NAME>` with the name of the data container.
 
    ```python
    import pyspark.pandas as pd
