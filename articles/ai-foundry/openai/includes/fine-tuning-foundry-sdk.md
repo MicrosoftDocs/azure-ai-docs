@@ -19,12 +19,12 @@ ms.custom:
 - You need an Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - You need a Foundry project resource. To create one, sign in to the [Foundry portal](https://ai.azure.com).
 - You need the following Python libraries: `os`, `json`, `requests`, `azure-ai-projects`, `azure-identity`.
-- Fine-tuning access requires the Azure AI User role.
+- Fine-tuning requires the **Azure AI Owner** role. While Azure AI Users may train (fine tune) models, only AI Owners may deploy them.
 - If you don't already have access to view quotas and deploy models in the Foundry portal, you need [more permissions](../how-to/role-based-access-control.md).
 
 ### Supported models
 
-To check which regions currently support fine-tuning, consult the [article about models](../concepts/models.md#fine-tuning-models).
+To check which regions currently support fine-tuning, consult the [article about models](../concepts/models.md?pivots=azure-openai#fine-tuning-models).
 
 Or you can fine-tune a previously fine-tuned model, formatted as `base-model.ft-{jobid}`.
 
@@ -149,7 +149,7 @@ print(response.model_dump_json(indent=2))
 ```
 
 > [!NOTE]
-> We recommend using the Global Standard tier for the training type, because it offers [cost savings](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) and uses global capacity for faster queuing times. However, it does copy data and weights outside the current resource region. If [data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) is a requirement, use a [model](../concepts/models.md#fine-tuning-models) that supports Standard-tier training.
+> We recommend using the Global Standard tier for the training type, because it offers [cost savings](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) and uses global capacity for faster queuing times. However, it does copy data and weights outside the current resource region. If [data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) is a requirement, use a [model](../concepts/models.md?pivots=azure-openai#fine-tuning-models) that supports Standard-tier training.
 
 You can also pass additional optional parameters, like hyperparameters, to take greater control of the fine-tuning process. For initial training, we recommend using the automatic defaults that are present without specifying these parameters.
 
