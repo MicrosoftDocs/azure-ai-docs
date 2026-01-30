@@ -34,7 +34,7 @@ As your needs change or your automation requirements increase, you can manage wo
 * By using the Python SDK:
    1. Python 3.10 or later.
    1. [Install the SDK v2](https://aka.ms/sdk-v2-install).
-   1. Install azure-identity: `pip install azure-identity`. If in a notebook cell, use `%pip install azure-identity`.
+   1. Install `azure-identity`: `pip install azure-identity`. If in a notebook cell, use `%pip install azure-identity`.
    1. Provide your subscription details:
 
       [!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]

@@ -43,7 +43,7 @@ As materialization jobs run for the feature set, they create or merge data inter
 - When two data intervals are continuous on the timeline, and they have the same data materialization status, they become one data interval
 - In a data interval, when a portion of the feature data is materialized again, and that portion gets a different data materialization status, that data interval is split into multiple data intervals
 
-When a user selects a feature window, multiple data intervals, with different data materialization statuses, might appear in that window. Additionally, multiple data intervals, that are disjoint on the timeline, might also appear. For example, the earlier snapshot has 16 *data intervals* for the defined *feature window* in the offline materialization store.
+When a user selects a feature window, multiple data intervals, with different data materialization statuses, might appear in that window. Additionally, multiple data intervals, that are disjointed on the timeline, might also appear. For example, the earlier snapshot has 16 *data intervals* for the defined *feature window* in the offline materialization store.
 
 At any given time, a feature set can have at most 2,000 *data intervals*. Once a feature set reaches that limit, no more materialization jobs can run. Users must then create a new feature set version, with materialization enabled. For the new feature set version, materialize the features in the offline and online stores from scratch.
 
