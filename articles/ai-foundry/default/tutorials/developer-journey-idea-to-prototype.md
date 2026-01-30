@@ -651,8 +651,6 @@ You can also view detailed results in the Foundry portal by selecting **Evaluati
 
 > [!TIP]
 > For production scenarios, consider running evaluations as part of your CI/CD pipeline. See [How to run an evaluation in Azure DevOps](../../how-to/evaluation-azure-devops.md), and [Continuously evaluate your AI agents](../../how-to/continuous-evaluation-agents.md) for integration patterns.
-```
-
 
 ## Summary
 
