@@ -9,7 +9,7 @@ ms.reviewer: pafarley
 ms.custom: references_regions
 ---
 
-| Locale (BCP-47) | Language | Text to speech voices |
+| Locale (BCP-47) | Language | Text-to-speech voices |
 | ----- | ----- | ----- |
 | `af-ZA` | Afrikaans (South Africa) | `af-ZA-AdriNeural`<sup>3</sup> (Female)<br/>`af-ZA-WillemNeural`<sup>3</sup> (Male) |
 | `am-ET` | Amharic (Ethiopia) | `am-ET-MekdesNeural`<sup>3</sup> (Female)<br/>`am-ET-AmehaNeural`<sup>3</sup> (Male) |
@@ -166,16 +166,16 @@ ms.custom: references_regions
 | `zh-TW` | Chinese (Taiwanese Mandarin, Traditional) | `zh-TW-HsiaoChenNeural` (Female)<br/>`zh-TW-YunJheNeural` (Male)<br/>`zh-TW-HsiaoYuNeural` (Female) |
 | `zu-ZA` | isiZulu (South Africa) | `zu-ZA-ThandoNeural`<sup>3</sup> (Female)<br/>`zu-ZA-ThembaNeural`<sup>3</sup> (Male) |
 
-<sup>1</sup> The neural voice is available in public preview. For the current list of regions that support voices and styles in public preview, see the [Speech service regions table](../../regions.md?tabs=tts). 
+<sup>1</sup> The neural voice is available in preview. For the current list of regions that support voices and styles in preview, see the [table for Azure Speech regions](../../regions.md?tabs=tts). 
 
-<sup>2</sup> The neural voice is available in public preview. For the current list of regions that support this voice in public preview, see the [Speech service regions table](../../regions.md?tabs=tts).
+<sup>2</sup> The neural voice is available in public preview. For the current list of regions that support this voice in public preview, see the [table for Azure Speech regions](../../regions.md?tabs=tts).
 
-<sup>3</sup> [Phonemes](../../speech-synthesis-markup-pronunciation.md#phoneme-element), [custom lexicon](../../speech-synthesis-markup-pronunciation.md#custom-lexicon), and [visemes](../../speech-synthesis-markup-voice.md#viseme-element) aren't supported. For details about supported visemes, see [viseme locales](../../language-support.md?tabs=tts#viseme). 
+<sup>3</sup> [Phonemes](../../speech-synthesis-markup-pronunciation.md#phoneme-element), [custom lexicon](../../speech-synthesis-markup-pronunciation.md#custom-lexicon), and [visemes](../../speech-synthesis-markup-voice.md#viseme-element) aren't supported. For details about supported visemes, see the [table of viseme locales](../../language-support.md?tabs=tts#visemes). 
 
-<sup>4</sup> The neural voice is a multilingual voice in Azure Speech in Foundry Tools. Turbo version of Azure OpenAI voices has the similar voice persona as Azure OpenAI voices but supports extra features. Turbo voices support the full set of SSML elements and more features like word boundary, just like other Azure Speech voices.
+<sup>4</sup> The neural voice is a multilingual voice in Azure Speech. The turbo version of Azure OpenAI voices has a similar voice persona to Azure OpenAI voices but supports extra features. Turbo voices support the full set of SSML elements and more features (like word boundary), just like other Azure Speech voices.
 
-<sup>5</sup> The OpenAI text to speech voices in Azure Speech are in public preview and only available in North Central US (`northcentralus`) and Sweden Central (`swedencentral`). Locales not listed for OpenAI voices aren't supported. For information about additional differences between OpenAI text to speech voices and Azure Speech text to speech voices, see [OpenAI text to speech voices](../../openai-voices.md#openai-text-to-speech-voices-via-azure-openai-or-via-azure-speech).
+<sup>5</sup> The OpenAI text-to-speech voices in Azure Speech are in preview and are available only in North Central US (`northcentralus`) and Sweden Central (`swedencentral`). Locales not listed for OpenAI voices aren't supported. For information about additional differences between OpenAI text-to-speech voices and Azure Speech text-to-speech voices, see [OpenAI text-to-speech voices](../../openai-voices.md#openai-text-to-speech-voices-via-azure-openai-or-via-azure-speech).
 
-<sup>6</sup> The `zh-CN-XiaoxiaoDialectsNeural` voice also supports the following secondary locales: `zh-CN-shaanxi`, `zh-CN-sichuan`, `zh-CN-shanxi`, `zh-CN-anhui`, `zh-CN-hunan`, `zh-CN-gansu`, `zh-CN-shandong`, `zh-CN-henan`, `zh-CN-liaoning`, `zh-TW`, `nan-CN`, `yue-CN`, and `wuu-CN`. To get the latest supported list of secondary locales, see [the voice list API reference](../../rest-text-to-speech.md#get-a-list-of-voices).
+<sup>6</sup> The `zh-CN-XiaoxiaoDialectsNeural` voice also supports the following secondary locales: `zh-CN-shaanxi`, `zh-CN-sichuan`, `zh-CN-shanxi`, `zh-CN-anhui`, `zh-CN-hunan`, `zh-CN-gansu`, `zh-CN-shandong`, `zh-CN-henan`, `zh-CN-liaoning`, `zh-TW`, `nan-CN`, `yue-CN`, and `wuu-CN`. To get the latest list of supported secondary locales, see the [voice list API reference](../../rest-text-to-speech.md#get-a-list-of-voices).
 
-<sup>7</sup> The multi-talker voice is available in public preview in these service [regions](../../regions.md): East US, West Europe, and Southeast Asia. Only `en-US` content is supported for this voice. 
+<sup>7</sup> The multi-talker voice is available in preview in these service [regions](../../regions.md): East US, West Europe, and Southeast Asia. Only `en-US` content is supported for this voice.
