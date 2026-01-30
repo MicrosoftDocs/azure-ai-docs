@@ -2,8 +2,9 @@
 author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 8/07/2024
+ms.date: 1/29/2026
 ms.author: pafarley
+ai-usage: ai-assisted
 ---
 
 [!INCLUDE [Header](../../common/csharp.md)]
@@ -51,9 +52,9 @@ Follow these steps to create a console application and install the Speech SDK.
         
     class Program 
     {
-        // This example requires environment variables named "SPEECH_KEY" and "END_POINT"
+        // This example requires environment variables named "SPEECH_KEY" and "ENDPOINT"
         static string speechKey = Environment.GetEnvironmentVariable("SPEECH_KEY");
-        static string endpoint = Environment.GetEnvironmentVariable("END_POINT");
+        static string endpoint = Environment.GetEnvironmentVariable("ENDPOINT");
 
         static void OutputSpeechSynthesisResult(SpeechSynthesisResult speechSynthesisResult, string text)
         {
@@ -80,7 +81,7 @@ Follow these steps to create a console application and install the Speech SDK.
     
         async static Task Main(string[] args)
         {
-            var speechConfig = SpeechConfig.FromEndpoint(speechKey, endpoint); 
+            var speechConfig = SpeechConfig.FromEndpoint(new Uri(endpoint), speechKey); 
     
             // The neural multilingual voice can speak different languages based on the input text.
             speechConfig.SpeechSynthesisVoiceName = "en-US-Ava:DragonHDLatestNeural"; 
@@ -112,7 +113,7 @@ Follow these steps to create a console application and install the Speech SDK.
    ```
 
    > [!IMPORTANT]
-   > Make sure that you set the `SPEECH_KEY` and `END_POINT` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.
+   > Make sure that you set the `SPEECH_KEY` and `ENDPOINT` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.
 
 1. Enter some text that you want to speak. For example, type *I'm excited to try text to speech*. Select the **Enter** key to hear the synthesized speech.
 

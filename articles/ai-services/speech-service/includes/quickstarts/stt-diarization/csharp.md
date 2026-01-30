@@ -2,8 +2,9 @@
 author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 7/16/2025
+ms.date: 1/29/2026
 ms.author: pafarley
+ai-usage: ai-assisted
 ---
 
 [!INCLUDE [Header](../../common/csharp.md)]
@@ -56,7 +57,7 @@ Follow these steps to create a console application and install the Speech SDK.
         async static Task Main(string[] args)
         {
             var filepath = "katiesteve.wav";
-            var speechConfig = SpeechConfig.FromEndpoint(speechKey, endpoint);        
+            var speechConfig = SpeechConfig.FromEndpoint(new Uri(endpoint), speechKey);        
             speechConfig.SpeechRecognitionLanguage = "en-US";
             speechConfig.SetProperty(PropertyId.SpeechServiceResponse_DiarizeIntermediateResults, "true"); 
     

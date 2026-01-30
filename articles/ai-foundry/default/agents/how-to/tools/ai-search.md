@@ -18,7 +18,7 @@ zone_pivot_groups: selection-ai-search-tool
 # Azure AI Search tool for agents 
 
 > [!NOTE]
-> - There are new ways to add knowledge to your agent. For the latest recommended approach, see [Connect a Foundry IQ knowledge base to Foundry Agent Service](./knowledge-retrieval.md).
+> - There are new ways to add knowledge to your agent. For the latest recommended approach, see [Connect a Foundry IQ knowledge base to Foundry Agent Service](../foundry-iq-connect.md).
 > - For information on optimizing tool usage, see [best practices](../../concepts/tool-best-practice.md).
 
 The [Azure AI Search](../../../../../search/search-what-is-azure-search.md) tool in Microsoft Foundry Agent Service connects an agent to an Azure AI Search index. Use this tool to retrieve indexed documents so the agent can ground responses in your proprietary content with citations.
@@ -726,6 +726,6 @@ Console.WriteLine(connection.Id);
 
 ## Related content
 
-[Connect a Foundry IQ knowledge base to Foundry Agent Service](./knowledge-retrieval.md)
+[Connect a Foundry IQ knowledge base to Foundry Agent Service](../foundry-iq-connect.md)
 
 [Tool best practices](../../concepts/tool-best-practice.md)
