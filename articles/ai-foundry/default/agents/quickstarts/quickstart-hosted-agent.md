@@ -139,7 +139,11 @@ Before deploying, verify the agent works locally.
     ```bash
     az login
     ```
+1. Verify you’re logged in: 
 
+    ```bash
+    az account show
+    ```
     > [!IMPORTANT]
     > Keep this session active while testing. The agent uses `DefaultAzureCredential`, which relies on your Azure CLI sign-in for local authentication.
 
