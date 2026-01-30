@@ -32,8 +32,8 @@ The following information appears:
 | ------ | ----------- | ------------ |
 | **Name** | The name of the agent or the agentic resource. | All |
 | **Source** | The source platform where the agent or resource was discovered. See the [list of supported platforms](#supported-agent-platforms) later in this article. | All |
-| **Project** | The Foundry project associated with the agent. For custom agents, it's the project where the agent was registered. | Foundry<br />Custom |
-| **Status** | Refers to a broad range of conditions, including operational, health, or lifecycle status of the agent. Agents transition to different values, depending on the platform and [lifecycle operations](#lifecycle-operations). Possible values are: <ul><li>[Running](#start-and-stop-agents)</li><li>[Stopped](#start-and-stop-agents)</li><li>[Blocked](#block-and-unblock-agents)</li><li>[Unblocked](#block-and-unblock-agents)</li><li>[Unknown](#unknown-states)</li></ul> | All |
+| **Project** | The Foundry project associated with the agent. For custom agents, it's the project where the agent was registered. | Foundry<br><br>Custom |
+| **Status** | Refers to a broad range of conditions, including operational, health, or lifecycle status of the agent. Agents transition to different values, depending on the platform and [lifecycle operations](#lifecycle-operations). Possible values are: <ul><li>[Running](#start-and-stop-agents)</li><li>[Stopped](#start-and-stop-agents)</li><li>[Blocked](#block-and-unblock-agents)</li><li>[Unblocked](#block-and-unblock-agents)</li><li>[Unknown](#handle-unknown-states)</li></ul> | All |
 | **Version** | The version of the agent asset. | Foundry |
 | **Published as** | Indicates if the agent was [published as an agent application](../agents/how-to/publish-agent.md). Published agents in Foundry have their own endpoint for invocation. | Foundry |
 | **Error rate** | The proportion of failed runs compared to successful ones in the last month. This column requires [observability configured](#observability-of-agents). | All |
@@ -105,7 +105,7 @@ Foundry Control Plane uses the Application Insights resources that host your age
 * Compute usage metrics, including token usage and cost.
 * Collect execution traces.
 
-If you don't see such information for your agent, you need to [configure Application Insights](monitoring-across-fleet.md#configure-monitoring). Ensure that you also have [the appropriate permissions to view Application Insights data and cost metrics](monitoring-across-fleet.md#permissions).
+If you don't see such information for your agent, you need to [configure Application Insights](monitoring-across-fleet.md#configure-monitoring). Ensure that you also have [the appropriate permissions to view Application Insights data and cost metrics](monitoring-across-fleet.md#prerequisites).
 
 > [!TIP]
 > We strongly advise configuring Application Insights for each of the resources that host agents. For Foundry agents, Applications Insights is configured per Foundry project. However, you can connect multiple Foundry projects to the same Applications Insights resources to optimize those resources.
@@ -124,9 +124,7 @@ To view them:
 
 1. Select the **Traces** tab. The tab shows one entry for each call made to the agent.
 
-   Two columns contain IDs associated with the call, **Trace ID** and **Conversation ID**. Traces are stored in Application Insights and contain data to diagnose behavior.
-
-   The **Conversation ID** column applies for Foundry agents. It contains the *conversation* associated with the trace. Conversations are stored in the Foundry service.
+   Two columns contain IDs associated with the call: **Trace ID** and **Conversation ID**. Traces are stored in Application Insights and contain data to diagnose behavior. The **Conversation ID** column applies for Foundry agents. It contains the *conversation* associated with the trace. Conversations are stored in the Foundry service.
 
     :::image type="content" source="media/how-to-manage-agents/inventory-traces-list.png" alt-text="Screenshot of the traces associated with one agent." lightbox="media/how-to-manage-agents/inventory-traces-list.png":::
 
@@ -145,9 +143,9 @@ The following table summarizes supported actions for each platform. A foundry ag
 
 | Platform | Agent type | Published | Supported actions | Notes |
 | -------- | ---------- | --------- | ----------------- | ----- |
-| Foundry | Prompt<br />Workflow | No | None | Unpublished agents don't have dedicated deployments, and they use the project's endpoint to receive requests. Their lifecycle is attached to the project's lifecycle. To stop an unpublished prompt agent or workflow, you must delete it. |
+| Foundry | Prompt<br><br>Workflow | No | None | Unpublished agents don't have dedicated deployments, and they use the project's endpoint to receive requests. Their lifecycle is attached to the project's lifecycle. To stop an unpublished prompt agent or workflow, you must delete it. |
 | Foundry | Hosted | No | Start/stop | Stopping a hosted agent stops the deployment associated with it. Any compute attached to it is deallocated. |
-| Foundry | Prompt<br />Workflow<br />Hosted | Yes | Start/stop | Stopping a published agent stops the deployment associated with it. It deallocates any compute attached. |
+| Foundry | Prompt<br><br>Workflow<br><br>Hosted | Yes | Start/stop | Stopping a published agent stops the deployment associated with it. It deallocates any compute attached. |
 | Azure SRE Agent | Not applicable | Not applicable | Start/stop | |
 | Azure Logic Apps | Not applicable | Not applicable | Start/stop | You can stop an Azure Logic Apps agent loop by stopping the Logic Apps resource that hosts it. Stopping a Logic Apps resource stops all the workflows associated with it. |
 | Custom | Not applicable | Not applicable | Block/unblock | Foundry doesn't have access to the underlying infrastructure where the agent runs, so start and stop operations aren't available. However, Foundry can block incoming requests to the agent. Blocking a request prevents clients from consuming it. |

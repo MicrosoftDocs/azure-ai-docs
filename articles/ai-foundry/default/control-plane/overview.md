@@ -37,7 +37,7 @@ You can use Foundry Control Plane for the following tasks.
 
 - Correlate alerts, evaluation results, and trace data to pinpoint issues instantly.
 
-- [Continuously evaluate](../../how-to/continuous-evaluation-agents.md) agent performance, quality, and risk dimensions such as [task adherence, intent resolution, tool call success](../../concepts/evaluation-evaluators/agent-evaluators.md), [groundedness](../../concepts/evaluation-evaluators/rag-evaluators.md), sensitive data leakage, and exposure to jailbreak and cross-domain prompt injection attacks (XPIAs).
+- [Continuously evaluate](../../how-to/continuous-evaluation-agents.md) agent performance, quality, and risk dimensions. Risk dimensions might include [task adherence, intent resolution, tool call success](../../concepts/evaluation-evaluators/agent-evaluators.md), [groundedness](../../concepts/evaluation-evaluators/rag-evaluators.md), sensitive data leakage, and exposure to jailbreak and cross-domain prompt injection attacks (XPIAs).
 
 - Use the [AI Red Teaming Agent](../../concepts/ai-red-teaming-agent.md) and [cluster analysis](../observability/how-to/cluster-analysis.md) for automated vulnerability probing and error root-cause discovery.
 
@@ -53,7 +53,7 @@ You can use Foundry Control Plane for the following tasks.
 
 - Schedule automated red-teaming scans and drift monitoring for ongoing agent testing.
 
-- View Microsoft Defender and Microsoft Purview alerts directly on the Control Plane dashboard.
+- View Defender and Microsoft Purview alerts directly on the Foundry Control Plane dashboard.
 
 - Track rate limits, token usage, and cost anomalies to prevent inefficiency or abuse.
 
@@ -93,7 +93,7 @@ This pane provides a unified, searchable table of all AI assets across projects 
 - Integrate with the [AI Red Teaming Agent](../../concepts/ai-red-teaming-agent.md) to automate vulnerability probing, regression testing, and issue reproduction.
 - Observe and modify model and agent guardrails.
 
-Together, these capabilities turn the **Assets** pane into the operational backbone of the control plane. It's a single pane where you can understand, improve, and secure every AI asset in your environment.
+Together, these capabilities turn the **Assets** pane into the operational backbone of Foundry Control Plane. It's a single pane where you can understand, improve, and secure every AI asset in your environment.
 
 ### Compliance
 
@@ -103,9 +103,9 @@ Use the **Compliance** pane to govern your AI systems and enforce the right guar
 
 The **Compliance** pane empowers organizations to define, apply, and continuously monitor guardrails and compliance policies across their AI estate. It provides a unified interface to operationalize responsible AI principles while helping to ensure enterprise-grade safety and regulatory alignment. You can:
 
-- Define and enforce protections through deep integrations with Azure Policy, Microsoft Defender, and Microsoft Purview. These integrations help ensure that identity, data, and threat safeguards work in concert.
+- Define and enforce protections through deep integrations with Azure Policy, Defender, and Microsoft Purview. These integrations help ensure that identity, data, and threat safeguards work in concert.
 - Apply versioned policies and track assignments to maintain full auditability and traceability across agents and environments.
-- Monitor compliance posture in real time, so that you can surface noncompliant assets and enable bulk remediation directly from the control plane.
+- Monitor compliance posture in real time, so that you can surface noncompliant assets and enable bulk remediation directly from Foundry Control Plane.
 
 Policy management in Foundry enables administrators and developers alike to embed quality and safety requirements into the development and deployment lifecycle. These policies help ensure that all models operate safely and adhere to organizational and regulatory standards.
 
@@ -123,7 +123,7 @@ Use the **Admin** pane to view, organize, and administer all projects, users, an
 
 :::image type="content" source="media/overview/admin-tab-overview.png" alt-text="Screenshot of the Admin pane that shows a list of projects with details like owners, region, connected services, and compliance status." lightbox="media/overview/admin-tab-overview.png":::
 
-This pane extends your operational view beyond a single project. Whereas most work in Foundry takes place within a project context, **Admin** provides an enterprise-level lens to oversee and configure multiple projects, user permissions, and linked Azure resources from one place.
+This pane extends your operational view beyond a single project. Whereas most work in Foundry happens within a project context, **Admin** provides an enterprise-level lens to oversee and configure multiple projects, user permissions, and linked Azure resources from one place.
 
 From **Admin**, administrators and power users can:
 
@@ -133,7 +133,7 @@ From **Admin**, administrators and power users can:
 - Attach or manage connected resources, such as storage accounts, compute clusters, and Foundry Tools, so that projects remain properly provisioned.
 - Assign access at parent scope (subscription or resource group) to apply consistent governance and permissions inheritance across multiple projects.
 
-Together, these capabilities make **Admin** the control plane's administrative backbone. It's a centralized console to help ensure that every Foundry project remains properly configured, compliant, and connected to the right people and infrastructure.
+Together, these capabilities make **Admin** the administrative backbone of Foundry Control Plane. It's a centralized console to help ensure that every Foundry project remains properly configured, compliant, and connected to the right people and infrastructure.
 
 ## Get started
 
@@ -146,5 +146,5 @@ Foundry Control Plane is available in the Foundry (new) portal. To get started:
 
 ## Related content
 
-- [Manage compliance and security in Microsoft Foundry](how-to-manage-compliance-security.md): Learn how to enforce responsible AI policies, integrate Microsoft Defender and Microsoft Purview signals, and respond to compliance alerts.
+- [Manage compliance and security in Microsoft Foundry](how-to-manage-compliance-security.md): Learn how to enforce responsible AI policies, integrate Defender and Microsoft Purview signals, and respond to compliance alerts.
 - [Optimize model cost and performance](how-to-optimize-cost-performance.md): Analyze cost drivers, token usage, and resource consumption to achieve higher return on investment from your agent fleet.

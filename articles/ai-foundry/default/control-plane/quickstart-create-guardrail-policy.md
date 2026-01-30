@@ -22,7 +22,7 @@ When you create a policy assignment in Foundry, the system creates a series of i
 
 [!INCLUDE [control-plane-prereqs](../includes/control-plane-prereqs.md)]
 
-- The appropriate roles to use Azure Policy to create a policy for your subscription. You can learn more about Azure Policy roles in the [overview of Azure Policy](/azure/governance/policy/overview#azure-policy-and-azure-rbac).
+- The appropriate roles for using Azure Policy to create a policy for your subscription. You can learn more about Azure Policy roles in the [overview of Azure Policy](/azure/governance/policy/overview#azure-policy-and-azure-rbac).
 
 > [!NOTE]
 > This capability is available only in the [Microsoft Foundry (new) portal](../../what-is-foundry.md#microsoft-foundry-portals).

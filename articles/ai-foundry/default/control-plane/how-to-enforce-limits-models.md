@@ -99,14 +99,14 @@ For more information, see [AI gateway in Azure API Management](/azure/api-manage
 | --- | --- | --- |
 | API Management instance doesn't appear | Provisioning delay | Refresh after a few minutes. |
 | Limits aren't enforced | Misconfiguration or project not linked | Reopen settings and confirm that the enforcement toggle is on. Confirm that the AI gateway is enabled for the project and that correct limits are configured. |
-| Latency is high after enablement | API Management cold start or region mismatch | Check API Management region versus resource region. Call the model directly and compare the result with the call proxied through the AI gateway to identify if performance issues are related to the gateway. |
+| Latency is high after enablement | API Management cold start or region mismatch | Check API Management region versus resource region. Call the model directly and compare the result with the call proxied through the AI gateway to identify if performance problems are related to the gateway. |
 
 If the admin console is slow, retry after a brief interval.
 
 ## Related content
 
-- [AI gateway capabilities in Azure API Management](/azure/api-management/genai-gateway-capabilities)
-- [Azure API Management overview](/azure/api-management/api-management-key-concepts)
+- [AI gateway in Azure API Management](/azure/api-management/genai-gateway-capabilities)
+- [What is Azure API Management?](/azure/api-management/api-management-key-concepts)
 - [Limit large language model API token usage](/azure/api-management/llm-token-limit-policy)
 - [How to use role-based access control in Azure API Management](/azure/api-management/api-management-role-based-access-control)
 - [Role-based access control for Microsoft Foundry](../../concepts/rbac-foundry.md)

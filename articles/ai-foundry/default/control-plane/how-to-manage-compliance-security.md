@@ -26,7 +26,7 @@ Use the compliance workspace tabs to reach the right surface quickly.
 | **Policies** | **Operate** > **Compliance** > **Policies** | Review guardrail policies, check compliance, and create or edit enforcement rules. |
 | **Assets** | **Operate** > **Compliance** > **Assets** | Inspect individual model deployments, view policy violations, and jump to remediation. |
 | **Guardrails** | **Operate** > **Compliance** > **Guardrails** | Compare guardrail configurations across deployments and spot coverage gaps. |
-| **Security** | **Operate** > **Compliance** > **Security** | Review Microsoft Defender for Cloud recommendations and manage Microsoft Purview enablement. |
+| **Security** | **Operate** > **Compliance** > **Security** | Review Defender for Cloud recommendations and manage Microsoft Purview enablement. |
 
 ## Prerequisites
 
@@ -37,7 +37,7 @@ Use the compliance workspace tabs to reach the right surface quickly.
 - Appropriate permissions based on the tasks that you want to perform:
   - **To view compliance status and guardrail policies**: No special permissions are required beyond project access.
   - **To create or edit guardrail policies**: You must be an [Owner](/azure/role-based-access-control/built-in-roles#owner) or [Resource Policy Contributor](/azure/role-based-access-control/built-in-roles#resource-policy-contributor) at the Azure subscription or resource group level. See the [overview of Azure Policy](/azure/governance/policy/overview#azure-policy-and-azure-rbac).
-  - **To enable Microsoft Defender for Cloud**: You need the Security Admin role or the Owner role for a subscription so that you can turn on Defender plans and agentless protections.
+  - **To enable Defender for Cloud**: You need the Security Admin role or the Owner role for a subscription so that you can turn on Defender plans and agentless protections.
   - **To configure Microsoft Purview integration**: You need the Azure AI Account Owner role.
 
 [!INCLUDE [capability-new-portal](../includes/capability-new-portal.md)]
@@ -63,7 +63,7 @@ Determine whether any model deployments don't comply with organizational guardra
 
 1. Identify any noncompliant guardrail policy by locating policies that have a **Violations detected** value in the **Policy Compliance** column.
 
-1. Select a guardrail policy. On the pane that appears, select an asset to compare its guardrail settings with the requirements that the guardrail policy specifies.
+1. Select a guardrail policy. On the information pane that appears, select an asset to compare its guardrail settings with the requirements that the guardrail policy specifies.
 
 1. To update the guardrail configuration of a noncompliant asset, select **Fix now**. This selection opens the model deployment's guardrail configuration pane, where you can adjust settings to meet the guardrail policy requirements.
 
@@ -77,7 +77,7 @@ You can also review compliance status by asset rather than by guardrail policy:
 
 1. Examine any assets marked as **Violation detected** in the **Policy Compliance** column. Select these rows to access further details. Assets might appear multiple times if they're subject to several guardrail policies.
 
-1. On the pane that appears, review the governing guardrail policies and the specifics of any noncompliant guardrail policy.
+1. On the information pane, review the governing guardrail policies and the specifics of any noncompliant guardrail policy.
 
 1. Select **View in Build** to modify the guardrail configuration and bring the model deployment into compliance. Review all relevant guardrail policies for each asset to ensure that you make all necessary adjustments to achieve full compliance.
 
@@ -140,15 +140,15 @@ Here's how you can do this task:
 
 ## Set up security recommendations and alerts
 
-Microsoft Defender for Cloud provides security posture gaps and recommendations for remediation. Your security posture represents the overall security status of your Azure resources, including potential vulnerabilities, misconfigurations, and recommended improvements. Defender assesses your resources and workloads against built-in and custom security standards.
+Defender for Cloud provides security posture gaps and recommendations for remediation. Your security posture represents the overall security status of your Azure resources, including potential vulnerabilities, misconfigurations, and recommended improvements. Defender assesses your resources and workloads against built-in and custom security standards.
 
-To get security posture recommendations from Microsoft Defender for Cloud, [enable it on your Azure subscription](/azure/defender-for-cloud/connect-azure-subscription). To get threat protection alerts for jailbreak attacks based on risk detection in Foundry for user input attacks, [enable threat protection for Foundry Tools](/azure/defender-for-cloud/ai-onboarding). Jailbreak attacks attempt to bypass AI safety measures by using carefully crafted prompts. Foundry detects these attack patterns in user input.  
+To get security posture recommendations from Defender for Cloud, [enable it on your Azure subscription](/azure/defender-for-cloud/connect-azure-subscription). To get threat protection alerts for jailbreak attacks based on risk detection in Foundry for user input attacks, [enable threat protection for Foundry Tools](/azure/defender-for-cloud/ai-onboarding). Jailbreak attacks attempt to bypass AI safety measures by using carefully crafted prompts. Foundry detects these attack patterns in user input.  
 
 To review Defender security recommendations, follow these steps:
 
 1. In the compliance workspace, select the **Security** tab.
 
-1. [Enable Microsoft Defender for Cloud](/azure/defender-for-cloud/connect-azure-subscription) for your subscription if you need to do so.
+1. [Enable Defender for Cloud](/azure/defender-for-cloud/connect-azure-subscription) for your subscription if you need to do so.
 
 1. View recommendations in the **Microsoft Defender for Cloud** section, including the affected resource and the associated risk level. Recommendations might include enabling more security features, fixing misconfigurations, or addressing potential vulnerabilities in your AI deployments.
 
@@ -200,5 +200,5 @@ Repeat the preceding steps for other Azure subscriptions, as appropriate.
 
 ## Related content
 
-- [Overview of Azure Policy](/azure/governance/policy/overview)
+- [What is Azure Policy?](/azure/governance/policy/overview)
 - [Microsoft Defender for Cloud documentation](/azure/defender-for-cloud/)

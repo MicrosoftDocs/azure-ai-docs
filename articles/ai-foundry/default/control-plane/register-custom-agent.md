@@ -32,7 +32,7 @@ This article shows you how to register a custom agent in Foundry Control Plane. 
 
 You can register a custom agent in Foundry Control Plane. Develop the agent in the technology of your choice, for both platform and infrastructure solutions.
 
-When you register a custom agent, Foundry uses Azure API Management to act as a proxy for communications to your agent, so it can control access and monitor activity.
+When you register a custom agent, Foundry uses API Management to act as a proxy for communications to your agent, so it can control access and monitor activity.
 
 The following diagram shows the resulting architecture when you register a custom agent.
 
@@ -84,7 +84,7 @@ Custom agents are added to Foundry projects. Before you register the agent, make
 
     1. Select the **Connected resources** tab.
 
-    1. Ensure that there's an associated resource in the **Application Insights** category.
+    1. Ensure that there's an associated resource in the **AppInsights** category.
 
         :::image type="content" source="media/register-custom-agent/verify-app-insights.png" alt-text="Screenshot of the administration portal that shows steps to verify if a project has an associated Application Insights resource." lightbox="media/register-custom-agent/verify-app-insights.png":::
 
@@ -93,8 +93,6 @@ Custom agents are added to Foundry projects. Before you register the agent, make
 Your project is configured for observability and tracing.
 
 ### Register the agent
-
-To register the agent, follow these steps:
 
 1. On the toolbar, select **Operate**.
 
@@ -106,7 +104,7 @@ To register the agent, follow these steps:
 
     | Property | Description | Required |
     | -------- | ----------- | -------- |
-    | **Agent URL** | The endpoint (URL) where your agent runs and receives requests. In general, but depending on your protocol, you indicate the base URL that your clients use. For example, if your agent uses the OpenAI Chat Completions API, you indicate `https://<host>/v1/` - without `/chat/completions` because clients generally add it. | Yes |
+    | **Agent URL** | The endpoint (URL) where your agent runs and receives requests. In general, but depending on your protocol, you indicate the base URL that your clients use. For example, if your agent uses the OpenAI Chat Completions API, you indicate `https://<host>/v1/` without `/chat/completions` because clients generally add it. | Yes |
     | **Protocol** | The communication protocol that your agent supports. Use HTTP in general. Or if your agent supports A2A more specifically, indicate that one. | Yes |
     | **A2A agent card URL** | The path to the agent card's JSON specification. If you don't specify it, the system uses the default `/.well-known/agent-card.json`. | No |
     | **OpenTelemetry Agent ID** | The agent ID that your agent uses to emit traces according to OpenTelemetry semantic conventions for generative AI. Traces indicate it in the `gen_ai.agents.id` attribute for spans with the operation name `create_agent`. If you don't specify this ID, the system uses the **Agent name** value to find traces and logs that this new agent reports. | No |
@@ -130,7 +128,7 @@ To register the agent, follow these steps:
 
 ### Connect clients to the agent
 
-When you register your agent in Foundry, you get a new URL for your clients to use. Foundry acts as a proxy for communications to your agent, so it can control access and monitor activity.
+When you register your agent in Foundry, you get a new URL for your clients to use. Because Foundry acts as a proxy for communications to your agent, it can control access and monitor activity.
 
 To distribute the new URL so that your clients can call the agent:
 
@@ -160,7 +158,7 @@ async def stream_run():
 **Expected output**: The agent processes the message and streams back responses as chunks. Each chunk contains partial results from the agent's execution. These results might include tool calls to the weather function and the final response about Los Angeles weather.
 
 > [!NOTE]
-> Foundry acts as a proxy for incoming requests for your agent. However, the original authorization and authentication schema in the original endpoint still applies. When you consume the new endpoint, *provide the same authentication mechanism as if you're using the original endpoint.*
+> Although Foundry acts as a proxy for incoming requests for your agent, the original authorization and authentication schema in the original endpoint still applies. When you consume the new endpoint, *provide the same authentication mechanism as if you're using the original endpoint.*
 
 ## Block and unblock the agent
 
@@ -198,9 +196,7 @@ Foundry uses the OpenTelemetry open standard to understand what agents are doing
 
 To get the best level of fidelity, Foundry expects custom agents to comply with the [semantic conventions for generative AI solutions in the OpenTelemetry standard](https://opentelemetry.io/docs/specs/semconv/gen-ai/).
 
-### View runs and traces
-
-To view traces and logs sent to Foundry:
+### View traces and logs sent to Foundry
 
 1. On the toolbar, select **Operate**.
 

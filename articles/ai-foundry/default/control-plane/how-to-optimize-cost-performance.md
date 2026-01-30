@@ -15,7 +15,7 @@ ai-usage: ai-assisted
 
 # Optimize model cost and performance
 
-When your model or agent costs start increasing, use the *Ask AI agent* to quickly diagnose issues, take action, and verify improvements. The Ask AI agent is a built-in chat assistant. You can access it from the toolbar in the Foundry portal.
+When your model or agent costs start increasing, use the *Ask AI agent* to quickly diagnose issues, take action, and verify improvements. The Ask AI agent is a built-in chat assistant. You can access it from the toolbar in the Microsoft Foundry portal.
 
 This article walks you through a recommended workflow, from identifying cost spikes to switching models and validating performance improvements. All these activities happen within the Foundry portal.
 

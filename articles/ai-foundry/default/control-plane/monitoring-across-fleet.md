@@ -120,13 +120,13 @@ You can view all your assets under a specific project, along with top-level metr
 
     :::image type="content" source="media/monitoring-across-fleet/agents-tab-overview-metrics.png" alt-text="Screenshot of the Agents tab that shows all registered agents with top-level metrics." lightbox="media/monitoring-across-fleet/agents-tab-overview-metrics.png":::
 
-   The tab shows the details of agents discovered within the subscription. To learn about these details, see [Agent inventory](how-to-manage-agents.md#agents-inventory).
+   The tab shows the details of agents discovered within the subscription. To learn about these details, see [Agent inventory](how-to-manage-agents.md#agent-inventory).
 
-1. To view more granular information on the performance of an individual agent, use the side panel. It provides quick insights into the selected agent's health and recent activity. You can use it to identify problems and take corrective actions.  
+1. To view more granular information on the performance of an individual agent, select an agent. The pane that appears provides quick insights into the selected agent's health and recent activity. You can use it to identify problems and take corrective actions.  
 
-    :::image type="content" source="media/monitoring-across-fleet/agent-details.png" alt-text="Screenshot of the Foundry panel that shows details of a selected agent." lightbox="media/monitoring-across-fleet/agent-details.png":::
+    :::image type="content" source="media/monitoring-across-fleet/agent-details.png" alt-text="Screenshot of the Foundry pane that shows details of a selected agent." lightbox="media/monitoring-across-fleet/agent-details.png":::
 
-    The panel contains these sections:
+    The pane contains these sections:
 
     - **Active alerts**: View policy, security, and evaluation alerts grouped by severity and take action.
     - **Activity**: See key metrics such as error rate over time, total run information, and information on token usage.
@@ -135,5 +135,5 @@ To learn more about how to manage individual agents, see [Manage agents at scale
 
 ## Related content
 
-- [Get an overview of Foundry Control Plane](overview.md)
-- [Register an agent](register-custom-agent.md)
+- [What is Microsoft Foundry Control Plane?](overview.md)
+- [Register and manage custom agents](register-custom-agent.md)
