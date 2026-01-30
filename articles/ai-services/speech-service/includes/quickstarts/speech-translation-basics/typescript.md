@@ -14,7 +14,7 @@ ms.author: pafarley
 
 [!INCLUDE [Prerequisites](../../common/azure-prerequisites.md)]
 
-## Set up
+## Set up the environment
 
 1. Create a new folder `translation-quickstart` and go to the quickstart folder with the following command:
 
@@ -95,7 +95,7 @@ To translate speech from a file:
                     if (cancellation.reason === CancellationReason.Error) {
                         console.log(`CANCELED: ErrorCode=${cancellation.ErrorCode}`);
                         console.log(`CANCELED: ErrorDetails=${cancellation.errorDetails}`);
-                        console.log("CANCELED: Did you set the speech resource key and region values?");
+                        console.log("CANCELED: Did you set the speech resource key and endpoint values?");
                     }
                     break;
             }

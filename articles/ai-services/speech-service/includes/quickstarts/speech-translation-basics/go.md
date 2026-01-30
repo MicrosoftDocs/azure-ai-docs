@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 
 ## Prerequisites
 
-[!INCLUDE [Prerequisites](../../common/azure-prerequisites-resourcekey-endpoint.md)]
+[!INCLUDE [Prerequisites](../../common/azure-prerequisites.md)]
 
 ## Set up the environment
 
@@ -24,7 +24,7 @@ Before you can use the Speech SDK for Go, install the Speech SDK native library.
 
 ### Set environment variables
 
-[!INCLUDE [Environment variables](../../common/environment-variables-resourcekey-endpoint.md)]
+[!INCLUDE [Environment variables](../../common/environment-variables.md)]
 
 ## Translate speech from a microphone
 
@@ -138,6 +138,7 @@ After completing the quickstart, here are some more considerations:
     ```go
     audioConfig, err := audio.NewAudioConfigFromWavFileInput("YourAudioFile.wav")
     ```
+- For compressed audio files such as MP4, install GStreamer and use `CreatePullStream` or `CreatePushStream`. For more information, see [How to use compressed input audio](~/articles/ai-services/speech-service/how-to-use-codec-compressed-audio-input-streams.md).
 
 ## Clean up resources
 
