@@ -81,7 +81,7 @@ By default, training requests use the latest available training configuration ve
 
 ## API versions
 
-[**Azure AI Language REST API reference for authoring and runtime**](/rest/api/language/)
+For detailed information about request parameters and response schemas, see the [**Azure AI Language REST API reference**](/rest/api/language/).
 
 When making API calls to Azure Language features, you must specify the **API-VERSION** parameter in your request. We recommend using the latest available API version to access the most recent features and improvements.
 
