@@ -174,21 +174,21 @@ By enabling Microsoft Purview on your Azure subscription, you can access, proces
 
 This capability helps your organization manage and monitor AI-generated data in alignment with enterprise policies and regulatory requirements. Keep these considerations in mind:
 
-- Microsoft Purview Data Security Policies for Foundry Services interactions are supported for those API calls that use Microsoft Entra ID authentication with a user-context token, or for API calls that explicitly include user context. To learn more, see [Gain end-user context for Azure AI API calls](../../openai/latest.md#azureusersecuritycontext). For all other authentication scenarios, user interactions captured in Microsoft Purview show up only in Microsoft Purview Audit and AI Interactions with classifications within DSPM for AI Activity Explorer.
+- Microsoft Purview Data Security Policies for Foundry Services interactions are supported for API calls that use Microsoft Entra ID authentication with a user-context token, or for API calls that explicitly include user context. To learn more, see [AzureUserSecurityContext](../../openai/latest.md#azureusersecuritycontext). For all other authentication scenarios, user interactions captured in Microsoft Purview show up only in Microsoft Purview Audit and AI interactions with classifications within DSPM for the AI activity explorer.
 
-- Purview Audit is included as part of Microsoft Purview license for Foundry services. For data security policies setup in Microsoft Purview by your enterprise security admins, billing is based on [pay-as-you-go](https://azure.microsoft.com/pricing/details/purview/) meters.
+- Microsoft Purview Audit is included as part of the Microsoft Purview license for Foundry services. For setup of data security policies in Microsoft Purview by your enterprise security admins, billing is based on [pay-as-you-go](https://azure.microsoft.com/pricing/details/purview/) meters.
 
-- Integration with Microsoft Purview for the above features in Microsoft Foundry doesn't yet support Network Isolation.
+- Integration with Microsoft Purview for the preceding features in Microsoft Foundry doesn't yet support network isolation.
 
 - Integration with Microsoft Purview is currently available only for calls made on the OpenAI Completions API.
 
-This feature requires a Microsoft Purview license in the tenant. To learn about Microsoft Purview, see [Microsoft Purview DSPM for AI](/purview/ai-microsoft-purview).
+This feature requires a Microsoft Purview license in the tenant. To learn about Microsoft Purview, see [Microsoft Purview data security and compliance protections for generative AI apps](/purview/ai-microsoft-purview).
 
-### Enable Purview in Foundry
+### Enable Microsoft Purview in Foundry
 
-You must have the **Azure AI Account Owner** role to enable Purview integration.
+You must have the Azure AI Account Owner role to enable Microsoft Purview integration.
 
-To enable Purview in Foundry:
+To enable Microsoft Purview in Foundry:
 
 1. Go to **Operate** > **Compliance**.
 
@@ -196,9 +196,9 @@ To enable Purview in Foundry:
 
 1. Select the Azure subscription.
 
-1. Enable **Microsoft Purview** with the toggle.
+1. Turn on the **Microsoft Purview** toggle.
 
-    :::image type="content" source="media/how-to-manage-compliance-security/microsoft-purview-toggle.png" alt-text="Screenshot of the Microsoft Purview enablement toggle in the Compliance Security tab":::
+    :::image type="content" source="media/how-to-manage-compliance-security/microsoft-purview-toggle.png" alt-text="Screenshot of the toggle for enabling Microsoft Purview on the tab for security posture.":::
 
 Repeat the preceding steps for other Azure subscriptions, as appropriate.
 
