@@ -116,7 +116,9 @@ You can view traces and logs sent to Foundry. Traces are stored in Application I
 
 To view them:
 
-1. Select **Operate** > **Assets**.
+1. On the toolbar, select **Operate**.
+
+1. On the left pane, select **Assets**.
 
 1. Select the agent.
 
@@ -158,7 +160,9 @@ Stopping an agent deprovisions its infrastructure and prevents new runs. Any wor
 
 To stop an agent:
 
-1. Select **Operate** > **Assets**.
+1. On the toolbar, select **Operate**.
+
+1. On the left pane, select **Assets**.
 
 1. Select the agent that you want to stop. The information pane appears.
 
@@ -182,7 +186,9 @@ For [custom agents](register-custom-agent.md), Foundry doesn't have access to th
 
 To block incoming requests to your agent:
 
-1. Select **Operate** > **Assets**.
+1. On the toolbar, select **Operate**.
+
+1. On the left pane, select **Assets**.
 
 1. Select the agent that you want to block. The information pane appears.
 

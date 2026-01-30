@@ -69,7 +69,9 @@ Foundry Control Plane requires agents to log diagnostic information by following
 
 Follow these steps for each project where you want to configure monitoring:
 
-1. Select **Operate** > **Admin**.
+1. On the toolbar, select **Operate**.
+
+1. On the left pane, select **Admin**.
 
 1. Under **All projects**, use the search box to look for your project.
 
@@ -94,7 +96,7 @@ You can view aggregated metrics for all agents within a selected project by usin
 
 1. [!INCLUDE [foundry-sign-in](../includes/foundry-sign-in.md)]
 
-1. Select **Operate**.
+1. On the toolbar, select **Operate**.
 
 1. The **Overview** pane displays common metrics and insights for all discovered agents within the subscription by default.
 
@@ -110,7 +112,9 @@ You can view all your assets under a specific project, along with top-level metr
 
 1. [!INCLUDE [foundry-sign-in](../includes/foundry-sign-in.md)]
 
-1. Select **Operate** > **Assets**.
+1. On the toolbar, select **Operate**.
+
+1. On the left pane, select **Assets**.
 
 1. Select the **Agents** tab.
 

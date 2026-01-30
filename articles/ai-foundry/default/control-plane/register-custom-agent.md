@@ -58,7 +58,9 @@ Custom agents are added to Foundry projects. Before you register the agent, make
 
 1. Ensure that an AI gateway is configured in your project:
 
-    1. Select **Operate** > **Admin**.
+    1. On the toolbar, select **Operate**.
+
+    1. On the left pane, select **Admin**.
 
     1. Open the **AI Gateway** tab.
 
@@ -72,7 +74,9 @@ Custom agents are added to Foundry projects. Before you register the agent, make
 
 1. Ensure that you have observability configured in the project. Foundry Control Plane uses the Application Insights resource associated with your selected project for emitting data to help you diagnose your agent.
 
-    1. Select **Operate** > **Admin**.
+    1. On the toolbar, select **Operate**.
+
+    1. On the left pane, select **Admin**.
 
     1. Under **All projects**, use the search box to look for your project.
 
@@ -92,9 +96,9 @@ Your project is configured for observability and tracing.
 
 To register the agent, follow these steps:
 
-1. Select **Operate** > **Overview**.
+1. On the toolbar, select **Operate**.
 
-1. Select **Register agent**.
+1. On the **Overview** pane, select **Register agent**.
 
     :::image type="content" source="media/register-custom-agent/register-custom-agent.png" alt-text="Screenshot of the button for registering an agent on the Overview pane of the Foundry portal." lightbox="media/register-custom-agent/register-custom-agent.png":::
 
@@ -164,7 +168,9 @@ For custom agents, Foundry doesn't have access to the underlying infrastructure 
 
 To block incoming requests to your agent:
 
-1. Select **Operate** > **Assets**.
+1. On the toolbar, select **Operate**.
+
+1. On the left pane, select **Assets**.
 
 1. Select the agent that you want to block. The information pane appears.
 
@@ -196,7 +202,9 @@ To get the best level of fidelity, Foundry expects custom agents to comply with 
 
 To view traces and logs sent to Foundry:
 
-1. Select **Operate** > **Assets**.
+1. On the toolbar, select **Operate**.
+
+1. On the left pane, select **Assets**.
 
 1. Select the agent.
 

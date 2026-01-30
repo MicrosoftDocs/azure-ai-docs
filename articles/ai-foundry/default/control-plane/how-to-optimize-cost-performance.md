@@ -33,7 +33,7 @@ This article walks you through a recommended workflow, from identifying cost spi
 
 Start by opening the Ask AI agent from the toolbar. Or, go to **Operate** > **Overview** to use one of the prebuilt prompts that are specific to agent optimization and performance.
 
-Ask the assistant to provide a summary of your metrics and cost data from the Foundry Control Plane dashboard. You can select a predefined prompt on the **Operate** overview pane or type your own question, such as:
+Ask the assistant to provide a summary of your metrics and cost data from the Foundry Control Plane dashboard. You can select a predefined prompt on the **Overview** pane or type your own question, such as:
 
 - "Summarize my recent cost trend."
 

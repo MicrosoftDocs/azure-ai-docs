@@ -31,7 +31,9 @@ When you create a policy assignment in Foundry, the system creates a series of i
 
 1. [!INCLUDE [foundry-sign-in](../includes/foundry-sign-in.md)]
 
-1. Select **Operate** > **Compliance**.
+1. On the toolbar, select **Operate**.
+
+1. On the left pane, select **Compliance**.
 
 1. Select **Create policy**.
 

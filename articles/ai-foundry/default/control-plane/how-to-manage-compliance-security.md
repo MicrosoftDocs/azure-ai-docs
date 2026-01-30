@@ -32,7 +32,7 @@ Use the compliance workspace tabs to reach the right surface quickly.
 
 [!INCLUDE [control-plane-prereqs](../includes/control-plane-prereqs.md)]
 
-- If you use agents, use the latest versions for full support of compliance features.
+- Any agents that you want to use. Be sure to use the latest agent versions for full support of compliance features.
 
 - Appropriate permissions based on the tasks that you want to perform:
   - **To view compliance status and guardrail policies**: No special permissions are required beyond project access.
@@ -190,7 +190,9 @@ You must have the Azure AI Account Owner role to enable Microsoft Purview integr
 
 To enable Microsoft Purview in Foundry:
 
-1. Go to **Operate** > **Compliance**.
+1. On the toolbar, select **Operate**.
+
+1. On the left pane, select **Compliance**.
 
 1. Select the **Security posture** tab.
 
