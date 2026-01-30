@@ -513,7 +513,7 @@ When you start an agent:
 
 ### View container Log Stream
 
-The container Logstream API for hosted agents gives you access to the system and console logs of the container deployed on your behalf in Microsoft's Azure environment to enable self-serve debuging for agent startup and runtime errors during deployment. 
+The container Logstream API for hosted agents gives you access to the system and console logs of the container deployed on your behalf in Microsoft's Azure environment to enable self-serve debugging for agent startup and runtime errors during deployment. 
 
 #### REST API Details
 
