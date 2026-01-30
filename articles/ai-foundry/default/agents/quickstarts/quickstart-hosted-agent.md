@@ -34,6 +34,7 @@ Before you begin, you need:
 * A [Microsoft Foundry project](../../../default/tutorials/quickstart-create-foundry-resources.md) with:
   * An Azure OpenAI model deployment (for example `gpt-5`)
   * (Optional) An [MCP tool](../how-to/tools/model-context-protocol.md), if you have one you want to use.
+* An [Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)
 * [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) version 1.23.0 or later
 * [Azure CLI](/cli/azure/install-azure-cli) version 2.80 or later
 * [Docker Desktop](https://docs.docker.com/get-docker/) installed and running
