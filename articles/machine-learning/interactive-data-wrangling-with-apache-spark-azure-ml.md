@@ -27,7 +27,6 @@ This article explains how to attach and configure a serverless Spark compute. Th
 - The following [role assignments](apache-spark-environment-configuration.md#add-role-assignments-in-azure-storage-accounts) granted:
   - For Azure Storage account access, **Contributor** and **Storage Blob Data Contributor** roles in the Azure Storage account.
   - For Azure Key Vault secret access, **Key Vault Secrets User** role in the key vault.
-  - To create Key Vault keys, **Key Vault Crypto Officer** or **Key Vault Administrator** role in the key vault.
 
 For more information, see:
 - [Create an Azure Key Vault](/azure/key-vault/general/quick-create-portal)
