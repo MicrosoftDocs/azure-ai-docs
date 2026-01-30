@@ -10,8 +10,8 @@ ms.topic: concept-article
 ms.date: 01/30/2026
 ms.custom: dev-focus
 manager: nitinme
-author: "msakande #ChrisHMSFT"
-ms.author: "mopeakande #chrhoder"
+author: msakande 
+ms.author: mopeakande
 ms.reviewer: shiyingfu
 reviewer: swingfu
 recommendations: false
@@ -191,7 +191,7 @@ The following points are important takeaways from the table:
 
 # [Global Provisioned Throughput](#tab/global-ptum)
 
-#### Global provisioned Throughput model availability
+#### Global provisioned throughput model availability
 
 [!INCLUDE [Provisioned Managed Global](../includes/model-matrix/provisioned-global.md)]
 
