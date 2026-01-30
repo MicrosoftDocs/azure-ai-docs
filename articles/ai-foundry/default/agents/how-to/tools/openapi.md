@@ -51,6 +51,9 @@ Before you begin, make sure you have:
 - For managed identity authentication: Reader role or higher on target service resources.
 - For API key/token authentication: a project connection configured with your API key or token. See [Add a new connection to your project](../../../../how-to/connections-add.md).
 
+> [!NOTE]
+> The `AZURE_AI_PROJECT_ENDPOINT` value refers to your Microsoft Foundry project endpoint, not the external OpenAPI service endpoint. You can find this endpoint in the Microsoft Foundry portal under your project’s Overview page. This endpoint is required to authenticate the agent service and is separate from any OpenAPI endpoints defined in your specification file.
+
 ## Limitations
 
 - Your OpenAPI spec must include `operationId` for each operation, and `operationId` can include only letters, `-`, and `_`.

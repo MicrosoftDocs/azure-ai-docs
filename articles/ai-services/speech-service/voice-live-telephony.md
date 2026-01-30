@@ -1,7 +1,7 @@
 ---
 title: Call Center Voice Agent Accelerator 
 titleSuffix: Foundry Tools
-description: Learn how to use the Voice live API with telephony systems.
+description: Learn how to use the Voice Live API with telephony systems.
 manager: nitinme
 author: PatrickFarley
 ms.author: pafarley
@@ -14,7 +14,7 @@ ms.date: 09/26/2025
 
 The Call Center Voice Agent Accelerator is a solution template designed to help developers build real-time speech-to-speech voice agents that deliver personalized self-service experiences for call centers. It lets you develop conversational interactions that feel fast and natural, and it integrates seamlessly with telephony systems, making it ideal for modern contact centers looking to enhance customer interactions. 
 
-This accelerator combines the Azure Voice live API and Azure Communication Services (ACS) to enable developers to start locally and deploy to an Azure Web App when ready. It doesn't require a PSTN number to get started, which further simplifies the initial setup process. 
+This accelerator combines the Azure Voice Live API and Azure Communication Services (ACS) to enable developers to start locally and deploy to an Azure Web App when ready. It doesn't require a PSTN number to get started, which further simplifies the initial setup process. 
 
 You can find the solution template on GitHub: [Call Center Voice Agent Accelerator with Azure Voice Live API](https://github.com/Azure-Samples/call-center-voice-agent-accelerator). 
 
@@ -31,5 +31,5 @@ Additionally, the Azure Communication Services Call Automation APIs provide the 
 
 ## Related content 
 
-- Learn more about [Voice live API](/azure/ai-services/speech-service/voice-live).
+- Learn more about [Voice Live API](/azure/ai-services/speech-service/voice-live).
 - Learn more about [Azure Communication Services](/azure/communication-services/overview). 

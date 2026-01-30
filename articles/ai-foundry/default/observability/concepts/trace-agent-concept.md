@@ -24,9 +24,6 @@ Microsoft Foundry provides an observability platform for monitoring and tracing 
 
 Trace results solve this by allowing you to view the inputs and outputs of each primitive involved in a particular agent run, displayed in the order they were invoked, making it easy to understand and debug your AI agent's behavior.
 
-> [!NOTE]
-> Agent tracing is only available in Sweden Central in Foundry (new).
-
 ## Before you begin
 
 To use tracing end-to-end, you need:
@@ -103,11 +100,6 @@ Tracing can capture sensitive information (for example, user inputs, model outpu
 - Don't store secrets, credentials, or tokens in prompts, tool arguments, or span attributes.
 - Redact or minimize personal data and other sensitive content before it appears in telemetry.
 - Treat trace data as production telemetry and apply the same access controls and retention policies you use for logs and metrics.
-
-## Availability and limitations
-
-- Agent tracing is available only in Sweden Central in Foundry (new).
-- Some tracing integrations can be language- or framework-specific. For details, see [Tracing integrations](../how-to/trace-agent-framework.md).
 
 ## Related content
 

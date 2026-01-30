@@ -8,7 +8,7 @@ ms.reviewer: soumyapatro
 ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.topic: how-to
-ms.date: 12/18/2025
+ms.date: 01/27/2026
 ---
 
 # Labeling images and text documents
@@ -63,7 +63,7 @@ The labeling process might trigger machine learning algorithms. If your project 
 
 Early in a labeling project, the machine learning model might only have enough accuracy to prelabel a small image subset. Once you label these images, the labeling project returns to manual labeling to gather more data for the next model training round. Over time, the model becomes more confident about a higher proportion of images. Later in the project, its confidence results in more prelabeling tasks.
 
-When there are no more prelabeled tasks, the label confirmation or correction process stops, and returns to manual item tagging.
+When there are no more prelabeled tasks, the label confirmation or correction process stops and returns to manual item tagging.
 
 ## Image tasks
 
@@ -93,7 +93,7 @@ Image projects support DICOM image format for X-ray file images, as shown in the
 
 :::image type="content" source="./media/how-to-label-data/x-ray-image.png" lightbox="./media/how-to-label-data/x-ray-image.png" alt-text="Screenshot showing an X-ray DICOM image to be labeled.":::
 
-While you label the medical images with the same tools as any other images, you can use a different tool for DICOM images, as shown in the following screenshot:
+While you label the medical images by using the same tools as any other images, you can use a different tool for DICOM images, as shown in the following screenshot:
 
 :::image type="content" source="./media/how-to-label-data/window-level-tool.png" lightbox="./media/how-to-label-data/window-level-tool.png" alt-text="Screenshot showing the window and level tool for DICOM images.":::
 
@@ -109,7 +109,7 @@ If you realize that you made a mistake after you assign a tag to an image, you c
 
 If your project is of type "Image Classification Multi-Label," apply one *or more* tags to an image. To see the project-specific directions, select **Instructions**, and go to **View detailed instructions**.
 
-Select the image that you want to label, and then select the tag. The tag is applied to all the selected images, and then the images are deselected. To apply more tags, you must reselect the images. This animation shows multi-label tagging:
+Select the image that you want to label, and then select the tag. The tag is applied to all the selected images, and then the images are deselected. To apply more tags, you must reselect the images. This animation shows multilabel tagging:
 
 :::image type="content" source="./media/how-to-label-data/multilabel.gif" lightbox="./media/how-to-label-data/multilabel.gif" alt-text="Animation showing multi-label tagging.":::
 
@@ -248,7 +248,7 @@ To see the project-specific directions, select **Instructions**, and go to **Vie
 
 ### Tag words and phrases
 
-If your project is set up for named entity recognition, you tag different words or phrases in each text item. To label text:
+If your project is set up for named entity recognition, tag different words or phrases in each text item. To label text:
 
 1. Select the label, or type the number corresponding to the appropriate label.
 1. Double-click on a word, or use your mouse to select multiple words.
