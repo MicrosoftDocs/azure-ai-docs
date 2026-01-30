@@ -3,12 +3,13 @@ title: "Disable shared key access to the workspace storage account"
 titleSuffix: Azure Machine Learning
 description: "Disable shared key access to the default storage account used by your Azure Machine Learning workspace."
 ms.author: scottpolly
+author: shshubhe
+ms.reviewer: shshubhe
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.reviewer: shshubhe
 ms.date: 1/30/2026
 
 #customer intent: As an admin, I want to disable shared key access to my resources to improve security.
