@@ -421,6 +421,7 @@ To work with a storage account that has disabled shared key access, you might ne
 
 ## Limitations
 - Creating a compute instance with system-assigned managed identity isn't supported for identity-based workspace. If the workspace's storage account access type is identity-based access, compute instances currently don't support system assigned identity to mount data store. Use user assigned identity to create the compute instance, and make sure the user-assigned identity has **Storage File Data Privileged Contributor** on the storage account.
+- Git clone operations in Identity‑based Azure ML Workspaces are slow or fail, especially for repositories with many small files. The recommended workarounds are to clone into a local directory such as /tmp and then copy or symlink files or to use credential-based storage auth.
 
 ## Related content
 
