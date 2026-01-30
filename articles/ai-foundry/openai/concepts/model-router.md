@@ -96,7 +96,7 @@ When new base models become available, they're not included in your selection un
 | East US 2 | Global Standard, Data Zone Standard |
 | Sweden Central | Global Standard, Data Zone Standard |
 
-Also see [Azure OpenAI in Microsoft Foundry models](../includes/models-azure-direct-openai.md) for current region availability.
+Also see [Azure OpenAI in Microsoft Foundry models](../../foundry-models/concepts/models-sold-directly-by-azure.md) for current region availability.
 
 ### Rate limits
 
@@ -114,7 +114,7 @@ To overcome the limits on context window and parameters, use the Model subset fe
 ::: moniker-end
 
 > [!NOTE]
-> The context window limit listed for model router is the limit of the smallest underlying model. Other underlying models are compatible with larger context windows, which means an API call with a larger context will succeed only if the prompt happens to be routed to the right model. To review context windows for the underlying models, see [Azure OpenAI in Microsoft Foundry models](../includes/models-azure-direct-openai.md).
+> The context window limit listed for model router is the limit of the smallest underlying model. Other underlying models are compatible with larger context windows, which means an API call with a larger context will succeed only if the prompt happens to be routed to the right model. To review context windows for the underlying models, see [Azure OpenAI in Microsoft Foundry models](../../foundry-models/concepts/models-sold-directly-by-azure.md).
 >
 > To shorten the context window, you can do one of the following:
 > - Summarize the prompt before passing it to the model
