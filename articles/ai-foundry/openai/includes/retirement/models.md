@@ -19,10 +19,10 @@ ms.custom: references_regions, build-2025
 |:--|:--|:--|:--|:--|:--|
 | `gpt-5-chat` | 2025-08-07 | Preview | n/a | 2026-03-01 | `gpt-5.2-chat` |
 | `gpt-5-chat` | 2025-10-03 | Preview | n/a | 2026-03-01 | `gpt-5.2-chat` |
-| `gpt-4o` | 2024-05-13 | Generally Available | 2025-05-13 | 2026-03-31 | `gpt-5.1` |
-| `gpt-4o` | 2024-08-06 | Generally Available | 2025-08-06 | 2026-03-31 | `gpt-5.1` |
-| `gpt-4o` | 2024-11-20 | Generally Available | 2025-11-20 | 2026-06-05 | `gpt-5.1` |
-| `gpt-4o-mini` | 2024-07-18 | Generally Available | 2025-07-18 | 2026-03-31 | `gpt-4.1-mini` |
+| `gpt-4o` | 2024-05-13 | Generally Available | 2025-05-13 | Standard SKU retires on **2026-03-31**, with auto-upgrades scheduled to start on **2026-03-09**. For other SKUs, including ALL provisioned SKUs, Global Standard, and Data Zone Standard, the retirement date has been moved to **2026-10-01**. | `gpt-5.1` |
+| `gpt-4o` | 2024-08-06 | Generally Available | 2025-08-06 | Standard SKU retires on **2026-03-31**, with auto-upgrades scheduled to start on **2026-03-09**. For other SKUs, including ALL provisioned SKUs, Global Standard, and Data Zone Standard, the retirement date has been moved to **2026-10-01**.| `gpt-5.1` |
+| `gpt-4o` | 2024-11-20 | Generally Available | 2025-11-20 | 2026-10-01 | `gpt-5.1` |
+| `gpt-4o-mini` | 2024-07-18 | Generally Available | 2025-07-18 | Standard SKU retires on **2026-03-31**, with auto-upgrades scheduled to start on **2026-03-09**. For other SKUs, including ALL provisioned SKUs, Global Standard, and Data Zone Standard, the retirement date has been moved to **2026-10-01**.  | `gpt-4.1-mini` |
 | `gpt-4.1` | 2025-04-14 | Generally Available | 2026-04-14 | 2026-10-14 | `gpt-5` |
 | `gpt-4.1-mini` | 2025-04-14 | Generally Available | 2026-04-14 | 2026-10-14 | `gpt-5-mini` |
 | `gpt-4.1-nano` | 2025-04-14 | Generally Available | 2026-04-14 | 2026-10-14 | `gpt-5-nano` |
@@ -92,10 +92,10 @@ ms.custom: references_regions, build-2025
 
 | Model Name | Model Version<sup>1</sup>  | Lifecycle Status | Deprecation Date (No New Customers) | Retirement Date | Replacement Model |
 |:--|:--|:--|:--|:--|:--|
-| `text-embedding-3-large` | 1 | Generally Available | n/a | No earlier than 2026-10-30 | n/a |
-| `text-embedding-3-small` | 1 | Generally Available | n/a | No earlier than 2026-10-30 | n/a |
-| `text-embedding-ada-002` | 2 | Generally Available | n/a | No earlier than 2026-10-30 | n/a |
-| `text-embedding-ada-002` | 1 | Generally Available | n/a | No earlier than 2026-10-30 | n/a |
+| `text-embedding-3-large` | 1 | Generally Available | n/a | No retirement scheduled, will not retire prior to April 15, 2027 | n/a |
+| `text-embedding-3-small` | 1 | Generally Available | n/a | No retirement scheduled, will not retire prior to April 15, 2027 | n/a |
+| `text-embedding-ada-002` | 2 | Generally Available | n/a | No retirement scheduled, will not retire prior to April 15, 2027 | n/a |
+| `text-embedding-ada-002` | 1 | Generally Available | n/a | No retirement scheduled, will not retire prior to April 15, 2027 | n/a |
 
 ---
 
