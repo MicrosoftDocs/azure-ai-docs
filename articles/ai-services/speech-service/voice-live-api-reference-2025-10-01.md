@@ -1,24 +1,16 @@
 ---
-<<<<<<< HEAD:articles/ai-services/speech-service/voice-live-api-reference-2025-10-01.md
-title: Voice live API Reference 2025-01-01 (GA)
-=======
-title: Voice Live API Reference
->>>>>>> b33b6cd07f606d6f65439781e0ed3299c6d8375f:articles/ai-services/speech-service/voice-live-api-reference.md
+title: Voice Live API Reference 2025-10-01
 titleSuffix: Foundry Tools
 description: Complete reference for the Voice Live API events, models, and configuration options.
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: reference
-ms.date: 1/20/2026
+ms.date: 1/30/2026
 author: PatrickFarley
 ms.author: pafarley
 ---
 
-<<<<<<< HEAD:articles/ai-services/speech-service/voice-live-api-reference-2025-10-01.md
-# Voice live API Reference Version 2025-01-01 (GA)
-=======
-# Voice Live API Reference
->>>>>>> b33b6cd07f606d6f65439781e0ed3299c6d8375f:articles/ai-services/speech-service/voice-live-api-reference.md
+# Voice Live API Reference 2025-10-01
 
 The Voice Live API provides real-time, bidirectional communication for voice-enabled applications using WebSocket connections. This API supports advanced features including speech recognition, text-to-speech synthesis, avatar streaming, animation data, and comprehensive audio processing capabilities.
 

@@ -1,18 +1,18 @@
 ---
-title: Voice live API Reference 2026-01-01-preview
+title: Voice Live API Reference 2026-01-01-preview
 titleSuffix: Foundry Tools
-description: Complete reference for the Voice live API events, models, and configuration options.
+description: Complete reference for the Voice Live API events, models, and configuration options.
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: reference
-ms.date: 1/20/2026
+ms.date: 1/30/2026
 author: PatrickFarley
 ms.author: pafarley
 ---
 
-# Voice live API Reference Version 2026-01-01-preview (preview)
+# Voice Live API Reference Version 2026-01-01-preview (preview)
 
-The Voice live API provides real-time, bidirectional communication for voice-enabled applications using WebSocket connections. This API supports advanced features including speech recognition, text-to-speech synthesis, avatar streaming, animation data, and comprehensive audio processing capabilities.
+The Voice Live API provides real-time, bidirectional communication for voice-enabled applications using WebSocket connections. This API supports advanced features including speech recognition, text-to-speech synthesis, avatar streaming, animation data, and comprehensive audio processing capabilities.
 
 The API uses JSON-formatted events sent over WebSocket connections to manage conversations, audio streams, avatar interactions, and real-time responses. Events are categorized into client events (sent from client to server) and server events (sent from server to client).
 
@@ -28,7 +28,7 @@ The API uses JSON-formatted events sent over WebSocket connections to manage con
 
 ## Client Events
 
-The Voice live API supports the following client events that can be sent from the client to the server:
+The Voice Live API supports the following client events that can be sent from the client to the server:
 
 | Event | Description |
 |-------|-------------|
@@ -594,7 +594,7 @@ The server responds with a `session.updated` event that contains the full effect
 
 ## Server Events
 
-The Voice live API sends the following server events to communicate status, responses, and data to the client:
+The Voice Live API sends the following server events to communicate status, responses, and data to the client:
 
 | Event | Description |
 |-------|-------------|
@@ -2699,7 +2699,7 @@ Tool definition for integrating a Foundry agent as a tool. This enables a chat-s
 | description | string | Optional. An optional description for the Foundry agent tool. If provided, it's used instead of the agent's description in Foundry portal. |
 | foundry_resource_override | string | Optional. Override for the Foundry resource used to execute the agent. |
 | agent_context_type | string | Optional. The context type to use when invoking the Foundry agent. Possible values: `no_context`, `agent_context`. Default is `agent_context`.<br/><br/>`no_context`: Only the current user input is sent, no context maintained.<br/><br/>`agent_context`: Agent maintains its own context (thread), only current input sent per call. |
-| return_agent_response_directly | boolean | Optional. Whether to return the agent's response directly in the Voice live response. Default is `true`. When set to `false`, the response is sent to the chat agent to rephrase. |
+| return_agent_response_directly | boolean | Optional. Whether to return the agent's response directly in the Voice Live response. Default is `true`. When set to `false`, the response is sent to the chat agent to rephrase. |
 
 Example:
 ```json
@@ -3205,6 +3205,6 @@ The `RealtimeResponseSession` object represents a session in the Realtime API. I
 
 ## Related Resources
 
-- Try the [Voice live quickstart](./voice-live-quickstart.md)
-- Try the [Voice live agents quickstart](./voice-live-agents-quickstart.md)
-- Learn more about [How to use the Voice live API](./voice-live-how-to.md)
+- Try the [Voice Live quickstart](./voice-live-quickstart.md)
+- Try the [Voice Live agents quickstart](./voice-live-agents-quickstart.md)
+- Learn more about [How to use the Voice Live API](./voice-live-how-to.md)
