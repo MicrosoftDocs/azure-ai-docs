@@ -531,7 +531,7 @@ The code breaks down into the following main sections:
 1. [Retrieve evaluation results](#retrieve-evaluation-results).
 
 > [!TIP]
-> For detailed guidance on cloud evaluations, see [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md). To find a comprehensive list of built-in evaluators available in Founrdy, see [Observability in generative AI](../../concepts/observability). 
+> For detailed guidance on cloud evaluations, see [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md). To find a comprehensive list of built-in evaluators available in Founrdy, see [Observability in generative AI](../../concepts/observability.md). 
 
 > [!NOTE]
 > The C# SDK uses **protocol methods** with `BinaryData` and `BinaryContent` instead of typed objects. This approach requires helper methods to parse JSON responses. See the [C# Evaluations SDK sample](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects/samples/Sample21_Evaluations.md) for the complete pattern.
@@ -650,7 +650,7 @@ Cloud evaluations provide structured results that you can view in the Foundry po
 You can also view detailed results in the Foundry portal by selecting **Evaluation** from your project and selecting the evaluation run. The portal provides visualizations, filtering, and export options.
 
 > [!TIP]
-> For production scenarios, consider running evaluations as part of your CI/CD pipeline. See [How to run an evaluation in Azure DevOps](../../how-to/evaluation-azure-devops), and [Continuously evaluate your AI agents](../../how-to/continuous-evaluation-agents) for integration patterns.
+> For production scenarios, consider running evaluations as part of your CI/CD pipeline. See [How to run an evaluation in Azure DevOps](../../how-to/evaluation-azure-devops.md), and [Continuously evaluate your AI agents](../../how-to/continuous-evaluation-agents.md) for integration patterns.
 ```
 
 
