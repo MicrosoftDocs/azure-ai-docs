@@ -1,6 +1,6 @@
 ---
 title: What Is Provisioned Throughput for Foundry Models?
-description: Discover how provisioned throughput enables efficient deployment of Azure OpenAI and flagship Foundry Models with stable latency and allocated capacity.
+description: Learn how provisioned throughput enables efficient deployment of Azure OpenAI and Foundry Models with stable latency and allocated capacity. Get started today.
 #customer intent: As a developer, I want to understand provisioned throughput so I can deploy and manage AI models efficiently.
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
@@ -18,7 +18,7 @@ recommendations: false
 #CustomerIntent As a developer, I want to understand provisioned throughput so I can deploy and manage AI models efficiently.
 ---
 
-# What is provisioned throughput?
+# What is provisioned throughput for Foundry Models?
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
@@ -131,7 +131,7 @@ Provisioned deployments provide you with an allocated amount of model processing
 
 In all provisioned deployment types, when capacity is exceeded, the API returns a 429 HTTP Status Error. The fast response enables the user to make decisions on how to manage their traffic. Users can redirect requests to a separate deployment, to a standard deployment instance, or use a retry strategy to manage a given request. The service continues to return the 429 HTTP status code until the utilization drops below 100%.
 
-### Handle 429 responses
+### Handle HTTP 429 responses
 
 The 429 response isn't an error, but instead it's part of the design for telling users that a given deployment is fully utilized at a point in time. By providing a fast-fail response, you have control over how to handle these situations in a way that best fits your application requirements.
 
@@ -164,7 +164,7 @@ For provisioned deployments, we use a variation of the leaky bucket algorithm to
 > Calls are accepted until utilization reaches 100%. Bursts just over 100% might be permitted in short periods, but over time, your traffic is capped at 100% utilization.
 
 
-:::image type="content" source="../media/provisioned/utilization.jpg" alt-text="Diagram showing the leaky bucket algorithm for PTU utilization, where incoming requests add to utilization and capacity drains continuously based on deployed PTU count." lightbox="../media/provisioned/utilization.jpg":::
+:::image type="content" source="../media/provisioned/utilization.jpg" alt-text="Diagram of the leaky bucket algorithm for provisioned throughput utilization showing how incoming requests add to utilization while capacity drains based on deployed PTU count." lightbox="../media/provisioned/utilization.jpg":::
 
 #### Concurrent call limits
 
