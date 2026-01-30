@@ -389,9 +389,9 @@ After you enable feature set materialization on the transactions feature set, yo
 
 ### Set spark.sql.shuffle.partitions in the YAML file
 
-The spark configuration `spark.sql.shuffle.partitions` is an optional parameter that can affect the number of parquet files generated per day when the feature set is materialized into the offline store. The default value of this parameter is 200.
+The Spark configuration `spark.sql.shuffle.partitions` is an optional parameter that can affect the number of Parquet files generated per day when the feature set is materialized into the offline store. The default value of this parameter is 200.
 
-As a best practice, avoid generation of many small parquet files. If offline feature retrieval becomes slow after feature set materialization, open the corresponding folder in the offline store. Check whether the issue involves too many small parquet files per day, and adjust the value of this parameter according to the feature data size.
+As a best practice, avoid generation of many small Parquet files. If offline feature retrieval becomes slow after feature set materialization, open the corresponding folder in the offline store. Check whether the issue involves too many small Parquet files per day, and adjust the value of this parameter according to the feature data size.
 
 > [!NOTE]
 > The sample data used in this notebook is small. Therefore, the `spark.sql.shuffle.partitions` parameter is set to `1` in the *featureset_asset_offline_enabled.yaml* file.

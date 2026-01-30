@@ -34,9 +34,6 @@ To view trace data, make sure your account has access to the connected Applicati
 
     If you use log-based queries, start by granting the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader).
 
-> [!NOTE]
-> Agent tracing availability varies by region. For current limitations, see [Availability and limitations](../concepts/trace-agent-concept.md#availability-and-limitations).
-
 ## Security and privacy
 
 Tracing can capture sensitive information (for example, user inputs, model outputs, and tool arguments and results).
