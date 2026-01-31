@@ -20,7 +20,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-Build-in evaluators are an out of the box way to monitor the quality of your application's generations. You can build your own code-based prompt-based evaluators to further customize your evaluations.
+Built-in evaluators provide an easy way to monitor the quality of your application's generations. To customize your evaluations, you can create your own code-based or prompt-based evaluators.
 
 [!INCLUDE [evaluation-preview](../../includes/evaluation-preview.md)]
 
