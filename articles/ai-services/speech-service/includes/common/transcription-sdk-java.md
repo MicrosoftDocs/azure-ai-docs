@@ -12,7 +12,7 @@ ms.date: 01/31/2026
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- <a href="https://www.oracle.com/java/technologies/downloads/" target="_blank">Java Development Kit (JDK) 11 or later</a>.
+- <a href="https://www.oracle.com/java/technologies/downloads/" target="_blank">Java Development Kit (JDK) 8 or later</a>.
 - <a href="https://maven.apache.org/download.cgi" target="_blank">Apache Maven</a> for dependency management and building the project.
 - A [Speech resource](../../../multi-service-resource.md) in one of the supported regions. For more information about region availability, see [Speech service supported regions](../../regions.md).
 - An audio file named `sample-audio.wav` in your working directory. You can use your own `.wav` file or download a sample.
@@ -56,13 +56,22 @@ ms.date: 01/31/2026
             <dependency>
                 <groupId>com.azure</groupId>
                 <artifactId>azure-identity</artifactId>
-                <version>1.13.0</version>
+                <version>1.18.1</version>
             </dependency>
         </dependencies>
 
         <build>
             <sourceDirectory>.</sourceDirectory>
             <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.11.0</version>
+                    <configuration>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                    </configuration>
+                </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>exec-maven-plugin</artifactId>
@@ -153,7 +162,9 @@ import com.azure.ai.speech.transcription.models.TranscriptionOptions;
 import com.azure.ai.speech.transcription.models.TranscriptionResult;
 import com.azure.core.credential.KeyCredential;
 import com.azure.core.util.BinaryData;
+import com.azure.identity.DefaultAzureCredentialBuilder;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -164,11 +175,18 @@ public class TranscriptionQuickstart {
             String endpoint = System.getenv("SPEECH_ENDPOINT");
             String apiKey = System.getenv("SPEECH_API_KEY");
 
-            // Create client
-            TranscriptionClient client = new TranscriptionClientBuilder()
-                .endpoint(endpoint)
-                .credential(new KeyCredential(apiKey))
-                .buildClient();
+            // Create client with API key or Entra ID authentication
+            TranscriptionClientBuilder builder = new TranscriptionClientBuilder()
+                .endpoint(endpoint);
+
+            TranscriptionClient client;
+            if (apiKey != null && !apiKey.isEmpty()) {
+                // Use API key authentication
+                client = builder.credential(new KeyCredential(apiKey)).buildClient();
+            } else {
+                // Use Entra ID authentication
+                client = builder.credential(new DefaultAzureCredentialBuilder().build()).buildClient();
+            }
 
             // Load audio file
             String audioFilePath = "sample-audio.wav";
