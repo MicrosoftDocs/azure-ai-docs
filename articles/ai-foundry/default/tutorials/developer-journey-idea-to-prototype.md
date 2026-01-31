@@ -186,23 +186,23 @@ Start by running the agent so you see working functionality before diving into i
 
 1. Install dependencies:
 
-# [Python](#tab/python)
+   # [Python](#tab/python)
 
-```bash
-python -m pip install -r requirements.txt
-```
+   ```bash
+   python -m pip install -r requirements.txt
+   ```
 
-# [C#](#tab/csharp)
+   # [C#](#tab/csharp)
 
-```bash
-cd ModernWorkplaceAssistant
-dotnet restore
+   ```bash
+   cd ModernWorkplaceAssistant
+   dotnet restore
 
-cd ../Evaluate
-dotnet restore
-```
+   cd ../Evaluate
+   dotnet restore
+   ```
 
----
+   ---
 
 1. [!INCLUDE [find-endpoint](../includes/find-endpoint.md)] 
 1. Configure `.env`.
