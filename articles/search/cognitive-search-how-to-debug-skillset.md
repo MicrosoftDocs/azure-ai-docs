@@ -72,11 +72,11 @@ Debug sessions work with all generally available [indexer data sources](search-d
 
    For a specific document in Azure CosmosDB for NoSQL: provide the document key in the search index for the value, and the ID of the entity in Cosmos DB for the partition key.
 
-   :::image type="content" source="media/cognitive-search-debug/cosmos-db-source.png" lightbox="media/cognitive-search-debug/cosmos-db-source" alt-text="Screenshot of the properties in Cosmos DB." border="true":::
+   :::image type="content" source="media/cognitive-search-debug/cosmos-db-source.png" lightbox="media/cognitive-search-debug/cosmos-db-source.png" alt-text="Screenshot of the properties in Cosmos DB." border="true":::
 
    Here's the debug session configuration for the Cosmos DB example.
 
-   :::image type="content" source="media/cognitive-search-debug/cosmos-db-document.png" lightbox="media/cognitive-search-debug/cosmos-db-document" alt-text="Screenshot of the properties in Cosmos DB." border="true":::
+   :::image type="content" source="media/cognitive-search-debug/cosmos-db-document.png" lightbox="media/cognitive-search-debug/cosmos-db-document.png" alt-text="Screenshot of the Cosmos DB properties in debug session configuration." border="true":::
 
 1. In **Storage account**, choose a general-purpose storage account for caching the debug session.
 
