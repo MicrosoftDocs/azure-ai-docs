@@ -107,7 +107,7 @@ The following example illustrates a vector search configuration that meets the r
 }
 ```
 
-The following JSON shows the vector field definition that that uses this profile:
+The following JSON shows the vector field definition that uses this profile:
 
 - Data type is either `Collection(Edm.Half)` or `Collection(Edm.Single)`.
 
