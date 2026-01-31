@@ -5,7 +5,8 @@ description: Utilize the Foundry (classic) portal to create Content Understandin
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
-ms.date: 10/30/2025
+ms.date: 01/29/2026
+ai-usage: ai-assisted
 ms.service: azure-ai-content-understanding
 ms.topic: how-to
 ms.custom:
@@ -21,7 +22,7 @@ Suppose you have files of different types—such as documents, images, audio, or
 This guide shows you how to use Content Understanding Standard and Pro modes in the Microsoft Foundry (classic) portal to build and test a custom analyzer that extracts structured information from your data.
 
 > [!NOTE]
-> Foundry (classic) portal uses a preview API (`2025-05-01-preview`). 
+> Foundry (classic) portal uses a preview API (`2025-05-01-preview`).
 
 ## Choosing between Standard and Pro modes (Preview)
 
@@ -38,21 +39,20 @@ Content Understanding offers two modes for different scenarios:
 For detailed guidance on which mode to choose for your scenario, see [Azure Content Understanding standard and pro modes (preview)](../concepts/standard-pro-modes.md).
 
 > [!NOTE]
-> Pro mode is a preview feature available only in this preview API version (`2025-05-01-preview`). For Standard Mode, you can transition to the GA API (`2025-11-01`) with minimal changes. See [GA Migration Guide](../how-to/migration-preview-to-ga.md)
+> Pro mode is a preview feature available only in this preview API version (`2025-05-01-preview`). For Standard mode, you can transition to the GA API (`2025-11-01`) with minimal changes. See the [GA migration guide](../how-to/migration-preview-to-ga.md).
 
 ## Prerequisites
 
 To get started, make sure you have the following resources and permissions:
 
 * An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-
 * A Foundry project in a supported region. For a full list of supported regions, check out [language and region support](../language-region-support.md). See the instructions below to learn how to create your first project.
 
 ## Create your first project
 
 To get started with Content Understanding in the Foundry portal, follow these steps to create a project. A project lets you organize your work and save state while building customized AI apps. All work with Content Understanding happens in a project.
 
-1. From the home page of [**Foundry portal**](https://ai.azure.com/explore/aiservices/vision/contentunderstanding), select "Create new" in the top right corner.
+1. From the home page of [**Foundry portal**](https://ai.azure.com/explore/aiservices/vision/contentunderstanding), select **Create new** in the top right corner.
 
 1. Foundry supports two project types: `Foundry resource` and `AI hub resource`. Both project types work with Content Understanding. For the most up-to-date experience, use the `Foundry resource`. For more context on the project types, see [Create a project for Foundry](../../../ai-foundry/how-to/create-projects.md).
 
@@ -114,7 +114,7 @@ When you create a single-file Content Understanding task, you start by uploading
 
    :::image type="content" source="../media/quickstarts/build-invoice-analyzer.png" alt-text="Screenshot of built analyzer.":::
 
-You've successfully built your first Content Understanding analyzer and are ready to start extracting insights from your data. Check out [Quickstart: Content Understanding REST APIs](../quickstart/use-rest-api.md) to utilize the REST API to call your analyzer.
+You've successfully built your first Content Understanding analyzer and are ready to start extracting insights from your data. See [Quickstart: Content Understanding REST APIs](../quickstart/use-rest-api.md) to call your analyzer by using the REST API.
 
 # [Pro mode](#tab/pro)
 
@@ -169,11 +169,11 @@ In this example, you create the schema to extract key fields from an invoice doc
 
    :::image type="content" source="../media/quickstarts/build-analyzer.png" alt-text="Screenshot of built analyzer." lightbox="../media/quickstarts/build-analyzer.png":::
 
-Now you successfully built your first Content Understanding analyzer, and are ready to start extracting insights from your data. You can select the analyzer you created and view sample code to get started.
+Now you successfully built your first Content Understanding analyzer and are ready to start extracting insights from your data. You can select the analyzer you created and view sample code to get started.
 
    :::image type="content" source="../media/quickstarts/view-code.png" alt-text="Screenshot of sample code." lightbox="../media/quickstarts/view-code.png":::
 
-Check out [Quickstart: Content Understanding REST APIs](../quickstart/use-rest-api.md) to utilize the REST API to call your analyzer.
+See [Quickstart: Content Understanding REST APIs](../quickstart/use-rest-api.md) to call your analyzer by using the REST API.
 
 ---
 

@@ -5,7 +5,8 @@ description: Learn the latest updates to the Content Understanding API.
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
-ms.date: 01/30/2026
+ms.date: 01/29/2026
+ai-usage: ai-assisted
 ms.service: azure-ai-content-understanding
 ms.topic: whats-new
 ms.custom:
@@ -15,14 +16,14 @@ ms.custom:
 
 # What's new in Azure Content Understanding in Foundry Tools?
 
-Azure Content Understanding in Foundry Tools service is updated on an ongoing basis. Bookmark this article to stay up to date with release notes, feature enhancements, and the newest documentation.
+The Azure Content Understanding service in Foundry Tools is updated on an ongoing basis. Bookmark this page to stay up to date with release notes, feature enhancements, and new documentation.
 
 > [!NOTE]
-> Content Understanding is now a Generally Available (GA) service with the release of the `2025-11-01` API version. 
+> Content Understanding is now a Generally Available (GA) service with the release of the `2025-11-01` API version.
 
 ## December 2025
 
-- **Read & Layout update**: The Read and Layout prebuilt models no longer require specifying a model (LLM). They also no longer require your Foundry resource to be configured with a model. Content Understanding runs them even if no model is defined in `contentunderstanding/defaults`.
+- **Read and Layout update**: The Read and Layout prebuilt models no longer require specifying a model (LLM). They also no longer require your Foundry resource to be configured with a model. Content Understanding runs them even if no model is defined in `contentunderstanding/defaults`.
 - **Updated GitHub samples**: New and refreshed samples are now available, including updated [Python](https://github.com/Azure-Samples/azure-ai-content-understanding-python) and [.NET](https://github.com/Azure-Samples/azure-ai-content-understanding-dotnet) samples. Other samples have also been updated.
 - **Foundry NextGen availability**: The new Read and Layout models are now available directly in the Foundry New portal.
 
@@ -32,16 +33,16 @@ Azure Content Understanding in Foundry Tools is now Generally Available with API
 
 ### Flexibility to choose the right generative AI model for every workload
 
-- Connect Content Understanding to a Microsoft Foundry Model deployment for generative AI so you control quality, latency, and cost. You can choose either pay-as-you-go or Provisioned Throughput Unit (PTU) deployments for your Foundry Model. See what models are [currently supported](concepts/models-deployments.md#supported-models). To try it out for yourself, check out [How to build a custom analyzer in Content Understanding Studio](../content-understanding/how-to/customize-analyzer-content-understanding-studio.md).
+- Connect Content Understanding to a Microsoft Foundry model deployment for generative AI so you can control quality, latency, and cost. You can choose either pay-as-you-go or Provisioned Throughput Unit (PTU) deployments for your Foundry model. See what models are [currently supported](concepts/models-deployments.md#supported-models). To try it, see [How to build a custom analyzer in Content Understanding Studio](how-to/customize-analyzer-content-understanding-studio.md).
 - Model selection gives you the flexibility to optimize your Foundry model deployment with settings like type (Global, DataZone, or Regional) and Provisioned Throughput Units (PTUs) to reserve capacity for predictable, high-volume workloads. For details see [Deployment types for Foundry Models](../../ai-foundry/foundry-models/concepts/deployment-types.md).
 - Transparent pricing model provides clear visibility into costs across content extraction, contextualization, and generative model usage. Content Understanding only charges for content extraction (per page/minute) and contextualization. Generative features directly use your Foundry model deployment incurring standard token-based charges. Learn more in the [Pricing explainer](pricing-explainer.md).
 
 ### Analyzer updates
 
-- **Optimize performance and reduce costs** with granular control over field extraction. Enable confidence scores and source grounding only for the fields where you need validation and traceability by using the `estimateSourceAndConfidence` configuration setting. This selective approach reduces response payload sizes and lowers processing costs and latency by computing confidence metrics only when required. Confidence scores are only supported for document files.
-- **Classification is now integrated** with the analyzer API now supporting classification with the `contentCategories` property. Now the number of supported categories expands from 50 to 200, enabling precise classification and routing of diverse [file types](/azure/ai-services/content-understanding/service-limits#input-file-limits) within a single analyzer – no separate classifier required. See [build a robotic process automation solution](tutorial/robotic-process-automation.md) for an example.
+- **Optimize performance and reduce costs** with granular control over field extraction. Enable confidence scores and source grounding only for the fields where you need validation and traceability using the `estimateSourceAndConfidence` configuration setting. This selective approach reduces response payload sizes and lowers processing costs and latency by computing confidence metrics only when required. Confidence scores are only supported for document files.
+- **Classification is now integrated** with the analyzer API, which supports classification using the `contentCategories` property. The number of supported categories expands from 50 to 200, enabling precise classification and routing of diverse [file types](/azure/ai-services/content-understanding/service-limits#input-file-limits) within a single analyzer—no separate classifier required. See [Build a robotic process automation solution](tutorial/robotic-process-automation.md) for an example.
 - **Analyzer lifecycle APIs** extend to support copy, delete, and replace to give you complete control over analyzer versions. See [Migrate projects from preview to GA](how-to/migration-preview-to-ga.md) for guidance.
-- **Delete Analyze Results** - You can now explicitly delete the analyzer results once successfully retrieved, giving you full control over the data retention for compliance and privacy requirements. See [delete analyze response](/rest/api/contentunderstanding/content-analyzers/get-result-file?view=rest-contentunderstanding-2025-11-01).
+- **Delete analyze results**: You can now explicitly delete analyzer results after you retrieve them, giving you control over data retention for compliance and privacy requirements. See [Delete analyze response](/rest/api/contentunderstanding/content-analyzers/get-result-file?view=rest-contentunderstanding-2025-11-01&preserve-view=true).
 
 ### RAG analyzers
 
@@ -75,9 +76,7 @@ Explore the domain-specific analyzer lineup and usage guidance in [Prebuilt anal
 
 - **Confidence scores are now consistently available across all extraction methods for documents**—whether you use extract, generative, or classify—giving you uniform quality metrics regardless of how you process fields. Confidence scores are only supported for document modality. Learn how to [enable confidence scores for field extraction](document/overview.md#field-extraction).
 - **Simplified schema definition** with intelligent defaults and streamlined workflows. The extraction method is now optional. Content Understanding automatically selects the best approach for each field, reducing configuration complexity. This intelligent behavior makes it easier to build and maintain analyzers without deep knowledge of extraction techniques.
-- **Added support for complex types like objects** - Define an object, for example a customer object with contained fields of name, address, and phone.
-
-
+- **Added support for complex types like objects**: Define an object, for example a customer object with contained fields of name, address, and phone.
 ### Enterprise security and governance
 
 - General availability includes Microsoft Entra ID, managed identities, customer-managed keys, virtual networks, and private endpoints.
@@ -85,8 +84,8 @@ Explore the domain-specific analyzer lineup and usage guidance in [Prebuilt anal
 
 ### Other improvements
 
-- `prebuilt-read` and `prebuilt-layout` analyzers now bring key Document Intelligence capabilities to Content Understanding. See [prebuilt analyzers](concepts/prebuilt-analyzers.md).
-- `prebuilt-layoutWithFigures` extends layout extraction with figure detection and analysis, extracting and summarizing charts, diagrams, and images with their context. See [prebuilt analyzers](concepts/prebuilt-analyzers.md).
+- `prebuilt-read` and `prebuilt-layout` analyzers now bring key Document Intelligence capabilities to Content Understanding. See [Prebuilt analyzers](concepts/prebuilt-analyzers.md).
+- `prebuilt-layoutWithFigures` extends layout extraction with figure detection and analysis, extracting and summarizing charts, diagrams, and images with their context. See [Prebuilt analyzers](concepts/prebuilt-analyzers.md).
 - When analyzing content, you can now provide a **page range** to only analyze specific pages of the input document.
 - Segmentation and classification (`contentCategories`) let you send sections to purpose-built analyzers during a single run. For example, `prebuilt-idDocument` classifies pages and routes them to specific analyzers (such as passport and driver's license analyzers), each with their own schemas—all within a single run.
 
@@ -97,9 +96,9 @@ Explore the domain-specific analyzer lineup and usage guidance in [Prebuilt anal
 
 ### Breaking changes
 
-- Managed capacity for the preview generative models is retired. To use Content Understand, you always bring your own Foundry large language model and embedding deployments.
-- Dedicated classifier APIs are deprecated because classification now lives inside the analyzer API as the contentCategories feature.
-- Video segmentation can now be done using the contentCategories capability unifying the API for splitting files across document and video analyzers.
+- Managed capacity for the preview generative models is retired. To use Content Understanding, you always bring your own Foundry large language model and embedding deployments.
+- Dedicated classifier APIs are deprecated because classification now lives inside the analyzer API as the `contentCategories` feature.
+- Video segmentation can now be done using the `contentCategories` capability, unifying the API for splitting files across document and video analyzers.
 - The preview API (`2025-05-01-preview`) doesn't carry forward Pro mode for cross-file analysis or the person directory with Face API integration.
 
 ## October 2025

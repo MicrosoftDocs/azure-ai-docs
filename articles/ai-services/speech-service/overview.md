@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 08/07/2025
+ms.date: 01/30/2026
 ms.author: pafarley
 #Customer intent: As a developer, I want to learn about Azure Speech and its capabilities to add speech to my applications, tools, and devices.
 ---
@@ -26,7 +26,7 @@ Azure Speech is available for many [languages](language-support.md), [regions](r
 Common scenarios for speech include:
 
 - [Captioning](./captioning-concepts.md): Learn how to synchronize captions with your input audio, apply profanity filters, get partial results, apply customizations, and identify spoken languages for multilingual scenarios.
-- [Audio content creation](text-to-speech.md#more-about-neural-text-to-speech-features): Use neural voices to make interactions with chatbots and voice agents more natural and engaging, convert digital texts such as e-books into audiobooks, and enhance in-car navigation systems.
+- [Audio content creation](text-to-speech.md#neural-text-to-speech-features): Use neural voices to make interactions with chatbots and voice agents more natural and engaging, convert digital texts such as e-books into audiobooks, and enhance in-car navigation systems.
 - [Call center](call-center-overview.md): Transcribe calls in real time or process a batch of calls, redact personal information, and extract insights such as sentiment to help with your call-center use case.
 - [Language learning](language-learning-overview.md): Provide pronunciation assessment feedback to language learners, support real-time transcription for remote learning conversations, and read aloud teaching materials with neural voices.
 - [Voice Live](voice-live.md): Create natural, humanlike conversational interfaces for applications and experiences. The Voice Live feature provides fast, reliable interaction between a human and an agent implementation.
