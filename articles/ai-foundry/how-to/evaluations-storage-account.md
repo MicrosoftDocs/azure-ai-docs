@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 > [!IMPORTANT]
 > This guidance only applies to the new Foundry resource based projects, not hub-based projects. These steps aren't required for hub-based projects.
 
-When running evaluations with user-provided datasets, you must connect a storage account to your Microsoft Foundry Resource. Use this storage account to store the datasets. However, providing this connection isn't enough. You must also give the project contributor access to the blob storage to allow read and write access to the storage account. These instructions walk you through how to create the storage account, connect it to your project, and give resource permission.
+When you run evaluations by using user-provided datasets, you must connect a storage account to your Microsoft Foundry Resource. Use this storage account to store the datasets. However, providing this connection isn't enough. You must also give the project contributor access to the blob storage to allow read and write access to the storage account. These instructions walk you through how to create the storage account, connect it to your project, and give resource permission.
 
 ## Prerequisites
 
@@ -26,11 +26,11 @@ When running evaluations with user-provided datasets, you must connect a storage
 
 ## Create your blob storage account
 
-If you already created your blob storage account, you can skip this section.  
+If you have already created your blob storage account, you can skip this section.  
 
 Foundry evaluations use the user's blob storage account to store datasets for use in evaluations. To create the storage account, follow the steps in this section:
 
-1. Go to your Foundry Project and find your resource group. To find your resource group, select the project name in the top right corner and select your resource group. This selection takes you to the resource group in Azure portal.
+1. Go to your Foundry project and find your resource group. To find your resource group, select the project name in the top right corner and select your resource group. This selection takes you to the resource group in Azure portal.
 1. Select **Create** on the Resource Group page.
 1. Search for "Storage Account" and select the Storage Account option that's published by Microsoft.
 
@@ -48,7 +48,7 @@ Foundry evaluations use the user's blob storage account to store datasets for us
 
 ## Connect your blob storage account in Foundry
 
-After you create the storage account, connect the blob storage account to the Foundry resource. If you already connected the storage account, you can skip this section.
+After you create the storage account, connect the blob storage account to the Foundry resource. If you have already connected the storage account, you can skip this section.
 
 1. Go to your project at ai.azure.com. Make sure you're in the project where you want to run evaluations.
 1. In the lower left corner at the bottom of the menu, select **Management Center**.
@@ -65,9 +65,9 @@ After you create the storage account, connect the blob storage account to the Fo
 
 To set up this storage account to store your datasets for evaluation runs in Foundry, you must provide the project permissions to access the storage account.
 
-1. Navigate to your project in Foundry.
-1. In the top left corner, select your project name dropdown.
-1. Select the Resource Group link, which will take you to Azure portal for the resource group.
+1. Go to your project in Foundry.
+1. In the upper-left corner, select your project name dropdown.
+1. Select the **Resource Group** link. This link takes you to Azure portal for the resource group.
 1. Select the storage account you created under the *Resources* table.
 1. On the right hand side, select **Access Control (IAM)**.
 1. Select +Add -> Add role assignment.
