@@ -14,11 +14,11 @@ ms.update-cycle: 180-days
 
 # Define an index projection for parent-child indexing
 
-If you're chunking content for either a RAG pattern or vectorization, you can specify an *index projection* to control one-to-many indexing, where elements of the parent document (such as a file name or creation date):
+If you're chunking content for either a RAG pattern or vectorization, you can specify an **index projection** to control *one-to-many indexing*, where source content (one) is projected to one or more indexes (many). The intent of an index projection is to control whether elements of the parent document, such as a file name or creation date:
 
 - Repeat for each child (chunk) in a single index
 - Are indexed as standalone search documents in the same index
-- Or, are ingested into a separate index
+- Or, are ingested into separate indexes
 
 We recommend repeating parent fields in a single index because having different document shapes or splitting content into two indexes can be difficult to query, especially in classic search where index joins aren't supported.
 
