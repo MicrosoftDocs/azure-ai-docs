@@ -8,7 +8,8 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.custom: references_regions, ignite-2024
-ms.date: 01/29/2025
+ms.date: 01/29/2026
+ai-usage: ai-assisted
 ---
 
 Use this article to get started using [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) to deploy and test a chat completion model with image understanding. 

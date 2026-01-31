@@ -4,7 +4,7 @@ description: Learn how to use the model router in Azure OpenAI to select the bes
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
-ms.date: 09/02/2025
+ms.date: 01/29/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
@@ -41,7 +41,7 @@ In the **Create new deployment**, find `model-router` in the **Models** list and
 ::: moniker-end
 
 ::: moniker range="foundry"
-In the model catalog, find `model-router` in the **Models** list and select it. Choose **Default settings"* for the **balanced** routing mode and route between all supported models. To enable more configuration options, choose the **Custom settings* option.
+In the model catalog, find `model-router` in the **Models** list and select it. Choose **Default settings** for the **Balanced** routing mode and route between all supported models. To enable more configuration options, choose **Custom settings**.
 
 :::image type="content" source="media/working-with-models/model-router-deploy.png" alt-text="Screenshot of model router deploy screen.":::
 
