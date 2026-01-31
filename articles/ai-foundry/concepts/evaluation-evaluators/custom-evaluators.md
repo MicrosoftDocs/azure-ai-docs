@@ -20,7 +20,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-To start evaluating your application's generations, built-in evaluators are great out of the box. To cater to your evaluation needs, you can build your own code-based or prompt-based evaluator.
+Build-in evaluators are an out of the box way to monitor the quality of your application's generations. You can build your own code-based prompt-based evaluators to further customize your evaluations.
 
 [!INCLUDE [evaluation-preview](../../includes/evaluation-preview.md)]
 
