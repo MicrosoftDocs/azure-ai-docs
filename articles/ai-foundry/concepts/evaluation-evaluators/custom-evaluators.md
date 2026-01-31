@@ -5,7 +5,7 @@ description: Learn how to create custom evaluators for your AI applications usin
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: mithigpe
-ms.date: 01/230/2026
+ms.date: 01/30/2026
 ms.service: azure-ai-foundry
 ms.topic: reference
 ms.custom:
@@ -57,8 +57,6 @@ answer_length = answer_length_evaluator(answer="What is the speed of light?")
 ```
 
 ## Prompt-based evaluators
-
-::: moniker range="foundry-classic"
 
 To build your own prompt-based large language model evaluator or AI-assisted annotator, create a custom evaluator based on a *Prompty* file.
 
