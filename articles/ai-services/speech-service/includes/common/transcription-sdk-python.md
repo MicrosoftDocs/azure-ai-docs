@@ -33,9 +33,9 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
     # [Windows](#tab/windows)
 
-    ```bash
+    ```powershell
     py -3 -m venv .venv
-    .venv\scripts\activate
+    .venv\Scripts\Activate.ps1
     ```
 
     # [Linux](#tab/linux)
@@ -77,8 +77,8 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 You need to retrieve your resource endpoint and API key for authentication.
 
 1. Sign in to [Foundry portal](https://ai.azure.com).
-1. Go to your resource.
-1. Select **Resource Management** > **Keys and Endpoint**.
+1. Select **Management center** from the left menu, then select your Speech or multi-service resource under **Connected resources**.
+1. Select **Keys and Endpoint**.
 1. Copy the **Endpoint** and **Key** values. You use these values to set environment variables.
 
 1. Set the following environment variables:
@@ -154,7 +154,9 @@ You need to retrieve your resource endpoint and API key for authentication.
                 )
     ```
 
-1. Replace `<path-to-your-audio-file.wav>` with the path to your audio file.
+    Reference: [TranscriptionClient](/python/api/azure-ai-transcription/azure.ai.transcription.transcriptionclient) | [TranscriptionContent](/python/api/azure-ai-transcription/azure.ai.transcription.models.transcriptioncontent) | [TranscriptionOptions](/python/api/azure-ai-transcription/azure.ai.transcription.models.transcriptionoptions) | [AzureKeyCredential](/python/api/azure-core/azure.core.credentials.azurekeycredential)
+
+1. Replace `<path-to-your-audio-file.wav>` with the path to your audio file. The service supports WAV, MP3, FLAC, OGG, and other common audio formats.
 
 1. Run the Python script:
 
