@@ -201,7 +201,6 @@ Start by running the agent so you see working functionality before diving into i
    cd ../Evaluate
    dotnet restore
    ```
-
    ---
 
 1. [!INCLUDE [find-endpoint](../includes/find-endpoint.md)] 
