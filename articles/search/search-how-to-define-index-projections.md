@@ -30,106 +30,37 @@ In Azure AI Search, chunking is performed by skills and thus depends on indexers
 
 - An [indexer-based indexing pipeline](search-indexer-overview.md).
 
-- An index (one or two) that accepts the output of the indexer pipeline.
-
 - A [supported data source](search-indexer-overview.md#supported-data-sources) having content that you want to chunk.
+
+- An index (one or many) that accepts the output of the indexer pipeline.
 
 - A skill that [chunks content](vector-search-how-to-chunk-documents.md), such as the [Text Split skill](cognitive-search-skill-textsplit.md). 
 
 The skillset contains the indexer projection that shapes the data for one-to-many indexing. A skillset could also have other skills, such as an embedding skill like [AzureOpenAIEmbedding](cognitive-search-skill-azure-openai-embedding.md) if your scenario includes integrated vectorization.
 
-## Choose an approach (new)
+## Choose an approach
 
 Index projections generate "child" documents (chunks) for each "parent" document. Choose how to handle parent content:
 
 | Approach | Description | Configuration |
 |----------|-------------|---------------|
-| **Single index, repeating parent fields** (recommended) | Parent fields repeat for each chunk. All documents have the same shape. | Set both indexer `targetIndexName` and index projection `targetIndexName` to the same index. Set `projectionMode` to `skipIndexingParentDocuments`. |
+| **Single index, repeating parent fields** (recommended) | Parent fields repeat for each chunk. All documents have a uniform shape. | Set both indexer `targetIndexName` and index projection `targetIndexName` to the same index. Set `projectionMode` to `skipIndexingParentDocuments`. |
 | **Single index, mixed document shapes** | Parent documents and chunk documents coexist. Parent documents have null chunk fields. | Set both `targetIndexName` values to the same index. Set `projectionMode` to `includeIndexingParentDocuments` (or omit, as it's the default). |
-| **Two separate indexes** | Parent index for metadata lookups, child index for search. No query-time joins. | Set indexer `targetIndexName` to parent index. Set index projection `targetIndexName` to child index. |
+| **Two or more separate indexes** | Parent index for metadata lookups, child index for search. No query-time joins. | Set indexer `targetIndexName` to parent index. Set index projection `targetIndexName` to child index. The `selectors` array determines the quantity and composition of the child index. |
 
 For most RAG scenarios, use the first approach. See the [classic RAG example](https://github.com/Azure-Samples/azure-search-classic-rag/blob/main/README.md).
 
-### Implementation steps
+### Implementation steps for the recommended approach
 
 1. [Create an index](#create-an-index-for-one-to-many-indexing) designed for chunks, with parent fields included.
 1. [Create a skillset](#add-index-projections-to-a-skillset) with a chunking skill and `indexProjections`.
-1. [Create an indexer](search-how-to-create-indexers.md) pointing to your data source.
+1. [Create an indexer](search-how-to-create-indexers.md) pointing to your [supported data source](search-indexer-overview.md#supported-data-sources).
 
 If your data source supports change tracking, the indexer synchronizes changes automatically.
 
-## Choose an approach (old)
-
-Through an index projection, you can send content to:
-
-- (recommended) A single index, with parent fields repeating for each chunk. The grain of the index is at the chunk level and all documents are the same shape. The [classic RAG example](https://github.com/Azure-Samples/azure-search-classic-rag/blob/main/README.md) shows this approach.
-
-- A single index, with extra documents for parent-specific content. Chunk documents still include a parent ID. In the parent documents, chunk fields are null.
-
-- Two indexes, where the parent index has parent-specific fields, and the child index is organized around chunks. The child index is the primary search corpus. The parent index could be used for [lookup queries](/rest/api/searchservice/documents/get) when you want to retrieve the parent fields of a particular chunk, or for independent queries.
-
-Most implementations are a single index organized around chunks with parent fields, such as the document filename, repeating for each chunk. However, the system is designed to support alternative patterns. Azure AI Search doesn't support index joins so your application code must handle which index to use.
-
-### A single index with repeating parent fields
-
-Here's how to implement the recommended configuration.
-
-1. Set up an [indexer pipeline](search-how-to-create-indexers.md) using a [supported data source](search-indexer-overview.md#supported-data-sources) that provides your content.
-
-1. [Create an index](#create-an-index-for-one-to-many-indexing) that's designed for chunks, but also has parent fields in the field collection.
-
-1. [Create a skillset](#add-index-projections-to-a-skillset) that includes a skill for chunking, plus an `indexProjections` parameter set to `skipIndexingParentDocuments`.
-
-If your data source supports change tracking, the indexer can synchronize changes in the underlying data with your index, or both indexes if you opt for the two-index pattern.
-
-### A single index with different document shapes
-
-Combine chunk documents and parent documents in the same index. Parent documents have null values for chunk fields.
-
-1. Set up an [indexer pipeline](search-how-to-create-indexers.md) using a [supported data source](search-indexer-overview.md#supported-data-sources) that provides your content.
-
-1. [Create an index](#create-an-index-for-one-to-many-indexing) that's designed for chunks, but also has parent fields in the field collection.
-
-1. [Create a skillset](#add-index-projections-to-a-skillset) that includes a skill for chunking, plus an `indexProjections` parameter set to `includeIndexingParentDocuments`.
-
-### Two indexes for separate chunk and parent documents
-
-Send chunk documents and parent documents to different indexes. You can't join the indexes in a single query, but your client code can send a look up query to retrieve the parent document for a given chunk.
-
-1. Set up an [indexer pipeline](search-how-to-create-indexers.md) using a [supported data source](search-indexer-overview.md#supported-data-sources) that provides your content.
-
-1. [Create two indexes](#example-of-separate-parent-child-indexes): one designed for chunks, and another designed for parent fields.
-
-1. [Create a skillset](#add-index-projections-to-a-skillset) that includes a skill for chunking.
-
-1. In the indexer, specify the parent index as the target.
-
-1. In the skillset, add `indexProjections` and use `selectors` to specify the shape of the child index.
-
-## Handling parent documents
-
-Now that you've seen several patterns for one-to-many indexings, lets compare key differences about each option. Index projections effectively generate "child" documents for each "parent" document that runs through a skillset. You have several choices for handling the "parent" documents.
-
-- To send parent and child documents to separate indexes, set the `targetIndexName` for your indexer definition to the parent index, and set the `targetIndexName` in the index projection selector to the child index.
-
-- To keep parent and child documents in the same index, set the indexer `targetIndexName` and the index projection `targetIndexName` to the same index.
-
-- To avoid creating parent search documents and ensuring the index contains only child documents of a uniform grain, set the `targetIndexName` for both the indexer definition and the selector to the same index, but add an extra `parameters` object after `selectors`, with a `projectionMode` key set to `skipIndexingParentDocuments`, as shown here:
-
-   ```json
-   "indexProjections": {
-       "selectors": [
-           ...
-       ],
-       "parameters": {
-           "projectionMode": "skipIndexingParentDocuments"
-       }
-   }
-   ```
-
 ## Create an index for one-to-many indexing
 
-Whether you create one index for chunks that repeat parent values, or separate indexes for parent-child field placement, the primary index used for searching is designed around data chunks. It must have the following fields:
+Whether you create one index for chunks that repeat parent values, or separate indexes for parent-child field placement, the primary index used for searching is designed around data chunks. The index schema must have the following fields:
 
 - A document key field uniquely identifying each document. It must be defined as type `Edm.String` with the `keyword` analyzer.
 
@@ -137,17 +68,22 @@ Whether you create one index for chunks that repeat parent values, or separate i
 
 - Other fields for content, such as text or vectorized chunk fields.
 
-An index must exist on the search service before you create the skillset or run the indexer.
+An index must exist on the search service before you create the skillset or run the indexer. The `selectors` you define in the skillset should include these fields.
 
 ### Single index schema inclusive of parent and child fields
 
 A single index designed around chunks with parent content repeating for each chunk is the predominant pattern for RAG and vector search scenarios. The ability to associate the correct parent content with each chunk is enabled through index projections.
 
-The following schema is an example that meets the requirements for index projections. In this example, parent fields are the parent_id and the title. Child fields are the vector and nonvector vector chunks. The chunk_id is the document ID of this index. The parent_id and title repeat for every chunk in the index.
+The following schema is an example that meets the requirements for index projections. In this example:
+
+- Parent fields are the parent_id and the title, and they repeat for each chunk
+- Child fields are the vector and nonvector vector chunks. The chunk_id is the document ID of this index.
 
 You can use the Azure portal, REST APIs, or an Azure SDK to [create an index](search-how-to-load-search-index.md).
 
 #### [**REST**](#tab/rest-create-index)
+
+Use a REST client or the Azure portal **Add index** action and JSON option to create the index.
 
 ```json
 {
@@ -160,8 +96,8 @@ You can use the Azure portal, REST APIs, or an Azure SDK to [create an index](se
         {"name": "chunk_vector", "type": "Collection(Edm.Single)", "searchable": true, "retrievable": false, "stored": false, "dimensions": 1536, "vectorSearchProfile": "hnsw"}
     ],
     "vectorSearch": {
-        "algorithms": [{"name": "hsnw", "kind": "hnsw", "hnswParameters": {}}],
-        "profiles": [{"name": "hsnw", "algorithm": "hnsw"}]
+        "algorithms": [{"name": "hnsw", "kind": "hnsw", "hnswParameters": {}}],
+        "profiles": [{"name": "hnsw", "algorithm": "hnsw"}]
     }
 }
 ```
@@ -296,7 +232,7 @@ For .NET developers, use the [IndexProjections Class](/dotnet/api/azure.search.d
 
 | Index projection parameters | Definition |
 |----------------------------|------------|
-| `selectors` | Parameters for the main search corpus, usually the index designed around chunks. You can populate multiple child indexes by specifying multiple selectors. |
+| `selectors` | An array with parameters for the main search corpus, usually the index designed around chunks. You can send content to multiple child indexes by specifying multiple selectors. The index schemas must exist on the search service before you run the indexer. |
 | `parameters` | A parameter dictionary of index projection-specific configuration properties. |
 
 Parameters have the following elements as part of their definition.
@@ -444,7 +380,7 @@ This section shows an example for separate parent and child indexes. It's an unc
 
     Here's an example of an index projection definition that specifies the data path the indexer should use to index content. It specifies the child index name in the index projection definition, and it specifies the mappings of every child or chunk-level field. This is the only place the child index name is specified.
 
-    Notice that `parameters` can be null. The indexer populates the parent index, and the skillset `selectors` are used to project the chunk documents to the child index. 
+    Notice that `parameters` is null and is using the default `includeIndexingParentDocuments`. The indexer populates the parent index. The `selectors` array is used to project the chunk documents to the child index. 
     
     ```json
     "indexProjections": {
