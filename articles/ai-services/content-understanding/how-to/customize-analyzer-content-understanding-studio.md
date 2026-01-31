@@ -5,7 +5,8 @@ description: Create custom analyzers and apply in context learning to improve th
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
-ms.date: 10/30/2025
+ms.date: 01/29/2026
+ai-usage: ai-assisted
 ms.service: azure-ai-content-understanding
 ms.topic: how-to
 ms.custom:
@@ -16,19 +17,20 @@ ms.custom:
 
 # Create and improve your custom analyzer in Content Understanding Studio
 
-Content Understanding Studio lets you build powerful content analyzers that extract content and fields tailored to your specific needs. Follow the steps below to create your own custom analyzer in Content Understanding Studio.
+Content Understanding Studio lets you build content analyzers that extract content and fields tailored to your needs. Follow these steps to create a custom analyzer in Content Understanding Studio.
 
 ## Prerequisites
 
 To get started, make sure you have the following resources and permissions:
+
 * An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-* Once you have your Azure subscription, create a [Microsoft Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal. Be sure to create it in a [supported region](/azure/ai-services/content-understanding/language-region-support).
-   * This resource is listed under **Foundry** > **Foundry** in the portal.
+* A [Microsoft Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal, created in a [supported region](/azure/ai-services/content-understanding/language-region-support).
+  * This resource is listed under **Foundry** > **Foundry** in the portal.
 * [!INCLUDE [foundry-model-deployment-setup](../includes/foundry-model-deployment-setup.md)]
 
 ## Log in to Content Understanding Studio
 
-Go to the [Content Understanding Studio portal](https://aka.ms/cu-studio) and sign in using your credentials to get started. You might recognize the classic Azure Document Intelligence in Foundry Tools Studio experience; Content Understanding extends the same content and field extraction that you're familiar with in Document Intelligence across all modalities—document, image, video, and audio. Select the option to try out the new Content Understanding experience to get all of the multimodal capabilities of the service. 
+Go to the [Content Understanding Studio portal](https://aka.ms/cu-studio) and sign in using your credentials to get started. If you're familiar with the classic Azure Document Intelligence in Foundry Tools Studio experience, Content Understanding extends the same content and field extraction across all modalities—document, image, video, and audio. Select the option to try the new Content Understanding experience to access multimodal capabilities.
 
 ## Create your custom analyzer
 
@@ -54,17 +56,18 @@ Go to the [Content Understanding Studio portal](https://aka.ms/cu-studio) and si
 
 9.	**Iterate on your schema**: Repeat steps 6-8 as needed to improve the output of your schema. 
 
-10.	**Optional step: In-context learning (documents only)**: To further improve the quality of the output of your schema, you have the option to enable in-context learning. This step will enable you to bring in a knowledge base of data for the model to reference and learn from.
+10.	**Optional: In-context learning (documents only)**: To further improve the quality of the output of your schema, you can enable in-context learning. This step lets you bring in a knowledge base of data for the model to reference.
 
-To get started, you will need to upload your training data to a blob storage account. Select the “Knowledge” tab and select the blob storage container containing the training dataset of sample documents. Based on the analyzer you just defined, the model will assign labels to your document. Validate that training data by reviewing and correcting any labels that have provided an incorrect output, or add any missing output. 
+To get started, upload your training data to a blob storage account. Select the **Knowledge** tab and select the blob storage container that contains the training dataset of sample documents. Based on the analyzer you defined, the model assigns labels to your documents. Validate the training data by reviewing and correcting any labels with incorrect output, and add any missing output.
 
-11.	**Build your analyzer**: Once you’re satisfied with the output from your analyzer, select the `Build analyzer` button at the top of the page. Give the analyzer a name and select `Build`. 
+11.	**Build your analyzer**: Once you're satisfied with the output from your analyzer, select **Build analyzer** at the top of the page. Give the analyzer a name and select **Build**.
 
-12. **Use your analyzer**: Once your analyzer is successfully built, you can select `Jump to analyzer list` to view the full list of all built analyzers. Select the analyzer you just created, and you can see a code sample with a key & endpoint ready to get started. Now you have an analyzer endpoint that you can utilize in your own application via the REST API. This has been a walkthrough of how to use Content Understanding Studio to build a custom analyzer. 
+12. **Use your analyzer**: After your analyzer is built, select **Jump to analyzer list** to view the full list of built analyzers. Select the analyzer you created to see a code sample with a key and endpoint. You can use the analyzer endpoint in your own application via the REST API.
 
 ## Next steps
-* Learn how to [classify and route your data using Content Understanding Studio](./classification-content-understanding-studio.md)
-* Learn more about [Best practices for Azure Content Understanding](../concepts/best-practices.md) 
+
+* Learn how to [classify and route your data using Content Understanding Studio](./classification-content-understanding-studio.md).
+* Learn more about [best practices for Azure Content Understanding](../concepts/best-practices.md).
 
 
 

@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: quickstart
-ms.date: 7/25/2025
+ms.date: 01/30/2026
 ms.author: pafarley
 ms.custom: devx-track-python, devx-track-js, devx-track-csharp, mode-other, devx-track-dotnet, devx-track-extended-java, devx-track-go, ignite-2023, linux-related-content
 zone_pivot_groups: programming-languages-ai-services

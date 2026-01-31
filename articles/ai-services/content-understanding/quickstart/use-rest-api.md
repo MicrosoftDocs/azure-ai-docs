@@ -5,11 +5,12 @@ description: Learn about Content Understanding REST APIs
 author: PatrickFarley 
 ms.author: paulhsu
 manager: nitinme
-ms.date: 12/19/2025
+ms.date: 01/29/2026
 ms.service: azure-ai-content-understanding
 ms.topic: quickstart
 ms.custom:
   - build-2025
+  - dev-focus
 ai-usage: ai-assisted
 ---
 
@@ -19,10 +20,10 @@ This quickstart shows you how to use the [Content Understanding REST API](/rest/
 
 ## Prerequisites
 
-* To get started, you need **an active Azure subscription**. If you don't have an Azure account, [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-* Once you have your Azure subscription, create a [Microsoft Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal. Be sure to create it in a [supported region](/azure/ai-services/content-understanding/language-region-support).
+* An active Azure subscription. If you don't have an Azure account, [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+* A [Microsoft Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) created in a [supported region](/azure/ai-services/content-understanding/language-region-support).
 * [!INCLUDE [foundry-model-deployment-setup](../includes/foundry-model-deployment-setup.md)]
-* In this guide, we use the cURL command line tool. If it isn't installed, you can [download](https://everything.curl.dev/install/index.html) the appropriate version for your dev environment.
+* [cURL](https://everything.curl.dev/install/index.html) installed for your dev environment.
 
 ## Get started with a prebuilt analyzer
 
@@ -105,6 +106,8 @@ curl -i -X POST "{endpoint}/contentunderstanding/analyzers/prebuilt-videoSearch:
 
 ---
 
+**Reference**: [Content Analyzers - Analyze](/rest/api/contentunderstanding/content-analyzers/analyze?view=rest-contentunderstanding-2025-11-01&preserve-view=true)
+
 #### POST response
 The response header includes an `Operation-Location` field, which you use to retrieve the results of the asynchronous analysis operation. 
 
@@ -130,16 +133,7 @@ Connection: close
 
 ### Get analyze result
 
-Use the `Operation-Location` from the [`POST` response](#post-response) and retrieve the result of the analysis.
-
-> [!NOTE]
-> When using the video analyzer, keyframes are returned as URLs in the JSON response (for example, under `result.contents.frames[]`).  
-> You can download these keyframes using a standard HTTP `GET` request for each keyframe URL.  
-> Example (Bash):  
-> ```bash
-> curl -O "<keyframeUrl>"
-> ```
-> Repeat this command for each keyframe URL you want to save.
+Use the `Operation-Location` from the [`POST` response](#post-response) and retrieve the result of the analysis. A successful response returns `status: "Succeeded"` with extracted fields in the `result` object.
 
 
 #### GET request
@@ -147,6 +141,8 @@ Use the `Operation-Location` from the [`POST` response](#post-response) and retr
 curl -i -X GET "{endpoint}/contentunderstanding/analyzerResults/{request-id}?api-version=2025-11-01" \
   -H "Ocp-Apim-Subscription-Key: {key}"
 ```
+
+**Reference**: [Analyzer Results - Get](/rest/api/contentunderstanding/content-analyzers/get-result?view=rest-contentunderstanding-2025-11-01&preserve-view=true)
 
 #### GET response
 
@@ -542,7 +538,7 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
   },
   "usage": {
 		"audioHours": 0.032,
-    "contextualization": 3194.445
+    "contextualization": 3194.445,
     "tokens": {
       "gpt-4.1-input": 1234, 
       "gpt-4.1-output": 2345,
@@ -805,6 +801,14 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
 
 ---
 
-## Next step
+> [!TIP]
+> When using the video analyzer, keyframes are returned as URLs in the JSON response (for example, under `result.contents.frames[]`). Download keyframes using a standard HTTP `GET` request:
+> ```bash
+> curl -O "<keyframeUrl>"
+> ```
 
-Now that you know how to invoke the analysis operation, learn more about building [custom analyzers](../tutorial/create-custom-analyzer.md) for your use case.
+## Next steps
+
+- [Create a custom analyzer](../tutorial/create-custom-analyzer.md)
+- [Prebuilt analyzers](../concepts/prebuilt-analyzers.md)
+- [Language and region support](../language-region-support.md)

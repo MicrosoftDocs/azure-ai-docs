@@ -5,16 +5,20 @@ description: Learn about Azure Content Understanding in Foundry Tools analyzers,
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
-ms.date: 05/19/2025
+ms.date: 01/29/2026
+ai-usage: ai-assisted
 ms.service: azure-ai-content-understanding
 ms.topic: overview
 ms.custom:
   - build-2025
 ---
 
-# What is a Content understanding analyzer?
+# What is a Content Understanding analyzer?
 
-An **analyzer** in Azure Content Understanding in Foundry Tools is a configurable processing unit that defines how your content should be analyzed and what information should be extracted. Think of an analyzer as a recipe that tells the service:
+An **analyzer** in Azure Content Understanding in Foundry Tools is a configurable processing unit that defines how your content is analyzed and what information is extracted.
+
+An analyzer defines:
+
 - What type of content to process (documents, images, audio, or video)
 - What elements to extract (text, layout, tables, fields, transcripts)
 - How to structure the output (markdown, JSON fields, segments)
@@ -31,7 +35,7 @@ Content Understanding provides several types of analyzers:
 - **Domain-specific analyzers**: Preconfigured for specific document types and industries, like invoices, receipts, ID documents, and contracts (ex. `prebuilt-invoice`, `prebuilt-receipt`, `prebuilt-idDocument`).
 - **Custom analyzers**: Analyzers you create by extending base analyzers with custom field schemas and configurations to meet your specific requirements.
 
-For more information and a complete list of available Domain-specific analyzers, see [Prebuilt analyzers](prebuilt-analyzers.md).
+For more information and a complete list of available domain-specific analyzers, see [Prebuilt analyzers](prebuilt-analyzers.md).
 
 ## Analyzer configuration structure
 
@@ -57,11 +61,13 @@ Here's a condensed example showing the overall structure of an analyzer configur
   "description": "Extracts vendor information, line items, and totals from commercial invoices",
   "baseAnalyzerId": "prebuilt-document",
   "config": {
-    ...
     "enableOcr": true
-    ...
   },
-  "fieldSchema": {...}
+  "fieldSchema": {
+    "fields": {
+      "vendorName": {
+        "type": "string"
+      }
     }
   },
   "models": {
@@ -105,15 +111,15 @@ These properties uniquely identify and describe your analyzer:
   - `"prebuilt-image"` - for image-based custom analyzers
 - **Example:** `"baseAnalyzerId": "prebuilt-document"`
 
->[!NOTE] 
+> [!NOTE]
 >When you specify a base analyzer, your custom analyzer inherits all default configurations and can override specific settings.
 
 ## Model configuration
 
 ### `models`
-- **Description:** Specifies which Foundry model names to use when processing with this analyzer. These are the model names (not deployment names) that the service uses. They must match one of the `supportedModels` from the base analyzer. The full list of models supported by Content Understanding is list at [supported models](../service-limits.md#supported-generative-models). 
+- **Description:** Specifies which Foundry model names to use when processing with this analyzer. These are the model names (not deployment names) that the service uses. They must match one of the `supportedModels` from the base analyzer. The full list of models supported by Content Understanding is listed at [supported models](../service-limits.md#supported-generative-models).
 - **Properties:**
-  - `completion` - Model name for completion tasks (field extraction, segmentation, figure analysis etc.)
+  - `completion` - Model name for completion tasks (field extraction, segmentation, figure analysis, for example)
   - `embedding` - Model name for embedding tasks (using a knowledge base)
 - **Important:** These are model names from the Foundry catalog, not deployment names. At runtime, the service maps these model names to the actual model deployments you configure at the resource level.
 - **Example:**

@@ -7,7 +7,7 @@ ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 7/9/2025
+ms.date: 01/30/2026
 ms.custom: references_regions
 ---
 
@@ -15,13 +15,13 @@ ms.custom: references_regions
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-Voice conversion is the process of transforming the voice characteristics of a given audio to a target voice speaker. After voice conversion, the resulting audio reserves source audio's linguistic content and prosody while the voice timbre sounds like the target speaker.
+Voice conversion is the process of transforming the voice characteristics of given audio to a target voice speaker. After voice conversion, the resulting audio reserves the source audio's linguistic content and prosody while the voice timbre sounds like the target speaker.
 
-There are 3 reasons users need voice conversion functionality:
+There are three reasons users need voice conversion functionality:
 
-- Voice conversion can replicate your content using a different voice identity while maintaining the original prosody and emotion. For instance, in education, teachers can record themselves reading stories, and voice conversion can deliver these stories using a pre-designed cartoon character's voice. This method preserves the expressiveness of the teacher's reading while incorporating the unique timbre of the cartoon character's voice.
+- Voice conversion can replicate your content using a different voice identity while maintaining the original prosody and emotion. For instance, in education, teachers can record themselves reading stories, and voice conversion can deliver these stories using a predesigned cartoon character's voice. This method preserves the expressiveness of the teacher's reading while incorporating the unique timbre of the cartoon character's voice.
 - Another application is multilingual dubbing. When localized content is read by different voices, voice conversion can transform them into a uniform voice, ensuring a consistent experience across all languages while keeping the most localized voice characters.
-- Voice conversion enhances the control over the expressiveness of a voice. By transforming various speaking styles, such as adopting a unique tone or conveying exaggerated emotions, a voice gains greater versatility in expression and can be more dynamic in different scenarios.
+- Voice conversion enhances control over the expressiveness of a voice. By transforming various speaking styles, such as adopting a unique tone or conveying exaggerated emotions, a voice gains greater versatility in expression and can be more dynamic in different scenarios.
 
 ## Key capabilities
 
