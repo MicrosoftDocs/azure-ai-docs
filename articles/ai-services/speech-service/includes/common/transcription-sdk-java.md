@@ -19,7 +19,7 @@ ms.date: 01/31/2026
 
 ## Set up the environment
 
-1. Create a new folder `transcription-quickstart` and navigate to it:
+1. Create a new folder named `transcription-quickstart` and navigate to it:
 
     ```shell
     mkdir transcription-quickstart && cd transcription-quickstart
@@ -86,7 +86,7 @@ ms.date: 01/31/2026
     ```
 
     > [!NOTE]
-    > The `<sourceDirectory>.</sourceDirectory>` configuration tells Maven to look for Java source files in the current directory instead of the default `src/main/java` structure. This allows for a simpler flat project structure.
+    > The `<sourceDirectory>.</sourceDirectory>` configuration tells Maven to look for Java source files in the current directory instead of the default `src/main/java` structure. This configuration change allows for a simpler flat project structure.
 
 1. Install the dependencies:
 
@@ -215,7 +215,7 @@ public class TranscriptionQuickstart {
 
 ## Run the application
 
-Run the application with Maven:
+Run the application using Maven:
 
 ```shell
 mvn exec:java
