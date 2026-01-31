@@ -23,13 +23,13 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 ## Setup
 
-1. Create a new folder `transcription-quickstart` and go to the quickstart folder with the following command:
+1. Create a new folder named `transcription-quickstart` and go to the quickstart folder with the following command:
 
     ```shell
     mkdir transcription-quickstart && cd transcription-quickstart
     ```
 
-1. Create a virtual environment. If you already have Python 3.9 or higher installed, you can create a virtual environment using the following commands:
+1. Create a virtual environment. If you already have Python 3.9 or higher installed, you can create a virtual environment by using the following commands:
 
     # [Windows](#tab/windows)
 
@@ -54,10 +54,10 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
     ---
 
-    Activating the Python environment means that when you run ```python``` or ```pip``` from the command line, you then use the Python interpreter contained in the ```.venv``` folder of your application. You can use the ```deactivate``` command to exit the python virtual environment, and can later reactivate it when needed.
+    When you activate the Python environment, running `python` or `pip` from the command line uses the Python interpreter in the `.venv` folder of your application. Use the `deactivate` command to exit the Python virtual environment. You can reactivate it later when needed.
 
     > [!TIP]
-    > We recommend that you create and activate a new Python environment to use to install the packages you need for this tutorial. Don't install packages into your global python installation. You should always use a virtual or conda environment when installing python packages, otherwise you can break your global installation of Python.
+    > Create and activate a new Python environment to install the packages you need for this tutorial. Don't install packages into your global Python installation. Always use a virtual or conda environment when installing Python packages. Otherwise, you can break your global installation of Python.
 
 1. Create a file named **requirements.txt**. Add the following packages to the file:
 
@@ -77,9 +77,9 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 You need to retrieve your resource endpoint and API key for authentication.
 
 1. Sign in to [Foundry portal](https://ai.azure.com).
-1. Select **Management center** from the left menu, then select your Speech or multi-service resource under **Connected resources**.
+1. Select **Management center** from the left menu. Under **Connected resources**, select your Speech or multi-service resource.
 1. Select **Keys and Endpoint**.
-1. Copy the **Endpoint** and **Key** values. You use these values to set environment variables.
+1. Copy the **Endpoint** and **Key** values. Use these values to set environment variables.
 
 1. Set the following environment variables:
 
