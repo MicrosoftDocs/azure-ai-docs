@@ -60,3 +60,4 @@ See also [Foundry Tools support and help options](../cognitive-services-support-
 
 * [Try the Fast Transcription API](./fast-transcription-create.md)
 - [Try LLM Speech API](./llm-speech.md)
+- [Learn about the Speech SDK](./speech-sdk.md) for broader speech capabilities
