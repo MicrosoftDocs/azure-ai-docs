@@ -29,7 +29,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     mkdir llm-speech-quickstart && cd llm-speech-quickstart
     ```
 
-1. Create a virtual environment. If you already have Python 3.9 or higher installed, you can create a virtual environment by using the following commands:
+1. Create a virtual environment. If you already have Python 3.9 or higher installed, create a virtual environment by using the following commands:
 
     # [Windows](#tab/windows)
 
@@ -77,7 +77,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 You need to retrieve your resource endpoint and API key for authentication.
 
 1. Sign in to [Foundry portal](https://ai.azure.com).
-1. Select **Management center** from the left menu. Under **Connected resources**, select your Speech or multi-service resource.
+1. Select **Management center** from the left menu. Under **Connected resources**, select your Speech or mult﻿i-service resource.
 1. Select **Keys and Endpoint**.
 1. Copy the **Endpoint** and **Key** values. Use these values to set environment variables.
 
@@ -163,7 +163,7 @@ LLM speech uses the `EnhancedModeProperties` class to enable large-language-mode
 
 1. Replace `<path-to-your-audio-file.wav>` with the path to your audio file. The service supports WAV, MP3, FLAC, OGG, and other common audio formats.
 
-1. Run the Python script:
+1. Run the Python script.
 
     ```bash
     python llm_speech_transcribe.py
@@ -221,7 +221,7 @@ You can also use LLM speech to translate audio into a target language. Set the `
 
 1. Replace `<path-to-your-audio-file.wav>` with the path to your audio file.
 
-1. Run the Python script:
+1. Run the Python script.
 
     ```bash
     python llm_speech_translate.py

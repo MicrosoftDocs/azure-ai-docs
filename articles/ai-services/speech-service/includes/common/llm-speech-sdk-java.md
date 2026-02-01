@@ -242,7 +242,7 @@ Run the application using Maven:
 mvn exec:java
 ```
 
-## Translate audio with LLM speech
+## Translate audio by using LLM speech
 
 You can also use LLM speech to translate audio into a target language. Modify the `EnhancedModeOptions` configuration to set the task to `translate` and specify the target language.
 
@@ -353,7 +353,7 @@ LLM speech supports the following languages for both transcription and translati
 
 ## Clean up resources
 
-When you're done with the quickstart, you can delete the project folder:
+When you finish the quickstart, delete the project folder:
 
 ```shell
 rm -rf llm-speech-quickstart
