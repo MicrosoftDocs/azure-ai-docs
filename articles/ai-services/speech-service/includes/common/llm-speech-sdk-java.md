@@ -353,25 +353,11 @@ TranscriptionOptions options = new TranscriptionOptions(audioFileDetails)
     .setEnhancedModeOptions(enhancedModeOptions);
 ```
 
-## Best practices for prompts:
+### Best practices for prompts:
 - Prompts are subject to a maximum length of 4,096 characters.
 - Prompts should preferably be written in English.
 - Use `Output must be in lexical format.` to enforce lexical formatting instead of the default display format.
 - Use `Pay attention to *phrase1*, *phrase2*, …` to improve recognition of specific phrases or acronyms.
-
-## Supported languages
-
-LLM speech supports the following languages for both transcription and translation:
-
-- English (`en`)
-- Chinese (`zh`)
-- German (`de`)
-- French (`fr`)
-- Italian (`it`)
-- Japanese (`ja`)
-- Spanish (`es`)
-- Portuguese (`pt`)
-- Korean (`ko`)
 
 ## Clean up resources
 
