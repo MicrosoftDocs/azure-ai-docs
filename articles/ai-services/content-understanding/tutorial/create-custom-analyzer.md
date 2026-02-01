@@ -5,7 +5,7 @@ description: Learn to create a custom analyzer with Azure Content Understanding 
 author: PatrickFarley 
 ms.author: paulhsu
 manager: nitinme
-ms.date: 12/19/2025
+ms.date: 01/30/2026
 ms.service: azure-ai-content-understanding
 ms.topic: overview
 ms.custom:
@@ -15,22 +15,22 @@ ai-usage: ai-assisted
 
 # Create a custom analyzer using REST APIs
 
-Content Understanding analyzers define how to process and extract insights from your content. They ensure uniform processing and output structure across all your content to deliver reliable and predictable results. We offer [prebuilt analyzers](../concepts/prebuilt-analyzers.md) for common use cases. This guide shows how these analyzers can be customized to better fit your needs.
+Content Understanding analyzers define how to process and extract insights from your content. They ensure uniform processing and output structure across all your content, so you get reliable and predictable results. For common use cases, you can use the [prebuilt analyzers](../concepts/prebuilt-analyzers.md). This guide shows how you can customize these analyzers to better fit your needs.
 
-In this guide, we use the cURL command line tool. If it isn't installed, you can [download](https://everything.curl.dev/install/index.html) the appropriate version for your developer environment.
+In this guide, you use the cURL command line tool. If it isn't installed, you can [download](https://everything.curl.dev/install/index.html) the appropriate version for your developer environment.
 
 ## Prerequisites
 To get started, make sure you have the following resources and permissions:
 * An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-* Once you have your Azure subscription, create a [Microsoft Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal. Be sure to create it in a [supported region](/azure/ai-services/content-understanding/language-region-support).
-   * This resource is listed under **Foundry** > **Foundry** in the portal.
+* After you get your Azure subscription, create a [Microsoft Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal. Be sure to create it in a [supported region](/azure/ai-services/content-understanding/language-region-support).
+   * The portal lists this resource under **Foundry** > **Foundry**.
 * [!INCLUDE [foundry-model-deployment-setup](../includes/foundry-model-deployment-setup.md)]
 
 ## Define an analyzer schema
 
 # [Document](#tab/document)
 
-To create a custom analyzer, define a field schema that describes the structured data you want to extract. In the following example, we create an analyzer based on [prebuilt document analyzer](../concepts/prebuilt-analyzers.md) for processing a receipt.
+To create a custom analyzer, define a field schema that describes the structured data you want to extract. In the following example, you create an analyzer based on the [prebuilt document analyzer](../concepts/prebuilt-analyzers.md) for processing a receipt.
 
 Create a JSON file named `receipt.json` with the following content:
 ```json
@@ -80,7 +80,7 @@ Create a JSON file named `receipt.json` with the following content:
 }
 ```
 
-If you have various types of documents you need to process, but want to categorize and analyze only the receipts, you can create an analyzer that categorizes the document first. Then, route it to the analyzer you created above with the following schema.
+If you have various types of documents you need to process, but you want to categorize and analyze only the receipts, create an analyzer that categorizes the document first. Then, route it to the analyzer you created earlier with the following schema.
 
 Create a JSON file named `categorize.json` with the following content:
 ```json
@@ -131,7 +131,7 @@ Create a JSON file named `categorize.json` with the following content:
 
 # [Image](#tab/image)
 
-To create a custom analyzer, define a field schema that describes the structured data you want to extract. In the following example, we create an analyzer based on [prebuilt image analyzer](../concepts/prebuilt-analyzers.md) for processing images of charts and graphs.
+To create a custom analyzer, define a field schema that describes the structured data you want to extract. In the following example, you create an analyzer based on a [prebuilt image analyzer](../concepts/prebuilt-analyzers.md) for processing images of charts and graphs.
 
 Create a JSON file named `request_body.json` with the following content:
 ```json
@@ -161,7 +161,7 @@ Create a JSON file named `request_body.json` with the following content:
 
 # [Audio](#tab/audio)
 
-To create a custom analyzer, define a field schema that describes the structured data you want to extract. In the following example, we create an analyzer based on [prebuilt call center analyzer](../concepts/prebuilt-analyzers.md) for processing customer support call recordings.
+To create a custom analyzer, define a field schema that describes the structured data you want to extract. In the following example, you create an analyzer based on a [prebuilt call center analyzer](../concepts/prebuilt-analyzers.md) for processing customer support call recordings.
 
 Create a JSON file named `request_body.json` with the following content:
 ```json
@@ -202,7 +202,7 @@ Create a JSON file named `request_body.json` with the following content:
 
 # [Video](#tab/video)
 
-To create a custom analyzer, define a field schema that describes the structured data you want to extract. In the following example, we create an analyzer based on [prebuilt video  analyzer](../concepts/prebuilt-analyzers.md) for processing product demos and reviews.
+To create a custom analyzer, define a field schema that describes the structured data you want to extract. In the following example, you create an analyzer based on a [prebuilt video  analyzer](../concepts/prebuilt-analyzers.md) for processing product demos and reviews.
 
 Create a JSON file named `request_body.json` with the following content:
 ```json
@@ -258,7 +258,7 @@ Create a JSON file named `request_body.json` with the following content:
 
 # [Document](#tab/document)
 
-Create a receipt analyzer first and then create the categorize analyzer.
+Create a receipt analyzer first, and then create the categorize analyzer.
 
 ```bash
 curl -i -X PUT "{endpoint}/contentunderstanding/analyzers/{analyzerId}?api-version=2025-11-01" \
@@ -298,14 +298,14 @@ curl -i -X PUT "{endpoint}/contentunderstanding/analyzers/{analyzerId}?api-versi
 
 ### PUT response
 
-The 201 `Created` response includes an `Operation-Location` header containing a URL that you can use to track the status of this asynchronous analyzer creation operation.
+The `201 Created` response includes an `Operation-Location` header with a URL that you can use to track the status of this asynchronous analyzer creation operation.
 
 ```
 201 Created
 Operation-Location: {endpoint}/contentunderstanding/analyzers/{analyzerId}/operations/{operationId}?api-version=2025-05-01-preview
 ```
 
-Upon completion, performing an HTTP GET on the operation location URL returns `"status": "succeeded"`.
+When the operation finishes, an HTTP GET on the operation location URL returns `"status": "succeeded"`.
 
 ```bash
 curl -i -X GET "{endpoint}/contentunderstanding/analyzers/{analyzerId}/operations/{operationId}?api-version=2025-11-01" \
@@ -329,20 +329,20 @@ Before running the cURL command, make the following changes to the HTTP request:
 
 # [Image](#tab/image)
 
-1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Microsoft Foundry instance.
-1. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
+1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Foundry instance.
+1. Replace `{analyzerId}` with the name of the custom analyzer you created.
 1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS) or the sample URL `https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/pieChart.jpg`.
 
 # [Audio](#tab/audio)
 
-1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Microsoft Foundry instance.
-1. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
+1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Foundry instance.
+1. Replace `{analyzerId}` with the name of the custom analyzer you created.
 1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS) or the sample URL `https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/audio.wav`.
 
 # [Video](#tab/video)
 
-1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Microsoft Foundry instance.
-1. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
+1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Foundry instance.
+1. Replace `{analyzerId}` with the name of the custom analyzer you created.
 1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS) or the sample URL `https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/FlightSimulator.mp4`.
 
 ---
@@ -437,21 +437,21 @@ The `202 Accepted` response includes the `{resultId}` which you can use to track
 }
 ```
 
-### Get Analyze Result
+### Get analyze result
 
-Use the `Operation-Location` from the `POST` response and retrieve the result of the analysis.
+Use the `Operation-Location` from the `POST` response to get the result of the analysis.
 
-#### GET Request
+#### GET request
 ```bash
 curl -i -X GET "{endpoint}/contentunderstanding/analyzerResults/{resultId}?api-version=2025-11-01" \
   -H "Ocp-Apim-Subscription-Key: {key}"
 ```
 
-#### GET Response
+#### GET response
 
 A `200 OK` response includes a `status` field that shows the operation's progress.  
-- `status` is `Succeeded` if the operation is completed successfully.  
-- If it's `running` or `notStarted`, call the API again manually or with a script: wait at least one second between requests.
+- The `status` is `Succeeded` if the operation completes successfully.  
+- If the status is `running` or `notStarted`, call the API again manually or use a script. Wait at least one second between requests.
 
 ##### Sample response
 

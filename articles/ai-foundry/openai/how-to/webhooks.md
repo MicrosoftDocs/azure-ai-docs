@@ -5,7 +5,7 @@ description: Learn how to use webhooks with Azure OpenAI in Foundry Models.
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 10/24/2025
+ms.date: 01/31/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
