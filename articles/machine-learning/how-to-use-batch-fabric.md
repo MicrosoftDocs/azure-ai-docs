@@ -70,7 +70,7 @@ In this section, you create or identify a storage account to store the informati
     1. For **Connection**, select **Create new connection**.
     1. For **Connection name**, keep the default populated value.
     1. For **Authentication kind**, select **Organizational account** to use the credentials of the connected user via OAuth 2.0.
-    1. Select **Sign in** to sign in.
+    1. If you're not signed in, select **Sign in** to sign in.
 
 1. Select **Next**.
 
