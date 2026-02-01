@@ -70,7 +70,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     pip install -r requirements.txt
     ```
 
-## Retrieve resource information
+## Set environment variables
 
 You need to retrieve your resource endpoint and API key for authentication.
 

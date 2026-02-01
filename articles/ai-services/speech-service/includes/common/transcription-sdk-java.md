@@ -14,8 +14,8 @@ ms.date: 01/31/2026
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - <a href="https://www.oracle.com/java/technologies/downloads/" target="_blank">Java Development Kit (JDK) 8 or later</a>.
 - <a href="https://maven.apache.org/download.cgi" target="_blank">Apache Maven</a> for dependency management and building the project.
-- A [Speech resource](../../../multi-service-resource.md) in one of the supported regions. For more information about region availability, see [Speech service supported regions](../../regions.md).
-- An audio file named `sample-audio.wav` in your working directory. You can use your own `.wav` file or download a sample.
+- A [Microsoft Foundry resource](../../../multi-service-resource.md) in one of the supported regions. For more information about region availability, see [Speech service supported regions](../../regions.md).
+- A sample `.wav` audio file to transcribe.
 
 ## Set up the environment
 
@@ -98,19 +98,27 @@ ms.date: 01/31/2026
 
 Your application must be authenticated to access the Speech service. The SDK supports both API key and Microsoft Entra ID authentication. It automatically detects which method to use based on the environment variables you set.
 
-First, set the endpoint for your Speech resource. Replace `your-resource-name` with your actual resource name:
+First, set the endpoint for your Speech resource. Replace `<your-speech-endpoint>` with your actual resource name:
 
-For **Windows**:
+# [Windows](#tab/windows)
 
-```shell
-setx SPEECH_ENDPOINT https://your-resource-name.cognitiveservices.azure.com/
+```powershell
+$env:AZURE_SPEECH_ENDPOINT="<your-speech-endpoint>"
 ```
 
-For **Linux** or **macOS**:
+# [Linux](#tab/linux)
 
 ```bash
-export SPEECH_ENDPOINT=https://your-resource-name.cognitiveservices.azure.com/
+export AZURE_SPEECH_ENDPOINT="<your-speech-endpoint>"
 ```
+
+# [macOS](#tab/macos)
+
+```bash
+export AZURE_SPEECH_ENDPOINT="<your-speech-endpoint>"
+```
+
+---
 
 Then, choose one of the following authentication methods:
 
@@ -118,17 +126,25 @@ Then, choose one of the following authentication methods:
 
 Set the API key environment variable:
 
-For **Windows**:
+# [Windows](#tab/windows)
 
 ```shell
 setx SPEECH_API_KEY <your-speech-key>
 ```
 
-For **Linux** or **macOS**:
+# [Linux](#tab/linux)
 
 ```bash
 export SPEECH_API_KEY=<your-speech-key>
 ```
+
+# [macOS](#tab/macos)
+
+```bash
+export SPEECH_API_KEY=<your-speech-key>
+```
+
+---
 
 ### Option 2: Microsoft Entra ID authentication (recommended for production)
 
@@ -189,7 +205,7 @@ public class TranscriptionQuickstart {
             }
 
             // Load audio file
-            String audioFilePath = "sample-audio.wav";
+            String audioFilePath = "<path-to-your-audio-file.wav>";
             byte[] audioData = Files.readAllBytes(Paths.get(audioFilePath));
 
             // Create audio file details
@@ -212,6 +228,9 @@ public class TranscriptionQuickstart {
     }
 }
 ```
+
+Replace `<path-to-your-audio-file.wav>` with the path to your audio file.
+
 
 ## Run the application
 
