@@ -512,28 +512,16 @@ If you use tracing in Microsoft Foundry, confirm the tool invocation occurred. F
 
 ## Troubleshooting
 
-### The agent returns a function call but no final answer
-
-When the model returns a `function_call` item, it pauses and waits for your app to return a corresponding `function_call_output` item. Make sure you:
-
-1. Execute the function.
-1. Create a second `responses.create` request that includes the tool output.
-1. Provide `previous_response_id` so the model continues from the earlier response.
-
-### No function call occurs
-
-- Confirm the function tool is added to the agent definition.
-- Review your tool name, description, and JSON schema. Clear names and parameter descriptions improve tool selection.
-- If you test the agent in the Foundry portal, note that the portal UI doesn't perform function calling.
-
-### Arguments aren't valid JSON or required fields are missing
-
-- Confirm your schema uses the correct JSON types and required properties.
-- In your app, handle JSON parsing errors and return a user-safe message if arguments are invalid.
-
-### Tool outputs fail due to expiration
-
-Runs expire 10 minutes after creation. If the workflow requires multiple function calls or slower back-end work, return tool outputs promptly and re-run the conversation when needed.
+| Issue | Likely cause | Resolution |
+| --- | --- | --- |
+| Agent returns function call but no final answer. | Tool output not returned to model. | Execute the function, then call `responses.create` with the tool output and `previous_response_id` to continue. |
+| No function call occurs. | Function not in agent definition or poor naming. | Confirm the function tool is added to the agent. Use clear, descriptive names and parameter descriptions. |
+| Arguments aren't valid JSON. | Schema mismatch or model hallucination. | Verify JSON schema uses correct types and required properties. Handle parsing errors gracefully in your app. |
+| Required fields are missing. | Schema doesn't enforce required properties. | Add `"required": [...]` array to your parameter schema. Set `strict: true` for stricter validation. |
+| Tool outputs fail due to expiration. | Run expired (10-minute limit). | Return tool outputs promptly. For slow operations, return a status and poll separately. |
+| Function called with wrong parameters. | Ambiguous function description. | Improve the function `description` field. Add detailed parameter descriptions with examples. |
+| Multiple function calls in one response. | Model determined multiple functions needed. | Handle each function call in the output array. Return all results in a single `responses.create` call. |
+| Function not visible in Foundry portal. | Portal doesn't execute function calls. | Test function calling via SDK or REST API. The portal shows agents but doesn't invoke functions. |
 
 ## Clean up
 
