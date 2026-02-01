@@ -13,7 +13,9 @@ ms.date: 01/13/2026
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - <a href="https://www.python.org/" target="_blank">Python 3.9 or later version</a>. If you don't have a suitable version of Python installed, you can follow the instructions in the [VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter) for the easiest way of installing Python on your operating system.
-- A [Microsoft Foundry resource](/azure/ai-services/multi-service-resource) created in one of the supported regions. For more information about region availability, see [Region support](/azure/ai-services/speech-service/regions).
+- A [Microsoft Foundry resource](/azure/ai-services/multi-service-resource) created in one of the supported regions. For more information about region availability, see [Region support](/azure/ai-services/speech-service/regions?tabs=stt).
+- A sample `.wav` audio file to transcribe.
+
 
 ### Microsoft Entra ID prerequisites
 
@@ -29,7 +31,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     mkdir transcription-quickstart && cd transcription-quickstart
     ```
 
-1. Create a virtual environment. If you already have Python 3.9 or higher installed, you can create a virtual environment by using the following commands:
+1. Create and activate a virtual Python environment to install the packages you need for this tutorial. We recommend you always use a virtual or conda environment when installing Python packages. Otherwise, you can break your global installation of Python. If you already have Python 3.9 or higher installed, create a virtual environment by using the following commands:
 
     # [Windows](#tab/windows)
 
@@ -56,8 +58,6 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
     When you activate the Python environment, running `python` or `pip` from the command line uses the Python interpreter in the `.venv` folder of your application. Use the `deactivate` command to exit the Python virtual environment. You can reactivate it later when needed.
 
-    > [!TIP]
-    > Create and activate a new Python environment to install the packages you need for this tutorial. Don't install packages into your global Python installation. Always use a virtual or conda environment when installing Python packages. Otherwise, you can break your global installation of Python.
 
 1. Create a file named **requirements.txt**. Add the following packages to the file:
 
@@ -169,11 +169,14 @@ You need to retrieve your resource endpoint and API key for authentication.
 The script prints the transcription result to the console:
 
 ```output
-Transcription: Hello, this is a test of the transcription service.
+Transcription: Hi there! This is a sample voice recording created for speech synthesis testing. The quick brown fox jumps over the lazy dog. Just a fun way to include every letter of the alphabet. Numbers, like 1, 2, 3, are spoken clearly. Let's see how well this voice captures tone, timing, and natural rhythm. This audio is provided by samplefiles.com.
 
 Detailed phrases:
-  [0ms - 1200ms]: Hello,
-  [1200ms - 2400ms]: this is a test
-  [2400ms - 4000ms]: of the transcription service.
+  [40ms - 4880ms]: Hi there! This is a sample voice recording created for speech synthesis testing.
+  [5440ms - 8400ms]: The quick brown fox jumps over the lazy dog.
+  [9040ms - 12240ms]: Just a fun way to include every letter of the alphabet.
+  [12720ms - 16720ms]: Numbers, like 1, 2, 3, are spoken clearly.
+  [17200ms - 22000ms]: Let's see how well this voice captures tone, timing, and natural rhythm.
+  [22480ms - 25920ms]: This audio is provided by samplefiles.com.
 ```
 

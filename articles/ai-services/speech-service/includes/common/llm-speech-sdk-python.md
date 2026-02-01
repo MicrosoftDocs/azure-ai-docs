@@ -13,7 +13,8 @@ ms.date: 01/31/2026
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - <a href="https://www.python.org/" target="_blank">Python 3.9 or later version</a>. If you don't have a suitable version of Python installed, you can follow the instructions in the [VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter) for the easiest way of installing Python on your operating system.
-- A [Microsoft Foundry resource](/azure/ai-services/multi-service-resource) created in one of the supported regions. For more information about region availability, see [Region support](/azure/ai-services/speech-service/regions).
+- A [Microsoft Foundry resource](/azure/ai-services/multi-service-resource) created in one of the supported regions. For more information about region availability, see [Region support](/azure/ai-services/speech-service/regions?tabs=stt).
+- A sample `.wav` audio file to transcribe.
 
 ### Microsoft Entra ID prerequisites
 
@@ -29,7 +30,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     mkdir llm-speech-quickstart && cd llm-speech-quickstart
     ```
 
-1. Create a virtual environment. If you already have Python 3.9 or higher installed, create a virtual environment by using the following commands:
+1. Create and activate a virtual Python environment to install the packages you need for this tutorial. We recommend you always use a virtual or conda environment when installing Python packages. Otherwise, you can break your global installation of Python. If you already have Python 3.9 or higher installed, create a virtual environment by using the following commands:
 
     # [Windows](#tab/windows)
 
@@ -56,9 +57,6 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
     When you activate the Python environment, running `python` or `pip` from the command line uses the Python interpreter in the `.venv` folder of your application. Use the `deactivate` command to exit the Python virtual environment. You can reactivate it later when needed.
 
-    > [!TIP]
-    > Create and activate a new Python environment to install the packages you need for this tutorial. Don't install packages into your global Python installation. Always use a virtual or conda environment when installing Python packages. Otherwise, you can break your global installation of Python.
-
 1. Create a file named **requirements.txt**. Add the following packages to the file:
 
     ```txt
@@ -76,10 +74,9 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 You need to retrieve your resource endpoint and API key for authentication.
 
-1. Sign in to [Foundry portal](https://ai.azure.com).
-1. Select **Management center** from the left menu. Under **Connected resources**, select your Speech or mult﻿i-service resource.
-1. Select **Keys and Endpoint**.
-1. Copy the **Endpoint** and **Key** values. Use these values to set environment variables.
+1. Sign in to [Foundry portal (classic)](https://ai.azure.com).
+1. Select **Management center** from the left menu. 
+1. Select **Connected resources** on the left, and find your Microsoft Foundry resource (or add a connection if it isn't there). Then copy the **API Key** and **Target** (endpoint) values. Use these values to set environment variables.
 
 1. Set the following environment variables:
 
@@ -169,6 +166,24 @@ LLM speech uses the `EnhancedModeProperties` class to enable large-language-mode
     python llm_speech_transcribe.py
     ```
 
+### Output
+
+The script prints the transcription result to the console:
+
+```console
+Transcription: Hi there. This is a sample voice recording created for speech synthesis testing. The quick brown fox jumps over the lazy dog. Just a fun way to include every letter of the alphabet. Numbers, like one, two, three, are spoken clearly. Let's see how well this voice captures tone, timing, and natural rhythm. This audio is provided by samplefiles.com.
+
+Detailed phrases:
+  [40ms]: Hi there.
+  [800ms]: This is a sample voice recording created for speech synthesis testing.
+  [5440ms]: The quick brown fox jumps over the lazy dog.
+  [9040ms]: Just a fun way to include every letter of the alphabet.
+  [12720ms]: Numbers, like one, two, three, are spoken clearly.
+  [17200ms]: Let's see how well this voice captures tone, timing, and natural rhythm.
+  [22480ms]: This audio is provided by samplefiles.com.
+```
+
+
 ## Translate audio with LLM speech
 
 You can also use LLM speech to translate audio into a target language. Set the `task` to `translate` and specify the `target_language`.
@@ -184,35 +199,36 @@ You can also use LLM speech to translate audio into a target language. Set the `
         TranscriptionOptions,
         EnhancedModeProperties,
     )
-
+    
     # Get configuration from environment variables
     endpoint = os.environ["AZURE_SPEECH_ENDPOINT"]
     api_key = os.environ["AZURE_SPEECH_API_KEY"]
-
+    
     # Create the transcription client
     client = TranscriptionClient(endpoint=endpoint, credential=AzureKeyCredential(api_key))
-
+    
     # Path to your audio file (replace with your own file path)
     audio_file_path = "<path-to-your-audio-file.wav>"
-
+    
     # Open and read the audio file
     with open(audio_file_path, "rb") as audio_file:
         # Create enhanced mode properties for LLM speech translation
-        # Translate to Korean (supported languages: en, zh, de, fr, it, ja, es, pt, ko)
+        # Translate to another language
         enhanced_mode = EnhancedModeProperties(
-            task="translate",
-            target_language="ko"
+            task="translation",
+            target_language="es-ES",
+            prompt=["Translate the following English speech to Spanish."],
         )
-
+    
         # Create transcription options with enhanced mode
-        options = TranscriptionOptions(enhanced_mode=enhanced_mode)
-
+        options = TranscriptionOptions(locales=["en-US"], enhanced_mode=enhanced_mode)
+    
         # Create the request content
         request_content = TranscriptionContent(definition=options, audio=audio_file)
-
+    
         # Translate the audio
         result = client.transcribe(request_content)
-
+    
         # Print the translation result
         print(f"Translation: {result.combined_phrases[0].text}")
     ```
@@ -229,7 +245,7 @@ You can also use LLM speech to translate audio into a target language. Set the `
 
 ## Use prompt-tuning
 
-You can provide an optional prompt to guide the output style for transcription or translation tasks.
+You can provide an optional prompt to guide the output style for transcription or translation tasks. Replace the `prompt` value in the `EnhancedModeProperties` object.
 
 ```python
 import os
@@ -265,7 +281,7 @@ with open(audio_file_path, "rb") as audio_file:
     print(f"Transcription: {result.combined_phrases[0].text}")
 ```
 
-Best practices for prompts:
+### Best practices for prompts:
 - Prompts are subject to a maximum length of 4,096 characters.
 - Prompts should preferably be written in English.
 - Use `Output must be in lexical format.` to enforce lexical formatting instead of the default display format.
@@ -273,7 +289,7 @@ Best practices for prompts:
 
 Reference: [EnhancedModeProperties](/python/api/azure-ai-transcription/azure.ai.transcription.models.enhancedmodeproperties)
 
-## Output
+### Output
 
 The script prints the transcription result to the console:
 
@@ -284,4 +300,3 @@ Detailed phrases:
   [0ms]: Hello, this is a test
   [1500ms]: of the LLM speech transcription service.
 ```
-
