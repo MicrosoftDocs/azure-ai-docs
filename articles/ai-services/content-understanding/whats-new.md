@@ -46,35 +46,35 @@ Azure Content Understanding in Foundry Tools is now Generally Available with API
 
 ### RAG analyzers
 
-RAG analyzers are optimized for retrieval-augmented generation scenarios, extracting content with layout as markdown and performing semantic analysis to enhance retrieval quality for downstream applications.
+RAG analyzers are optimized for retrieval-augmented generation scenarios. They extract content with layout as markdown and perform semantic analysis to enhance retrieval quality for downstream applications.
 
-- **Documents**: `prebuilt-documentSearch` extracts paragraphs, tables, and figure descriptions from documents, enables textual descriptions of images, charts, and diagrams, captures hand-written annotations, generates content summaries, and supports a [wide range of file formats](/azure/ai-services/content-understanding/service-limits#input-file-limits) including PDF, images, Office documents, and text files.
+- **Documents**: `prebuilt-documentSearch` extracts paragraphs, tables, and figure descriptions from documents. It enables textual descriptions of images, charts, and diagrams. It captures hand-written annotations, generates content summaries, and supports a [wide range of file formats](/azure/ai-services/content-understanding/service-limits#input-file-limits) including PDF, images, Office documents, and text files.
 - **Multimodal support**: Extends to video, image, and audio with `prebuilt-videoSearch` for transcript extraction and segment-based summaries with automatic scene detection, `prebuilt-imageSearch` for visual content descriptions and insights, and `prebuilt-audioSearch` for conversation transcription with speaker diarization and multilingual support.
 
 Review the full analyzer catalog in [Prebuilt analyzers in Content Understanding](concepts/prebuilt-analyzers.md).
 
 ### Domain-specific prebuilt analyzers for industry workloads
 
-Domain-specific prebuilt analyzers are tailored for industry scenarios, enabling automated extraction of structured data from specialized document types without custom training.
+Domain-specific prebuilt analyzers are tailored for industry scenarios. They enable automated extraction of structured data from specialized document types without custom training.
 
-- **Finance and tax**: Extract key data from financial statements, tax forms, W-2s, 1099s, and other tax documents with tuned schemas that capture amounts, dates, tax identifiers, and financial entities. See [finance and tax](concepts/prebuilt-analyzers.md#domain-specific-analyzers)
-- **Procurement and contracts**: Process purchase orders, contracts, and procurement documents to extract vendor information, line items, pricing, terms, and contractual obligations. See [ legal and business documents](concepts/prebuilt-analyzers.md#domain-specific-analyzers)
-- **Mortgage and lending**: Automate extraction from mortgage applications, loan documents, and lending forms, capturing borrower details, property information, loan terms, and financial disclosures. See [mortgage and lending](concepts/prebuilt-analyzers.md#domain-specific-analyzers)
-- **Identity verification**: Process passports, driver's licenses, ID cards, and other identity documents with `prebuilt-idDocument`, extracting personal information, document numbers, and verification details. Categorization lets you send specific sections—such as passport pages—to purpose-built analyzers during a single run. See [identity documents](concepts/prebuilt-analyzers.md#domain-specific-analyzers)
+- **Finance and tax**: Extract key data from financial statements, tax forms, W-2s, 1099s, and other tax documents with tuned schemas that capture amounts, dates, tax identifiers, and financial entities. See [finance and tax](concepts/prebuilt-analyzers.md#domain-specific-analyzers).
+- **Procurement and contracts**: Process purchase orders, contracts, and procurement documents to extract vendor information, line items, pricing, terms, and contractual obligations. See [ legal and business documents](concepts/prebuilt-analyzers.md#domain-specific-analyzers).
+- **Mortgage and lending**: Automate extraction from mortgage applications, loan documents, and lending forms, capturing borrower details, property information, loan terms, and financial disclosures. See [mortgage and lending](concepts/prebuilt-analyzers.md#domain-specific-analyzers).
+- **Identity verification**: Process passports, driver's licenses, ID cards, and other identity documents with `prebuilt-idDocument`, extracting personal information, document numbers, and verification details. Categorization lets you send specific sections - such as passport pages - to purpose-built analyzers during a single run. See [identity documents](concepts/prebuilt-analyzers.md#domain-specific-analyzers).
 - **Utilities, billing, and more**: Extract structured data from utility bills, invoices, and billing statements across industries, capturing account information, usage details, and payment data.
 
 Explore the domain-specific analyzer lineup and usage guidance in [Prebuilt analyzers in Content Understanding](concepts/prebuilt-analyzers.md#domain-specific-analyzers).
 
 ### Content extraction
 
-- **Content annotations**: Annotations are supported in `digital PDF` inputs to provide more metadata on the document, such as identifying spans of content that have annotations (for example, highlight, underline, and strikethrough).
-- **Multi-page tables and output formats**: Choose a table output format (HTML or Markdown) to align with your application needs. Tables are multi-page by default, and multi-page tables are returned as a single table object.
-- **Hyperlink extraction**: Hyperlinks embedded within documents are now extracted as a URL.
-- **Figure extraction**: Figures and charts can now be extracted using Chart.js or Mermaid syntax, depending on the type, along with a description.
+- **Content annotations** - `digital PDF` inputs support annotations to provide more metadata on the document. The metadata can identify spans of content that have annotations like highlight, underline, strikethrough, and more. 
+- **Multi-page tables and output formats** - You can choose the table output format between HTML or Markdown to align with your application needs. Tables are also multipage by default. The service returns multipage tables as a single table object.
+- **Hyperlink extraction** - The service now extracts hyperlinks embedded within documents as a URL.
+- **Figure extraction** - The service can now extract figures and charts as either chart.js or mermaid.js syntax depending on the types, along with its description.
 
 ### Field extraction
 
-- **Confidence scores are now consistently available across all extraction methods for documents**—whether using extract, generative, or classify—giving you uniform quality metrics regardless of how fields are processed. Confidence scores are only supported for document modality. Learn how to [enable confidence scores for field extraction](document/overview.md#field-extraction).
+- **Confidence scores are now consistently available across all extraction methods for documents**—whether you use extract, generative, or classify—giving you uniform quality metrics regardless of how you process fields. Confidence scores are only supported for document modality. Learn how to [enable confidence scores for field extraction](document/overview.md#field-extraction).
 - **Simplified schema definition** with intelligent defaults and streamlined workflows. The extraction method is now optional. Content Understanding automatically selects the best approach for each field, reducing configuration complexity. This intelligent behavior makes it easier to build and maintain analyzers without deep knowledge of extraction techniques.
 - **Added support for complex types like objects**: Define an object, for example a customer object with contained fields of name, address, and phone.
 ### Enterprise security and governance
@@ -113,17 +113,17 @@ The Azure Content Understanding [**`2025-05-01-preview`**](/rest/api/contentunde
 
 ### Processing modes
 
-With the [**`2025-05-01-preview`**](/rest/api/contentunderstanding/content-analyzers?view=rest-contentunderstanding-2025-05-01-preview&preserve-view=true) release, we introduce two modes: `standard` and `pro`. The default mode for all analyzers is `standard`.
+With the [**`2025-05-01-preview`**](/rest/api/contentunderstanding/content-analyzers?view=rest-contentunderstanding-2025-05-01-preview&preserve-view=true) release, two modes are introduced: `standard` and `pro`. The default mode for all analyzers is `standard`.
 
-Content Understanding pro mode adds reasoning, support for multiple input documents, the ability to configure an external knowledge base for linking, enrichment, and validation. These features automate complex tasks by extending field extraction capabilities to cover scenarios that previously required custom code or human effort.
+Content Understanding pro mode adds reasoning, support for multiple input documents, and the ability to configure an external knowledge base for linking, enrichment, and validation. These features automate complex tasks by extending field extraction capabilities to cover scenarios that previously required custom code or human effort.
 
-The `pro` mode (preview) is currently limited to documents as inputs, with support other types of content types coming soon! Common challenges that the pro mode addresses are aggregating a schema across content from different input files, validating results across documents, and using external knowledge to generate an output schema. Learn more about the [pro mode (preview)](concepts/standard-pro-modes.md).
+The `pro` mode (preview) is currently limited to documents as inputs, with support for other types of content coming soon. Common challenges that the pro mode addresses are aggregating a schema across content from different input files, validating results across documents, and using external knowledge to generate an output schema. Learn more about the [pro mode (preview)](concepts/standard-pro-modes.md).
 
 ### Foundry experience
 
 With this release, the following updates are now available to the Content Understanding experience in Microsoft Foundry:
 
-* Added support for creating both `standard` mode and `pro` mode tasks in the existing Content Understanding experience. Now with pro mode, you have the ability to bring in your own reference data and create a task that executes multi-step reasoning on your data. Read more about the two different task types in [Create Content Understanding Standard and Pro tasks in the Foundry (classic) portal](./how-to/content-understanding-foundry-classic.md).
+* Added support for creating both `standard` mode and `pro` mode tasks in the existing Content Understanding experience. Now by using pro mode, you can bring in your own reference data and create a task that executes multistep reasoning on your data. Read more about the two different task types in [Create Content Understanding Standard and Pro tasks in the Foundry (classic) portal](./how-to/content-understanding-foundry-classic.md).
 * Try-out experiences are now available for general document analysis and invoice analysis. Try out these prebuilt features on your own data and start getting insights without having to create a custom task. 
 
 ### Document classification and splitting
@@ -133,7 +133,7 @@ This release introduces a new [classification API](concepts/classifier.md). This
 ### Improvements to document processing
 
 * Added support for extracting table spanning multiple pages as a single logical table. Learn more about [structure extraction updates in documents](document/elements.md).
-* Selection mark support for checkmark and radio buttons as unicode characters. Learn more about [structure extraction updates in documents](document/elements.md).
+* Selection mark support for checkmark and radio buttons as Unicode characters. Learn more about [structure extraction updates in documents](document/elements.md).
 * Barcode extraction as part of the default content extraction along with `OCR`. Learn more about [structure extraction updates in documents](document/elements.md).
 * Confidence score improvements with better grounding results for extractive fields.
 * New file format support extended for following document types: `docx`, `xslx`, `pptx`, `msg`, `eml`, `rtf`, `html`, `md`, and `xml`.
@@ -149,28 +149,28 @@ This release introduces a new [classification API](concepts/classifier.md). This
 
 * Added more locales for audio transcription. Learn more about [audio capabilities](audio/overview.md).
 * Added support for multilingual audio processing. Learn more about [language handling improvements in audio](audio/overview.md#language-handling).
-* Increased maximum supported file-size to ≤ 1 GB and length of ≤ 4 hours. Learn more about [audio service limits](service-limits.md).
+* Increased maximum supported file size to 1 GB and length to 4 hours. Learn more about [audio service limits](service-limits.md).
 
 ### Face API (preview)
 
-This release adds new face detection and recognition capabilities to Content Understanding. You can create a directory of faces and persons. The directory can be used to recognize the faces in the processed content. Learn more about [detecting and recognizing faces](face/overview.md).
+This release adds new face detection and recognition capabilities to Content Understanding. You can create a directory of faces and persons. Use the directory to recognize the faces in the processed content. Learn more about [detecting and recognizing faces](face/overview.md).
 
 
 ## April 2025
 
 **2024-12-01-preview** REST API introduces the following updates and enhanced capabilities:
 
-* **General improvements**. For all modality, to request an increase from current limits, contact us at `cu_contact@microsoft.com`.
-* **Prebuilt invoice template**. The invoice template is now customizable. Once you select the invoice template, you can access a predefined list of fields that can be tailored to your specific needs by adding or removing fields.
+* **General improvements**. For all modalities, to request an increase from current limits, contact `cu_contact@microsoft.com`.
+* **Prebuilt invoice template**. The invoice template is now customizable. Once you select the invoice template, you can access a predefined list of fields that you can tailor to your specific needs by adding or removing fields.
 * **Generative and classification fields**
-  * Both generative and classify fields are now supported for documents modality.
-  * You can now utilize the REST endpoint/Studio to define generative and classification fields with zero-shot outputs for documents. This feature enables you to generate summaries, infer results, and classify individual documents across multiple files.
-  * Multiple analyzers can be invoked to process individual files.
+  * Both generative and classification fields are now supported for documents modality.
+  * You can now use the REST endpoint or Studio to define generative and classification fields with zero-shot outputs for documents. This feature enables you to generate summaries, infer results, and classify individual documents across multiple files.
+  * You can invoke multiple analyzers to process individual files.
 * **Video modality**
   * Latency improvement for video processing resulting in 50% lower latency.
-  * Expanded output types to add support for `Object` and `Arrays`
-  * Added support for video files provided via S3 presigned URL ingestion
-  * Improved video segmentation to semantically segment especially when no shot edits exist in the video
+  * Expanded output types to add support for `Object` and `Arrays`.
+  * Added support for video files provided via S3 presigned URL ingestion.
+  * Improved video segmentation to semantically segment especially when no shot edits exist in the video.
 * **Audio modality**
   * API now supports the field type: `group`.
 * **Text modality**
@@ -178,7 +178,7 @@ This release adds new face detection and recognition capabilities to Content Und
 * **User experience improvements**
   * Added functionality to download and upload schema configurations during schema definition.
   * Enhanced file labeling and analyzer building processes.
-  * Add download code samples for quick setup added.
+  * Added download code samples for quick setup.
 
 ## November 2024
 
