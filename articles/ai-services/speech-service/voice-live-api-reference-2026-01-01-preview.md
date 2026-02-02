@@ -422,28 +422,6 @@ Cancel an in-progress response. This immediately stops response generation and r
 |-------|------|-------------|
 | type | string | Must be `"response.cancel"` |
 
-
-
-#### Event structure
-
-```json
-{
-  "type": "conversation.item.truncate",
-  "item_id": "<item_id>",
-  "content_index": 0,
-  "audio_end_ms": 0
-}
-```
-
-#### Properties
-
-| Field | Type | Description |
-|-------|------|-------------|
-| type | string | The event type must be `conversation.item.truncate`. |
-| item_id | string | The ID of the assistant message item to truncate. Only assistant message items can be truncated. |
-| content_index | integer | The index of the content part to truncate. Set this property to "0". |
-| audio_end_ms | integer | Inclusive duration up to which audio is truncated, in milliseconds. If the audio_end_ms is greater than the actual audio duration, the server responds with an error. |
-
 ### input_audio_buffer.append
 
 The client `input_audio_buffer.append` event is used to append audio bytes to the input audio buffer. The audio buffer is temporary storage you can write to and later commit.
