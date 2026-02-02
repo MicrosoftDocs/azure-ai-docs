@@ -242,6 +242,3 @@ The response format is consistent with other existing speech-to-text outputs, su
 - Word-level `durationMilliseconds` and `offsetMilliseconds` are not supported for `translate` task.
 - Diarization is not supported for `translate` task, only the `speaker1` label is returned.
 - `confidence` is not available and always `0`.
-
-
----
