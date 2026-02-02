@@ -32,17 +32,17 @@ The Voice Live API supports the following client events that can be sent from th
 
 | Event | Description |
 |-------|-------------|
-| [session.update](#realtimeclienteventsessionupdate) | Update the session configuration including voice, modalities, turn detection, and other settings |
+| [session.update](#sessionupdate) | Update the session configuration including voice, modalities, turn detection, and other settings |
 | [session.avatar.connect](#sessionavatarconnect) | Establish avatar connection by providing client SDP for WebRTC negotiation |
-| [input_audio_buffer.append](#realtimeclienteventinputaudiobufferappend) | Append audio bytes to the input audio buffer |
-| [input_audio_buffer.commit](#realtimeclienteventinputaudiobuffercommit) | Commit the input audio buffer for processing |
-| [input_audio_buffer.clear](#realtimeclienteventinputaudiobufferclear) | Clear the input audio buffer |
+| [input_audio_buffer.append](#inputaudiobufferappend) | Append audio bytes to the input audio buffer |
+| [input_audio_buffer.commit](#inputaudiobuffercommit) | Commit the input audio buffer for processing |
+| [input_audio_buffer.clear](#inputaudiobufferclear) | Clear the input audio buffer |
 | [conversation.item.create](#conversationitemcreate) | Add a new item to the conversation context |
 | [conversation.item.retrieve](#conversationitemretrieve) | Retrieve a specific item from the conversation |
-| [conversation.item.truncate](#realtimeclienteventconversationitemtruncate) | Truncate an assistant audio message |
+| [conversation.item.truncate](#conversationitemtruncate) | Truncate an assistant audio message |
 | [conversation.item.delete](#conversationitemdelete) | Remove an item from the conversation |
-| [response.create](#realtimeclienteventresponsecreate) | Instruct the server to create a response via model inference |
-| [response.cancel](#realtimeclienteventresponsecancel) | Cancel an in-progress response |
+| [response.create](#responsecreate) | Instruct the server to create a response via model inference |
+| [response.cancel](#responsecancel) | Cancel an in-progress response |
 
 ### session.update
 
@@ -422,21 +422,7 @@ Cancel an in-progress response. This immediately stops response generation and r
 |-------|------|-------------|
 | type | string | Must be `"response.cancel"` |
 
-#### Properties
 
-| Field | Type | Description |
-|-------|------|-------------|
-| type | string | The event type must be `conversation.item.retrieve`. |
-| item_id | string | The ID of the item to retrieve. |
-| event_id | string | The ID of the event. |
-
-### RealtimeClientEventConversationItemTruncate
-
-The client `conversation.item.truncate` event is used to truncate a previous assistant message's audio. The server produces audio faster than realtime, so this event is useful when the user interrupts to truncate audio that was sent to the client but not yet played. The server's understanding of the audio with the client's playback is synchronized.
-
-Truncating audio deletes the server-side text transcript to ensure there isn't text in the context that the user doesn't know about.
-
-If the client event is successful, the server responds with a `conversation.item.truncated` event.
 
 #### Event structure
 
@@ -458,7 +444,7 @@ If the client event is successful, the server responds with a `conversation.item
 | content_index | integer | The index of the content part to truncate. Set this property to "0". |
 | audio_end_ms | integer | Inclusive duration up to which audio is truncated, in milliseconds. If the audio_end_ms is greater than the actual audio duration, the server responds with an error. |
 
-### RealtimeClientEventInputAudioBufferAppend
+### input_audio_buffer.append
 
 The client `input_audio_buffer.append` event is used to append audio bytes to the input audio buffer. The audio buffer is temporary storage you can write to and later commit.
 
@@ -482,7 +468,7 @@ Unlike most other client events, the server doesn't send a confirmation response
 | type | string | The event type must be `input_audio_buffer.append`. |
 | audio | string | Base64-encoded audio bytes. This value must be in the format specified by the `input_audio_format` field in the session configuration. |
 
-### RealtimeClientEventInputAudioBufferClear
+### input_audio_buffer.clear
 
 The client `input_audio_buffer.clear` event is used to clear the audio bytes in the buffer.
 
@@ -502,7 +488,7 @@ The server responds with an `input_audio_buffer.cleared` event.
 |-------|------|-------------|
 | type | string | The event type must be `input_audio_buffer.clear`. |
 
-### RealtimeClientEventInputAudioBufferCommit
+### input_audio_buffer.commit
 
 The client `input_audio_buffer.commit` event is used to commit the user input audio buffer, which creates a new user message item in the conversation. Audio is transcribed if `input_audio_transcription` is configured for the session.
 
@@ -525,72 +511,6 @@ The server responds with an `input_audio_buffer.committed` event.
 | Field | Type | Description |
 |-------|------|-------------|
 | type | string | The event type must be `input_audio_buffer.commit`. |
-
-### RealtimeClientEventResponseCancel
-
-The client `response.cancel` event is used to cancel an in-progress response.
-
-The server will respond with a `response.done` event with a status of `response.status=cancelled`.
-
-#### Event structure
-
-```json
-{
-  "type": "response.cancel"
-}
-```
-
-#### Properties
-
-| Field | Type | Description |
-|-------|------|-------------|
-| type | string | The event type must be `response.cancel`. |
-
-### RealtimeClientEventResponseCreate
-
-The client `response.create` event is used to instruct the server to create a response via model inference. When the session is configured in server VAD mode, the server creates responses automatically.
-
-A response includes at least one `item`, and can have two, in which case the second is a function call. These items are appended to the conversation history.
-
-The server responds with a [`response.created`](#responsecreated) event, one or more item and content events (such as `conversation.item.created` and `response.content_part.added`), and finally a [`response.done`](#responsedone) event to indicate the response is complete.
-
-#### Event structure
-
-```json
-{
-  "type": "response.create"
-}
-```
-
-#### Properties
-
-| Field | Type | Description |
-|-------|------|-------------|
-| type | string | The event type must be `response.create`. |
-| response | [RealtimeResponseOptions](#realtimeresponseoptions) | The response options. |
-
-### RealtimeClientEventSessionUpdate
-
-The client `session.update` event is used to update the session's default configuration. The client can send this event at any time to update the session configuration, and any field can be updated at any time, except for voice.
-
-Only fields that are present are updated. To clear a field (such as `instructions`), pass an empty string.
-
-The server responds with a `session.updated` event that contains the full effective configuration.
-
-#### Event structure
-
-```json
-{
-  "type": "session.update"
-}
-```
-
-#### Properties
-
-| Field | Type | Description |
-|-------|------|-------------|
-| type | string | The event type must be `session.update`. |
-| session | [RealtimeRequestSession](#realtimerequestsession) | The session configuration. |
 
 ## Server Events
 
@@ -799,12 +719,34 @@ Sent when a new item is added to the conversation, either through a client `conv
 
 Sent in response to a `conversation.item.retrieve` client event, providing the requested conversation item.
 
+#### Event Structure
+
+```json
+{
+  "type": "conversation.item.retrieved",
+  "item": {
+    "id": "item_ABC123",
+    "object": "realtime.item",
+    "type": "message",
+    "status": "completed",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "audio",
+        "audio": "UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=",
+        "transcript": "Hello! I'm doing well, thank you for asking. How can I help you today?"
+      }
+    ]
+  }
+}
+```
+
 #### Properties
 
 | Field | Type | Description |
 |-------|------|-------------|
-| type | string | Must be `"conversation.item.created"` |
-| item | [RealtimeConversationResponseItem](#realtimeconversationresponseitem) | The created conversation item |
+| type | string | Must be `"conversation.item.retrieved"` |
+| item | [RealtimeConversationResponseItem](#realtimeconversationresponseitem) | The retrieved conversation item |
 
 ### conversation.item.truncated
 
@@ -1495,8 +1437,6 @@ The server `response.animation_viseme.done` event is returned when the model has
 | item_id | string | ID of the item |
 | output_index | integer | Index of the item in the response |
 | content_index | integer | Index of the content part |
-
-The server `response.animation_viseme.delta` event is returned when the model generates animation viseme data as part of a response. This event provides incremental viseme data as it becomes available.
 
 ### error
 
