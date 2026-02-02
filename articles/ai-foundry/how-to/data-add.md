@@ -323,9 +323,9 @@ Reference: [DataOperations.create_or_update](/python/api/azure-ai-ml/azure.ai.ml
 ### Data preview
 
 In the Data details page, you can browse the folder structure and preview the file. The portal supports data preview for these types:
-- Data file types that the preview API supports: ".tsv", ".csv", ".parquet", ".jsonl".
+- Data file types that the preview API supports: `.tsv`, `.csv`, `.parquet`, `.jsonl`.
 - For other file types, the Microsoft Foundry portal tries to natively preview the file in the browser. The supported file types might depend on the browser itself.
-For images, the portal supports these file image types: ".png", ".jpg", ".gif". For other files, the portal supports these file types: ".ipynb", ".py", ".yml", ".html".
+For images, the portal supports these file image types: `.png`, `.jpg`, `.gif`. For other files, the portal supports these file types: `.ipynb`, `.py`, `.yml`, `.html`.
 
 ## Next steps
 
