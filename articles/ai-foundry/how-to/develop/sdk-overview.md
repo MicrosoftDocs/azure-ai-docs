@@ -367,7 +367,7 @@ console.log(`Response output: ${response.output_text}`);
 
 **Create a project client:**
 
-::: moniker range="foundry-classic
+::: moniker range="foundry-classic"
 ```csharp
 string endpoint = "https://<resource-name>.services.ai.azure.com/api/projects/<project-name>";
 AIProjectClient projectClient = new AIProjectClient(new Uri(endpoint), new DefaultAzureCredential());
@@ -389,7 +389,7 @@ AIProjectClient projectClient = new(
 
 **Create an OpenAI-compatible client from your project:**
 
-::: moniker range="foundry-classic
+::: moniker range="foundry-classic"
 ```csharp
 ClientConnection connection = projectClient.GetConnection(typeof(AzureOpenAIClient).FullName!);
 if (!connection.TryGetLocatorAsUri(out Uri uri) || uri is null)
@@ -541,74 +541,74 @@ For more information on using the OpenAI SDK, see [Azure OpenAI supported progra
 
 1. Install the OpenAI package:
 ::: moniker range="foundry-classic"
-    Run this command to add the OpenAI client library to your .NET project.
-    ```bash
-    dotnet add package OpenAI
-    ```
+   Run this command to add the OpenAI client library to your .NET project.
+   ```bash
+   dotnet add package OpenAI
+   ```
 ::: moniker-end
 ::: moniker range="foundry"
-    Run this command to add the OpenAI client library to your .NET project.
-    ```bash
-    dotnet add package OpenAI
-    ```
+   Run this command to add the OpenAI client library to your .NET project.
+   ```bash
+   dotnet add package OpenAI
+   ```
 ::: moniker-end
 When it succeeds, the .NET CLI confirms that it installed the `OpenAI` package.
 1. The following code snippet demonstrates how to create the OpenAI client directly using the Azure OpenAI v1 endpoint.
 
 ::: moniker range="foundry-classic"
-    This snippet configures `DefaultAzureCredential`, builds `OpenAIClientOptions`, and creates a `ChatClient` for the Azure OpenAI v1 endpoint.
-    ```csharp
-    using System.ClientModel.Primitives;
-    using Azure.Identity;
-    using OpenAI;
-    using OpenAI.Chat;
+   This snippet configures `DefaultAzureCredential`, builds `OpenAIClientOptions`, and creates a `ChatClient` for the Azure OpenAI v1 endpoint.
+   ```csharp
+   using System.ClientModel.Primitives;
+   using Azure.Identity;
+   using OpenAI;
+   using OpenAI.Chat;
     
-    #pragma warning disable OPENAI001
+   #pragma warning disable OPENAI001
 
-    const string directModelEndpoint  = "https://<resource-name>.openai.azure.com/openai/v1/";
-    const string modelDeploymentName = "gpt-5.2";    
+   const string directModelEndpoint  = "https://<resource-name>.openai.azure.com/openai/v1/";
+   const string modelDeploymentName = "gpt-5.2";    
     
-    BearerTokenPolicy tokenPolicy = new(
+   BearerTokenPolicy tokenPolicy = new(
         new DefaultAzureCredential(),
         "https://ai.azure.com/.default");
-    OpenAIClient openAIClient = new(
+   OpenAIClient openAIClient = new(
         authenticationPolicy: tokenPolicy,
         options: new OpenAIClientOptions()
         {
             Endpoint = new($"{directModelEndpoint}"),
         });
-    ChatClient chatClient = openAIClient.GetChatClient(modelDeploymentName);
+   ChatClient chatClient = openAIClient.GetChatClient(modelDeploymentName);
     
-    ChatCompletion completion = await chatClient.CompleteChatAsync(
+   ChatCompletion completion = await chatClient.CompleteChatAsync(
         [
             new SystemChatMessage("You are a helpful assistant."),
                         new UserChatMessage("How many feet are in a mile?")
         ]);
     
-    Console.WriteLine(completion.Content[0].Text);
-    #pragma warning restore OPENAI001
-    ```
+   Console.WriteLine(completion.Content[0].Text);
+   #pragma warning restore OPENAI001
+   ```
 ::: moniker-end
 
 ::: moniker range="foundry"
-    This snippet configures `DefaultAzureCredential`, builds `OpenAIClientOptions`, and creates a `ResponseClient` for the Azure OpenAI v1 endpoint.
-    ```csharp
-    using Azure.Identity;
-    using Azure.Core;
-    using OpenAI;
-    using System;
-    using System.ClientModel.Primitives;
+   This snippet configures `DefaultAzureCredential`, builds `OpenAIClientOptions`, and creates a `ResponseClient` for the Azure OpenAI v1 endpoint.
+   ```csharp
+   using Azure.Identity;
+   using Azure.Core;
+   using OpenAI;
+   using System;
+   using System.ClientModel.Primitives;
    
-    #pragma warning disable OPENAI001
+   #pragma warning disable OPENAI001
  
-    const string directModelEndpoint  = "https://<resource-name>.openai.azure.com/openai/v1/";
-    const string deploymentName = "gpt-5.2";    
+   const string directModelEndpoint  = "https://<resource-name>.openai.azure.com/openai/v1/";
+   const string deploymentName = "gpt-5.2";    
 
-    BearerTokenPolicy tokenPolicy = new(
+   BearerTokenPolicy tokenPolicy = new(
         new DefaultAzureCredential(),
         "https://cognitiveservices.azure.com/.default");
     
-    OpenAIResponseClient client = new(
+   OpenAIResponseClient client = new(
         model: deploymentName,
         authenticationPolicy: tokenPolicy, // To use Entra 
      // credential: new ApiKeyCredential("<YOUR-AZURE-OPENAI-API-KEY>") // To use APIKEY 
@@ -616,20 +616,20 @@ When it succeeds, the .NET CLI confirms that it installed the `OpenAI` package.
         {
             Endpoint = new($"{directModelEndpoint}"),
         });
-    ResponseCreationOptions options = new ResponseCreationOptions
+   ResponseCreationOptions options = new ResponseCreationOptions
     {
         Temperature = (float)0.7,
     };
     
-    OpenAIResponse modelDirectResponse = client.CreateResponse(
+   OpenAIResponse modelDirectResponse = client.CreateResponse(
          [
             ResponseItem.CreateUserMessageItem("What is the size of France in square miles?"),
          ], options);
     
-    Console.WriteLine($"[ASSISTANT]: {modelDirectResponse.GetOutputText()}");
-    #pragma warning restore OPENAI001
-    // The ResponseClient lets you interact with models and services in your project.
-    ```
+   Console.WriteLine($"[ASSISTANT]: {modelDirectResponse.GetOutputText()}");
+   #pragma warning restore OPENAI001
+   // The ResponseClient lets you interact with models and services in your project.
+   ```
 ::: moniker-end
 
 ::: moniker range="foundry-classic"
