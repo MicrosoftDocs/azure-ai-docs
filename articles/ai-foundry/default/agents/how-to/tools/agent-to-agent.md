@@ -70,14 +70,11 @@ For details about supported authentication approaches, see [Agent2Agent (A2A) au
 
 ### Get the connection identifier for code
 
-Depending on the SDK sample you follow, use either:
-
-- The connection name (`A2A_PROJECT_CONNECTION_NAME`), and resolve it to a connection ID in code.
-- The connection resource ID (`A2A_PROJECT_CONNECTION_ID`). If you create the connection by using the REST API, you already know the resource ID because it's part of the request URL.
+The connection name (`A2A_PROJECT_CONNECTION_NAME`), and resolve it to a connection ID in code.
 
 ## Quick verification
 
-Before you troubleshoot A2A-specific issues, verify you can authenticate and connect to your Foundry project.
+Before you run the full sample, verify your A2A connection exists:
 
 ```python
 import os
@@ -93,9 +90,23 @@ with (
     AIProjectClient(endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"], credential=credential) as project_client,
 ):
     print("Connected to project.")
+    
+    # Verify A2A connection exists
+    connection_name = os.environ.get("A2A_PROJECT_CONNECTION_NAME")
+    if connection_name:
+        try:
+            conn = project_client.connections.get(connection_name)
+            print(f"A2A connection verified: {conn.name}")
+        except Exception as e:
+            print(f"A2A connection '{connection_name}' not found: {e}")
+    else:
+        # List available connections to help find the right one
+        print("A2A_PROJECT_CONNECTION_NAME not set. Available connections:")
+        for conn in project_client.connections.list():
+            print(f"  - {conn.name}")
 ```
 
-If this code runs without errors, your credentials and `FOUNDRY_PROJECT_ENDPOINT` are configured correctly.
+If this code runs without errors, your credentials and A2A connection are configured correctly.
 
 ## Code example
 
@@ -543,17 +554,16 @@ main().catch((err) => {
 
 ## Troubleshooting
 
-- The agent doesn't invoke the A2A tool:
-  - Confirm your agent definition includes the A2A tool and you configured the connection.
-  - If you're using responses, confirm you're not forcing a different tool and that your prompt requires calling the remote agent.
-- Authentication failures (401 or 403):
-  - Confirm the connection's authentication type matches your endpoint requirements.
-  - For key-based auth, confirm the credential name matches what the endpoint expects, such as `x-api-key` or `Authorization`.
-- The SDK sample can't find the connection:
-  - Confirm `A2A_PROJECT_CONNECTION_NAME` matches the connection name you created in Foundry.
-  - If you're using `A2A_PROJECT_CONNECTION_ID`, confirm it's a full resource ID in the format shown in [Prerequisites](#prerequisites).
-- Network or TLS errors:
-  - Confirm the endpoint is publicly reachable from your environment and uses a valid TLS certificate.
+| Issue | Cause | Resolution |
+| --- | --- | --- |
+| Agent doesn't invoke the A2A tool | Agent definition doesn't include A2A tool configuration | Confirm your agent definition includes the A2A tool and that you configured the connection. If you're using responses, confirm you're not forcing a different tool. |
+| Agent doesn't invoke the A2A tool | Prompt doesn't require remote agent | Update your prompt to require calling the remote agent, or remove conflicting tool choice settings. |
+| Authentication failures (401 or 403) | Connection authentication type mismatch | Confirm the connection's authentication type matches your endpoint requirements. For key-based auth, confirm the credential name matches what the endpoint expects (`x-api-key` or `Authorization`). |
+| SDK sample can't find the connection | Environment variable mismatch | Confirm `A2A_PROJECT_CONNECTION_NAME` matches the connection name in Foundry. |
+| Network or TLS errors | Endpoint unreachable or invalid certificate | Confirm the endpoint is publicly reachable and uses a valid TLS certificate. Check firewall rules and proxy settings. |
+| Remote agent returns unexpected response | Response format incompatibility | Confirm the remote agent follows A2A protocol specifications. Check that response content types match expected formats. |
+| Connection timeout | Remote agent slow to respond | Increase timeout settings or verify the remote agent's performance. Consider implementing retry logic with exponential backoff. |
+| Missing A2A tool in response | Tool not enabled for the agent | Recreate the agent with the A2A tool explicitly enabled, and verify the connection is active and properly configured. |
 
 ## Considerations for using non-Microsoft services and servers
 
