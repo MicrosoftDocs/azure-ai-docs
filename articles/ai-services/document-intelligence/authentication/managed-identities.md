@@ -9,6 +9,7 @@ ms.topic: how-to
 ms.date: 11/19/2024
 ms.author: lajanuar
 monikerRange: '<=doc-intel-4.0.0'
+ms.custom: sfi-image-nochange
 ---
 
 
@@ -44,7 +45,7 @@ Managed identities for Azure resources are service principals that create a Micr
 
 To get started, you need:
 
-* An active [**Azure account**](https://azure.microsoft.com/free/cognitive-services/)—if you don't have one, you can [**create a free account**](https://azure.microsoft.com/free/).
+* An active [**Azure account**](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)—if you don't have one, you can [**create a free account**](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * A [**Document Intelligence**](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) or [AI Foundry](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) resource in the Azure portal. For detailed steps, _see_ [Create an Azure AI Foundry resource](../../../ai-services/multi-service-resource.md?pivots=azportal).
 

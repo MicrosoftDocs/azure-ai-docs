@@ -6,11 +6,13 @@ ms.author: lajanuar
 author: laujan
 manager: nitinme
 ms.devlang: javascript
-ms.custom: devx-track-azurepowershell
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis
 ms.topic: how-to
 ms.date: 06/12/2025
+ms.custom:
+  - devx-track-azurepowershell
+  - sfi-image-nochange
 #Customer intent: As an advanced user, I want to understand how to use multiple LUIS endpoint keys to increase the number of endpoint requests my application receives.
 ---
 

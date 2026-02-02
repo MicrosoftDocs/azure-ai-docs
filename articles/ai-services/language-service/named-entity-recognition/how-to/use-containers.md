@@ -8,7 +8,7 @@ ms.service: azure-ai-language
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 11/21/2024
+ms.date: 06/21/2025
 ms.author: lajanuar
 keywords: on-premises, Docker, container
 ---
@@ -17,13 +17,13 @@ keywords: on-premises, Docker, container
 
 Containers enable you to host the Named Entity Recognition API on your own infrastructure. If you have security or data governance requirements that can't be fulfilled by calling Named Entity Recognition remotely, then containers might be a good option.
 
-If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/cognitive-services/) before you begin.
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 ## Prerequisites
 
 You must meet the following prerequisites before using Named Entity Recognition containers. 
 
-* If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/cognitive-services/).
+* If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * [Docker](https://docs.docker.com/) installed on a host computer. Docker must be configured to allow the containers to connect with and send billing data to Azure. 
     * On Windows, Docker must also be configured to support Linux containers.
     * You should have a basic understanding of [Docker concepts](https://docs.docker.com/get-started/overview/). 

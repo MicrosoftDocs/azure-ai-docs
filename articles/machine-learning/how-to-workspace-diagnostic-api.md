@@ -5,8 +5,8 @@ description: Learn how to use Azure Machine Learning workspace diagnostics in th
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: jhirono
 ms.date: 03/04/2025
 ms.topic: how-to

@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: how-to
-ms.date: 05/19/2025
+ms.date: 06/19/2025
 ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, golang, java, javascript, python
@@ -30,7 +30,7 @@ In this how-to guide, you learn to use the [Translator service REST APIs](../ref
 
 ## Prerequisites
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/)
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 
 * An Azure AI multi-service or Translator resource. Once you have your Azure subscription, create a [single-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) or a [multi-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) resource, in the Azure portal, to get your key and endpoint. After it deploys, select **Go to resource**.
 
@@ -3123,7 +3123,7 @@ After a successful call, you should see the following response. For more informa
 |------------------|-------------|-----------------|
 | 200 | OK | The request was successful. |
 | 400 | Bad Request | A required parameter is missing, empty, or null. Or, the value passed to either a required or optional parameter is invalid. A common issue is a header that is too long. |
-| 401 | Unauthorized | The request isn't authorized. Check to make sure your key or token is valid and in the correct region. *See also* [Authentication](../reference/v3/reference.md#authentication).|
+| 401 | Unauthorized | The request isn't authorized. Check to make sure your key or token is valid and in the correct region. *See also* [Authentication](../reference/authentication.md).|
 | 429 | Too Many Requests | You exceeded the quota or rate of requests allowed for your subscription. |
 | 502 | Bad Gateway    | Network or server-side issue. May also indicate invalid headers. |
 

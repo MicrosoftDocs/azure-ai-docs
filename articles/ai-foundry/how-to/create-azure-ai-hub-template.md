@@ -2,14 +2,17 @@
 title: Create an Azure AI Foundry hub using a Bicep template
 titleSuffix: Azure AI Foundry
 description: Use a Microsoft Bicep template to create a new Azure AI Foundry hub. This template also creates resources required by the hub.
-manager: scottpolly
 ms.service: azure-ai-foundry
-ms.custom: devx-track-arm-template, devx-track-bicep, build-2024
+ms.custom: 
+  - devx-track-arm-template
+  - devx-track-bicep
+  - build-2024
+  - hub-only
 ms.topic: how-to
-ms.date: 04/29/2025
+ms.date: 08/14/2025
 ms.reviewer: deeikele
-ms.author: larryfr
-author: Blackmist
+ms.author: sgilley
+author: sdgilley
 #Customer intent: As a DevOps person, I need to automate or customize the creation of a hub by using templates.
 ---
 
@@ -33,7 +36,7 @@ The template used in this article can be found at [https://github.com/Azure/azur
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).
+- An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - A copy of the template files from the GitHub repo. To clone the GitHub repo to your local machine, you can use [Git](https://git-scm.com/). Use the following command to clone the quickstart repository to your local machine and navigate to the `aifoundry-basics` directory.
 

@@ -24,7 +24,7 @@ This article shows you how to deploy multiple Azure AI containers. Specifically,
 
 This procedure requires several tools that must be installed and run locally:
 
-* An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/cognitive-services) before you begin.
+* An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 * [Docker Engine](https://www.docker.com/products/docker-engine). Confirm that the Docker CLI works in a console window.
 * An Azure resource with the correct pricing tier. Only the following pricing tiers work with this container:
   * **Azure AI Vision** resource with F0 or Standard pricing tier only.

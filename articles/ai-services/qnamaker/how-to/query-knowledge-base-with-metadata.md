@@ -100,7 +100,7 @@ This allows your knowledge base to return answers when any filter matches but wo
 ### Metadata examples in quickstarts
 
 Learn more about metadata in the QnA Maker portal quickstart for metadata:
-* [Authoring - add metadata to QnA pair](../quickstarts/add-question-metadata-portal.md#add-metadata-to-filter-the-answers)
+* [Authoring - add metadata to QnA pair](../quickstarts/add-question-metadata-portal.md)
 * [Query prediction - filter answers by metadata](../quickstarts/get-answer-from-knowledge-base-using-url-tool.md)
 
 <a name="keep-context"></a>

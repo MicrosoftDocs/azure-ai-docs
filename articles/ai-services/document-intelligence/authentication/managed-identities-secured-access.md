@@ -9,6 +9,7 @@ ms.topic: how-to
 ms.date: 11/19/2024
 ms.author: vikurpad
 monikerRange: '<=doc-intel-4.0.0'
+ms.custom: sfi-image-nochange
 ---
 
 
@@ -32,7 +33,7 @@ This how-to guide walks you through the process of enabling secure connections f
 
 To get started, you need:
 
-* An active [**Azure account**](https://azure.microsoft.com/free/cognitive-services/)—if you don't have one, you can [**create a free account**](https://azure.microsoft.com/free/).
+* An active [**Azure account**](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)—if you don't have one, you can [**create a free account**](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * A [**Document Intelligence**](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) or [AI Foundry](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) resource in the Azure portal. For detailed steps, _see_ [Create an Azure AI Foundry resource](../../../ai-services/multi-service-resource.md?pivots=azportal).
 

@@ -1,25 +1,27 @@
 ---
 
-title: How to add a new connection in Azure AI Foundry portal
+title: Add a new connection to your project
 titleSuffix: Azure AI Foundry
-description: Learn how to add a new connection in Azure AI Foundry portal.
-manager: scottpolly
+description: Learn how to add a new connection to your Foundry project.
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 05/08/2025
-ms.reviewer: larryfr
-ms.author: larryfr
-author: Blackmist
-zone_pivot_groups: project-type
-# Customer Intent: As an admin or developer, I want to understand how to add new connections in Azure AI Foundry portal.
+ms.date: 09/22/2025
+ms.reviewer: sgilley
+ms.author: sgilley
+author: sdgilley
+ai-usage: ai-assisted
+# Customer Intent: As an admin or developer, I want to understand how to add new connections in my project.
 
 ---
 
-# How to add a new connection in Azure AI Foundry portal
+# Add a new connection to your project (Foundry projects)
+
+> [!NOTE]
+> An alternate hub-scoped connections article is available: [Create and manage connections (Hubs)](hub-connections-add.md).
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
@@ -29,52 +31,32 @@ Connections are a way to authenticate and consume both Microsoft and other resou
 
 ## Connection types
 
-Here's a table of some of the available connection types in Azure AI Foundry portal. The __Preview__ column indicates connection types that are currently in preview.
-
-::: zone pivot="hub-project"
-
-| Service connection type | Preview | Description |
-| --- |:---:| --- |
-| Azure AI Search | |  Azure AI Search is an Azure resource that supports information retrieval over your vector and textual data stored in search indexes. |
-| Azure Storage | | Azure Storage is a cloud storage solution for storing unstructured data like documents, images, videos, and application installers. |
-| Azure Data Lake Storage Gen 2 | | Azure Data Lake Storage Gen2 is a set of capabilities dedicated to big data analytics, built on Azure storage. |
-| Azure Content Safety | | Azure AI Content Safety is a service that detects potentially unsafe content in text, images, and videos. |
-| Azure OpenAI || Azure OpenAI is a service that provides access to OpenAI's models including the GPT-4o, GPT-4o mini, GPT-4, GPT-4 Turbo with Vision, GPT-3.5-Turbo, DALLE-3 and Embeddings model series with the security and enterprise capabilities of Azure. |
-| Serverless Model | ✓ | Serverless Model connections allow you to [standard deployment](deploy-models-serverless.md). |
-| Microsoft OneLake | | Microsoft OneLake provides open access to all of your Fabric items through Azure Data Lake Storage (ADLS) Gen2 APIs and SDKs.<br/><br/>In Azure AI Foundry portal, you can set up a connection to your OneLake data using a OneLake URI. You can find the information that Azure AI Foundry requires to construct a __OneLake Artifact URL__ (workspace and item GUIDs) in the URL on the Fabric portal. For information about the URI syntax, see [Connecting to Microsoft OneLake](/fabric/onelake/onelake-access-api). |
-| API key || API Key connections handle authentication to your specified target on an individual basis. |
-| Custom || Custom connections allow you to securely store and access keys while storing related properties, such as targets and versions. Custom connections are useful when you have many targets that, or cases where, you wouldn't need a credential to access. LangChain scenarios are an example where you would use custom service connections. Custom connections don't manage authentication, so you have to manage authentication on your own. |
-
-::: zone-end
-
-::: zone pivot="fdp-project"
-
 | Service connection type       | Preview | Required for Standard Agent deployment | Description                                                                                                                                                                                                                     |
 |-------------------------------|:-------:|:--------------------------------------:|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Azure AI Search               |         | ✓                                      | Azure AI Search is an Azure resource that supports information retrieval over your vector and textual data stored in search indexes.                                                   |
-| Azure Storage                 |         | ✓                                      | Azure Storage is a cloud storage solution for storing unstructured data like documents, images, videos, and application installers.                                                   |
-| Azure Cosmos DB               | ✓       | ✓                                      | Azure Cosmos DB is a globally distributed, multi-model database service that offers low latency, high availability, and scalability across multiple geographical regions.                |
+| Azure AI Search               |         | ✅                                      | Azure AI Search is an Azure resource that supports information retrieval over your vector and textual data stored in search indexes.                                                   |
+| Azure Storage                 |         | ✅                                      | Azure Storage is a cloud storage solution for storing unstructured data like documents, images, videos, and application installers.                                                   |
+| Azure Cosmos DB               | ✅       | ✅                                      | Azure Cosmos DB is a globally distributed, multi-model database service that offers low latency, high availability, and scalability across multiple geographical regions.                |
 | Azure OpenAI                  |         |                                        | Azure OpenAI is a service that provides access to OpenAI's models including the GPT-4o, GPT-4o mini, GPT-4, GPT-4 Turbo with Vision, GPT-3.5-Turbo, DALLE-3, and Embeddings model series with the security and enterprise capabilities of Azure. |
 | Application Insights          |         |                                        | Azure Application Insights is a service within Azure Monitor that enables developers and DevOps teams to automatically detect performance anomalies, diagnose issues, and gain deep insights into application usage and behavior through powerful telemetry and analytics tools. |
 | API key                       |         |                                        | API Key connections handle authentication to your specified target on an individual basis. |
 | Custom                        |         |                                        | Custom connections allow you to securely store and access keys while storing related properties, such as targets and versions. Custom connections are useful when you have many targets or cases where you wouldn't need a credential to access. LangChain scenarios are a good example where you would use custom service connections. Custom connections don't manage authentication, so you have to manage authentication on your own. |
-| Serverless Model              |    ✓    |                                        | Serverless Model connections allow you to serverless API deployment.                                                                                                                     |
-| Azure Databricks              |    ✓    |                                        | Azure Databricks connector allows you to connect your Azure AI Foundry Agents to Azure Databricks to access workflows and Genie Spaces during runtime. It supports three connection types - __Jobs__, __Genie__, and __Other__. You can pick the Job or Genie space you want associated with this connection while setting up the connection in the Foundry UI. You can also use the Other connection type and allow your agent to access workspace operations in Azure Databricks. Authentication is handled through Microsoft Entra ID for users or service principals. For examples of using this connector, see [Jobs](https://github.com/Azure-Samples/AI-Foundry-Connections/blob/main/src/samples/python/sample_agent_adb_job.py) and [Genie](https://github.com/Azure-Samples/AI-Foundry-Connections/blob/main/src/samples/python/sample_agent_adb_genie.py). |
+| Serverless Model              |    ✅    |                                        | Serverless Model connections allow you to serverless API deployment.                                                                                                                     |
+| Azure Databricks              |    ✅    |                                        | Azure Databricks connector allows you to connect your Azure AI Foundry Agents to Azure Databricks to access workflows and Genie Spaces during runtime. It supports three connection types - __Jobs__, __Genie__, and __Other__. You can pick the Job or Genie space you want associated with this connection while setting up the connection in the Foundry UI. You can also use the Other connection type and allow your agent to access workspace operations in Azure Databricks. Authentication is handled through Microsoft Entra ID for users or service principals. For examples of using this connector, see [Jobs](https://github.com/Azure-Samples/AI-Foundry-Connections/blob/main/src/samples/python/sample_agent_adb_job.py) and [Genie](https://github.com/Azure-Samples/AI-Foundry-Connections/blob/main/src/samples/python/sample_agent_adb_genie.py). Note: Usage of this connection is available only via the Foundry SDK in code and is integrated into agents as a FunctionTool (please see the samples above for details). Usage of this connection in AI Foundry Playground is currently not supported.|
+| Azure Key Vault| ✅ | | Azure service for securely storing and accessing secrets. AI Foundry stores connections details in a managed Azure Key Vault if no Key Vault connection is created. Users that prefer to manage their secrets themselves can bring their own Azure Key Vault via a connection. (See [limitations](#limits)) |
 
-## Agent knowledge tool connections
+<a name="limits"></a>
 
-To help AI Agents make well-informed decisions with confidence, knowledge serves as the foundation for generating accurate and grounded responses. Connections are supported to the following knowledge tools to build your Agents. Connections to the following knowledge tools can be created through [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs):
+### Azure Key Vault limitations
 
-- Microsoft Fabric
-- Grounding with Bing Search
-- Grounding with Bing Custom Search
-- Azure AI Search.
+All Azure AI Foundry projects use a managed Azure Key Vault (not shown in your subscription). If you bring your own Azure Key Vault, note:
 
-To learn more about Agent Knowledge tools, see [Knowledge tool overview](https://aka.ms/AgentToolOverviewDoc).
+- Only one Azure Key Vault connection per AI Foundry resource at a time.
+- You can delete an Azure Key Vault connection only if there are no other existing connections on the Foundry resource or project level.
+- Secret migration isn't supported; recreate connections after attaching the Key Vault.
+- Deleting the underlying Azure Key Vault breaks the AI Foundry resource (connections depend on stored secrets).
+- Deleting secrets in your BYO Key Vault may break connections to other services.
 
-::: zone-end
-
-## Create a new connection
+## <a name="create-a-new-connection"></a> Create a new connection in Azure AI Foundry portal
 
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
@@ -94,41 +76,13 @@ Follow these steps to create a new connection that's only available for the curr
 1. Browse for and select your Azure AI Search service from the list of available services and then select the type of __Authentication__ to use for the resource. Select __Add connection__.
 
     > [!TIP]
-    > Different connection types support different authentication methods. Using Microsoft Entra ID might require specific Azure role-based access permissions for your developers. For more information, visit [Role-based access control](../concepts/rbac-azure-ai-foundry.md#scenario-connections-using-microsoft-entra-id-authentication).
+    > Different connection types support different authentication methods. Using Microsoft Entra ID might require specific Azure role-based access permissions for your developers. For more information, visit [Role-based access control](../concepts/rbac-azure-ai-foundry.md).
 
     :::image type="content" source="../media/data-connections/connection-add-azure-ai-search-connect-entra-id.png" alt-text="Screenshot of the page to select the Azure AI Search service that you want to connect to." lightbox="../media/data-connections/connection-add-azure-ai-search-connect-entra-id.png":::
 
 1. After the service is connected, select __Close__.
 
 ## Network isolation
-
-::: zone pivot="hub-project"
-
-If your hub is configured for [network isolation](configure-managed-network.md), you might need to create an outbound private endpoint rule to connect to __Azure Blob Storage__, __Azure Data Lake Storage Gen2__, or __Microsoft OneLake__. A private endpoint rule is needed if one or both of the following are true:
-
-- The managed network for the hub is configured to [allow only approved outbound traffic](configure-managed-network.md#configure-a-managed-virtual-network-to-allow-only-approved-outbound). In this configuration, you must explicitly create outbound rules to allow traffic to other Azure resources.
-- The data source is configured to disallow public access. In this configuration, the data source can only be reached through secure methods, such as a private endpoint.
-
-To create an outbound private endpoint rule to the data source, use the following steps:
-
-1. Sign in to the [Azure portal](https://portal.azure.com), and select the Azure AI Foundry hub.
-1. Select __Networking__, then __Workspace managed outbound access__.
-1. To add an outbound rule, select __Add user-defined outbound rules__. From the __Workspace outbound rules__ sidebar, provide the following information:
-    
-    - __Rule name__: A name for the rule. The name must be unique for the Azure AI Foundry hub.
-    - __Destination type__: Private Endpoint.
-    - __Subscription__: The subscription that contains the Azure resource you want to connect to.
-    - __Resource type__: `Microsoft.Storage/storageAccounts`. This resource provider is used for Azure Storage, Azure Data Lake Storage Gen2, and Microsoft OneLake.
-    - __Resource name__: The name of the Azure resource (storage account).
-    - __Sub Resource__: The sub-resource of the Azure resource. Select `blob` if using Azure Blob storage. Select `dfs` for Azure Data Lake Storage Gen2 and Microsoft OneLake. 
-  
-1. Select __Save__ to create the rule.
-
-1. Select __Save__ at the top of the page to save the changes to the managed network configuration.
-
-::: zone-end
-
-::: zone pivot="fdp-project"
 
 For end-to-end [network isolation](configure-private-link.md) with AI Foundry, you need private endpoints to connect to your connected resource. For example, if your Azure Storage account is set to public network access as __Disabled__, then a private endpoint should be deployed in your virtual network to access in Azure AI Foundry. 
 
@@ -139,11 +93,11 @@ For more on how to set private endpoints to your connected resources, see the fo
 | Azure Storage         | [Use private endpoints](/azure/storage/common/storage-private-endpoints)                                       |
 | Azure Cosmos DB        | [Configure Azure Private Link for Azure Cosmos DB](/azure/cosmos-db/how-to-configure-private-endpoints?tabs=arm-bicep) |
 | Azure AI Search       | [Create a private endpoint for a secure connection](/azure/search/service-create-private-endpoint)             |
-| Azure OpenAI          | [Securing Azure OpenAI inside a virtual network with private endpoints](/azure/ai-services/openai/how-to/network) |
+| Azure OpenAI          | [Securing Azure OpenAI inside a virtual network with private endpoints](/azure/ai-foundry/openai/how-to/network) |
 | Application Insights  | [Use Azure Private Link to connect networks to Azure Monitor](/azure/azure-monitor/logs/private-link-security) |
 
-
-::: zone-end
+> [!NOTE]
+> Cross-subscription connections used for model deployment are not supported (Azure AI Foundry, Azure OpenAI). You can't connect to resources from different subscriptions for model deployments.
 
 ## Related content
 

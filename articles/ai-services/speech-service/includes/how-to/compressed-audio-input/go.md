@@ -1,10 +1,10 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.custom: linux-related-content
 ms.topic: include
 ms.date: 09/15/2020
-ms.author: eur
+ms.author: pafarley
 ---
 
 [!INCLUDE [Header](../../common/go.md)]

@@ -1,8 +1,8 @@
----
+﻿---
 title: Use pronunciation assessment
 titleSuffix: Azure AI services
 description: Learn about pronunciation assessment features that are currently publicly available. Choose the programming solution for your needs.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.custom:
@@ -14,7 +14,7 @@ ms.custom:
   - build-2024
 ms.topic: how-to
 ms.date: 4/7/2025
-ms.author: eur
+ms.author: pafarley
 zone_pivot_groups: programming-languages-ai-services
 #Customer intent: As a developer, I want to implement pronunciation assessment on spoken language using a technology that works in my environment to gives feedback on accuracy and fluency.
 ---
@@ -36,43 +36,43 @@ As a baseline, usage of pronunciation assessment costs the same as speech to tex
 
 ::: zone pivot="programming-language-csharp"
 
-For how to use Pronunciation Assessment in streaming mode in your own application, see [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/csharp/sharedcontent/console/speech_recognition_samples.cs#:~:text=PronunciationAssessmentWithStream).
+For how to use Pronunciation Assessment in streaming mode in your own application, see [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/scenarios/csharp/sharedcontent/console/speech_recognition_samples.cs#:~:text=PronunciationAssessmentWithStream).
 
 ::: zone-end
 
 ::: zone pivot="programming-language-cpp"
 
-For how to use Pronunciation Assessment in streaming mode in your own application, see [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/cpp/windows/console/samples/speech_recognition_samples.cpp#:~:text=PronunciationAssessmentWithStream).
+For how to use Pronunciation Assessment in streaming mode in your own application, see [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/scenarios/cpp/windows/language-learning/samples/speech_recognition_samples.cpp#:~:text=PronunciationAssessmentWithStream).
 
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
 
-For how to use Pronunciation Assessment in streaming mode in your own application, see [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/java/android/sdkdemo/app/src/main/java/com/microsoft/cognitiveservices/speech/samples/sdkdemo/MainActivity.java#:~:text=pronunciationAssessmentFromStreamButton.setOnClickListener).
+For how to use Pronunciation Assessment in streaming mode in your own application, see [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/scenarios/java/android/language-learning/app/src/main/java/com/microsoft/cognitiveservices/speech/samples/sdkdemo/MainActivity.java#:~:text=pronunciationAssessmentFromStreamButton.setOnClickListener).
 
 ::: zone-end
 
 ::: zone pivot="programming-language-python"
 
-For how to use Pronunciation Assessment in streaming mode in your own application, see [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/scenarios/python/console/language-learning/pronunciation_assessment.py).
+For how to use Pronunciation Assessment in streaming mode in your own application, see [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/scenarios/python/console/language-learning/pronunciation_assessment.py#:~:text=def%20pronunciation_assessment_from_stream()), or try the [Azure AI Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit).
 
 ::: zone-end
 
 ::: zone pivot="programming-language-javascript"
 
-For how to use Pronunciation Assessment in streaming mode in your own application, see [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/js/node/pronunciationAssessment.js).
+For how to use Pronunciation Assessment in streaming mode in your own application, see [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/scenarios/javascript/node/language-learning/pronunciationAssessment.js).
 
 ::: zone-end
 
 ::: zone pivot="programming-language-objectivec"
 
-For how to use Pronunciation Assessment in streaming mode in your own application, see [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/objective-c/ios/speech-samples/speech-samples/ViewController.m#:~:text=(void)pronunciationAssessFromStream).
+For how to use Pronunciation Assessment in streaming mode in your own application, see [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/scenarios/objective-c/ios/language-learning/speech-samples/ViewController.m#:~:text=(void)pronunciationAssessFromStream).
 
 ::: zone-end
 
 ::: zone pivot="programming-language-swift"
 
-For how to use Pronunciation Assessment in streaming mode in your own application, see [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/swift/ios/speech-samples/speech-samples/ViewController.swift#:~:text=func%20pronunciationAssessmentWithStream()).
+For how to use Pronunciation Assessment in streaming mode in your own application, see [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/scenarios/swift/ios/language-learning/speech-samples/ViewController.swift#:~:text=func%20pronunciationAssessmentWithStream()).
 
 ::: zone-end
 
@@ -84,47 +84,49 @@ For how to use Pronunciation Assessment in streaming mode in your own applicatio
 
 ::: zone pivot="programming-language-csharp"
 
-If your audio file exceeds 30 seconds, use continuous mode for processing. The sample code for continuous mode can be found on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/csharp/sharedcontent/console/speech_recognition_samples.cs) under the function `PronunciationAssessmentContinuousWithFile`.
+If your audio file exceeds 30 seconds, use continuous mode for processing. In continuous mode, the `EnableMiscue` option is not supported. To obtain `Omission` and `Insertion` tags, you need to compare the recognized results with the reference text. You can find a sample implementation for continuous mode on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/scenarios/csharp/sharedcontent/console/speech_recognition_samples.cs) under the function `PronunciationAssessmentContinuousWithFile`.
 
 ::: zone-end
 
 ::: zone pivot="programming-language-cpp"
 
-If your audio file exceeds 30 seconds, use continuous mode for processing.
+If your audio file exceeds 30 seconds, use continuous mode for processing. In continuous mode, the `EnableMiscue` option is not supported. To obtain `Omission` and `Insertion` tags, you need to compare the recognized results with the reference text.
 
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
 
-If your audio file exceeds 30 seconds, use continuous mode for processing. The sample code for continuous mode can be found on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/java/jre/console/src/com/microsoft/cognitiveservices/speech/samples/console/SpeechRecognitionSamples.java) under the function `pronunciationAssessmentContinuousWithFile`.
+If your audio file exceeds 30 seconds, use continuous mode for processing. In continuous mode, the `EnableMiscue` option is not supported. To obtain `Omission` and `Insertion` tags, you need to compare the recognized results with the reference text. You can find a sample implementation for continuous mode on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/scenarios/java/jre/console/language-learning/src/com/microsoft/cognitiveservices/speech/samples/console/SpeechRecognitionSamples.java) under the function `pronunciationAssessmentContinuousWithFile`.
 
 ::: zone-end
 
 ::: zone pivot="programming-language-python"
 
-If your audio file exceeds 30 seconds, use continuous mode for processing. The sample code for continuous mode can be found on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/scenarios/python/console/language-learning/pronunciation_assessment.py) under the function `pronunciation_assessment_continuous_from_file`.
+If your audio file exceeds 30 seconds, use continuous mode for processing. In continuous mode, the `EnableMiscue` option is not supported. To obtain `Omission` and `Insertion` tags, you need to compare the recognized results with the reference text. You can find a sample implementation for continuous mode on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/scenarios/python/console/language-learning/pronunciation_assessment.py) under the function `pronunciation_assessment_continuous_from_file`, or try the [Azure AI Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit).
 
 ::: zone-end
 
 ::: zone pivot="programming-language-javascript"
 
-If your audio file exceeds 30 seconds, use continuous mode for processing. The sample code for continuous mode can be found on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/261160e26dfcae4c3aee93308d58d74e36739b6f/samples/js/node/pronunciationAssessmentContinue.js).
+If your audio file exceeds 30 seconds, use continuous mode for processing. In continuous mode, the `EnableMiscue` option is not supported. To obtain `Omission` and `Insertion` tags, you need to compare the recognized results with the reference text. You can find a sample implementation for continuous mode on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/scenarios/javascript/node/language-learning/pronunciationAssessmentContinue.js).
 
 ::: zone-end
 
 ::: zone pivot="programming-language-objectivec"
 
-If your audio file exceeds 30 seconds, use continuous mode for processing. The sample code for continuous mode can be found on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/objective-c/ios/speech-samples/speech-samples/ViewController.m) under the function `pronunciationAssessFromFile`.
+If your audio file exceeds 30 seconds, use continuous mode for processing. In continuous mode, the `EnableMiscue` option is not supported. To obtain `Omission` and `Insertion` tags, you need to compare the recognized results with the reference text. You can find a sample implementation for continuous mode on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/objective-c/ios/speech-samples/speech-samples/ViewController.m) under the function `pronunciationAssessFromFile`.
 
 ::: zone-end
 
 ::: zone pivot="programming-language-swift"
 
-If your audio file exceeds 30 seconds, use continuous mode for processing. The sample code for continuous mode can be found on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/swift/ios/speech-samples/speech-samples/ViewController.swift) under the function `continuousPronunciationAssessment`.
+If your audio file exceeds 30 seconds, use continuous mode for processing. In continuous mode, the `EnableMiscue` option is not supported. To obtain `Omission` and `Insertion` tags, you need to compare the recognized results with the reference text. You can find a sample implementation for continuous mode on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/scenarios/swift/ios/language-learning/speech-samples/ViewController.swift) under the function `continuousPronunciationAssessment`.
 
 ::: zone-end
 
 ::: zone pivot="programming-language-go"
+
+If your audio file exceeds 30 seconds, use continuous mode for processing. Please note that pronunciation assessment is not supported in the Speech SDK for Go. To enable this feature, select a different programming language for your solution.
 
 ::: zone-end
 
@@ -420,7 +422,7 @@ speechRecognizer.recognizeOnceAsync((speechRecognitionResult: SpeechSDK.SpeechRe
 {});
 ```
 
-To learn how to specify the learning language for pronunciation assessment in your own application, see [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/js/node/pronunciationAssessmentContinue.js#LL37C4-L37C52).
+To learn how to specify the learning language for pronunciation assessment in your own application, see [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/node).
 
 ::: zone-end
 
@@ -519,7 +521,7 @@ This table lists some of the key pronunciation assessment results for the script
 This table lists some of the key pronunciation assessment results for the unscripted assessment, or speaking scenario.
 
 > [!NOTE]
-> Prosody assessment is only available in the [en-US](./language-support.md?tabs=pronunciation-assessment) locale.
+> Prosody assessment is only available in the [en-US](./language-support.md?tabs=pronunciation-assessment) locale. For unscripted assessment, the speech-to-text (STT) model used is different from Azure STT. If you need assessment based on highly accurate recognized text, we recommend first calling Azure STT to obtain the reference text, and then performing scripted assessment.
 
 | Response parameter | Description | Granularity |
 |:-------------------|:------------|:------------|
@@ -1106,9 +1108,9 @@ This formula provides a weighted calculation based on the importance of each sco
 ## Content assessment
 
 > [!IMPORTANT]
-> Content assessment (preview) via the Speech SDK will be retired in July 2025. Instead, you can use the Azure OpenAI in Azure AI Foundry Models to get content assessment results as described in this section.
+> Content assessment (preview) is retired from Speech SDK versions 1.46.0 and later. As an alternative, you can use Azure OpenAI in Azure AI Foundry Models to get content assessment results as described in this section.
 
-For some recognized speech, you might also want to get content assessment results for vocabulary, grammar, and topic relevance. You can use a chat model such as Azure OpenAI `gpt-4o` to get the content assessment results. For more information about using chat models, see [Azure OpenAI models](../openai/concepts/models.md) and the Azure AI Model Inference API [chat completions reference documentation](/rest/api/aifoundry/model-inference/get-chat-completions/get-chat-completions).
+For some recognized speech, you might also want to get content assessment results for vocabulary, grammar, and topic relevance. You can use a chat model such as Azure OpenAI `gpt-4o` to get the content assessment results. For more information about using chat models, see [Azure OpenAI models](../../ai-foundry/openai/concepts/models.md) and the Azure AI Model Inference API [chat completions reference documentation](/rest/api/aifoundry/model-inference/get-chat-completions/get-chat-completions).
 
 The user and system messages are used to set the context for the chat model. In the following example, the user message contains the essay to be assessed, and the system message provides instructions on how to evaluate the essay.
 

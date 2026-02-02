@@ -17,13 +17,10 @@ items:
   items:
   - name: Create an AI Foundry resource
     href: multi-service-resource.md
-    displayName: applied, cognitive, form
-  - name: Create an AI Foundry resource using Bicep
-    href: create-account-bicep.md
+  - name: Use Azure AI Foundry with Azure AI Search skills
+    href: multi-services-resource-search-skills.md
   - name: Create an AI Foundry resource using an ARM template
     href: create-account-resource-manager-template.md
-  - name: Create an AI Foundry resource using Terraform
-    href: create-account-terraform.md
 - name: How-to
   items:
   - name: Plan and manage costs
@@ -54,8 +51,6 @@ items:
         href: ./containers/container-reuse-recipe.md
       - name: Deploy to Azure Container Instance
         href: ./containers/azure-container-instance-recipe.md
-      - name: Deploy to Azure Kubernetes
-        href: ./containers/azure-kubernetes-recipe.md
       - name: Deploy with Docker Compose
         href: ./containers/docker-compose-recipe.md
     - name: Other Container Services
@@ -138,7 +133,7 @@ items:
   - name: Azure Government
     href: /azure/azure-government/compare-azure-government-global-azure
   - name: Videos
-    href: https://azure.microsoft.com/resources/videos/index/?services=cognitive-services
+    href: https://azure.microsoft.com/resources/videos/?services=cognitive-services
   - name: Azure Blog
     href: https://azure.microsoft.com/blog/
   - name: Artificial Intelligence and Machine Learning Blog

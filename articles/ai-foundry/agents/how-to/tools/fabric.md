@@ -5,8 +5,9 @@ description: Learn how to perform data analytics in Azure AI Foundry Agents usin
 author: aahill
 ms.author: aahi
 manager: nitinme
-ms.date: 06/17/2025
-ms.service: azure-ai-agent-service
+ms.date: 07/09/2025
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.custom:
   - build-2025
@@ -21,9 +22,12 @@ You need to first build and publish a Fabric data agent and then connect your Fa
 
 ## Usage support
 
+> [!NOTE] 
+> The Fabric data agent only supports user identity authentication. Service Principal Name (SPN) authentication is not supported.
+
 |Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | REST API |Basic agent setup | Standard agent setup |
 |---------|---------|---------|---------|---------|---------|---------|
-| ✔️ |  |  |  | ✔️ | ✔️ | ✔️ |
+| ✔️ | ✔️ |  |  | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 * You have created and published a Fabric data agent endpoint
@@ -34,7 +38,29 @@ You need to first build and publish a Fabric data agent and then connect your Fa
 
 * Your Fabric Data Agent and Azure AI Foundry Agent need to be in the same tenant.
 
+
+* Your Azure AI Foundry Project endpoint.
+
+    [!INCLUDE [endpoint-string-portal](../../includes/endpoint-string-portal.md)]
+
+    Save this endpoint to an environment variable named `PROJECT_ENDPOINT`. 
+
+
+* The name of your Microsoft Fabric connection name. You can find it in the Azure AI Foundry portal by selecting **Management center** from the left navigation menu. Then selecting **Connected resources**.
+    
+    :::image type="content" source="../../media/tools/fabric-connection.png" alt-text="A screenshot showing the SharePoint connection name. " lightbox="../../media/tools/fabric-connection.png":::
+
+    Save this endpoint to an environment variable named `FABRIC_CONNECTION_ID`
+
+
+* The names of your model's deployment name. You can find it in **Models + Endpoints** in the left navigation menu. 
+
+    :::image type="content" source="../../media/tools/model-deployment-portal.png" alt-text="A screenshot showing the model deployment screen the AI Foundry portal." lightbox="../../media/tools/model-deployment-portal.png":::
+    
+    Save the name of your model deployment name as an environment variable named `MODEL_DEPLOYMENT_NAME`. 
+
 ## Setup  
+
 > [!NOTE]
 > * The model you selected in Azure AI Foundry Agent setup is only used for agent orchestration and response generation. It doesn't impact which model Fabric data agent uses for NL2SQL operation.
 > * To help your model invoke your Microsoft Fabric tool in the expected way, make sure you update agent instructions with descriptions of your Fabric data agent and what data it can access. An example is "for customer and product sales related data, please use the Fabric tool". We recommend using a smaller AI model such as `gpt-4o-mini`. You can also use `tool_choice` parameter in SDK or API to force Fabric tool to be invoked at each run. 
@@ -65,7 +91,7 @@ You can add the Microsoft Fabric tool to an agent programmatically using the cod
         :::image type="content" source="../../media\tools\fabric-foundry.png" alt-text="A screenshot showing the fabric connection in the Azure AI Foundry portal." lightbox="../../media\tools\fabric-foundry.png":::
 
 :::zone-end
-<!--
+
 :::zone pivot="python"
 
 ## Create a project client
@@ -74,9 +100,9 @@ Create a client object, which will contain the connection string for connecting 
 
 ```python
 import os
-from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
-from azure.ai.agents.models import FabricTool
+from azure.identity import DefaultAzureCredential
+from azure.ai.agents.models import FabricTool, ListSortOrder
 
 # Retrieve the endpoint and credentials
 project_endpoint = os.environ["PROJECT_ENDPOINT"]  # Ensure the PROJECT_ENDPOINT environment variable is set
@@ -84,8 +110,7 @@ project_endpoint = os.environ["PROJECT_ENDPOINT"]  # Ensure the PROJECT_ENDPOINT
 # Initialize the AIProjectClient
 project_client = AIProjectClient(
     endpoint=project_endpoint,
-    credential=DefaultAzureCredential(exclude_interactive_browser_credential=False),  # Use Azure Default Credential for authentication
-    api_version="latest",
+    credential=DefaultAzureCredential(),
 )
 ``` 
 
@@ -104,13 +129,14 @@ conn_id = os.environ["FABRIC_CONNECTION_ID"]  # Ensure the FABRIC_CONNECTION_ID 
 fabric = FabricTool(connection_id=conn_id)
 
 # Create an agent with the Fabric tool
+# Create an Agent with the Fabric tool and process an Agent run
 with project_client:
-    agent = project_client.agents.create_agent(
-        model=os.environ["MODEL_DEPLOYMENT_NAME"],  # Model deployment name
-        name="my-agent",  # Name of the agent
-        instructions="You are a helpful agent",  # Instructions for the agent
-        tools=fabric.definitions,  # Attach the Fabric tool
-        headers={"x-ms-enable-preview": "true"},  # Enable preview features
+    agents_client = project_client.agents
+    agent = agents_client.create_agent(
+        model=os.environ["MODEL_DEPLOYMENT_NAME"],
+        name="my-agent",
+        instructions="You are a helpful agent",
+        tools=fabric.definitions,
     )
     print(f"Created Agent, ID: {agent.id}")
 ```
@@ -134,26 +160,27 @@ print(f"Created message, ID: {message['id']}")
 ## Create a run and check the output
 
 ```python
-# Create and process an agent run in the thread
-run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
+# Create and process an Agent run in thread with tools
+run = agents_client.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
 print(f"Run finished with status: {run.status}")
 
-# Check if the run failed
 if run.status == "failed":
     print(f"Run failed: {run.last_error}")
 
-# Fetch and log all messages from the thread
-messages = project_client.agents.messages.list(thread_id=thread.id)
-for message in messages.data:
-    print(f"Role: {message.role}, Content: {message.content}")
+# Uncomment the following lines to delete the agent when done
+#agents_client.delete_agent(agent.id)
+#print("Deleted agent")
 
-# Delete the agent after use
-project_client.agents.delete_agent(agent.id)
-print("Deleted agent")
+# Fetch and log all messages
+messages = agents_client.messages.list(thread_id=thread.id, order=ListSortOrder.ASCENDING)
+for msg in messages:
+    if msg.text_messages:
+        last_text = msg.text_messages[-1]
+        print(f"{msg.role}: {last_text.text.value}")
 ```
 
 :::zone-end
--->
+
 
 <!--
 :::zone pivot="csharp"
@@ -373,7 +400,7 @@ for await (const m of messagesIterator) {
 -->
 :::zone pivot="rest"
 
-Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api#api-call-information) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`. For `API_VERSION`, make sure you are using `2025-05-15-preview`.
+Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`. For `API_VERSION`, make sure you are using `2025-05-15-preview`.
 > [!IMPORTANT]
 > The following samples are applicable if you are using **Azure AI Foundry Project** resource with Microsoft Fabric tool through REST API call
 > Your connection ID should be in this format: `/subscriptions/<sub-id>/resourceGroups/<your-rg-name>/providers/Microsoft.CognitiveServices/accounts/<your-ai-services-name>/projects/<your-project-name>/connections/<your-fabric-connection-name>`
@@ -462,4 +489,4 @@ curl --request GET \
 
 ## Next steps
 
-[See the full sample for Fabric data agent.](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/agents/sample_agents_fabric.py)
+[See the full sample for Fabric data agent.](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-agents/samples/agents_tools/sample_agents_fabric.py)

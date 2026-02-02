@@ -1,11 +1,10 @@
----
+﻿---
 title: Azure AI Foundry feature availability across clouds regions
 titleSuffix: Azure AI Foundry
 description: This article lists Azure AI Foundry feature availability across clouds regions.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: concept-article
-ms.date: 04/28/2025
+ms.date: 10/22/2025
 ms.reviewer: deeikele
 ms.author: sgilley
 author: sdgilley
@@ -20,22 +19,34 @@ ms.custom: references_regions, build-2024
 
 Azure AI Foundry is currently available in the following Azure regions. You can create [either a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)] or [!INCLUDE [hub-project-name](../includes/hub-project-name.md)] in Azure AI Foundry](../how-to/create-projects.md) in these regions.
 
+:::row:::
+    :::column:::
 - Australia East
 - Brazil South
 - Canada Central
 - Canada East
+- Central India
+- East Asia
 - East US
 - East US 2
 - France Central
 - Germany West Central
+- Italy North
+    :::column-end:::
+    :::column:::
 - Japan East
 - Korea Central
 - North Central US
+- North Europe
 - Norway East
-- Poland Central
+- Quatar Central
 - South Africa North
 - South Central US
 - South India
+- Southeast Asia
+    :::column-end:::
+    :::column:::
+- Spain Central
 - Sweden Central
 - Switzerland North
 - UAE North
@@ -45,6 +56,8 @@ Azure AI Foundry is currently available in the following Azure regions. You can 
 - West US 3
 - US Gov Virginia
 - US Gov Arizona
+:::column-end:::
+:::row-end:::
 
 ## Azure AI Foundry features
  
@@ -54,7 +67,7 @@ The following table lists the availability of Azure AI Foundry features across A
 
 | Service                        | Description                                                                                                                                          | Link                                                                                                      |
 |--------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
-| Azure OpenAI                   | Note that some models might not be available within the Azure AI Foundry model catalog.                                                              | [Azure OpenAI quotas and limits](/azure/ai-services/openai/quotas-limits)
+| Azure OpenAI                   | Note that some models might not be available within the Azure AI Foundry model catalog.                                                              | [Azure OpenAI quotas and limits](/azure/ai-foundry/openai/quotas-limits)
 | Speech capabilities            | Azure AI Speech capabilities including custom neural voice vary in regional availability due to underlying hardware availability.                     | [Speech service supported regions](../../ai-services/speech-service/regions.md)                           |
 | Standard deployment     | Some models in the model catalog can be deployed as a standard deployment.                                                      | [Region availability for models in standard deployment](../how-to/deploy-models-serverless-availability.md) |
 | Azure AI Content Safety        | To use the Content Safety APIs, you must create your Azure AI Content Safety resource in a supported region.                                           | [What is Azure AI Content Safety?](../../ai-services/content-safety/overview.md#region-availability)       |
@@ -74,7 +87,7 @@ Available to US government entities and their partners only. See more informatio
 - **Available pricing tiers:**
   - Standard. See more pricing details [here](https://azure.microsoft.com/pricing/details/ai-foundry/)
 - **Supported features:**
-  - [Azure OpenAI in Azure AI Foundry Modelss](../../ai-services/openai/azure-government.md)
+  - [Azure OpenAI in Azure AI Foundry Modelss](../openai/azure-government.md)
   - Azure AI Services
     - [Speech](../../ai-services/speech-service/regions.md)
     - Speech playground (preview)
@@ -90,7 +103,7 @@ Available to US government entities and their partners only. See more informatio
     - Content filters
     - Profanity blocklist (preview)
   - Management center
-- **Unsupported features:**
+- **Unsupported features in Azure Government regions:**
   - Serverless endpoints  
   - Content Understanding
   - Agents playground

@@ -2,10 +2,9 @@
 title: How to run an evaluation in GitHub Action 
 titleSuffix: Azure AI Foundry
 description: How to run evaluation in GitHub Action to streamline the evaluation process, allowing you to assess model performance and make informed decisions before deploying to production.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 06/1/2025
+ms.date: 09/19/2025
 ms.reviewer: hanch
 ms.author: lagayhar
 author: lgayhardt
@@ -49,7 +48,7 @@ The input of ai-agent-evals includes:
 
 - `azure-ai-project-endpoint`: The endpoint of the Azure AI project. This is used to connect to your AI project to simulate conversations with each agent, and to connect to the Azure AI evaluation SDK to perform the evaluation.
 
-# [Hub based project](#tab/hub-project)
+# [Hub-based project](#tab/hub-project)
 
 - `azure-aiproject-connection-string`: The connection string of the Azure AI project. This is used to connect to your AI project to simulate conversations with each agent, and to connect to the Azure AI evaluation SDK to perform the evaluation.
 
@@ -141,7 +140,7 @@ jobs:
 
 ```
 
-# [Hub based project](#tab/hub-project)
+# [Hub-based project](#tab/hub-project)
 
 ```YAML
 name: "AI Agent Evaluation"

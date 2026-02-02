@@ -14,6 +14,8 @@ keywords: image recognition, image recognition app, custom vision
 
 # Quickstart: Build an image classification model with the Custom Vision portal
 
+[!INCLUDE [custom-vision-retirement](includes/custom-vision-retirement.md)]
+
 This quickstart explains how to use the Custom Vision web portal to create an image classification model. Once you build a model, you can test it with new images and eventually integrate it into your own image recognition app.
 
 ## Prerequisites

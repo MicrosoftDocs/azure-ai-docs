@@ -1,10 +1,13 @@
 ---
 ms.service: azure-ai-foundry
+ms.subservice: foundry-local
 ms.custom: build-2025
 ms.topic: include
 ms.date: 05/02/2025
-ms.author: maanavdalal
-author: maanavd
+ms.author: jburchel
+ms.reviewer: maanavd
+reviewer: maanavdalal
+ms.author: jonburchel
 ---
 
 ## Prerequisites
@@ -19,13 +22,12 @@ Before starting this tutorial, you need:
 You need to install the following Python packages:
 
 ```bash
-pip install langchain[openai] 
+pip install langchain[openai]
 pip install foundry-local-sdk
 ```
 
 > [!TIP]
 > We recommend using a virtual environment to avoid package conflicts. You can create a virtual environment using either `venv` or `conda`.
-
 
 ## Create a translation application
 
@@ -37,13 +39,13 @@ from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from foundry_local import FoundryLocalManager
 
-# By using an alias, the most suitable model will be downloaded 
+# By using an alias, the most suitable model will be downloaded
 # to your end-user's device.
 # TIP: You can find a list of available models by running the
 # following command: `foundry model list`.
-alias = "phi-3-mini-4k"
+alias = "qwen2.5-0.5b"
 
-# Create a FoundryLocalManager instance. This will start the Foundry 
+# Create a FoundryLocalManager instance. This will start the Foundry
 # Local service if it is not already running and load the specified model.
 manager = FoundryLocalManager(alias)
 
@@ -84,7 +86,7 @@ print(f"Response: {ai_msg.content}")
 
 > [!NOTE]
 > One of key benefits of Foundry Local is that it **automatically** selects the most suitable model **variant** for the user's hardware. For example, if the user has a GPU, it downloads the GPU version of the model. If the user has an NPU (Neural Processing Unit), it downloads the NPU version. If the user doesn't have either a GPU or NPU, it downloads the CPU version of the model.
-    
+
 ## Run the application
 
 To run the application, open a terminal and navigate to the directory where you saved the `translation_app.py` file. Then, run the following command:

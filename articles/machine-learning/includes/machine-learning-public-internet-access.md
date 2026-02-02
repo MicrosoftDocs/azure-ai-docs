@@ -1,12 +1,12 @@
 ---
 title: Include file
 description: Include file
-author: blackmist
+author: s-polly
 ms.service: azure-machine-learning
 services: machine-learning
 ms.topic: include
 ms.date: 02/10/2025
-ms.author: larryfr
+ms.author: scottpolly
 ms.custom: include file
 ---
 

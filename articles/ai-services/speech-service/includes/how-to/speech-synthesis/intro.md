@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 08/30/2023
-ms.author: eur
+ms.author: pafarley
 ---
 
 In this how-to guide, you learn common design patterns for doing text to speech synthesis.

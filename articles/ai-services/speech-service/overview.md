@@ -2,18 +2,18 @@
 title: What is the Speech service?
 titleSuffix: Azure AI services
 description: The Speech service provides speech to text, text to speech, and speech translation capabilities with an Azure resource. Add speech to your applications, tools, and devices with the Speech SDK, Speech Studio, or REST APIs.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 3/10/2025
-ms.author: eur
+ms.date: 08/07/2025
+ms.author: pafarley
 #Customer intent: As a developer, I want to learn about the Speech service and its capabilities to add speech to my applications, tools, and devices.
 ---
 
 # What is the Speech service?
 
-The Speech service provides speech to text and text to speech capabilities with a [Speech resource](~/articles/ai-services/multi-service-resource.md?pivots=azportal). You can transcribe speech to text with high accuracy, produce natural-sounding text to speech voices, translate spoken audio, and use speaker recognition during conversations. 
+The Speech service provides speech to text and text to speech capabilities with a [Speech resource](~/articles/ai-services/multi-service-resource.md?pivots=azportal). You can transcribe speech to text with high accuracy, produce natural-sounding text to speech voices, translate spoken audio, and conduct live AI voice conversations.
 
 :::image type="content" border="false" source="media/overview/speech-features-highlight.png" alt-text="Image of tiles that highlight some Speech service features.":::
 
@@ -25,10 +25,10 @@ Speech is available for many [languages](language-support.md), [regions](regions
 
 Common scenarios for speech include:
 - [Captioning](./captioning-concepts.md): Learn how to synchronize captions with your input audio, apply profanity filters, get partial results, apply customizations, and identify spoken languages for multilingual scenarios.
-- [Audio Content Creation](text-to-speech.md#more-about-neural-text-to-speech-features): You can use neural voices to make interactions with chatbots and voice assistants more natural and engaging, convert digital texts such as e-books into audiobooks and enhance in-car navigation systems.
+- [Audio Content Creation](text-to-speech.md#more-about-neural-text-to-speech-features): You can use neural voices to make interactions with chatbots and voice agents more natural and engaging, convert digital texts such as e-books into audiobooks and enhance in-car navigation systems.
 - [Call Center](call-center-overview.md): Transcribe calls in real-time or process a batch of calls, redact personally identifying information, and extract insights such as sentiment to help with your call center use case.
 - [Language learning](language-learning-overview.md): Provide pronunciation assessment feedback to language learners, support real-time transcription for remote learning conversations, and read aloud teaching materials with neural voices.
-- [Voice assistants](voice-assistants.md): Create natural, human like conversational interfaces for their applications and experiences. The voice assistant feature provides fast, reliable interaction between a device and an assistant implementation.
+- [Voice live](voice-live.md): Create natural, human like conversational interfaces for applications and experiences. The voice live feature provides fast, reliable interaction between a human and an agent implementation.
 
 Microsoft uses Speech for many scenarios, such as captioning in Teams, dictation in Office 365, and Read Aloud in the Microsoft Edge browser. 
 
@@ -40,40 +40,10 @@ These sections summarize Speech features with links for more information.
 
 ### Speech to text
 
-Use [speech to text](speech-to-text.md) to transcribe audio into text, either in [real-time](#real-time-speech-to-text) or asynchronously with [batch transcription](#batch-transcription). 
-
-> [!TIP]
-> You can try real-time speech to text in [Speech Studio](https://aka.ms/speechstudio/speechtotexttool) without signing up or writing any code.
-
-Convert audio to text from a range of sources, including microphones, audio files, and blob storage. Use speaker diarization to determine who said what and when. Get readable transcripts with automatic formatting and punctuation. 
+Use [speech to text](speech-to-text.md) to convert audio into text - whether through [real-time transcription](get-started-speech-to-text.md) for streaming audio, [fast transcription](fast-transcription-create.md) for pre-recorded audio files, or [batch transcription](batch-transcription.md) for processing large volumes of audio asynchronously.
 
 The base model might not be sufficient if the audio contains ambient noise or includes numerous industry and domain-specific jargon. In these cases, you can create and train [custom speech models](custom-speech-overview.md) with acoustic, language, and pronunciation data. Custom speech models are private and can offer a competitive advantage. 
 
-### Real-time speech to text
-
-With [real-time speech to text](get-started-speech-to-text.md), the audio is transcribed as speech is recognized from a microphone or file. Use real-time speech to text for applications that need to transcribe audio in real-time such as:
-- Transcriptions, captions, or subtitles for live meetings
-- [Diarization](get-started-stt-diarization.md)
-- [Pronunciation assessment](how-to-pronunciation-assessment.md)
-- Contact center agents assist
-- Dictation
-- Voice agents
-
-## Fast transcription API
-
-Fast transcription API is used to transcribe audio files with returning results synchronously and much faster than real-time audio. Use fast transcription in the scenarios that you need the transcript of an audio recording as quickly as possible with predictable latency, such as: 
-
-- Quick audio or video transcription, subtitles, and edit. 
-- Video translation 
-
-To get started with fast transcription, see [use the fast transcription API](fast-transcription-create.md).
-
-### Batch transcription
-
-[Batch transcription](batch-transcription.md) is used to transcribe a large amount of audio in storage. You can point to audio files with a shared access signature (SAS) URI and asynchronously receive transcription results. Use batch transcription for applications that need to transcribe audio in bulk such as:
-- Transcriptions, captions, or subtitles for prerecorded audio
-- Contact center post-call analytics
-- Diarization
 
 ### Text to speech
 
@@ -86,20 +56,22 @@ With [text to speech](text-to-speech.md), you can convert input text into human 
 
 [Speech translation](speech-translation.md) enables real-time, multilingual translation of speech to your applications, tools, and devices. Use this feature for speech to speech and speech to text translation.
 
+### LLM speech (preview)
+
+[LLM speech](llm-speech.md) currently supports the following speech tasks:
+- `transcribe`: Convert pre-recorded audio into text.
+- `translate`: Convert pre-recorded audio into text in a specified target language.
+  
+LLM speech uses a large-language-model-enhanced speech model that delivers improved quality, deep contextual understanding, multilingual support, and prompt-tuning capabilities. It shares the same ultra-fast inference performance as fast transcription, making it ideal for use cases such as generating captions and subtitles from audio files, summarizing meeting notes, assisting call center agents, transcribing voicemails, and more.
+
 ### Language identification
 
 [Language identification](language-identification.md) is used to identify languages spoken in audio when compared against a list of [supported languages](language-support.md). Use language identification by itself, with speech to text recognition, or with speech translation.
-
-### Speaker recognition
-[Speaker recognition](speaker-recognition-overview.md) provides algorithms that verify and identify speakers by their unique voice characteristics. Speaker recognition is used to answer the question, "Who is speaking?". 
 
 ### Pronunciation assessment
 
 [Pronunciation assessment](./how-to-pronunciation-assessment.md) evaluates speech pronunciation and gives speakers feedback on the accuracy and fluency of spoken audio. With pronunciation assessment, language learners can practice, get instant feedback, and improve their pronunciation so that they can speak and present with confidence.
 
-### Intent recognition
-
-[Intent recognition](./intent-recognition.md): Use speech to text with conversational language understanding to derive user intents from transcribed speech and act on voice commands. 
 
 ## Delivery and presence
 
@@ -119,7 +91,7 @@ The [Speech CLI](spx-overview.md) is a command-line tool for using Speech servic
 
 The [Speech SDK](./speech-sdk.md) exposes many of the Speech service capabilities you can use to develop speech-enabled applications. The Speech SDK is available in many programming languages and across all platforms.
 
-In some cases, you can't or shouldn't use the [Speech SDK](speech-sdk.md). In those cases, you can use REST APIs to access the Speech service. For example, use REST APIs for [batch transcription](batch-transcription.md) and [speaker recognition](/rest/api/speakerrecognition/) REST APIs.
+In some cases, you can't or shouldn't use the [Speech SDK](speech-sdk.md). In those cases, you can use REST APIs to access the Speech service. For example, use REST APIs for [batch transcription](batch-transcription.md).
 
 ## Get started
 
@@ -136,7 +108,6 @@ Sample code for the Speech service is available on GitHub. These samples cover c
 - [Speech to text, text to speech, and speech translation samples (SDK)](https://github.com/Azure-Samples/cognitive-services-speech-sdk)
 - [Batch transcription samples (REST)](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/batch)
 - [Text to speech samples (REST)](https://github.com/Azure-Samples/Cognitive-Speech-TTS)
-- [Voice assistant samples (SDK)](https://aka.ms/csspeech/samples)
 
 ## Responsible AI 
 
@@ -144,35 +115,28 @@ An AI system includes not only the technology, but also the people who use it, t
 
 ### Speech to text
 
-* [Transparency note and use cases](/legal/cognitive-services/speech-service/speech-to-text/transparency-note?context=/azure/ai-services/speech-service/context/context)
-* [Characteristics and limitations](/legal/cognitive-services/speech-service/speech-to-text/characteristics-and-limitations?context=/azure/ai-services/speech-service/context/context)
-* [Integration and responsible use](/legal/cognitive-services/speech-service/speech-to-text/guidance-integration-responsible-use?context=/azure/ai-services/speech-service/context/context)
-* [Data, privacy, and security](/legal/cognitive-services/speech-service/speech-to-text/data-privacy-security?context=/azure/ai-services/speech-service/context/context)
+* [Transparency note and use cases](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note)
+* [Characteristics and limitations](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note)
+* [Integration and responsible use](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note)
+* [Data, privacy, and security](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/data-privacy-security)
 
 ### Pronunciation Assessment
 
-* [Transparency note and use cases](/legal/cognitive-services/speech-service/pronunciation-assessment/transparency-note-pronunciation-assessment?context=/azure/ai-services/speech-service/context/context)
-* [Characteristics and limitations](/legal/cognitive-services/speech-service/pronunciation-assessment/characteristics-and-limitations-pronunciation-assessment?context=/azure/ai-services/speech-service/context/context)
+* [Transparency note and use cases](/azure/ai-foundry/responsible-ai/speech-service/pronunciation-assessment/transparency-note-pronunciation-assessment)
+* [Characteristics and limitations](/azure/ai-foundry/responsible-ai/speech-service/pronunciation-assessment/characteristics-and-limitations-pronunciation-assessment)
 
 ### Custom voice
 
-* [Transparency note and use cases](/legal/cognitive-services/speech-service/custom-neural-voice/transparency-note-custom-neural-voice?context=/azure/ai-services/speech-service/context/context)
-* [Characteristics and limitations](/legal/cognitive-services/speech-service/custom-neural-voice/characteristics-and-limitations-custom-neural-voice?context=/azure/ai-services/speech-service/context/context)
-* [Limited access](/legal/cognitive-services/speech-service/custom-neural-voice/limited-access-custom-neural-voice?context=/azure/ai-services/speech-service/context/context)
-* [Responsible deployment of synthetic speech](/legal/cognitive-services/speech-service/custom-neural-voice/concepts-guidelines-responsible-deployment-synthetic?context=/azure/ai-services/speech-service/context/context)
-* [Disclosure of voice talent](/legal/cognitive-services/speech-service/disclosure-voice-talent?context=/azure/ai-services/speech-service/context/context)
-* [Disclosure of design guidelines](/legal/cognitive-services/speech-service/custom-neural-voice/concepts-disclosure-guidelines?context=/azure/ai-services/speech-service/context/context)
-* [Disclosure of design patterns](/legal/cognitive-services/speech-service/custom-neural-voice/concepts-disclosure-patterns?context=/azure/ai-services/speech-service/context/context)
-* [Code of conduct](/legal/cognitive-services/speech-service/tts-code-of-conduct?context=/azure/ai-services/speech-service/context/context)
-* [Data, privacy, and security](/legal/cognitive-services/speech-service/custom-neural-voice/data-privacy-security-custom-neural-voice?context=/azure/ai-services/speech-service/context/context)
+* [Transparency note and use cases](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note)
+* [Characteristics and limitations](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note)
+* [Limited access](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/limited-access)
+* [Responsible deployment of synthetic speech](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note)
+* [Disclosure of voice talent](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/disclosure-voice-talent)
+* [Disclosure of design guidelines](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-guidelines)
+* [Disclosure of design patterns](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-patterns)
+* [Code of conduct](/azure/ai-foundry/responsible-use-of-ai-overview)
+* [Data, privacy, and security](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security)
 
-### Speaker Recognition
-
-* [Transparency note and use cases](/legal/cognitive-services/speech-service/speaker-recognition/transparency-note-speaker-recognition?context=/azure/ai-services/speech-service/context/context)
-* [Characteristics and limitations](/legal/cognitive-services/speech-service/speaker-recognition/characteristics-and-limitations-speaker-recognition?context=/azure/ai-services/speech-service/context/context)
-* [Limited access](/legal/cognitive-services/speech-service/speaker-recognition/limited-access-speaker-recognition?context=/azure/ai-services/speech-service/context/context)
-* [General guidelines](/legal/cognitive-services/speech-service/speaker-recognition/guidance-integration-responsible-use-speaker-recognition?context=/azure/ai-services/speech-service/context/context)
-* [Data, privacy, and security](/legal/cognitive-services/speech-service/speaker-recognition/data-privacy-speaker-recognition?context=/azure/ai-services/speech-service/context/context)
 
 ## Next steps
 

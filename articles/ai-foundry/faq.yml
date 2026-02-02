@@ -3,7 +3,6 @@ metadata:
   title: Azure AI Foundry frequently asked questions
   titleSuffix: Azure AI Foundry
   description: Get answers to the most popular questions about Azure AI services.
-  manager: scottpolly
   ms.service: azure-ai-foundry
   ms.custom:
     - build-2024
@@ -14,7 +13,7 @@ metadata:
   author: sdgilley
 title: Azure AI Foundry frequently asked questions
 summary: |
-  FAQ for [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). If you can't find answers to your questions in this document, and still need help check the [Azure AI services support options guide](../ai-services/cognitive-services-support-options.md?context=/azure/ai-services/openai/context/context). Azure OpenAI is part of Azure AI services.
+  FAQ for [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). If you can't find answers to your questions in this document, and still need help check the [Azure AI services support options guide](../ai-services/cognitive-services-support-options.md?context=/azure/ai-foundry/openai/context/context). Azure OpenAI is part of Azure AI services.
 sections:
   - name: General questions
     questions:
@@ -51,9 +50,9 @@ sections:
         answer: |
           Prompt templates in prompt flow provide robust examples and instructions for avoiding prompt injection attacks in the application. Azure AI Content Safety helps detect offensive or inappropriate content in text and images. Content moderation also checks for jailbreaks.
       - question: |
-          What is the billing model for standard deployments? 
+          What is the billing model for serverless API deployments? 
         answer: |
-          Azure AI Foundry offers standard deployment models and hosted fine-tuning for [Llama 2 family models](how-to/deploy-models-llama.md). Currently, there's no extra charge for Azure AI Foundry outside of typical AI services and other Azure resource charges.
+          Azure AI Foundry offers serverless API deployment models and hosted fine-tuning for [Llama 2 family models](how-to/deploy-models-llama.md). Currently, there's no extra charge for Azure AI Foundry outside of typical AI services and other Azure resource charges.
       - question: |
           Can all models be secured with content filtering? 
         answer: |
@@ -61,7 +60,7 @@ sections:
       - question: |
           Do you use my company data to train any of the models? 
         answer: |
-          Azure OpenAI doesn't use customer data to retrain models. For more information, see the [Azure OpenAI data, privacy, and security guide](/legal/cognitive-services/openai/data-privacy?context=/azure/ai-services/openai/context/context).    
+          Azure OpenAI doesn't use customer data to retrain models. For more information, see the [Azure OpenAI data, privacy, and security guide](/azure/ai-foundry/responsible-ai/openai/data-privacy).    
   - name: Learning more and where to ask questions
     questions:
       - question: |

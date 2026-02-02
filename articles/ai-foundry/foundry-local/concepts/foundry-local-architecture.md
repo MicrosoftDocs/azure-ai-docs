@@ -2,32 +2,35 @@
 title: Foundry Local architecture
 titleSuffix: Foundry Local
 description: Learn about the architecture and components of Foundry Local
-manager: scottpolly
 ms.service: azure-ai-foundry
+ms.subservice: foundry-local
 ms.custom: build-2025
 ms.topic: concept-article
-ms.date: 05/20/2025
-ms.author: samkemp
-author: samuel100
+ms.author: jburchel
+ms.reviewer: samkemp
+author: jonburchel
+reviewer: samuel100
+ms.date: 10/01/2025
+ai-usage: ai-assisted
 ---
 
 # Foundry Local architecture
 
 [!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 
-Foundry Local enables efficient, secure, and scalable AI model inference directly on your devices. This article explains the core components of Foundry Local and how they work together to deliver AI capabilities.
+Foundry Local enables efficient, secure, and scalable AI model inference directly on your device. This article explains the core components of Foundry Local and how they work together to deliver AI capabilities.
 
-Key benefits of Foundry Local include:
+Foundry Local offers these key benefits:
 
 > [!div class="checklist"]
 >
-> - **Low Latency**: Run models locally to minimize processing time and deliver faster results.
-> - **Data Privacy**: Process sensitive data locally without sending it to the cloud, helping meet data protection requirements.
+> - **Low latency**: Run models locally to minimize processing time and deliver faster results.
+> - **Data privacy**: Process sensitive data locally without sending it to the cloud, helping meet data protection requirements.
 > - **Flexibility**: Support for diverse hardware configurations lets you choose the optimal setup for your needs.
 > - **Scalability**: Deploy across various devices, from laptops to servers, to suit different use cases.
-> - **Cost-Effectiveness**: Reduce cloud computing costs, especially for high-volume applications.
-> - **Offline Operation**: Work without an internet connection in remote or disconnected environments.
-> - **Seamless Integration**: Easily incorporate into existing development workflows for smooth adoption.
+> - **Cost-effectiveness**: Reduce cloud computing costs, especially for high-volume applications.
+> - **Offline operation**: Work without an internet connection in remote or disconnected environments.
+> - **Seamless integration**: Easily incorporate into existing development workflows for smooth adoption.
 
 ## Key components
 
@@ -91,6 +94,12 @@ The hardware abstraction layer ensures that Foundry Local can run on various dev
 - **multiple _execution providers_**, such as NVIDIA CUDA, AMD, Qualcomm, Intel.
 - **multiple _device types_**, such as CPU, GPU, NPU.
 
+> [!NOTE]
+> For Intel NPU support on Windows, you need to install the [Intel NPU driver](https://www.intel.com/content/www/us/en/download/794734/intel-npu-driver-windows.html) to enable hardware acceleration.
+
+> [!NOTE]
+> For Qualcomm NPU support, you need to install the [Qualcomm NPU driver](https://softwarecenter.qualcomm.com/catalog/item/QHND). If you encounter the error `Qnn error code 5005: "Failed to load from EpContext model. qnn_backend_manager."`, this typically indicates an outdated driver or NPU resource conflicts. Try rebooting to clear NPU resource conflicts, especially after using Windows Copilot+ features.
+
 ### Developer experiences
 
 The Foundry Local architecture is designed to provide a seamless developer experience, enabling easy integration and interaction with AI models.
@@ -120,12 +129,27 @@ Foundry Local supports integration with various SDKs in most languages, such as 
 
 The AI Toolkit for Visual Studio Code provides a user-friendly interface for developers to interact with Foundry Local. It allows users to run models, manage the local cache, and visualize results directly within the IDE.
 
-- **Features**:
-  - Model management: Download, load, and run models from within the IDE.
-  - Interactive console: Send requests and view responses in real-time.
-  - Visualization tools: Graphical representation of model performance and results.
+**Features**:
 
-## Next Steps
+- Model management: Download, load, and run models from within the IDE.
+- Interactive console: Send requests and view responses in real-time.
+- Visualization tools: Graphical representation of model performance and results.
+
+**Prerequisites:**
+
+- You have installed [Foundry Local](../get-started.md) and have a model service running.
+- You have installed the [AI Toolkit for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-windows-ai-studio.windows-ai-studio) extension.
+
+**Connect Foundry Local model to AI Toolkit:**
+
+1. **Add model in AI Toolkit**: Open AI Toolkit from the activity bar of Visual Studio Code. In the 'My Models' panel, select the 'Add model for remote interface' button and then select 'Add a custom model' from the dropdown menu.
+2. **Enter the chat compatible endpoint URL**: Enter `http://localhost:PORT/v1/chat/completions` where PORT is replaced with the port number of your Foundry Local service endpoint. You can see the port of your locally running service using the CLI command `foundry service status`. Foundry Local dynamically assigns a port, so it might not always be the same.
+3. **Provide model name**: Enter the exact model name you which to use from Foundry Local, for example `phi-3.5-mini`. You can list all previously downloaded and locally cached models using the CLI command `foundry cache list` or use `foundry model list` to see all available models for local use. You’ll also be asked to enter a display name, which is only for your own local use, so to avoid confusion it’s recommended to enter the same name as the exact model name.
+4. **Authentication**: If your local setup doesn't require authentication _(which is the default for a Foundry Local setup)_, you can leave the authentication headers field blank and press Enter.
+
+After completing these steps, your Foundry Local model will appear in the 'My Models' list in AI Toolkit and is ready to be used by right-clicking on your model and select 'Load in Playground'.
+
+## Related content
 
 - [Get started with Foundry Local](../get-started.md)
 - [Integrate inferencing SDKs with Foundry Local](../how-to/how-to-integrate-with-inference-sdks.md)

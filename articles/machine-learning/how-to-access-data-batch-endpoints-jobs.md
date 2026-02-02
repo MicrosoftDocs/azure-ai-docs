@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: how-to
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.date: 12/02/2024
 ms.reviewer: cacrest
 ms.custom:
@@ -59,7 +59,7 @@ Use the Azure Machine Learning SDK for Python to sign in:
 from azure.ai.ml import MLClient
 from azure.identity import DefaultAzureCredential
 
-ml_client = MLClient.from_config(DefaultAzureCredential())
+ml_client = MLClient.from_config(credential=DefaultAzureCredential())
 ```
 
 If your configuration runs outside an Azure Machine Learning compute instance, you need to specify the workspace where the endpoint is deployed:
@@ -341,7 +341,7 @@ The following examples show how to create jobs while taking data inputs from [da
 Azure Machine Learning data assets (formerly known as datasets) are supported as inputs for jobs. Follow these steps to run a batch endpoint job that uses input data that's stored in a registered data asset in Azure Machine Learning.
 
 > [!WARNING]
-> Data assets of type table (`MLTable`) aren't currently supported.
+> Data assets of type table (MLTable) aren't currently supported for model deployments. MLTable is supported for pipeline component deployments.
 
 1. Create the data asset. In this example, it consists of a folder that contains multiple CSV files. You use batch endpoints to process the files in parallel. You can skip this step if your data is already registered as a data asset.
 

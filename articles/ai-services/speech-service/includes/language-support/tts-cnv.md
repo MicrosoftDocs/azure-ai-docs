@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
-ms.date: 02/01/2023
+ms.date: 8/1/2025
 ms.topic: include
-ms.author: eur
+ms.author: pafarley
 ms.custom: references_regions
 ---
 
@@ -13,7 +13,7 @@ ms.custom: references_regions
 | `ar-OM` | Arabic (Oman)| Professional voice |
 | `ar-SA` | Arabic (Saudi Arabia) | Professional voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multi-lingual voice primary and secondary|
 | `ar-SY` | Arabic (Syria) | Professional voice |
-| `ar-TN` |  Arabic (Tunisia)| Professional voice |
+| `ar-TN` | Arabic (Tunisia)| Professional voice |
 | `bg-BG` | Bulgarian (Bulgaria) | Professional voice |
 | `ca-ES` | Catalan | Professional voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multi-lingual voice primary and secondary|
 | `cs-CZ` | Czech (Czechia) | Professional voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multi-lingual voice primary and secondary |
@@ -25,14 +25,14 @@ ms.custom: references_regions
 | `en-AU` | English (Australia) | Professional voice<br/><br/>Custom voice lite<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multi-lingual voice primary and secondary  |
 | `en-CA` | English (Canada) | Professional voice<br/><br/>Custom voice lite<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multi-lingual voice primary and secondary  |
 | `en-GB` | English (United Kingdom) | Professional voice<br/><br/>Custom voice lite<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multi-lingual voice primary and secondary  |
-| `en-IE` | English (Ireland) | Professional voice<br/><br/>Cross-lingual voice target<br/><br/>Multi-lingual voice secondary |
+| `en-IE` | English (Ireland) | Professional voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multi-lingual voice primary and secondary |
 | `en-IN` | English (India) | Professional voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multi-lingual voice primary and secondary |
 | `en-KE` | English (Kenya)  | Professional voice |
 | `en-NG` |English (Nigeria)  | Professional voice |
 | `en-NZ` |English (New Zealand) | Professional voice |
 | `en-PH` | English (Philippines) | Professional voice |
 | `en-SG` | English (Singapore) | Professional voice |
-| `en-TZ` |  English (Tanzania) | Professional voice |
+| `en-TZ` | English (Tanzania) | Professional voice |
 | `en-US` | English (United States) | Professional voice<br/><br/>Custom voice lite<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multi-lingual voice primary and secondary<br/><br/>HD voice |
 | `en-ZA` |English (South Africa) | Professional voice |
 | `es-AR` |Spanish (Argentina)| Professional voice |
@@ -42,15 +42,15 @@ ms.custom: references_regions
 | `es-MX` | Spanish (Mexico) | Professional voice<br/><br/>Custom voice lite<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multi-lingual voice primary and secondary |
 | `es-US` | Spanish (United States)| Professional voice|
 | `fi-FI` | Finnish (Finland) | Professional voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multi-lingual voice primary and secondary |
-| `fr-BE` | French (Belgium) | Professional voice<br/><br/>Cross-lingual voice target<br/><br/>Multi-lingual voice secondary |
+| `fr-BE` | French (Belgium) | Professional voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multi-lingual voice primary and secondary |
 | `fr-CA` | French (Canada) | Professional voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multi-lingual voice primary and secondary  |
 | `fr-CH` | French (Switzerland) | Professional voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multi-lingual voice primary and secondary|
 | `fr-FR` | French (France) | Professional voice<br/><br/>Custom voice lite<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multi-lingual voice primary and secondary |
 | `he-IL` | Hebrew (Israel) | Professional voice<br/><br/>Multi-style voice |
 | `hi-IN` | Hindi (India) | Professional voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multi-lingual voice primary and secondary  |
-| `hr-HR` | Croatian (Croatia) | Professional voice |
+| `hr-HR` | Croatian (Croatia) | Professional voice<br/><br/>Multi-style voice |
 | `hu-HU` | Hungarian (Hungary) | Professional voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multi-lingual voice primary and secondary  |
-| `id-ID` | Indonesian (Indonesia) | Professional voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-lingual voice primary and secondary  |
+| `id-ID` | Indonesian (Indonesia) | Professional voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multi-lingual voice primary and secondary  |
 | `it-IT` | Italian (Italy) | Professional voice<br/><br/>Custom voice lite<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multi-lingual voice primary and secondary |
 | `ja-JP` | Japanese (Japan) | Professional voice<br/><br/>Custom voice lite<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multi-lingual voice primary and secondary|
 | `ko-KR` | Korean (Korea) | Professional voice<br/><br/>Custom voice lite<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multi-lingual voice primary and secondary |
@@ -64,11 +64,11 @@ ms.custom: references_regions
 | `ro-RO` | Romanian (Romania) | Professional voice<br/><br/>Multi-style voice |
 | `ru-RU` | Russian (Russia) | Professional voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multi-lingual voice primary and secondary  |
 | `sk-SK` | Slovak (Slovakia) | Professional voice<br/><br/>Multi-style voice |
-| `sl-SI` | Slovenian (Slovenia) | Professional voice |
+| `sl-SI` | Slovenian (Slovenia) | Professional voice<br/><br/>Multi-style voice |
 | `sv-SE` | Swedish (Sweden) | Professional voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multi-lingual voice primary and secondary |
 | `ta-IN` | Tamil (India) | Professional voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-lingual voice primary and secondary |
-| `ta-MY` |Tamil (Malaysia)| Professional voice|
-| `te-IN` | Telugu (India) | Professional voice |
+| `ta-MY` |Tamil (Malaysia)| Professional voice<br/><br/>Multi-style voice|
+| `te-IN` | Telugu (India) | Professional voice<br/><br/>Multi-style voice |
 | `th-TH` | Thai (Thailand) | Professional voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multi-lingual voice primary and secondary|
 | `tr-TR` | Turkish (Türkiye) | Professional voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multi-lingual voice primary and secondary |
 | `vi-VN` | Vietnamese (Vietnam) | Professional voice<br/><br/>Multi-style voice |

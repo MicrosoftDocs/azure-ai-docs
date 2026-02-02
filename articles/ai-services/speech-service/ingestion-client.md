@@ -2,12 +2,12 @@
 title: Ingestion Client - Speech service
 titleSuffix: Azure AI services
 description: Learn about a tool released on GitHub that enables customers push audio files to Speech service easily and quickly 
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
-ms.date: 3/10/2025
-ms.author: eur
+ms.date: 08/07/2025
+ms.author: pafarley
 #Customer intent: As a developer, I want to learn about the Ingestion Client tool that helps me quickly deploy a call center transcription solution to Azure with a no-code approach.
 ---
 
@@ -23,7 +23,7 @@ Ingestion Client uses the [Azure AI Language](../language-service/index.yml), [A
 ## Get started with the Ingestion Client
 
 An Azure account and a multi-service Azure AI Foundry resource are needed to run the Ingestion Client.
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 * <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry"  title="Create an AI Foundry resource"  target="_blank">Create an AI Foundry resource</a> in the Azure portal.
 * Get the resource key and region. After your resource is deployed, select **Go to resource** to view and manage keys. For more information about Azure AI Foundry resources, see [this quickstart](~/articles/ai-services/multi-service-resource.md?pivots=azportal). 
 

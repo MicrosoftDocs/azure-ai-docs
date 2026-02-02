@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: quickstart
-ms.date: 01/29/2025
+ms.date: 09/02/2025
 ms.author: pafarley
 zone_pivot_groups: programming-languages-content-safety-foundry-rest
 #customer intent: As a developer, I want to create custom content categories so that I can train the Content Safety model for specific use cases.

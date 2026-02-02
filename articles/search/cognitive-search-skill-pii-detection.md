@@ -2,7 +2,6 @@
 title: PII Detection cognitive skill
 titleSuffix: Azure AI Search
 description: Extract and mask personal information from text in an enrichment pipeline in Azure AI Search.
-
 manager: nitinme
 author: gmndrg
 ms.author: gimondra
@@ -11,6 +10,7 @@ ms.custom:
   - ignite-2023
 ms.topic: reference
 ms.date: 02/22/2024
+ms.update-cycle: 365-days
 ---
 
 # Personally Identifiable Information (PII) Detection cognitive skill

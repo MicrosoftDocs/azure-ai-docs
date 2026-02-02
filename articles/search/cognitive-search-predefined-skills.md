@@ -10,26 +10,27 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: concept-article
-ms.date: 03/11/2025
+ms.date: 10/23/2025
+ms.update-cycle: 365-days
 ---
 
 # Skills for extra processing during indexing (Azure AI Search)
 
-This article describes the skills in Azure AI Search that you can include in a [skillset](cognitive-search-working-with-skillsets.md) to access external processing. 
+This article describes the skills in Azure AI Search that you can include in a [skillset](cognitive-search-working-with-skillsets.md) to access external processing.
 
-A *skill* is an atomic operation that transforms content in some way. Often, it's an operation that recognizes or extracts text, but it can also be a utility skill that reshapes the enrichments that are already created. Typically, the output is either text-based so that it can be used in [full text search](search-lucene-query-architecture.md), or vectors used in [vector search](vector-search-overview.md).
+A *skill* is an atomic operation that transforms content in some way. Often, it's an operation that recognizes or extracts text, but it can also be a utility skill that reshapes existing enrichments. The output is usually text-based for use in [full-text search](search-lucene-query-architecture.md) or vectors for use in [vector search](vector-search-overview.md).
 
-Skills are organized into categories:
+Skills are organized into the following categories:
 
-* A *built-in skill* wraps API calls to an Azure AI resource, where the inputs, outputs, and processing steps are well understood. For skills that call an Azure AI resource, the connection is made over the internal network. For skills that call Azure OpenAI, you provide the connection information that the search service uses to connect to the resource. A small quantity of processing is non-billable, but at larger volumes, processing is billable. Built-in skills are based on pretrained models from Microsoft, which means you can't train the model using your own training data.
+* A *built-in skill* wraps API calls to an Azure AI resource, where the inputs, outputs, and processing steps are well understood. For skills that call an Azure AI resource, the connection is made over the internal network. For skills that run AI workloads on your own Azure-hosted models or services, you provide the connection information that the search service uses to connect to the resource. A small quantity of processing is nonbillable, but at larger volumes, processing is billable. Built-in skills are based on pretrained models from Microsoft, which means you can't train the model using your own training data.
 
 * A *custom skill* provides custom code that executes externally to the search service. It's accessed through a URI. Custom code is often made available through an Azure function app. To attach an open-source or third-party vectorization model, use a custom skill.
 
-* A *utility* is internal to Azure AI Search, with no dependency on external resources or outbound connections. Most utilities are non-billable.
+* A *utility* is internal to Azure AI Search, with no dependency on external resources or outbound connections. Most utilities are nonbillable.
 
 ## Azure AI resource skills
 
-Skills that call the Azure AI are billed at the Standard rate when you [attach an AI service resource](cognitive-search-attach-cognitive-services.md).
+Skills that call Azure AI are billed at the Standard rate when you [attach an Azure AI services multi-service resource](cognitive-search-attach-cognitive-services.md).
 
 | OData type  | Description | Metered by |
 |-------|-------------|-------------|
@@ -46,25 +47,13 @@ Skills that call the Azure AI are billed at the Standard rate when you [attach a
 | [Microsoft.Skills.Vision.VectorizeSkill](cognitive-search-skill-vision-vectorize.md) | Multimodal image and text vectorization. | Azure AI services ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) |
 | [Microsoft.Skills.Util.DocumentIntelligenceLayoutSkill](cognitive-search-skill-document-intelligence-layout.md) | Accelerate information extraction from documents. | Azure AI services ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) |
 
-## Azure OpenAI skills
+## "Bring your own capacity" skills
 
-Skills that call models deployed on Azure OpenAI are billed at the Standard rate.
+Skills that run AI workloads on your own Azure-hosted models or services are billed at the Standard rate.
 
 | OData type  | Description | Metered by |
 |-------|-------------|-------------|
 |[Microsoft.Skills.Text.AzureOpenAIEmbeddingSkill](cognitive-search-skill-azure-openai-embedding.md) | Connects to a deployed embedding model on Azure OpenAI for integrated vectorization. | Azure OpenAI ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/#pricing)) |
-
-## Utility skills
-
-Skills that execute only on Azure AI Search, iterate mostly on nodes in the enrichment cache, and are mostly non-billable.
-
-| OData type  | Description | Metered by |
-|-------|-------------|-------------|
-| [Microsoft.Skills.Util.ConditionalSkill](cognitive-search-skill-conditional.md) | Allows filtering, assigning a default value, and merging data based on a condition. | Not applicable |
-| [Microsoft.Skills.Util.DocumentExtractionSkill](cognitive-search-skill-document-extraction.md) | Extracts content from a file within the enrichment pipeline. | Azure AI Search ([pricing](https://azure.microsoft.com/pricing/details/search/)) for image extraction. |
-| [Microsoft.Skills.Text.MergeSkill](cognitive-search-skill-textmerger.md) | Consolidates text from a collection of fields into a single field.  | Not applicable |
-| [Microsoft.Skills.Util.ShaperSkill](cognitive-search-skill-shaper.md) | Maps output to a complex type (a multi-part data type, which might be used for a full name, a multi-line address, or a combination of last name and a personal identifier.) | Not applicable |
-| [Microsoft.Skills.Text.SplitSkill](cognitive-search-skill-textsplit.md) | Splits text into pages so that you can enrich or augment content incrementally. | Not applicable |
 
 ## Custom skills
 
@@ -77,8 +66,20 @@ Skills that execute only on Azure AI Search, iterate mostly on nodes in the enri
 
 For guidance on creating a custom skill, see [Define a custom interface](cognitive-search-custom-skill-interface.md) and [Example: Creating a custom skill for AI enrichment](cognitive-search-create-custom-skill-example.md).
 
-## See also
+## Utility skills
 
-+ [How to define a skillset](cognitive-search-defining-skillset.md)
-+ [Custom Skills interface definition](cognitive-search-custom-skill-interface.md)
-+ [Tutorial: Enriched indexing with AI](cognitive-search-tutorial-blob.md)
+Skills that execute only on Azure AI Search, iterate mostly on nodes in the enrichment cache, and are mostly nonbillable.
+
+| OData type  | Description | Metered by |
+|-------|-------------|-------------|
+| [Microsoft.Skills.Util.ConditionalSkill](cognitive-search-skill-conditional.md) | Allows filtering, assigning a default value, and merging data based on a condition. | Not applicable |
+| [Microsoft.Skills.Util.DocumentExtractionSkill](cognitive-search-skill-document-extraction.md) | Extracts content from a file within the enrichment pipeline. | Azure AI Search ([pricing](https://azure.microsoft.com/pricing/details/search/)) for image extraction. |
+| [Microsoft.Skills.Text.MergeSkill](cognitive-search-skill-textmerger.md) | Consolidates text from a collection of fields into a single field.  | Not applicable |
+| [Microsoft.Skills.Util.ShaperSkill](cognitive-search-skill-shaper.md) | Maps output to a complex type (a multi-part data type, which might be used for a full name, a multi-line address, or a combination of last name and a personal identifier.) | Not applicable |
+| [Microsoft.Skills.Text.SplitSkill](cognitive-search-skill-textsplit.md) | Splits text into pages so that you can enrich or augment content incrementally. | Not applicable |
+
+## Related content
+
++ [Create a skillset](cognitive-search-defining-skillset.md)
++ [Add a custom skill to an AI enrichment pipeline](cognitive-search-custom-skill-interface.md)
++ [Tutorial: Enriched indexing with AI](tutorial-skillset.md)

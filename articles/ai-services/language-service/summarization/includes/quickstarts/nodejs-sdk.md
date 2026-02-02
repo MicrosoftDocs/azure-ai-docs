@@ -2,7 +2,7 @@
 author: laujan
 ms.author: lajanuar
 manager: nitinme
-ms.date: 12/19/2023
+ms.date: 06/30/2025
 ms.service: azure-ai-language
 ms.topic: include
 ms.custom:
@@ -19,7 +19,7 @@ Use this quickstart to create a text summarization application with the client l
 
 ## Prerequisites
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 * [Node.js](https://nodejs.org/) v16 LTS
 * Once you have your Azure subscription, [create an AI Foundry resource](../../../../../ai-services/multi-service-resource.md?pivots=azportal).
     * You need the key and endpoint from the resource you create to connect your application to the API. You paste your key and endpoint into the code below later in the quickstart.

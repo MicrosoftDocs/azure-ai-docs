@@ -6,8 +6,6 @@ manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: include
 ms.date: 08/07/2023
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
 ms.author: pafarley
 ---
 
@@ -22,7 +20,7 @@ Use the optical character recognition (OCR) client library to read printed and h
 
 ## Prerequisites
 
-- An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/).
+- An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - [Python 3.x](https://www.python.org/).
 - Your Python installation should include [pip](https://pip.pypa.io/en/stable/). You can check whether you have pip installed, run `pip --version` on the command line. Get pip by installing the latest version of Python.
 - <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision" title="create a Vision resource" target="_blank">An Azure AI Vision resource</a>. You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.

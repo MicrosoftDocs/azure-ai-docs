@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: how-to
 ms.custom: UpdateFrequency5, deploy, cliv1, sdkv1, ignite-2024
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: bozhlin
 ms.date: 07/10/2024
 ---

@@ -2,12 +2,13 @@
 title: Azure OpenAI GPT-4 Turbo with Vision tool in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
 description: This article introduces you to the Azure OpenAI GPT-4 Turbo with Vision tool for flows in Azure AI Foundry portal.
-manager: scottpolly
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-prompt-flow
 ms.custom:
   - build-2024
+  - hub-only
 ms.topic: reference
-ms.date: 01/29/2025
+ms.date: 06/30/2025
 ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt

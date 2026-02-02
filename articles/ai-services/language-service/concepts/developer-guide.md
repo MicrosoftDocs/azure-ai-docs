@@ -22,7 +22,7 @@ The Language service provides support through a REST API, and client libraries i
 
 ## Client libraries (Azure SDK)
 
-The Language service provides three namespaces for using the available features. Depending on which features and programming language you're using, you'll need to download one or more of the following packages, and have the following framework/language version support:
+The Language service provides three namespaces for using the available features. Depending on which features and programming language you're using, you need to download one or more of the following packages, and have the following framework/language version support:
 
 |Framework/Language  | Minimum supported version  |
 |---------|---------|
@@ -34,13 +34,13 @@ The Language service provides three namespaces for using the available features.
 ### Azure.AI.TextAnalytics  
 
 >[!NOTE] 
-> If you're using custom named entity recognition or custom text classification, you will need to create a project and train a model before using the SDK. The SDK only provides the ability to analyze text using models you create. See the following quickstarts for information on creating a model. 
+> If you're using custom named entity recognition or custom text classification, you need to create a project and train a model before using the SDK. The SDK only allows for you to analyze text using models you create. See the following quickstarts for information on creating a model. 
 > * [Custom named entity recognition](../custom-named-entity-recognition/quickstart.md)
 > * [Custom text classification](../custom-text-classification/quickstart.md)
 
 The `Azure.AI.TextAnalytics` namespace enables you to use the following Language features. Use the following links for articles to help you send API requests using the SDK.
 
-* [Custom named entity recognition](../custom-named-entity-recognition/how-to/call-api.md?tabs=client#send-an-entity-recognition-request-to-your-model)
+* [Custom named entity recognition](../custom-named-entity-recognition/how-to/call-api.md?tabs=client)
 * [Custom text classification](../custom-text-classification/how-to/call-api.md?tabs=client-libraries#send-a-text-classification-request-to-your-model)
 * [Document summarization](../summarization/quickstart.md)
 * [Entity linking](../entity-linking/quickstart.md)
@@ -63,7 +63,7 @@ As you use these features in your application, use the following documentation a
 ### Azure.AI.Language.Conversations 
 
 > [!NOTE] 
-> If you're using conversational language understanding or orchestration workflow, you'll need to create a project and train a model before using the SDK. The SDK only provides the ability to analyze text using models you create. See the following quickstarts for more information. 
+> If you're using conversational language understanding or orchestration workflow, you need to create a project and train a model before using the SDK. The SDK only allows you to analyze text using models you create. For more information, *see*: 
 > * [Conversational language understanding](../conversational-language-understanding/quickstart.md)
 > * [Orchestration workflow](../orchestration-workflow/quickstart.md)
 
@@ -108,11 +108,11 @@ The conversation analysis authoring API enables you to author custom models and 
 * [Conversational language understanding](../conversational-language-understanding/quickstart.md?pivots=rest-api)
 * [Orchestration workflow](../orchestration-workflow/quickstart.md?pivots=rest-api)
 
-As you use this API in your application, see the [reference documentation](/rest/api/language/2023-04-01/conversational-analysis-authoring) for additional information.
+For more information, *see* the [reference documentation](/rest/api/language/2023-04-01/conversational-analysis-authoring).
 
 ### Conversation analysis runtime API
 
-The conversation analysis runtime API enables you to send requests to custom models you've created for:
+The conversation analysis runtime API enables you to send requests to custom models you create for the following features:
 * [Conversational language understanding](../conversational-language-understanding/how-to/call-api.md?tabs=REST-APIs#send-a-conversational-language-understanding-request)
 * [Orchestration workflow](../orchestration-workflow/how-to/call-api.md?tabs=REST-APIs#send-an-orchestration-workflow-request)
 
@@ -120,7 +120,7 @@ It additionally enables you to use the following features, without creating any 
 * [Conversation summarization](../summarization/quickstart.md?pivots=rest-api&tabs=conversation-summarization)
 * [Personally Identifiable Information (PII) detection for conversations](../personally-identifiable-information/how-to-call-for-conversations.md?tabs=rest-api#examples)
 
-As you use this API in your application, see the [reference documentation](/rest/api/language) for additional information.
+For more information, *see* the [reference documentation](/rest/api/language).
 
 
 ### Text analysis authoring API
@@ -129,11 +129,10 @@ The text analysis authoring API enables you to author custom models and create/m
 * [Custom named entity recognition](../custom-named-entity-recognition/quickstart.md?pivots=rest-api)
 * [Custom text classification](../custom-text-classification/quickstart.md?pivots=rest-api)
 
-As you use this API in your application, see the [reference documentation](/rest/api/language/2023-04-01/text-analysis-authoring) for additional information.
-
+For more information, *see* the [reference documentation](/rest/api/language/2023-04-01/text-analysis-authoring).
 ### Text analysis runtime API
 
-The text analysis runtime API enables you to send requests to custom models you've created for:
+The text analysis runtime API enables you to send requests to custom models you create for the following features:
 
 * [Custom named entity recognition](../custom-named-entity-recognition/quickstart.md?pivots=rest-api)
 * [Custom text classification](../custom-text-classification/quickstart.md?pivots=rest-api)
@@ -148,7 +147,7 @@ It additionally enables you to use the following features, without creating any 
 * [Sentiment analysis and opinion mining](../sentiment-opinion-mining/quickstart.md?pivots=rest-api)
 * [Text analytics for health](../text-analytics-for-health/quickstart.md?pivots=rest-api)
 
-As you use this API in your application, see the [reference documentation](https://go.microsoft.com/fwlink/?linkid=2239169) for additional information.
+For more information, *see* the [reference documentation](https://go.microsoft.com/fwlink/?linkid=2239169).
 
 ### Question answering APIs
 
@@ -156,7 +155,7 @@ The question answering APIs enables you to use the [question answering](../quest
 
 #### Reference documentation
 
-As you use this API in your application, see the following reference documentation for additional information.
+For more information, *see* the following reference documentation:
 
 * [Prebuilt API](/azure/ai-services/language-service/question-answering/how-to/prebuilt) - Use the prebuilt runtime API to answer specified question using text provided by users.
 * [Custom authoring API](/azure/ai-services/language-service/question-answering/how-to/authoring) - Create a knowledge base to answer questions.

@@ -8,14 +8,12 @@ manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: include
 ms.date: 08/07/2023
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
 ms.author: pafarley
 ---
 
 ## Prerequisites
 
-- An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/).
+- An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - [An Azure AI Vision resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision). You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 - Connect to [Vision Studio](https://portal.vision.cognitive.azure.com/).
   - You might need to sign in.

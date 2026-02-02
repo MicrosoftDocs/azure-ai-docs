@@ -7,20 +7,20 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 05/22/2025
+ms.date: 09/17/2025
 ms.custom:
   - mode-ui
 ---
 
 # Quickstart: Use Search explorer to run queries in the Azure portal
 
-In this quickstart, you learn how to use **Search explorer**, a built-in query tool in the Azure portal for running queries against an Azure AI Search index. Use it to test a query or filter expression, or confirm whether content exists in the index.
+In this quickstart, you learn how to use **Search explorer**, a built-in query tool in the Azure portal for running queries against an Azure AI Search index. Use this tool to test a query or filter expression or to confirm whether content exists in the index.
 
 This quickstart uses an existing index to demonstrate Search explorer.
 
 ## Prerequisites
 
-+ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/).
++ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 + An Azure AI Search service. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription. For this quickstart, you can use a free service.
 
@@ -30,13 +30,15 @@ This quickstart uses an existing index to demonstrate Search explorer.
 
 ## Start Search explorer
 
-1. In the [Azure portal](https://portal.azure.com), find your search service and open the **Overview** page.
+1. Sign in to the [Azure portal](https://portal.azure.com/) and select your search service.
 
-1. On the command bar, select **Search explorer**:
+1. From the left pane, select **Overview**.
 
-   :::image type="content" source="media/search-explorer/search-explorer-cmd2.png" alt-text="Screenshot of the Search explorer command in portal." border="true":::
+1. On the command bar, select **Search explorer**.
 
-   Alternatively, select the **Search explorer** tab on an open index.
+   :::image type="content" source="media/search-explorer/search-explorer-cmd.png" alt-text="Screenshot of the Search explorer command in portal." border="true":::
+
+   Alternatively, select the **Search explorer** tab on the index page.
 
    :::image type="content" source="media/search-explorer/search-explorer-tab.png" alt-text="Screenshot of the Search explorer tab." border="true" lightbox="media/search-explorer/search-explorer-tab.png":::
 
@@ -67,13 +69,15 @@ To run an image query, select or drag an image to the search area, and then sele
 The following are examples of JSON queries you can run using Search explorer. To follow these examples, switch to **JSON view**. You can paste each JSON example into the text area.
 
 > [!TIP]
-> The JSON view provides intellisense for parameter name completion. Place your cursor inside the JSON view and type a space character to see all query parameters. You can also type a letter, like "s," to see only the query parameters that begin with that letter. Intellisense doesn't exclude invalid parameters, so use your best judgment.
+> The JSON view supports intellisense for parameter name completion. Place your cursor inside the JSON view and enter a space character to see a list of all query parameters. You can also enter a letter, like `s`, to see only the query parameters that begin with that letter.
+>
+> Intellisense doesn't exclude invalid parameters, so use your best judgment.
 
 ### Run an unspecified query
 
-In Search explorer, POST requests are formulated internally using the [Search POST REST API](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-05-01-preview&preserve-view=true), with responses returned as verbose JSON documents.
+In Search explorer, POST requests are formulated internally using [Documents - Search Post (REST API)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-05-01-preview&preserve-view=true), with responses returned as verbose JSON documents.
 
-For a first look at content, execute an empty search by selecting **Search** with no terms provided. An empty search is useful as a first query because it returns entire documents so that you can review document composition. On an empty search, there's no search score and documents are returned in arbitrary order (`"@search.score": 1` for all documents). By default, 50 documents are returned in a search request.
+For a first look at content, execute an empty search by selecting **Search** with no terms provided. An empty search is useful as a first query because it returns entire documents so that you can review document composition. On an empty search, there's no search score, and documents are returned in arbitrary order (`"@search.score": 1` for all documents). By default, 50 documents are returned per search request.
 
 Equivalent syntax for an empty search is `*` or `"search": "*"`.
 
@@ -85,16 +89,16 @@ Equivalent syntax for an empty search is `*` or `"search": "*"`.
    ```
 
    **Results**
-   
+
    :::image type="content" source="media/search-explorer/search-explorer-example-empty.png" alt-text="Screenshot of unqualified or empty query example." border="true" lightbox="media/search-explorer/search-explorer-example-empty.png":::
 
 ### Run a free-text query
 
-Free-form search, with or without operators, is useful for simulating user-defined queries sent from a custom app to Azure AI Search. Only those fields attributed as "searchable" in the index definition are scanned for matches.
+Free-form search, with or without operators, is useful for simulating user-defined queries sent from a custom app to Azure AI Search. Only fields attributed as searchable in the index are scanned for matches.
 
-You don't need JSON view for a free text query, but we provide it in JSON for consistency with other examples in this article.
+You don't need the JSON view for a free-text query, but we provide it in JSON for consistency with other examples in this article.
 
-Notice that when you provide search criteria, such as query terms or expressions, search rank comes into play. The following example illustrates a free text search. The "@search.score" is a relevance score computed for the match using the [default scoring algorithm](index-ranking-similarity.md#default-scoring-algorithm).
+Notice that when you provide search criteria, such as query terms or expressions, search rank comes into play. The following example illustrates a free text search. The `@search.score` is a relevance score computed for the match using the [default scoring algorithm](index-ranking-similarity.md#default-scoring-algorithm).
 
    ```json
    {
@@ -110,7 +114,7 @@ Notice that when you provide search criteria, such as query terms or expressions
 
 ### Count matching documents
 
-Add `"count": true` to get the number of matches found in an index. On an empty search, count is the total number of documents in the index. On a qualified search, it's the number of documents matching the query input. Recall that the service returns the top 50 matches by default, so the count might indicate more matches in the index than what's returned in the results.
+Add `"count": true` to get the number of matches found in an index. On an empty search, the count is the total number of documents in the index. On a qualified search, it's the number of documents matching the query input. Recall that the service returns the top-50 matches by default, so the count might indicate more matches in the index than what's returned in the results.
 
    ```json
    {
@@ -125,7 +129,7 @@ Add `"count": true` to get the number of matches found in an index. On an empty 
 
 ### Limit fields in search results
 
-Add ["select"`](search-query-odata-select.md) to limit results to the explicitly named fields for more readable output in **Search explorer**. Only fields marked as "retrievable" in the search index can show up in results.
+Add [`"select"`](search-query-odata-select.md) to limit results to the explicitly named fields for more readable output in **Search explorer**. Only fields attributed as retrievable in the index can show up in results.
 
    ```json
    {
@@ -141,9 +145,9 @@ Add ["select"`](search-query-odata-select.md) to limit results to the explicitly
 
 ### Return next batch of results
 
-Azure AI Search returns the top 50 matches based on the search rank. To get the next set of matching documents, append `"top": 100` and `"skip": 50` to increase the result set to 100 documents (default is 50, maximum is 1000), skipping the first 50 documents. You can check the document key (listingID) to identify a document.
+Azure AI Search returns the top-50 matches based on the search rank. To get the next set of matching documents, append `"top": 100` and `"skip": 50` to increase the result set to 100 documents (default is 50, maximum is 1000), skipping the first 50 documents. You can check the document key (`listingID`) to identify a document.
 
-Recall that you need to provide search criteria, such as a query term or expression, to get ranked results. Notice that search scores decrease the deeper you reach into search results.
+Recall that you need to provide search criteria, such as a query term or expression, to get ranked results. Search scores decrease the deeper you reach into search results.
 
    ```json
    {
@@ -161,7 +165,7 @@ Recall that you need to provide search criteria, such as a query term or express
 
 ### Filter expressions (greater than, less than, equal to)
 
-Use the [`filter`](search-query-odata-filter.md) parameter to specify inclusion or exclusion criteria. The field must be attributed as "filterable" in the index. This example searches for bedrooms greater than 3:
+Use the [`filter`](search-query-odata-filter.md) parameter to specify inclusion or exclusion criteria. The field must be attributed as filterable in the index. This example searches for bedrooms greater than three:
 
    ```json
    {
@@ -178,7 +182,7 @@ Use the [`filter`](search-query-odata-filter.md) parameter to specify inclusion 
 
 ### Sort results
 
-Add [`orderby`](search-query-odata-orderby.md) to sort results by another field besides search score. The field must be attributed as "sortable" in the index. In situations where the filtered value is identical (for example, same price), the order is arbitrary, but you can add more criteria for deeper sorting. An example expression you can use to test this out is:
+Add [`orderby`](search-query-odata-orderby.md) to sort results by another field besides search score. The field must be attributed as sortable in the index. In situations where the filtered value is identical (for example, same price), the order is arbitrary, but you can add more criteria for deeper sorting. Here's an example expression you can use to test this out:
 
    ```json
    {
@@ -198,25 +202,25 @@ Add [`orderby`](search-query-odata-orderby.md) to sort results by another field 
 
 In this quickstart, you used **Search explorer** to query an index using the REST API.
 
-+ Results are returned as verbose JSON documents so that you can view document construction and content, in entirety. The `select` parameter in a query expression can limit which fields are returned.
++ Results are returned as verbose JSON documents so that you can view the construction and content of each document in its entirety. The `select` parameter in a query expression limits which fields are returned.
 
-+ Search results are composed of all fields marked as "retrievable" in the index. Select the adjacent **Fields** tab to review attributes.
++ Search results are composed of all fields attributed as retrievable in the index. Select the **Fields** tab to review attributes.
 
-+ Keyword search, similar to what you might enter in a commercial web browser, are useful for testing an end-user experience. For example, assuming the built-in real estate sample index, you could enter "Seattle apartments lake washington," and then you can use Ctrl-F to find terms within the search results.
++ Keyword search, similar to what you might enter in a commercial web browser, is useful for testing an end-user experience. For example, assuming the built-in realestate-us-sample index, you can enter `"Seattle apartments lake washington"`, and then you can use Ctrl-F to find terms within the search results.
 
 + Query and filter expressions are articulated in a syntax implemented by Azure AI Search. The default is a [simple syntax](/rest/api/searchservice/simple-query-syntax-in-azure-search), but you can optionally use [full Lucene](/rest/api/searchservice/lucene-query-syntax-in-azure-search) for more powerful queries. [Filter expressions](/rest/api/searchservice/odata-expression-syntax-for-azure-search) are articulated in an OData syntax.
 
 ## Clean up resources
 
-When you're working in your own subscription, it's a good idea at the end of a project to decide whether you still need the resources you created. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
+When you work in your own subscription, it's a good idea at the end of a project to identify whether you still need the resources you created. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
 
-You can find and manage resources in the Azure portal, using the **All resources** or **Resource groups** link in the left-navigation pane.
+In the Azure portal, you can find and manage resources by selecting **All resources** or **Resource groups** from the left pane.
 
-If you're using a free service, remember that you're limited to three indexes, indexers, and data sources. You can delete individual items in the Azure portal to stay under the limit. 
+Remember that a free search service is limited to three indexes, three indexers, and three data sources. To stay under the limit, you can delete these items individually in the Azure portal.
 
 ## Next step
 
-To learn more about query structures and syntax, use a REST client to create query expressions that use more parts of the API. The [Search POST REST API](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-05-01-preview&preserve-view=true) is especially helpful for learning and exploration.
+To learn more about query structures and syntax, use a REST client to create query expressions that use more parts of the REST API. [Documents - Search Post (REST API)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-05-01-preview&preserve-view=true) is especially helpful for learning and exploration.
 
 > [!div class="nextstepaction"]
-> [Quickstart: Create a basic query in REST](search-get-started-rest.md)
+> [Quickstart: Full-text search](search-get-started-text.md)

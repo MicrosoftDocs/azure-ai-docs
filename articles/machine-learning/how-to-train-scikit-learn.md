@@ -5,8 +5,8 @@ description: Learn how Azure Machine Learning enables you to scale out a scikit-
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: training
-ms.author: sgilley
-author: sdgilley
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: balapv
 ms.date: 03/06/2025
 ms.topic: how-to

@@ -11,4 +11,4 @@ ms.author: lajanuar
 This quickstart requires:
 
 * [Node 8.12.x or later](https://nodejs.org/en/)
-* An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
+* An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)

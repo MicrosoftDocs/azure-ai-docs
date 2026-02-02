@@ -7,9 +7,9 @@ manager: nitinme
 
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
-ms.custom:
+ms.update-cycle: 90-days
 ms.topic: conceptual
-ms.date: 02/19/2025
+ms.date: 08/21/2025
 ms.author: pafarley
 feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
@@ -20,13 +20,15 @@ This article explains the concept of Face liveness detection, its input and outp
 
 ## Introduction
 
+[![Screenshot that links to a video introduction for Microsoft Azure Face Liveness.](./media/liveness/liveness-video-cover.png)](https://www.youtube-nocookie.com/embed/3ysxiX49oxw)
+
 Face Liveness detection is used to determine if a face in an input video stream is real (live) or fake (spoofed). It's an important building block in a biometric authentication system to prevent imposters from gaining access to the system using a photograph, video, mask, or other means to impersonate another person.
 
 The goal of liveness detection is to ensure that the system is interacting with a physically present, live person at the time of authentication. These systems are increasingly important with the rise of digital finance, remote access control, and online identity verification processes.
 
 The Azure AI Face liveness detection solution successfully defends against various spoof types ranging from paper printouts, 2D/3D masks, and spoof presentations on phones and laptops. Liveness detection is an active area of research, with continuous improvements being made to counteract increasingly sophisticated spoofing attacks. Continuous improvements are rolled out to the client and the service components over time as the overall solution gets more robust to new types of attacks.
 
-The Azure Face liveness detection API is [conformant to ISO/IEC 30107-3 PAD (Presentation Attack Detection) standards](https://www.ibeta.com/wp-content/uploads/2023/11/230622-Microsoft-PAD-Level-2-Confirmation-Letter.pdf) as validated by iBeta level 1 and level 2 conformance testing.
+The Azure AI Face liveness detection API achieved a 0% penetration rate in [iBeta Level 1 and Level 2 Presentation Attack Detection (PAD) tests](https://servicetrust.microsoft.com/DocumentPage/ea3fa18f-3940-4c0b-aa96-41cb50898aee), conducted by a NIST/NVLAP-accredited laboratory and conformant to the [ISO/IEC 30107-3 PAD international standard](https://www.iso.org/standard/79520.html).
 
 ## How it works
 
@@ -58,8 +60,6 @@ You can combine face verification with liveness detection to verify that the fac
 | Liveness detection with face verification | Determine an input is real or fake and verify the identity of the person based on a reference image you provided. Either the app server or the frontend application can provide a reference image. Only the app server has the authority to initial the liveness check and query the result. |
 
 
-
-
 ## Output format
 
 The liveness detection API returns a JSON object with the following information:
@@ -74,7 +74,25 @@ We do not store any images or videos from the Face Liveness Check. No image/vide
 
 ## Security
 
-We include additional runtime application self-protections (RASP), provided by [GuardSquare]( https://www.guardsquare.com/blog/why-guardsquare), in our Mobile SDKs (iOS and Android). 
+> [!IMPORTANT]
+> It is important for developers to be aware of the security implications when choosing the right solution — either Web or Mobile. While both the Web and Mobile solutions conform to iBeta Level 1 and Level 2 ISO/IEC 30107-3 PAD standards, the Mobile solution includes additional Runtime Application Self-Protections (RASP) provided by [GuardSquare](https://www.guardsquare.com/blog/why-guardsquare), which are not available in the Web solution.<br><br>
+> Notably, the Web solution has limitations inherent to running in browser environments and may be more vulnerable to certain types of attacks. So we recommend using the Mobile solution whenever possible.<br><br>
+> If you do choose the Web solution, it is critical that you closely follow the [shared-responsibility best practices](./liveness-detection-shared-responsibility.md), ensure that the camera in use is a trusted physical device, and consider implementing additional safeguards and monitoring to mitigate potential runtime attacks.<br>
+
+## Abuse Detection
+
+We include built-in abuse detection capabilities designed to help developers identify liveness sessions that may present a high risk of fraudulent or malicious activity. The abuse detection feature performs multiple checks, including IP-based risk assessments, to provide actionable signals you can use in your own application logic or review workflows.
+
+This feature is particularly useful in high-security environments or scenarios with elevated fraud risk (e.g., account onboarding, identity verification, or remote authentication). It allows you to proactively detect suspicious activity patterns before completing verification steps.
+
+For detailed guidance on how to interpret and act on abuse detection results, see:
+[Liveness Abuse Monitoring](./concept-liveness-abuse-monitoring.md)
+
+## Network isolation
+
+Optionally, we allow network isolation capabilities to give developers more control over how liveness detection calls are made from front-end clients. With this option, you can disable public network access entirely for Liveness Detection API calls, ensuring they are only accessible within your defined private network boundaries.
+
+This capability is especially valuable in regulated or enterprise environments where compliance policies require all service calls to remain within a controlled network perimeter. It also helps reduce the attack surface by preventing direct calls from untrusted or unknown networks. [Learn more](./how-to/liveness-use-network-isolation.md)
 
 ## Support options
 

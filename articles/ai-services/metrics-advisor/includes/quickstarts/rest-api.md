@@ -7,11 +7,12 @@ ms.service: azure-ai-metrics-advisor
 ms.topic: include
 ms.date: 06/12/2025
 ms.author: mbullwin
+ms.custom: sfi-ropc-nochange
 ---
 
 ## Prerequisites
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 * Once you have your Azure subscription, <a href="https://go.microsoft.com/fwlink/?linkid=2142156"  title="Create a Metrics Advisor resource"  target="_blank">create a Metrics Advisor resource </a> in the Azure portal to deploy your Metrics Advisor instance.  
 * [Python 3.x](https://www.python.org/)
 * Your own SQL database with time series data.

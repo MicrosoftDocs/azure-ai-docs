@@ -2,11 +2,10 @@
 title: "Quickstart: Create an AI Foundry resource using Bicep"
 titleSuffix: Azure AI Foundry
 description: Learn how to use a Bicep file (template) to create an Azure AI Foundry resource in your Azure subscription.
-author: deeikele
-ms.author: larryfr
-manager: scottpolly
+ms.author: sgilley
+author: sdgilley
 reviewer: deeikele
-ms.date: 05/18/2025
+ms.date: 09/15/2025
 ms.service: azure-ai-foundry
 ms.topic: quickstart-bicep
 ms.custom:
@@ -18,13 +17,11 @@ ms.custom:
 
 # Quickstart: Create an Azure AI Foundry resource using a Bicep file
 
-[!INCLUDE [hub-only-alt](../includes/uses-hub-only-alt.md)]
-
 Use a [Microsoft Bicep](/azure/azure-resource-manager/bicep/overview) file (template) to create an [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) resource. A template makes it easy to create resources as a single, coordinated operation. A Bicep file is a text document that defines the resources that are needed for a deployment. It might also specify deployment parameters. Parameters are used to provide input values when using the file to deploy resources.
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).
+[!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 
 - A copy of the files from the GitHub repo. To clone the GitHub repo to your local machine, you can use [Git](https://git-scm.com/). Use the following command to clone the quickstart repository to your local machine and navigate to the `aifoundry-basics` directory.
 
@@ -64,14 +61,14 @@ Deploy the Bicep file using either the Azure CLI or Azure PowerShell.
 
 ```azurecli
 az group create --name exampleRG --location eastus
-az deployment group create --resource-group exampleRG --template-file main.bicep --parameters aiServicesName=myai aiProjectName=myai-proj 
+az deployment group create --resource-group exampleRG --template-file main.bicep --parameters aiFoundryName=myai aiProjectName=myai-proj 
 ```
 
 # [Azure PowerShell](#tab/powershell)
 
 ```azurepowershell
 New-AzResourceGroup -Name exampleRG -Location eastus
-New-AzResourceGroupDeployment -ResourceGroupName exampleRG -TemplateFile main.bicep -aiHubName myai -aiProjectName myai-proj
+New-AzResourceGroupDeployment -ResourceGroupName exampleRG -TemplateFile main.bicep -aiFoundryName myai -aiProjectName myai-proj
 ```
 
 ---
@@ -123,4 +120,4 @@ See the [Azure AI Foundry Samples](https://github.com/azure-ai-foundry/foundry-s
 
 ## Related content
 
-- [Get started with the SDK](../quickstarts//get-started-code.md?pivots=fdp-project)
+- [Get started with the SDK](../quickstarts//get-started-code.md)

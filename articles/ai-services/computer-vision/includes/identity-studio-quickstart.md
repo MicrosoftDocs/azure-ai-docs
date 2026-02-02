@@ -1,39 +1,38 @@
 ---
-title: "Quickstart: Face recognition using Vision Studio"
+title: "Quickstart: Face recognition using Azure AI Foundry portal"
 titleSuffix: "Azure AI services"
-description: In this quickstart, get started with the Face service using Vision Studio.
+description: In this quickstart, get started with the Face service using the Azure AI Foundry portal.
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: include
-ms.date: 06/13/2022
+ms.date: 07/28/2025
 ms.author: pafarley
 ---
 
-Use Vision Studio to identify a face. This is a streamlined version of the face identification feature: you can only train the model on a single person, and then check whether a new face matches that person. Normally, you would train the model on multiple people and then check a new image against all of them. To do the full identification scenario, use the REST API or a client SDK.
+Use Azure AI Foundry portal to detect faces in an image.
 
 ## Prerequisites
 
-* Sign in to [Vision Studio](https://portal.vision.cognitive.azure.com/) with your Azure subscription and Azure AI Foundry resource. See the [Get started section](../overview-vision-studio.md#get-started-using-vision-studio) of the overview if you need help with this step.
-* You'll need at least three images of a person's face: two or more to train the model and one to test it.
+* An Azure account. If you don't have one, you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=ai-services).
+* An [Azure AI Foundry resource](https://ms.portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/%7E/AIServices)
 
+## Setup 
 
+Go to the [Azure AI Foundry portal](https://ai.azure.com/), and sign in with your Azure account that has the AI Foundry resource.
 
-## Identify faces
+Select **Azure AI Foundry** in the top-left corner, scroll down and select **Explore Azure AI Services**, and then select **Vision + Document**. On the **Face** tab, select **Detect faces in an image**.
 
-1. Select the **Face** tab, and select panel titled **Recognize a particular person**.
-1. To use the try-it-out experience, you will need to choose a resource and acknowledge it will incur usage according to your [pricing tier](https://azure.microsoft.com/pricing/details/cognitive-services/face-api/).
-1. Next, you'll name the **person** and upload the images of their face. Then select **Enroll face** and wait for the model to finish training.
-1. Finally, upload another image in the bottom pane, and the service will determine whether it belongs to the **person** it was trained for.
-1. See the **Detected attributes** pane for the match results and confidence scores.
-1. Below the try-it-out experience are next steps to start using this capability in your own application.
+## Detect faces
+
+Select an image from the available set, or upload your own. The service will detect faces in the image and return their bounding box coordinates, face landmark coordinates, and attributes. Select the **JSON** tab to see the full JSON response from the API.
 
 
 
 ## Next steps
 
-In this quickstart, you learned how to use Vision Studio to do a basic facial recognition task. Next, learn about the different face detection models and how to specify the right model for your use case.
+In this quickstart, you did face detection by using the Azure AI Foundry portal. Next, learn about the different face detection models and how to specify the right model for your use case.
 
 > [!div class="nextstepaction"]
 > [Specify a face detection model version](../how-to/specify-detection-model.md)

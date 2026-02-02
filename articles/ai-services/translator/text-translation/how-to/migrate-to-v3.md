@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: conceptual
-ms.date: 05/19/2025
+ms.date: 10/15/2025
 ms.author: lajanuar
 ---
 
@@ -53,10 +53,6 @@ The following list of V2 and V3 methods identifies the V3 methods and APIs that 
 Microsoft Translator Translation V2 accepted and returned data in XML format. In V3, all data sent and received using the API is in JSON format. XML is no longer accepted or returned in V3.
 
 This change affects several aspects of an application written for the V2 Text translation API. As an example: The Languages API returns language information for text translation, transliteration, and the two dictionary methods. You can request all language information for all methods in one call or request them individually.
-
-The languages method doesn't require authentication; by selecting the following link you can see all the language information for V3 in JSON:
-
-[https://api.cognitive.microsofttranslator.com/languages?api-version=3.0&scope=translation,dictionary,transliteration](https://api.cognitive.microsofttranslator.com/languages?api-version=3.0&scope=translation,dictionary,transliteration)
 
 ## Authentication Key
 
@@ -107,15 +103,14 @@ Azure AI Translator V3 uses neural machine translation by default. As such, it c
 
 Neural translation with the V3 text API doesn't support the use of standard categories (`SMT`, `speech`, `tech`, `generalnn`).
 
-| Version | Endpoint | GDPR Processor Compliance | Use Translator Hub | Use Custom Translator (Preview) |
-| :------ | :------- | :------------------------ | :----------------- | :------------------------------ |
-|Translator Version 2|    api.microsofttranslator.com|    No    |Yes    |No|
-|Translator Version 3|    api.cognitive.microsofttranslator.com|    Yes|    No|    Yes|
+| Version | Endpoint | Translator Hub support? | Custom Translator support? |
+| :------ | :------- |:----------------- | :------------------------------ |
+|Translator Version 2|  api.microsofttranslator.com|Yes  |No|
+|Translator Version 3|  api.cognitive.microsofttranslator.com| No| Yes|
 
 **Translator Version 3**
 
 * It's generally available and fully supported.
-* It's GDPR-compliant as a processor and satisfies all ISO 20001 and 20018 as well as SOC 3 certification requirements.
 * It allows you to invoke the neural network translation systems you customized with Custom Translator (Preview), the new Translator neural machine translation (NMT) customization feature.
 * It doesn't provide access to custom translation systems created using the Microsoft Translator Hub.
 

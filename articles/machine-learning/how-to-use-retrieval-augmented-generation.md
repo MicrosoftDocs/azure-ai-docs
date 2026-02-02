@@ -3,12 +3,12 @@ title: Get started with RAG using a prompt flow sample (preview)
 titleSuffix: Azure Machine Learning
 description: Set up a prompt flow using the samples gallery.
 services: machine-learning
-ms.author: ssalgado
-author: ssalgadodev
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: balapv
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.date: 06/26/2024
+ms.date: 08/29/2025
 ms.topic: how-to
 ms.custom: prompt
 ms.collection: ce-skilling-ai-copilot 
@@ -16,27 +16,27 @@ ms.collection: ce-skilling-ai-copilot
 
 # Get started with RAG using a prompt flow sample (preview)
 
-In this tutorial, you'll learn how to use RAG by creating a prompt flow. A prompt is an input, a text command or a question provided to an AI model, to generate desired output like content or answer. The process of crafting effective and efficient prompts is called prompt design or prompt engineering. [prompt flow](https://techcommunity.microsoft.com/t5/ai-machine-learning-blog/harness-the-power-of-large-language-models-with-azure-machine/ba-p/3828459) is the interactive editor of Azure Machine Learning for prompt engineering projects. To get started, you can create a prompt flow sample, which uses RAG from the samples gallery in Azure Machine Learning. You can use this sample to learn how to use Vector Index in a prompt flow. 
+In this article, you learn how to use retrieval-augmented generation (RAG) by creating a prompt flow. A prompt is an input—a text command or question—provided to an AI model to generate desired output such as content or answers. The process of crafting effective and efficient prompts is called prompt design or prompt engineering. [Prompt flow](https://techcommunity.microsoft.com/t5/ai-machine-learning-blog/harness-the-power-of-large-language-models-with-azure-machine/ba-p/3828459) is the interactive editor in Azure Machine Learning for prompt engineering projects. To get started, you can create a prompt flow sample that uses RAG from the samples gallery in Azure Machine Learning. You can use this sample to learn how to use Vector Index in a prompt flow. 
 
 [!INCLUDE [machine-learning-preview-generic-disclaimer](includes/machine-learning-preview-generic-disclaimer.md)]
 
 
 ## Prerequisites
 
-* An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
+* An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-* Access to Azure OpenAI. 
+* Access to Azure OpenAI.
 
-* Enable prompt flow in your Azure Machine Learning workspace
+* Prompt flow enabled in your Azure Machine Learning workspace.
 
-In your Azure Machine Learning workspace, you can enable prompt flow by turn-on **Build AI solutions with Prompt flow** in the **Manage preview features** panel.
+To enable prompt flow in your Azure Machine Learning workspace, turn on **Build AI solutions with Prompt flow** in the **Manage preview features** panel.
 
 
 ## Create a prompt flow using the samples gallery
 
-1.  Select **Prompt flow** on the left menu.
+1. Select **Prompt flow** on the left menu.
 
-2.  Select **Create**.
+2. Select **Create**.
 
 3. In the **Explore gallery** menu, select **View Detail** on the _Q&A on Your Data_ sample.
 
@@ -46,7 +46,7 @@ In your Azure Machine Learning workspace, you can enable prompt flow by turn-on 
 
 :::image type="content" source="./media/how-to-use-retrieval-augmented-generation/clone.png" alt-text="Screenshot showing instructions and clone button on the prompt flow sample.":::
 
-5. This opens a prompt flow, which you can run in your workspace and explore.
+5. The cloned prompt flow opens, which you can run in your workspace and explore.
 
 :::image type="content" source="./media/how-to-use-retrieval-augmented-generation/flow.png" alt-text="Screenshot showing the prompt flow sample.":::
 
@@ -55,6 +55,6 @@ In your Azure Machine Learning workspace, you can enable prompt flow by turn-on 
 
 [Use Azure Machine Learning pipelines with no code to construct RAG pipelines (preview)](how-to-use-pipelines-prompt-flow.md)
 
-[How to create vector index in Azure Machine Learning prompt flow (preview).](how-to-create-vector-index.md)
+[How to create vector index in Azure Machine Learning prompt flow (preview)](how-to-create-vector-index.md)
 
-[Use Vector Stores](concept-vector-stores.md) with Azure Machine Learning (preview)
+[Use Vector Stores with Azure Machine Learning (preview)](concept-vector-stores.md)

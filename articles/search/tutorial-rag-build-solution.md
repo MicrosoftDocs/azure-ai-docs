@@ -1,26 +1,33 @@
 ---
-title: Build a RAG solution
+title: Build a classic RAG solution
 titleSuffix: Azure AI Search
 description: Learn how to build a generative search (RAG) app using LLMs and your proprietary grounding data in Azure AI Search.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.topic: overview
-ms.date: 05/29/2025
+ms.date: 10/14/2025
 
 ---
 
-# How to build a RAG solution using Azure AI Search
+# How to build a classic RAG solution using Azure AI Search
 
-This tutorial series demonstrates a pattern for building RAG solutions on Azure AI Search. It explains the components that you need to build, enumerates the dependencies, and provides optimizations for maximizing relevance and minimizing costs.
+This tutorial series demonstrates the classic pattern for building RAG solutions on Azure AI Search. Classic RAG uses the original query pipeline, with no LLM integration except for at the end of the pipeline when you pass the search results to an LLM for answer formulation.
+
+> [!NOTE]
+> We now recommend [agentic retrieval](agentic-retrieval-overview.md) for RAG workflows, but classic RAG is simpler. If it meets your application requirements, it's still a good choice.
+
+## In this series
+
+In this series, you learn about the components, dependencies, and optimizations for maximizing relevance and minimizing costs.
 
 Sample data is a [collection of PDFs](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth_book_2019_text_pages) uploaded to Azure Storage. The content is from [NASA's Earth free e-book](https://www.nasa.gov/ebooks/earth/).
 
 Sample code can be found in [this Python notebook](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/Tutorial-RAG/Tutorial-rag.ipynb), but we recommend using the articles in this series for context, insights, and for exploring alternative approaches.
 
-## Exercises in this series
+### Exercises in this series
 
 - Choose your models for embeddings and chat
 

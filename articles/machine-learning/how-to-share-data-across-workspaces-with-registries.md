@@ -5,8 +5,8 @@ description: Learn how practice cross-workspace MLOps and collaborate across tea
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: soumyapatro
 ms.date: 04/07/2025
 ms.topic: how-to

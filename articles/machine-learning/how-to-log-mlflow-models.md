@@ -3,8 +3,8 @@ title: Log MLflow models
 titleSuffix: Azure Machine Learning
 description: See how to use the MLflow SDK to log MLflow models as models, not artifacts, in Azure Machine Learning. Find out how to log custom models and use automatic logging.
 services: machine-learning
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: fasantia
 ms.service: azure-machine-learning
 ms.subservice: mlops

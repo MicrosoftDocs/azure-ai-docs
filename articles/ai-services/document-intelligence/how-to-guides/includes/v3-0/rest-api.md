@@ -4,11 +4,13 @@ description: Use the Document Intelligence REST API v3.0 to create a forms proce
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.custom: linux-related-content
 ms.topic: include
 ms.date: 11/19/2024
 ms.author: lajanuar
 monikerRange: 'doc-intel-3.1.0 || doc-intel-3.0.0'
+ms.custom:
+  - linux-related-content
+  - sfi-image-nochange
 ---
 
 <!-- markdownlint-disable MD033 -->
@@ -27,7 +29,7 @@ monikerRange: 'doc-intel-3.1.0 || doc-intel-3.0.0'
 
 ## Prerequisites
 
-- An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/).
+- An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - The cURL command line tool installed. Windows 10 and Windows 11 ship with a copy of cURL. At a command prompt, type the following cURL command. If the help options display, cURL is installed in your Windows environment.
 
   ```console

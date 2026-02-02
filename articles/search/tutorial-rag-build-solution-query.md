@@ -1,21 +1,24 @@
 ---
-title: 'RAG tutorial: Search using an LLM'
+title: 'Classic RAG tutorial: Search using an LLM'
 titleSuffix: Azure AI Search
 description: Learn how to build queries and engineer prompts for LLM-enabled search on Azure AI Search. Queries used in generative search provide the inputs to an LLM chat engine.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2024
 ms.topic: tutorial
-ms.date: 06/17/2025
+ms.date: 10/14/2025
 ---
 
-# Tutorial: Search your data using a chat model (RAG in Azure AI Search)
+# Tutorial: Search your data using a chat model (classic RAG in Azure AI Search)
 
 The defining characteristic of a RAG solution on Azure AI Search is sending queries to a Large Language Model (LLM) for a conversational search experience over your indexed content. It can be surprisingly easy if you implement just the basics.
+
+> [!NOTE]
+> We now recommend [agentic retrieval](agentic-retrieval-overview.md) for RAG workflows, but classic RAG is simpler. If it meets your application requirements, it's still a good choice.
 
 In this tutorial, you:
 

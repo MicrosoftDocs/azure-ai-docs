@@ -2,19 +2,21 @@
 manager: nitinme
 author: aahill
 ms.author: aahi
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: include
-ms.date: 01/21/2025
+ms.date: 07/11/2025
 ---
 
 ## Prerequisites
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
-- Ensure that the individual creating the account and project has the **Azure AI Account Owner** role at the subscription scope
-    * Alternatively, having the **Contributor** or **Cognitive Services Contributor** role at the subscription level also satisfies this requirement.
+- Ensure that the individual creating the account and project has the **Azure AI Account Owner** role at the subscription scope, which will grant the necessary permissions for creating the project
+    * Alternatively, having the **Contributor** or **Cognitive Services Contributor** role at the subscription level will allow the creation of the project
+- Once the project is created, ensure that the individual creating the agent within the project has the **Azure AI User** role at the project level
 
 
 > [!IMPORTANT]
-> The Azure AI Foundry portal only supports basic agent set at this time. If you want to perform a standard agent setup, see the [Environment setup](../environment-setup.md) article to learn about more.
+> The Azure AI Foundry portal only supports basic agent setup at this time. If you want to perform a standard agent setup, see the [Environment setup](../environment-setup.md) article to learn about more.
 
 ## Create a Foundry account and project in Azure AI Foundry portal
 
@@ -38,7 +40,7 @@ To create an account and project in Azure AI Foundry, follow these steps:
     1. The gpt-4o model will automatically be deployed
     1. A default agent will be created
 
-1. Once complete, you will land directly in the agent playground and you can start creating agents.
+1. Once complete, you will land directly in the agent playground and you can start creating agents. You can give your agent instructions on what to do and how to do it. For example: *"You are a helpful agent that can answer questions about geography."* Then you can start chatting with your agent.
 
     :::image type="content" source="../media\quickstart\agent-playground.png" alt-text="Screenshot of the agent playground." lightbox="../media\quickstart\agent-playground.png":::
 

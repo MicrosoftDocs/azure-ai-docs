@@ -8,7 +8,9 @@ ms.service: azure-ai-custom-vision
 ms.topic: how-to
 ms.date: 01/29/2025
 ms.author: pafarley
-ms.custom: cogserv-non-critical-vision
+ms.custom:
+  - cogserv-non-critical-vision
+  - sfi-image-nochange
 #customer intent: As a developer, I want to integrate Azure storage with Custom Vision so that I can receive notifications and back up models.
 
 ---

@@ -65,33 +65,19 @@ items:
   - name: Responsible use of AI
     items:
     - name: Transparency note
-      href: /legal/cognitive-services/computer-vision/imageanalysis-transparency-note?context=/azure/ai-services/computer-vision/context/context
+      href: ../../ai-foundry/responsible-ai/computer-vision/image-analysis-transparency-note.md
     - name: Data, privacy, and security 
-      href: /legal/cognitive-services/computer-vision/imageanalysis-data-privacy-security?context=/azure/ai-services/computer-vision/context/context
+      href: ../../ai-foundry/responsible-ai/computer-vision/image-analysis-data-privacy-security.md
     - name: Limited Access features
-      href: /legal/cognitive-services/computer-vision/limited-access?context=/azure/ai-services/computer-vision/context/context
+      href: ../../ai-foundry/responsible-ai/computer-vision/limited-access.md
   - name: How-to guides
     items:
+    - name: Migrate from Image Analysis
+      href: migration-options.md
     - name: Version 4.0
       items:
       - name: Call the Analyze API
         href: how-to/call-analyze-image-40.md
-      - name: Model customization
-        items:
-        - name: Create a custom model (preview)
-          href: how-to/model-customization.md
-        - name: Verify a custom model COCO file (preview)
-          href: how-to/coco-verification.md
-      - name: Product Recognition (preview)
-        items:
-        - name: Prepare images for Product Recognition
-          href: how-to/shelf-modify-images.md
-        - name: Product Recognition with prebuilt model
-          href: how-to/shelf-analyze.md
-        - name: Product Recognition with custom model
-          href: how-to/shelf-model-customization.md
-        - name: Check planogram compliance
-          href: how-to/shelf-planogram.md
       - name: Call the Multimodal embeddings APIs
         href: how-to/image-retrieval.md
       - name: Call the Background removal API (preview)
@@ -122,10 +108,6 @@ items:
         href: concept-generate-thumbnails-40.md
       - name: People detection
         href: concept-people-detection.md
-      - name: Model customization
-        href: concept-model-customization.md
-      - name: Product Recognition (preview)
-        href: concept-shelf-analysis.md
       - name: Multimodal embeddings
         href: concept-image-retrieval.md
       - name: Background removal (preview)
@@ -254,6 +236,8 @@ items:
         href: how-to/identity-access-token.md
       - name: Use customer-managed keys
         href: identity-encrypt-data-at-rest.md
+      - name: Use liveness detection with network isolation (preview)
+        href: how-to/liveness-use-network-isolation.md
   - name: Tutorials
     items:
     - name: Detect liveness in faces
@@ -270,19 +254,19 @@ items:
     - name: Transparency notes
       items:
       - name: Face use cases
-        href: /legal/cognitive-services/face/transparency-note?context=/azure/ai-services/computer-vision/context/context
+        href: ../../ai-foundry/responsible-ai/face/transparency-note.md
       - name: Characteristics and limitations
-        href: /legal/cognitive-services/face/characteristics-and-limitations?context=/azure/ai-services/computer-vision/context/context
+        href: ../../ai-foundry/responsible-ai/face/characteristics-and-limitations.md
     - name: Integration and responsible use
-      href: /legal/cognitive-services/face/guidance-integration-responsible-use?context=/azure/ai-services/computer-vision/context/context
+      href: ../../ai-foundry/responsible-ai/face/guidance-integration-responsible-use.md
     - name: Best practices for enrolling users
       href: enrollment-overview.md
     - name: Code of conduct
       href: /legal/ai-code-of-conduct?context=/azure/ai-services/computer-vision/context/context
     - name: Data privacy and security
-      href: /legal/cognitive-services/face/data-privacy-security?context=/azure/ai-services/computer-vision/context/context
+      href: ../../ai-foundry/responsible-ai/face/data-privacy-security.md
     - name: Limited Access features
-      href: /legal/cognitive-services/computer-vision/limited-access-identity?context=/azure/ai-services/computer-vision/context/context
+      href: ../../ai-foundry/responsible-ai/computer-vision/limited-access-identity.md
     - name: Shared responsibility for face liveness detection
       href: liveness-detection-shared-responsibility.md
 
@@ -305,39 +289,13 @@ items:
     - name: Client-side
       items:
       - name: Kotlin (Android)
-        href: https://aka.ms/azure-ai-vision-face-liveness-client-sdk-android-api-reference
+        href: https://github.com/Azure-Samples/azure-ai-vision-sdk/tree/main/docs/face
       - name: Swift (iOS)
-        href: https://aka.ms/azure-ai-vision-face-liveness-client-sdk-ios-api-reference
+        href: https://github.com/Azure-Samples/azure-ai-vision-sdk/tree/main/docs/face
       - name: JavaScript (Web)
         href: https://aka.ms/azure-ai-vision-face-liveness-client-sdk-web-api-reference
       - name: Understand the liveness versions
         href: sdk/understand-the-liveness-sdk-versions.md
-- name: Video Retrieval
-  items:
-  - name: Video Retrieval overview
-    href: intro-to-spatial-analysis-public-preview.md
-  - name: Responsible use of AI
-    items:
-    - name: Transparency note
-      href: /legal/cognitive-services/computer-vision/transparency-note-spatial-analysis?context=/azure/ai-services/computer-vision/context/context
-    - name: Integration and responsible use
-      items:
-      - name: Responsible use in AI deployment 
-        href: /legal/cognitive-services/computer-vision/responsible-use-deployment?context=/azure/ai-services/computer-vision/context/context
-      - name: Disclosure design guidelines
-        href: /legal/cognitive-services/computer-vision/disclosure-design?context=/azure/ai-services/computer-vision/context/context
-      - name: Research insights
-        href: /legal/cognitive-services/computer-vision/research-insights?context=/azure/ai-services/computer-vision/context/context
-    - name: Data, privacy, and security
-      href: /legal/cognitive-services/computer-vision/compliance-privacy-security-2?context=/azure/ai-services/computer-vision/context/context
-  - name: How-to guides
-    items:
-    - name: Call the Video Retrieval APIs
-      href: how-to/video-retrieval.md
-  - name: Reference
-    items:
-    - name: Video Retrieval REST API
-      href: reference-video-search.md
 - name: Optical character recognition (OCR) (legacy)
   items:
   - name: OCR overview
@@ -351,13 +309,13 @@ items:
     - name: Transparency notes
       items:
       - name: OCR use cases
-        href: /legal/cognitive-services/computer-vision/ocr-transparency-note?context=/azure/ai-services/computer-vision/context/context
+        href: ../../ai-foundry/responsible-ai/computer-vision/ocr-transparency-note.md
       - name: Characteristics and limitations
-        href: /legal/cognitive-services/computer-vision/ocr-characteristics-and-limitations?context=/azure/ai-services/computer-vision/context/context
+        href: ../../ai-foundry/responsible-ai/computer-vision/ocr-characteristics-and-limitations.md
     - name: Integration and responsible use
-      href: /legal/cognitive-services/computer-vision/ocr-guidance-integration-responsible-use?context=/azure/ai-services/computer-vision/context/context
+      href: ../../ai-foundry/responsible-ai/computer-vision/ocr-guidance-integration-responsible-use.md
     - name: Data, privacy, and security
-      href: /legal/cognitive-services/computer-vision/ocr-data-privacy-security?context=/azure/ai-services/computer-vision/context/context
+      href: ../../ai-foundry/responsible-ai/computer-vision/ocr-data-privacy-security.md
   - name: How-to guides
     items:
     - name: Call the Read API

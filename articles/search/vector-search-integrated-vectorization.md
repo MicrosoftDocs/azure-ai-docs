@@ -2,10 +2,10 @@
 title: Integrated vectorization
 titleSuffix: Azure AI Search
 description: Add a vector embedding step in an Azure AI Search skillset to vectorize content during indexing or queries.
-
 author: heidisteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
@@ -111,7 +111,7 @@ A more common scenario - data chunking and vectorization during indexing:
 Optionally, [create secondary indexes](index-projections-concept-intro.md) for advanced scenarios where chunked content is in one index, and nonchunked in another index. Chunked indexes (or secondary indexes) are useful for RAG apps.
 
 > [!TIP]
-> [Try the **Import and vectorize data wizard**](search-get-started-portal-import-vectors.md) in the Azure portal to explore integrated vectorization before writing any code.
+> [Try the **Import data (new)** wizard](search-get-started-portal-import-vectors.md) in the Azure portal to explore integrated vectorization before writing any code.
 
 ### Secure connections to vectorizers and models
 
@@ -125,15 +125,7 @@ For vectorization scenarios, you would use:
 
 + `sites` for embedding models accessed as a [custom skill](cognitive-search-custom-skill-interface.md) or [custom vectorizer](vector-search-vectorizer-custom-web-api.md). The `sites` group ID is for App services and Azure functions, which you could use to host an embedding model that isn't one of the Azure OpenAI embedding models.
 
-## Limitations
-
-Make sure you know the [Azure OpenAI quotas and limits for embedding models](/azure/ai-services/openai/quotas-limits). Azure AI Search has retry policies, but if the quota is exhausted, retries fail.
-
-Azure OpenAI token-per-minute limits are per model, per subscription. Keep this in mind if you're using an embedding model for both query and indexing workloads. If possible, [follow best practices](/azure/ai-services/openai/quotas-limits#general-best-practices-to-remain-within-rate-limits). Have an embedding model for each workload, and try to deploy them in different subscriptions.
-
-On Azure AI Search, remember there are [service limits](search-limits-quotas-capacity.md) by tier and workloads. 
-
-## Benefits of integrated vectorization 
+## Benefits
 
 Here are some of the key benefits of the integrated vectorization: 
 
@@ -146,6 +138,14 @@ Here are some of the key benefits of the integrated vectorization:
 + Projecting chunked content to secondary indexes. Secondary indexes are created as you would any search index (a schema with fields and other constructs), but they're populated in tandem with a primary index by an indexer. Content from each source document flows to fields in primary and secondary indexes during the same indexing run. 
 
   Secondary indexes are intended for question and answer or chat style apps. The secondary index contains granular information for more specific matches, but the parent index has more information and can often produce a more complete answer. When a match is found in the secondary index, the query returns the parent document from the primary index. For example, assuming a large PDF as a source document, the primary index might have basic information (title, date, author, description), while a secondary index has chunks of searchable content.
+
+## Limitations
+
+Make sure you know the [Azure OpenAI quotas and limits for embedding models](/azure/ai-services/openai/quotas-limits). Azure AI Search has retry policies, but if the quota is exhausted, retries fail.
+
+Azure OpenAI token-per-minute limits are per model, per subscription. Keep this in mind if you're using an embedding model for both query and indexing workloads. If possible, [follow best practices](/azure/ai-services/openai/quotas-limits#general-best-practices-to-remain-within-rate-limits). Have an embedding model for each workload, and try to deploy them in different subscriptions.
+
+On Azure AI Search, remember there are [service limits](search-limits-quotas-capacity.md) by tier and workloads.
 
 ## Next steps
 

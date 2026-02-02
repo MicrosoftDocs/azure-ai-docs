@@ -18,6 +18,16 @@ In this article, learn about Azure Machine Learning compute instance image relea
 
 Azure Machine Learning checks and validates any machine learning packages that might require an upgrade. Updates incorporate the latest OS-related patches from Canonical as the original Linux OS publisher. In addition to patches applied by the original publisher, Azure Machine Learning updates system packages when updates are available. For details on the patching process, see [Vulnerability Management](./concept-vulnerability-management.md).
 
+> [!NOTE]
+> Although some environment names (such as azureml_py38) might suggest Python 3.8, all default environments available in the compute instance are configured with Python version 3.10. 
+> The available environments include:
+> - azureml_py310_sdkv2 – /anaconda/envs/azureml_py310_sdkv2
+> - azureml_py38 – /anaconda/envs/azureml_py38
+> - azureml_py38_PT_TF – /anaconda/envs/azureml_py38_PT_TF
+> 
+> Despite the environment names, users should expect Python 3.10 across all Conda environments in the compute instance.
+
+
 Main updates provided with each image version are described in the below sections.
 
 ##  February 11, 2025

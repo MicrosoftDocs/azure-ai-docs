@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 2/1/2024
-ms.author: eur
+ms.date: 7/17/2025
+ms.author: pafarley
 ---
 
 [!INCLUDE [Header](../../common/objectivec.md)]
@@ -41,7 +41,7 @@ Follow these steps to synthesize speech in a macOS application.
        NSString *serviceRegion = [[[NSProcessInfo processInfo] environment] objectForKey:@"SPEECH_REGION"];
         
        SPXSpeechConfiguration *speechConfig = [[SPXSpeechConfiguration alloc] initWithSubscription:speechKey region:serviceRegion];
-       speechConfig.speechSynthesisVoiceName = @"en-US-AvaMultilingualNeural";
+       speechConfig.speechSynthesisVoiceName = @"en-US-Ava:DragonHDLatestNeural";
        SPXSpeechSynthesizer *speechSynthesizer = [[SPXSpeechSynthesizer alloc] init:speechConfig];
 
        NSLog(@"Start synthesizing...");
@@ -70,12 +70,12 @@ Follow these steps to synthesize speech in a macOS application.
 1. Optionally in *AppDelegate.m*, include a speech synthesis voice name as shown here:
 
    ```ObjectiveC
-   speechConfig.speechSynthesisVoiceName = @"en-US-AvaMultilingualNeural";
+   speechConfig.speechSynthesisVoiceName = @"en-US-Ava:DragonHDLatestNeural";
    ```
 
-1. To change the speech synthesis language, replace `en-US-AvaMultilingualNeural` with another [supported voice](~/articles/ai-services/speech-service/language-support.md#standard-voices).
+1. To change the speech synthesis language, replace `en-US-Ava:DragonHDLatestNeural` with another [supported voice](~/articles/ai-services/speech-service/language-support.md#standard-voices).
 
-   All neural voices are multilingual and fluent in their own language and English. For example, if the input text in English is *I'm excited to try text to speech* and you set `es-ES-ElviraNeural`, the text is spoken in English with a Spanish accent. If the voice doesn't speak the language of the input text, the Speech service doesn't output synthesized audio.
+   All neural voices are multilingual and fluent in their own language and English. For example, if the input text in English is *I'm excited to try text to speech* and you set `es-ES-Ximena:DragonHDLatestNeural`, the text is spoken in English with a Spanish accent. If the voice doesn't speak the language of the input text, the Speech service doesn't output synthesized audio.
 
 1. To make the debug output visible, select **View** > **Debug Area** > **Activate Console**.
 1. To build and run the example code, select **Product** > **Run** from the menu or select the **Play** button.
@@ -96,7 +96,7 @@ This quickstart uses the `SpeakText` operation to synthesize a short block of te
 
 ### OpenAI text to speech voices in Azure AI Speech
 
-OpenAI text to speech voices are also supported. See [OpenAI text to speech voices in Azure AI Speech](../../../openai-voices.md) and [multilingual voices](../../../language-support.md?tabs=tts#multilingual-voices). You can replace `en-US-AvaMultilingualNeural` with a supported OpenAI voice name such as `en-US-FableMultilingualNeural`.
+OpenAI text to speech voices are also supported. See [OpenAI text to speech voices in Azure AI Speech](../../../openai-voices.md) and [multilingual voices](../../../language-support.md?tabs=tts#multilingual-voices). You can replace `en-US-Ava:DragonHDLatestNeural` with a supported OpenAI voice name such as `en-US-FableMultilingualNeural`.
 
 ## Clean up resources
 

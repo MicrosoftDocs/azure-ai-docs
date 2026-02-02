@@ -8,8 +8,6 @@ manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: conceptual
 ms.date: 01/22/2025
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
 ms.author: pafarley
 ---
 
@@ -35,7 +33,7 @@ The "adult" classification contains several different categories:
 
 ## Use the API
 
-You can detect adult content with the [Analyze Image 3.2](/rest/api/computervision/analyze-image?view=rest-computervision-v3.2) API. When you add the value of `Adult` to the **visualFeatures** query parameter, the API returns three boolean properties&mdash;`isAdultContent`, `isRacyContent`, and `isGoryContent`&mdash;in its JSON response. The method also returns corresponding properties&mdash;`adultScore`, `racyScore`, and `goreScore`&mdash;which represent confidence scores between zero and one for each respective category.
+You can detect adult content with the [Analyze Image 3.2](/rest/api/computervision/analyze-image?view=rest-computervision-v3.2&preserve-view=true) API. When you add the value of `Adult` to the **visualFeatures** query parameter, the API returns three boolean properties&mdash;`isAdultContent`, `isRacyContent`, and `isGoryContent`&mdash;in its JSON response. The method also returns corresponding properties&mdash;`adultScore`, `racyScore`, and `goreScore`&mdash;which represent confidence scores between zero and one for each respective category.
 
 ## Next step
 

@@ -4,8 +4,8 @@ titleSuffix: Azure Machine Learning
 description: 'Learn to view costs for a managed online endpoint in Azure Machine Learning in the Azure portal.'
 services: machine-learning
 ms.service: azure-machine-learning
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: sehan
 ms.subservice: core
 ms.date: 08/15/2024

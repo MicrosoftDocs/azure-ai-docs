@@ -8,7 +8,7 @@ ms.subservice: core
 ms.author: lagayhar
 author: lgayhardt
 ms.reviewer: zhanxia
-ms.date:  09/13/2024
+ms.date: 09/18/2025
 ms.topic: how-to
 ms.custom: devplatv2, pipeline, devx-track-azurecli, update-code6
 ---
@@ -45,7 +45,7 @@ Primitive type output isn't supported.
 
 ### Example inputs and outputs
 
-These examples are from the [NYC Taxi Data Regression](https://github.com/Azure/azureml-examples/tree/main/cli/jobs/pipelines-with-components/nyc_taxi_data_regression) pipeline in the [Azure Machine Learning examples](https://github.com/Azure/azureml-examples) GitHub repository.
+These examples are from the [NYC Taxi Data Regression](https://github.com/Azure/azureml-examples/tree/main/cli/jobs/pipelines-with-components/nyc_taxi_data_regression) pipeline in the [Azure Machine Learning examples](https://github.com/Azure/azureml-examples) GitHub repository:
 
 - The [train component](https://github.com/Azure/azureml-examples/blob/main/cli/jobs/pipelines-with-components/nyc_taxi_data_regression/train.yml) has a `number` input named `test_split_ratio`.
 - The [prep component](https://github.com/Azure/azureml-examples/blob/main/cli/jobs/pipelines-with-components/nyc_taxi_data_regression/prep.yml) has a `uri_folder` type output. The component source code reads the CSV files from the input folder, processes the files, and writes the processed CSV files to the output folder.
@@ -59,7 +59,7 @@ The component source code must serialize the output object, which is usually sto
 
 ## Data type input and output paths
 
-For data asset inputs and outputs, you must specify a path parameter that points to the data location. The following table shows the supported data locations for Azure Machine Learning pipeline inputs and outputs, with `path` parameter examples.
+For data asset inputs and outputs, you must specify a path parameter that points to the data location. The following table shows the supported data locations for Azure Machine Learning pipeline inputs and outputs, with `path` parameter examples:
 
 |Location | Input | Output | Example |
 |---------|---------|---------|---------|
@@ -69,7 +69,8 @@ For data asset inputs and outputs, you must specify a path parameter that points
 |A path on an Azure Machine Learning datastore | ✓ | ✓ | `azureml://datastores/<data_store_name>/paths/<path>` |
 |A path to a data asset |✓ | ✓ | `azureml:my_data:<version>` |
 
-\* Using Azure Storage directly isn't recommended for input, because it might need extra identity configuration to read the data. It's better to use Azure Machine Learning datastore paths, which are supported across various pipeline job types.
+ > [!TIP]
+> Using Azure Storage directly isn't recommended for input, because it can need extra identity configuration to read the data. It's better to use Azure Machine Learning datastore paths, which are supported across various pipeline job types.
 
 ## Data type input and output modes
 
@@ -84,7 +85,7 @@ Type | `upload` | `download` | `ro_mount` | `rw_mount` | `direct` | `eval_downlo
 `uri_file` output | ✓  |   |    | ✓  |   |  | 
 `mltable` output | ✓  |   |    | ✓  | ✓  |  | 
 
-The `ro_mount` or `rw_mount` modes are recommended for most cases. For more information, see [Modes](how-to-read-write-data-v2.md#modes). 
+We recommend the `ro_mount` or `rw_mount` modes for most cases. For more information, see [Modes](how-to-read-write-data-v2.md#modes). 
 
 ## Inputs and outputs in pipeline graphs
 
@@ -245,7 +246,7 @@ Job `{name}` is resolved at job execution time, and `{output_name}` is the name 
 
 # [Azure CLI](#tab/cli)
 
-The [pipeline.yml](https://github.com/Azure/azureml-examples/blob/main/cli/jobs/pipelines-with-components/basics/1b_e2e_registered_components/pipeline.yml) file at [train-score-eval pipeline with registered components example](https://github.com/Azure/azureml-examples/tree/main/cli/jobs/pipelines-with-components/basics/1b_e2e_registered_components) defines a pipeline that has three pipeline level outputs. You can use the following command to set custom output paths for the `pipeline_job_trained_model` output.
+The [pipeline.yml](https://github.com/Azure/azureml-examples/blob/main/cli/jobs/pipelines-with-components/basics/1b_e2e_registered_components/pipeline.yml) file at [train-score-eval pipeline with registered components example](https://github.com/Azure/azureml-examples/tree/main/cli/jobs/pipelines-with-components/basics/1b_e2e_registered_components) defines a pipeline that has three pipeline level outputs. Use the following command to set custom output paths for the `pipeline_job_trained_model` output:
 
 ```azurecli
 # define the custom output path using datastore uri
@@ -258,9 +259,28 @@ az ml job create -f ./pipeline.yml --set outputs.pipeline_job_trained_model.path
 
 # [Python SDK](#tab/python)
 
-The following code that demonstrates how to customize output paths is from the [Build pipeline with command_component decorated python function](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/pipelines/1b_pipeline_with_python_function_components/pipeline_with_python_function_components.ipynb) notebook.
+The following code demonstrates how to customize output paths and is from the [Build pipeline with command_component decorated python function](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/pipelines/1b_pipeline_with_python_function_components/pipeline_with_python_function_components.ipynb) notebook:
 
-[!Notebook-python[] (~/azureml-examples-main/sdk/python/jobs/pipelines/1b_pipeline_with_python_function_components/pipeline_with_python_function_components.ipynb?name=custom-output-path)] 
+```python
+from azure.ai.ml import dsl, Output
+
+# Load component functions
+components_dir = "./components/"
+helloworld_component = load_component(source=f"{components_dir}/helloworld_component.yml")
+
+@pipeline()
+def register_node_output():
+  # Call component obj as function: apply given inputs & parameters to create a node in pipeline
+  node = helloworld_component(component_in_path=Input(
+    type='uri_file', path='https://dprepdata.blob.core.windows.net/demo/Titanic.csv'))
+
+  # Define name and version to register node output
+  node.outputs.component_out_path.name = 'node_output'
+  node.outputs.component_out_path.version = '1'
+
+pipeline = register_node_output()
+pipeline.settings.default_compute = "azureml:cpu-cluster"
+```
 
 # [Studio UI](#tab/ui)
 
@@ -423,61 +443,61 @@ def register_pipeline_output():
       'component_out_path': node.outputs.component_out_path
   }
 
-pipeline = register_pipeline_output()
-# Define name and version to register pipeline output
-pipeline.settings.default_compute = "azureml:cpu-cluster"
-pipeline.outputs.component_out_path.name = 'pipeline_output'
-pipeline.outputs.component_out_path.version = '1'
-```
-
-# [Studio UI](#tab/ui)
-
-On the **Overview** tab for a pipeline job, select a **Data asset** link under **Inputs** or **Outputs**. On the data asset page, select **Register**.
-
-:::image type="content" source="./media/how-to-manage-pipeline-input-output/register-output.png" alt-text="Screenshot showing how to register output from a pipeline job.":::
-
----
-
-### Register component output
-
-# [Azure CLI](#tab/cli)
-
-```yaml
-display_name: register_node_output
-type: pipeline
-jobs:
-  node:
+yamle = register_pipeline_output()
+display_name: register_node_outputter pipeline output
+type: pipelinengs.default_compute = "azureml:cpu-cluster"
+jobs:ine.outputs.component_out_path.name = 'pipeline_output'
+  node:e.outputs.component_out_path.version = '1'
     type: command
     component: ../components/helloworld_component.yml
-    inputs:
+    inputs:I](#tab/ui)
       component_in_path:
-        type: uri_file
+        type: uri_fileb for a pipeline job, select a **Data asset** link under **Inputs** or **Outputs**. On the data asset page, select **Register**.
         path: 'https://dprepdata.blob.core.windows.net/demo/Titanic.csv'
-    outputs:
+    outputs:e="content" source="./media/how-to-manage-pipeline-input-output/register-output.png" alt-text="Screenshot showing how to register output from a pipeline job.":::
       component_out_path:
         type: uri_folder
         name: 'node_output'  # Define name and version to register a child job's output
-        version: '1'
+        version: '1'nt output
 settings:
   default_compute: azureml:cpu-cluster
 ```
-
-# [Python SDK](#tab/python)
-
+```yaml
+# [Python SDK](#tab/python)_output
+type: pipeline
 ```python
 from azure.ai.ml import dsl, Output
-
-# Load component functions
+    type: command
+# Load component functionsts/helloworld_component.yml
 components_dir = "./components/"
 helloworld_component = load_component(source=f"{components_dir}/helloworld_component.yml")
-
-@pipeline()
+        type: uri_file
+@pipeline()h: 'https://dprepdata.blob.core.windows.net/demo/Titanic.csv'
 def register_node_output():
   # Call component obj as function: apply given inputs & parameters to create a node in pipeline
   node = helloworld_component(component_in_path=Input(
-    type='uri_file', path='https://dprepdata.blob.core.windows.net/demo/Titanic.csv'))
-
+    type='uri_file', path='https://dprepdata.blob.core.windows.net/demo/Titanic.csv'))t
+        version: '1'
   # Define name and version to register node output
+  node.outputs.component_out_path.name = 'node_output'
+  node.outputs.component_out_path.version = '1'
+
+pipeline = register_node_output()
+pipeline.settings.default_compute = "azureml:cpu-cluster"
+```python
+from azure.ai.ml import dsl, Output
+# [Studio UI](#tab/ui)
+# Load component functions
+On the **Overview** tab for a component, select a **Data asset** link under **Inputs** or **Outputs**. On the data asset page, select **Register**.
+helloworld_component = load_component(source=f"{components_dir}/helloworld_component.yml")
+---
+@pipeline()
+## Related contentoutput():
+  # Call component obj as function: apply given inputs & parameters to create a node in pipeline
+- [YAML reference for pipeline job](./reference-yaml-job-pipeline.md)
+- [How to debug pipeline failure](./how-to-debug-pipeline-failure.md)mo/Titanic.csv'))
+- [Schedule a pipeline job](./how-to-schedule-pipeline-job.md)
+- [Deploy a pipeline with batch endpoints (preview)](./how-to-use-batch-pipeline-deployments.md)
   node.outputs.component_out_path.name = 'node_output'
   node.outputs.component_out_path.version = '1'
 

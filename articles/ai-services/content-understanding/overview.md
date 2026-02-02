@@ -1,11 +1,11 @@
----
+﻿---
 title: What is Azure AI Content Understanding?
 titleSuffix: Azure AI services
 description: Learn about Azure AI Content Understanding solutions, processes, workflows, use-cases, and field extractions.
-author: laujan
-ms.author: lajanuar
+author: PatrickFarley 
+ms.author: pafarley
 manager: nitinme
-ms.date: 03/06/2025
+ms.date: 09/16/2025
 ms.service: azure-ai-content-understanding
 ms.topic: overview
 ms.custom:
@@ -22,13 +22,13 @@ ms.custom:
 > * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
-Azure AI Content Understanding is a new Generative AI based [**Azure AI Service**](../what-are-ai-services.md), designed to process/ingest content of any types (documents, images, videos, and audio) into a user-defined output format.
+Azure AI Content Understanding is an [**Azure AI Service**](../what-are-ai-services.md) that uses generative AI to process/ingest content of many types (documents, images, videos, and audio) into a user-defined output format.
 
 Content Understanding offers a streamlined process to reason over large amounts of unstructured data, accelerating time-to-value by generating an output that can be integrated into automation and analytical workflows.
 
 :::image type="content" source="media/overview/component-overview-updated.png" alt-text="Screenshot of Content Understanding overview, process, and workflow." lightbox="media/overview/component-overview-updated.png" :::
 
-## Why process with Content Understanding?
+## Why use Content Understanding?
 
 * **Simplify and streamline workflows**. Azure AI Content Understanding standardizes the extraction and classification of content, structure, and insights from various content types into a unified process.
 
@@ -75,16 +75,16 @@ Common applications for Content Understanding include:
 
 ## Responsible AI
 
- Azure AI Content Understanding is designed to guard against processing harmful content, such as graphic violence and gore, hateful speech and bullying, exploitation, abuse, and more. For more information and a full list of prohibited content, *see* our [**Transparency note**](/legal/cognitive-services/content-understanding/transparency-note?toc=/azure/ai-services/content-understanding/toc.json&bc=/azure/ai-services/content-understanding/breadcrumb/toc.json) and our [**Code of Conduct**](https://aka.ms/AI-CoC).
+Azure AI Content Understanding is designed to guard against processing harmful content, such as graphic violence and gore, hateful speech and bullying, exploitation, abuse, and more. For more information and a full list of prohibited content, *see* our [**Transparency note**](/azure/ai-foundry/responsible-ai/content-understanding/transparency-note) and our [**Code of Conduct**](https://aka.ms/AI-CoC).
 
 ### Modified content filtering
 
-Content Understanding now supports modified content filtering for approved customers. The subscription IDs with approved modified content filtering impacts Content Understanding output. By default, Content Understanding employs a content filtering system that identifies specific risk categories for potentially harmful content in both submitted prompts and generated outputs. Modified content filtering allows the system to annotate rather than block potentially harmful output, giving you the ability to determine how to handle potentially harmful content. For more information on content filter types, *see* [Content filter types](../openai/concepts/content-filter.md#content-filter-types).
+Content Understanding supports modified content filtering for approved customers. The subscription IDs with approved modified content filtering impacts Content Understanding output. By default, Content Understanding employs a content filtering system that identifies specific risk categories for potentially harmful content in both submitted prompts and generated outputs. Modified content filtering allows the system to annotate rather than block potentially harmful output, giving you the ability to determine how to handle potentially harmful content. For more information on content filter types, see [Content filter types](../openai/concepts/content-filter.md#content-filter-types).
 
 > [!IMPORTANT]
 >
-> * Apply for modified content filters via this form: [Azure OpenAI Limited Access Review: Modified Content Filters](https://ncv.microsoft.com/uEfCgnITdR).
-> * For more information, *see* [**Content filtering**](../openai/concepts/content-filter.md).
+> * Apply for modified content filters using this form: [Azure OpenAI Limited Access Review: Modified Content Filters](https://ncv.microsoft.com/uEfCgnITdR).
+> * For more information, *see* [**Content filtering**](../../ai-foundry/openai/concepts/content-filter.md).
 
 ## Face capabilities
 
@@ -95,9 +95,9 @@ The Face capabilities feature in Content Understanding is a limited Access servi
 Developers using the Content Understanding service should review Microsoft's policies on customer data. For more information, visit our [**Data, protection and privacy**](https://www.microsoft.com/trust-center/privacy) page.
 
 > [!IMPORTANT]
-> If you're using Microsoft products or services to process Biometric Data, you're responsible for: (i) providing notice to data subjects, including with respect to retention periods and destruction; (ii) obtaining consent from data subjects; and (iii) deleting the Biometric Data, all as appropriate, and required under applicable Data Protection Requirements. "Biometric Data" has the meaning articulated in Article 4 of the GDPR and, if applicable, equivalent terms in other data protection requirements. For related information, see [Data and privacy for Face](/legal/cognitive-services/face/data-privacy-security).
+> If you're using Microsoft products or services to process Biometric Data, you're responsible for: (i) providing notice to data subjects, including with respect to retention periods and destruction; (ii) obtaining consent from data subjects; and (iii) deleting the Biometric Data, all as appropriate, and required under applicable Data Protection Requirements. "Biometric Data" has the meaning articulated in Article 4 of the GDPR and, if applicable, equivalent terms in other data protection requirements. For related information, see [Data and privacy for Face](/azure/ai-foundry/responsible-ai/face/data-privacy-security).
 
-## Getting started
+## Get started
 
 Our quickstart guides help you quickly start using the Content Understanding service:
 

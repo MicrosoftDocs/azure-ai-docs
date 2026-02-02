@@ -5,8 +5,9 @@ description: Find code samples to enable code interpreter for Azure AI Agents.
 author: aahill
 ms.author: aahi
 manager: nitinme
-ms.date: 04/09/2025
-ms.service: azure-ai-agent-service
+ms.date: 08/11/2025
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.custom:
   - azure-ai-agents-code
@@ -66,7 +67,7 @@ project_client = AIProjectClient(
 The sample uploads a data file for analysis:
 
 ```python
-file = project_client.agents.upload_file_and_poll(
+file = project_client.agents.files.upload_and_poll(
     file_path="nifty_500_quarterly_results.csv", 
     purpose=FilePurpose.AGENTS
 )
@@ -122,7 +123,7 @@ messages = project_client.agents.messages.list(thread_id=thread.id)
 for image_content in messages.image_contents:
     file_id = image_content.image_file.file_id
     file_name = f"{file_id}_image_file.png"
-    project_client.agents.save_file(file_id=file_id, file_name=file_name)
+    project_client.agents.files.save(file_id=file_id, file_name=file_name)
 
 # Process file path annotations
 for file_path_annotation in messages.file_path_annotations:
@@ -136,7 +137,7 @@ for file_path_annotation in messages.file_path_annotations:
 After completing the interaction, the code properly cleans up resources:
 
 ```python
-project_client.agents.delete_file(file.id)
+project_client.agents.files.delete(file.id)
 project_client.agents.delete_agent(agent.id)
 ```
 
@@ -431,7 +432,7 @@ console.log(`Saved image file to: ${imageFileName}`);
 
 :::zone pivot="rest-api" 
 
-Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api#api-call-information) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
+Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
 
 ## Upload a file 
 
@@ -515,4 +516,150 @@ curl --request GET \
   -H "Authorization: Bearer $AGENT_TOKEN"
 ```
 
+:::zone-end
+
+:::zone pivot="java" 
+
+## Download an example file
+
+Files can be uploaded and then referenced by agents or messages. Once it's uploaded it can be added to the tool utility for referencing. You can find a downloadable example file on [GitHub](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-agents/data/syntheticCompanyQuarterlyResults.csv).
+
+## Code example 
+
+```java
+package com.example.agents;
+
+import com.azure.ai.agents.persistent.FilesClient;
+import com.azure.ai.agents.persistent.MessagesClient;
+import com.azure.ai.agents.persistent.PersistentAgentsAdministrationClient;
+import com.azure.ai.agents.persistent.PersistentAgentsClient;
+import com.azure.ai.agents.persistent.PersistentAgentsClientBuilder;
+import com.azure.ai.agents.persistent.RunsClient;
+import com.azure.ai.agents.persistent.ThreadsClient;
+import com.azure.ai.agents.persistent.models.CodeInterpreterToolDefinition;
+import com.azure.ai.agents.persistent.models.CreateAgentOptions;
+import com.azure.ai.agents.persistent.models.CreateRunOptions;
+import com.azure.ai.agents.persistent.models.FileDetails;
+import com.azure.ai.agents.persistent.models.FileInfo;
+import com.azure.ai.agents.persistent.models.FilePurpose;
+import com.azure.ai.agents.persistent.models.MessageAttachment;
+import com.azure.ai.agents.persistent.models.MessageImageFileContent;
+import com.azure.ai.agents.persistent.models.MessageRole;
+import com.azure.ai.agents.persistent.models.MessageTextContent;
+import com.azure.ai.agents.persistent.models.PersistentAgent;
+import com.azure.ai.agents.persistent.models.PersistentAgentThread;
+import com.azure.ai.agents.persistent.models.RunStatus;
+import com.azure.ai.agents.persistent.models.ThreadMessage;
+import com.azure.ai.agents.persistent.models.ThreadRun;
+import com.azure.ai.agents.persistent.models.UploadFileRequest;
+import com.azure.ai.agents.persistent.models.MessageContent;
+import com.azure.core.http.rest.PagedIterable;
+import com.azure.core.util.BinaryData;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+
+import java.net.URL;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
+import java.nio.file.Path;
+import java.util.Arrays;
+
+public class AgentExample {
+
+    public static void main(String[] args) throws FileNotFoundException, URISyntaxException {
+
+        // variables for authenticating requests to the agent service 
+        String projectEndpoint = System.getenv("PROJECT_ENDPOINT");
+        String modelName = System.getenv("MODEL_DEPLOYMENT_NAME");
+
+        PersistentAgentsClientBuilder clientBuilder = new PersistentAgentsClientBuilder().endpoint(projectEndpoint)
+            .credential(new DefaultAzureCredentialBuilder().build());
+        PersistentAgentsClient agentsClient = clientBuilder.buildClient();
+        PersistentAgentsAdministrationClient administrationClient = agentsClient.getPersistentAgentsAdministrationClient();
+        ThreadsClient threadsClient = agentsClient.getThreadsClient();
+        MessagesClient messagesClient = agentsClient.getMessagesClient();
+        RunsClient runsClient = agentsClient.getRunsClient();
+        FilesClient filesClient = agentsClient.getFilesClient();
+
+        Path myFile = getFile("syntheticCompanyQuarterlyResults.csv");
+
+        String agentName = "code_interpreter_file_attachment_example";
+        CodeInterpreterToolDefinition ciTool = new CodeInterpreterToolDefinition();
+        CreateAgentOptions createAgentOptions = new CreateAgentOptions(modelName).setName(agentName).setInstructions("You are a helpful agent").setTools(Arrays.asList(ciTool));
+        PersistentAgent agent = administrationClient.createAgent(createAgentOptions);
+
+        FileInfo uploadedFile = filesClient.uploadFile(new UploadFileRequest(
+            new FileDetails(BinaryData.fromFile(myFile))
+            .setFilename("sample.csv"), FilePurpose.AGENTS));
+
+        MessageAttachment messageAttachment = new MessageAttachment(Arrays.asList(BinaryData.fromObject(ciTool))).setFileId(uploadedFile.getId());
+
+        PersistentAgentThread thread = threadsClient.createThread();
+        ThreadMessage createdMessage = messagesClient.createMessage(
+            thread.getId(),
+            MessageRole.USER,
+            "Could you analyze the uploaded CSV file for me?",
+            Arrays.asList(messageAttachment),
+            null);
+
+        try {
+            //run agent
+            CreateRunOptions createRunOptions = new CreateRunOptions(thread.getId(), agent.getId()).setAdditionalInstructions("");
+            ThreadRun threadRun = runsClient.createRun(createRunOptions);
+
+            waitForRunCompletion(thread.getId(), threadRun, runsClient);
+            printRunMessages(messagesClient, thread.getId());
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } finally {
+            //cleanup
+            threadsClient.deleteThread(thread.getId());
+            administrationClient.deleteAgent(agent.getId());
+        }
+    }
+    // A helper function to print messages from the agent
+    public static void printRunMessages(MessagesClient messagesClient, String threadId) {
+
+        PagedIterable<ThreadMessage> runMessages = messagesClient.listMessages(threadId);
+        for (ThreadMessage message : runMessages) {
+            System.out.print(String.format("%1$s - %2$s : ", message.getCreatedAt(), message.getRole()));
+            for (MessageContent contentItem : message.getContent()) {
+                if (contentItem instanceof MessageTextContent) {
+                    System.out.print((((MessageTextContent) contentItem).getText().getValue()));
+                } else if (contentItem instanceof MessageImageFileContent) {
+                    String imageFileId = (((MessageImageFileContent) contentItem).getImageFile().getFileId());
+                    System.out.print("Image from ID: " + imageFileId);
+                }
+                System.out.println();
+            }
+        }
+    }
+
+    // a helper function to wait until a run has completed running
+    public static void waitForRunCompletion(String threadId, ThreadRun threadRun, RunsClient runsClient)
+        throws InterruptedException {
+
+        do {
+            Thread.sleep(500);
+            threadRun = runsClient.getRun(threadId, threadRun.getId());
+        }
+        while (
+            threadRun.getStatus() == RunStatus.QUEUED
+                || threadRun.getStatus() == RunStatus.IN_PROGRESS
+                || threadRun.getStatus() == RunStatus.REQUIRES_ACTION);
+
+        if (threadRun.getStatus() == RunStatus.FAILED) {
+            System.out.println(threadRun.getLastError().getMessage());
+        }
+    }
+    private static Path getFile(String fileName) throws FileNotFoundException, URISyntaxException {
+        URL resource = AgentExample.class.getClassLoader().getResource(fileName);
+        if (resource == null) {
+            throw new FileNotFoundException("File not found");
+        }
+        File file = new File(resource.toURI());
+        return file.toPath();
+    }
+}
+```
 :::zone-end

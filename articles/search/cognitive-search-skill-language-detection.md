@@ -9,6 +9,7 @@ ms.custom:
   - ignite-2023
 ms.topic: reference
 ms.date: 12/09/2021
+ms.update-cycle: 365-days
 ---
 
 #	Language detection cognitive skill

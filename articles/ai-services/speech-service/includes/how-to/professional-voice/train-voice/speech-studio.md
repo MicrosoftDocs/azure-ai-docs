@@ -1,8 +1,8 @@
 ---
 title: include file
 description: include file
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 5/19/2025
@@ -177,6 +177,9 @@ The following table summarizes the different preset styles according to differen
 
    :::image type="content" source="../../../../media/custom-voice/cnv-train-neural-hd-voice.png" alt-text="Screenshot that shows how to select neural HD voice training.":::
 
+   > [!NOTE]
+   > HD voices are only available in regions that support *High performance* type. For information about regions where the *High performance* endpoint type is supported, see the *Custom voice high performance endpoint* column in the *Text to speech* tab of the [regions](../../../../regions.md#regions) table.
+
 1. Select the data that you want to use for training. Duplicate audio names are removed from the training. Make sure that the data you select doesn't contain the same audio names across multiple *.zip* files.
 
    You can select only successfully processed datasets for training. Check your data processing status if you don't see your training set in the list.
@@ -306,7 +309,7 @@ Updating the engine creates a new version of the model at no extra cost. After y
 
 After you create a new endpoint, you need to [transfer the traffic to the new endpoint in your product](../../../../professional-voice-deploy-endpoint.md#switch-to-a-new-voice-model-in-your-product).
 
-To learn more about the capabilities and limits of this feature, and the best practice to improve your model quality, see [Characteristics and limitations for using custom voice](/legal/cognitive-services/speech-service/custom-neural-voice/characteristics-and-limitations-custom-neural-voice?context=%2fazure%2fcognitive-services%2fspeech-service%2fcontext%2fcontext).
+To learn more about the capabilities and limits of this feature, and the best practice to improve your model quality, see [Characteristics and limitations for using custom voice](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note).
 
 ## Copy your voice model to another project
 

@@ -19,7 +19,7 @@ In this quickstart, you use the following APIs to extract structured data from f
 
 ## Prerequisites
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/).
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * A [**Java Development Kit (JDK)**](https://wiki.openjdk.java.net/display/jdk8u) version 8 or later. For more information, *see* [supported Java Versions and update schedule](/azure/developer/java/fundamentals/java-support-on-azure#supported-java-versions-and-update-schedule).
 

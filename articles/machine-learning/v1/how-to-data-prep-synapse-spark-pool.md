@@ -7,7 +7,7 @@ ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.topic: how-to
 author: ynpandey
-ms.author: franksolomon
+ms.author: scottpolly
 ms.reviewer: franksolomon
 ms.date: 03/06/2025
 ms.custom: UpdateFrequency5, data4ml, synapse-azureml, sdkv1

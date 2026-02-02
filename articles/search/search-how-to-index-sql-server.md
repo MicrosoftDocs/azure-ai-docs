@@ -5,12 +5,12 @@ description: Enable encrypted connections and configure the firewall to allow co
 author: gmndrg
 ms.author: gimondra
 manager: nitinme
-
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
 ms.date: 05/29/2025
+ms.update-cycle: 365-days
 ---
 
 # Configure an indexer connection to a SQL Server instance on an Azure virtual machine

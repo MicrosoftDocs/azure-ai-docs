@@ -1,11 +1,131 @@
 ---
-author: eric-urban
+author: goergenj
+reviewer: patrickfarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 4/8/2025
-ms.author: eur
+ms.date: 10/21/2025
+ms.author: jagoerge
+ms.reviewer: pafarley
 ms.custom: references_regions
 ---
+
+### November 2025 release
+
+#### Public preview of new HD voices
+| **Locale (BCP-47)** | **Voice name**                                      |
+| -------------------- | ---------------------------------------------------- |
+| `en-GB`             | `en-GB-Ada:DragonHDLatestNeural` (Female)           |
+| `en-GB`             | `en-GB-Ollie:DragonHDLatestNeural` (Male)           |
+| `es-MX`             | `es-MX-Tristan:DragonHDLatestNeural` (Male)         |
+| `es-MX`             | `es-MX-Ximena:DragonHDLatestNeural` (Female)        |
+| `fr-CA`             | `fr-CA-Sylvie:DragonHDLatestNeural` (Female)        |
+| `fr-CA`             | `fr-CA-Thierry:DragonHDLatestNeural` (Male)         |
+| `ko-KR`             | `ko-KR-Hyunsu:DragonHDLatestNeural` (Male)          |
+| `ko-KR`             | `ko-KR-SunHi:DragonHDLatestNeural` (Female)         |
+
+#### 33 previous HD voices have been updated to v2.0 with quality improved and bugs fixed
+| **Locale (BCP-47)** | **Voice name**                                      |
+| ------------------- | ----------------------------------------------------|
+| `de-DE`             | `de-DE-Florian:DragonHDLatestNeural` (Male)         |
+| `de-DE`             | `de-DE-Seraphina:DragonHDLatestNeural` (Female)     |
+| `en-US`             | `en-US-Adam:DragonHDLatestNeural` (Male)            |
+| `en-US`             | `en-US-Alloy:DragonHDLatestNeural` (Male)           |
+| `en-US`             | `en-US-Andrew:DragonHDLatestNeural` (Male)          |
+| `en-US`             | `en-US-Andrew2:DragonHDLatestNeural` (Male)         |
+| `en-US`             | `en-US-Andrew3:DragonHDLatestNeural` (Male)         |
+| `en-US`             | `en-US-Aria:DragonHDLatestNeural` (Female)          |
+| `en-US`             | `en-US-Ava:DragonHDLatestNeural` (Female)           |
+| `en-US`             | `en-US-Ava3:DragonHDLatestNeural` (Female)          |
+| `en-US`             | `en-US-Bree:DragonHDLatestNeural` (Female)          |
+| `en-US`             | `en-US-Brian:DragonHDLatestNeural` (Male)           |
+| `en-US`             | `en-US-Davis:DragonHDLatestNeural` (Male)           |
+| `en-US`             | `en-US-Emma:DragonHDLatestNeural` (Female)          |
+| `en-US`             | `en-US-Emma2:DragonHDLatestNeural` (Female)         |
+| `en-US`             | `en-US-Jane:DragonHDLatestNeural` (Female)          |
+| `en-US`             | `en-US-Jenny:DragonHDLatestNeural` (Female)         |
+| `en-US`             | `en-US-Nova:DragonHDLatestNeural` (Female)          |
+| `en-US`             | `en-US-Phoebe:DragonHDLatestNeural` (Female)        |
+| `en-US`             | `en-US-Serena:DragonHDLatestNeural` (Female)        |
+| `en-US`             | `en-US-Steffan:DragonHDLatestNeural` (Male)         |
+| `es-ES`             | `es-ES-Tristan:DragonHDLatestNeural` (Male)         |
+| `es-ES`             | `es-ES-Ximena:DragonHDLatestNeural` (Female)        |
+| `fr-FR`             | `fr-FR-Remy:DragonHDLatestNeural` (Male)            |
+| `fr-FR`             | `fr-FR-Vivienne:DragonHDLatestNeural` (Female)      |
+| `it-IT`             | `it-IT-Alessio:DragonHDLatestNeural` (Male)         |
+| `it-IT`             | `it-IT-Isabella:DragonHDLatestNeural` (Female)      |
+| `ja-JP`             | `ja-JP-Masaru:DragonHDLatestNeural` (Male)          |
+| `ja-JP`             | `ja-JP-Nanami:DragonHDLatestNeural` (Female)        |
+| `pt-BR`             | `pt-BR-Macerio:DragonHDLatestNeural` (Male)         |
+| `pt-BR`             | `pt-BR-Thalita:DragonHDLatestNeural` (Female)       |
+| `zh-CN`             | `zh-CN-Xiaochen:DragonHDLatestNeural` (Female)      |
+| `zh-CN`             | `zh-CN-Yunfan:DragonHDLatestNeural` (Male)          |
+
+> [!NOTE]
+> After this update, if you encounter issue when calling `en-US-MultiTalker-Ava-Andrew:DragonHDLatestNeural` & `en-US-MultiTalker-Ava-Steffan:DragonHDLatestNeural`, please update your voice name to `en-US-MultiTalker-Ava-Andrew:DragonHDv1.2Neural` & `en-US-MultiTalker-Ava-Steffan:DragonHDv1.2Neural`
+
+### August 2025 release
+
+#### Public preview of new HD voices
+| **Locale (BCP-47)** | **Voice name**                                 |
+| ------------------- | ---------------------------------------------- |
+| `it-IT`             | `it-IT-Alessio:DragonHDLatestNeural` (Male)    |
+| `it-IT`             | `it-IT-Isabella:DragonHDLatestNeural` (Female) |
+| `pt-BR`             | `pt-BR-Macerio:DragonHDLatestNeural` (Male)    |
+| `pt-BR`             | `pt-BR-Thalita:DragonHDLatestNeural` (Female)  |
+| `en-US`             | `en-US-Jane:DragonHDLatestNeural` (Female)     |
+
+### July 2025 release
+
+#### Public preview Personal Voice upgraded to v2.1
+
+Our new “DragonV2.1” model brings improvements to the naturalness of speech, offering more realistic and stable prosody while maintaining better pronunciation accuracy.
+
+### June 2025 release
+
+#### VoiceLive API update 
+- Support more GenAI models: GPT-4.1, GPT-4.1 Mini, Phi-4 mini and Phi-4 Multimodal models are now natively supported.
+- Support more customization capabilities
+- Azure Semantic VAD is extended to support GPT-Realtime and GPT-4o-Mini-Realtime.
+- Availability in more regions
+
+#### Public preview of Voice Conversion feature on selected en-US voices
+
+The following voices are now available for the feature:
+
+| **Locale (BCP-47)** | **Voice name**                                         |
+|---------------------|--------------------------------------------------------|
+| `en-US`             | `en-US-Adam:MultilingualNeural` (Male)            |
+| `en-US`             | `en-US-Amanda:MultilingualNeural` (Female)            |
+| `en-US`             | `en-US-Andrew:MultilingualNeural` (Male)              |
+| `en-US`             | `en-US-Ava:MultilingualNeural` (Female)               |
+| `en-US`             | `en-US-Brandon:MultilingualNeural` (Male)             |
+| `en-US`             | `en-US-Brian:MultilingualNeural` (Male)               |
+| `en-US`             | `en-US-Christopher:MultilingualNeural` (Male)         |
+| `en-US`             | `en-US-Cora:MultilingualNeural` (Female)              |
+| `en-US`             | `en-US-Davis:MultilingualNeural` (Male)               |
+| `en-US`             | `en-US-Derek:MultilingualNeural` (Male)               |
+| `en-US`             | `en-US-Dustin:MultilingualNeural` (Male)              |
+| `en-US`             | `en-US-EchoTurbo:MultilingualNeural` (Male)         |
+| `en-US`             | `en-US-Emma:MultilingualNeural` (Female)              |
+| `en-US`             | `en-US-Evelyn:MultilingualNeural` (Female)            |
+| `en-US`             | `en-US-FableTurbo:MultilingualNeural` (Neutral)        |
+| `en-US`             | `en-US-Jenny:MultilingualNeural` (Female)             |
+| `en-US`             | `en-US-Lewis:MultilingualNeural` (Male)               |
+| `en-US`             | `en-US-Lola:MultilingualNeural` (Female)              |
+| `en-US`             | `en-US-Nancy:MultilingualNeural` (Female)             |
+| `en-US`             | `en-US-NovaTurbo:MultilingualNeural` (Female)         |
+| `en-US`             | `en-US-OnyxTurbo:MultilingualNeural` (Male)           |
+| `en-US`             | `en-US-Phoebe:MultilingualNeural` (Female)            |
+| `en-US`             | `en-US-Ryan:MultilingualNeural` (Male)                |
+| `en-US`             | `en-US-Samuel:MultilingualNeural` (Male)              |
+| `en-US`             | `en-US-Serena:MultilingualNeural` (Female)            |
+| `en-US`             | `en-US-ShimmerTurbo:MultilingualNeural` (Female)      |
+| `en-US`             | `en-US-Steffan:MultilingualNeural` (Male)             |
+
+### May 2025 release
+
+#### Public preview for VoiceLive API
+Azure AI Speech feature offering a single, unified API for building voice agents. This new API, available in public preview starting today, supports low-latency, scalable speech-to-speech interactions using foundation models of your choice.
 
 ### April 2025 release
 
@@ -500,7 +620,7 @@ Personal voice is now generally available. With personal voice, you can get AI g
 
 #### Text to speech avatar
 
-- You can now set a static background image for your avatars. To utilize this feature, simply use the `avatarConfig.backgroundImage` property and specify a URL pointing to the desired image. For details, refer to [How to edit the background](../../text-to-speech-avatar/batch-synthesis-avatar-properties.md#how-to-edit-the-background).
+- You can now set a static background image for your avatars. To utilize this feature, simply use the `avatarConfig.backgroundImage` property and specify a URL pointing to the desired image. For details, refer to [batch synthesis avatar properties](../../text-to-speech-avatar/batch-synthesis-avatar-properties.md#edit-the-background).
 
 ### March 2024 release
 
@@ -519,7 +639,7 @@ Personal voice is now generally available. With personal voice, you can get AI g
 #### Text to speech avatar
 
 - Removed dependency on [Azure Communication Services (ACS) TURN](/azure/communication-services/quickstarts/relay-token) for real-time avatar. The [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/browser/avatar) has been updated accordingly to reflect this change.
-- Published text to speech avatar pricing. For more details, see the [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/). Note that avatar pricing will only be visible for service [regions](../../regions.md#regions) where the feature is available.
+- Published text to speech avatar pricing. For more details, see the [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/). Note that avatar pricing will only be visible for service [regions](../../regions.md?tabs=ttsavatar) where the feature is available.
 
 ### February 2024 release
 
@@ -594,7 +714,7 @@ Text to speech avatar is available in preview in the following regions: West US 
 
 Text to speech avatar converts text into a digital video of a photorealistic human (either a standard avatar or a [custom text to speech avatar](../../text-to-speech-avatar/what-is-custom-text-to-speech-avatar.md)) speaking with a natural-sounding voice. The text to speech avatar video can be synthesized asynchronously or in real time. Developers can build applications integrated with text to speech avatar through an API, or use a content creation tool on Speech Studio to create video content without coding.
 
-For more information, see [text to speech avatar](../../text-to-speech-avatar/what-is-text-to-speech-avatar.md), [transparency notes](/legal/cognitive-services/speech-service/text-to-speech/transparency-note?context=/azure/ai-services/speech-service/context/context), and [disclosure for voice and avatar talent](/legal/cognitive-services/speech-service/disclosure-voice-talent?context=/azure/ai-services/speech-service/context/context).
+For more information, see [text to speech avatar](../../text-to-speech-avatar/what-is-text-to-speech-avatar.md), [transparency notes](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note), and [disclosure for voice and avatar talent](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/disclosure-voice-talent).
 
 #### Custom neural voice
 
@@ -856,7 +976,7 @@ For more information, see the [language and voice list](../../language-support.m
 #### Get facial position with viseme
 
 * Added support for blend shapes to drive the facial movements of a 3D character that you designed. Learn more at [how to get facial position with viseme](../../how-to-speech-synthesis-viseme.md).
-* SSML updated to support viseme element. See [speech synthesis markup](../../speech-synthesis-markup-structure.md#viseme-element).
+* SSML updated to support viseme element. See [speech synthesis markup](../../speech-synthesis-markup-voice.md#viseme-element).
 
 ### June 2022 release
 
@@ -997,7 +1117,7 @@ For more information, see the [language and voice list](../../language-support.m
 * Support 2 new styles `sports-commentary`, `sports-commentary-excited` in public preview for `zh-CN-YunjianNeural`. See [voice styles and roles](../../language-support.md?tabs=tts).
 * Support 1 new style `advertisement-upbeat` in public preview for `zh-CN-YunhaoNeural`. See [voice styles and roles](../../language-support.md?tabs=tts).
 * The `cheerful` and `sad` styles for `fr-FR-DeniseNeural` are generally available in all regions.
-* SSML updated to support MathML elements for en-US and en-AU voices. Learn more at [speech synthesis markup](../../speech-synthesis-markup-pronunciation.md#pronunciation-with-mathml).
+* SSML updated to support MathML elements for en-US and en-AU voices. Learn more at [speech synthesis markup](../../speech-synthesis-markup-pronunciation.md#mathematical-expressions-reading).
 
 #### Custom neural voice
 
@@ -1202,8 +1322,8 @@ The [bookmark element](../../speech-synthesis-markup-structure.md#bookmark-eleme
 
 **Custom neural voice GA**
 
-Custom neural voice is GA in February in 13 languages: Chinese (Mandarin, Simplified), English (Australia), English (India), English (United Kingdom), English (United States), French (Canada), French (France), German (Germany), Italian (Italy), Japanese (Japan), Korean (Korea), Portuguese (Brazil), Spanish (Mexico), and Spanish (Spain). Learn more about [what is custom neural voice](../../custom-neural-voice.md) and [how to use it responsibly](/legal/cognitive-services/speech-service/custom-neural-voice/concepts-guidelines-responsible-deployment-synthetic?context=~/articles/ai-services/speech-service/context/context).
-Custom neural voice feature requires registration and Microsoft may limit access based on Microsoft's eligibility criteria. Learn more about the [limited access](/legal/cognitive-services/speech-service/custom-neural-voice/limited-access-custom-neural-voice?context=~/articles/ai-services/speech-service/context/context).
+Custom neural voice is GA in February in 13 languages: Chinese (Mandarin, Simplified), English (Australia), English (India), English (United Kingdom), English (United States), French (Canada), French (France), German (Germany), Italian (Italy), Japanese (Japan), Korean (Korea), Portuguese (Brazil), Spanish (Mexico), and Spanish (Spain). Learn more about [what is custom neural voice](../../custom-neural-voice.md) and [how to use it responsibly](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note).
+Custom neural voice feature requires registration and Microsoft may limit access based on Microsoft's eligibility criteria. Learn more about the [limited access](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/limited-access).
 
 
 ### December 2020 release

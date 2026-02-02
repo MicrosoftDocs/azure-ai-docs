@@ -2,7 +2,6 @@
 title: Upgrade REST API versions
 titleSuffix: Azure AI Search
 description: Review differences in API versions and learn about the REST API lifecycle and the steps for migrating code to the newer versions.
-
 manager: nitinme
 author: bevloh
 ms.author: beloh
@@ -12,7 +11,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: conceptual
-ms.date: 05/15/2025
+ms.date: 09/27/2025
 ---
 
 # Upgrade to the latest REST API in Azure AI Search
@@ -23,9 +22,9 @@ Here are the most recent versions of the REST APIs:
 
 | Targeted operations | REST API | Status |
 |---------------------|----------|--------|
-| Data plane | [`2024-07-01`](/rest/api/searchservice/search-service-api-versions#2024-07-01) | Stable |
-| Data plane | [`2025-05-01-preview`](/rest/api/searchservice/search-service-api-versions#2025-05-01-preview&preserve-view=true) | Preview |
-| Control plane | [`2023-11-01`](/rest/api/searchmanagement/operation-groups?view=rest-searchmanagement-2023-11-0&preserve-view=true1) | Stable |
+| Data plane | [`2025-09-01`](/rest/api/searchservice/search-service-api-versions#2025-09-01) | Stable |
+| Data plane | [`2025-08-01-preview`](/rest/api/searchservice/search-service-api-versions#2025-08-01-preview&preserve-view=true) | Preview |
+| Control plane | [`2025-05-01`](/rest/api/searchmanagement/operation-groups?view=rest-searchmanagement-2025-05-01&preserve-view=true) | Stable |
 | Control plane | [`2025-02-01-preview`](/rest/api/searchmanagement/operation-groups?view=rest-searchmanagement-2025-02-01-preview&preserve-view=true) | Preview |
 
 Upgrade instructions focus on code changes that get you through breaking changes from previous versions so that existing code runs the same as before, but on the newer API version. Once your code is in working order, you can decide whether to adopt newer features. To learn more about new features, see [vector code samples](https://github.com/Azure/azure-search-vector-samples) and [What's New](whats-new.md).
@@ -41,7 +40,7 @@ We recommend upgrading API versions in succession, working through each version 
 
 Azure AI Search breaks backward compatibility as a last resort. Upgrade is necessary when:
 
-+ Your code references a retired or unsupported API version and is subject to one or more breaking changes. You must address breaking changes if your code targets [`2023-07-10-preview`](#code-upgrade-for-vector-indexes-and-queries) for vectors, [`2020-06-01-preview`](#breaking-changes-for-semantic-ranker) for semantic ranker, and [`2019-05-06`](#upgrade-to-2019-05-06) for obsolete skills and workarounds. 
++ Your code references a retired or unsupported API version and is subject to one or more breaking changes. You must address breaking changes if your code targets [`2025-05-01-preview`](#breaking-changes-for-knowledge-agents) for knowledge agents, [`2023-07-10-preview`](#code-upgrade-for-vector-indexes-and-queries) for vectors, [`2020-06-01-preview`](#breaking-changes-for-semantic-ranker) for semantic ranker, and [`2019-05-06`](#upgrade-to-2019-05-06) for obsolete skills and workarounds.
 
 + Your code fails when unrecognized properties are returned in an API response. As a best practice, your application should ignore properties that it doesn't understand.
 
@@ -51,9 +50,9 @@ Azure AI Search breaks backward compatibility as a last resort. Upgrade is neces
 
 1. If you're upgrading a data plane version, review the [release notes](/rest/api/searchservice/search-service-api-versions) for the new API version.
 
-1. Update the `api-version` parameter, specified in the request header, to a newer version. 
+1. Update the `api-version` parameter, specified in the request header, to a newer version.
 
-   In your application code that makes direct calls to the REST APIs, search for all instances of the existing version and then replace it with the new version. For more information about structuring a REST call, see [Quickstart: using REST](search-get-started-rest.md#set-up-visual-studio-code).
+   In your application code that makes direct calls to the REST APIs, search for all instances of the existing version and then replace it with the new version. For more information about structuring a REST call, see [Quickstart: Full-text search using REST](search-get-started-text.md).
 
    If you're using an Azure SDK, those packages target specific versions of the REST API. Package updates might coincide with a REST API update, but each SDK is on its own release schedule that ships independently of Azure AI Search REST API versions. Check the change log of your SDK package to determine whether a package release targets the latest REST API version.
 
@@ -63,19 +62,23 @@ Azure AI Search breaks backward compatibility as a last resort. Upgrade is neces
 
 The following breaking changes apply to data operations.
 
+### Breaking changes for knowledge agents
+
+[Knowledge agents](agentic-retrieval-how-to-create-knowledge-base.md) were introduced in `2025-05-01-preview`. Breaking changes apply to agents that use `targetIndexes` and `defaultMaxDocsForReranker`, which are deprecated starting in `2025-08-01-preview`. For help with breaking changes, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md).
+
 ### Breaking changes for client code that reads connection information
 
-Effective March 29, 2024 and applicable to all [supported REST APIs](/rest/api/searchservice/search-service-api-versions): 
+Effective March 29, 2024 and applicable to all [supported REST APIs](/rest/api/searchservice/search-service-api-versions):
 
 + [GET Skillset](/rest/api/searchservice/skillsets/get), [GET Index](/rest/api/searchservice/indexes/get), and [GET Indexer](/rest/api/searchservice/indexers/get) no longer return keys or connection properties in a response. This is a breaking change if you have downstream code that reads keys or connections (sensitive data) from a GET response.
 
-+ If you need to retrieve admin or query API keys for your search service, use the [Management REST APIs](search-security-api-keys.md?tabs=rest-find#find-existing-keys).
++ If you need to retrieve admin or query API keys for your search service, use the [Search Management REST APIs](search-security-api-keys.md?tabs=rest-find#find-existing-keys).
 
-+ If you need to retrieve connection strings of another Azure resource such as Azure Storage or Azure Cosmos DB, use the APIs of that resource and published guidance to obtain the information. 
++ If you need to retrieve connection strings of another Azure resource such as Azure Storage or Azure Cosmos DB, use the APIs of that resource and published guidance to obtain the information.
 
 ### Breaking changes for semantic ranker
 
-[Semantic ranker](semantic-search-overview.md) is generally available in `2023-11-01`. There are the breaking changes from earlier releases:
+[Semantic ranker](semantic-search-overview.md) became generally available in `2023-11-01`. These are the breaking changes from earlier releases:
 
 + In all versions after `2020-06-01-preview`: `semanticConfiguration` replaces `searchFields` as the mechanism for specifying which fields to use for L2 ranking.
 
@@ -86,6 +89,21 @@ See [Migrate from preview version](semantic-code-migration.md) to transition you
 ## Data plane upgrades
 
 Upgrade guidance assumes upgrade from the most recent previous version. If your code is based on an old API version, we recommend upgrading through each successive version to get to the newest version.
+
+### Upgrade to 2025-09-01
+
+[`2025-09-01`](/rest/api/searchservice/search-service-api-versions#2025-09-01) is the latest stable REST API version and it adds general availability for the OneLake indexer, Document Layout skill, and other APIs.
+
+There are no breaking changes if you're upgrading from `2024-07-01` and not using any preview features. To use the new stable release, change the API version and test your code.
+
+### Upgrade to 2025-08-01-preview
+
+[`2025-08-01-preview`](/rest/api/searchservice/search-service-api-versions#2025-08-01-preview) introduces the following breaking changes to knowledge agents created using `2025-05-01-preview`:
+
++ Replaces `targetIndexes` with `knowledgeSources`.
++ Removes `defaultMaxDocsForReranker` without replacement.
+
+Otherwise, there are no behavior changes on existing APIs. You can swap in the new API version and your code runs the same as before.
 
 ### Upgrade to 2025-05-01-preview
 
@@ -124,7 +142,7 @@ There are breaking changes if you upgrade directly from `2023-11-01`. Follow the
 
 ### Upgrade to 2024-05-01-preview
 
-[`2024-05-01-preview`](/rest/api/searchservice/search-service-api-versions#2024-05-01-preview) adds OneLake index, support for binary vectors, and support for more embedding models. 
+[`2024-05-01-preview`](/rest/api/searchservice/search-service-api-versions#2024-05-01-preview) adds an indexer for Microsoft OneLake, binary vectors, and more embedding models.
 
 If you're upgrading from `2024-03-01-preview`, the AzureOpenAIEmbedding skill now requires a model name and dimensions property.
 
@@ -134,7 +152,7 @@ If you're upgrading from `2024-03-01-preview`, the AzureOpenAIEmbedding skill no
 
 ### Upgrade to 2024-03-01-preview
 
-[`2024-03-01-preview`](/rest/api/searchservice/search-service-api-versions#2024-03-01-preview) adds narrow data types, scalar quantization, and vector storage options. 
+[`2024-03-01-preview`](/rest/api/searchservice/search-service-api-versions#2024-03-01-preview) adds narrow data types, scalar quantization, and vector storage options.
 
 If you're upgrading from `2023-10-01-preview`, there are no breaking changes. However, there's one behavior difference: for `2023-11-01` and newer previews, the `vectorFilterMode` default changed from postfilter to prefilter for [filter expressions](vector-search-filters.md).
 
@@ -154,7 +172,7 @@ To use the new stable release, change the API version and test your code.
 
 [`2023-10-01-preview`](/rest/api/searchservice/search-service-api-versions#2023-10-01-preview) was the first preview version to add [built-in data chunking and vectorization during indexing](vector-search-integrated-vectorization.md) and [built-in query vectorization](vector-search-how-to-configure-vectorizer.md). It also supports vector indexing and queries from the previous version.
 
-If you're upgrading from the previous version, the next section has the steps. 
+If you're upgrading from the previous version, the next section has the steps.
 
 ### Upgrade from 2023-07-01-preview
 
@@ -164,7 +182,7 @@ Don't use this API version. It implements a vector query syntax that's incompati
 
 #### Portal upgrade for vector indexes
 
-Azure portal supports a one-click upgrade path for `2023-07-01-preview` indexes. It detects vector fields and provides a **Migrate** button. 
+Azure portal supports a one-click upgrade path for `2023-07-01-preview` indexes. It detects vector fields and provides a **Migrate** button.
 
 + Migration path is from `2023-07-01-preview` to `2024-05-01-preview`.
 + Updates are limited to vector field definitions and vector search algorithm configurations.
@@ -176,7 +194,7 @@ Before selecting **Migrate**, select **Edit JSON** to review the updated schema 
 
 #### Code upgrade for vector indexes and queries
 
-[Vector search](vector-search-overview.md) support was introduced in [Create or Update Index (2023-07-01-preview)](/rest/api/searchservice/preview-api/create-or-update-index). 
+[Vector search](vector-search-overview.md) support was introduced in [Create or Update Index (2023-07-01-preview)](/rest/api/searchservice/preview-api/create-or-update-index).
 
 Upgrading from `2023-07-01-preview` to any newer stable or preview version requires:
 
@@ -281,14 +299,14 @@ Use the instructions in this section to migrate vector fields, configuration, an
       }
     ```
 
-1. Call [Create or Update Index](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2023-11-01&tabs=HTTP&preserve-view=true) to post the changes. 
+1. Call [Create or Update Index](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2023-11-01&tabs=HTTP&preserve-view=true) to post the changes.
 
 1. Modify [Search POST](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2023-11-01&tabs=HTTP&preserve-view=true) to change the query syntax. This API change enables support for polymorphic vector query types.
 
    + Rename `vectors` to `vectorQueries`.
    + For each vector query, add `kind`, setting it to `vector`.
    + For each vector query, rename `value` to `vector`.
-   + Optionally, add `vectorFilterMode` if you're using [filter expressions](vector-search-filters.md). The default is  prefilter for indexes created after `2023-10-01`. Indexes created before that date only support postfilter, regardless of how you set the filter mode. 
+   + Optionally, add `vectorFilterMode` if you're using [filter expressions](vector-search-filters.md). The default is  prefilter for indexes created after `2023-10-01`. Indexes created before that date only support postfilter, regardless of how you set the filter mode.
 
     **Before (2023-07-01-preview)**:
 
@@ -342,7 +360,7 @@ These steps complete the migration to `2023-11-01` stable API version or newer p
 
 In this version, there's one breaking change and several behavioral differences. Generally available features include:
 
-+ [Knowledge store](knowledge-store-concept-intro.md), persistent storage of enriched content created through skillsets, created for downstream analysis and processing through other applications. A knowledge store is created through Azure AI Search REST APIs but it resides in Azure Storage. 
++ [Knowledge store](knowledge-store-concept-intro.md), persistent storage of enriched content created through skillsets, created for downstream analysis and processing through other applications. A knowledge store is created through Azure AI Search REST APIs but it resides in Azure Storage.
 
 #### Breaking change
 
@@ -352,7 +370,7 @@ Code written against earlier API versions breaks on `2020-06-30` and later if co
 
 #### Behavior changes
 
-+ [BM25 ranking algorithm](index-ranking-similarity.md) replaces the previous ranking algorithm with newer technology. Services created after 2019 use this algorithm automatically. For older services, you must set parameters to use the new algorithm.  
++ [BM25 ranking algorithm](index-ranking-similarity.md) replaces the previous ranking algorithm with newer technology. Services created after 2019 use this algorithm automatically. For older services, you must set parameters to use the new algorithm.
 
 + Ordered results for null values have changed in this version, with null values appearing first if the sort is `asc` and last if the sort is `desc`. If you wrote code to handle how null values are sorted, be aware of this change.
 
@@ -362,14 +380,14 @@ Features that became generally available in this API version include:
 
 + [Autocomplete](index-add-suggesters.md) is a typeahead feature that completes a partially specified term input.
 + [Complex types](search-howto-complex-data-types.md) provides native support for structured object data in search index.
-+ [JsonLines parsing modes](search-howto-index-json-blobs.md), part of Azure Blob indexing, creates one search document per JSON entity that is separated by a newline.
++ [JsonLines parsing modes](search-how-to-index-azure-blob-json.md), part of Azure Blob indexing, creates one search document per JSON entity that is separated by a newline.
 + [AI enrichment](cognitive-search-concept-intro.md) provides indexing that uses the AI enrichment engines of Azure AI services.
 
 #### Breaking changes
 
 Code written against an earlier API version breaks on `2019-05-06` and later if it contains the following functionality:
 
-1. Type property for Azure Cosmos DB. For indexers targeting an [Azure Cosmos DB for NoSQL API](search-howto-index-cosmosdb.md) data source, change `"type": "documentdb"` to `"type": "cosmosdb"`.
+1. Type property for Azure Cosmos DB. For indexers targeting an [Azure Cosmos DB for NoSQL API](search-how-to-index-cosmosdb-sql.md) data source, change `"type": "documentdb"` to `"type": "cosmosdb"`.
 
 1. If your indexer error handling includes references to the `status` property, you should remove it. We removed status from the error response because it wasn't providing useful information.
 
@@ -443,12 +461,12 @@ You can update flat indexes to the new format with the following steps using API
 
 The `listQueryKeys` GET request on older Search Management API versions is now deprecated. We recommend migrating to the most recent stable control plane API version to use the [`listQueryKeys` POST request](/rest/api/searchmanagement/query-keys/list-by-search-service).
 
-1. In existing code, change the `api-version` parameter to the most recent version (`2023-11-01`).
+1. In existing code, change the `api-version` parameter to the most recent version (`2025-05-01`).
 
 1. Reframe the request from `GET` to `POST`:
 
    ```http
-   POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Search/searchServices/{searchServiceName}/listQueryKeys?api-version=2023-11-01
+   POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Search/searchServices/{searchServiceName}/listQueryKeys?api-version=2025-05-01
    Authorization: Bearer {{token}}
    ```
 

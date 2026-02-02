@@ -6,11 +6,12 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: concept-article
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: deeikele
-ms.date: 09/09/2024
+ms.date: 10/31/2025
 ms.custom: FY25Q1-Linter
+ai-usage: ai-assisted
 monikerRange: 'azureml-api-2 || azureml-api-1'
 #Customer intent: As an IT pro, understand how to enable data protection capabilities, to protect against accidental deletion.
 ---
@@ -23,26 +24,26 @@ The soft delete feature for Azure Machine Learning workspace provides a data pro
 
 When a workspace is soft deleted, data and metadata stored service-side get soft deleted, but some configurations get hard deleted. The following table provides an overview of which configurations and objects get soft deleted, and which are hard deleted.
 
-| Data / configuration | Soft deleted | Hard deleted |
-|---|---|---|
-| Run History | ✓ | |
-| Models | ✓ | |
-| Data | ✓ | |
-| Environments | ✓ | |
-| Components | ✓ | |
-| Notebooks | ✓ | |
-| Pipelines | ✓ | |
-| Designer pipelines | ✓ | |
-| AutoML jobs | ✓ | |
-| Data labeling projects | ✓ | |
-| Datastores | ✓ | |
-| Queued or running jobs | | ✓ |
-| Role assignments | | ✓* |
-| Internal cache | | ✓ |
-| Compute instance |  | ✓ |
-| Compute clusters |  | ✓ |
-| Inference endpoints | | ✓ |
-| Linked Databricks workspaces | | ✓* |
+| Data / configuration          | Soft deleted | Hard deleted |
+|-------------------------------|--------------|--------------|
+| Run History                   | ✓            |              |
+| Models                        | ✓            |              |
+| Data                          | ✓            |              |
+| Environments                  | ✓            |              |
+| Components                    | ✓            |              |
+| Notebooks                     | ✓            |              |
+| Pipelines                     | ✓            |              |
+| Designer pipelines            | ✓            |              |
+| AutoML jobs                   | ✓            |              |
+| Data labeling projects        | ✓            |              |
+| Datastores                    | ✓            |              |
+| Queued or running jobs        |              | ✓            |
+| Role assignments              |              | ✓*           |
+| Internal cache                |              | ✓            |
+| Compute instance              |              | ✓            |
+| Compute clusters              |              | ✓            |
+| Inference endpoints           |              | ✓            |
+| Linked Databricks workspaces  |              | ✓*           |
 
 \* *Microsoft attempts recreation or reattachment when a workspace is recovered. Recovery isn't guaranteed, and a best effort attempt.*
 
@@ -134,11 +135,11 @@ In general, when a workspace is in soft deleted state, there are only two operat
 > [!IMPORTANT]    
 > Workspaces that use [customer-managed keys for encryption](concept-data-encryption.md) store additional service data in your subscription in a managed resource group. When a workspace is soft deleted, the managed resource group and resources in it will not be deleted and will incur cost until the workspace is hard-deleted.
 
-## General Data Protection Regulation (GDPR) implications
+## Data privacy and regulatory considerations
 
-After soft deletion, the service keeps necessary data and metadata during the recovery [retention period](#soft-delete-retention-period). From a GDPR and privacy perspective, a request to delete personal data should be interpreted as a request for *permanent* deletion of a workspace and not soft delete.
+After soft deletion, the service keeps necessary data and metadata during the recovery [retention period](#soft-delete-retention-period). From a regulatory and privacy perspective, a request to delete personal data should be interpreted as a request for *permanent* deletion of a workspace and not soft delete.
 
-When the retention period expires, or in case you permanently delete a workspace, data and metadata are actively deleted. You could choose to permanently delete a workspace at the time of deletion.
+When the retention period expires, or in case you permanently delete a workspace, data, and metadata are actively deleted. You could choose to permanently delete a workspace at the time of deletion.
 
 For more information, see the [Export or delete workspace data](how-to-export-delete-data.md) article.
 

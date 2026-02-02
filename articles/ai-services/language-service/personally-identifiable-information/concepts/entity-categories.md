@@ -1,1402 +1,1086 @@
 ---
-title: Entity categories recognized by Personally Identifiable Information (detection) in Azure AI Language
+title: Entity categories recognized by Personally Identifiable Information (PII) and Protected Health Information (PHI) detection in Azure AI Language
 titleSuffix: Azure AI services
-description: Learn about the entities the PII feature can recognize from unstructured text.
+description: Learn about the types of entities the PII feature can detect and identify within unstructured text.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 06/04/2025
+ms.date: 10/01/2025
 ms.author: lajanuar
-ms.custom: language-service-pii
+ms.custom:
+  - language-service-pii
+  - sfi-ropc-nochange
 ---
 
-# Supported PII entities
-Use this article to find the entity categories that the [personally identifiable information (PII) detection feature](../how-to-call.md) returns. This feature runs a predictive model to identify, categorize, and redact sensitive information from an input document.
+# Recognized **PII** and **PHI** entities
 
-The PII feature includes the ability to detect personal (`PII`) and health (`PHI`) information.
+The Personally Identifiable Information (PII) and Protected Health Information (PHI) detection APIs are cloud-based solutions that use artificial intelligence (AI) and machine learning to help you create smart applications with advanced natural language processing. The **PII** and **PHI** APIs effectively detect and removes sensitive information from input data by categorizing personal details into specific, predefined entity types. This comprehensive approach not only safeguards sensitive data to ensure full compliance with privacy regulations, but also enables applications to process and utilize information with enhanced security, reliability, and efficiency.
 
-## Supported entities
+> [!TIP]
+> Try PII detection in text or conversations using the [Azure AI Foundry](https://ai.azure.com/explore/language) language playground.
+
+## Language Support
+
+The [PII language support page](../language-support.md) lists all languages available for the PII entities in this article. Any exceptions are noted for specific named entities.
+
+Supported API versions:
+
+* [**Stable: Generally Available (GA)**](/rest/api/language/text-analysis-runtime/analyze-text?view=rest-language-2024-11-01&preserve-view=truetabs=HTTP#entitycategory)
+* [**Preview: 2025-05-15-preview**](/rest/api/language/text-analysis-runtime/analyze-text?view=rest-language-2025-05-15-preview&preserve-view=true&tabs=HTTP#entitycategory). The following entities are currently in preview:
+
+  * DateOfBirth
+  * BankAccountNumber
+  * PassportNumber
+  * DriversLicenseNumber
+  * SortCode
+  * VIN (vehicle identification number)
+  * LicensePlate
 
 > [!NOTE]
-> * To detect protected health information (PHI), use the `domain=phi` parameter and model version `2020-04-01` or later.
-> * The `Type` and `Subtype` are new designations introduced in the `2025-05-15-preview` version.
+> Beginning with the GA API (released `2024-11-01`), the **Subtype** field is no longer supported. All entity classifications now use the **type** field.
 
-The following entity categories are returned when you're sending API requests PII feature:
+### Supported PII entity list
 
-# [Preview API](#tab/preview-api)
+To examine a comprehensive list of all the types of Personally Identifiable Information (PII) entities that are currently supported, *see* the [Supported PII entity list](entity-categories-list.md)
 
-## Type: Person
+### Supported PII extraction entities
 
-This type contains the following entity:
+Personally identifiable information (PII) refers to any single piece of data or combination of data that enables the unique identification, tracking, or differentiation of an individual.
 
-:::row:::
-    :::column span="":::
-        **Entity**
+The Azure Language PII extraction API uses Natural Language Processing (NLP) technology to detect, recognize, and extract PII entities from written text or spoken conversations. The following entities represent specific types of information that can reveal an individual's identity:
 
-        Person
+## Personal
 
-    :::column-end:::
-    :::column span="2":::
-        **Details**
+Any data, collected or stored, that can be used to identify or contact a specific individual is considered personal information. This data may include information that identifies someone directly, such as their name or social security number. It can also refer to data that, when linked with other information, could lead to identification—for example, an address or dates of birth.).
 
-        Names of people. Returned as both PII and PHI.
+### Type: Address
 
-        To get this entity type, add `Person` to the `piiCategories` parameter. `Person` is returned in the API response if detected.
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **Address** in the **piiCategories** request parameter. If **Address** is detected, It appears in the **PII** and **PHI** response payloads. |[Address]|
 
-    :::column-end:::
+### Type: Age
 
-    :::column span="":::
-      **Supported languages**
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **Age** in the **piiCategories** request parameter. If **Age** is detected, It appears in the **PII** response payload.|[Age]|
 
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `af`, `ca`, `da`, `el`, `ga`, `gl`, `ku`, `nl`, `no`, `ss`, `ro`, `sq`, `ur`, `ar`, `bg`, `bs`, `cy`, `fa`, `hr`, `id`, `mg`, `mk`, `ms`, `ps`, `ru`, `sl`, `so`, `sr`, `sw`, `am`, `as`, `cs`, `et`, `eu`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `mr`, `my`, `ne`, `or`, `pa`, `pl`, `sk`, `th`, `uk`, `az`, `bn`, `gu`, `hy`, `ka`, `kk`, `kn`, `ky`, `ml`, `mn`, `ta`, `te`, `ug`, `uz`, `vi`
+### Type: Date Of Birth (preview)
 
-   :::column-end:::
-:::row-end:::
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **DateOfBirth** in the **piiCategories** request parameter. If **DateOfBirth** is detected, It appears in the **PII** response payload.|[DateOfBirth]|
 
-# [GA API](#tab/ga-api)
+### Type: Drivers License Number (preview)
 
-## Category: Person
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **DriversLicenseNumber** in the **piiCategories** request parameter. If **DriversLicenseNumber** is detected, It appears in the **PII** response payload.|[DriversLicenseNumber]|
 
-This category contains the following entity:
+### Type: Email
 
-:::row:::
-    :::column span="":::
-        **Entity**
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **Email** in the **piiCategories** request parameter. If **Email** is detected, It appears in the **PII** and **PHI** response payloads.|[Email]|
 
-        Person
+### Type: IP Address
 
-    :::column-end:::
-    :::column span="2":::
-        **Details**
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **IPAddress** in the **piiCategories** request parameter. If **IPAddress** is detected, It appears in the **PII** and **PHI** response payloads.|[IPAddress]|
 
-        Names of people. Returned as both PII and PHI.
+### Type: License Plate (preview)
 
-        To get this entity category, add `Person` to the `piiCategories` parameter. `Person` is returned in the API response if detected.
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **LicensePlate** in the **piiCategories** request parameter. If **LicensePlate** is detected, It appears in the **PII** response payload.|[LicensePlate]|
 
-    :::column-end:::
+### Type: Passport Number (preview)
 
-    :::column span="":::
-      **Supported languages**
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **PassportNumber** in the **piiCategories** request parameter. If **PassportNumber** is detected, It appears in the **PII** response payload.|[PassportNumber]|
 
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `af`, `ca`, `da`, `el`, `ga`, `gl`, `ku`, `nl`, `no`, `ss`, `ro`, `sq`, `ur`, `ar`, `bg`, `bs`, `cy`, `fa`, `hr`, `id`, `mg`, `mk`, `ms`, `ps`, `ru`, `sl`, `so`, `sr`, `sw`, `am`, `as`, `cs`, `et`, `eu`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `mr`, `my`, `ne`, `or`, `pa`, `pl`, `sk`, `th`, `uk`, `az`, `bn`, `gu`, `hy`, `ka`, `kk`, `kn`, `ky`, `ml`, `mn`, `ta`, `te`, `ug`, `uz`, `vi`
+### Type: Person
 
-   :::column-end:::
-:::row-end:::
----
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **Person** in the **piiCategories** request parameter. If **Person** is detected, It appears in the **PII** response payloads.|[Person]|
 
-# [Preview API](#tab/preview-api)
+### Type: Phone Number
 
-## Type: PersonType
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **PhoneNumber** in the **piiCategories** request parameter. If **PhoneNumber** is detected, It appears in the **PII** and **PHI** response payloads.|[PhoneNumber]|
 
-This type contains the following entity:
+### Type: URL
 
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **URL** in the **piiCategories** request parameter. If **URL** is detected, It appears in the **PII** and **PHI** response payloads.|[URL]|
 
-:::row:::
-    :::column span="":::
-        **Entity**
+### Type: VIN (preview)
 
-        PersonType
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **VIN** (vehicle registration number) in the **piiCategories** request parameter. If **VIN** is detected, It appears in the **PII** response payload.|[VIN]|
 
-    :::column-end:::
-    :::column span="2":::
-        **Details**
+## Financial
 
-        Job types or roles held by a person.
+Any financial information is connected to a particular individual that can, through identifying details, be traced back to that person. 
 
-        To get this entity category, add `PersonType` to the `piiCategories` parameter. `PersonType` is returned in the API response if detected.
 
-    :::column-end:::
+### Type: American Bankers Association Routing Number
 
-    :::column span="":::
-      **Supported languages**
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **ABARoutingNumber** in the **piiCategories** request parameter. If **ABARoutingNumber** is detected, It appears in the **PII** response payload.|[ABARoutingNumber]|
 
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `af`, `ca`, `da`, `el`, `ga`, `gl`, `ku`, `nl`, `no`, `ss`, `ro`, `sq`, `ur`, `ar`, `bg`, `bs`, `cy`, `fa`, `hr`, `id`, `mg`, `mk`, `ms`, `ps`, `ru`, `sl`, `so`, `sr`, `sw`, `am`, `as`, `cs`, `et`, `eu`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `mr`, `my`, `ne`, `or`, `pa`, `pl`, `sk`, `th`, `uk`, `az`, `bn`, `gu`, `hy`, `ka`, `kk`, `kn`, `ky`, `ml`, `mn`, `ta`, `te`, `ug`, `uz`, `vi`
+### Type: Bank Account Number (preview) 
 
-   :::column-end:::
-:::row-end:::
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **BankAccountNumber** in the **piiCategories** request parameter. If **BankAccountNumber** is detected, It appears in the **PII** response payload.|[BankAccountNumber]|
 
-# [GA API](#tab/ga-api)
+### Type: Credit Card Number
 
-## Category: PersonType
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **CreditCardNumber** in the **piiCategories** request parameter. If **CreditCardNumber** is detected, It appears in the **PII** response payload.|[CreditCardNumber]|
 
-This category contains the following entity:
+### Type: International Banking Account Number
 
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **InternationalBankingAccountNumber** in the **piiCategories** request parameter. If **InternationalBankingAccountNumber** is detected, It appears in the **PII** response payload.|[InternationalBankingAccountNumber]|
 
-:::row:::
-    :::column span="":::
-        **Entity**
+### Type: Sort Code (preview)
 
-        PersonType
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **SortCode** in the **piiCategories** request parameter. If **SortCode** is detected, It appears in the **PII** response payload.|[SortCode]|
 
-    :::column-end:::
-    :::column span="2":::
-        **Details**
+### Type: SWIFT Code
 
-        Job types or roles held by a person.
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **SWIFTCode** in the **piiCategories** request parameter. If **SWIFTCode** is detected, It appears in the **PII** response payload.|[SWIFTCode]|
 
-        To get this entity type, add `PersonType` to the `piiCategories` parameter. `PersonType` is returned in the API response if detected.
+## Organization
 
-    :::column-end:::
+Any data that an organization collects, stores, or processes that can be used to identify a specific individual, either directly or indirectly. 
 
-    :::column span="":::
-      **Supported languages**
+### Type: Organization
 
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `af`, `ca`, `da`, `el`, `ga`, `gl`, `ku`, `nl`, `no`, `ss`, `ro`, `sq`, `ur`, `ar`, `bg`, `bs`, `cy`, `fa`, `hr`, `id`, `mg`, `mk`, `ms`, `ps`, `ru`, `sl`, `so`, `sr`, `sw`, `am`, `as`, `cs`, `et`, `eu`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `mr`, `my`, `ne`, `or`, `pa`, `pl`, `sk`, `th`, `uk`, `az`, `bn`, `gu`, `hy`, `ka`, `kk`, `kn`, `ky`, `ml`, `mn`, `ta`, `te`, `ug`, `uz`, `vi`
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **Organization** in the **piiCategories** request parameter. If **Organization** is detected, It appears in the **PII** and **PHI** response payloads.|[Organization]|
 
-   :::column-end:::
-:::row-end:::
+## DateTime
 
----
+ Data that can be used to identify, distinguish, or trace an individual. While a date or time on its own is often not considered PII, it can become highly sensitive when combined with other data points.
 
-# [Preview API](#tab/preview-api)
+### Type: Date
 
-## Type: PhoneNumber
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **Date** in the **piiCategories** request parameter. If **Date** is detected, It appears in the **PII** and **PHI** response payloads.|[Date]|
 
-This type contains the following entity:
+## Azure-related
 
-:::row:::
-    :::column span="":::
-        **Entity**
+Any identifiable Azure information like authentication information and connection strings that can be used to distinguish or trace an individual's identity.
 
-        PhoneNumber
+### Type: Azure Document DB Auth Key
 
-    :::column-end:::
-    :::column span="2":::
-        **Details**
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **AzureDocumentDBAuthKey** in the **piiCategories** request parameter. If **AzureDocumentDBAuthKey** is detected, It appears in the **PII** response payload.|[AzureDocumentDBAuthKey]|
 
-        Phone numbers (US and EU phone numbers only). Returned as both PII and PHI.
+### Type: Azure IAAS Database Connection And SQL String
 
-        To get this entity category, add `PhoneNumber` to the `piiCategories` parameter. `PhoneNumber` is returned in the API response if detected.
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **AzureIAASDatabaseConnectionAndSQLString** in the **piiCategories** request parameter. If **AzureIAASDatabaseConnectionAndSQLString** is detected, It appears in the **PII** response payload.|[AzureIAASDatabaseConnectionAndSQLString]|
 
-    :::column-end:::
+### Type: Azure IoT Connection String
 
-    :::column span="":::
-      **Supported languages**
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **AzureIoTConnectionString** in the **piiCategories** request parameter. If **AzureIoTConnectionString** is detected, It appears in the **PII** response payload.|[AzureIoTConnectionString]|
 
-      `en`, `es`, `fr`, `de`, `it`, `zh-hans`, `ja`, `ko`, `pt-pt` `pt-br`
+### Type: Azure Publish Setting Password
 
-   :::column-end:::
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **AzurePublishSettingPassword** in the **piiCategories** request parameter. If **AzurePublishSettingPassword** is detected, It appears in the **PII** response payload.|[AzurePublishSettingPassword]|
 
-:::row-end:::
+### Type: Azure Redis Cache String
 
-# [GA API](#tab/ga-api)
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **AzureRedisCacheString** in the **piiCategories** request parameter. If **AzureRedisCacheString** is detected, It appears in the **PII** response payload.|[AzureRedisCacheString]|
 
-## Category: PhoneNumber
+### Type: Azure SAS
 
-This category contains the following entity:
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **AzureSAS** in the **piiCategories** request parameter. If **AzureSAS** is detected, It appears in the **PII** response payload.|[AzureSAS]|
 
-:::row:::
-    :::column span="":::
-        **Entity**
+### Type: Azure Service Bus String
 
-        PhoneNumber
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **AzureServiceBusString** in the **piiCategories** request parameter. If **AzureServiceBusString** is detected, It appears in the **PII** response payload.|[AzureServiceBusString]|
 
-    :::column-end:::
-    :::column span="2":::
-        **Details**
+### Type: Azure Storage Account Generic
 
-        Phone numbers (US and EU phone numbers only). Returned as both PII and PHI.
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **AzureStorageAccountGeneric** in the **piiCategories** request parameter. If **AzureStorageAccountGeneric** is detected, It appears in the **PII** response payload.|[AzureStorageAccountGeneric]|
 
-        To get this entity type, add `PhoneNumber` to the `piiCategories` parameter. `PhoneNumber` is returned in the API response if detected.
+### Type: Azure Storage Account Key
 
-    :::column-end:::
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **AzureStorageAccountKey** in the **piiCategories** request parameter. If **AzureStorageAccountKey** is detected, It appears in the **PII** response payload.|[AzureStorageAccountKey]|
 
-    :::column span="":::
-      **Supported languages**
+### Type: SQL Server Connection String
 
-      `en`, `es`, `fr`, `de`, `it`, `zh-hans`, `ja`, `ko`, `pt-pt` `pt-br`
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **SQLServerConnectionString** in the **piiCategories** request parameter. If **SQLServerConnectionString** is detected, It appears in the **PII** response payload.|[AzureStorageAccountKey]|
 
-   :::column-end:::
 
-:::row-end:::
----
+## Government
 
-# [Preview API](#tab/preview-api)
+Any government-issued identification that can be used along or combined with other data to trace and reveal a specific person's identity.
 
-## Type: Organization
+### Type: Argentina National Identity Number
 
-This type contains the following entity:
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **ARNationalIdentityNumber** in the **piiCategories** request parameter. If **ARNationalIdentityNumber** is detected, It appears in the **PII** response payload.|[ARNationalIdentityNumber]|
 
-:::row:::
-    :::column span="":::
-        **Entity**
+### Type: Australia Bank Account Number
 
-        Organization
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **AUBankAccountNumber** in the **piiCategories** request parameter. If **AUBankAccountNumber** is detected, It appears in the **PII** response payload.|[AUBankAccountNumber]|
 
-    :::column-end:::
-    :::column span="2":::
-        **Details**
+### Type: Australia Business Number
 
-        Companies, political groups, musical bands, sport clubs, government bodies, and public organizations. Nationalities and religions are not included in this entity type. Returned as both PII and PHI.
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **AUBusinessNumber** in the **piiCategories** request parameter. If **AUBusinessNumber** is detected, It appears in the **PII** response payload.|[AUBusinessNumber]|
 
-        To get this entity category, add `Organization` to the `piiCategories` parameter. `Organization` is returned in the API response if detected.
+### Type: Australia Company Number
 
-    :::column-end:::
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **AUCompanyNumber** in the **piiCategories** request parameter. If **AUCompanyNumber** is detected, It appears in the **PII** response payload.|[AUCompanyNumber]|
 
-    :::column span="":::
-      **Supported languages**
+### Type: Australia Drivers License Number
 
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `af`, `ca`, `da`, `el`, `ga`, `gl`, `ku`, `nl`, `no`, `ss`, `ro`, `sq`, `ur`, `ar`, `bg`, `bs`, `cy`, `fa`, `hr`, `id`, `mg`, `mk`, `ms`, `ps`, `ru`, `sl`, `so`, `sr`, `sw`, `am`, `as`, `cs`, `et`, `eu`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `mr`, `my`, `ne`, `or`, `pa`, `pl`, `sk`, `th`, `uk`, `az`, `bn`, `gu`, `hy`, `ka`, `kk`, `kn`, `ky`, `ml`, `mn`, `ta`, `te`, `ug`, `uz`, `vi`
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **AUDriversLicenseNumber** in the **piiCategories** request parameter. If **AUDriversLicenseNumber** is detected, It appears in the **PII** response payload.|[AUDriversLicenseNumber]|
 
-   :::column-end:::
+### Type: Australia Medical Account Number
 
-:::row-end:::
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **AUMedicalAccountNumber** in the **piiCategories** request parameter. If **AUMedicalAccountNumber** is detected, It appears in the **PII** response payload.|[AUMedicalAccountNumber]|
 
-#### Subtype
+### Type: Australia Passport Number
 
-The entity in this type can have the following subcategories:
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **AUPassportNumber** in the **piiCategories** request parameter. If **AUPassportNumber** is detected, It appears in the **PII** response payload.|[AUPassportNumber]|
 
-:::row:::
-    :::column span="":::
-        **Entity subtype**
+### Type: Australia Tax File Number
 
-        Medical
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **AUTaxFileNumber** in the **piiCategories** request parameter. If **AUTaxFileNumber** is detected, It appears in the **PII** response payload.|[AUTaxFileNumber]|
 
-    :::column-end:::
-    :::column span="2":::
-        **Details**
+### Type: Austria Identity Card
 
-        Medical companies and groups.
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **ATIdentityCard** in the **piiCategories** request parameter. If **ATIdentityCard** is detected, It appears in the **PII** response payload.|[ATIdentityCard]|
 
-        To get this entity category, add `OrganizationMedical` to the `piiCategories` parameter. `OrganizationMedical` is returned in the API response if detected.
+### Type: Austria Tax Identification Number
 
-    :::column-end:::
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **ATTaxIdentificationNumber** in the **piiCategories** request parameter. If **ATTaxIdentificationNumber** is detected, It appears in the **PII** response payload.|[ATTaxIdentificationNumber]|
 
-    :::column span="":::
-      **Supported languages**
+### Type: Austria Value Added Tax Number
 
-      `en`
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **ATValueAddedTaxNumber** in the **piiCategories** request parameter. If **ATValueAddedTaxNumber** is detected, It appears in the **PII** response payload.|[ATValueAddedTaxNumber]|
 
-   :::column-end:::
+### Type: Belgium National Number
 
-:::row-end:::
-:::row:::
-    :::column span="":::
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **BENationalNumber** in the **piiCategories** request parameter. If **BENationalNumber** is detected, It appears in the **PII** response payload.|[BENationalNumber]|
 
-        Stock exchange
+### Type: Belgium Value Added Tax Number
 
-    :::column-end:::
-    :::column span="2":::
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **BEValueAddedTaxNumber** in the **piiCategories** request parameter. If **BEValueAddedTaxNumber** is detected, It appears in the **PII** response payload.|[BEValueAddedTaxNumber]|
 
-        Stock exchange groups.
 
-        To get this entity category, add `OrganizationStockExchange` to the `piiCategories` parameter. `OrganizationStockExchange` is returned in the API response if detected.
+### Type: Brazil CPF Number
 
-    :::column-end:::
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **BRCPFNumber** in the **piiCategories** request parameter. If **BRCPFNumber** is detected, It appears in the **PII** response payload.|[BRCPFNumber]|
 
-    :::column span="":::
+### Type: Brazil Legal Entity Number
 
-      `en`
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **BRLegalEntityNumber** in the **piiCategories** request parameter. If **BRLegalEntityNumber** is detected, It appears in the **PII** response payload.|[BRLegalEntityNumber]|
 
-   :::column-end:::
+### Type: Brazil National IDRG
 
-:::row-end:::
-:::row:::
-    :::column span="":::
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **BRNationalIDRG** in the **piiCategories** request parameter. If **BRNationalIDRG** is detected, It appears in the **PII** response payload.|[BRNationalIDRG]|
 
-        Sports
+### Type: Bulgaria Uniform Civil Number
 
-    :::column-end:::
-    :::column span="2":::
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **BGUniformCivilNumber** in the **piiCategories** request parameter. If **BGUniformCivilNumber** is detected, It appears in the **PII** response payload.|[BGUniformCivilNumber]|
 
-        Sports-related organizations.
+### Type: Canada Bank Account Number
 
-        To get this entity category, add `OrganizationSports` to the `piiCategories` parameter. `OrganizationSports` is returned in the API response if detected.
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **CABankAccountNumber** in the **piiCategories** request parameter. If **CABankAccountNumber** is detected, It appears in the **PII** response payload.|[CABankAccountNumber]|
 
-    :::column-end:::
+### Type: Canada Drivers License Number
 
-    :::column span="":::
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **CADriversLicenseNumber** in the **piiCategories** request parameter. If **CADriversLicenseNumber** is detected, It appears in the **PII** response payload.|[CADriversLicenseNumber]|
 
-      `en`
+### Type: Canada Health Service Number
 
-   :::column-end:::
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **CAHealthServiceNumber** in the **piiCategories** request parameter. If **CAHealthServiceNumber** is detected, It appears in the **PII** response payload.|[CAHealthServiceNumber]|
 
-:::row-end:::
+### Type: Canada Passport Number
 
-# [GA API](#tab/ga-api)
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **CAPassportNumber** in the **piiCategories** request parameter. If **CAPassportNumber** is detected, It appears in the **PII** response payload.|[CAPassportNumber]|
 
-## Category: Organization
+### Type: Canada Personal Health Identification
 
-This category contains the following entity:
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **CAPersonalHealthIdentification** in the **piiCategories** request parameter. If **CAPersonalHealthIdentification** is detected, It appears in the **PII** and **PHI** response payload.|[CAPersonalHealthIdentification]|
 
-:::row:::
-    :::column span="":::
-        **Entity**
+### Type: Canada Social Insurance Number
 
-        Organization
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **CASocialInsuranceNumber** in the **piiCategories** request parameter. If **CASocialInsuranceNumber** is detected, It appears in the **PII** response payload.|[CASocialInsuranceNumber]|
 
-    :::column-end:::
-    :::column span="2":::
-        **Details**
+### Type: Chile Identity Card Number
 
-        Companies, political groups, musical bands, sport clubs, government bodies, and public organizations. Nationalities and religions are not included in this entity type. Returned as both PII and PHI.
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **CLIdentityCardNumber** in the **piiCategories** request parameter. If **CLIdentityCardNumber** is detected, It appears in the **PII** response payload.|[CLIdentityCardNumber]|
 
-        To get this entity type, add `Organization` to the `piiCategories` parameter. `Organization` is returned in the API response if detected.
+### Type: China Resident Identity Card Number
 
-    :::column-end:::
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **CNResidentIdentityCardNumber** in the **piiCategories** request parameter. If **CNResidentIdentityCardNumber** is detected, It appears in the **PII** response payload.|[CNResidentIdentityCardNumber]|
 
-    :::column span="":::
-      **Supported languages**
+### Type: Croatia Identity Card Number
 
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `af`, `ca`, `da`, `el`, `ga`, `gl`, `ku`, `nl`, `no`, `ss`, `ro`, `sq`, `ur`, `ar`, `bg`, `bs`, `cy`, `fa`, `hr`, `id`, `mg`, `mk`, `ms`, `ps`, `ru`, `sl`, `so`, `sr`, `sw`, `am`, `as`, `cs`, `et`, `eu`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `mr`, `my`, `ne`, `or`, `pa`, `pl`, `sk`, `th`, `uk`, `az`, `bn`, `gu`, `hy`, `ka`, `kk`, `kn`, `ky`, `ml`, `mn`, `ta`, `te`, `ug`, `uz`, `vi`
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **HRIdentityCardNumber** in the **piiCategories** request parameter. If **HRIdentityCardNumber** is detected, It appears in the **PII** response payload.|[HRIdentityCardNumber]|
 
-   :::column-end:::
+### Type: Croatia National ID Number
 
-:::row-end:::
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **HRNationalIDNumber** in the **piiCategories** request parameter. If **HRNationalIDNumber** is detected, It appears in the **PII** response payload.|[HRNationalIDNumber]|
 
-#### Subcategory
+### Type: Croatia Personal Identification Number
 
-The entity in this category can have the following subcategories:
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **HRPersonalIdentificationNumber** in the **piiCategories** request parameter. If **HRPersonalIdentificationNumber** is detected, It appears in the **PII** response payload.|[HRPersonalIdentificationNumber]|
 
-:::row:::
-    :::column span="":::
-        **Entity subcategory**
+### Type: Cyprus Identity Card
 
-        Medical
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **CYIdentityCard** in the **piiCategories** request parameter. If **CYIdentityCard** is detected, It appears in the **PII** response payload.|[CYIdentityCard]|
 
-    :::column-end:::
-    :::column span="2":::
-        **Details**
+### Type: Cyprus Tax Identification Number
 
-        Medical companies and groups.
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **CYTaxIdentificationNumber** in the **piiCategories** request parameter. If **CYTaxIdentificationNumber** is detected, It appears in the **PII** response payload.|[CYTaxIdentificationNumber]|
 
-        To get this entity type, add `OrganizationMedical` to the `piiCategories` parameter. `OrganizationMedical` is returned in the API response if detected.
+### Type: Czech Republic Personal Identity Number
 
-    :::column-end:::
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **CZPersonalIdentityNumber** in the **piiCategories** request parameter. If **CZPersonalIdentityNumber** is detected, It appears in the **PII** response payload.|[CZPersonalIdentityNumber]|
 
-    :::column span="":::
-      **Supported languages**
+### Type: Denmark Personal Identification Number
 
-      `en`
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **DKPersonalIdentificationNumber** in the **piiCategories** request parameter. If **DKPersonalIdentificationNumber** is detected, It appears in the **PII** response payload.|[DKPersonalIdentificationNumber]|
 
-   :::column-end:::
+### Type: Estonia Personal Identification Code
 
-:::row-end:::
-:::row:::
-    :::column span="":::
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **EEPersonalIdentificationCode** in the **piiCategories** request parameter. If **EEPersonalIdentificationCode** is detected, It appears in the **PII** response payload.|[EEPersonalIdentificationCode]|
 
-        Stock exchange
+### Type: European Union Debit Card Number
 
-    :::column-end:::
-    :::column span="2":::
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **EUDebitCardNumber** in the **piiCategories** request parameter. If **EUDebitCardNumber** is detected, It appears in the **PII** response payload.|[EUDebitCardNumber]|
 
-        Stock exchange groups.
+### Type: European Union Drivers License Number
 
-        To get this entity type, add `OrganizationStockExchange` to the `piiCategories` parameter. `OrganizationStockExchange` is returned in the API response if detected.
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **EUDriversLicenseNumber** in the **piiCategories** request parameter. If **EUDriversLicenseNumber** is detected, It appears in the **PII** response payload.|[EUDriversLicenseNumber]|
 
-    :::column-end:::
+### Type: European Union GPS Coordinates
 
-    :::column span="":::
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **EUGPSCoordinates** in the **piiCategories** request parameter. If **EUGPSCoordinates** is detected, It appears in the **PII** response payload.|[EUGPSCoordinates]|
 
-      `en`
+### Type: European Union National Identification Number
 
-   :::column-end:::
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **EUNationalIdentificationNumber** in the **piiCategories** request parameter. If **EUNationalIdentificationNumber** is detected, It appears in the **PII** response payload.|[EUNationalIdentificationNumber]|
 
-:::row-end:::
-:::row:::
-    :::column span="":::
+### Type: European Union Passport Number
 
-        Sports
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **EUPassportNumber** in the **piiCategories** request parameter. If **EUPassportNumber** is detected, It appears in the **PII** response payload.|[EUPassportNumber]|
 
-    :::column-end:::
-    :::column span="2":::
+### Type: European Union Social Security Number
 
-        Sports-related organizations.
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **EUSocialSecurityNumber** in the **piiCategories** request parameter. If **EUSocialSecurityNumber** is detected, It appears in the **PII** response payload.|[EUSocialSecurityNumber]|
 
-        To get this entity type, add `OrganizationSports` to the `piiCategories` parameter. `OrganizationSports` is returned in the API response if detected.
+### Type: European Union Tax Identification Number
 
-    :::column-end:::
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **EUTaxIdentificationNumber** in the **piiCategories** request parameter. If **EUTaxIdentificationNumber** is detected, It appears in the **PII** response payload.|[EUTaxIdentificationNumber]|
 
-    :::column span="":::
+### Type: Finland European Health Number
 
-      `en`
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **FIEuropeanHealthNumber** in the **piiCategories** request parameter. If **FIEuropeanHealthNumber** is detected, It appears in the **PII** response payload.|[FIEuropeanHealthNumber]|
 
-   :::column-end:::
+### Type: Finland National ID
 
-:::row-end:::
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **FINationalID** in the **piiCategories** request parameter. If **FINationalID** is detected, It appears in the **PII** response payload.|[FINationalID]|
 
----
+### Type: Finland Passport Number
 
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **FIPassportNumber** in the **piiCategories** request parameter. If **FIPassportNumber** is detected, It appears in the **PII** response payload.|[FIPassportNumber]|
 
-# [Preview API](#tab/preview-api)
+### Type: France Drivers License Number
 
-## Type: Address
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **FRDriversLicenseNumber** in the **piiCategories** request parameter. If **FRDriversLicenseNumber** is detected, It appears in the **PII** response payload.|[FRDriversLicenseNumber]|
 
+### Type: France Health Insurance Number
 
-This type contains the following entity:
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **FRHealthInsuranceNumber** in the **piiCategories** request parameter. If **FRHealthInsuranceNumber** is detected, It appears in the **PII** response payload.|[FRHealthInsuranceNumber]|
 
-:::row:::
-    :::column span="":::
-        **Entity**
+### Type: France National ID
 
-        Address
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **FRNationalID** in the **piiCategories** request parameter. If **FRNationalID** is detected, It appears in the **PII** response payload.|[FRNationalID]|
 
-    :::column-end:::
-    :::column span="2":::
-        **Details**
+### Type: France Passport Number
 
-        Full mailing address. Returned as both PII and PHI.
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **FRPassportNumber** in the **piiCategories** request parameter. If **FRPassportNumber** is detected, It appears in the **PII** response payload.|[FRPassportNumber]|
 
-        To get this entity type, add `Address` to the `piiCategories` parameter. `Address` is returned in the API response if detected.
+### Type: France Social Security Number
 
-    :::column-end:::
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **FRSocialSecurityNumber** in the **piiCategories** request parameter. If **FRSocialSecurityNumber** is detected, It appears in the **PII** response payload.|[FRSocialSecurityNumber]|
 
-    :::column span="":::
-      **Supported languages**
+### Type: France Tax Identification Number
 
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `af`, `ca`, `da`, `el`, `ga`, `gl`, `ku`, `nl`, `no`, `ss`, `ro`, `sq`, `ur`, `ar`, `bg`, `bs`, `cy`, `fa`, `hr`, `id`, `mg`, `mk`, `ms`, `ps`, `ru`, `sl`, `so`, `sr`, `sw`, `am`, `as`, `cs`, `et`, `eu`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `mr`, `my`, `ne`, `or`, `pa`, `pl`, `sk`, `th`, `uk`, `az`, `bn`, `gu`, `hy`, `ka`, `kk`, `kn`, `ky`, `ml`, `mn`, `ta`, `te`, `ug`, `uz`, `vi`
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **FRTaxIdentificationNumber** in the **piiCategories** request parameter. If **FRTaxIdentificationNumber** is detected, It appears in the **PII** response payload.|[FRTaxIdentificationNumber]|
 
-    :::column-end:::
+### Type: France Value Added Tax Number
 
-:::row-end:::
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **FRValueAddedTaxNumber** in the **piiCategories** request parameter. If **FRValueAddedTaxNumber** is detected, It appears in the **PII** response payload.|[FRValueAddedTaxNumber]|
 
-# [GA API](#tab/ga-api)
+### Type: Germany Drivers License Number
 
-## Category: Address
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **DEDriversLicenseNumber** in the **piiCategories** request parameter. If **DEDriversLicenseNumber** is detected, It appears in the **PII** response payload.|[DEDriversLicenseNumber]|
 
-This type contains the following entity:
+### Type: Germany Identity Card Number
 
-:::row:::
-    :::column span="":::
-        **Entity**
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **DEIdentityCardNumber** in the **piiCategories** request parameter. If **DEIdentityCardNumber** is detected, It appears in the **PII** response payload.|[DEIdentityCardNumber]|
 
-        Address
+### Type: Germany Passport Number
 
-    :::column-end:::
-    :::column span="2":::
-        **Details**
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **DEPassportNumber** in the **piiCategories** request parameter. If **DEPassportNumber** is detected, It appears in the **PII** response payload.|[DEPassportNumber]|
 
-        Full mailing address. Returned as both PII and PHI.
+### Type: Germany Tax Identification Number
 
-        To get this entity category, add `Address` to the `piiCategories` parameter. `Address` is returned in the API response if detected.
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **DETaxIdentificationNumber** in the **piiCategories** request parameter. If **DETaxIdentificationNumber** is detected, It appears in the **PII** response payload.|[DETaxIdentificationNumber]|
 
-    :::column-end:::
+### Type: Germany Value Added Number
 
-    :::column span="":::
-      **Supported languages**
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **DEValueAddedNumber** in the **piiCategories** request parameter. If **DEValueAddedNumber** is detected, It appears in the **PII** response payload.|[DEValueAddedNumber]|
 
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `af`, `ca`, `da`, `el`, `ga`, `gl`, `ku`, `nl`, `no`, `ss`, `ro`, `sq`, `ur`, `ar`, `bg`, `bs`, `cy`, `fa`, `hr`, `id`, `mg`, `mk`, `ms`, `ps`, `ru`, `sl`, `so`, `sr`, `sw`, `am`, `as`, `cs`, `et`, `eu`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `mr`, `my`, `ne`, `or`, `pa`, `pl`, `sk`, `th`, `uk`, `az`, `bn`, `gu`, `hy`, `ka`, `kk`, `kn`, `ky`, `ml`, `mn`, `ta`, `te`, `ug`, `uz`, `vi`
+### Type: Greece National ID Card
 
-    :::column-end:::
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **GRNationalIDCard** in the **piiCategories** request parameter. If **GRNationalIDCard** is detected, It appears in the **PII** response payload.|[GRNationalIDCard]|
 
-:::row-end:::
+### Type: Greece Tax Identification Number
 
----
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **GRTaxIdentificationNumber** in the **piiCategories** request parameter. If **GRTaxIdentificationNumber** is detected, It appears in the **PII** response payload.|[GRTaxIdentificationNumber]|
 
-# [Preview API](#tab/preview-api)
+### Type: Hong Kong SAR Identity Card Number
 
-## Type: Email
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **HKIdentityCardNumber** in the **piiCategories** request parameter. If **HKIdentityCardNumber** is detected, It appears in the **PII** response payload.|[HKIdentityCardNumber]|
 
-This category contains the following entity:
+### Type: Hungary Personal Identification Number
 
-:::row:::
-    :::column span="":::
-        **Entity**
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **HUPersonalIdentificationNumber** in the **piiCategories** request parameter. If **HUPersonalIdentificationNumber** is detected, It appears in the **PII** response payload.|[HUPersonalIdentificationNumber]|
 
-        Email
+### Type: Hungary Tax Identification Number
 
-    :::column-end:::
-    :::column span="2":::
-        **Details**
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **HUTaxIdentificationNumber** in the **piiCategories** request parameter. If **HUTaxIdentificationNumber** is detected, It appears in the **PII** response payload.|[HUTaxIdentificationNumber]|
 
-        Email addresses. Returned as both PII and PHI.
+### Type: Hungary Value Added Number
 
-        To get this entity type, add `Email` to the `piiCategories` parameter. `Email` is returned in the API response if detected.
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **HUValueAddedNumber** in the **piiCategories** request parameter. If **HUValueAddedNumber** is detected, It appears in the **PII** response payload.|[HUValueAddedNumber]|
 
-    :::column-end:::
-    :::column span="":::
-      **Supported languages**
+### Type: India Permanent Account
 
-      `en`, `es`, `fr`, `de`, `it`, `zh`, `ja`, `ko`, `pt-pt`, `pt-br`, `nl`, `sv`, `tr`, `hi`
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **INPermanentAccount** in the **piiCategories** request parameter. If **INPermanentAccount** is detected, It appears in the **PII** response payload.|[INPermanentAccount]|
 
-    :::column-end:::
-:::row-end:::
+### Type: India Unique Identification Number
 
-# [GA API](#tab/ga-api)
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **INUniqueIdentificationNumber** in the **piiCategories** request parameter. If **INUniqueIdentificationNumber** is detected, It appears in the **PII** response payload.|[INUniqueIdentificationNumber]|
 
-## Category: Email
+### Type: Indonesia Identity Card Number
 
-This type contains the following entity:
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **IDIdentityCardNumber** in the **piiCategories** request parameter. If **IDIdentityCardNumber** is detected, It appears in the **PII** response payload.|[IDIdentityCardNumber]|
 
-:::row:::
-    :::column span="":::
-        **Entity**
+### Type: Ireland Personal Public Service Number
 
-        Email
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **IEPersonalPublicServiceNumber** in the **piiCategories** request parameter. If **IEPersonalPublicServiceNumber** is detected, It appears in the **PII** response payload.|[IEPersonalPublicServiceNumber]|
 
-    :::column-end:::
-    :::column span="2":::
-        **Details**
+### Type: Israel Bank Account Number
 
-        Email addresses. Returned as both PII and PHI.
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **ILBankAccountNumber** in the **piiCategories** request parameter. If **ILBankAccountNumber** is detected, It appears in the **PII** response payload.|[ILBankAccountNumber]|
 
-        To get this category type, add `Email` to the `piiCategories` parameter. `Email` is returned in the API response if detected.
+### Type: Israel National ID
 
-    :::column-end:::
-    :::column span="":::
-      **Supported languages**
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **ILNationalID** in the **piiCategories** request parameter. If **ILNationalID** is detected, It appears in the **PII** response payload.|[ILNationalID]|
 
-      `en`, `es`, `fr`, `de`, `it`, `zh`, `ja`, `ko`, `pt-pt`, `pt-br`, `nl`, `sv`, `tr`, `hi`
+### Type: Italy Drivers License Number
 
-    :::column-end:::
-:::row-end:::
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **ITDriversLicenseNumber** in the **piiCategories** request parameter. If **ITDriversLicenseNumber** is detected, It appears in the **PII** response payload.|[ITDriversLicenseNumber]|
 
----
+### Type: Italy Fiscal Code
 
-# [Preview API](#tab/preview-api)
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **ITFiscalCode** in the **piiCategories** request parameter. If **ITFiscalCode** is detected, It appears in the **PII** response payload.|[ITFiscalCode]|
 
-## Type: URL
+### Type: Italy Value Added Tax Number
 
-This type contains the following entity:
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **ITValueAddedTaxNumber** in the **piiCategories** request parameter. If **ITValueAddedTaxNumber** is detected, It appears in the **PII** response payload.|[ITValueAddedTaxNumber]|
 
-:::row:::
-    :::column span="":::
-        **Entity**
+### Type: Japan Bank Account Number
 
-        URL
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **JPBankAccountNumber** in the **piiCategories** request parameter. If **JPBankAccountNumber** is detected, It appears in the **PII** response payload.|[JPBankAccountNumber]|
 
-    :::column-end:::
-    :::column span="2":::
-        **Details**
+### Type: Japan Drivers License Number
 
-        URLs to websites. Returned as both PII and PHI.
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **JPDriversLicenseNumber** in the **piiCategories** request parameter. If **JPDriversLicenseNumber** is detected, It appears in the **PII** response payload.|[JPDriversLicenseNumber]|
 
-        To get this entity type, add `URL` to the `piiCategories` parameter. `URL` is returned in the API response if detected.
+### Type: Japan My Number Corporate
 
-    :::column-end:::
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **JPMyNumberCorporate** in the **piiCategories** request parameter. If **JPMyNumberCorporate** is detected, It appears in the **PII** response payload.|[JPMyNumberCorporate]|
 
-    :::column span="":::
-      **Supported languages**
+### Type: Japan My Number Personal
 
-      `en`, `es`, `fr`, `de`, `it`, `zh`, `ja`, `ko`, `pt-pt`, `pt-br`, `nl`, `sv`, `tr`, `hi`
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **JPMyNumberPersonal** in the **piiCategories** request parameter. If **JPMyNumberPersonal** is detected, It appears in the **PII** response payload.|[JPMyNumberPersonal]|
 
-    :::column-end:::
+### Type: Japan Passport Number
 
-:::row-end:::
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **JPPassportNumber** in the **piiCategories** request parameter. If **JPPassportNumber** is detected, It appears in the **PII** response payload.|[JPPassportNumber]|
 
-# [GA API](#tab/ga-api)
+### Type: Japan Residence Card Number
 
-## Category: URL
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **JPResidenceCardNumber** in the **piiCategories** request parameter. If **JPResidenceCardNumber** is detected, It appears in the **PII** response payload.|[JPResidenceCardNumber]|
 
-This category contains the following entity:
+### Type: Japan Resident Registration Number
 
-:::row:::
-    :::column span="":::
-        **Entity**
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **JPResidentRegistrationNumber** in the **piiCategories** request parameter. If **JPResidentRegistrationNumber** is detected, It appears in the **PII** response payload.|[JPResidentRegistrationNumber]|
 
-        URL
+### Type: Japan Social Insurance Number
 
-    :::column-end:::
-    :::column span="2":::
-        **Details**
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **JPSocialInsuranceNumber** in the **piiCategories** request parameter. If **JPSocialInsuranceNumber** is detected, It appears in the **PII** response payload.|[JPSocialInsuranceNumber]|
 
-        URLs to websites. Returned as both PII and PHI.
+### Type: Latvia Personal Code
 
-        To get this entity category, add `URL` to the `piiCategories` parameter. `URL` is returned in the API response if detected.
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **LVPersonalCode** in the **piiCategories** request parameter. If **LVPersonalCode** is detected, It appears in the **PII** response payload.|[LVPersonalCode]|
 
-    :::column-end:::
+### Type: Lithuania Personal Code
 
-    :::column span="":::
-      **Supported languages**
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **LTPersonalCode** in the **piiCategories** request parameter. If **LTPersonalCode** is detected, It appears in the **PII** response payload.|[LTPersonalCode]|
 
-      `en`, `es`, `fr`, `de`, `it`, `zh`, `ja`, `ko`, `pt-pt`, `pt-br`, `nl`, `sv`, `tr`, `hi`
+### Type: Luxembourg National Identification Number Natural
 
-    :::column-end:::
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **LUNationalIdentificationNumberNatural** in the **piiCategories** request parameter. If **LUNationalIdentificationNumberNatural** is detected, It appears in the **PII** response payload.|[LUNationalIdentificationNumberNatural]|
 
-:::row-end:::
----
+### Type: Luxembourg National Identification Number Non Natural
 
-# [Preview API](#tab/preview-api)
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **LUNationalIdentificationNumberNonNatural** in the **piiCategories** request parameter. If **LUNationalIdentificationNumberNonNatural** is detected, It appears in the **PII** response payload.|[LUNationalIdentificationNumberNonNatural]|
 
-## Type: IP Address
+### Type: Malaysia Identity Card Number
 
-This category contains the following entity:
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **MYIdentityCardNumber** in the **piiCategories** request parameter. If **MYIdentityCardNumber** is detected, It appears in the **PII** response payload.|[MYIdentityCardNumber]|
 
-:::row:::
-    :::column span="":::
-        **Entity**
 
-        IPAddress
+### Type: Malta Identity Card Number
 
-    :::column-end:::
-    :::column span="2":::
-        **Details**
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **MTIdentityCardNumber** in the **piiCategories** request parameter. If **MTIdentityCardNumber** is detected, It appears in the **PII** response payload.|[MTIdentityCardNumber]|
 
-        Network IP addresses. Returned as both PII and PHI.
+### Type: Malta Tax ID Number
 
-        To get this entity type, add `IPAddress` to the `piiCategories` parameter. `IPAddress` is returned in the API response if detected.
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **MTTaxIDNumber** in the **piiCategories** request parameter. If **MTTaxIDNumber** is detected, It appears in the **PII** response payload.|[MTTaxIDNumber]|
 
-    :::column-end:::
+### Type: Netherlands Citizens Service Number
 
-    :::column span="":::
-      **Supported languages**
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **NLCitizensServiceNumber** in the **piiCategories** request parameter. If **NLCitizensServiceNumber** is detected, It appears in the **PII** response payload.|[NLCitizensServiceNumber]|
 
-      `en`, `es`, `fr`, `de`, `it`, `zh`, `ja`, `ko`, `pt-pt`, `pt-br`, `nl`, `sv`, `tr`, `hi`
+### Type: Netherlands Tax Identification Number
 
-    :::column-end:::
-:::row-end:::
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **NLTaxIdentificationNumber** in the **piiCategories** request parameter. If **NLTaxIdentificationNumber** is detected, It appears in the **PII** response payload.|[NLTaxIdentificationNumber]|
 
-# [GA API](#tab/ga-api)
+### Type: Netherlands Value Added Tax Number
 
-## Category: IP Address
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **NLValueAddedTaxNumber** in the **piiCategories** request parameter. If **NLValueAddedTaxNumber** is detected, It appears in the **PII** response payload.|[NLValueAddedTaxNumber]|
 
-This category contains the following entity:
+### Type: New Zealand Bank Account Number
 
-:::row:::
-    :::column span="":::
-        **Entity**
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **NZBankAccountNumber** in the **piiCategories** request parameter. If **NZBankAccountNumber** is detected, It appears in the **PII** response payload.|[NZBankAccountNumber]|
 
-        IPAddress
+### Type: New Zealand Drivers License Number
 
-    :::column-end:::
-    :::column span="2":::
-        **Details**
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **NZDriversLicenseNumber** in the **piiCategories** request parameter. If **NZDriversLicenseNumber** is detected, It appears in the **PII** response payload.|[NZDriversLicenseNumber]|
 
-        Network IP addresses. Returned as both PII and PHI.
+### Type: New Zealand Inland Revenue Number
 
-        To get this entity category, add `IPAddress` to the `piiCategories` parameter. `IPAddress` is returned in the API response if detected.
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **NZInlandRevenueNumber** in the **piiCategories** request parameter. If **NZInlandRevenueNumber** is detected, It appears in the **PII** response payload.|[NZInlandRevenueNumber]|
 
-    :::column-end:::
+### Type: New Zealand Ministry Of Health Number
 
-    :::column span="":::
-      **Supported languages**
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **NZMinistryOfHealthNumber** in the **piiCategories** request parameter. If **NZMinistryOfHealthNumber** is detected, It appears in the **PII** response payload.|[NZMinistryOfHealthNumber]|
 
-      `en`, `es`, `fr`, `de`, `it`, `zh`, `ja`, `ko`, `pt-pt`, `pt-br`, `nl`, `sv`, `tr`, `hi`
+### Type: New Zealand Social Welfare Number
 
-    :::column-end:::
-:::row-end:::
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **NZSocialWelfareNumber** in the **piiCategories** request parameter. If **NZSocialWelfareNumber** is detected, It appears in the **PII** response payload.|[NZSocialWelfareNumber]|
 
+### Type: Norway Identity Number
 
----
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **NOIdentityNumber** in the **piiCategories** request parameter. If **NOIdentityNumber** is detected, It appears in the **PII** response payload.|[NOIdentityNumber]|
 
-# [Preview API](#tab/preview-api)
+### Type: Philippines Unified Multi Purpose ID Number
 
-## Type: DateTime
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **PHUnifiedMultiPurposeIDNumber** in the **piiCategories** request parameter. If **PHUnifiedMultiPurposeIDNumber** is detected, It appears in the **PII** response payload.|[PHUnifiedMultiPurposeIDNumber]|
 
-This type contains the following entities:
+### Type: Poland Identity Card
 
-:::row:::
-    :::column span="":::
-        **Entity**
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **PLIdentityCard** in the **piiCategories** request parameter. If **PLIdentityCard** is detected, It appears in the **PII** response payload.|[PLIdentityCard]|
 
-        DateTime
+### Type: Poland National ID
 
-    :::column-end:::
-    :::column span="2":::
-        **Details**
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **PLNationalID** in the **piiCategories** request parameter. If **PLNationalID** is detected, It appears in the **PII** response payload.|[PLNationalID]|
 
-        Dates and times of day.
+### Type: Poland Passport Number
 
-        To get this entity type, add `DateTime` to the `piiCategories` parameter. `DateTime` is returned in the API response if detected.
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **PLPassportNumber** in the **piiCategories** request parameter. If **PLPassportNumber** is detected, It appears in the **PII** response payload.|[PLPassportNumber]|
 
-    :::column-end:::
-:::column span="":::
-      **Supported languages**
+### Type: Poland REGON Number
 
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `af`, `ca`, `da`, `el`, `ga`, `gl`, `ku`, `nl`, `no`, `ss`, `ro`, `sq`, `ur`, `ar`, `bg`, `bs`, `cy`, `fa`, `hr`, `id`, `mg`, `mk`, `ms`, `ps`, `ru`, `sl`, `so`, `sr`, `sw`, `am`, `as`, `cs`, `et`, `eu`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `mr`, `my`, `ne`, `or`, `pa`, `pl`, `sk`, `th`, `uk`, `az`, `bn`, `gu`, `hy`, `ka`, `kk`, `kn`, `ky`, `ml`, `mn`, `ta`, `te`, `ug`, `uz`, `vi`
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **PLREGONNumber** in the **piiCategories** request parameter. If **PLREGONNumber** is detected, It appears in the **PII** response payload.|[PLREGONNumber]|
 
-   :::column-end:::
-:::row-end:::
+### Type: Poland Tax Identification Number
 
-### Subtypes
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **PLTaxIdentificationNumber** in the **piiCategories** request parameter. If **PLTaxIdentificationNumber** is detected, It appears in the **PII** response payload.|[PLTaxIdentificationNumber]|
 
-The entity in this type can have the following subtypes:
+### Type: Portugal Citizen Card Number
 
-:::row:::
-    :::column span="":::
-        **Entity subtypes**
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **PTCitizenCardNumber** in the **piiCategories** request parameter. If **PTCitizenCardNumber** is detected, It appears in the **PII** response payload.|[PTCitizenCardNumber]|
 
-        Date
+### Type: Portugal Tax Identification Number
 
-    :::column-end:::
-    :::column span="2":::
-        **Details**
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **PTTaxIdentificationNumber** in the **piiCategories** request parameter. If **PTTaxIdentificationNumber** is detected, It appears in the **PII** response payload.|[PTTaxIdentificationNumber]|
 
-        Calendar dates. Returned as both PII and PHI.
+### Type: Romania Personal Numerical Code
 
-        To get this entity type, add `Date` to the `piiCategories` parameter. `Date` is returned in the API response if detected.
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **ROPersonalNumericalCode** in the **piiCategories** request parameter. If **ROPersonalNumericalCode** is detected, It appears in the **PII** response payload.|[ROPersonalNumericalCode]|
 
-    :::column-end:::
-    :::column span="2":::
-      **Supported languages**
+### Type: Russia Passport Number Domestic
 
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `af`, `ca`, `da`, `el`, `ga`, `gl`, `ku`, `nl`, `no`, `ss`, `ro`, `sq`, `ur`, `ar`, `bg`, `bs`, `cy`, `fa`, `hr`, `id`, `mg`, `mk`, `ms`, `ps`, `ru`, `sl`, `so`, `sr`, `sw`, `am`, `as`, `cs`, `et`, `eu`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `mr`, `my`, `ne`, `or`, `pa`, `pl`, `sk`, `th`, `uk`, `az`, `bn`, `gu`, `hy`, `ka`, `kk`, `kn`, `ky`, `ml`, `mn`, `ta`, `te`, `ug`, `uz`, `vi`
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **RUPassportNumberDomestic** in the **piiCategories** request parameter. If **RUPassportNumberDomestic** is detected, It appears in the **PII** response payload.|[RUPassportNumberDomestic]|
 
-    :::column-end:::
-:::row-end:::
+### Type: Russia Passport Number International
 
-:::row:::
-    :::column span="":::
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **RUPassportNumberInternational** in the **piiCategories** request parameter. If **RUPassportNumberInternational** is detected, It appears in the **PII** response payload.|[RUPassportNumberInternational]|
 
-        DateAndTime
+### Type: Saudi Arabia National ID
 
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **SANationalID** in the **piiCategories** request parameter. If **SANationalID** is detected, It appears in the **PII** response payload.|[SANationalID]|
 
-    :::column-end:::
-    :::column span="2":::
+### Type: Singapore National Registration Identity Card Number
 
-        Dates and times of day.
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **SGNationalRegistrationIdentityCardNumber** in the **piiCategories** request parameter. If **SGNationalRegistrationIdentityCardNumber** is detected, It appears in the **PII** response payload.|[SGNationalRegistrationIdentityCardNumber]|
 
-        To get this entity category, add `DateAndTime` to the `piiCategories` parameter. `DateAndTime` is returned in the API response if detected.
+### Type: Slovakia Personal Number
 
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **SKPersonalNumber** in the **piiCategories** request parameter. If **SKPersonalNumber** is detected, It appears in the **PII** response payload.|[SKPersonalNumber]|
 
-    :::column-end:::
-    :::column span="2":::
-      **Supported languages**
+### Type: Slovenia Tax Identification Number
 
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `af`, `ca`, `da`, `el`, `ga`, `gl`, `ku`, `nl`, `no`, `ss`, `ro`, `sq`, `ur`, `ar`, `bg`, `bs`, `cy`, `fa`, `hr`, `id`, `mg`, `mk`, `ms`, `ps`, `ru`, `sl`, `so`, `sr`, `sw`, `am`, `as`, `cs`, `et`, `eu`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `mr`, `my`, `ne`, `or`, `pa`, `pl`, `sk`, `th`, `uk`, `az`, `bn`, `gu`, `hy`, `ka`, `kk`, `kn`, `ky`, `ml`, `mn`, `ta`, `te`, `ug`, `uz`, `vi`
-      :::column-end:::
-:::row-end:::
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **SITaxIdentificationNumber** in the **piiCategories** request parameter. If **SITaxIdentificationNumber** is detected, It appears in the **PII** response payload.|[SITaxIdentificationNumber]|
 
-#### Subtype: Age
+### Type: Slovenia Unique Master Citizen Number
 
-The PII service supports the Age subtype within the broader Quantity type (since Age is the personally identifiable piece of information).
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **SIUniqueMasterCitizenNumber** in the **piiCategories** request parameter. If **SIUniqueMasterCitizenNumber** is detected, It appears in the **PII** response payload.|[SIUniqueMasterCitizenNumber]|
 
-:::row:::
-    :::column span="":::
-        **Entity subtype**
+### Type: South Africa Identification Number
 
-        Age
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **ZAIdentificationNumber** in the **piiCategories** request parameter. If **ZAIdentificationNumber** is detected, It appears in the **PII** response payload.|[ZAIdentificationNumber]|
 
-    :::column-end:::
-    :::column span="2":::
-        **Details**
+### Type: South Korea Resident Registration Number
 
-        Ages.
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **KRResidentRegistrationNumber** in the **piiCategories** request parameter. If **KRResidentRegistrationNumber** is detected, It appears in the **PII** response payload.|[KRResidentRegistrationNumber]|
 
-    :::column-end:::
-    :::column span="2":::
-      **Supported languages**
+### Type: Spain DNI
 
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `af`, `ca`, `da`, `el`, `ga`, `gl`, `ku`, `nl`, `no`, `ss`, `ro`, `sq`, `ur`, `ar`, `bg`, `bs`, `cy`, `fa`, `hr`, `id`, `mg`, `mk`, `ms`, `ps`, `ru`, `sl`, `so`, `sr`, `sw`, `am`, `as`, `cs`, `et`, `eu`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `mr`, `my`, `ne`, `or`, `pa`, `pl`, `sk`, `th`, `uk`, `az`, `bn`, `gu`, `hy`, `ka`, `kk`, `kn`, `ky`, `ml`, `mn`, `ta`, `te`, `ug`, `uz`, `vi`
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **ESDNI** in the **piiCategories** request parameter. If **ESDNI** is detected, It appears in the **PII** response payload.|[ESDNI]|
 
-   :::column-end:::
-:::row-end:::
+### Type: Spain Social Security Number
 
-#### Subtype: DateOfBirth
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **ESSocialSecurityNumber** in the **piiCategories** request parameter. If **ESSocialSecurityNumber** is detected, It appears in the **PII** response payload.|[ESSocialSecurityNumber]|
 
-:::row:::
-    :::column span="":::
-        **Entity subtype**
+### Type: Spain Tax Identification Number
 
-        Date of birth.
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **ESTaxIdentificationNumber** in the **piiCategories** request parameter. If **ESTaxIdentificationNumber** is detected, It appears in the **PII** response payload.|[ESTaxIdentificationNumber]|
 
-    :::column-end:::
-    :::column span="2":::
-        **Details**
+### Type: Sweden National ID
 
-      Date
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **SENationalID** in the **piiCategories** request parameter. If **SENationalID** is detected, It appears in the **PII** response payload.|[SENationalID]|
 
-      To get this entity type, add `DateOfBirth` to the `piiCategories` parameter. `DateOfBirth` is returned in the API response if detected. 
+### Type: Sweden Passport Number
 
-    :::column-end:::
-    :::column span="2":::
-      **Supported languages**
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **SEPassportNumber** in the **piiCategories** request parameter. If **SEPassportNumber** is detected, It appears in the **PII** response payload.|[SEPassportNumber, PassportNumber]|
 
-      `en`
+### Type: Sweden Tax Identification Number
 
-   :::column-end:::
-:::row-end:::
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **SETaxIdentificationNumber** in the **piiCategories** request parameter. If **SETaxIdentificationNumber** is detected, It appears in the **PII** response payload.|[SETaxIdentificationNumber]|
 
-# [GA API](#tab/ga-api)
+### Type: Switzerland Social Security Number
 
-## Category: DateTime
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **CHSocialSecurityNumber** in the **piiCategories** request parameter. If **CHSocialSecurityNumber** is detected, It appears in the **PII** response payload.|[CHSocialSecurityNumber]|
 
-This category contains the following entities:
+### Type: Taiwanese ID
 
-:::row:::
-    :::column span="":::
-        **Entity**
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **TWNationalID** in the **piiCategories** request parameter. If **TWNationalID** is detected, It appears in the **PII** response payload.|[TWNationalID]|
 
-        DateTime
+### Type: Taiwan Passport Number
 
-    :::column-end:::
-    :::column span="2":::
-        **Details**
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **TWPassportNumber** in the **piiCategories** request parameter. If **TWPassportNumber** is detected, It appears in the **PII** response payload.|[TWPassportNumber]|
 
-        Dates and times of day.
+### Type: Taiwan Resident Certificate
 
-        To get this entity category, add `DateTime` to the `piiCategories` parameter. `DateTime` is returned in the API response if detected.
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **TWResidentCertificate** in the **piiCategories** request parameter. If **TWResidentCertificate** is detected, It appears in the **PII** response payload.|[TWResidentCertificate]|
 
-    :::column-end:::
-:::column span="":::
-      **Supported languages**
+### Type: Thailand Population Identification Code
 
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `af`, `ca`, `da`, `el`, `ga`, `gl`, `ku`, `nl`, `no`, `ss`, `ro`, `sq`, `ur`, `ar`, `bg`, `bs`, `cy`, `fa`, `hr`, `id`, `mg`, `mk`, `ms`, `ps`, `ru`, `sl`, `so`, `sr`, `sw`, `am`, `as`, `cs`, `et`, `eu`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `mr`, `my`, `ne`, `or`, `pa`, `pl`, `sk`, `th`, `uk`, `az`, `bn`, `gu`, `hy`, `ka`, `kk`, `kn`, `ky`, `ml`, `mn`, `ta`, `te`, `ug`, `uz`, `vi`
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **THPopulationIdentificationCode** in the **piiCategories** request parameter. If **THPopulationIdentificationCode** is detected, It appears in the **PII** response payload.|[THPopulationIdentificationCode]|
 
-   :::column-end:::
-:::row-end:::
+### Type: Türkiye National Identification Number
 
-### Subcategories
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **TRNationalIdentificationNumber** in the **piiCategories** request parameter. If **TRNationalIdentificationNumber** is detected, It appears in the **PII** response payload.|[TRNationalIdentificationNumber]|
 
-The entity in this category can have the following subcategory:
+### Type: Ukraine Passport Number Domestic
 
-:::row:::
-    :::column span="":::
-        **Entity subcategory**
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **UAPassportNumberDomestic** in the **piiCategories** request parameter. If **UAPassportNumberDomestic** is detected, It appears in the **PII** response payload.|[UAPassportNumberDomestic]|
 
-        Date
+### Type: Ukraine Passport Number International
 
-    :::column-end:::
-    :::column span="2":::
-        **Details**
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **UAPassportNumberInternational** in the **piiCategories** request parameter. If **UAPassportNumberInternational** is detected, It appears in the **PII** response payload.|[UAPassportNumberInternational]|
 
-        Calender dates. Returned as both PII and PHI.
+### Type: United Kingdom Drivers License Number
 
-        To get this entity category, add `Date` to the `piiCategories` parameter. `Date` is returned in the API response if detected.
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **UKDriversLicenseNumber** in the **piiCategories** request parameter. If **UKDriversLicenseNumber** is detected, It appears in the **PII** response payload.|[UKDriversLicenseNumber]|
 
-    :::column-end:::
-    :::column span="2":::
-      **Supported languages**
+### Type: United Kingdom Electoral Roll Number
 
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `af`, `ca`, `da`, `el`, `ga`, `gl`, `ku`, `nl`, `no`, `ss`, `ro`, `sq`, `ur`, `ar`, `bg`, `bs`, `cy`, `fa`, `hr`, `id`, `mg`, `mk`, `ms`, `ps`, `ru`, `sl`, `so`, `sr`, `sw`, `am`, `as`, `cs`, `et`, `eu`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `mr`, `my`, `ne`, `or`, `pa`, `pl`, `sk`, `th`, `uk`, `az`, `bn`, `gu`, `hy`, `ka`, `kk`, `kn`, `ky`, `ml`, `mn`, `ta`, `te`, `ug`, `uz`, `vi`
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **UKElectoralRollNumber** in the **piiCategories** request parameter. If **UKElectoralRollNumber** is detected, It appears in the **PII** response payload.|[UKElectoralRollNumber]|
 
-    :::column-end:::
-:::row-end:::
+### Type: United Kingdom National Health Number
 
-:::row:::
-    :::column span="":::
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **UKNationalHealthNumber** in the **piiCategories** request parameter. If **UKNationalHealthNumber** is detected, It appears in the **PII** response payload.|[UKNationalHealthNumber]|
 
-        DateAndTime
+### Type: United Kingdom National Insurance Number
 
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **UKNationalInsuranceNumber** in the **piiCategories** request parameter. If **UKNationalInsuranceNumber** is detected, It appears in the **PII** response payload.|[UKNationalInsuranceNumber]|
 
-    :::column-end:::
-    :::column span="2":::
+### Type: United Kingdom Unique Taxpayer Number
 
-        Dates and times of day.
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **UKUniqueTaxpayerNumber** in the **piiCategories** request parameter. If **UKUniqueTaxpayerNumber** is detected, It appears in the **PII** response payload.|[UKUniqueTaxpayerNumber]|
 
-        To get this entity category, add `DateAndTime` to the `piiCategories` parameter. `DateAndTime` is returned in the API response if detected.
+### Type: United States Bank Account Number
 
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **USBankAccountNumber** in the **piiCategories** request parameter. If **USBankAccountNumber** is detected, It appears in the **PII** response payload.|[USBankAccountNumber]|
 
-    :::column-end:::
-    :::column span="2":::
-      **Supported languages**
+### Type: United States Drivers License Number
 
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `af`, `ca`, `da`, `el`, `ga`, `gl`, `ku`, `nl`, `no`, `ss`, `ro`, `sq`, `ur`, `ar`, `bg`, `bs`, `cy`, `fa`, `hr`, `id`, `mg`, `mk`, `ms`, `ps`, `ru`, `sl`, `so`, `sr`, `sw`, `am`, `as`, `cs`, `et`, `eu`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `mr`, `my`, `ne`, `or`, `pa`, `pl`, `sk`, `th`, `uk`, `az`, `bn`, `gu`, `hy`, `ka`, `kk`, `kn`, `ky`, `ml`, `mn`, `ta`, `te`, `ug`, `uz`, `vi`
-      :::column-end:::
-:::row-end:::
-:::row:::
-    :::column span="":::
-        **Entity**
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **USDriversLicenseNumber** in the **piiCategories** request parameter. If **USDriversLicenseNumber** is detected, It appears in the **PII** response payload.|[USDriversLicenseNumber]|
 
-    :::column-end:::
-    :::column span="2":::
+### Type: United States Drug Enforcement Agency Number
 
-        Calendar dates in diverse formats and years associated with date of birth of an individual. Examples include "born in 1994", "born in 990101", "birth date: February 14th, 1995", "date: 1992/06/30", "DATE: 05-12-1988", "04.10.1999"
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **"DrugEnforcementAgencyNumber** in the **piiCategories** request parameter. If **DrugEnforcementAgencyNumber** is detected, It appears in the **PII** response payload.|["DrugEnforcementAgencyNumber]|
 
-    :::column-end:::
-    :::column span="":::
+### Type: United States Individual Taxpayer Identification
 
-      `en`, `fr`, `de`, `it`, `es`, `pt-pt`, `pt-br`, `nl`, `zh-Hans`, `ja`, `ko`, `zh-Hant`
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **USIndividualTaxpayerIdentification** in the **piiCategories** request parameter. If **USIndividualTaxpayerIdentification** is detected, It appears in the **PII** response payload.|[USIndividualTaxpayerIdentification]|
 
-    :::column-end:::
-:::row-end:::
+### Type: United States Social Security Number
 
-#### Subcategory: Age
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **USSocialSecurityNumber** in the **piiCategories** request parameter. If **USSocialSecurityNumber** is detected, It appears in the **PII** response payload.|[USSocialSecurityNumber]|
 
-The PII service supports the Age subcategory within the broader Quantity type (since Age is the personally identifiable piece of information).
+### Type: United States/United Kingdom Passport Number
 
-:::row:::
-    :::column span="":::
-        **Entity subcategory**
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **USUKPassportNumber** in the **piiCategories** request parameter. If **USUKPassportNumber** is detected, It appears in the **PII** response payload.|[USUKPassportNumber]|
 
-        Age
 
-    :::column-end:::
-    :::column span="2":::
-        **Details**
+## Related content
 
-        Numeric age.
-
-    :::column-end:::
-    :::column span="2":::
-      **Supported languages**
-
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `af`, `ca`, `da`, `el`, `ga`, `gl`, `ku`, `nl`, `no`, `ss`, `ro`, `sq`, `ur`, `ar`, `bg`, `bs`, `cy`, `fa`, `hr`, `id`, `mg`, `mk`, `ms`, `ps`, `ru`, `sl`, `so`, `sr`, `sw`, `am`, `as`, `cs`, `et`, `eu`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `mr`, `my`, `ne`, `or`, `pa`, `pl`, `sk`, `th`, `uk`, `az`, `bn`, `gu`, `hy`, `ka`, `kk`, `kn`, `ky`, `ml`, `mn`, `ta`, `te`, `ug`, `uz`, `vi`
-
-   :::column-end:::
-:::row-end:::
-
----
-
-# [Preview API](#tab/preview-api)
-
-### Identification
-
-## Type: BankAccountNumber
-
-:::row:::
-    :::column span="":::
-        **Entity**
-
-    :::column-end:::
-    :::column span="2":::
-        **Details**
-
-        To get this entity type, add `BankAccountNumber` to the `piiCategories` parameter. `BankAccountNumber` is returned in the API response if detected.
-
-    :::column-end:::
-    :::column span="":::
-      **Supported languages**
-
-     `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `af`, `ca`, `da`, `el`, `ga`, `gl`, `ku`, `nl`, `no`, `ss`, `ro`, `sq`, `ur`, `ar`, `bg`, `bs`, `cy`, `fa`, `hr`, `id`, `mg`, `mk`, `ms`, `ps`, `ru`, `sl`, `so`, `sr`, `sw`, `am`, `as`, `cs`, `et`, `eu`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `mr`, `my`, `ne`, `or`, `pa`, `pl`, `sk`, `th`, `uk`, `az`, `bn`, `gu`, `hy`, `ka`, `kk`, `kn`, `ky`, `ml`, `mn`, `ta`, `te`, `ug`, `uz`, `vi`
-
-    :::column-end:::
-:::row-end:::
-
-## Type: DriversLicenseNumber
-
-:::row:::
-    :::column span="":::
-        **Entity**
-
-    :::column-end:::
-    :::column span="2":::
-        **Details**
-
-        To get this entity type, add `DriversLicenseNumber` to the `piiCategories` parameter. `DriversLicenseNumber` is returned in the API response if detected.
-
-    :::column-end:::
-    :::column span="":::
-      **Supported languages**
-
-     `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `sk`, `th`, `uk`
-
-    :::column-end:::
-:::row-end:::
-
-## Type: PassportNumber
-
-:::row:::
-    :::column span="":::
-        **Entity**
-
-    :::column-end:::
-    :::column span="2":::
-        **Details**
-
-        To get this entity type, add `PassportNumber` to the `piiCategories` parameter. `PassportNumber` is returned in the API response if detected.
-
-    :::column-end:::
-    :::column span="":::
-      **Supported languages**
-
-     `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `sk`, `th`, `uk`
-
-    :::column-end:::
-:::row-end:::
-
-
-# [GA API](#tab/ga-api)
-
-[!INCLUDE [supported identification entities](../includes/identification-entities.md)]
-
----
-
-# [Preview API](#tab/preview-api)
-
-## Azure information
-
-These entity types include identifiable Azure information like authentication information and connection strings. Not returned as PHI.
-
-:::row:::
-    :::column span="":::
-        **Entity**
-
-        Azure DocumentDB Auth Key
-
-    :::column-end:::
-    :::column span="2":::
-        **Details**
-
-        Authorization key for an Azure Cosmos DB server.
-
-        To get this entity type, add `AzureDocumentDBAuthKey` to the `piiCategories` parameter. `AzureDocumentDBAuthKey` is returned in the API response if detected.
-
-    :::column-end:::
-    :::column span="":::
-      **Supported languages**
-
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-
-    :::column-end:::
-:::row-end:::
-:::row:::
-    :::column span="":::
-
-        Azure IAAS Database Connection String and Azure SQL Connection String.
-
-
-    :::column-end:::
-    :::column span="2":::
-
-        Connection string for an Azure infrastructure as a service (IaaS) database, and SQL connection string.
-
-        To get this entity type, add `AzureIAASDatabaseConnectionAndSQLString` to the `piiCategories` parameter. `AzureIAASDatabaseConnectionAndSQLString` is returned in the API response if detected.
-
-    :::column-end:::
-    :::column span="":::
-
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-
-    :::column-end:::
-:::row-end:::
-:::row:::
-    :::column span="":::
-
-        Azure IoT Connection String
-
-    :::column-end:::
-    :::column span="2":::
-
-        Connection string for Azure IoT.
-
-        To get this entity type, add `AzureIoTConnectionString` to the `piiCategories` parameter. `AzureIoTConnectionString` is returned in the API response if detected.
-
-    :::column-end:::
-    :::column span="":::
-
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-
-    :::column-end:::
-:::row-end:::
-:::row:::
-    :::column span="":::
-
-        Azure Publish Setting Password
-
-    :::column-end:::
-    :::column span="2":::
-
-        Password for Azure publish settings.
-
-        To get this entity type, add `AzurePublishSettingPassword` to the `piiCategories` parameter. `AzurePublishSettingPassword` is returned in the API response if detected.
-
-    :::column-end:::
-    :::column span="":::
-
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-
-    :::column-end:::
-:::row-end:::
-:::row:::
-    :::column span="":::
-
-        Azure Redis Cache Connection String
-
-    :::column-end:::
-    :::column span="2":::
-
-        Connection string for a Redis cache.
-
-        To get this entity type, add `AzureRedisCacheString` to the `piiCategories` parameter. `AzureRedisCacheString` is returned in the API response if detected.
-
-    :::column-end:::
-    :::column span="":::
-
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-
-    :::column-end:::
-:::row-end:::
-:::row:::
-    :::column span="":::
-
-        Azure SAS
-
-    :::column-end:::
-    :::column span="2":::
-
-        Connection string for Azure software as a service (SaaS).
-
-        To get this entity type, add `AzureSAS` to the `piiCategories` parameter. `AzureSAS` is returned in the API response if detected.
-
-    :::column-end:::
-    :::column span="":::
-
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-
-    :::column-end:::
-:::row-end:::
-:::row:::
-    :::column span="":::
-
-        Azure Service Bus Connection String
-
-    :::column-end:::
-    :::column span="2":::
-
-        Connection string for an Azure service bus.
-
-        To get this entity type, add `AzureServiceBusString` to the `piiCategories` parameter. `AzureServiceBusString` is returned in the API response if detected.
-
-    :::column-end:::
-    :::column span="":::
-
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-
-    :::column-end:::
-:::row-end:::
-:::row:::
-    :::column span="":::
-
-        Azure Storage Account Key
-
-    :::column-end:::
-    :::column span="2":::
-
-        Account key for an Azure storage account.
-
-        To get this entity type, add `AzureStorageAccountKey` to the `piiCategories` parameter. `AzureStorageAccountKey` is returned in the API response if detected.
-
-    :::column-end:::
-    :::column span="":::
-
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-
-    :::column-end:::
-:::row-end:::
-:::row:::
-    :::column span="":::
-
-        Azure Storage Account Key (Generic)
-
-    :::column-end:::
-    :::column span="2":::
-
-        Generic account key for an Azure storage account.
-
-        To get this entity type, add `AzureStorageAccountGeneric` to the `piiCategories` parameter. `AzureStorageAccountGeneric` is returned in the API response if detected.
-
-    :::column-end:::
-    :::column span="":::
-
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-
-    :::column-end:::
-:::row-end:::
-:::row:::
-    :::column span="":::
-
-        SQL Server Connection String
-
-    :::column-end:::
-    :::column span="2":::
-
-        Connection string for a computer running SQL Server.
-
-        To get this entity type, add `SQLServerConnectionString` to the `piiCategories` parameter. `SQLServerConnectionString` is returned in the API response if detected.
-
-    :::column-end:::
-    :::column span="":::
-
-      `en`
-
-    :::column-end:::
-:::row-end:::
-
-# [GA API](#tab/ga-api)
-
-## Azure information
-
-These entity categories include identifiable Azure information like authentication information and connection strings. Not returned as PHI.
-
-:::row:::
-    :::column span="":::
-        **Entity**
-
-        Azure DocumentDB Auth Key
-
-    :::column-end:::
-    :::column span="2":::
-        **Details**
-
-        Authorization key for an Azure Cosmos DB server.
-
-        To get this entity category, add `AzureDocumentDBAuthKey` to the `piiCategories` parameter. `AzureDocumentDBAuthKey` is returned in the API response if detected.
-
-    :::column-end:::
-    :::column span="":::
-      **Supported languages**
-
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-
-    :::column-end:::
-:::row-end:::
-:::row:::
-    :::column span="":::
-
-        Azure IAAS Database Connection String and Azure SQL Connection String.
-
-
-    :::column-end:::
-    :::column span="2":::
-
-        Connection string for an Azure infrastructure as a service (IaaS) database, and SQL connection string.
-
-        To get this entity category, add `AzureIAASDatabaseConnectionAndSQLString` to the `piiCategories` parameter. `AzureIAASDatabaseConnectionAndSQLString` is returned in the API response if detected.
-
-    :::column-end:::
-    :::column span="":::
-
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-
-    :::column-end:::
-:::row-end:::
-:::row:::
-    :::column span="":::
-
-        Azure IoT Connection String
-
-    :::column-end:::
-    :::column span="2":::
-
-        Connection string for Azure IoT.
-
-        To get this entity category, add `AzureIoTConnectionString` to the `piiCategories` parameter. `AzureIoTConnectionString` is returned in the API response if detected.
-
-    :::column-end:::
-    :::column span="":::
-
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-
-    :::column-end:::
-:::row-end:::
-:::row:::
-    :::column span="":::
-
-        Azure Publish Setting Password
-
-    :::column-end:::
-    :::column span="2":::
-
-        Password for Azure publish settings.
-
-        To get this entity category, add `AzurePublishSettingPassword` to the `piiCategories` parameter. `AzurePublishSettingPassword` is returned in the API response if detected.
-
-    :::column-end:::
-    :::column span="":::
-
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-
-    :::column-end:::
-:::row-end:::
-:::row:::
-    :::column span="":::
-
-        Azure Redis Cache Connection String
-
-    :::column-end:::
-    :::column span="2":::
-
-        Connection string for a Redis cache.
-
-        To get this entity category, add `AzureRedisCacheString` to the `piiCategories` parameter. `AzureRedisCacheString` is returned in the API response if detected.
-
-    :::column-end:::
-    :::column span="":::
-
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-
-    :::column-end:::
-:::row-end:::
-:::row:::
-    :::column span="":::
-
-        Azure SAS
-
-    :::column-end:::
-    :::column span="2":::
-
-        Connection string for Azure software as a service (SaaS).
-
-        To get this entity category, add `AzureSAS` to the `piiCategories` parameter. `AzureSAS` is returned in the API response if detected.
-
-    :::column-end:::
-    :::column span="":::
-
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-
-    :::column-end:::
-:::row-end:::
-:::row:::
-    :::column span="":::
-
-        Azure Service Bus Connection String
-
-    :::column-end:::
-    :::column span="2":::
-
-        Connection string for an Azure service bus.
-
-        To get this entity category, add `AzureServiceBusString` to the `piiCategories` parameter. `AzureServiceBusString` is returned in the API response if detected.
-
-    :::column-end:::
-    :::column span="":::
-
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-
-    :::column-end:::
-:::row-end:::
-:::row:::
-    :::column span="":::
-
-        Azure Storage Account Key
-
-    :::column-end:::
-    :::column span="2":::
-
-        Account key for an Azure storage account.
-
-        To get this entity category, add `AzureStorageAccountKey` to the `piiCategories` parameter. `AzureStorageAccountKey` is returned in the API response if detected.
-
-    :::column-end:::
-    :::column span="":::
-
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-
-    :::column-end:::
-:::row-end:::
-:::row:::
-    :::column span="":::
-
-        Azure Storage Account Key (Generic)
-
-    :::column-end:::
-    :::column span="2":::
-
-        Generic account key for an Azure storage account.
-
-        To get this entity category, add `AzureStorageAccountGeneric` to the `piiCategories` parameter. `AzureStorageAccountGeneric` is returned in the API response if detected.
-
-    :::column-end:::
-    :::column span="":::
-
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-
-    :::column-end:::
-:::row-end:::
-:::row:::
-    :::column span="":::
-
-        SQL Server Connection String
-
-    :::column-end:::
-    :::column span="2":::
-
-        Connection string for a computer running SQL Server.
-
-        To get this entity category, add `SQLServerConnectionString` to the `piiCategories` parameter. `SQLServerConnectionString` is returned in the API response if detected.
-
-    :::column-end:::
-    :::column span="":::
-
-      `en`
-
-    :::column-end:::
-:::row-end:::
-
----
-
-## Next steps
-
-* [PII overview](../overview.md)
+[PII entity categories list](entity-categories-list.md)

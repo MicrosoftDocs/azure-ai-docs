@@ -1,24 +1,25 @@
 ---
-title: How to add and manage data in your Azure AI Foundry project
+title: How to add and manage data in your Azure AI Foundry hub-based project
 titleSuffix: Azure AI Foundry
-description: Learn how to add and manage data in your Azure AI Foundry project.
-manager: scottpolly
+description: Learn how to add and manage data in your Azure AI Foundry hub-based project.
+manager: mcleans
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
+  - hub-only
 ms.topic: how-to
-ms.date: 05/21/2025
-author: Blackmist
-ms.author: larryfr
+ms.date: 08/27/2025
+ms.author: jburchel 
+author: jonburchel 
 ---
 
-# How to add and manage data in your Azure AI Foundry project
+# How to add and manage data in your Azure AI Foundry hub-based project
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-This article describes how to create and manage data in Azure AI Foundry portal. Data can be used as a source for indexing in Azure AI Foundry portal.
+This article describes how to create and manage data in Azure AI Foundry hub-based projects. Data can be used as a source for indexing in Azure AI Foundry portal.
 
 Data can help when you need these capabilities:
 
@@ -34,89 +35,71 @@ Data can help when you need these capabilities:
 
 [!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
 
-## Create data
+## Add new data
 
-You are charged for the storage used by your data. To help estimate the cost, you can use the [Azure Pricing Calculator](https://azure.microsoft.com/pricing/calculator/). The data is stored in a container called `workspaceblobstore` in your project's Azure Storage account. 
+You're charged for the storage used by your data. To help estimate the cost, you can use the [Azure Pricing Calculator](https://azure.microsoft.com/pricing/calculator/). The data is stored in a container called `workspaceblobstore` in your project's Azure Storage account. 
 
 When you create your data, you need to set the data type. Azure AI Foundry supports these data types:
 
 |Type  |**Canonical Scenarios**|
 |---------|---------|
 |**`file`**<br>Reference a single file | Read a single file on Azure Storage (the file can have any format). |
-|**`folder`**<br> Reference a folder |      Read a folder of parquet/CSV files into Pandas/Spark.<br><br>Read unstructured data (for example: images, text, or audio) located in a folder. |
+|**`folder`**<br>Reference a folder | Read a folder of parquet/CSV files into Pandas/Spark.<br><br>Read unstructured data (for example: images, text, or audio) located in a folder. |
+|**`table`**<br>Reference a table | Read a table on Azure Storage. |
 
 Azure AI Foundry shows the supported source paths. You can create a data from a folder or file:
 
-- If you select **folder type**, you can choose the folder URL format. Azure AI Foundry shows the supported folder URL formats. You can create a data resource as shown:
+- If you select **Folder** for the data source **Type**, you can choose the folder URL format. Azure AI Foundry shows the supported folder URL formats. You can create a data resource as shown:
     :::image type="content" source="../media/data-add/studio-url-folder.png" alt-text="Screenshot of folder URL format.":::
 
-- If you select **file type**, you can choose the file URL format. The supported file URL formats are shown in Azure AI Foundry portal. You can create a data resource as shown:
+- If you select **File** for the data source **Type**, you can choose the file URL format. The supported file URL formats are shown in Azure AI Foundry portal. You can create a data resource as shown:
     :::image type="content" source="../media/data-add/studio-url-file.png" alt-text="Screenshot of file URL format.":::
 
-### Create data: File type
+- If you select **Table** for the data source **Type**, you can choose the table URL format. The supported file URL formats are shown in Azure AI Foundry portal. You can create a data resource as shown:
+    :::image type="content" source="../media/data-add/studio-url-table.png" alt-text="Screenshot of table URL format.":::
+
+### Upload files and folders
+
+You can upload files or folders directly to your workspace storage account by selecting **Upload files/folders** in the **Data source** field as shown:
+
+:::image type="content" source="../media/data-add/upload-file-folder.png" alt-text="This screenshot shows how to upload a file.":::
+
+When you upload files or folders, they're uploaded to the default `workspaceblobstore` connection. The files and folders are uploaded to the root of the storage container.
+
+### Add file, folder, and table data from Azure Storage
+
+You can add file, folder, and table data from Azure Storage to your Azure AI Foundry workspace.
 
 A file (`uri_file`) data resource type points to a *single file* on storage (for example, a CSV file).
 
+A Folder (`uri_folder`) data source type points to a *folder* on a storage resource (for example, a folder containing several subfolders of images).
+
+A Table (`uri_table`) data source type points to a *table* on a storage resource (for example, a folder that contains tabular data).
+
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
-These steps explain how to create a File typed data resource in the Azure AI Foundry portal:
+These steps explain how to add an existing file, folder, or table data resource from Azure Storage to your hub-based project workspace in the Azure AI Foundry portal:
 
 1. Navigate to the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 
-1. Select the project where you want to create the data.
+1. Select the hub-based project where you want to add the data.
 
 1. From the collapsible **My assets** menu on the left, select **Data + indexes**, then select **New data** as shown in this screenshot:
 
     :::image type="content" source="../media/data-add/add-data.png" alt-text="Screenshot highlighting New Data in the Data tab.":::
 
-1. Choose your **Data source**. To choose a data source, you have two options.
-   - You can select **Get data with storage URL** if you have a direct URL to a storage account or a public accessible HTTPS server.
-   - You can select **Upload files/folders** to upload a folder from your local drive.
-
-     - **Get data with Storage URL**: You can choose the "File" as the **Type**, and then provide a URL based on the supported URL formats listed on that page, as shown in this screenshot:
-     
-     :::image type="content" source="../media/data-add/file-url.png" alt-text="This screenshot shows the provisioning of a URL that points to a file.":::
-
-     - **Upload files/folders**: You can select **Upload files/folders**, select **Upload files**, and choose the local file to upload. The file uploads into the default "workspaceblobstore" connection.
-     :::image type="content" source="../media/data-add/upload-file.png" alt-text="This screenshot shows how to upload a file.":::
-
-    1. Select **Next** after you choose the data source.
-
-    1. Enter a custom name for your data, and then select **Create**.
-
-    :::image type="content" source="../media/data-add/data-add-finish.png" alt-text="This screenshot shows the naming step for the data source." lightbox="../media/data-connections/data-add-finish.png":::
-
-### Create data: Folder type
-
-A Folder (`uri_folder`) data source type points to a *folder* on a storage resource (for example, a folder containing several subfolders of images). Use these steps to create a Folder type data resource in Azure AI Foundry portal:
-
-1. Navigate to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs)
-
-1. Select the project where you want to create the data.
-
-1. From the collapsible **Components** menu on the left, select **Data**.
-
-    :::image type="content" source="../media/data-add/add-data.png" alt-text="Screenshot highlighting New Data in the Data tab.":::
-
-1.  Choose your **Data source**. To choose a data source, you have two options.
-    1. Select **Get data with Storage URL** if you have a direct URL to a storage account or a public accessible HTTPS server
-    1. Select **Upload files/folders** to upload a folder from your local drive
-
-    - **Get data with Storage URL**: You can choose the **Type** as "Folder", and provide a URL based on the supported URL formats listed on that page.
-
-       :::image type="content" source="../media/data-add/folder-url.png" alt-text="This screenshot shows the step to provide a URL that points to a folder.":::
-
-    - **Upload files/folders**: You can select **Upload files/folders**, select **Upload folder**, and choose the local file to upload. The file resources upload into the default "workspaceblobstore" connection.
-
-       :::image type="content" source="../media/data-add/upload-folder.png" alt-text="This screenshot shows how to upload a folder.":::
+1. Select **Get data with storage URL** as your **Data source**. 
+1. Then choose the *File*, *Folder*, or *Table* as the data **Type**, and then provide a URL based on the supported URL formats listed on that page.    
 
 1. Select **Next** after you choose the data source.
 
 1. Enter a custom name for your data, and then select **Create**.
 
-    :::image type="content" source="../media/data-connections/data-add-finish.png" alt-text="Screenshot of naming the data." lightbox="../media/data-connections/data-add-finish.png":::
+:::image type="content" source="../media/data-add/data-add-finish.png" alt-text="This screenshot shows the naming step for the data source." lightbox="../media/data-connections/data-add-finish.png":::
 
 ## Manage data
+
+After you add data to your hub-based project, you can delete, archive, restore, tag, archive, and preview the data in the Azure AI Foundry.
 
 ### Delete data
 
@@ -136,8 +119,8 @@ When a data resource is erroneously created - for example, with an incorrect nam
 |The **name** is incorrect     |  [Archive the data](#archive-data)       |
 |The team **no longer uses** the data | [Archive the data](#archive-data) |
 |It **clutters the data listing** | [Archive the data](#archive-data) |
-|The **path** is incorrect     |  Create a *new version* of the data (same name) with the correct path. For more information, visit [Create data](#create-data).       |
-|It has an incorrect **type**  |  Currently, Azure AI doesn't allow the creation of a new version with a *different* type compared to the initial version.<br>(1) [Archive the data](#archive-data)<br>(2) [Create a new data](#create-data) under a different name with the correct type.    |
+|The **path** is incorrect     |  Create a *new version* of the data (same name) with the correct path. For more information, visit [Add new data](#add-new-data).       |
+|It has an incorrect **type**  |  Currently, Azure AI doesn't allow the creation of a new version with a *different* type compared to the initial version.<br>(1) [Archive the data](#archive-data)<br>(2) [Add new data](#add-new-data) under a different name with the correct type.    |
 
 ### Archive data
 

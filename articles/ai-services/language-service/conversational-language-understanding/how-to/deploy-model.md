@@ -6,18 +6,18 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/21/2024
+ms.date: 06/30/2025
 ms.author: lajanuar
 ms.custom: language-service-clu,
 ---
 
 # Deploy a model 
 
-Once you are satisfied with how your model performs, it's ready to be deployed, and query it for predictions from utterances. Deploying a model makes it available for use through the [prediction API](/rest/api/language/2023-04-01/conversation-analysis-runtime/analyze-conversation).
+Once you're satisfied with how your model performs, it's ready to be deployed, and query it for predictions from utterances. Deploying a model makes it available for use through the [prediction API](/rest/api/language/2023-04-01/conversation-analysis-runtime/analyze-conversation).
 
 ## Prerequisites
 
-* A successfully [created project](create-project.md) 
+* A [created project](create-project.md) 
 * [Labeled utterances](tag-utterances.md) and successfully [trained model](train-model.md)
 * Reviewed the [model performance](view-model-evaluation.md) to determine how your model is performing.
 
@@ -45,7 +45,7 @@ After you have reviewed the model's performance and decide it's fit to be used i
 
 ## Swap deployments
 
-After you are done testing a model assigned to one deployment, you might want to assign it to another deployment. Swapping deployments involves:
+After you're done testing a model assigned to one deployment, you might want to assign it to another deployment. Swapping deployments involves:
 * Taking the model assigned to the first deployment, and assigning it to the second deployment. 
 * taking the model assigned to second deployment and assign it to the first deployment. 
 
@@ -89,7 +89,7 @@ You can [deploy your project to multiple regions](../../concepts/custom-features
 
 ## Unassign deployment resources
 
-When unassigning or removing a deployment resource from a project, you will also delete all the deployments that have been deployed to that resource's region.
+When unassigning or removing a deployment resource from a project, you'll also delete all the deployments that have been deployed to the resource's region.
 
 # [Language Studio](#tab/language-studio)
 

@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 9/9/2024
-ms.author: eur
+ms.author: pafarley
 ---
 
 ## Prerequisites

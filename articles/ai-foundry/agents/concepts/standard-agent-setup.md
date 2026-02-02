@@ -5,7 +5,8 @@ description: Learn about the enterprise features of the standard setup
 manager: nitinme
 author: fosteramanda
 ms.author: fosteramanda
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: conceptual
 ms.date: 05/05/2025
 ms.custom: azure-ai-agents

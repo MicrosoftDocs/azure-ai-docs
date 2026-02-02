@@ -8,8 +8,6 @@ manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: conceptual
 ms.date: 02/21/2025
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
 ms.author: pafarley
 ---
 
@@ -138,7 +136,7 @@ The following JSON response illustrates what Azure AI Vision returns when taggin
 
 ## Use the API
 
-The tagging feature is part of the [Analyze Image](/rest/api/computervision/analyze-image/analyze-image?view=rest-computervision-v3.2&tabs=HTTP) API. You can call this API through a native SDK or through REST calls. Include `Tags` in the **visualFeatures** query parameter. Then, when you get the full JSON response, parse the string for the contents of the `"tags"` section.
+The tagging feature is part of the [Analyze Image](/rest/api/computervision/analyze-image/analyze-image?view=rest-computervision-v3.2&tabs=HTTP&preserve-view=true) API. You can call this API through a native SDK or through REST calls. Include `Tags` in the **visualFeatures** query parameter. Then, when you get the full JSON response, parse the string for the contents of the `"tags"` section.
 
 
 * [Quickstart: Image Analysis REST API or client libraries](./quickstarts-sdk/image-analysis-client-library.md?pivots=programming-language-csharp)

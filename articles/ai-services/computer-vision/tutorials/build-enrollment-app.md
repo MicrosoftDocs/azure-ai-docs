@@ -7,10 +7,9 @@ manager: nitinme
 #customer intent: As a developer, I want to build a React Native app to add users to a Face service so that I can obtain meaningful consent and high-quality face data.
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
-ms.custom:
-  - ignite-2023
+ms.update-cycle: 90-days
 ms.topic: tutorial
-ms.date: 01/29/2025
+ms.date: 08/21/2025
 ms.author: pafarley
 feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
@@ -25,7 +24,7 @@ The sample app is written using JavaScript and the React Native framework. It ca
 
 ## Prerequisites 
 
-* An Azure subscription – [Create one for free](https://azure.microsoft.com/free/cognitive-services/).  
+* An Azure subscription – [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).  
 * Once you have your Azure subscription, [create a Face resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesFace) in the Azure portal to get your key and endpoint. After it deploys, select **Go to resource**.  
   * You'll need the key and endpoint from the resource you created to connect your application to Face API.  
 

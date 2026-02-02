@@ -2,13 +2,14 @@
 title: Rerank tool for flows in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
 description: This article introduces you to the Rerank tool for flows in Azure AI Foundry portal.
-manager: scottpolly
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-prompt-flow
 ms.topic: reference
-ms.date: 01/29/2025
+ms.date: 6/30/2025
 ms.reviewer: jingyizhu
 ms.author: lagayhar
 author: lgayhardt
+ms.custom: hub-only
 ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ms.update-cycle: 180-days
 ---
@@ -19,6 +20,10 @@ ms.update-cycle: 180-days
 The prompt flow Rerank tool improves search quality of relevant documents given a query for retrieval-augment generation (RAG) in prompt flow. This tool works best with [Index Look up tool](index-lookup-tool.md) as a ranker after the initial retrieval.
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+
+## Prerequisites
+
+[!INCLUDE [hub-only-prereq](../../includes/hub-only-prereq.md)]
 
 ## Use the Rerank tool
 

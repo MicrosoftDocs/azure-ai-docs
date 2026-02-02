@@ -2,13 +2,13 @@
 title: Speech service quotas and limits
 titleSuffix: Azure AI services
 description: Quick reference, detailed description, and best practices on the quotas and limits for the Speech service in Azure AI services.
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
-ms.date: 3/10/2025
-ms.reviewer: alexeyo
+ms.date: 7/15/2025
+ms.reviewer: jagoerge
 #Customer intent: As a developer, I want to learn about the quotas and limits for the Speech service in Azure AI services.
 ---
 
@@ -48,8 +48,8 @@ You can use real-time speech to text with the [Speech SDK](speech-sdk.md) or the
 
 | Quota | Free (F0) | Standard (S0) |
 |-----|-----|-----|
-| Maximum audio input file size | N/A | 300 MB |
-| Maximum audio length | N/A | 120 minutes per file  |
+| Maximum audio input file size | N/A | < 300 MB |
+| Maximum audio length | N/A | < 120 minutes per file  |
 | Maximum requests per minute | N/A | 600  |
 
 #### Batch transcription
@@ -86,10 +86,13 @@ You can use real-time text to speech with the [Speech SDK](speech-sdk.md) or the
 
 | Quota | Free (F0) | Standard (S0) |
 |-----|-----|-----|
-| Maximum number of transactions per time period for standard voices and custom voices. | 20 transactions per 60 seconds<br/><br/>This limit isn't adjustable. | 200 transactions per second (TPS) (default value)<br/><br/>The rate is adjustable up to 1000 TPS for Standard (S0) resources. See [more explanations](#detailed-description-quota-adjustment-and-best-practices), [best practices](#general-best-practices-to-mitigate-throttling-during-autoscaling), and [adjustment instructions](#text-to-speech-increase-concurrent-request-limit). |
+| Maximum number of transactions per time period for standard voices and custom voices. | 20 transactions per 60 seconds<br/><br/>This limit isn't adjustable. | 200 transactions per second (TPS) (default value)<br/><br/>The rate is adjustable up to 1000 TPS for Standard (S0) resources. See [more explanations](#detailed-description-quota-adjustment-and-best-practices), [best practices](#general-best-practices-to-mitigate-throttling-during-autoscaling), and [adjustment instructions](#text-to-speech-increase-real-time-tps-limit). |
 | Max audio length produced per request | 10 min | 10 min |
 | Max total number of distinct `<voice>` and `<audio>` tags in SSML | 50 | 50 |
 | Max SSML message size per turn for websocket | 64 KB | 64 KB |
+
+> [!NOTE]
+> Most HTTP 429 errors with Text-to-Speech Standard Voice are caused by limited backend service capacity for a specific voice in the selected region, not by quota limits. Increasing your quota won't resolve these errors. For best results, use the voice in its native region or select a more popular voice in your current region.
 
 #### Batch synthesis
 
@@ -155,9 +158,6 @@ The limits in this table apply per Speech resource when you create a personal vo
 
 <sup>2</sup> The characters of lexicon file aren't charged. Only the lexicon elements in SSML are counted as billable characters. Refer to [billable characters](text-to-speech.md#billable-characters) to learn more.
 
-### Speaker recognition quotas and limits per resource
-
-Speaker recognition is limited to 20 transactions per second (TPS).
 
 ## Detailed description, quota adjustment, and best practices
 
@@ -169,7 +169,12 @@ The following quotas are adjustable for Standard (S0) resources. The Free (F0) r
 - Text to speech [maximum number of transactions per time period](#text-to-speech-quotas-and-limits-per-resource) for standard voices and custom voices
 - Speech translation [concurrent request limit](#real-time-speech-to-text-and-speech-translation)
 
-Before requesting a quota increase (where applicable), check your current TPS (transactions per second) and ensure that it's necessary to increase the quota. Speech service uses autoscaling technologies to bring the required computational resources in on-demand mode. At the same time, Speech service tries to keep your costs low by not maintaining an excessive amount of hardware capacity.
+Before requesting a quota increase (where applicable), check your current TPS (transactions per second) and ensure that you need to increase the quota.
+
+> [!NOTE]
+> Batch transcription is an asynchronous process, and jobs are processed one-by-one in a queue. So, increasing the quota won't improve transcription performance. For performance improvements, see [Batch transcription best practices](./batch-transcription.md#best-practices-for-improving-performance).
+
+Speech service uses autoscaling technologies to bring the required computational resources in on-demand mode. At the same time, Speech service tries to keep your costs low by not maintaining an excessive amount of hardware capacity.
 
 Let's look at an example. Suppose that your application receives response code 429, which indicates that there are too many requests. Your application receives this response even though your workload is within the limits defined by the [Quotas and limits reference](#quotas-and-limits-reference). The most likely explanation is that Speech service is scaling up to your demand and didn't reach the required scale yet. Therefore the service doesn't immediately have enough resources to serve the request. In such cases, increasing the quota won’t help. In most cases, the Speech service will scale up soon, and the issue causing response code 429 will be resolved.
 
@@ -183,6 +188,14 @@ To minimize issues related to throttling, it's a good idea to use the following 
 - Create more Speech service resources in *different* regions, and distribute the workload among them. (Creating multiple Speech service resources in the same region won't affect the performance, because all resources are served by the same backend cluster).
 
 The next sections describe specific cases of adjusting quotas.
+
+### Example of a workload pattern best practice
+
+Here's a general example of a good approach to take. It's meant only as a template that you can adjust as necessary for your own use.
+
+Suppose that a Speech service resource has the concurrent request limit set to 300. Start the workload from 20 concurrent connections, and increase the load by 20 concurrent connections every 90-120 seconds. Control the service responses, and implement the logic that falls back (reduces the load) if you get too many requests (response code 429). Then, retry the load increase in one minute, and if it still doesn't work, try again in two minutes. Use a pattern of 1-2-4-4 minutes for the intervals.
+
+Generally, it's a good idea to test the workload and the workload patterns before going to production.
 
 ### Speech to text: increase real-time speech to text concurrent request limit
 
@@ -248,19 +261,39 @@ Initiate the increase of the limit for concurrent requests for your resource, or
 1. On the **Review + create** tab, select **Create**.
 1. Note the support request number in Azure portal notifications. You're contacted shortly about your request.
 
-### Example of a workload pattern best practice
 
-Here's a general example of a good approach to take. It's meant only as a template that you can adjust as necessary for your own use.
-
-Suppose that a Speech service resource has the concurrent request limit set to 300. Start the workload from 20 concurrent connections, and increase the load by 20 concurrent connections every 90-120 seconds. Control the service responses, and implement the logic that falls back (reduces the load) if you get too many requests (response code 429). Then, retry the load increase in one minute, and if it still doesn't work, try again in two minutes. Use a pattern of 1-2-4-4 minutes for the intervals.
-
-Generally, it's a good idea to test the workload and the workload patterns before going to production.
-
-### Text to speech: increase concurrent request limit
+### Text to speech: increase real-time TPS limit
 
 For the standard pricing tier, you can increase this amount. Before submitting the request, ensure that you're familiar with the material discussed earlier in this article, such as the best practices to mitigate throttling.
 
-Increasing the limit of concurrent requests doesn't directly affect your costs. Speech service uses a payment model that requires that you pay only for what you use. The limit defines how high the service can scale before it starts throttle your requests.
+#### Estimating Your Needs
+
+- **Usage Under $10,000/month**: Typically, 32 TPS is sufficient, assuming your peak usage is within 10x of your average.
+- **Default Limit**: 200 TPS is available by default, which exceeds most use cases.
+ 
+**Example: Call Center Scenario**  
+If you're building a call center with 1,000 concurrent calls:
+- Assume agents speak half the time.
+- Average TTS response length is 5 seconds.
+
+**Required TPS**: 1000 calls / (2×5 seconds) = 100 TPS
+ 
+**Information Required for TPS Increase Request**  
+Please provide the following details:
+- **Peak TPS**:
+- **Average TPS**:
+- **Average TTS Request Length (in characters)**:
+
+With this data, you can estimate your monthly TTS usage with formula below:   
+Monthly Usage=Average TPS×Request Length×3600×24×30  
+Multiply the result with unit price $15 per million characters to estimate the monthly cost.
+
+> [!NOTE]
+> If your estimated usage significantly exceeds your budget, you may be overestimating your needs.
+ 
+**Cost Considerations**  
+Increasing the concurrent request limit does **not** directly affect your costs. You only pay for what you use. The limit simply defines how much the service can scale before throttling begins.
+
 
 You aren't able to see the existing value of the concurrent request limit parameter in the Azure portal, the command-line tools, or API requests. To verify the existing value, create an Azure support request.
 

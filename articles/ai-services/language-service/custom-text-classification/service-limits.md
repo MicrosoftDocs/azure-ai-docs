@@ -5,7 +5,7 @@ description: Learn about the data and rate limits when using custom text classif
 #services: cognitive-services
 author: laujan
 manager: nitinme
-ms.date: 11/21/2024
+ms.date: 06/30/2025
 ms.service: azure-ai-language
 ms.topic: conceptual
 ms.author: lajanuar

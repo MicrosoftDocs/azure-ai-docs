@@ -8,6 +8,7 @@ author: laujan
 manager: nitinme
 ms.topic: how-to
 ms.date: 06/12/2025
+ms.custom: sfi-image-nochange
 ---
 
 # Application and version settings

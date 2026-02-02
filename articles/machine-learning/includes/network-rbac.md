@@ -1,9 +1,9 @@
 ---
-author: blackmist
+author: s-polly
 ms.service: azure-machine-learning
 ms.topic: include
 ms.date: 02/10/2025
-ms.author: larryfr
+ms.author: scottpolly
 ---
 
 + To deploy resources into a virtual network or subnet, your user account must have permissions to the following actions in Azure role-based access control (Azure RBAC):

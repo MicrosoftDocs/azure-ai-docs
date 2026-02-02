@@ -1,12 +1,13 @@
----
+﻿---
 title: 'How to use Logic Apps with Azure AI Foundry Agent Service'
 titleSuffix: Azure AI Foundry
 description: Learn how to integrate Logic Apps with Azure AI Agents to execute tasks like sending emails.
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 05/07/2025
+ms.date: 07/16/2025
 author: aahill
 ms.author: aahi
 ms.reviewer: umangsehgal
@@ -21,7 +22,7 @@ This article demonstrates how to integrate Logic Apps with Azure AI Agents to ex
 ## Prerequisites
 
 1. Create a Logic App within the same resource group as your Azure AI Project in the Azure portal.
-1. Configure your Logic App to send emails by including an HTTP request trigger that accepts JSON with `to`, `subject`, and `body`. See the [Logic App Workflow guide](../../../../ai-services/openai/how-to/assistants-logic-apps.md) for more information.
+1. Configure your Logic App to send emails by including an HTTP request trigger that accepts JSON with `to`, `subject`, and `body`. See the [Logic App Workflow guide](../../../openai/how-to/assistants-logic-apps.md) for more information.
 1. Set the following environment variables:
    - `PROJECT_ENDPOINT`: The Azure AI Agents endpoint.
    - `MODEL_DEPLOYMENT_NAME`: The deployment name of the AI model.
@@ -46,7 +47,8 @@ This article demonstrates how to integrate Logic Apps with Azure AI Agents to ex
     > [!NOTE]
     > For your logic apps to appear in the Azure AI Foundry portal, they must:
     > * Be in the same subscription and resource group.
-    > * Follow a request trigger with a description, and end with a response action. 
+    > * Follow a request trigger with a description, and end with a response action.
+    > * Currently we only support consumption workflows.  
 
     :::image type="content" source="../../media/tools/add-logic-apps.png" alt-text="A screenshot showing the screen to add Logic Apps." lightbox="../../media/tools/add-logic-apps.png":::
 
@@ -68,14 +70,13 @@ from azure.identity import DefaultAzureCredential
 # Initialize the AIProjectClient
 project_client = AIProjectClient(
     endpoint=os.environ["PROJECT_ENDPOINT"],
-    credential=DefaultAzureCredential(),
-    api_version="latest",
+    credential=DefaultAzureCredential()
 )
 ```
 
 ## Register the Logic App
 
-Register the Logic App by providing its name and trigger details. You can find code for `AzureLogicAppTool` on[GitHub](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-agents/samples/utils/user_functions.py).
+Register the Logic App by providing its name and trigger details. You can find code for `AzureLogicAppTool` on [GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/python/getting-started-agents/logic_apps/user_logic_apps.py).
 
 ```python
 from user_logic_apps import AzureLogicAppTool

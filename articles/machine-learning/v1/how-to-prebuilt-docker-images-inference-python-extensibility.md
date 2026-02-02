@@ -5,8 +5,8 @@ description: 'Extend prebuilt docker images with Python package extensibility so
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.date: 03/07/2025
 ms.topic: how-to
 ms.reviewer: sehan

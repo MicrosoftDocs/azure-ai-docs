@@ -2,12 +2,12 @@
 title: Use environment variables with Azure AI services
 titleSuffix: Azure AI services
 description: This guide shows you how to set and retrieve environment variables for your Azure AI services credentials when you test applications.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: how-to
 ms.date: 5/19/2025
-ms.author: eur
+ms.author: pafarley
 ---
 
 # Use environment variables with Azure AI services

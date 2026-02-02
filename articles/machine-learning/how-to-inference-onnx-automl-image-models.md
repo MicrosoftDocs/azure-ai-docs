@@ -2,8 +2,8 @@
 title: Local inference using ONNX for AutoML image
 titleSuffix: Azure Machine Learning
 description: Use ONNX with Azure Machine Learning automated ML to make predictions on computer vision models for classification, object detection, and instance segmentation.
-author: ssalgadodev
-ms.author: ssalgado
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: rvadthyavath
 ms.service: azure-machine-learning
 ms.subservice: automl

@@ -5,8 +5,6 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
-ms.custom:
-  - ignite-2023
 ms.topic: include
 ms.date: 08/08/2024
 ms.author: pafarley
@@ -18,7 +16,7 @@ Get started with facial recognition using the Face client library for Java. Foll
 
 ## Prerequisites
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/)
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 * The current version of the [Java Development Kit (JDK)](https://www.microsoft.com/openjdk)
 * [Apache Maven](https://maven.apache.org/download.cgi) installed. On Linux, install from the distribution repositories if available.
 * Once you have your Azure subscription, <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesFace"  title="Create a Face resource"  target="_blank">create a Face resource</a> in the Azure portal to get your key and endpoint. After it deploys, select **Go to resource**.

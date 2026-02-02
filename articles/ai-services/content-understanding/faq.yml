@@ -2,10 +2,10 @@
 metadata:
   title: Azure AI Content Understanding FAQ
   description: Get answers to frequently asked questions about the Document Intelligence service.
-  author: laujan
-  ms.author: lajanuar
+  author: PatrickFarley 
+  ms.author: pafarley
   manager: nitinme
-  ms.date: 05/19/2025
+  ms.date: 09/16/2025
   ms.service: azure-ai-content-understanding
   ms.topic: faq
   ms.custom:
@@ -18,7 +18,7 @@ sections:
   - name: Overview
     questions:
       - question: |
-         What is Content Understanding
+         What is Content Understanding?
         answer: |
           Content Understanding is a new Azure AI Service designed to generate structured insights from unstructured content using artificial intelligence. It provides consistent experience to extract content or a structured schema from audio, video, images, documents, or text inputs.
       - question: |

@@ -2,29 +2,32 @@
 title: Compile Hugging Face models to run on Foundry Local
 titleSuffix: Foundry Local
 description: Learn Compile and run Hugging Face models with Foundry Local.
-manager: scottpolly
 ms.service: azure-ai-foundry
+ms.subservice: foundry-local
 ms.custom: build-2025
 ms.topic: how-to
-ms.date: 05/20/2025
-ms.author: samkemp
-author: samuel100
+ms.author: jburchel
+ms.reviewer: samkemp
+author: jonburchel
+reviewer: samuel100
+ms.date: 10/01/2025
+ai-usage: ai-assisted
 ---
 
 # Compile Hugging Face models to run on Foundry Local
 
 [!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 
-Foundry Local runs ONNX models on your device with high performance. While the model catalog offers _out-of-the-box_ precompiled options, you can use any model in the ONNX format.
+Foundry Local runs ONNX models on your device with high performance. Although the model catalog offers precompiled options out of the box, any model in the ONNX format works.
 
-To compile existing models in Safetensor or PyTorch format into the ONNX format, you can use [Olive](https://microsoft.github.io/Olive). Olive is a tool that optimizes models to ONNX format, making them suitable for deployment in Foundry Local. It uses techniques like _quantization_ and _graph optimization_ to improve performance.
+Use [Olive](https://microsoft.github.io/Olive) to compile models in Safetensor or PyTorch format to ONNX. Olive optimizes models for ONNX, making them suitable for deployment in Foundry Local. It uses techniques like quantization and graph optimization to improve performance.
 
-This guide shows you how to:
+This guide shows how to:
 
 > [!div class="checklist"]
 >
-> - **Convert and optimize** models from Hugging Face to run in Foundry Local. You'll use the `Llama-3.2-1B-Instruct` model as an example, but you can use any generative AI model from Hugging Face.
-> - **Run** your optimized models with Foundry Local
+> - Convert and optimize models from Hugging Face to run in Foundry Local. The examples use the `Llama-3.2-1B-Instruct` model, but any generative AI model from Hugging Face works.
+> - Run your optimized models with Foundry Local.
 
 ## Prerequisites
 
@@ -32,7 +35,7 @@ This guide shows you how to:
 
 ## Install Olive
 
-[Olive](https://github.com/microsoft/olive) is a tool that optimizes models to ONNX format.
+[Olive](https://github.com/microsoft/olive) optimizes models and converts them to the ONNX format.
 
 ### [Bash](#tab/Bash)
 
@@ -49,11 +52,11 @@ pip install olive-ai[auto-opt]
 ---
 
 > [!TIP]
-> For best results, install Olive in a virtual environment using [venv](https://docs.python.org/3/library/venv.html) or [conda](https://www.anaconda.com/docs/getting-started/miniconda/main).
+> Install Olive in a virtual environment with [venv](https://docs.python.org/3/library/venv.html) or [conda](https://www.anaconda.com/docs/getting-started/miniconda/main).
 
 ## Sign in to Hugging Face
 
-You optimize the `Llama-3.2-1B-Instruct` model, which requires Hugging Face authentication:
+The `Llama-3.2-1B-Instruct` model requires Hugging Face authentication.
 
 ### [Bash](#tab/Bash)
 
@@ -70,7 +73,7 @@ huggingface-cli login
 ---
 
 > [!NOTE]
-> You must first [create a Hugging Face token](https://huggingface.co/docs/hub/security-tokens) and [request model access](https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct) before proceeding.
+> [Create a Hugging Face token](https://huggingface.co/docs/hub/security-tokens) and [request model access](https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct) before proceeding.
 
 ## Compile the model
 
@@ -109,7 +112,7 @@ olive auto-opt `
 ---
 
 > [!NOTE]
-> The compilation process takes approximately 60 seconds, plus extra time for model download.
+> The compilation process takes about 60 seconds, plus download time.
 
 The command uses the following parameters:
 
@@ -127,7 +130,7 @@ The command uses the following parameters:
 
 ### Step 2: Rename the output model
 
-Olive places files in a generic `model` directory. Rename it to make it easier to use:
+Olive creates a generic `model` directory. Rename it for easier reuse:
 
 ### [Bash](#tab/Bash)
 
@@ -149,7 +152,7 @@ Rename-Item -Path "model" -NewName "llama-3.2"
 
 A chat template is a structured format that defines how input and output messages are processed for a conversational AI model. It specifies the roles (for example, system, user, assistant) and the structure of the conversation, ensuring that the model understands the context and generates appropriate responses.
 
-Foundry Local requires a chat template JSON file called `inference_model.json` in order to generate the appropriate responses. The template properties are the model name and a `PromptTemplate` object, which contains a `{Content}` placeholder that Foundry Local injects at runtime with the user prompt.
+Foundry Local requires a chat template JSON file named `inference_model.json` to generate responses. The template includes the model name and a `PromptTemplate` object. The object contains a `{Content}` placeholder that Foundry Local injects at runtime with the user prompt.
 
 ```json
 {
@@ -161,10 +164,10 @@ Foundry Local requires a chat template JSON file called `inference_model.json` i
 }
 ```
 
-To create the chat template file, you can use the `apply_chat_template` method from the Hugging Face library:
+Create the chat template file with the `apply_chat_template` method from the Hugging Face library:
 
 > [!NOTE]
-> The following example uses the Python Hugging Face library to create a chat template. The Hugging Face library is a dependency for Olive, so if you're using the same Python virtual environment you don't need to install. If you're using a different environment, install the library with `pip install transformers`.
+> This example uses the Hugging Face library (a dependency of Olive) to create a chat template. If you're using the same Python virtual environment, you don't need to install it. In a different environment, install it with `pip install transformers`.
 
 ```python
 # generate_inference_model.py
@@ -206,7 +209,7 @@ python generate_inference_model.py
 
 ## Run the model
 
-You can run your compiled model using the Foundry Local CLI, REST API, or OpenAI Python SDK. First, change the model cache directory to the models directory you created in the previous step:
+Run your compiled model with the Foundry Local CLI, REST API, or OpenAI Python SDK. First, change the model cache directory to the models directory you created in the previous step:
 
 ### [Bash](#tab/Bash)
 
@@ -224,10 +227,10 @@ foundry cache ls  # should show llama-3.2
 ---
 
 > [!CAUTION]
-> Remember to change the model cache back to the default directory when you're done by running:
+> Change the model cache back to the default directory when you're done:
 > 
-> ```bash 
-> foundry cache cd ./foundry/cache/models.
+> ```bash
+> foundry cache cd ./foundry/cache/models
 > ```
 
 
@@ -248,14 +251,14 @@ foundry model run llama-3.2 --verbose
 
 ### Using the OpenAI Python SDK
 
-The OpenAI Python SDK is a convenient way to interact with the Foundry Local REST API. You can install it using:
+Use the OpenAI Python SDK to interact with the Foundry Local REST API. Install it with:
 
 ```bash
 pip install openai
 pip install foundry-local-sdk
 ```
 
-Then, you can use the following code to run the model:
+Then run the model with the following code:
 
 ```python
 import openai
@@ -263,11 +266,10 @@ from foundry_local import FoundryLocalManager
 
 modelId = "llama-3.2"
 
-# Create a FoundryLocalManager instance. This will start the Foundry 
-# Local service if it is not already running and load the specified model.
+# Create a FoundryLocalManager instance. This starts the Foundry Local service if it's not already running and loads the specified model.
 manager = FoundryLocalManager(modelId)
 
-# The remaining code us es the OpenAI Python SDK to interact with the local model.
+# The remaining code uses the OpenAI Python SDK to interact with the local model.
 
 # Configure the client to use the local Foundry service
 client = openai.OpenAI(
@@ -289,17 +291,17 @@ for chunk in stream:
 ```
 
 > [!TIP]
-> You can use any language that supports HTTP requests. For more information, read the [Integrated inferencing SDKs with Foundry Local](../how-to/how-to-integrate-with-inference-sdks.md) article.
+> Use any language that supports HTTP requests. For more information, see [Integrated inferencing SDKs with Foundry Local](../how-to/how-to-integrate-with-inference-sdks.md).
 
-## Finishing up
+## Reset the model cache
 
-After you're done using the custom model, you should reset the model cache to the default directory using:
+After you finish using the custom model, reset the model cache to the default directory:
 
 ```bash
 foundry cache cd ./foundry/cache/models
 ```
 
-## Next steps
+## Related content
 
-- [Learn more about Olive](https://microsoft.github.io/Olive/)
+- [Olive documentation](https://microsoft.github.io/Olive/)
 - [Integrate inferencing SDKs with Foundry Local](how-to-integrate-with-inference-sdks.md)

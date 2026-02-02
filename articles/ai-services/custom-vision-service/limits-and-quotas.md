@@ -13,6 +13,8 @@ ms.author: pafarley
 
 # Limits and quotas
 
+[!INCLUDE [custom-vision-retirement](includes/custom-vision-retirement.md)]
+
 There are two tiers of subscription to the Custom Vision service. You can sign up for an F0 (free) or S0 (standard) subscription through the Azure portal. This page outlines the limitations of each tier. See the [Custom Vision pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/custom-vision-service/) for more details on pricing and transactions.
 
 |Factor|**F0 (free)**|**S0 (standard)**|

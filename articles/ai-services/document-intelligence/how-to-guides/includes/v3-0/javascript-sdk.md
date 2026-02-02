@@ -27,7 +27,7 @@ monikerRange: 'doc-intel-3.1.0 || doc-intel-3.0.0'
 
 ## Prerequisites
 
-- An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/).
+- An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - The latest version of [Visual Studio Code](https://code.visualstudio.com/) or your preferred IDE. For more information, see [Node.js in Visual Studio Code](https://code.visualstudio.com/docs/nodejs/nodejs-tutorial).
 - The latest `LTS` version of [Node.js](https://nodejs.org/).
 

@@ -4,9 +4,10 @@ titleSuffix: Azure AI Foundry
 description: Learn how to use the various tools available in the Azure AI Foundry Agent Service.
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 06/17/2025
+ms.date: 07/29/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
@@ -14,7 +15,7 @@ ms.custom: azure-ai-agents
 
 # What are tools in Azure AI Foundry Agent Service?
 
-To empower your AI agent with grounded data or the capability to take actions and automating workflows, the Foundry Agent service provides a wide range of built-in tools, such as Grounding with Bing Search, Azure AI Search, Azure Logic Apps, as well as third-party parter tools, such as Tripadvisor. This page is designed to provide an overview of tools provided in the Foundry Agent Service. 
+To empower your AI agent with grounded data or the capability to take actions and automating workflows, the Foundry Agent service provides a wide range of built-in tools, such as Grounding with Bing Search, Azure AI Search, Azure Logic Apps, as well as third-party partner tools, such as Tripadvisor. This page is designed to provide an overview of tools provided in the Foundry Agent Service. 
 
 ## Knowledge tools
 
@@ -30,10 +31,13 @@ To keep your AI agent informed with richer context from various data sources. Th
 
 To streamline workflows with your AI agent with capabilities to take actions. The Foundry Agent Service provides different action tools for you with different level of flexibility, control, and ease of integration:
 
+- **Deep Research tool**: Web-based integrated deep research pipeline with the `o3-deep-research` model and Grounding with Bing Search.
 - **Azure Logic Apps**: Low-code / no-code solution to add a workflow to your AI Agent
 - **OpenAPI Spec tool**: Bring an existing OpenAPI specification of a service API you want to add to your AI agent, with no or minor changes.
+- **MCP tool**: Bring an existing Model Context Protocol (MCP) endpoint that you want to add to your AI agent.
 - **Function calling**: Write your own custom, stateless functions to define the expected behaviors.
 - **Azure Functions**: Write and manage your own custom, stateful functions. 
+- **Browser Automation**: Perform real-world browser tasks through natural language prompts.
 
 ## How does a tool work in the Foundry Agent Service?
 
@@ -41,7 +45,7 @@ Tools are optional capabilities you can add to your AI agent for AI models to de
 
 You can add tools at the agent, thread, or run level. By providing tools at a narrower level, the tool resources will **override** tool resources at a broader level. For example, tool resources at the run level override tool resources at thread level. Currently, you can add multiple tools but you can add **one instance of each** of the following tools: File Search, Azure AI Search, Grounding with Bing Search, Grounding with Bing Custom Search, Microsoft Fabric, and other tools under `knowledge` section. 
 
-When a user sends a query to the agent, it will create a [thread, run, and message](../../concepts\threads-runs-messages.md). For each run, the AI model decides what tools to invoke based on the user intent and available tool resources. Based on the tool outputs, the AI model might decide to invoke another tool or call the same tool again to get more context. For example, when you use Grounding with Bing Search tool, you might see multiple Bing Search queries when [tracing a thread](../../concepts\tracing.md). This means the AI model actually calls the Grounding with Bing Search tool multiple times with different queries to get more information. If you want to learn more about what tools are called and how the AI model invokes them, check the run step details.
+When a user sends a query to the agent, it will create a [thread, run, and message](../../concepts\threads-runs-messages.md). For each run, the AI model decides what tools to invoke based on the user intent and available tool resources. Based on the tool outputs, the AI model might decide to invoke another tool or call the same tool again to get more context. For example, when you use Grounding with Bing Search tool, you might see multiple Bing Search queries when [tracing a thread](../../../how-to/develop/trace-agents-sdk.md). This means the AI model actually calls the Grounding with Bing Search tool multiple times with different queries to get more information. If you want to learn more about what tools are called and how the AI model invokes them, check the run step details.
 
 There are various ways to influence how your AI agent invokes tools:
 
@@ -70,11 +74,14 @@ The Foundry Agent Service provides the following built-in tools. You can use the
 |---------|---------|
 |[Azure AI Search](azure-ai-search.md)     | Use an existing Azure AI Search index to ground agents with data in the index, and chat with your data.        |
 |[Azure Functions](azure-functions.md)     | Leverage your Azure Functions to create intelligent, event-driven applications.        |
+|[Browser Automation](browser-automation.md)     | Perform real-world browser tasks through natural language prompts.         |
 |[Code Interpreter](code-interpreter.md)     | Enable agents to write and run Python code in a sandboxed execution environment.         |
+|[Deep Research (preview)](./deep-research.md) | Use OpenAI's advanced agentic research capability for analysis and reasoning. | 
 |[File Search](file-search.md)     | Augment agents with knowledge from outside its model, such as proprietary product information or documents provided by your users.          |
 |[Function calling](function-calling.md)     |Describe the structure of functions you create to an agent and have them be called when appropriate during the agent's interactions with users.         |
 |[Grounding with Bing Search](bing-grounding.md)     | Enable your agent to use Grounding with Bing Search to access and return information from the internet.         |
 | [Grounding with Bing Custom Search (preview)](bing-custom-search.md) | Enhance your Agent response with selected web domains |
+| [Model Context Protocol (preview)](./model-context-protocol.md) | Give the agent access to tools hosted on an existing MCP endpoint |
 | [Microsoft Fabric (preview)](fabric.md) | Integrate your agent with the [Microsoft Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312815) to unlock powerful data analysis capabilities. |
 | [OpenAPI 3.0 Specified tool ](openapi-spec.md) | Connect your Azure AI Agent to external APIs using functions with an OpenAPI 3.0 specification. |
 
@@ -95,7 +102,7 @@ The following tools are authored by third-party partners. Use the links below to
 | [LexisNexis](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/python/getting-started-agents/3p-tools/LexisNexis) | Seamless access to LexisNexis content. |
 | [MiHCM](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/python/getting-started-agents/3p-tools/MiHCM) | seamless integration with MiHCM's HR functionalities |
 | [Morningstar](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/python/getting-started-agents/3p-tools/Morningstar) | Access up-to-date investment research and data such as analyst research, expert commentary, and essential Morningstar data. |
-| [Trademo](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/python/getting-started-agents/3p-tools/Trademo_Glocal_trade) | Provide latest duties and past shipment data for trade between multiple countries |
+| [Trademo](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/python/getting-started-agents/3p-tools/Trademo_Global_trade) | Provide latest duties and past shipment data for trade between multiple countries |
 | [Tripadvisor](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/python/getting-started-agents/3p-tools/Tripadvisor) | Get travel data, guidance and reviews |
 
 ## Best Practices

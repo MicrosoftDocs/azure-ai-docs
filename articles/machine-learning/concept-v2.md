@@ -6,10 +6,10 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: concept-article
-ms.author: sgilley
-author: sdgilley
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: balapv
-ms.date: 09/30/2024
+ms.date: 10/06/2025
 ms.custom: cliv2, sdkv2, devx-track-python
 #Customer intent: As a data scientist, I want to know whether to use v1 or v2 of CLI and SDK.
 ---
@@ -92,19 +92,20 @@ SDK v2 is useful in the following scenarios:
 
 ## Should I use v1 or v2?
 
-Support for CLI v1 will end on September 30, 2025. Support for SDK v1 will end on June 30, 2026. You can continue to use CLI v1 and SDK v1 until those dates. However, we recommend that you transition to CLI v2 and SDK v2 before those dates.
+Support for CLI v1 ended on September 30, 2025. Support for SDK v1 will end on June 30, 2026. While your existing workflows using CLI v1 and SDK v1 will continue to operate after the end-of-support date, they could be exposed to security risks or breaking changes in the event of architectural changes in the product. We recommend that you transition to CLI v2 as soon as possible, and SDK v2 before the end of support date.
 
 We encourage you to migrate your code for both CLI and SDK v1 to CLI and SDK v2. For more information, see [Upgrade to v2](how-to-migrate-from-v1.md).
 
 ### CLI v2
 
-Azure Machine Learning CLI v1 has been deprecated. Support for the v1 extension will end on September 30, 2025. You'll be able to install and use the v1 extension until that date.
+Support for Azure Machine Learning CLI v1 ended on September 30, 2025. Your existing workflows using CLI v1 will continue to operate after the end-of-support date. However, they could be exposed to security risks or breaking changes in the event of architectural changes in the product.
 
-We recommend that you transition to the `ml`, or v2, extension before September 30, 2025. For more information, see [Upgrade to v2](how-to-migrate-from-v1.md).
+We recommend that you transition to the `ml`, or v2, extension as soon as possible. For more information on the v2 extension, see [Upgrade to v2](how-to-migrate-from-v1.md).
+
 
 ### SDK v2
 
-Support for the Azure Machine Learning SDK v1 will end on June 30, 2026. You'll be able to install and use the SDK v1 until that date.
+Support for the Azure Machine Learning SDK v1 will end on June 30, 2026. You are able to install and use the SDK v1 until that date.
 
 We recommend that you transition to the SDK v2 before June 30, 2026. For more information, see [Upgrade to v2](how-to-migrate-from-v1.md).
 

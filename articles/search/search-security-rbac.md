@@ -7,6 +7,7 @@ ms.author: heidist
 manager: nitinme
 ms.date: 03/31/2025
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.topic: how-to
 ms.custom:
   - subject-rbac-steps
@@ -327,7 +328,7 @@ This approach assumes Visual Studio Code with a REST client extension.
 1. Paste and then send a request that uses the variables you've specified. For the "Search Index Data Reader" role, you can send a query. You can use any [supported API version](/rest/api/searchservice/search-service-api-versions).
 
    ```http
-   POST https://{{baseUrl}}/indexes/{{index-name}}/docs/search?api-version=2024-07-01 HTTP/1.1
+   POST https://{{baseUrl}}/indexes/{{index-name}}/docs/search?api-version=2025-09-01 HTTP/1.1
      Content-type: application/json
      Authorization: Bearer {{token}}
 
@@ -430,7 +431,7 @@ If you're already a Contributor or Owner of your search service, you can present
 1. Paste in and then send a request to confirm access. Here's one that queries the hotels-quickstart index
 
    ```http
-   POST https://{{baseUrl}}/indexes/{{index-name}}/docs/search?api-version=2024-07-01 HTTP/1.1
+   POST https://{{baseUrl}}/indexes/{{index-name}}/docs/search?api-version=2025-09-01 HTTP/1.1
      Content-type: application/json
      Authorization: Bearer {{token}}
 

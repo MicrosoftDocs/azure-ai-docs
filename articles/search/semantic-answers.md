@@ -2,7 +2,6 @@
 title: Return a semantic answer
 titleSuffix: Azure AI Search
 description: Describes the composition of a semantic answer and how to obtain answers from a result set.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
@@ -11,6 +10,7 @@ ms.custom:
   - ignite-2023
 ms.topic: conceptual
 ms.date: 02/18/2025
+ms.update-cycle: 365-days
 ---
 
 # Return a semantic answer in Azure AI Search

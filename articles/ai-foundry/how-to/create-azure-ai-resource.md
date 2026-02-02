@@ -2,17 +2,17 @@
 title: How to create and manage an Azure AI Foundry hub
 titleSuffix: Azure AI Foundry
 description: Learn how to create and manage an Azure AI Foundry hub from the Azure portal or from the Azure AI Foundry portal. Your developers can then create projects from the hub.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
+  - hub-only
 ms.topic: how-to
-ms.date: 05/08/2025
+ms.date: 09/15/2025
 ms.reviewer: deeikele
-ms.author: larryfr
-author: Blackmist
+ms.author: sgilley
+author: sdgilley
 # Customer Intent: As an admin, I need to create and manage an Azure AI Foundry hub so that my team can use it to create projects for collaboration.
 ---
 
@@ -33,7 +33,7 @@ In this article, you learn how to create and manage a hub in Azure AI Foundry po
 
 If your organization is using [Azure Policy](/azure/governance/policy/overview), set up a hub that meets your organization's requirements instead of using Azure AI Foundry for resource creation. 
 
-1. From the Azure portal, search for `Azure AI Foundry`. From the left menu, select **AI Hubs**, and then select **+ Create** and **Hub**.
+1. From the [Azure portal](https://portal.azure.com), search for `Azure AI Foundry`. From the left menu, select **AI Hubs**, and then select **+ Create** and **Hub**.
 
     :::image type="content" source="../media/how-to/hubs/create-hub.png" alt-text="Screenshot of the Azure AI Foundry portal." lightbox="../media/how-to/hubs/create-hub.png":::
 
@@ -61,17 +61,18 @@ If your organization is using [Azure Policy](/azure/governance/policy/overview),
 
 1. Select **Review + create** > **Create**. 
 
-## Manage your hub from the Azure portal
 
-### Manage access control
+## Manage access control
 
-You can add and remove users from the Azure AI Foundry portal management center. Both the hub and projects within the hub have a **Users** entry in the left-menu that allows you to add and remove users. When adding users, you can assign them built-in roles.
+You can add and remove users from the [Azure AI Foundry portal](https://ai.azure.com?cid=LearnDocs) management center. Both the hub and projects within the hub have a **Users** entry in the left-menu that allows you to add and remove users. When adding users, you can assign them built-in roles.
 
 :::image type="content" source="../media/how-to/hubs/studio-user-management.png" alt-text="Screenshot of the users area of the management center for a hub." lightbox="../media/how-to/hubs/studio-user-management.png":::
 
 For custom role assignments, use **Access control (IAM)** within the Azure portal.
 
 To add grant users permissions from the Azure portal, see the [Azure role assignments](/azure/role-based-access-control/role-assignments-portal) article.
+
+## Manage your hub from the Azure AI Foundry portal
 
 ### Networking
 
@@ -147,17 +148,17 @@ After your hub is created, it isn't possible to switch between Your Azure Key Va
 
 ## Delete an Azure AI Foundry hub
 
-To delete a hub from Azure AI Foundry, select the hub and then select **Delete hub** from the **Hub properties** section of the page.
+To delete a hub from [Azure AI Foundry](https://ai.azure.com?cid=LearnDocs), select the hub and then select **Delete hub** from the **Hub properties** section of the page.
 
 :::image type="content" source="../media/how-to/hubs/studio-delete-hub.png" alt-text="Screenshot of the delete hub link in hub properties." lightbox="../media/how-to/hubs/studio-delete-hub.png":::
 
 > [!NOTE]
-> You can also delete the hub from the Azure portal.
+> You can also delete the hub from the [Azure portal](https://portal.azure.com).
 
 Deleting a hub deletes all associated projects. When a project is deleted, all nested endpoints for the project are also deleted. You can optionally delete connected resources; however, make sure that no other applications are using this connection. For example, another Azure AI Foundry deployment might be using it.
 
 ## Related content
 
-- [Create a project](create-projects.md?pivots=hub-project)
+- [Create a hub project](hub-create-projects.md)
 - [Learn more about Azure AI Foundry](../what-is-azure-ai-foundry.md)
 - [Learn more about hubs](../concepts/ai-resources.md)

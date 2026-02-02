@@ -9,6 +9,7 @@ ms.custom:
   - ignite-2023
 ms.topic: how-to
 ms.date: 05/08/2025
+ms.update-cycle: 180-days
 ---
 
 # Define an index projection for parent-child indexing
@@ -148,7 +149,7 @@ Choose a tab for the various API syntax. There's currently no portal support for
 
 Index projections are generally available. We recommend the most recent stable API:
 
-- [Create Skillset (api-version=2024-07-01)](/rest/api/searchservice/skillsets/create)
+- [Create Skillset (api-version=2025-09-01)](/rest/api/searchservice/skillsets/create)
 
 Here's an example payload for an index projections definition that you might use to project individual pages output by the [Text Split skill](cognitive-search-skill-textsplit.md) as their own documents in the search index.
 
@@ -294,7 +295,7 @@ If you add new content to your data source, new chunks or child documents are ad
 
 If you modify existing content in the data source, chunks are updated incrementally in the search index if the data source you're using supports change tracking and deletion detection. For example, if a word or sentence changes in a document, the chunk in the target index that contains that word or sentence is updated on the next indexer run. Other types of updates, such as changing a field type and some attributions, aren't supported for existing fields. For more information about allowed updates, see [Update an index schema](search-howto-reindex.md#update-an-index-schema).
 
-Some data sources like [Azure Storage](search-howto-index-changed-deleted-blobs.md) support change and deletion tracking by default, based on the timestamp. Other data sources such as [OneLake](search-how-to-index-onelake-files.md), [Azure SQL](search-how-to-index-sql-database.md), or [Azure Cosmos DB](search-howto-index-cosmosdb.md) must be configured for change tracking.
+Some data sources like [Azure Storage](search-how-to-index-azure-blob-changed-deleted.md) support change and deletion tracking by default, based on the timestamp. Other data sources such as [Microsoft OneLake](search-how-to-index-onelake-files.md), [Azure SQL](search-how-to-index-sql-database.md), or [Azure Cosmos DB](search-how-to-index-cosmosdb-sql.md) must be configured for change tracking.
 
 ### Deleted content
 
@@ -304,7 +305,7 @@ If a parent document is completely deleted from the datasource, the correspondin
 
 ### Projected key value
 
-To ensure data integrity for updated and deleted content, data refresh in one-to-many indexing relies on a *projected key value* on the "many" side. If you're using integrated vectorization or the [Import and vectorize data wizard](search-import-data-portal.md), the projected key value is the `parent_id` field in a chunked or "many" side of the index.
+To ensure data integrity for updated and deleted content, data refresh in one-to-many indexing relies on a *projected key value* on the "many" side. If you're using integrated vectorization or the [**Import data (new)** wizard](search-import-data-portal.md), the projected key value is the `parent_id` field in a chunked or "many" side of the index.
 
 A projected key value is a unique identifier that the indexer generates for each document. It ensures uniqueness and allows for change and deletion tracking to work correctly. This key contains the following segments:
 

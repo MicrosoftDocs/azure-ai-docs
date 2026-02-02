@@ -2,7 +2,6 @@
 title: Fuzzy search
 titleSuffix: Azure AI Search
 description: Implement a fuzzy search query for a "did you mean" search experience. Fuzzy search autocorrects a misspelled term or typo on the query.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
@@ -11,6 +10,7 @@ ms.custom:
   - ignite-2023
 ms.topic: how-to
 ms.date: 04/14/2025
+ms.update-cycle: 365-days
 ---
 # Fuzzy search to correct misspellings and typos
 
@@ -30,7 +30,7 @@ In Azure AI Search:
 
 + Fuzzy query applies to whole terms. Phrases aren't supported directly but you can specify a fuzzy match on each term of a multi-part phrase through AND constructions. For example, `search=dr~ AND cleanin~`.  This query expression finds matches on "dry cleaning".
 
-+ The default distance of an edit is 2. A value of `~0` signifies no expansion (only the exact term is considered a match), but you could specify `~1` for one degree of difference, or one edit. 
++ The default distance of an edit is 2. A value of `~0` signifies no expansion (only the exact term is considered as a match), but you could specify `~1` for one degree of difference, or one edit. 
 
 + A fuzzy query can expand a term up to 50 permutations. This limit isn't configurable, but you can effectively reduce the number of expansions by decreasing the edit distance to 1.
 
@@ -41,7 +41,7 @@ During query processing, fuzzy queries don't undergo [lexical analysis](search-l
 Collectively, the graphs are submitted as match criteria against tokens in the index. As you can imagine, fuzzy search is inherently slower than other query forms. The size and complexity of your index can determine whether the benefits are enough to offset the latency of the response.
 
 > [!NOTE]
-> Because fuzzy search tends to be slow, it might be worthwhile to investigate alternatives such as n-gram indexing, with its progression of short character sequences (two and three character sequences for bigram and trigram tokens). Depending on your language and query surface, n-gram might give you better performance. The trade off is that n-gram indexing is very storage intensive and generates much bigger indexes.
+> Because fuzzy search tends to be slow, it might be worthwhile to investigate alternatives such as n-gram indexing, with its progression of short character sequences (two and three character sequences for bigram and trigram tokens). Depending on your language and query surface, n-gram might give you better performance. The trade-off is that n-gram indexing is very storage intensive and generates much bigger indexes.
 >
 > Another alternative, which you could consider if you want to handle just the most egregious cases, would be a [synonym map](search-synonyms.md). For example, mapping "search" to "serach, serch, sarch", or "retrieve" to "retreive".
 
@@ -60,7 +60,7 @@ Fuzzy queries are constructed using the full Lucene query syntax, invoking the [
 Here's an example of a query request that invokes fuzzy search. It includes four terms, two of which are misspelled:
 
 ```http
-POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2024-07-01
+POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2025-09-01
 {
     "search": "seatle~ waterfront~ view~ hotle~",
     "queryType": "full",
@@ -81,7 +81,7 @@ Optionally, you can improve query performance by scoping the request to specific
 
 ## Testing fuzzy search
 
-For simple testing, we recommend [Search explorer](search-explorer.md) or a [REST client](search-get-started-rest.md) for iterating over a query expression. Both tools are interactive, which means you can quickly step through multiple variants of a term and evaluate the responses that come back.
+For simple testing, we recommend [Search explorer](search-explorer.md) or a [REST client](search-get-started-text.md) for iterating over a query expression. Both tools are interactive, which means you can quickly step through multiple variants of a term and evaluate the responses that come back.
 
 When results are ambiguous, [hit highlighting](search-pagination-page-layout.md#hit-highlighting) can help you identify the match in the response. 
 

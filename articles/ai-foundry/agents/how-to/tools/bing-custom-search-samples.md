@@ -5,8 +5,9 @@ description: Find samples to ground Azure AI Foundry Agents using Custom Bing Se
 author: aahill
 ms.author: aahi
 manager: nitinme
-ms.date: 04/15/2025
-ms.service: azure-ai-agent-service
+ms.date: 07/09/2025
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.custom:
   - azure-ai-agents
@@ -16,6 +17,7 @@ zone_pivot_groups: selection-bing-custom-grounding
 
 # How to use Grounding with Bing Custom Search (preview)
 
+Use this article to find step-by-step instructions and code samples for using the Grounding with Bing Custom Search tool in the Azure AI Foundry Agent Service.
 
 ::: zone pivot="portal"
 
@@ -36,8 +38,33 @@ zone_pivot_groups: selection-bing-custom-grounding
 
 :::zone-end
 
-<!--
 ::: zone pivot="python"
+
+## Prerequisites
+
+* Your Azure AI Foundry Project endpoint.
+
+    [!INCLUDE [endpoint-string-portal](../../includes/endpoint-string-portal.md)]
+
+    Save this endpoint to an environment variable named `PROJECT_ENDPOINT`. 
+
+* The name of your Grounding with Bing Custom Search resource name. You can find it in the Azure AI Foundry portal by selecting **Management center** from the left navigation menu. Then selecting **Connected resources**.
+    
+    :::image type="content" source="../../media/tools/bing/custom-resource-name.png" alt-text="A screenshot showing the Grounding with Bing Custom Search resource name. " lightbox="../../media/tools/bing/custom-resource-name.png":::
+
+    Save this resource name to an environment variable named `BING_CUSTOM_CONNECTION_NAME`. 
+
+* The name of your Grounding with Bing Custom Search configuration, which contains the URLs you want to allow or disallow. You can find it by navigating to the overview page for your resource in the [Azure portal](https://portal.azure.com/). Select **Configurations**, then select your configuration. 
+
+    :::image type="content" source="../../media/tools/bing/custom-connection-name.png" alt-text="A screenshot showing the Grounding with Bing Custom Search configuration name. " lightbox="../../media/tools/bing/custom-connection-name.png":::
+
+    Save this configuration name to an environment variable named `BING_CUSTOM_INSTANCE_NAME`. 
+
+* The names of your model's deployment name. You can find it in **Models + Endpoints** in the left navigation menu. 
+
+    :::image type="content" source="../../media/tools/model-deployment-portal.png" alt-text="A screenshot showing the model deployment screen the AI Foundry portal." lightbox="../../media/tools/model-deployment-portal.png":::
+    
+    Save the name of your model deployment name as an environment variable named `MODEL_DEPLOYMENT_NAME`. 
 
 ## Create a project client
 
@@ -46,8 +73,8 @@ Create a client object, which will contain the connection string for connecting 
 ```python
 import os
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import MessageRole, BingCustomSearchTool
 from azure.identity import DefaultAzureCredential
+from azure.ai.agents.models import BingCustomSearchTool
 
 
 # Create an Azure AI Client from an endpoint, copied from your Azure AI Foundry project.
@@ -57,32 +84,34 @@ project_endpoint = os.environ["PROJECT_ENDPOINT"]  # Ensure the PROJECT_ENDPOINT
 # Create an AIProjectClient instance
 project_client = AIProjectClient(
     endpoint=project_endpoint,
-    credential=DefaultAzureCredential(),  # Use Azure Default Credential for authentication
-    api_version="latest",
+    credential=DefaultAzureCredential(),
 )
 ```
 
 
 ## Create an Agent with the Grounding with Bing Custom Search tool enabled
 
-To make the Grounding with Bing Custom Search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+To make the Grounding with Bing Custom Search tool available to your agent, use a connection to initialize the tool and attach it to the agent.
 
 ```python
-bing_custom_connection = project_client.connections.get(connection_name=os.environ["BING_CUSTOM_CONNECTION_NAME"])
+bing_custom_connection = project_client.connections.get(name=os.environ["BING_CUSTOM_CONNECTION_NAME"])
 conn_id = bing_custom_connection.id
 
 print(conn_id)
 
-# Initialize agent bing custom search tool and add the connection id
-bing_custom_tool = BingCustomSearchTool(connection_id=conn_id, instance_name="<config_instance_name>")
+configuration_name = os.environ["BING_CUSTOM_INSTANCE_NAME"]
+# Initialize Bing Custom Search tool with connection id and configuration name
+bing_custom_tool = BingCustomSearchTool(connection_id=conn_id, instance_name=configuration_name)
 
 # Create agent with the bing custom search tool and process assistant run
 with project_client:
-    agent = project_client.agents.create_agent(
+    agents_client = project_client.agents
+
+    agent = agents_client.create_agent(
         model=os.environ["MODEL_DEPLOYMENT_NAME"],
         name="my-agent",
         instructions="You are a helpful agent",
-        tools=bing_custom_tool.definitions
+        tools=bing_custom_tool.definitions,
     )
     print(f"Created agent, ID: {agent.id}")
 ```
@@ -91,13 +120,13 @@ with project_client:
 
 ```python
 # Create thread for communication
-thread = project_client.agents.create_thread()
+thread = agents_client.threads.create()
 print(f"Created thread, ID: {thread.id}")
 
 # Create message to thread
-message = project_client.agents.create_message(
+message = agents_client.messages.create(
     thread_id=thread.id,
-    role=MessageRole.USER,
+    role="user",
     content="How many medals did the USA win in the 2024 summer olympics?",
 )
 print(f"Created message, ID: {message.id}")
@@ -109,31 +138,29 @@ Create a run and observe that the model uses the Grounding with Bing Search tool
 
 
 ```python
-# Create and process agent run in thread with tools
-run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
+# Create and process Agent run in thread with tools
+run = agents_client.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
 print(f"Run finished with status: {run.status}")
 
 if run.status == "failed":
     print(f"Run failed: {run.last_error}")
 
-# Delete the assistant when done
-project_client.agents.delete_agent(agent.id)
-print("Deleted agent")
+# Uncomment these lines to delete the Agent when done
+#agents_client.delete_agent(agent.id)
+#print("Deleted agent")
 
-# Print the Agent's response message with optional citation
-response_message = project_client.agents.list_messages(thread_id=thread.id).get_last_message_by_role(
-    MessageRole.AGENT
-)
-if response_message:
-    for text_message in response_message.text_messages:
-        print(f"Agent response: {text_message.text.value}")
-    for annotation in response_message.url_citation_annotations:
-        print(f"URL Citation: [{annotation.url_citation.title}]({annotation.url_citation.url})")
+# Fetch and log all messages
+messages = agents_client.messages.list(thread_id=thread.id)
+for msg in messages:
+    if msg.text_messages:
+        for text_message in msg.text_messages:
+            print(f"Agent response: {text_message.text.value}")
+        for annotation in msg.url_citation_annotations:
+            print(f"URL Citation: [{annotation.url_citation.title}]({annotation.url_citation.url})")
 ```
 
 
 :::zone-end
--->
 
 <!--
 ::: zone pivot="csharp"
@@ -386,7 +413,7 @@ Create a run and observe that the model uses the Grounding with Bing Custom Sear
 > * The following samples are applicable if you are using **Azure AI Foundry Project** resource with Microsoft Fabric tool through REST API call
 > * Your connection ID should be in this format: `/subscriptions/<sub-id>/resourceGroups/<your-rg-name>/providers/Microsoft.CognitiveServices/accounts/<your-ai-services-name>/projects/<your-project-name>/connections/<your-bing-connection-name>`
 
-Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api#api-call-information) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
+Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
 
 
 ## Create an Agent with the Grounding with Bing Custom Search tool enabled

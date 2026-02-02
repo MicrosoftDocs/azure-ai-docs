@@ -6,11 +6,15 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.topic: how-to
-ms.author: franksolomon
-author: fbsolo-ms1
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: ambadal
 ms.date: 11/19/2024
-ms.custom: data4ml, devx-track-azurecli
+ms.custom:
+  - data4ml
+  - devx-track-azurecli
+  - sfi-image-nochange
+  - sfi-ropc-blocked
 # Customer intent: As an experienced data scientist with Python skills, I have data located in external sources outside of Azure. I need to make that data available to the Azure Machine Learning platform, to train my machine learning models.
 ---
 
@@ -28,7 +32,7 @@ In this article, learn how to connect to data sources located outside of Azure, 
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
+- An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - The [Azure Machine Learning SDK for Python](https://aka.ms/sdk-v2-install).
 

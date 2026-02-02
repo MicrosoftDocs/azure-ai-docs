@@ -5,8 +5,8 @@ description: Learn how to manage Azure Machine Learning environments using Pytho
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: how-to
-author: Blackmist
-ms.author: larryfr
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: osiotugo
 ms.date: 04/04/2025
 ms.custom: devx-track-azurecli, devplatv2, devx-track-python

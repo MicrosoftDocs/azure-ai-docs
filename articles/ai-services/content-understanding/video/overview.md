@@ -2,10 +2,10 @@
 title: Azure AI Content Understanding video overview
 titleSuffix: Azure AI services
 description: Learn about Azure AI Content Understanding video solutions.
-author: laujan
-ms.author: lajanuar
+author: PatrickFarley 
+ms.author: pafarley
 manager: nitinme
-ms.date: 05/19/2025
+ms.date: 09/16/2025
 ms.service: azure-ai-content-understanding
 ms.topic: overview
 ms.custom:
@@ -16,11 +16,9 @@ ms.custom:
 
 > [!IMPORTANT]
 >
-> * Azure AI Content Understanding is available in preview. Public preview releases provide early access to features that are in active development.
-> * Features, approaches, and processes can change or have limited capabilities before General Availability (GA).
-> * For more information, *see* **[Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms)**.
+> Azure AI Content Understanding is available in preview. Public preview releases provide early access to features that are in active development. Features, approaches, and processes can change or have limited capabilities before General Availability (GA). For more information, see **[Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms)**.
 
-Azure AI Content Understanding allows you to generate a standard set of video metadata and create custom fields for your specific use case using the power of generative models. Content Understanding helps efficiently manage, categorize, retrieve, and build workflows for video assets. It enhances your media asset library, supports workflows such as highlight generation, categorizes content, and facilitates applications like retrieval-augmented generation (RAG).
+Azure AI Content Understanding allows you to generate a standard set of video metadata and create custom fields for your specific use case using generative models. Content Understanding helps you manage, categorize, retrieve, and build workflows for video assets. It enhances your media asset library, supports features such as highlight generation, categorizes content, and facilitates applications like retrieval-augmented generation (RAG).
 
 :::image type="content" source="../media/video/video-processing-flow.png" alt-text="Illustration of the Content Understanding video processing flow.":::
 
@@ -31,9 +29,9 @@ The **pre-built video analyzer** outputs RAG-ready Markdown that includes:
 - **Segmentation:** Automatic scene segmentation breaking the video into logical chunks
 - **Key Frames:** Ordered key-frame thumbnails enabling deeper analysis
 
-This format can drop straight into a vector store to enable an agent or RAG workflows—no post-processing required.
+This format can drop straight into a vector store to enable an agent or RAG workflow—no post-processing is required.
 
-From there you can **customize the analyzer** for more fine-grained control of the output. You can define custom fields, segments, or enable face identification. Customization allows you to use the full power of generative models to extract deep insights from the visual and audio details of the video.
+From there you can customize the analyzer for more fine-grained control of the output. You can define custom fields, segments, or enable face identification. Customization allows you to use the full power of generative models to extract deep insights from the visual and audio details of the video.
 
 For example, customization allows you to:
 
@@ -54,7 +52,7 @@ Content understanding for video has broad potential uses. For example, you can c
 
 With the prebuilt video analyzer (prebuilt-videoAnalyzer), you can upload a video and get an immediately usable knowledge asset. The service packages every clip into both richly formatted Markdown and JSON. This process allows your search index or chat agent to ingest without custom glue code.
 
-* For example, creating the base `prebuilt-videoAnalyzer` as follows:
+1. For example, creating the base `prebuilt-videoAnalyzer` as follows:
 
   ```json
   {
@@ -63,7 +61,7 @@ With the prebuilt video analyzer (prebuilt-videoAnalyzer), you can upload a vide
   }
   ```
 
-* Next, analyzing a 30-second advertising video, would result in the following output:
+1. Next, analyzing a 30-second advertising video, would result in the following output:
 
    ```markdown
      # Video: 00:00.000 => 00:30.000
@@ -101,16 +99,17 @@ With the prebuilt video analyzer (prebuilt-videoAnalyzer), you can upload a vide
         *…additional data omitted for brevity…*
    ```
 
-## Walk-through
+## Walkthrough
 
-We recently published a walk-through for RAG on Video using Content Understanding.
-[https://www.youtube.com/watch?v=fafneWnT2kw\&lc=Ugy2XXFsSlm7PgIsWQt4AaABAg](https://www.youtube.com/watch?v=fafneWnT2kw&lc=Ugy2XXFsSlm7PgIsWQt4AaABAg)
+See the following walkthrough for RAG on Video using Content Understanding:
+
+[RAG on Video using Azure AI Content Understanding](https://www.youtube.com/watch?v=fafneWnT2kw&lc=Ugy2XXFsSlm7PgIsWQt4AaABAg)
 
 ## Capabilities
 
-1. [Content extraction](#content-extraction-capabilities)
-1. [Field extraction](#field-extraction-and-segmentation)
-1. [Face identification](#face-identification-and-description-add-on)
+- [Content extraction](#content-extraction-capabilities)
+- [Field extraction](#field-extraction-and-segmentation)
+- [Face identification](#face-identification-and-description-add-on)
 
 Under the hood, two stages transform raw pixels into business-ready insights. The diagram below shows how extraction feeds generation, ensuring each downstream step has the context it needs.
 
@@ -141,8 +140,6 @@ Next, the generative model layers meaning—tagging scenes, summarizing actions,
 ### Custom fields
 
 Shape the output to match your business vocabulary. Use a `fieldSchema` object where each entry defines a field's name, type, and description. At run-time, the generative model fills those fields for every segment.
-
-**Examples:**
 
 * **Media asset management:**
 
@@ -272,9 +269,9 @@ As with all Azure AI services, review Microsoft's [Data, protection, and privacy
 
 > [!IMPORTANT]
 >
-> If you process **Biometric Data** (for example, enable **Face Grouping** or **Face Identification**), you must meet all notice, consent, and deletion requirements under GDPR or other applicable laws. See [Data and Privacy for Face](/legal/cognitive-services/face/data-privacy-security).
+> If you process **Biometric Data** (for example, enable **Face Grouping** or **Face Identification**), you must meet all notice, consent, and deletion requirements under GDPR or other applicable laws. See [Data and Privacy for Face](/azure/ai-foundry/responsible-ai/face/data-privacy-security).
 
-## Next steps
+## Related content
 
 * Process videos in the [Azure AI Foundry portal](https://aka.ms/cu-landing).
 * Quickstart: [Analyze video content with analyzer templates](../quickstart/use-ai-foundry.md).

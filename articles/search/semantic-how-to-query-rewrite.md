@@ -3,9 +3,10 @@ title: Rewrite queries with semantic ranker in Azure AI Search
 titleSuffix: Azure AI Search
 description: Learn how to rewrite queries with semantic ranker in Azure AI Search
 manager: nitinme
-author: eric-urban
-ms.author: eur
+author: HeidiSteen
+ms.author: heidist
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2024
   - references_regions
@@ -261,4 +262,4 @@ In the preceding example:
 Semantic ranking can be used in hybrid queries that combine keyword search and vector search into a single request and a unified response.
 
 > [!div class="nextstepaction"]
-> [Hybrid query with semantic ranker](hybrid-search-how-to-query.md#semantic-hybrid-search)
+> [Hybrid query with semantic ranker](hybrid-search-how-to-query.md#example-semantic-hybrid-search)

@@ -9,6 +9,7 @@ ms.custom:
   - ignite-2023
 ms.topic: reference
 ms.date: 08/17/2022
+ms.update-cycle: 365-days
 ---
 
 #	Named Entity Recognition cognitive skill (v2)

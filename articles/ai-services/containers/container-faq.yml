@@ -8,7 +8,7 @@ metadata:
   manager: nitinme
   ms.service: azure-ai-services
   ms.topic: faq
-  ms.date: 01/31/2025
+  ms.date: 08/15/2025
   ms.author: aahi
 title: FAQ for Azure AI containers
 summary: |
@@ -85,6 +85,7 @@ sections:
           | `The provided license path was not found. Please ensure a volume is mounted and a directory exists at the location specified by Mounts:License` | **Disconnected containers only.** There is no license file stored locally at the location specified in your docker run command. You might have mounted the license volume incorrectly. Be sure to check your local file system and provide a valid filepath to the desired local storage location for the license file using the `-v` argument in your docker run command. |
           | `Unknown` | The server is currently unable to process billing requests. |
 
+
       - question: How do I get support?
         answer: |
           Customer support channels are the same as for the Azure AI services cloud-based APIs. All Azure AI containers include logging features that help us and the community support customers. Here are options for more support:
@@ -132,7 +133,7 @@ sections:
 
       - question: What hardware is required to run these containers?
         answer: |
-          Azure AI containers are x64-based containers that can run any compatible Linux node, VM, and edge device that supports x64 Linux Docker containers. They all require CPU processors. For more information, see the container requirements and recommendations section of the [container](../cognitive-services-container-support.md) you're using.
+          Azure AI containers are x64-based containers that can run any compatible Linux node, virtual machine, and edge device that supports x64 Linux Docker containers. They all require CPU processors. For more information, see the container requirements and recommendations section of the [container](../cognitive-services-container-support.md) you're using.
 
       - question: Are these containers currently supported on Windows?
         answer: |

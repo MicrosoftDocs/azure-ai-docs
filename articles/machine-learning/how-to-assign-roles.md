@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.topic: how-to
 ms.reviewer: None
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.date: 06/09/2025
 ms.custom: how-to, devx-track-azurecli, devx-track-arm-template, FY25Q1-Linter, ignite-2024
 monikerRange: 'azureml-api-1 || azureml-api-2'

@@ -3,13 +3,13 @@
 title: Faceted navigation examples
 titleSuffix: Azure AI Search
 description: Examples that demonstrate query syntax for facet hierarchies, distinct counts, facet aggregations, and facet filters.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 04/04/2025
+ms.update-cycle: 365-days
 ---
 
 # Faceted navigation examples
@@ -204,14 +204,19 @@ Results from this query are as follows:
 
 Starting in [2025-03-01-preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-03-01-preview&preserve-view=true) and available in the Azure portal, you can configure a facet hierarchy using the `>` and `;` operators.
 
-The nesting (hierarchical) operator `>` denotes a parent–child relationship, and the semicolon operator `;` denotes multiple fields at the same nesting level, which are all children of the same parent. The parent must contain only one field. Both the parent and child fields must be `facetable`. 
+| Operator | Description |
+|-|-|
+| `>` | Nesting (hierarchical) operator denotes a parent–child relationship. |
+| `;` | Semicolon operator  denotes multiple fields at the same nesting level, which are all children of the same parent. The parent must contain only one field. Both the parent and child fields must be `facetable`. |
 
 The order of operations in a facet expression that includes facet hierarchies are:
 
-* options operator (comma `,`) that separates facet parameters for the facet field, such as the comma in `Rooms/BaseRate,values`
-* parentheses, such as the ones enclosing `(Rooms/BaseRate,values:50 ; Rooms/Type)`.
-* nesting operator (angled bracket `>`)
-* append operator (semicolon `;`), demonstrated in a second example `"Tags>(Rooms/BaseRate,values:50 ; Rooms/Type)"` in this section, where two child facets are peers under the Tags parent.
++ The options operator (comma `,`) that separates facet parameters for the facet field, such as the comma in `Rooms/BaseRate,values`
++ The parentheses, such as the ones enclosing `(Rooms/BaseRate,values:50 ; Rooms/Type)`.
++ The nesting operator (angled bracket `>`)
++ The append operator (semicolon `;`), demonstrated in a second example `"Tags>(Rooms/BaseRate,values:50 ; Rooms/Type)"` in this section, where two child facets are peers under the Tags parent.
+
+Notice that parentheses are processed before nesting and append operations: `A > B ; C` would be different than `A > (B ; C)`.
 
 There are several examples for facet hierarchies. The first example is a query that returns just a few documents, which is helpful for viewing a full response. Facets count the parent document (Hotels) and not intermediate subdocuments (Rooms), so the response determines the number of *hotels* that have any rooms in each facet bucket.
 
@@ -481,8 +486,8 @@ Starting in [2025-03-01-preview REST API](/rest/api/searchservice/operation-grou
 
 Facet filtering enables you to constrain the facet values returned to those matching a specified regular expression. Two new parameters accept a regular expression that is applied to the facet field:
 
-* `includeTermFilter` filters the facet values to those that match the regular expression
-* `excludeTermFilter` filters the facet values to those that don't match the regular expression 
++ `includeTermFilter` filters the facet values to those that match the regular expression
++ `excludeTermFilter` filters the facet values to those that don't match the regular expression 
 
 If a facet string satisfies both conditions, the `excludeTermFilter` takes precedence because the set of bucket strings is first evaluated with `includeTermFilter` and then excluded with `excludeTermFilter`.
 

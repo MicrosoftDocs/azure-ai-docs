@@ -193,7 +193,7 @@ Document Intelligence v2.1 supports the following tools, applications, and libra
 
 Extract data from your specific or unique documents using custom models. You need the following resources:
 
-* An Azure subscription. You can [create one for free](https://azure.microsoft.com/free/cognitive-services/).
+* An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * A [Document Intelligence instance](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) in the Azure portal. You can use the free pricing tier (`F0`) to try the service. After your resource deploys, select **Go to resource** to get your key and endpoint.
 
   :::image type="content" source="../media/containers/keys-and-endpoint.png" alt-text="Screenshot that shows the keys and endpoint location in the Azure portal.":::

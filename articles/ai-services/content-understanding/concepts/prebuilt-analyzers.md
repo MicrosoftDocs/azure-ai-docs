@@ -2,7 +2,7 @@
 title: Azure AI Content Understanding Prebuilt analyzers
 titleSuffix: Azure AI services
 description: Learn about prebuilt analyzers, their scenarios, customization options, billing, roadmap in Azure AI Content Understanding.
-author: laujan
+author: PatrickFarley 
 ms.author: admaheshwari
 manager: nitinme
 ms.date: 05/19/2025

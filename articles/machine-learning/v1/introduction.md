@@ -8,8 +8,8 @@ ms.subservice: core
 ms.topic: reference
 
 ms.reviewer: None
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.date: 07/26/2024
 ms.custom: UpdateFrequency5, cliv1
 ---

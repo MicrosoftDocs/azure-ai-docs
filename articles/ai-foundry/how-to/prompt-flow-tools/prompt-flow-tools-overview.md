@@ -2,12 +2,13 @@
 title: Overview of prompt flow tools in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
 description: Learn about prompt flow tools that are available in Azure AI Foundry portal.
-manager: scottpolly
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-prompt-flow
 ms.custom:
   - build-2024
+  - hub-only
 ms.topic: reference
-ms.date: 01/29/2025
+ms.date: 6/30/2025
 ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
@@ -34,6 +35,8 @@ The following table provides an index of tools in prompt flow.
 | [Rerank](./rerank-tool.md) | Rerank documents based on the relevancy to a given query. | [promptflow-vectordb](https://pypi.org/project/promptflow-vectordb/) |
 
 <sup>1</sup> The Index Lookup tool replaces the three deprecated legacy index tools: Vector Index Lookup, Vector DB Lookup, and Faiss Index Lookup.
+
+[!INCLUDE [uses-hub-only](../../includes/uses-hub-only.md)]
 
 ## Custom tools
 

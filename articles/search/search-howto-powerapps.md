@@ -5,10 +5,12 @@ description: Step-by-step guidance on how to build a Power App that connects to 
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
-ms.custom:
-  - ignite-2023
 ms.topic: tutorial
 ms.date: 04/14/2025
+ms.update-cycle: 365-days
+ms.custom:
+  - ignite-2023
+  - sfi-image-nochange
 ---
 
 # Tutorial: Query an Azure AI Search index from Power Apps
@@ -22,7 +24,7 @@ In this tutorial, you learn how to:
 > * Set up a query request
 > * Visualize results in a canvas app
 
-If you don't have an Azure subscription, open a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+If you don't have an Azure subscription, open a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 ## Prerequisites
 
@@ -72,7 +74,7 @@ A connector in Power Apps is a data source connection. In this step, create a cu
    * For the URL, enter a sample query for your search index (`search=*` returns all documents, `$select=` lets you choose fields). The API version is required. Fully specified, a URL might look like the following example. Notice that the `https://` prefix is omitted.
 
      ```http
-     mydemo.search.windows.net/indexes/hotels-sample-index/docs?search=*&$select=HotelName,Description,Address/City&api-version=2024-07-01
+     mydemo.search.windows.net/indexes/hotels-sample-index/docs?search=*&$select=HotelName,Description,Address/City&api-version=2025-09-01
      ```
 
    * For Headers, type `Content-Type application/json`.
@@ -93,7 +95,7 @@ A connector in Power Apps is a data source connection. In this step, create a cu
 
     :::image type="content" source="./media/search-howto-powerapps/1-10-4-parameter-metadata-select.png" alt-text="Select parameter metadata" border="true":::
 
-1. For *api-version*: Set `2024-07-01` as the **default value**, set **required** to *True*, and set **visibility** as *internal*.  
+1. For *api-version*: Set `2025-09-01` as the **default value**, set **required** to *True*, and set **visibility** as *internal*.  
 
     :::image type="content" source="./media/search-howto-powerapps/1-10-2-parameter-metadata-version.png" alt-text="Version parameter metadata" border="true":::
 
@@ -105,7 +107,7 @@ A connector in Power Apps is a data source connection. In this step, create a cu
     parameters:
       - {name: search, in: query, required: false, type: string, default: '*'}
       - {name: $select, in: query, required: false, type: string, default: 'HotelName,Description,Address/City'}
-      - {name: api-version, in: query, required: true, type: string, default: '2024-07-01',
+      - {name: api-version, in: query, required: true, type: string, default: '2025-09-01',
         x-ms-visibility: internal}
       - {name: Content-Type, in: header, required: false, type: string}
     ```

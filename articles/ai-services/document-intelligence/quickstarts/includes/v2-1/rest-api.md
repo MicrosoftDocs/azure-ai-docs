@@ -23,7 +23,7 @@ In this quickstart, you use the following APIs to extract structured data from f
 
 ## Prerequisites
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 
 * [cURL](https://curl.haxx.se/windows/) installed.
 

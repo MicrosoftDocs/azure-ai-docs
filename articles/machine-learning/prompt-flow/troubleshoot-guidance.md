@@ -5,14 +5,16 @@ description: This article addresses frequent questions prompt flow usage.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
-ms.custom:
-  - ignite-2023
-  - build-2024
 ms.topic: reference
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: chenjieting
 ms.date: 09/05/2023
+ms.custom:
+  - ignite-2023
+  - build-2024
+  - sfi-image-nochange
+ms.update-cycle: 365-days
 ---
 
 # Troubleshoot guidance
@@ -93,7 +95,7 @@ This type of error related to compute session lacks required packages. If you're
 
 ### Where to find the serverless instance used by compute session?
 
-You can view the serverless instance used by compute session in the compute session list tab under compute page. Learn more about [how to manage serverless instance](./how-to-manage-compute-session.md#manage-serverless-instance-used-by-compute-session).
+You can view the serverless instance used by compute session in the compute session list tab under compute page. Learn more about [how to manage serverless instance](how-to-manage-compute-session.md#manage-serverless-instance-used-by-a-compute-session).
 
 
 ### Compute session failures using custom base image
@@ -145,7 +147,7 @@ You may encounter 409 error from Azure OpenAI, it means you have reached the rat
 
         In this case, if you find the message `request canceled` in the logs, it might be because the OpenAI API call is taking too long and exceeding the timeout limit.
 
-        An OpenAI API timeout could be caused by a network issue or a complex request that requires more processing time. For more information, see [OpenAI API timeout](https://help.openai.com/en/articles/6897186-timeout).
+        An OpenAI API timeout could be caused by a network issue or a complex request that requires more processing time. For more information, see [OpenAI API timeout](https://platform.openai.com/docs/actions/production#timeouts).
 
         Wait a few seconds and retry your request. This action usually resolves any network issues.
 

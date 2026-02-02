@@ -2,12 +2,12 @@
 title: Test recognition quality of a custom speech model - Speech service
 titleSuffix: Azure AI services
 description: Custom speech lets you qualitatively inspect the recognition quality of a model. You can play back uploaded audio and determine if the provided recognition result is correct.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 5/19/2025
-ms.author: eur
+ms.author: pafarley
 zone_pivot_groups: foundry-speech-studio-cli-rest
 #Customer intent: As a developer, I want to test the recognition quality of a custom speech model so that I can determine if the provided recognition result is correct.
 ---
@@ -66,9 +66,11 @@ Follow these instructions to create a test:
 
 ::: zone pivot="speech-cli"
 
+Before proceeding, make sure that you have the [Speech CLI](./spx-basics.md) installed and configured.
+
 To create a test, use the `spx csr evaluation create` command. Construct the request parameters according to the following instructions:
 
-- Set the `project` property to the ID of an existing project. This property is recommended so that you can also view the test in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). You can run the `spx csr project list` command to get available projects.
+- Set the `project` property to the ID of an existing project. The `project` property is recommended so that you can also manage fine-tuning for custom speech in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). To get the project ID, see [Get the project ID for the REST API](./how-to-custom-speech-create-project.md#get-the-project-id-for-the-rest-api) documentation.
 - Set the required `model1` property to the ID of a model that you want to test.
 - Set the required `model2` property to the ID of another model that you want to test. If you don't want to compare two models, use the same model for both `model1` and `model2`.
 - Set the required `dataset` property to the ID of a dataset that you want to use for the test.
@@ -78,31 +80,34 @@ To create a test, use the `spx csr evaluation create` command. Construct the req
 Here's an example Speech CLI command that creates a test:
 
 ```azurecli-interactive
-spx csr evaluation create --api-version v3.2 --project 0198f569-cc11-4099-a0e8-9d55bc3d0c52 --dataset 23b6554d-21f9-4df1-89cb-f84510ac8d23 --model1 13fb305e-09ad-4bce-b3a1-938c9124dda3 --model2 13fb305e-09ad-4bce-b3a1-938c9124dda3 --name "My Inspection" --description "My Inspection Description"
+spx csr evaluation create --api-version v3.2 --project aaaabbbb-0000-cccc-1111-dddd2222eeee --dataset bbbbcccc-1111-dddd-2222-eeee3333ffff --model1 ccccdddd-2222-eeee-3333-ffff4444aaaa --model2 ccccdddd-2222-eeee-3333-ffff4444aaaa --name "My Inspection" --description "My Inspection Description"
 ```
+
+> [!IMPORTANT]
+> You must set `--api-version v3.2`. The Speech CLI uses the REST API, but doesn't yet support versions later than `v3.2`.
 
 You should receive a response body in the following format:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/evaluations/9c06d5b1-213f-4a16-9069-bc86efacdaac",
+  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/evaluations/ddddeeee-3333-ffff-4444-aaaa5555bbbb",
   "model1": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/13fb305e-09ad-4bce-b3a1-938c9124dda3"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/ccccdddd-2222-eeee-3333-ffff4444aaaa"
   },
   "model2": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/13fb305e-09ad-4bce-b3a1-938c9124dda3"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/ccccdddd-2222-eeee-3333-ffff4444aaaa"
   },
   "dataset": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/datasets/23b6554d-21f9-4df1-89cb-f84510ac8d23"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/datasets/bbbbcccc-1111-dddd-2222-eeee3333ffff"
   },
   "transcription2": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/b50642a8-febf-43e1-b9d3-e0c90b82a62a"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/eeeeffff-4444-aaaa-5555-bbbb6666cccc"
   },
   "transcription1": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/b50642a8-febf-43e1-b9d3-e0c90b82a62a"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/eeeeffff-4444-aaaa-5555-bbbb6666cccc"
   },
   "project": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/aaaabbbb-0000-cccc-1111-dddd2222eeee"
   },
   "links": {
     "files": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/evaluations/9c06d5b1-213f-4a16-9069-bc86efacdaac/files"
@@ -148,7 +153,7 @@ spx help csr evaluation
 
 To create a test, use the [Evaluations_Create](/rest/api/speechtotext/evaluations/create) operation of the [Speech to text REST API](rest-speech-to-text.md). Construct the request body according to the following instructions:
 
-- Set the `project` property to the URI of an existing project. This property is recommended so that you can also view the test in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). You can make a [Projects_List](/rest/api/speechtotext/projects/list) request to get available projects.
+- Set the `project` property to the ID of an existing project. The `project` property is recommended so that you can also manage fine-tuning for custom speech in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). To get the project ID, see [Get the project ID for the REST API](./how-to-custom-speech-create-project.md#get-the-project-id-for-the-rest-api) documentation.
 - Set the required `model1` property to the URI of a model that you want to test. 
 - Set the required `model2` property to the URI of another model that you want to test. If you don't want to compare two models, use the same model for both `model1` and `model2`.
 - Set the required `dataset` property to the URI of a dataset that you want to use for the test.
@@ -160,16 +165,16 @@ Make an HTTP POST request using the URI as shown in the following example. Repla
 ```azurecli-interactive
 curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey" -H "Content-Type: application/json" -d '{
   "model1": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/13fb305e-09ad-4bce-b3a1-938c9124dda3"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/ccccdddd-2222-eeee-3333-ffff4444aaaa"
   },
   "model2": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/13fb305e-09ad-4bce-b3a1-938c9124dda3"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/ccccdddd-2222-eeee-3333-ffff4444aaaa"
   },
   "dataset": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/datasets/23b6554d-21f9-4df1-89cb-f84510ac8d23"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/datasets/bbbbcccc-1111-dddd-2222-eeee3333ffff"
   },
   "project": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/aaaabbbb-0000-cccc-1111-dddd2222eeee"
   },
   "displayName": "My Inspection",
   "description": "My Inspection Description",
@@ -181,24 +186,24 @@ You should receive a response body in the following format:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/evaluations/9c06d5b1-213f-4a16-9069-bc86efacdaac",
+  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/evaluations/ddddeeee-3333-ffff-4444-aaaa5555bbbb",
   "model1": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/13fb305e-09ad-4bce-b3a1-938c9124dda3"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/ccccdddd-2222-eeee-3333-ffff4444aaaa"
   },
   "model2": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/13fb305e-09ad-4bce-b3a1-938c9124dda3"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/ccccdddd-2222-eeee-3333-ffff4444aaaa"
   },
   "dataset": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/datasets/23b6554d-21f9-4df1-89cb-f84510ac8d23"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/datasets/bbbbcccc-1111-dddd-2222-eeee3333ffff"
   },
   "transcription2": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/b50642a8-febf-43e1-b9d3-e0c90b82a62a"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/eeeeffff-4444-aaaa-5555-bbbb6666cccc"
   },
   "transcription1": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/b50642a8-febf-43e1-b9d3-e0c90b82a62a"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/eeeeffff-4444-aaaa-5555-bbbb6666cccc"
   },
   "project": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/aaaabbbb-0000-cccc-1111-dddd2222eeee"
   },
   "links": {
     "files": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/evaluations/9c06d5b1-213f-4a16-9069-bc86efacdaac/files"
@@ -260,6 +265,8 @@ This page lists all the utterances in your dataset and the recognition results, 
 
 ::: zone pivot="speech-cli"
 
+Before proceeding, make sure that you have the [Speech CLI](./spx-basics.md) installed and configured.
+
 To get test results, use the `spx csr evaluation status` command. Construct the request parameters according to the following instructions:
 
 - Set the required `evaluation` property to the ID of the evaluation that you want to get test results.
@@ -267,8 +274,11 @@ To get test results, use the `spx csr evaluation status` command. Construct the 
 Here's an example Speech CLI command that gets test results:
 
 ```azurecli-interactive
-spx csr evaluation status --api-version v3.2 --evaluation 9c06d5b1-213f-4a16-9069-bc86efacdaac
+spx csr evaluation status --api-version v3.2 --evaluation ddddeeee-3333-ffff-4444-aaaa5555bbbb
 ```
+
+> [!IMPORTANT]
+> You must set `--api-version v3.2`. The Speech CLI uses the REST API, but doesn't yet support versions later than `v3.2`.
 
 The models, audio dataset, transcriptions, and more details are returned in the response body.
 
@@ -276,24 +286,24 @@ You should receive a response body in the following format:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/evaluations/9c06d5b1-213f-4a16-9069-bc86efacdaac",
+  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/evaluations/ddddeeee-3333-ffff-4444-aaaa5555bbbb",
   "model1": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/13fb305e-09ad-4bce-b3a1-938c9124dda3"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/ccccdddd-2222-eeee-3333-ffff4444aaaa"
   },
   "model2": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/13fb305e-09ad-4bce-b3a1-938c9124dda3"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/ccccdddd-2222-eeee-3333-ffff4444aaaa"
   },
   "dataset": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/datasets/23b6554d-21f9-4df1-89cb-f84510ac8d23"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/datasets/bbbbcccc-1111-dddd-2222-eeee3333ffff"
   },
   "transcription2": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/b50642a8-febf-43e1-b9d3-e0c90b82a62a"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/eeeeffff-4444-aaaa-5555-bbbb6666cccc"
   },
   "transcription1": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/b50642a8-febf-43e1-b9d3-e0c90b82a62a"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/eeeeffff-4444-aaaa-5555-bbbb6666cccc"
   },
   "project": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/aaaabbbb-0000-cccc-1111-dddd2222eeee"
   },
   "links": {
     "files": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/evaluations/9c06d5b1-213f-4a16-9069-bc86efacdaac/files"
@@ -405,24 +415,24 @@ You should receive a response body in the following format:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/evaluations/9c06d5b1-213f-4a16-9069-bc86efacdaac",
+  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/evaluations/ddddeeee-3333-ffff-4444-aaaa5555bbbb",
   "model1": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/13fb305e-09ad-4bce-b3a1-938c9124dda3"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/ccccdddd-2222-eeee-3333-ffff4444aaaa"
   },
   "model2": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/13fb305e-09ad-4bce-b3a1-938c9124dda3"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/ccccdddd-2222-eeee-3333-ffff4444aaaa"
   },
   "dataset": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/datasets/23b6554d-21f9-4df1-89cb-f84510ac8d23"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/datasets/bbbbcccc-1111-dddd-2222-eeee3333ffff"
   },
   "transcription2": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/b50642a8-febf-43e1-b9d3-e0c90b82a62a"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/eeeeffff-4444-aaaa-5555-bbbb6666cccc"
   },
   "transcription1": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/b50642a8-febf-43e1-b9d3-e0c90b82a62a"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/eeeeffff-4444-aaaa-5555-bbbb6666cccc"
   },
   "project": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/aaaabbbb-0000-cccc-1111-dddd2222eeee"
   },
   "links": {
     "files": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/evaluations/9c06d5b1-213f-4a16-9069-bc86efacdaac/files"
@@ -537,6 +547,8 @@ If the test dataset included multiple audio files, you see multiple rows in the 
 
 ::: zone pivot="speech-cli"
 
+Before proceeding, make sure that you have the [Speech CLI](./spx-basics.md) installed and configured.
+
 The audio test dataset, transcriptions, and models tested are returned in the [test results](#get-test-results). If only one model was tested, the `model1` value matches `model2`, and the `transcription1` value matches `transcription2`. 
 
 To review the quality of transcriptions:
@@ -567,4 +579,3 @@ If you're comparing quality between two models, pay particular attention to diff
 - [Test model quantitatively](how-to-custom-speech-evaluate-data.md)
 - [Train your model](how-to-custom-speech-train-model.md)
 - [Deploy your model](./how-to-custom-speech-train-model.md)
-

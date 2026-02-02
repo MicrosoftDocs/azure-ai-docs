@@ -1,7 +1,10 @@
+items:
 - name: Azure
   tocHref: /azure/
   topicHref: /azure/index
   items:
+  - name: Search
+    tocHref: /azure/reliability
   - name: AI services
     tocHref: /azure/ai-services/
     topicHref: /azure/ai-services/index
@@ -9,7 +12,6 @@
     - name: Azure AI Search
       tocHref: /azure/search/
       topicHref: /azure/search/index
-
 - name: Azure
   tocHref: /legal/
   topicHref: /azure/index

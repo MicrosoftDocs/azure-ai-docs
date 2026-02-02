@@ -5,7 +5,7 @@ description: Learn how to use your own Docker images, or curated images from Mic
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.author: ssalgado
+ms.author: scottpolly
 author: saachigopal
 ms.reviewer: ssalgado
 ms.date: 10/08/2024

@@ -10,8 +10,8 @@ ms.custom:
   - ignite-2023
 ms.topic: tutorial
 ms.reviewer: None
-author: ssalgadodev
-ms.author: ssalgado
+author: s-polly
+ms.author: scottpolly
 ms.date: 09/30/2024
 #Customer intent: As a data scientist, I want to know how to prototype and develop machine learning models on a cloud workstation.
 ---

@@ -2,13 +2,16 @@
 title: Foundry Local REST API Reference
 titleSuffix: Foundry Local
 description: Complete reference guide for the Foundry Local REST API.
-manager: scottpolly
 ms.service: azure-ai-foundry
+ms.subservice: foundry-local
 ms.custom: build-2025
+ms.author: jburchel
+ms.reviewer: samkemp
+author: jonburchel
+reviewer: samuel100
 ms.topic: concept-article
-ms.date: 05/20/2025
-ms.author: samkemp
-author: samuel100
+ms.date: 10/01/2025
+ai-usage: ai-assisted
 ---
 
 # Foundry Local REST API Reference
@@ -23,7 +26,7 @@ author: samuel100
 ### POST /v1/chat/completions
 
 This endpoint processes chat completion requests.  
-Fully compatible with the [OpenAI Chat Completions API](https://platform.openai.com/docs/api-reference/chat/create)
+It's fully compatible with the [OpenAI Chat Completions API](https://platform.openai.com/docs/api-reference/chat/create).
 
 **Request Body:**
 
@@ -50,8 +53,8 @@ _---Standard OpenAI Properties---_
   Up to 4 sequences that will cause the model to stop generating further tokens.
 - `max_tokens` (integer, optional)  
   Maximum number of tokens to generate. For newer models, use `max_completion_tokens` instead.
-- `max_completion_token` (integer, optional)  
-  Maximum token limit for generation, including both visible output and reasoning tokens.
+- `max_completion_tokens` (integer, optional)  
+  Maximum number of tokens the model can generate, including visible output and reasoning tokens.
 - `presence_penalty` (number, optional)  
   Value between -2.0 and 2.0. Positive values encourage the model to discuss new topics by penalizing tokens that have already appeared.
 - `frequency_penalty` (number, optional)  
@@ -71,7 +74,7 @@ _---Standard OpenAI Properties---_
       Function parameters described as a JSON Schema object.
 - `function_call` (string or object, optional)  
   Controls how the model responds to function calls.
-  - If object, may include:
+  - If object, can include:
     - `name` (string, optional)  
       The name of the function to call.
     - `arguments` (object, optional)  
@@ -125,7 +128,7 @@ _---Standard OpenAI Properties---_
 - Request body
   ```json
   {
-    "model": "Phi-4-mini-instruct-generic-cpu",
+    "model": "qwen2.5-0.5b-instruct-generic-cpu",
     "messages": [
       {
         "role": "user",
@@ -153,7 +156,7 @@ _---Standard OpenAI Properties---_
     "id": "chatcmpl-1234567890",
     "object": "chat.completion",
     "created": 1677851234,
-    "model": "Phi-4-mini-instruct-generic-cpu",
+    "model": "qwen2.5-0.5b-instruct-generic-cpu",
     "choices": [
       {
         "index": 0,
@@ -172,92 +175,29 @@ _---Standard OpenAI Properties---_
   }
   ```
 
-### POST /v1/embeddings
-
-Handles embedding generation requests.  
-Compatible with the [OpenAI Embeddings API](https://platform.openai.com/docs/api-reference/embeddings/create)
-
-**Request Body:**
-
-- `model` (string)  
-  The embedding model to use (e.g., `"text-embedding-ada-002"`).
-- `input` (string or array)  
-  Input text to embed. Can be a single string or an array of strings/tokens.
-- `encoding_format` (string, optional)  
-  The encoding format (`"base64"` or `"float"`).
-
-**Response body:**
-
-- `object` (string)  
-  Always `"list"`.
-- `data` (array)  
-  List of embedding objects, each containing:
-  - `object` (string)  
-    Always `"embedding"`.
-  - `embedding` (array)  
-    The vector representation of the input text.
-  - `index` (integer)  
-    The position of this embedding in the input array.
-- `model` (string)  
-  The model used for embedding generation.
-- `usage` (object)  
-  Token usage statistics:
-  - `prompt_tokens` (integer)  
-    Number of tokens in the prompt.
-  - `total_tokens` (integer)  
-    Total tokens used.
-
-**Example:**
-
-- Request body
-  ```json
-  {
-    "model": "qwen_w_embeddings",
-    "input": "Hello, how are you?"
-  }
-  ```
-- Response body
-  ```json
-  {
-    "object": "list",
-    "data": [
-      {
-        "object": "embedding",
-        "embedding": [0.1, 0.2, 0.3, ...],
-        "index": 0
-      }
-    ],
-    "model": "qwen_w_embeddings",
-    "usage": {
-      "prompt_tokens": 10,
-      "total_tokens": 10
-    }
-  }
-  ```
-
 ## Custom API
 
 ### GET /foundry/list
 
-Retrieves a list of all available Foundry Local models in the catalog.
+Get a list of available Foundry Local models in the catalog.
 
 **Response:**
 
 - `models` (array)  
-  List of model objects, each containing:
+  Array of model objects. Each model includes:
   - `name`: The unique identifier for the model.
   - `displayName`: A human-readable name for the model, often the same as the name.
-  - `providerType`: The type of provider hosting the model (e.g., AzureFoundry).
+  - `providerType`: The type of provider hosting the model (for example, AzureFoundry).
   - `uri`: The resource URI pointing to the model's location in the registry.
   - `version`: The version number of the model.
-  - `modelType`: The format or type of the model (e.g., ONNX).
+  - `modelType`: The format or type of the model (for example, ONNX).
   - `promptTemplate`:
     - `assistant`: The template for the assistant's response.
     - `prompt`: The template for the user-assistant interaction.
   - `publisher`: The entity or organization that published the model.
-  - `task`: The primary task the model is designed to perform (e.g., chat-completion).
+  - `task`: The primary task the model is designed to perform (for example, chat completion).
   - `runtime`:
-    - `deviceType`: The type of hardware the model is designed to run on (e.g., CPU).
+    - `deviceType`: The type of hardware the model is designed to run on (for example, CPU).
     - `executionProvider`: The execution provider used for running the model.
   - `fileSizeMb`: The size of the model file in megabytes.
   - `modelSettings`:
@@ -299,7 +239,7 @@ Registers an external model provider for use with Foundry Local.
 
 ### GET /openai/models
 
-Retrieves all available models, including both local models and registered external models.
+Get all available models, including local and registered external models.
 
 **Response:**
 
@@ -315,7 +255,7 @@ Retrieves all available models, including both local models and registered exter
 
 ### GET /openai/load/{name}
 
-Loads a model into memory for faster inference.
+Load a model into memory for faster inference.
 
 **URI Parameters:**
 
@@ -327,7 +267,7 @@ Loads a model into memory for faster inference.
 - `unload` (boolean, optional)  
   Whether to automatically unload the model after idle time. Defaults to `true`.
 - `ttl` (integer, optional)  
-  Time to live in seconds. If greater than 0, overrides `unload` parameter.
+  Time to live in seconds. If it's greater than 0, this value overrides the `unload` parameter.
 - `ep` (string, optional)  
   Execution provider to run this model. Supports: `"dml"`, `"cuda"`, `"qnn"`, `"cpu"`, `"webgpu"`.  
   If not specified, uses settings from `genai_config.json`.
@@ -340,13 +280,13 @@ Loads a model into memory for faster inference.
 **Example:**
 
 - Request URI
-  ```
-  GET /openai/load/Phi-4-mini-instruct-generic-cpu?ttl=3600&ep=dml
-  ```
+  ```http
+GET /openai/load/Phi-4-mini-instruct-generic-cpu?ttl=3600&ep=dml
+```
 
 ### GET /openai/unload/{name}
 
-Unloads a model from memory.
+Unload a model from memory.
 
 **URI Parameters:**
 
@@ -366,9 +306,9 @@ Unloads a model from memory.
 **Example:**
 
 - Request URI
-  ```
-  GET /openai/unload/Phi-4-mini-instruct-generic-cpu?force=true
-  ```
+  ```http
+GET /openai/unload/Phi-4-mini-instruct-generic-cpu?force=true
+```
 
 ### GET /openai/unloadall
 
@@ -381,7 +321,7 @@ Unloads all models from memory.
 
 ### GET /openai/loadedmodels
 
-Retrieves a list of currently loaded models.
+Get the list of currently loaded models.
 
 **Response:**
 
@@ -397,7 +337,7 @@ Retrieves a list of currently loaded models.
 
 ### GET /openai/getgpudevice
 
-Retrieves the currently selected GPU device ID.
+Get the current GPU device ID.
 
 **Response:**
 
@@ -406,7 +346,7 @@ Retrieves the currently selected GPU device ID.
 
 ### GET /openai/setgpudevice/{deviceId}
 
-Sets the active GPU device.
+Set the active GPU device.
 
 **URI Parameters:**
 
@@ -421,30 +361,30 @@ Sets the active GPU device.
 **Example:**
 
 - Request URI
-  ```
-  GET /openai/setgpudevice/1
-  ```
+  ```http
+GET /openai/setgpudevice/1
+```
 
 ### POST /openai/download
 
-Downloads a model to local storage.
+Download a model to local storage.
 
 > [!NOTE]
-> Model downloads can take significant time, especially for large models. We recommend setting a high timeout for this request to avoid premature termination.
+> Large model downloads can take a long time. Set a high timeout for this request to avoid early termination.
 
 **Request Body:**
 
-- `model` (`WorkspaceInferenceModel` object)  
+- `model` (`WorkspaceInferenceModel` object)
   - `Uri` (string)  
     The model URI to download.
   - `Name` (string)
     The model name.
   - `ProviderType` (string, optional)  
-    The provider type (e.g., `"AzureFoundryLocal"`,`"HuggingFace"`).
+    The provider type (for example, `"AzureFoundryLocal"`, `"HuggingFace"`).
   - `Path` (string, optional)  
-    The remote path where the model is located stored. For example, in a Hugging Face repository, this would be the path to the model files.
+    Remote path to the model files. For example, in a Hugging Face repository, this is the path to the model files.
   - `PromptTemplate` (`Dictionary<string, string>`, optional)  
-    Contains:
+    Includes:
     - `system` (string, optional)  
       The template for the system message.
     - `user` (string, optional)
@@ -454,7 +394,7 @@ Downloads a model to local storage.
     - `prompt` (string, optional)  
       The template for the user-assistant interaction.
   - `Publisher` (string, optional)  
-      The publisher of the model.
+     The publisher of the model.
 - `token` (string, optional)  
   Authentication token for protected models (GitHub or Hugging Face).
 - `progressToken` (object, optional)  
@@ -471,7 +411,7 @@ Downloads a model to local storage.
 
 During download, the server streams progress updates in the format:
 
-```
+```text
 ("file name", percentage_complete)
 ```
 
@@ -488,15 +428,15 @@ During download, the server streams progress updates in the format:
 
 ```json
 {
-  "model":{
+  "model": {
     "Uri": "azureml://registries/azureml/models/Phi-4-mini-instruct-generic-cpu/versions/4",
     "ProviderType": "AzureFoundryLocal",
     "Name": "Phi-4-mini-instruct-generic-cpu",
     "Publisher": "",
-    "promptTemplate" : {
+    "promptTemplate": {
       "system": "<|system|>{Content}<|end|>",
-      "user": "<|user|>{Content}<|end|>", 
-      "assistant": "<|assistant|>{Content}<|end|>", 
+      "user": "<|user|>{Content}<|end|>",
+      "assistant": "<|assistant|>{Content}<|end|>",
       "prompt": "<|user|>{Content}<|end|><|assistant|>"
     }
   }
@@ -505,14 +445,14 @@ During download, the server streams progress updates in the format:
 
 - Response stream
 
-  ```
-  ("genai_config.json", 0.01)
-  ("genai_config.json", 0.2)
-  ("model.onnx.data", 0.5)
-  ("model.onnx.data", 0.78)
-  ...
-  ("", 1)
-  ```
+  ```text
+("genai_config.json", 0.01)
+("genai_config.json", 0.2)
+("model.onnx.data", 0.5)
+("model.onnx.data", 0.78)
+...
+("", 1)
+```
 
 - Final response
   ```json
@@ -524,7 +464,7 @@ During download, the server streams progress updates in the format:
 
 ### GET /openai/status
 
-Retrieves server status information.
+Get server status information.
 
 **Response body:**
 

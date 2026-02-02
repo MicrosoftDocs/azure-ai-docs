@@ -6,15 +6,14 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: concept-article
 ms.date: 5/25/2025
-ms.reviewer: eur
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 # Customer intent: As a developer, I want to learn about the Speech to text REST API.
 ---
 
 # Speech to text REST API
 
-Speech to text REST API is used for [batch transcription](batch-transcription.md) and [custom speech](custom-speech-overview.md). 
+Speech to text REST API is used for [fast transcription](fast-transcription-create.md), [batch transcription](batch-transcription.md) and [custom speech](custom-speech-overview.md). 
 
 > [!IMPORTANT]
 > Speech to text REST API version `2024-11-15` is the latest version that's generally available. 

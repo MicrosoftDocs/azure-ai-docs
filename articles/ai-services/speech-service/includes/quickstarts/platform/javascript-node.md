@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 09/05/2023
-ms.author: eur
+ms.author: pafarley
 ms.custom: devx-track-js
 ---
 

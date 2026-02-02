@@ -2,10 +2,10 @@
 title: Service quotas and limits - Content Understanding
 titleSuffix: Azure AI services
 description: Quick reference, detailed description, and best practices for working within Azure AI Content Understanding service Quotas and Limits
-author: laujan
-ms.author: lajanuar
+author: PatrickFarley 
+ms.author: pafarley
 manager: nitinme
-ms.date: 05/19/2025
+ms.date: 09/16/2025
 ms.service: azure-ai-content-understanding
 ms.topic: conceptual
 ms.custom:
@@ -15,16 +15,7 @@ ms.custom:
 
 # Azure AI Content Understanding service quotas and limits
 
-This article offers a quick reference of the quotas and limits for the Azure AI Content Understanding service.
-
-## Resource limits
-| Quota | Standard (S0) |
-| --- | --- |
-| Max analyzers | 100k |
-| Max classifiers | 100k |
-| Max person directories | 100k |
-| Max analysis/min | 1000 pages/images <br> Four hours of audio <br> Four hours of video  |
-| Max operations/min | 3000 |
+This article offers a reference of the quotas and limits for the Azure AI Content Understanding service.
 
 ## General limits
 
@@ -34,10 +25,22 @@ This article offers a quick reference of the quotas and limits for the Azure AI 
 | URL properties | ≤ 8,192 characters |
 | Description properties | ≤ 1,024 characters |
 | Field names | ≤ 64 characters (`[\p{L}\p{Nl}\p{Mn}\p{Mc}\p{Nd}\p{Pc}._-]{1,64}`) |
-| Tags properties | ≤ 10 tags |
+| Tags | ≤ 10 tags |
 | Tag key | ≤ 64 characters (`[a-zA-Z0-9+-.:=_/]{1,64}`) |
 | Tag value | ≤ 256 characters (`[a-zA-Z0-9+-.:=_/]{0,256}`) |
 | Image reference ID | ≤ 256 characters |
+
+## Resource limits
+
+| Quota | Standard (S0) |
+| --- | --- |
+| Max analyzers | 100k |
+| Max classifiers | 100k |
+| Max person directories | 100k |
+| Max analysis/min | 1000 pages/images <br> Four hours of audio <br> Four hours of video  |
+| Max operations/min | 3000 |
+
+
 
 ## Analyzers
 
@@ -104,7 +107,7 @@ Content Understanding supports both basic field value types and nested structure
 
 | Property | Document | Text | Image | Audio | Video |
 | --- | --- | --- | --- | --- | --- |
-| Max fields | 100 | 100 | 100 | 100 | 100 |
+| Max fields | 1000 | 1000 | 1000 | 1000 | 1000 |
 | Max classify field categories | 300 | 300 | 300 | 300 | 300 |
 | Supported generation methods | extract<br>generate<br>classify | generate<br>classify | generate<br>classify | generate<br>classify | generate<br>classify |
 

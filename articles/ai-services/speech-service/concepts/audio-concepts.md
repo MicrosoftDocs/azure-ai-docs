@@ -6,9 +6,9 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
 ms.date: 4/28/2025
-ms.reviewer: wellsi
-ms.author: eur
-author: eric-urban
+ms.reviewer: jagoerge
+ms.author: pafarley
+author: PatrickFarley
 ---
 
 # Audio concepts in Azure AI Speech

@@ -5,10 +5,11 @@ description: Get an overview of the custom text to speech avatar feature of spee
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 4/28/2025
-ms.reviewer: eur
-ms.author: eur
-author: eric-urban
+ms.date: 10/21/2025
+ms.author: jagoerge
+author: goergenj
+reviewer: patrickfarley
+ms.reviewer: pafarley
 ms.custom: references_regions
 ---
 
@@ -17,7 +18,7 @@ ms.custom: references_regions
 Custom text to speech avatar allows you to create a customized, one-of-a-kind synthetic talking avatar for your application. With custom text to speech avatar, you can build a unique and natural-looking avatar for your product or brand by providing video recording data of your selected actors. The avatar is even more realistic if you also use a [professional voice or voice sync for avatar](#custom-voice-and-custom-text-to-speech-avatar) for the same actor.
 
 > [!IMPORTANT]
-> Custom text to speech avatar access is [limited](/legal/cognitive-services/speech-service/custom-neural-voice/limited-access-custom-neural-voice?context=%2fazure%2fcognitive-services%2fspeech-service%2fcontext%2fcontext) based on eligibility and usage criteria. Request access on the [intake form](https://aka.ms/customneural).
+> Custom text to speech avatar access is [limited](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/limited-access) based on eligibility and usage criteria. Request access on the [intake form](https://aka.ms/customneural).
 
 ## How does it work?
 
@@ -29,7 +30,7 @@ The custom avatar model can support:
 
 Before you get started, here are some considerations:
 
-**Your use case:** Will you use the avatar to create video content such as training material, product introduction, or use the avatar as a virtual salesperson in a real-time conversation with your customers? There are some recording requirements for different use cases.
+**Your use case:** Do you want to use the avatar to create video content such as training material or a product introduction? Do you want to use the avatar as a virtual salesperson in a real-time conversation with your customers? There are some recording requirements for different use cases.
 
 **The look of the avatar:** The custom text to speech avatar looks the same as the avatar talent in the training data, and we don't support customizing the appearance of the avatar model, such as clothes, hairstyle, etc. So if your application requires multiple styles of the same avatar, you should prepare training data for each style, as each style of an avatar is considered as a single avatar model.
 
@@ -51,7 +52,7 @@ Here's an overview of the steps to create a custom text to speech avatar:
 
 The custom text to speech avatar model contains three components: text analyzer, the text to speech audio synthesizer, and text to speech avatar video renderer. 
 - To generate an avatar video file or stream with the avatar model, text is first input into the text analyzer, which provides the output in the form of a phoneme sequence. 
-- The audio synthesizer synthesizes the speech audio for input text, and these two parts are provided by standard or custonm voice models. 
+- The audio synthesizer synthesizes the speech audio for input text, and these two parts are provided by standard or custom voice models. 
 - Finally, the text to speech avatar model predicts the image of lip sync with the speech audio, so that the synthetic video is generated. 
 
 :::image type="content" source="./media/custom-avatar-workflow.png" alt-text="Screenshot of displaying an overview of the custom text to speech avatar workflow." lightbox="./media/custom-avatar-workflow.png":::
@@ -60,7 +61,7 @@ The text to speech avatar models are trained using deep neural networks based on
 
 ## Available locations
 
-Custom avatar *training* is only available in the following service regions: Southeast Asia, West Europe, and West US 2. You can use a custom avatar model in the following service regions: Southeast Asia, North Europe, West Europe, Sweden Central, South Central US, East US 2, and West US 2.
+For the current list of regions that support custom avatar training and usage, see the [Speech service regions table](../regions.md?tabs=ttsavatar).
 
 ## Custom voice and custom text to speech avatar
 
@@ -69,8 +70,8 @@ Custom avatar *training* is only available in the following service regions: Sou
 The custom text to speech avatar can work with a standard voice or custom voice as the avatar's voice. For more information, see [Avatar voice and language](./what-is-text-to-speech-avatar.md#avatar-voice-and-language).
 
 There are two kinds of custom voice for a custom avatar:
-- **Voice sync for avatar**: When you enable the voice sync for avatar option during custom avatar training, a synthetic voice model using the likeness of the avatar talent is simultaneously trained with the avatar. This voice is exclusively associated with the custom avatar and can't be independently used. Voice sync for avatar is currently supported in the Southeast Asia, West Europe, and West US 2 regions.
-- **Professional voice**: You can fine-tune a professional voice. [Professional voice fine-tuning](../custom-neural-voice.md) and custom text to speech avatar are separate features. You can use them independently or together. If you choose to use them together, you need to apply for [professional voice fine-tuning](https://aka.ms/customneural) and [custom text to speech avatar](https://aka.ms/customneural) separately, and you are charged separately for professional voice fine-tuning and custom text to speech avatar. For more information, see the [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/). Additionally, if you plan to use [professional voice fine-tuning](../custom-neural-voice.md) with a text to speech avatar, you need to deploy or [copy your custom voice model](../professional-voice-train-voice.md#copy-your-voice-model-to-another-project) to one of the [avatar supported regions](./what-is-custom-text-to-speech-avatar.md#available-locations).
+- **Voice sync for avatar**: When you enable the voice sync for avatar option during custom avatar training, a synthetic voice model using the likeness of the avatar talent is simultaneously trained with the avatar. This voice is exclusively associated with the custom avatar and can't be independently used. For supported regions, see the [Speech service regions table](../regions.md?tabs=ttsavatar).
+- **Professional voice**: You can fine-tune a professional voice. [Professional voice fine-tuning](../custom-neural-voice.md) and custom text to speech avatar are separate features. You can use them independently or together. If you choose to use them together, you need to apply for [professional voice fine-tuning](https://aka.ms/customneural) and [custom text to speech avatar](https://aka.ms/customneural) separately, and you're charged separately for professional voice fine-tuning and custom text to speech avatar. For more information, see the [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/). Additionally, if you plan to use [professional voice fine-tuning](../custom-neural-voice.md) with a text to speech avatar, you need to deploy or [copy your custom voice model](../professional-voice-train-voice.md#copy-your-voice-model-to-another-project) to one of the [avatar supported regions](./what-is-custom-text-to-speech-avatar.md#available-locations).
 
 If you fine-tune a professional voice and want to use it together with the custom avatar, pay attention to the following points:
 
@@ -85,4 +86,4 @@ If you fine-tune a professional voice and want to use it together with the custo
 - [How to prepare custom text to speech avatar training data](./custom-avatar-record-video-samples.md)
 - [Real-time synthesis for live chat avatar](./real-time-synthesis-avatar.md)
 - [Batch synthesis for video creation](./batch-synthesis-avatar.md)
-- [Transparency note for text to speech](/legal/cognitive-services/speech-service/text-to-speech/transparency-note?context=/azure/ai-services/speech-service/context/context)
+- [Transparency note for text to speech](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note)

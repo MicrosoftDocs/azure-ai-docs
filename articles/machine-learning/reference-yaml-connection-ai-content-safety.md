@@ -9,8 +9,8 @@ ms.custom:
   - build-2024
 ms.topic: reference
 
-author: Blackmist
-ms.author: larryfr
+author: s-polly
+ms.author: scottpolly
 ms.date: 05/09/2024
 ms.reviewer: ambadal
 ---

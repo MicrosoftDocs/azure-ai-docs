@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 2/1/2024
-ms.author: eur
+ms.date: 7/17/2025
+ms.author: pafarley
 ---
 
 With Azure AI Speech, you can run an application that synthesizes a human-like voice to read text. You can change the voice, enter text to be spoken, and listen to the output on your computer's speaker.

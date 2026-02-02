@@ -1,20 +1,24 @@
 ---
-title: 'RAG tutorial: Set up models'
+title: 'CLassic RAG tutorial: Set up models'
 titleSuffix: Azure AI Search
 description: Set up an embedding model and chat model for generative search (RAG).
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.topic: tutorial
 ms.custom: references_regions
-ms.date: 06/11/2025
+ms.date: 10/14/2025
 
 ---
 
-# Tutorial: Choose embedding and chat models for RAG in Azure AI Search
+# Tutorial: Choose embedding and chat models for classic RAG in Azure AI Search
 
 A RAG solution built on Azure AI Search takes a dependency on embedding models for vectorization, and on chat completion models for conversational search over your data.
+
+> [!NOTE]
+> We now recommend [agentic retrieval](agentic-retrieval-overview.md) for RAG workflows, but classic RAG is simpler. If it meets your application requirements, it's still a good choice.
 
 In this tutorial, you:
 
@@ -25,7 +29,7 @@ In this tutorial, you:
 > - Configure search engine access to Azure models
 > - Learn about custom skills and vectorizers for attaching non-Azure models
 
-If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 ## Prerequisites
 
@@ -37,7 +41,7 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 
   We use Azure OpenAI in this tutorial. Other providers are listed so that you know your options for integrated vectorization.
 
-- Azure AI Search, Basic tier or higher provides a [managed identity](search-howto-managed-identities-data-sources.md) used in role assignments.
+- Azure AI Search, Basic tier or higher provides a [managed identity](search-how-to-managed-identities.md) used in role assignments.
 
 ## Review models supporting built-in vectorization
 
@@ -51,13 +55,15 @@ Azure AI Search provides skill and vectorizer support for the following embeddin
 
 | Client | Embedding models | Skill | Vectorizer |
 |--------|------------------|-------|------------|
-| Azure OpenAI | text-embedding-ada-002, <br>text-embedding-3-large, <br>text-embedding-3-small | [AzureOpenAIEmbedding](cognitive-search-skill-azure-openai-embedding.md) | [AzureOpenAIEmbedding](vector-search-vectorizer-azure-open-ai.md) |
+| Azure OpenAI | text-embedding-ada-002<br>text-embedding-3-large<br>text-embedding-3-small | [AzureOpenAIEmbedding](cognitive-search-skill-azure-openai-embedding.md) | [AzureOpenAIEmbedding](vector-search-vectorizer-azure-open-ai.md) |
 | Azure AI Vision | multimodal 4.0 <sup>1</sup> | [AzureAIVision](cognitive-search-skill-vision-vectorize.md) | [AzureAIVision](vector-search-vectorizer-ai-services-vision.md) |
-| Azure AI Foundry model catalog | Facebook-DinoV2-Image-Embeddings-ViT-Base, <br>Facebook-DinoV2-Image-Embeddings-ViT-Giant, <br>Cohere-embed-v3-english, <br>Cohere-embed-v3-multilingual | [AML](cognitive-search-aml-skill.md) <sup>2</sup>  | [Azure AI Foundry model catalog](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md) |
+| Azure AI Foundry model catalog | Cohere-embed-v3-english <sup>1</sup><br>Cohere-embed-v3-multilingual <sup>1</sup><br>Cohere-embed-v4 <sup>1, 2</sup> | [AML](cognitive-search-aml-skill.md) <sup>3</sup> | [Azure AI Foundry model catalog](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md) |
 
-<sup>1</sup> Supports image and text vectorization.
+<sup>1</sup> Supports text and image vectorization.
 
-<sup>2</sup> Deployed models in the model catalog are accessed over an AML endpoint. We use the existing AML skill for this connection.
+<sup>2</sup> At this time, you can only specify `embed-v-4-0` programmatically through the [AML skill](cognitive-search-aml-skill.md) or [Azure AI Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md), not through the Azure portal. However, you can use the portal to manage the skillset or vectorizer afterward.
+
+<sup>3</sup> Deployed models in the model catalog are accessed over an AML endpoint. We use the existing AML skill for this connection.
 
 You can use other models besides the ones listed here. For more information, see [Use non-Azure models for embeddings](#use-non-azure-models-for-embeddings) in this article.
 
@@ -72,11 +78,11 @@ The following models are commonly used for a chat search experience:
 
 | Client | Chat models |
 |--------|------------|
-| Azure OpenAI | GPT-35-Turbo, <br>GPT-4, <br>GPT-4o, <br>GPT-4 Turbo |
+| Azure OpenAI | <br>GPT-4, <br>GPT-4o, <br>GPT-4.1. <br>GPT-5 |
 
-GPT-35-Turbo and GPT-4 models are optimized to work with inputs formatted as a conversation.
+GPT-4 and GPT-5 models are optimized to work with inputs formatted as a conversation.
 
-We use GPT-4o in this tutorial. During testing, we found that it's less likely to supplement with its own training data. For example, given the query "how much of the earth is covered by water?", GPT-35-Turbo answered using its built-in knowledge of earth to state that 71% of the earth is covered by water, even though the sample data doesn't provide that fact. In contrast, GPT-4o responded (correctly) with "I don't know".
+We use GPT-4o in this tutorial.
 
 ## Deploy models and collect information
 
@@ -113,7 +119,7 @@ Assign yourself and the search service identity permissions on Azure OpenAI. The
 
 1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 
-1. Configure Azure AI Search to [use a system-managed identity](search-howto-managed-identities-data-sources.md).
+1. Configure Azure AI Search to [use a system-managed identity](search-how-to-managed-identities.md).
 
 1. Find your Azure OpenAI resource.
 

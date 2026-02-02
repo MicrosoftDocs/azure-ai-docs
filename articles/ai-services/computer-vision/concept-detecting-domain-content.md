@@ -8,8 +8,6 @@ manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: conceptual
 ms.date: 02/21/2025
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
 ms.author: pafarley
 ---
 
@@ -21,7 +19,7 @@ There are two ways to use the domain-specific models: by themselves (scoped anal
 
 ### Scoped analysis
 
-You can analyze an image using only the chosen domain-specific model by calling the [Models/\<model\>/Analyze](/rest/api/computervision/analyze-image?view=rest-computervision-v3.2) API.
+You can analyze an image using only the chosen domain-specific model by calling the [Models/\<model\>/Analyze](/rest/api/computervision/analyze-image) API.
 
 The following is a sample JSON response returned by the `models/celebrities/analyze` API for the given image:
 
@@ -52,7 +50,7 @@ The following is a sample JSON response returned by the `models/celebrities/anal
 
 ### Enhanced categorization analysis
 
-You can also use domain-specific models to supplement general image analysis. You do this as part of [high-level categorization](concept-categorizing-images.md) by specifying domain-specific models in the *details* parameter of the [Analyze Image](/rest/api/computervision/analyze-image?view=rest-computervision-v3.2) API call.
+You can also use domain-specific models to supplement general image analysis. You do this as part of [high-level categorization](concept-categorizing-images.md) by specifying domain-specific models in the *details* parameter of the [Analyze Image](/rest/api/computervision/analyze-image) API call.
 
 In this case, the 86-category taxonomy classifier is called first. If any of the detected categories have a matching domain-specific model, the image is passed through that model as well and the results are added.
 
@@ -100,7 +98,7 @@ Currently, Azure AI Vision supports the following domain-specific models:
 | celebrities | Celebrity recognition, supported for images classified in the `people_` category |
 | landmarks | Landmark recognition, supported for images classified in the `outdoor_` or `building_` categories |
 
-Calling the [Models](/rest/api/computervision/list-models/list-models?view=rest-computervision-v3.2&tabs=HTTP) API returns this information along with the categories to which each model can apply:
+Calling the [Models](/rest/api/computervision/list-models/list-models) API returns this information along with the categories to which each model can apply:
 
 ```json
 {
@@ -134,6 +132,6 @@ Calling the [Models](/rest/api/computervision/list-models/list-models?view=rest-
 
 ## Use the API
 
-This feature is available through the [Analyze Image 3.2 API](/rest/api/computervision/analyze-image/analyze-image?view=rest-computervision-v3.2&tabs=HTTP). You can call this API through a native SDK or through REST calls. Include `Celebrities` or `Landmarks` in the **details** query parameter. Then, when you get the full JSON response, parse the string for the contents of the `"details"` section.
+This feature is available through the [Analyze Image 3.2 API](/rest/api/computervision/analyze-image/analyze-image). You can call this API through a native SDK or through REST calls. Include `Celebrities` or `Landmarks` in the **details** query parameter. Then, when you get the full JSON response, parse the string for the contents of the `"details"` section.
 
 * [Quickstart: Vision REST API or client libraries](./quickstarts-sdk/image-analysis-client-library.md?pivots=programming-language-csharp)

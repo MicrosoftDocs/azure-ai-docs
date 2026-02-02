@@ -1,23 +1,26 @@
 ---
-title: 'RAG tutorial: Tune relevance'
+title: 'Classic RAG tutorial: Tune relevance'
 titleSuffix: Azure AI Search
 description: Learn how to use the relevance tuning capabilities to return high quality results for generative search.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2024
 ms.topic: tutorial
-ms.date: 06/11/2025
+ms.date: 10/14/2025
 ---
 
-# Tutorial: Maximize relevance (RAG in Azure AI Search)
+# Tutorial: Maximize relevance (classic RAG in Azure AI Search)
 
-In this tutorial, learn how to improve the relevance of search results used in RAG solutions. Relevance tuning can be an important factor in delivering a RAG solution that meets user expectations. In Azure AI Search, relevance tuning includes L2 semantic ranking and scoring profiles. 
+Azure AI Search provides relevance tuning strategies for improving the relevance of search results in classic RAG solutions.  Relevance tuning can be an important factor in delivering a RAG solution that meets user expectations. 
 
-To implement these capabilities, you revisit the index schema to add configurations for semantic ranking and scoring profiles. You then rerun the queries using the new constructs.
+> [!NOTE]
+> We now recommend [agentic retrieval](agentic-retrieval-overview.md) for RAG workflows, but classic RAG is simpler. If it meets your application requirements, it's still a good choice.
+
+In Azure AI Search, relevance tuning includes L2 semantic ranking and scoring profiles. To implement these capabilities, you revisit the index schema to add configurations for semantic ranking and scoring profiles. You then rerun the queries using the new constructs.
 
 In this tutorial, you modify the existing search index and queries to use:
 
@@ -27,16 +30,13 @@ In this tutorial, you modify the existing search index and queries to use:
 
 This tutorial updates the search index created by the [indexing pipeline](tutorial-rag-build-solution-pipeline.md). Updates don't affect the existing content, so no rebuild is necessary and you don't need to rerun the indexer.
 
-> [!NOTE]
-> There are more relevance features in preview, including vector query weighting and setting minimum thresholds, but we omit them from this tutorial because they're in preview.
-
 ## Prerequisites
 
 - [Visual Studio Code](https://code.visualstudio.com/download) with the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and the [Jupyter package](https://pypi.org/project/jupyter/).
 
 - [Azure AI Search](search-create-service-portal.md), Basic tier or higher for managed identity and semantic ranking.
 
-- [Azure OpenAI](/azure/ai-services/openai/how-to/create-resource), with a deployment of text-embedding-002 and gpt-35-turbo.
+- [Azure OpenAI](/azure/ai-services/openai/how-to/create-resource), with a deployment of text-embedding-3-small and gpt-4o.
 
 ## Download the sample
 

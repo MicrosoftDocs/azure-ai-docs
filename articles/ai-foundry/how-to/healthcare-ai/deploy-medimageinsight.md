@@ -3,12 +3,12 @@ title: How to deploy and use MedImageInsight healthcare AI model with Azure AI F
 titleSuffix: Azure AI Foundry
 description: Learn how to use MedImageInsight Healthcare AI Model with Azure AI Foundry.
 ms.service: azure-ai-foundry
-manager: scottpolly
 ms.topic: how-to
-ms.date: 04/24/2025
+ms.date: 09/15/2025
 ms.reviewer: itarapov
 reviewer: ivantarapov
 ms.author: mopeakande
+manager: nitinme
 author: msakande
 
 #Customer intent: As a Data Scientist I want to learn how to use the MedImageInsight healthcare AI model to generate medical image embeddings.
@@ -18,44 +18,43 @@ author: msakande
 
 [!INCLUDE [health-ai-models-meddev-disclaimer](../../includes/health-ai-models-meddev-disclaimer.md)]
 
-In this article, you learn how to deploy MedImageInsight from the model catalog as an online endpoint for real-time inference. You also learn to issue a basic call to the API. The steps you take are:
+In this article, you learn how to deploy MedImageInsight from the model catalog as an online endpoint for real-time inference. You also learn how to issue a basic call to the API. The steps you take are:
 
 * Deploy the model to a self-hosted managed compute.
 * Grant permissions to the endpoint.
-* Send test data to the model, receive, and interpret results
+* Send test data to the model, receive, and interpret results.
 
 ## MedImageInsight - the medical imaging embedding model
 MedImageInsight foundation model for health is a powerful model that can process a wide variety of medical images. These images include X-Ray, CT, MRI, clinical photography, dermoscopy, histopathology, ultrasound, and mammography images. Rigorous evaluations demonstrate MedImageInsight's ability to achieve state-of-the-art (SOTA) or human expert-level performance across classification, image-to-image search, and fine-tuning tasks. Specifically, on public datasets, MedImageInsight achieves or exceeds SOTA performance in chest X-ray disease classification and search, dermatology classification and search, Optical coherence tomography (OCT) classification and search, and 3D medical image retrieval. The model also achieves near-SOTA performance for histopathology classification and search.  
 
-An embedding model is capable of serving as the basis of many different solutions—from classification to more complex scenarios like group matching or outlier detection. The following animation shows an embedding model being used for image similarity search and to detect images that are outliers.
+An embedding model can serve as the basis of many different solutions—from classification to more complex scenarios like group matching or outlier detection. The following animation shows an embedding model being used for image similarity search and to detect images that are outliers.
 
 :::image type="content" source="../../media/how-to/healthcare-ai/healthcare-embedding-capabilities.gif" alt-text="Animation that shows an embedding model capable of supporting similarity search and quality control scenarios.":::
 
 ## Prerequisites
 
-- An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
+- An Azure subscription with a valid payment method. Free or trial Azure subscriptions don't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
 
-- If you don't have one, [create a [!INCLUDE [hub](../../includes/hub-project-name.md)]](../create-projects.md?pivots=hub-project).
+- If you don't have one, [create a [!INCLUDE [hub](../../includes/hub-project-name.md)]](../hub-create-projects.md).
 
 
-- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../../concepts/rbac-ai-foundry.md).
+- Azure role-based access controls (Azure RBAC) to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../../concepts/rbac-ai-foundry.md).
 
 ## Deploy the model to a managed compute
 
-Deployment to a self-hosted managed inference solution allows you to customize and control all the details about how the model is served. You can deploy the model from its model card in the catalog UI of [Azure AI Foundry](https://aka.ms/healthcaremodelstudio) or [Azure Machine Learning studio](https://ml.azure.com/model/catalog) or [deploy it programmatically](../deploy-models-managed.md).
+Deploying to a self-hosted managed inference solution lets you customize and control all the details about how the model is served. You can deploy the model from its model card in the catalog UI of [Azure AI Foundry](https://aka.ms/healthcaremodelstudio), [Azure Machine Learning studio](https://ml.azure.com/model/catalog), or [deploy it programmatically](../deploy-models-managed.md).
 
 To __deploy the model through the UI__:
 
 1. Go to the model catalog.
 1. Search for the _MedImageInsight_ model and select its model card.
-1. On the model's overview page, select __Deploy__. 
-1. If given the option to choose between standard deployment and deployment using a managed compute, select **Managed Compute**.
-1. Fill out the details in the deployment window.
-
+1. On the model's overview page, select __Use this model__ to open the deployment window. 
+    
     > [!NOTE]
     > For deployment to a self-hosted managed compute, you must have enough quota in your subscription. If you don't have enough quota available, you can use our temporary quota access by selecting the option **I want to use shared quota and I acknowledge that this endpoint will be deleted in 168 hours.**
 
-1. Select __Deploy__.
+1. Select the checkbox in the deployment window to use the temporary shared quota.
+1. The deployment window displays settings that include a virtual machine selection, an endpoint name, and a deployment name. You can modify these settings. Once you're satisfied with them, select **Deploy**.
 
 To __deploy the model programmatically__, see [How to deploy and inference a managed compute deployment with code](../deploy-models-managed.md).
 
@@ -76,11 +75,11 @@ credential = DefaultAzureCredential()
 ml_client_workspace = MLClient.from_config(credential)
 ```
 
-In the deployment configuration, you get to choose an authentication method. This example uses Azure Machine Learning token-based authentication. For more authentication options, see the [corresponding documentation page](../../../machine-learning/how-to-setup-authentication.md). Also, the client is created from a configuration file that is created automatically for Azure Machine Learning virtual machines (VMs). Learn more on the [corresponding API documentation page](/python/api/azure-ai-ml/azure.ai.ml.mlclient#azure-ai-ml-mlclient-from-config).
+In the deployment configuration, you choose an authentication method. This example uses Azure Machine Learning token-based authentication. For more authentication options, see the [corresponding documentation page](../../../machine-learning/how-to-setup-authentication.md). Also, the client is created from a configuration file that's created automatically for Azure Machine Learning virtual machines (VMs). Learn more on the [corresponding API documentation page](/python/api/azure-ai-ml/azure.ai.ml.mlclient#azure-ai-ml-mlclient-from-config).
 
 ### Make basic calls to the model
 
-Once the model is deployed, use the following code to send data and retrieve embeddings.
+After deploying the model, use the following code to send data and get embeddings.
 
 ```python
 import base64
@@ -124,11 +123,11 @@ response = ml_client_workspace.online_endpoints.invoke(
 ```
 
 ## Use MedImageInsight REST API
-MedImageInsight model assumes a simple single-turn interaction where one request produces one response. 
+The MedImageInsight model works with a simple single-turn interaction. One request gets one response. 
 
 ### Request schema
 
-Request payload is a JSON formatted string containing the following parameters:
+The request payload is a JSON-formatted string that contains the following parameters:
 
 | Key           | Type           | Required/Default | Allowed values    | Description |
 | ------------- | -------------- | :-----------------:| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -140,7 +139,7 @@ The `input_data` object contains the following fields:
 | Key           | Type           | Required/Default | Allowed values    | Description |
 | ------------- | -------------- | :-----------------:| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `columns`       | `list[string]`       | Y    |  `"text"`, `"image"` | An object containing the strings mapping data to inputs passed to the model.|
-| `index`   | `integer` | Y | 0 - 1024| Count of inputs passed to the model. You're limited by how much data can be passed in a single POST request, which depends on the size of your images. Therefore, you should keep this number in the dozens |
+| `index`   | `integer` | Y | 0 - 1024| Count of inputs passed to the model. You're limited by how much data you can pass in a single POST request, which depends on the size of your images. Therefore, keep this number in the dozens |
 | `data`   | `list[list[string]]` | Y | "" | The list contains the items passed to the model which is defined by the index parameter. Each item is a list of two strings. The order is defined by the `columns` parameter. The `text` string contains text to embed. The `image` strings are the image bytes encoded using base64 and decoded as utf-8 string |
 
 The `params` object contains the following fields:
@@ -189,12 +188,12 @@ The `params` object contains the following fields:
 
 ### Response schema
 
-Response payload is a JSON formatted string containing the following fields:
+The response payload is a JSON-formatted string that contains the following fields:
 
 | Key           | Type           |  Description |
 | ------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `image_features`       | `list[list[float]]` |  If requested, list of vectors, one per each submitted image. |
-| `text_features`   | `list[list[float]]` |  If requested, list of vectors, one per each submitted text string. |
+| `image_features`       | `list[list[float]]` |  If requested, a list of vectors, one for each submitted image. |
+| `text_features`   | `list[list[float]]` |  If requested, a list of vectors, one for each submitted text string. |
 | `scaling_factor`   | `float` |  If requested, the scaling factor |
 
 ### Response example
@@ -208,21 +207,21 @@ Response payload is a JSON formatted string containing the following fields:
 ```
 
 ### Other implementation considerations
-The maximum number of tokens processed in the input string is 77. Anything past 77 tokens would be cut off before being passed to the model. The model is using a Contrastive Language-Image Pre-Training (CLIP) tokenizer which uses about three Latin characters per token.
+The maximum number of tokens processed in the input string is 77. The system removes any tokens beyond 77 before passing the input to the model. The model uses a Contrastive Language-Image Pre-Training (CLIP) tokenizer, which uses about three Latin characters per token.
 
-The submitted text is embedded into the same latent space as the image. As a result, strings describing medical images of certain body parts obtained with certain imaging modalities are embedded close to such images. Also, when building systems on top of a MedImageInsight model, you should make sure that all your embedding strings are consistent with one another (word order and punctuation). For best results with base model, strings should follow the pattern `<image modality> <anatomy> <exam parameters> <condition/pathology>.`, for example: `x-ray chest anteroposterior Atelectasis.`. 
+The model embeds the submitted text into the same latent space as the image. As a result, strings describing medical images of certain body parts obtained with certain imaging modalities are embedded close to such images. Also, when building systems on top of a MedImageInsight model, make sure that all your embedding strings are consistent with one another (word order and punctuation). For best results with the base model, strings should follow the pattern `<image modality> <anatomy> <exam parameters> <condition/pathology>.`, for example: `x-ray chest anteroposterior Atelectasis.`. 
 
-If you're fine-tuning the model, you can change these parameters to better suit your application needs.
+If you fine-tune the model, you can change these parameters to better suit your application needs.
 
 ### Supported image formats
 The deployed model API supports images encoded in PNG format. 
 
-When the model receives the images, it does preprocessing that involves compressing and resizing the images to `512x512` pixels.
+When the model receives the images, it preprocesses the images by compressing and resizing them to `512x512` pixels.
 
 The preferred compression format is lossless PNG, containing either an 8-bit monochromatic or RGB image. For optimization purposes, you can perform resizing on the client side to reduce network traffic.
 
 ## Learn more from samples
-MedImageInsight is a versatile model that can be applied to a wide range of tasks and imaging modalities. For more specific examples of solving various tasks with MedImageInsight, see the following interactive Python notebooks. 
+MedImageInsight is a versatile model that you can apply to a wide range of tasks and imaging modalities. For more specific examples of solving various tasks with MedImageInsight, see the following interactive Python notebooks. 
 
 #### Getting started
 * [Deploying and Using MedImageInsight](https://aka.ms/healthcare-ai-examples-mi2-deploy): Learn how to deploy the MedImageInsight model programmatically and issue an API call to it.

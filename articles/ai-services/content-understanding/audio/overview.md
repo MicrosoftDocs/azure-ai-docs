@@ -2,7 +2,7 @@
 title: Azure AI Content Understanding audio overview
 titleSuffix: Azure AI services
 description: Learn about Azure AI Content Understanding audio solutions
-author: laujan
+author: PatrickFarley 
 ms.author: jagoerge
 manager: nitinme
 ms.date: 05/19/2025

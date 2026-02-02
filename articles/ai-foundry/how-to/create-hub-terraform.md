@@ -2,14 +2,15 @@
 title: 'Use Terraform to create an Azure AI Foundry hub'
 description: In this article, you create an Azure AI Foundry hub, an Azure AI Foundry project, an AI services resource, and more resources.
 ms.topic: how-to
-ms.date: 04/29/2025
+ms.date: 08/25/2025
 titleSuffix: Azure AI Foundry 
 ms.service: azure-ai-foundry
-manager: scottpolly 
 ms.reviewer: andyaviles 
-ms.author: larryfr 
-author: Blackmist 
-ms.custom: devx-track-terraform
+ms.author: sgilley
+author: sdgilley
+ms.custom: 
+  - devx-track-terraform
+  - hub-only
 content_well_notification: 
   - AI-contribution
 ai-usage: ai-assisted
@@ -35,7 +36,7 @@ In this article, you use Terraform to create an [Azure AI Foundry](https://ai.az
 
 ## Prerequisites
 
-- Create an Azure account with an active subscription. You can [create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 
 - [Install and configure Terraform](/azure/developer/terraform/quickstart-configure)
 

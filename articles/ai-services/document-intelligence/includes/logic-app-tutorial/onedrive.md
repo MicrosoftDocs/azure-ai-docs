@@ -14,7 +14,7 @@ monikerRange: '<=doc-intel-4.0.0'
 
 To complete this tutorial, you need the following resources:
 
-* **An Azure subscription**. You can [create a free Azure subscription](https://azure.microsoft.com/free/cognitive-services/)
+* **An Azure subscription**. You can [create a free Azure subscription](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 
 * A free [**OneDrive**](https://onedrive.live.com/signup) or [**OneDrive for Business**](https://www.microsoft.com/microsoft-365/onedrive/onedrive-for-business) cloud storage account.
 

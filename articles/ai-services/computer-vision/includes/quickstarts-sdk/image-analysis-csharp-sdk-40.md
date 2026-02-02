@@ -6,8 +6,6 @@ manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: include
 ms.date: 01/24/2023
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
 ms.author: pafarley
 ---
  
@@ -22,7 +20,7 @@ Use the Image Analysis client SDK for .NET to read text in an image and generate
 
 ## Prerequisites
 
-* An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/)
+* An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 - The [Visual Studio IDE](https://visualstudio.microsoft.com/vs/) with workload **.NET desktop development** enabled. Or, if you don't plan on using Visual Studio IDE, you need the [.NET SDK](https://dotnet.microsoft.com/download/dotnet) installed.
 - Once you have your Azure subscription, <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision"  title="create a Computer Vision resource"  target="_blank">create a Computer Vision resource</a> in the Azure portal. In order to use the captioning feature in this quickstart, you must create your resource in one of the supported Azure regions (see [Image captions](/azure/ai-services/computer-vision/concept-describe-images-40)). After it deploys, select **Go to resource**.
     * You need the key and endpoint from the resource you create to connect your application to the Azure AI Vision service.

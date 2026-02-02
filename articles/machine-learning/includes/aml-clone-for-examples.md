@@ -2,9 +2,9 @@
 title: "include file"
 description: "include file"
 services: machine-learning
-author: sdgilley
+author: s-polly
 ms.service: azure-machine-learning
-ms.author: sgilley
+ms.author: scottpolly
 ms.custom: "include file"
 ms.topic: "include"
 ms.date: 12/04/2018

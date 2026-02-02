@@ -1,15 +1,15 @@
 ---
 title: include file
 description: include file
-author: eric-urban
-ms.author: eur
+author: goergenj
+reviewer: patrickfarley
+ms.author: jagoerge
+ms.reviewer: pafarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 6/13/2025
+ms.date: 10/21/2025
 ms.custom: references_regions
 ---
-
-[!INCLUDE [Feature preview](../../../../includes/preview-feature.md)]
 
 In this article, you learn how to use video translation with Azure AI Speech in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
@@ -19,9 +19,9 @@ In this article, you learn how to use video translation with Azure AI Speech in 
 ## Prerequisites
 
 - An Azure subscription. If you don't have an Azure subscription, create a free account before you begin.
-- an AI Foundry resource for Speech [in a supported region](../../../video-translation-overview.md#supported-regions-and-languages). If you don't have a Speech resource, create one in the [Azure portal](https://portal.azure.com/).
+- an AI Foundry resource for Speech [in a supported region](../../../regions.md?tabs=speech-translation). If you don't have a Speech resource, create one in the [Azure portal](https://portal.azure.com/).
 - An [Azure Blob Storage](/azure/storage/blobs/storage-blobs-overview) account. 
-- You need a video file in .mp4 format, less than 5 GB, and shorter than 4 hours. For testing purposes, you can use the sample video file provided by Microsoft at [https://speechstudioprodpublicsa.blob.core.windows.net/ttsvoice/VideoTranslation/PublicDoc/SampleData/es-ES-TryOutOriginal.mp4](https://speechstudioprodpublicsa.blob.core.windows.net/ttsvoice/VideoTranslation/PublicDoc/SampleData/es-ES-TryOutOriginal.mp4).
+- You need a video file in .mp4 format, less than 5 GB, and shorter than 4 hours. For testing purposes, you can use the sample video file provided by Microsoft at [https://ai.azure.com/speechassetscache/ttsvoice/VideoTranslation/PublicDoc/SampleData/es-ES-TryOutOriginal.mp4](https://ai.azure.com/speechassetscache/ttsvoice/VideoTranslation/PublicDoc/SampleData/es-ES-TryOutOriginal.mp4).
 - Make sure video translation supports your [source and target language](../../../language-support.md?tabs=speech-translation#video-translation).
 
 ## Try out video translation
@@ -67,6 +67,8 @@ To create a video translation project, follow these steps:
 1. Select **Speech capabilities by scenario** > **Video translation**.
 
    :::image type="content" source="../../../media/video-translation/foundry-portal/capabilities-by-scenario.png" alt-text="Screenshot of filtering Speech service capabilities by scenario." lightbox="../../../media/video-translation/foundry-portal/capabilities-by-scenario.png":::
+
+1. Select **Go to Speech playground**.
 
 1. Select **My videos** > **Upload video**.
 

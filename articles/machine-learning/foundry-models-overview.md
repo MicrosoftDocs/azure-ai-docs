@@ -2,7 +2,6 @@
 title: Explore Azure AI Foundry Models in Azure Machine Learning
 titleSuffix: Azure Machine Learning
 description: This article introduces Azure AI Foundry Models and the model catalog in Azure Machine Learning.
-manager: scottpolly
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: training
@@ -11,8 +10,8 @@ ms.custom:
   - build-2025
 ms.date: 05/12/2025
 ms.reviewer: jcioffi
-ms.author: ssalgado
-author: ssalgadodev
+ms.author: scottpolly
+author: s-polly
 ---
 
 # Explore Azure AI Foundry Models in Azure Machine Learning

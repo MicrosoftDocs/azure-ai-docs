@@ -1,9 +1,9 @@
 ---
-author: sdgilley
+author: s-polly
 ms.service: azure-machine-learning
 ms.topic: include
 ms.date: 07/30/2021
-ms.author: sgilley
+ms.author: scottpolly
 ---
 
 After you have selected **Next: Advanced Settings**:

@@ -1,20 +1,23 @@
 ---
-title: 'RAG tutorial: Design an index'
+title: 'Classic RAG tutorial: Design an index'
 titleSuffix: Azure AI Search
 description: Design an index for RAG patterns in Azure AI Search.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.topic: tutorial
-ms.date: 05/29/2025
+ms.date: 10/14/2025
 
 ---
 
-# Tutorial: Design an index for RAG in Azure AI Search
+# Tutorial: Design an index for classic RAG in Azure AI Search
 
 An index contains searchable text and vector content, plus configurations. In a RAG pattern that uses a chat model for responses, you want an index designed around chunks of content that can be passed to an LLM at query time. 
+
+> [!NOTE]
+> We now recommend [agentic retrieval](agentic-retrieval-overview.md) for RAG workflows, but classic RAG is simpler. If it meets your application requirements, it's still a good choice.
 
 In this tutorial, you:
 

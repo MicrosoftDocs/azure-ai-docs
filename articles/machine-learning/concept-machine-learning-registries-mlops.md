@@ -5,8 +5,8 @@ description: Learn about Azure Machine Learning registries and their role in sca
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: kritifaujdar
 ms.date: 06/12/2025
 ms.topic: concept-article

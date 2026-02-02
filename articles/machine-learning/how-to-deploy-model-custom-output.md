@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: how-to
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.date: 03/18/2024
 ms.reviewer: cacrest
 ms.custom: devplatv2, update-code

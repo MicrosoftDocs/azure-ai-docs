@@ -2,15 +2,16 @@
 title: Debug a skillset
 titleSuffix: Azure AI Search
 description: Learn how to troubleshoot Azure AI Search skillset errors and issues by using a debug session in Azure portal.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
-ms.custom:
-  - ignite-2023
 ms.topic: how-to
 ms.date: 05/08/2025
+ms.update-cycle: 365-days
+ms.custom:
+  - ignite-2023
+  - sfi-image-nochange
 ---
 
 # Debug an Azure AI Search skillset in Azure portal
@@ -29,17 +30,11 @@ For background on how a debug session works, see [Debug sessions in Azure AI Sea
 
 + An existing enrichment pipeline, including a data source, a skillset, an indexer, and an index. 
 
-## Security and permissions
-
-+ To save a debug session to Azure storage, the search service identity must have **Storage Blob Data Contributor** permissions on Azure Storage. Otherwise, plan on choosing a full access connection string for the debug session connection to Azure Storage.
-
-+ If the Azure Storage account is behind a firewall, configure it to [allow search service access](search-indexer-howto-access-ip-restricted.md).
-
 ## Limitations
 
 Debug sessions work with all generally available [indexer data sources](search-data-sources-gallery.md) and most preview data sources, with the following exceptions:
 
-+ SharePoint Online indexer.
++ SharePoint indexer.
 
 + Azure Cosmos DB for MongoDB indexer.
 
@@ -47,7 +42,13 @@ Debug sessions work with all generally available [indexer data sources](search-d
 
 + For the SQL API of Azure Cosmos DB, if a partitioned collection was previously non-partitioned, the debug session won't find the document.
 
-+ For custom skills, a user-assigned managed identity isn't supported for a debug session connection to Azure Storage. As stated in the prerequisites, you can use a system managed identity, or specify a full access connection string that includes a key. For more information, see [Connect a search service to other Azure resources using a managed identity](search-howto-managed-identities-data-sources.md).
++ For custom skills, a user-assigned managed identity isn't supported for a debug session connection to Azure Storage. As stated in the prerequisites, you can use a system managed identity, or specify a full access connection string that includes a key. For more information, see [Connect a search service to other Azure resources using a managed identity](search-how-to-managed-identities.md).
+
+## Security and permissions
+
++ To save a debug session to Azure storage, the search service identity must have **Storage Blob Data Contributor** permissions on Azure Storage. Otherwise, plan on choosing a full access connection string for the debug session connection to Azure Storage.
+
++ If the Azure Storage account is behind a firewall, configure it to [allow search service access](search-indexer-howto-access-ip-restricted.md).
 
 ## Create a debug session
 
@@ -131,7 +132,7 @@ If skills produce output but the search index is empty, check the field mappings
 
 Select one of the mapping options and expand the details view to review source and target definitions.
 
-+ [**Projection Mappings**](index-projections-concept-intro.md) are found in skillsets that provide integrated vectorization, such as the skills created by the [Import and vectorize data wizard](search-get-started-portal-import-vectors.md). These mappings determine parent-child (chunk) field mappings and whether a secondary index is created for just the chunked content
++ [**Projection Mappings**](index-projections-concept-intro.md) are found in skillsets that provide integrated vectorization, such as the skills created by the [**Import data (new)** wizard](search-get-started-portal-import-vectors.md). These mappings determine parent-child (chunk) field mappings and whether a secondary index is created for just the chunked content
 
 + [**Output Field Mappings**](cognitive-search-output-field-mapping.md) are found in indexers and are used when skillsets invoke built-in or custom skills. These mappings are used to set the data path from a node in the enrichment tree to a field in the search index. For more information about paths, see [enrichment node path syntax](cognitive-search-concept-annotations-syntax.md). 
 

@@ -4,22 +4,137 @@ titleSuffix: Azure AI Foundry
 description: Find examples on how to ground agents with SharePoint.
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 06/05/2025
+ms.date: 07/09/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents-code
-zone_pivot_groups: selection-sharepoint
+zone_pivot_groups: selection-agent-sharepoint
 ---
 
 # How to use the SharePoint tool
 
+> [!NOTE]
+> This article describes the Microsoft SharePoint tool for Azure AI Foundry Agent Service. For information on using and deploying SharePoint sites, see the [SharePoint documentation](/sharepoint/). 
+
 Use this article to find step-by-step instructions and code samples for using the SharePoint tool in Azure AI Foundry Agent Service.
+
+:::zone pivot="python"
+
+## Prerequisites
+
+* Your Azure AI Foundry Project endpoint.
+
+    [!INCLUDE [endpoint-string-portal](../../includes/endpoint-string-portal.md)]
+
+    Save this endpoint to an environment variable named `PROJECT_ENDPOINT`. 
+
+
+* The name of your SharePoint connection name. You can find it in the Azure AI Foundry portal by selecting **Management center** from the left navigation menu. Then selecting **Connected resources**.
+    
+    :::image type="content" source="../../media/tools/sharepoint-connection.png" alt-text="A screenshot showing the SharePoint connection name. " lightbox="../../media/tools/sharepoint-connection.png":::
+
+    Save this endpoint to an environment variable named `SHAREPOINT_RESOURCE_NAME`
+
+
+* The names of your model's deployment name. You can find it in **Models + Endpoints** in the left navigation menu. 
+
+    :::image type="content" source="../../media/tools/model-deployment-portal.png" alt-text="A screenshot showing the model deployment screen the AI Foundry portal." lightbox="../../media/tools/model-deployment-portal.png":::
+    
+    Save the name of your model deployment name as an environment variable named `MODEL_DEPLOYMENT_NAME`. 
+
+## Create a project client
+
+Create a client object, which will contain the connection string for connecting to your AI project and other resources.
+
+```python
+import os
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+from azure.ai.agents.models import SharepointTool
+
+# Retrieve the endpoint and credentials
+project_endpoint = os.environ["PROJECT_ENDPOINT"]  # Ensure the PROJECT_ENDPOINT environment variable is set
+
+# Initialize the AIProjectClient
+project_client = AIProjectClient(
+    endpoint=os.environ["PROJECT_ENDPOINT"],
+    credential=DefaultAzureCredential(),
+)
+``` 
+
+## Create an agent with the Sharepoint tool enabled
+
+To make the Microsoft Fabric tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the Azure AI Foundry portal.
+
+```python
+
+conn_id = project_client.connections.get(name=os.environ["SHAREPOINT_RESOURCE_NAME"]).id
+
+# Initialize Sharepoint tool with connection id
+sharepoint = SharepointTool(connection_id=conn_id)
+
+# Create an agent with the Fabric tool
+# Create an Agent with the Fabric tool and process an Agent run
+with project_client:
+    agents_client = project_client.agents
+
+    agent = agents_client.create_agent(
+        model=os.environ["MODEL_DEPLOYMENT_NAME"],
+        name="my-agent",
+        instructions="You are a helpful agent",
+        tools=sharepoint.definitions,
+    )
+    print(f"Created agent, ID: {agent.id}")
+```
+
+## Create a thread
+
+```python
+# Create thread for communication
+thread = agents_client.threads.create()
+print(f"Created thread, ID: {thread.id}")
+
+# Create message to thread
+message = agents_client.messages.create(
+    thread_id=thread.id,
+    role="user",
+    content="Hello, summarize the key points of the <sharepoint_resource_document>",
+)
+print(f"Created message, ID: {message.id}")
+```
+
+## Create a run and check the output
+
+```python
+# Create and process agent run in thread with tools
+run = agents_client.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
+print(f"Run finished with status: {run.status}")
+
+if run.status == "failed":
+    print(f"Run failed: {run.last_error}")
+
+# Uncomment the following lines to delete the agent when done
+#agents_client.delete_agent(agent.id)
+#print("Deleted agent")
+
+# Fetch and log all messages
+messages = agents_client.messages.list(thread_id=thread.id)
+for msg in messages:
+    if msg.text_messages:
+        last_text = msg.text_messages[-1]
+        print(f"{msg.role}: {last_text.text.value}")
+```
+
+:::zone-end
+
+:::zone pivot="rest"
 
 ## Create an agent
 
-Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api#api-call-information) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
+Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
 
 ```bash
 curl --request POST \
@@ -95,3 +210,5 @@ curl --request GET \
   --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
   -H "Authorization: Bearer $AGENT_TOKEN"
 ```
+
+:::zone-end

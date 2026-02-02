@@ -6,13 +6,13 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: overview
-ms.date: 01/29/2025
+ms.date: 07/22/2025
 ms.author: lajanuar
 ---
 
 # What are Azure AI Translator containers?
 
-Azure AI Translator containers enable you to build translator application architecture that is optimized for both robust cloud capabilities and edge locality. A container is a running instance of an executable software image. A Translator container image includes all libraries, tools, and dependencies needed to run an application consistently in any private, public, or personal computing environment. Containers are isolated, lightweight, portable, and are great for implementing specific security or data governance requirements. Azure AI Translator containers are available in [connected](#connected-azure-ai-translator-containers) and [disconnected (offline)](#disconnected-azure-ai-translator-containers) modalities.
+Azure AI Translator containers enable you to build translator application architecture that is optimized for both robust cloud capabilities and edge locality. A container is an active running instance of an executable software image that contains everything needed—such as all libraries, tools, and dependencies—to run your application consistently and reliably in any environment, whether it's private, public, or personal. Containers are isolated, lightweight, portable, making them ideal for meeting specific security or data governance requirements. Azure AI Translator containers are available in [connected](#connected-azure-ai-translator-containers) and [disconnected (offline)](#disconnected-azure-ai-translator-containers) modes.
 
 ## Connected Azure AI Translator containers
 
@@ -40,7 +40,7 @@ You're billed for connected containers monthly, based on the usage and consumpti
 
 Disconnected containers are offered through commitment tier pricing offered at a discounted rate compared to Standard pricing. With commitment tier pricing, you can commit to using Translator Service features for a fixed fee, at a predictable total cost, based on the needs of your workload. Commitment plans for disconnected containers have a calendar year commitment period.
 
-When you purchase a plan, you're charged the full price immediately. During the commitment period, you can't change your commitment plan; however you can purchase more units at a pro-rated price for the remaining days in the year. You have until midnight (UTC) on the last day of your commitment, to end a commitment plan.
+When you purchase a plan, you're charged for the full price immediately. During the commitment period, you can't change your commitment plan; however you can purchase more units at a pro-rated price for the remaining days in the year. You have until midnight (UTC) on the last day of your commitment, to end a commitment plan.
 
   ***Sample billing metadata for Translator disconnected container***
 

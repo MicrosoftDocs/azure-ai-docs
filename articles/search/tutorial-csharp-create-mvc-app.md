@@ -2,30 +2,30 @@
 title: Add search to ASP.NET Core MVC
 titleSuffix: Azure AI Search
 description: In this Azure AI Search tutorial, learn how to add search to an ASP.NET Core (Model-View-Controller) application.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.devlang: csharp
 ms.custom:
   - ignite-2023
 ms.topic: tutorial
-ms.date: 01/17/2025
+ms.date: 07/10/2025
 ---
 
 # Create a search app in ASP.NET Core
 
-In this tutorial, create a basic ASP.NET Core (Model-View-Controller) app that runs in localhost and connects to the hotels-sample-index on your search service. In this tutorial, learn how to:
+In this tutorial, you create a basic ASP.NET Core (Model-View-Controller) app that runs in localhost and connects to the hotels-sample-index on your search service. You learn how to:
 
 > [!div class="checklist"]
 > + Create a basic search page
 > + Filter results
 > + Sort results
 
-This tutorial puts the focus on server-side operations called through the [Search APIs](/dotnet/api/overview/azure/search.documents-readme). Although it's common to sort and filter in client-side script, knowing how to invoke these operations on the server gives you more options when designing the search experience.
+This tutorial focuses on server-side operations called through the [Search APIs](/dotnet/api/overview/azure/search.documents-readme). Although it's common to sort and filter in client-side script, knowing how to invoke these operations on the server gives you more options when designing the search experience.
 
-Sample code for this tutorial can be found in the [azure-search-dotnet-samples](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/create-mvc-app) repository on GitHub. 
+You can find sample code for this tutorial in the [azure-search-dotnet-samples](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/create-mvc-app) repository on GitHub. 
 
 ## Prerequisites
 
@@ -42,21 +42,21 @@ Sample code for this tutorial can be found in the [azure-search-dotnet-samples](
 
 1. Select **ASP.NET Core Web App (Model-View-Controller)**, and then select **Next**.
 
-1. Provide a project name, and then select **Next**.
+1. Enter a project name, and then select **Next**.
 
-1. On the next page, select **.NET 6.0** or **.NET 7.0** or **.NET 8.0**.
+1. On the next page, select **.NET 9.0**.
 
-1. Verify that **Do not use top-level statements** is unchecked.
+1. Accept the default settings.
 
 1. Select **Create**.
 
 ### Add NuGet packages
 
-1. On Tools, select **NuGet Package Manager** > **Manage NuGet Packages for the solution**.
+1. On the **Tools** menu, select **NuGet Package Manager** > **Manage NuGet Packages for the solution**.
 
 1. Browse for `Azure.Search.Documents` and install the latest stable version.
 
-1. Browse for and install the `Microsoft.Spatial` package. The sample index includes a GeographyPoint data type. Installing this package avoids run time errors. Alternatively, remove the "Location" field from the Hotels class if you don't want to install the package. That field isn't used in this tutorial.
+1. Browse for and install the `Microsoft.Spatial` package. The sample index includes a `GeographyPoint` data type. Installing this package avoids run time errors. Alternatively, remove the "Location" field from the `Hotels` class if you don't want to install the package. That field isn't used in this tutorial.
 
 ### Add service information
 
@@ -73,13 +73,13 @@ Modify `appsettings.json` to specify your search service and [query API key](sea
 
 You can get the service URL and API key from the Azure portal. Because this code is querying an index and not creating one, you can use a query key instead of an admin key.
 
-Make sure to specify the search service that has the hotels-sample-index.
+Make sure to specify a search service that has the `hotels-sample-index`.
 
 ## Add models
 
-In this step, create models that represent the schema of the hotels-sample-index.
+In this step, you create models that represent the schema of the hotels-sample-index.
 
-1. In Solution explorer, right-select **Models** and add a new class named "Hotel" for the following code:
+1. In Solution Explorer, right-select **Models** and add a new class named "Hotel" for the following code:
 
    ```csharp
     using Azure.Search.Documents.Indexes.Models;
@@ -217,9 +217,9 @@ In this step, create models that represent the schema of the hotels-sample-index
 
 For this tutorial, modify the default `HomeController` to contain methods that execute on your search service.
 
-1. In Solution explorer under **Models**, open `HomeController`.
+1. In Solution Explorer under **Models**, open `HomeController`.
 
-1. Replace the default with the following content:
+1. Replace the default content with the following code:
 
    ```csharp
    using Azure;
@@ -321,9 +321,9 @@ For this tutorial, modify the default `HomeController` to contain methods that e
 
 ## Modify the view
 
-1. In Solution explorer under **Views** > **Home**, open `index.cshtml`.
+1. In Solution explorer, under **Views** > **Home**, open `index.cshtml`.
 
-1. Replace the default with the following content:
+1. Replace the default content with the following code:
 
     ```razor
     @model HotelDemoApp.Models.SearchData;
@@ -392,7 +392,7 @@ For this tutorial, modify the default `HomeController` to contain methods that e
 
 ## Run the sample
 
-1. Press **F5** to compile and run the project. The app runs on local host and opens in your default browser.
+1. Press **F5** to compile and run the project. The app runs on localhost and opens in your default browser.
 
 1. Select **Search** to return all results.
 
@@ -404,7 +404,7 @@ In the next several sections, modify the **RunQueryAsync** method in the `HomeCo
 
 Index field attributes determine which fields are searchable, filterable, sortable, facetable, and retrievable. In the hotels-sample-index, filterable fields include Category, Address/City, and Address/StateProvince. This example adds a [$Filter](search-query-odata-filter.md) expression on Category.
 
-A filter always executes first, followed by a query assuming one is specified.
+A filter always executes first, followed by a query, assuming you specify one.
 
 1. Open the `HomeController` and find the **RunQueryAsync** method. Add [Filter](/dotnet/api/azure.search.documents.searchoptions.filter) to `var options = new SearchOptions()`:
 
@@ -443,7 +443,7 @@ For more information about filter expressions, see [Filters in Azure AI Search](
 
 In the hotels-sample-index, sortable fields include Rating and LastRenovated. This example adds an [$OrderBy](/dotnet/api/azure.search.documents.searchoptions.orderby) expression to the Rating field.
 
-1. Open the `HomeController` and replace **RunQueryAsync** method with the following version:
+1. Open the `HomeController` and replace the **RunQueryAsync** method with the following version:
 
    ```csharp
     private async Task<ActionResult> RunQueryAsync(SearchData model)
@@ -475,11 +475,8 @@ In the hotels-sample-index, sortable fields include Rating and LastRenovated. Th
 
 For more information about sorting, see [OData $orderby syntax in Azure AI Search](search-query-odata-orderby.md).
 
-## Next steps
+## Next step
 
-In this tutorial, you created an ASP.NET Core (MVC) project that connected to a search service and called Search APIs for server-side filtering and sorting.
+In this tutorial, you created an ASP.NET Core (MVC) project that connects to a search service and calls Search APIs for server-side filtering and sorting.
 
-If you want to explore client-side code that responds to user actions, consider adding a React template to your solution:
-
-> [!div class="nextstepaction"]
-> [C# Tutorial: Add search to a website with .NET](tutorial-csharp-overview.md)
+To add client-side code that responds to user actions, use a React template in your solution: [C# Tutorial: Add search to a website with .NET](tutorial-csharp-overview.md).

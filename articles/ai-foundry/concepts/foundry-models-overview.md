@@ -1,16 +1,16 @@
----
+﻿---
 title: Explore Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
 description: This article introduces Azure AI Foundry Models and the model catalog in Azure AI Foundry portal.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - build-2025
   - ai-learning-hub
 ms.topic: how-to
-ms.date: 05/12/2025
+ms.date: 09/04/2025
 ms.reviewer: jcioffi
 ms.author: ssalgado
+manager: nitinme
 author: ssalgadodev
 ---
 
@@ -20,13 +20,13 @@ Azure AI Foundry Models is your one-stop destination for discovering, evaluating
 
 With Foundry Models, you can: 
 
-* Explore a rich catalog of cutting-edge models from Microsoft, OpenAI, DeepSeek,  Hugging Face, Meta, and more. 
+* Explore a rich catalog of cutting-edge models from Microsoft, OpenAI, DeepSeek, Hugging Face, Meta, and more. 
 * Compare and evaluate models side-by-side using real-world tasks and your own data. 
 * Deploy with confidence, thanks to built-in tools for fine-tuning, observability, and responsible AI. 
 * Choose your path—bring your own model, use a hosted one, or integrate seamlessly with Azure services. 
-* Whether you're a developer, data scientist, or enterprise architect, Foundry Models gives you the flexibility and control to build AI solutions that scale—securely, responsibly, and fast.
+* Whether you're a developer, data scientist, or enterprise architect, Foundry Models gives you the flexibility and control to build AI solutions that scale—securely, responsibly, and fast. 
 
-Azure AI Foundry offers a comprehensive catalog of AI models. There are over 1900+ models ranging from Foundation Models, Reasoning Models, Small Language Models, Multimodal Models, Domain Specific Models, Industry Models and more.
+Azure AI Foundry offers a comprehensive catalog of AI models. There are over 1900+ models ranging from Foundation Models, Reasoning Models, Small Language Models, Multimodal Models, Domain Specific Models, Industry Models and more. 
 
 Our catalog is organized into two main categories: 
 
@@ -34,24 +34,29 @@ Our catalog is organized into two main categories:
 * [Models from Partners and Community](#models-from-partners-and-community)
 
 Understanding the distinction between these categories helps you choose the right models based on your specific requirements and strategic goals. 
+
+> [!NOTE]
+> * For all models, Customers remain responsible for (i) complying with the law in their use of any model or system; (ii) reviewing model descriptions in the model catalog, model cards made available by the model provider, and other relevant documentation; (iii) selecting an appropriate model for their use case, and (iv) implementing appropriate measures (including use of Azure AI Content Safety) to ensure Customer's use of the Microsoft AI Services complies with the Acceptable Use Policy in Microsoft’s Product Terms and the Microsoft Enterprise AI Services Code of Conduct. 
  
 ## Models Sold Directly by Azure 
  
-These are models that are hosted and sold by Microsoft under Microsoft Product Terms. These models have undergone rigorous evaluation and are deeply integrated into Azure’s AI ecosystem. The models come from a variety of top providers and they offer enhanced integration, optimized performance, and direct Microsoft support, including enterprise-grade Service Level Agreements (SLAs).
+These are models that are hosted and sold by Microsoft under Microsoft Product Terms. Microsoft has evaluated these models and they are deeply integrated into Azure's AI ecosystem. The models come from a variety of providers and they offer enhanced integration, optimized performance, and direct Microsoft support, including enterprise-grade Service Level Agreements (SLAs).
  
 Characteristics of models sold directly by Azure: 
 
-- Official first-party support from Microsoft 
-- High level of integration with Azure services and infrastructure 
-- Extensive performance benchmarking and validation 
-- Adherence to Microsoft's Responsible AI standards 
-- Enterprise-grade scalability, reliability, and security
+- Support available from Microsoft.
+- High level of integration with Azure services and infrastructure. 
+- Subject to internal review based on Microsoft’s Responsible AI standards.
+- Model documentation and transparency reports provide customer visibility to model risks, mitigations, and limitations. 
+- Enterprise-grade scalability, reliability, and security. 
 
-These Models also have the benefit of fungible Provisioned Throughput, meaning you can flexibly use your quota and reservations across any of these models.
+Some of these Models also have the benefit of fungible Provisioned Throughput, meaning you can flexibly use your quota and reservations across any of these models.
 
 ## Models from Partners and Community
 
-These models constitute the vast majority of the Azure AI Foundry Models. These models are provided by trusted third-party organizations, partners, research labs, and community contributors. These models offer specialized and diverse AI capabilities, covering a wide array of scenarios, industries, and innovations.
+These models constitute the vast majority of the Azure AI Foundry Models and are provided by trusted third-party organizations, partners, research labs, and community contributors. These models offer specialized and diverse AI capabilities, covering a wide array of scenarios, industries, and innovations.
+
+Examples of models from Partners and community are **Open models from the Hugging Face hub**. These include hundreds of models from the Hugging Face hub for real-time inference with managed compute. Hugging Face creates and maintains models listed in this collection. For help with the Hugging Face models, use the [Hugging Face forum](https://discuss.huggingface.co) or [Hugging Face support](https://huggingface.co/support). Learn how to deploy Hugging Face models in [Deploy open models with Azure AI Foundry](../how-to/deploy-models-managed.md).
 
 Characteristics of Models from Partners and Community: 
 * Developed and supported by external partners and community contributors 
@@ -60,25 +65,20 @@ Characteristics of Models from Partners and Community:
 * Community-driven innovation and rapid availability of cutting-edge models 
 * Standard Azure AI integration, with support and maintenance managed by the respective providers 
 
-Models are deployable as Managed Compute or Standard (pay-go) deployment options. The model provider selects how the models are deployable.   
- 
+Models from Partners and Community are deployable as Managed Compute or serverless API deployment options. The model provider selects how the models are deployable.   
+
+### Requesting a model to be included in the model catalog
+
+You can request that we add a model to the model catalog, right from the model catalog page in the Azure AI Foundry portal. From the search bar of the model catalog page, a search for a model that doesn't exist in the catalog, such as *mymodel*, returns the **Request a model** button. Select this button to open up a form where you can share details about the model you're requesting.
+
+:::image type="content" source="../media/explore/model-request-button-in-catalog.png" alt-text="A screenshot showing where to request inclusion of a model in the model catalog." lightbox="../media/explore/model-request-button-in-catalog.png":::
+
 ## Choosing Between direct models and partner & community models 
 
 When selecting models from Azure AI Foundry Models, consider the following: 
 * **Use Case and Requirements**: Models sold directly by Azure are ideal for scenarios requiring deep Azure integration, guaranteed support, and enterprise SLAs. Models from Partners and Community excel in specialized use cases and innovation-led scenarios. 
 * **Support Expectations**: Models sold directly by Azure come with robust Microsoft-provided support and maintenance. These models are supported by their providers, with varying levels of SLA and support structures. 
 * **Innovation and Specialization**: Models from Partners and Community offer rapid access to specialized innovations and niche capabilities often developed by leading research labs and emerging AI providers.
-
-
-## Model collections
-
-The model catalog organizes models into different collections, including:
-
-* **Azure OpenAI models exclusively available on Azure**: Flagship Azure OpenAI models available through an integration with Azure OpenAI in Foundry Models. Microsoft supports these models and their use according to the product terms and [SLA for Azure OpenAI](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services).
-
-* **Open models from the Hugging Face hub**: Hundreds of models from the Hugging Face hub for real-time inference with managed compute. Hugging Face creates and maintains models listed in this collection. For help, use the [Hugging Face forum](https://discuss.huggingface.co) or [Hugging Face support](https://huggingface.co/support). Learn more in [Deploy open models with Azure AI Foundry](../how-to/deploy-models-managed.md).
-
-You can submit a request to add a model to the model catalog by using [this form](https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GRqy180BHbR_frVPkg_MhOoQxyrjmm7ZJUM09WNktBMURLSktOWEdDODBDRjg2NExKUy4u).
 
 ## Overview of Model Catalog capabilities
 
@@ -92,7 +92,7 @@ On the **model catalog filters**, you'll find:
 * **Industry**: you can filter for the models that are trained on industry specific dataset.
 * **Capabilities**: you can filter for unique model features such as reasoning and tool calling.
 * **Deployment options**: you can filter for the models that support a specific deployment options.
-  * **Standard**: this option allows you to pay per API call.
+  * **serverless API**: this option allows you to pay per API call.
   * **Provisioned**: best suited for real-time scoring for large consistent volume.
   * **Batch**: best suited for cost-optimized batch jobs, and not latency. No playground support is provided for the batch deployment.
   * **Managed compute**: this option allows you to deploy a model on an Azure virtual machine. You will be billed for hosting and inferencing.
@@ -109,27 +109,27 @@ On the **model card**, you'll find:
 * **License**: you will find legal information related to model licensing.
 * **Artifacts**: this tab will be displayed for open models only. You can see the model assets and download them via user interface.
 
-## Model deployment: Managed compute and standard deployments 
+## Model deployment: Managed compute and serverless API deployments 
 
-In addition to deploying to Azure OpenAI, the model catalog offers two distinct ways to deploy models for your use: managed compute and standard deployments.
+In addition to deploying to Azure OpenAI, the model catalog offers two distinct ways to deploy models for your use: managed compute and serverless API deployments.
 
 The deployment options and features available for each model vary, as described in the following tables. [Learn more about data processing with the deployment options](../how-to/concept-data-privacy.md).
 
 ### Capabilities of model deployment options
 <!-- docutune:disable -->
 
-Features | Managed compute | Standard deployment
+Features | Managed compute | serverless API deployment
 --|--|--
 Deployment experience and billing | Model weights are deployed to dedicated virtual machines with managed compute. A managed compute, which can have one or more deployments, makes available a REST API for inference. You're billed for the virtual machine core hours that the deployments use. | Access to models is through a deployment that provisions an API to access the model. The API provides access to the model that Microsoft hosts and manages, for inference. You're billed for inputs and outputs to the APIs, typically in tokens. Pricing information is provided before you deploy.
 API authentication | Keys and Microsoft Entra authentication. | Keys only.
 Content safety | Use Azure AI Content Safety service APIs. | Azure AI Content Safety filters are available integrated with inference APIs. Azure AI Content Safety filters are billed separately.
-Network isolation | [Configure managed networks for Azure AI Foundry hubs](../how-to/configure-managed-network.md).  | Managed compute follow your hub's public network access (PNA) flag setting. For more information, see the [Network isolation for models deployed via standard deployments](#network-isolation-for-models-deployed-via-standard-deployments) section later in this article.
+Network isolation | [Configure managed networks for Azure AI Foundry hubs](../how-to/configure-managed-network.md).  | Managed compute follow your hub's public network access (PNA) flag setting. For more information, see the [Network isolation for models deployed via serverless API deployments](#network-isolation-for-models-deployed-via-serverless-api-deployments) section later in this article.
 
 ### Available models for supported deployment options
 
-For Azure OpenAI models, see [Azure OpenAI](../../ai-services/openai/concepts/models.md).
+For Azure OpenAI models, see [Azure OpenAI](../openai/concepts/models.md).
 
-To view a list of supported models for standard deployment or Managed Compute, go to the home page of the model catalog in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). Use the **Deployment options** filter to select either **Standard deployment** or **Managed Compute**. 
+To view a list of supported models for serverless API deployment or Managed Compute, go to the home page of the model catalog in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). Use the **Deployment options** filter to select either **serverless API deployment** or **Managed Compute**. 
 
 :::image type="content" source="../media/how-to/model-catalog-overview/catalog-filter.png" alt-text="A screenshot showing how to filter by managed compute models in the catalog." lightbox="../media/how-to/model-catalog-overview/catalog-filter.png":::  
 
@@ -141,8 +141,8 @@ To view a list of supported models for standard deployment or Managed Compute, g
 ## Model lifecycle: deprecation and retirement
 AI models evolve fast, and when a new version or a new model with updated capabilities in the same model family become available, older models may be retired in the AI Foundry model catalog. To allow for a smooth transition to a newer model version, some models provide users with the option to enable automatic updates. To learn more about the model lifecycle of different models, upcoming model retirement dates, and suggested replacement models and versions, see:
 
-- [Azure OpenAI model deprecations and retirements](../../ai-services/openai/concepts/model-retirements.md)
-- [Standard deployment model deprecations and retirements](../concepts/model-lifecycle-retirement.md)
+- [Azure OpenAI model deprecations and retirements](../openai/concepts/model-retirements.md)
+- [Serverless API deployment model deprecations and retirements](../concepts/model-lifecycle-retirement.md)
 
 ## Managed compute
 
@@ -180,11 +180,11 @@ The [Azure AI Content Safety](../../ai-services/content-safety/overview.md) serv
 You can refer to [this notebook](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/system/inference/text-generation/llama-safe-online-deployment.ipynb) for reference integration with Azure AI Content Safety for Llama 2. Or you can use the Content Safety (Text) tool in prompt flow to pass responses from the model to Azure AI Content Safety for screening. You're billed separately for such use, as described in [Azure AI Content Safety pricing](https://azure.microsoft.com/pricing/details/cognitive-services/content-safety/).
 
 
-## Standard deployment billing
+## Serverless API deployment billing
 
-You can deploy certain models in the model catalog with Standard billing. This deployment method, also called *standard deployment*, provides a way to consume the models as APIs without hosting them on your subscription. Models are hosted in a Microsoft-managed infrastructure, which enables API-based access to the model provider's model. API-based access can dramatically reduce the cost of accessing a model and simplify the provisioning experience.
+You can deploy certain models in the model catalog with serverless API billing. This deployment method, also called *serverless API deployment*, provides a way to consume the models as APIs without hosting them on your subscription. Models are hosted in a Microsoft-managed infrastructure, which enables API-based access to the model provider's model. API-based access can dramatically reduce the cost of accessing a model and simplify the provisioning experience.
 
-Models that are available for deployment as standard deployments are offered by the model provider, but they're hosted in a Microsoft-managed Azure infrastructure and accessed via API. Model providers define the license terms and set the price for use of their models. The Azure Machine Learning service:
+Models that are available for deployment as serverless API deployments are offered by the model provider, but they're hosted in a Microsoft-managed Azure infrastructure and accessed via API. Model providers define the license terms and set the price for use of their models. The Azure Machine Learning service:
 
 * Manages the hosting infrastructure.
 * Makes the inference APIs available.
@@ -195,7 +195,7 @@ Learn more about data processing for MaaS in the [article about data privacy](..
 :::image type="content" source="../media/explore/model-publisher-cycle.png" alt-text="Diagram that shows the model publisher service cycle." lightbox="../media/explore/model-publisher-cycle.png":::
 
 > [!NOTE]
-> Cloud Solution Provider (CSP) subscriptions do not have the ability to purchase standard deployment models.
+> Cloud Solution Provider (CSP) subscriptions do not have the ability to purchase serverless API deployment models.
 
 ### Billing
 
@@ -207,23 +207,23 @@ Models from Microsoft are billed via Azure meters as First Party Consumption Ser
 
 ### Fine-tuning models
 
-Certain models also support fine-tuning. For these models, you can take advantage of managed compute (preview) or standard deployments fine-tuning to tailor the models by using data that you provide. For more information, see the [fine-tuning overview](../concepts/fine-tuning-overview.md).
+Certain models also support fine-tuning. For these models, you can take advantage of managed compute (preview) or serverless API deployments fine-tuning to tailor the models by using data that you provide. For more information, see the [fine-tuning overview](../concepts/fine-tuning-overview.md).
 
-### RAG with models deployed as standard deployments
+### RAG with models deployed as serverless API deployments
 
-In Azure AI Foundry portal, you can use vector indexes and retrieval-augmented generation (RAG). You can use models that can be deployed via standard deployments to generate embeddings and inferencing based on custom data. These embeddings and inferencing can then generate answers specific to your use case. For more information, see [Build and consume vector indexes in Azure AI Foundry portal](../how-to/index-add.md).
+In Azure AI Foundry portal, you can use vector indexes and retrieval-augmented generation (RAG). You can use models that can be deployed via serverless API deployments to generate embeddings and inferencing based on custom data. These embeddings and inferencing can then generate answers specific to your use case. For more information, see [Build and consume vector indexes in Azure AI Foundry portal](../how-to/index-add.md).
 
 ### Regional availability of offers and models
 
-Pay-per-token billing is available only to users whose Azure subscription belongs to a billing account in a country/region where the model provider has made the offer available. If the offer is available in the relevant region, the user then must have a project resource in the Azure region where the model is available for deployment or fine-tuning, as applicable. See [Region availability for models in standard deployments | Azure AI Foundry](../how-to/deploy-models-serverless-availability.md) for detailed information.
+Pay-per-token billing is available only to users whose Azure subscription belongs to a billing account in a country/region where the model provider has made the offer available. If the offer is available in the relevant region, the user then must have a project resource in the Azure region where the model is available for deployment or fine-tuning, as applicable. See [Region availability for models in serverless API deployments | Azure AI Foundry](../how-to/deploy-models-serverless-availability.md) for detailed information.
 
-### Content safety for models deployed via standard deployments
+### Content safety for models deployed via serverless API deployments
 
 [!INCLUDE [content-safety-serverless-models](../includes/content-safety-serverless-models.md)]
 
-### Network isolation for models deployed via standard deployments
+### Network isolation for models deployed via serverless API deployments
 
-Endpoints for models deployed as standard deployments follow the public network access flag setting of the Azure AI Foundry hub that has the project in which the deployment exists. To help secure your standard deployment, disable the public network access flag on your Azure AI Foundry hub. You can help secure inbound communication from a client to your endpoint by using a private endpoint for the hub.
+Endpoints for models deployed as serverless API deployments follow the public network access flag setting of the Azure AI Foundry hub that has the project in which the deployment exists. To help secure your serverless API deployment, disable the public network access flag on your Azure AI Foundry hub. You can help secure inbound communication from a client to your endpoint by using a private endpoint for the hub.
 
 To set the public network access flag for the Azure AI Foundry hub:
 
@@ -235,11 +235,11 @@ To set the public network access flag for the Azure AI Foundry hub:
 
 #### Limitations
 
-* If you have an Azure AI Foundry hub with a private endpoint created before July 11, 2024, standard deployments added to projects in this hub won't follow the networking configuration of the hub. Instead, you need to create a new private endpoint for the hub and create a new standard deployment in the project so that the new deployments can follow the hub's networking configuration.
+* If you have an Azure AI Foundry hub with a private endpoint created before July 11, 2024, serverless API deployments added to projects in this hub won't follow the networking configuration of the hub. Instead, you need to create a new private endpoint for the hub and create a new serverless API deployment in the project so that the new deployments can follow the hub's networking configuration.
 
-* If you have an Azure AI Foundry hub with MaaS deployments created before July 11, 2024, and you enable a private endpoint on this hub, the existing standard deployments won't follow the hub's networking configuration. For standard deployments in the hub to follow the hub's networking configuration, you need to create the deployments again.
+* If you have an Azure AI Foundry hub with MaaS deployments created before July 11, 2024, and you enable a private endpoint on this hub, the existing serverless API deployments won't follow the hub's networking configuration. For serverless API deployments in the hub to follow the hub's networking configuration, you need to create the deployments again.
 
-* Currently, [Azure OpenAI On Your Data](/azure/ai-services/openai/concepts/use-your-data) support isn't available for standard deployments in private hubs, because private hubs have the public network access flag disabled.
+* Currently, [Azure OpenAI On Your Data](/azure/ai-foundry/openai/concepts/use-your-data) support isn't available for serverless API deployments in private hubs, because private hubs have the public network access flag disabled.
 
 * Any network configuration change (for example, enabling or disabling the public network access flag) might take up to five minutes to propagate.
   

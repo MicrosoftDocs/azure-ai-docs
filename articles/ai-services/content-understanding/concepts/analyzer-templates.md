@@ -2,7 +2,7 @@
 title: Azure AI Content Understanding analyzer templates
 titleSuffix: Azure AI services
 description: Learn about Azure AI Content Understanding analyzer templates.
-author: laujan
+author: PatrickFarley 
 ms.author: kabrow
 manager: nitinme
 ms.date: 05/19/2025

@@ -7,15 +7,13 @@ manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: conceptual
-ms.date: 09/25/2024
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
+ms.date: 09/16/2025
 ms.author: pafarley
 ---
 
 # Image captions (version 4.0)
 
-Image captions in Image Analysis 4.0 are available through the **Caption** and **Dense Captions** features.
+Image captions in Image Analysis 4.0 are available through the **Caption** and **Dense Captions** visual features.
 
 The Caption feature generates a one-sentence description of all the image contents. Dense Captions provides more detail by generating one-sentence descriptions of up to 10 different regions of the image in addition to describing the whole image. Dense Captions also returns bounding box coordinates of the described image regions. Both of these features use the latest Florence-based AI models.
 
@@ -146,7 +144,7 @@ The dense captioning feature is part of the [Analyze Image](https://aka.ms/visio
 
 ---
 
-## Next steps
+## Related content
 
 * Learn the related concept of [object detection](concept-object-detection-40.md).
 * [Quickstart: Image Analysis REST API or client libraries](./quickstarts-sdk/image-analysis-client-library-40.md?pivots=programming-language-csharp)

@@ -14,9 +14,9 @@
   topicHref: /azure/index
   items:
   - name: Azure AI services                # Original doc set name
-    tocHref: /legal/cognitive-services/content-safety    # Destination doc set route
+    tocHref: /azure/ai-foundry/responsible-ai/content-safety    # Destination doc set route
     topicHref: /azure/ai-services/index    # Original doc set route
     items:
     - name: Azure AI Content Safety                 # Original doc set name
-      tocHref: /legal/cognitive-services/content-safety    # Destination doc set route
+      tocHref: /azure/ai-foundry/responsible-ai/content-safety    # Destination doc set route
       topicHref: /azure/ai-services/content-safety/index      # Original doc set route

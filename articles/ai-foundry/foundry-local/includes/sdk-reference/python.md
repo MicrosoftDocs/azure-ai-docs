@@ -1,10 +1,13 @@
 ---
 ms.service: azure-ai-foundry
+ms.subservice: foundry-local
 ms.custom: build-2025
 ms.topic: include
 ms.date: 05/02/2025
-ms.author: maanavdalal
-author: maanavd
+ms.author: jburchel
+ms.reviewer: maanavd
+reviewer: maanavdalal
+author: jonburchel
 ---
 
 ## Python SDK Reference
@@ -37,45 +40,48 @@ manager = FoundryLocalManager(alias_or_model_id=None, bootstrap=True)
 
 Many methods outlined in this reference have an `alias_or_model_id` parameter in the signature. You can pass into the method either an **alias** or **model ID** as a value. Using an alias will:
 
-- Select the *best model* for the available hardware. For example, if a Nvidia CUDA GPU is available, Foundry Local selects the CUDA model. If a supported NPU is available, Foundry Local selects the NPU model.
+- Select the _best model_ for the available hardware. For example, if a Nvidia CUDA GPU is available, Foundry Local selects the CUDA model. If a supported NPU is available, Foundry Local selects the NPU model.
 - Allow you to use a shorter name without needing to remember the model ID.
 
 > [!TIP]
 > We recommend passing into the `alias_or_model_id` parameter an **alias** because when you deploy your application, Foundry Local acquires the best model for the end user's machine at run-time.
 
+> [!NOTE]
+> If you have an Intel NPU on Windows, ensure you have installed the [Intel NPU driver](https://www.intel.com/content/www/us/en/download/794734/intel-npu-driver-windows.html) for optimal NPU acceleration.
+
 ### Service Management
 
-| Method                | Signature                  | Description                                      |
-|-----------------------|---------------------------|--------------------------------------------------|
-| `is_service_running()`| `() -> bool`              | Checks if the Foundry Local service is running.   |
-| `start_service()`     | `() -> None`              | Starts the Foundry Local service.                |
-| `service_uri`         | `@property -> str`        | Returns the service URI.                         |
-| `endpoint`            | `@property -> str`        | Returns the service endpoint.                    |
-| `api_key`             | `@property -> str`        | Returns the API key (from env or default).       |
+| Method                 | Signature          | Description                                     |
+| ---------------------- | ------------------ | ----------------------------------------------- |
+| `is_service_running()` | `() -> bool`       | Checks if the Foundry Local service is running. |
+| `start_service()`      | `() -> None`       | Starts the Foundry Local service.               |
+| `service_uri`          | `@property -> str` | Returns the service URI.                        |
+| `endpoint`             | `@property -> str` | Returns the service endpoint.                   |
+| `api_key`              | `@property -> str` | Returns the API key (from env or default).      |
 
 ### Catalog Management
 
-| Method                    | Signature                                         | Description                                      |
-|---------------------------|---------------------------------------------------|--------------------------------------------------|
-| `list_catalog_models()`   | `() -> list[FoundryModelInfo]`                    | Lists all available models in the catalog.        |
-| `refresh_catalog()`       | `() -> None`                                      | Refreshes the model catalog.                     |
-| `get_model_info()`        | `(alias_or_model_id: str, raise_on_not_found=False) -> FoundryModelInfo or None` | Gets model info by alias or ID.                  |
+| Method                  | Signature                                                                        | Description                                |
+| ----------------------- | -------------------------------------------------------------------------------- | ------------------------------------------ |
+| `list_catalog_models()` | `() -> list[FoundryModelInfo]`                                                   | Lists all available models in the catalog. |
+| `refresh_catalog()`     | `() -> None`                                                                     | Refreshes the model catalog.               |
+| `get_model_info()`      | `(alias_or_model_id: str, raise_on_not_found=False) -> FoundryModelInfo or None` | Gets model info by alias or ID.            |
 
 ### Cache Management
 
-| Method                    | Signature                                         | Description                                      |
-|---------------------------|---------------------------------------------------|--------------------------------------------------|
-| `get_cache_location()`    | `() -> str`                                       | Returns the model cache directory path.           |
-| `list_cached_models()`     | `() -> list[FoundryModelInfo]`                    | Lists models downloaded to the local cache.       |
+| Method                 | Signature                      | Description                                 |
+| ---------------------- | ------------------------------ | ------------------------------------------- |
+| `get_cache_location()` | `() -> str`                    | Returns the model cache directory path.     |
+| `list_cached_models()` | `() -> list[FoundryModelInfo]` | Lists models downloaded to the local cache. |
 
 ### Model Management
 
-| Method                        | Signature                                                                 | Description                                      |
-|-------------------------------|---------------------------------------------------------------------------|--------------------------------------------------|
-| `download_model()`            | `(alias_or_model_id: str, token: str = None, force: bool = False) -> FoundryModelInfo` | Downloads a model to the local cache.            |
-| `load_model()`                | `(alias_or_model_id: str, ttl: int = 600) -> FoundryModelInfo`            | Loads a model into the inference server.         |
-| `unload_model()`              | `(alias_or_model_id: str, force: bool = False) -> None`                   | Unloads a model from the inference server.       |
-| `list_loaded_models()`        | `() -> list[FoundryModelInfo]`                                            | Lists all models currently loaded in the service.|
+| Method                 | Signature                                                                              | Description                                       |
+| ---------------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------- |
+| `download_model()`     | `(alias_or_model_id: str, token: str = None, force: bool = False) -> FoundryModelInfo` | Downloads a model to the local cache.             |
+| `load_model()`         | `(alias_or_model_id: str, ttl: int = 600) -> FoundryModelInfo`                         | Loads a model into the inference server.          |
+| `unload_model()`       | `(alias_or_model_id: str, force: bool = False) -> None`                                | Unloads a model from the inference server.        |
+| `list_loaded_models()` | `() -> list[FoundryModelInfo]`                                                         | Lists all models currently loaded in the service. |
 
 ## Example Usage
 
@@ -84,9 +90,9 @@ The following code demonstrates how to use the `FoundryManager` class to manage 
 ```python
 from foundry_local import FoundryLocalManager
 
-# By using an alias, the most suitable model will be selected 
+# By using an alias, the most suitable model will be selected
 # to your end-user's device.
-alias = "phi-3.5-mini"
+alias = "qwen2.5-0.5b"
 
 # Create a FoundryLocalManager instance. This will start the Foundry.
 manager = FoundryLocalManager()
@@ -126,11 +132,11 @@ The following code demonstrates how to integrate the `FoundryLocalManager` with 
 import openai
 from foundry_local import FoundryLocalManager
 
-# By using an alias, the most suitable model will be downloaded 
+# By using an alias, the most suitable model will be downloaded
 # to your end-user's device.
-alias = "phi-3.5-mini"
+alias = "qwen2.5-0.5b"
 
-# Create a FoundryLocalManager instance. This will start the Foundry 
+# Create a FoundryLocalManager instance. This will start the Foundry
 # Local service if it is not already running and load the specified model.
 manager = FoundryLocalManager(alias)
 

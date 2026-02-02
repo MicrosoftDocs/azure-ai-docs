@@ -8,6 +8,8 @@ ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 05/08/2025
+ms.update-cycle: 365-days
+ms.custom: sfi-image-nochange
 ---
 
 # Configure your Azure AI Search service in the Azure portal
@@ -50,7 +52,7 @@ To configure role-based access:
 
 ## Configure a managed identity
 
-If you plan to use indexers for automated indexing, applied AI, or integrated vectorization, you should [configure your search service to use a managed identity](search-howto-managed-identities-data-sources.md). You can then assign roles on other Azure services that authorize your search service to access data and operations.
+If you plan to use indexers for automated indexing, applied AI, or integrated vectorization, you should [configure your search service to use a managed identity](search-how-to-managed-identities.md). You can then assign roles on other Azure services that authorize your search service to access data and operations.
 
 For integrated vectorization, your search service identity needs the following roles:
 
@@ -59,7 +61,7 @@ For integrated vectorization, your search service identity needs the following r
 
 Role assignments can take several minutes to take effect.
 
-Before you move on to network security, consider testing all points of connection to validate role assignments. Run either the [**Import data** wizard](search-get-started-portal.md) or the [**Import and vectorize data wizard**](search-get-started-portal-image-search.md) to test permissions.
+Before you move on to network security, consider testing all points of connection to validate role assignments. Run an [import wizard](search-get-started-portal.md) to test permissions.
 
 ## Configure network security
 
@@ -90,7 +92,7 @@ To learn more about data location and privacy, see [Data residency](search-secur
 
 Semantic ranker is free for the first 1,000 requests per month. It's enabled by default on newer search services.
 
-To enable semantic ranker in the portal, select **Settings** > **Semantic ranker** from the left pane, and then select the **Free** plan. For more information, see [Enable semantic ranker](semantic-how-to-enable-disable.md).
+To enable semantic ranker in the portal, select **Settings** > **Premium features** from the left pane, and then select the **Free** plan. For more information, see [Enable semantic ranker](semantic-how-to-enable-disable.md).
 
 ## Provide connection information to developers
 
@@ -99,7 +101,7 @@ To connect to Azure AI Search, developers need:
 + An endpoint or URL from the **Overview** page.
 + An API key from the **Keys** page or a role assignment. We recommend Search Service Contributor, Search Index Data Contributor, and Search Index Data Reader.
 
-We recommend portal access for the [**Import data** wizard](search-get-started-portal.md), the [**Import and vectorize data wizard**](search-get-started-portal-import-vectors.md), and [Search explorer](search-explorer.md). You must be a contributor or higher to run the wizards.
+We recommend portal access for the [import wizards](search-get-started-portal.md) and [Search explorer](search-explorer.md). You must be a contributor or higher to run the wizards.
 
 ## Related content
 

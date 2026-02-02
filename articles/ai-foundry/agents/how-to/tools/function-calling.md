@@ -4,9 +4,10 @@ titleSuffix: Azure AI Foundry
 description: Learn how to use Azure AI Agents with function calling.
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 01/30/2025
+ms.date: 07/11/2025
 author: aahill
 ms.author: aahi
 zone_pivot_groups: selection-function-calling
@@ -18,24 +19,38 @@ ms.custom: azure-ai-agents
 Azure AI Agents supports function calling, which allows you to describe the structure of functions to an agent and then return the functions that need to be called along with their arguments.
 
 > [!NOTE]
-> Runs expire ten minutes after creation. Be sure to submit your tool outputs before the expiration.
+> * Runs expire 10 minutes after creation. Be sure to submit your tool outputs before the expiration.
+> * Although function calling isn't supported in the Azure AI Foundry portal, agents will appear in the portal after creation. Agents run in the portal won't perform function calling.
 
 ### Usage support
 
-|Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | REST API | Basic agent setup | Standard agent setup |
+|Azure AI foundry support  | Python SDK |    C# SDK | JavaScript SDK | REST API | Basic agent setup | Standard agent setup |
 |---------|---------|---------|---------|---------|---------|---------|
 |      | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ::: zone pivot="python"
 
+## Example agent code
 
-## Define a function for your agent to call
-Start by defining a function for your agent to call. When you create a function for an agent to call, you describe its structure with any required parameters in a docstring.
+> [!NOTE]
+> You can find a streaming example on [GitHub](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-agents/samples/agents_streaming/sample_agents_stream_eventhandler_with_functions.py).
+
+Use the following code sample to create an agent and call the function.
 
 ```python
+import os, time
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.agents.models import FunctionTool
 import json
 import datetime
 from typing import Any, Callable, Set, Dict, List, Optional
+
+
+# Start by defining a function for your agent to call. 
+# When you create a function for an agent to call, you describe its structure 
+# with any required parameters in a docstring.
+
 
 def fetch_weather(location: str) -> str:
     """
@@ -51,34 +66,14 @@ def fetch_weather(location: str) -> str:
 
 # Define user functions
 user_functions = {fetch_weather}
-```
-
-## Create a client and agent
-
-<!--
-In the sample below we create a client and define a `toolset` which will be used to process the functions defined in `user_functions`.
-
-`toolset`: When using the toolset parameter, you provide not only the function definitions and descriptions but also their implementations. The SDK will execute these functions within `create_and_run_process` or streaming. These functions will be invoked based on their definitions.
--->
-
-> [!NOTE]
-> You can find a streaming example on [GitHub](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-agents/samples/agents_streaming/sample_agents_stream_eventhandler_with_functions.py).
-
-
-```python
-import os, time
-from azure.identity import DefaultAzureCredential
-from azure.ai.projects import AIProjectClient
-from azure.ai.agents.models import FunctionTool
 
 # Retrieve the project endpoint from environment variables
 project_endpoint = os.environ["PROJECT_ENDPOINT"]
-
+model_name = os.environ["MODEL_DEPLOYMENT_NAME"]
 # Initialize the AIProjectClient
 project_client = AIProjectClient(
     endpoint=project_endpoint,
-    credential=DefaultAzureCredential(),
-    api_version="latest",
+    credential=DefaultAzureCredential()
 )
 
 # Initialize the FunctionTool with user-defined functions
@@ -87,15 +82,13 @@ functions = FunctionTool(functions=user_functions)
 with project_client:
     # Create an agent with custom functions
     agent = project_client.agents.create_agent(
-        model=os.environ["MODEL_DEPLOYMENT_NAME"],
+        model=model_name,
         name="my-agent",
         instructions="You are a helpful agent",
         tools=functions.definitions,
     )
     print(f"Created agent, ID: {agent.id}")
-```
-## Create a thread
-```python
+
 # Create a thread for communication
 thread = project_client.agents.threads.create()
 print(f"Created thread, ID: {thread.id}")
@@ -107,9 +100,7 @@ message = project_client.agents.messages.create(
     content="Hello, send an email with the datetime and weather information in New York?",
 )
 print(f"Created message, ID: {message['id']}")
-```
-## Create a run and check the output
-```python
+
 # Create and process a run for the agent to handle the message
 run = project_client.agents.runs.create(thread_id=thread.id, agent_id=agent.id)
 print(f"Created run, ID: {run.id}")
@@ -123,7 +114,7 @@ while run.status in ["queued", "in_progress", "requires_action"]:
         tool_calls = run.required_action.submit_tool_outputs.tool_calls
         tool_outputs = []
         for tool_call in tool_calls:
-            if tool_call.name == "fetch_weather":
+            if tool_call.function.name == "fetch_weather":
                 output = fetch_weather("New York")
                 tool_outputs.append({"tool_call_id": tool_call.id, "output": output})
         project_client.agents.runs.submit_tool_outputs(thread_id=thread.id, run_id=run.id, tool_outputs=tool_outputs)
@@ -147,9 +138,7 @@ print("Deleted agent")
 > [!NOTE]
 > You can find a streaming example on [GitHub](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Agents.Persistent/samples/Sample8_PersistentAgents_FunctionsWithStreaming.md).
 
-## Configure client and define functions
-
-First, set up the configuration using `appsettings.json` and create a `PersistentAgentsClient`. 
+## Configure the client and define functions
 
 ```csharp
 using Azure;
@@ -158,24 +147,22 @@ using Azure.Identity;
 using Microsoft.Extensions.Configuration;
 using System.Text.Json;
 
-// Load configuration from appsettings.json file
+//First, set up the configuration using `appsettings.json`, load it, and create a `PersistentAgentsClient`. 
+
 IConfigurationRoot configuration = new ConfigurationBuilder()
     .SetBasePath(AppContext.BaseDirectory)
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
     .Build();
 
 // Read necessary configuration values (Project Endpoint and Model Deployment Name)
-var projectEndpoint = configuration["ProjectEndpoint"];
-var modelDeploymentName = configuration["ModelDeploymentName"];
+var projectEndpoint = configuration["PROJECT_ENDPOINT"];
+var modelDeploymentName = configuration["MODEL_DEPLOYMENT_NAME"];
 // Initialize the client to interact with the Azure AI Agents Persistent Client using default credentials
 PersistentAgentsClient client = new(projectEndpoint, new DefaultAzureCredential());
-```
 
-## Define functions
-Define the local C# functions that your agent can call, along with their `FunctionToolDefinition` to describe their purpose and parameters to the agent.
+//Define the local C# functions that your agent can call, 
+//along with their `FunctionToolDefinition` to describe their purpose and parameters to the agent.
 
-```csharp
-// Function to get the user's favorite city (hardcoded for example)
 string GetUserFavoriteCity() => "Seattle, WA";
 // Definition for the GetUserFavoriteCity function, describing its purpose to the agent
 FunctionToolDefinition getUserFavoriteCityTool = new("getUserFavoriteCity", "Gets the user's favorite city.");
@@ -240,14 +227,14 @@ FunctionToolDefinition getCurrentWeatherAtLocationTool = new(
             Required = new[] { "location" },
         },
         new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase }));
-```
 
-## Implement function execution logic
+//Implement function execution logic
 
-Create a helper function, `GetResolvedToolOutput`, to process `RequiredToolCall` objects from the agent. This function will invoke the appropriate C# local function and return its output to the agent.
+/*
+Create a helper function, `GetResolvedToolOutput`, to process `RequiredToolCall` objects from the agent. 
+This function will invoke the appropriate C# local function and return its output to the agent.
+*/
 
-```csharp
-// Helper function to execute the correct local C# function based on the tool call request from the agent
 ToolOutput GetResolvedToolOutput(RequiredToolCall toolCall)
 {
     // Check if the required call is a function call
@@ -285,13 +272,15 @@ ToolOutput GetResolvedToolOutput(RequiredToolCall toolCall)
     // Return null if the tool call type isn't handled
     return null;
 }
-```
 
-## Create agent and conversation thread
+//Create agent and conversation thread
 
-Now, create the `PersistentAgent`, providing the model deployment name, a descriptive name, instructions for its behavior, and the list of `FunctionToolDefinitions` it can use. Then, create a `PersistentAgentThread` and add an initial user message to start the conversation.
+/*
+Create the `PersistentAgent`, providing the model deployment name, a descriptive name, 
+instructions for its behavior, and the list of `FunctionToolDefinitions` it can use. 
+Then, create a `PersistentAgentThread` and add an initial user message to start the conversation.
+*/
 
-```csharp
 // Create the agent instance
 PersistentAgent agent = client.Administration.CreateAgent(
     model: modelDeploymentName, 
@@ -309,14 +298,17 @@ client.Messages.CreateMessage(
     thread.Id,
     MessageRole.User,
     "What's the weather like in my favorite city?");
-```
 
-## Process run and handle function calls
+//Process run and handle function calls
 
-Create a `ThreadRun` for the agent on the thread. Poll for the run's completion status. If the run status is `RequiresAction`, it means the agent needs to call one of your local functions. Use the `GetResolvedToolOutput` helper to get the function's result and submit it back to the run.
+/*
+Create a `ThreadRun` for the agent on the thread. Poll for the run's completion status. 
+If the run status is `RequiresAction`, it means the agent needs to call one of your local functions. 
+Use the `GetResolvedToolOutput` helper to get the function's result and submit it back to the run.
 
-```csharp
-// Start a run for the agent to process the messages in the thread
+Start a run for the agent to process the messages in the thread
+*/
+
 ThreadRun run = client.Runs.CreateRun(thread.Id, agent.Id);
 
 // Loop to check the run status and handle required actions
@@ -340,20 +332,21 @@ do
             toolOutputs.Add(GetResolvedToolOutput(toolCall));
         }
         // Submit the collected tool outputs back to the run
-        run = client.Runs.SubmitToolOutputsToRun(run, toolOutputs);
+        run = client.Runs.SubmitToolOutputsToRun(run, toolOutputs, null);
     }
 }
 // Continue looping while the run is in progress or requires action
 while (run.Status == RunStatus.Queued
     || run.Status == RunStatus.InProgress
     || run.Status == RunStatus.RequiresAction);
-```
 
-## Retrieve and display results
+// Retrieve and display results
 
-After the run completes, retrieve all messages from the thread to see the full conversation, including the agent's final response.
+/*
+After the run completes, retrieve all messages from the thread to see the full conversation, 
+including the agent's final response.
+*/
 
-```csharp
 // Retrieve all messages from the completed thread, oldest first
 Pageable<PersistentThreadMessage> messages = client.Messages.GetMessages(
     threadId: thread.Id,
@@ -378,13 +371,13 @@ foreach (PersistentThreadMessage threadMessage in messages)
         }
     }
 }
-```
 
-## Clean up resources
+// Clean up resources
 
+/*
 Finally, clean up the created resources by deleting the thread and the agent.
+*/
 
-```csharp
 // Delete the conversation thread
 client.Threads.DeleteThread(threadId: thread.Id);
 // Delete the agent definition
@@ -395,11 +388,23 @@ client.Administration.DeleteAgent(agentId: agent.Id);
 
 ::: zone pivot="javascript"
 
-## Define a function for your agent to call
-
-Start by defining a function for your agent to call. When you create a function for an agent to call, you describe its structure of it with any required parameters in a docstring. 
+## Example code
 
 ```javascript
+
+// Define a function for your agent to call
+
+/*
+Start by defining a function for your agent to call. When you create a function for an agent to call, 
+you describe its structure of it with any required parameters in a docstring. 
+*/
+
+const { AgentsClient, ToolUtility, isOutputOfType } = require("@azure/ai-agents");
+const { delay } = require("@azure/core-util");
+const { DefaultAzureCredential } = require("@azure/identity");
+
+require("dotenv/config");
+
 class FunctionToolExecutor {
     functionTools;
 
@@ -488,36 +493,24 @@ class FunctionToolExecutor {
       });
     }
   }
-```
 
-## Create a client and agent
-
-
-```javascript
-const { AgentsClient, ToolUtility, isOutputOfType } = require("@azure/ai-agents");
-const { delay } = require("@azure/core-util");
-const { DefaultAzureCredential } = require("@azure/identity");
-
-require("dotenv/config");
+// Create a client and agent
 
 const projectEndpoint = process.env["PROJECT_ENDPOINT"];
+const modelName = process.env["MODEL_DEPLOYMENT_NAME"];
 
 const client = new AgentsClient(projectEndpoint, new DefaultAzureCredential());
 const functionToolExecutor = new FunctionToolExecutor();
   const functionTools = functionToolExecutor.getFunctionDefinitions();
-  const agent = await client.createAgent("gpt-4o", {
+  const agent = await client.createAgent(modelName, {
     name: "my-agent",
     instructions:
       "You are a weather bot. Use the provided functions to help answer questions. Customize your responses to the user's preferences as much as possible and use friendly nicknames for cities whenever possible.",
     tools: functionTools,
   });
   console.log(`Created agent, agent ID: ${agent.id}`);
-```
 
-## Create a thread
-
-```javascript
-// Create thread
+// Create a thread
 const thread = await client.threads.create();
 console.log(`Created Thread, thread ID:  ${thread.id}`);
 
@@ -528,12 +521,9 @@ const message = await client.messages.create(
   "What's the weather like in my favorite city?",
 );
 console.log(`Created message, message ID ${message.id}`);
-```
 
-## Create a run and check the output
+// Create a run and check the output
 
-```javascript
-// Create run
 let run = await client.runs.create(thread.id, agent.id);
 console.log(`Created Run, Run ID:  ${run.id}`);
 
@@ -579,7 +569,7 @@ for await (const threadMessage of messages) {
     }
   });
 }
-// Delete agent
+// Delete agent - comment this out if you want to keep your agent
 await client.deleteAgent(agent.id);
 console.log(`Deleted agent, agent ID: ${agent.id}`);
 
@@ -596,7 +586,7 @@ Start by defining a function for your agent to call. When you create a function 
 
 ## Create an agent
 
-Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api#api-call-information) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
+Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
 
 ```bash
 curl --request POST \
@@ -675,4 +665,239 @@ curl --request GET \
   -H "Authorization: Bearer $AGENT_TOKEN"
 ```
 
+::: zone-end
+
+::: zone pivot="java"
+
+```java
+package com.example.agents;
+
+import com.azure.ai.agents.persistent.MessagesClient;
+import com.azure.ai.agents.persistent.PersistentAgentsAdministrationClient;
+import com.azure.ai.agents.persistent.PersistentAgentsClient;
+import com.azure.ai.agents.persistent.PersistentAgentsClientBuilder;
+import com.azure.ai.agents.persistent.RunsClient;
+import com.azure.ai.agents.persistent.ThreadsClient;
+import com.azure.ai.agents.persistent.models.CreateAgentOptions;
+import com.azure.ai.agents.persistent.models.CreateRunOptions;
+import com.azure.ai.agents.persistent.models.FunctionDefinition;
+import com.azure.ai.agents.persistent.models.FunctionToolDefinition;
+import com.azure.ai.agents.persistent.models.MessageImageFileContent;
+import com.azure.ai.agents.persistent.models.MessageRole;
+import com.azure.ai.agents.persistent.models.MessageTextContent;
+import com.azure.ai.agents.persistent.models.PersistentAgent;
+import com.azure.ai.agents.persistent.models.PersistentAgentThread;
+import com.azure.ai.agents.persistent.models.RequiredFunctionToolCall;
+import com.azure.ai.agents.persistent.models.RequiredToolCall;
+import com.azure.ai.agents.persistent.models.RunStatus;
+import com.azure.ai.agents.persistent.models.SubmitToolOutputsAction;
+import com.azure.ai.agents.persistent.models.ThreadMessage;
+import com.azure.ai.agents.persistent.models.ThreadRun;
+import com.azure.ai.agents.persistent.models.ToolOutput;
+import com.azure.ai.agents.persistent.models.MessageContent;
+import com.azure.core.http.rest.PagedIterable;
+import com.azure.core.util.BinaryData;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.json.JsonMapper;
+
+import java.net.URL;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
+
+public class AgentExample {
+
+    public static void main(String[] args) throws FileNotFoundException, URISyntaxException {
+
+        // variables for authenticating requests to the agent service 
+        String projectEndpoint = System.getenv("PROJECT_ENDPOINT");
+        String modelName = System.getenv("MODEL_DEPLOYMENT_NAME");
+        
+        PersistentAgentsClientBuilder clientBuilder = new PersistentAgentsClientBuilder().endpoint(projectEndpoint)
+            .credential(new DefaultAzureCredentialBuilder().build());
+        PersistentAgentsClient agentsClient = clientBuilder.buildClient();
+        PersistentAgentsAdministrationClient administrationClient = agentsClient.getPersistentAgentsAdministrationClient();
+        ThreadsClient threadsClient = agentsClient.getThreadsClient();
+        MessagesClient messagesClient = agentsClient.getMessagesClient();
+        RunsClient runsClient = agentsClient.getRunsClient();
+
+        Supplier<String> getUserFavoriteCity = () -> "Seattle, WA";
+        FunctionToolDefinition getUserFavoriteCityTool = new FunctionToolDefinition(
+            new FunctionDefinition(
+                "getUserFavoriteCity",
+                BinaryData.fromObject(
+                    new Object()
+                ))
+        );
+
+        Function<String, String> getCityNickname = location -> {
+            return "The Emerald City";
+        };
+
+        FunctionToolDefinition getCityNicknameTool = new FunctionToolDefinition(
+            new FunctionDefinition(
+                "getCityNickname",
+                BinaryData.fromObject(
+                    mapOf(
+                        "type", "object",
+                        "properties", mapOf(
+                            "location",
+                            mapOf(
+                                "type", "string",
+                                "description", "The city and state, e.g. San Francisco, CA")
+                        ),
+                        "required", new String[]{"location"}))
+            ).setDescription("Get the nickname of a city")
+        );
+
+        Function<RequiredToolCall, ToolOutput> getResolvedToolOutput = toolCall -> {
+            if (toolCall instanceof RequiredFunctionToolCall) {
+                RequiredFunctionToolCall functionToolCall = (RequiredFunctionToolCall) toolCall;
+                String functionName = functionToolCall.getFunction().getName();
+                if (functionName.equals("getUserFavoriteCity")) {
+                    return new ToolOutput().setToolCallId(functionToolCall.getId())
+                        .setOutput(getUserFavoriteCity.get());
+                } else if (functionName.equals("getCityNickname")) {
+                    String arguments = functionToolCall.getFunction().getArguments();
+                    try {
+                        JsonNode root = new JsonMapper().readTree(arguments);
+                        String location = String.valueOf(root.get("location").asText());
+                        return new ToolOutput().setToolCallId(functionToolCall.getId())
+                            .setOutput(getCityNickname.apply(location));
+                    } catch (JsonProcessingException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+            return null;
+        };
+
+        String agentName = "functions_example";
+        CreateAgentOptions createAgentOptions = new CreateAgentOptions(modelName)
+            .setName(agentName)
+            .setInstructions("You are a weather bot. Use the provided functions to help answer questions. "
+                + "Customize your responses to the user's preferences as much as possible and use friendly "
+                + "nicknames for cities whenever possible.")
+            .setTools(Arrays.asList(getUserFavoriteCityTool, getCityNicknameTool));
+        PersistentAgent agent = administrationClient.createAgent(createAgentOptions);
+
+        PersistentAgentThread thread = threadsClient.createThread();
+        ThreadMessage createdMessage = messagesClient.createMessage(
+            thread.getId(),
+            MessageRole.USER,
+            "What's the nickname of my favorite city?");
+
+        try {
+            //run agent
+            CreateRunOptions createRunOptions = new CreateRunOptions(thread.getId(), agent.getId())
+                .setAdditionalInstructions("");
+            ThreadRun threadRun = runsClient.createRun(createRunOptions);
+
+            do {
+                Thread.sleep(500);
+                threadRun = runsClient.getRun(thread.getId(), threadRun.getId());
+                if (threadRun.getStatus() == RunStatus.REQUIRES_ACTION
+                    && threadRun.getRequiredAction() instanceof SubmitToolOutputsAction) {
+                    SubmitToolOutputsAction submitToolsOutputAction = (SubmitToolOutputsAction) (threadRun.getRequiredAction());
+                    ArrayList<ToolOutput> toolOutputs = new ArrayList<ToolOutput>();
+                    for (RequiredToolCall toolCall : submitToolsOutputAction.getSubmitToolOutputs().getToolCalls()) {
+                        toolOutputs.add(getResolvedToolOutput.apply(toolCall));
+                    }
+                    threadRun = runsClient.submitToolOutputsToRun(thread.getId(), threadRun.getId(), toolOutputs);
+                }
+            }
+            while (
+                threadRun.getStatus() == RunStatus.QUEUED
+                    || threadRun.getStatus() == RunStatus.IN_PROGRESS
+                    || threadRun.getStatus() == RunStatus.REQUIRES_ACTION);
+
+            if (threadRun.getStatus() == RunStatus.FAILED) {
+                System.out.println(threadRun.getLastError().getMessage());
+            }
+
+            printRunMessages(messagesClient, thread.getId());
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } finally {
+            //cleanup
+            threadsClient.deleteThread(thread.getId());
+            administrationClient.deleteAgent(agent.getId());
+        }
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+    // A helper function to print messages from the agent
+    public static void printRunMessages(MessagesClient messagesClient, String threadId) {
+
+        PagedIterable<ThreadMessage> runMessages = messagesClient.listMessages(threadId);
+        for (ThreadMessage message : runMessages) {
+            System.out.print(String.format("%1$s - %2$s : ", message.getCreatedAt(), message.getRole()));
+            for (MessageContent contentItem : message.getContent()) {
+                if (contentItem instanceof MessageTextContent) {
+                    System.out.print((((MessageTextContent) contentItem).getText().getValue()));
+                } else if (contentItem instanceof MessageImageFileContent) {
+                    String imageFileId = (((MessageImageFileContent) contentItem).getImageFile().getFileId());
+                    System.out.print("Image from ID: " + imageFileId);
+                }
+                System.out.println();
+            }
+        }
+    }
+
+    // a helper function to wait until a run has completed running
+    public static void waitForRunCompletion(String threadId, ThreadRun threadRun, RunsClient runsClient)
+        throws InterruptedException {
+
+        do {
+            Thread.sleep(500);
+            threadRun = runsClient.getRun(threadId, threadRun.getId());
+        }
+        while (
+            threadRun.getStatus() == RunStatus.QUEUED
+                || threadRun.getStatus() == RunStatus.IN_PROGRESS
+                || threadRun.getStatus() == RunStatus.REQUIRES_ACTION);
+
+        if (threadRun.getStatus() == RunStatus.FAILED) {
+            System.out.println(threadRun.getLastError().getMessage());
+        }
+    }
+    private static Path getFile(String fileName) throws FileNotFoundException, URISyntaxException {
+        URL resource = AgentExample.class.getClassLoader().getResource(fileName);
+        if (resource == null) {
+            throw new FileNotFoundException("File not found");
+        }
+        File file = new File(resource.toURI());
+        return file.toPath();
+    }
+    @FunctionalInterface
+    public interface Supplier<T> extends java.util.function.Supplier<T> {
+    /**
+     * Retrieves an instance of the appropriate type. The returned object may or may not be a new
+     * instance, depending on the implementation.
+     *
+     * @return an instance of the appropriate type
+     */
+    @Override
+    T get();
+    }
+}
+```
 ::: zone-end

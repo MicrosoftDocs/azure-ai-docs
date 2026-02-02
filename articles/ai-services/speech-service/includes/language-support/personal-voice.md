@@ -1,11 +1,11 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.custom:
   - build-2024
 ms.date: 11/15/2023
 ms.topic: include
-ms.author: eur
+ms.author: pafarley
 ---
 
 |Locale (BCP-47)|Language|

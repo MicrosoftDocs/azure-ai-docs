@@ -7,9 +7,7 @@ manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: conceptual
-ms.date: 09/25/2024
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
+ms.date: 09/16/2025
 ms.author: pafarley
 ---
 
@@ -57,10 +55,10 @@ The following JSON response illustrates what the Analyze Image API returns when 
 
 ## Use the API
 
-The image description feature is part of the [Analyze Image](/rest/api/computervision/analyze-image?view=rest-computervision-v3.2) API. You can call this API through a native SDK or through REST calls. Include `Description` in the **visualFeatures** query parameter. Then, when you get the full JSON response, parse the string for the contents of the `"description"` section.
+The image description feature is part of the [Analyze Image](/rest/api/computervision/analyze-image) API. You can call this API through a native SDK or through REST calls. Include `Description` in the **visualFeatures** query parameter. Then, when you get the full JSON response, parse the string for the contents of the `"description"` section.
 
 * [Quickstart: Image Analysis REST API or client libraries](./quickstarts-sdk/image-analysis-client-library.md?pivots=programming-language-csharp)
 
-## Next steps
+## Related content
 
 Learn the related concepts of [tagging images](concept-tagging-images.md) and [categorizing images](concept-categorizing-images.md).

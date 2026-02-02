@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: how-to
-ms.date: 03/26/2025
+ms.date: 09/16/2025
 ms.author: pafarley
 ms.custom: FY25Q1-Linter
 #customer intent: As a developer, I want to disable local authentication in Azure AI Services so that I can enforce Microsoft Entra authentication.

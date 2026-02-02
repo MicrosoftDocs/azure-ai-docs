@@ -21,7 +21,7 @@ In this tutorial, you build an iOS app from scratch and integrate the Read API a
 
 ## Prerequisites
 
-* An Azure subscription. You can [create one for free](https://azure.microsoft.com/free/ai-services/).
+* An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * MacOS and [Xcode](https://apps.apple.com/us/app/xcode/id497799835?mt=12).
 * An Immersive Reader resource configured for Microsoft Entra authentication. Follow [these instructions](how-to-create-immersive-reader.md) to get set up.
 * A subscription to the Azure AI Vision service. Create an [Azure AI Vision resource in the Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision).

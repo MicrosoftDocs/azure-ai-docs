@@ -4,9 +4,10 @@ titleSuffix: Azure AI Foundry
 description: Find code samples to ground Azure AI Agents using Bing Search results.
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 06/17/2025
+ms.date: 09/09/2025
 author: aahill
 ms.author: aahi
 zone_pivot_groups: selection-bing-grounding-code
@@ -64,8 +65,7 @@ project_endpoint = os.environ["PROJECT_ENDPOINT"]  # Ensure the PROJECT_ENDPOINT
 # Create an AIProjectClient instance
 project_client = AIProjectClient(
     endpoint=project_endpoint,
-    credential=DefaultAzureCredential(),  # Use Azure Default Credential for authentication
-    api_version="latest",
+    credential=DefaultAzureCredential()  # Use Azure Default Credential for authentication
 )
 ```
 
@@ -163,6 +163,7 @@ print("Deleted agent")
 ::: zone-end
  
 ::: zone pivot="csharp"
+
 ## Create a project client
 
 Create a client object, which will contain the project endpoint for connecting to your AI project and other resources.
@@ -171,19 +172,10 @@ Create a client object, which will contain the project endpoint for connecting t
 using Azure;
 using Azure.AI.Agents.Persistent;
 using Azure.Identity;
-using Microsoft.Extensions.Configuration;
-using System;
-using System.Threading;
 
-// Get Connection information from app configuration
-IConfigurationRoot configuration = new ConfigurationBuilder()
-    .SetBasePath(AppContext.BaseDirectory)
-    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-    .Build();
-
-var projectEndpoint = configuration["ProjectEndpoint"];
-var modelDeploymentName = configuration["ModelDeploymentName"];
-var bingConnectionId = configuration["BingConnectionId"];
+var projectEndpoint = System.Environment.GetEnvironmentVariable("ProjectEndpoint");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("ModelDeploymentName");
+var bingConnectionId = System.Environment.GetEnvironmentVariable("BingConnectionId");
 
 // Create the Agent Client
 PersistentAgentsClient agentClient = new(projectEndpoint, new DefaultAzureCredential());
@@ -194,18 +186,10 @@ PersistentAgentsClient agentClient = new(projectEndpoint, new DefaultAzureCreden
 To make the Grounding with Bing search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 ```csharp
-BingGroundingSearchConfiguration searchConfig = new BingGroundingSearchConfiguration(bingConnectionId)
-{ 
-    Count = 5,
-    Freshness = "Week"
-};
 
-// Create the BingGroundingToolDefinition object used when creating the agent
-BingGroundingToolDefinition bingGroundingTool = new BingGroundingToolDefinition(
+BingGroundingToolDefinition bingGroundingTool = new(
     new BingGroundingSearchToolParameters(
-        [
-            searchConfig
-        ]
+        [new BingGroundingSearchConfiguration(bingConnectionId)]
     )
 );
 
@@ -336,7 +320,6 @@ Clean up the resources from this sample.
 agentClient.Threads.DeleteThread(threadId: thread.Id);
 agentClient.Administration.DeleteAgent(agentId: agent.Id);
 ```
-
 ::: zone-end
 
 ::: zone pivot="javascript"
@@ -440,7 +423,7 @@ if (!firstMessage.done && firstMessage.value) {
 >[!IMPORTANT]
 > 1. This REST API allows developers to invoke the Grounding with Bing Search tool through the Azure AI Foundry Agent Service. It does not send calls to the Grounding with Bing Search API directly. 
 
-Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api#api-call-information) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
+Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
 
 
 ## Create an Agent with the Grounding with Bing search tool enabled
@@ -530,6 +513,126 @@ curl --request GET \
 
 ::: zone-end
 
-## Next steps
+::: zone pivot="java"
 
-[See the full sample for Grounding with Bing Search.](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-agents/samples/agents_tools/sample_agents_bing_grounding.py)
+## Code example
+
+```java
+package com.example.agents;
+
+import com.azure.ai.agents.persistent.MessagesClient;
+import com.azure.ai.agents.persistent.PersistentAgentsAdministrationClient;
+import com.azure.ai.agents.persistent.PersistentAgentsClient;
+import com.azure.ai.agents.persistent.PersistentAgentsClientBuilder;
+import com.azure.ai.agents.persistent.RunsClient;
+import com.azure.ai.agents.persistent.ThreadsClient;
+import com.azure.ai.agents.persistent.models.BingGroundingSearchConfiguration;
+import com.azure.ai.agents.persistent.models.BingGroundingSearchToolParameters;
+import com.azure.ai.agents.persistent.models.BingGroundingToolDefinition;
+import com.azure.ai.agents.persistent.models.CreateAgentOptions;
+import com.azure.ai.agents.persistent.models.CreateRunOptions;
+import com.azure.ai.agents.persistent.models.MessageImageFileContent;
+import com.azure.ai.agents.persistent.models.MessageRole;
+import com.azure.ai.agents.persistent.models.MessageTextContent;
+import com.azure.ai.agents.persistent.models.PersistentAgent;
+import com.azure.ai.agents.persistent.models.PersistentAgentThread;
+import com.azure.ai.agents.persistent.models.RunStatus;
+import com.azure.ai.agents.persistent.models.ThreadMessage;
+import com.azure.ai.agents.persistent.models.ThreadRun;
+import com.azure.ai.agents.persistent.models.MessageContent;
+import com.azure.core.http.rest.PagedIterable;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+
+import java.util.Arrays;
+
+public class AgentExample {
+
+    public static void main(String[] args) {
+
+        // variables for authenticating requests to the agent service 
+        String projectEndpoint = System.getenv("PROJECT_ENDPOINT");
+        String modelName = System.getenv("MODEL_DEPLOYMENT_NAME");
+        String bingConnectionId = System.getenv("BING_CONNECTION_ID");
+
+        PersistentAgentsClientBuilder clientBuilder = new PersistentAgentsClientBuilder().endpoint(projectEndpoint)
+            .credential(new DefaultAzureCredentialBuilder().build());
+        PersistentAgentsClient agentsClient = clientBuilder.buildClient();
+        PersistentAgentsAdministrationClient administrationClient = agentsClient.getPersistentAgentsAdministrationClient();
+        ThreadsClient threadsClient = agentsClient.getThreadsClient();
+        MessagesClient messagesClient = agentsClient.getMessagesClient();
+        RunsClient runsClient = agentsClient.getRunsClient();
+
+        BingGroundingSearchConfiguration searchConfiguration = new BingGroundingSearchConfiguration(bingConnectionId);
+        BingGroundingSearchToolParameters searchToolParameters
+            = new BingGroundingSearchToolParameters(Arrays.asList(searchConfiguration));
+
+        BingGroundingToolDefinition bingGroundingTool = new BingGroundingToolDefinition(searchToolParameters);
+
+        String agentName = "bing_grounding_example";
+        CreateAgentOptions createAgentOptions = new CreateAgentOptions(modelName)
+            .setName(agentName)
+            .setInstructions("You are a helpful agent")
+            .setTools(Arrays.asList(bingGroundingTool));
+        PersistentAgent agent = administrationClient.createAgent(createAgentOptions);
+
+        PersistentAgentThread thread = threadsClient.createThread();
+        ThreadMessage createdMessage = messagesClient.createMessage(
+            thread.getId(),
+            MessageRole.USER,
+            "How does wikipedia explain Euler's Identity?");
+
+        try {
+            //run agent
+            CreateRunOptions createRunOptions = new CreateRunOptions(thread.getId(), agent.getId())
+                .setAdditionalInstructions("");
+            ThreadRun threadRun = runsClient.createRun(createRunOptions);
+
+            waitForRunCompletion(thread.getId(), threadRun, runsClient);
+            printRunMessages(messagesClient, thread.getId());
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } finally {
+            //cleanup
+            threadsClient.deleteThread(thread.getId());
+            administrationClient.deleteAgent(agent.getId());
+        }
+    }
+    
+    // A helper function to print messages from the agent
+    public static void printRunMessages(MessagesClient messagesClient, String threadId) {
+
+        PagedIterable<ThreadMessage> runMessages = messagesClient.listMessages(threadId);
+        for (ThreadMessage message : runMessages) {
+            System.out.print(String.format("%1$s - %2$s : ", message.getCreatedAt(), message.getRole()));
+            for (MessageContent contentItem : message.getContent()) {
+                if (contentItem instanceof MessageTextContent) {
+                    System.out.print((((MessageTextContent) contentItem).getText().getValue()));
+                } else if (contentItem instanceof MessageImageFileContent) {
+                    String imageFileId = (((MessageImageFileContent) contentItem).getImageFile().getFileId());
+                    System.out.print("Image from ID: " + imageFileId);
+                }
+                System.out.println();
+            }
+        }
+    }
+
+    // a helper function to wait until a run has completed running
+    public static void waitForRunCompletion(String threadId, ThreadRun threadRun, RunsClient runsClient)
+        throws InterruptedException {
+
+        do {
+            Thread.sleep(500);
+            threadRun = runsClient.getRun(threadId, threadRun.getId());
+        }
+        while (
+            threadRun.getStatus() == RunStatus.QUEUED
+                || threadRun.getStatus() == RunStatus.IN_PROGRESS
+                || threadRun.getStatus() == RunStatus.REQUIRES_ACTION);
+
+        if (threadRun.getStatus() == RunStatus.FAILED) {
+            System.out.println(threadRun.getLastError().getMessage());
+        }
+    }
+}
+```
+::: zone-end

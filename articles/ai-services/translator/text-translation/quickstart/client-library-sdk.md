@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: quickstart
-ms.date: 05/19/2025
+ms.date: 06/19/2025
 ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python
@@ -26,7 +26,7 @@ In this quickstart, get started using the Translator service to [translate text]
 
 ## Prerequisites
 
-You need an active Azure subscription. If you don't have an Azure subscription, you can [create one for free](https://azure.microsoft.com/free/cognitive-services/)
+You need an active Azure subscription. If you don't have an Azure subscription, you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 
 * Once you have your Azure subscription, create a [Translator resource](../../create-translator-resource.md) in the [Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation).
 

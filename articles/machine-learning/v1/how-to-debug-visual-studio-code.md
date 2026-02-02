@@ -10,8 +10,11 @@ ms.reviewer: ssalgado
 author: tbombach
 ms.author: tbombach
 ms.date: 10/21/2021
-ms.custom: UpdateFrequency5, sdkv1
 monikerRange: 'azureml-api-1'
+ms.custom:
+  - UpdateFrequency5
+  - sdkv1
+  - sfi-image-nochange
 ---
 
 # Interactive debugging with Visual Studio Code

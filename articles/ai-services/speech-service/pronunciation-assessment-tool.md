@@ -2,14 +2,14 @@
 title: How to use pronunciation assessment in the Azure AI Foundry portal
 titleSuffix: Azure AI services
 description: The pronunciation assessment tool in the Azure AI Foundry portal gives you feedback on the accuracy and fluency of your speech, no coding required.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 3/10/2025
-ms.author: eur
+ms.date: 09/16/2025
+ms.author: pafarley
 # Customer intent: As a language learner, I want to use the pronunciation assessment tool in the Azure AI Foundry portal to get feedback on my speech.
 ---
 
@@ -17,12 +17,14 @@ ms.author: eur
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-Pronunciation assessment uses the speech to text capability to provide subjective and objective feedback for language learners. Practicing pronunciation and getting timely feedback are essential for improving language skills. Assessments driven by experienced teachers can take much time and effort and makes a high-quality assessment expensive for learners. Pronunciation assessment can help make the language assessment more engaging and accessible to learners of all backgrounds.
+Pronunciation assessment uses the speech-to-text capability to provide subjective and objective feedback for language learners. Practicing pronunciation and getting timely feedback are essential for improving language skills. Assessments conducted by experienced teachers can take much time and can be expensive for learners. Pronunciation assessment can help make the process more engaging and accessible to learners of all backgrounds.
+
+This article describes how to use the pronunciation assessment tool without writing any code through the [Azure AI Foundry portal](https://ai.azure.com/explore/models/aiservices/Azure-AI-Speech/version/1/registry/azureml-cogsvc/tryout#pronunciationassessment). For information about how to integrate pronunciation assessment in your speech applications, see [How to use pronunciation assessment](how-to-pronunciation-assessment.md).
+
 
 > [!NOTE]
 > For information about availability of pronunciation assessment, see [supported languages](language-support.md?tabs=pronunciation-assessment) and [available regions](regions.md#regions).
 
-This article describes how to use the pronunciation assessment tool without writing any code through the [Azure AI Foundry portal](https://ai.azure.com/explore/models/aiservices/Azure-AI-Speech/version/1/registry/azureml-cogsvc/tryout#pronunciationassessment). For information about how to integrate pronunciation assessment in your speech applications, see [How to use pronunciation assessment](how-to-pronunciation-assessment.md).
 
 
 ## Reading, speaking and gaming scenarios
@@ -309,9 +311,9 @@ After you press the stop button, you can see **Pronunciation score**, **Accuracy
 
 ## Pricing
 
-As a baseline, usage of pronunciation assessment costs the same as speech to text for Standard or commitment tier [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services). If you [purchase a commitment tier](../commitment-tier.md) for speech to text, the spend for pronunciation assessment goes towards meeting the commitment. 
+As a baseline, usage of pronunciation assessment costs the same as speech to text for Standard or commitment tier [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services). If you [purchase a commitment tier](../commitment-tier.md) for speech to text, the spend for pronunciation assessment goes towards meeting the commitment.
 
-The pronunciation assessment feature also offers other scores that aren't included in the baseline speech to text price: prosody, grammar, topic, and vocabulary. These scores are available as an add-on charge above the baseline speech to text price. For information about pricing, see [speech to text pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services).
+The pronunciation assessment feature also offers other scores that aren't included in the baseline speech to text price, such as the prosody score. These scores are available as an add-on charge above the baseline speech to text price. For information about pricing, see [speech to text pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services).
 
 Here's a table of available pronunciation assessment scores, whether it's available in the [scripted](#conduct-a-reading-assessment) or [unscripted](#conduct-a-speaking-assessment) assessments, and whether it's included in the baseline speech to text price or the add-on price.
 
@@ -322,16 +324,13 @@ Here's a table of available pronunciation assessment scores, whether it's availa
 | Completeness | Scripted | Yes |
 | Miscue | Scripted and unscripted | Yes |
 | Prosody | Scripted and unscripted | No |
-| Grammar | Unscripted only | No |
-| Topic | Unscripted only | No |
-| Vocabulary | Unscripted only | No |
 
 ## Responsible AI
 
 An AI system includes not only the technology, but also the people who use it, the people who will be affected by it, and the environment in which it's deployed. Read the transparency notes to learn about responsible AI use and deployment in your systems.
 
-* [Transparency note and use cases](/legal/cognitive-services/speech-service/pronunciation-assessment/transparency-note-pronunciation-assessment?context=/azure/ai-services/speech-service/context/context)
-* [Characteristics and limitations](/legal/cognitive-services/speech-service/pronunciation-assessment/characteristics-and-limitations-pronunciation-assessment?context=/azure/ai-services/speech-service/context/context)
+* [Transparency note and use cases](/azure/ai-foundry/responsible-ai/speech-service/pronunciation-assessment/transparency-note-pronunciation-assessment)
+* [Characteristics and limitations](/azure/ai-foundry/responsible-ai/speech-service/pronunciation-assessment/characteristics-and-limitations-pronunciation-assessment)
 
 ## Next steps
 

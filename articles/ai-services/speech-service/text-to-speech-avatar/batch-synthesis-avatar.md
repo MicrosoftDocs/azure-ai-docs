@@ -5,23 +5,22 @@ description: Learn how to create text to speech avatar batch synthesis.
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 4/28/2025
-ms.reviewer: eur
-ms.author: eur
-author: eric-urban
+ms.date: 08/07/2025
+ms.author: pafarley
+author: PatrickFarley
 ---
 
-# How to use batch synthesis for text to speech avatar
+# Use batch synthesis for text to speech avatar
 
-The batch synthesis API for text to speech avatar allows for the asynchronous synthesis of text into a talking avatar as a video file. Publishers and video content platforms can utilize this API to create avatar video content in a batch. That approach can be suitable for various use cases such as training materials, presentations, or advertisements.
+The batch synthesis API for text to speech avatar lets you synthesize text asynchronously into a talking avatar as a video file. Publishers and video content platforms can use this API to create avatar video content in a batch. That approach can be suitable for different use cases like training materials, presentations, or advertisements.
 
-The synthetic avatar video will be generated asynchronously after the system receives text input. The generated video output can be downloaded in batch mode synthesis. You submit text for synthesis, poll for the synthesis status, and download the video output when the status indicates success. The text input formats must be plain text or Speech Synthesis Markup Language (SSML) text. 
+The synthetic avatar video will be generated asynchronously after the system receives text input. The generated video output can be downloaded in batch mode synthesis. You submit text for synthesis, poll for the synthesis status, and download the video output when the status shows success. The text input formats must be plain text or Speech Synthesis Markup Language (SSML) text. 
 
 This diagram provides a high-level overview of the workflow.
 
-:::image type="content" source="./media/batch-synthesis-workflow.png" alt-text="Screenshot of displaying a high-level overview of the batch synthesis workflow." lightbox="./media/batch-synthesis-workflow.png":::
+:::image type="content" source="./media/batch-synthesis-workflow.png" alt-text="Screenshot that shows a high-level overview of the batch synthesis workflow." lightbox="./media/batch-synthesis-workflow.png":::
 
-To perform batch synthesis, you can use the following REST API operations.
+To run batch synthesis, you can use the following REST API operations.
 
 | Operation            | Method  | REST API call                                      |
 |----------------------|---------|---------------------------------------------------|
@@ -34,14 +33,14 @@ You can refer to the code samples on [GitHub](https://github.com/Azure-Samples/c
 
 ## Create a batch synthesis request
 
-Some properties in JSON format are required when you create a new batch synthesis job. Other properties are optional. The [batch synthesis response](#get-batch-synthesis) includes other properties to provide information about the synthesis status and results. For example, the `outputs.result` property contains the location from [where you can download a video file](#get-batch-synthesis-results-file) containing the avatar video. From `outputs.summary`, you can access the summary and debug details. 
+Some properties in JSON format are required when you create a new batch synthesis job. Other properties are optional. The [batch synthesis response](#get-batch-synthesis) includes other properties to provide information about the synthesis status and results. For example, the `outputs.result` property has the location from [where you can download a video file](#get-batch-synthesis-results-file) containing the avatar video. From `outputs.summary`, you can get the summary and debug details. 
 
 To submit a batch synthesis request, construct the HTTP POST request body following these instructions:
 
 - Set the required `inputKind` property.
 - If the `inputKind` property is set to `PlainText`, you must also set the `voice` property in the `synthesisConfig`. In the following example, the `inputKind` is set to `SSML`, so the `speechSynthesis` isn't set.
 - Set the required `SynthesisId` property. Choose a unique `SynthesisId` for the same speech resource. The `SynthesisId` can be a string of 3 to 64 characters, including letters, numbers, '-', or '_', with the condition that it must start and end with a letter or number.
-- Set the required `talkingAvatarCharacter` and `talkingAvatarStyle` properties. You can find supported avatar characters and styles [here](./avatar-gestures-with-ssml.md#supported-standard-avatar-characters-styles-and-gestures).
+- Set the required `talkingAvatarCharacter` and `talkingAvatarStyle` properties. You can find supported avatar characters and styles [here](./standard-avatars.md).
 - Optionally, you can set the `videoFormat`, `backgroundColor`, and other properties. For more information, see [batch synthesis properties](batch-synthesis-avatar-properties.md).
 
 > [!NOTE]
@@ -99,7 +98,7 @@ The `status` property should progress from `NotStarted` status to `Running` and 
 
 ## Get batch synthesis
 
-To retrieve the status of a batch synthesis job, make an HTTP GET request using the URI as shown in the following example. 
+To get the status of a batch synthesis job, make an HTTP GET request using the URI as shown in the following example. 
 
 Replace `YourSynthesisId` with your batch synthesis ID, `YourSpeechKey` with your Speech resource key, and `YourSpeechRegion` with your Speech resource region.
 
@@ -145,7 +144,7 @@ You should receive a response body in the following format:
 }
 ```
 
-From the `outputs.result` field, you can download a video file containing the avatar video. The `outputs.summary` field allows you to download the summary and debug details. For more information on batch synthesis results, see [batch synthesis results](#get-batch-synthesis-results-file).
+From the `outputs.result` field, you can download a video file containing the avatar video. The `outputs.summary` field lets you download the summary and debug details. For more information on batch synthesis results, see [batch synthesis results](#get-batch-synthesis-results-file).
 
 
 ## List batch synthesis
@@ -234,7 +233,7 @@ You receive a response body in the following format:
 }
 ```
 
-From `outputs.result`, you can download a video file containing the avatar video. From `outputs.summary`, you can access the summary and debug details. For more information, see [batch synthesis results](#get-batch-synthesis-results-file).
+From `outputs.result`, you can download a video file containing the avatar video. From `outputs.summary`, you can get the summary and debug details. For more information, see [batch synthesis results](#get-batch-synthesis-results-file).
 
 The `value` property in the JSON response lists your synthesis requests. The list is paginated, with a maximum page size of 100. The `nextLink` property is provided as needed to get the next page of the paginated list.
 
@@ -254,7 +253,7 @@ To get the batch synthesis summary file, make an HTTP GET request using the URI 
 curl -v -X GET "YourOutputsSummaryUrl" -H "Ocp-Apim-Subscription-Key: YourSpeechKey" > summary.json
 ```
 
-The summary file contains the synthesis results for each text input. Here's an example summary.json file:
+The summary file has the synthesis results for each text input. Here's an example summary.json file:
 
 ```json
 {
@@ -276,7 +275,7 @@ The summary file contains the synthesis results for each text input. Here's an e
 
 ## Delete batch synthesis
 
-After you retrieve the audio output results and no longer need the batch synthesis job history, you can delete it. The Speech service retains each synthesis history for up to 31 days or the duration specified by the request's `timeToLiveInHours` property, whichever comes sooner. The date and time of automatic deletion, for synthesis jobs with a status of "Succeeded" or "Failed" is calculated as the sum of the `lastActionDateTime` and `timeToLive` properties.
+After you get the audio output results and no longer need the batch synthesis job history, you can delete it. The Speech service keeps each synthesis history for up to 31 days or the duration specified by the request's `timeToLiveInHours` property, whichever comes sooner. The date and time of automatic deletion for synthesis jobs with a status of "Succeeded" or "Failed" is calculated as the sum of the `lastActionDateTime` and `timeToLive` properties.
 
 To delete a batch synthesis job, make an HTTP DELETE request using the following URI format. Replace `YourSynthesisId` with your batch synthesis ID, `YourSpeechKey` with your Speech resource key, and `YourSpeechRegion` with your Speech resource region.
 

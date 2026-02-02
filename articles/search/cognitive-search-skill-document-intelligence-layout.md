@@ -2,55 +2,53 @@
 title: Document Layout skill
 titleSuffix: Azure AI Search
 description: Analyze a document to extract regions of interest and their inter-relationships to produce a syntactical representation (markdown format) in an enrichment pipeline in Azure AI Search.
-
 author: rawan
 ms.author: rawan
-
 ms.service: azure-ai-search
 ms.custom:
   - references_regions
   - ignite-2024
 ms.topic: reference
-ms.date: 06/10/2025
+ms.date: 10/21/2025
+ms.update-cycle: 365-days
 ---
 
 # Document Layout skill
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
-
-The **Document Layout** skill analyzes a document to detect structure and characteristics, and produces a syntactical representation of the document in Markdown or Text format. You can use it to extract text and images, where image extraction includes location metadata that preserves image position within the document. Image proximity to related content adds value to Retrieval Augmented Generation (RAG) workloads and [multimodal search](multimodal-search-overview.md).
+The **Document Layout** skill analyzes a document to detect structure and characteristics, and produces a syntactical representation of the document in Markdown or Text format. You can use it to extract text and images, where image extraction includes location metadata that preserves image position within the document. Image proximity to related content is beneficial in Retrieval Augmented Generation (RAG) workloads and [multimodal search](multimodal-search-overview.md) scenarios.
 
 This article is the reference documentation for the Document Layout skill. For usage information, see [How to chunk and vectorize by document layout](search-how-to-semantic-chunking.md). 
 
-It's common to use this skill on content such as PDFs that have structure and images. The following tutorials demonstrate several scenarios: 
+This skill uses the [Document Intelligence layout model](/azure/ai-services/document-intelligence/concept-layout) provided in [Azure AI Document Intelligence](/azure/ai-services/document-intelligence/overview).
 
-+ [Tutorial: Index mixed content using image verbalizations and the Document Layout skill](tutorial-document-layout-image-verbalization.md)
+This skill is bound to a [billable Azure AI multi-service resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Azure AI services Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/).
 
-+ [Tutorial: Index mixed content using multimodal embeddings and the Document Layout skill](tutorial-document-layout-multimodal-embeddings.md)
-
-> [!NOTE]
-> This skill uses the [Document Intelligence layout model](/azure/ai-services/document-intelligence/concept-layout) provided in [Azure AI Document Intelligence](/azure/ai-services/document-intelligence/overview).
+> [!TIP]
+> It's common to use this skill on content such as PDFs that have structure and images. The following tutorials demonstrate image verbalization with two different data chunking techniques:
 >
-> This skill is bound to a [billable Azure AI multi-service resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Azure AI services Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/).
+> - [Tutorial: Verbalize images from a structured document layout](tutorial-document-layout-image-verbalization.md)
+> - [Tutorial: Vectorize from a structured document layout](tutorial-document-layout-multimodal-embeddings.md)
 >
 
 ## Limitations
 
-During the public preview, this skill has the following restrictions:
+This skill has the following limitations:
 
 + The skill isn't suitable for large documents requiring more than 5 minutes of processing in the AI Document Intelligence layout model. The skill times out, but charges still apply to the AI Services multi-services resource if it attaches to the skillset for billing purposes. Ensure documents are optimized to stay within processing limits to avoid unnecessary costs.
 
++ Since this skill calls the Azure AI Document Intelligence layout model, all documented [service behaviors for different document types](/azure/ai-services/document-intelligence/prebuilt/layout#pages) for different file types apply to its output. For example, Word (DOCX) and PDF files may produce different results due to differences in how images are handled. If consistent image behavior across DOCX and PDF is required, consider converting documents to PDF or reviewing the [multimodal search documentation](multimodal-search-overview.md) for alternative approaches.
+
 ## Supported regions
 
-The Document Layout skill calls the [Document Intelligence Public preview version 2024-07-31-preview](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-07-31-preview)&preserve-view=true). 
+The Document Layout skill calls the [Document Intelligence 2024-11-30 API](/rest/api/aiservices/operation-groups). 
 
 Supported regions vary by modality and how the skill connects to the Document Intelligence layout model.
 
-| Approach | Regions | Requirement |
-|----------|---------|-------------|
-| [Import and vectorize data wizard](search-import-data-portal.md) | **East US**, **West Europe**, **North Central US** | Create an Azure AI multi-service resource in one of these regions to get the portal experience. |
-| Programmatic, using a [keyless connection (preview)](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) for billing | Varies by resource | Create Azure AI Search in one of these regions:  **East US**, **West Europe**, **North Central US**, **West US 2**. <br>Access Document Intelligence through an Azure AI multi-service resource in any region listed in the [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table) table.|
-| Programmatic, using a [multi-service resource API key](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) for billing | **East US**, **West Europe**, **North Central US**, **West US 2** | Create your Azure AI Search service and AI multi-service resource in the same region. |
+| Approach | Requirement |
+|----------|-------------|
+| [**Import data (new)** wizard](search-import-data-portal.md) | Create an Azure AI multi-service resource in one of these regions to get the portal experience: **East US**, **West Europe**, **North Central US**. | 
+| Programmatic, using [Microsoft Entra ID authentication (preview)](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) for billing |  Create Azure AI Search in one of the regions where the service is supported, according to [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table). <br>Create the Azure AI multi-service resource in any region listed in the [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table) table.|
+| Programmatic, using a [multi-service resource API key](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) for billing | Create your Azure AI Search service and AI multi-service resource in the same region. This means that the region chosen must have support for both [Azure AI Search and Azure Document Intelligence services](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table). |
 
 ## Supported file formats
 
@@ -71,12 +69,6 @@ This skill recognizes the following file formats.
 
 Refer to [Azure AI Document Intelligence layout model supported languages](/azure/ai-services/document-intelligence/language-support/ocr?view=doc-intel-3.1.0&tabs=read-print%2Clayout-print%2Cgeneral#layout&preserve-view=true) for printed text.
 
-## Supported parameters
-
-Several parameters are version-specific. The skills parameter table notes the API version in which a parameter was introduced so that you know how to configure the skill. To use version-specific features such as image and location metadata extraction in [2025-05-01-preview REST API](/rest/api/searchservice/skillsets/create?view=rest-searchservice-2025-05-01-preview&preserve-view=true), you can use the Azure portal, or target 2025-05-01-preview, or check an Azure SDK change log to see if it supports the new parameters.
-
-The Azure portal supports most preview features and can be used to create or update a skillset. For updates to the Document Layout skill, edit the skillset JSON definition to add new preview parameters.
-
 ## @odata.type
 
 Microsoft.Skills.Util.DocumentIntelligenceLayoutSkill
@@ -90,21 +82,21 @@ Microsoft.Skills.Util.DocumentIntelligenceLayoutSkill
   
 ## Skill parameters
 
-Parameters are case-sensitive.
+Parameters are case-sensitive. Several parameters were introduced in specific preview versions of the REST API. We recommend using the generally available version (2025-09-01) or the latest preview (2025-08-01-preview) for full access to all parameters.
 
-| Parameter name     | Version | Allowed Values | Description |
-|--------------------|-------------|-------------|-------------|
-| `outputMode`    | [2024-11-01-preview](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2024-11-01-preview&preserve-view=true) |`oneToMany` | Controls the cardinality of the output produced by the skill. |
-| `markdownHeaderDepth` | [2024-11-01-preview](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2024-11-01-preview&preserve-view=true) |`h1`, `h2`, `h3`, `h4`, `h5`, `h6(default)` | Only applies if `outputFormat` is set to `markdown`. This parameter describes the deepest nesting level that should be considered. For instance, if the markdownHeaderDepth is `h3`, any sections that are deeper such as `h4`, are rolled into `h3`. |
-| `outputFormat`    | [2025-05-01-preview](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true) |`markdown(default)`, `text` | **New**. Controls the format of the output generated by the skill. |
-| `extractionOptions`    | [2025-05-01-preview](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true) |`["images"]`, `["images", "locationMetadata"]`, `["locationMetadata"]` | **New**. Identify any extra content extracted from the document. Define an array of enums that correspond to the content to be included in the output. For instance, if the `extractionOptions` is `["images", "locationMetadata"]`, the output includes images and location metadata which provides page location information related to where the content was extracted, such as a page number or section. This parameter applies to both output formats.  |
-| `chunkingProperties`    | [2025-05-01-preview](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true) | See below. | **New**. Only applies if `outputFormat` is set to `text`. Options that encapsulate how to chunk text content while recomputing other metadata. |
+| Parameter name     | Allowed Values | Description |
+|--------------------|----------------|-------------|
+| `outputMode`    |`oneToMany` | Controls the cardinality of the output produced by the skill. |
+| `markdownHeaderDepth` |`h1`, `h2`, `h3`, `h4`, `h5`, `h6(default)` | Only applies if `outputFormat` is set to `markdown`. This parameter describes the deepest nesting level that should be considered. For instance, if the markdownHeaderDepth is `h3`, any sections that are deeper such as `h4`, are rolled into `h3`. |
+| `outputFormat`    |`markdown(default)`, `text` | **New**. Controls the format of the output generated by the skill. |
+| `extractionOptions`    |`["images"]`, `["images", "locationMetadata"]`, `["locationMetadata"]` | **New**. Identify any extra content extracted from the document. Define an array of enums that correspond to the content to be included in the output. For instance, if the `extractionOptions` is `["images", "locationMetadata"]`, the output includes images and location metadata which provides page location information related to where the content was extracted, such as a page number or section. This parameter applies to both output formats.  |
+| `chunkingProperties` | See below. | **New**. Only applies if `outputFormat` is set to `text`. Options that encapsulate how to chunk text content while recomputing other metadata. |
 
 | ChunkingProperties Parameter     | Version | Allowed Values | Description |
 |--------------------|-------------|-------------|-------------|
-| `unit`    | [2025-05-01-preview](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true) | `Characters`. currently the only allowed value. Chunk length is measured in characters, as opposed to words or tokens | **New**. Controls the cardinality of the chunk unit. |
-| `maximumLength`    | [2025-05-01-preview](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true) | Any integer between 300-50000 | **New**. The maximum chunk length in characters as measured by String.Length. |
-| `overlapLength`    | [2025-05-01-preview](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true) | Integer. The value needs to be less than the half of the `maximumLength` | **New**. The length of overlap provided between two text chunks. |
+| `unit`    | `Characters`. currently the only allowed value. Chunk length is measured in characters, as opposed to words or tokens | **New**. Controls the cardinality of the chunk unit. |
+| `maximumLength`    | Any integer between 300-50000 | **New**. The maximum chunk length in characters as measured by String.Length. |
+| `overlapLength`    | Integer. The value needs to be less than the half of the `maximumLength` | **New**. The length of overlap provided between two text chunks. |
 
 ## Skill inputs
 
@@ -204,7 +196,7 @@ The value of the `markdownHeaderDepth` controls the number of keys in the "secti
 
 ## Example for text output mode and image and metadata extraction
 
-This example demonstrates how to use the new parameters introduced in the **2025-05-01-preview** to output text content in fixed-sized chunks and extract images along with location metadata from the document.
+This example demonstrates how to output text content in fixed-sized chunks and extract images along with location metadata from the document.
 
 ### Sample definition for text output mode and image and metadata extraction
 
@@ -257,7 +249,7 @@ This example demonstrates how to use the new parameters introduced in the **2025
           "ordinalPosition": 0,
           "boundingPolygons": "[[{\"x\":1.5548,\"y\":0.4036},{\"x\":6.9691,\"y\":0.4033},{\"x\":6.9691,\"y\":0.8577},{\"x\":1.5548,\"y\":0.8581}],[{\"x\":1.181,\"y\":1.0627},{\"x\":7.1393,\"y\":1.0626},{\"x\":7.1393,\"y\":1.7363},{\"x\":1.181,\"y\":1.7365}],[{\"x\":1.1923,\"y\":2.1466},{\"x\":3.4585,\"y\":2.1496},{\"x\":3.4582,\"y\":2.4251},{\"x\":1.1919,\"y\":2.4221}],[{\"x\":1.1813,\"y\":2.6518},{\"x\":7.2464,\"y\":2.6375},{\"x\":7.2486,\"y\":3.5913},{\"x\":1.1835,\"y\":3.6056}],[{\"x\":1.3349,\"y\":3.9489},{\"x\":2.1237,\"y\":3.9508},{\"x\":2.1233,\"y\":4.1128},{\"x\":1.3346,\"y\":4.111}],[{\"x\":1.5705,\"y\":4.5322},{\"x\":5.801,\"y\":4.5326},{\"x\":5.801,\"y\":4.7311},{\"x\":1.5704,\"y\":4.7307}]]"
         },
-        "sections": ["sectionHeading"]
+        "sections": []
       },
       {
         "id": "2_25134f52-04c3-415a-ab3d-80729bd58e67",
@@ -267,7 +259,7 @@ This example demonstrates how to use the new parameters introduced in the **2025
           "ordinalPosition": 1,
           "boundingPolygons": "[[{\"x\":2.2041,\"y\":0.4109},{\"x\":4.3967,\"y\":0.4131},{\"x\":4.3966,\"y\":0.5505},{\"x\":2.204,\"y\":0.5482}],[{\"x\":2.5042,\"y\":0.6422},{\"x\":4.8539,\"y\":0.6506},{\"x\":4.8527,\"y\":0.993},{\"x\":2.5029,\"y\":0.9845}],[{\"x\":2.3705,\"y\":1.1496},{\"x\":2.6859,\"y\":1.15},{\"x\":2.6858,\"y\":1.2612},{\"x\":2.3704,\"y\":1.2608}],[{\"x\":3.7418,\"y\":1.1709},{\"x\":3.8082,\"y\":1.171},{\"x\":3.8081,\"y\":1.2508},{\"x\":3.7417,\"y\":1.2507}],[{\"x\":3.9692,\"y\":1.1445},{\"x\":4.0541,\"y\":1.1445},{\"x\":4.0542,\"y\":1.2621},{\"x\":3.9692,\"y\":1.2622}],[{\"x\":4.5326,\"y\":1.2263},{\"x\":5.1065,\"y\":1.229},{\"x\":5.106,\"y\":1.346},{\"x\":4.5321,\"y\":1.3433}],[{\"x\":5.5508,\"y\":1.2267},{\"x\":5.8992,\"y\":1.2268},{\"x\":5.8991,\"y\":1.3408},{\"x\":5.5508,\"y\":1.3408}]]"
         },
-        "sections": ["sectionHeading", "title"]
+        "sections": []
        }
     ],
     "normalized_images": [ 
@@ -294,6 +286,7 @@ This example demonstrates how to use the new parameters introduced in the **2025
     ] 
 }
 ```
+Note that the `“sections”` in the sample output above appear blank. To populate them, you’ll need to add an additional skill configured with `outputFormat` set to `markdown`to ensure the sections are properly filled.
 
 The skill uses [Azure AI Document Intelligence](/azure/ai-services/document-intelligence/overview) to compute locationMetadata. Refer to [Document Intelligence layout model](/azure/ai-services/document-intelligence/concept-layout) for details on how pages and bounding polygon coordinates are defined.
 

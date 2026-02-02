@@ -2,10 +2,10 @@
 title: Azure AI Content Understanding image overview
 titleSuffix: Azure AI services
 description: Learn how to use Azure AI Content Understanding image solutions
-author: laujan
-ms.author: lajanuar
+author: PatrickFarley 
+ms.author: pafarley
 manager: nitinme
-ms.date: 05/19/2025
+ms.date: 09/16/2025
 ms.service: azure-ai-content-understanding
 ms.topic: how-to
 ms.custom:
@@ -20,7 +20,7 @@ ms.custom:
 > * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
-Azure AI Content Understanding standardizes the extraction of data from images, making it easier to analyze large volumes of unstructured data. Standardized extraction speeds up time-to-value and simplifies integration into downstream analytical workflows. With the Content Understanding APIs, you can define schema to specify the fields, descriptions, and output types for extraction. The service then analyses the images and provides structured data, which can be applied in various use cases, such as:
+Azure AI Content Understanding standardizes the extraction of data from images, making it easier to analyze large volumes of unstructured image data. Standardized extraction speeds up time-to-value and simplifies integration into downstream analytical workflows. With the Content Understanding APIs, you can define schemas to specify the fields, descriptions, and output types for extraction. The service then analyzes your images and provides structured data that can be applied in various use cases, such as:
 
 * **Retrieval-augmented generation (RAG) applications:** Extract key details from your images to build a robust index that powers user-facing chat experiences. This index enables users to ask questions and receive accurate answers based on the content of your images.
 
@@ -44,16 +44,16 @@ Content Understanding offers several key benefits for extracting information fro
 
 ## Get started
 
-Get started with processing images with Content Understanding by following our [REST API quickstart](../quickstart/use-rest-api.md?tabs=image) or visiting [Azure AI Foundry](https://aka.ms/cu-landing) for a no code experience. 
+Get started with processing images with Content Understanding by following our [REST API quickstart](../quickstart/use-rest-api.md?tabs=image) or visiting [Azure AI Foundry](https://aka.ms/cu-landing) for a no-code experience. 
 
 > [!NOTE]
-> Image analyzers are currently not optimized for scenarios where analysis is based primarily on extracted text. If your main goal is to extract and analyze text from images, consider using a document field extraction schema instead.
+> Image analyzers are not optimized for scenarios where analysis is based primarily on extracted text. If your main goal is to extract and analyze text from images, consider using a document field extraction schema instead.
 
 
 > [!IMPORTANT]
-> If you're using Microsoft products or services to process Biometric Data, you're responsible for: (i) providing notice to data subjects, including with respect to retention periods and destruction; (ii) obtaining consent from data subjects; and (iii) deleting the Biometric Data, all as appropriate, and required under applicable Data Protection Requirements. "Biometric Data" has the meaning articulated in Article 4 of the GDPR and, if applicable, equivalent terms in other data protection requirements. For related information, see [Data and Privacy for Face](/legal/cognitive-services/face/data-privacy-security).
+> If you're using Microsoft products or services to process Biometric Data, you're responsible for: (i) providing notice to data subjects, including with respect to retention periods and destruction; (ii) obtaining consent from data subjects; and (iii) deleting the Biometric Data, all as appropriate, and required under applicable Data Protection Requirements. "Biometric Data" has the meaning articulated in Article 4 of the GDPR and, if applicable, equivalent terms in other data protection requirements. For related information, see [Data and Privacy for Face](/azure/ai-foundry/responsible-ai/face/data-privacy-security).
 
-## Next steps
+## Related content
 
 * For guidance on optimizing your Content Understanding implementations, including schema design tips, see our detailed [Best practices guide](../concepts/best-practices.md).
 * For detailed information on supported input image formats, *see* [Service quotas and limits](../service-limits.md).

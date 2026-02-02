@@ -2,12 +2,12 @@
 title: Custom voice lite - Speech service
 titleSuffix: Azure AI services
 description: Use custom voice lite to demo and evaluate custom voice before investing in professional recordings to create a higher-quality voice.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 5/12/2025
-ms.author: eur
+ms.author: pafarley
 ---
 
 # Custom voice lite

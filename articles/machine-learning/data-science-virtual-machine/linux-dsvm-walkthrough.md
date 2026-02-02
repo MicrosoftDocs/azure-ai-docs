@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-data-science-virtual-machines
 ms.custom: linux-related-content
 
-author: fbsolo-ms1 
-ms.author: franksolomon 
+author: s-polly 
+ms.author: scottpolly 
 ms.topic: conceptual
 ms.reviewer: jcioffi
 ms.date: 04/25/2024
@@ -23,7 +23,7 @@ In this walkthrough, we analyze the [spambase](https://archive.ics.uci.edu/ml/da
 
 Before you can use a Linux DSVM, you must cover these prerequisites:
 
-* **Azure subscription**. To get an Azure subscription, visit [Create your free Azure account today](https://azure.microsoft.com/free/).
+* **Azure subscription**. To get an Azure subscription, visit [Create your free Azure account today](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * [**Ubuntu Data Science Virtual Machine**](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.ubuntu-2004). For information about provisioning the virtual machine, visit [Provision the Ubuntu Data Science Virtual Machine](./release-notes.md).
 * [**X2Go**](https://wiki.x2go.org/doku.php) installed on your computer with an open XFCE session. For more information, visit [Install and configure the X2Go client](dsvm-ubuntu-intro.md#x2go).

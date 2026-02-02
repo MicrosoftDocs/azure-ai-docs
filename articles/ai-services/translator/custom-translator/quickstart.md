@@ -19,7 +19,7 @@ Translator is a cloud-based neural machine translation service that is part of t
 
 * A [Microsoft account](https://signup.live.com).
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/)
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 * Once you have an Azure subscription, [create a Translator resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) in the Azure portal to get your key and endpoint. After it deploys, select **Go to resource**.
   * You need the key and endpoint from the resource to connect your application to the Translator service. Paste your key and endpoint into the code later in the quickstart. You can find these values on the Azure portal **Keys and Endpoint** page:
 

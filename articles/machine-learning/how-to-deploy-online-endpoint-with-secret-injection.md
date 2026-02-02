@@ -5,8 +5,8 @@ description: Learn to use secret injection with online endpoint and deployment t
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: sehan
 ms.date: 01/10/2024
 ms.topic: how-to
@@ -30,7 +30,7 @@ You'll learn to:
 
 ## Prerequisites
 
-- To use Azure Machine Learning, you must have an Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/) today.
+- To use Azure Machine Learning, you must have an Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) today.
 
 - Install and configure the [Azure Machine Learning CLI (v2) extension](how-to-configure-cli.md) or the [Azure Machine Learning Python SDK (v2)](https://aka.ms/sdk-v2-install).
 

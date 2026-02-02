@@ -9,10 +9,8 @@ metadata:
   ms.service: azure-ai-vision
   ms.topic: hub-page
   author: PatrickFarley
-  ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-  ms.update-cycle: 365-days
   ms.author: pafarley
-  ms.date: 08/21/2024
+  ms.date: 09/16/2025
 
 highlightedContent:
   # itemType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | whats-new
@@ -90,26 +88,6 @@ conceptualContent:
       footerLink:
         text: More
         url: overview-identity.md
-    - title: Optical character recognition (legacy)
-      links:
-        - itemType: overview
-          text: About OCR
-          url: overview-ocr.md
-        - itemType: quickstart
-          text: Get started with OCR
-          url: quickstarts-sdk/client-library.md
-        - itemType: how-to-guide
-          text: Call the Read API
-          url: how-to/call-read-api.md
-        - itemType: deploy
-          text: Use the Read OCR container
-          url: computer-vision-how-to-install-containers.md
-        - itemType: learn
-          text: Microsoft Learn training
-          url: /training/modules/read-text-images-documents-with-computer-vision-service/
-        - itemType: reference
-          text: OCR API reference
-          url: /rest/api/computervision/recognize-printed-text?view=rest-computervision-v3.2
 
 
 tools:

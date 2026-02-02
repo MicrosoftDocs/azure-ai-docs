@@ -1,13 +1,13 @@
----
+﻿---
 title: Migrate from v3.1 to v3.2 REST API - Speech service
 titleSuffix: Azure AI services
 description: This document helps developers migrate code from v3.1 to v3.2 of the Speech to text REST API.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 3/10/2025
-ms.author: eur
+ms.date: 08/07/2025
+ms.author: pafarley
 ms.devlang: csharp
 ms.custom: devx-track-csharp
 #Customer intent: As a developer, I want to migrate code from v3.1 to v3.2 of the Speech to text REST API.
@@ -48,7 +48,7 @@ The `LanguageIdentificationMode` is added to `LanguageIdentificationProperties` 
 Azure AI Speech now supports OpenAI's Whisper model via Speech to text REST API v3.2. To learn more, check out the [Create a batch transcription](./batch-transcription-create.md#use-a-whisper-model) guide. 
 
 > [!NOTE]
-> Azure OpenAI in Azure AI Foundry Models also supports OpenAI's Whisper model for speech to text with a synchronous REST API. To learn more, check out the [quickstart](../openai/whisper-quickstart.md). Check out [What is the Whisper model?](./whisper-overview.md) to learn more about when to use Azure AI Speech vs. Azure OpenAI in Azure AI Foundry Models. 
+> Azure OpenAI in Azure AI Foundry Models also supports OpenAI's Whisper model for speech to text with a synchronous REST API. To learn more, check out the [quickstart](../../ai-foundry/openai/whisper-quickstart.md). Check out [What is the Whisper model?](./whisper-overview.md) to learn more about when to use Azure AI Speech vs. Azure OpenAI in Azure AI Foundry Models. 
 
 ## Custom speech
 

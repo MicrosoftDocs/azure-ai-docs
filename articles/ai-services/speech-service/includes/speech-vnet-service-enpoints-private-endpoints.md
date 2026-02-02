@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 03/19/2021
-ms.author: eur
+ms.author: pafarley
 ---
 
 ## Private endpoints and Virtual Network service endpoints

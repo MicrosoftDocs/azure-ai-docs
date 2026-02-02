@@ -1,9 +1,9 @@
 ---
-author: Blackmist
+author: s-polly
 ms.service: azure-machine-learning
 ms.topic: include
 ms.date: 06/14/2024
-ms.author: larryfr
+ms.author: scottpolly
 ---
 
 > [!TIP]

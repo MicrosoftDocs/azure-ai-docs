@@ -2,12 +2,14 @@
 title: What is personal voice?
 titleSuffix: Azure AI services
 description: With personal voice, you can get AI generated replication of your voice (or users of your application) in a few seconds.
-author: eric-urban
+author: goergenj
+reviewer: patrickfarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 3/10/2025
-ms.author: eur
+ms.date: 10/21/2025
+ms.author: jagoerge
+ms.reviewer: pafarley
 ms.custom: references_regions, build-2024
 #Customer intent: As a developer, I want to learn about personal voice for text to speech.
 ---
@@ -17,7 +19,7 @@ ms.custom: references_regions, build-2024
 With personal voice, you can enable your users to get AI generated replication of their own voices in a few seconds. With a verbal statement and a short speech sample as the audio prompt, you can create a personal voice for your users and allow them to generate speech in any of the more than 90 languages supported across more than 100 locales.
 
 > [!NOTE]
-> Personal voice is available in these regions: West Europe, East US, West US 2, South East Asia and East Asia. 
+> For the current list of regions that support personal voice, see the [Speech service regions table](regions.md?tabs=tts). 
 > For supported locales, see [personal voice language support](./language-support.md?tabs=tts#personal-voice).
 
 The following table summarizes the difference between personal voice and professional voice.  
@@ -25,7 +27,7 @@ The following table summarizes the difference between personal voice and profess
 | Comparison | Personal voice | Professional voice |
 |-------|-------------------------|-----|
 | Target scenarios | Business customers to build an app to allow their users to create and use their own personal voice in the app. | Professional scenarios like brand and character voices for chat bots, or audio content reading. |
-| Use cases | Restricted to limited use cases. See the [transparency note](/legal/cognitive-services/speech-service/custom-neural-voice/transparency-note?context=/azure/ai-services/speech-service/context/context&tabs=standard-voice#intended-uses-for-personal-voice-preview). Approved customers should have a plan to support more than 1,000 personal voices.  | Restricted to limited use cases. See the [transparency note](/legal/cognitive-services/speech-service/custom-neural-voice/transparency-note?context=/azure/ai-services/speech-service/context/context&tabs=standard-voice#intended-uses-for-custom-neural-voice-pro-and-custom-neural-voice-lite). |
+| Use cases | Restricted to limited use cases. See the [transparency note](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note). |
 | Training data | Make sure you follow the code of conduct. | Bring your own data. Recording in a professional studio is recommended. |
 | Required data size | One minute of human speech. | 300-2000 utterances (about 30 minutes to 3 hours of human speech). |
 | Training time | Less than 5 seconds | Approximately 20-40 compute hours. |
@@ -35,7 +37,7 @@ The following table summarizes the difference between personal voice and profess
 | Pricing | Check the pricing details [here](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/)<sup>1</sup>. | Check the pricing details [here](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/). |
 | Responsible AI requirements | Speaker's verbal statement required. No unapproved use case allowed. | Speaker's verbal statement required. No unapproved use case allowed. |
 
-<sup>1</sup> Note that personal voice pricing will only be visible for service regions where the feature is available, including West Europe, East US, West US 2, South East Asia and East Asia. 
+<sup>1</sup> Note that personal voice pricing will only be visible for service regions where the feature is available. For the current list of supported regions, see the [Speech service regions table](regions.md?tabs=tts). 
 
 ## Try the demo
 
@@ -69,7 +71,7 @@ Once you have a personal voice, you can [use it](./personal-voice-how-to-use.md)
 
 ## Responsible AI 
 
-We care about the people who use AI and the people who will be affected by it as much as we care about technology. For more information, see the Responsible AI [transparency notes](/legal/cognitive-services/speech-service/text-to-speech/transparency-note?context=/azure/ai-services/speech-service/context/context).
+We care about the people who use AI and the people who will be affected by it as much as we care about technology. For more information, see the Responsible AI [transparency notes](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note).
 
 
 ## Next steps

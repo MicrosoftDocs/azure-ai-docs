@@ -2,12 +2,13 @@
 title: Index Lookup tool for flows in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
 description: This article introduces you to the Index Lookup tool for flows in Azure AI Foundry portal.
-manager: scottpolly
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-prompt-flow
 ms.custom:
   - build-2024
+  - hub-only
 ms.topic: reference
-ms.date: 01/29/2025
+ms.date: 6/30/2025
 ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
@@ -20,6 +21,10 @@ ms.update-cycle: 180-days
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 The prompt flow Index Lookup tool enables the use of common vector indices (such as Azure AI Search, Faiss, and Pinecone) for retrieval augmented generation in prompt flow. The tool automatically detects the indices in the workspace and allows the selection of the index to be used in the flow.
+
+## Prerequisites
+
+[!INCLUDE [hub-only-prereq](../../includes/hub-only-prereq.md)]
 
 ## Build with the Index Lookup tool
 

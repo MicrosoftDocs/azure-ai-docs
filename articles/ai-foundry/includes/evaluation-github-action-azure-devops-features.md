@@ -4,7 +4,7 @@ description: Include file
 author: lgayhardt
 ms.service: azure-ai-foundry
 ms.topic: include
-ms.date: 5/08/2025
+ms.date: 9/19/2025
 ms.author: lagayhar
 ms.custom: include file
 ---
@@ -28,7 +28,7 @@ ms.custom: include file
     | Textual similarity | [GleuScoreEvaluator](../concepts/evaluation-evaluators/textual-similarity-evaluators.md#gleu-score) | Not Supported | Supported |
     | Textual similarity | [BleuScoreEvaluator](../concepts/evaluation-evaluators/textual-similarity-evaluators.md#bleu-score) | Not Supported | Supported |
     | Textual similarity | [MeteorScoreEvaluator](../concepts/evaluation-evaluators/textual-similarity-evaluators.md#meteor-score) | Not Supported | Supported |
-    | Retrieval-augmented Generation (RAG) (AI-assisted) | [GroundednessEvaluator](../concepts/evaluation-evaluators/rag-evaluators.md#groundedness) | Not Supported | Supported |
+    | Retrieval-augmented Generation (RAG) (AI-assisted) | [GroundednessEvaluator](../concepts/evaluation-evaluators/rag-evaluators.md#groundedness) | Supported | Supported |
     | Retrieval-augmented Generation (RAG) (AI-assisted) | [GroundednessProEvaluator](../concepts/evaluation-evaluators/rag-evaluators.md#groundedness-pro) | Not Supported | Supported |
     | Retrieval-augmented Generation (RAG) (AI-assisted) | [RetrievalEvaluator](../concepts/evaluation-evaluators/rag-evaluators.md#relevance) | Not Supported | Supported |
     | Retrieval-augmented Generation (RAG) (AI-assisted) | [RelevanceEvaluator](../concepts/evaluation-evaluators/rag-evaluators.md#retrieval) | Supported | Supported |
@@ -45,7 +45,7 @@ ms.custom: include file
     | Risk and safety (AI-assisted) | [ContentSafetyEvaluator](../concepts/evaluation-evaluators/risk-safety-evaluators.md#content-safety-composite-evaluator) | Supported | Supported |
     | Agent (AI-assisted) | [IntentResolutionEvaluator](../concepts/evaluation-evaluators/agent-evaluators.md#intent-resolution) | Supported | Supported |
     | Agent (AI-assisted) | [TaskAdherenceEvaluator](../concepts/evaluation-evaluators/agent-evaluators.md#task-adherence) | Supported | Supported |
-    | Agent (AI-assisted) | [ToolCallAccuracyEvaluator](../concepts/evaluation-evaluators/agent-evaluators.md#tool-call-accuracy) | Not Supported | Not Supported |
+    | Agent (AI-assisted) | [ToolCallAccuracyEvaluator](../concepts/evaluation-evaluators/agent-evaluators.md#tool-call-accuracy) | Supported | Supported |
     | Composite | `AgentOverallEvaluator` | Not Supported | Not Supported |
     | Operational metrics | Client run duration | Supported | Not Supported |
     | Operational metrics | Server run duration | Supported | Not Supported |

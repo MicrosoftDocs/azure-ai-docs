@@ -1,27 +1,28 @@
 ---
 title: Control AI model deployment with built-in policies
 titleSuffix: Azure AI Foundry
-description: "Learn how to use built-in Azure policies to control what managed AI Services (standard deployment) and Model-as-a-Platform (MaaP) AI models can be deployed in Azure AI Foundry portal."
-author: Blackmist
-ms.author: larryfr
+description: "Learn how to use built-in Azure policies to control what managed AI Services (serverless API deployment) and Model-as-a-Platform (MaaP) AI models can be deployed in Azure AI Foundry portal."
+ms.author: jburchel 
+author: jonburchel 
 ms.service: azure-ai-foundry
 ms.topic: how-to #Don't change
-ms.date: 05/05/2025
-
-#customer intent: As an admin, I want control what Managed AI Services (standard deployment) and Model-as-a-Platform (MaaP) AI models can be deployed by my developers.
+ms.date: 07/31/2025
+ms.reviewer: aashishb
+reviewer: aashishb_microsoft
+#customer intent: As an admin, I want control what Managed AI Services (serverless API deployment) and Model-as-a-Platform (MaaP) AI models can be deployed by my developers.
 
 ---
 
 # Control AI model deployment with built-in policies in Azure AI Foundry portal
 
-Azure Policy provides built-in policy definitions that help you govern the deployment of AI models in Managed AI Services (standard deployment) and Model-as-a-Platform (MaaP). You can use these policies to control what models your developers can deploy in Azure AI Foundry portal.
+Azure Policy provides built-in policy definitions that help you govern the deployment of AI models in Managed AI Services (serverless API deployment) and Model-as-a-Platform (MaaP). You can use these policies to control what models your developers can deploy in Azure AI Foundry portal.
 
 > [!TIP]
 > The steps in this article govern the deployment of MaaS and MaaP models for both a [!INCLUDE [fdp](../includes/fdp-project-name.md)] and [!INCLUDE [hub](../includes/hub-project-name.md)].
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/) before you begin.
+- [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 - Permissions to create and assign policies. To create and assign policies, you must be an [Owner](/azure/role-based-access-control/built-in-roles#owner) or [Resource Policy Contributor](/azure/role-based-access-control/built-in-roles#resource-policy-contributor) at the Azure subscription or resource group level.
 - Familiarity with Azure Policy. To learn more, see [What is Azure Policy?](/azure/governance/policy/overview).
 

@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 03/24/2025
+ms.date: 08/11/2025
 ms.author: lajanuar
 ms.custom: language-service-pii
 ---
@@ -19,6 +19,13 @@ Azure AI Language Personally Identifiable Information (PII) detection is a featu
 > Try PII detection [in Azure AI Foundry portal](https://ai.azure.com/explore/language). There you can [utilize a currently existing Language Studio resource or create a new Azure AI Foundry resource](../../../ai-services/connect-services-ai-foundry-portal.md).
 
 ## What's new
+
+The 2025-08-01-preview introduces several new entities:
+
+* [**DateOfBirth**](concepts/entity-categories.md#type-date-of-birth-preview) with English, French, German, Italian, Spanish, Portuguese, Brazilian Portuguese, and Dutch language support.
+* [**LicensePlate**](concepts/entity-categories.md#type-license-plate-preview) with English language support.
+* [**SortCode**](concepts/entity-categories.md#type-sort-code-preview) with English language support.
+
 
 The Text PII and Conversational PII detection preview API (version `2024-11-15-preview`) now supports the option to mask detected sensitive entities with a label beyond just redaction characters. Customers can specify if personal data content such as names and phone numbers, that is, `"John Doe received a call from 424-878-9192"`, are masked with a redaction character, that is, `"******** received a call from ************"`, or masked with an entity label, that is, `"[PERSON_1] received a call from [PHONENUMBER_1]"`. More on how to specify the redaction policy style for your outputs can be found in our [how-to guides](how-to-call.md). 
 
@@ -110,7 +117,7 @@ A native document refers to the file format used to create the original document
 
 ## Responsible AI
 
-An AI system includes not only the technology, but also the people who use it, the people affected by it, and the deployment environment. Read the [transparency note for PII](/legal/cognitive-services/language-service/transparency-note-personally-identifiable-information?context=/azure/ai-services/language-service/context/context) to learn about responsible AI use and deployment in your systems. For more information, see the following articles:
+An AI system includes not only the technology, but also the people who use it, the people affected by it, and the deployment environment. Read the [transparency note for PII](/azure/ai-foundry/responsible-ai/language-service/transparency-note-personally-identifiable-information) to learn about responsible AI use and deployment in your systems. For more information, see the following articles:
 
 [!INCLUDE [Responsible AI links](../includes/overview-responsible-ai-links.md)]
 

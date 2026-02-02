@@ -3,7 +3,7 @@ title: Ask the Foundry agent
 titleSuffix: Azure AI Foundry
 description: Learn how to ask the Foundry agent for help, getting your questions answered based on Azure AI Foundry documentation and model catalog.
 ms.service: azure-ai-foundry
-ms.date: 04/28/2025
+ms.date: 10/27/2025
 ms.reviewer: sgilley
 ms.author: jeomhove
 author: jfomhover
@@ -14,7 +14,9 @@ ms.topic: concept-article
 
 ## Overview
 
-The Foundry agent is an experimental feature that is here to assist you with questions about Azure AI Foundry. To start using the Foundry agent, simply click on its icon located in the top right bar of the interface. A chat window opens where you can type your questions and receive answers in real-time.
+The Foundry agent is an experimental feature that is here to assist you with questions about Azure AI Foundry. To start using the Foundry agent, simply click on its icon located in the top right bar of the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). A chat window opens where you can type your questions and receive answers in real-time.
+
+:::image type="content" source="../media/ask-foundry-agent/ask-foundry.png" alt-text="Screenshot shows the Foundry agent in the top right bar of the Azure AI Foundry portal.":::
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 

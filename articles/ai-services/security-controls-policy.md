@@ -15,7 +15,7 @@ ms.custom: subject-policy-compliancecontrols
 
 [!INCLUDE [azure-policy-compliancecontrols-introwarning](~/azure-docs-pr-policy-includes/includes/policy/standards/intro-warning.md)]
 
-[!INCLUDE [azure-policy-compliancecontrols-cognitiveservices](~/azure-docs-pr-policy-includes/includes/policy/standards/byrp/microsoft.cognitiveservices.md)]
+[!INCLUDE [azure-policy-compliancecontrols-cognitiveservices](~/azure-policy-autogen-docs/includes/policy/standards/byrp/microsoft.cognitiveservices.md)]
 
 ## Next steps
 

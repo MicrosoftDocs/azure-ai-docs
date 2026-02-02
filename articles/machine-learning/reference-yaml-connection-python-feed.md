@@ -2,8 +2,8 @@
 title: "CLI (v2) Python feed connection YAML schema"
 titleSuffix: Azure Machine Learning
 description: Reference documentation for the CLI (v2) Python feed connections YAML schema.
-author: Blackmist
-ms.author: larryfr
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: ambadal
 ms.date: 05/09/2024
 ms.service: azure-machine-learning

@@ -8,8 +8,8 @@ ms.subservice: core
 ms.topic: reference
 
 ms.reviewer: None
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.date: 02/28/2025
 ms.custom:
   - references_regions

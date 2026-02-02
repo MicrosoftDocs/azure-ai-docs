@@ -2,16 +2,17 @@
 title: Move a search service across regions
 titleSuffix: Azure AI Search
 description: Learn how to move your Azure AI Search resources from one region to another in the Azure cloud.
-
 manager: nitinme
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: how-to
+ms.date: 05/29/2025
+ms.update-cycle: 365-days
 ms.custom:
   - subject-moving-resources
   - ignite-2023
-ms.date: 05/29/2025
+  - sfi-image-nochange
 ---
 
 # Move your Azure AI Search service to another Azure region

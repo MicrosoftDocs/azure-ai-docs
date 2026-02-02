@@ -8,9 +8,8 @@ manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: how-to
 ms.date: 02/21/2025
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
 ms.author: pafarley
+ms.custom: sfi-image-nochange
 
 ---
 

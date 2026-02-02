@@ -2,10 +2,10 @@
 title: "Quickstart: Azure AI Content Understanding REST APIs"
 titleSuffix: Azure AI services
 description: Learn about Content Understanding REST APIs
-author: laujan
+author: PatrickFarley 
 ms.author: paulhsu
 manager: nitinme
-ms.date: 05/19/2025
+ms.date: 07/15/2025
 ms.service: azure-ai-content-understanding
 ms.topic: quickstart
 ms.custom:
@@ -20,15 +20,11 @@ ms.custom:
 
 ## Prerequisites
 
-To get started, you need **an active Azure subscription**. If you don't have an Azure account, [create one for free](https://azure.microsoft.com/free/).
-
-* Once you have your Azure subscription, create an [Azure AI Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal.
-
+* To get started, you need **an active Azure subscription**. If you don't have an Azure account, [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+* Once you have your Azure subscription, create an [Azure AI Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal. Be sure to create it in a [supported region](/azure/ai-services/content-understanding/language-region-support).
    * This resource is listed under **AI Foundry** > **AI Foundry** in the portal.
-
      :::image type="content" source="../media/overview/azure-multi-service-resource.png" alt-text="Screenshot of the AI Foundry resource page in the Azure portal.":::
-
-In this guide, we use the cURL command line tool. If it isn't installed, you can [download](https://everything.curl.dev/install/index.html) the appropriate version for your dev environment.
+* In this guide, we use the cURL command line tool. If it isn't installed, you can [download](https://everything.curl.dev/install/index.html) the appropriate version for your dev environment.
 
 ## Get started with a prebuilt analyzer
 
@@ -73,34 +69,33 @@ curl -i -X POST "{endpoint}/contentunderstanding/analyzers/{analyzerId}:analyze?
 ```
 
 #### POST response
-The response includes a JSON body containing the `resultId`, which you use to retrieve the results of the asynchronous analysis operation. Additionally, the `Operation-Location` header provides the direct URL to access the analysis result.
+The response includes a `request-id`, which you use to retrieve the results of the asynchronous analysis operation. Additionally, the `Operation-Location` header provides the direct URL to access the analysis result.
 
 ```
-202 Accepted
-Operation-Location: {endpoint}/contentunderstanding/analyzerResults/{resultId}?api-version=2024-12-01-preview
-{
-  "id": {resultId},
-  "status": "Running",
-  "result": {
-    "analyzerId": {analyzerId},
-    "apiVersion": "2025-05-01-preview",
-    "createdAt": "YYYY-MM-DDTHH:MM:SSZ",
-    "warnings": [],
-    "contents": []
-  }
-}
+HTTP/1.1 202 Accepted
+Transfer-Encoding: chunked
+Content-Type: application/json
+request-id: aaa-bbb-ccc-ddd
+x-ms-request-id: aaa-bbb-ccc-ddd
+Operation-Location: {endpoint}/contentunderstanding/analyzerResults/{request-id}?api-version=2025-05-01-preview
+api-supported-versions: 2024-12-01-preview,2025-05-01-preview,2025-10-01
+x-envoy-upstream-service-time: 800
+apim-request-id: {request-id}
+Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+x-content-type-options: nosniff
+x-ms-region: West US
 ```
 
 ### Get analyze result
 
-Use the `resultId` from the [`POST` response](#post-response) and retrieve the result of the analysis.
+Use the `request-id` from the [`POST` response](#post-response) and retrieve the result of the analysis.
 
 1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Foundry instance.
-2. Replace `{resultId}` with the `resultId` from the `POST` response.
+2. Replace `{request-id}` with the `request-id` from the `POST` response, or use the complete URL from the `Operation-Location` response header.
 
 #### GET request
 ```bash
-curl -i -X GET "{endpoint}/contentunderstanding/analyzerResults/{resultId}?api-version=2025-05-01-preview" \
+curl -i -X GET "{endpoint}/contentunderstanding/analyzerResults/{request-id}?api-version=2025-05-01-preview" \
   -H "Ocp-Apim-Subscription-Key: {key}"
 ```
 
@@ -112,7 +107,7 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
 
 ```json
 {
-  "id": {resultId},
+  "id": "<request-id>",
   "status": "Succeeded",
   "result": {
     "analyzerId": "prebuilt-documentAnalyzer",
@@ -198,7 +193,15 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
         ]
       }
     ]
-  }
+  },
+  "usage": {
+		"documentPages": 1,
+		"tokens": {
+			"contextualization": 1000,
+			"input": 1866,
+			"output": 87
+		}
+	}
 }
 ```
 
@@ -206,7 +209,7 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
 
 ```json
 {
-  "id": {resultId},
+  "id": "<request-id>",
   "status": "Succeeded",
   "result": {
     "analyzerId": "prebuilt-imageAnalyzer",
@@ -234,7 +237,14 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
         ]
       }
     ]
-  }
+  },
+  "usage": {
+		"tokens": {
+			"contextualization": 1000,
+			"input": 1866,
+			"output": 87
+		}
+	}
 }
 ```
 
@@ -242,7 +252,7 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
 
 ```json
 {
-  "id": {resultId},
+  "id": "<request-id>",
   "status": "Succeeded",
   "result": {
     "analyzerId": "prebuilt-audioAnalyzer",
@@ -279,7 +289,14 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
         ]
       }
     ]
-  }
+  },
+  "usage": {
+		"tokens": {
+			"contextualization": 1000,
+			"input": 1866,
+			"output": 87
+		}
+	}
 }
 ```
 
@@ -287,7 +304,7 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
 
 ```json
 {
-  "id": {resultId},
+  "id": "<request-id>",
   "status": "Succeeded",
   "result": {
     "analyzerId": "prebuilt-videoAnalyzer",
@@ -339,13 +356,20 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
         ]
       }
     ]
-  }
+  },
+  "usage": {
+		"tokens": {
+			"contextualization": 1000,
+			"input": 1866,
+			"output": 87
+		}
+	}
 }
 ```
 
 ---
 
-## Next steps
+## Next step
 
 Learn more about creating [custom analyzers](../tutorial/create-custom-analyzer.md) for your use case.
 

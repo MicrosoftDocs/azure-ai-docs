@@ -2,12 +2,12 @@
 title: Speech Synthesis Markup Language (SSML) document structure and events - Speech service
 titleSuffix: Azure AI services
 description: Learn about the Speech Synthesis Markup Language (SSML) document structure.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 3/10/2025
-ms.author: eur
+ms.date: 08/07/2025
+ms.author: pafarley
 #Customer intent: As a developer, I want to learn about the Speech Synthesis Markup Language (SSML) document structure.
 ---
 
@@ -36,6 +36,7 @@ Here's a subset of the basic structure and syntax of an SSML document:
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="https://www.w3.org/2001/mstts" xml:lang="string">
     <mstts:backgroundaudio src="string" volume="string" fadein="string" fadeout="string"/>
+    <mstts:voiceconversion url="string"/>
     <voice name="string" effect="string">
         <audio src="string"></audio>
         <bookmark mark="string"/>
@@ -69,6 +70,7 @@ Some examples of contents that are allowed in each element are described in the 
 - `math`: This element can only contain text and MathML elements.
 - `mstts:audioduration`: This element can't contain text or any other elements.
 - `mstts:backgroundaudio`: This element can't contain text or any other elements.
+- `<mstts:voiceconversion>`: This element can't contain text or any other elements. It specifies the source audio URL for the voice conversion.
 - `mstts:embedding`: This element can contain text and the following elements: `audio`, `break`, `emphasis`, `lang`, `phoneme`, `prosody`, `say-as`, and `sub`.
 - `mstts:express-as`: This element can contain text and the following elements: `audio`, `break`, `emphasis`, `lang`, `phoneme`, `prosody`, `say-as`, and `sub`.
 - `mstts:silence`: This element can't contain text or any other elements.
@@ -92,7 +94,7 @@ For example, specify `green &amp; yellow` instead of `green & yellow`. The follo
 
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-US">
-    <voice name="en-US-AvaNeural">
+    <voice name="en-US-Ava:DragonHDLatestNeural">
         My favorite colors are green &amp; yellow.
     </voice>
 </speak>
@@ -126,11 +128,11 @@ The supported values for attributes of the `speak` element were [described previ
 
 #### Single voice example
 
-This example uses the `en-US-AvaNeural` voice. For more examples, see [voice examples](speech-synthesis-markup-voice.md#voice-examples).
+This example uses the `en-US-Ava:DragonHDLatestNeural` voice. For more examples, see [voice examples](speech-synthesis-markup-voice.md#voice-examples).
 
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-US">
-    <voice name="en-US-AvaNeural">
+    <voice name="en-US-Ava:DragonHDLatestNeural">
         This is the text that is spoken.
     </voice>
 </speak>
@@ -163,7 +165,7 @@ The supported values for attributes of the `break` element were [described previ
 
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-US">
-    <voice name="en-US-AvaNeural">
+    <voice name="en-US-Ava:DragonHDLatestNeural">
         Welcome <break /> to text to speech.
         Welcome <break strength="medium" /> to text to speech.
         Welcome <break time="750ms" /> to text to speech.
@@ -194,7 +196,7 @@ In this example, `mstts:silence` is used to add 200 ms of silence between two se
 
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="http://www.w3.org/2001/mstts" xml:lang="en-US">
-<voice name="en-US-AvaNeural">
+<voice name="en-US-Ava:DragonHDLatestNeural">
 <mstts:silence  type="Sentenceboundary" value="200ms"/>
 If we're home schooling, the best we can do is roll with what each day brings and try to have fun along the way.
 A good place to start is by trying out the slew of educational apps that are helping children stay happy and smash their schooling at the same time.
@@ -222,7 +224,7 @@ The following example defines two paragraphs that each contain sentences. In the
 
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-US">
-    <voice name="en-US-AvaNeural">
+    <voice name="en-US-Ava:DragonHDLatestNeural">
         <p>
             <s>Introducing the sentence element.</s>
             <s>Used to mark individual sentences.</s>
@@ -256,36 +258,6 @@ As an example, you might want to know the time offset of each flower word in the
     <voice name="en-US-AvaNeural">
         We are selling <bookmark mark='flower_1'/>roses and <bookmark mark='flower_2'/>daisies.
     </voice>
-</speak>
-```
-
-## Viseme element
-
-A viseme is the visual description of a phoneme in spoken language. It defines the position of the face and mouth while a person is speaking. You can use the `mstts:viseme` element in SSML to request viseme output. For more information, see [Get facial position with viseme](how-to-speech-synthesis-viseme.md).
-
-The viseme setting is applied to all input text within its enclosing `voice` element. To reset or change the viseme setting again, you must use a new `voice` element with either the same voice or a different voice.
-
-Usage of the `viseme` element's attributes are described in the following table.
-
-| Attribute | Description | Required or optional |
-| ---------- | ---------- | ---------- |
-| `type`    | The type of viseme output.<ul><li>`redlips_front` – lip-sync with viseme ID and audio offset output </li><li>`FacialExpression` – blend shapes output</li></ul> | Required  |
-
-> [!NOTE]
-> Currently, `redlips_front` only supports neural voices in `en-US` locale, and `FacialExpression` supports neural voices in `en-US` and `zh-CN` locales.
-
-### Viseme examples
-
-The supported values for attributes of the `viseme` element were [described previously](#viseme-element).
-
-This SSML snippet illustrates how to request blend shapes with your synthesized speech.
-
-```xml
-<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="http://www.w3.org/2001/mstts" xml:lang="en-US">
-  <voice name="en-US-AvaNeural">
-    <mstts:viseme type="FacialExpression"/>
-    Rainbow has seven colors: Red, orange, yellow, green, blue, indigo, and violet.
-  </voice>
 </speak>
 ```
 

@@ -4,106 +4,167 @@ titleSuffix: Azure AI Foundry
 description: Learn how to use Agents Azure AI Search tool.
 services: azure-ai-agent-service
 manager: nitinme
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 04/11/2025
-author: aahill
-ms.author: aahi
+ms.date: 09/12/2025
+author: haileytap
+ms.author: haileytapia
+ms.reviewer: aahi
 ms.custom: azure-ai-agents
 ---
 
-# Use an existing AI Search index with the Azure AI Search tool
+# Azure AI Search tool
 
-Use an existing Azure AI Search index with the agent's Azure AI Search tool.
+The [Azure AI Search](/azure/search/search-what-is-azure-search) tool in Azure AI Foundry Agent Service connects an agent to a new or existing search index. You can use this tool to retrieve and summarize your indexed documents, grounding the agent's responses in your proprietary content.
 
-> [!NOTE] 
-> Azure AI Search indexes must meet the following requirements:
-> - The index must contain at least one searchable & retrievable text field (type Edm.String) 
-> - The index must contain at least one searchable vector field (type Collection(Edm.Single)) 
-> - The index is assumed to be configured properly
+This article describes how to set up the Azure AI Search tool, including creating a project connection and adding the tool to your agent.
 
-## Search types
-You can specify the search type for your index by choosing one of the following
-- Simple
-- Semantic
-- Vector
-- Hybrid (Vector + Keyword)
-- Hybrid (Vector + Keyword + Semantic)
+## Prerequisites
 
++ An [Azure AI Foundry agent](../../quickstart.md).
 
-**Indexes without a specified search type**
-- By default, the Azure AI Search tool runs a hybrid search (keyword + vector) on all text fields 
++ An [Azure AI Search index configured for vector search](../../../../search/search-get-started-portal-import-vectors.md). The index must include:
+
+    + One or more `Edm.String` (text) fields attributed as searchable and retrievable.
+
+    + One or more `Collection(Edm.Single)` (vector) fields attributed as searchable.
+
+> [!TIP]
+> Instead of using an existing index, you can create an index without leaving the Azure AI Foundry portal. For more information, see the [Add the tool to an agent](#add-the-tool-to-an-agent) section.
 
 ## Usage support
 
-|Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | REST API | Basic agent setup | Standard agent setup |
-|---------|---------|---------|---------|---------|---------|---------|
-| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| Azure AI foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
+|---------|---------|---------|---------|---------|---------|---------|---------|
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+
+## Limitations
+
++ To use the Azure AI Search tool in the Azure AI Foundry portal behind a virtual network, you must create an agent using the SDK or REST API. After you create the agent programmatically, you can then use it in the portal. 
+
++ The Azure AI Search tool can only target one index. To use multiple indexes, consider using [connected agents](../connected-agents.md), each with a configured index.
+  
++ An Azure AI Foundry resource with basic agent deployments do not support private Azure AI Search resources, nor Azure AI Search  with public network access disabled and a private endpoint. To use a private Azure AI Search tool with your agents, deploy the standard agent with virtual network injection.
+
++ Your Azure AI Search resource and Azure AI Foundry Agent need to be in the same tenant.
 
 ## Setup
 
-### Prerequisite: Have an existing Azure AI Search index
-A prerequisite of using the Azure AI Search tool is to have an existing Azure AI Search index. If you don't have an existing index, you can create one in the Azure portal using the import and vectorize data wizard.
--  [Quickstart: Create a vector index with the import and vectorize data wizard in the Azure portal](../../../../search\search-get-started-portal-import-vectors.md)
+In this section, you create a connection between the Azure AI Foundry project that contains your agent and the Azure AI Search service that contains your index.
 
-### Create a project connection to the Azure AI Search resource with the index you want to use
-Once you have completed the agent setup, you must create a project connection to the Azure AI Search resource that contains the index you want to use. 
+If you already connected your project to your search service, skip this section. 
 
-If you already connected the AI Search resource that contains the index you want to use to your project, skip this step. 
+### Get search service connection details
 
-#### Get your Azure AI Search resource connection key and endpoint
-1. Access your Azure AI Search resource.
-     - In the Azure portal, navigate to the AI Search resource that contains the index you want to use. 
-2. Copy the connection endpoint.
-    - In the Overview tab, copy the URL of your resource. The URL should be in the format `https://<your-resource-name>.search.windows.net/`.
-     :::image type="content" source="../../media\tools\ai-search\connection-endpoint.png" alt-text="A screenshot of an AI Search resource Overview tab in the Azure portal." lightbox="../../media\tools\ai-search\connection-endpoint.png":::
+The project connection requires the endpoint of your search service and either key-based authentication or keyless authentication with Microsoft Entra ID.
 
-3. Verify API Access control is set to **Both** and copy one of the keys under **Manage admin keys**. 
-    - From the left-hand navigation bar, scroll down to the Settings section and select **Keys**. 
-    - Under the **API Access Control** section, ensure the option **Both** API key and Role-based access control is selected.
-    - If you want the connection to use API Keys for authentication, copy one of the keys under **Manage admin keys**.
-    :::image type="content" source="../../media\tools\ai-search\azure-portal.png" alt-text="A screenshot of an AI Search resource Keys tab in the Azure portal." lightbox="../../media\tools\ai-search\azure-portal.png":::
+For keyless authentication, you must enable role-based access control (RBAC) and assign roles to your project's managed identity. Although this method involves extra steps, it enhances security by eliminating the need for hard-coded API keys.
 
-#### Create an Azure AI Search project connection
-If you use Microsoft Entra ID for the connection authentication type, you need to manually assign the project managed identity the roles Search Index Data Contributor and Search Service Contributor to the Azure AI Search resource. The connection **name** must be the AI Search **index** name. 
+Select the tab for your desired authentication method.
 
-# [Azure CLI](#tab/azurecli)
+#### [Key-based authentication](#tab/keys)
 
-**Create the following connections.yml file**
+1. Sign in to the [Azure portal](https://portal.azure.com/) and select your search service.
 
+1. To get the endpoint:
 
-You can use either an API key or credential-less YAML configuration file. Replace the placeholders for ```name```, ```endpoint``` and ```api_key``` with your Azure AI Search resource values. For more information on the YAML configuration file, see the [Azure AI Search connection YAML schema](../../../../machine-learning\reference-yaml-connection-ai-search.md). 
-- API Key example:
+    1. From the left pane, select **Overview**.
+    
+    1. Make a note of the URL, which should look like `https://my-service.search.windows.net`.
 
-    ```yml
-    name: my_project_acs_connection_keys
-    type: azure_ai_search
-    endpoint: https://contoso.search.windows.net/
-    api_key: XXXXXXXXXXXXXXX
-    ```
+        :::image type="content" source="../../media/tools/ai-search\connection-endpoint.png" alt-text="A screenshot of an AI Search resource Overview tab in the Azure portal." lightbox="../../media/tools/ai-search\connection-endpoint.png":::
 
-- Credential-less
+1. To get the API key:
 
-    ```yml    
-    name: my_project_acs_connection_credentialless
-    type: azure_ai_search
-    endpoint: https://contoso.search.windows.net/
-    ```
+    1. From the left pane, select **Settings** > **Keys**.
+
+    1. Select **Both** to enable both key-based and keyless authentication, which is recommended for most scenarios.
+
+        :::image type="content" source="../../media/tools/ai-search\azure-portal.png" alt-text="A screenshot of an AI Search resource Keys tab in the Azure portal." lightbox="../../media/tools/ai-search\azure-portal.png":::
+
+    1. Make a note of one of the keys under **Manage admin keys**.
+
+#### [Keyless authentication](#tab/keyless)
+
+1. Sign in to the [Azure portal](https://portal.azure.com/) and select your search service.
+
+1. To get the endpoint:
+
+    1. From the left pane, select **Overview**.
+    
+    1. Make a note of the URL, which should look like `https://my-service.search.windows.net`.
+
+        :::image type="content" source="../../media/tools/ai-search\connection-endpoint.png" alt-text="A screenshot of an AI Search resource Overview tab in the Azure portal." lightbox="../../media/tools/ai-search\connection-endpoint.png":::
+
+1. To enable RBAC:
+
+    1. From the left pane, select **Settings** > **Keys**.
+
+    1. Select **Both** to enable both key-based and keyless authentication, which is recommended for most scenarios.
+
+        :::image type="content" source="../../media/tools/ai-search\azure-portal.png" alt-text="A screenshot of an AI Search resource Keys tab in the Azure portal." lightbox="../../media/tools/ai-search\azure-portal.png":::
+
+1. To assign the necessary roles:
+
+    1. From the left pane, select **Access control (IAM)**.
+
+    1. Select **Add** > **Add role assignment**.
+
+    1. Assign the **Search Index Data Contributor** role to the managed identity of your project.
+
+    1. Repeat the role assignment for **Search Service Contributor**.
+
+---
+
+### Create the project connection
+
+The next step is to create the project connection using the search service details you gathered. The connection name must be the name of your search index. For more information about this step, see [Add a new connection to your project](../../../how-to/connections-add.md).
+
+Select the tab for your desired usage method.
+
+#### [Azure CLI](#tab/azurecli)
+
+**Create the following connections.yml file:**
+
+You can use a YAML configuration file for both key-based and keyless authentication. Replace the ```name```, ```endpoint```, and ```api_key``` (optional) placeholders with your search service details. For more information, see the [Azure AI Search connection YAML schema](../../../../machine-learning\reference-yaml-connection-ai-search.md). 
+
+Here's a key-based example:
+
+```yml
+name: my_project_acs_connection_keys
+type: azure_ai_search
+endpoint: https://contoso.search.windows.net/
+api_key: XXXXXXXXXXXXXXX
+```
+
+Here's a keyless example:
+
+```yml    
+name: my_project_acs_connection_keyless
+type: azure_ai_search
+endpoint: https://contoso.search.windows.net/
+```
+
 **Then, run the following command:**
 
-Replace ```my_resource``` and ```my_project_name``` with your resource group and project name created in the agent setup.
+Replace ```my_resource``` with the resource group that contains your project and ```my_project_name``` with the name of your project.
+
 ```azurecli
 az ml connection create --file {connection.yml} --resource-group {my_resource_group} --workspace-name {my_project_name}
 ```
-# [Python](#tab/pythonsdk)
-Replace the placeholders ```my_connection_name```, ```my_endpoint```, and ```my_key``` (optional)  with your Azure AI Search connection details and run the following code to create a project connection to your Azure AI Search resource.
+
+#### [Python](#tab/pythonsdk)
+
+Replace the ```my_connection_name```, ```my_endpoint```, and ```my_key``` (optional) placeholders with your search service details, and then run the following code:
+
 ```python
 from azure.ai.ml.entities import AzureAISearchConnection
 
-# create an Azure AI Search project connection
+# Create an Azure AI Search project connection
 my_connection_name = "my-connection-name"
-my_endpoint = "my-endpoint" # this could also be called target
-my_api_keys = None # leave blank for Authentication type = AAD
+my_endpoint = "my-endpoint" # This could also be called target
+my_api_keys = None # Leave blank for Authentication type = AAD
 
 my_connection = AzureAISearchConnection(name=my_connection_name,
                                     endpoint=my_endpoint, 
@@ -113,38 +174,80 @@ my_connection = AzureAISearchConnection(name=my_connection_name,
 ml_client.connections.create_or_update(my_connection)
 ```
 
-# [Azure AI Foundry](#tab/azureaifoundry)
-1. In Azure AI Foundry, navigate to the project you created in the agent setup. Click on **Open in management center**.
-    :::image type="content" source="../../media\tools\ai-search\project-studio.png" alt-text="A screenshot of a project in Azure AI Foundry." lightbox="../../media\tools\ai-search\project-studio.png":::
+#### [Azure AI Foundry](#tab/azureaifoundry)
 
-2. Click on the **Connections** tab and select **Add Connection**.
- :::image type="content" source="../../media\tools\ai-search\project-connections-page.png" alt-text="A screenshot of the project connections page." lightbox="../../media\tools\ai-search\project-connections-page.png":::
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and select your project.
 
-3. Select **Azure AI Search**.
- :::image type="content" source="../../media\tools\ai-search\select.png" alt-text="A screenshot of the Azure AI Search connection type the user should select." lightbox="../../media\tools\ai-search\select.png":::
+1. On the **Overview** page, select **Open in management center**.
 
-4. Provide the required connection details for the Azure AI Search resource you want to use. Both Managed Identity and Key-based authentication are supported. Once all the fields are filled in, click **Add connection**.
-:::image type="content" source="../../media\tools\ai-search\connection-2.png" alt-text="A screenshot the required fields to add a new Azure AI Search connection." lightbox="../../media\tools\ai-search\connection-2.png":::
+    :::image type="content" source="../../media/tools/ai-search\project-studio.png" alt-text="A screenshot of a project in Azure AI Foundry." lightbox="../../media/tools/ai-search\project-studio.png":::
 
-5. Verify that the connection was successfully created and now appears in the project's Connections tab.
-:::image type="content" source="../../media\tools\ai-search\success-connection.png" alt-text="A screenshot of the project connections page with a new Azure AI Search connection added." lightbox="../../media\tools\ai-search\success-connection.png":::
+1. From the left pane, select **Connected resources**, and then select **New Connection**.
+     
+    :::image type="content" source="../../media/tools/ai-search\project-connections-page.png" alt-text="A screenshot of the project connections page." lightbox="../../media/tools/ai-search\project-connections-page.png":::
+
+1. Select **Azure AI Search**.
+
+    :::image type="content" source="../../media/tools/ai-search\select.png" alt-text="A screenshot of the Azure AI Search connection type the user should select." lightbox="../../media/tools/ai-search\select.png":::
+
+1. Select **Enter manually**, and then provide the details required by your chosen authentication method. 
+
+    :::image type="content" source="../../media/tools/ai-search\connection-2.png" alt-text="A screenshot the required fields to add a new Azure AI Search connection." lightbox="../../media/tools/ai-search\connection-2.png":::
+
+1. Select **Add connection** to create the project connection.
+
+1. Verify that the connection appears on the **Connected resources** page.
+
+    :::image type="content" source="../../media/tools/ai-search\success-connection.png" alt-text="A screenshot of the project connections page with a new Azure AI Search connection added." lightbox="../../media/tools/ai-search\success-connection.png":::
+
 ---
 
-Now that you have created a project connection to your Azure AI Search resource, you can configure and start using the Azure AI Search tool with the SDK. See the code examples tab to get started.
+## Add the tool to an agent
 
--------------------------
-## Add the Azure AI Search tool to an agent
+You can add the Azure AI Search tool to an agent programmatically or through the Azure AI Foundry portal. For programmatic examples, see [Use an existing index with the Azure AI Search tool](azure-ai-search-samples.md).
 
-You can add the Azure AI Search tool to an agent programmatically using the code examples listed at the top of this article, or the Azure AI Foundry portal. If you want to use the portal:
+To add the tool through the portal:
 
-1. In the **Agents** screen for your agent, scroll down the **Setup** pane on the right to **knowledge**. Then select **Add**.
+1. From the left pane, select **Agents**.
 
-    :::image type="content" source="../../media\tools\knowledge-tools.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="../../media\tools\knowledge-tools.png":::
+1. Select your agent from the list, and then select **Knowledge** > **Add**.
 
-1. Select **Azure AI Search** and follow the prompts to add the tool. 
+    :::image type="content" source="../../media/tools/knowledge-tools.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="../../media/tools/knowledge-tools.png":::
 
-    :::image type="content" source="../../media\tools\knowledge-tools-list.png" alt-text="A screenshot showing the available knowledge tools in the Azure AI Foundry portal." lightbox="../../media\tools\knowledge-tools-list.png":::
+1. Select **Azure AI Search**. 
 
-## Next steps
+    :::image type="content" source="../../media/tools/knowledge-tools-list.png" alt-text="A screenshot showing the available knowledge tools in the Azure AI Foundry portal." lightbox="../../media/tools/knowledge-tools-list.png":::
 
-* See examples on how to use the [Azure AI Search tool](azure-ai-search-samples.md). 
+1. Under **Connect to an index**, select **Indexes that are not part of this project**.
+
+1. Under **Azure AI Search resource connection**, select the project connection you created in the previous section.
+
+1. Under **Azure AI Search index**, select your vector index.
+
+    > [!TIP]
+    > If you don't have an index, select **Create a new index**. You're then prompted to name the index, connect to a data source, select an existing embedding model deployment, and agree to the terms.
+    >
+    > After you create the index, you can use it both inside and outside your agent. For example, you can use the index with the Azure AI Search REST APIs or SDKs.
+
+1. Under **Display name**, enter the name of your index.
+
+1. Depending on your index configuration, choose one of the following [search types](../../../openai/concepts/use-your-data.md#search-types):
+
+    + **Simple**
+    + **Semantic**
+    + **Vector**
+    + **Hybrid (vector + keyword)**
+    + **Hybrid + semantic**
+
+    By default, the Azure AI Search tool runs a hybrid search (vector + keyword) on all text fields.
+
+1. Select **Connect** to add the Azure AI Search tool to your agent.
+
+    :::image type="content" source="../../media/tools/ai-search/connect-tool.png" alt-text="A screenshot of the Connect button in the Azure AI Foundry portal." lightbox="../../media/tools/ai-search/connect-tool.png":::
+
+## Next step
+
+Try some programmatic examples of configuring and using the Azure AI Search tool:
+
+> [!div class="nextstepaction"]
+> [Use an existing index with the Azure AI Search tool](azure-ai-search-samples.md)

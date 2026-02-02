@@ -7,10 +7,10 @@ brand: azure
 metadata:
   title: Azure AI Foundry documentation
   description: The agent factory - Design, customize, manage, and support AI applications and agents at scale.
-  author: eric-urban
-  ms.author: eur
-  manager: nitinme
-  ms.date: 5/19/2025
+  author: sdgilley
+  ms.author: sgilley
+  manager: mcleans
+  ms.date: 08/07/2025
   ms.service: azure-ai-foundry
   ms.topic: hub-page
   ms.custom:
@@ -44,29 +44,27 @@ productDirectory:
       links:
         - url: /azure/developer/ai/intelligent-app-templates
           text: Start with an AI template
-        - url: ./quickstarts/get-started-code.md
+        - url: ./how-to/develop/ai-template-get-started.md
           text: Quickstart for Azure AI Foundry
     # Card
     - title: Azure AI Foundry Models
       imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.svg
       links:
-        - url: ./concepts/models-featured.md
-          text: Featured models
-        - url: ./how-to/model-catalog-overview.md
-          text: Select and deploy models
-        - url: ./how-to/benchmark-model-in-catalog.md
-          text: Compare models in leaderboards
+        - url: foundry-models/concepts/models.md
+          text: Foundry Models sold directly by Azure
+        - url: ../ai-services/openai/concepts/models.md
+          text: Azure OpenAI in Foundry Models
+        - url: foundry-models/concepts/deployment-types.md
+          text: Deployment types
+        - url: foundry-models/tutorials/get-started-deepseek-r1.md
+          text: Get started with DeepSeek-R1
         - url: ./concepts/fine-tuning-overview.md
           text: Learn how to fine-tune models
-        - url: ../ai-services/openai/concepts/models.md
-          text: Azure OpenAI
-        - url: ./model-inference/tutorials/get-started-deepseek-r1.md
-          text: DeepSeek-R1
     # Card
     - title: Azure AI Foundry Agent Service
       imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/ai-agents.png
       links:
-        - url: ../ai-services/agents/index.yml
+        - url: ../ai-services/agents/overview.md
           text: Orchestrate and host AI agents to automate and execute business processes
         - url: ../ai-services/agents/quickstart.md
           text: Create a custom AI agent using Azure AI Foundry Agent Service
@@ -92,6 +90,8 @@ productDirectory:
     - title: Azure AI Search
       imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/search.svg
       links:
+        - url: /azure/search/search-get-started-agentic-retrieval
+          text: Agentic retrieval
         - url: /azure/search
           text: Bring AI-powered cloud search to your mobile and web applications
         - url: /azure/search/tutorial-rag-build-solution
@@ -174,14 +174,14 @@ additionalContent:
           links:
             - text: What are Azure AI services?
               url: ../ai-services/what-are-ai-services.md
-            - text: Semantic Kernel
-              url: /semantic-kernel/
+            - text: Microsoft Agent Framework
+              url: /agent-framework/
             - text: Document Intelligence
               url: ../ai-services/document-intelligence/index.yml
             - text: Face
               url: ../ai-services/computer-vision/overview-identity.md
-            - text: Custom Vision
-              url: ../ai-services/translator/index.yml
+            - text: Vision
+              url: ../ai-services/computer-vision/index.yml
             - text: Immersive Reader
               url: ../ai-services/immersive-reader/index.yml
         - title: Training & certification

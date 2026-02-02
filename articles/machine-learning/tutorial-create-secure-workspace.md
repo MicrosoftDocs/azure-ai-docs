@@ -6,11 +6,12 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.reviewer: None
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.date: 08/09/2024
 ms.topic: how-to
 monikerRange: 'azureml-api-2 || azureml-api-1'
+ms.custom: sfi-image-nochange
 ---
 # Tutorial: How to create a secure workspace with a managed virtual network
 
@@ -32,7 +33,7 @@ After completing this tutorial, you'll have the following architecture:
 
 ## Prerequisites
 
-* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
+* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 ## Create a jump box (VM)
 

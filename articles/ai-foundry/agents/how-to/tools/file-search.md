@@ -4,12 +4,13 @@ titleSuffix: Azure AI Foundry
 description: Learn how to use Agents file search.
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 12/11/2024
+ms.date: 09/24/2025
 author: aahill
 ms.author: aahi
-ms.custom: azure-ai-agents
+ms.custom: azure-ai-agents, references_regions
 ---
 
 # Azure AI Foundry Agent Service file search tool
@@ -26,17 +27,18 @@ File search augments agents with knowledge from outside its model, such as propr
 
 ### File sources  
 - Upload local files 
-- Azure Blob Storage 
-
-### Supported file types
-
-- [Supported file types](#supported-file-types)
+- Azure Blob Storage
 
 ### Usage support
 
-|Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | REST API | Basic agent setup | Standard agent setup |
-|---------|---------|---------|---------|---------|---------|---------|
-| ✔️  | ✔️ | ✔️ | ✔️ | ✔️ | File upload only | File upload and using  BYO blob storage | 
+> [!NOTE]
+> The file search tool is currently unavailable in the following regions:
+>    * Italy north
+>    * Brazil south
+
+|Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
+|---------|---------|---------|---------|---------|---------|---------|---------|
+| ✔️  | ✔️ | ✔️ | ✔️ | ✔️ |  ✔️ | File upload only | File upload and using  bring-your-own blob storage | 
 
 ## Dependency on agent setup
 
@@ -49,9 +51,8 @@ The file search tool has the same functionality as Azure OpenAI Assistants. Micr
 The file search tool uses the Azure AI Search and Azure Blob Storage resources you connected during agent setup. 
 - Uploaded files get stored in your connected Azure Blob Storage account 
 - Vector stores get created using your connected Azure AI Search resource 
-<br> </br>
 
-For both agent setups, Azure OpenAI handles the entire ingestion process, which includes:
+For both agent setups, the service handles the entire ingestion process, which includes:
 - Automatically parsing and chunking documents
 - Generating and storing embeddings
 - Utilizing both vector and keyword searches to retrieve relevant content for user queries. 
@@ -79,7 +80,7 @@ Vector store objects give the file search tool the ability to search your files.
 Similarly, these files can be removed from a vector store by either:
 
 * Deleting the vector store file object or,
-* By deleting the underlying file object, which removes the file it from all vector_store and code_interpreter configurations across all agents and threads in your organization
+* By deleting the underlying file object, which removes the file from all vector_store and code_interpreter configurations across all agents and threads in your organization
 
 The maximum file size is 512 MB. Each file should contain no more than 5,000,000 tokens per file (computed automatically when you attach a file).
 
@@ -98,11 +99,11 @@ Files can also be added to a vector store after it's created by creating vector 
 ```python
 
 # create a vector store with no file and wait for it to be processed
-vector_store = project_client.agents.create_vector_store_and_poll(data_sources=[], name="sample_vector_store")
+vector_store = project_client.agents.vector_stores.create_and_poll(data_sources=[], name="sample_vector_store")
 print(f"Created vector store, vector store ID: {vector_store.id}")
 
 # add the file to the vector store or you can supply file ids in the vector store creation
-vector_store_file_batch = project_client.agents.create_vector_store_file_batch_and_poll(
+vector_store_file_batch = project_client.agents.vector_store_file_batches.create_and_poll(
     vector_store_id=vector_store.id, file_ids=[file.id]
 )
 print(f"Created vector store file batch, vector store file batch ID: {vector_store_file_batch.id}")
@@ -112,7 +113,7 @@ print(f"Created vector store file batch, vector store file batch ID: {vector_sto
 Alternatively, you can add several files to a vector store by creating batches of up to 500 files.
 
 ```python
-batch = project_client.agents.create_vector_store_file_batch_and_poll(
+batch = project_client.agents.vector_store_file_batches.create_and_poll(
   vector_store_id=vector_store.id,
   file_ids=[file_1.id, file_2.id, file_3.id, file_4.id, file_5.id]
 )
@@ -144,7 +145,7 @@ print(f"Updated agent, agent ID: {agent.id}")
 
 ## Deleting vector stores
 ```python
-project_client.agents.delete_vector_store(vector_store.id)
+project_client.agents.vector_stores.delete(vector_store.id)
 print("Deleted vector store")
 ```
 
@@ -155,7 +156,7 @@ For basic agent setup, the `file_search` tool uses the `vector_stores`  object a
 To help you manage the costs associated with these vector_store objects, we added support for expiration policies in the `vector_store` object. You can set these policies when creating or updating the `vector_store` object.
 
 ```python
-vector_store = project_client.agents.create_vector_store_and_poll(
+vector_store = project_client.agents.vector_stores.create_and_poll(
   name="Product Documentation",
   file_ids=[file_1.id],
   expires_after={
@@ -169,9 +170,9 @@ vector_store = project_client.agents.create_vector_store_and_poll(
 
 Vector stores created using thread helpers (like `tool_resources.file_search.vector_stores` in Threads or `message.attachments` in Messages) have a default expiration policy of seven days after they were last active (defined as the last time the vector store was part of a run).
 
-When a vector store expires, the runs on that thread fail.  To fix this issue, you can recreate a new vector_store with the same files and reattach it to the thread.
+When a vector store expires, the runs on that thread fail. To fix this issue, you can recreate a new vector_store with the same files and reattach it to the thread.
 
-### Supported file types
+## Supported file types
 
 > [!NOTE]
 > For text/ MIME types, the encoding must be either utf-8, utf-16, or ASCII.

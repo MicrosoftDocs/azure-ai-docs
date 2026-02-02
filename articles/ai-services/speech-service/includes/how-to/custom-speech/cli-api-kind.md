@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 11/29/2022
-ms.author: eur
+ms.author: pafarley
 ---
 
 With the [Speech CLI](~/articles/ai-services/speech-service/spx-overview.md) and [Speech to text REST API](~/articles/ai-services/speech-service/rest-speech-to-text.md), unlike the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and [Speech Studio](https://speech.microsoft.com), you don't choose whether a dataset is for testing or training at the time of upload. You specify how a dataset is used when you [train a model](~/articles/ai-services/speech-service/how-to-custom-speech-train-model.md) or [run a test](~/articles/ai-services/speech-service/how-to-custom-speech-evaluate-data.md). 

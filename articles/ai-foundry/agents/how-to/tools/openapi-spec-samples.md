@@ -5,8 +5,9 @@ description: Find code samples to use OpenAPI tools with agents.
 author: aahill
 ms.author: aahi
 manager: nitinme
-ms.date: 06/18/2025
-ms.service: azure-ai-agent-service
+ms.date: 08/07/2025
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.custom:
   - azure-ai-agents-code
@@ -34,8 +35,8 @@ Use this article to find step-by-step instructions and code samples for using Op
    :::image type="content" source="../../media\tools\open-api-details.png" alt-text="A screenshot showing the openAPI tool details in the Azure AI Foundry portal." lightbox="../../media\tools\open-api-details.png":::
 
 1. Select **Next** and select your authentication method.
-   1. If you choose `connection`, you need to select the custom connection you have created before.
-   1. If you choose `managed identity`, you need to input the audience to get your token. An example of an audience would be `https://cognitiveservices.azure.com/` to connect to Azure AI Services. Make sure you have already set up authentication and role assignment (as described in the [section](./openapi-spec.md#authenticating-with-managed-identity-microsoft-entra-id) above).
+   1. If you choose `connection`, you need to select the [custom connection](./openapi-spec.md#authenticating-with-api-key) with an API key.
+   1. If you choose `managed identity`, you need to input the audience to get your token which is the authentication scope. Make sure you have already set up authentication and role assignment as described in the [OpenAPI tool overview](./openapi-spec.md#authenticating-with-managed-identity-microsoft-entra-id). An example of an audience might be `https://cognitiveservices.azure.com/` to connect to Azure AI Services, once proper setup has been performed.
       
 1. Copy and paste your OpenAPI specification in the text box.
 
@@ -155,7 +156,7 @@ Create the run, check the output, and examine what tools were called during the 
 
 
 ## Cleanup
-After the interaction is complete, the script performs cleanup by deleting the created agent resource using `agents_client.delete_agent()` to avoid leaving unused resources. It also fetches and prints the entire message history from the thread using `agents_client.list_messages()` for review or logging.
+After the interaction is complete, the script performs cleanup by deleting the created agent resource using `agents_client.delete_agent()` to avoid leaving unused resources. It also fetches and prints the entire message history from the thread using `agents_client.messages.list()` for review or logging.
 
 ```python
         # Delete the agent resource to clean up
@@ -382,7 +383,7 @@ client.Administration.DeleteAgent(agent.Id);
 
 :::zone pivot="rest-api"
 
-Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api#api-call-information) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
+Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
 
 ## Create the OpenAPI Spec tool definition, agent, and thread
  
@@ -521,6 +522,156 @@ curl --request GET \
 curl --request GET \
   --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
   -H "Authorization: Bearer $AGENT_TOKEN"
+```
+
+:::zone-end
+
+:::zone pivot="java"
+
+## Example code
+
+The following example code uses an example OpenAPI function in a file named `weather_openapi.json`. You can find the function definition on [GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/python/getting-started-agents/openapi/weather_openapi.json). 
+
+
+```java
+package com.example.agents;
+
+import com.azure.ai.agents.persistent.MessagesClient;
+import com.azure.ai.agents.persistent.PersistentAgentsAdministrationClient;
+import com.azure.ai.agents.persistent.PersistentAgentsClient;
+import com.azure.ai.agents.persistent.PersistentAgentsClientBuilder;
+import com.azure.ai.agents.persistent.RunsClient;
+import com.azure.ai.agents.persistent.ThreadsClient;
+import com.azure.ai.agents.persistent.models.CreateAgentOptions;
+import com.azure.ai.agents.persistent.models.CreateRunOptions;
+import com.azure.ai.agents.persistent.models.MessageImageFileContent;
+import com.azure.ai.agents.persistent.models.MessageRole;
+import com.azure.ai.agents.persistent.models.MessageTextContent;
+import com.azure.ai.agents.persistent.models.OpenApiAnonymousAuthDetails;
+import com.azure.ai.agents.persistent.models.OpenApiFunctionDefinition;
+import com.azure.ai.agents.persistent.models.OpenApiToolDefinition;
+import com.azure.ai.agents.persistent.models.PersistentAgent;
+import com.azure.ai.agents.persistent.models.PersistentAgentThread;
+import com.azure.ai.agents.persistent.models.RunStatus;
+import com.azure.ai.agents.persistent.models.ThreadMessage;
+import com.azure.ai.agents.persistent.models.ThreadRun;
+import com.azure.ai.agents.persistent.models.MessageContent;
+import com.azure.core.http.rest.PagedIterable;
+import com.azure.core.util.BinaryData;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.json.JsonProviders;
+import com.azure.json.JsonReader;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Arrays;
+
+public class AgentExample {
+
+    public static void main(String[] args) throws IOException, URISyntaxException {
+
+        // variables for authenticating requests to the agent service 
+        String projectEndpoint = System.getenv("PROJECT_ENDPOINT");
+        String modelName = System.getenv("MODEL_DEPLOYMENT_NAME");
+        
+        PersistentAgentsClientBuilder clientBuilder = new PersistentAgentsClientBuilder().endpoint(projectEndpoint)
+            .credential(new DefaultAzureCredentialBuilder().build());
+        PersistentAgentsClient agentsClient = clientBuilder.buildClient();
+        PersistentAgentsAdministrationClient administrationClient = agentsClient.getPersistentAgentsAdministrationClient();
+        ThreadsClient threadsClient = agentsClient.getThreadsClient();
+        MessagesClient messagesClient = agentsClient.getMessagesClient();
+        RunsClient runsClient = agentsClient.getRunsClient();
+
+        Path filePath = getFile("weather_openapi.json");
+        JsonReader reader = JsonProviders.createReader(Files.readAllBytes(filePath));
+
+        OpenApiAnonymousAuthDetails oaiAuth = new OpenApiAnonymousAuthDetails();
+        OpenApiToolDefinition openApiTool = new OpenApiToolDefinition(new OpenApiFunctionDefinition(
+            "openapitool",
+            reader.getNullable(nonNullReader -> BinaryData.fromObject(nonNullReader.readUntyped())),
+            oaiAuth
+        ));
+
+        String agentName = "openAPI_example";
+        CreateAgentOptions createAgentOptions = new CreateAgentOptions(modelName)
+            .setName(agentName)
+            .setInstructions("You are a helpful agent")
+            .setTools(Arrays.asList(openApiTool));
+        PersistentAgent agent = administrationClient.createAgent(createAgentOptions);
+
+        PersistentAgentThread thread = threadsClient.createThread();
+        ThreadMessage createdMessage = messagesClient.createMessage(
+            thread.getId(),
+            MessageRole.USER,
+            "What's the weather in seattle?");
+
+        try {
+            //run agent
+            CreateRunOptions createRunOptions = new CreateRunOptions(thread.getId(), agent.getId())
+                .setAdditionalInstructions("");
+            ThreadRun threadRun = runsClient.createRun(createRunOptions);
+
+            waitForRunCompletion(thread.getId(), threadRun, runsClient);
+            printRunMessages(messagesClient, thread.getId());
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } finally {
+            //cleanup
+            threadsClient.deleteThread(thread.getId());
+            administrationClient.deleteAgent(agent.getId());
+        }
+    }
+
+    private static Path getFile(String fileName) throws FileNotFoundException, URISyntaxException {
+        URL resource = AgentExample.class.getClassLoader().getResource(fileName);
+        if (resource == null) {
+            throw new FileNotFoundException("File not found");
+        }
+        File file = new File(resource.toURI());
+        return file.toPath();
+    }
+    
+    // A helper function to print messages from the agent
+    public static void printRunMessages(MessagesClient messagesClient, String threadId) {
+
+        PagedIterable<ThreadMessage> runMessages = messagesClient.listMessages(threadId);
+        for (ThreadMessage message : runMessages) {
+            System.out.print(String.format("%1$s - %2$s : ", message.getCreatedAt(), message.getRole()));
+            for (MessageContent contentItem : message.getContent()) {
+                if (contentItem instanceof MessageTextContent) {
+                    System.out.print((((MessageTextContent) contentItem).getText().getValue()));
+                } else if (contentItem instanceof MessageImageFileContent) {
+                    String imageFileId = (((MessageImageFileContent) contentItem).getImageFile().getFileId());
+                    System.out.print("Image from ID: " + imageFileId);
+                }
+                System.out.println();
+            }
+        }
+    }
+
+    // a helper function to wait until a run has completed running
+    public static void waitForRunCompletion(String threadId, ThreadRun threadRun, RunsClient runsClient)
+        throws InterruptedException {
+
+        do {
+            Thread.sleep(500);
+            threadRun = runsClient.getRun(threadId, threadRun.getId());
+        }
+        while (
+            threadRun.getStatus() == RunStatus.QUEUED
+                || threadRun.getStatus() == RunStatus.IN_PROGRESS
+                || threadRun.getStatus() == RunStatus.REQUIRES_ACTION);
+
+        if (threadRun.getStatus() == RunStatus.FAILED) {
+            System.out.println(threadRun.getLastError().getMessage());
+        }
+    }
+}
 ```
 
 :::zone-end

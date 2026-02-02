@@ -2,14 +2,14 @@
 title: How to create and manage compute instances in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to create and manage compute instances in Azure AI Foundry portal.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
+  - hub-only
 ms.topic: how-to
-ms.date: 06/06/2025
+ms.date: 08/14/2025
 ms.reviewer: deeikele
 ms.author: sgilley
 author: sdgilley
@@ -67,7 +67,7 @@ To create a compute instance in Azure AI Foundry portal:
     :::image type="content" source="../media/compute/compute-scheduling.png" alt-text="Screenshot of the option to enable idle shutdown and create a schedule." lightbox="../media/compute/compute-scheduling.png":::
 
     > [!IMPORTANT]
-    > The compute can't be idle if you have [prompt flow compute sessions](./create-manage-compute-session.md) in **Running** status on the compute. Delete any active compute sessions so the compute instance can be eligible for idle shutdown. You also can't have any active [VS Code (Web)](./develop/vscode.md) sessions hosted on the compute instance.
+    > The compute can't be idle if you have [prompt flow compute sessions](./create-manage-compute-session.md) in **Running** status on the compute. Delete any active compute sessions so the compute instance can be eligible for idle shutdown. 
 
 1. You can update the schedule days and times to meet your needs. You can add additional schedules. For example, create a schedule to start at 9 AM and stop at 6 PM from Monday-Thursday, and a second schedule to start at 9 AM and stop at 4 PM for Friday. You can create a total of four schedules per compute instance.
 
@@ -102,7 +102,7 @@ To configure idle shutdown for an existing compute instance follow these steps:
     :::image type="content" source="../media/compute/compute-schedule-update.png" alt-text="Screenshot of the option to change the idle shutdown schedule for a compute instance." lightbox="../media/compute/compute-schedule-update.png":::
 
     > [!IMPORTANT]
-    > The compute won't be idle if you have a [prompt flow compute session](./create-manage-compute-session.md) in **Running** status on the compute. You need to delete any active compute sessions to make the compute instance eligible for idle shutdown. You also can't have any active [VS Code (Web)](./develop/vscode.md) sessions hosted on the compute instance.
+    > The compute won't be idle if you have a [prompt flow compute session](./create-manage-compute-session.md) in **Running** status on the compute. You need to delete any active compute sessions to make the compute instance eligible for idle shutdown. 
 
 1. Update or add to the schedule. You can have a total of four schedules per compute instance. Then select **Update** to save your changes.
 

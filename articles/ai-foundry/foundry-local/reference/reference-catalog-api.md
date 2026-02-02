@@ -2,58 +2,61 @@
 title: Catalog API Reference
 titleSuffix: Foundry Local
 description: Complete reference guide for the Foundry Local Model Catalog API.
-manager: scottpolly
 ms.service: azure-ai-foundry
+ms.subservice: foundry-local
 ms.custom: build-2025
 ms.topic: reference
-ms.date: 05/02/2025
-ms.author: maanavdalal
-author: maanavd
+ms.date: 10/01/2025
+ms.author: jburchel
+reviewer: maanavdalal
+author: jonburchel
+ms.reviewer: maanavd
+ai-usage: ai-assisted
 ---
 
-# Catalog API Reference
+# Catalog API reference
 
 [!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 
-Foundry Local allows you to develop and integrate your own catalog service. This document provides guidance on:
+Foundry Local lets you build and integrate your own catalog service. This article covers:
 
-- The model format required for the catalog API.
-- The request and response format required for your catalog API to integrate with Foundry Local.
+- Model format required for the catalog API
+- Request and response format required for your catalog API to integrate with Foundry Local
 
 ## Model format
 
-The model files hosted in your model catalog are required to be in the [Open Neural Network Exchange (ONNX)](https://onnx.ai/) format to work with Foundry Local. For more information on how to compile Hugging Face and PyTorch models to ONNX, see the [Compile Hugging Face models to run on Foundry Local](../how-to/how-to-compile-hugging-face-models.md) article.
+Model files in your model catalog must be in the [Open Neural Network Exchange (ONNX)](https://onnx.ai/) format to work with Foundry Local. To learn how to compile Hugging Face and PyTorch models to ONNX, see [Compile Hugging Face models to run on Foundry Local](../how-to/how-to-compile-hugging-face-models.md).
 
 ## API format
 
 ### Request
 
-Your catalog service needs to support a POST endpoint that accepts a JSON request body. The request format for the catalog API is as follows:
+Implement a POST endpoint that accepts a JSON request body in your catalog service. The request format for the catalog API is as follows:
 
 - **Method**: `POST`
 - **Content-Type**: `application/json`
 
-The request body *must* be a JSON object that *accepts* the following fields:
+The request body must be a JSON object with the following fields:
 
-- `resourceIds`: An array of resource IDs that specify the resources to be queried.
-    - `resourceId`: The ID of the resource.
-    - `entityContainerType`: The type of entity container (for example, `Registry`, `Workspace`, etc.).
+- `resourceIds`: An array of resource IDs that specify the resources to be queried
+    - `resourceId`: The ID of the resource
+    - `entityContainerType`: The type of entity container (for example, `Registry`, `Workspace`, etc.)
 - `indexEntitiesRequest`: An object that contains the search parameters.
-  - `filters`: An array of filter objects that specify the criteria for filtering the search results.
-      - `field`: The field to filter on (for example, `type`, `kind`, etc.).
+  - `filters`: An array of filter objects that specify the criteria for filtering the search results
+      - `field`: The field to filter on (for example, `type`, `kind`, etc.)
       - `operator`: The operator to use for the filter. For example, `eq` (equals), `ne` (not equals), `gt` (greater than), `lt` (less than), etc.
-      - `values`: An array of values to match against the field.
-  - `orderBy`: An array of fields to order the results by.
-  - `searchText`: A string to search for in the results.
-  - `pageSize`: The maximum number of results to return (for pagination).
-  - `skip`: The number of results to skip (for pagination).
-  - `continuationToken`: A token for pagination to continue from a previous request.
+      - `values`: An array of values to match against the field
+  - `orderBy`: An array of fields to order the results by
+  - `searchText`: A string to search for in the results
+  - `pageSize`: The maximum number of results to return (for pagination)
+  - `skip`: The number of results to skip (for pagination)
+  - `continuationToken`: A token for pagination to continue from a previous request
 
-#### Filterable Fields (optional)
+#### Filterable fields (optional)
 
-You *must* implement your catalog API that *accepts* the [Request](#request) format, but it's *optional* as to whether you implement server-side filtering in your catalog service. Not implementing server-side filtering is a fast way to implement your catalog service, but it might not be efficient way to search for models.
+Implement the catalog API so it accepts the [Request](#request) format. Server-side filtering is optional. Skipping server-side filtering is faster to implement but is less efficient for searching models.
 
-If you choose to implement server-side filtering, you can use the following fields to filter the results:
+If you implement server-side filtering, use the following fields:
 
 - `type`: The type of the model (for example, `models`, `datasets`, etc.).
 - `kind`: The kind of the model (for example, `Versioned`, `Unversioned`, etc.).
@@ -64,7 +67,7 @@ If you choose to implement server-side filtering, you can use the following fiel
 #### Example request
 
 ```bash
-curl POST <your-catalog-api-endpoint> \
+curl -X POST <your-catalog-api-endpoint> \
 -H "Content-Type: application/json" \
 -d '{
   "resourceIds": [
@@ -142,8 +145,8 @@ The response from the catalog API is a JSON object that contains the search resu
         },
         "continuationToken": {
           "type": "string",
-          "description": "A token to continue fetching results."
-        },
+                    "description": "A token to continue fetching results."
+        }
       }
     }
   },
@@ -172,7 +175,7 @@ The response from the catalog API is a JSON object that contains the search resu
               "type": "object",
               "properties": {
                 "publisher": { "type": "string" },
-                "displayName": { "type": "string" },
+                "displayName": { "type": "string" }
               }
             },
             "name": { "type": "string" }

@@ -3,8 +3,8 @@ title: Manage models registry with MLflow
 titleSuffix: Azure Machine Learning
 description: Explore how to use MLflow in Azure Machine Learning to manage a models registry, and register, edit, query, and delete models.
 services: machine-learning
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: fasantia
 ms.service: azure-machine-learning
 ms.subservice: core

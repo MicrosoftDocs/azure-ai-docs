@@ -10,6 +10,7 @@ author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: jinzhong
 ms.date: 12/18/2023
+ms.update-cycle: 365-days
 ---
 
 # OpenAI GPT-4V (preview)

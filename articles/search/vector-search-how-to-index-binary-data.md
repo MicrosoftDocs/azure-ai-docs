@@ -2,10 +2,10 @@
 title: Index binary vectors for vector search
 titleSuffix: Azure AI Search
 description: Explains how to configure fields for binary vectors and the vector search configuration for querying the fields.
-
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.custom:
   - build-2024
   - ignite-2024
@@ -26,7 +26,7 @@ There are three steps to configuring an index for binary vectors:
 
 This article assumes you're familiar with [creating an index in Azure AI Search](search-how-to-create-search-index.md) and [adding vector fields](vector-search-how-to-create-index.md). It uses the REST APIs to illustrate each step, but you could also add a binary field to an index in the Azure portal or Azure SDK.
 
-The binary data type is generally available starting with API version 2024-07-01 and is assigned to fields using the [Create Index](/rest/api/searchservice/indexes/create) or [Create Or Update Index](/rest/api/searchservice/indexes/create-or-update) APIs.
+The binary data type is assigned to fields using the [Create Index](/rest/api/searchservice/indexes/create) or [Create Or Update Index](/rest/api/searchservice/indexes/create-or-update) APIs.
 
 > [!TIP]
 > If you're investigating binary vector support for its smaller footprint, you might also consider the vector quantization and storage reduction features in Azure AI Search. Inputs are float32 or float16 embeddings. Output is stored data in a much smaller format. For more information, see [Compress using binary or scalar quantization](vector-search-how-to-quantization.md) and [Assign narrow data types](vector-search-how-to-assign-narrow-data-types.md).
@@ -37,18 +37,18 @@ The binary data type is generally available starting with API version 2024-07-01
 
 ## Limitations
 
-+ No Azure portal support in the Import and vectorize data wizard.
++ No Azure portal support in the **Import data (new)** wizard.
 + No support for binary fields in the [AML skill](cognitive-search-aml-skill.md) that's used for integrated vectorization of models in the Azure AI Foundry model catalog.
 
 ## Add a vector search algorithm and vector profile
 
 Vector search algorithms are used to create the query navigation structures during indexing. For binary vector fields, vector comparisons are performed using the Hamming distance metric. 
 
-1. To add a binary field to an index, set up a [`Create or Update Index`](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-07-01&preserve-view=true) request using the REST API or the Azure portal.
+1. To add a binary field to an index, set up a [`Create or Update Index`](/rest/api/searchservice/indexes/create-or-update) request using the REST API or the Azure portal.
 
 1. In the index schema, add a `vectorSearch` section that specifies profiles and algorithms.
 
-1. Add one or more [vector search algorithms](vector-search-ranking.md) that have a similarity metric of `hamming`. It's common to use Hierarchical Navigable Small Worlds (HNSW), but you can also use Hamming distance with exhaustive K-nearest neighbors.
+1. Add one or more [vector search algorithms](vector-search-ranking.md) that have a similarity metric of `hamming`. It's common to use Hierarchical Navigable Small Worlds (HNSW), but you can also use Hamming distance with exhaustive K-Nearest Neighbors (KNN).
 
 1. Add one or more vector profiles that specify the algorithm.
 

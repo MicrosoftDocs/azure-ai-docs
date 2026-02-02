@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 05/28/2025
+ms.date: 09/26/2025
 ms.author: lajanuar
 ---
 
@@ -22,11 +22,6 @@ The Language service also provides several new features as well, which can eithe
 
 * Preconfigured, which means the AI models that the feature uses aren't customizable. You just send your data, and use the feature's output in your applications.
 * Customizable, which means you train an AI model using our tools to fit your data specifically.
-
-Language features are also utilized in [agent templates](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/agent-catalog):
-
-* [Intent routing agent](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/agent-catalog/msft-agent-samples/foundry-agent-service-sdk/intent-routing-agent) detects user intent and provides exact answering. Perfect for deterministically intent routing and exact question answering with human controls.
-* [Exact question answering agent](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/agent-catalog/msft-agent-samples/foundry-agent-service-sdk/exact-qna-agent) answers high-value predefined questions deterministically to ensure consistent and accurate responses.
 
 > [!TIP]
 > Unsure which feature to use? See [Which Language service feature should I use](#which-language-service-feature-should-i-use) to help you decide.
@@ -53,7 +48,7 @@ Language features are also utilized in [agent templates](https://github.com/azur
       :::image type="content" source="media/overview/text-pii.png" alt-text="A screenshot of text personally identifying information in Azure AI Foundry." lightbox="media/overview/text-pii.png":::
    :::column-end:::
    :::column span="":::
-      [PII detection](./personally-identifiable-information/overview.md) identifies entities in text and conversations (chat or transcripts) that are associated with individuals.
+      [Personally Identifiable Information (PII) detection](./personally-identifiable-information/overview.md) identifies entities in text and conversations (chat or transcripts) that are associated with individuals.
 
    :::column-end:::
 :::row-end:::
@@ -109,6 +104,10 @@ Conversation summarization recaps and segments long meetings into timestamped ch
 :::row-end:::
 
 ### Entity linking
+
+> [!IMPORTANT]
+> Entity Linking is retiring from Azure AI Language effective **September 1, 2028**. After this date, the Entity Linking feature is no longer supported.   During the support window, we recommend that users migrate existing workloads and direct all new projects to Azure AI Language [**Named Entity Recognition**](named-entity-recognition/overview.md) or consider other alternative solutions.
+
 
 :::row:::
    :::column span="":::
@@ -248,6 +247,6 @@ Use Language service containers to deploy API features on-premises. These Docker
 
 An AI system includes not only the technology, but also the people who use it, the people affected by it, and the deployment environment. Read the following articles to learn about responsible AI use and deployment in your systems:
 
-* [Transparency note for the Language service](/legal/cognitive-services/text-analytics/transparency-note)
-* [Integration and responsible use](/legal/cognitive-services/text-analytics/guidance-integration-responsible-use)
-* [Data, privacy, and security](/legal/cognitive-services/text-analytics/data-privacy)
+* [Transparency note for the Language service](../../ai-foundry/responsible-ai/language-service/transparency-note.md)
+* [Integration and responsible use](../../ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use.md)
+* [Data, privacy, and security](../../ai-foundry/responsible-ai/language-service/data-privacy.md)

@@ -2,29 +2,28 @@
 title: Hybrid search
 titleSuffix: Azure AI Search
 description: Describes concepts and architecture of hybrid query processing and document retrieval. Hybrid queries combine vector search and full text search.
-
 author: robertklee
 ms.author: robertlee
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 05/27/2025
+ms.date: 07/21/2025
 ---
 
 # Hybrid search using vectors and full text in Azure AI Search
 
-Hybrid search is a single query request, configured for full text and vector search, that executes against a search index containing both searchable plain text content and generated embeddings. For query purposes, hybrid search is:
+Hybrid search is a single query request, configured for full text and vector queries, that executes against a search index containing both searchable plain text content and generated embeddings. For query purposes, hybrid search is:
 
 + A single query request that includes both `search` and `vectors` query parameters
 + Executing in parallel
-+ With merged results in the query response, scored using [Reciprocal Rank Fusion (RRF)](hybrid-search-ranking.md)
++ Merging results from each query using [Reciprocal Rank Fusion (RRF)](hybrid-search-ranking.md)
 
-This article explains the concepts, benefits, and limitations of hybrid search. Links at the end provide instructions and next steps. You can also watch this [embedded video](#why-choose-hybrid-search) for an explanation of how hybrid retrieval contributes to high quality RAG apps.
+This article explains the concepts, benefits, and limitations of hybrid search. Links at the end provide instructions and next steps. You can also watch this [embedded video](#why-choose-hybrid-search) for an explanation of how hybrid retrieval contributes to high quality generative search applications.
 
 ## How does hybrid search work?
 
-In Azure AI Search, vector fields containing embeddings can live alongside textual and numerical fields, allowing you to formulate hybrid queries that execute in parallel. Hybrid queries can take advantage of existing text-based functionality like filtering, faceting, sorting, scoring profiles, and [semantic ranking](semantic-search-overview.md) on your text fields, while executing a similarity search against vectors, all in a single search request.
+In a search index, vector fields containing embeddings coexist with textual and numerical fields, allowing you to formulate hybrid queries that execute in parallel. Hybrid queries can take advantage of existing text-based functionality like filtering, faceting, sorting, scoring profiles, and [semantic ranking](semantic-search-overview.md) on your text fields, while executing a similarity search against vectors, all in a single search request.
 
 Hybrid search combines results from both full text and vector queries, which use different ranking functions such as BM25 for text, and Hierarchical Navigable Small World (HNSW) and exhaustive K Nearest Neighbors (eKNN) for vectors. A [Reciprocal Rank Fusion (RRF)](hybrid-search-ranking.md) algorithm merges the results. The query response provides just one result set, using RRF to rank the unified results.
 
@@ -35,7 +34,7 @@ Hybrid search is predicated on having a search index that contains fields of var
 A representative hybrid query might be as follows (notice that the vector queries have placeholder values for brevity):
 
 ```http
-POST https://{{searchServiceName}}.search.windows.net/indexes/hotels-vector-quickstart/docs/search?api-version=2024-07-01
+POST https://{{searchServiceName}}.search.windows.net/indexes/hotels-vector-quickstart/docs/search?api-version=2025-09-01
   content-type: application/JSON
 {
     "count": true,

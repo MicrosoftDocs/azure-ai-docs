@@ -2,15 +2,14 @@
 title: OCR skill
 titleSuffix: Azure AI Search
 description: Extract text from image files using optical character recognition (OCR) in an enrichment pipeline in Azure AI Search.
-
 author: gmndrg
 ms.author: gimondra
-
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: reference
-ms.date: 06/24/2022
+ms.date: 09/17/2025
+ms.update-cycle: 365-days
 ---
 # OCR cognitive skill
 
@@ -30,7 +29,7 @@ The **OCR** skill extracts text from image files and embedded images. Supported 
 + .BMP
 + .TIFF
 
-Supported data sources for OCR and image analysis are blobs in Azure Blob Storage and Azure Data Lake Storage (ADLS) Gen2, and image content in OneLake. Images can be standalone files or embedded images in a PDF or other files.
+Supported data sources for OCR and image analysis are blobs in Azure Blob Storage and Azure Data Lake Storage (ADLS) Gen2, and image content in Microsoft OneLake. Images can be standalone files or embedded images in a PDF or other files.
 
 > [!NOTE]
 > This skill is bound to Azure AI services and requires [a billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Azure AI services Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/).

@@ -3,8 +3,8 @@ title: Overview of forecasting methods in AutoML
 titleSuffix: Azure Machine Learning
 description: Learn how AutoML in Azure Machine Learning uses machine learning to build forecasting models, including time series or regression models for predictions.
 services: machine-learning
-author: ssalgadodev
-ms.author: ssalgado
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: erwright
 ms.service: azure-machine-learning
 ms.subservice: automl

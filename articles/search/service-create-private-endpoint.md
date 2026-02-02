@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 04/14/2025
+ms.date: 09/23/2025
 ---
 
 # Create a private endpoint for a secure connection to Azure AI Search
@@ -216,7 +216,7 @@ When the search service endpoint is private, some portal features are disabled. 
     Aliases:  [search service name].search.windows.net
     ```
 
-1. From the VM, connect to the search service and create an index. You can follow this [quickstart](search-get-started-rest.md) to create a new search index in your service using the REST API. Setting up requests from a Web API test tool requires the search service endpoint `(https://[search service name].search.windows.net)` and the admin api-key you copied in a previous step.
+1. From the VM, connect to the search service and create an index. You can follow this [quickstart](search-get-started-text.md) to create a new search index in your service using the REST API. Setting up requests from a Web API test tool requires the search service endpoint `(https://[search service name].search.windows.net)` and the admin api-key you copied in a previous step.
 
 1. Completing the quickstart from the VM is your confirmation that the service is fully operational.
 

@@ -39,7 +39,7 @@ The Azure AI Document Intelligence Sample Labeling tool is an open source tool t
 
 You need the following to get started:
 
-* An Azure subscription—you can [create one for free](https://azure.microsoft.com/free/cognitive-services/)
+* An Azure subscription—you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 
 * An Azure AI services or Document Intelligence resource. Once you have your Azure subscription, create a [single-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer), or [multi-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) Document Intelligence resource in the Azure portal to get your key and endpoint. You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 

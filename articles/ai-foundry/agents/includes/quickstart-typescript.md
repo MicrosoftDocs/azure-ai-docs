@@ -2,9 +2,10 @@
 manager: nitinme
 author: aahill
 ms.author: aahi
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: include
-ms.date: 03/28/2025
+ms.date: 09/12/2025
 ms.custom: devx-track-ts
 ---
 
@@ -14,36 +15,26 @@ ms.custom: devx-track-ts
 ## Prerequisites
 
 [!INCLUDE [universal-prerequisites](universal-prerequisites.md)]
-
-
+* [Node.js LTS](https://nodejs.org/)
 
 ## Configure and run an agent
-
-| Component | Description                                                                                                                                                                                                                               |
-| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Agent     | Custom AI that uses AI models with tools.                                                                                                                                                                                  |
-| Tool      | Tools help extend an agent’s ability to reliably and accurately respond during conversation. Such as connecting to user-defined knowledge bases to ground the model, or enabling web search to provide current information.               |
-| Thread    | A conversation session between an agent and a user. Threads store Messages and automatically handle truncation to fit content into a model’s context.                                                                                     |
-| Message   | A message created by an agent or a user. Messages can include text, images, and other files. Messages are stored as a list on the Thread.                                                                                                 |
-| Run       | Activation of an agent to begin running based on the contents of Thread. The agent uses its configuration and Thread’s Messages to perform tasks by calling models and tools. As part of a Run, the agent appends Messages to the Thread. |
-| Run Step  | A detailed list of steps the agent took as part of a Run. An agent can call tools or create Messages during its run. Examining Run Steps allows you to understand how the agent is getting to its results.                                |
 
 Key objects in this code include: 
 
 * [AgentsClient](/javascript/api/@azure/ai-agents/agentsclient)
-* [ToolUtility](/javascript/api/@azure/ai-agents/toolutility)
 
-First, initialize a new project by running:
+First, initialize a new TypeScript project by running:
 
 ```console
 npm init -y
+npm pkg set type="module"
 ```
 
 Run the following commands to install the npm packages required.
 
 ```console
 npm install @azure/ai-agents @azure/identity
-npm install dotenv
+npm install @types/node typescript --save-dev
 ```
 
 Next, to authenticate your API requests and run the program, use the [az login](/cli/azure/authenticate-azure-cli-interactively) command to sign into your Azure subscription.
@@ -52,206 +43,89 @@ Next, to authenticate your API requests and run the program, use the [az login](
 az login
 ```
 
-Use the following code to create and run an agent which uploads [a CSV file](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-agents/data/nifty500QuarterlyResults.csv) of data then generates a bar chart from that data. To run this code, you'll need to get the endpoint for your project. This string is in the format:
+Use the following code to answer the math question `I need to solve the equation '3x + 11 = 14'. Can you help me?`. To run this code, you'll need to get the endpoint for your project. This string is in the format:
 
 `https://<AIFoundryResourceName>.services.ai.azure.com/api/projects/<ProjectName>`
 
 [!INCLUDE [endpoint-string-portal](endpoint-string-portal.md)]
 
-For example, your endpoint looks something like:
-
-`https://myresource.services.ai.azure.com/api/projects/myproject`
-
 Set this endpoint as an environment variable named `PROJECT_ENDPOINT` in a `.env` file.
+
+[!INCLUDE [model-name-portal](model-name-portal.md)]
+
+Save the name of your model deployment name as an environment variable named `MODEL_DEPLOYMENT_NAME`. 
 
 > [!IMPORTANT] 
 > * This quickstart code uses environment variables for sensitive configuration. Never commit your `.env` file to version control by making sure `.env` is listed in your `.gitignore` file.
 > * _Remember: If you accidentally commit sensitive information, consider those credentials compromised and rotate them immediately._
 
+Create a tsconfig.json file with the following content:
 
-Next, create an `index.js` file and paste in the following code:
+:::code language="json" source="~/azure-sdk-for-js-docs/samples/foundry/azure-ai-agents-quickstart-math/tsconfig.json":::
 
-```typescript
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
+Next, create an `index.ts` file and paste in the following code:
 
-/**
- * This sample demonstrates how to use agent operations with code interpreter from the Azure Agents service.
- *
- * @summary demonstrates how to use agent operations with code interpreter.
- */
-// @ts-nocheck
-import type {
-  MessageDeltaChunk,
-  MessageDeltaTextContent,
-  MessageImageFileContent,
-  MessageTextContent,
-  ThreadRun,
-} from "@azure/ai-agents";
-import {
-  RunStreamEvent,
-  MessageStreamEvent,
-  DoneEvent,
-  ErrorEvent,
-  AgentsClient,
-  isOutputOfType,
-  ToolUtility,
-} from "@azure/ai-agents";
-import { DefaultAzureCredential } from "@azure/identity";
+:::code language="typescript" source="~/azure-sdk-for-js-docs/samples/foundry/azure-ai-agents-quickstart-math/index.ts":::
 
-import * as fs from "fs";
-import path from "node:path";
-import "dotenv/config";
+Run the code using `npx tsx -r dotenv/config index.ts`. This code answers the question `I need to solve the equation '3x + 11 = 14'. Can you help me?`. Responses aren't deterministic, your output will look similar to the below output:
 
-const projectEndpoint = process.env["PROJECT_ENDPOINT"] || "<project endpoint>";
-const modelDeploymentName = process.env["MODEL_DEPLOYMENT_NAME"] || "gpt-4o";
+```console
+Created agent, agent ID : asst_X4yDNWrdWKb8LN0SQ6xlzhWk
+Created thread, thread ID : thread_TxqZcHL2BqkNWl9dFzBYMIU6
+Threads for agent asst_X4yDNWrdWKb8LN0SQ6xlzhWk:
+...
+Created message, message ID : msg_R0zDsXdc2UbfsNXvS1zeS6hk
+Creating run...
+Received response with status: queued
+Received response with status: in_progress
+Received response with status: completed
+Run finished with status: completed
 
-export async function main(): Promise<void> {
-  // Create an Azure AI Client
-  const client = new AgentsClient(projectEndpoint, new DefaultAzureCredential());
 
-  // Upload file and wait for it to be processed
-  const filePath = "./data/nifty500QuarterlyResults.csv";
-  const localFileStream = fs.createReadStream(filePath);
-  const localFile = await client.files.upload(localFileStream, "assistants", {
-    fileName: "myLocalFile",
-  });
+========================================================
+=================== CONVERSATION RESULTS ===================
+========================================================
 
-  console.log(`Uploaded local file, file ID : ${localFile.id}`);
 
-  // Create code interpreter tool
-  const codeInterpreterTool = ToolUtility.createCodeInterpreterTool([localFile.id]);
+❓ USER QUESTION: I need to solve the equation `3x + 11 = 14`. Can you help me?
 
-  // Notice that CodeInterpreter must be enabled in the agent creation, otherwise the agent will not be able to see the file attachment
-  const agent = await client.createAgent(modelDeploymentName, {
-    name: "my-agent",
-    instructions: "You are a helpful agent",
-    tools: [codeInterpreterTool.definition],
-    toolResources: codeInterpreterTool.resources,
-  });
-  console.log(`Created agent, agent ID: ${agent.id}`);
+🤖 ASSISTANT'S ANSWER:
+--------------------------------------------------
+Certainly! Let's solve the equation step by step:
 
-  // Create a thread
-  const thread = await client.threads.create();
-  console.log(`Created thread, thread ID: ${thread.id}`);
+We have:
+3x + 11 = 14
 
-  // Create a message
-  const message = await client.messages.create(
-    thread.id,
-    "user",
-    "Could you please create a bar chart in the TRANSPORTATION sector for the operating profit from the uploaded CSV file and provide the file to me?",
-  );
+### Step 1: Eliminate the constant (+11) on the left-hand side.
+Subtract 11 from both sides:
+3x + 11 - 11 = 14 - 11
+This simplifies to:
+3x = 3
 
-  console.log(`Created message, message ID: ${message.id}`);
+We have:
+3x + 11 = 14
 
-  // Create and execute a run
-  const streamEventMessages = await client.runs.create(thread.id, agent.id).stream();
+### Step 1: Eliminate the constant (+11) on the left-hand side.
+Subtract 11 from both sides:
+3x + 11 - 11 = 14 - 11
+This simplifies to:
+3x = 3
 
-  for await (const eventMessage of streamEventMessages) {
-    switch (eventMessage.event) {
-      case RunStreamEvent.ThreadRunCreated:
-        console.log(`ThreadRun status: ${(eventMessage.data as ThreadRun).status}`);
-        break;
-      case MessageStreamEvent.ThreadMessageDelta:
-        {
-          const messageDelta = eventMessage.data as MessageDeltaChunk;
-          messageDelta.delta.content.forEach((contentPart) => {
-            if (contentPart.type === "text") {
-              const textContent = contentPart as MessageDeltaTextContent;
-              const textValue = textContent.text?.value || "No text";
-              console.log(`Text delta received:: ${textValue}`);
-            }
-          });
-        }
-        break;
+### Step 2: Solve for x.
+Divide both sides by 3:
+3x / 3 = 3 / 3
+This simplifies to:
+x = 1
 
-      case RunStreamEvent.ThreadRunCompleted:
-        console.log("Thread Run Completed");
-        break;
-      case ErrorEvent.Error:
-        console.log(`An error occurred. Data ${eventMessage.data}`);
-        break;
-      case DoneEvent.Done:
-        console.log("Stream completed.");
-        break;
-    }
-  }
+### Final Answer:
+x = 1
+--------------------------------------------------
 
-  // Delete the original file from the agent to free up space (note: this does not delete your version of the file)
-  await client.files.delete(localFile.id);
-  console.log(`Deleted file, file ID : ${localFile.id}`);
 
-  // Print the messages from the agent
-  const messagesIterator = client.messages.list(thread.id);
-  const messagesArray = [];
-  for await (const m of messagesIterator) {
-    messagesArray.push(m);
-  }
-  console.log("Messages:", messagesArray);
-
-  // Get most recent message from the assistant
-// Get most recent message from the assistant
-  const assistantMessage = messagesArray.find((msg) => msg.role === "assistant");
-  if (assistantMessage) {
-    // Look for an image file in the assistant's message
-    const imageFileOutput = assistantMessage.content.find(content => 
-      content.type === "image_file" && content.imageFile?.fileId);
-    
-    if (imageFileOutput) {
-      try {
-        // Save the newly created file
-        console.log(`Saving new files...`);
-        const imageFile = imageFileOutput.imageFile.fileId;
-        const imageFileName = path.resolve(
-          "./data/" + (await client.files.get(imageFile)).filename + "ImageFile.png",
-        );
-        console.log(`Image file name : ${imageFileName}`);
-
-        const fileContent = await client.files.getContent(imageFile).asNodeStream();
-        if (fileContent && fileContent.body) {
-          const chunks = [];
-          for await (const chunk of fileContent.body) {
-            chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
-          }
-          const buffer = Buffer.concat(chunks);
-          fs.writeFileSync(imageFileName, buffer);
-          console.log(`Successfully saved image to ${imageFileName}`);
-        } else {
-          console.error("No file content available in the response");
-        }
-      } catch (error) {
-        console.error("Error saving image file:", error);
-      }
-    } else {
-      console.log("No image file found in assistant's message");
-    }
-  } else {
-    console.log("No assistant message found");
-  }
-
-  // Iterate through messages and print details for each annotation
-  console.log(`Message Details:`);
-  messagesArray.forEach((m) => {
-    console.log(`File Paths:`);
-    console.log(`Type: ${m.content[0].type}`);
-    if (isOutputOfType<MessageTextContent>(m.content[0], "text")) {
-      const textContent = m.content[0] as MessageTextContent;
-      console.log(`Text: ${textContent.text.value}`);
-    }
-    console.log(`File ID: ${m.id}`);
-    // firstId and lastId are properties of the paginator, not the messages array
-    // Removing these references as they don't exist in this context
-  });
-
-  // Delete the agent once done
-  await client.deleteAgent(agent.id);
-  console.log(`Deleted agent, agent ID: ${agent.id}`);
-}
-
-main().catch((err) => {
-  console.error("The sample encountered an error:", err);
-});
+========================================================
+====================== END OF RESULTS ======================
+========================================================
 ```
 
 
-Run the code using `node index.js`. This code generates a bar chart PNG image file in the TRANSPORTATION sector for the operating profit from the uploaded CSV file and provided the file to you. Full [sample source code](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-agents/samples/v1-beta/typescript/src/codeInterpreterWithStreaming.ts) available.
+ Full [sample source code](https://github.com/Azure-Samples/azure-sdk-for-js-docs/blob/main/samples/foundry/azure-ai-agents-quickstart-math) available.

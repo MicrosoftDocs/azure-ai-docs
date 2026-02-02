@@ -4,9 +4,8 @@ titleSuffix: Azure AI Foundry
 description: Instructions for installing the Azure AI Foundry SDK and the Azure CLI
 author: sdgilley
 ms.author: sgilley
-manager: scottpolly
 ms.reviewer: dantaylo
-ms.date: 04/22/2025
+ms.date: 08/27/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.custom:
@@ -22,7 +21,7 @@ Set up your development environment to use the [Azure AI Foundry](https://ai.azu
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
+- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 
 ## Install your programming language 

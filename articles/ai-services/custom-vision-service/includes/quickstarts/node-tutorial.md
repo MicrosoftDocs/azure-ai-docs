@@ -25,7 +25,7 @@ Reference documentation for [(training)](/javascript/api/@azure/cognitiveservice
 
 ## Prerequisites
 
-* An Azure subscription. You can [create one for free](https://azure.microsoft.com/free/cognitive-services/).
+* An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * The current version of [Node.js](https://nodejs.org).
 * Once you have your Azure subscription, create a [Custom Vision resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesCustomVision) in the Azure portal to create a training and prediction resource.
     * You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.

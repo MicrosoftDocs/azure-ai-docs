@@ -1,12 +1,12 @@
 ---
 title: Identify and extract Personally Identifying Information (PII) from text
 titleSuffix: Azure AI services
-description: This article shows you how to identify, extract and redact Personally Identifying Information (PII) from text.
+description: This article shows you how to identify, extract, and redact Personally Identifying Information (PII) from text.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 03/05/2025
+ms.date: 09/27/2025
 ms.author: lajanuar
 ms.custom: language-service-pii
 ---
@@ -35,13 +35,13 @@ In version `2024-11-5-preview`, you're able to define the `redactionPolicy` para
 - `MaskWithCharacter` (default) 
 - `MaskWithEntityType` 
 
-The `DoNotRedact` policy allows the user to return the response without the `redactedText` field, that is, "John Doe received a call from 424-878-9192". 
+The `DoNotRedact` policy allows the user to return the response without the `redactedText` field, that is, "John Doe received a call from 424-878-919." 
 
-The `MaskWithRedactionCharacter` policy allows the `redactedText` to be masked with a character (such as "*"), preserving the length and offset of the original text, that is, "******** received a call from ************". This is the existing behavior.
+The `MaskWithRedactionCharacter` policy allows the `redactedText` to be masked with a character (such as "*"), preserving the length and offset of the original text, that is, "******** received a call from ************." This result is the existing behavior.
 
 There's also an optional field called `redactionCharacter` where you can input the character to be used in redaction if you're using the `MaskWithCharacter` policy 
 
-The `MaskWithEntityType` policy allows you to mask the detected PII entity text with the detected entity type, that is, "[PERSON_1] received a call from [PHONENUMBER_1]". 
+The `MaskWithEntityType` policy allows you to mask the detected PII entity text with the detected entity type, that is, "[PERSON_1] received a call from [PHONENUMBER_1]." 
 
 ## Select which entities to be returned
 
@@ -120,13 +120,13 @@ The API attempts to detect the [defined entity categories](../concepts/entity-ca
 
 ## Adapting PII to your domain
 
-To accommodate and adapt to a customer’s custom vocabulary used to identify entities (also known as the “context”), the `entitySynonyms` feature allows customers to define their own synonyms for specific entity types. The goal of this feature is to help detect entities in contexts that the model is not familiar with but are used in the customer’s inputs by ensuring that the customer’s unique terms are recognized and correctly associated during the detection process. 
+To accommodate and adapt to a customer's custom vocabulary used to identify entities (also known as the "context"), the `entitySynonyms` feature allows customers to define their own synonyms for specific entity types. The goal of this feature is to help detect entities in contexts that the model isn't familiar with but are used in the customer's inputs by ensuring that the customer's unique terms are recognized and correctly associated during the detection process. 
 
-The `valueExclusionPolicy` option allows customers to adapt the PII service for scenarios where customers prefer certain terms not to be detected and redacted even if those terms fall into a PII category they are interested in detected. For example, a police department might want personal identifiers redacted in most cases except for terms like “police officer”, “suspect”, and “witness”. 
+The `valueExclusionPolicy` option allows customers to adapt the PII service for scenarios where customers prefer certain terms not to be detected and redacted even if those terms fall into a PII category they're interested in detected. For example, a police department might want personal identifiers redacted in most cases except for terms like "police officer," "suspect," and "witness." 
 
-Customers can now adapt the PII service’s detecting by specifying their own regex using a regex recognition configuration file. See our [container how-to guides](use-containers.md) for a tutorial on how to install and run Personally Identifiable Information (PII) Detection containers. 
+Customers can now adapt the PII service's detecting by specifying their own regex using a regex recognition configuration file. See our [container how-to guides](use-containers.md) for a tutorial on how to install and run Personally Identifiable Information (PII) Detection containers. 
 
-A more detailed tutorial can be found in the “[Adapting PII to your domain](adapt-to-domain-pii.md)” how-to guide. 
+A more detailed tutorial can be found in the "[Adapting PII to your domain](adapt-to-domain-pii.md)" how-to guide. 
 
 
 ## Submitting data

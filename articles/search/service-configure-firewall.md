@@ -2,15 +2,15 @@
 title: Configure network access
 titleSuffix: Azure AI Search
 description: Configure IP control policies to restrict network access to your Azure AI Search service to specific IP addresses.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.topic: how-to
+ms.date: 09/23/2025
 ms.custom:
   - ignite-2023
-ms.topic: how-to
-ms.date: 05/20/2025
+  - sfi-image-nochange
 ---
 
 # Configure network access and firewall rules for Azure AI Search
@@ -24,6 +24,14 @@ This article assumes the Azure portal for configuring network access options. Yo
 + A search service, any region, at the Basic tier or higher
 
 + Owner or Contributor permissions
+
+## Limitations
+
+There are drawbacks to locking down the public endpoint:
+
++ It takes time to fully identify IP ranges and set up firewalls, and if you're in early stages of proof-of-concept testing and investigation and using sample data, you might want to defer network access controls until you actually need them.
+
++ Some workflows require access to a public endpoint. Specifically, the [**indexing wizards**](search-import-data-portal.md) in the Azure portal connect to built-in (hosted) sample data and embedding models over the public endpoint. You can switch to code or script to complete the same tasks when firewall rules in place, but if you want to run the wizards, the public endpoint must be available. For more information, see [Secure connections in the import wizards](search-import-data-portal.md#secure-connections).
 
 ## When to configure network access
 
@@ -40,14 +48,6 @@ There are two mechanisms for restricting access to the public endpoint:
 Network rules aren't required, but it's a security best practice to add them if you use Azure AI Search for surfacing private or internal corporate content.
 
 Network rules are scoped to data plane operations against the search service's public endpoint. Data plane operations include creating or querying indexes, and all other actions described by the [Search REST APIs](/rest/api/searchservice/). Control plane operations target service administration. Those operations specify resource provider endpoints, which are subject to the [network protections supported by Azure Resource Manager](/security/benchmark/azure/baselines/azure-resource-manager-security-baseline).
-
-## Limitations
-
-There are a few drawbacks to locking down the public endpoint.
-
-+ It takes time to fully identify IP ranges and set up firewalls, and if you're in early stages of proof-of-concept testing and investigation and using sample data, you might want to defer network access controls until you actually need them.
-
-+ Some workflows require access to a public endpoint. Specifically, the [**indexing wizards**](search-import-data-portal.md) in the Azure portal connect to built-in (hosted) sample data and embedding models over the public endpoint. You can switch to code or script to complete the same tasks when firewall rules in place, but if you want to run the wizards, the public endpoint must be available. For more information, see [Secure connections in the import wizards](search-import-data-portal.md#secure-connections).
 
 <a id="configure-ip-policy"></a> 
 

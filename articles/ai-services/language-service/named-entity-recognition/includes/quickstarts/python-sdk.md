@@ -2,7 +2,7 @@
 author: laujan
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 12/19/2023
+ms.date: 06/30/2025
 ms.author: lajanuar
 ---
 
@@ -13,7 +13,7 @@ Use this quickstart to create a Named Entity Recognition (NER) application with 
 
 ## Prerequisites
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 * [Python 3.8 or later](https://www.python.org/)
 
 

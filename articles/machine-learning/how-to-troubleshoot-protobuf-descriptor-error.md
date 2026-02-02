@@ -5,8 +5,8 @@ description: Troubleshooting steps when you get the "descriptors cannot not be c
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-author: Blackmist
-ms.author: larryfr
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: larryfr
 ms.topic: troubleshooting 
 ms.date: 03/04/2025

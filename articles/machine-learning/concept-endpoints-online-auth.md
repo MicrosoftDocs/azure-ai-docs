@@ -6,11 +6,11 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: concept-article
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: sehan
 ms.custom: devplatv2, FY25Q1-Linter
-ms.date: 10/01/2024
+ms.date: 10/31/2025
 #Customer intent: As a data scientist, I want to learn how authentication and authorization work for Azure Machine Learning online endpoints so I can create and deploy online endpoints.
 ---
 

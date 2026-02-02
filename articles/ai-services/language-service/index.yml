@@ -12,7 +12,7 @@ metadata:
   manager: nitinme
   ms.service: azure-ai-language
   ms.topic: hub-page
-  ms.date: 03/24/2025
+  ms.date: 09/27/2025
   ms.author: lajanuar
 highlightedContent:
 # itemType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | whats-new
@@ -25,12 +25,12 @@ highlightedContent:
       url: whats-new.md
     - title: Responsible use of AI
       itemType: concept
-      url: /legal/cognitive-services/language-service/transparency-note?context=/azure/ai-services/language-service/context/context
+      url: /azure/ai-foundry/responsible-ai/language-service/transparency-note
 
 conceptualContent:
   items:
     - title: Extract information
-      summary: Use Natural Language Understanding (NLU) to extract information from unstructured text. For example, identify key phrases or Personally Identifiable Information (PII), summarize text, recognize and categorize named entities, or customize an entity extraction model on top of your domain set.
+      summary: Use Natural Language Understanding (NLU) to extract information from unstructured text.
       links:
         - itemType: overview
           text: Extract key phrases
@@ -106,3 +106,9 @@ additionalContent:
         links:
         - text: Support and help
           url: ../cognitive-services-support-options.md?context=/azure/ai-services/speech-service/context/context
+      - title: Announced for Deprecation
+        links:
+        - text: Language Understanding
+          url: ../luis/index.yml
+        - text: QnA Maker
+          url: ../qnamaker/index.yml

@@ -1,10 +1,13 @@
 ---
 ms.service: azure-ai-foundry
+ms.subservice: foundry-local
 ms.custom: build-2025
 ms.topic: include
 ms.date: 05/02/2025
-ms.author: maanavdalal
-author: maanavd
+ms.author: jburchel
+reviewer: maanavdalal
+ms.reviewer: maanavd
+author: jonburchel
 ---
 
 ## Install pip packages
@@ -29,9 +32,9 @@ Copy-and-paste the following code into a Python file named `app.py`:
 import openai
 from foundry_local import FoundryLocalManager
 
-# By using an alias, the most suitable model will be downloaded 
-# to your end-user's device. 
-alias = "phi-3.5-mini"
+# By using an alias, the most suitable model will be downloaded
+# to your end-user's device.
+alias = "qwen2.5-0.5b"
 
 # Create a FoundryLocalManager instance. This will start the Foundry
 # Local service if it is not already running and load the specified model.
@@ -64,11 +67,11 @@ If you want to receive a streaming response, you can modify the code as follows:
 import openai
 from foundry_local import FoundryLocalManager
 
-# By using an alias, the most suitable model will be downloaded 
+# By using an alias, the most suitable model will be downloaded
 # to your end-user's device.
-alias = "phi-3.5-mini"
+alias = "qwen2.5-0.5b"
 
-# Create a FoundryLocalManager instance. This will start the Foundry 
+# Create a FoundryLocalManager instance. This will start the Foundry
 # Local service if it is not already running and load the specified model.
 manager = FoundryLocalManager(alias)
 
@@ -107,9 +110,9 @@ import requests
 import json
 from foundry_local import FoundryLocalManager
 
-# By using an alias, the most suitable model will be downloaded 
-# to your end-user's device. 
-alias = "phi-3.5-mini"
+# By using an alias, the most suitable model will be downloaded
+# to your end-user's device.
+alias = "qwen2.5-0.5b"
 
 # Create a FoundryLocalManager instance. This will start the Foundry
 # Local service if it is not already running and load the specified model.

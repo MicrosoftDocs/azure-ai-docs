@@ -9,7 +9,7 @@ ms.topic: concept-article
 ms.author: lagayhar
 ms.reviewer: lagayhar
 author: lgayhardt
-ms.date: 05/22/2024
+ms.date: 09/09/2025
 ms.custom: UpdateFrequency5, designer, training
 ---
 
@@ -17,14 +17,14 @@ ms.custom: UpdateFrequency5, designer, training
 
 [!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
-The Azure Machine Learning designer is a drag-and-drop interface used to train and deploy models in Azure Machine Learning studio. This article describes the tasks you can do in the designer.
+Azure Machine Learning designer is a drag-and-drop interface for training and deploying models in Azure Machine Learning studio. This article describes the tasks you can perform in the designer.
 
 > [!IMPORTANT]
 > Designer in Azure Machine Learning supports two types of pipelines that use classic prebuilt (v1) or custom (v2) components. The two component types aren't compatible within pipelines, and designer v1 isn't compatible with CLI v2 and SDK v2. **This article applies to pipelines that use classic prebuilt (v1) components.**
 > 
-> - **Classic prebuilt components (v1)** include typical data processing and machine learning tasks like regression and classification. Azure Machine Learning continues to support the existing classic prebuilt components, but no new prebuilt components are being added. Also, deployment of classic prebuilt (v1) components doesn't support managed online endpoints (v2). 
+> - **Classic prebuilt components (v1)** include typical data processing and machine learning tasks like regression and classification. Azure Machine Learning continues to support existing classic prebuilt components, but we're not adding new prebuilt components. Deployment of classic prebuilt (v1) components doesn't support managed online endpoints (v2). 
 > 
-> - **Custom components (v2)** let you wrap your own code as components, enabling sharing across workspaces and seamless authoring across Azure Machine Learning studio, CLI v2, and SDK v2 interfaces. It's best to use custom components for new projects, because they're compatible with Azure Machine Learning v2 and continue to receive new updates. For more information about custom components and Designer (v2), see [Azure Machine Learning designer (v2)](../concept-designer.md?view=azureml-api-2&preserve-view=true).
+> - **Custom components (v2)** let you wrap your own code as components. This enables sharing across workspaces and seamless authoring across Azure Machine Learning studio, CLI v2, and SDK v2 interfaces. Use custom components for new projects because they're compatible with Azure Machine Learning v2 and continue to receive updates. For more information about custom components and Designer (v2), see [Azure Machine Learning designer (v2)](../concept-designer.md?view=azureml-api-2&preserve-view=true).
 
 The following animated GIF shows how you can build a pipeline visually in Designer by dragging and dropping assets and connecting them.
 
@@ -43,7 +43,7 @@ The designer uses your Azure Machine Learning [workspace](../concept-workspace.m
 - [Published pipeline jobs](#publish)
 - [Real-time endpoints](#deploy)
 
-The following diagram illustrates how you can use the designer to build an end-to-end machine learning workflow. You can train, test, and deploy models, all in the designer interface.
+The following diagram shows how you can use the designer to build an end-to-end machine learning workflow. You can train, test, and deploy models in the designer interface.
 
 :::image type="content" source="../media/concept-designer/designer-workflow-diagram.png" alt-text="Workflow diagram for training, batch inference, and real-time inference in the designer." border="false":::
 
@@ -52,22 +52,22 @@ The following diagram illustrates how you can use the designer to build an end-t
 - Convert your **training pipelines** to **inference pipelines**.
 - [Publish](#publish) your pipelines to a REST **pipeline endpoint** to submit new pipelines that run with different parameters and data assets.
   - Publish a **training pipeline** to reuse a single pipeline to train multiple models while changing parameters and data assets.
-  - Publish a **batch inference pipeline** to make predictions on new data by using a previously trained model.
+  - Publish a **batch inference pipeline** to make predictions on new data using a previously trained model.
 - [Deploy](#deploy) a **real-time inference pipeline** to an online endpoint to make predictions on new data in real time.
 
 ## Data
 
-A machine learning data asset makes it easy to access and work with your data. The designer includes several [sample data assets](samples-designer.md#datasets) for you to experiment with. You can [register](how-to-create-register-datasets.md) more data assets as you need them.
+A machine learning data asset makes it easy to access and work with your data. The designer includes several [sample data assets](samples-designer.md#datasets) that you can experiment with. You can [register](how-to-create-register-datasets.md) more data assets as needed.
 
 ## Components
 
 A component is an algorithm that you can run on your data. The designer has several components ranging from data ingress functions to training, scoring, and validation processes.
 
-A component can have parameters that you use to configure the component's internal algorithms. When you select a component on the canvas, the component's parameters and other settings display in a properties pane at the right of the canvas. You can modify the parameters and set the compute resources for individual components in that pane.
+A component can have parameters that you use to configure the component's internal algorithms. When you select a component on the canvas, the component's parameters and other settings appear in a properties pane on the right side of the canvas. You can modify the parameters and set the compute resources for individual components in that pane.
 
 :::image type="content" source="../media/concept-designer/properties.png" alt-text="Screenshot showing the component properties.":::
 
-For more information about the library of available machine learning algorithms, see the [Algorithm and component reference](../component-reference/component-reference.md). For help with choosing an algorithm, see the [Azure Machine Learning Algorithm Cheat Sheet](algorithm-cheat-sheet.md).
+For more information about the library of available machine learning algorithms, see the [Algorithm and component reference](../component-reference/component-reference.md). For help choosing an algorithm, see the [Azure Machine Learning Algorithm Cheat Sheet](algorithm-cheat-sheet.md).
 
 ## Pipelines
 
@@ -82,16 +82,16 @@ Pipelines have many uses. You can create pipelines that:
 
 ### Pipeline drafts
 
-As you edit a pipeline in the designer, your progress is saved as a *pipeline draft*. You can edit a pipeline draft at any point by adding or removing components, configuring compute targets, or setting parameters.
+As you edit a pipeline in the designer, your progress saves as a *pipeline draft*. You can edit a pipeline draft at any point by adding or removing components, configuring compute targets, or setting parameters.
 
-A valid pipeline has the following characteristics:
+A valid pipeline has these characteristics:
 
 - Data assets can connect only to components.
 - Components can connect only to data assets or to other components.
 - All input ports for components must have some connection to the data flow.
 - All required parameters for each component must be set.
 
-When you're ready to run your pipeline draft, you save the pipeline and submit a pipeline job.
+When you're ready to run your pipeline draft, save the pipeline and submit a pipeline job.
 
 ### Pipeline jobs
 
@@ -101,7 +101,7 @@ You can go back to any pipeline job to inspect it for troubleshooting or auditin
 
 ## <a name="compute"></a> Compute resources
 
-Compute targets are attached to your [Azure Machine Learning workspace](../concept-workspace.md) in [Azure Machine Learning studio](https://ml.azure.com). Use compute resources from your workspace to run your pipeline and host your deployed models as online endpoints or as pipeline endpoints for batch inference. The supported compute targets are as follows:
+Compute targets are attached to your [Azure Machine Learning workspace](../concept-workspace.md) in [Azure Machine Learning studio](https://ml.azure.com). Use compute resources from your workspace to run your pipeline and host your deployed models as online endpoints or as pipeline endpoints for batch inference. The supported compute targets are:
 
 | Compute target | Training | Deployment |
 | ---- |:----:|:----:|
@@ -110,15 +110,15 @@ Compute targets are attached to your [Azure Machine Learning workspace](../conce
 
 ## Deploy
 
-To do real-time inferencing, you must deploy a pipeline as an [online endpoint](../concept-endpoints-online.md). The online endpoint creates an interface between an external application and your scoring model. The endpoint is based on REST, a popular architecture choice for web programming projects. A call to an online endpoint returns prediction results to the application in real time.
+To perform real-time inferencing, deploy a pipeline as an [online endpoint](../concept-endpoints-online.md). The online endpoint creates an interface between an external application and your scoring model. The endpoint is based on REST, a popular architecture choice for web programming projects. A call to an online endpoint returns prediction results to the application in real time.
 
-To make a call to an online endpoint, you pass the API key that was created when you deployed the endpoint. Online endpoints must be deployed to an AKS cluster. To learn how to deploy your model, see [Tutorial: Deploy a machine learning model with the designer](tutorial-designer-automobile-price-deploy.md).
+To call an online endpoint, pass the API key that was created when you deployed the endpoint. Online endpoints must be deployed to an AKS cluster. To learn how to deploy your model, see [Tutorial: Deploy a machine learning model with the designer](tutorial-designer-automobile-price-deploy.md).
 
 ## Publish
 
-You can also publish a pipeline to a *pipeline endpoint*. Similar to an online endpoint, a pipeline endpoint lets you submit new pipeline jobs from external applications by using REST calls. However, you can't send or receive data in real time by using a pipeline endpoint.
+You can also publish a pipeline to a *pipeline endpoint*. Similar to an online endpoint, a pipeline endpoint lets you submit new pipeline jobs from external applications using REST calls. However, you can't send or receive data in real time using a pipeline endpoint.
 
-Published pipeline endpoints are flexible and can be used to train or retrain models, [do batch inferencing](how-to-run-batch-predictions-designer.md), or process new data. You can publish multiple pipelines to a single pipeline endpoint and specify which pipeline version to run.
+Published pipeline endpoints are flexible and can be used to train or retrain models, [perform batch inferencing](how-to-run-batch-predictions-designer.md), or process new data. You can publish multiple pipelines to a single pipeline endpoint and specify which pipeline version to run.
 
 A published pipeline runs on the compute resources you define in the pipeline draft for each component. The designer creates the same [PublishedPipeline](/python/api/azureml-pipeline-core/azureml.pipeline.core.graph.publishedpipeline) object as the SDK.
 

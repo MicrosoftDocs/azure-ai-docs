@@ -3,8 +3,8 @@ title: Azure Policy Regulatory Compliance controls for Azure Machine Learning
 description: Lists Azure Policy Regulatory Compliance controls available for Azure Machine Learning. These built-in policy definitions provide common approaches to managing the compliance of your Azure resources.
 ms.date: 02/05/2025
 ms.topic: sample
-author: Blackmist
-ms.author: larryfr
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: larryfr
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
@@ -21,7 +21,7 @@ compliant with the specific standard.
 
 [!INCLUDE [azure-policy-compliancecontrols-introwarning](~/azure-docs-pr-policy-includes/includes/policy/standards/intro-warning.md)]
 
-[!INCLUDE [azure-policy-compliancecontrols-machinelearning](~/azure-docs-pr-policy-includes/includes/policy/standards/byrp/microsoft.machinelearningservices.md)]
+[!INCLUDE [azure-policy-compliancecontrols-machinelearning](~/azure-policy-autogen-docs/includes/policy/standards/byrp/microsoft.machinelearningservices.md)]
 
 ## Next steps
 

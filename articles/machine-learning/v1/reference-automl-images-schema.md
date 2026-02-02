@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: reference
 ms.reviewer: nibaccam
-ms.author: ssalgado
-author: ssalgadodev
+ms.author: scottpolly
+author: s-polly
 ms.date: 10/13/2021
 ---
 

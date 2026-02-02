@@ -4,58 +4,62 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 6/17/2025
+ms.date: 09/05/2025
 ---
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]
 
-In this quickstart, you use [agentic retrieval](../../search-agentic-retrieval-concept.md) to create a conversational search experience powered by large language models (LLMs) and your proprietary data. Agentic retrieval breaks down complex user queries into subqueries, runs the subqueries in parallel, and extracts grounding data from documents indexed in Azure AI Search. The output is intended for integration with agentic and custom chat solutions.
+In this quickstart, you use [agentic retrieval](../../agentic-retrieval-overview.md) to create a conversational search experience powered by documents indexed in Azure AI Search and large language models (LLMs) from Azure OpenAI in Azure AI Foundry Models.
+
+A *knowledge agent* orchestrates agentic retrieval by decomposing complex queries into subqueries, running the subqueries against one or more *knowledge sources*, and returning results with metadata. By default, the agent outputs raw content from your sources, but this quickstart uses the answer synthesis modality for natural-language answer generation.
 
 Although you can provide your own data, this quickstart uses [sample JSON documents](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth-at-night-json) from NASA's Earth at Night e-book. The documents describe general science topics and images of Earth at night as observed from space.
 
-This quickstart is based on the [Quickstart-Agentic-Retrieval](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/Quickstart-Agentic-Retrieval) Jupyter notebook on GitHub.
+> [!TIP]
+> Want to get started right away? See the [azure-search-python-samples](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/Quickstart-Agentic-Retrieval) repository on GitHub.
 
 ## Prerequisites
 
-+ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
++ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 + An [Azure AI Search service](../../search-create-service-portal.md) on the Basic tier or higher with [semantic ranker enabled](../../semantic-how-to-enable-disable.md).
 
-+ An [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects). You get an Azure AI Foundry resource (that's needed for model deployments) when you create an Azure AI Foundry project.
-
-+ [Visual Studio Code](https://code.visualstudio.com/download) with the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and [Jupyter package](https://pypi.org/project/jupyter/).
++ An [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects) and Azure AI Foundry resource. When you create a project, the resource is automatically created.
 
 + The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
+
++ [Visual Studio Code](https://code.visualstudio.com/download) with the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and [Jupyter package](https://pypi.org/project/jupyter/).
 
 [!INCLUDE [Setup](./agentic-retrieval-setup.md)]
 
 ## Connect from your local system
 
-You configured role-based access to interact with Azure AI Search and Azure OpenAI. 
+You configured role-based access to interact with Azure AI Search and Azure OpenAI in Azure AI Foundry. Use the Azure CLI to sign in to the same subscription and tenant for both resources. For more information, see [Quickstart: Connect without keys](../../search-get-started-rbac.md).
 
 To connect from your local system:
 
-1. Open a new terminal in Visual Studio Code and change to the directory where you want to save your files.
-1. Run the following Azure CLI command and sign in with your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service and Azure AI Foundry project.
+1. In Visual Studio Code, open the folder where you want to save your files.
+
+1. Select **Terminal** > **New Terminal**.
+
+1. Run the following command to sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service and Azure AI Foundry project.
 
     ```azurecli
     az login
     ```
 
-For more information, see [Quickstart: Connect without keys](../../search-get-started-rbac.md).
-
 ## Install packages and load connections
 
-Before you run any code, install Python packages and define credentials, endpoints, and deployment details for connections to Azure AI Search and Azure OpenAI. These values are used in subsequent operations.
+Before you run any code, install Python packages and define endpoints, credentials, and deployment details for connections to Azure AI Search and Azure OpenAI in Azure AI Foundry. These values are used in the following sections.
 
 To install the packages and load the connections:
 
-1. In Visual Studio Code, create a `.ipynb` file. For example, you can name the file `quickstart-agentic-retrieval.ipynb`.
+1. In the same folder in Visual Studio Code, create a file named `quickstart-agentic-retrieval.ipynb`.
 
-1. In the first code cell, paste the following code to install the required packages. 
+1. Add a code cell, and then paste the following `pip install` commands.
 
-    ```Python
-    ! pip install azure-search-documents==11.6.0b12 --quiet
+    ```python
+    ! pip install azure-search-documents==11.7.0b1 --quiet
     ! pip install azure-identity --quiet
     ! pip install openai --quiet
     ! pip install aiohttp --quiet
@@ -63,43 +67,45 @@ To install the packages and load the connections:
     ! pip install requests --quiet
     ```
 
-    You can run this cell by selecting the **Run Cell** button or pressing `Shift+Enter`.
+1. Select **Execute Cell** to install the packages.
 
-1. Add another code cell and paste the following import statements and variables.
+1. Add another code cell, and then paste the following import statements and variables.
 
-    ```Python
+    ```python
     from azure.identity import DefaultAzureCredential, get_bearer_token_provider
     import os
 
-    endpoint = "PUT YOUR SEARCH SERVICE ENDPOINT HERE"
+    search_endpoint = "PUT-YOUR-SEARCH-SERVICE-URL-HERE"
     credential = DefaultAzureCredential()
     token_provider = get_bearer_token_provider(credential, "https://search.azure.com/.default")
-    azure_openai_endpoint = "PUT YOUR AZURE AI FOUNDRY ENDPOINT HERE"
-    azure_openai_gpt_deployment = "gpt-4.1-mini"
-    azure_openai_gpt_model = "gpt-4.1-mini"
-    azure_openai_api_version = "2025-03-01-preview"
-    azure_openai_embedding_deployment = "text-embedding-3-large"
-    azure_openai_embedding_model = "text-embedding-3-large"
-    index_name = "earth_at_night"
-    agent_name = "earth-search-agent"
-    answer_model = "gpt-4.1-mini"
-    api_version = "2025-05-01-Preview"
+    aoai_endpoint = "PUT-YOUR-AOAI-FOUNDRY-URL-HERE"
+    aoai_embedding_model = "text-embedding-3-large"
+    aoai_embedding_deployment = "text-embedding-3-large"
+    aoai_gpt_model = "gpt-5-mini"
+    aoai_gpt_deployment = "gpt-5-mini"
+    index_name = "earth-at-night"
+    knowledge_source_name = "earth-knowledge-source"
+    knowledge_agent_name = "earth-knowledge-agent"
+    search_api_version = "2025-08-01-preview"
     ```
 
-1. Set `endpoint` to your Azure AI Search endpoint, which looks like `https://<your-search-service-name>.search.windows.net.` Set `azure_openai_endpoint` to your Azure AI Foundry endpoint, which looks like `https://<your-foundry-resource-name>.openai.azure.com.` You obtained both values in the [Get endpoints](#get-endpoints) section. 
+1. Set `search_endpoint` and `aoai_endpoint` to the values you obtained in [Get endpoints](#get-endpoints).
 
-1. To verify the variables, run the code cell.
+1. Select **Execute Cell** to load the variables.
 
 ## Create a search index
 
-In Azure AI Search, an index is a structured collection of data. The following code defines an index named `earth_at_night`, which you specified using the `index_name` variable in the previous section.
+In Azure AI Search, an index is a structured collection of data. Add and run a code cell with the following code to define an index named `earth-at-night`, which you previously specified using the `index_name` variable.
 
-Add and run a new code cell in the `quickstart-agentic-retrieval.ipynb` notebook with the following code:
+The index schema contains fields for document identification and page content, embeddings, and numbers. The schema also includes configurations for semantic ranking and vector search, which uses your `text-embedding-3-large` deployment to vectorize text and match documents based on semantic similarity.
 
-```Python
+```python
 from azure.search.documents.indexes.models import SearchIndex, SearchField, VectorSearch, VectorSearchProfile, HnswAlgorithmConfiguration, AzureOpenAIVectorizer, AzureOpenAIVectorizerParameters, SemanticSearch, SemanticConfiguration, SemanticPrioritizedFields, SemanticField
 from azure.search.documents.indexes import SearchIndexClient
+from openai import AzureOpenAI
+from azure.identity import get_bearer_token_provider
 
+azure_openai_token_provider = get_bearer_token_provider(credential, "https://cognitiveservices.azure.com/.default")
 index = SearchIndex(
     name=index_name,
     fields=[
@@ -115,9 +121,9 @@ index = SearchIndex(
             AzureOpenAIVectorizer(
                 vectorizer_name="azure_openai_text_3_large",
                 parameters=AzureOpenAIVectorizerParameters(
-                    resource_url=azure_openai_endpoint,
-                    deployment_name=azure_openai_embedding_deployment,
-                    model_name=azure_openai_embedding_model
+                    resource_url=aoai_endpoint,
+                    deployment_name=aoai_embedding_deployment,
+                    model_name=aoai_embedding_model
                 )
             )
         ]
@@ -137,92 +143,105 @@ index = SearchIndex(
     )
 )
 
-index_client = SearchIndexClient(endpoint=endpoint, credential=credential)
+index_client = SearchIndexClient(endpoint=search_endpoint, credential=credential)
 index_client.create_or_update_index(index)
-print(f"Index '{index_name}' created or updated successfully")
+print(f"Index '{index_name}' created or updated successfully.")
 ```
-
-The index schema contains fields for document identification and page content, embeddings, and numbers. It also includes configurations for semantic ranking and vector queries, which use the `text-embedding-3-large` model you previously deployed.
-
-> [!IMPORTANT]
-> Agentic retrieval has two token-based billing models:
->
-> + Billing from Azure OpenAI for query planning.
-> + Billing from Azure AI Search for query execution (semantic ranking).
->
-> Semantic ranking is free in the initial public preview. After the preview, standard token billing applies. For more information, see [Availability and pricing of agentic retrieval](../../search-agentic-retrieval-concept.md#availability-and-pricing).
 
 ## Upload documents to the index
 
-Currently, the `earth_at_night` index is empty. Run the following code to populate the index with JSON documents from NASA's Earth at Night e-book. As required by Azure AI Search, each document conforms to the fields and data types defined in the index schema.
+Currently, the `earth-at-night` index is empty. Add and run a code cell with the following code to populate the index with JSON documents from [NASA's Earth at Night e-book](https://raw.githubusercontent.com/Azure-Samples/azure-search-sample-data/refs/heads/main/nasa-e-book/earth-at-night-json/documents.json). As required by Azure AI Search, each document conforms to the fields and data types defined in the index schema.
 
-Add and run a new code cell in the `quickstart-agentic-retrieval.ipynb` notebook with the following code:
-
-```Python
-from azure.search.documents import SearchIndexingBufferedSender
+```python
 import requests
+from azure.search.documents import SearchIndexingBufferedSender
 
 url = "https://raw.githubusercontent.com/Azure-Samples/azure-search-sample-data/refs/heads/main/nasa-e-book/earth-at-night-json/documents.json"
 documents = requests.get(url).json()
 
-with SearchIndexingBufferedSender(endpoint=endpoint, index_name=index_name, credential=credential) as client:
+with SearchIndexingBufferedSender(endpoint=search_endpoint, index_name=index_name, credential=credential) as client:
     client.upload_documents(documents=documents)
 
-print(f"Documents uploaded to index '{index_name}'")
+print(f"Documents uploaded to index '{index_name}' successfully.")
+```
+
+## Create a knowledge source
+
+A knowledge source is a reusable reference to your source data. Add and run a code cell with the following code to define a knowledge source named `earth-knowledge-source` that targets the `earth-at-night` index.
+
+`source_data_select` specifies which index fields are accessible for retrieval and citations. Our example includes only human-readable fields to avoid lengthy, uninterpretable embeddings in responses.
+
+```python
+from azure.search.documents.indexes.models import SearchIndexKnowledgeSource, SearchIndexKnowledgeSourceParameters
+from azure.search.documents.indexes import SearchIndexClient
+
+ks = SearchIndexKnowledgeSource(
+    name=knowledge_source_name,
+    description="Knowledge source for Earth at night data",
+    search_index_parameters=SearchIndexKnowledgeSourceParameters(
+        search_index_name=index_name,
+        source_data_select="id,page_chunk,page_number",
+    ),
+)
+
+index_client = SearchIndexClient(endpoint=search_endpoint, credential=credential)
+index_client.create_or_update_knowledge_source(knowledge_source=ks, api_version=search_api_version)
+print(f"Knowledge source '{knowledge_source_name}' created or updated successfully.")
 ```
 
 ## Create a knowledge agent
 
-To connect Azure AI Search to your `gpt-4.1-mini` deployment and target the `earth_at_night` index at query time, you need a knowledge agent. The following code defines a knowledge agent named `earth-search-agent`, which you specified using the `agent_name` variable in a previous section.
+To target `earth-knowledge-source` and your `gpt-5-mini` deployment at query time, you need a knowledge agent. Add and run a code cell with the following code to define a knowledge agent named `earth-knowledge-agent`, which you previously specified using the `knowledge_agent_name` variable.
 
-To ensure relevant and semantically meaningful responses, `default_reranker_threshold` is set to exclude responses with a reranker score of `2.5` or lower.
+`reranker_threshold` ensures semantic relevance by excluding responses with a reranker score of `2.5` or lower. Meanwhile, `modality` is set to `ANSWER_SYNTHESIS`, enabling natural-language answers that cite the retrieved documents.
 
-Add and run a new code cell in the `quickstart-agentic-retrieval.ipynb` notebook with the following code:
+```python
+from azure.search.documents.indexes.models import KnowledgeAgent, KnowledgeAgentAzureOpenAIModel, KnowledgeSourceReference, AzureOpenAIVectorizerParameters, KnowledgeAgentOutputConfiguration, KnowledgeAgentOutputConfigurationModality
+from azure.search.documents.indexes import SearchIndexClient
 
-```Python
-from azure.search.documents.indexes.models import KnowledgeAgent, KnowledgeAgentAzureOpenAIModel, KnowledgeAgentTargetIndex, KnowledgeAgentRequestLimits, AzureOpenAIVectorizerParameters
-
-agent = KnowledgeAgent(
-    name=agent_name,
-    models=[
-        KnowledgeAgentAzureOpenAIModel(
-            azure_open_ai_parameters=AzureOpenAIVectorizerParameters(
-                resource_url=azure_openai_endpoint,
-                deployment_name=azure_openai_gpt_deployment,
-                model_name=azure_openai_gpt_model
-            )
-        )
-    ],
-    target_indexes=[
-        KnowledgeAgentTargetIndex(
-            index_name=index_name,
-            default_reranker_threshold=2.5
-        )
-    ],
+aoai_params = AzureOpenAIVectorizerParameters(
+    resource_url=aoai_endpoint,
+    deployment_name=aoai_gpt_deployment,
+    model_name=aoai_gpt_model,
 )
 
-index_client.create_or_update_agent(agent)
-print(f"Knowledge agent '{agent_name}' created or updated successfully")
+output_cfg = KnowledgeAgentOutputConfiguration(
+    modality=KnowledgeAgentOutputConfigurationModality.ANSWER_SYNTHESIS,
+    include_activity=True,
+)
+
+agent = KnowledgeAgent(
+    name=knowledge_agent_name,
+    models=[KnowledgeAgentAzureOpenAIModel(azure_open_ai_parameters=aoai_params)],
+    knowledge_sources=[
+        KnowledgeSourceReference(
+            name=knowledge_source_name,
+            reranker_threshold=2.5,
+        )
+    ],
+    output_configuration=output_cfg,
+)
+
+index_client = SearchIndexClient(endpoint=search_endpoint, credential=credential)
+index_client.create_or_update_agent(agent, api_version=search_api_version)
+print(f"Knowledge agent '{knowledge_agent_name}' created or updated successfully.")
 ```
 
 ## Set up messages
 
-The next step is to define the knowledge agent instructions and conversation context using the `messages` array. Each message includes a `role`, such as `user` or `assistant`, and `content` in natural language. A user message represents the query to be processed, while an assistant message guides the knowledge agent on how to respond. During the retrieval process, these messages are sent to an LLM to extract relevant responses from indexed documents.
+Messages are the input for the retrieval route and contain the conversation history. Each message includes a role that indicates its origin, such as `system` or `user`, and content in natural language. The LLM you use determines which roles are valid.
 
-For now, create the following assistant message, which instructs `earth-search-agent` to answer questions about the Earth at night, cite sources using their `ref_id`, and respond with "I don't know" when answers are unavailable.
+Add and run a code cell with the following code to create a system message, which instructs `earth-knowledge-agent` to answer questions about the Earth at night and respond with "I don't know" when answers are unavailable.
 
-Add and run a new code cell in the `quickstart-agentic-retrieval.ipynb` notebook with the following code:
-
-```Python
+```python
 instructions = """
-An Q&A agent that can answer questions about the Earth at night.
-Sources have a JSON format with a ref_id that must be cited in the answer.
-If you do not have the answer, respond with "I don't know".
+A Q&A agent that can answer questions about the Earth at night.
+If you don't have the answer, respond with "I don't know".
 """
 
 messages = [
     {
-        "role": "assistant",
+        "role": "system",
         "content": instructions
     }
 ]
@@ -230,266 +249,220 @@ messages = [
 
 ## Run the retrieval pipeline
 
-You're ready to initiate the agentic retrieval pipeline. The input for this pipeline is the `messages` array, whose conversation history includes the instructions you previously provided and user queries. Additionally, `target_index_params` specifies the index to query and other configurations, such as the semantic ranker threshold.
+You're ready to run agentic retrieval. Add and run a code cell with the following code to send a two-part user query to `earth-knowledge-agent`.
 
-The following code sends a two-part user query to `earth-search-agent`, which deconstructs the query into subqueries, runs the subqueries against both text fields and vector embeddings in the `earth_at_night` index, and ranks and merges the results. The response is then appended to the `messages` array.
+Given the conversation history and retrieval parameters, the agent:
 
-Add and run a new code cell in the `quickstart-agentic-retrieval.ipynb` notebook with the following code:
+1. Analyzes the entire conversation to infer the user's information need.
+1. Decomposes the compound query into focused subqueries.
+1. Runs the subqueries concurrently against your knowledge source.
+1. Uses semantic ranker to rerank and filter the results.
+1. Synthesizes the top results into a natural-language answer.
 
-```Python
+```python
 from azure.search.documents.agent import KnowledgeAgentRetrievalClient
-from azure.search.documents.agent.models import KnowledgeAgentRetrievalRequest, KnowledgeAgentMessage, KnowledgeAgentMessageTextContent, KnowledgeAgentIndexParams
+from azure.search.documents.agent.models import KnowledgeAgentRetrievalRequest, KnowledgeAgentMessage, KnowledgeAgentMessageTextContent, SearchIndexKnowledgeSourceParams
 
-agent_client = KnowledgeAgentRetrievalClient(endpoint=endpoint, agent_name=agent_name, credential=credential)
-
-messages.append({
-    "role": "user",
-    "content": """
+agent_client = KnowledgeAgentRetrievalClient(endpoint=search_endpoint, agent_name=knowledge_agent_name, credential=credential)
+query_1 = """
     Why do suburban belts display larger December brightening than urban cores even though absolute light levels are higher downtown?
     Why is the Phoenix nighttime street grid is so sharply visible from space, whereas large stretches of the interstate between midwestern cities remain comparatively dim?
     """
+
+messages.append({
+    "role": "user",
+    "content": query_1
 })
 
-retrieval_result = agent_client.retrieve(
-    retrieval_request=KnowledgeAgentRetrievalRequest(
-        messages=[KnowledgeAgentMessage(role=msg["role"], content=[KnowledgeAgentMessageTextContent(text=msg["content"])]) for msg in messages if msg["role"] != "system"],
-        target_index_params=[KnowledgeAgentIndexParams(index_name=index_name, reranker_threshold=2.5)]
-    )
+req = KnowledgeAgentRetrievalRequest(
+    messages=[
+        KnowledgeAgentMessage(
+            role=m["role"],
+            content=[KnowledgeAgentMessageTextContent(text=m["content"])]
+        ) for m in messages if m["role"] != "system"
+    ],
+    knowledge_source_params=[
+        SearchIndexKnowledgeSourceParams(
+            knowledge_source_name=knowledge_source_name,
+            kind="searchIndex"
+        )
+    ]
 )
-messages.append({
-    "role": "assistant",
-    "content": retrieval_result.response[0].content[0].text
-})
+
+result = agent_client.retrieve(retrieval_request=req, api_version=search_api_version)
+print(f"Retrieved content from '{knowledge_source_name}' successfully.")
 ```
 
 ### Review the response, activity, and results
 
-Now you want to display the response, activity, and results of the retrieval pipeline.
+Add and run a code cell with the following code to display the response, activity, and results of the retrieval pipeline.
 
-Add and run a new code cell in the `quickstart-agentic-retrieval.ipynb` notebook with the following code:
-
-```Python
+```python
 import textwrap
 import json
 
 print("Response")
-print(textwrap.fill(retrieval_result.response[0].content[0].text, width=120))
+print(textwrap.fill(result.response[0].content[0].text, width=120))
 
 print("Activity")
-print(json.dumps([a.as_dict() for a in retrieval_result.activity], indent=2))
+print(json.dumps([a.as_dict() for a in result.activity], indent=2))
 
 print("Results")
-print(json.dumps([r.as_dict() for r in retrieval_result.references], indent=2))
+print(json.dumps([r.as_dict() for r in result.references], indent=2))
 ```
 
 The output should be similar to the following example, where:
 
-+ `Response` provides a text string of the most relevant documents (or chunks) in the search index based on the user query. As shown later in this quickstart, you can pass this string to an LLM for answer generation.
++ `Response` provides a synthesized, LLM-generated answer to the query that cites the retrieved documents. When answer synthesis isn't enabled, this section contains content extracted directly from the documents.
 
-+ `Activity` tracks the steps that were taken during the retrieval process, including the subqueries generated by your `gpt-4.1-mini` deployment and the tokens used for query planning and execution.
++ `Activity` tracks the steps that were taken during the retrieval process, including the subqueries generated by your `gpt-5-mini` deployment and the tokens used for semantic ranking, query planning, and answer synthesis.
 
 + `Results` lists the documents that contributed to the response, each one identified by their `doc_key`.
 
 ```
 Response
-[{"ref_id":1,"content":"# Urban Structure\n\n## March 16, 2013\n\n### Phoenix Metropolitan Area at Night\n\nThis figure presents a nighttime satellite view of the Phoenix metropolitan area, highlighting urban structure and transport corridors. City lights illuminate the layout of several cities and major thoroughfares.\n\n**Labeled Urban Features:**\n\n- **Phoenix:** Central and brightest area in the right-center of the image.\n- **Glendale:** Located to the west of Phoenix, this city is also brightly lit.\n- **Peoria:** Further northwest, this area is labeled and its illuminated grid is seen.\n- **Grand Avenue:** Clearly visible as a diagonal, brightly lit thoroughfare running from Phoenix through Glendale and Peoria.\n- **Salt River Channel:** Identified in the southeast portion, running through illuminated sections.\n- **Phoenix Mountains:** Dark, undeveloped region to the northeast of Phoenix.\n- **Agricultural Fields:** Southwestern corner of the image, grid patterns are visible but with much less illumination, indicating agricultural land use.\n\n**Additional Notes:**\n\n- The overall pattern shows a grid-like urban development typical of western U.S. cities, with scattered bright nodes at major intersections or city centers.\n- There is a clear transition from dense urban development to sparsely populated or agricultural land, particularly evident towards the bottom and left of the image.\n- The illuminated areas follow the existing road and street grids, showcasing the extensive spread of the metropolitan area.\n\n**Figure Description:**  \nA satellite nighttime image captured on March 16, 2013, showing Phoenix and surrounding areas (including Glendale and Peoria). Major landscape and infrastructural features, such as the Phoenix Mountains, Grand Avenue, the Salt River Channel, and agricultural fields, are labeled. The image reveals the extent of urbanization and the characteristic street grid illuminated by city lights.\n\n---\n\nPage 89"},{"ref_id":0,"content":"<!-- PageHeader=\"Urban Structure\" -->\n\n### Location of Phoenix, Arizona\n\nThe image depicts a globe highlighting the location of Phoenix, Arizona, in the southwestern United States, marked with a blue pinpoint on the map of North America. Phoenix is situated in the central part of Arizona, which is in the southwestern region of the United States.\n\n---\n\n### Grid of City Blocks-Phoenix, Arizona\n\nLike many large urban areas of the central and western United States, the Phoenix metropolitan area is laid out along a regular grid of city blocks and streets. While visible during the day, this grid is most evident at night, when the pattern of street lighting is clearly visible from the low-Earth-orbit vantage point of the ISS.\n\nThis astronaut photograph, taken on March 16, ... highlighted in this image is urbanized, there are several noticeably dark areas. The Phoenix Mountains are largely public parks and recreational land. To the west, agricultural fields provide a sharp contrast to the lit streets of residential developments. The Salt River channel appears as a dark ribbon within the urban grid.\n\n\n<!-- PageFooter=\"Earth at Night\" -->\n<!-- PageNumber=\"88\" -->"}]
+Suburban belts display larger December brightening than urban cores despite higher absolute light levels downtown
+because the urban grid encourages outward growth along city borders, fueled by widespread personal automobile use,
+leading to extensive suburban and residential municipalities linked by surface streets and freeways. This expansion
+results in increased lighting in suburban areas during December, reflecting growth and development patterns rather than
+just absolute light intensity downtown [ref_id:0].  The Phoenix nighttime street grid is sharply visible from space
+because the metropolitan area is laid out along a regular grid of city blocks and streets, with major street lighting
+clearly visible from low-Earth orbit. The grid pattern is especially evident at night due to street lighting, and major
+transportation corridors like Grand Avenue and brightly lit commercial properties enhance this visibility. In contrast,
+large stretches of interstate highways between Midwestern cities remain comparatively dim because, although the United
+States has extensive road networks, the lighting along interstate highways is less intense and continuous than the dense
+urban street grids. Additionally, navigable rivers and less urbanized areas show less light, indicating that lighting
+intensity correlates with urban density and development patterns rather than just the presence of transportation
+corridors [ref_id:0][ref_id:1][ref_id:2].
 Activity
 [
   {
     "id": 0,
-    "type": "ModelQueryPlanning",
-    "input_tokens": 1407,
-    "output_tokens": 309
+    "type": "modelQueryPlanning",
+    "elapsed_ms": 4572,
+    "input_tokens": 2071,
+    "output_tokens": 166
   },
   {
     "id": 1,
-    "type": "AzureSearchQuery",
-    "target_index": "earth_at_night",
-    "query": {
-      "search": "suburban belts December brightening urban cores light levels"
-    },
-    "query_time": "2025-05-06T20:47:01.814Z",
-    "elapsed_ms": 714
+    "type": "searchIndex",
+    "elapsed_ms": 608,
+    "knowledge_source_name": "earth-knowledge-source",
+    "query_time": "2025-09-05T17:38:49.330Z",
+    "count": 0,
+    "search_index_arguments": {
+      "search": "Reasons for larger December brightening in suburban belts compared to urban cores despite higher downtown light levels"
+    }
+  },
+    ... // Trimmed for brevity
+  {
+    "id": 4,
+    "type": "semanticReranker",
+    "input_tokens": 68989
   },
   {
-    "id": 2,
-    "type": "AzureSearchQuery",
-    "target_index": "earth_at_night",
-    "query": {
-      "search": "Phoenix nighttime street grid visibility from space"
-    },
-    "query_time": "2025-05-06T20:47:02.230Z",
-    "count": 2,
-    "elapsed_ms": 416
+    "id": 5,
+    "type": "modelAnswerSynthesis",
+    "elapsed_ms": 5619,
+    "input_tokens": 3931,
+    "output_tokens": 249
   }
 ]
 Results
 [
   {
-    "type": "AzureSearchDoc",
+    "type": "searchIndex",
     "id": "0",
     "activity_source": 2,
+    "reranker_score": 2.6642752,
     "doc_key": "earth_at_night_508_page_104_verbalized"
   },
-  {
-    "type": "AzureSearchDoc",
-    "id": "1",
-    "activity_source": 2,
-    "doc_key": "earth_at_night_508_page_105_verbalized"
-  }
+  ... // Trimmed for brevity
 ]
-```
-
-## Create the Azure OpenAI client
-
-To extend the retrieval pipeline from answer *extraction* to answer *generation*, set up the Azure OpenAI client to interact with your `gpt-4.1-mini` deployment, which you specified using the `answer_model` variable in a previous section.
-
-Add and run a new code cell in the `quickstart-agentic-retrieval.ipynb` notebook with the following code:
-
-```Python
-from openai import AzureOpenAI
-from azure.identity import get_bearer_token_provider
-
-azure_openai_token_provider = get_bearer_token_provider(credential, "https://cognitiveservices.azure.com/.default")
-client = AzureOpenAI(
-    azure_endpoint=azure_openai_endpoint,
-    azure_ad_token_provider=azure_openai_token_provider,
-    api_version=azure_openai_api_version
-)
-```
-
-### Use the Responses API to generate an answer
-
-You can now use the Responses API to generate a detailed answer based on the indexed documents. The following code sends the `messages` array, which contains the conversation history, to your `gpt-4.1-mini` deployment.
-
-Add and run a new code cell in the `quickstart-agentic-retrieval.ipynb` notebook with the following code:
-
-```Python
-response = client.responses.create(
-    model=answer_model,
-    input=messages
-)
-
-wrapped = textwrap.fill(response.output_text, width=100)
-print(wrapped)
-```
-
-The output should be similar to the following example, which uses the reasoning capabilities of `gpt-4.1-mini` to provide contextually relevant answers.
-
-```
-Suburban belts often exhibit larger December brightening than urban cores primarily because of the type of development and light distribution in those areas. Suburbs tend to have more uniform and expansive lighting, making them more visible in nighttime satellite images. In contrast, urban cores, although having higher absolute light levels, often contain dense building clusters that can cause light to be obscured or concentrated in smaller areas, leading to less visible brightening when viewed from space.  Regarding the visibility of the Phoenix nighttime street grid from space, it is attributed to the city's grid layout and the intensity of its street lighting. The grid pattern of the streets and the significant development around them create a stark contrast against less developed areas. Conversely, large stretches of interstate in the Midwest may remain dimmer due to fewer densely populated structures and less intensive street lighting, resulting in less illumination overall.  For more detailed insights, you can refer to the sources: [0] and [1].
-```
-
-### Use the Chat Completions API to generate an answer
-
-Alternatively, you can use the Chat Completions API for answer generation.
-
-Add and run a new code cell in the `quickstart-agentic-retrieval.ipynb` notebook with the following code:
-
-```Python
-response = client.chat.completions.create(
-    model=answer_model,
-    messages=messages
-)
-
-wrapped = textwrap.fill(response.choices[0].message.content, width=100)
-print(wrapped)
-```
-
-The output should be similar to the following example.
-
-```
-Suburban belts tend to display larger December brightening than urban cores, despite the absolute light levels being higher in downtown areas, due to the differing density of light sources and how light scatters. In urban cores, the intense concentration of lights may result in a more uniform light distribution that can obscure the brightening effect, whereas suburban areas, with their lower density of lights and more open spaces, allow for clearer visibility of atmospheric light scattering, thus enhancing the brightening effect in those regions.  As for why the Phoenix nighttime street grid is sharply visible from space compared to the dim stretches of the interstate between Midwestern cities, it primarily relates to urban planning and development patterns. The Phoenix metropolitan area is laid out along a regular grid of city blocks that include extensive street lighting, making the urban structure distinctly visible from space. In contrast, the interstates between Midwestern cities often traverse areas with less concentrated development and fewer bright lighting sources, leading to these sections appearing dimmer in nighttime imagery [1; ref_id:1].
 ```
 
 ## Continue the conversation
 
-Continue the conversation by sending another user query to `earth-search-agent`. The following code reruns the retrieval pipeline, fetching relevant content from the `earth_at_night` index and appending the response to the `messages` array. However, unlike before, you can now use the Azure OpenAI client to generate an answer based on the retrieved content.
+Add and run a code cell with the following code to continue the conversation with `earth-knowledge-agent`. After you send this user query, the agent fetches relevant content from `earth-knowledge-source` and appends the response to the `messages` list.
 
-Add and run a new code cell in the `quickstart-agentic-retrieval.ipynb` notebook with the following code:
-
-```Python
+```python
+query_2 = "How do I find lava at night?"
 messages.append({
     "role": "user",
-    "content": "How do I find lava at night?"
+    "content": query_2
 })
 
-retrieval_result = agent_client.retrieve(
-    retrieval_request=KnowledgeAgentRetrievalRequest(
-        messages=[KnowledgeAgentMessage(role=msg["role"], content=[KnowledgeAgentMessageTextContent(text=msg["content"])]) for msg in messages if msg["role"] != "system"],
-        target_index_params=[KnowledgeAgentIndexParams(index_name=index_name, reranker_threshold=2.5)]
-    )
+req = KnowledgeAgentRetrievalRequest(
+    messages=[
+        KnowledgeAgentMessage(
+            role=m["role"],
+            content=[KnowledgeAgentMessageTextContent(text=m["content"])]
+        ) for m in messages if m["role"] != "system"
+    ],
+    knowledge_source_params=[
+        SearchIndexKnowledgeSourceParams(
+            knowledge_source_name=knowledge_source_name,
+            kind="searchIndex"
+        )
+    ]
 )
-messages.append({
-    "role": "assistant",
-    "content": retrieval_result.response[0].content[0].text
-})
+
+result = agent_client.retrieve(retrieval_request=req, api_version=search_api_version)
+print(f"Retrieved content from '{knowledge_source_name}' successfully.")
 ```
 
 ### Review the new response, activity, and results
 
-Now you want to display the response, activity, and results of the retrieval pipeline.
+Add and run a code cell with the following code to display the new response, activity, and results of the retrieval pipeline.
 
-Add and run a new code cell in the `quickstart-agentic-retrieval.ipynb` notebook with the following code:
-
-```Python
+```python
 import textwrap
 import json
 
 print("Response")
-print(textwrap.fill(retrieval_result.response[0].content[0].text, width=120))
+print(textwrap.fill(result.response[0].content[0].text, width=120))
 
 print("Activity")
-print(json.dumps([a.as_dict() for a in retrieval_result.activity], indent=2))
+print(json.dumps([a.as_dict() for a in result.activity], indent=2))
 
 print("Results")
-print(json.dumps([r.as_dict() for r in retrieval_result.references], indent=2))
-```
-
-## Generate an LLM-powered answer
-
-Now that you've sent multiple user queries, use the Responses API to generate an answer based on the indexed documents and conversation history, which is captured in the `messages` array.
-
-Add and run a new code cell in the `quickstart-agentic-retrieval.ipynb` notebook with the following code:
-
-```Python
-response = client.responses.create(
-    model=answer_model,
-    input=messages
-)
-
-wrapped = textwrap.fill(response.output_text, width=100)
-print(wrapped)
-```
-
-The output should be similar to the following example.
-
-```
-To find lava at night, you can look for the following signs:  1. **Active Volcanoes**: Research volcanoes that are currently active. Notable examples include Mount Etna in Italy and Kilauea in Hawaii. Both have had significant eruptions that can be observed at night due to the glow of lava. 2. **Satellite Imagery**: Use satellite imagery, especially those from sources like VIIRS (Visible Infrared Imaging Radiometer Suite) on the Suomi NPP satellite, which captures nighttime images of active lava flows. During eruptions, lava glows brightly in thermal infrared images, making it detectable from space.  3. **Safe Viewing Locations**: If you’re near an active volcano, find designated viewing areas for safety. Many national parks with volcanoes offer nighttime lava viewing experiences.  4. **Moonlight**: The presence of moonlight can enhance visibility, allowing you to spot lava flows more easily against the backdrop of the dark landscape.  5. **Monitoring Reports**: Follow updates from geological services or local authorities that monitor volcanic activity, which often provide real-time information about eruptions and visible lava flows at night.  6. **Photography**: If you're an enthusiast, consider using long-exposure photography techniques to capture the glow of lava flows at night.  For more information on observing volcanic activity, satellite imagery can provide vital data for detecting lava flows and volcanic eruptions.
+print(json.dumps([r.as_dict() for r in result.references], indent=2))
 ```
 
 ## Clean up resources
 
-When working in your own subscription, it's a good idea to finish a project by determining whether you still need the resources you created. Resources that are left running can cost you money. You can delete resources individually, or you can delete the resource group to delete the entire set of resources.
+When you work in your own subscription, it's a good idea to finish a project by determining whether you still need the resources you created. Resources that are left running can cost you money.
 
-In the Azure portal, you can find and manage resources by selecting **All resources** or **Resource groups** from the left pane. You can also run the following code to delete the objects you created in this quickstart.
+In the [Azure portal](https://portal.azure.com/), you can manage your Azure AI Search and Azure AI Foundry resources by selecting **All resources** or **Resource groups** from the left pane.
+
+Otherwise, add and run code cells with the following code to delete the objects you created in this quickstart.
 
 ### Delete the knowledge agent
 
-Add and run a new code cell in the `quickstart-agentic-retrieval.ipynb` notebook with the following code:
+```python
+from azure.search.documents.indexes import SearchIndexClient
 
-```Python
-index_client = SearchIndexClient(endpoint=endpoint, credential=credential)
-index_client.delete_agent(agent_name)
-print(f"Knowledge agent '{agent_name}' deleted successfully")
+index_client = SearchIndexClient(endpoint=search_endpoint, credential=credential)
+index_client.delete_agent(knowledge_agent_name)
+print(f"Knowledge agent '{knowledge_agent_name}' deleted successfully.")
+```
+
+### Delete the knowledge source
+
+```python
+from azure.search.documents.indexes import SearchIndexClient
+
+index_client = SearchIndexClient(endpoint=search_endpoint, credential=credential)
+index_client.delete_knowledge_source(knowledge_source=knowledge_source_name)
+print(f"Knowledge source '{knowledge_source_name}' deleted successfully.")
 ```
 
 ### Delete the search index
 
-Add and run a new code cell in the `quickstart-agentic-retrieval.ipynb` notebook with the following code:
+```python
+from azure.search.documents.indexes import SearchIndexClient
 
-```Python
-index_client = SearchIndexClient(endpoint=endpoint, credential=credential)
+index_client = SearchIndexClient(endpoint=search_endpoint, credential=credential)
 index_client.delete_index(index_name)
-print(f"Index '{index_name}' deleted successfully")
+print(f"Index '{index_name}' deleted successfully.")
 ```

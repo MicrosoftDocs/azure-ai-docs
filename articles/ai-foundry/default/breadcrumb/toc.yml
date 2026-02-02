@@ -1,0 +1,7 @@
+- name: Azure
+  tocHref: /azure/
+  topicHref: /azure/index
+  items:
+  - name: AI Foundry
+    tocHref: /azure/ai-foundry/
+    topicHref: /azure/ai-foundry/index

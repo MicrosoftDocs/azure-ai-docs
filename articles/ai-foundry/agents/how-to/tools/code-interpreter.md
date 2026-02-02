@@ -4,9 +4,10 @@ titleSuffix: Azure AI Foundry
 description: Learn how to use Azure AI Foundry Agent Service Code Interpreter
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 12/11/2024
+ms.date: 08/07/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
@@ -27,9 +28,9 @@ We recommend using Agents with the latest models to take advantage of the new fe
 
 ## Usage support
 
-|Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | REST API | Basic agent setup | Standard agent setup |
-|---------|---------|---------|---------|---------|---------|---------|
-| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+|Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
+|---------|---------|---------|---------|---------|---------|---------|---------|
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ### Supported file types
 

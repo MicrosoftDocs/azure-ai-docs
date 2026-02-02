@@ -43,7 +43,7 @@ To get started, you need the following resources, gated access approval, and too
 >
 > * Your Translator instance must be a **regional** resource (**not** a global Azure AI Translator resource) within am available Azure geographic region. For more information, *see* [Azure AI Translator region pricing options](https://azure.microsoft.com/pricing/details/cognitive-services/translator/#overview).
 
-* An active [**Azure subscription**](https://portal.azure.com/). If you don't have one, you can [**create a free 12-month account**](https://azure.microsoft.com/free/).
+* An active [**Azure subscription**](https://portal.azure.com/). If you don't have one, you can [**create a free 12-month account**](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * An approved access request to either a [Translator connected container](https://aka.ms/csgate-translator) or [Translator disconnected container](https://aka.ms/csdisconnectedcontainers).
 
@@ -473,13 +473,14 @@ If you installed Docker Desktop CLI, it includes Docker compose and its prerequi
     services:
       azure-ai-translator:
         container_name: azure-ai-translator
-        image: mcr.microsoft.com/azure-cognitive-services/translator/text-translation::latest
+        image: mcr.microsoft.com/azure-cognitive-services/translator/text-translation:latest
         environment:
             - EULA=accept
             - billing={TRANSLATOR_ENDPOINT_URI}
             - apiKey={TRANSLATOR_KEY}
             - ladurl=http://azure-ai-language:5000
             - VISIONURL=http://azure-ai-read:5000
+            - Languages=en,es
         ports:
               - "5000:5000"
         volumes:

@@ -2,13 +2,13 @@
 title: Authentication in Azure AI services
 titleSuffix: Azure AI services
 description: "Learn how to authenticate a request to Azure AI services via Microsoft Entra ID or API key."
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services
 ms.custom: devx-track-azurepowershell
 ms.topic: how-to
 ms.date: 5/19/2025
-ms.author: eur
+ms.author: pafarley
 ---
 
 # Authenticate requests to Azure AI services

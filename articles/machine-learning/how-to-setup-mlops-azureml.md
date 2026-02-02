@@ -3,14 +3,17 @@ title: Set up MLOps with Azure DevOps
 titleSuffix: Azure Machine Learning
 description: Learn how to set up a sample MLOps environment in Azure Machine Learning
 services: machine-learning
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.service: azure-machine-learning
 ms.reviewer: kritifaujdar
 ms.subservice: mlops
 ms.date: 11/20/2024
 ms.topic: concept-article
-ms.custom: cli-v2, sdk-v2
+ms.custom:
+  - cli-v2
+  - sdk-v2
+  - sfi-image-nochange
 ---
 
 # Set up MLOps with Azure DevOps
@@ -32,7 +35,7 @@ In this article, you learn about using Azure Machine Learning to set up an end-t
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
+- An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - An Azure Machine Learning workspace.
 - Git running on your local machine.
 - An [organization](/azure/devops/organizations/accounts/create-organization) in Azure DevOps.

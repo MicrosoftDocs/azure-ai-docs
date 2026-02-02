@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 10/17/2024
-ms.author: eur
+ms.date: 7/12/2025
+ms.author: pafarley
 ms.custom: devx-track-csharp
 ---
 

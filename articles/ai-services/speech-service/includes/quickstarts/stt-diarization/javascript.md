@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 3/10/2025
-ms.author: eur
+ms.date: 7/16/2025
+ms.author: pafarley
 ---
 
 [!INCLUDE [Header](../../common/javascript.md)]
@@ -14,11 +14,27 @@ ms.author: eur
 
 [!INCLUDE [Prerequisites](../../common/azure-prerequisites.md)]
 
-## Set up the environment
+## Setup
 
-To set up your environment, install the Speech SDK for JavaScript. If you just want the package name to install, run `npm install microsoft-cognitiveservices-speech-sdk`. For guided installation instructions, see the [SDK installation guide](../../../quickstarts/setup-platform.md?pivots=programming-language-javascript).
+1. Create a new folder `transcription-quickstart` and go to the quickstart folder with the following command:
 
-### Set environment variables
+    ```shell
+    mkdir transcription-quickstart && cd transcription-quickstart
+    ```
+    
+1. Create the `package.json` with the following command:
+
+    ```shell
+    npm init -y
+    ```
+
+1. Install the Speech SDK for JavaScript with:
+
+    ```console
+    npm install microsoft-cognitiveservices-speech-sdk
+    ```
+
+### Retrieve resource information
 
 [!INCLUDE [Environment variables](../../common/environment-variables.md)]
 
@@ -26,37 +42,29 @@ To set up your environment, install the Speech SDK for JavaScript. If you just w
 
 Follow these steps to create a new console application for conversation transcription.
 
-1. Open a command prompt window where you want the new project, and create a new file named `ConversationTranscription.js`.
-
-1. Install the Speech SDK for JavaScript:
-
-    ```console
-    npm install microsoft-cognitiveservices-speech-sdk
-    ```
-
-1. Copy the following code into `ConversationTranscription.js`:
+1. Create a new file named *transcription.js* with the following content:
 
     ```javascript
     const fs = require("fs");
     const sdk = require("microsoft-cognitiveservices-speech-sdk");
-
-    // This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
-    const speechConfig = sdk.SpeechConfig.fromSubscription(process.env.SPEECH_KEY, process.env.SPEECH_REGION);
-
+    
+    // This example requires environment variables named "ENDPOINT" and "SPEECH_KEY"
+    const speechConfig = sdk.SpeechConfig.fromEndpoint(new URL(process.env.ENDPOINT), process.env.SPEECH_KEY);
+    
     function fromFile() {
         const filename = "katiesteve.wav";
-
+    
         let audioConfig = sdk.AudioConfig.fromWavFileInput(fs.readFileSync(filename));
         let conversationTranscriber = new sdk.ConversationTranscriber(speechConfig, audioConfig);
-
+    
         var pushStream = sdk.AudioInputStream.createPushStream();
-        
+    
         fs.createReadStream(filename).on('data', function(arrayBuffer) {
             pushStream.write(arrayBuffer.slice());
         }).on('end', function() {
             pushStream.close();
         });
-        
+    
         console.log("Transcribing from: " + filename);
     
         conversationTranscriber.sessionStarted = function(s, e) {
@@ -76,7 +84,7 @@ Follow these steps to create a new console application for conversation transcri
         conversationTranscriber.transcribed = function(s, e) {
             console.log("TRANSCRIBED: Text=" + e.result.text + " Speaker ID=" + e.result.speakerId);
         };
-        
+    
         // Start conversation transcription
         conversationTranscriber.startTranscribingAsync(
             function () {},
@@ -84,7 +92,7 @@ Follow these steps to create a new console application for conversation transcri
                 console.trace("err - starting transcription: " + err);
             }
         );
-
+    
     }
     fromFile();
     ```
@@ -98,11 +106,12 @@ Follow these steps to create a new console application for conversation transcri
 1. Run your new console application to start speech recognition from a file:
 
    ```console
-   node.exe ConversationTranscription.js
+   node transcription.js
    ```
 
-> [!IMPORTANT]
-> Make sure that you set the `SPEECH_KEY` and `SPEECH_REGION` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.
+Wait a few moments to get the response.
+
+## Output
 
 The transcribed conversation should be output as text:
 

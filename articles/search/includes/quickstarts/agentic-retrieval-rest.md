@@ -4,186 +4,182 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 6/15/2025
+ms.date: 08/26/2025
 ---
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]
 
-In this quickstart, you use [agentic retrieval](../../search-agentic-retrieval-concept.md) to create a conversational search experience powered by large language models (LLMs) and your proprietary data. Agentic retrieval breaks down complex user queries into subqueries, runs the subqueries in parallel, and extracts grounding data from documents indexed in Azure AI Search. The output is intended for integration with custom chat solutions.
+In this quickstart, you use [agentic retrieval](../../agentic-retrieval-overview.md) to create a conversational search experience powered by documents indexed in Azure AI Search and large language models (LLMs) from Azure OpenAI in Azure AI Foundry Models.
+
+A *knowledge agent* orchestrates agentic retrieval by decomposing complex queries into subqueries, running the subqueries against one or more *knowledge sources*, and returning results with metadata. By default, the agent outputs raw content from your sources, but this quickstart uses the answer synthesis modality for natural-language answer generation.
 
 Although you can provide your own data, this quickstart uses [sample JSON documents](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth-at-night-json) from NASA's Earth at Night e-book. The documents describe general science topics and images of Earth at night as observed from space.
 
 > [!TIP]
-> The REST version of this quickstart introduces agentic retrieval in Azure AI Search, which *extracts* rather than *generates* answers. For an end-to-end workflow, including steps for adding conversational turns and passing your retrieved content to an LLM for answer generation, see the Python version.
+> Want to get started right away? See the [azure-search-rest-samples](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-agentic-retrieval) repository on GitHub.
 
 ## Prerequisites
 
-+ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
++ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 + An [Azure AI Search service](../../search-create-service-portal.md) on the Basic tier or higher with [semantic ranker enabled](../../semantic-how-to-enable-disable.md).
 
-+ An [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects). You get an Azure AI Foundry resource (that's needed for model deployments) when you create an Azure AI Foundry project.
-
-+ [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
++ An [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects) and Azure AI Foundry resource. When you create a project, the resource is automatically created.
 
 + The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
+
++ [Visual Studio Code](https://code.visualstudio.com/download) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
 [!INCLUDE [Setup](./agentic-retrieval-setup.md)]
 
 ## Connect from your local system
 
-You configured role-based access to interact with Azure AI Search and Azure OpenAI. From the command line, use the Azure CLI to sign in to the same subscription and tenant for both services. For more information, see [Quickstart: Connect without keys](../../search-get-started-rbac.md).
+You configured role-based access to interact with Azure AI Search and Azure OpenAI in Azure AI Foundry. From the command line, use the Azure CLI to sign in to the same subscription and tenant for both resources. For more information, see [Quickstart: Connect without keys](../../search-get-started-rbac.md).
 
 To connect from your local system:
 
-1. Open a new terminal in Visual Studio Code and change to the directory where you want to save your files.
+1. Open a command-line tool, such as PowerShell.
 
-1. Run the following command and sign in with your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service and Azure AI Foundry project.
+1. Sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service and Azure AI Foundry project.
 
     ```azurecli
     az login
     ```
 
-1. To obtain your Microsoft Entra token, run the following command. You specify this value in the next section.
+1. Generate a Microsoft Entra ID token.
 
    ```azurecli
    az account get-access-token --scope https://search.azure.com/.default --query accessToken --output tsv
    ```
 
+1. Make a note of the token for use in the next section.
+
 ## Load connections
 
-Before you send any requests, define credentials, endpoints, and deployment details for connections to Azure AI Search and Azure OpenAI. These values are used in subsequent operations.
+Before you send any requests, define endpoints, credentials, and deployment details for connections to Azure AI Search and Azure OpenAI in Azure AI Foundry. These values are used in the following sections.
 
 To load the connections:
 
-1. In Visual Studio Code create a `.rest` or `.http` file. For example, you can name the file `agentic-retrieval.rest`.
-1. Paste these placeholders into the new file:
+1. In Visual Studio Code, create a file named `agentic-retrieval.rest`.
+
+1. Paste the following variables and HTTP request into the file.
 
     ```HTTP
-    @baseUrl = PUT-YOUR-SEARCH-SERVICE-URL-HERE
+    @search-url = PUT-YOUR-SEARCH-SERVICE-URL-HERE
     @token = PUT-YOUR-MICROSOFT-ENTRA-TOKEN-HERE
-    @aoaiBaseUrl = PUT-YOUR-AI-FOUNDRY-URL-HERE
-    @aoaiGptModel = gpt-4.1-mini
-    @aoaiGptDeployment = gpt-4.1-mini
-    @aoaiEmbeddingModel = text-embedding-3-large
-    @aoaiEmbeddingDeployment = text-embedding-3-large
-    @index-name = earth_at_night
-    @agent-name = earth-search-agent
-    @api-version = 2025-05-01-Preview
-    ```
+    @aoai-url = PUT-YOUR-AOAI-FOUNDRY-URL-HERE
+    @aoai-embedding-model = text-embedding-3-large
+    @aoai-embedding-deployment = text-embedding-3-large
+    @aoai-gpt-model = gpt-5-mini
+    @aoai-gpt-deployment = gpt-5-mini
+    @index-name = earth-at-night
+    @knowledge-source-name = earth-knowledge-source
+    @knowledge-agent-name = earth-knowledge-agent
+    @api-version = 2025-08-01-Preview
 
-1. Set `@baseUrl` to your Azure AI Search endpoint, which looks like `https://<your-search-service-name>.search.windows.net.` Set `@aoaiBaseUrl` to your Azure AI Foundry endpoint, which looks like `https://<your-foundry-resource-name>.openai.azure.com.` You obtained both values in the [Get endpoints](#get-endpoints) section. 
-
-1. Replace `@token` with the Microsoft Entra token you obtained in [Connect from your local system](#connect-from-your-local-system).
-
-1. In the same file, enter and send the following HTTP request to verify that you can connect to Azure AI Search. The request lists existing indexes in your search service.
-
-    ```HTTP
     ### List existing indexes by name
-    GET {{baseUrl}}/indexes?api-version={{api-version}}  HTTP/1.1
+    GET {{search-url}}/indexes?api-version={{api-version}}  HTTP/1.1
         Content-Type: application/json
         Authorization: Bearer {{token}}
     ```
+
+1. Set `@search-url` and `aoai-url` to the values you obtained in [Get endpoints](#get-endpoints).
+
+1. Set `@token` to the value you obtained in [Connect from your local system](#connect-from-your-local-system).
+
+1. Under `### List existing indexes by name`, select **Send Request** to verify the connection to your search service.
 
     A response should appear in an adjacent pane. If you have existing indexes, they're listed. Otherwise, the list is empty. If the HTTP code is `200 OK`, you're ready to proceed.
 
 ## Create a search index
 
-In Azure AI Search, an index is a structured collection of data. Use [Create Index](/rest/api/searchservice/indexes/create) to define an index named `earth_at_night`, which you specified using the `@index-name` variable in the previous section.
+In Azure AI Search, an index is a structured collection of data. Use [Indexes - Create (REST API)](/rest/api/searchservice/indexes/create) to define an index named `earth-at-night`, which you previously specified using the `@index-name` variable.
+
+The index schema contains fields for document identification and page content, embeddings, and numbers. The schema also includes configurations for semantic ranking and vector search, which uses your `text-embedding-3-large` deployment to vectorize text and match documents based on semantic similarity.
 
 ```HTTP
 ### Create an index
-PUT {{baseUrl}}/indexes/{{index-name}}?api-version={{api-version}}  HTTP/1.1
+PUT {{search-url}}/indexes/{{index-name}}?api-version={{api-version}}  HTTP/1.1
     Content-Type: application/json
     Authorization: Bearer {{token}}
 
     {
-    "name": "{{index-name}}",
-    "fields": [
-        {
-        "name": "id",
-        "type": "Edm.String",
-        "key": true
-        },
-        {
-        "name": "page_chunk",
-        "type": "Edm.String",
-        "searchable": true
-        },
-        {
-        "name": "page_embedding_text_3_large",
-        "type": "Collection(Edm.Single)",
-        "stored": false,
-        "dimensions": 3072,
-        "vectorSearchProfile": "hnsw_text_3_large"
-        },
-        {
-        "name": "page_number",
-        "type": "Edm.Int32",
-        "filterable": true
-        }
-    ],
-    "semantic": {
-        "defaultConfiguration": "semantic_config",
-        "configurations": [
-        {
-            "name": "semantic_config",
-            "prioritizedFields": {
-            "prioritizedContentFields": [
+        "name": "{{index-name}}",
+        "fields": [
+            {
+                "name": "id",
+                "type": "Edm.String",
+                "key": true
+            },
+            {
+                "name": "page_chunk",
+                "type": "Edm.String",
+                "searchable": true
+            },
+            {
+                "name": "page_embedding_text_3_large",
+                "type": "Collection(Edm.Single)",
+                "stored": false,
+                "dimensions": 3072,
+                "vectorSearchProfile": "hnsw_text_3_large"
+            },
+            {
+                "name": "page_number",
+                "type": "Edm.Int32",
+                "filterable": true
+            }
+        ],
+        "semantic": {
+            "defaultConfiguration": "semantic_config",
+            "configurations": [
                 {
-                "fieldName": "page_chunk"
+                    "name": "semantic_config",
+                    "prioritizedFields": {
+                    "prioritizedContentFields": [
+                        {
+                            "fieldName": "page_chunk"
+                        }
+                    ]
+                    }
                 }
             ]
-            }
+        },
+        "vectorSearch": {
+            "profiles": [
+                {
+                    "name": "hnsw_text_3_large",
+                    "algorithm": "alg",
+                    "vectorizer": "azure_openai_text_3_large"
+                }
+            ],
+            "algorithms": [
+                {
+                    "name": "alg",
+                    "kind": "hnsw"
+                }
+            ],
+            "vectorizers": [
+                {
+                    "name": "azure_openai_text_3_large",
+                    "kind": "azureOpenAI",
+                    "azureOpenAIParameters": {
+                    "resourceUri": "{{aoai-url}}",
+                    "deploymentId": "{{aoai-embedding-deployment}}",
+                    "modelName": "{{aoai-embedding-model}}"
+                    }
+                }
+            ]
         }
-        ]
-    },
-    "vectorSearch": {
-        "profiles": [
-        {
-            "name": "hnsw_text_3_large",
-            "algorithm": "alg",
-            "vectorizer": "azure_openai_text_3_large"
-        }
-        ],
-        "algorithms": [
-        {
-            "name": "alg",
-            "kind": "hnsw"
-        }
-        ],
-        "vectorizers": [
-        {
-            "name": "azure_openai_text_3_large",
-            "kind": "azureOpenAI",
-            "azureOpenAIParameters": {
-            "resourceUri": "{{aoaiBaseUrl}}",
-            "deploymentId": "{{aoaiEmbeddingDeployment}}",
-            "modelName": "{{aoaiEmbeddingModel}}"
-            }
-        }
-        ]
-    }
     }
 ```
 
-The index schema contains fields for document identification and page content, embeddings, and numbers. It also includes configurations for semantic ranking and vector queries, which use the `text-embedding-3-large` model you previously deployed.
-
-> [!IMPORTANT]
-> Agentic retrieval has two token-based billing models:
->
-> + Billing from Azure OpenAI for query planning.
-> + Billing from Azure AI Search for query execution (semantic ranking).
->
-> Semantic ranking is free in the initial public preview. After the preview, standard token billing applies. For more information, see [Availability and pricing of agentic retrieval](../../search-agentic-retrieval-concept.md#availability-and-pricing).
-
 ## Upload documents to the index
 
-Currently, the `earth_at_night` index is empty. Use [Index Documents](/rest/api/searchservice/documents/index) to populate the index with JSON documents from NASA's Earth at Night e-book. As required by Azure AI Search, each document conforms to the fields and data types defined in the index schema.
+Currently, the `earth-at-night` index is empty. Use [Documents - Index (REST API)](/rest/api/searchservice/documents/index) to populate the index with JSON documents from NASA's Earth at Night e-book. As required by Azure AI Search, each document conforms to the fields and data types defined in the index schema.
 
 ```HTTP
-### Load documents
-POST {{baseUrl}}/indexes/{{index-name}}/docs/index?api-version={{api-version}}  HTTP/1.1
+### Upload documents
+POST {{search-url}}/indexes/{{index-name}}/docs/index?api-version={{api-version}}  HTTP/1.1
     Content-Type: application/json
     Authorization: Bearer {{token}}
 
@@ -211,46 +207,72 @@ POST {{baseUrl}}/indexes/{{index-name}}/docs/index?api-version={{api-version}}  
     }
 ```
 
-## Create a knowledge agent
+## Create a knowledge source
 
-To connect Azure AI Search to your `gpt-4.1-mini` deployment and target the `earth_at_night` index at query time, you need a knowledge agent. Use [Create Knowledge Agents](/rest/api/searchservice/knowledge-agents/create?view=rest-searchservice-2025-05-01-preview&preserve-view=true) to define an agent named `earth-search-agent`, which you specified using the `@agent-name` variable in a previous section.
+A knowledge source is a reusable reference to your source data. Use [Knowledge Sources - Create (REST API)](/rest/api/searchservice/knowledge-sources/create?view=rest-searchservice-2025-08-01-preview&preserve-view=true) to define a knowledge source named `earth-knowledge-source` that targets the `earth-at-night` index.
 
-To ensure relevant and semantically meaningful responses, `defaultRerankerThreshold` is set to exclude responses with a reranker score of `2.5` or lower.
+`searchIndexParameters.sourceDataSelect` specifies which index fields are accessible for retrieval and citations. Our example includes only human-readable fields to avoid lengthy, uninterpretable embeddings in responses.
 
 ```HTTP
-### Create an agent
-PUT {{baseUrl}}/agents/{{agent-name}}?api-version={{api-version}}  HTTP/1.1
+### Create a knowledge source
+POST {{search-url}}/knowledgesources?api-version={{api-version}}  HTTP/1.1
     Content-Type: application/json
     Authorization: Bearer {{token}}
 
     {
-        "name": "{{agent-name}}",
-        "targetIndexes": [
+        "name": "{{knowledge-source-name}}",
+        "description": "This knowledge source pulls from a search index that contains pages from the Earth at Night e-book.",
+        "kind": "searchIndex",
+        "searchIndexParameters": {
+            "searchIndexName": "{{index-name}}",
+            "sourceDataSelect": "id, page_chunk, page_number"
+        }
+    }
+```
+
+## Create a knowledge agent
+
+To target your `earth-knowledge-source` and `gpt-5-mini` deployment at query time, you need a knowledge agent. Use [Knowledge Agents - Create (REST API)](/rest/api/searchservice/knowledge-agents/create?view=rest-searchservice-2025-08-01-preview&preserve-view=true) to define an agent named `earth-knowledge-agent`, which you previously specified using the `@knowledge-agent-name` variable.
+
+`knowledgeSources.rerankerThreshold` ensures semantic relevance by excluding responses with a reranker score of `2.5` or lower. Meanwhile, `outputConfiguration.modality` is set to `answerSynthesis`, enabling natural-language answers that cite the retrieved documents.
+
+```HTTP
+### Create a knowledge agent
+PUT {{search-url}}/agents/{{knowledge-agent-name}}?api-version={{api-version}}  HTTP/1.1
+    Content-Type: application/json
+    Authorization: Bearer {{token}}
+
+    {
+        "name": "{{knowledge-agent-name}}",
+        "knowledgeSources": [
             {
-                "indexName": "{{index-name}}",
-                "defaultRerankerThreshold": 2.5
+            "name": "{{knowledge-source-name}}",
+            "rerankerThreshold": 2.5
             }
         ],
         "models": [
             {
                 "kind": "azureOpenAI",
                 "azureOpenAIParameters": {
-                    "resourceUri": "{{aoaiBaseUrl}}",
-                    "deploymentId": "{{aoaiGptDeployment}}",
-                    "modelName": "{{aoaiGptModel}}"
+                    "resourceUri": "{{aoai-url}}",
+                    "deploymentId": "{{aoai-gpt-deployment}}",
+                    "modelName": "{{aoai-gpt-model}}"
                 }
             }
-        ]
+        ],
+        "outputConfiguration": {
+            "modality": "answerSynthesis"
+        }
     }
 ```
 
 ## Run the retrieval pipeline
 
-You're ready to initiate the agentic retrieval pipeline. Use [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-05-01-preview&preserve-view=true) to send a two-part user query to `earth-search-agent`, which deconstructs the query into subqueries, runs the subqueries against both text fields and vector embeddings in the `earth_at_night` index, and ranks and merges the results.
+You're ready to run agentic retrieval. Use [Knowledge Retrieval - Retrieve (REST API)](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview&preserve-view=true) to send a two-part user query to `earth-knowledge-agent`, which deconstructs the query into subqueries, runs the subqueries against text and vector fields in the `earth-at-night` index, and ranks and merges the results.
 
 ```HTTP
 ### Run agentic retrieval
-POST {{baseUrl}}/agents/{{agent-name}}/retrieve?api-version={{api-version}}  HTTP/1.1
+POST {{search-url}}/agents('{{knowledge-agent-name}}')/retrieve?api-version={{api-version}}  HTTP/1.1
     Content-Type: application/json
     Authorization: Bearer {{token}}
 
@@ -266,10 +288,10 @@ POST {{baseUrl}}/agents/{{agent-name}}/retrieve?api-version={{api-version}}  HTT
                 ]
             }
         ],
-        "targetIndexParams": [
+        "knowledgeSourceParams": [
             {
-                "indexName": "{{index-name}}",
-                "rerankerThreshold": 2.5
+                "knowledgeSourceName": "{{knowledge-source-name}}",
+                "kind": "searchIndex"
             }
         ]
     }
@@ -277,9 +299,9 @@ POST {{baseUrl}}/agents/{{agent-name}}/retrieve?api-version={{api-version}}  HTT
 
 The output should be similar to the following JSON, where:
 
-+ `response` provides a text string of the most relevant documents (or chunks) in the search index based on the user query. You can pass this string to an LLM for use as grounding data in answer generation.
++ `response` provides a synthesized, LLM-generated answer to the query that cites the retrieved documents. When answer synthesis isn't enabled, this section contains content extracted directly from the documents.
 
-+ `activity` tracks the steps that were taken during the retrieval process, including the subqueries generated by your `gpt-4.1-mini` deployment and the tokens used for query planning and execution.
++ `activity` tracks the steps that were taken during the retrieval process, including the subqueries generated by your `gpt-5-mini` deployment and the tokens used for semantic ranking, query planning, and answer synthesis.
 
 + `references` lists the documents that contributed to the response, each one identified by their `docKey`.
 
@@ -287,73 +309,87 @@ The output should be similar to the following JSON, where:
 {
   "response": [
     {
-      "role": "assistant",
       "content": [
         {
           "type": "text",
-          "text": "[{\"ref_id\":1,\"content\":\"# Urban Structure\\n\\n## March 16, 2013\\n\\n### Phoenix Metropolitan Area at Night\\n\\nThis figure presents a nighttime satellite view of the Phoenix metropolitan area, highlighting urban structure and transport corridors. City lights illuminate the layout of several cities and major thoroughfares.\\n\\n**Labeled Urban Features:**\\n\\n- **Phoenix:** Central and brightest area in the right-center of the image.\\n- **Glendale:** Located to the west of Phoenix, this city is also brightly lit.\\n- **Peoria:** Further northwest, this area is labeled and its illuminated grid is seen.\\n- **Grand Avenue:** Clearly visible as a diagonal, brightly lit thoroughfare running from Phoenix through Glendale and Peoria.\\n- **Salt River Channel:** Identified in the southeast portion, running through illuminated sections.\\n- **Phoenix Mountains:** Dark, undeveloped region to the northeast of Phoenix.\\n- **Agricultural Fields:** Southwestern corner of the image, grid patterns are visible but with much less illumination, indicating agricultural land use.\\n\\n**Additional Notes:**\\n\\n- The overall pattern shows a grid-like urban development typical of western U.S. cities, with scattered bright nodes at major intersections or city centers.\\n- There is a clear transition from dense urban development to sparsely populated or agricultural land, particularly evident towards the bottom and left of the image.\\n- The illuminated areas follow the existing road and street grids, showcasing the extensive spread of the metropolitan area.\\n\\n**Figure Description:**  \\nA satellite nighttime image captured on March 16, 2013, showing Phoenix and surrounding areas (including Glendale and Peoria). Major landscape and infrastructural features, such as the Phoenix Mountains, Grand Avenue, the Salt River Channel, and agricultural fields, are labeled. The image reveals the extent of urbanization and the characteristic street grid illuminated by city lights.\\n\\n---\\n\\nPage 89\"},{\"ref_id\":0,\"content\":\"<!-- PageHeader=\\\"Urban Structure\\\" -->\\n\\n### Location of Phoenix, Arizona\\n\\nThe image depicts a globe highlighting the location of Phoenix, Arizona, in the southwestern United States, marked with a blue pinpoint on the map of North America. Phoenix is situated in the central part of Arizona, which is in the southwestern region of the United States.\\n\\n---\\n\\n### Grid of City Blocks-Phoenix, Arizona\\n\\nLike many large urban areas of the central and western United States, the Phoenix metropolitan area is laid out along a regular grid of city blocks and streets. While visible during the day, this grid is most evident at night, when the pattern of street lighting is clearly visible from the low-Earth-orbit vantage point of the ISS.\\n\\nThis astronaut photograph, taken on March 16, 2013, includes parts of several cities in the metropolitan area, including Phoenix (image right), Glendale (center), and Peoria (left). While the major street grid is oriented north-south, the northwest-southeast oriented Grand Avenue cuts across the three cities at image center. Grand Avenue is a major transportation corridor through the western metropolitan area; the lighting patterns of large industrial and commercial properties are visible along its length. Other brightly lit properties include large shopping centers, strip malls, and gas stations, which tend to be located at the intersections of north-south and east-west trending streets.\\n\\nThe urban grid encourages growth outwards along a city's borders by providing optimal access to new real estate. Fueled by the adoption of widespread personal automobile use during the twentieth century, the Phoenix metropolitan area today includes 25 other municipalities (many of them largely suburban and residential) linked by a network of surface streets and freeways.\\n\\nWhile much of the land area highlighted in this image is urbanized, there are several noticeably dark areas. The Phoenix Mountains are largely public parks and recreational land. To the west, agricultural fields provide a sharp contrast to the lit streets of residential developments. The Salt River channel appears as a dark ribbon within the urban grid.\\n\\n\\n<!-- PageFooter=\\\"Earth at Night\\\" -->\\n<!-- PageNumber=\\\"88\\\" -->\"}]",
-          "image": null
+          "text": "Suburban belts display larger December brightening than urban cores despite higher absolute light levels downtown because the urban grid encourages outward growth along city borders, fueled by widespread personal automobile use, leading to extensive suburban and residential municipalities linked by surface streets and freeways. This expansion results in increased lighting in suburban areas during December. The Phoenix nighttime street grid is sharply visible from space due to its regular grid layout of city blocks and streets, with major transportation corridors like Grand Avenue and brightly lit commercial properties at intersections, which create distinct lighting patterns. In contrast, large stretches of interstate highways between Midwestern cities remain comparatively dim because they lack the dense, grid-like urban development and associated lighting found in metropolitan areas like Phoenix [ref_id:0][ref_id:1]."
         }
       ]
     }
   ],
   "activity": [
     {
-      "type": "ModelQueryPlanning",
+      "type": "modelQueryPlanning",
       "id": 0,
-      "inputTokens": 1355,
-      "outputTokens": 423
+      "inputTokens": 2079,
+      "outputTokens": 121,
+      "elapsedMs": 2887
     },
     {
-      "type": "AzureSearchQuery",
+      "type": "searchIndex",
       "id": 1,
-      "targetIndex": "earth_at_night",
-      "query": {
-        "search": "suburban belts December brightening urban cores comparison",
+      "knowledgeSourceName": "earth-knowledge-source",
+      "queryTime": "2025-08-25T16:23:17.832Z",
+      "count": 0,
+      "elapsedMs": 1065,
+      "searchIndexArguments": {
+        "search": "Reasons for larger December brightening in suburban belts compared to urban cores despite higher downtown light levels",
         "filter": null
-      },
-      "queryTime": "2025-05-06T15:57:14.666Z",
-      "elapsedMs": 270
+      }
     },
     {
-      "type": "AzureSearchQuery",
+      "type": "searchIndex",
       "id": 2,
-      "targetIndex": "earth_at_night",
-      "query": {
-        "search": "Phoenix nighttime street grid visibility from space",
-        "filter": null
-      },
-      "queryTime": "2025-05-06T15:57:14.858Z",
+      "knowledgeSourceName": "earth-knowledge-source",
+      "queryTime": "2025-08-25T16:23:18.139Z",
       "count": 2,
-      "elapsedMs": 192
+      "elapsedMs": 298,
+      "searchIndexArguments": {
+        "search": "Factors making Phoenix nighttime street grid sharply visible from space",
+        "filter": null
+      }
     },
     {
-      "type": "AzureSearchQuery",
+      "type": "searchIndex",
       "id": 3,
-      "targetIndex": "earth_at_night",
-      "query": {
-        "search": "interstate visibility from space midwestern cities",
+      "knowledgeSourceName": "earth-knowledge-source",
+      "queryTime": "2025-08-25T16:23:18.332Z",
+      "count": 0,
+      "elapsedMs": 189,
+      "searchIndexArguments": {
+        "search": "Reasons why large stretches of interstate between Midwestern cities are comparatively dim at night from space",
         "filter": null
-      },
-      "queryTime": "2025-05-06T15:57:15.026Z",
-      "count": 1,
-      "elapsedMs": 167
+      }
+    },
+    {
+      "type": "semanticReranker",
+      "id": 4,
+      "inputTokens": 2349
+    },
+    {
+      "type": "modelAnswerSynthesis",
+      "id": 5,
+      "inputTokens": 3216,
+      "outputTokens": 155,
+      "elapsedMs": 2274
     }
   ],
   "references": [
     {
-      "type": "AzureSearchDoc",
+      "type": "searchIndex",
       "id": "0",
       "activitySource": 2,
-      "docKey": "earth_at_night_508_page_104_verbalized",
-      "sourceData": null
+      "sourceData": null,
+      "rerankerScore": 2.6642752,
+      "docKey": "earth_at_night_508_page_104_verbalized"
     },
     {
-      "type": "AzureSearchDoc",
+      "type": "searchIndex",
       "id": "1",
       "activitySource": 2,
-      "docKey": "earth_at_night_508_page_105_verbalized",
-      "sourceData": null
+      "sourceData": null,
+      "rerankerScore": 2.5905457,
+      "docKey": "earth_at_night_508_page_105_verbalized"
     }
   ]
 }
@@ -361,15 +397,30 @@ The output should be similar to the following JSON, where:
 
 ## Clean up resources
 
-When working in your own subscription, it's a good idea to finish a project by determining whether you still need the resources you created. Resources that are left running can cost you money. You can delete resources individually, or you can delete the resource group to delete the entire set of resources.
+When you work in your own subscription, it's a good idea to finish a project by determining whether you still need the resources you created. Resources that are left running can cost you money.
 
-In the Azure portal, you can find and manage resources by selecting **All resources** or **Resource groups** from the left pane. You can also run the following code to delete the objects you created in this quickstart.
+In the [Azure portal](https://portal.azure.com/), you can manage your Azure AI Search and Azure AI Foundry resources by selecting **All resources** or **Resource groups** from the left pane.
+
+Otherwise, run the following code to delete the objects you created in this quickstart.
+
+<!-- You can delete resources individually or delete the entire resource group.
+
+In the Azure portal, you can find and manage resources by selecting **All resources** or **Resource groups** from the left pane. -->
 
 ### Delete the knowledge agent
 
 ```HTTP
-### Delete the agent
-DELETE {{baseUrl}}/agents/{{agent-name}}?api-version={{api-version}}
+### Delete the knowledge agent
+DELETE {{search-url}}/agents/{{knowledge-agent-name}}?api-version={{api-version}}  HTTP/1.1
+    Content-Type: application/json
+    Authorization: Bearer {{token}}
+```
+
+### Delete the knowledge source
+
+```HTTP
+### Delete the knowledge source
+DELETE {{search-url}}/knowledgesources('{{knowledge-source-name}}')?api-version={{api-version}}  HTTP/1.1
     Content-Type: application/json
     Authorization: Bearer {{token}}
 ```
@@ -378,7 +429,7 @@ DELETE {{baseUrl}}/agents/{{agent-name}}?api-version={{api-version}}
 
 ```HTTP
 ### Delete the index
-DELETE {{baseUrl}}/indexes/{{index-name}}?api-version={{api-version}}
+DELETE {{search-url}}//indexes/{{index-name}}?api-version={{api-version}}  HTTP/1.1
     Content-Type: application/json
     Authorization: Bearer {{token}}
 ```

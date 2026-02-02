@@ -2,11 +2,11 @@
 title: Azure OpenAI Graders for generative AI
 titleSuffix: Azure AI Foundry
 description: Learn about Azure OpenAI Graders for evaluating AI model outputs, including label grading, string checking, text similarity, and custom grading.
+ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
-manager: scottpolly
 ms.reviewer: mithigpe
-ms.date: 05/19/2025
+ms.date: 09/23/2025
 ms.service: azure-ai-foundry
 ms.topic: reference
 ms.custom:
@@ -14,15 +14,22 @@ ms.custom:
   - build-2025
 ---
 
-# Azure OpenAI Graders (preview)
+# Azure OpenAI graders (preview)
+
+Azure OpenAI graders are a new set of evaluation tools in the Azure AI Foundry SDK that evaluate the performance of AI models and their outputs. These graders include:
+
+- [Label grader](#label-grader)
+- [String checker](#string-checker)
+- [Text similarity](#text-similarity)
+- [Python grader](#python-grader) 
+
+You can run graders locally or remotely. Each grader assesses specific aspects of AI models and their outputs.
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-The Azure OpenAI Graders are a new set of evaluation graders available in the Azure AI Foundry SDK, aimed at evaluating the performance of AI models and their outputs. These graders including  [Label grader](#label-grader), [String checker](#string-checker), [Text similarity](#text-similarity), and [General grader](#general-grader) can be run locally or remotely. Each grader serves a specific purpose in assessing different aspects of AI model/model outputs.
-
 ## Model configuration for AI-assisted grader
 
-For reference in the following code snippet, the AI-assisted grader uses a model configuration as follows:
+The following code snippet shows the model configuration used by the AI-assisted grader:
 
 ```python
 import os
@@ -31,10 +38,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 model_config = AzureOpenAIModelConfiguration(
-    azure_endpoint=os.environ["AZURE_ENDPOINT"],
-    api_key=os.environ.get["AZURE_API_KEY"],
+    azure_endpoint=os.environ.get("AZURE_ENDPOINT"),
+    api_key=os.environ.get("AZURE_API_KEY"),
     azure_deployment=os.environ.get("AZURE_DEPLOYMENT_NAME"),
-    api_version=os.environ.get("AZURE_API_VERSION"),
+    api_version=os.environ.get("AZURE_API_VERSION")
 )
 ```
 
@@ -43,9 +50,9 @@ model_config = AzureOpenAIModelConfiguration(
 `AzureOpenAILabelGrader` uses your custom prompt to instruct a model to classify outputs based on labels you define. It returns structured results with explanations for why each label was chosen.
 
 > [!NOTE]
-> We recommend using Azure OpenAI GPT o3-mini for best results.
+> We recommend using Azure OpenAI o3-mini for the best results.
 
-Here's an example `data.jsonl` that is used in the following code snippets:
+Here's an example of `data.jsonl` used in the following code snippets:
 
 ```json
 [
@@ -84,11 +91,11 @@ from azure.ai.evaluation import AzureOpenAILabelGrader, evaluate
 
 data_file_name="data.jsonl"
 
-#  Evaluation criteria: Determine if the response column contains texts that are "too short", "just right", or "too long" and pass if it is "just right"
+#  Evaluation criteria: Determine if the response column contains text that is "too short," "just right," or "too long," and pass if it is "just right."
 label_grader = AzureOpenAILabelGrader(
     model_config=model_config,
-    input=[{"content": "{{item.response}}", "role": "user"}
-           {"content":"Any text including space that's more than 600 characters are too long, less than 500 characters are too short; 500 to 600 characters are just right.", "role":"user", "type": "message"}],
+    input=[{"content": "{{item.response}}", "role": "user"},
+           {"content": "Any text including space that's more than 600 characters is too long, less than 500 characters is too short; 500 to 600 characters is just right.", "role": "user", "type": "message"}],
     labels=["too short", "just right", "too long"],
     passing_labels=["just right"],
     model="gpt-4o",
@@ -105,7 +112,7 @@ label_grader_evaluation = evaluate(
 
 ### Label grader output
 
-For each of the sets of sample data contained in the data file, an evaluation result of `True` or `False` is returned signifying if the output matches with the passing label defined. The `score` is `1.0` for `True` cases while `score` is `0.0` for `False` cases. The reason for why the model provided the label for the data can be found in `content` under `outputs.label.sample`.
+For each set of sample data in the data file, an evaluation result of `True` or `False` is returned, signifying if the output matches the defined passing label. The `score` is `1.0` for `True` cases, and `0.0` for `False` cases. The reason the model provided the label for the data is in `content` under `outputs.label.sample`.
 
 ```python
 'outputs.label.sample':
@@ -115,12 +122,11 @@ For each of the sets of sample data contained in the data file, an evaluation re
       'content': '{"steps":[{"description":"Calculate the number of characters in the user\'s input including spaces.","conclusion":"The provided text contains 575 characters."},{"description":"Evaluate if the character count falls within the given ranges (greater than 600 too long, less than 500 too short, 500 to 600 just right).","conclusion":"The character count falls between 500 and 600, categorized as \'just right.\'"}],"result":"just right"}'}],
 ...
 ...
-'outputs.label.label_result': 'pass',
 'outputs.label.passed': True,
 'outputs.label.score': 1.0
 ```
 
-Aside from individual data evaluation results, the grader also returns a metric indicating the overall dataset pass rate.
+In addition to individual data evaluation results, the grader returns a metric indicating the overall dataset pass rate.
 
 ```python
 'metrics': {'label.pass_rate': 0.2}, #1/5 in this case
@@ -140,7 +146,7 @@ string_grader = AzureOpenAIStringCheckGrader(
     model_config=model_config,
     input="{{item.query}}",
     name="starts with what is",
-    operation="like", # "eq" for equal, "ne" for not equal, "like" for contain, "ilike" for case insensitive contain
+    operation="like", # "eq" for equal, "ne" for not equal, "like" for contains, "ilike" for case-insensitive contains
     reference="What is",
 )
 
@@ -154,10 +160,9 @@ string_grader_evaluation = evaluate(
 
 ### String checker output
 
-For each of the sets of sample data contained in the data file, an evaluation result of `True` or `False` is returned signifying if the input text matches with pattern matching rules defined. The `score` is `1.0` for `True` cases while `score` is `0.0` for `False` cases.
+For each set of sample data in the data file, an evaluation result of `True` or `False` is returned, indicating whether the input text matches the defined pattern-matching rules. The `score` is `1.0` for `True` cases while `score` is `0.0` for `False` cases.
 
 ```python
-'outputs.string.string_result': 'pass',
 'outputs.string.passed': True,
 'outputs.string.score': 1.0
 ```
@@ -165,12 +170,12 @@ For each of the sets of sample data contained in the data file, an evaluation re
 The grader also returns a metric indicating the overall dataset pass rate.
 
 ```python
-'metrics': {'string.pass_rate': 0.4}, #2/5 in this case
+'metrics': {'string.pass_rate': 0.4}, # 2/5 in this case
 ```
 
 ## Text similarity
 
-Evaluates how closely input text matches a reference value using similarity metrics like`fuzzy_match`, `BLEU`, `ROUGE`, or `METEOR`. Useful for assessing text quality or semantic closeness.
+Evaluates how closely input text matches a reference value using similarity metrics like `fuzzy_match`, `BLEU`, `ROUGE`, or `METEOR`. This is useful for assessing text quality or semantic closeness.
 
 ### Text similarity example
 
@@ -193,15 +198,14 @@ sim_grader_evaluation = evaluate(
         "similarity": sim_grader
     },
 )
-evaluation
+sim_grader_evaluation
 ```
 
 ### Text similarity output
 
-For each set of sample data contained in the data file, a numerical similarity score is generated. This score, ranging from 0 to 1, indicates the degree of similarity, with higher scores representing greater similarity. Additionally, an evaluation result of `True` or `False` is returned, signifying whether the similarity score meets or exceeds the specified threshold based on the evaluation metric defined in the grader.
+For each set of sample data in the data file, a numerical similarity score is generated. This score ranges from 0 to 1 and indicates the degree of similarity, with higher scores representing greater similarity. An evaluation result of `True` or `False` is also returned, signifying whether the similarity score meets or exceeds the specified threshold based on the evaluation metric defined in the grader.
 
 ```python
-'outputs.similarity.similarity_result': 'pass',
 'outputs.similarity.passed': True,
 'outputs.similarity.score': 0.6117136659436009
 ```
@@ -209,58 +213,73 @@ For each set of sample data contained in the data file, a numerical similarity s
 The grader also returns a metric indicating the overall dataset pass rate.
 
 ```python
-'metrics': {'similarity.pass_rate': 0.4}, #2/5 in this case
+'metrics': {'similarity.pass_rate': 0.4}, # 2 out of 5 in this case
 ```
 
-## General grader
+## Python Grader
 
-Advanced users have the capability to import or define a custom grader and integrate it into the AOAI general grader. This allows for evaluations to be performed based on specific areas of interest aside from the existing AOAI graders. Following is an example to import the OpenAI `StringCheckGrader` and construct it to be ran as a AOAI general grader on Foundry SDK.
+Advanced users can create or import custom Python grader functions and integrate them into the Azure OpenAI Python grader. This enables evaluations tailored to specific areas of interest beyond the capabilities of the existing Azure OpenAI graders. The following example demonstrates how to import a custom similarity grader function and configure it to run as an Azure OpenAI Python grader using the Azure AI Foundry SDK.
 
 ### Example
 
 ```python
-from openai.types.graders import StringCheckGrader
-from azure.ai.evaluation import AzureOpenAIGrader
+from azure.ai.evaluation import AzureOpenAIPythonGrader
  
-# Define an string check grader config directly using the OAI SDK
-# Evaluation criteria: Pass if query column contains "Northwind"
-oai_string_check_grader = StringCheckGrader(
-    input="{{item.query}}",
-    name="contains hello",
-    operation="like",
-    reference="Northwind",
-    type="string_check"
+python_similarity_grader = AzureOpenAIPythonGrader(
+    model_config=model_config_aoai,
+    name="custom_similarity",
+    image_tag="2025-05-08",
+    pass_threshold=0.3,
+    source="""
+    def grade(sample, item) -> float:
+     \"\"\"
+     Custom similarity grader using word overlap.
+     Note: All data is in the 'item' parameter.
+     \"\"\"
+     # Extract from item, not sample!
+     response = item.get("response", "") if isinstance(item, dict) else ""
+     ground_truth = item.get("ground_truth", "") if isinstance(item, dict) else ""
+    
+     # Simple word overlap similarity
+     response_words = set(response.lower().split())
+     truth_words = set(ground_truth.lower().split())
+    
+     if not truth_words:
+     return 0.0
+    
+     overlap = response_words.intersection(truth_words)
+     similarity = len(overlap) / len(truth_words)
+    
+     return min(1.0, similarity)
+""",
 )
-# Plug that into the general grader
-general_grader = AzureOpenAIGrader(
-    model_config=model_config,
-    grader_config=oai_string_check_grader
-)
+
+file_name = "eval_this.jsonl"
 evaluation = evaluate(
     data=data_file_name,
     evaluators={
-        "general": general_grader,
+        "custom_similarity": python_similarity_grader,
     },
+    #azure_ai_project=azure_ai_project,
 )
 evaluation
 ```
 
 ### Output
 
-For each set of sample data contained in the data file, general grader returns a numerical score that is a 0-1 float and a higher score is better. Given a numerical threshold defined as part of the custom grader, we also output `True` if the score >= threshold, or `False` otherwise.
+For each set of sample data in the data file, the Python grader returns a numerical score based on the defined function. Given a numerical threshold defined as part of the custom grader, we also output `True` if the score >= threshold, or `False` otherwise.
 
 For example:
 
 ```python
-'outputs.general.general_result': 'pass',
-'outputs.general.passed': True,
-'outputs.general.score': 1.0
+"outputs.custom_similarity.passed": false,
+"outputs.custom_similarity.score": 0.0
 ```
 
 Aside from individual data evaluation results, the grader also returns a metric indicating the overall dataset pass rate.
 
 ```python
-'metrics': {'general.pass_rate': 0.4}, #2/5 in this case
+'metrics': {'custom_similarity.pass_rate': 0.0}, #0/5 in this case
 ```
 
 ## Related content

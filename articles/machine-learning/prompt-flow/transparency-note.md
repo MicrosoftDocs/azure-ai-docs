@@ -9,6 +9,7 @@ ms.service: azure-machine-learning
 ms.subservice: prompt-flow
 ms.date: 10/20/2023
 ms.topic: concept-article
+ms.update-cycle: 365-days
 ---
 
 # Transparency Note for auto-generate prompt variants in prompt flow

@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: reference
 ms.reviewer: None
-author: ssalgadodev
-ms.author: ssalgado
+author: s-polly
+ms.author: scottpolly
 ms.date: 01/18/2022
 ---
 

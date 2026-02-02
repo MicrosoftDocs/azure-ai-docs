@@ -2,11 +2,11 @@
 title: 'How to use connected agents'
 titleSuffix: Azure AI Foundry
 description: Learn how to create multi-agentic systems using connected agents in the Azure AI Foundry Agent Service.
-services: cognitive-services
 manager: nitinme
-ms.service: azure
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 06/04/2025
+ms.date: 11/04/2025
 author: aahill
 ms.author: aahi
 recommendations: false
@@ -16,7 +16,7 @@ zone_pivot_groups: selection-connected-agents
 
 # Build collaborative, multi-agent systems with Connected Agents
 
-Connected agents in Azure AI Foundry Agent Service let you break down complex tasks into coordinated, specialized roles—without the need for a custom orchestrator or hand-coded routing logic. With this capability, you can design systems where a primary agent intelligently delegates to purpose-built sub-agents, streamlining workflows like customer support, market research, legal summarization, and financial analysis.
+Connected agents in Azure AI Foundry Agent Service let you break down complex tasks into coordinated, specialized roles—without the need for a custom orchestrator or hand-coded routing logic. With this capability, you can design systems where a primary agent intelligently delegates to purpose-built subagents, streamlining workflows like customer support, market research, legal summarization, and financial analysis.
 
 Rather than overloading one agent with too many skills, you can build focused, reusable agents that collaborate seamlessly—scaling both performance and maintainability.
 
@@ -74,7 +74,8 @@ Checks the contract against internal standards or uploaded guidelines to identif
 ## Limitations
 
 * Connected agents cannot call local functions using the function calling tool. We recommend using the [OpenAPI tool](tools\openapi-spec.md) or [Azure Functions](tools\azure-functions.md) instead.
-* It is currently not possible to guarantee citations will be passed from connected agents. You can try using prompt engineering combined with different models to try and improve the possibility that citations will be outputted by the main agent, but results are subject to variability. 
+*  It is currently not possible to guarantee citations will be passed from connected agents. You can try using prompt engineering combined with different models to try and improve the possibility that citations will be outputted by the main agent, but results are subject to variability.
+* Connected agents have a maximum depth of 2. A parent agent can have multiple subagent siblings, but subagents cannot have their own subagents. Exceeding this depth results in an `Assistant Tool Call Depth Error`. 
 
 :::zone pivot="portal"
 
@@ -83,7 +84,7 @@ Checks the contract against internal standards or uploaded guidelines to identif
 
 1. Navigate to the **Agents** page in the portal
 2. Select an existing agent from the list or create a new one.
-3. Scroll down to the **Connected agents** section in the agent's setup panel and select **Add +**.
+3. Scroll down to the **Connected agents** section in the agent's set up panel and select **Add +**.
 
 :::image type="content" source="../media\connected-agents\connected-agents-foundry.png" alt-text="A screenshot of the agents page in the Azure AI Foundry." lightbox="../media\connected-agents\connected-agents-foundry.png":::
 
@@ -93,7 +94,7 @@ Checks the contract against internal standards or uploaded guidelines to identif
    - Add a clear **description** of when and why the connected agent should be invoked. This helps guide the main agent’s decision-making on when to hand off tasks to connected agents during runtime.
 5. Select **Add +**
 6. Repeat steps 3–5 to add additional specialized agents to the main agent.
-7. Once the connected agent(s) appear in the setup panel, scroll up and select **Try in Playground**
+7. Once the connected agents appear in the setup panel, scroll up and select **Try in Playground**
 8. Use test prompts in the Agent Playground to validate that the main agent correctly routes tasks to the connected agents when applicable. For example, if you’ve created a main agent called `research_agent`, which doesn't have any tools configured, and connected an agent named `stock_price_bot`, try a prompt like:
 
     **"What is the current stock price of Microsoft?"**
@@ -109,7 +110,7 @@ Checks the contract against internal standards or uploaded guidelines to identif
 ## Use the .NET SDK 
 
 > [!NOTE]
-> This shows a synchronous usage. You can find an asynchronous example on [GitHub](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Projects/samples/Sample24_Agent_Connected_Agent.md) 
+> This shows a synchronous usage. You can find an asynchronous example on [GitHub](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Agents.Persistent/samples/Sample23_PersistentAgents_Connected_Agent.md) 
 
 To enable your Agent to use a connected agent, you use `ConnectedAgentToolDefinition` along with the agent ID, name, and a description.
 
@@ -230,14 +231,13 @@ To create a multi-agent setup, follow these steps:
     ```python
     import os
     from azure.ai.projects import AIProjectClient
-    from azure.ai.projects.models import ConnectedAgentTool, MessageRole
+    from azure.ai.agents.models import ConnectedAgentTool, MessageRole
     from azure.identity import DefaultAzureCredential
     
     
     project_client = AIProjectClient(
     endpoint=os.environ["PROJECT_ENDPOINT"],
     credential=DefaultAzureCredential(),
-    api_version="latest",
     )
     ```
 
@@ -256,7 +256,7 @@ To create a multi-agent setup, follow these steps:
     
     ```python
     connected_agent = ConnectedAgentTool(
-        id=stock_price_agent.id, name=connected_agent_name, description="Gets the stock price of a company"
+        id=stock_price_agent.id, name=stock_price_agent.name, description="Gets the stock price of a company"
     )
     ```
 
@@ -276,11 +276,11 @@ To create a multi-agent setup, follow these steps:
 1. Create a thread and add a message to it.
     
     ```python
-    thread = project_client.agents.create_thread()
+    thread = project_client.agents.threads.create()
     print(f"Created thread, ID: {thread.id}")
     
     # Create message to thread
-    message = project_client.agents.create_message(
+    message = project_client.agents.messages.create(
         thread_id=thread.id,
         role=MessageRole.USER,
         content="What is the stock price of Microsoft?",
@@ -294,7 +294,7 @@ To create a multi-agent setup, follow these steps:
     ```python
     
     # Create and process Agent run in thread with tools
-    run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
+    run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
     print(f"Run finished with status: {run.status}")
     
     if run.status == "failed":
@@ -313,7 +313,7 @@ To create a multi-agent setup, follow these steps:
     
     ```python
     # Print the Agent's response message with optional citation
-    response_message = project_client.agents.list_messages(thread_id=thread.id).get_last_message_by_role(
+    response_message = project_client.agents.messages.list(thread_id=thread.id).get_last_message_by_role(
         MessageRole.AGENT
     )
     if response_message:

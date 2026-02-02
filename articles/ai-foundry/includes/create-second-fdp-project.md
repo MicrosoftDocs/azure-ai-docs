@@ -16,26 +16,32 @@ ms.custom:
 ---
 
 
-Create multiple [!INCLUDE [fdp-project-name-plural](fdp-project-name-plural.md)] on an existing `AI Foundry` resource, so you can share your environment with your team for collaboration. 
+Create multiple [!INCLUDE [fdp-project-name](fdp-project-name.md)]s on an existing `AI Foundry` resource to enable team collaboration and shared resource access including security, deployments, and connected tools. This setup is ideal in restricted Azure subscriptions where developers need self-serve exploration ability within the setup of a pre-configured environment.
 
-[!INCLUDE [fdp-project-name-plural](fdp-project-name-plural.md)] as Azure child resources may get assigned their own access controls, but share common settings such as network security, deployments, and Azure tool integration from their parent resource.
+:::image type="content" source="../media/how-to/projects/projects-multi-setup.png" alt-text="Diagram shows how a team could share resource access with multiple projects on a Foundry resource.":::
 
-Your first project (default project) plays a special role and has access to more features:
+[!INCLUDE [fdp-project-name](fdp-project-name.md)]s as Azure child resources may get assigned their own access controls, but share common settings such as network security, deployments, and Azure tool integration from their parent resource.
 
-| Feature | Default [!INCLUDE [fdp-project-name](fdp-project-name.md)] | Nondefault [!INCLUDE [fdp-project-name](fdp-project-name.md)] |
+While not all Foundry capabilities support organizing work in projects yet, your resource's first "default" project is more powerful. You can identify it by the tag "default" in UX experiences and the resource property "is_default" when using code options.
+
+| Feature | Default project | Other projects |
 |--|--|--|
 | Model inference | ✅ | ✅ |
 | Playgrounds | ✅ | ✅ |
 | Agents | ✅ | ✅ |
 | Evaluations | ✅ | ✅ |
+| Tracing | ✅ | ✅ |
+| Datasets | ✅ | ✅ |
+| Indexes | ✅ | ✅ |
+| Foundry SDK and API | ✅ | ✅ |
+| Content understanding | ✅ | ✅ |
+| OpenAI SDK and API | ✅ | - |
+| OpenAI Batch, Fine-tuning, Stored completions | ✅ | - |
+| Language fine-tuning | ✅ | ✅ |
+| Speech fine-tuning | ✅ | - |
 | Connections | ✅ | ✅ |
-| AI Foundry API that works with agents and across models | ✅ | ✅ |
-| Project-level isolation of files and outputs | ✅ | ✅ |
-| Azure OpenAI with Batch, StoredCompletions, Fine-tuning | ✅ |  |
-| Backwards compatible with project-less {account}.cognitiveservices.com data plane API | ✅ |  |
-| Content safety | ✅ |  |
 
-* To add a nondefault project to a resource:
+* To add a project to a Foundry resource:
     
     # [Azure AI Foundry portal](#tab/ai-foundry)
     

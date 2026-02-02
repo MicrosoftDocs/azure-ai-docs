@@ -2,12 +2,13 @@
 title: Recover or purge deleted Azure AI Foundry resources
 titleSuffix: Azure AI services
 description: This article provides instructions on how to recover or purge an already-deleted Azure AI Foundry resource.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: how-to
 ms.date: 5/19/2025
-ms.author: eur
+ms.author: pafarley
+ms.custom: sfi-image-nochange
 ---
 
 # Recover or purge deleted Azure AI Foundry resources

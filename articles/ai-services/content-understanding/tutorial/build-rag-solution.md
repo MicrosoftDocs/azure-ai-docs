@@ -1,8 +1,8 @@
----
+﻿---
 title: Build a retrieval-augmented generation solution with Azure AI Content Understanding
 titleSuffix: Azure AI services
 description: Learn to build a retrieval-augmented generation solution with Content Understanding
-author: laujan
+author: PatrickFarley 
 ms.author: paulhsu
 manager: nitinme
 ms.date: 05/19/2025
@@ -27,7 +27,7 @@ This tutorial explains how to create a retrieval-augmented generation (RAG) solu
 
 ## Prerequisites
 
-To get started, you need **An active Azure subscription**. If you don't have an Azure account, you can [create a free subscription](https://azure.microsoft.com/free/).
+To get started, you need **An active Azure subscription**. If you don't have an Azure account, you can [create a free subscription](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * Once you have your Azure subscription, create an [Azure AI Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal.
 
@@ -36,7 +36,7 @@ To get started, you need **An active Azure subscription**. If you don't have an 
      :::image type="content" source="../media/overview/azure-multi-service-resource.png" alt-text="Screenshot of the multi-service resource page in the Azure portal.":::
 
 * **Azure AI Search Resource:** Set up an [Azure AI Search resource](../../../search/search-create-service-portal.md) to enable indexing and retrieval of multimodal data.
-* **Azure OpenAI Chat Model Deployment:** Deploy an [Azure OpenAI chat model](../../openai/how-to/deployment-types.md) that enables conversational interactions.
+* **Azure OpenAI Chat Model Deployment:** Deploy an [Azure OpenAI chat model](../../../ai-foundry/foundry-models/concepts/deployment-types.md) that enables conversational interactions.
 * **Embedding Model Deployment:** Ensure you have an embedding model deployed to generate vector representations for semantic search.
 * **API Version:** This tutorial uses the latest preview [API version](/rest/api/contentunderstanding/operation-groups?preserve-view=true).
 * **Python Environment:** Install [Python 3.11](https://www.python.org/downloads/) to execute the provided code samples and scripts.

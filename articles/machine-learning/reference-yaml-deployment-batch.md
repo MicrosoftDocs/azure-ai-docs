@@ -11,8 +11,8 @@ ms.custom:
   - ignite-2023
   - update-code
 ms.reviewer: None
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.date: 11/15/2023
 ---
 
@@ -33,7 +33,7 @@ The source JSON schema can be found at https://azuremlschemas.azureedge.net/late
 | `description` | string | Description of the deployment. | | |
 | `tags` | object | Dictionary of tags for the deployment. | | |
 | `endpoint_name` | string | **Required.** Name of the endpoint to create the deployment under. | | |
-| `type` | string | **Required.** Type of the bath deployment. Use `model` for [model deployments](concept-endpoints-batch.md#model-deployment) and `pipeline` for [pipeline component deployments](concept-endpoints-batch.md#pipeline-component-deployment). <br><br>**New in version 1.7**. | `model`, `pipeline` | `model` |
+| `type` | string | Type of the batch deployment. Use `model` for [model deployments](concept-endpoints-batch.md#model-deployment) and `pipeline` for [pipeline component deployments](concept-endpoints-batch.md#pipeline-component-deployment). If not specified, defaults to classic batch deployment <br><br>**New in version 1.7**. | `model`, `pipeline` |  |
 | `settings` | object | Configuration of the deployment. See specific YAML reference for model and pipeline component for allowed values. <br><br>**New in version 1.7**. | | |
 
 > [!TIP]

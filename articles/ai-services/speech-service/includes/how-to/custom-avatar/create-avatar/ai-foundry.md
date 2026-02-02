@@ -1,9 +1,9 @@
 ---
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 5/19/2025
+ms.date: 08/07/2025
 ---
 
 Getting started with a custom text to speech avatar is a straightforward process. All it takes are a few video clips of your actor. If you'd like to train a [custom voice](../../../../custom-neural-voice.md) for the same actor, you can do so separately.
@@ -45,7 +45,7 @@ You must provide a video file with a recorded statement from your avatar talent,
 - If you want to create a voice sync for avatar during avatar training, a custom voice resembling your avatar is created alongside the custom avatar. The voice is used exclusively with the specified avatar. Your consent statement must include both the custom avatar and the voice sync for avatar. For an example of the consent statement for custom avatar with voice sync, see the *verbal-statement-voice-sync-for-avatar-all-locales.txt* file in the [Azure-Samples/cognitive-services-speech-sdk](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/sampledata/customavatar/verbal-statement-voice-sync-for-avatar-all-locales.txt) GitHub repository.
 - If you don't create a voice sync for avatar, only the custom avatar is trained, and your consent statement must reflect this scope. For an example of the consent statement for custom avatar only, see the *verbal-statement-all-locales.txt* file in the [Azure-Samples/cognitive-services-speech-sdk](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/sampledata/customavatar/verbal-statement-all-locales.txt) GitHub repository.
 
-For more information about recording the consent video, see [How to record video samples](../../../../text-to-speech-avatar/custom-avatar-record-video-samples.md) and [Disclosure for avatar talent](/legal/cognitive-services/speech-service/disclosure-voice-talent?context=/azure/ai-services/speech-service/context/context).
+For more information about recording the consent video, see [How to record video samples](../../../../text-to-speech-avatar/custom-avatar-record-video-samples.md) and [Disclosure for avatar talent](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/disclosure-voice-talent).
 
 To add an avatar talent profile and upload their consent statement in your project, follow these steps:
 
@@ -55,7 +55,7 @@ To add an avatar talent profile and upload their consent statement in your proje
 1. Select **Set up avatar talent** > **Upload consent video**. 
 
 1. On the **Upload consent video** page, follow the instructions to upload the avatar talent consent video you recorded beforehand.  
-    - Select the avatar type to build. Build a voice sync for avatar which sounds like your avatar talent together with the avatar model, or build avatar without the voice sync for avatar. The option to build a voice sync for avatar is only available in the Southeast Asia, West Europe, and West US 2 regions.
+    - Select the avatar type to build. Build a voice sync for avatar, which sounds like your avatar talent together with the avatar model, or build avatar without the voice sync for avatar. The option to build a voice sync for avatar is only available in the Southeast Asia, West Europe, and West US 2 regions.
     - Select the speaking language of the verbal consent statement recorded by the avatar talent. 
     - Enter the avatar talent name and your company name in the same language as the recorded statement. 
         - The avatar talent name must be the name of the person who recorded the consent statement. 
@@ -90,7 +90,7 @@ To upload training data, follow these steps:
 
 Data files are automatically validated when you select **Upload**. Data validation includes series of checks on the video files to verify their file format, size, and total volume. If there are any errors, fix them and submit again.
 
-After you upload the data, you can check the data overview which indicates whether you provided enough data to start training. 
+After you upload the data, you can check the data overview, which indicates whether you provided enough data to start training. 
 
 ## Step 4: Train your avatar model
 
@@ -102,7 +102,7 @@ To create a custom avatar in the Azure AI Foundry portal, follow these steps for
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
 1. Select the custom avatar fine-tuning task (by model name) that you [started as described in the previous section](#step-1-start-fine-tuning).
 1. Select **Train model** > **+ Train model**. 
-1. Enter a Name to help you identify the model. Choose a name carefully. The model name is used as the avatar name in your synthesis request by the SDK and SSML input. Only letters, numbers, hyphens, and underscores are allowed. Use a unique name for each model.
+1. Enter a Name to help you identify the model. Choose a name carefully. The model name is used as the avatar name in your synthesis request by the SDK and speech synthesis markup language (SSML) input. Only letters, numbers, hyphens, and underscores are allowed. Use a unique name for each model.
 
     > [!IMPORTANT]
     > The avatar model name must be unique within the same Speech or AI Services resource. 

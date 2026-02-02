@@ -9,16 +9,18 @@ ms.topic: quickstart
 ms.date: 05/01/2025
 ms.author: lajanuar
 ms.custom: language-service-clu, mode-other
-zone_pivot_groups: usage-custom-language-features
+zone_pivot_groups: foundry-rest-api
 ---
 
 # Quickstart: Conversational language understanding 
 
-Use this article to get started with Conversational Language understanding using Azure AI Foundry and the REST API. Follow these steps to try out an example.
+Azure AI Foundry offers a unified platform for building, managing, and deploying AI solutions with a wide array of models and tools. Azure AI Foundry playgrounds are interactive environments within the Azure AI Foundry portal designed for exploring, testing, and prototyping with various AI models and tools.
 
-::: zone pivot="language-studio"
+Use this article to get started with Conversational Language understanding using Azure AI Foundry or the REST API.
 
-[!INCLUDE [Language Studio quickstart](includes/quickstarts/language-studio.md)]
+::: zone pivot="azure-ai-foundry"
+
+[!INCLUDE [Azure AI Foundry quickstart](includes/quickstarts/azure-ai-foundry.md)]
 
 ::: zone-end
 
@@ -30,4 +32,6 @@ Use this article to get started with Conversational Language understanding using
 
 ## Next steps
 
-* [Learn about entity components](concepts/entity-components.md)
+* [Build a fine-tuning schema](how-to/build-schema.md)
+* [Label utterances](how-to/tag-utterances.md)
+* [Train a model](how-to/train-model.md)

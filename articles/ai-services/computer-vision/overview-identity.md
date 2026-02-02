@@ -7,11 +7,10 @@ manager: nitinme
 
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
+ms.update-cycle: 90-days
 ms.topic: overview
-ms.date: 02/21/2025
+ms.date: 08/21/2025
 ms.author: pafarley
-ms.custom:
-  - ignite-2023
 keywords: facial recognition, facial recognition software, facial analysis, face matching, face recognition app, face search by image, facial recognition search
 feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 #Customer intent: As the developer of an app that deals with images of humans, I want to learn what the Face service does so I can determine if I should use its features.
@@ -88,7 +87,7 @@ The goal of liveness detection is to ensure that the system is interacting with 
 
 The liveness detection solution successfully defends against a variety of spoof types ranging from paper printouts, 2d/3d masks, and spoof presentations on phones and laptops. Liveness detection is an active area of research, with continuous improvements being made to counteract increasingly sophisticated spoofing attacks over time. Continuous improvements will be rolled out to the client and the service components over time as the overall solution gets more robust to new types of attacks.
 
-Our liveness detection solution meets [iBeta Level 1 and 2 ISO/IEC 30107-3](https://www.ibeta.com/wp-content/uploads/2023/11/230622-Microsoft-PAD-Level-2-Confirmation-Letter.pdf) compliance.
+Our liveness detection solution meets achieved a 0% penetration rate in [iBeta Level 1 and Level 2 Presentation Attack Detection (PAD) tests](https://servicetrust.microsoft.com/DocumentPage/ea3fa18f-3940-4c0b-aa96-41cb50898aee), conducted by a NIST/NVLAP-accredited laboratory and conformant to the [ISO/IEC 30107-3 PAD international standard](https://www.iso.org/standard/79520.html).
 
 Tutorials
 - [Face liveness Tutorial](Tutorials/liveness.md)
@@ -96,7 +95,7 @@ Concepts
 - [Abuse monitoring](concept-liveness-abuse-monitoring.md)
 
 Face liveness SDK reference docs:
-- [Java (Android)](https://aka.ms/liveness-sdk-java)
+- [Java (Android)](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/vision/azure-ai-vision-imageanalysis/src/samples/README.md)
 - [Swift (iOS)](https://aka.ms/liveness-sdk-ios)
 - [JavaScript (Web)](https://aka.ms/liveness-sdk-web)
 

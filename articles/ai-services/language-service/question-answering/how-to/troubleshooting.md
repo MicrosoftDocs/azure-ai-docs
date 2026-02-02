@@ -5,7 +5,7 @@ ms.service: azure-ai-language
 author: laujan
 ms.author: lajanuar
 ms.topic: troubleshooting
-ms.date: 11/21/2024
+ms.date: 06/21/2025
 ---
 
 # Troubleshooting for custom question answering

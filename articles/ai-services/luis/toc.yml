@@ -26,13 +26,13 @@ items:
   - name: Transparency notes
     items:
     - name: LUIS use cases
-      href: /legal/cognitive-services/luis/luis-transparency-note?context=/azure/ai-services/LUIS/context/context
+      href: ../../ai-foundry/responsible-ai/luis/luis-transparency-note.md
     - name: Characteristics and limitations
-      href: /legal/cognitive-services/luis/characteristics-and-limitations?context=/azure/ai-services/LUIS/context/context
+      href: ../../ai-foundry/responsible-ai/luis/characteristics-and-limitations.md
   - name: Integration and responsible use
-    href: /legal/cognitive-services/luis/guidance-integration-responsible-use?context=/azure/ai-services/LUIS/context/context
+    href: ../../ai-foundry/responsible-ai/luis/guidance-integration-responsible-use.md
   - name: Data, privacy, and security
-    href: /legal/cognitive-services/luis/data-privacy-security?context=/azure/ai-services/LUIS/context/context
+    href: ../../ai-foundry/responsible-ai/luis/data-privacy-security.md
 - name: How-to guides
   items:
   - name: Sign in to the LUIS portal and create an app

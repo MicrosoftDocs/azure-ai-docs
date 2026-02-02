@@ -8,8 +8,8 @@ ms.subservice: core
 ms.topic: reference
 ms.custom: cliv2, build-2023
 
-author: Blackmist
-ms.author: larryfr
+author: s-polly
+ms.author: scottpolly
 ms.date: 04/29/2024
 ms.reviewer: kritifaujdar
 ---

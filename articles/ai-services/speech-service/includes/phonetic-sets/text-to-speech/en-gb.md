@@ -1,8 +1,8 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.author: eur
+ms.author: pafarley
 ---
 
 ### Vowels for en-GB

@@ -2,12 +2,12 @@
 title: "Professional voice fine-tuning data - Speech service"
 titleSuffix: Azure AI services
 description: "Learn about the data types that you can use for professional voice fine-tuning."
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 3/10/2025
-ms.author: eur
+ms.date: 08/07/2025
+ms.author: pafarley
 #Customer intent: As a developer, I want to learn about the data types that I can use for professional voice fine-tuning.
 ---
 

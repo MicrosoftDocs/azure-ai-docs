@@ -6,7 +6,7 @@ ms.topic: install-set-up-deploy
 manager: nitinme
 ms.author: lajanuar
 author: laujan
-ms.date: 04/14/2025
+ms.date: 07/17/2025
 ---
 
 # Enable Microsoft Entra ID authentication
@@ -29,17 +29,14 @@ This article guides you on how to create and utilize a Microsoft Entra ID identi
 
 Before you get started, you need an Azure account and an Azure AI services subscription.
 
-* An active Azure subscription. If you don't have an Azure subscription, you can [create one for free](https://azure.microsoft.com/free/cognitive-services/).
+* An active Azure subscription. If you don't have an Azure subscription, you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * An Azure AI Translator resource. Once you have your Azure subscription, create a [Translator single-service global resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) in the Azure portal.
 
 > [!IMPORTANT]
 > [Regional endpoints](../../cognitive-services-custom-subdomains.md#is-there-a-list-of-regional-endpoints) don't support Microsoft Entra authentication.
 
-* curl command line tool installed.
-
-  * [Windows](https://curl.haxx.se/windows/)
-  * [Mac or Linux](https://learn2torials.com/thread/how-to-install-curl-on-mac-or-linux-(ubuntu)-or-windows)
+* cURL command-line tool installed.
 
 * **PowerShell version 7.*+** (or a similar command-line application.):
   * [Windows](/powershell/scripting/install/installing-powershell-on-windows)

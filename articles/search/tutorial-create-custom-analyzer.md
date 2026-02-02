@@ -5,6 +5,7 @@ description: Learn how to build a custom analyzer to improve the quality of sear
 author: gmndrg
 ms.author: gimondra
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: tutorial
@@ -27,7 +28,7 @@ In this tutorial, you use a REST client and the [Azure AI Search REST APIs](/res
 
 ## Prerequisites
 
-+ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
++ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 + [Azure AI Search](search-what-is-azure-search.md). [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription. For this tutorial, you can use a free service.
 
@@ -66,7 +67,7 @@ A valid API key establishes trust, on a per-request basis, between the applicati
 
     ```http
     ### Create a new index
-    POST {{baseUrl}}/indexes?api-version=2024-07-01  HTTP/1.1
+    POST {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
       Content-Type: application/json
       api-key: {{apiKey}}
 
@@ -100,7 +101,7 @@ A valid API key establishes trust, on a per-request basis, between the applicati
 
     ```http
     ### Load documents
-    POST {{baseUrl}}/indexes/phone-numbers-index/docs/index?api-version=2024-07-01  HTTP/1.1
+    POST {{baseUrl}}/indexes/phone-numbers-index/docs/index?api-version=2025-09-01  HTTP/1.1
       Content-Type: application/json
       api-key: {{apiKey}}
     
@@ -154,7 +155,7 @@ A valid API key establishes trust, on a per-request basis, between the applicati
 
     ```http  
     ### Search for a phone number
-    GET {{baseUrl}}/indexes/phone-numbers-index/docs/search?api-version=2024-07-01&search=(425) 555-0100  HTTP/1.1
+    GET {{baseUrl}}/indexes/phone-numbers-index/docs/search?api-version=2025-09-01&search=(425) 555-0100  HTTP/1.1
       Content-Type: application/json
       api-key: {{apiKey}}
     ```
@@ -192,7 +193,7 @@ A valid API key establishes trust, on a per-request basis, between the applicati
 
    ```http  
     ### Search for a phone number
-    GET {{baseUrl}}/indexes/phone-numbers-index/docs/search?api-version=2024-07-01&search=4255550100  HTTP/1.1
+    GET {{baseUrl}}/indexes/phone-numbers-index/docs/search?api-version=2025-09-01&search=4255550100  HTTP/1.1
       Content-Type: application/json
       api-key: {{apiKey}}
     ```
@@ -254,7 +255,7 @@ Azure AI Search provides an [Analyze API](/rest/api/searchservice/indexes/analyz
 Call the Analyze API using the following request:
 
 ```http
-POST {{baseUrl}}/indexes/phone-numbers-index/analyze?api-version=2024-07-01  HTTP/1.1
+POST {{baseUrl}}/indexes/phone-numbers-index/analyze?api-version=2025-09-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
 
@@ -439,7 +440,7 @@ All of the tokens in the output column exist in the index. If your query include
 
    ```http
     ### Delete the index
-    DELETE {{baseUrl}}/indexes/phone-numbers-index?api-version=2024-07-01 HTTP/1.1
+    DELETE {{baseUrl}}/indexes/phone-numbers-index?api-version=2025-09-01 HTTP/1.1
         api-key: {{apiKey}}
     ```
 
@@ -447,7 +448,7 @@ All of the tokens in the output column exist in the index. If your query include
 
     ```http
     ### Create a new index
-    POST {{baseUrl}}/indexes?api-version=2024-07-01  HTTP/1.1
+    POST {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
       Content-Type: application/json
       api-key: {{apiKey}}
     
@@ -516,7 +517,7 @@ All of the tokens in the output column exist in the index. If your query include
 After you recreate the index, test the analyzer using the following request:
 
 ```http
-POST {{baseUrl}}/indexes/tutorial-first-analyzer/analyze?api-version=2024-07-01  HTTP/1.1
+POST {{baseUrl}}/indexes/tutorial-first-analyzer/analyze?api-version=2025-09-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}} 
 

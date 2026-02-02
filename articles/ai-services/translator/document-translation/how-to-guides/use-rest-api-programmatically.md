@@ -26,7 +26,7 @@ ms.custom: mode-other, devx-track-extended-java, devx-track-python, ignite-2024
 
 To get started, you need:
 
-* An active [**Azure account**](https://azure.microsoft.com/free/cognitive-services/). If you don't have one, you can [**create a free account**](https://azure.microsoft.com/free/)
+* An active [**Azure account**](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). If you don't have one, you can [**create a free account**](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 
 * An [**Azure Blob Storage account**](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM). You also need to [create containers](#create-azure-blob-storage-containers) in your Azure Blob Storage account for your source and target files:
 
@@ -246,7 +246,7 @@ The following headers are included with each Document translation API request:
             "inProgress": 1,
             "notYetStarted": 0,
             "cancelled": 0,
-            "totalCharacterCharged": 0,
+            "totalCharacterCharged": 1355,
             "totalImageScansSucceeded": 2,
             "totalImageScansFailed": 0
         }

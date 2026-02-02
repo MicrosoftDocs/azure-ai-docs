@@ -4,9 +4,10 @@ titleSuffix: Azure AI Foundry
 description: Find code samples and instructions for uploading files to Azure AI Foundry Agent Service.
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 05/28/2025
+ms.date: 08/07/2025
 author: aahill
 ms.author: aahi
 zone_pivot_groups: selection-bing-grounding-code
@@ -58,8 +59,7 @@ project_endpoint = os.environ["PROJECT_ENDPOINT"]  # Ensure the PROJECT_ENDPOINT
 # Initialize the AIProjectClient
 project_client = AIProjectClient(
     endpoint=project_endpoint,
-    credential=DefaultAzureCredential(exclude_interactive_browser_credential=False),  # Use Azure Default Credential for authentication
-    api_version="latest",
+    credential=DefaultAzureCredential(exclude_interactive_browser_credential=False)  # Use Azure Default Credential for authentication
 )
 ```
 
@@ -78,7 +78,7 @@ file = project_client.agents.files.upload_and_poll(file_path=file_path, purpose=
 print(f"Uploaded file, file ID: {file.id}")
 
 # Create a vector store with the uploaded file
-vector_store = project_client.agents.create_vector_store_and_poll(file_ids=[file.id], name="my_vectorstore")
+vector_store = project_client.agents.vector_stores.create_and_poll(file_ids=[file.id], name="my_vectorstore")
 print(f"Created vector store, vector store ID: {vector_store.id}")
 ```
 
@@ -134,10 +134,10 @@ if run.status == "failed":
     print(f"Run failed: {run.last_error}")
 
 # Cleanup resources
-project_client.agents.delete_vector_store(vector_store.id)
+project_client.agents.vector_stores.delete(vector_store.id)
 print("Deleted vector store")
 
-project_client.agents.delete_file(file_id=file.id)
+project_client.agents.files.delete(file_id=file.id)
 print("Deleted file")
 
 project_client.agents.delete_agent(agent.id)
@@ -145,8 +145,16 @@ print("Deleted agent")
 
 # Fetch and log all messages from the thread
 messages = project_client.agents.messages.list(thread_id=thread.id)
-for message in messages.data:
-    print(f"Role: {message.role}, Content: {message.content}")
+file_name = os.path.split(file_path)[-1]
+for msg in messages:
+    if msg.text_messages:
+        last_text = msg.text_messages[-1].text.value
+        for annotation in msg.text_messages[-1].text.annotations:
+            citation = (
+                file_name if annotation.file_citation.file_id == file.id else annotation.file_citation.file_id
+            )
+            last_text = last_text.replace(annotation.text, f" [{citation}]")
+        print(f"{msg.role}: {last_text}")
 ```
 :::zone-end
 
@@ -462,7 +470,7 @@ console.log(`Deleted agent, agent ID: ${agent.id}`);
 
 To access your files, the file search tool uses the vector store object. Upload your files and create a vector store. After creating the vector store, poll its status until all files are out of the in_progress state to ensure that all content is fully processed. The SDK provides helpers for uploading and polling.
 
-Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api#api-call-information) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
+Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
 
 ### Upload a file
 
@@ -570,6 +578,132 @@ curl --request GET \
 curl --request GET \
   --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
   -H "Authorization: Bearer $AGENT_TOKEN"
+```
+
+:::zone-end
+
+:::zone pivot="java"
+
+## Code example
+
+```java
+package com.example.agents;
+
+import com.azure.ai.agents.persistent.FilesClient;
+import com.azure.ai.agents.persistent.MessagesClient;
+import com.azure.ai.agents.persistent.PersistentAgentsAdministrationClient;
+import com.azure.ai.agents.persistent.PersistentAgentsClient;
+import com.azure.ai.agents.persistent.PersistentAgentsClientBuilder;
+import com.azure.ai.agents.persistent.RunsClient;
+import com.azure.ai.agents.persistent.ThreadsClient;
+import com.azure.ai.agents.persistent.VectorStoresClient;
+import com.azure.ai.agents.persistent.models.CreateAgentOptions;
+import com.azure.ai.agents.persistent.models.CreateRunOptions;
+import com.azure.ai.agents.persistent.models.FileDetails;
+import com.azure.ai.agents.persistent.models.FileInfo;
+import com.azure.ai.agents.persistent.models.FilePurpose;
+import com.azure.ai.agents.persistent.models.FileSearchToolDefinition;
+import com.azure.ai.agents.persistent.models.FileSearchToolResource;
+import com.azure.ai.agents.persistent.models.MessageImageFileContent;
+import com.azure.ai.agents.persistent.models.MessageRole;
+import com.azure.ai.agents.persistent.models.MessageTextContent;
+import com.azure.ai.agents.persistent.models.PersistentAgent;
+import com.azure.ai.agents.persistent.models.PersistentAgentThread;
+import com.azure.ai.agents.persistent.models.RunStatus;
+import com.azure.ai.agents.persistent.models.ThreadMessage;
+import com.azure.ai.agents.persistent.models.ThreadRun;
+import com.azure.ai.agents.persistent.models.ToolResources;
+import com.azure.ai.agents.persistent.models.UploadFileRequest;
+import com.azure.ai.agents.persistent.models.VectorStore;
+import com.azure.ai.agents.persistent.models.VectorStoreStatus;
+import com.azure.ai.agents.persistent.models.MessageContent;
+import com.azure.core.http.rest.PagedIterable;
+import com.azure.core.util.BinaryData;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+
+import java.util.Arrays;
+
+public class AgentExample {
+
+    public static void main(String[] args) throws InterruptedException{
+
+        // variables for authenticating requests to the agent service 
+        String projectEndpoint = System.getenv("PROJECT_ENDPOINT");
+        String modelName = System.getenv("MODEL_DEPLOYMENT_NAME");
+        String bingConnectionId = Configuration.getGlobalConfiguration().get("BING_CONNECTION_ID", "");
+
+        BingGroundingSearchConfiguration searchConfiguration = new BingGroundingSearchConfiguration(bingConnectionId);
+        BingGroundingSearchToolParameters searchToolParameters
+            = new BingGroundingSearchToolParameters(Arrays.asList(searchConfiguration));
+
+        BingGroundingToolDefinition bingGroundingTool = new BingGroundingToolDefinition(searchToolParameters);
+
+        String agentName = "bing_grounding_example";
+        CreateAgentOptions createAgentOptions = new CreateAgentOptions("gpt-35-turbo")
+            .setName(agentName)
+            .setInstructions("You are a helpful agent")
+            .setTools(Arrays.asList(bingGroundingTool));
+        PersistentAgent agent = administrationClient.createAgent(createAgentOptions);
+
+        PersistentAgentThread thread = threadsClient.createThread();
+        ThreadMessage createdMessage = messagesClient.createMessage(
+            thread.getId(),
+            MessageRole.USER,
+            "How does wikipedia explain Euler's Identity?");
+
+        try {
+            //run agent
+            CreateRunOptions createRunOptions = new CreateRunOptions(thread.getId(), agent.getId())
+                .setAdditionalInstructions("");
+            ThreadRun threadRun = runsClient.createRun(createRunOptions);
+
+            waitForRunCompletion(thread.getId(), threadRun, runsClient);
+            printRunMessages(messagesClient, thread.getId());
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } finally {
+            //cleanup
+            threadsClient.deleteThread(thread.getId());
+            administrationClient.deleteAgent(agent.getId());
+        }
+    }
+    
+    // A helper function to print messages from the agent
+    public static void printRunMessages(MessagesClient messagesClient, String threadId) {
+
+        PagedIterable<ThreadMessage> runMessages = messagesClient.listMessages(threadId);
+        for (ThreadMessage message : runMessages) {
+            System.out.print(String.format("%1$s - %2$s : ", message.getCreatedAt(), message.getRole()));
+            for (MessageContent contentItem : message.getContent()) {
+                if (contentItem instanceof MessageTextContent) {
+                    System.out.print((((MessageTextContent) contentItem).getText().getValue()));
+                } else if (contentItem instanceof MessageImageFileContent) {
+                    String imageFileId = (((MessageImageFileContent) contentItem).getImageFile().getFileId());
+                    System.out.print("Image from ID: " + imageFileId);
+                }
+                System.out.println();
+            }
+        }
+    }
+
+    // a helper function to wait until a run has completed running
+    public static void waitForRunCompletion(String threadId, ThreadRun threadRun, RunsClient runsClient)
+        throws InterruptedException {
+
+        do {
+            Thread.sleep(500);
+            threadRun = runsClient.getRun(threadId, threadRun.getId());
+        }
+        while (
+            threadRun.getStatus() == RunStatus.QUEUED
+                || threadRun.getStatus() == RunStatus.IN_PROGRESS
+                || threadRun.getStatus() == RunStatus.REQUIRES_ACTION);
+
+        if (threadRun.getStatus() == RunStatus.FAILED) {
+            System.out.println(threadRun.getLastError().getMessage());
+        }
+    }
+}
 ```
 
 :::zone-end

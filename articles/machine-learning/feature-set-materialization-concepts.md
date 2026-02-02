@@ -5,8 +5,8 @@ description: Build and use feature set materialization resources.
 ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.topic: how-to
-author: fbsolo-ms1 
-ms.author: franksolomon 
+author: s-polly 
+ms.author: scottpolly 
 ms.reviewer: ynpandey
 ms.date: 01/23/2025
 ms.custom: template-concept, update-code2

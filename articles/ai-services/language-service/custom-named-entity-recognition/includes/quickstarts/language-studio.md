@@ -1,21 +1,21 @@
----
+<!-- ---
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/21/2024
+ms.date: 09/18/2025
 ms.author: lajanuar
 ---
 
 ## Prerequisites
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 
 
 
 ## Create a new Azure AI Language resource and Azure storage account
 
-Before you can use custom NER, you'll need to create an Azure AI Language resource, which will give you the credentials that you need to create a project and start training a model. You'll also need an Azure storage account, where you can upload your dataset that will be used to build your model.
+Before you can use custom named entity recognition, you'll need to create an Azure AI Language resource, which will give you the credentials that you need to create a project and start training a model. You'll also need an Azure storage account, where you can upload your dataset that will be used to build your model.
 
 > [!IMPORTANT]
 > To quickly get started, we recommend creating a new Azure AI Language resource using the steps provided in this article. Using the steps in this article will let you create the Language resource and storage account at the same time, which is easier than doing it later.
@@ -67,4 +67,4 @@ After your model is deployed, you can start using it to extract entities from yo
 
 ## Clean up resources
 
-[!INCLUDE [Delete project using Language Studio](../language-studio/delete-project.md)]
+[!INCLUDE [Delete project using Language Studio](../language-studio/delete-project.md)] -->

@@ -2,19 +2,18 @@
 title: How to get started with an AI template
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to use an AI template to get started with Azure AI Foundry.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 05/05/2025
+ms.date: 09/15/2025
 ms.reviewer: varundua
 ms.author: sgilley
 author: sdgilley
 #customer intent: As a developer, I want to jump start my journey with an AI template.
 ---
 
-# Get started with an AI template (Preview)
+# Get started with an AI template
 
 Streamline your code-first development with prebuilt, task-specific Azure AI templates. Benefit from using the latest features and best practices from Microsoft Azure AI, with popular frameworks like LangChain, prompt flow, and Semantic Kernel in multiple languages.
 
@@ -23,13 +22,17 @@ Available templates include:
 * [Get started with AI chat](https://github.com/Azure-Samples/get-started-with-ai-chat)
 * [Get started with AI agents](https://github.com/Azure-Samples/get-started-with-ai-agents)
 * [Unlock insights from conversational data](https://github.com/microsoft/Conversation-Knowledge-Mining-Solution-Accelerator)
-
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+* [Multi-agent workflow automation](https://github.com/microsoft/Multi-Agent-Custom-Automation-Engine-Solution-Accelerator)
+* [Multi-modal content processing](https://github.com/microsoft/content-processing-solution-accelerator)
+* [Generate documents from your data](https://github.com/microsoft/document-generation-solution-accelerator)
+* [Improve client meetings with agents](https://github.com/microsoft/Build-your-own-copilot-Solution-Accelerator)
+* [Modernize your code with agents](https://github.com/microsoft/Modernize-your-code-solution-accelerator)
+* [Build your conversational agent](https://github.com/Azure-Samples/Azure-Language-OpenAI-Conversational-Agent-Accelerator)
 
 ## Prerequisites
 
-- [Azure subscription](https://azure.microsoft.com/free)
-- An [Azure AI Foundry project](../create-projects.md).
+- [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
+- Either a [[!INCLUDE [fdp-project-name](../../includes/fdp-project-name.md)]](../create-projects.md) or a [[!INCLUDE [hub-project-name](../../includes/hub-project-name.md)]](../hub-create-projects.md).
 
 ## Start with a sample application
 
@@ -57,6 +60,6 @@ Instructions vary by sample, but most include how to:
 
 The README also includes information about the application, such as the use case, architecture, and pricing information.
 
-## Related content
+## Next step
 
-- [Get started building a chat app using the Azure AI Foundry SDK](../../quickstarts/get-started-code.md)
+- [Quickstart: Get started with Azure AI Foundry](../../quickstarts/get-started-code.md)

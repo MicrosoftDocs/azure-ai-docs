@@ -6,11 +6,12 @@ description: Create an Azure AI Foundry hub inside a managed virtual network. Th
 ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
+  - hub-only
 ms.topic: how-to
-ms.date: 05/09/2025
+ms.date: 07/08/2025
 ms.reviewer: meerakurup 
-ms.author: larryfr
-author: Blackmist
+ms.author: sgilley
+author: sdgilley
 # Customer intent: As an administrator, I want to create a secure hub and project with a managed virtual network so that I can secure access to the Azure AI Foundry hub and project resources.
 
 ---
@@ -26,12 +27,12 @@ You can secure your [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) hub,
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free) before you begin.
+- [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 - An Azure Virtual Network that you use to securely connect to Azure services. For example, you might use [Azure Bastion](/azure/bastion/bastion-overview), [VPN Gateway](/azure/vpn-gateway/vpn-gateway-about-vpngateways) or [ExpressRoute](/azure/expressroute/expressroute-introduction) to connect to the Azure Virtual Network from your on-premises network. If you don't have an Azure Virtual Network, you can create one by following the instructions in [Create a virtual network](/azure/virtual-network/quick-create-portal).
 
 ## Create a hub
 
-1. From the Azure portal, search for `Azure AI Foundry`. From the left menu, select **AI Hubs**, and then select **+ Create** and **Hub**.
+1. From the [Azure portal](https://portal.azure.com), search for `Azure AI Foundry`. From the left menu, select **AI Hubs**, and then select **+ Create** and **Hub**.
 
     :::image type="content" source="../media/how-to/hubs/create-hub.png" alt-text="Screenshot of the Azure AI Foundry portal." lightbox="../media/how-to/hubs/create-hub.png":::
 

@@ -2,11 +2,11 @@
 title: 'Try Azure AI Search for free'
 titleSuffix: Azure AI Search
 description: Learn how to create a trial subscription and use credits for trying advanced features.
-
 manager: nitinme
-author: HeidiSteen
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.topic: conceptual
 ms.date: 06/11/2025
 ms.custom: references_regions
@@ -14,18 +14,18 @@ ms.custom: references_regions
 
 # Try Azure AI Search for free
 
-If you're new to Azure, you can set up a free trial subscription to explore Azure AI Search and other services at no charge. Information retrieval over your own content is useful for many scenarios including AI generative search.
+If you're new to Azure, you can set up an Azure free account to explore Azure AI Search and other services at no charge. Information retrieval over your own content is useful for many scenarios including AI generative search.
 
-This article explains how to get the most value from your Azure trial subscription so that you can complete your evaluation of Azure AI Search quickly and efficiently.
+This article explains how to get the most value from your Azure free account so that you can complete your evaluation of Azure AI Search quickly and efficiently.
 
-## Step one: Sign up for a free subscription
+## Step one: Sign up for an Azure free account
 
-To try Azure AI Search for free, [start a trial subscription](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F). The trial subscription is nonrenewable, active for one month, and comes with free credits so that you can create billable services at no charge. 
+To try Azure AI Search for free, [Sign up for an Azure free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). The free account is active for 30 days, and comes with free credits so that you can create billable services at no charge. 
 
-At this point in time, the credit is equivalent to USD 200. As always, the exact amount is subject to change, but you can verify the credit on the trial subscription sign-up page.
+At this point in time, the credit is equivalent to USD 200. As always, the exact amount is subject to change, but you can verify the credit on the Azure sign-up page.
 
 > [!div class="nextstepaction"]
-> [Start your free trial subscription](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F)
+> [Try Azure for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 
 Once you sign up, you can immediately use either of these links to access Azure resources and experiences:
 
@@ -140,10 +140,10 @@ Review the [service limits](search-limits-quotas-capacity.md) for other constrai
 
 ## Next steps
 
-Sign up for an Azure trial subscription:
+Sign up for an Azure free account:
 
 > [!div class="nextstepaction"]
-> [Start your free trial subscription](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F)
+> [Try Azure for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 
 When you're ready, add Azure AI Search as your first resource:
 

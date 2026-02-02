@@ -6,10 +6,12 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: reference
-ms.custom: troubleshooting
 author: likebupt
 ms.author: keli19
 ms.date: 03/25/2021
+ms.custom:
+  - troubleshooting
+  - sfi-image-nochange
 ---
 # Exceptions and error codes for the designer
 

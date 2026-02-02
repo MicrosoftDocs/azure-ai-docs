@@ -7,7 +7,7 @@ ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: quickstart
-ms.date: 04/14/2025
+ms.date: 09/29/2025
 ---
 
 # Get started: Document translation REST APIs
@@ -26,7 +26,7 @@ The Document translation API supports two translation processes:
 
 ## Prerequisites
 
-You need an active Azure subscription. If you don't have an Azure subscription, you can [create one for free](https://azure.microsoft.com/free/cognitive-services/).
+You need an active Azure subscription. If you don't have an Azure subscription, you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * Once you have your Azure subscription, create an [Azure AI Translator resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) in the Azure portal.
 
@@ -41,18 +41,13 @@ You need an active Azure subscription. If you don't have an Azure subscription, 
 
     :::image type="content" source="../media/document-translation-key-endpoint.png" alt-text="Screenshot to document translation key and endpoint location in the Azure portal.":::
 
-* For this project, we use the cURL command line tool to make REST API calls.
+* For this project, we use the cURL command-line tool to make REST API calls.
 
     > [!NOTE]
     > The cURL package is preinstalled on most Windows 10 and Windows 11 and most macOS and Linux distributions. You can check the package version with the following commands:
     > Windows: `curl.exe -V`
     > macOS `curl -V`
     > Linux: `curl --version`
-
-* If cURL isn't installed, here are installation links for your platform:
-
-  * [Windows](https://curl.haxx.se/windows/)
-  * [Mac or Linux](https://learn2torials.com/thread/how-to-install-curl-on-mac-or-linux-(ubuntu)-or-windows)
 
 ## Asynchronously translate documents (POST)
 
@@ -81,6 +76,23 @@ You need an active Azure subscription. If you don't have an Azure subscription, 
       ]
     }
     ```
+
+### Storage container authorization
+
+You can choose one of the following options to authorize access to your Azure AI Translator resource.
+
+**✔️ Managed Identity**. A managed identity is a service principal that creates a Microsoft Entra identity and specific permissions for an Azure managed resource. Managed identities enable you to run your Azure AI Translator application without having to embed credentials in your code. Managed identities are a safer way to grant access to storage data and replace the requirement for you to include shared access signature tokens (SAS) with your source and target URLs.
+
+To learn more, *see* [Managed identities for Document translation](../how-to-guides/create-use-managed-identities.md).
+
+  :::image type="content" source="../media/managed-identity-rbac-flow.png" alt-text="Screenshot of managed identity flow (RBAC).":::
+
+**✔️ Shared Access Signature (SAS)**. A shared access signature is a URL that grants restricted access for a specified period of time to your Translator service. To use this method, you need to create Shared Access Signature (SAS) tokens for your source and target containers. The `sourceUrl`  and `targetUrl` must include a Shared Access Signature (SAS) token, appended as a query string. The token can be assigned to your container or specific blobs.
+
+* Your **source** container or blob must designate **read** and **list** access.
+* Your **target** container or blob must designate **write** and **list** access.
+
+To learn more, *see* [**Create SAS tokens**](../how-to-guides/create-sas-tokens.md).
 
 ### Build and run the POST request
 

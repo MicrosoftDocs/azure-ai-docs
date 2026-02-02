@@ -2,12 +2,12 @@
 title: Configure Speech containers
 titleSuffix: Azure AI services
 description: Speech service provides each container with a common configuration framework, so that you can easily configure and manage storage, logging, and security settings for your containers.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 3/10/2025
-ms.author: eur
+ms.date: 7/1/2025
+ms.author: pafarley
 #Customer intent: As a developer, I want to learn how to configure Speech containers.
 ---
 

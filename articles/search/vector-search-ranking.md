@@ -2,43 +2,53 @@
 title: Vector relevance and ranking
 titleSuffix: Azure AI Search
 description: Explains the concepts behind vector relevance, scoring, including how matches are found in vector space and ranked in search results.
-
 author: yahnoosh
 ms.author: jlembicz
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 05/29/2025
+ms.date: 07/03/2025
+ms.update-cycle: 180-days
 ---
 
 # Relevance in vector search
 
-During vector query execution, the search engine looks for similar vectors to find the best candidates to return in search results. Depending on how you indexed the vector content, the search for relevant matches is either exhaustive, or constrained to nearest neighbors for faster processing. Once candidates are found, similarity metrics are used to score each result based on the strength of the match. 
+During vector query execution, the search engine looks for similar vectors to find the best candidates to return in search results. Depending on how you indexed the vector content, the search for relevant matches is either exhaustive, or constrained to nearest neighbors for faster processing. Once candidates are found, similarity metrics are used to score each result based on the strength of the match.
 
 This article explains the algorithms used to find relevant matches and the similarity metrics used for scoring. It also offers tips for improving relevance if search results don't meet expectations.
 
 ## Algorithms used in vector search
 
-Vector search algorithms include exhaustive k-nearest neighbors (KNN) and Hierarchical Navigable Small World (HNSW). 
+Vector search algorithms include:
 
-+ Exhaustive KNN performs a brute-force scan of the entire vector space.
++ [Exhaustive K-Nearest Neighbors (KNN)](#about-exhaustive-knn), which performs a brute-force scan of the entire vector space.
 
-+ HNSW performs an [approximate nearest neighbor (ANN)](vector-search-overview.md#approximate-nearest-neighbors) search. 
++ [Hierarchical Navigable Small World (HNSW)](#about-hnsw), which performs an [Approximate Nearest Neighbor (ANN)](#about-ann) search.
 
-Only vector fields marked as `searchable` in the index, or as `searchFields` in the query, are used for searching and scoring. 
+Only vector fields marked as `searchable` in the index or `searchFields` in the query are used for searching and scoring.
 
-### When to use exhaustive KNN
+### About exhaustive KNN
 
-Exhaustive KNN calculates the distances between all pairs of data points and finds the exact `k` nearest neighbors for a query point. It's intended for scenarios where high recall is of utmost importance, and users are willing to accept the trade-offs in query latency. Because it's computationally intensive, use exhaustive KNN for small to medium datasets, or when precision requirements outweigh query performance considerations. 
+Exhaustive KNN calculates the distances between all pairs of data points and finds the exact `k` nearest neighbors for a query point. Because the algorithm doesn't require fast random access of data points, KNN doesn't consume [vector index size](vector-search-index-size.md) quota. However, it provides the global set of nearest neighbors.
 
-A secondary use case is to build a dataset to evaluate approximate nearest neighbor algorithm recall. Exhaustive KNN can be used to build the ground truth set of nearest neighbors.
+Exhaustive KNN is computationally intensive, so use it for small to medium datasets or when the need for precision outweighs the need for query performance. Another use case is building a dataset to evaluate the recall of an [ANN algorithm](#about-ann), as exhaustive KNN can be used to build the ground truth set of nearest neighbors.
 
-### When to use HNSW
+### About HNSW
 
-During indexing, HNSW creates extra data structures for faster search, organizing data points into a hierarchical graph structure. HNSW has several configuration parameters that can be tuned to achieve the throughput, latency, and recall objectives for your search application. For example, at query time, you can specify options for exhaustive search, even if the vector field is indexed for HNSW.
+HNSW is an ANN algorithm optimized for high-recall, low-latency applications with unknown or volatile data distribution. During indexing, HNSW creates extra data structures that organize data points into a hierarchical graph. During query execution, HNSW navigates through this graph to find the most relevant matches, enabling efficient nearest neighbor searches.
 
-During query execution, HNSW enables fast neighbor queries by navigating through the graph. This approach strikes a balance between search accuracy and computational efficiency. HNSW is recommended for most scenarios due to its efficiency when searching over larger data sets. 
+HNSW requires all data points to reside in memory for fast random access, which consumes [vector index size](vector-search-index-size.md) quota. This design balances search accuracy with computational efficiency and makes HNSW suitable for most scenarios, especially when searching over larger datasets.
+
+HNSW offers several tunable configuration parameters to optimize throughput, latency, and recall for your search application. For example, fields that specify HNSW also support exhaustive KNN using the [query request](vector-search-how-to-query.md) parameter `"exhaustive": true`. However, fields indexed for `exhaustiveKnn` don't support HNSW queries because the extra data structures that enable efficient search don't exist.
+
+### About ANN
+
+ANN is a class of algorithms for finding matches in vector space. This class of algorithms uses different data structures or data partitioning methods to significantly reduce the search space and accelerate query processing.
+
+ANN algorithms sacrifice some accuracy but offer scalable and faster retrieval of approximate nearest neighbors, which makes them ideal for balancing accuracy and efficiency in modern information retrieval applications. You can adjust the parameters of your algorithm to fine-tune the recall, latency, memory, and disk footprint requirements of your search application.
+
+Azure AI Search uses HNSW for its ANN algorithm.
 
 ## How nearest neighbor search works
 
@@ -56,15 +66,15 @@ During indexing, the search service constructs the HNSW graph. The goal of index
 
 1. Entry point: This is the top-level of the hierarchical graph and serves as the starting point for indexing.
 
-1. Adding to the graph: Different hierarchical levels represent different granularities of the graph, with higher levels being more global, and lower levels being more granular. Each node in the graph represents a vector point. 
+1. Adding to the graph: Different hierarchical levels represent different granularities of the graph, with higher levels being more global, and lower levels being more granular. Each node in the graph represents a vector point.
 
-   - Each node is connected to up to `m` neighbors that are nearby. This is the `m` parameter.
+   + Each node is connected to up to `m` neighbors that are nearby. This is the `m` parameter.
 
-   - The number of data points considered as candidate connections is governed by the `efConstruction` parameter. This dynamic list forms the set of closest points in the existing graph for the algorithm to consider. Higher `efConstruction` values result in more nodes being considered, which often leads to denser local neighborhoods for each vector.
+   + The number of data points considered as candidate connections is governed by the `efConstruction` parameter. This dynamic list forms the set of closest points in the existing graph for the algorithm to consider. Higher `efConstruction` values result in more nodes being considered, which often leads to denser local neighborhoods for each vector.
 
-   - These connections use the configured similarity `metric` to determine distance. Some connections are "long-distance" connections that connect across different hierarchical levels, creating shortcuts in the graph that enhance search efficiency.
+   + These connections use the configured similarity `metric` to determine distance. Some connections are "long-distance" connections that connect across different hierarchical levels, creating shortcuts in the graph that enhance search efficiency.
 
-1. Graph pruning and optimization: This can happen after indexing all vectors, and it improves navigability and efficiency of the HNSW graph. 
+1. Graph pruning and optimization: This can happen after indexing all vectors, and it improves navigability and efficiency of the HNSW graph.
 
 ### Navigating the HNSW graph at query time
 
@@ -99,14 +109,14 @@ Scores are calculated and assigned to each match, with the highest matches retur
 
 | Search method | Parameter | Scoring metric | Range |
 |---------------|-----------|-------------------|-------|
-| vector search | `@search.score` | Cosine | 0.333 - 1.00 | 
+| vector search | `@search.score` | Cosine | 0.333 - 1.00 |
 
 For`cosine` metric, it's important to note that the calculated `@search.score` isn't the cosine value between the query vector and the document vectors. Instead, Azure AI Search applies transformations such that the score function is monotonically decreasing, meaning score values will always decrease in value as the similarity becomes worse. This transformation ensures that search scores are usable for ranking purposes.
 
-There are some nuances with similarity scores: 
+There are some nuances with similarity scores:
 
-- Cosine similarity is defined as the cosine of the angle between two vectors.
-- Cosine distance is defined as `1 - cosine_similarity`.
++ Cosine similarity is defined as the cosine of the angle between two vectors.
++ Cosine distance is defined as `1 - cosine_similarity`.
 
 To create a monotonically decreasing function, the `@search.score` is defined as `1 / (1 + cosine_distance)`.
 

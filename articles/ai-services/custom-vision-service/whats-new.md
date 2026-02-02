@@ -12,6 +12,8 @@ ms.author: pafarley
 
 # What's new in Custom Vision
 
+[!INCLUDE [custom-vision-retirement](includes/custom-vision-retirement.md)]
+
 Learn what's new in the service. These items may be release notes, videos, blog posts, and other types of information. Bookmark this page to keep up to date with the service.
 
 ## May 2022

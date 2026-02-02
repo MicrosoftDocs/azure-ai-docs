@@ -14,6 +14,8 @@ ms.custom: devx-track-csharp
 
 # Call the Prediction API
 
+[!INCLUDE [custom-vision-retirement](includes/custom-vision-retirement.md)]
+
 After you train your model, you can test it programmatically by submitting images to the Prediction API endpoint. In this guide, you'll learn how to call the Prediction API to score an image. You'll learn the different ways you can configure the behavior of this API to meet your needs.
 
 > [!NOTE]

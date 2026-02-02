@@ -6,20 +6,20 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 02/17/2025
+ms.date: 08/19/2025
 ms.author: lajanuar
 ms.custom: language-service-sentiment-opinion-mining
 ---
 
 # What is sentiment analysis and opinion mining?
 
-Sentiment analysis and opinion mining are features offered by [the Language service](../overview.md), a collection of machine learning and AI algorithms in the cloud for developing intelligent applications that involve written language. These features help you find out what people think of your brand or topic by mining text for clues about positive or negative sentiment, and can associate them with specific aspects of the text. 
+Sentiment analysis and opinion mining are features offered by [the Language service](../overview.md), a collection of machine learning and AI algorithms in the cloud for developing intelligent applications that involve written language. These features help you discover what people think about your brand or topic by analyzing text for signs of positive or negative sentiment. They can also link these sentiments to specific aspects of the text.
 
 Both sentiment analysis and opinion mining work with various [written languages](./language-support.md).
 
-## Sentiment analysis 
+## Sentiment analysis
 
-The sentiment analysis feature provides sentiment labels (such as "negative", "neutral" and "positive") based on the highest confidence score found by the service at a sentence and document-level. This feature also returns confidence scores between 0 and 1 for each document & sentences within it for positive, neutral, and negative sentiment. 
+The sentiment analysis feature assigns sentiment labels, such as "negative," "neutral," and "positive." The service determines these labels using the highest confidence score. Sentiment is evaluated at both the sentence level and the document level. This feature also returns confidence scores between 0 and 1 for each document & sentences within it for positive, neutral, and negative sentiment.
 
 ## Opinion mining
 
@@ -31,7 +31,7 @@ Opinion mining is a feature of sentiment analysis, also known as aspect-based se
 
 [!INCLUDE [development options](./includes/development-options.md)]
 
-[!INCLUDE [Developer reference](../includes/reference-samples-text-analytics.md)] 
+[!INCLUDE [Developer reference](../includes/reference-samples-text-analytics.md)]
 
 ## Reference documentation
 
@@ -42,13 +42,12 @@ As you use sentiment analysis, see the following reference documentation and sam
 |REST APIs (Authoring)   | [REST API documentation](https://aka.ms/ct-authoring-swagger)        |         |
 |REST APIs (Runtime)    | [REST API documentation](https://aka.ms/ct-runtime-swagger)        |         |
 
---- 
+---
 
-## Responsible AI 
+## Responsible AI
 
-An AI system includes not only the technology, but also the people who use it, the people who are affected by it, and the environment in which it's deployed. Read the [transparency note for sentiment analysis](/legal/cognitive-services/language-service/transparency-note-sentiment-analysis?context=/azure/ai-services/language-service/context/context) to learn about responsible AI use and deployment in your systems. You can also see the following articles for more information:
+An AI system encompasses more than just the technology itself. An AI system includes the individuals who operate the system, the people who experience its effects, and the broader environment where the system functions all play a role. Read the [transparency note for sentiment analysis](/azure/ai-foundry/responsible-ai/language-service/transparency-note-sentiment-analysis) to learn about responsible AI use and deployment in your systems. 
 
 ## Next steps
 
-* The quickstart articles with instructions on using the service for the first time.
-    * [Use sentiment analysis and opinion mining](./quickstart.md)
+Get started with our quickstart articles with instructions on using the service for the first time: [Use sentiment analysis and opinion mining](./quickstart.md)

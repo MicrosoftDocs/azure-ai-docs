@@ -5,8 +5,8 @@ description: Learn how to run your PyTorch training scripts at enterprise scale 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: training
-ms.author: sgilley
-author: sdgilley
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: balapv
 ms.date: 09/17/2024
 ms.topic: how-to
@@ -26,7 +26,7 @@ Whether you're training a deep learning PyTorch model from the ground-up or you'
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have one already, [create a free account](https://azure.microsoft.com/free/).
+- An Azure subscription. If you don't have one already, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Run the code in this article using either an Azure Machine Learning compute instance or your own Jupyter notebook.
     - Azure Machine Learning compute instance—no downloads or installation necessary:
         - Complete the [Quickstart: Get started with Azure Machine Learning](quickstart-create-resources.md) to create a dedicated notebook server preloaded with the SDK and the sample repository.

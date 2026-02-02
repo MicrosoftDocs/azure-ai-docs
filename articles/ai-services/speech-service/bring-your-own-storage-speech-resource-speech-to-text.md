@@ -5,10 +5,10 @@ description: Learn how to use Bring your own storage (BYOS) Speech resource with
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 3/10/2025
-author: eric-urban
-ms.author: eur
-ms.reviewer: alexeyo
+ms.date: 08/07/2025
+author: PatrickFarley
+ms.author: pafarley
+ms.reviewer: jagoerge
 ---
 
 # Use the Bring your own storage (BYOS) Speech resource for speech to text
@@ -74,7 +74,7 @@ Speech service uses `customspeech-artifacts` Blob container in the BYOS-associat
 For maximum security use the `sasValidityInSeconds` parameter with the value set to `0` in the requests, that return data file URLs, like [Get Transcription Files](/rest/api/speechtotext/transcriptions/list-files) request. Here's an example request URL:
 
 ```https
-https://eastus.api.cognitive.microsoft.com/speechtotext/v3.1/transcriptions/3b24ca19-2eb1-4a2a-b964-35d89eca486b/files?sasValidityInSeconds=0
+https://eastus.api.cognitive.microsoft.com/speechtotext/v3.1/transcriptions/aaaabbbb-0000-cccc-1111-dddd2222eeee/files?sasValidityInSeconds=0
 ```
 
 Such a request returns direct Storage Account URLs to data files (without SAS or other additions). For example:
@@ -147,7 +147,7 @@ The Blob container structure is provided for your information only and subject t
 For maximum security use the `sasValidityInSeconds` parameter with the value set to `0` in the requests, that return data file URLs, like [Get Dataset Files](/rest/api/speechtotext/datasets/list-files) request. Here's an example request URL:
 
 ```https
-https://eastus.api.cognitive.microsoft.com/speechtotext/v3.1/datasets/8427b92a-cb50-4cda-bf04-964ea1b1781b/files?sasValidityInSeconds=0
+https://eastus.api.cognitive.microsoft.com/speechtotext/v3.1/datasets/bbbbcccc-1111-dddd-2222-eeee3333ffff/files?sasValidityInSeconds=0
 ```
 
 Such a request returns direct Storage Account URLs to data files (without SAS or other additions). For example:

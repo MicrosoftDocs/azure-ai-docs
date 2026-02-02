@@ -6,7 +6,10 @@ ms.topic: tutorial
 author: laujan
 ms.author: lajanuar
 ms.date: 06/04/2025
-ms.custom: language-service-question-answering, cogserv-non-critical-language
+ms.custom:
+  - language-service-question-answering
+  - cogserv-non-critical-language
+  - sfi-image-nochange
 ---
 
 # Tutorial: Create an FAQ bot

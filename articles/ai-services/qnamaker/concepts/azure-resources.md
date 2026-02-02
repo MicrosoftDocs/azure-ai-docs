@@ -1,32 +1,32 @@
 ---
 title: Azure resources - QnA Maker
-description: QnA Maker uses several Azure sources, each with a different purpose. Understanding how they are used individually allows you to plan for and select the correct pricing tier or know when to change your pricing tier. Understanding how they are used in combination allows you to find and fix problems when they occur.
+description: QnA Maker uses several Azure sources, each with a different purpose. Understanding how they're used individually allows you to plan for and select the correct pricing tier or know when to change your pricing tier. Understanding how they're used in combination allows you to find and fix problems when they occur.
 ms.service: azure-ai-language
 manager: nitinme
 ms.author: lajanuar
 author: laujan
 ms.subservice: azure-ai-qna-maker
 ms.topic: conceptual
-ms.date: 06/12/2025
+ms.date: 07/16/2025
 ---
 
 # Azure resources for QnA Maker
 
-QnA Maker uses several Azure sources, each with a different purpose. Understanding how they are used individually allows you to plan for and select the correct pricing tier or know when to change your pricing tier. Understanding how they are used _in combination_ allows you to find and fix problems when they occur.
+QnA Maker uses several Azure sources, each with a different purpose. Understanding how they're used individually allows you to plan for and select the correct pricing tier or know when to change your pricing tier. Understanding how they're used _in combination_ allows you to find and fix problems when they occur.
 
 [!INCLUDE [Info on question answering GA](../includes/new-version.md)]
 
 ## Resource planning
 
-When you first develop a QnA Maker knowledge base, in the prototype phase, it is common to have a single QnA Maker resource for both testing and production.
+When you first develop a QnA Maker knowledge base, in the prototype phase, it's common to have a single QnA Maker resource for both testing and production.
 
 When you move into the development phase of the project, you should consider:
 
-* How many languages your knowledge base system will hold?
+* How many languages your knowledge base system holds?
 * How many regions you need your knowledge base to be available in?
-* How many documents in each domain your system will hold?
+* How many documents in each domain your system holds?
 
-Plan to have a single QnA Maker resource hold all knowledge bases that have the same language, the same region and the same subject domain combination.
+Plan to have a single QnA Maker resource hold all knowledge bases that have the same language, the same region, and the same subject domain combination.
 
 ## Pricing tier considerations
 
@@ -34,30 +34,30 @@ Typically there are three parameters you need to consider:
 
 * **The throughput you need from the service**:
     * Select the appropriate [App Plan](https://azure.microsoft.com/pricing/details/app-service/plans/) for your App service based on your needs. You can [scale up](/azure/app-service/manage-scale-up) or down the App.
-    * This should also influence your Azure **Cognitive Search** SKU selection, see more details [here](/azure/search/search-sku-tier). Additionally, you might need to adjust Cognitive Search [capacity](/azure/search/search-capacity-planning) with replicas.
+    * This determination should also influence your Azure **Cognitive Search** SKU selection, see more details [here](/azure/search/search-sku-tier). Additionally, you might need to adjust Cognitive Search [capacity](/azure/search/search-capacity-planning) with replicas.
 
 * **Size and the number of knowledge bases**: Choose the appropriate [Azure search SKU](https://azure.microsoft.com/pricing/details/search/) for your scenario. Typically, you decide number of knowledge bases you need based on number of different subject domains. Once subject domain (for a single language) should be in one knowledge base.
 
-Your Azure Search service resource must have been created after January 2019 and cannot be in the free (shared) tier. There is no support to configure customer-managed keys in the Azure portal.
+Your Azure Search service resource must be created after January 2019 and can't be in the free (shared) tier. There's no support to configure customer-managed keys in the Azure portal.
 
 > [!IMPORTANT]
 > You can publish N-1 knowledge bases in a particular tier, where N is the maximum indexes allowed in the tier. Also check the maximum size and the number of documents allowed per tier.
 
 For example, if your tier has 15 allowed indexes, you can publish 14 knowledge bases (one index per published knowledge base). The fifteenth index is used for all the knowledge bases for authoring and testing.
 
-* **Number of documents as sources**: The free SKU of the QnA Maker management service limits the number of documents you can manage via the portal and the APIs to 3 (of 1 MB size each). The standard SKU has no limits to the number of documents you can manage. See more details [here](https://aka.ms/qnamaker-pricing).
+* **Number of documents as sources**: The free SKU of the QnA Maker management service limits the number of documents you can manage via the portal and the APIs to 3 (of 1-MB size each). The standard SKU has no limits to the number of documents you can manage. See more details [here](https://aka.ms/qnamaker-pricing).
 
 The following table gives you some high-level guidelines.
 
 |                            | QnA Maker Management | App Service | Azure AI Search | Limitations                      |
 | -------------------------- | -------------------- | ----------- | ------------ | -------------------------------- |
-| **Experimentation**        | Free SKU             | Free Tier   | Free Tier    | Publish Up to 2 KBs, 50 MB size  |
-| **Dev/Test Environment**   | Standard SKU         | Shared      | Basic        | Publish Up to 14 KBs, 2 GB size    |
-| **Production Environment** | Standard SKU         | Basic       | Standard     | Publish Up to 49 KBs, 25 GB size |
+| **Experimentation**        | Free SKU             | Free Tier   | Free Tier    | Publish Up to 2-KBs, 50-MB size  |
+| **Dev/Test Environment**   | Standard SKU         | Shared      | Basic        | Publish Up to 14-KBs, 2-GB size    |
+| **Production Environment** | Standard SKU         | Basic       | Standard     | Publish Up to 49-KBs, 25-GB size |
 
 ## Recommended Settings
 
-|Target QPS | App Service | Azure AI Search |
+|Target `QPS` | App Service | Azure AI Search |
 | -------------------- | ----------- | ------------ |
 | 3             | S1, one Replica   | S1, one Replica    |
 | 50         | S3, 10 Replicas       | S1, 12 Replicas         |
@@ -85,8 +85,8 @@ Use these keys when making requests to the service through APIs.
 
 |Name|Location|Purpose|
 |--|--|--|
-|Authoring/Subscription key|[Azure portal](https://azure.microsoft.com/free/cognitive-services/)|These keys are used to access the [QnA Maker management service APIs](/rest/api/qnamaker/knowledgebase). These APIs let you edit the questions and answers in your knowledge base, and publish your knowledge base. These keys are created when you create a new QnA Maker service.<br><br>Find these keys on the **Azure AI services** resource on the **Keys and Endpoint** page.|
-|Query endpoint key|[QnA Maker portal](https://www.qnamaker.ai)|These keys are used to query the published knowledge base endpoint to get a response for a user question. You typically use this query endpoint in your chat bot or in the client application code that connects to the QnA Maker service. These keys are created when you publish your QnA Maker knowledge base.<br><br>Find these keys in the **Service settings** page. Find this page from the user's menu in the upper right of the page on the drop-down menu.|
+|Authoring/Subscription key|[Azure portal](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)|These keys are used to access the [QnA Maker management service APIs](/rest/api/qnamaker/knowledgebase). These APIs let you edit the questions and answers in your knowledge base, and publish your knowledge base. These keys are created when you create a new QnA Maker service.<br><br>Find these keys on the **Azure AI services** resource on the **Keys and Endpoint** page.|
+|Query endpoint key|QnA Maker portal|These keys are used to query the published knowledge base endpoint to get a response for a user question. You typically use this query endpoint in your chat bot or in the client application code that connects to the QnA Maker service. These keys are created when you publish your QnA Maker knowledge base.<br><br>Find these keys in the **Service settings** page. Find this page from the user's menu in the upper right of the page on the drop-down menu.|
 
 ### Find authoring keys in the Azure portal
 
@@ -116,7 +116,7 @@ Endpoint keys can be managed from the [QnA Maker portal](https://qnamaker.ai).
     > ![Endpoint key manager](../media/qnamaker-how-to-key-management/Endpoint-keys1.png)
 
     >[!NOTE]
-    >Refresh your keys if you think they've been compromised. This may require corresponding changes to your client application or bot code.
+    >Refresh your keys if you think they're compromised. This action may require corresponding changes to your client application or bot code.
 
 ## Management service region
 
@@ -171,7 +171,7 @@ The [Cognitive Search](/azure/search/) resource is used to:
 
 The resource keeps one index to act as the test index and the remaining indexes correlate to one published knowledge base each.
 
-A resource priced to hold 15 indexes, will hold 14 published knowledge bases, and one index is used for testing all the knowledge bases. This test index is partitioned by knowledge base so that a query using the interactive test pane will use the test index but only return results from the specific partition associated with the specific knowledge base.
+A resource priced to hold 15 indexes, holds 14 published knowledge bases, and one index is used for testing all the knowledge bases. This test index is partitioned via the knowledge base so that a query using the interactive test pane uses the test index but only return results from the specific partition associated with the specific knowledge base.
 
 #### Language usage
 
@@ -179,7 +179,7 @@ The first knowledge base created in the QnA Maker resource is used to determine 
 
 #### Using a single Cognitive Search service
 
-If you create a QnA service and its dependencies (such as Search) through the portal, a Search service is created for you and linked to the QnA Maker service. After these resources are created, you can update the App Service setting to use a previously existing Search service and remove the one you just created.
+If you create a QnA service and its dependencies (such as Search) through the portal, a Search service is created for you and linked to the QnA Maker service. After these resources are created, you can update the App Service setting to use a previously existing Search service and remove the one you created.
 
 Learn [how to configure](../how-to/configure-QnA-Maker-resources.md#configure-qna-maker-to-use-different-cognitive-search-resource) QnA Maker to use a different Azure AI service resource than the one created as part of the QnA Maker resource creation process.
 
@@ -202,10 +202,10 @@ QnA Maker creates several Azure resources. To reduce management and benefit from
 |Service|Share|Reason|
 |--|--|--|
 |Azure AI services|X|Not possible by design|
-|App Service plan|✔|Fixed disk space allocated for an App Service plan. If other apps that sharing the same App Service plan use significant disk space, the QnAMaker App Service instance will encounter problems.|
+|App Service plan|✔|Fixed disk space allocated for an App Service plan. If other apps that sharing the same App Service plan use significant disk space, the QnAMaker App Service instance encounters problems.|
 |App Service|X|Not possible by design|
 |Application Insights|✔|Can be shared|
-|Search service|✔|1. `testkb` is a reserved name for the QnAMaker service; it can't be used by others.<br>2. Synonym map by the name `synonym-map` is reserved for the QnAMaker service.<br>3. The number of published knowledge bases is limited by Search service tier. If there are free indexes available, other services can use them.|
+|Search service|✔|1. `testkb` is a reserved name for the QnAMaker service and can't be used.<br>2. Synonym map by the name `synonym-map` is reserved for the QnAMaker service.<br>3. The number of published knowledge bases is limited by Search service tier. If there are free indexes available, other services can use them.|
 
 ## Next steps
 

@@ -32,7 +32,7 @@ In this quickstart, use the following features to analyze and extract data and v
 
 ## Prerequisites
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/).
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * The latest version of [Visual Studio Code](https://code.visualstudio.com/) or your preferred IDE. *See* [Java in Visual Studio Code](https://code.visualstudio.com/docs/languages/java).
 
@@ -264,9 +264,11 @@ Extract text, selection marks, text styles, table structures, and bounding regio
 
 ```java
 
-import com.azure.ai.documentintelligence.models.AnalyzeDocumentRequest;
+import com.azure.ai.documentintelligence.DocumentIntelligenceClient;
+import com.azure.ai.documentintelligence.DocumentIntelligenceClientBuilder;
+import com.azure.ai.documentintelligence.models.AnalyzeDocumentOptions;
+import com.azure.ai.documentintelligence.models.AnalyzeOperationDetails;
 import com.azure.ai.documentintelligence.models.AnalyzeResult;
-import com.azure.ai.documentintelligence.models.AnalyzeResultOperation;
 import com.azure.ai.documentintelligence.models.DocumentTable;
 import com.azure.core.credential.AzureKeyCredential;
 import com.azure.core.util.polling.SyncPoller;
@@ -291,17 +293,11 @@ public class DocIntelligence {
     String modelId = "prebuilt-layout";
     String documentUrl = "https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/form-recognizer/sample-layout.pdf";
 
-    SyncPoller <AnalyzeResultOperation, AnalyzeResultOperation> analyzeLayoutPoller =
-      client.beginAnalyzeDocument(modelId,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          new AnalyzeDocumentRequest().setUrlSource(documentUrl));
+    AnalyzeDocumentOptions options = new AnalyzeDocumentOptions(documentUrl);
 
-    AnalyzeResult analyzeLayoutResult = analyzeLayoutPoller.getFinalResult().getAnalyzeResult();
+    SyncPoller<AnalyzeOperationDetails, AnalyzeResult> analyzeLayoutPoller = client.beginAnalyzeDocument(modelId, options);
+
+    AnalyzeResult analyzeLayoutResult = analyzeLayoutPoller.getFinalResult();
 
     // pages
     analyzeLayoutResult.getPages().forEach(documentPage -> {
@@ -336,16 +332,14 @@ public class DocIntelligence {
       DocumentTable documentTable = tables.get(i);
       System.out.printf("Table %d has %d rows and %d columns.%n", i, documentTable.getRowCount(),
         documentTable.getColumnCount());
-      documentTable.getCells().forEach(documentTableCell -> {
+      documentTable.getCells().forEach(documentTableCell ->
         System.out.printf("Cell '%s', has row index %d and column index %d.%n", documentTableCell.getContent(),
-          documentTableCell.getRowIndex(), documentTableCell.getColumnIndex());
-      });
+          documentTableCell.getRowIndex(), documentTableCell.getColumnIndex()));
       System.out.println();
     }
 
     // styles
-    analyzeLayoutResult.getStyles().forEach(documentStyle -
-      > System.out.printf("Document is handwritten %s.%n", documentStyle.isHandwritten()));
+    analyzeLayoutResult.getStyles().forEach(documentStyle -> System.out.printf("Document is handwritten %s.%n", documentStyle.isHandwritten()));
   }
 }
 

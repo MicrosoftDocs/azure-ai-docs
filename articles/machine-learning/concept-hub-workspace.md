@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: concept-article
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: namanjoshi
 ms.date: 05/12/2025
 monikerRange: 'azureml-api-2 || azureml-api-1'

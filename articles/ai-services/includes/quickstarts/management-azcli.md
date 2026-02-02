@@ -7,8 +7,6 @@ ms.service: azure-ai-services
 keywords: Azure AI services, cognitive intelligence, cognitive solutions, ai services
 ms.topic: quickstart
 ms.date: 8/1/2024
-ms.author: eur
-author: eric-urban
 ms.custom:
   - mode-api
   - devx-track-azurecli
@@ -20,8 +18,12 @@ Use this quickstart to create an AI Foundry resource using [Azure Command-Line I
 
 ## Prerequisites
 
-* A valid Azure subscription - [Create one](https://azure.microsoft.com/free/cognitive-services) for free.
-* The [Azure CLI](/cli/azure/install-azure-cli)
+* A valid Azure subscription - [Create one](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) for free.
+* The [Azure CLI](/cli/azure/install-azure-cli) version 2.0 or later.
+* Azure RBAC role to create resources. You need one of the following roles assigned on your Azure subscription or resource group:
+  * Contributor
+  * Owner
+  * Custom role with `Microsoft.CognitiveServices/accounts/write` permission
 
 ## Install the Azure CLI and sign in
 
