@@ -26,18 +26,11 @@ _repo.*/
 
 articles/ai-foundry/includes/get-started-fdp.md
 articles/ai-foundry/toc-files/setup-management/toc.yml
-# Doc-Kit workspace files
-.github/AGENTS.md
-.github/agents/
-.github/instructions/
-.github/prompts/
-.github/skills/
-.vscode/settings.json
-.dockit/
-.env
-.env.example
-requirements.txt
 # Dev-kit instructions and prompts
+
+dk-env/
+dockit/
+specs/
 # Doc-Kit workspace files
 .github/AGENTS.md
 .github/agents/
@@ -49,4 +42,3 @@ requirements.txt
 .env
 .env.example
 requirements.txt
-.roo/*
