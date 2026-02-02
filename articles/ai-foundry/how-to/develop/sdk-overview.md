@@ -66,7 +66,7 @@ https://<resource-name>.services.ai.azure.com/api/projects/<project-name>
 > [!NOTE]
 > If your organization uses a custom subdomain, replace `<resource-name>` with `<your-custom-subdomain>` in the endpoint URL.
 
-This simplifies application configuration. Instead of managing multiple endpoints, you configure one.
+This approach simplifies application configuration. Instead of managing multiple endpoints, you configure one.
 
 ### Install the SDK
 
@@ -245,7 +245,7 @@ with project_client.get_openai_client() as openai_client:
 
     response = openai_client.responses.create(
         model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
-        input="And what is the capital city?",
+        input="And what is the capital / major city?",
         previous_response_id=response.id,
     )
     print(f"Response output: {response.output_text}")
@@ -429,11 +429,11 @@ Console.WriteLine(response.GetOutputText());
 ## OpenAI SDK
 
 ::: moniker range="foundry-classic"
-Use the OpenAI SDK when you want the full OpenAI API surface and maximum client compatibility. This endpoint provides access to Azure OpenAI models and Foundry direct models (via Chat Completions API). It does not provide access to Foundry-specific features like agents and evaluations.
+Use the OpenAI SDK when you want the full OpenAI API surface and maximum client compatibility. This endpoint provides access to Azure OpenAI models and Foundry direct models (via Chat Completions API). It doesn't provide access to Foundry-specific features like agents and evaluations.
 ::: moniker-end
 
 ::: moniker range="foundry"
-Use the OpenAI SDK when you want the full OpenAI API surface and maximum client compatibility. This endpoint provides access to Azure OpenAI models and Foundry direct models (via Responses API). It does not provide access to Foundry-specific features like agents and evaluations.
+Use the OpenAI SDK when you want the full OpenAI API surface and maximum client compatibility. This endpoint provides access to Azure OpenAI models and Foundry direct models (via Responses API). It doesn't provide access to Foundry-specific features like agents and evaluations.
 
 > [!TIP]
 > Use non-OpenAI models hosted in Foundry (Foundry direct models) through the OpenAI SDK by specifying the model deployment name in your requests. For more information, see [Develop reasoning apps with DeepSeek models on Azure AI Foundry using the OpenAI SDK](/azure/developer/ai/how-to/use-reasoning-model-inference?tabs=github-codespaces).
