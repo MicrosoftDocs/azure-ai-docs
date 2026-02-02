@@ -5,7 +5,7 @@ description: Learn about Microsoft Foundry Models from partners and community, t
 author: msakande
 ms.author: mopeakande
 manager: nitinme
-ms.date: 01/07/2026
+ms.date: 02/02/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: partner-tools
@@ -25,10 +25,9 @@ zone_pivot_groups: azure-ai-model-categories
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-This article lists a selection of Microsoft Foundry Models from partners and community along with their capabilities, [deployment types, and regions of availability](deployment-types.md), excluding [deprecated and legacy models](../../concepts/model-lifecycle-retirement.md#deprecated). 
-Most Foundry Models come from partners and community. Trusted third-party organizations, partners, research labs, and community contributors provide these models. 
-
-Depending on the [kind of project](../../what-is-foundry.md?view=foundry-classic&preserve-view=true#work-in-a-foundry-project) you use in Microsoft Foundry, you see a different selection of models.
+This article lists capabilities for a selection of Microsoft Foundry Models from partners and community.
+Most Foundry Model providers are trusted third-party organizations, partners, research labs, and community contributors. 
+The selection of models that you see in Foundry depends on the [kind of project](../../what-is-foundry.md?view=foundry-classic&preserve-view=true#types-of-projects) you use.
 To learn more about attributes of Foundry Models from partners and community, see [Explore Foundry Models](../../concepts/foundry-models-overview.md#models-from-partners-and-community).
 
 > [!NOTE]
