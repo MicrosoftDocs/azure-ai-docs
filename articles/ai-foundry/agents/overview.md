@@ -135,7 +135,7 @@ Agent Service provides a production-ready foundation for deploying intelligent a
 
 | Capability | Agent Service |
 | --- | --- |
-| **Visibility into conversations** | Full access to structured [conversations](../default/agents/concepts/runtime-components.md#conversation), including both user-to-agent and agent-to-agent messages. Ideal for UIs, debugging, and training. |
+| **Visibility into conversations** | Full access to structured [conversations](../default/agents/concepts/runtime-components.md#what-is-a-conversation), including both user-to-agent and agent-to-agent messages. Ideal for UIs, debugging, and training. |
 | **Multiple-agent coordination** | Built-in support for agent-to-agent messaging. |
 | **Tool orchestration** | Server-side execution and retry of tool calls with structured logging. No manual orchestration is required. |
 | **Trust and safety** | Integrated [content filters](../openai/how-to/content-filters.md) to help prevent misuse and mitigate prompt injection risks, including cross-prompt injection attacks (XPIA). All outputs are policy governed. |
