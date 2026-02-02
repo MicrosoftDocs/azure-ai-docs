@@ -217,7 +217,7 @@ print(f"Data name: {data.name}")
 print(f"Data path: {data.path}")
 ```
 
-Reference: [DataOperations.get](/python/api/azure/api/azure-ai-ml/azure.ai.ml.operations.dataoperations#azure-ai-ml-operations-dataoperations-get)
+Reference: [DataOperations.get](/python/api/azure-ai-ml/azure.ai.ml.operations.dataoperations#azure-ai-ml-operations-dataoperations-get)
 
 ### Delete data
 
