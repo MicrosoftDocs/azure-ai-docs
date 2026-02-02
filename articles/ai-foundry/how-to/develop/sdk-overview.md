@@ -106,9 +106,6 @@ The [Azure AI Projects client library for Java (preview)](/java/api/overview/azu
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-:
-* ``
-* `com.azure.core`
 ::: moniker range="foundry-classic"
 Add these packages to your installation for Foundry classic projects.
 
@@ -238,13 +235,13 @@ print(response.choices[0].message.content)
 ```python
 with project_client.get_openai_client() as openai_client:
     response = openai_client.responses.create(
-        model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+        model="gpt-5.2",
         input="What is the size of France in square miles?",
     )
     print(f"Response output: {response.output_text}")
 
     response = openai_client.responses.create(
-        model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+        model="gpt-5.2",
         input="And what is the capital / major city?",
         previous_response_id=response.id,
     )
@@ -318,10 +315,6 @@ const endpoint = "https://<resource-name>.services.ai.azure.com/api/projects/<pr
 const deployment = "gpt-4o";
 
 const project = new AIProjectClient(endpoint, new DefaultAzureCredential());
-const client = await project.getAzureOpenAIClient({
-    // The API version should match the version of the Azure OpenAI resource
-    apiVersion: "2024-12-01-preview"
-});
 ```
 ::: moniker-end
 ::: moniker range="foundry"
@@ -340,6 +333,10 @@ const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential(
 ::: moniker range="foundry-classic"
 
 ```javascript
+const client = await project.getAzureOpenAIClient({
+    // The API version should match the version of the Azure OpenAI resource
+    apiVersion: "2024-12-01-preview"
+});
 const chatCompletion = await client.chat.completions.create({
     model: deployment,
     messages: [
@@ -501,13 +498,13 @@ For more information, see [Azure OpenAI supported programming languages](/azure/
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 The following snippet shows how to use the Azure OpenAI `/openai/v1` endpoint directly.
 
-```java
+
 ::: moniker range="foundry-classic"
 
 For more information on using the OpenAI SDK, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?view=foundry-classic&tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-java&preserve-view=true).
 ::: moniker-end
 ::: moniker range="foundry"
-
+```java
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 from openai import OpenAI
 
@@ -518,10 +515,10 @@ token_provider = get_bearer_token_provider(
 )
 
 client = OpenAI(
-    base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/", 
+    base_url = "https://<resource-name>.openai.azure.com/openai/v1/", 
     api_key = token_provider,
 )
-
+```
 For more information on using the OpenAI SDK, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?view=foundry&tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-java&preserve-view=true)
 ::: moniker-end
 ::: zone-end
@@ -529,9 +526,47 @@ For more information on using the OpenAI SDK, see [Azure OpenAI supported progra
 ::: zone pivot="programming-language-javascript"
 
 ::: moniker range="foundry-classic"
+
+```javascript
+import { AzureOpenAI } from "openai";
+import { DefaultAzureCredential } from "@azure/identity";
+
+const deployment = "gpt-4o"
+const endpoint = "https://<resource-name>.openai.azure.com/openai/v1";
+const scope = "https://cognitiveservices.azure.com/.default";
+const apiVersion = "2024-04-01-preview";
+
+const azureADTokenProvider = getBearerTokenProvider(new DefaultAzureCredential(), scope);
+
+const options = { azureADTokenProvider, deployment, apiVersion }
+
+const client = new AzureOpenAI(options);
+
+const result = await client.chat.completions.create({
+    model: deployment,
+    messages: [
+        { role: "system", content: "You are a helpful assistant" },
+        { role: "user", content: "What is the speed of light?" },
+    ],
+});
+console.log(result.choices[0].message.content);
+```
+
 For more information on using the OpenAI SDK, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?view=foundry-classic&tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-javascript&preserve-view=true).
 ::: moniker-end
 ::: moniker range="foundry"
+```javascript
+const endpoint = "https://<resource-name>.openai.azure.com/openai/v1";
+const scope = "https://cognitiveservices.azure.com/.default";
+const azureADTokenProvider = getBearerTokenProvider(new DefaultAzureCredential(), scope);
+const client = new OpenAI({ baseURL: endpoint, apiKey: azureADTokenProvider });
+const response = await client.responses.create({
+        model: deploymentName,
+        input: "What is the size of France in square miles?",
+    });
+console.log(`Response output: ${response.output_text}`);
+```
+
 For more information on using the OpenAI SDK, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?view=foundry&tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-javascript&preserve-view=true)
 ::: moniker-end
 
