@@ -5,7 +5,7 @@ description: "Deploy Anthropic's Claude models in Microsoft Foundry to integrate
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 02/02/2026
+ms.date: 02/05/2026
 ms.custom: ignite-2024, dev-focus
 author: msakande
 ms.author: mopeakande
@@ -25,12 +25,20 @@ Anthropic's Claude models bring advanced conversational AI capabilities to Micro
 
 In this article, you learn how to:
 
-- Deploy Claude models (Opus 4.5, Sonnet 4.5, Haiku 4.5, and Opus 4.1) in Microsoft Foundry
+- Deploy Claude models in Microsoft Foundry
 - Authenticate by using Microsoft Entra ID or API keys
 - Call the Claude Messages API from Python, JavaScript, or REST
 - Choose the right Claude model for your use case.
 
-To learn more about Claude models, see [Available Claude models](#available-claude-models).
+Claude models in Foundry include:
+
+| Model family | Models |
+|--|--|
+| Claude Opus | `claude-opus-4-6` (preview), `claude-opus-4-5` (preview), `claude-opus-4-1` (preview)|
+| Claude Sonnet | `claude-sonnet-4-5` (preview)|
+| Claude Haiku | `claude-haiku-4-5` (preview)|
+
+To learn more about the individual models, see [Available Claude models](#available-claude-models).
 
 [!INCLUDE [claude-usage-restriction](../includes/claude-usage-restriction.md)]
 
@@ -419,17 +427,25 @@ For Messages API endpoints, use the deployed model's endpoint URI `https://<reso
 
 ## Available Claude models
 
-Foundry supports Claude Opus 4.5, Claude Sonnet 4.5, Claude Haiku 4.5, and Claude Opus 4.1 models through global standard deployment. These models have key capabilities:
+Foundry supports Claude Opus 4.6, Claude Opus 4.5, Claude Opus 4.1, Claude Sonnet 4.5, and Claude Haiku 4.5 models through global standard deployment. These models have key capabilities:
 
 - **Extended thinking**: Enhanced reasoning for complex tasks.
 - **Image and text input**: Strong vision for analyzing charts, graphs, technical diagrams, reports, and other visual assets.
-- **Code generation**: Advanced code generation, analysis, and debugging for Claude Sonnet 4.5 and Claude Opus 4.1.
+- **Code generation**: Advanced code generation, analysis, and debugging.
 
 For more details about the model capabilities, see [capabilities of Claude models](../concepts/models-from-partners.md#anthropic).
+
+### Claude Opus 4.6 (preview)
+
+Claude Opus 4.6 is the latest version of Anthropic's most intelligent model, and the world's best model for coding, enterprise agents, and professional work.  With a 1M token context window (beta) and 128K max output, Opus 4.6 is ideal for production code, sophisticated agents, office tasks, financial analysis, cybersecurity, and computer use.
 
 ### Claude Opus 4.5 (preview)
 
 Claude Opus 4.5 is Anthropic's most intelligent model, and an industry leader in coding, agents, computer use, and enterprise workflows. With a 200K token context window and 64K max output, Opus 4.5 is ideal for production code, sophisticated agents, office tasks, financial analysis, cybersecurity, and computer use tasks.
+
+### Claude Opus 4.1 (preview)
+
+Claude Opus 4.1 is an industry leader for coding. It delivers sustained performance on long-running tasks that require focused effort and thousands of steps, significantly expanding what AI agents can solve.
 
 ### Claude Sonnet 4.5 (preview)
 
@@ -439,9 +455,6 @@ Claude Sonnet 4.5 is a highly capable model designed for building real-world age
 
 Claude Haiku 4.5 delivers near-frontier performance for a wide range of use cases. It stands out as one of the best coding and agent models, with the right speed and cost to power free products and scaled subagents.
 
-### Claude Opus 4.1 (preview)
-
-Claude Opus 4.1 is an industry leader for coding. It delivers sustained performance on long-running tasks that require focused effort and thousands of steps, significantly expanding what AI agents can solve.
 
 ## Advanced features and capabilities of Claude models
 
@@ -450,7 +463,7 @@ Claude in Foundry Models supports advanced features and capabilities.
 
 Some of the **Core capabilities** that Foundry supports are:
 
-- **1 million token context window:** An extended context window that processes larger documents and longer conversations.
+- **Large context window:**  An extended context window that processes larger documents and longer conversations.
 - **Agent skills:** Extend Claude's capabilities with skills.
 - **Citations:** Ground Claude's responses in source documents.
 - **Context editing:** Automatically manage conversation context with configurable strategies.
@@ -481,10 +494,11 @@ Claude models in Foundry have the following rate limits, measured in Tokens Per 
 
 | Model        |   Deployment type       | Default RPM   | Default TPM   |Enterprise and MCA-E RPM   |Enterprise and MCA-E TPM   |
 |:------------------|:----------------|:--------------|:--------------|:-----------|:-----------|
-| claude-haiku-4-5  | [Global Standard](../concepts/deployment-types.md#global-standard)  | 0         | 0     | 4,000      | 4,000,000  |
+| claude-opus-4-6   | [Global Standard](../concepts/deployment-types.md#global-standard)  | 0        | 0    | 2,000      | 2,000,000     |
+| claude-opus-4-5   | Global Standard  |0        | 0    | 2,000      | 2,000,000  |
 | claude-opus-4-1   | Global Standard  |0        | 0    | 2,000      | 2,000,000  |
 | claude-sonnet-4-5 | Global Standard  |0        | 0    | 4,000      | 2,000,000  |
-| claude-opus-4-5   | Global Standard |0        | 0    | 2,000      | 2,000,000  |
+| claude-haiku-4-5  | Global Standard  |0        | 0    | 4,000      | 4,000,000  |
 
 To increase your quota beyond the default limits, submit a request through the [quota increase request form](https://aka.ms/oai/stuquotarequest).
 
@@ -506,17 +520,15 @@ When using Claude models in Foundry, consider these responsible AI practices:
 
 - Configure AI content safety during model inference, because Foundry doesn't provide built-in content filtering for Claude models at deployment time. To learn how to create and use content filters, see [Configure content filtering for Foundry Models](configure-content-filters.md).
 
-- Ensure your applications comply with [Anthropic's Acceptable Use Policy](https://www.anthropic.com/legal/aup). Also, see details of safety evaluations for [Claude Opus 4.5](http://www.anthropic.com/claude-opus-4-5-system-card), [Claude Haiku 4.5](https://assets.anthropic.com/m/99128ddd009bdcb/Claude-Haiku-4-5-System-Card.pdf), [Claude Opus 4.1](https://assets.anthropic.com/m/4c024b86c698d3d4/original/Claude-4-1-System-Card.pdf), and [Claude Sonnet 4.5](https://assets.anthropic.com/m/12f214efcc2f457a/original/Claude-Sonnet-4-5-System-Card.pdf).
-
 ::: moniker-end
 
 ::: moniker range="foundry"
 
-- Configure AI content safety during model inference, as Foundry doesn't provide built-in content filtering for Claude models at deployment time.
-
-- Ensure your applications comply with [Anthropic's Acceptable Use Policy](https://www.anthropic.com/legal/aup). Also, see details of safety evaluations for [Claude Opus 4.5](http://www.anthropic.com/claude-opus-4-5-system-card), [Claude Haiku 4.5](https://assets.anthropic.com/m/99128ddd009bdcb/Claude-Haiku-4-5-System-Card.pdf), [Claude Opus 4.1](https://assets.anthropic.com/m/4c024b86c698d3d4/original/Claude-4-1-System-Card.pdf), and [Claude Sonnet 4.5](https://assets.anthropic.com/m/12f214efcc2f457a/original/Claude-Sonnet-4-5-System-Card.pdf).
+- Configure AI content safety during model inference, because Foundry doesn't provide built-in content filtering for Claude models at deployment time.
 
 ::: moniker-end
+
+- Ensure your applications comply with [Anthropic's Acceptable Use Policy](https://www.anthropic.com/legal/aup). Also, see details of safety evaluations for [Claude Opus 4.6]([https://www.anthropic.com/claude-opus-4-6-system-card]), [Claude Opus 4.5](http://www.anthropic.com/claude-opus-4-5-system-card), [Claude Opus 4.1](https://assets.anthropic.com/m/4c024b86c698d3d4/original/Claude-4-1-System-Card.pdf), [Claude Sonnet 4.5](https://assets.anthropic.com/m/12f214efcc2f457a/original/Claude-Sonnet-4-5-System-Card.pdf), and [Claude Haiku 4.5](https://assets.anthropic.com/m/99128ddd009bdcb/Claude-Haiku-4-5-System-Card.pdf).
 
 ## Best practices
 
@@ -526,10 +538,12 @@ Follow these best practices when working with Claude models in Foundry:
 
 Choose the appropriate Claude model based on your specific requirements:
 
+- **Claude Opus 4.6**: Most intelligent model for building agents, coding, and enterprise workflows.
 - **Claude Opus 4.5**: Best performance across coding, agents, computer use, and enterprise workflows.
+- **Claude Opus 4.1**: Complex reasoning and enterprise applications.
 - **Claude Sonnet 4.5**: Balanced performance and capabilities, production workflows.
 - **Claude Haiku 4.5**: Speed and cost optimization, high-volume processing.
-- **Claude Opus 4.1**: Complex reasoning and enterprise applications.
+
 
 #### Prompt engineering
 
