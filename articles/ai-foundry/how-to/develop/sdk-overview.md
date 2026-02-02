@@ -111,7 +111,7 @@ Add these packages to your installation for Foundry classic projects.
 
 ```bash
 package com.azure.ai.foundry.samples;
-import com.azure.ai.projects
+import com.azure.ai.projects;
 import com.azure.ai.inference.ChatCompletionsClient;
 import com.azure.ai.inference.ChatCompletionsClientBuilder;
 import com.azure.ai.inference.models.ChatCompletions;
