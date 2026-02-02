@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 
 An AI gateway in Microsoft Foundry provides a single, governed entry point for tools that you add to Foundry projects. After a gateway is connected, all new Model Context Protocol (MCP) tools are routed through a secure gateway endpoint that consistently enforces authentication, policies, and usage limits.
 
-This feature is in preview. Only new MCP tools created in the Microsoft Foundry portal that don't use managed OAuth are routed through an AI gateway.
+This feature is in preview. Only new MCP tools created in the Foundry portal that don't use managed OAuth are routed through an AI gateway.
 
 ## Prerequisites
 
@@ -67,7 +67,7 @@ Ensure that the following information is correct for your MCP server:
 
 In the [Azure portal](https://portal.azure.com/), go to your resource. Select **API Management** to apply [policies](/azure/api-management/api-management-howto-policies) for governance.
 
-You must apply policies through API Management. Common policies include:
+You must apply policies through Azure API Management. Common policies include:
 
 - **Rate limiting**: Limit how many calls a project or user can make in one minute.
 
@@ -78,7 +78,7 @@ You must apply policies through API Management. Common policies include:
     </inbound>
     ```
 
-- **IP filtering**: Allow requests only from trusted networks.
+- **IP filtering**: Allow requests from only trusted networks.
 
     ```xml
     <inbound>
