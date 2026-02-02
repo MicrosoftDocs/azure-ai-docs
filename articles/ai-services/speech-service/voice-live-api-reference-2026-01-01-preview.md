@@ -1,7 +1,7 @@
 ---
 title: Voice Live API Reference 2026-01-01-preview
 titleSuffix: Foundry Tools
-description: Complete reference for the Voice Live API events, models, and configuration options.
+description: Complete reference for the Voice Live API events, models, and configuration options. Version 2026-01-01-preview
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: reference
@@ -10,7 +10,7 @@ author: PatrickFarley
 ms.author: pafarley
 ---
 
-# Voice Live API Reference Version 2026-01-01-preview (preview)
+# Voice Live `2026-01-01-preview` API Reference (preview)
 
 The Voice Live API provides real-time, bidirectional communication for voice-enabled applications using WebSocket connections. This API supports advanced features including speech recognition, text-to-speech synthesis, avatar streaming, animation data, and comprehensive audio processing capabilities.
 

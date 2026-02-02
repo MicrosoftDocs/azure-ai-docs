@@ -1,7 +1,7 @@
 ---
 title: Voice Live API Reference 2025-10-01
 titleSuffix: Foundry Tools
-description: Complete reference for the Voice Live API events, models, and configuration options.
+description: Complete reference for the Voice Live API events, models, and configuration options. Version 2025-10-01.
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: reference
