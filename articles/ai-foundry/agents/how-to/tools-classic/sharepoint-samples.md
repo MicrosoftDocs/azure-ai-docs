@@ -30,6 +30,12 @@ Use this article to find step-by-step instructions and code samples for using th
 
 ## Prerequisites
 
+* The `azure-ai-agents` package version **1.2.0b1 or later**. The `SharepointTool` class is only available in beta versions of the package. Install with:
+
+    ```bash
+    pip install --pre azure-ai-agents
+    ```
+
 * Your Microsoft Foundry Project endpoint.
 
     [!INCLUDE [endpoint-string-portal](../../includes/endpoint-string-portal.md)]
