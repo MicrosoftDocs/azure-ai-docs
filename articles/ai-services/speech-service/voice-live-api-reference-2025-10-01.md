@@ -10,7 +10,7 @@ author: PatrickFarley
 ms.author: pafarley
 ---
 
-# Voice Live API Reference 2025-10-01
+# Voice Live `2025-10-01` API Reference 
 
 The Voice Live API provides real-time, bidirectional communication for voice-enabled applications using WebSocket connections. This API supports advanced features including speech recognition, text-to-speech synthesis, avatar streaming, animation data, and comprehensive audio processing capabilities.
 
