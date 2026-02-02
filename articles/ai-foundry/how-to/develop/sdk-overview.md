@@ -239,13 +239,6 @@ with project_client.get_openai_client() as openai_client:
         input="What is the size of France in square miles?",
     )
     print(f"Response output: {response.output_text}")
-
-    response = openai_client.responses.create(
-        model="gpt-5.2",
-        input="And what is the capital / major city?",
-        previous_response_id=response.id,
-    )
-    print(f"Response output: {response.output_text}")
 ```
 ::: moniker-end
 ::: zone-end
