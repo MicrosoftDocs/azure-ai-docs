@@ -3,7 +3,7 @@ author: haileytap
 ms.author: haileytapia 
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 01/22/2026
+ms.date: 02/02/2026
 ---
 
 Each Azure AI Search service has an *endpoint*, which is a unique URL that identifies and provides network access to the service. In a later section, you specify this endpoint to connect to your search service programmatically.

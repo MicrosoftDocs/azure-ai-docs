@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 01/30/2026
+ms.date: 02/02/2026
 ---
 
 In this quickstart, you use the [Azure AI Search client library for JavaScript](/javascript/api/overview/azure/search-documents-readme) to create, load, and query a search index for [full-text search](../../search-lucene-query-architecture.md), also known as keyword search.
@@ -42,11 +42,11 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
    git clone https://github.com/Azure-Samples/azure-search-javascript-samples
    ```
 
-1. Open the `quickstart-keyword-search` folder in Visual Studio Code.
+1. Open the `azure-search-javascript-samples/quickstart-keyword-search` folder in Visual Studio Code.
 
 1. Rename the `sample.env` file to `.env`, and then open the file.
 
-1. Set the `SEARCH_API_ENDPOINT` variable to the URL you obtained in [Get endpoint](#get-endpoint).
+1. Replace the placeholder value for `SEARCH_API_ENDPOINT` with the URL you obtained in [Get endpoint](#get-endpoint).
 
 1. Install the dependencies from the `package.json` file.
 
@@ -54,9 +54,9 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
     npm install
     ```
 
-1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account.
+1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service.
 
-    ```console
+    ```azurecli
     az login
     ```
 

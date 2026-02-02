@@ -3,7 +3,7 @@ author: haileytap
 ms.author: haileytapia 
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 01/29/2026
+ms.date: 02/02/2026
 # Use this file for the semantic ranking quickstart. For other scenarios, use resource-authentication.md.
 ---
 

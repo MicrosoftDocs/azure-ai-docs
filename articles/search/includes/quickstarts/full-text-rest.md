@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 01/30/2026
+ms.date: 02/02/2026
 ---
 
 In this quickstart, you use the [Azure AI Search REST APIs](/rest/api/searchservice) to create, load, and query a search index for [full-text search](../../search-lucene-query-architecture.md), also known as keyword search.
@@ -42,13 +42,13 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
    git clone https://github.com/Azure-Samples/azure-search-rest-samples
    ```
 
-1. Open the `Quickstart-keyword-search` folder in Visual Studio Code.
+1. Open the `azure-search-rest-samples/Quickstart-keyword-search` folder in Visual Studio Code.
 
 1. Open the `az-search-quickstart.rest` file.
 
-1. Set the `@baseUrl` variable to the URL you obtained in [Get endpoint](#get-endpoint).
+1. Replace the placeholder value for `@baseUrl` with the URL you obtained in [Get endpoint](#get-endpoint).
 
-1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account.
+1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service.
 
     ```azurecli
     az login

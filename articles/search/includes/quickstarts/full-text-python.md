@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 01/30/2026
+ms.date: 02/02/2026
 ---
 
 In this quickstart, you use the [Azure AI Search client library for Python](/python/api/overview/azure/search-documents-readme) to create, load, and query a search index for [full-text search](../../search-lucene-query-architecture.md), also known as keyword search.
@@ -42,7 +42,7 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
    git clone https://github.com/Azure-Samples/azure-search-python-samples
    ```
 
-1. Open the `Quickstart-Keyword-Search` folder in Visual Studio Code.
+1. Open the `azure-search-python-samples/Quickstart-Keyword-Search` folder in Visual Studio Code.
 
 1. Open the `azure-search-quickstart.ipynb` file.
 
@@ -73,7 +73,7 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
 
 1. In the upper-right corner of the notebook, select **Select Kernel**, and then select the virtual environment you created.
 
-1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account.
+1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service.
 
     ```azurecli
     az login
@@ -83,7 +83,7 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
 
 1. Run the first code cell to install the required packages.
 
-1. In the second code cell, set the `search_endpoint` variable to the URL you obtained in [Get endpoint](#get-endpoint).
+1. In the second code cell, replace the placeholder value for `search_endpoint` with the URL you obtained in [Get endpoint](#get-endpoint).
 
 1. Run the second code cell to import the required libraries and set up the search client.
 

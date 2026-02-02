@@ -3,7 +3,7 @@ author: haileytap
 ms.author: haileytapia 
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 01/22/2026
+ms.date: 02/02/2026
 # Use this file to describe authentication for search-only, non-integrated scenarios. For managed identities, use resource-authentication-identity.md.
 ---
 

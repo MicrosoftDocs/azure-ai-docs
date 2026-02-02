@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 01/30/2026
+ms.date: 02/02/2026
 ---
 
 In this quickstart, you use the [Azure AI Search client library for .NET](/dotnet/api/overview/azure/search) to create, load, and query a search index for [full-text search](../../search-lucene-query-architecture.md), also known as keyword search.
@@ -42,15 +42,21 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
    git clone https://github.com/Azure-Samples/azure-search-dotnet-samples
    ```
 
-1. Open the `quickstart-keyword-search` folder in Visual Studio Code.
+1. Open the `azure-search-dotnet-samples/quickstart-keyword-search/AzureSearchQuickstart` folder in Visual Studio Code.
 
 1. Open the `Program.cs` file.
 
-1. Set the `serviceEndpoint` variable to the URL you obtained in [Get endpoint](#get-endpoint).
+1. Replace the placeholder value for `serviceEndpoint` with the URL you obtained in [Get endpoint](#get-endpoint).
 
-1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account.
+1. Install the dependencies from the `AzureSearchQuickstart.csproj` file.
 
-    ```console
+   ```console
+   dotnet restore
+   ```
+
+1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service.
+
+    ```azurecli
     az login
     ```
 
@@ -155,34 +161,34 @@ Now that you've run the code, let's break down the key steps:
 
 ### Create a search client
 
-In `Program.cs`, you created two clients:
+In `Program.cs`, you create two clients:
 
 - [SearchIndexClient](/dotnet/api/azure.search.documents.indexes.searchindexclient) creates the index.
-- [SearchClient](/dotnet/api/azure.search.documents.searchclient) loads and queries an existing index. 
+- [SearchClient](/dotnet/api/azure.search.documents.searchclient) loads and queries an existing index.
 
-Both clients require the service endpoint and a credential for authentication. In this quickstart, you used [`DefaultAzureCredential`](/dotnet/api/azure.identity.defaultazurecredential) for keyless authentication with Microsoft Entra ID.
+Both clients require the service endpoint and a credential for authentication. In this quickstart, you use [DefaultAzureCredential](/dotnet/api/azure.identity.defaultazurecredential) for keyless authentication with Microsoft Entra ID.
 
 ### Create a search index
 
 This quickstart builds a Hotels index that you load with hotel data and execute queries against. In this step, you define the fields in the index. Each field definition includes a name, data type, and attributes that determine how the field is used.
 
-In this example, synchronous methods of the *Azure.Search.Documents* library are used for simplicity and readability. However, for production scenarios, you should use asynchronous methods to keep your app scalable and responsive. For example, you would use [CreateIndexAsync](/dotnet/api/azure.search.documents.indexes.searchindexclient.createindexasync) instead of [CreateIndex](/dotnet/api/azure.search.documents.indexes.searchindexclient.createindex).
+In this example, synchronous methods of the Azure.Search.Documents library are used for simplicity and readability. However, for production scenarios, you should use asynchronous methods to keep your app scalable and responsive. For example, you would use [CreateIndexAsync](/dotnet/api/azure.search.documents.indexes.searchindexclient.createindexasync) instead of [CreateIndex](/dotnet/api/azure.search.documents.indexes.searchindexclient.createindex).
 
 #### Define the structures
 
-You created two helper classes, `Hotel.cs` and `Address.cs`, to define the structure of a hotel document and its address. The `Hotel` class includes fields for a hotel ID, name, description, category, tags, parking, renovation date, rating, and address. The `Address` class includes fields for street address, city, state/province, postal code, and country/region.
+You create two helper classes, `Hotel.cs` and `Address.cs`, to define the structure of a hotel document and its address. The `Hotel` class includes fields for a hotel ID, name, description, category, tags, parking, renovation date, rating, and address. The `Address` class includes fields for street address, city, state/province, postal code, and country/region.
 
-In the *Azure.Search.Documents* client library, you can use [SearchableField](/dotnet/api/azure.search.documents.indexes.models.searchablefield) and [SimpleField](/dotnet/api/azure.search.documents.indexes.models.simplefield) to streamline field definitions. Both are derivatives of a [SearchField](/dotnet/api/azure.search.documents.indexes.models.searchfield) and can potentially simplify your code:
+In the Azure.Search.Documents client library, you can use [SearchableField](/dotnet/api/azure.search.documents.indexes.models.searchablefield) and [SimpleField](/dotnet/api/azure.search.documents.indexes.models.simplefield) to streamline field definitions. Both are helper classes that generate a [SearchField](/dotnet/api/azure.search.documents.indexes.models.searchfield) and can potentially simplify your code:
 
-+ `SimpleField` can be any data type, is always non-searchable (ignored for full-text search queries), and is retrievable (not hidden). Other attributes are off by default, but can be enabled. You might use a `SimpleField` for document IDs or fields used only in filters, facets, or scoring profiles. If so, be sure to apply any attributes that are necessary for the scenario, such as `IsKey = true` for a document ID. For more information, see [SimpleFieldAttribute.cs](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/src/Indexes/SimpleFieldAttribute.cs) in source code.
++ `SimpleField` can be any data type, is always non-searchable (ignored for full-text search queries), and is retrievable (not hidden). Other attributes are off by default, but can be enabled. You might use a `SimpleField` for document IDs or fields used only in filters, facets, or scoring profiles. If so, be sure to apply any attributes that are necessary for the scenario, such as `IsKey = true` for a document ID.
 
-+ `SearchableField` must be a string, and is always searchable and retrievable. Other attributes are off by default, but can be enabled. Because this field type is searchable, it supports synonyms and the full complement of analyzer properties. For more information, see the [SearchableFieldAttribute.cs](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/src/Indexes/SearchableFieldAttribute.cs) in source code.
++ `SearchableField` must be a string, and is always searchable and retrievable. Other attributes are off by default, but can be enabled. Because this field type is searchable, it supports synonyms and the full complement of analyzer properties.
 
 Whether you use the basic `SearchField` API or either one of the helper models, you must explicitly enable filter, facet, and sort attributes. For example, [IsFilterable](/dotnet/api/azure.search.documents.indexes.models.searchfield.isfilterable), [IsSortable](/dotnet/api/azure.search.documents.indexes.models.searchfield.issortable), and [IsFacetable](/dotnet/api/azure.search.documents.indexes.models.searchfield.isfacetable) must be explicitly attributed, as shown in the previous sample.
 
 #### Create the search index
 
-In `Program.cs`, you create a [SearchIndex](/dotnet/api/azure.search.documents.indexes.models.searchindex) object, and then call the [CreateIndex](/dotnet/api/azure.search.documents.indexes.searchindexclient.createindex) method to express the index in your search service. The index also includes a [SearchSuggester](/dotnet/api/azure.search.documents.indexes.models.searchsuggester) to enable autocomplete on the specified fields.
+In `Program.cs`, you create a [SearchIndex](/dotnet/api/azure.search.documents.indexes.models.searchindex) object, and then call the [CreateOrUpdateIndex](/dotnet/api/azure.search.documents.indexes.searchindexclient.createorupdateindex) method to express the index in your search service. The index also includes a [SearchSuggester](/dotnet/api/azure.search.documents.indexes.models.searchsuggester) to enable autocomplete on the specified fields.
 
 ```csharp
 // Create hotels-quickstart index
@@ -204,7 +210,7 @@ private static void CreateIndex(string indexName, SearchIndexClient searchIndexC
 
 Azure AI Search searches over content stored in the service. In this step, you load JSON documents that conform to the hotel index you created.
 
-In Azure AI Search, search documents are data structures that are both inputs to indexing and outputs from queries. As obtained from an external data source, document inputs might be rows in a database, blobs in Blob storage, or JSON documents on disk. In this example, we're taking a shortcut and embedding JSON documents for four hotels in the code itself.
+In Azure AI Search, search documents are data structures that are both inputs to indexing and outputs from queries. As obtained from an external data source, document inputs might be rows in a database, blobs in Blob storage, or JSON documents on disk. In this example, the code takes a shortcut and embeds JSON documents for four hotels directly.
 
 When uploading documents, you must use an [IndexDocumentsBatch](/dotnet/api/azure.search.documents.models.indexdocumentsbatch-1) object. An `IndexDocumentsBatch` object contains a collection of [Actions](/dotnet/api/azure.search.documents.models.indexdocumentsbatch-1.actions), each of which contains a document and a property telling Azure AI Search what action to perform ([upload, merge, delete, and mergeOrUpload](/azure/search/search-what-is-data-import#indexing-actions)).
 
@@ -251,7 +257,7 @@ Console.WriteLine("{0}", "Uploading documents...\n");
 UploadDocuments(ingesterClient);
 ```
 
-Because we have a console app that runs all commands sequentially, we add a 2-second wait time between indexing and queries.
+Because this console app runs all commands sequentially, the code adds a 2-second wait time between indexing and queries.
 
 ```csharp
 // Wait 2 seconds for indexing to complete before starting queries (for demo and console-app purposes only)
@@ -317,7 +323,7 @@ private static void RunQueries(SearchClient searchClient)
 
     options.Select.Add("HotelId");
     options.Select.Add("HotelName");
-    options.Select.Add("Address/City");
+    options.Select.Add("Rating");
 
     response = searchClient.Search<Hotel>("*", options);
     WriteDocuments(response);
@@ -327,7 +333,7 @@ private static void RunQueries(SearchClient searchClient)
 
 #### Query example 2
 
-In the second query, search on a term, add a filter that selects documents where *Rating* is greater than 4, and then sort by Rating in descending order. Filter is a boolean expression that is evaluated over [IsFilterable](/dotnet/api/azure.search.documents.indexes.models.searchfield.isfilterable) fields in an index. Filter queries either include or exclude values. As such, there's no relevance score associated with a filter query.
+In the second query, search on a term, add a filter that selects documents where `Rating` is greater than 4, and then sort by `Rating` in descending order. Filter is a boolean expression that is evaluated over [IsFilterable](/dotnet/api/azure.search.documents.indexes.models.searchfield.isfilterable) fields in an index. Filter queries either include or exclude values. As such, there's no relevance score associated with a filter query.
 
 ```csharp
 // Query 2
@@ -411,7 +417,7 @@ The last query shows the syntax for autocomplete, simulating a partial user inpu
 
 ```csharp
 // Query 6
-Console.WriteLine("Query #6: Call Autocomplete on HotelName that starts with 'sa'...\n");
+Console.WriteLine("Query #6: Call Autocomplete on HotelName...\n");
 
 var autoresponse = searchClient.Autocomplete("sa", "sg");
 WriteDocuments(autoresponse);

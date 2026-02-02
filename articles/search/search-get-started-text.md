@@ -15,7 +15,7 @@ ms.custom:
   - ignite-2023
 ms.topic: quickstart
 zone_pivot_groups: search-quickstart-full-text
-ms.date: 01/30/2026
+ms.date: 02/02/2026
 ---
 
 # Quickstart: Full-text search
