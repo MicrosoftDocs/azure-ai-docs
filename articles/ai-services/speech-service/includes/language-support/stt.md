@@ -158,7 +158,7 @@ ms.author: pafarley
 
 ### Custom speech
 
-To improve the accuracy of speech-to-text recognition, you can customize some languages and base models. Depending on the locale, you can upload audio with human-labeled transcripts, plain text, structured text, and pronunciation data. By default, all available base models support plain-text customization. For more information about customization, see [What is custom speech?](./custom-speech-overview.md).
+To improve the accuracy of speech-to-text recognition, you can customize some languages and base models. Depending on the locale, you can upload audio with human-labeled transcripts, plain text, structured text, and pronunciation data. By default, all available base models support plain-text customization. For more information about customization, see [What is custom speech?](../../custom-speech-overview.md).
 
 | Locale (BCP-47) | Language | Custom speech support |
 | ----- | ----- | ----- |
@@ -310,7 +310,7 @@ To improve the accuracy of speech-to-text recognition, you can customize some la
 
 ### Custom speech display support
 
-These locales support the [display text format feature](./how-to-custom-speech-display-text-format.md): `da-DK`, `de-DE`, `en-AU`, `en-CA`, `en-GB`, `en-HK`, `en-IE`, `en-IN`, `en-NG`, `en-NZ`, `en-PH`, `en-SG`, `en-US`, `es-ES`, `es-MX`, `fi-FI`, `fr-CA`, `fr-FR`, `hi-IN`, `it-IT`, `ja-JP`, `ko-KR`, `nb-NO`, `nl-NL`, `pl-PL`, `pt-BR`, `pt-PT`, `sv-SE`, `tr-TR`, `zh-CN`, `zh-HK`.
+These locales support the [display text format feature](../../how-to-custom-speech-display-text-format.md): `da-DK`, `de-DE`, `en-AU`, `en-CA`, `en-GB`, `en-HK`, `en-IE`, `en-IN`, `en-NG`, `en-NZ`, `en-PH`, `en-SG`, `en-US`, `es-ES`, `es-MX`, `fi-FI`, `fr-CA`, `fr-FR`, `hi-IN`, `it-IT`, `ja-JP`, `ko-KR`, `nb-NO`, `nl-NL`, `pl-PL`, `pt-BR`, `pt-PT`, `sv-SE`, `tr-TR`, `zh-CN`, `zh-HK`.
 
 ### LLM speech translation
 
