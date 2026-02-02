@@ -9,7 +9,7 @@ ms.service: azure-ai-vision
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 01/22/2025
+ms.date: 01/30/2026
 ms.author: pafarley
 ---
 

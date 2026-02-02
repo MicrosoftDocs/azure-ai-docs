@@ -1,5 +1,5 @@
 ---
-title: "Quickstart: Prompt Shields "
+title: "Quickstart: Detect prompt attacks with Prompt Shields"
 titleSuffix: Azure AI services
 description: Learn how to detect large language model input attack risks and mitigate risk with Azure AI Content Safety.
 services: ai-services
@@ -7,24 +7,43 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: quickstart
-ms.date: 09/16/2025
+ms.date: 01/30/2026
 ms.author: pafarley
+ms.custom: dev-focus
+ai-usage: ai-assisted
 zone_pivot_groups: programming-languages-content-safety-foundry-rest
 #customer intent: As a developer, I want to learn how to use Prompt Shields so that I can ensure AI-generated content is safe and compliant.
 ---
 
-# Quickstart: Use Prompt Shields
+# Quickstart: Detect prompt attacks with Prompt Shields
 
-In this quickstart, you use the Prompt Shields feature. Prompt Shields in Azure AI Content Safety is designed to safeguard generative AI systems from generating harmful or inappropriate content. These filters detect and mitigate risks associated with both User Prompt Attacks (malicious or harmful user-generated inputs) and Document Attacks (inputs containing harmful content embedded within documents). The use of Prompt Shields is crucial in environments where GenAI is used, to ensure that AI outputs remain safe, compliant, and trustworthy.
+In this quickstart, you use Prompt Shields to detect potential security threats in user inputs and documents.
 
-The primary objectives of the Prompt Shields feature for GenAI applications are:
+Prompt Shields in Azure AI Content Safety detects both User Prompt Attacks (malicious inputs) and Document Attacks (harmful content embedded in documents). For a comprehensive background on Prompt Shields capabilities and objectives, see the [Prompt Shields concept page](./concepts/jailbreak-detection.md). For API input limits, see the [Input requirements](./overview.md#input-requirements) section of the Overview.
 
-- To detect and block harmful or policy-violating user prompts that could lead to unsafe AI outputs.
-- To identify and mitigate document attacks where harmful content is embedded within user-provided documents.
-- To maintain the integrity, safety, and compliance of AI-generated content, preventing misuse of GenAI systems.
+## Quick example
 
-For more information on Prompt Shields, see the [Prompt Shields concept page](./concepts/jailbreak-detection.md). For API input limits, see the [Input requirements](./overview.md#input-requirements) section of the Overview. 
+Here's what a basic Prompt Shields API call looks like:
 
+```bash
+curl --location --request POST '<endpoint>/contentsafety/text:shieldPrompt?api-version=2024-09-01' \
+--header 'Ocp-Apim-Subscription-Key: <your_subscription_key>' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "userPrompt": "Your input text here",
+  "documents": ["Document text to analyze"]
+}'
+```
+
+Expected response:
+```json
+{
+  "userPromptAnalysis": { "attackDetected": true },
+  "documentsAnalysis": [{ "attackDetected": false }]
+}
+```
+
+Choose your preferred implementation approach below:
 
 ::: zone pivot="programming-language-foundry-portal"
 
@@ -38,9 +57,16 @@ For more information on Prompt Shields, see the [Prompt Shields concept page](./
 
 ::: zone-end
 
+## Next steps
 
+Now that you've completed the basic Prompt Shields setup, explore these advanced scenarios:
+
+* **Production integration**: See complete code examples in the [Azure AI Content Safety samples repository](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/contentsafety/azure-ai-contentsafety/samples)
+* **Configure custom thresholds**: Learn how to adjust detection sensitivity in [Content Safety Studio](https://contentsafety.cognitive.azure.com)
+* **Batch processing**: Process multiple inputs efficiently using the batch analysis capabilities
+* **Integration patterns**: Implement Prompt Shields in your AI application workflow
 
 ## Related content
 
 * [Prompt Shields concepts](./concepts/jailbreak-detection.md)
-* Configure filters for each category and test on datasets using [Content Safety Studio](studio-quickstart.md), export the code and deploy.
+* Configure filters for each category and test on datasets using [Content Safety Studio](https://contentsafety.cognitive.azure.com), export the code and deploy.

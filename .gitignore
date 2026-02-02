@@ -42,4 +42,4 @@ specs/
 .env
 .env.example
 requirements.txt
-.roo/*
+.roo

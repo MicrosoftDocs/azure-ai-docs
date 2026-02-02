@@ -6,7 +6,8 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
-ms.date: 3/21/2025
+ms.date: 01/29/2026
+ai-usage: ai-assisted
 ---
 
 Use this guide to get started calling the Azure OpenAI in Microsoft Foundry Models image generation APIs with PowerShell.
@@ -23,6 +24,8 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 - Install the [Azure CLI](/cli/azure/install-azure-cli) used for keyless authentication with Microsoft Entra ID.
 - Assign the `Cognitive Services User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
 
+
+
 ## Retrieve resource information
 
 [!INCLUDE [resource authentication](resource-authentication.md)]
@@ -31,13 +34,21 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 1. For the **recommended** keyless authentication with Microsoft Entra ID, sign in to Azure with the following command:
 
-    ```console
+    ```powershell
     az login
+    ```
+
+1. Get an Azure OpenAI auth token and set it as an environment variable for the current PowerShell session:
+
+    ```powershell
+    $Env:DEFAULT_AZURE_CREDENTIAL_TOKEN = az account get-access-token --resource https://cognitiveservices.azure.com --query accessToken -o tsv
     ```
 
 1. Create a new PowerShell file called *quickstart.ps1*. Then open it up in your preferred editor or IDE.
 
-1. Replace the contents of _quickstart.ps1_ with the following code. Enter your endpoint URL and key in the appropriate fields. Change the value of `prompt` to your preferred text.
+1. Replace the contents of _quickstart.ps1_ with the following code. Make sure `AZURE_OPENAI_ENDPOINT` is set, and change the value of `prompt` to your preferred text.
+
+    To use API key authentication instead of keyless authentication, set `AZURE_OPENAI_API_KEY` and uncomment the `'api-key'` line.
 
    ```powershell
     # Azure OpenAI metadata variables

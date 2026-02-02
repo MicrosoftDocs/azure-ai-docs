@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: concept-article 
-ms.date: 10/06/2025
+ms.date: 01/31/2026
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -396,7 +396,7 @@ func main() {
 
 	// Create a client with Azure OpenAI endpoint and token credential
 	client := openai.NewClient(
-		option.WithBaseURL("https://YOUR-RESOURCE_NAME.openai.azure.com/openai/v1/"),
+		option.WithBaseURL("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"),
 		azure.WithTokenCredential(tokenCredential),
 	)
 

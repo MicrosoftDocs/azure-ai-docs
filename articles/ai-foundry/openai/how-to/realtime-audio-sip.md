@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 10/23/2025
+ms.date: 01/30/2026
 author: PatrickFarley
 ms.author: pafarley
 ms.custom: references_regions
