@@ -85,7 +85,7 @@ Query #1: Search on empty term '*' to return all documents, showing a subset of 
 {"HotelId":"4","HotelName":"Sublime Palace Hotel","Address":{"City":"San Antonio"}}
 {"HotelId":"1","HotelName":"Stay-Kay City Hotel","Address":{"City":"New York"}}
 
-Query #2: Search on 'hotels', filter on 'Rating gt 4', sort by Rating in descending order...    
+Query #2: Search on 'hotels', filter on 'Rating gt 4', sort by Rating in descending order...
 
 {"HotelId":"3","HotelName":"Gastronomic Landscape Hotel","Rating":4.8}
 {"HotelId":"4","HotelName":"Sublime Palace Hotel","Rating":4.6}
@@ -133,9 +133,9 @@ Both clients require the service endpoint and a credential for authentication. I
 
 ### Create a search index
 
-This quickstart builds a Hotels index that you load with hotel data and execute queries against. In this step, you define the fields in the index. Each field definition includes a name, data type, and attributes that determine how the field is used.
+This quickstart builds a hotels index that you load with hotel data and execute queries against. In this step, you define the fields in the index. Each field definition includes a name, data type, and attributes that determine how the field is used.
 
-In this example, synchronous methods of the [SearchIndexClient](/java/api/com.azure.search.documents.indexes.searchindexclient) class are used for simplicity and readability. However, for production scenarios, you should use the [SearchIndexAsyncClient](/java/api/com.azure.search.documents.indexes.searchindexasyncclient) class to keep your app scalable and responsive.
+This example uses synchronous methods of the [SearchIndexClient](/java/api/com.azure.search.documents.indexes.searchindexclient) class for simplicity and readability. However, for production scenarios, use the [SearchIndexAsyncClient](/java/api/com.azure.search.documents.indexes.searchindexasyncclient) class to keep your app scalable and responsive.
 
 #### Define the structures
 
@@ -143,7 +143,7 @@ You create two helper classes, `Hotel.java` and `Address.java`, to define the st
 
 In the azure-search-documents client library, you can use [SearchableField](/java/api/com.azure.search.documents.indexes.searchablefield) and [SimpleField](/java/api/com.azure.search.documents.indexes.simplefield) to streamline field definitions. Both are annotations that you can apply to fields or methods to generate a [SearchField](/java/api/com.azure.search.documents.indexes.models.searchfield):
 
-+ `SimpleField` can be any data type, is always non-searchable (ignored for full-text search queries), and is retrievable (not hidden). Other attributes are off by default, but can be enabled. You might use a `SimpleField` for document IDs or fields used only in filters, facets, or scoring profiles. If so, be sure to apply any attributes that are necessary for the scenario, such as `isKey = true` for a document ID.
++ `SimpleField` can be any data type, is always nonsearchable (ignored for full-text search queries), and is retrievable (not hidden). Other attributes are off by default, but can be enabled. You might use a `SimpleField` for document IDs or fields used only in filters, facets, or scoring profiles. If so, apply any attributes that are necessary for the scenario, such as `isKey = true` for a document ID.
 + `SearchableField` must be a string, and is always searchable and retrievable. Other attributes are off by default, but can be enabled. Because this field type is searchable, it supports synonyms and the full complement of analyzer properties.
 
 Whether you use the basic `SearchField` API or either one of the helper models, you must explicitly enable filter, facet, and sort attributes. For example, [isFilterable](/java/api/com.azure.search.documents.indexes.models.searchfield), [isSortable](/java/api/com.azure.search.documents.indexes.models.searchfield), and [isFacetable](/java/api/com.azure.search.documents.indexes.models.searchfield) must be explicitly attributed, as shown in the previous sample.
@@ -163,9 +163,9 @@ searchIndexClient.createOrUpdateIndex(
 
 Azure AI Search searches over content stored in the service. In this step, you load JSON documents that conform to the hotel index you created.
 
-In Azure AI Search, search documents are data structures that are both inputs to indexing and outputs from queries. As obtained from an external data source, document inputs might be rows in a database, blobs in Blob storage, or JSON documents on disk. In this example, the code takes a shortcut and embeds JSON documents for four hotels directly.
+In Azure AI Search, search documents are data structures that are both inputs to indexing and outputs from queries. As obtained from an external data source, document inputs might be rows in a database, blobs in Azure Blob Storage, or JSON documents on disk. In this example, you take a shortcut and embed JSON documents for four hotels directly.
 
-When uploading documents, you must use an [IndexDocumentsBatch](/java/api/com.azure.search.documents.models.indexdocumentsbatch) object. An `IndexDocumentsBatch` object contains a collection of [IndexActions](/java/api/com.azure.search.documents.models.indexaction), each of which contains a document and a property telling Azure AI Search what action to perform ([upload, merge, delete, and mergeOrUpload](/azure/search/search-what-is-data-import#indexing-actions)).
+When uploading documents, you must use an [IndexDocumentsBatch](/java/api/com.azure.search.documents.indexes.models.indexdocumentsbatch) object. An `IndexDocumentsBatch` object contains a collection of [IndexActions](/java/api/com.azure.search.documents.models.indexaction), each of which contains a document and a property telling Azure AI Search what action to perform ([upload, merge, delete, and mergeOrUpload](/azure/search/search-what-is-data-import#indexing-actions)).
 
 In `App.java`, you create an array of documents and index actions, and then pass the array to `IndexDocumentsBatch`. The following documents conform to the hotels-quickstart index, as defined by the hotel class.
 
@@ -209,15 +209,13 @@ private static void uploadDocuments(SearchClient searchClient)
 }
 ```
 
-Once you initialize the [IndexDocumentsBatch](/java/api/com.azure.search.documents.models.indexdocumentsbatch) object, you can send it to the index by calling [indexDocuments](/java/api/com.azure.search.documents.searchclient) on your [SearchClient](/java/api/com.azure.search.documents.searchclient) object.
-
-You load documents using `SearchClient` in `main()`, but the operation also requires admin rights on the service, which is typically associated with `SearchIndexClient`. One way to set up this operation is to get `SearchClient` through `SearchIndexClient` (`searchIndexClient` in this example).
+The `uploadDocuments` method creates an [IndexDocumentsBatch](/java/api/com.azure.search.documents.indexes.models.indexdocumentsbatch) and calls [indexDocuments](/java/api/com.azure.search.documents.searchclient) on a [SearchClient](/java/api/com.azure.search.documents.searchclient) to upload the documents. This quickstart creates `SearchClient` independently using [SearchClientBuilder](/java/api/com.azure.search.documents.searchclientbuilder), which requires configuring the endpoint and credentials separately.
 
 ```java
 uploadDocuments(searchClient);
 ```
 
-Because this console app runs all commands sequentially, the code adds a 2-second wait time between indexing and queries.
+Because this console app runs all commands sequentially, the code adds a two-second wait time between indexing and queries.
 
 ```java
 // Wait 2 seconds for indexing to complete before starting queries (for demo and console-app purposes only)
@@ -231,13 +229,13 @@ catch (InterruptedException e)
 }
 ```
 
-The 2-second delay compensates for indexing, which is asynchronous, so that all documents can be indexed before the queries are executed. Coding in a delay is typically only necessary in demos, tests, and sample applications.
+The two-second delay compensates for indexing, which is asynchronous, so that all documents can be indexed before the queries are executed. Coding in a delay is typically only necessary in demos, tests, and sample applications.
 
 ### Query the index
 
 You can get query results as soon as the first document is indexed, but actual testing of your index should wait until all documents are indexed.
 
-This section adds two pieces of functionality: query logic, and results. For queries, use the [search](/java/api/com.azure.search.documents.searchclient) method. This method takes search text (the query string) and other [options](/java/api/com.azure.search.documents.models.searchoptions).
+This section adds two pieces of functionality: query logic and results. For queries, use the [search](/java/api/com.azure.search.documents.searchclient) method. This method takes search text (the query string) and other [options](/java/api/com.azure.search.documents.models.searchoptions).
 
 The [SearchPagedIterable](/java/api/com.azure.search.documents.util.searchpagediterable) class represents the results.
 
@@ -292,7 +290,7 @@ private static void RunQueries(SearchClient searchClient)
 
 #### Query example 2
 
-In the second query, search on a term, add a filter that selects documents where `Rating` is greater than 4, and then sort by `Rating` in descending order. Filter is a boolean expression that is evaluated over [isFilterable](/java/api/com.azure.search.documents.indexes.models.searchfield) fields in an index. Filter queries either include or exclude values. As such, there's no relevance score associated with a filter query.
+In the second query, search on a term, add a filter that selects documents where `Rating` is greater than 4, and then sort by `Rating` in descending order. A filter is a boolean expression evaluated over [isFilterable](/java/api/com.azure.search.documents.indexes.models.searchfield) fields in an index. Filter queries either include or exclude values. As such, there's no relevance score associated with a filter query.
 
 ```java
 // Query 2
@@ -308,7 +306,7 @@ WriteSearchResults(searchClient.search("hotels", options, Context.NONE));
 
 #### Query example 3
 
-The third query demonstrates `searchFields`, used to scope a full text search operation to specific fields.
+The third query demonstrates `searchFields`, used to scope a full-text search operation to specific fields.
 
 ```java
 // Query 3
@@ -340,7 +338,7 @@ WriteSearchResults(searchClient.search("*", options, Context.NONE));
 
 #### Query example 5
 
-In the fifth query, return a specific document.
+In the fifth query, return a specific document. A document lookup is a typical response to an `OnClick` event in a result set.
 
 ```java
 // Query 5
@@ -366,5 +364,5 @@ WriteAutocompleteResults(searchClient.autocomplete("s", "sg"));
 
 The previous queries show multiple [ways of matching terms in a query](/azure/search/search-query-overview#types-of-queries): full-text search, filters, and autocomplete.
 
-Full-text search and filters are performed using the [SearchClient.search](/java/api/com.azure.search.documents.searchclient) method. A search query can be passed in the `searchText` string, while a filter expression can be passed in the [filter](/java/api/com.azure.search.documents.models.searchoptions) property of the [SearchOptions](/java/api/com.azure.search.documents.models.searchoptions) class. To filter without searching, just pass `"*"` for the `searchText` parameter of the [search](/java/api/com.azure.search.documents.searchclient) method. To search without filtering, leave the `filter` property unset, or don't pass in a `SearchOptions` instance at all.
+The [SearchClient.search](/java/api/com.azure.search.documents.searchclient) method performs full-text search and filters. You can pass a search query in the `searchText` string, while you pass a filter expression in the [filter](/java/api/com.azure.search.documents.models.searchoptions) property of the [SearchOptions](/java/api/com.azure.search.documents.models.searchoptions) class. To filter without searching, just pass `"*"` for the `searchText` parameter of the [search](/java/api/com.azure.search.documents.searchclient) method. To search without filtering, leave the `filter` property unset, or don't pass in a `SearchOptions` instance at all.
 

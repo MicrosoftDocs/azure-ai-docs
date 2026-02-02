@@ -916,7 +916,7 @@ To create a single vector search with a filter:
 
 ### Hybrid search
 
-Hybrid search consists of keyword queries and vector queries in a single search request. This example runs the vector query and full text search concurrently:
+Hybrid search consists of keyword queries and vector queries in a single search request. This example runs the vector query and full-text search concurrently:
 
 + Search string: `historic hotel walk to restaurants and shopping`
 + Vector query string: `quintessential lodging near running trails, eateries, retail` (vectorized into a mathematical representation)
@@ -989,7 +989,7 @@ To create a hybrid search:
     
     Because RRF merges results, it helps to review the inputs individually. 
     
-    The following results are from the full-text portion of the query: *historic hotel walk to restaurants and shopping*. In the full text query, the top three results are Sublime Palace Hotel, Stay-Kay City Hotel, and Luxury Lion Resort. The Sublime Palace Hotel has a stronger BM25 relevance score. In the fused query, only two of these matches are in the top 3, and the second match (Stay-Kay City Hotel) doesn't appear in the top 5 at all.
+    The following results are from the full-text portion of the query: *historic hotel walk to restaurants and shopping*. In the full-text query, the top three results are Sublime Palace Hotel, Stay-Kay City Hotel, and Luxury Lion Resort. The Sublime Palace Hotel has a stronger BM25 relevance score. In the fused query, only two of these matches are in the top 3, and the second match (Stay-Kay City Hotel) doesn't appear in the top 5 at all.
     
     ```json
       "value": [

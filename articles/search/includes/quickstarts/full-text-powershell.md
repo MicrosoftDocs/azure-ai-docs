@@ -50,11 +50,11 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
 
 1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service.
 
-    ```azurecli
-    az login
-    ```
+   ```azurecli
+   az login
+   ```
 
-1. Open the `azure-search-quickstart.ps1` file in a text editor.
+1. Open the `azure-search-powershell-samples/Quickstart/azure-search-quickstart.ps1` file in a text editor.
 
 1. Replace the placeholder value for `$baseUrl` with the URL you obtained in [Get endpoint](#get-endpoint).
 
@@ -68,7 +68,7 @@ In the same terminal window, run the following PowerShell script to execute this
 
 ### Output
 
-The script creates a search index, uploads documents, and runs multiple full-text search queries. The result of each operation is printed to the console. The following example shows the response when searching for `restaurant wifi`:
+The script deletes any existing index, creates a new index, uploads documents, and runs multiple full-text search queries. The output shows the full HTTP requests and responses for each operation. The following example shows the response when searching for "restaurant wifi."
 
 ```json
 {
@@ -101,7 +101,29 @@ Now that you've run the code, let's break down the key steps:
 
 Before you add content to Azure AI Search, you must create an index to define how the content is stored and structured. An index is conceptually similar to a table in a relational database, but it's specifically designed for search operations, such as full-text search.
 
-This quickstart calls [Indexes - Create (REST API)](/rest/api/searchservice/indexes/create) to build a search index named `hotels-quickstart` and its physical data structures on your search service.
+This quickstart first deletes any existing index with the same name, which is a common practice for test/demo code that runs repeatedly.
+
+```powershell
+Send-Request DELETE "$baseUrl/indexes/hotels-quickstart?api-version=2025-09-01" $headers
+```
+
+This quickstart then calls [Indexes - Create (REST API)](/rest/api/searchservice/indexes/create) to build a search index named `hotels-quickstart` and its physical data structures on your search service.
+
+```powershell
+$body = @"
+{
+    "name": "hotels-quickstart",
+    "fields": [
+        {"name": "HotelId", "type": "Edm.String", "key": true, "filterable": true},
+        {"name": "HotelName", "type": "Edm.String", "searchable": true, "filterable": false, "sortable": true, "facetable": false},
+        {"name": "Description", "type": "Edm.String", "searchable": true, "filterable": false, "sortable": false, "facetable": false, "analyzer": "en.lucene"},
+        ...
+    ]
+}
+"@
+
+Send-RequestWithBody POST "$baseUrl/indexes?api-version=2025-09-01" $headers $body
+```
 
 Within the index schema, the `fields` collection defines the structure of hotel documents. Each field has a `name`, data `type`, and attributes that determine its behavior during indexing and queries. The `HotelId` field is marked as the key, which Azure AI Search requires to uniquely identify each document in an index.
 
@@ -109,7 +131,7 @@ Key points about the index schema:
 
 + Use string fields (`Edm.String`) to make numeric data full-text searchable. Other [supported data types](/rest/api/searchservice/supported-data-types), such as `Edm.Int32`, are filterable, sortable, facetable, and retrievable but aren't searchable.
 
-+ Most of our fields are simple data types, but you can define complex types to represent nested data, such as the `Address` field.
++ Most of the fields are simple data types, but you can define complex types to represent nested data, such as the `Address` field.
 
 + Field attributes determine allowed actions. The REST APIs allow [many actions by default](/rest/api/searchservice/indexes/create#request-body). For example, all strings are searchable and retrievable. With the REST APIs, you might only use attributes if you need to disable a behavior.
 
@@ -121,40 +143,98 @@ In Azure AI Search, documents serve as both inputs for indexing and outputs for 
 
 This quickstart calls [Documents - Index (REST API)](/rest/api/searchservice/documents/) to add four sample hotel documents to your index. Compared to the previous request, the URI is extended to include the `docs` collection and `index` operation.
 
-Each document in the `value` array represents a hotel and contains fields that match the index schema. The `@search.action` parameter specifies the operation to perform for each document. Our example uses `upload`, which adds the document if it doesn't exist or updates the document if it does exist.
+```powershell
+$body = @"
+{
+    "value": [
+        {
+            "@search.action": "upload",
+            "HotelId": "1",
+            "HotelName": "Stay-Kay City Hotel",
+            "Description": "This classic hotel is...",
+            ...
+        },
+        ...
+    ]
+}
+"@
+
+Send-RequestWithBody POST "$baseUrl/indexes/hotels-quickstart/docs/index?api-version=2025-09-01" $headers $body
+```
+
+Each document in the `value` array represents a hotel and contains fields that match the index schema. The `@search.action` parameter specifies the operation to perform for each document. This example uses `upload`, which adds the document if it doesn't exist or updates the document if it does exist.
 
 ### Query the index
 
 Now that documents are loaded into your index, you can use full-text search to find specific terms or phrases within their fields.
 
-This quickstart calls [Documents - Search Post (REST API)](/rest/api/searchservice/documents/search-post) to find hotel documents that match your search criteria. The URI now targets the `/docs/search` operation.
+This quickstart calls [Documents - Search Post (REST API)](/rest/api/searchservice/documents/search-post) to find hotel documents that match your search criteria. The URI targets the `/docs/search` operation.
 
-Full-text search requests always include a `search` parameter that contains the query text. The query text can include one or more terms, phrases, or operators. In addition to `search`, you can specify other parameters to refine the search behavior and results.
+Full-text search requests include a `search` parameter with the query text, which can contain terms, phrases, or operators. The query searches across all searchable fields in each document. The following examples demonstrate common query patterns.
 
-Our query searches for the terms "attached restaurant" in the `Description` and `Tags` fields of each hotel document. The `$select` parameter limits the fields returned in the response to `HotelId`, `HotelName`, `Tags`, and `Description`. The `$count` parameter requests the total number of matching documents.
+#### Query example 1
 
-#### Other query examples
-
-Run the following commands to explore the query syntax. You can perform string searches, use `$filter` expressions, limit result sets, select specific fields, and more. Remember to replace `<YOUR-SEARCH-SERVICE>` with the value you obtained in [Get endpoint](#get-endpoint).
+The following query searches for the terms "restaurant wifi" across all searchable fields. By default, Azure AI Search returns documents that match any of the search terms.
 
 ```powershell
-# Query example 1
-# Search the index for the terms 'restaurant' and 'wifi'
-# Return only the HotelName, Description, and Tags fields
-$url = '<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart/docs?api-version=2025-09-01&search=restaurant wifi&$count=true&$select=HotelName,Description,Tags'
+$body = @"
+{
+    "search": "restaurant wifi",
+    "select": "HotelName, Description, Tags"
+}
+"@
 
-# Query example 2 
-# Use a filter to find hotels rated 4 or higher
-# Return only the HotelName and Rating fields
-$url = '<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart/docs?api-version=2025-09-01&search=*&$filter=Rating gt 4&$select=HotelName,Rating'
+Send-RequestWithBody POST "$baseUrl/indexes/hotels-quickstart/docs/search?api-version=2025-09-01" $headers $body
+```
 
-# Query example 3
-# Take the top two results
-# Return only the HotelName and Category fields
-$url = '<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart/docs?api-version=2025-09-01&search=boutique&$top=2&$select=HotelName,Category'
+The `select` parameter limits the fields returned in the response to `HotelName`, `Description`, and `Tags`.
 
-# Query example 4
-# Sort by a specific field (Address/City) in ascending order
-# Return only the HotelName, Address/City, Tags, and Rating fields
-$url = '<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart/docs?api-version=2025-09-01&search=pool&$orderby=Address/City asc&$select=HotelName, Address/City, Tags, Rating'
+#### Query example 2
+
+The following query uses a `filter` expression to return only hotels with a rating greater than 4.
+
+```powershell
+$body = @"
+{
+    "search": "*",
+    "filter": "Rating gt 4",
+    "select": "HotelName,Rating"
+}
+"@
+
+Send-RequestWithBody POST "$baseUrl/indexes/hotels-quickstart/docs/search?api-version=2025-09-01" $headers $body
+```
+
+The `search` parameter is set to `*`, which matches all documents. The `filter` parameter applies a Boolean condition to narrow the results.
+
+#### Query example 3
+
+The following query searches for "boutique" and uses `top` to return only the first two results.
+
+```powershell
+$body = @"
+{
+    "search": "boutique",
+    "select": "HotelName,Category",
+    "top": 2
+}
+"@
+
+Send-RequestWithBody POST "$baseUrl/indexes/hotels-quickstart/docs/search?api-version=2025-09-01" $headers $body
+```
+
+#### Query example 4
+
+The following query searches for "pool" and uses `orderby` to sort results by `Rating` in descending order.
+
+```powershell
+$body = @"
+{
+    "search": "pool",
+    "select": "HotelName,Description,Tags,Rating",
+    "orderby": "Rating desc"
+}
+"@
+
+Send-RequestWithBody POST "$baseUrl/indexes/hotels-quickstart/docs/search?api-version=2025-09-01" $headers $body
 ```
