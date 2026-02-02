@@ -15,7 +15,7 @@ ms.custom:
   - ignite-2023
 ms.topic: quickstart
 zone_pivot_groups: search-quickstart-full-text
-ms.date: 11/20/2025
+ms.date: 01/30/2026
 ---
 
 # Quickstart: Full-text search
@@ -68,7 +68,7 @@ When working in your own subscription, it's a good idea to finish a project by d
 
 In the [Azure portal](https://portal.azure.com/), you can find and manage resources by selecting **All resources** or **Resource groups** from the left pane.
 
-If you're using a free service, remember that you're limited to three indexes, indexers, and data sources. You can delete individual items in the Azure portal to stay under the limit.
+If you're using a free service, remember that you're limited to three indexes, indexers, and data sources. You can [delete individual items](search-how-to-manage-index.md) in the Azure portal to stay under the limit.
 
 ## Related content
 

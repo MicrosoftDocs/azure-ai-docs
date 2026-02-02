@@ -4,46 +4,49 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 11/20/2025
+ms.date: 01/30/2026
 ---
 
-[!INCLUDE [Full text introduction](full-text-intro.md)]
+In this quickstart, you use the [Azure AI Search client library for Python](/python/api/overview/azure/search-documents-readme) to create, load, and query a search index for [full-text search](../../search-lucene-query-architecture.md), also known as keyword search.
+
+Full-text search uses Apache Lucene for indexing and queries and the BM25 ranking algorithm for scoring results. This quickstart uses fictional hotel data from the [azure-search-sample-data](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/hotels/hotel-json-documents) GitHub repository to populate the index.
 
 > [!TIP]
-> You can download the [source code](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/Quickstart-Keyword-Search) to start with a finished project or follow these steps to create your own.
+> Want to get started right away? Download the [source code](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/Quickstart-Keyword-Search) on GitHub.
 
 ## Prerequisites
 
 - An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-- An Azure AI Search service. [Create a service](../../search-create-service-portal.md) if you don't have one. For this quickstart, you can use a free service.
+- An [Azure AI Search service](../../search-create-service-portal.md). You can use a free service for this quickstart.
 
-- [Visual Studio Code](https://code.visualstudio.com/download) with the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) or an equivalent IDE with Python 3.10 or later. If you haven't installed a suitable version of Python, follow the instructions in the [VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter).
+- The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
 
-## Microsoft Entra ID prerequisites
+- [Visual Studio Code](https://code.visualstudio.com/download) with the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and [Jupyter package](https://pypi.org/project/jupyter/).
 
-For the recommended keyless authentication with Microsoft Entra ID, you must:
+- [Git](https://git-scm.com/downloads) to clone the sample repository.
 
-- Install the [Azure CLI](/cli/azure/install-azure-cli).
-
-- Assign the `Search Service Contributor` and `Search Index Data Contributor` roles to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**. For more information, see [Connect to Azure AI Search using roles](../../search-security-rbac.md).
-
-## Get service information
+## Configure access
 
 [!INCLUDE [resource authentication](../resource-authentication.md)]
 
-## Set up your environment
+## Get endpoint
 
-You run the sample code in a Jupyter notebook. So, you need to set up your environment to run Jupyter notebooks.
+[!INCLUDE [resource endpoint](../resource-endpoint.md)]
 
-1. Download or copy the [sample notebook from GitHub](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/Quickstart-Keyword-Search).
+## Set up the environment
 
-1. Open the notebook in Visual Studio Code.
+1. Use Git to clone the sample repository.
 
-1. Create a new Python environment to use to install the packages you need for this tutorial. 
+   ```console
+   git clone https://github.com/Azure-Samples/azure-search-python-samples
+   ```
 
-    > [!IMPORTANT]
-    > Don't install packages into your global python installation. You should always use a virtual or conda environment when installing python packages, otherwise you can break your global install of Python.
+1. Open the `Quickstart-Keyword-Search` folder in Visual Studio Code.
+
+1. Open the `azure-search-quickstart.ipynb` file.
+
+1. Create a virtual environment for installing the packages.
 
     # [Windows](#tab/windows)
     
@@ -68,94 +71,75 @@ You run the sample code in a Jupyter notebook. So, you need to set up your envir
     
     ---
 
-    It can take a minute to set up. If you run into problems, see [Python environments in VS Code](https://code.visualstudio.com/docs/python/environments).
+1. In the upper-right corner of the notebook, select **Select Kernel**, and then select the virtual environment you created.
 
-1. Install Jupyter notebooks and the IPython Kernel for Jupyter notebooks if you don't have them already.
+1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account.
 
-    ```bash
-    pip install jupyter
-    pip install ipykernel
-    python -m ipykernel install --user --name=.venv
+    ```azurecli
+    az login
     ```
 
-1. Select the notebook kernel.
+## Run the code
 
-    1. In the top right corner of the notebook, select **Select Kernel**.
-    1. If you see `.venv` in the list, select it. If you don't see it, select **Select Another Kernel** > **Python environments** > `.venv`.
+1. Run the first code cell to install the required packages.
 
-## Create, load, and query a search index
+1. In the second code cell, set the `search_endpoint` variable to the URL you obtained in [Get endpoint](#get-endpoint).
 
-In this section, you add code to create a search index, load it with documents, and run queries. You run the program to see the results in the console. For a detailed explanation of the code, see the [Explaining the code](#explaining-the-code) section.
+1. Run the second code cell to import the required libraries and set up the search client.
 
-1. Make sure the notebook is open in the `.venv` kernel as described in the previous section.
-1. Run the first code cell to install the required packages, including [azure-search-documents](/python/api/azure-search-documents). 
+1. Run the remaining code cells sequentially to create an index, load documents, and run queries.
 
-    ```python
-    ! pip install azure-search-documents==11.6.0b1 --quiet
-    ! pip install azure-identity --quiet
-    ! pip install python-dotenv --quiet
-    ```
+### Output
 
-1. Replace contents of the second code cell with the following code depending on your authentication method. 
+Each code cell prints its output to the notebook. The following example is the output of the first query, an empty search that returns all documents in the index.
 
-    > [!NOTE]
-    > The sample code in this quickstart uses Microsoft Entra ID for the recommended keyless authentication. If you prefer to use an API key, you can replace the `DefaultAzureCredential` object with a `AzureKeyCredential` object. 
+```
+Total Documents Matching Query: 4
+1.0
+Gastronomic Landscape Hotel
+['restaurant', 'bar', 'continental breakfast']
+Description: The Gastronomic Hotel stands out for its culinary excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.
+1.0
+Old Century Hotel
+['pool', 'free wifi', 'concierge']
+Description: The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer dinners, and live music.
+1.0
+Sublime Palace Hotel
+['concierge', 'view', 'air conditioning']
+Description: Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 19th century resort, updated for every modern convenience.
+1.0
+Stay-Kay City Hotel
+['view', 'air conditioning', 'concierge']
+Description: This classic hotel is fully-refurbished and ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Times Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.
+```
 
-    #### [Microsoft Entra ID](#tab/keyless)
-    
-    ```python
-    from azure.core.credentials import AzureKeyCredential
-    from azure.identity import DefaultAzureCredential, AzureAuthorityHosts
-    
-    search_endpoint: str = "https://<Put your search service NAME here>.search.windows.net/"
-    authority = AzureAuthorityHosts.AZURE_PUBLIC_CLOUD
-    credential = DefaultAzureCredential(authority=authority)
+## Understand the code
 
-    index_name: str = "hotels-quickstart-python"
-    ```
-    
-    #### [API key](#tab/api-key)
-    
-    ```python
-    from azure.core.credentials import AzureKeyCredential
-    from azure.identity import DefaultAzureCredential, AzureAuthorityHosts
-    
-    search_endpoint: str = "https://<Put your search service NAME here>.search.windows.net/"
-    credential = AzureKeyCredential("Your search service admin key")
+Now that you've run the code, let's break down the key steps:
 
-    index_name: str = "hotels-quickstart-python"
-    ```
-    ---
+1. [Create a search index](#create-a-search-index)
+1. [Upload documents to the index](#upload-documents-to-the-index)
+1. [Query the index](#query-the-index)
+1. [Remove the index](#remove-the-index)
 
-1. Remove the following two lines from the **Create an index** code cell. Credentials are already set in the previous code cell.
-
-    ```python
-    from azure.core.credentials import AzureKeyCredential
-    credential = AzureKeyCredential(search_api_key)
-    ```
-
-1. Run the **Create an index** code cell to create a search index.
-1. Run the remaining code cells sequentially to load documents and run queries.
-
-## Explaining the code
-
-### Create an index
+### Create a search index
 
 `SearchIndexClient` is used to create and manage indexes for Azure AI Search. Each field is identified by a `name` and has a specified `type`. 
 
 Each field also has a series of index attributes that specify whether Azure AI Search can search, filter, sort, and facet upon the field. Most of the fields are simple data types, but some, like `AddressType` are complex types that allow you to create rich data structures in your index. You can read more about [supported data types](/rest/api/searchservice/supported-data-types) and index attributes described in [Create Index (REST)](/rest/api/searchservice/indexes/create). 
 
-### Create a documents payload and upload documents
+### Upload documents to the index
 
 Use an [index action](/python/api/azure-search-documents/azure.search.documents.models.indexaction) for the operation type, such as upload or merge-and-upload. Documents originate from the [HotelsData](https://github.com/Azure-Samples/azure-search-sample-data/blob/main/hotels/HotelsData_toAzureSearch.JSON) sample on GitHub.
 
-### Search an index
+### Query the index
 
 You can get query results as soon as the first document is indexed, but actual testing of your index should wait until all documents are indexed.
 
 Use the *search* method of the [search.client class](/python/api/azure-search-documents/azure.search.documents.searchclient).
 
 The sample queries in the notebook are:
+
 - Basic query: Executes an empty search (`search=*`), returning an unranked list (search score = 1.0) of arbitrary documents. Because there are no criteria, all documents are included in results.
 - Term query: Adds whole terms to the search expression ("wifi"). This query specifies that results contain only those fields in the `select` statement. Limiting the fields that come back minimizes the amount of data sent back over the wire and reduces search latency.
 - Filtered query: Add a filter expression, returning only those hotels with a rating greater than four, sorted in descending order.
@@ -166,4 +150,4 @@ The sample queries in the notebook are:
 
 ### Remove the index
 
-If you're finished with this index, you can delete it by running the **Clean up** code cell. Deleting unnecessary indexes frees up space for stepping through more quickstarts and tutorials.
+If you're finished with this index, you can delete it by running the `Clean up` code cell. Deleting unnecessary indexes frees up space for stepping through more quickstarts and tutorials.

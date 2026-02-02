@@ -4,593 +4,142 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 11/20/2025
+ms.date: 01/30/2026
 ---
 
-[!INCLUDE [Full text introduction](full-text-intro.md)]
+In this quickstart, you use the [Azure AI Search client library for Java](/java/api/overview/azure/search-documents-readme) to create, load, and query a search index for [full-text search](../../search-lucene-query-architecture.md), also known as keyword search.
+
+Full-text search uses Apache Lucene for indexing and queries and the BM25 ranking algorithm for scoring results. This quickstart uses fictional hotel data from the [azure-search-sample-data](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/hotels/hotel-json-documents) GitHub repository to populate the index.
 
 > [!TIP]
-> You can download the [source code](https://github.com/Azure-Samples/azure-search-java-samples/tree/main/quickstart-keyword-search) to start with a finished project or follow these steps to create your own.
+> Want to get started right away? Download the [source code](https://github.com/Azure-Samples/azure-search-java-samples/tree/main/quickstart-keyword-search) on GitHub.
 
 ## Prerequisites
 
 - An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-- An Azure AI Search service. [Create a service](../../search-create-service-portal.md) if you don't have one. For this quickstart, you can use a free service.
+- An [Azure AI Search service](../../search-create-service-portal.md). You can use a free service for this quickstart.
 
-## Microsoft Entra ID prerequisites
+- The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
 
-For the recommended keyless authentication with Microsoft Entra ID, you must:
+- [Visual Studio Code](https://code.visualstudio.com/download), [Java 21 (LTS)](/java/openjdk/install), and [Maven](https://maven.apache.org/download.cgi).
 
-- Install the [Azure CLI](/cli/azure/install-azure-cli).
+- [Git](https://git-scm.com/downloads) to clone the sample repository.
 
-- Assign the `Search Service Contributor` and `Search Index Data Contributor` roles to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**. For more information, see [Connect to Azure AI Search using roles](../../search-security-rbac.md).
-
-## Get service information
+## Configure access
 
 [!INCLUDE [resource authentication](../resource-authentication.md)]
 
-## Set up
+## Get endpoint
 
-The sample in this quickstart works with the Java Runtime. Install a Java Development Kit such as [Azul Zulu OpenJDK](https://www.azul.com/downloads/?package=jdk). The [Microsoft Build of OpenJDK](https://www.microsoft.com/openjdk) or your preferred JDK should also work.
+[!INCLUDE [resource endpoint](../resource-endpoint.md)]
 
-1. Install [Apache Maven](https://maven.apache.org/install.html). Then run `mvn -v` to confirm successful installation.
-1. Create a new `pom.xml` file in the root of your project, and copy the following code into it:
+## Set up the environment
 
-    ```xml
-    <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-        <modelVersion>4.0.0</modelVersion>
-        <groupId>azure.search.sample</groupId>
-        <artifactId>azuresearchquickstart</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
-        <build>
-            <sourceDirectory>src</sourceDirectory>
-            <plugins>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.7.0</version>
-                <configuration>
-                <source>1.8</source>
-                <target>1.8</target>
-                </configuration>
-            </plugin>
-            </plugins>
-        </build>
-        <dependencies>
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>4.11</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.azure</groupId>
-                <artifactId>azure-search-documents</artifactId>
-                <version>11.7.3</version>
-            </dependency>
-            <dependency>
-                <groupId>com.azure</groupId>
-                <artifactId>azure-core</artifactId>
-                <version>1.53.0</version>
-            </dependency>
-            <dependency>
-                <groupId>com.azure</groupId>
-                <artifactId>azure-identity</artifactId>
-                <version>1.15.1</version>
-            </dependency>
-        </dependencies>
-    </project>
-    ```
+1. Use Git to clone the sample repository.
 
-1. Install the dependencies including the Azure AI Search client library ([Azure.Search.Documents](/java/api/overview/azure/search)) for Java and [Azure Identity client library for Java](https://mvnrepository.com/artifact/com.azure/azure-identity) with:
+   ```console
+   git clone https://github.com/Azure-Samples/azure-search-java-samples
+   ```
+
+1. Open the `quickstart-keyword-search` folder in Visual Studio Code.
+
+1. Open the `App.java` file in the `src/main/main/java/azure/search/sample` folder.
+
+1. Set the `searchServiceEndpoint` variable to the URL you obtained in [Get endpoint](#get-endpoint).
+
+1. Install the dependencies from the `pom.xml` file.
 
    ```console
    mvn clean dependency:copy-dependencies
    ```
 
-1. For the **recommended** keyless authentication with Microsoft Entra ID, sign in to Azure with the following command:
+1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account.
 
     ```console
     az login
     ```
 
-## Create, load, and query a search index
+## Run the code
 
-In the prior [set up](#set-up) section, you installed the Azure AI Search client library and other dependencies. 
+Run the following commands to compile and run the application.
 
-In this section, you add code to create a search index, load it with documents, and run queries. You run the program to see the results in the console. For a detailed explanation of the code, see the [Explaining the code](#explaining-the-code) section.
-
-The sample code in this quickstart uses Microsoft Entra ID for the recommended keyless authentication. If you prefer to use an API key, you can replace the `DefaultAzureCredential` object with a `AzureKeyCredential` object. 
-
-#### [Microsoft Entra ID](#tab/keyless)
-
-```java
-String searchServiceEndpoint = "https://<Put your search service NAME here>.search.windows.net/";
-DefaultAzureCredential credential = new DefaultAzureCredentialBuilder().build();
+```console
+javac -d target/classes -cp "target/dependency/*" src/main/main/java/azure/search/sample/*.java
+java -cp "target/classes;target/dependency/*" azure.search.sample.App
 ```
 
-#### [API key](#tab/api-key)
+### Output
 
-```java
-String searchServiceEndpoint = "https://<Put your search service NAME here>.search.windows.net/";
-AzureKeyCredential credential = new AzureKeyCredential("<Your search service admin key>");
+The output should be similar to the following:
+
 ```
----
+Waiting for indexing...
 
-1. Create a new file named *App.java* and paste the following code into *App.java*:
+Starting queries...
 
-    ```java
-    import java.util.Arrays;
-    import java.util.ArrayList;
-    import java.time.OffsetDateTime;
-    import java.time.ZoneOffset;
-    import java.time.LocalDateTime;
-    import java.time.LocalDate;
-    import java.time.LocalTime;
-    import com.azure.core.util.Configuration;
-    import com.azure.core.util.Context;
-    import com.azure.identity.DefaultAzureCredential;
-    import com.azure.identity.DefaultAzureCredentialBuilder;
-    import com.azure.search.documents.SearchClient;
-    import com.azure.search.documents.SearchClientBuilder;
-    import com.azure.search.documents.indexes.SearchIndexClient;
-    import com.azure.search.documents.indexes.SearchIndexClientBuilder;
-    import com.azure.search.documents.indexes.models.IndexDocumentsBatch;
-    import com.azure.search.documents.models.SearchOptions;
-    import com.azure.search.documents.indexes.models.SearchIndex;
-    import com.azure.search.documents.indexes.models.SearchSuggester;
-    import com.azure.search.documents.util.AutocompletePagedIterable;
-    import com.azure.search.documents.util.SearchPagedIterable;
-    
-    public class App {
-    
-        public static void main(String[] args) {
-            // Your search service endpoint
-            "https://<Put your search service NAME here>.search.windows.net/";
-    
-            // Use the recommended keyless credential instead of the AzureKeyCredential credential.
-            DefaultAzureCredential credential = new DefaultAzureCredentialBuilder().build();
-            //AzureKeyCredential credential = new AzureKeyCredential("<Your search service admin key>");
-    
-            // Create a SearchIndexClient to send create/delete index commands
-            SearchIndexClient searchIndexClient = new SearchIndexClientBuilder()
-                .endpoint(searchServiceEndpoint)
-                .credential(credential)
-                .buildClient();
-            
-            // Create a SearchClient to load and query documents
-            String indexName = "hotels-quickstart-java";
-            SearchClient searchClient = new SearchClientBuilder()
-                .endpoint(searchServiceEndpoint)
-                .credential(credential)
-                .indexName(indexName)
-                .buildClient();
-    
-            // Create Search Index for Hotel model
-            searchIndexClient.createOrUpdateIndex(
-                new SearchIndex(indexName, SearchIndexClient.buildSearchFields(Hotel.class, null))
-                .setSuggesters(new SearchSuggester("sg", Arrays.asList("HotelName"))));
-    
-            // Upload sample hotel documents to the Search Index
-            uploadDocuments(searchClient);
-    
-            // Wait 2 seconds for indexing to complete before starting queries (for demo and console-app purposes only)
-            System.out.println("Waiting for indexing...\n");
-            try
-            {
-                Thread.sleep(2000);
-            }
-            catch (InterruptedException e)
-            {
-            }
-    
-            // Call the RunQueries method to invoke a series of queries
-            System.out.println("Starting queries...\n");
-            RunQueries(searchClient);
-    
-            // End the program
-            System.out.println("Complete.\n");
-        }
-    
-        // Upload documents in a single Upload request.
-        private static void uploadDocuments(SearchClient searchClient)
-        {
-            var hotelList = new ArrayList<Hotel>();
-    
-            var hotel = new Hotel();
-            hotel.hotelId = "1";
-            hotel.hotelName = "Stay-Kay City Hotel";
-            hotel.description = "This classic hotel is fully-refurbished and ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Times Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.";
-            hotel.category = "Boutique";
-            hotel.tags = new String[] { "view", "air conditioning", "concierge" };
-            hotel.parkingIncluded = false;
-            hotel.lastRenovationDate = OffsetDateTime.of(LocalDateTime.of(LocalDate.of(2022, 1, 18), LocalTime.of(0, 0)), ZoneOffset.UTC);
-            hotel.rating = 3.6;
-            hotel.address = new Address();
-            hotel.address.streetAddress = "677 5th Ave";
-            hotel.address.city = "New York";
-            hotel.address.stateProvince = "NY";
-            hotel.address.postalCode = "10022";
-            hotel.address.country = "USA";
-            hotelList.add(hotel);
-    
-            hotel = new Hotel();
-            hotel.hotelId = "2";
-            hotel.hotelName = "Old Century Hotel";
-            hotel.description = "The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer dinners, and live music.",
-            hotel.category = "Boutique";
-            hotel.tags = new String[] { "pool", "free wifi", "concierge" };
-            hotel.parkingIncluded = false;
-            hotel.lastRenovationDate = OffsetDateTime.of(LocalDateTime.of(LocalDate.of(2019, 2, 18), LocalTime.of(0, 0)), ZoneOffset.UTC);
-            hotel.rating = 3.60;
-            hotel.address = new Address();
-            hotel.address.streetAddress = "140 University Town Center Dr";
-            hotel.address.city = "Sarasota";
-            hotel.address.stateProvince = "FL";
-            hotel.address.postalCode = "34243";
-            hotel.address.country = "USA";
-            hotelList.add(hotel);
-    
-            hotel = new Hotel();
-            hotel.hotelId = "3";
-            hotel.hotelName = "Gastronomic Landscape Hotel";
-            hotel.description = "The Gastronomic Hotel stands out for its culinary excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.";
-            hotel.category = "Suite";
-            hotel.tags = new String[] { "restaurant", "bar", "continental breakfast" };
-            hotel.parkingIncluded = true;
-            hotel.lastRenovationDate = OffsetDateTime.of(LocalDateTime.of(LocalDate.of(2015, 9, 20), LocalTime.of(0, 0)), ZoneOffset.UTC);
-            hotel.rating = 4.80;
-            hotel.address = new Address();
-            hotel.address.streetAddress = "3393 Peachtree Rd";
-            hotel.address.city = "Atlanta";
-            hotel.address.stateProvince = "GA";
-            hotel.address.postalCode = "30326";
-            hotel.address.country = "USA";
-            hotelList.add(hotel);
-    
-            hotel = new Hotel();
-            hotel.hotelId = "4";
-            hotel.hotelName = "Sublime Palace Hotel";
-            hotel.description = "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 19th century resort, updated for every modern convenience.";
-            hotel.category = "Boutique";
-            hotel.tags = new String[] { "concierge", "view", "air conditioning" };
-            hotel.parkingIncluded = true;
-            hotel.lastRenovationDate = OffsetDateTime.of(LocalDateTime.of(LocalDate.of(2020, 2, 06), LocalTime.of(0, 0)), ZoneOffset.UTC);
-            hotel.rating = 4.60;
-            hotel.address = new Address();
-            hotel.address.streetAddress = "7400 San Pedro Ave";
-            hotel.address.city = "San Antonio";
-            hotel.address.stateProvince = "TX";
-            hotel.address.postalCode = "78216";
-            hotel.address.country = "USA";
-            hotelList.add(hotel);
-    
-            var batch = new IndexDocumentsBatch<Hotel>();
-            batch.addMergeOrUploadActions(hotelList);
-            try
-            {
-                searchClient.indexDocuments(batch);
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-                // If for some reason any documents are dropped during indexing, you can compensate by delaying and
-                // retrying. This simple demo just logs failure and continues
-                System.err.println("Failed to index some of the documents");
-            }
-        }
-    
-        // Write search results to console
-        private static void WriteSearchResults(SearchPagedIterable searchResults)
-        {
-            searchResults.iterator().forEachRemaining(result ->
-            {
-                Hotel hotel = result.getDocument(Hotel.class);
-                System.out.println(hotel);
-            });
-    
-            System.out.println();
-        }
-    
-        // Write autocomplete results to console
-        private static void WriteAutocompleteResults(AutocompletePagedIterable autocompleteResults)
-        {
-            autocompleteResults.iterator().forEachRemaining(result ->
-            {
-                String text = result.getText();
-                System.out.println(text);
-            });
-    
-            System.out.println();
-        }
-    
-        // Run queries, use WriteDocuments to print output
-        private static void RunQueries(SearchClient searchClient)
-        {
-            // Query 1
-            System.out.println("Query #1: Search on empty term '*' to return all documents, showing a subset of fields...\n");
-    
-            SearchOptions options = new SearchOptions();
-            options.setIncludeTotalCount(true);
-            options.setFilter("");
-            options.setOrderBy("");
-            options.setSelect("HotelId", "HotelName", "Address/City");
-    
-            WriteSearchResults(searchClient.search("*", options, Context.NONE));
-    
-            // Query 2
-            System.out.println("Query #2: Search on 'hotels', filter on 'Rating gt 4', sort by Rating in descending order...\n");
-    
-            options = new SearchOptions();
-            options.setFilter("Rating gt 4");
-            options.setOrderBy("Rating desc");
-            options.setSelect("HotelId", "HotelName", "Rating");
-    
-            WriteSearchResults(searchClient.search("hotels", options, Context.NONE));
-    
-            // Query 3
-            System.out.println("Query #3: Limit search to specific fields (pool in Tags field)...\n");
-    
-            options = new SearchOptions();
-            options.setSearchFields("Tags");
-    
-            options.setSelect("HotelId", "HotelName", "Tags");
-    
-            WriteSearchResults(searchClient.search("pool", options, Context.NONE));
-    
-            // Query 4
-            System.out.println("Query #4: Facet on 'Category'...\n");
-    
-            options = new SearchOptions();
-            options.setFilter("");
-            options.setFacets("Category");
-            options.setSelect("HotelId", "HotelName", "Category");
-    
-            WriteSearchResults(searchClient.search("*", options, Context.NONE));
-    
-            // Query 5
-            System.out.println("Query #5: Look up a specific document...\n");
-    
-            Hotel lookupResponse = searchClient.getDocument("3", Hotel.class);
-            System.out.println(lookupResponse.hotelId);
-            System.out.println();
-    
-             // Query 6
-            System.out.println("Query #6: Call Autocomplete on HotelName that starts with 's'...\n");
-    
-            WriteAutocompleteResults(searchClient.autocomplete("s", "sg"));
-        }
-    }
-    ```
+Query #1: Search on empty term '*' to return all documents, showing a subset of fields...
 
-1. Create a new file named *Hotel.java* and paste the following code into *Hotel.java*:
+{"HotelId":"3","HotelName":"Gastronomic Landscape Hotel","Address":{"City":"Atlanta"}}
+{"HotelId":"2","HotelName":"Old Century Hotel","Address":{"City":"Sarasota"}}
+{"HotelId":"4","HotelName":"Sublime Palace Hotel","Address":{"City":"San Antonio"}}
+{"HotelId":"1","HotelName":"Stay-Kay City Hotel","Address":{"City":"New York"}}
 
-    ```java
-    import com.azure.search.documents.indexes.SearchableField;
-    import com.azure.search.documents.indexes.SimpleField;
-    import com.fasterxml.jackson.annotation.JsonInclude;
-    import com.fasterxml.jackson.annotation.JsonProperty;
-    import com.fasterxml.jackson.core.JsonProcessingException;
-    import com.fasterxml.jackson.databind.ObjectMapper;
-    import com.fasterxml.jackson.annotation.JsonInclude.Include;
-    
-    import java.time.OffsetDateTime;
-    
-    /**
-     * Model class representing a hotel.
-     */
-    @JsonInclude(Include.NON_NULL)
-    public class Hotel {
-        /**
-         * Hotel ID
-         */
-        @JsonProperty("HotelId")
-        @SimpleField(isKey = true)
-        public String hotelId;
-    
-        /**
-         * Hotel name
-         */
-        @JsonProperty("HotelName")
-        @SearchableField(isSortable = true)
-        public String hotelName;
-    
-        /**
-         * Description
-         */
-        @JsonProperty("Description")
-        @SearchableField(analyzerName = "en.microsoft")
-        public String description;
-    
-        /**
-         * Category
-         */
-        @JsonProperty("Category")
-        @SearchableField(isFilterable = true, isSortable = true, isFacetable = true)
-        public String category;
-    
-        /**
-         * Tags
-         */
-        @JsonProperty("Tags")
-        @SearchableField(isFilterable = true, isFacetable = true)
-        public String[] tags;
-    
-        /**
-         * Whether parking is included
-         */
-        @JsonProperty("ParkingIncluded")
-        @SimpleField(isFilterable = true, isSortable = true, isFacetable = true)
-        public Boolean parkingIncluded;
-    
-        /**
-         * Last renovation time
-         */
-        @JsonProperty("LastRenovationDate")
-        @SimpleField(isFilterable = true, isSortable = true, isFacetable = true)
-        public OffsetDateTime lastRenovationDate;
-    
-        /**
-         * Rating
-         */
-        @JsonProperty("Rating")
-        @SimpleField(isFilterable = true, isSortable = true, isFacetable = true)
-        public Double rating;
-    
-        /**
-         * Address
-         */
-        @JsonProperty("Address")
-        public Address address;
-    
-        @Override
-        public String toString()
-        {
-            try
-            {
-                return new ObjectMapper().writeValueAsString(this);
-            }
-            catch (JsonProcessingException e)
-            {
-                e.printStackTrace();
-                return "";
-            }
-        }
-    }
-    ```
+Query #2: Search on 'hotels', filter on 'Rating gt 4', sort by Rating in descending order...    
 
-1. Create a new file named *Address.java* and paste the following code into *Address.java*:
+{"HotelId":"3","HotelName":"Gastronomic Landscape Hotel","Rating":4.8}
+{"HotelId":"4","HotelName":"Sublime Palace Hotel","Rating":4.6}
 
-    ```java
-    import com.azure.search.documents.indexes.SearchableField;
-    import com.fasterxml.jackson.annotation.JsonInclude;
-    import com.fasterxml.jackson.annotation.JsonProperty;
-    import com.fasterxml.jackson.annotation.JsonInclude.Include;
-    
-    /**
-     * Model class representing an address.
-     */
-    @JsonInclude(Include.NON_NULL)
-    public class Address {
-        /**
-         * Street address
-         */
-        @JsonProperty("StreetAddress")
-        @SearchableField
-        public String streetAddress;
-    
-        /**
-         * City
-         */
-        @JsonProperty("City")
-        @SearchableField(isFilterable = true, isSortable = true, isFacetable = true)
-        public String city;
-    
-        /**
-         * State or province
-         */
-        @JsonProperty("StateProvince")
-        @SearchableField(isFilterable = true, isSortable = true, isFacetable = true)
-        public String stateProvince;
-    
-        /**
-         * Postal code
-         */
-        @JsonProperty("PostalCode")
-        @SearchableField(isFilterable = true, isSortable = true, isFacetable = true)
-        public String postalCode;
-    
-        /**
-         * Country
-         */
-        @JsonProperty("Country")
-        @SearchableField(isFilterable = true, isSortable = true, isFacetable = true)
-        public String country;
-    }
-    ```
+Query #3: Limit search to specific fields (pool in Tags field)...
 
+{"HotelId":"2","HotelName":"Old Century Hotel","Tags":["pool","free wifi","concierge"]}
 
-1. Run your new console application:
+Query #4: Facet on 'Category'...
 
-    ```console
-    javac Address.java App.java Hotel.java -cp ".;target\dependency\*"
-    java -cp ".;target\dependency\*" App
-    ```
+{"HotelId":"3","HotelName":"Gastronomic Landscape Hotel","Category":"Suite"}
+{"HotelId":"2","HotelName":"Old Century Hotel","Category":"Boutique"}
+{"HotelId":"4","HotelName":"Sublime Palace Hotel","Category":"Boutique"}
+{"HotelId":"1","HotelName":"Stay-Kay City Hotel","Category":"Boutique"}
 
-## Explaining the code
+Query #5: Look up a specific document...
 
-In the previous sections, you created a new console application and installed the Azure AI Search client library. You added code to create a search index, load it with documents, and run queries. You ran the program to see the results in the console. 
+3
 
-In this section, we explain the code you added to the console application.
+Query #6: Call Autocomplete on HotelName that starts with 's'...
+
+stay
+sublime
+
+Complete.
+```
+
+## Understand the code
+
+Now that you've run the code, let's break down the key steps:
+
+1. [Create a search client](#create-a-search-client)
+1. [Create a search index](#create-a-search-index)
+1. [Upload documents to the index](#upload-documents-to-the-index)
+1. [Query the index](#query-the-index)
 
 ### Create a search client
 
-In *App.java* you created two clients:
+In `App.java` you created two clients:
 
 - SearchIndexClient creates the index.
 - SearchClient loads and queries an existing index.
 
-Both clients need the search service endpoint and credentials described previously in the resource information section.
+Both clients need the search service endpoint and credentials described previously in the [Get endpoint](#get-endpoint) section.
 
-The sample code in this quickstart uses Microsoft Entra ID for the recommended keyless authentication. If you prefer to use an API key, you can replace the `DefaultAzureCredential` object with a `AzureKeyCredential` object. 
-
-#### [Microsoft Entra ID](#tab/keyless)
-
-```java
-String searchServiceEndpoint = "https://<Put your search service NAME here>.search.windows.net/";
-DefaultAzureCredential credential = new DefaultAzureCredentialBuilder().build();
-```
-
-#### [API key](#tab/api-key)
-
-```java
-String searchServiceEndpoint = "https://<Put your search service NAME here>.search.windows.net/";
-AzureKeyCredential credential = new AzureKeyCredential("<Your search service admin key>");
-```
----
-
-```java
-public static void main(String[] args) {
-    // Your search service endpoint
-    String searchServiceEndpoint = "https://<Put your search service NAME here>.search.windows.net/";
-
-    // Use the recommended keyless credential instead of the AzureKeyCredential credential.
-    DefaultAzureCredential credential = new DefaultAzureCredentialBuilder().build();
-    //AzureKeyCredential credential = new AzureKeyCredential("Your search service admin key");
-
-    // Create a SearchIndexClient to send create/delete index commands
-    SearchIndexClient searchIndexClient = new SearchIndexClientBuilder()
-        .endpoint(searchServiceEndpoint)
-        .credential(credential)
-        .buildClient();
-    
-    // Create a SearchClient to load and query documents
-    String indexName = "hotels-quickstart-java";
-    SearchClient searchClient = new SearchClientBuilder()
-        .endpoint(searchServiceEndpoint)
-        .credential(credential)
-        .indexName(indexName)
-        .buildClient();
-
-    // Create Search Index for Hotel model
-    searchIndexClient.createOrUpdateIndex(
-        new SearchIndex(indexName, SearchIndexClient.buildSearchFields(Hotel.class, null))
-        .setSuggesters(new SearchSuggester("sg", Arrays.asList("HotelName"))));
-
-    // REDACTED FOR BREVITY . . . 
-}
-```
-
-
-### Create an index
+### Create a search index
 
 This quickstart builds a Hotels index that you load with hotel data and execute queries against. In this step, you define the fields in the index. Each field definition includes a name, data type, and attributes that determine how the field is used.
 
-In this example, synchronous methods of the *Azure.Search.Documents* library are used for simplicity and readability. However, for production scenarios, you should use asynchronous methods to keep your app scalable and responsive. For example, you would use [CreateIndexAsync](/dotnet/api/azure.search.documents.indexes.searchindexclient.createindexasync) instead of [CreateIndex](/dotnet/api/azure.search.documents.indexes.searchindexclient.createindex).
+In this example, synchronous methods of the [SearchIndexClient](/java/api/com.azure.search.documents.indexes.searchindexclient) class are used for simplicity and readability. However, for production scenarios, you should use the [SearchIndexAsyncClient](/java/api/com.azure.search.documents.indexes.searchindexasyncclient) class to keep your app scalable and responsive.
 
 #### Define the structures
 
-You created two helper classes, *Hotel.java* and *Address.java*, to define the structure of a hotel document and its address. The Hotel class includes fields for a hotel ID, name, description, category, tags, parking, renovation date, rating, and address. The Address class includes fields for street address, city, state/province, postal code, and country/region.
+You created two helper classes, `Hotel.java` and `Address.java`, to define the structure of a hotel document and its address. The Hotel class includes fields for a hotel ID, name, description, category, tags, parking, renovation date, rating, and address. The Address class includes fields for street address, city, state/province, postal code, and country/region.
 
 In the Azure.Search.Documents client library, you can use [SearchableField](/java/api/com.azure.search.documents.indexes.searchablefield) and [SimpleField](/java/api/com.azure.search.documents.indexes.simplefield) to streamline field definitions.
 
@@ -610,7 +159,7 @@ searchIndexClient.createOrUpdateIndex(
     .setSuggesters(new SearchSuggester("sg", Arrays.asList("HotelName"))));
 ```
 
-### Load documents
+### Upload documents to the index
 
 Azure AI Search searches over content stored in the service. In this step, you load JSON documents that conform to the hotel index you created.
 
@@ -684,7 +233,7 @@ catch (InterruptedException e)
 
 The 2-second delay compensates for indexing, which is asynchronous, so that all documents can be indexed before the queries are executed. Coding in a delay is typically only necessary in demos, tests, and sample applications.
 
-### Search an index
+### Query the index
 
 You can get query results as soon as the first document is indexed, but actual testing of your index should wait until all documents are indexed.
 
