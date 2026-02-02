@@ -52,7 +52,7 @@ Data is available without restrictions. For more information and citation detail
 
 ## Contact
 
-For any questions or feedback about this dataset, contact the [Genome Reference Consortium](https://www.ncbi.nlm.nih.gov/grc/contact-us).
+For any questions or feedback about this dataset, contact the [Genome Reference Consortium](https://www.ncbi.nlm.nih.gov/grc).
 
 ## Data access
 
