@@ -5,12 +5,12 @@ description: Learn how to deploy and use Anthropic's Claude models including  Cl
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 01/07/2026
-ms.custom: ignite-2024
+ms.date: 02/02/2026
+ms.custom: ignite-2024, dev-focus
 author: msakande
 ms.author: mopeakande
-ms.reviewer: keijik
-reviewer: gojira
+ms.reviewer: ambadal
+reviewer: AmarBadal
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 
@@ -21,35 +21,9 @@ ai-usage: ai-assisted
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-This article explains how to deploy and use the latest Claude models in Foundry, including Claude Opus 4.5, Claude Sonnet 4.5, Claude Haiku 4.5, and Claude Opus 4.1. Anthropic's flagship product is Claude, a frontier AI model useful for complex tasks such as coding, agents, financial analysis, research, and office tasks. Claude delivers exceptional performance while maintaining high safety standards.
+This article explains how to deploy Claude models (Opus 4.5, Sonnet 4.5, Haiku 4.5, and Opus 4.1) and call the Messages API from Python, JavaScript, or REST. To learn more about these Claude models, see [Available Claude models](#available-claude-models).
 
 [!INCLUDE [claude-usage-restriction](../includes/claude-usage-restriction.md)]
-
-## Available Claude models
-
-Foundry supports  Claude Opus 4.5, Claude Sonnet 4.5, Claude Haiku 4.5, and Claude Opus 4.1 models through global standard deployment. These models have key capabilities that include:
-
-- **Extended thinking**: Extended thinking gives Claude enhanced reasoning capabilities for complex tasks.
-- **Image and text input**: Strong vision capabilities that enable the models to process images and return text outputs for analyzing and understanding charts, graphs, technical diagrams, reports, and other visual assets.
-- **Code generation**: Advanced thinking that includes code generation, analysis, and debugging for Claude Sonnet 4.5 and Claude Opus 4.1.
-
-For more details about the model capabilities, see [capabilities of Claude models](../concepts/models-from-partners.md#anthropic).
-
-#### Claude Opus 4.5 (preview)
-
-Claude Opus 4.5 is Anthropic's most intelligent model, and an industry leader across coding, agents, computer use, and enterprise workflows. With a 200K token context window and 64K max output, Opus 4.5 is ideal for production code, sophisticated agents, office tasks, financial analysis, cybersecurity, and computer use.
-
-#### Claude Sonnet 4.5 (preview)
-
-Claude Sonnet 4.5 is a highly capable model designed for building real-world agents and handling complex, long-horizon tasks. It offers a strong balance of speed and cost for high-volume use cases. Sonnet 4.5 also provides advanced accuracy for computer use, enabling developers to direct Claude to use computers the way people do.
-
-#### Claude Haiku 4.5 (preview)
-
-Claude Haiku 4.5 delivers near-frontier performance for a wide range of use cases. It stands out as one of the best coding and agent models, with the right speed and cost to power free products and scaled sub-agents.
-
-#### Claude Opus 4.1 (preview)
-
-Claude Opus 4.1 is an industry leader for coding. It delivers sustained performance on long-running tasks that require focused effort and thousands of steps, significantly expanding what AI agents can solve.
 
 ## Prerequisites
 
@@ -57,6 +31,7 @@ Claude Opus 4.1 is an industry leader for coding. It delivers sustained performa
 - Access to Microsoft Foundry with appropriate permissions to create and manage resources.
 - A [Microsoft Foundry project](../../how-to/create-projects.md) created in one of the supported regions: **East US2** and **Sweden Central**.
 - [Foundry Models from partners and community](../concepts/models-from-partners.md) require access to **Azure Marketplace** to create subscriptions. Ensure you have the [permissions required to subscribe to model offerings](configure-marketplace.md).
+- **Contributor** or **Owner** role on the resource group to deploy models. For more information, see [Azure RBAC roles](/azure/role-based-access-control/built-in-roles).
 
 ## Deploy Claude models
 
@@ -64,9 +39,9 @@ Claude models in Foundry are available for [global standard deployment](../conce
 
 After deployment, you can use the [Foundry playground](../../concepts/concept-playgrounds.md) to interactively test the model.
 
-## Work with Claude models
+## Call the Claude Messages API
 
-Once deployed, you have some options for interacting with Claude models to generate text responses:
+Once deployed, you can interact with Claude models to generate text responses:
 
 - Use the [Anthropic SDKs](https://docs.claude.com/en/api/client-sdks) and the following Claude APIs:
 
@@ -75,9 +50,9 @@ Once deployed, you have some options for interacting with Claude models to gener
     - [Files API](https://docs.claude.com/en/api/files-create) to upload and manage files to use with the Claude API without having to re-upload content with each request.
     - [Skills API](https://docs.claude.com/en/api/skills/create-skill) to create custom skills for Claude AI.
 
-### Use the Messages API to work with Claude models
+### Send messages with authentication
 
-The following examples show how to **use the Messages API** to send requests to Claude Sonnet 4.5, by using both Microsoft Entra ID authentication and API key authentication methods. To work with your deployed model, you need these items:
+The following examples show how to send requests to Claude Sonnet 4.5 using Microsoft Entra ID or API key authentication. To work with your deployed model, you need:
 
 - Your base URL, which is of the form `https://<resource name>.services.ai.azure.com/anthropic`.
 - Your target URI from your deployment details, which is of the form `https://<resource name>.services.ai.azure.com/anthropic/v1/messages`.
@@ -135,7 +110,7 @@ For Messages API endpoints, use your base URL with Microsoft Entra ID authentica
     
     # Send request
     message = client.messages.create(
-        model=deployment_name,
+        model=deploymentName,
         messages=[
             {"role": "user", "content": "What is the capital/major city of France?"}
         ],
@@ -144,6 +119,10 @@ For Messages API endpoints, use your base URL with Microsoft Entra ID authentica
     
     print(message.content)
     ```
+
+    **Expected output:** A JSON response with the model's text completion in `message.content`, such as `"The capital of France is Paris."`
+
+    **Reference:** [Anthropic Client SDK](https://docs.claude.com/en/api/client-sdks), [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential)
 
 #### Use API key authentication
 
@@ -185,6 +164,10 @@ For Messages API endpoints, use your base URL and API key to authenticate agains
     print(message.content)
     ```
 
+    **Expected output:** A JSON response with the model's text completion in `message.content`, such as `"The capital/major city of France is Paris."`
+
+    **Reference:** [Anthropic Client SDK](https://docs.claude.com/en/api/client-sdks)
+
 # [JavaScript](#tab/javascript)
 
 #### Use Microsoft Entra ID authentication
@@ -220,9 +203,6 @@ For Messages API endpoints, use your base URL with Microsoft Entra ID authentica
           }
         }
         ```
-
-        > [!NOTE]
-        > @azure/core-sse is only needed when you stream the response.
 
     1. Open a terminal window in this folder and run `npm install`.
 
@@ -261,6 +241,10 @@ For Messages API endpoints, use your base URL with Microsoft Entra ID authentica
     console.log(message);
     ```
 
+    **Expected output:** A JSON response containing the model's text completion.
+
+    **Reference:** [Anthropic Client SDK](https://docs.claude.com/en/api/client-sdks), [DefaultAzureCredential](/javascript/api/@azure/identity/defaultazurecredential)
+
 #### Use API key authentication
 
 For Messages API endpoints, use your base URL and API key to authenticate against the service.
@@ -279,9 +263,6 @@ For Messages API endpoints, use your base URL and API key to authenticate agains
           }
         }
         ```
-
-        > [!NOTE]
-        > @azure/core-sse is only needed when you stream the response.
 
     1. Open a terminal window in this folder and run `npm install`.
 
@@ -314,6 +295,10 @@ For Messages API endpoints, use your base URL and API key to authenticate agains
     });
     console.log(message);
     ```
+
+    **Expected output:** A JSON response containing the model's text completion.
+
+    **Reference:** [AnthropicFoundry SDK](https://docs.claude.com/en/api/client-sdks)
 
 For a list of supported runtimes, see [Requirements to use Anthropic TypeScript API Library](https://github.com/anthropics/anthropic-sdk-typescript#requirements).
 
@@ -367,6 +352,10 @@ If you configure the resource with Microsoft Entra ID support, pass your token i
         }'
     ```
 
+    **Expected output:** A JSON response containing the model's text completion with three Seattle recommendations.
+
+    **Reference:** [Claude Messages API](https://docs.claude.com/en/api/messages)
+
 #### Use API key authentication
 
 For Messages API endpoints, use the deployed model's endpoint URI `https://<resource-name>.services.ai.azure.com/anthropic/v1/messages` and API key to authenticate against the service.
@@ -413,14 +402,39 @@ For Messages API endpoints, use the deployed model's endpoint URI `https://<reso
         }'
     ```
 
+    **Expected output:** A JSON response containing the model's text completion with three Seattle recommendations.
+
+    **Reference:** [Claude Messages API](https://docs.claude.com/en/api/messages)
+
 ---
 
-## Agent support
+## Available Claude models
 
-- [Microsoft Agent Framework](/agent-framework/user-guide/agents/agent-types/anthropic-agent) supports creating agents that use Claude models.
-- You can build custom AI agents with the [Claude Agent SDK](https://docs.claude.com/en/docs/agent-sdk/overview).
+Foundry supports Claude Opus 4.5, Claude Sonnet 4.5, Claude Haiku 4.5, and Claude Opus 4.1 models through global standard deployment. These models have key capabilities that include:
 
-## Claude advanced features and capabilities
+- **Extended thinking**: Enhanced reasoning capabilities for complex tasks.
+- **Image and text input**: Strong vision capabilities for analyzing charts, graphs, technical diagrams, reports, and other visual assets.
+- **Code generation**: Advanced code generation, analysis, and debugging for Claude Sonnet 4.5 and Claude Opus 4.1.
+
+For more details about the model capabilities, see [capabilities of Claude models](../concepts/models-from-partners.md#anthropic).
+
+### Claude Opus 4.5 (preview)
+
+Claude Opus 4.5 is Anthropic's most intelligent model, and an industry leader across coding, agents, computer use, and enterprise workflows. With a 200K token context window and 64K max output, Opus 4.5 is ideal for production code, sophisticated agents, office tasks, financial analysis, cybersecurity, and computer use.
+
+### Claude Sonnet 4.5 (preview)
+
+Claude Sonnet 4.5 is a highly capable model designed for building real-world agents and handling complex, long-horizon tasks. It offers a strong balance of speed and cost for high-volume use cases. Sonnet 4.5 also provides advanced accuracy for computer use, enabling developers to direct Claude to use computers the way people do.
+
+### Claude Haiku 4.5 (preview)
+
+Claude Haiku 4.5 delivers near-frontier performance for a wide range of use cases. It stands out as one of the best coding and agent models, with the right speed and cost to power free products and scaled sub-agents.
+
+### Claude Opus 4.1 (preview)
+
+Claude Opus 4.1 is an industry leader for coding. It delivers sustained performance on long-running tasks that require focused effort and thousands of steps, significantly expanding what AI agents can solve.
+
+## Advanced features and capabilities of Claude models
 
 Claude in Foundry Models supports advanced features and capabilities. 
 **Core capabilities** enhance Claude's fundamental abilities for processing, analyzing, and generating content across various formats and use cases. **Tools** enable Claude to interact with external systems, execute code, and perform automated tasks through various tool interfaces. 
@@ -442,6 +456,12 @@ Some of the **Tools** that Foundry supports are:
 - **Web fetch:** Retrieve full content from specified web pages and PDF documents for in-depth analysis.
 
 For a full list of the supported capabilities and tools, see [Claude's features overview](https://docs.claude.com/en/docs/build-with-claude/overview).
+
+## Agent support
+
+- [Microsoft Agent Framework](/agent-framework/user-guide/agents/agent-types/anthropic-agent) supports creating agents that use Claude models.
+- You can build custom AI agents with the [Claude Agent SDK](https://docs.claude.com/en/docs/agent-sdk/overview).
+
 
 ## API quotas and limits
 
