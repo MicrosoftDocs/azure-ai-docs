@@ -5,7 +5,7 @@ description: Learn about agentic retrieval concepts, architecture, and use cases
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 01/16/2026
+ms.date: 02/02/2026
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.custom:
@@ -101,8 +101,6 @@ Your application drives the pipeline by calling the knowledge base and handling 
 ## How to get started
 
 To create an agentic retrieval solution, you can use the Azure portal, the latest preview REST APIs, or a preview Azure SDK package that provides the functionality.
-
-Currently, the portal only supports creating search index and blob knowledge sources. Other types of knowledge sources must be created programmatically.
 
 ### [**Quickstarts**](#tab/quickstarts)
 
