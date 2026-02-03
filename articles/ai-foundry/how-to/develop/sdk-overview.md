@@ -113,7 +113,7 @@ Add these packages to your installation for Foundry classic projects.
 package com.azure.ai.foundry.samples;
 import com.azure.ai.projects;
 import com.azure.ai.inference.ChatCompletionsClient;
-import com.azure.ai.inference.ChatCompletionsCliejavantBuilder;
+import com.azure.ai.inference.ChatCompletionsClientBuilder;
 import com.azure.ai.inference.models.ChatCompletions;
 import com.azure.core.credential.AzureKeyCredential;
 import com.azure.core.credential.TokenCredential;
@@ -635,6 +635,7 @@ For more information on using the OpenAI SDK, see [Azure OpenAI supported progra
    ```
 ::: moniker-end
 When it succeeds, the .NET CLI confirms that it installed the `OpenAI` package.
+
 
 ::: moniker range="foundry-classic"
    This snippet configures `DefaultAzureCredential`, builds `OpenAIClientOptions`, and creates a `ChatClient` for the Azure OpenAI v1 endpoint.
