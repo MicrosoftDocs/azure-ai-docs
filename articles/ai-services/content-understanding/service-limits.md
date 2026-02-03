@@ -66,7 +66,7 @@ The currently supported models are:
 | ✓ `.docx`, `.xlsx`, `.pptx` | ≤ 200 MB | ≤ 1M characters | Minimal |
 | ✓ `.txt` <br/> ✓ `.html`, `.md`, `.rtf` <br/> ✓ `.eml`, `.msg` <br/> ✓ `.xml`| ≤ 1 MB | ≤ 1M characters | Minimal |
 
-<sup>‡</sup> **Page counting for non-paginated files**: For billing purposes, Content Understanding uses page-equivalent rules: text files and email files (TXT, HTML, MD, XML, MSG, EML) count 3,000 characters as 1 page (rounded up); spreadsheets (XLSX) count 1 sheet as 1 page (including hidden sheets); presentations (PPTX) count 1 slide as 1 page; and Word documents (DOCX) use native pagination; 
+<sup>‡</sup> **Page counting for non-paginated files**: For billing purposes, Content Understanding uses page-equivalent rules: text files and email files (TXT, HTML, MD, XML, MSG, EML) count 3,000 characters as one page (rounded up). Spreadsheets (XLSX) count one sheet as one page (including hidden sheets). Presentations (PPTX) count one slide as one page. Word documents (DOCX) use native pagination.
 
 > [!NOTE]
 > [Pro mode (preview)](./concepts/standard-pro-modes.md) currently only supports .pdf, .tiff, and image file types as input.
@@ -82,9 +82,9 @@ The currently supported models are:
 
 | Supported file types | File size | Length |
 | --- | --- |  --- |
-| ✓ `.wav` (PCM, A-law, μ-law) <br> ✓ `.mp3` <br> ✓ `.mp4` <br> ✓ `.opus`, `.ogg` (Opus)<br> ✓ `.flac` <br> ✓ `.wma` <br> ✓ `.aac` <br> ✓ `.amr` (AMR-NB, AMR-WB) <br> ✓ `.3gp` (AMR-NB, AMR-WB)<br> ✓ `.webm` (Opus, Vorbis) <br> ✓ `.m4a` (AAC, ALAC)<br> ✓ `.spx` | Max: 300 MB<sup>†</sup> | Max: 2 hours<sup>†</sup> |
+| ✓ `.wav` (PCM, A-law, μ-law) <br> ✓ `.mp3` <br> ✓ `.mp4` <br> ✓ `.opus`, `.ogg` (Opus)<br> ✓ `.flac` <br> ✓ `.wma` <br> ✓ `.aac` <br> ✓ `.amr` (AMR-NB, AMR-WB) <br> ✓ `.3gp` (AMR-NB, AMR-WB)<br> ✓ `.webm` (Opus, Vorbis) <br> ✓ `.m4a` (AAC, ALAC)<br> ✓ `.spx` | Max: 300 MB<sup>†</sup> | Max: Two hours<sup>†</sup> |
 
-<sup>†</sup> Content Understanding supports audio files up to 1 GB and 4 hours in duration, but transcription time is substantially reduced for files 300 MB or less or 2 hours or less.
+<sup>†</sup> Content Understanding supports audio files up to 1 GB and 4 hours in duration, but transcription time is substantially reduced for files 300 MB or less or Two hours or less.
 
 ### Video
 
@@ -99,7 +99,7 @@ The currently supported models are:
 | Upload Method | File Size | Length | Description |
 | --- | --- | --- | --- |
 | analyzeBinary API (direct upload) | ≤ 200 MB | ≤ 30 minutes | Upload video files directly in the API request body by using the analyzeBinary API. The Microsoft Foundry UX and Content Understanding Studio UX use this method.  |
-| analyze API (file reference) | Max: 4 GB | Max: 2 hours | Reference video files via URL from Azure Blob Storage or similar storage when you use the analyze API. |
+| analyze API (file reference) | Max: 4 GB | Max: Two hours | Reference video files via URL from Azure Blob Storage or similar storage when you use the Analyze API. |
 
 > [!NOTE]
 > Video analysis has the following limitations:
@@ -145,7 +145,7 @@ Content Understanding supports both basic field value types and nested structure
 | Category name | Can't start with a dollar sign (`$`).|
 | Category name and description | Maximum 120 characters for combined name and description in each category. |
 | Number of categories | 200 per analyzer for documents, 1 for videos. |
-| Hierarchical classification | 5 layers for documents, 2 layers for videos |
+| Hierarchical classification | Five layers for documents, Two layers for videos |
 
 
 
