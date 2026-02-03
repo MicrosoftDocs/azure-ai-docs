@@ -24,6 +24,7 @@ In this article, you learn how to:
 - Set up the Claude Code VS Code extension
 - Authenticate with Microsoft Entra ID or API keys
 - Create project context files for better AI assistance
+- Integrate Spec Kit for structured development workflows
 - Run Claude Code in GitHub Actions for CI/CD automation
 
 ## Prerequisites
@@ -35,29 +36,22 @@ In this article, you learn how to:
 
 [!INCLUDE [claude-usage-restriction](../includes/claude-usage-restriction.md)]
 
-**System requirements:**
+<!-- **System requirements:**
 
 | Requirement | Details |
 | ----------- | ------- |
 | Operating system | macOS 12+, Ubuntu 20.04+/Debian 10+, Windows 11 via WSL2 |
 | RAM | 4-GB minimum (8-GB recommended) |
-| Git (optional) | 2.23+ for pull request helpers |
+| Git (optional) | 2.23+ for pull request helpers | -->
 
 ## Deploy a Claude model
 
-Before configuring Claude Code, deploy a Claude model in Microsoft Foundry:
+Before configuring Claude Code, deploy a Claude model in Microsoft Foundry. Claude models in Foundry are available for [global standard deployment](../concepts/deployment-types.md#global-standard). 
 
-1. Go to [Microsoft Foundry](https://ai.azure.com/) and open your project.
+To deploy a Claude model (Opus 4.5, Sonnet 4.5, or Haiku 4.5), follow the instructions in [Deploy Microsoft Foundry Models in the Foundry portal](deploy-foundry-models.md).
 
-1. Navigate to **Discover** > **Models** and search for **Claude**.
+After deployment, select the **Details** tab and note your **Target URI** and **Key**. You need these values for configuration.
 
-1. Select your model (Opus 4.5, Sonnet 4.5, or Haiku 4.5) and select **Deploy**.
-
-1. Choose **Default settings** and complete the deployment.
-
-1. After deployment, select the **Details** tab and note your **Target URI** and **Key**. You need these values for configuration.
-
-For detailed deployment instructions, see [Deploy Microsoft Foundry Models in the Foundry portal](deploy-foundry-models.md).
 
 ### Alternative: Use Model Router
 
@@ -73,23 +67,21 @@ To use Model Router with Claude Code, first deploy the Claude models you want in
 
 ## Install Claude Code CLI
 
-Install the Claude Code CLI using npm or Homebrew.
+Install the Claude Code CLI and verify the installation. Use npm or Homebrew.
 
-# [npm](#tab/npm)
+**Installation with npm**
 
 ```bash
 npm install -g @anthropic-ai/claude-code
 claude --version
 ```
 
-# [Homebrew](#tab/homebrew)
+**Installation with Homebrew**
 
 ```bash
 brew install claude-code
 claude --version
 ```
-
----
 
 For more installation options, see [Claude Code documentation](https://docs.anthropic.com/en/docs/claude-code).
 
@@ -165,7 +157,7 @@ $env:ANTHROPIC_FOUNDRY_API_KEY = "your-foundry-api-key"
 
 ---
 
-You can find your API key in the Foundry portal under your model deployment's **Details** tab.
+Find your API key in the Foundry portal under your model deployment's **Details** tab.
 
 ## Configure the VS Code extension
 
@@ -201,7 +193,6 @@ Verify that Claude Code is correctly configured to use Microsoft Foundry. Open a
 claude
 > /status
 ```
-
 Confirm the following in the status output:
 
 | Field | Expected value |
@@ -218,7 +209,8 @@ Claude Code reads `CLAUDE.md` files for project context. Files load in order, wi
 1. `./CLAUDE.md` – Repository root settings
 1. `./current-dir/CLAUDE.md` – Current directory specifics
 
-Create a `CLAUDE.md` file in your project root to help Claude Code understand your codebase. Here's an example for a Microsoft Foundry agent project:
+Create a `CLAUDE.md` file in your project root to help Claude Code understand your codebase. Here's an example for a [Microsoft Agent Framework](https://aka.ms/agent-framework) project:
+
 
 ```markdown
 # Project: Customer Service Agent
@@ -251,21 +243,59 @@ az ai agent deploy --config deploy.yaml
 ```
 
 ## Code Patterns
-Use `AIProjectClient` with `DefaultAzureCredential`:
+Use `AzureAIAgentClient` with `AzureCliCredential`:
 ```python
-from azure.ai.projects import AIProjectClient
-from azure.identity import DefaultAzureCredential
-
-project = AIProjectClient(
-    endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
-    credential=DefaultAzureCredential()
-)
+async with AzureAIAgentClient(async_credential=AzureCliCredential()) as client:
+    agent = client.create_agent(instructions="...", tools=[...])
 ```
 
 ## Current Sprint
 - Implementing RAG grounding with Foundry IQ
 - Adding Fabric connector for sales data
 ```
+
+```
+
+## (Optional) Integrate Spec Kit for structured development
+
+[Spec Kit](https://github.com/github/spec-kit) provides structured commands for turning requirements into implementation. Install it [globally or for one-time use](https://github.com/github/spec-kit?tab=readme-ov-file#1-install-specify-cli).
+
+| Command | Purpose | Output |
+| ------- | ------- | ------ |
+| `/speckit.constitution` | Set project principles and coding standards | `.speckit/constitution.md` |
+| `/speckit.specify` | Define feature requirements | `.speckit/spec.md` |
+| `/speckit.plan` | Create architecture and dependencies | `.speckit/plan.md` |
+| `/speckit.tasks` | Generate ordered task list | `.speckit/tasks.md` |
+| `/speckit.implement` | Execute tasks and create files | Implementation files |
+
+### Example: Build an Agent Framework tool
+
+The following example shows how to use Spec Kit commands to build a SharePoint MCP tool for RAG grounding:
+
+```bash
+# 1. Set project principles
+claude /speckit.constitution
+# Creates .speckit/constitution.md with coding standards, patterns
+
+# 2. Define the feature
+claude /speckit.specify
+> "Add a SharePoint MCP tool that retrieves documents for RAG grounding"
+# Creates .speckit/spec.md with requirements
+
+# 3. Plan implementation
+claude /speckit.plan
+# Creates .speckit/plan.md with architecture, dependencies
+
+# 4. Generate tasks
+claude /speckit.tasks
+# Creates .speckit/tasks.md with ordered task list
+
+# 5. Implement
+claude /speckit.implement
+# Executes tasks, creates files, runs tests
+```
+
+For detailed usage and installation, see [Spec Kit on GitHub](https://github.com/github/spec-kit).
 
 ## Run Claude Code in GitHub Actions
 
@@ -337,6 +367,8 @@ jobs:
           ANTHROPIC_FOUNDRY_API_KEY: ${{ secrets.AZURE_FOUNDRY_API_KEY }}
 ```
 
+::: moniker range="foundry"
+
 ## Monitor usage
 
 Monitor Claude Code usage in the Foundry portal:
@@ -363,6 +395,8 @@ $env:ANTHROPIC_MAX_TOKENS = "100000"
 ```
 
 ---
+
+::: moniker-end
 
 ## Troubleshooting
 
