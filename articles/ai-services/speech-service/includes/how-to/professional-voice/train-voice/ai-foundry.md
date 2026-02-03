@@ -25,7 +25,7 @@ After you validate your data files, use them to build your custom voice model. W
 
 - [Neural](?tabs=neural#train-your-custom-voice-model): Create a voice in the same language as your training data.
 
-- [Neural - HD Voice](?tabs=hdvoice#train-your-custom-voice-model): Create a HD voice in the same language of your training data. Azure neural HD voices are LLM-based, optimized for dynamic conversations. Learn more about neural HD voices [here](../../../../high-definition-voices.md).
+- [Neural - HD Voice](?tabs=hdvoice#train-your-custom-voice-model): Create an HD voice in the same language of your training data. Azure neural HD voices are LLM-based, optimized for dynamic conversations. Learn more about neural HD voices [here](../../../../high-definition-voices.md).
 
 - [Neural - multilingual](?tabs=multilingual#train-your-custom-voice-model): Create a voice that speaks multiple languages using the single-language training data. For example, with the `en-US` primary training data, you can create a voice that speaks `en-US`, `de-DE`, `zh-CN` etc. secondary languages.
 
@@ -300,7 +300,7 @@ To learn more about the capabilities and limits of this feature, and the best pr
 
 After training you can copy your voice model to another project for the same region or another region. 
 
-For example, you can copy a proffessional voice model that was trained in one region, to a project for another region. Professional voice fine-tuning is currently only [available in some regions](../../../../regions.md#regions). 
+For example, you can copy a professional voice model that was trained in one region, to a project for another region. Professional voice fine-tuning is currently only [available in some regions](../../../../regions.md#regions). 
 
 To copy your custom voice model to another project:
 
