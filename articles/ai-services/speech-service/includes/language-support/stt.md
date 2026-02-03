@@ -31,7 +31,7 @@ ms.author: pafarley
 | `as-IN` | Assamese (India) | No | Audio + human-labeled transcript |
 | `az-AZ` | Azerbaijani (Latin, Azerbaijan) | Yes | Plain text |
 | `bg-BG` | Bulgarian (Bulgaria) | Yes | Plain text |
-| `bn-IN` | Bengali (India) | Yes | Plain text |
+| `bn-IN` | Bengali (India) | Yes | Audio + human-labeled transcript<br/><br/>Plain text |
 | `bs-BA` | Bosnian (Bosnia and Herzegovina) | No | Plain text |
 | `ca-ES` | Catalan | Yes | Plain text<br/><br/>Pronunciation |
 | `cs-CZ` | Czech (Czechia) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
@@ -89,7 +89,7 @@ ms.author: pafarley
 | `fr-FR` | French (France) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
 | `ga-IE` | Irish (Ireland) | Yes | Plain text<br/><br/>Pronunciation |
 | `gl-ES` | Galician | Yes | Plain text |
-| `gu-IN` | Gujarati (India) | No | Plain text |
+| `gu-IN` | Gujarati (India) | No | Audio + human-labeled transcript<br/><br/>Plain text |
 | `he-IL` | Hebrew (Israel) | Yes | Audio + human-labeled transcript<br/><br/>Plain text |
 | `hi-IN` | Hindi (India) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Phrase list |
 | `hr-HR` | Croatian (Croatia) | Yes | Plain text<br/><br/>Pronunciation |
@@ -104,13 +104,13 @@ ms.author: pafarley
 | `ka-GE` | Georgian (Georgia) | Yes | Plain text |
 | `kk-KZ` | Kazakh (Kazakhstan) | Yes | Plain text |
 | `km-KH` | Khmer (Cambodia) | No | Plain text |
-| `kn-IN` | Kannada (India) | No | Plain text |
+| `kn-IN` | Kannada (India) | No | Audio + human-labeled transcript<br/><br/>Plain text |
 | `ko-KR` | Korean (Korea) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Phrase list |
 | `lo-LA` | Lao (Laos) | Yes | Plain text |
 | `lt-LT` | Lithuanian (Lithuania) | Yes | Plain text<br/><br/>Pronunciation |
 | `lv-LV` | Latvian (Latvia) | Yes | Plain text<br/><br/>Pronunciation |
 | `mk-MK` | Macedonian (North Macedonia) | Yes | Plain text |
-| `ml-IN` | Malayalam (India) | Yes | Plain text |
+| `ml-IN` | Malayalam (India) | Yes | Audio + human-labeled transcript<br/><br/>Plain text |
 | `mn-MN` | Mongolian (Mongolia) | Yes | Plain text |
 | `mr-IN` | Marathi (India) | Yes | Audio + human-labeled transcript<br/><br/>Plain text |
 | `ms-MY` | Malay (Malaysia) | Yes | Plain text |
@@ -133,7 +133,9 @@ ms.author: pafarley
 | `sl-SI` | Slovenian (Slovenia) | Yes | Plain text<br/><br/>Pronunciation |
 | `so-SO` | Somali (Somalia) | Yes | Plain text |
 | `sq-AL` | Albanian (Albania) | Yes | Plain text |
+| `sr-ME` | Serbian (Montenegro) | No | Plain text |
 | `sr-RS` | Serbian (Cyrillic, Serbia) | Yes | Plain text |
+| `sr-XK` | Serbian (Kosovo) | No | Plain text |
 | `sv-SE` | Swedish (Sweden) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
 | `sw-KE` | Kiswahili (Kenya) | Yes | Plain text |
 | `sw-TZ` | Kiswahili (Tanzania) | No | Plain text |
@@ -153,6 +155,7 @@ ms.author: pafarley
 | `zh-HK` | Chinese (Cantonese, Traditional) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Phrase list |
 | `zh-TW` | Chinese (Taiwanese Mandarin, Traditional) | No | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Phrase list |
 | `zu-ZA` | isiZulu (South Africa) | Yes | Plain text |
+
 
 <sup>1</sup> The model is bilingual and also supports English.
 
