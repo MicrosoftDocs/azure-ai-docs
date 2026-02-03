@@ -927,7 +927,7 @@ Microsoft Foundry provides comprehensive evaluation and testing capabilities tha
 
 **Use iterative evaluation**: Regularly evaluate agent versions during development to catch problems early and measure improvements.
 
-For more information about evaluating agents, see [Evaluate your AI agents locally](../../../how-to/develop/agent-evaluate-sdk.md) and [Agent evaluators](../../../concepts/evaluation-evaluators/agent-evaluators.md).
+For more information about evaluating agents, see [Evaluate your AI agents](../../../how-to/develop/agent-evaluate-sdk.md) and [Agent evaluators](../../../concepts/evaluation-evaluators/agent-evaluators.md).
 
 ## Publish hosted agents to channels
 
