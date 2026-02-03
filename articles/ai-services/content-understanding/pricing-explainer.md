@@ -127,17 +127,17 @@ Content extraction is the essential first step for transforming unstructured inp
 - **Documents**: Three tiered meters (minimal, basic, or standard) based on processing complexity
 - **Audio**: Speech-to-text transcription (single standard meter, priced per minute)
 - **Video**: Frame extraction, shot detection, and speech-to-text transcription (single standard meter, priced per minute)
-- **Images**: No content extraction charges
+- **Images**: No content extraction available
 
 #### Document content extraction meters
 
-For documents, you're charged for the type of processing Content Understanding performs:
+For documents, you're charged for the type of processing Content Understanding performs. Content Understanding charges based on the actual work performed on each page, not the analyzer you select.
 
-**Basic meter**: Applies when Content Understanding performs OCR processing to extract text from image-based documents (scanned PDFs, images, TIFFs).
+**Minimal meter**: Applies to digital documents (DOCX, XLSX, PPTX, HTML, TXT, MSG, EML) where no OCR or layout processing is needed. This is the lowest-cost option for digital-native documents. You're charged the minimal rate regardless of which analyzer you use—even if you call a layout analyzer on a digital document, you're only charged for the minimal processing performed.
+
+**Basic meter**: Applies when Content Understanding performs OCR processing to extract text from image-based documents (scanned PDFs, images, TIFFs) without layout analysis.
 
 **Standard meter**: Applies when Content Understanding performs layout analysis, including table recognition and structural element detection from image-based documents (scanned PDFs, images, TIFFs).
-
-**Minimal meter**: Applies to digital documents (DOCX, XLSX, HTML, TXT) where no OCR or layout processing is needed. You're charged the minimal rate regardless of which analyzer you use—even if you call a layout analyzer on a digital document, you're only charged for the minimal processing performed.
 
 The following table shows which meter applies based on your file type and analysis level:
 
@@ -244,6 +244,14 @@ Enhances custom analyzers with labeled training examples for domain-specific acc
 
 ### When am I charged for LLM usage?
 You're charged for LLM tokens only when you provide the analyzer with a Foundry deployment and use a generative capability in Content Understanding. Analyzers that only perform content extraction (ex. `prebuilt-read`, `prebuilt-layout`, or custom analyzers without any generative capabilities) don't incur LLM charges.
+
+### How do I know which content extraction meter I'll be charged for my documents?
+The meter is determined by the actual processing performed, not the analyzer you choose:
+- **Minimal**: Digital documents (DOCX, XLSX, HTML, TXT, etc.) always use minimal, regardless of analyzer
+- **Basic**: Image-based documents with OCR-only processing (Read analyzer)
+- **Standard**: Image-based documents with layout analysis (Layout analyzer)
+
+For more details on meters, see [Document content extraction meters](#document-content-extraction-meters).
 
 ### Am I charged twice for Foundry model usage?
 No. Content Understanding uses the LLM deployments linked for all LLM and embedding calls. You're billed on those deployments. You pay Content Understanding for content extraction and contextualization, and Foundry for the generative model tokens (input/output tokens and embeddings).
