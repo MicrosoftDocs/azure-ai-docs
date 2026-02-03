@@ -1,26 +1,25 @@
 ---
 title: Identify and extract Personally Identifying Information (PII) from native documents
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This article shows you how to redact Personally Identifying Information (PII) from native documents.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 09/27/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-pii
 ---
-
 # Detect and redact Personally Identifying Information in native documents (preview)
 
 > [!IMPORTANT]
 >
-> * Azure AI Language public preview releases provide early access to features that are in active development.
+> * Azure Language in Foundry Tools public preview releases provide early access to features that are in active development.
 > * Features, approaches, and processes may change, before General Availability (GA), based on user feedback.
 
-Azure AI Language is a cloud-based service that applies Natural Language Processing (NLP) features to text-based data. The native document support capability enables you to send API requests asynchronously, using an HTTP POST request body to send your data and HTTP GET request query string to retrieve the status results. Your processed documents are located in your Azure Blob Storage target container.
+Language is a cloud-based service that applies Natural Language Processing (NLP) features to text-based data. The native document support capability enables you to send API requests asynchronously, using an HTTP POST request body to send your data and HTTP GET request query string to retrieve the status results. Your processed documents are located in your Azure Blob Storage target container.
 
-A native document refers to the file format used to create the original document such as Microsoft Word (docx) or a portable document file (pdf). Native document support eliminates the need for text preprocessing before using Azure AI Language resource capabilities. Currently, native document support is available for the following capabilities:
+A native document refers to the file format used to create the original document such as Microsoft Word (docx) or a portable document file (pdf). Native document support eliminates the need for text preprocessing before using Language resource capabilities. Currently, native document support is available for the following capabilities:
 
 * [Personally Identifiable Information (PII)](../../personally-identifiable-information/overview.md). The PII detection feature can identify, categorize, and redact sensitive information in unstructured text. The `PiiEntityRecognition` API supports native document processing.
 
@@ -71,9 +70,9 @@ A native document refers to the file format used to create the original document
   * **Source container**. This container is where you upload your native files for analysis (required).
   * **Target container**. This container is where your analyzed files are stored (required).
 
-* A [**single-service Language resource**](https://ms.portal.azure.com/#create/Microsoft.CognitiveServicesTextAnalytics) (**not** a multi-service Azure AI Foundry resource):
+* A [**single-service Language resource**](https://ms.portal.azure.com/#create/Microsoft.CognitiveServicesTextAnalytics) (**not** a multi-service Microsoft Foundry resource):
 
-  **Complete the Language resource project and instance details fields as follows:**
+  **Complete Azure Language resource project and instance details fields as follows:**
 
   1. **Subscription**. Select one of your available Azure subscriptions.
 
@@ -91,15 +90,15 @@ A native document refers to the file format used to create the original document
 
   1. After your resource successfully deploys, select **Go to resource**.
 
-### Retrieve your key and language service endpoint
+### Retrieve your key and Language endpoint
 
-Requests to the Language service require a read-only key and custom endpoint to authenticate access.
+Requests to Azure Language require a read-only key and custom endpoint to authenticate access.
 
-1. If you created a new resource, after it deploys, select **Go to resource**. If you have an existing language service resource, navigate directly to your resource page.
+1. If you created a new resource, after it deploys, select **Go to resource**. If you have an existing Language resource, navigate directly to your resource page.
 
 1. In the left rail, under *Resource Management*, select **Keys and Endpoint**.
 
-1. You can copy and paste your **`key`** and your **`language service instance endpoint`** into the code samples to authenticate your request to the Language service. Only one key is necessary to make an API call.
+1. You can copy and paste your **`key`** and your **`Language instance endpoint`** into the code samples to authenticate your request to Azure Language. Only one key is necessary to make an API call.
 
 ## Create Azure Blob Storage containers
 
@@ -133,7 +132,7 @@ For this project, we authenticate access to the `source location` and `target lo
 |---------|---------|
 |`-X POST <endpoint>`     | Specifies your Language resource endpoint for accessing the API.        |
 |`--header Content-Type: application/json`     | The content type for sending JSON data.          |
-|`--header "Ocp-Apim-Subscription-Key:<key>`    | Specifies the Language resource key for accessing the API.        |
+|`--header "Ocp-Apim-Subscription-Key:<key>`    | Specifies Azure Language resource key for accessing the API.        |
 |`-data`     | The JSON file containing the data you want to pass with your request.         |
 
 The following cURL commands are executed from a BASH shell. Edit these commands with your own resource name, resource key, and JSON values. Try analyzing native documents by selecting the `Personally Identifiable Information (PII)` or `Document Summarization` code sample project:
@@ -190,7 +189,7 @@ For this quickstart, you need a **source document** uploaded to your **source co
 
 * The source `location` value is the SAS URL for the **source document (blob)**, not the source container SAS URL.
 
-* The `redactionPolicy` possible values are `UseRedactionCharacterWithRefId` (default) or `UseEntityTypeName`. For more information, *see* [**PiiTask Parameters**](/rest/api/language/text-analysis-runtime/analyze-text?view=rest-language-2023-11-15-preview&tabs=HTTP#piitaskparameters&preserve-view=true).
+* The `redactionPolicy` possible values are `UseRedactionCharacterWithRefId` (default) or `UseEntityTypeName`. For more information, *see* [**PiiTask Parameters**](/rest/api/language/analyze-documents/analyze-documents-submit-job/analyze-documents-submit-job?view=rest-language-analyze-documents-2024-11-15-preview&preserve-view=true&tabs=HTTP#piitaskparameters).
 
 ### Run the POST request
 
@@ -200,10 +199,10 @@ For this quickstart, you need a **source document** uploaded to your **source co
       POST {your-language-endpoint}/language/analyze-documents/jobs?api-version=2024-11-15-preview
    ```
 
-1. Before you run the **POST** request, replace `{your-language-resource-endpoint}` and `{your-key}` with the values from your Azure portal Language service instance.
+1. Before you run the **POST** request, replace `{your-language-resource-endpoint}` and `{your-key}` with the values from your Azure portal Language instance.
 
     > [!IMPORTANT]
-    > Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information, *see* Azure AI services [security](/azure/ai-services/security-features).
+    > Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information, *see* Foundry Tools [security](/azure/ai-services/security-features).
 
     ***PowerShell***
 
@@ -248,7 +247,7 @@ You receive a 202 (Success) response that includes a read-only Operation-Locatio
 
     * Replace {**jobId**} with the Operation-Location header from the POST response.
 
-    * Replace {**your-language-resource-endpoint**} and {**your-key**} with the values from your Language service instance in the Azure portal.
+    * Replace {**your-language-resource-endpoint**} and {**your-key**} with the values from your Language instance in the Azure portal.
 
 ### Get request
 

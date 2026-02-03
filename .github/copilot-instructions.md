@@ -2,7 +2,7 @@
 
 This file provides central guidance for GitHub Copilot in this repository.
 
-This documentation repository contains Microsoft's technical documentation for application development using Microsoft Azure AI Foundry (and other products) that publishes to Microsoft Learn. 
+This documentation repository contains Microsoft's technical documentation for application development using Microsoft Foundry (and other products) that publishes to Microsoft Learn. 
 
 
 ## Referenced Instruction Files
@@ -22,8 +22,26 @@ ai-usage: ai-assisted
 - DO NOT create fictional code examples or imaginary features.
 - DO NOT hallucinate or assume facts not found in official or credible documentation.
 - ALWAYS check specification documents and official references before making suggestions.
-- When a recommendation is based on another instruction file or linked source, cite it inline (for example: “(Source: edit_instructions.md)”).
+- When a recommendation is based on another instruction file or linked source, cite it inline (for example: "(Source: edit_instructions.md)").
 - If required information is missing or unclear, insert a placeholder with `[TO VERIFY]`—do not guess.
+
+### Internal Reference Protection
+
+**CRITICAL**: Distinguish between chat explanations and published article content:
+
+**In chat discussions** (explaining your reasoning):
+- ✅ SHOULD cite instruction files for transparency (e.g., "per foundry-branding.instructions.md")
+- ✅ SHOULD reference internal guidelines when justifying recommendations to users
+- This helps users understand the basis for suggestions
+
+**In suggested article edits** (actual text for publication):
+- ❌ Do NOT cite instruction files from `.github/instructions/` 
+- ❌ Do NOT reference prompt files from `.github/prompts/`
+- ❌ Do NOT mention chatmode files or internal `.github/` directory structure
+- ❌ Do NOT include phrases like "(Source: foundry-branding.instructions.md)" in article text
+- ❌ Do NOT include ANY source citations, even public ones like "Microsoft Writing Style Guide" or "per how-to article pattern"
+- ✅ DO provide clean, direct documentation text without meta-commentary
+- Keep internal mechanics hidden from published content
 
 ##  Writing Style
 
@@ -67,6 +85,7 @@ Instructions for the pattern are contained in comments in the referenced file.
 - Bold: UI labels and visible button or menu text.
 - Code style (backticks): file names, folders, inline code, commands, class and method names, non-localizable tokens.
 - Use relative links for repo-local files.
+- Truncate the `https://learn.microsoft.com` part from MS Learn links. 
 - Use angle brackets around raw URLs only when the plain URL must be shown.
 - Present tense only; rewrite future tense (“will create”) to present (“creates” / “creates a resource”).
 - Prefer gender-neutral language; avoid idioms and metaphors.

@@ -46,10 +46,9 @@ ms.author: fasantia
           >
           > You can download the workspace configuration file by taking the following steps:
           >
-          > 1. Go to [Azure Machine Learning studio](https://ml.azure.com).
-          > 1. In the upper right corner, select the name of your workspace.
-          > 1. In the Directory + Subscription + Workspace window, select __Download config file__.
-          > 3. Save the config.json file in the directory that you're working in.
+          > 1. In the Azure portal, go to your workspace.
+          > 1. On the workspace page, select **Download config.json**.
+          > 1. Move the config.json file to the directory that you're working in.
     
        - Alternatively, you can use your subscription ID, resource group name, and workspace name to sign in:
     
@@ -77,15 +76,13 @@ ms.author: fasantia
         mlflow_tracking_uri = ml_client.workspaces.get(ml_client.workspace_name).mlflow_tracking_uri
         ```
     
-    # [Studio](#tab/studio)
+    # [Azure portal](#tab/studio)
     
-    Use Azure Machine Learning studio to get the tracking URI:
+    Use the Azure portal to get the tracking URI:
     
-    1. Open [Azure Machine Learning studio](https://ml.azure.com) and use your credentials to sign in.
+    1. In the Azure portal, go to the workspace.
 
     1. In the upper right corner, select the name of your workspace.
-    
-    1. In the Directory + Subscription + Workspace window, select __View all properties in Azure Portal__. The resource page for your workspace opens in the Azure portal.
 
     1. Under __Essentials__, copy the __MLflow tracking URI__ value.    
     

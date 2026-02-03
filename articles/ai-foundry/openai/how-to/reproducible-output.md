@@ -1,5 +1,5 @@
 ---
-title: 'How to generate reproducible output with Azure OpenAI in Azure AI Foundry Models'
+title: 'How to generate reproducible output with Azure OpenAI in Microsoft Foundry Models'
 titleSuffix: Azure OpenAI
 description: Learn how to generate reproducible output (preview) with Azure OpenAI.
 services: cognitive-services
@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 08/11/2025
+ms.date: 11/26/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -15,6 +15,8 @@ recommendations: false
 ---
 
 # Learn how to use reproducible output (preview)
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 By default if you ask an Azure OpenAI Chat Completion model the same question multiple times you're likely to get a different response. The responses are therefore considered to be nondeterministic. Reproducible output is a new  preview feature that allows you to selectively change the default behavior to help product more deterministic outputs.
 
@@ -28,7 +30,7 @@ Support for reproducible output was first added in API version [`2023-12-01-prev
 
 First we'll generate three responses to the same question to demonstrate the variability that is common to Chat Completion responses even when other parameters are the same:
 
-# [Python](#tab/pyton)
+# [Python](#tab/python)
 
 ```python
 import os
@@ -121,7 +123,7 @@ Notice that while each story might have similar elements and some verbatim repet
 
 Now we'll run the same code as before but this time uncomment the line for the parameter that says `seed=42`
 
-# [Python](#tab/pyton)
+# [Python](#tab/python)
 
 ```python
 import os

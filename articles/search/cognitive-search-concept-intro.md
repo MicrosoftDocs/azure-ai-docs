@@ -8,20 +8,20 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 10/06/2025
 ms.update-cycle: 180-days
 ---
 
 # AI enrichment in Azure AI Search
 
-In Azure AI Search, *AI enrichment* refers to integration with [Azure AI services](/azure/ai-services/what-are-ai-services) to process content that isn't searchable in its raw form. Through enrichment, analysis and inference are used to create searchable content and structure where none previously existed.
+In Azure AI Search, *AI enrichment* refers to integration with [Foundry Tools](/azure/ai-services/what-are-ai-services) to process content that isn't searchable in its raw form. Through enrichment, analysis and inference are used to create searchable content and structure where none previously existed.
 
 Because Azure AI Search is used for text and vector queries, the purpose of AI enrichment is to improve the utility of your content in search-related scenarios. Raw content must be text or images (you can't enrich vectors), but the output of an enrichment pipeline can be vectorized and indexed in a search index using skills like [Text Split skill](cognitive-search-skill-textsplit.md) for chunking and [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md) for vector encoding. For more information about using skills in vector scenarios, see [Integrated data chunking and embedding](vector-search-integrated-vectorization.md).
 
 AI enrichment is based on [*skills*](cognitive-search-working-with-skillsets.md).
 
-[Built-in skills](cognitive-search-predefined-skills.md) tap Azure AI services. They apply the following transformations and processing to raw content:
+[Built-in skills](cognitive-search-predefined-skills.md) tap Foundry Tools. They apply the following transformations and processing to raw content:
 
 + Translation and language detection for multilingual search.
 + Entity recognition to extract people names, places, and other entities from large chunks of text.
@@ -29,7 +29,7 @@ AI enrichment is based on [*skills*](cognitive-search-working-with-skillsets.md)
 + Optical character recognition (OCR) to recognize printed and handwritten text in binary files.
 + Image analysis to describe image content and output the descriptions as searchable text fields.
 + Text embeddings via Azure OpenAI for integrated vectorization.
-+ Multimodal embeddings via Azure AI Vision for text and image vectorization.
++ Multimodal embeddings via Azure Vision in Foundry Tools for text and image vectorization.
 
 Custom skills run your external code. You can use custom skills for any custom processing you want to include in the pipeline.
 
@@ -62,7 +62,7 @@ Open-source, third-party, or first-party code can be integrated into the pipelin
 
 ### Use-cases for built-in skills
 
-Built-in skills are based on the Azure AI services APIs: [Azure AI Computer Vision](/azure/ai-services/computer-vision/) and [Language Service](/azure/ai-services/language-service/overview). Unless your content input is small, expect to [attach a billable Azure AI services resource](cognitive-search-attach-cognitive-services.md) to run larger workloads.
+Built-in skills are based on the Foundry Tools APIs: [Azure Vision](/azure/ai-services/computer-vision/) and [Azure Language](/azure/ai-services/language-service/overview). Unless your content input is small, you are expected to [attach a billable Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md) to run larger workloads.
 
 A [skillset](cognitive-search-defining-skillset.md) that's assembled using built-in skills is well suited for the following application scenarios:
 
@@ -85,7 +85,7 @@ In Azure AI Search, an indexer saves the output it creates. A single indexer run
 | Data store | Required | Location | Description |
 |------------|----------|----------|-------------|
 | [searchable index](search-what-is-an-index.md) | Required | Search service | Used for full-text search and other query forms. Specifying an index is an indexer requirement. Index content is populated from skill outputs, plus any source fields that are mapped directly to fields in the index. |
-| [knowledge store](knowledge-store-concept-intro.md) | Optional | Azure Storage | Used for downstream apps like knowledge mining, data science, and multimodal search. A knowledge store is defined within a skillset. Its definition determines whether your enriched documents are projected as tables or objects (files or blobs) in Azure Storage. For [multimodal search scenarios](multimodal-search-overview.md#how-multimodal-search-works-in-azure-ai-search), you can save extracted images to the knowledge store and reference them at query time, allowing the images to be returned directly to client apps. |
+| [knowledge store](knowledge-store-concept-intro.md) | Optional | Azure Storage | Used for downstream apps like knowledge mining, data science, and multimodal search. A knowledge store is defined within a skillset. Its definition determines whether your enriched documents are projected as tables or objects (files or blobs) in Azure Storage. For [multimodal search scenarios](multimodal-search-overview.md#how-does-multimodal-search-work), you can save extracted images to the knowledge store and reference them at query time, allowing the images to be returned directly to client apps. |
 | [enrichment cache](enrichment-cache-how-to-configure.md) | Optional | Azure Storage | Used for caching enrichments for reuse in subsequent skillset executions. The cache stores imported, unprocessed content (cracked documents). It also stores the enriched documents created during skillset execution. Caching is helpful if you're using image analysis or OCR, and you want to avoid the time and expense of reprocessing image files. |
 
 Indexes and knowledge stores are fully independent of each other. While you must attach an index to satisfy indexer requirements, if your sole objective is a knowledge store, you can ignore the index after it's populated.
@@ -108,9 +108,9 @@ In Azure Storage, a [knowledge store](knowledge-store-concept-intro.md) can assu
 
 ## Availability and pricing
 
-AI enrichment is available in regions that offer Azure AI services. To check the availability of AI enrichment, see the [regions list](search-region-support.md).
+AI enrichment is available in regions that offer Foundry Tools. To check the availability of AI enrichment, see the [regions list](search-region-support.md).
 
-Billing follows a Standard pricing model. Costs associated with built-in skills are incurred when you specify an Azure OpenAI in Azure AI Foundry Models resource or Azure AI services multi-service resource key in the skillset. There are also costs associated with image extraction, as metered by Azure AI Search. However, text extraction and utility skills aren't billable. For more information, see [How you're charged for Azure AI Search](search-sku-manage-costs.md#how-youre-charged-for-the-base-service).
+Billing follows a Standard pricing model. Costs associated with built-in skills are incurred when you specify an Azure OpenAI in Foundry Models resource or Foundry resource key in the skillset. There are also costs associated with image extraction, as metered by Azure AI Search. However, text extraction and utility skills aren't billable. For more information, see [How you're charged for Azure AI Search](search-sku-manage-costs.md#how-youre-charged-for-the-base-service).
 
 ## Checklist: A typical workflow
 
@@ -120,7 +120,7 @@ Start with a subset of data in a [supported data source](search-indexer-overview
 
 1. Create a [data source](/rest/api/searchservice/data-sources/create) that specifies a connection to your data.
 
-1. [Create a skillset](cognitive-search-defining-skillset.md). Unless your project is small, you should [attach an Azure AI services multi-service resource](cognitive-search-attach-cognitive-services.md). If you're [creating a knowledge store](knowledge-store-create-rest.md), define it within the skillset.
+1. [Create a skillset](cognitive-search-defining-skillset.md). Unless your project is small, you should [attach a Foundry resource](cognitive-search-attach-cognitive-services.md). If you're [creating a knowledge store](knowledge-store-create-rest.md), define it within the skillset.
 
 1. [Create an index schema](search-how-to-create-search-index.md) that defines a search index.
 

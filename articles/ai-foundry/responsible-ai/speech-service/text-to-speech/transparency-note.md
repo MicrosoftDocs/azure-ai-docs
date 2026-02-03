@@ -1,12 +1,12 @@
 ---
 title: Text to speech transparency note
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This Transparency Note discusses Text to speech and the key considerations for making use of this technology responsibly.
 author: PatrickFarley
 manager: nitinme
 ms.author: pafarley
 ms.service: azure-ai-speech
-ms.topic: article
+ms.topic: concept-article
 ms.date: 11/14/2023
 ---
 
@@ -24,7 +24,7 @@ Microsoft’s Transparency Notes are part of a broader effort at Microsoft to pu
 
 ### Introduction 
 
-[Text to speech](/azure/ai-services/speech-service/text-to-speech), part of Azure AI Speech, is a versatile tool that can convert written text into natural-sounding speech audio. The feature takes input in the form of text and generates high-quality speech audio output that can be played on devices. For the speech audio output, text to speech offers a range of prebuilt neural voices or, for Limited Access customers, the option to create a custom neural voice for your product or brand.
+[Text to speech](/azure/ai-services/speech-service/text-to-speech), part of Azure Speech in Foundry Tools, is a versatile tool that can convert written text into natural-sounding speech audio. The feature takes input in the form of text and generates high-quality speech audio output that can be played on devices. For the speech audio output, text to speech offers a range of prebuilt neural voices or, for Limited Access customers, the option to create a custom neural voice for your product or brand.
 
 Text to speech also has visual capabilities. Using text to speech avatar, customers can input text and create a synthetic video of an avatar speaking. Both prebuilt text to speech avatars and custom text to speech avatars are available, which can be used with both prebuilt neural voice and custom neural voice, though some features are only available for Limited Access customers.
 
@@ -154,7 +154,7 @@ For more information on custom neural voice, see [Overview of custom neural voic
 
 The personal voice feature allows Limited Access customers to create a voice model from a short human voice sample. The feature can create a voice model based on the prompt in as little as a few seconds. This feature is typically used to power personalized voice experiences for business customers’ applications. Personal voice models can create realistic-sounding voices that can speak in close to 100 languages.
 
-[Watermarks](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/introducing-the-watermark-algorithm-for-synthetic-voice/ba-p/3298548) are added to custom neural voices created with the personal voice feature. Watermarks allow users to identify whether speech is synthesized using Azure AI Speech, and specifically, which voice was used. Eligible customers can use Azure AI Speech watermark detection capabilities. To request to add watermark detection to your applications please contact `mstts[at]microsoft.com`.
+[Watermarks](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/introducing-the-watermark-algorithm-for-synthetic-voice/ba-p/3298548) are added to custom neural voices created with the personal voice feature. Watermarks allow users to identify whether speech is synthesized using Azure Speech, and specifically, which voice was used. Eligible customers can use Azure Speech watermark detection capabilities. To request to add watermark detection to your applications please contact `mstts[at]microsoft.com`.
 
 For more information on personal voice, see [personal voice](https://aka.ms/InstantVoiceDocs). 
 
@@ -166,7 +166,7 @@ With text to speech avatar’s advanced neural network models, the feature empow
 
 Text to speech avatar adopts Coalition for Content Provenance and Authenticity (C2PA) Standard to provide audiences with clearer insights into the source and history of video content created by avatars. This standard offers transparent information about AI-generation of video content. For more details on the integration of C2PA with text to speech avatars, refer to [Content Credentials in Azure Text to Speech Avatar](/azure/ai-services/speech-service/text-to-speech-avatar/content-credentials).
 
-In addition, avatar outputs are automatically watermarked. Watermarks allow approved users to identify whether a video is synthesized using the avatar feature of Azure AI Speech.  To request watermark detection, please contact [avatarvoice[at]microsoft.com](mailto:avatarvoice@microsoft.com).
+In addition, avatar outputs are automatically watermarked. Watermarks allow approved users to identify whether a video is synthesized using the avatar feature of Azure Speech.  To request watermark detection, please contact [avatarvoice[at]microsoft.com](mailto:avatarvoice@microsoft.com).
 
 
 ### Video translation
@@ -175,7 +175,7 @@ Video translation can efficiently localize your video content to cater to divers
 
 ## Use cases
 
-Text to speech offers a variety of features catering to a wide range of intended uses across industries and domains. All text to speech features including video translation are subject to the terms and conditions applicable to customers’ Azure subscription, including the Azure Acceptable Use Policy and the [Code of conduct for Azure AI Speech text to speech](/legal/ai-code-of-conduct?context=%2Fazure%2Fai-services%2Fspeech-service%2Fcontext%2Fcontext).  
+Text to speech offers a variety of features catering to a wide range of intended uses across industries and domains. All text to speech features including video translation are subject to the terms and conditions applicable to customers’ Azure subscription, including the Azure Acceptable Use Policy and the [Code of conduct for Azure Speech text to speech](/legal/ai-code-of-conduct?context=%2Fazure%2Fai-services%2Fspeech-service%2Fcontext%2Fcontext).  
 
 
 In addition, custom text to speech features like custom neural voice, personal voice, and custom text to speech avatar are limited to the approved use cases as outlined in the specific scenarios described below:
@@ -205,9 +205,9 @@ The personal voice API (see [Personal voice](/azure/ai-services/speech-service/p
 - **Business content**: To create audio and video content for business scenarios to communicate product information, marketing materials, business promotional content, and internal business communications.
 - **Special use, bundled with video translation**:  To synthesize voices for each speaker in a video. Customers can also edit and generate lip-synced audio content in target languages. Customers are not required to submit to Microsoft  additional [audio consent](/legal/ai-code-of-conduct?context=%2Fazure%2Fai-services%2Fspeech-service%2Fcontext%2Fcontext) for video content in this scenario, but customers must maintain sole control over the creation, access to, and use of the voice models and their outputs. 
 
-All other uses of custom neural voice, including Custom Neural Voice Pro, Custom Neural Voice Lite, and personal voice, are prohibited. In addition, custom neural voice is a Limited Access service, and registration is required for access to this service. To learn more about Microsoft’s Limited Access policy, refer to [Limited Access features for Azure AI services](https://aka.ms/limitedaccesscogservices). Certain features are only available to Microsoft managed customers and partners, and only for certain use cases approved by Microsoft at the time of registration. 
+All other uses of custom neural voice, including Custom Neural Voice Pro, Custom Neural Voice Lite, and personal voice, are prohibited. In addition, custom neural voice is a Limited Access service, and registration is required for access to this service. To learn more about Microsoft’s Limited Access policy, refer to [Limited Access features for Foundry Tools](https://aka.ms/limitedaccesscogservices). Certain features are only available to Microsoft managed customers and partners, and only for certain use cases approved by Microsoft at the time of registration. 
 
-Prebuilt neural voice may also be used for the custom neural voice use cases above, as well as additional use cases selected by customers and consistent with the Azure Acceptable Use Policy and the [Code of conduct for Azure AI Speech text to speech](/legal/ai-code-of-conduct?context=%2Fazure%2Fai-services%2Fspeech-service%2Fcontext%2Fcontext). No registration or pre-approval is required for additional use cases for prebuilt neural voice that meet all applicable terms and conditions. 
+Prebuilt neural voice may also be used for the custom neural voice use cases above, as well as additional use cases selected by customers and consistent with the Azure Acceptable Use Policy and the [Code of conduct for Azure Speech text to speech](/legal/ai-code-of-conduct?context=%2Fazure%2Fai-services%2Fspeech-service%2Fcontext%2Fcontext). No registration or pre-approval is required for additional use cases for prebuilt neural voice that meet all applicable terms and conditions. 
 
 ### Intended use cases for video translation
 
@@ -238,11 +238,11 @@ The following are the approved use cases for custom text to speech avatar:
 
 All other uses of custom text to speech avatar are prohibited. In addition, custom text to speech avatar is a Limited Access service, and registration is required for access to this feature. To learn more about Microsoft’s Limited Access policy visit [aka.ms/limitedaccesscogservices](https://aka.ms/limitedaccesscogservices). Certain features are only available to Microsoft managed customers and partners, and only for certain use cases approved by Microsoft at the time of registration. 
 
-Prebuilt text to speech avatar may also be used for the custom avatar use cases above, as well as additional use cases selected by customers and consistent with Azure Acceptable Use Policy and the [Code of conduct for Azure AI Speech text to speech](/legal/ai-code-of-conduct?context=/azure/ai-services/speech-service/context/context). No registration or pre-approval is required for additional use cases for prebuilt text to speech avatar that meet all applicable terms and conditions.   
+Prebuilt text to speech avatar may also be used for the custom avatar use cases above, as well as additional use cases selected by customers and consistent with Azure Acceptable Use Policy and the [Code of conduct for Azure Speech text to speech](/legal/ai-code-of-conduct?context=/azure/ai-services/speech-service/context/context). No registration or pre-approval is required for additional use cases for prebuilt text to speech avatar that meet all applicable terms and conditions.   
 
 ### Considerations when choosing use cases 
 
-We encourage customers to use text to speech features in their innovative solutions or applications. All text to speech features must adhere to the Azure Acceptable Use Policy and the [Code of conduct for Azure AI Speech text to speech](/legal/ai-code-of-conduct?context=/azure/ai-services/speech-service/context/context). In addition, custom neural voice and custom text to speech avatars may only be used for the use cases approved through the [Limited Access registration form](https://aka.ms/customneural). Additionally, here are some considerations when choosing a use case for any text to speech feature: 
+We encourage customers to use text to speech features in their innovative solutions or applications. All text to speech features must adhere to the Azure Acceptable Use Policy and the [Code of conduct for Azure Speech text to speech](/legal/ai-code-of-conduct?context=/azure/ai-services/speech-service/context/context). In addition, custom neural voice and custom text to speech avatars may only be used for the use cases approved through the [Limited Access registration form](https://aka.ms/customneural). Additionally, here are some considerations when choosing a use case for any text to speech feature: 
 
 - **Ensure use case alignment**: Ensure that the intended use of any text to speech feature aligns with the capabilities and intended purpose of the text to speech feature. 
 - **Responsible AI considerations**: Prioritize responsible AI practices by avoiding the creation of misleading or harmful content. Adhere to privacy, data protection, and legal regulations when using text to speech features. 
@@ -499,6 +499,6 @@ Individuals with speech disorders may wish to update their synthetic voice to re
 
 ## Learn more about Azure Speech
 
-- [Limited access to Azure Speech Service - Azure AI services | Microsoft Learn](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/limited-access) 
+- [Limited access to Azure Speech Service - Foundry Tools | Microsoft Learn](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/limited-access) 
 - [Code of conduct for Azure Speech Service | Microsoft Learn](/legal/ai-code-of-conduct?context=/azure/ai-services/speech-service/context/context) 
-- [Data, privacy, and security for Azure Speech Service - Azure AI services | Microsoft Learn](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security) 
+- [Data, privacy, and security for Azure Speech Service - Foundry Tools | Microsoft Learn](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security) 

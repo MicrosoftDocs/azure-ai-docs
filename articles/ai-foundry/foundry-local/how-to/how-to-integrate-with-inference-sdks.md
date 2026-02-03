@@ -4,35 +4,31 @@ titleSuffix: Foundry Local
 description: This article provides instructions on how to integrate Foundry Local with common Inferencing SDKs.
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
-ms.custom: build-2025
+ms.custom: build-2025, dev-focus
 ms.topic: how-to
 ms.author: jburchel
 ms.reviewer: samkemp
-ms.date: 10/01/2025
+ms.date: 01/06/2026
 zone_pivot_groups: foundry-local-sdk
 author: jonburchel
 reviewer: samuel100
 ai-usage: ai-assisted
 ---
 
-# Integrate inferencing SDKs with Foundry Local
+# Integrate inference SDKs with Foundry Local
 
 [!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 
-Foundry Local integrates with inference SDKs such as OpenAI, Azure OpenAI, and LangChain. This article shows you how to connect your app to local AI models using popular SDKs.
-
-## Prerequisites
-
-- Install Foundry Local. See [Get started with Foundry Local](../get-started.md) for instructions.
+Foundry Local integrates with OpenAI-compatible SDKs and HTTP clients through a local REST server. This article shows you how to connect your app to local AI models by using popular SDKs.
 
 ::: zone pivot="programming-language-python"
 [!INCLUDE [Python](../includes/integrate-examples/python.md)]
 ::: zone-end
-::: zone pivot="programming-language-javascript"
-[!INCLUDE [JavaScript](../includes/integrate-examples/javascript.md)]
-::: zone-end
 ::: zone pivot="programming-language-csharp"
 [!INCLUDE [C#](../includes/integrate-examples/csharp.md)]
+::: zone-end
+::: zone pivot="programming-language-javascript"
+[!INCLUDE [JavaScript](../includes/integrate-examples/javascript.md)]
 ::: zone-end
 ::: zone pivot="programming-language-rust"
 [!INCLUDE [Rust](../includes/integrate-examples/rust.md)]

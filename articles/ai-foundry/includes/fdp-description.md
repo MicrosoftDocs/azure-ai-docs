@@ -11,4 +11,4 @@ ms.custom: include
 ---
 
 
-An **[!INCLUDE [fdp](fdp-project-name.md)]** is managed under an Azure AI Foundry resource. It's a container for access management, data upload and integration, and monitoring. This lets you keep your work separated between use cases without needing to create extra Azure resources.
+A **Foundry project** is managed under a Microsoft Foundry resource. It's a container for access management, data upload and integration, and monitoring. This lets you keep your work separated between use cases without needing to create extra Azure resources.

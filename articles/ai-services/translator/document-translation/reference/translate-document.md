@@ -1,11 +1,11 @@
 ---
-title: Synchronous Azure AI Translator translation REST API guide
+title: Synchronous Azure Translator translation REST API guide
 description: "Synchronous translation HTTP REST API guide"
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: quickstart
-ms.date: 04/14/2025
+ms.date: 12/05/2025
 ms.author: lajanuar
 recommendations: false
 ---
@@ -19,7 +19,7 @@ recommendations: false
 # Synchronous document translation
 
 Reference</br>
-Feature: **Azure AI Translator → Document translation**</br>
+Feature: **Azure Translator → Document translation**</br>
 API Version: **2024-05-01**</br>
 HTTP method: **POST**
 
@@ -29,7 +29,7 @@ HTTP method: **POST**
 
 > [!IMPORTANT]
 >
-> **All API requests to the Document translation feature require a custom domain endpoint that is located on your resource overview page in the Azure portal**.
+> **All API requests to the Document translation feature require a custom domain endpoint that's located on your resource overview page in the Azure portal**.
 
 ## Request URL
 
@@ -43,7 +43,7 @@ To call the synchronous translation feature via the REST API, include the follow
 
 |Header|Value| Condition  |
 |---|:--- |:---|
-|**Ocp-Apim-Subscription-Key** |Your Translator service key from the Azure portal.|&bullet; ***Required***|
+|**Ocp-Apim-Subscription-Key** |Your Translator key from the Azure portal.|&bullet; ***Required***|
 
 ## Request parameters
 
@@ -69,7 +69,7 @@ To call the synchronous translation feature via the REST API, include the follow
 
 |Name |Description|Content Type|Condition|
 |---|---|---|---|
-|**document**| Source document to be translated.|Any one of the [supported document formats](../overview.md#synchronous-supported-document-formats).|***Required***|
+|**document**| Source document to be translated.|Any one of the [supported document formats](../overview.md#supported-document-and-glossary-formats).|***Required***|
 |**glossary**|Document containing a list of terms with definitions to use during the translation process.|Any one of the supported [glossary formats](get-supported-glossary-formats.md).|***Optional***|
 
 ### Response Status Codes
@@ -100,9 +100,8 @@ To call the synchronous translation feature via the REST API, include the follow
   }
 }
 ```
-## Examples
 
-### Translate a Word document
+## Translate a Word document
 
 ```bash
 curl --request POST \
@@ -118,13 +117,13 @@ curl --request POST \
 |------------|-------------|
 | `{your-document-translation-endpoint}` | Your Document Translation endpoint. Example: `https://your-resource-name.cognitiveservices.azure.com` |
 | `<your-subscription-key>` | Your Translator subscription key. |
-| `sourceLanguage` | *(Optional)* The source language code. Example: `en`. Auto-detected if not specified. |
+| `sourceLanguage` | *(Optional)* The source language code. Example: `en`. Autodetected if not specified. |
 | `targetLanguage` | **(Required)** The target language code to translate into. Example: `fr`. |
 | `document` | The path to the file to translate. |
 
-See [Supported Document Formats](../overview.md) for more details.
+For more information, *see* [Supported Document Formats](../overview.md).
 
-### Translate a Word document with a Glossary
+## Translate a Word document with a Glossary
 
 ```bash
 curl --request POST \
@@ -142,12 +141,12 @@ curl --request POST \
 |------------|-------------|
 | `{your-document-translation-endpoint}` | Your Document Translation endpoint. Example: `https://your-resource-name.cognitiveservices.azure.com` |
 | `<your-subscription-key>` | Your Translator subscription key. |
-| `sourceLanguage` | *(Optional)* The source language code. Example: `en`. Auto-detected if not specified. |
+| `sourceLanguage` | *(Optional)* The source language code. Example: `en`. Autodetected if not specified. |
 | `targetLanguage` | **(Required)** The target language code to translate into. Example: `fr`. |
 | `document` | Path to the file for translation. |
 | `glossary` | Path to the glossary file. |
 
-See [Use glossaries with Document Translation](../how-to-guides/create-use-glossaries.md) for more details.
+For more information, *see* [Use glossaries with Document Translation](../how-to-guides/create-use-glossaries.md).
 
 
 ## Next steps

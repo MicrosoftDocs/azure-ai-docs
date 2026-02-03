@@ -4,7 +4,7 @@ titleSuffix: Azure Machine Learning
 description: See how to use the Azure Machine Learning inference HTTP server to debug scoring scripts or endpoints locally, before you deploy them to the cloud.
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: alehughes
+ms.reviewer: jturuk
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
@@ -25,7 +25,7 @@ This article supports developers who want to use the inference server to debug l
 
 ## Prerequisites
 
-- Python 3.8 or later
+- Python 3.10 or later
 - Anaconda
 
 The inference server runs on Windows and Linux-based operating systems.

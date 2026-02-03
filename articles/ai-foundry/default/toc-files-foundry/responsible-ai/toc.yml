@@ -1,0 +1,30 @@
+items:
+# Overview and Governance
+- name: Responsible AI overview
+  href: ../../../responsible-use-of-ai-overview.md
+- name: Limited access
+  href: ../../../../ai-services/cognitive-services-limited-access.md
+
+# Azure OpenAI Responsible AI
+- name: Azure OpenAI
+  items:
+  - name: Overview
+    href: ../../../responsible-ai/openai/overview.md
+  - name : Transparency note
+    href: ../../../responsible-ai/openai/transparency-note.md
+  - name: Limited access
+    href: ../../../responsible-ai/openai/limited-access.md
+  - name: Code of conduct
+    href: /legal/ai-code-of-conduct
+  - name: Data, privacy, and security
+    href: ../../../responsible-ai/openai/data-privacy.md
+  - name: Customer Copyright Commitment
+    href: ../../../responsible-ai/openai/customer-copyright-commitment.md
+
+# Agents Responsible AI
+- name: Agents
+  items:
+  - name: Transparency note
+    href: ../../../responsible-ai/agents/transparency-note.md
+  - name: Data, privacy, and security for agents
+    href: ../../../responsible-ai/agents/data-privacy-security.md

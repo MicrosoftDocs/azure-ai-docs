@@ -9,20 +9,53 @@ ms.topic: overview
 ms.date: 09/16/2025
 ms.author: pafarley
 keywords: content safety, Azure AI Content Safety, online content safety, content filtering software, content moderation service, content moderation
-ms.custom: references_regions, build-2023, build-2023-dataai
+ms.custom: references_regions, build-2023, build-2023-dataai, dev-focus
+ai-usage: ai-assisted
 #Customer intent: As a developer of content management software, I want to find out whether Azure AI Content Safety is the right solution for my moderation needs.
 ---
 
 # What is Azure AI Content Safety? 
 
-Azure AI Content Safety is an AI service that detects harmful user-generated and AI-generated content in applications and services. Azure AI Content Safety includes text and image APIs that allow you to detect material that is harmful. The interactive Content Safety Studio allows you to view, explore, and try out sample code for detecting harmful content across different modalities.
+Azure AI Content Safety is an AI service that detects harmful user-generated and AI-generated content in applications and services. Azure AI Content Safety includes text and image APIs that allow you to detect material that's harmful. The interactive Content Safety Studio allows you to view, explore, and try out sample code for detecting harmful content across different modalities.
 
 Content filtering software can help your app comply with regulations or maintain the intended environment for your users.
+
+## Prerequisites
+
+To use Azure AI Content Safety, you need:
+
+- An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/)
+- A Content Safety resource created in a [supported region](#region-availability)
+
 
 This documentation contains the following article types:  
 * **[Concepts](concepts/harm-categories.md)** provide in-depth explanations of the service functionality and features.  
 * **[Quickstarts](./quickstart-text.md)** are getting-started instructions to guide you through making requests to the service.  
 * **[How-to guides](./how-to/use-blocklist.md)** contain instructions for using the service in more specific or customized ways.  
+
+## Content moderation features
+
+Content Safety provides several APIs for different moderation needs:
+
+### AI safety and prompt protection
+| Feature    | Purpose    | Concepts guide | Get started |
+|: - |: -- |--| --| 
+| [Prompt Shields](/rest/api/contentsafety/text-operations/detect-text-jailbreak) | Scans text for the risk of a User input attack on a Large Language Model. | [Prompt Shields concepts](/azure/ai-services/content-safety/concepts/jailbreak-detection)|[Quickstart](./quickstart-jailbreak.md) |
+| [Groundedness detection](/rest/api/contentsafety/text-groundedness-detection-operations/detect-groundedness-options) (preview) | Detects whether the text responses of large language models (LLMs) are grounded in the source materials provided by the users. | [Groundedness detection concepts](/azure/ai-services/content-safety/concepts/groundedness)|[Quickstart](./quickstart-groundedness.md) |
+| [Protected material text detection](/rest/api/contentsafety/text-operations/detect-text-protected-material) | Scans AI-generated text for known text content (for example, song lyrics, articles, recipes, selected web content). | [Protected material concepts](/azure/ai-services/content-safety/concepts/protected-material)|[Quickstart](./quickstart-protected-material.md)|
+| Task adherence API  | Detects when tool use by AI agents is misaligned, unintended, or premature in the context of a user interaction. | [Task adherence concepts](/azure/ai-services/content-safety/concepts/task-adherence)| [Quickstart](/azure/ai-services/content-safety/quickstart-task-adherence) |
+
+### Content analysis
+| Feature    | Purpose    | Concepts guide | Get started |
+|: - |: -- |--| --| 
+| [Analyze text](/rest/api/contentsafety/text-operations/analyze-text) API   | Scans text for sexual content, violence, hate, and self harm with multi-severity levels. | [Harm categories](/azure/ai-services/content-safety/concepts/harm-categories)| [Quickstart](/azure/ai-services/content-safety/quickstart-text) |
+| [Analyze image](/rest/api/contentsafety/image-operations/analyze-image) API  | Scans images for sexual content, violence, hate, and self harm with multi-severity levels. | [Harm categories](/azure/ai-services/content-safety/concepts/harm-categories)| [Quickstart](/azure/ai-services/content-safety/quickstart-image) |
+
+### Custom detection
+| Feature    | Purpose    | Concepts guide | Get started |
+|: - |: -- |--| --| 
+| Custom categories (standard) API (preview)    | Lets you create and train your own custom content categories and scan text for matches. | [Custom categories concepts](/azure/ai-services/content-safety/concepts/custom-categories)|[Quickstart](./quickstart-custom-categories.md) |
+| Custom categories (rapid) API (preview) | Lets you define emerging harmful content patterns and scan text and images for matches. | [Custom categories concepts](/azure/ai-services/content-safety/concepts/custom-categories)| [How-to guide](./how-to/custom-categories-rapid.md) |
 
 ## Where it's used
 
@@ -34,26 +67,10 @@ The following are a few scenarios in which a software developer or team would re
 - Gaming companies that moderate user-generated game artifacts and chat rooms.
 - Social messaging platforms that moderate images and text added by their users.
 - Enterprise media companies that implement centralized moderation for their content.
-- K-12 education solution providers filtering out content that is inappropriate for students and educators.
+- K-12 education solution providers filtering out content that's inappropriate for students and educators.
 
 > [!IMPORTANT]
-> You cannot use Azure AI Content Safety to detect illegal child exploitation images.
-
-## Product features
-
-This service makes several different types of analysis available. The following table describes the currently available APIs.
-
-| Feature    | Functionality    | Concepts guide | Get started |
-| :- | :-- | --| --| 
-| [Prompt Shields](/rest/api/contentsafety/text-operations/detect-text-jailbreak) | Scans text for the risk of a User input attack on a Large Language Model. | [Prompt Shields concepts](/azure/ai-services/content-safety/concepts/jailbreak-detection)|[Quickstart](./quickstart-jailbreak.md) |
-| [Groundedness detection](/rest/api/contentsafety/text-groundedness-detection-operations/detect-groundedness-options) (preview) | Detects whether the text responses of large language models (LLMs) are grounded in the source materials provided by the users. | [Groundedness detection concepts](/azure/ai-services/content-safety/concepts/groundedness)|[Quickstart](./quickstart-groundedness.md) |
-| [Protected material text detection](/rest/api/contentsafety/text-operations/detect-text-protected-material) | Scans AI-generated text for known text content (for example, song lyrics, articles, recipes, selected web content). | [Protected material concepts](/azure/ai-services/content-safety/concepts/protected-material)|[Quickstart](./quickstart-protected-material.md)|
-| Custom categories (standard) API (preview)    | Lets you create and train your own custom content categories and scan text for matches. | [Custom categories concepts](/azure/ai-services/content-safety/concepts/custom-categories)|[Quickstart](./quickstart-custom-categories.md) |
-| Custom categories (rapid) API (preview) | Lets you define emerging harmful content patterns and scan text and images for matches. | [Custom categories concepts](/azure/ai-services/content-safety/concepts/custom-categories)| [How-to guide](./how-to/custom-categories-rapid.md) |
-| [Analyze text](/rest/api/contentsafety/text-operations/analyze-text) API   | Scans text for sexual content, violence, hate, and self harm with multi-severity levels. | [Harm categories](/azure/ai-services/content-safety/concepts/harm-categories)| [Quickstart](/azure/ai-services/content-safety/quickstart-text) |
-| [Analyze image](/rest/api/contentsafety/image-operations/analyze-image) API  | Scans images for sexual content, violence, hate, and self harm with multi-severity levels. | [Harm categories](/azure/ai-services/content-safety/concepts/harm-categories)| [Quickstart](/azure/ai-services/content-safety/quickstart-image) |
-| Task adherence API  | Detects when tool use by AI agents is misaligned, unintended, or premature in the context of a user interaction. | [Task adherence concepts](/azure/ai-services/content-safety/concepts/task-adherence)| [Quickstart](/azure/ai-services/content-safety/quickstart-task-adherence) |
-
+> You can't use Azure AI Content Safety to detect illegal child exploitation images.
 
 ## Content Safety Studio
 
@@ -102,7 +119,7 @@ Azure AI Content Safety has an **F0** and **S0** pricing tier. See the Azure [pr
 > [!IMPORTANT]
 > **Deprecation Notice**
 >
-> As part of Content Safety versioning and lifecycle management, we are announcing the deprecation of certain Public Preview and GA versions of our service APIs. Following our deprecation policy:
+> As part of Content Safety versioning and lifecycle management, we're announcing the deprecation of certain Public Preview and GA versions of our service APIs. Following our deprecation policy:
 > * **Public Preview versions**: Each new Public Preview version will trigger the deprecation of the previous preview version after a 90-day period, provided no breaking changes are introduced.
 > * **GA versions**: When a new GA version is released, the prior GA version will be deprecated after a 90-day period if compatibility is maintained.
 >
@@ -121,12 +138,12 @@ See the following list for the input requirements for each feature.
   - Default maximum length: 10K characters (split longer texts as needed).
 - **Analyze image API**: 
   - Maximum image file size: 4 MB
-  - Dimensions between 50 x 50 and 7200 x 7200 pixels.
+  - Dimensions between 50 x 50 and 7200 x 7,200 pixels.
   - Images can be in JPEG, PNG, GIF, BMP, TIFF, or WEBP formats.
 - **Analyze multimodal API (preview)**:
   - Default maximum text length: 1K characters.
   - Maximum image file size: 4 MB
-  - Dimensions between 50 x 50 and 7200 x 7200 pixels.
+  - Dimensions between 50 x 50 and 7200 x 7,200 pixels.
   - Images can be in JPEG, PNG, GIF, BMP, TIFF, or WEBP formats.
 - **Prompt Shields API**: 
   - Maximum prompt length: 10K characters.
@@ -187,14 +204,14 @@ Feel free to [contact us](mailto:contentsafetysupport@microsoft.com) if your bus
 
 ### Query rates
 
-Content Safety features have query rate limits in requests-per-second (RPS) or requests-per-10-seconds (RP10S) . See the following table for the rate limits for each feature.
+Content Safety features have query rate limits in requests-per-second (RPS) or requests-per-10-seconds (RP10S). See the following table for the rate limits for each feature.
 
 |Pricing tier | Moderation APIs<br>(text and image) | Prompt Shields |  Protected material<br>detection | Groundedness<br>detection (preview) | Custom categories<br>(rapid) (preview) | Custom categories<br>(standard) (preview)|Multimodal |
 |---|-|---|-|-|-|--|--|
 | F0    | 5 RPS    | 5 RPS   | 5 RPS    | N/A | 5 RPS | 5 RPS|5 RPS|
 | S0    | 1000 RP10S    | 1000 RP10S   | 1000 RP10S    | 50 RPS | 1000 RP10S | 5 RPS|10 RPS|
 
-If you need a faster rate, please [contact us](mailto:contentsafetysupport@microsoft.com) to request it.
+If you need a faster rate, [contact us](mailto:contentsafetysupport@microsoft.com) to request it.
 
 
 ## Contact us
@@ -203,7 +220,16 @@ If you get stuck, [email us](mailto:contentsafetysupport@microsoft.com) or use t
 
 ## Next steps
 
-Follow a quickstart to get started using Azure AI Content Safety in your application.
+Choose your development path:
 
+**Text moderation:**
 > [!div class="nextstepaction"]
-> [Content Safety quickstart](./quickstart-text.md)
+> [Text analysis quickstart](./quickstart-text.md)
+
+**Image moderation:**
+> [!div class="nextstepaction"]
+> [Image analysis quickstart](./quickstart-image.md)
+
+**Prompt protection:**
+> [!div class="nextstepaction"]
+> [Prompt Shields quickstart](./quickstart-jailbreak.md)

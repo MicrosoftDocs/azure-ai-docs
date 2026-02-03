@@ -1,5 +1,5 @@
 ---
-title: 'Quickstart: Use Azure OpenAI in Azure AI Foundry Models with the C# SDK to generate images'
+title: 'Quickstart: Use Azure OpenAI in Microsoft Foundry Models with the C# SDK to generate images'
 titleSuffix: Azure OpenAI
 description: Walkthrough on how to get started with Azure OpenAI and make your first image generation call with the C# SDK. 
 manager: nitinme
@@ -8,7 +8,8 @@ ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 author: PatrickFarley
 ms.author: pafarley
-ms.date: 3/11/2025
+ms.date: 01/29/2026
+ai-usage: ai-assisted
 ---
 
 Use this guide to get started generating images with the Azure OpenAI SDK for C#.
@@ -29,10 +30,10 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 ## Set up
 
-1. Create a new folder `vision-quickstart` and go to the quickstart folder with the following command:
+1. Create a new folder `image-quickstart` and go to the quickstart folder with the following command:
 
     ```shell
-    mkdir vision-quickstart && cd vision-quickstart
+    mkdir image-quickstart && cd image-quickstart
     ```
 
 1. Create a new console application with the following command:
@@ -138,4 +139,4 @@ If you want to clean up and remove an Azure OpenAI resource, you can delete the 
 ## Next steps
 
 * Explore the Image APIs in more depth with the [Image API how-to guide](../how-to/dall-e.md).
-* For more examples check out the [Azure OpenAI Samples GitHub repository](https://github.com/Azure/azure-openai-samples).
+* For more examples check out the [Azure OpenAI Samples GitHub repository](https://github.com/Azure-Samples/openai).

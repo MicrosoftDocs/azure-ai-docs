@@ -8,8 +8,8 @@ ms.subservice: automl
 ms.topic: concept-article
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: manashg
-ms.date: 10/31/2025
+ms.reviewer: sooryar
+ms.date: 11/13/2025
 
 #customer intent: As a developer, I want to use Automated ML solutions in Azure Machine Learning, so I can find and address common issues like overfitting and imbalanced data.
 ---
@@ -38,7 +38,7 @@ Consider the following trained models and their corresponding train and test acc
 
 ## Prevent overfitting
 
-In the most egregious cases, an overfitted model assumes the feature value combinations visible during training always result in the exact same output for the target. To avoid overfitting your data, follow machine learning best practices. You can configure several methods in your model implementation. Automated ML also provides other options by default to help prevent overfitting.
+In the most extreme cases, an overfitted model assumes the feature value combinations visible during training always result in the exact same output for the target. To avoid overfitting your data, follow machine learning best practices. You can configure several methods in your model implementation. Automated ML also provides other options by default to help prevent overfitting.
 
 The following table summarizes common best practices:
 

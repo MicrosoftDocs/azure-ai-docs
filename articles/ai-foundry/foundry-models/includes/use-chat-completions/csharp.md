@@ -1,7 +1,7 @@
 ---
-title: How to use chat completions with Azure AI Foundry Models
-titleSuffix: Azure AI Foundry
-description: Learn how to generate chat completions with Azure AI Foundry Models
+title: How to use chat completions with Microsoft Foundry Models
+titleSuffix: Microsoft Foundry
+description: Learn how to generate chat completions with Microsoft Foundry Models
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: include
@@ -16,7 +16,7 @@ zone_pivot_groups: azure-ai-inference-samples
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-This article explains how to use the chat completions API with models deployed in Azure AI Foundry Models.
+This article explains how to use the chat completions API with models deployed in Microsoft Foundry Models.
 
 ## Prerequisites
 
@@ -330,7 +330,7 @@ foreach (ChatCompletionsToolCall tool in toolsCall)
         Dictionary<string, object> toolArguments = JsonSerializer.Deserialize<Dictionary<string, object>>(toolArgumentsString);
 
         // Here you have to call the function defined. In this particular example we use 
-        // reflection to find the method we definied before in a static class called 
+        // reflection to find the method we defined before in a static class called 
         // `ChatCompletionsExamples`. Using reflection allows us to call a function 
         // by string name. Notice that this is just done for demonstration purposes as a 
         // simple way to get the function callable from its string name. Then we can call 

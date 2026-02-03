@@ -6,19 +6,25 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: conceptual 
-ms.date: 09/16/2025
+ms.topic: concept-article 
+ms.date: 01/30/2026
 manager: nitinme
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
+
+
 ---
 
-# What is prompt transformation?
+# Prompt transformation
+
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 Prompt transformation is a process included in the DALL-E 3 models that applies a safety and quality system message to your original prompt. It uses a large language model (LLM) to add a message before sending your prompt to the image generation model. This system message enriches your original prompt with the goal of generating more diverse and higher-quality images while maintaining intent. 
 
 After prompt transformation is applied to the original prompt, content filtering is applied as a secondary step before image generation. For more information, see [Content filtering](./content-filter.md).
 
 > [!TIP]
-> Learn more about image generation prompting in OpenAI's [Image generation documentation](https://platform.openai.com/docs/guides/images/language-specific-tips).
+> Learn more about image generation prompting in OpenAI's [Image generation documentation](https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1).
 
 ## Prompt transformation example
 
@@ -33,11 +39,11 @@ Prompt transformation is essential for responsible and high-quality generations.
 
 Default prompt transformation contains safety enhancements that steer the model away from generating images of Copyright Studio characters and artwork, public figures, and other harmful content such as sexual, hate and unfairness, violence, and self-harm content.
 
-## How do I use prompt transformation?
+## Use prompt transformation
 
 Prompt transformation is applied by default to all Azure OpenAI DALL-E 3 requests. No extra setup is required to benefit from prompt transformation enhancements.
 
-Like image generation, prompt transformation is non-deterministic due to the nature of large language models. A single original prompt may lead to many image variants.
+Like image generation, prompt transformation is non-deterministic due to the nature of large language models. A single original prompt might lead to many image variants.
 
 ## View prompt transformations
 

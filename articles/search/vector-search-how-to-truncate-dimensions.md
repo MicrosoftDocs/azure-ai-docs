@@ -9,7 +9,7 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 10/08/2025
+ms.date: 01/31/2026
 ---
 
 # Truncate dimensions using MRL compression
@@ -37,7 +37,7 @@ MRL multilevel compression saves on vector storage and improves query response t
 
 ### Supported clients
 
-You can use the REST APIs or Azure SDK packages to implement MRL compression. At this time, there's no Azure portal or Azure AI Foundry support.
+You can use the REST APIs or Azure SDK packages to implement MRL compression. At this time, there's no Azure portal or Microsoft Foundry support.
 
 - Check the change logs for each Azure SDK package for feature support: [Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [.NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md), [Java](https://github.com/Azure/azure-sdk-for-java/blob/azure-search-documents_11.1.3/sdk/search/azure-search-documents/CHANGELOG.md), [JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md).
 
@@ -75,10 +75,10 @@ The following example illustrates a vector search configuration that meets the r
     "profiles": [ 
       { 
         "name": "use-bq-with-mrl", 
-        "compression": "use-mrl,use-bq", 
-        "algorithm": "use-hnsw" 
-      } 
-    ],
+        "compression": "use-bq-with-truncation", 
+        "algorithm": "use-hnsw" 
+      } 
+    ],
     "algorithms": [
        {
           "name": "use-hnsw",
@@ -91,38 +91,29 @@ The following example illustrates a vector search configuration that meets the r
           }
        }
     ],
-    "compressions": [ 
-      { 
-        "name": "use-mrl", 
-        "kind": "binaryQuantization", 
+    "compressions": [ 
+      { 
+        "name": "use-bq-with-truncation", 
+        "kind": "binaryQuantization", 
         "rescoringOptions": {
             "enableRescoring": true,
             "defaultOversampling": 10,
             "rescoreStorageMethod": "preserveOriginals"
         },
-        "truncationDimension": 1024
-      }, 
-      { 
-        "name": "use-bq", 
-        "kind": "binaryQuantization", 
-        "rescoringOptions": {
-            "enableRescoring": true,
-            "defaultOversampling": 10,
-            "rescoreStorageMethod": "discardOriginals"
-        }
-       } 
-    ] 
-  } 
-} 
+        "truncationDimension": 1024
+      }
+    ]
+  }
+}
 ```
 
-Here's an example of a [fully specified vector field definition](/rest/api/searchservice/indexes/create-or-update#searchfield) that satisfies the requirements for MRL. Recall that vector fields must:
+The following JSON shows the vector field definition that uses this profile:
 
-- Be of type `Edm.Half` or `Edm.Single`.
+- Data type is either `Collection(Edm.Half)` or `Collection(Edm.Single)`.
 
-- Have a `vectorSearchProfile` property that specifies the algorithm and compression settings.
+- The field has a `vectorSearchProfile` property that specifies the algorithm and compression settings.
 
-- Have a `dimensions` property that specifies the number of dimensions for scoring and ranking results. Its value should be the dimensions limit of the model you're using (1,536 for text-embedding-3-small).
+- The field has a `dimensions` property that specifies the number of dimensions for scoring and ranking results. Its value should be the dimensions limit of the model you're using (1,536 for text-embedding-3-small).
 
 ```json
 {

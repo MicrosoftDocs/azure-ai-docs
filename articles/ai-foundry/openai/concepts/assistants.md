@@ -1,8 +1,8 @@
 ---
-title: Azure OpenAI in Azure AI Foundry Models Assistants API concepts
+title: Azure OpenAI in Microsoft Foundry Models Assistants API concepts
 titleSuffix: Azure OpenAI
 description: Learn about the concepts behind the Azure OpenAI Assistants API.
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 09/24/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -14,9 +14,11 @@ recommendations: false
 
 # Azure OpenAI Assistants API (Preview)
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 [!INCLUDE [agent-service](../includes/agent-service.md)]
 
-Assistants, a feature of Azure OpenAI in Azure AI Foundry Models, is designed to make it easier for developers to create applications with sophisticated copilot-like experiences that can sift through data, suggest solutions, and automate tasks.
+Assistants, a feature of Azure OpenAI in Microsoft Foundry Models, is designed to make it easier for developers to create applications with sophisticated copilot-like experiences that can sift through data, suggest solutions, and automate tasks.
 
 * Assistants can call Azure OpenAI’s [models](../concepts/models.md) with specific instructions to tune their personality and capabilities.
 * Assistants can access **multiple tools in parallel**. These can be both Azure OpenAI-hosted tools like [code interpreter](../how-to/code-interpreter.md) and [file search](../how-to/file-search.md), or tools you build, host, and access through [function calling](../how-to/function-calling.md).
@@ -36,7 +38,7 @@ Assistants API supports persistent automatically managed threads. This means tha
 > [!TIP]
 > There is no additional [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) or [quota](../quotas-limits.md) for using Assistants unless you use the [code interpreter](../how-to/code-interpreter.md) or [file search](../how-to/file-search.md) tools.
 
-Assistants API is built on the same capabilities that power OpenAI’s GPT product. Some possible use cases range from AI-powered product recommender, sales analyst app, coding assistant, employee Q&A chatbot, and more. Start building on the no-code Assistants playground on the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) or start building with the API.
+Assistants API is built on the same capabilities that power OpenAI’s GPT product. Some possible use cases range from AI-powered product recommender, sales analyst app, coding assistant, employee Q&A chatbot, and more. Start building on the no-code Assistants playground on the [Foundry portal](https://ai.azure.com/?cid=learnDocs) or start building with the API.
 
 > [!IMPORTANT]
 > Retrieving untrusted data using Function calling, Code Interpreter or File Search with file input, and Assistant Threads functionalities could compromise the security of your Assistant, or the application that uses the Assistant. Learn about mitigation approaches [here](https://aka.ms/oai/assistant-rai).
@@ -59,7 +61,7 @@ To see a list of Azure OpenAI models that you can use with assistants, see the [
 Before using assistants, you need:
 
 - A [compatible model](../concepts/models.md#assistants-preview) deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
-- An [Azure AI project](../../../ai-foundry/how-to/create-projects.md) in Azure AI Foundry portal.
+- A [Foundry project](../../../ai-foundry/how-to/create-projects.md) in Foundry portal.
 
 ## Assistants components
 

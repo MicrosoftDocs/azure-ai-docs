@@ -1,7 +1,7 @@
 ---
 title: Customer-managed keys for hub projects
-titleSuffix: Azure AI Foundry
-description: Use customer-managed keys (CMK) with hub-based projects in Azure AI Foundry.
+titleSuffix: Microsoft Foundry
+description: Use customer-managed keys (CMK) with hub-based projects in Microsoft Foundry.
 ms.author: jburchel 
 author: jonburchel 
 ms.reviewer: deeikele
@@ -10,24 +10,24 @@ ms.service: azure-ai-services
 ms.topic: concept-article
 ms.custom:
   - build-2025
+  - hub-only
 ai-usage: ai-assisted
 ---
 
 # Customer-managed keys for hub projects
 
-> [!NOTE]
-> An alternate Foundry project article is available: [Customer-managed keys for encryption with Azure AI Foundry (Foundry projects)](encryption-keys-portal.md).
+[!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
+
+> [!TIP]
+> An alternate Foundry project article is available: [Customer-managed keys for encryption with Microsoft Foundry (Foundry projects)](encryption-keys-portal.md).
 
 Hub-based projects require configuring CMK on each underlying service (Azure AI Hub, Storage) for end-to-end encryption control.
-
-> [!IMPORTANT]
-> For organizations in highly regulated industries or with strict compliance requirements, you **must** configure customer-managed keys during the initial hub creation. CMK cannot be added to an existing hub after creation. Plan your encryption strategy before creating your hub resource.
 
 ## Architecture
 
 Azure AI Hub resource acts as a gateway to multiple Azure services. Configure CMK per service:
 - Azure AI Hub / hub project (Machine Learning workspace) – see ML data encryption docs.
-- Azure AI Foundry resources – AES-256 FIPS 140-2 compliant.
+- Foundry resources – AES-256 FIPS 140-2 compliant.
 - Azure Storage accounts – store uploaded data (configure CMK in Storage).
 
 ## Data storage options
@@ -53,9 +53,9 @@ Grant hub system-assigned managed identity: Get, Wrap, Unwrap permissions.
 
 Supported keys: RSA / RSA-HSM 2048.
 
-## Enable CMK (hub)
+## Create a hub with customer-managed keys
 
-Customer-managed keys must be configured during hub creation. You cannot add CMK to an existing hub or convert a hub from Microsoft-managed keys to customer-managed keys after creation.
+For customers in highly regulated industries, creating a hub with customer-managed keys (CMK) is a critical requirement.  
 
 ### Prerequisites
 
@@ -75,31 +75,33 @@ Before creating your hub with CMK:
 
 ### Configure CMK during hub creation
 
-In the Azure portal during hub creation:
+To create a hub with CMK enabled, follow these steps in the Azure portal:
 
-1. Navigate to the **Encryption** tab
-1. Select **Customer-managed keys**
-1. Choose your Key Vault and key
-1. (Optional) Select service-side encryption setting
-1. Complete the hub creation process
+1. Start the **Create an Azure AI Hub** wizard.
+1. On the **Basics** tab, fill in the required details.
+1. Navigate to the **Encryption** tab.
+1. Select **Customer-managed keys**.
+1. Select **Select a key vault and key**.
+1. Choose your existing Key Vault and the key you created in the prerequisites.
+1. (Optional) Configure the **Service-side encryption** setting if needed.
+1. Continue through the remaining tabs (Networking, Tags) and select **Review + create**.
+1. Select **Create** to finish the hub creation.
 
 After the hub is created, the system assigns a managed identity that receives Get, Wrap, and Unwrap permissions for the specified key.
 
-> [!WARNING]
-> This encryption configuration is permanent. You cannot switch from customer-managed keys to Microsoft-managed keys after hub creation.
+## Customer-managed key constraints (permanent)
+
+- CMK must be configured at hub creation time; you cannot add CMK to an existing hub.
+- You cannot switch between customer-managed keys and Microsoft-managed keys after creation.
+- Key rotation is supported only within the same Azure Key Vault; changing Key Vaults is not supported.  
 
 ## Rotation
 
-Rotate within same Key Vault; update hub to new key URI. Existing data not re-encrypted; new data uses new key.
-
-Limitations:
-- **CMK must be configured during hub creation** - You cannot add CMK to an existing hub or convert from Microsoft-managed keys to CMK after creation.
-- Key rotation must use the same Key Vault - You cannot change to a different Key Vault.
-- Cannot revert from CMK to Microsoft-managed keys.
+Rotate within the same Key Vault by updating the hub to a new key URI. Existing data isn't re-encrypted; new data uses the new key.  
 
 ## Revocation
 
-Remove access policy or delete key versions. Revocation halts new fine-tunes / downloads but existing deployments serve until deleted.
+Remove access policy or delete key versions. Revocation halts new fine-tunes or downloads, but existing deployments continue to serve until deleted.
 
 ## Cost considerations
 

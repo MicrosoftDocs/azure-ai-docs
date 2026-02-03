@@ -7,7 +7,7 @@ ms.author: gimondra
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
+ms.topic: troubleshooting-general
 ms.date: 10/23/2025
 ms.update-cycle: 365-days
 ---
@@ -40,19 +40,19 @@ These are some best practices and recommendations when working with indexers:
 
 For data sources under Azure network security, indexers are limited in how they make the connection. Currently, indexers can access restricted data sources [behind an IP firewall](search-indexer-howto-access-ip-restricted.md) or on a virtual network through a [private endpoint](search-indexer-howto-access-private.md) using a shared private link.
 
-### Error connecting to Azure AI services on a private connection
+### Error connecting to a Microsoft Foundry resource on a private connection
 
 If you get an error code 403 with the following message, you might have a problem with how the resource endpoint is specified in a skillset:
 
 * `"A Virtual Network is configured for this resource. Please use the correct endpoint for making requests. Check https://aka.ms/cogsvc-vnet for more details."`
 
-This error occurs if you have [configured a shared private link](search-indexer-howto-access-private.md) for connections to Azure AI services multi-service, and the endpoint is missing a custom subdomain. A custom subdomain is the first part of the endpoint (for example, `http://my-custom-subdomain.cognitiveservices.azure.com`). A custom domain might be missing if you created the resource in Azure AI Foundry.
+This error occurs if you've [configured a shared private link](search-indexer-howto-access-private.md) for connections to an Azure Foundry resource and the endpoint is missing a custom subdomain. A custom subdomain is the first part of the endpoint (for example, `http://my-custom-subdomain.services.ai.azure.com`). A custom domain might be missing if you created the resource in the Foundry portal instead of the Azure portal.
 
-If the Azure AI services multi-service account isn't in the same region as Azure AI Search, [use a keyless connection](cognitive-search-attach-cognitive-services.md) when attaching a billable Azure AI resource.
+If the Foundry resource isn't in the same region as Azure AI Search, [use a keyless connection](cognitive-search-attach-cognitive-services.md) to attach the resource.
 
 ### Firewall rules
 
-Azure Storage, Azure Cosmos DB and Azure SQL provide a configurable firewall. There's no specific error message when the firewall blocks the request. Typically, firewall errors are generic. Some common errors include:
+Azure Storage, Azure Cosmos DB, and Azure SQL provide a configurable firewall. There's no specific error message when the firewall blocks the request. Typically, firewall errors are generic. Some common errors include:
 
 * `The remote server returned an error: (403) Forbidden`
 * `This request is not authorized to perform this operation`
@@ -123,7 +123,7 @@ To update the policy and allow indexer access to the document library:
 
     First, obtain the fully qualified domain name (FQDN) of your search service. The FQDN looks like `<your-search-service-name>.search.windows.net`. You can find the FQDN in the Azure portal.
 
-    ![Obtain service FQDN](media\search-indexer-howto-secure-access\search-service-portal.png "Obtain service FQDN")
+    :::image type="content" source="media/search-get-started-rest/get-endpoint.png" alt-text="Screenshot of the search service Overview page." border="true" lightbox="media/search-get-started-rest/get-endpoint.png":::
 
     Now that you have the FQDN, get the IP address of the search service by performing a `nslookup` (or a `ping`) of the FQDN. In the following example, you would add "150.0.0.1" to an inbound rule on the Azure Storage firewall. It might take up to 15 minutes after the firewall settings have been updated for the search service indexer to be able to access the Azure Storage account.
 

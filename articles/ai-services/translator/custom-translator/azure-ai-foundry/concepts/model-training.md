@@ -1,18 +1,18 @@
 ---
-title: Azure AI Foundry custom translation model training
-titleSuffix: Azure AI services
+title: Microsoft Foundry custom translation model training
+titleSuffix: Foundry Tools
 description: "A model is the system that provides translation for a specific language pair. The outcome of a successful training is a model. To train a model, three mutually exclusive data sets are required: training dataset, tuning dataset, and testing dataset."
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.topic: conceptual
-ms.date: 05/19/2025
+ms.topic: concept-article
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: cogserv-non-critical-translator
 #Customer intent: As a custom translation user, I want to concept of a model and training, so that I can efficiently use training, tuning and testing datasets the helps me build a translation model.
 ---
 
-# Azure AI Foundry custom translation model training
+# Foundry tools custom translation model training
 
 A model is the system, which provides translation for a specific language pair. The outcome of a successful training is a model. To train a model, three mutually exclusive document types are required: training, tuning, and testing. Dictionary document type can also be provided. For more information, _see_ [Sentence alignment](./sentence-alignment.md#suggested-minimum-number-of-sentences).
 
@@ -22,7 +22,7 @@ If only training data is provided when queuing a training, custom translation au
 
 Documents included in training set are used by the custom translation as the basis for building your model. During training execution, sentences that are present in these documents are aligned (or paired). You can take liberties in composing your set of training documents. You can include documents that you believe are of tangential relevance in one model. Again exclude them in another to see the impact in [BLEU (Bilingual Evaluation Understudy) score](bleu-score.md). As long as you keep the tuning set and test set constant, feel free to experiment with the composition of the training set. This approach  is an effective way to modify the quality of your translation system.
 
-You can run multiple trainings within a project and compare the [BLEU scores](bleu-score.md) across all training runs. When you're running multiple trainings for comparison, ensure same tuning/ test data is specified each time. Also make sure to also inspect the results manually in the ["Testing"](../how-to/test-model.md) tab.
+You can run multiple trainings within a project and compare the [BLEU scores](bleu-score.md) across all training runs. When you're running multiple trainings for comparison, be sure to specify tuning/test data each time. Also make sure to also inspect the results manually in the ["Testing"](../how-to/test-model.md) tab.
 
 ## Tuning document type for custom translation
 
@@ -30,7 +30,7 @@ Parallel documents included in this set are used by the custom translation to tu
 
 The tuning data is used during training to adjust all parameters and weights of the translation system to the optimal values. Choose your tuning data carefully: the tuning data should be representative of the content of the documents you intend to translate in the future. The tuning data has a major influence on the quality of the translations produced. Tuning enables the translation system to provide translations that are closest to the samples you provide in the tuning data. You don't need more than 2,500 sentences in your tuning data. For optimal translation quality, we recommend selecting the tuning set manually by choosing the most representative selection of sentences.
 
-When creating your tuning set, choose sentences that are a meaningful and representative length of the future sentences that you expect to translate. Choose sentences that have words and phrases that you intend to translate in the approximate distribution that you expect in your future translations. In practice, a sentence length of 7 to 10 words produces the best results. These sentences contain enough context to show inflection and provide a phrase length that is significant, without being overly complex.
+When creating your tuning set, choose sentences that are a meaningful and representative length of the future sentences that you expect to translate. Choose sentences that have words and phrases that you intend to translate in the approximate distribution that you expect in your future translations. In practice, a sentence length of 7 to 10 words produces the best results. These sentences contain enough context to show inflection and provide a phrase length that's significant, without being overly complex.
 
 A good description of the type of sentences to use in the tuning set is prose: actual fluent sentences. Not table cells, not poems, not lists of things, not only punctuation, or numbers in a sentence - regular language.
 

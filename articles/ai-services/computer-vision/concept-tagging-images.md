@@ -1,13 +1,13 @@
 ---
-title: Content tags - Azure AI Vision
-titleSuffix: Azure AI services
-description: Learn concepts related to the images tagging feature of the Azure AI Vision API.
+title: Content tags - Azure Vision in Foundry Tools
+titleSuffix: Foundry Tools
+description: Learn concepts related to the images tagging feature of Azure Vision in Foundry Tools API.
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
-ms.topic: conceptual
-ms.date: 02/21/2025
+ms.topic: concept-article
+ms.date: 09/26/2025
 ms.author: pafarley
 ---
 
@@ -24,7 +24,7 @@ Try out the image tagging features quickly and easily in your browser using Visi
 
 ## Image tagging example
 
-The following JSON response illustrates what Azure AI Vision returns when tagging visual features detected in the example image.
+The following JSON response illustrates what Azure Vision in Foundry Tools returns when tagging visual features detected in the example image.
 
 ![A blue house and the front yard](./Images/house_yard.png).
 

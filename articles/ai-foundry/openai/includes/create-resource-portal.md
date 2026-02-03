@@ -1,5 +1,5 @@
 ---
-title: 'Create and manage Azure OpenAI in Azure AI Foundry Models deployments in the Azure portal'
+title: 'Create and manage Azure OpenAI in Microsoft Foundry Models deployments in the Azure portal'
 titleSuffix: Azure OpenAI
 description: Learn how to use the Azure portal to create an Azure OpenAI resource and manage deployments with the Azure OpenAI.
 manager: nitinme
@@ -11,7 +11,7 @@ ms.date: 05/20/2024
 
 ## Prerequisites
 
-- An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Access permissions to [create Azure OpenAI resources and to deploy models](../how-to/role-based-access-control.md).
 
 ## Create a resource
@@ -24,7 +24,7 @@ The following steps show how to create an Azure OpenAI resource in the Azure por
 
 1. Select **Create a resource** and search for the **Azure OpenAI**. When you locate the service, select **Create**.
 
-   :::image type="content" source="../media/create-resource/create-azure-openai-resource-portal.png" alt-text="Screenshot that shows how to create a new Azure OpenAI in Azure AI Foundry Models resource in the Azure portal.":::
+   :::image type="content" source="../media/create-resource/create-azure-openai-resource-portal.png" alt-text="Screenshot that shows how to create a new Azure OpenAI in Microsoft Foundry Models resource in the Azure portal.":::
 
 1. On the **Create Azure OpenAI** page, provide the following information for the fields on the **Basics** tab:
 
@@ -45,7 +45,7 @@ The following steps show how to create an Azure OpenAI resource in the Azure por
 The **Network** tab presents three options for the security **Type**:
    
 - Option 1: **All networks, including the internet, can access this resource.**
-- Option 2: **Selected networks, configure network security for your Azure AI services resource.**
+- Option 2: **Selected networks, configure network security for your Foundry Tools resource.**
 - Option 3: **Disabled, no networks can access this resource. You could configure private endpoint connections that will be the exclusive way to access this resource.**
 
 :::image type="content" source="../media/create-resource/create-resource-network-settings.png" alt-text="Screenshot that shows the network security options for an Azure OpenAI resource in the Azure portal.":::
@@ -91,20 +91,20 @@ As an option, you can add a private endpoint for access to your resource. Select
 
 ## Deploy a model
 
-Before you can generate text or inference, you need to deploy a model. You can select from one of several available models in Azure AI Foundry portal.
+Before you can generate text or inference, you need to deploy a model. You can select from one of several available models in Foundry portal.
 
 To deploy a model, follow these steps:
 
-1. Sign in to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
-1. In **Keep building with Azure AI Foundry** section select **View all resources**.
+1. [!INCLUDE [classic-sign-in](../../includes/classic-sign-in.md)]
+1. In **Keep building with Foundry** section select **View all resources**.
 1. Find and select your resource.
 
     > [!IMPORTANT]
-    > At this step you might be offered to upgrade your Azure OpenAI resource to Azure AI Foundry. See comparison between the two resource types and details on resource upgrade and rollback at [this page](../../how-to/upgrade-azure-openai.md). Select **Cancel** to proceed without resource type upgrade. Alternately select **Next**.
+    > At this step you might be offered to upgrade your Azure OpenAI resource to Foundry. See comparison between the two resource types and details on resource upgrade and rollback at [this page](../../how-to/upgrade-azure-openai.md). Select **Cancel** to proceed without resource type upgrade. Alternately select **Next**.
     > 
-    > See additional information about Azure AI Foundry resource in [this article](../../../ai-services/multi-service-resource.md).
+    > See additional information about Foundry resource in [this article](../../../ai-services/multi-service-resource.md).
 
-1. Select **Deployments** from **Shared resources** section in the left pane. (In case you upgraded to Azure AI Foundry in the previous step, select **Models + endpoints** from **My assets** section in the left pane.)
+1. Select **Deployments** from **Shared resources** section in the left pane. (In case you upgraded to Foundry in the previous step, select **Models + endpoints** from **My assets** section in the left pane.)
 1. Select **+ Deploy model** > **Deploy base model** to open the deployment window. 
 1. Select the desired model and then select **Confirm**. For a list of available models per region, see [Model summary table and region availability](../concepts/models.md#model-summary-table-and-region-availability).
 1. In the next window configure the following fields:
@@ -119,4 +119,4 @@ To deploy a model, follow these steps:
     > When you access the model via the API, you need to refer to the deployment name rather than the underlying model name in API calls, which is one of the [key differences](../how-to/switching-endpoints.yml) between OpenAI and Azure OpenAI. OpenAI only requires the model name. Azure OpenAI always requires deployment name, even when using the model parameter. In our documentation, we often have examples where deployment names are represented as identical to model names to help indicate which model works with a particular API endpoint. Ultimately your deployment names can follow whatever naming convention is best for your use case.
 
 1. Select **Deploy**.
-1. Deployment **Details** shows all the information of your new deployment. hen the deployment completes, your model **Provisioning** state changes to _Succeeded_.
+1. Deployment **Details** shows all the information of your new deployment. When the deployment completes, your model **Provisioning** state changes to _Succeeded_.

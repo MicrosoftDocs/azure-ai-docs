@@ -1,17 +1,18 @@
 ---
-title: Azure OpenAI in AI Foundry Models Webhooks
+title: Azure OpenAI in Foundry Models Webhooks
 titleSuffix: Azure OpenAI
-description: Learn how to use webhooks with Azure OpenAI in AI Foundry Models.
+description: Learn how to use webhooks with Azure OpenAI in Foundry Models.
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 10/24/2025
+ms.date: 01/31/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
+monikerRange: 'foundry-classic || foundry'
 ---
 
-# Azure OpenAI in AI Foundry Models webhooks
+# Azure OpenAI in Foundry Models webhooks
 
 Azure OpenAI webhooks enable your applications to receive real-time notifications about API events, such as batch completions or incoming calls. By subscribing to webhook events, you can automate workflows, trigger alerts, and integrate with other systems seamlessly. This guide walks you through setting up a webhook server, securing your endpoints, deploying, and troubleshooting common issues.
 
@@ -498,17 +499,20 @@ Webhook-Signature: v1,Sample Signature
 
 The following event types are available for webhook registration:
 
-| Category        | Event Type               | Description                     |
-| --------------- | ------------------------ | ------------------------------- |
-| Response Events | `response.completed`     | Response successfully completed |
-|                 | `response.failed`        | Response failed                 |
-|                 | `response.cancelled`     | Response canceled              |
-|                 | `response.incomplete`    | Response incomplete             |
-| Batch Events    | `batch.completed`        | Batch successfully completed    |
-|                 | `batch.failed`           | Batch failed                    |
-|                 | `batch.cancelled`        | Batch canceled                 |
-|                 | `batch.expired`          | Batch expired                   |
-| Real-time Events | `realtime.call.incoming` | Incoming call event             |
+| Category          | Event Type               | Description                     |
+| ----------------- | ------------------------ | ------------------------------- |
+| Response Events   | `response.completed`     | Response successfully completed |
+|                   | `response.failed`        | Response failed                 |
+|                   | `response.cancelled`     | Response canceled               |
+|                   | `response.incomplete`    | Response incomplete             |
+| Batch Events      | `batch.completed`        | Batch successfully completed    |
+|                   | `batch.failed`           | Batch failed                    |
+|                   | `batch.cancelled`        | Batch canceled                  |
+|                   | `batch.expired`          | Batch expired                   |
+| Fine-tuning Events| `fine_tuning.job.succeeded` | Fine-tuning job succeeded    |
+|                   | `fine_tuning.job.failed`    | Fine-tuning job failed       |
+|                   | `fine_tuning.job.cancelled` | Fine-tuning job canceled     |
+| Real-time Events  | `realtime.call.incoming` | Incoming call event             |
 
 ### Example payload
 

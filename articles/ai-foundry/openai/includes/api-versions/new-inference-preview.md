@@ -1,6 +1,6 @@
 ---
 title: Azure OpenAI new v1 preview inference API documentation
-titleSuffix: Azure OpenAI in Azure AI Foundry Models
+titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Latest v1 preview data plane inference documentation generated from OpenAPI 3.0 spec
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -22,7 +22,7 @@ Generates text-to-speech audio from the input text.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Microsoft Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 
 ### Request Header
 
@@ -104,7 +104,7 @@ Transcribes audio into the input language.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 
 ### Request Header
 
@@ -127,7 +127,7 @@ Transcribes audio into the input language.
 | └─ type | enum | Must be set to `server_vad` to enable manual chunking using server side VAD.<br>Possible values: `server_vad` | No |  |
 | file | string |  | Yes |  |
 | filename | string | The optional filename or descriptive identifier to associate with with the audio data. | No |  |
-| include[] | array | Additional information to include in the transcription response. `logprobs` will return the log probabilities of the tokens in the response to understand the model's confidence in the transcription. `logprobs` only works with response_format set to `json` and only with the models `gpt-4o-transcribe`, `gpt-4o-transcribe-diarize`, and `gpt-4o-mini-transcribe`. | No |  |
+| include[] | array | Additional information to include in the transcription response. `logprobs` will return the log probabilities of the tokens in the response to understand the model's confidence in the transcription. `logprobs` only works with response_format set to `json` and only with the models `gpt-4o-transcribe`, `gpt-4o-transcribe-diarize`, `gpt-4o-mini-transcribe`, and `gpt-4o-mini-transcribe-2025-12-15`. | No |  |
 | language | string | The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) (e.g. `en`) format will improve accuracy and latency. | No |  |
 | model | string | The model to use for this transcription request. | No |  |
 | prompt | string | An optional text to guide the model's style or continue a previous audio segment. The prompt should match the audio language. | No |  |
@@ -194,7 +194,7 @@ Gets English language transcribed text and associated metadata from provided spo
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 
 ### Request Header
 
@@ -262,7 +262,7 @@ Status Code: 200
 }
 ```
 
-## Create chatcompletion
+## Create chat completion
 
 ```HTTP
 POST {endpoint}/openai/v1/chat/completions?api-version=preview
@@ -275,7 +275,7 @@ Creates a chat completion.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 
 ### Request Header
 
@@ -298,8 +298,8 @@ Creates a chat completion.
 | frequency_penalty | number | Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim. | No | 0 |
 | function_call | enum | Specifying a particular function via `{"name": "my_function"}` forces the model to call that function.<br>Possible values: `none`, `auto` | No |  |
 | functions | array | Deprecated in favor of `tools`.<br>A list of functions the model may generate JSON inputs for. | No |  |
-| logit_bias | object | Modify the likelihood of specified tokens appearing in the completion.Accepts a JSON object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token. | No | None |
-| logprobs | boolean | Whether to return log probabilities of the output tokens or not. If true,returns the log probabilities of each output token returned in the `content` of `message`. | No | False |
+| logit_bias | object | Modify the likelihood of specified tokens appearing in the completion. Accepts a JSON object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token. | No | None |
+| logprobs | boolean | Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`. | No | False |
 | max_completion_tokens | integer | An upper bound for the number of tokens that can be generated for a completion, including visible output tokens and reasoning tokens. | No |  |
 | max_tokens | integer | The maximum number of tokens that can be generated in the chat completion.<br>This value can be used to control costs for text generated via API.<br>This value is now deprecated in favor of `max_completion_tokens`, and is not compatible with o1 series models. | No |  |
 | messages | array | A list of messages comprising the conversation so far. Depending on the model you use, different message types (modalities) are supported, like text, images, and audio. | Yes |  |
@@ -316,7 +316,7 @@ Creates a chat completion.
 | └─ type | enum | <br>Possible values: `text`, `json_object`, `json_schema` | No |  |
 | seed | integer | This feature is in Beta.<br>If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result.<br>Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend. | No |  |
 | stop | object | Not supported with latest reasoning models `o3` and `o4-mini`.<br><br>Up to 4 sequences where the API will stop generating further tokens. The returned text will not contain the stop sequence. | No |  |
-| store | boolean | Whether or not to store the output of this chat completion request for use in model distillation or evals products. | No | False |
+| store | boolean | Whether or not to store the output of this chat completion request for use in model distillation or evaluation products. | No | False |
 | stream | boolean | If set to true, the model response data will be streamed to the client as it is generated using server-sent events. | No | False |
 | stream_options | object | Options for streaming response. Only set this when you set `stream: true`. | No |  |
 | └─ include_usage | boolean | If set, an additional chunk will be streamed before the `data: [DONE]` message. The `usage` field on this chunk shows the token usage statistics for the entire request, and the `choices` field will always be an empty array.<br><br>All other chunks will also include a `usage` field, but with a null value. **NOTE:** If the stream is interrupted, you may not receive the final usage chunk which contains the total token usage for the request. | No |  |
@@ -412,7 +412,7 @@ Creates an embedding vector representing the input text.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 
 ### Request Header
 
@@ -591,7 +591,7 @@ List evaluations for a project.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | aoai-evals | header | Yes | string<br>Possible values: `preview` | Enables access to AOAI Evals, a preview feature.<br>This feature requires the 'aoai-evals' header to be set to 'preview'. |
 | after | query | No | string | Identifier for the last eval from the previous pagination request. |
 | limit | query | No | integer | A limit on the number of evals to be returned in a single pagination response. |
@@ -647,7 +647,7 @@ NOTE: This Azure OpenAI API is in preview and subject to change.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | aoai-evals | header | Yes | string<br>Possible values: `preview` | Enables access to AOAI Evals, a preview feature.<br>This feature requires the 'aoai-evals' header to be set to 'preview'. |
 
 ### Request Header
@@ -704,7 +704,7 @@ NOTE: This Azure OpenAI API is in preview and subject to change.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | aoai-evals | header | Yes | string<br>Possible values: `preview` | Enables access to AOAI Evals, a preview feature.<br>This feature requires the 'aoai-evals' header to be set to 'preview'. |
 | eval_id | path | Yes | string |  |
 
@@ -750,7 +750,7 @@ NOTE: This Azure OpenAI API is in preview and subject to change.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | aoai-evals | header | Yes | string<br>Possible values: `preview` | Enables access to AOAI Evals, a preview feature.<br>This feature requires the 'aoai-evals' header to be set to 'preview'. |
 | eval_id | path | Yes | string |  |
 
@@ -804,7 +804,7 @@ NOTE: This Azure OpenAI API is in preview and subject to change.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | aoai-evals | header | Yes | string<br>Possible values: `preview` | Enables access to AOAI Evals, a preview feature.<br>This feature requires the 'aoai-evals' header to be set to 'preview'. |
 | eval_id | path | Yes | string |  |
 
@@ -850,7 +850,7 @@ NOTE: This Azure OpenAI API is in preview and subject to change.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | aoai-evals | header | Yes | string<br>Possible values: `preview` | Enables access to AOAI Evals, a preview feature.<br>This feature requires the 'aoai-evals' header to be set to 'preview'. |
 | eval_id | path | Yes | string |  |
 | after | query | No | string |  |
@@ -900,7 +900,7 @@ NOTE: This Azure OpenAI API is in preview and subject to change.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | aoai-evals | header | Yes | string<br>Possible values: `preview` | Enables access to AOAI Evals, a preview feature.<br>This feature requires the 'aoai-evals' header to be set to 'preview'. |
 | eval_id | path | Yes | string |  |
 
@@ -956,7 +956,7 @@ NOTE: This Azure OpenAI API is in preview and subject to change.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | aoai-evals | header | Yes | string<br>Possible values: `preview` | Enables access to AOAI Evals, a preview feature.<br>This feature requires the 'aoai-evals' header to be set to 'preview'. |
 | eval_id | path | Yes | string |  |
 | run_id | path | Yes | string |  |
@@ -1003,7 +1003,7 @@ NOTE: This Azure OpenAI API is in preview and subject to change.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | aoai-evals | header | Yes | string<br>Possible values: `preview` | Enables access to AOAI Evals, a preview feature.<br>This feature requires the 'aoai-evals' header to be set to 'preview'. |
 | eval_id | path | Yes | string |  |
 | run_id | path | Yes | string |  |
@@ -1050,7 +1050,7 @@ NOTE: This Azure OpenAI API is in preview and subject to change.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | aoai-evals | header | Yes | string<br>Possible values: `preview` | Enables access to AOAI Evals, a preview feature.<br>This feature requires the 'aoai-evals' header to be set to 'preview'. |
 | eval_id | path | Yes | string |  |
 | run_id | path | Yes | string |  |
@@ -1097,7 +1097,7 @@ NOTE: This Azure OpenAI API is in preview and subject to change.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | aoai-evals | header | Yes | string<br>Possible values: `preview` | Enables access to AOAI Evals, a preview feature.<br>This feature requires the 'aoai-evals' header to be set to 'preview'. |
 | eval_id | path | Yes | string |  |
 | run_id | path | Yes | string |  |
@@ -1148,7 +1148,7 @@ NOTE: This Azure OpenAI API is in preview and subject to change.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | aoai-evals | header | Yes | string<br>Possible values: `preview` | Enables access to AOAI Evals, a preview feature.<br>This feature requires the 'aoai-evals' header to be set to 'preview'. |
 | eval_id | path | Yes | string |  |
 | run_id | path | Yes | string |  |
@@ -1194,7 +1194,7 @@ POST {endpoint}/openai/v1/files?api-version=preview
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 
 ### Request Header
 
@@ -1258,7 +1258,7 @@ GET {endpoint}/openai/v1/files?api-version=preview
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | purpose | query | No | string |  |
 
 ### Request Header
@@ -1301,7 +1301,7 @@ GET {endpoint}/openai/v1/files/{file_id}?api-version=preview
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | file_id | path | Yes | string | The ID of the file to use for this request. |
 
 ### Request Header
@@ -1344,7 +1344,7 @@ DELETE {endpoint}/openai/v1/files/{file_id}?api-version=preview
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | file_id | path | Yes | string | The ID of the file to use for this request. |
 
 ### Request Header
@@ -1387,7 +1387,7 @@ GET {endpoint}/openai/v1/files/{file_id}/content?api-version=preview
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | file_id | path | Yes | string | The ID of the file to use for this request. |
 
 ### Request Header
@@ -1430,7 +1430,7 @@ Run a grader.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 
 ### Request Header
 
@@ -1494,7 +1494,7 @@ Validate a grader.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 
 ### Request Header
 
@@ -1560,7 +1560,7 @@ Response includes details of the enqueued job including job status and the name 
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 
 ### Request Header
 
@@ -1620,7 +1620,7 @@ List your organization's fine-tuning jobs
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | after | query | No | string | Identifier for the last job from the previous pagination request. |
 | limit | query | No | integer | Number of fine-tuning jobs to retrieve. |
 
@@ -1666,7 +1666,7 @@ Get info about a fine-tuning job.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | fine_tuning_job_id | path | Yes | string | The ID of the fine-tuning job. |
 
 ### Request Header
@@ -1709,7 +1709,7 @@ Immediately cancel a fine-tune job.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | fine_tuning_job_id | path | Yes | string | The ID of the fine-tuning job to cancel. |
 
 ### Request Header
@@ -1752,7 +1752,7 @@ List the checkpoints for a fine-tuning job.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | fine_tuning_job_id | path | Yes | string | The ID of the fine-tuning job to get checkpoints for. |
 | after | query | No | string | Identifier for the last checkpoint ID from the previous pagination request. |
 | limit | query | No | integer | Number of checkpoints to retrieve. |
@@ -1797,7 +1797,7 @@ Get status updates for a fine-tuning job.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | fine_tuning_job_id | path | Yes | string | The ID of the fine-tuning job to get events for. |
 | after | query | No | string | Identifier for the last event from the previous pagination request. |
 | limit | query | No | integer | Number of events to retrieve. |
@@ -1842,7 +1842,7 @@ Pause a fine-tune job.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | fine_tuning_job_id | path | Yes | string | The ID of the fine-tuning job to pause. |
 
 ### Request Header
@@ -1885,7 +1885,7 @@ Resume a paused fine-tune job.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | fine_tuning_job_id | path | Yes | string | The ID of the fine-tuning job to resume. |
 
 ### Request Header
@@ -1928,7 +1928,7 @@ POST {endpoint}/openai/v1/images/edits?api-version=preview
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 
 ### Request Header
 
@@ -1944,17 +1944,17 @@ POST {endpoint}/openai/v1/images/edits?api-version=preview
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| background | enum | Allows to set transparency for the background of the generated image(s).<br>This parameter is only supported for `gpt-image-1`. Must be one of `transparent`, `opaque` or `auto` (default value). When `auto` is used, the model will automatically determine the best background for the image.<br><br>If `transparent`, the output format needs to support transparency, so it should be set to either `png` (default value) or `webp`.<br>Possible values: `transparent`, `opaque`, `auto` | No |  |
+| background | enum | Allows to set transparency for the background of the generated image(s).<br>This parameter is only supported for `gpt-image-1`-series models. Must be one of `transparent`, `opaque` or `auto` (default value). When `auto` is used, the model will automatically determine the best background for the image.<br><br>If `transparent`, the output format needs to support transparency, so it should be set to either `png` (default value) or `webp`.<br>Possible values: `transparent`, `opaque`, `auto` | No |  |
 | image | string or array |  | Yes |  |
 | mask | string |  | No |  |
 | model | string | The model deployment to use for the image edit operation. | Yes |  |
 | n | integer | The number of images to generate. Must be between 1 and 10. | No | 1 |
-| output_compression | integer | The compression level (0-100%) for the generated images. This parameter is only supported for `gpt-image-1` with the `webp` or `jpeg` output formats, and defaults to 100. | No | 100 |
-| output_format | enum | The format in which the generated images are returned. This parameter is only supported for `gpt-image-1`. Must be one of `png`, `jpeg`, or `webp`.<br>The default value is `png`.<br>Possible values: `png`, `jpeg`, `webp` | No |  |
-| prompt | string | A text description of the desired image(s). The maximum length is 1000 characters for `dall-e-2`, and 32000 characters for `gpt-image-1`. | Yes |  |
-| quality | enum | The quality of the image that will be generated. `high`, `medium` and `low` are only supported for `gpt-image-1`. `dall-e-2` only supports `standard` quality. Defaults to `auto`.<br>Possible values: `standard`, `low`, `medium`, `high`, `auto` | No |  |
-| response_format | enum | The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. This parameter is only supported for `dall-e-2`, as `gpt-image-1` will always return base64-encoded images.<br>Possible values: `url`, `b64_json` | No |  |
-| size | enum | The size of the generated images. Must be one of `1024x1024`, `1536x1024` (landscape), `1024x1536` (portrait), or `auto` (default value) for `gpt-image-1`, and one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`.<br>Possible values: `256x256`, `512x512`, `1024x1024`, `1536x1024`, `1024x1536`, `auto` | No |  |
+| output_compression | integer | The compression level (0-100%) for the generated images. This parameter is only supported for `gpt-image-1`-series models with the `webp` or `jpeg` output formats, and defaults to 100. | No | 100 |
+| output_format | enum | The format in which the generated images are returned. This parameter is only supported for `gpt-image-1`-series models. Must be one of `png`, `jpeg`, or `webp`.<br>The default value is `png`.<br>Possible values: `png`, `jpeg`, `webp` | No |  |
+| prompt | string | A text description of the desired image(s). The maximum length is 1000 characters for `dall-e-2`, and 32000 characters for `gpt-image-1`-series models. | Yes |  |
+| quality | enum | The quality of the image that will be generated. `high`, `medium` and `low` are only supported for `gpt-image-1`-series models. `dall-e-2` only supports `standard` quality. Defaults to `auto`.<br>Possible values: `standard`, `low`, `medium`, `high`, `auto` | No |  |
+| response_format | enum | The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. This parameter is only supported for `dall-e-2`, as `gpt-image-1`-series models will always return base64-encoded images.<br>Possible values: `url`, `b64_json` | No |  |
+| size | enum | The size of the generated images. Must be one of `1024x1024`, `1536x1024` (landscape), `1024x1536` (portrait), or `auto` (default value) for `gpt-image-1`-series models, and one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`.<br>Possible values: `256x256`, `512x512`, `1024x1024`, `1536x1024`, `1024x1536`, `auto` | No |  |
 | user | string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.  | No |  |
 
 ### Responses
@@ -1988,7 +1988,7 @@ POST {endpoint}/openai/v1/images/generations?api-version=preview
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 
 ### Request Header
 
@@ -2004,16 +2004,16 @@ POST {endpoint}/openai/v1/images/generations?api-version=preview
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| background | enum | Allows to set transparency for the background of the generated image(s).<br>This parameter is only supported for `gpt-image-1`. Must be one of `transparent`, `opaque` or `auto` (default value). When `auto` is used, the model will automatically determine the best background for the image.<br><br>If `transparent`, the output format needs to support transparency, so it should be set to either `png` (default value) or `webp`.<br>Possible values: `transparent`, `opaque`, `auto` | No |  |
+| background | enum | Allows to set transparency for the background of the generated image(s).<br>This parameter is only supported for `gpt-image-1`-series models. Must be one of `transparent`, `opaque` or `auto` (default value). When `auto` is used, the model will automatically determine the best background for the image.<br><br>If `transparent`, the output format needs to support transparency, so it should be set to either `png` (default value) or `webp`.<br>Possible values: `transparent`, `opaque`, `auto` | No |  |
 | model | string | The model deployment to use for the image generation. | Yes |  |
-| moderation | enum | Control the content-moderation level for images generated by `gpt-image-1`. Must be either `low` for less restrictive filtering or `auto` (default value).<br>Possible values: `low`, `auto` | No |  |
+| moderation | enum | Control the content-moderation level for images generated by `gpt-image-1`-series models. Must be either `low` for less restrictive filtering or `auto` (default value).<br>Possible values: `low`, `auto` | No |  |
 | n | integer | The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported. | No | 1 |
-| output_compression | integer | The compression level (0-100%) for the generated images. This parameter is only supported for `gpt-image-1` with the `webp` or `jpeg` output formats, and defaults to 100. | No | 100 |
-| output_format | enum | The format in which the generated images are returned. This parameter is only supported for `gpt-image-1`. Must be one of `png`, `jpeg`, or `webp`.<br>Possible values: `png`, `jpeg`, `webp` | No |  |
-| prompt | string | A text description of the desired image(s). The maximum length is 32000 characters for `gpt-image-1`, 1000 characters for `dall-e-2` and 4000 characters for `dall-e-3`. | Yes |  |
-| quality | enum | The quality of the image that will be generated.<br><br>- `auto` (default value) will automatically select the best quality for the given model.<br>- `high`, `medium` and `low` are supported for `gpt-image-1`.<br>- `hd` and `standard` are supported for `dall-e-3`.<br>- `standard` is the only option for `dall-e-2`.<br>Possible values: `standard`, `hd`, `low`, `medium`, `high`, `auto` | No |  |
-| response_format | enum | The format in which generated images with `dall-e-2` and `dall-e-3` are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. This parameter isn't supported for `gpt-image-1` which will always return base64-encoded images.<br>Possible values: `url`, `b64_json` | No |  |
-| size | enum | The size of the generated images. Must be one of `1024x1024`, `1536x1024` (landscape), `1024x1536` (portrait), or `auto` (default value) for `gpt-image-1`, one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`, and one of `1024x1024`, `1792x1024`, or `1024x1792` for `dall-e-3`.<br>Possible values: `auto`, `1024x1024`, `1536x1024`, `1024x1536`, `256x256`, `512x512`, `1792x1024`, `1024x1792` | No |  |
+| output_compression | integer | The compression level (0-100%) for the generated images. This parameter is only supported for `gpt-image-1`-series models with the `webp` or `jpeg` output formats, and defaults to 100. | No | 100 |
+| output_format | enum | The format in which the generated images are returned. This parameter is only supported for `gpt-image-1`-series models. Must be one of `png`, `jpeg`, or `webp`.<br>Possible values: `png`, `jpeg`, `webp` | No |  |
+| prompt | string | A text description of the desired image(s). The maximum length is 32000 characters for `gpt-image-1`-series models, 1000 characters for `dall-e-2` and 4000 characters for `dall-e-3`. | Yes |  |
+| quality | enum | The quality of the image that will be generated.<br><br>- `auto` (default value) will automatically select the best quality for the given model.<br>- `high`, `medium` and `low` are supported for `gpt-image-1`-series models.<br>- `hd` and `standard` are supported for `dall-e-3`.<br>- `standard` is the only option for `dall-e-2`.<br>Possible values: `standard`, `hd`, `low`, `medium`, `high`, `auto` | No |  |
+| response_format | enum | The format in which generated images with `dall-e-2` and `dall-e-3` are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. This parameter isn't supported for `gpt-image-1`-series models which will always return base64-encoded images.<br>Possible values: `url`, `b64_json` | No |  |
+| size | enum | The size of the generated images. Must be one of `1024x1024`, `1536x1024` (landscape), `1024x1536` (portrait), or `auto` (default value) for `gpt-image-1`-series models, one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`, and one of `1024x1024`, `1792x1024`, or `1024x1792` for `dall-e-3`.<br>Possible values: `auto`, `1024x1024`, `1536x1024`, `1024x1536`, `256x256`, `512x512`, `1792x1024`, `1024x1792` | No |  |
 | style | enum | The style of the generated images. This parameter is only supported for `dall-e-3`. Must be one of `vivid` or `natural`. Vivid causes the model to lean towards generating hyper-real and dramatic images. Natural causes the model to produce more natural, less hyper-real looking images.<br>Possible values: `vivid`, `natural` | No |  |
 | user | string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.  | No |  |
 
@@ -2129,7 +2129,7 @@ owner and availability.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 
 ### Request Header
 
@@ -2172,7 +2172,7 @@ permissioning.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | model | path | Yes | string | The ID of the model to use for this request. |
 
 ### Request Header
@@ -2215,7 +2215,7 @@ Creates a model response.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 
 ### Request Header
 
@@ -2305,7 +2305,7 @@ Retrieves a model response with the given ID.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | response_id | path | Yes | string |  |
 | include[] | query | No | array |  |
 
@@ -2349,7 +2349,7 @@ Deletes a response by ID.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | response_id | path | Yes | string |  |
 
 ### Request Header
@@ -2392,7 +2392,7 @@ Returns a list of input items for a given response.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | response_id | path | Yes | string |  |
 | limit | query | No | integer | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. |
 | order | query | No | string<br>Possible values: `asc`, `desc` | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and`desc` for descending order. |
@@ -2439,7 +2439,7 @@ Returns a list of vector stores.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | limit | query | No | integer | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. |
 | order | query | No | string<br>Possible values: `asc`, `desc` | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and`desc` for descending order. |
 | after | query | No | string | A cursor for use in pagination. `after` is an object ID that defines your place in the list.<br>For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. |
@@ -2485,7 +2485,7 @@ Creates a vector store.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 
 ### Request Header
 
@@ -2544,7 +2544,7 @@ Retrieves a vector store.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | vector_store_id | path | Yes | string | The ID of the vector store to retrieve. |
 
 ### Request Header
@@ -2587,7 +2587,7 @@ Modifies a vector store.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | vector_store_id | path | Yes | string | The ID of the vector store to modify. |
 
 ### Request Header
@@ -2641,7 +2641,7 @@ Delete a vector store.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | vector_store_id | path | Yes | string | The ID of the vector store to delete. |
 
 ### Request Header
@@ -2684,7 +2684,7 @@ Create a vector store file batch.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | vector_store_id | path | Yes | string | The ID of the vector store for which to create a file batch. |
 
 ### Request Header
@@ -2736,7 +2736,7 @@ Retrieves a vector store file batch.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | vector_store_id | path | Yes | string | The ID of the vector store that the file batch belongs to. |
 | batch_id | path | Yes | string | The ID of the file batch being retrieved. |
 
@@ -2780,7 +2780,7 @@ Cancel a vector store file batch. This attempts to cancel the processing of file
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | vector_store_id | path | Yes | string | The ID of the vector store that the file batch belongs to. |
 | batch_id | path | Yes | string | The ID of the file batch to cancel. |
 
@@ -2824,7 +2824,7 @@ Returns a list of vector store files in a batch.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | vector_store_id | path | Yes | string | The ID of the vector store that the file batch belongs to. |
 | batch_id | path | Yes | string | The ID of the file batch that the files belong to. |
 | limit | query | No | integer | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. |
@@ -2873,7 +2873,7 @@ Returns a list of vector store files.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | vector_store_id | path | Yes | string | The ID of the vector store that the files belong to. |
 | limit | query | No | integer | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. |
 | order | query | No | string<br>Possible values: `asc`, `desc` | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and`desc` for descending order. |
@@ -2921,7 +2921,7 @@ Create a vector store file by attaching a file to a vector store.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | vector_store_id | path | Yes | string | The ID of the vector store for which to create a File. |
 
 ### Request Header
@@ -2973,7 +2973,7 @@ Retrieves a vector store file.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | vector_store_id | path | Yes | string | The ID of the vector store that the file belongs to. |
 | file_id | path | Yes | string | The ID of the file being retrieved. |
 
@@ -3017,7 +3017,7 @@ POST {endpoint}/openai/v1/vector_stores/{vector_store_id}/files/{file_id}?api-ve
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | vector_store_id | path | Yes | string |  |
 | file_id | path | Yes | string |  |
 
@@ -3068,7 +3068,7 @@ Delete a vector store file. This will remove the file from the vector store but 
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | vector_store_id | path | Yes | string | The ID of the vector store that the file belongs to. |
 | file_id | path | Yes | string | The ID of the file to delete. |
 
@@ -3112,7 +3112,7 @@ Creates a new video generation job.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 
 ### Request Header
 
@@ -3184,7 +3184,7 @@ Lists video generation jobs.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | before | query | No | string |  |
 | after | query | No | string |  |
 | limit | query | Yes | integer |  |
@@ -3234,7 +3234,7 @@ Retrieves properties of a video generation job.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | job-id | path | Yes | string | The ID of the video generation job to use for the Azure OpenAI request. |
 
 ### Request Header
@@ -3281,7 +3281,7 @@ Deletes a video generation job.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | job-id | path | Yes | string | The ID of the video generation job to use for the Azure OpenAI request. |
 
 ### Request Header
@@ -3320,7 +3320,7 @@ Retrieves a video generation by ID.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | generation-id | path | Yes | string | The ID of the video generation to use for the Azure OpenAI request. |
 
 ### Request Header
@@ -3367,7 +3367,7 @@ Retrieves a thumbnail of the generated video content.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | generation-id | path | Yes | string | The ID of the video generation to use for the Azure OpenAI request. |
 
 ### Request Header
@@ -3410,7 +3410,7 @@ Retrieves the generated video content.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | generation-id | path | Yes | string | The ID of the video generation to use for the Azure OpenAI request. |
 | quality | query | No |  |  |
 
@@ -3448,13 +3448,13 @@ HEAD {endpoint}/openai/v1/video/generations/{generation-id}/content/video?api-ve
 ```
 
 
-Retrieves headers for the the generated video content.
+Retrieves headers for the generated video content.
 ### URI Parameters
 
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | generation-id | path | Yes | string | The ID of the video generation to use for the Azure OpenAI request. |
 | quality | query | No |  |  |
 
@@ -4133,33 +4133,33 @@ This model adds Responsible AI content filter annotations for prompt input.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| background | enum | Allows to set transparency for the background of the generated image(s).<br>This parameter is only supported for `gpt-image-1`. Must be one of `transparent`, `opaque` or `auto` (default value). When `auto` is used, the model will automatically determine the best background for the image.<br><br>If `transparent`, the output format needs to support transparency, so it should be set to either `png` (default value) or `webp`.<br>Possible values: `transparent`, `opaque`, `auto` | No |  |
+| background | enum | Allows to set transparency for the background of the generated image(s).<br>This parameter is only supported for `gpt-image-1`-series models. Must be one of `transparent`, `opaque` or `auto` (default value). When `auto` is used, the model will automatically determine the best background for the image.<br><br>If `transparent`, the output format needs to support transparency, so it should be set to either `png` (default value) or `webp`.<br>Possible values: `transparent`, `opaque`, `auto` | No |  |
 | image | string or array |  | Yes |  |
 | mask | string |  | No |  |
 | model | string | The model deployment to use for the image edit operation. | Yes |  |
 | n | integer | The number of images to generate. Must be between 1 and 10. | No | 1 |
-| output_compression | integer | The compression level (0-100%) for the generated images. This parameter is only supported for `gpt-image-1` with the `webp` or `jpeg` output formats, and defaults to 100. | No | 100 |
-| output_format | enum | The format in which the generated images are returned. This parameter is only supported for `gpt-image-1`. Must be one of `png`, `jpeg`, or `webp`.<br>The default value is `png`.<br>Possible values: `png`, `jpeg`, `webp` | No |  |
-| prompt | string | A text description of the desired image(s). The maximum length is 1000 characters for `dall-e-2`, and 32000 characters for `gpt-image-1`. | Yes |  |
-| quality | enum | The quality of the image that will be generated. `high`, `medium` and `low` are only supported for `gpt-image-1`. `dall-e-2` only supports `standard` quality. Defaults to `auto`.<br>Possible values: `standard`, `low`, `medium`, `high`, `auto` | No |  |
-| response_format | enum | The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. This parameter is only supported for `dall-e-2`, as `gpt-image-1` will always return base64-encoded images.<br>Possible values: `url`, `b64_json` | No |  |
-| size | enum | The size of the generated images. Must be one of `1024x1024`, `1536x1024` (landscape), `1024x1536` (portrait), or `auto` (default value) for `gpt-image-1`, and one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`.<br>Possible values: `256x256`, `512x512`, `1024x1024`, `1536x1024`, `1024x1536`, `auto` | No |  |
+| output_compression | integer | The compression level (0-100%) for the generated images. This parameter is only supported for `gpt-image-1`-series models with the `webp` or `jpeg` output formats, and defaults to 100. | No | 100 |
+| output_format | enum | The format in which the generated images are returned. This parameter is only supported for `gpt-image-1`-series models. Must be one of `png`, `jpeg`, or `webp`.<br>The default value is `png`.<br>Possible values: `png`, `jpeg`, `webp` | No |  |
+| prompt | string | A text description of the desired image(s). The maximum length is 1000 characters for `dall-e-2`, and 32000 characters for `gpt-image-1`-series models. | Yes |  |
+| quality | enum | The quality of the image that will be generated. `high`, `medium` and `low` are only supported for `gpt-image-1`-series models. `dall-e-2` only supports `standard` quality. Defaults to `auto`.<br>Possible values: `standard`, `low`, `medium`, `high`, `auto` | No |  |
+| response_format | enum | The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. This parameter is only supported for `dall-e-2`, as `gpt-image-1`-series models will always return base64-encoded images.<br>Possible values: `url`, `b64_json` | No |  |
+| size | enum | The size of the generated images. Must be one of `1024x1024`, `1536x1024` (landscape), `1024x1536` (portrait), or `auto` (default value) for `gpt-image-1`-series models, and one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`.<br>Possible values: `256x256`, `512x512`, `1024x1024`, `1536x1024`, `1024x1536`, `auto` | No |  |
 | user | string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.  | No |  |
 
 ### AzureCreateImageRequest
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| background | enum | Allows to set transparency for the background of the generated image(s).<br>This parameter is only supported for `gpt-image-1`. Must be one of `transparent`, `opaque` or `auto` (default value). When `auto` is used, the model will automatically determine the best background for the image.<br><br>If `transparent`, the output format needs to support transparency, so it should be set to either `png` (default value) or `webp`.<br>Possible values: `transparent`, `opaque`, `auto` | No |  |
+| background | enum | Allows to set transparency for the background of the generated image(s).<br>This parameter is only supported for `gpt-image-1`-series models. Must be one of `transparent`, `opaque` or `auto` (default value). When `auto` is used, the model will automatically determine the best background for the image.<br><br>If `transparent`, the output format needs to support transparency, so it should be set to either `png` (default value) or `webp`.<br>Possible values: `transparent`, `opaque`, `auto` | No |  |
 | model | string | The model deployment to use for the image generation. | Yes |  |
-| moderation | enum | Control the content-moderation level for images generated by `gpt-image-1`. Must be either `low` for less restrictive filtering or `auto` (default value).<br>Possible values: `low`, `auto` | No |  |
+| moderation | enum | Control the content-moderation level for images generated by `gpt-image-1`-series models. Must be either `low` for less restrictive filtering or `auto` (default value).<br>Possible values: `low`, `auto` | No |  |
 | n | integer | The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported. | No | 1 |
-| output_compression | integer | The compression level (0-100%) for the generated images. This parameter is only supported for `gpt-image-1` with the `webp` or `jpeg` output formats, and defaults to 100. | No | 100 |
-| output_format | enum | The format in which the generated images are returned. This parameter is only supported for `gpt-image-1`. Must be one of `png`, `jpeg`, or `webp`.<br>Possible values: `png`, `jpeg`, `webp` | No |  |
-| prompt | string | A text description of the desired image(s). The maximum length is 32000 characters for `gpt-image-1`, 1000 characters for `dall-e-2` and 4000 characters for `dall-e-3`. | Yes |  |
-| quality | enum | The quality of the image that will be generated.<br><br>- `auto` (default value) will automatically select the best quality for the given model.<br>- `high`, `medium` and `low` are supported for `gpt-image-1`.<br>- `hd` and `standard` are supported for `dall-e-3`.<br>- `standard` is the only option for `dall-e-2`.<br>Possible values: `standard`, `hd`, `low`, `medium`, `high`, `auto` | No |  |
-| response_format | enum | The format in which generated images with `dall-e-2` and `dall-e-3` are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. This parameter isn't supported for `gpt-image-1` which will always return base64-encoded images.<br>Possible values: `url`, `b64_json` | No |  |
-| size | enum | The size of the generated images. Must be one of `1024x1024`, `1536x1024` (landscape), `1024x1536` (portrait), or `auto` (default value) for `gpt-image-1`, one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`, and one of `1024x1024`, `1792x1024`, or `1024x1792` for `dall-e-3`.<br>Possible values: `auto`, `1024x1024`, `1536x1024`, `1024x1536`, `256x256`, `512x512`, `1792x1024`, `1024x1792` | No |  |
+| output_compression | integer | The compression level (0-100%) for the generated images. This parameter is only supported for `gpt-image-1`-series models with the `webp` or `jpeg` output formats, and defaults to 100. | No | 100 |
+| output_format | enum | The format in which the generated images are returned. This parameter is only supported for `gpt-image-1`-series models. Must be one of `png`, `jpeg`, or `webp`.<br>Possible values: `png`, `jpeg`, `webp` | No |  |
+| prompt | string | A text description of the desired image(s). The maximum length is 32000 characters for `gpt-image-1`-series models, 1000 characters for `dall-e-2` and 4000 characters for `dall-e-3`. | Yes |  |
+| quality | enum | The quality of the image that will be generated.<br><br>- `auto` (default value) will automatically select the best quality for the given model.<br>- `high`, `medium` and `low` are supported for `gpt-image-1`-series models.<br>- `hd` and `standard` are supported for `dall-e-3`.<br>- `standard` is the only option for `dall-e-2`.<br>Possible values: `standard`, `hd`, `low`, `medium`, `high`, `auto` | No |  |
+| response_format | enum | The format in which generated images with `dall-e-2` and `dall-e-3` are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. This parameter isn't supported for `gpt-image-1`-series models which will always return base64-encoded images.<br>Possible values: `url`, `b64_json` | No |  |
+| size | enum | The size of the generated images. Must be one of `1024x1024`, `1536x1024` (landscape), `1024x1536` (portrait), or `auto` (default value) for `gpt-image-1`-series models, one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`, and one of `1024x1024`, `1792x1024`, or `1024x1792` for `dall-e-3`.<br>Possible values: `auto`, `1024x1024`, `1536x1024`, `1024x1536`, `256x256`, `512x512`, `1792x1024`, `1024x1792` | No |  |
 | style | enum | The style of the generated images. This parameter is only supported for `dall-e-3`. Must be one of `vivid` or `natural`. Vivid causes the model to lean towards generating hyper-real and dramatic images. Natural causes the model to produce more natural, less hyper-real looking images.<br>Possible values: `vivid`, `natural` | No |  |
 | user | string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.  | No |  |
 
@@ -4225,7 +4225,7 @@ The configuration information for an audio transcription request.
 | └─ type | enum | Must be set to `server_vad` to enable manual chunking using server side VAD.<br>Possible values: `server_vad` | No |  |
 | file | string |  | Yes |  |
 | filename | string | The optional filename or descriptive identifier to associate with with the audio data. | No |  |
-| include[] | array | Additional information to include in the transcription response.<br>`logprobs` will return the log probabilities of the tokens in the response to understand the model's confidence in the transcription.<br>`logprobs` only works with response_format set to `json` and only with the models `gpt-4o-transcribe`, `gpt-4o-transcribe-diarize`, and `gpt-4o-mini-transcribe`. | No |  |
+| include[] | array | Additional information to include in the transcription response.<br>`logprobs` will return the log probabilities of the tokens in the response to understand the model's confidence in the transcription.<br>`logprobs` only works with response_format set to `json` and only with the models `gpt-4o-transcribe`, `gpt-4o-transcribe-diarize`, `gpt-4o-mini-transcribe`, and `gpt-4o-mini-transcribe-2025-12-15`. | No |  |
 | language | string | The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) (e.g. `en`) format will improve accuracy and latency. | No |  |
 | model | string | The model to use for this transcription request. | No |  |
 | prompt | string | An optional text to guide the model's style or continue a previous audio segment. The prompt should match the audio language. | No |  |
@@ -4316,11 +4316,11 @@ The configuration information for an audio transcription request.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| b64_json | string | The base64-encoded JSON of the generated image. Default value for `gpt-image-1`, and only present if `response_format` is set to `b64_json` for `dall-e-2` and `dall-e-3`. | No |  |
+| b64_json | string | The base64-encoded JSON of the generated image. Default value for `gpt-image-1`-series models, and only present if `response_format` is set to `b64_json` for `dall-e-2` and `dall-e-3`. | No |  |
 | content_filter_results | [AzureContentFilterImageResponseResults](#azurecontentfilterimageresponseresults) | A content filter result for an image generation operation's output response content. | Yes |  |
 | prompt_filter_results | [AzureContentFilterImagePromptResults](#azurecontentfilterimagepromptresults) | A content filter result for an image generation operation's input request content. | Yes |  |
 | revised_prompt | string | For `dall-e-3` only, the revised prompt that was used to generate the image. | No |  |
-| url | string | When using `dall-e-2` or `dall-e-3`, the URL of the generated image if `response_format` is set to `url` (default value). Unsupported for `gpt-image-1`. | No |  |
+| url | string | When using `dall-e-2` or `dall-e-3`, the URL of the generated image if `response_format` is set to `url` (default value). Unsupported for `gpt-image-1`-series models. | No |  |
 
 ### AzureImagesResponse
 
@@ -4332,7 +4332,7 @@ The configuration information for an audio transcription request.
 | output_format | enum | The output format of the image generation. Either `png`, `webp`, or `jpeg`.<br>Possible values: `png`, `webp`, `jpeg` | No |  |
 | quality | enum | The quality of the image generated. Either `low`, `medium`, or `high`.<br>Possible values: `low`, `medium`, `high` | No |  |
 | size | enum | The size of the image generated. Either `1024x1024`, `1024x1536`, or `1536x1024`.<br>Possible values: `1024x1024`, `1024x1536`, `1536x1024` | No |  |
-| usage | object | For `gpt-image-1` only, the token usage information for the image generation. | No |  |
+| usage | object | For `gpt-image-1`-series models only, the token usage information for the image generation. | No |  |
 | └─ input_tokens | integer | The number of tokens (images and text) in the input prompt. | No |  |
 | └─ input_tokens_details | object | The input tokens detailed information for the image generation. | No |  |
 |   └─ image_tokens | integer | The number of image tokens in the input prompt. | No |  |
@@ -4684,11 +4684,11 @@ A citation for a web resource used to generate a model response.
 
 ### OpenAI.AudioResponseFormat
 
-The format of the output, in one of these options: `json`, `text`, `srt`, `verbose_json`, or `vtt`. For `gpt-4o-transcribe`, `gpt-4o-transcribe-diarize`, and `gpt-4o-mini-transcribe`, the only supported format is `json`.
+The format of the output, in one of these options: `json`, `text`, `srt`, `verbose_json`, or `vtt`. For `gpt-4o-transcribe`, `gpt-4o-transcribe-diarize`, `gpt-4o-mini-transcribe`, and `gpt-4o-mini-transcribe-2025-12-15`. The only supported format is `json`.
 
 | Property | Value |
 |----------|-------|
-| **Description** | The format of the output, in one of these options: `json`, `text`, `srt`, `verbose_json`, or `vtt`. For `gpt-4o-transcribe`, `gpt-4o-transcribe-diarize`, and `gpt-4o-mini-transcribe`, the only supported format is `json`. |
+| **Description** | The format of the output, in one of these options: `json`, `text`, `srt`, `verbose_json`, or `vtt`. For `gpt-4o-transcribe`, `gpt-4o-transcribe-diarize`, `gpt-4o-mini-transcribe`, and `gpt-4o-mini-transcribe-2025-12-15`. The only supported format is `json`. |
 | **Type** | string |
 | **Values** | `json`<br>`text`<br>`srt`<br>`verbose_json`<br>`vtt` |
 
@@ -5910,7 +5910,7 @@ An object representing a list of evals.
 |------|------|-------------|----------|---------|
 | data | array | An array of eval objects. | Yes |  |
 | first_id | string | The identifier of the first eval in the data array. | Yes |  |
-| has_more | boolean | Indicates whether there are more evals available. | Yes |  |
+| has_more | boolean | Indicates whether there are more evaluations available. | Yes |  |
 | last_id | string | The identifier of the last eval in the data array. | Yes |  |
 | object | enum | The type of this object. It is always set to "list".<br>Possible values: `list` | Yes |  |
 
@@ -5928,7 +5928,7 @@ This is usually metadata like `usecase=chatbot` or `prompt-version=v2`, etc.
 
 A LogsDataSourceConfig which specifies the metadata property of your logs query.
 This is usually metadata like `usecase=chatbot` or `prompt-version=v2`, etc.
-The schema returned by this data source config is used to defined what variables are available in your evals.
+The schema returned by this data source config is used to defined what variables are available in your evaluations.
 `item` and `sample` are both defined when using this data source config.
 
 | Name | Type | Description | Required | Default |
@@ -6085,7 +6085,7 @@ An object representing a list of runs for an evaluation.
 |------|------|-------------|----------|---------|
 | data | array | An array of eval run objects. | Yes |  |
 | first_id | string | The identifier of the first eval run in the data array. | Yes |  |
-| has_more | boolean | Indicates whether there are more evals available. | Yes |  |
+| has_more | boolean | Indicates whether there are more evaluations available. | Yes |  |
 | last_id | string | The identifier of the last eval run in the data array. | Yes |  |
 | object | enum | The type of this object. It is always set to "list".<br>Possible values: `list` | Yes |  |
 
@@ -6552,7 +6552,7 @@ A TextSimilarityGrader object which grades text based on similarity metrics.
 
 ### OpenAI.ImageGenTool
 
-A tool that generates images using a model like `gpt-image-1`.
+A tool that generates images using a model like `gpt-image-1.5`.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -6560,7 +6560,7 @@ A tool that generates images using a model like `gpt-image-1`.
 | input_image_mask | object | Optional mask for inpainting. Contains `image_url` (string, optional) and `file_id` (string, optional). | No |  |
 | └─ file_id | string | File ID for the mask image. | No |  |
 | └─ image_url | string | Base64-encoded mask image. | No |  |
-| model | enum | The image generation model to use. Default: `gpt-image-1`.<br>Possible values: `gpt-image-1` | No |  |
+| model | enum | The image generation model to use. Default: `gpt-image-1`.<br>Possible values: `gpt-image-1`, `gpt-image-1.5` | No |  |
 | moderation | enum | Moderation level for the generated image. Default: `auto`.<br>Possible values: `auto`, `low` | No |  |
 | output_compression | integer | Compression level for the output image. Default: 100. | No | 100 |
 | output_format | enum | The output format of the generated image. One of `png`, `webp`, or `jpeg`. Default: `png`.<br>Possible values: `png`, `webp`, `jpeg` | No |  |
@@ -8926,4 +8926,3 @@ A list of video generation jobs.
 | has_more | boolean | A flag indicating whether there are more jobs available after the list. | Yes |  |
 | last_id | string | The ID of the last job in the current page, if available. | No |  |
 | object | enum | <br>Possible values: `list` | Yes |  |
-

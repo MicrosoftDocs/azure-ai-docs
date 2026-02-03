@@ -1,24 +1,28 @@
 ---
-title: Quickstart - Getting started with Azure OpenAI audio generation
+title: Quickstart - Get started with Azure OpenAI audio generation
 titleSuffix: Azure OpenAI
-description: Walkthrough on how to get started with audio generation using Azure OpenAI.
+description: Get started with audio generation using Azure OpenAI.
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 8/13/2025
+ms.date: 01/30/2026
 author: PatrickFarley
 ms.author: pafarley
 ms.custom: references_regions
 zone_pivot_groups: audio-completions-quickstart
 recommendations: false
+monikerRange: 'foundry-classic || foundry'
+
 ---
 
-# Quickstart: Get started using Azure OpenAI audio generation
+# Quickstart: Get started with Azure OpenAI audio generation
+
+[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 ::: zone pivot="ai-foundry-portal"
 
-[!INCLUDE [AI Foundry](includes/audio-completions-ai-foundry.md)]
+[!INCLUDE [Foundry](includes/audio-completions-foundry.md)]
 
 ::: zone-end
 
@@ -46,7 +50,7 @@ recommendations: false
 
 ::: zone-end
 
-## Clean-up resources
+## Clean up resources
 
 If you want to clean up and remove an Azure OpenAI resource, you can delete the resource. Before deleting the resource, you must first delete any deployed models.
 

@@ -8,7 +8,7 @@ ms.topic: how-to
 ms.custom: data4ml, devx-track-azurecli
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: xunwan
+ms.reviewer: soumyapatro
 ms.date: 08/29/2025
 ---
 

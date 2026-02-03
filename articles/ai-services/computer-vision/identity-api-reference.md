@@ -1,6 +1,6 @@
 ---
 title: API Reference - Face
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: API reference provides information about the Person, LargePersonGroup/PersonGroup, LargeFaceList/FaceList, and Face Algorithms APIs.
 author: PatrickFarley
 manager: nitinme
@@ -8,8 +8,8 @@ manager: nitinme
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
 ms.update-cycle: 90-days
-ms.topic: conceptual
-ms.date: 08/21/2025
+ms.topic: concept-article
+ms.date: 01/30/2026
 ms.author: pafarley
 feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---

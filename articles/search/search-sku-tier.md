@@ -6,8 +6,8 @@ manager: nitinme
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
-ms.topic: conceptual
-ms.date: 09/15/2025
+ms.topic: concept-article
+ms.date: 11/06/2025
 ---
 
 # Choose a service tier for Azure AI Search
@@ -64,13 +64,13 @@ Most features are available on all tiers, including the Free tier. In a few case
 |---------|---------------------|
 | [indexers](search-indexer-overview.md) | Indexers aren't available on S3 HD. Indexers have [more limitations](search-limits-quotas-capacity.md#indexer-limits) on the free tier. |
 | [indexer `executionEnvironment` configuration parameter](search-how-to-create-indexers.md?tabs=indexer-rest#create-an-indexer) | The ability to pin all indexer processing to just the search clusters allocated to your search service requires S2 and higher. |
-| [AI enrichment](cognitive-search-concept-intro.md) | Runs on the Free tier but not recommended. |
+| [AI enrichment](cognitive-search-concept-intro.md) | Runs on the Free tier but not recommended for large workloads. |
 | [Managed or trusted identities for outbound (indexer) access](search-how-to-managed-identities.md) | Not available on the Free tier.|
 | [Customer-managed encryption keys](search-security-manage-encryption-keys.md) | Not available on the Free tier. |
 | [IP firewall access](service-configure-firewall.md) | Not available on the Free tier. |
 | [Private endpoint (integration with Azure Private Link)](service-create-private-endpoint.md) | For inbound connections to a search service, not available on the Free tier. <br>For outbound connections by indexers to other Azure resources, not available on Free or S3 HD. <br>For indexers that use skillsets, not available on Free, Basic, S1, or S3 HD.|
 | [Availability zones](/azure/reliability/reliability-ai-search#availability-zone-support) | Not available on the Free tier. |
-| [Semantic ranker](semantic-search-overview.md) | Not available on the Free tier. |
+| [Semantic ranker](semantic-search-overview.md) | Runs on the Free tier but not recommended for large workloads. |
 
 Resource-intensive features might not work well unless you give it sufficient capacity. For example, [AI enrichment](cognitive-search-concept-intro.md) has long-running skills that time out on a Free service unless the dataset is small.
 

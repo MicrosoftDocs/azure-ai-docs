@@ -12,8 +12,8 @@ ms.custom:
   - devx-track-js
   - devx-track-python
   - ignite-2023
-ms.topic: conceptual
-ms.date: 07/31/2025
+ms.topic: concept-article
+ms.date: 11/21/2025
 ---
 
 # API versions in Azure AI Search

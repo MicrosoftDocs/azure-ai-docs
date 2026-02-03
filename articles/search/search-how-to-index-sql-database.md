@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 03/18/2025
+ms.date: 11/21/2025
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
@@ -377,7 +377,7 @@ Database requirements:
 + Database must have [change tracking enabled](/sql/relational-databases/track-changes/enable-and-disable-change-tracking-sql-server)
 + Tables only (no views).
 + Tables can't be clustered. To meet this requirement, drop the clustered index and recreate it as non-clustered index. This workaround often degrades performance. Duplicating content in a second table that's dedicated to indexer processing can be a helpful mitigation. 
-+ Tables can't be empty. If you use TRUNCATE TABLE to clear rows, a reset and rerun of the indexer won't remove the corresponding search documents. To remove orphaned search documents, you must [index them with a delete action](search-howto-reindex.md#delete-orphan-documents).
++ Tables can't be empty. If you use TRUNCATE TABLE to clear rows, a reset and rerun of the indexer won't remove the corresponding search documents. To remove orphaned search documents, you must [index them with a delete action](search-how-to-delete-documents.md#delete-a-single-document).
 + Primary key can't be a compound key (containing more than one column).
 + Primary key must be non-clustered if you want deletion detection.
 
@@ -399,9 +399,6 @@ api-key: admin-key
 ```
 
 When using SQL integrated change tracking policy, don't specify a separate data deletion detection policy. The SQL integrated change tracking policy has built-in support for identifying deleted rows. However, for the deleted rows to be detected automatically, the document key in your search index must be the same as the primary key in the SQL table, and the primary key must be non-clustered.
-
-<!-- > [!NOTE]  
-> When using [TRUNCATE TABLE](/sql/t-sql/statements/truncate-table-transact-sql) to remove a large number of rows from a SQL table, the indexer needs to be [reset](/rest/api/searchservice/indexers/reset) to reset the change tracking state to pick up row deletions. -->
 
 <a name="HighWaterMarkPolicy"></a>
 

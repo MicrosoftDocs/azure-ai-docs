@@ -8,7 +8,7 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 10/06/2025
 ms.update-cycle: 180-days
 ---
@@ -132,7 +132,7 @@ Although multiple indexer-data-source sets can target the same index, be careful
 
 ## Index big data on Spark
 
-If you have a big data architecture and your data is on a Spark cluster, we recommend [SynapseML for loading and indexing data](search-synapseml-cognitive-services.md). The tutorial includes steps for calling Azure AI services for AI enrichment, but you can also use the AzureSearchWriter API for text indexing.
+If you have a big data architecture and your data is on a Spark cluster, we recommend [SynapseML for loading and indexing data](search-synapseml-cognitive-services.md). The tutorial includes steps for calling Foundry Tools for AI enrichment, but you can also use the AzureSearchWriter API for text indexing.
 
 ## Related content
 

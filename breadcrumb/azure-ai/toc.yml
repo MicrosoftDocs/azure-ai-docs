@@ -3,20 +3,20 @@ items:
   tocHref: /azure/
   topicHref: /azure/index/
   items:
-  - name: AI Foundry
+  - name: Microsoft Foundry
     tocHref: /azure/ai-studio/
     topicHref: /azure/ai-studio/
-  - name: AI Foundry
+  - name: Microsoft Foundry
     tocHref: /azure/ai-foundry/
     topicHref: /azure/ai-studio/
-  - name: AI Foundry
+  - name: Microsoft Foundry
     tocHref: /azure/ai-foundry/
     topicHref: /azure/ai-services/
-  - name: AI Foundry
+  - name: Microsoft Foundry
     tocHref: /azure/ai-foundry/
     topicHref: /azure/ai-foundry/
     items:
-    - name: AI Services
+    - name: Foundry Tools
       tocHref: /azure/ai-services/
       topicHref: /azure/ai-services/
     - name: Anomaly Detector

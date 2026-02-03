@@ -6,8 +6,9 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.custom: build-2023, build-2023-dataai, devx-track-python, references_regions
+monikerRange: 'foundry-classic || foundry'
 ms.topic: how-to
-ms.date: 08/29/2025
+ms.date: 11/26/2025
 author: mrbullwinkle
 ms.author: mbullwin
 ---
@@ -52,19 +53,35 @@ Training datasets must be in `jsonl` format:
 
 ## Direct preference optimization model support
 
-- `gpt-4o-2024-08-06`,`gpt-4.1-2025-04-14`,`gpt-4.1-mini-2025-04-14`  supports direct preference optimization in its respective fine-tuning regions. Latest region availability is updated in the [models page](../concepts/models.md#fine-tuning-models)
+- `gpt-4o-2024-08-06`,`gpt-4.1-2025-04-14`,`gpt-4.1-mini-2025-04-14`  supports direct preference optimization in its respective fine-tuning regions. Latest region availability is updated in the [models page](../concepts/models.md?pivots=azure-openai#fine-tuning-models)
 
 Users can use preference fine tuning with base models as well as models that have already been fine-tuned using supervised fine-tuning as long as they are of a supported model/version.
 
+::: moniker range="foundry"
+
 ## How to use direct preference optimization fine-tuning
 
-   :::image type="content" border="true" source="/azure/ai-foundry/openai/media/fine-tuning/preference-optimization.gif" alt-text="GIF of preference optimization fine-tuning steps.":::
+1. Navigate to **Build** in the top section of AI foundry.
+2. Select **Fine-tune** from the side menu.
+3. Prepare `jsonl` datasets in the [preference format](#direct-preference-optimization-dataset-format).
+4. Select a model and then select the method of customization **Direct Preference Optimization**.
+5. Upload datasets – training and validation. Preview as needed.
+6. Select hyperparameters, defaults are recommended for initial experimentation.
+7. Review the selections and create a fine tuning job.
+
+::: moniker-end
+
+::: moniker range="foundry-classic"
+
+## How to use direct preference optimization fine-tuning
 
 1. Prepare `jsonl` datasets in the [preference format](#direct-preference-optimization-dataset-format).
 2. Select the model and then select the method of customization **Direct Preference Optimization**.
 3. Upload datasets – training and validation. Preview as needed.
 4. Select hyperparameters, defaults are recommended for initial experimentation.
 5. Review the selections and create a fine tuning job.
+
+::: moniker-end
 
 ## Direct preference optimization - REST API
 
@@ -80,5 +97,5 @@ curl -X POST $AZURE_OPENAI_ENDPOINT/openai/v1/fine_tuning/jobs'
 ## Next steps
 
 - Explore the fine-tuning capabilities in the [Azure OpenAI fine-tuning tutorial](../tutorials/fine-tune.md).
-- Review fine-tuning [model regional availability](../concepts/models.md#fine-tuning-models)
+- Review fine-tuning [model regional availability](../concepts/models.md?pivots=azure-openai#fine-tuning-models)
 - Learn more about [Azure OpenAI quotas](../quotas-limits.md)

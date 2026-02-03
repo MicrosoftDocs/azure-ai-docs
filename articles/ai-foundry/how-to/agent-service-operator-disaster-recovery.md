@@ -1,38 +1,43 @@
 ---
-title: Azure AI Foundry Agent Service resource and data loss recovery
+title: Foundry Agent Service resource and data loss recovery
+monikerRange: 'foundry-classic || foundry'
 ms.service: azure-ai-foundry
 ms.reviewer: ckittel
-description: Recover Azure AI Foundry Agent Service projects from human or automation errors, accidental deletions, and stateful dependency loss or corruption.
-#customer intent: As a developer, I want to recreate an Azure AI Foundry project after accidental deletion so that I can redeploy agents and resume operations.
+description: Recover Foundry Agent Service projects from human or automation errors, accidental deletions, and stateful dependency loss or corruption.
+#customer intent: As a developer, I want to recreate a Microsoft Foundry project after accidental deletion so that I can redeploy agents and resume operations.
 author: jonburchel
 ms.author: jburchel
-ms.date: 10/15/2025
+ms.date: 11/18/2025
 ms.topic: reliability-article
 ms.collection: ce-skilling-ai-copilot
 ms.custom: arb-aiml
 ai-usage: ai-assisted
 ---
 
-# Azure AI Foundry Agent Service resource and data loss recovery
+# Foundry Agent Service resource and data loss recovery
 
-This article covers recovery from human or automation-caused incidents that result in Azure resource or data loss for Azure AI Foundry Agent Service projects using the Standard deployment mode. Incidents include accidental deletion of Azure AI Foundry accounts or projects, deletion of agents or threads, and loss or corruption of state in Azure Cosmos DB, Azure AI Search, or Azure Storage that supports the capability host.
+[!INCLUDE [version-banner](../includes/version-banner.md)]
+
+This article covers recovery from human or automation-caused incidents that result in Azure resource or data loss for Foundry Agent Service projects using the [Standard deployment mode](/azure/ai-foundry/agents/concepts/standard-agent-setup). Incidents include accidental deletion of Microsoft Foundry accounts or projects, deletion of agents or threads, and loss or corruption of state in Azure Cosmos DB, Azure AI Search, or Azure Storage that supports the capability host.
 
 > [!IMPORTANT]
 > This is one article of a three-part series.
 >
-> Read the overview guide first to understand platform limitations, prevention controls, and baseline configuration. See [Azure AI Foundry Agent Service disaster recovery](./agent-service-disaster-recovery.md) for prerequisites and context. That article explains why some losses are unrecoverable and why recovery often means reconstruction rather than restoration.
+> Read the overview guide first to understand platform limitations, prevention controls, and baseline configuration. See [Agent Service disaster recovery](./agent-service-disaster-recovery.md) for prerequisites and context. That article explains why some losses are unrecoverable and why recovery often means reconstruction rather than restoration.
+>
+> To learn how to architect your solution for high availability and resiliency to prevent these scenarios, see [High availability and resiliency](high-availability-resiliency.md).
 >
 > If you're looking for recommendations on how to recover from platform or regional outages, see [Platform outage recovery](./agent-service-platform-disaster-recovery.md) for warm standby, regional failover, and failback.
 
-## Azure AI Foundry accounts and projects
+## Foundry accounts and projects
 
-The following sections describe recovery strategies for incidents that affect an Azure AI Foundry account or any of its projects. These recovery steps assume that you [configured your resources](./agent-service-disaster-recovery.md#resource-configuration-to-support-recovery) to enable recovery and that prevention measures didn't work.
+The following sections describe recovery strategies for incidents that affect a Foundry account or any of its projects. These recovery steps assume that you [configured your resources](./agent-service-disaster-recovery.md#resource-configuration-to-support-recovery) to enable recovery and that prevention measures didn't work.
 
-### Azure AI Foundry account deleted
+### Foundry account deleted
 
-**Scenario:** Your Azure AI Foundry account with production projects and agents is deleted.
+**Scenario:** Your Foundry account with production projects and agents is deleted.
 
-**During the incident:** Complete outage. You can't create, delete, modify, or invoke agents. All calls to the Azure AI Foundry data plane APIs return errors. The Azure AI Foundry portal is unavailable for the account.
+**During the incident:** Complete outage. You can't create, delete, modify, or invoke agents. All calls to the Foundry data plane APIs return errors. The Foundry portal is unavailable for the account.
 
 **Recovery steps:**
 
@@ -45,7 +50,7 @@ The following sections describe recovery strategies for incidents that affect an
 >
 > This data resides in the currently associated Azure Cosmos DB, Azure AI Search, and Azure Storage account resources. That data will no longer be associated with this account's projects. The data is permanently orphaned and *can't be recovered through any supported action*.
 
-1. Don't purge the Azure AI Foundry account resource. A purge makes recovery involve additional steps and considerations not documented here.
+1. Don't purge the Foundry account resource. A purge makes recovery involve additional steps and considerations not documented here.
 
 1. Within 48 hours, use the [recover account feature](/azure/ai-services/recover-purge-resources). After 48 hours, you can't recover accounts.
 
@@ -56,6 +61,9 @@ The following sections describe recovery strategies for incidents that affect an
    1. Associate the project's former user-assigned managed identity. If you used a system-assigned managed identity, re-enable it. Recreate required role assignments on downstream dependencies and remove orphaned assignments that reference old principal IDs.
 
    1. Redeploy the project's agents (definitions, knowledge files, and tool connections) from source control or application code. They function as new agents with new IDs and no access to prior threads or data. This *fresh start* restores workload functionality without any historical state.
+
+      > [!TIP]
+      > To facilitate this recovery, ensure you maintain your agent definitions, knowledge files, and tool connections in source control. For more information, see [Use repeatable deployment techniques](high-availability-resiliency.md#use-repeatable-deployment-techniques).
 
    1. Restore role assignments on the project for clients, operators, and automation principals.
 
@@ -71,9 +79,9 @@ The following sections describe recovery strategies for incidents that affect an
 
 - Recovery point: Complete state loss for all agents in all projects in the account. This data isn't recoverable.
 
-#### Azure AI Foundry project deleted
+#### Foundry project deleted
 
-**Scenario:** An Azure AI Foundry project with production agents is deleted.
+**Scenario:** A Foundry project with production agents is deleted.
 
 **During the incident:** You can't create, delete, modify, or invoke agents in that project. API calls referencing the project return errors. The portal view for that project is unavailable. Other projects are unaffected.
 
@@ -93,7 +101,7 @@ The following sections describe recovery strategies for incidents that affect an
 
 1. Redeploy agents (definitions, knowledge files, and tools) from source control or application code. They become new agents with new IDs and have **no access** to prior threads or files.
 
-1. Apply a *delete* resource lock on the AI Foundry account.
+1. Apply a *delete* resource lock on the Foundry account.
 
 **Results:**
 
@@ -108,9 +116,9 @@ The following sections describe recovery strategies for incidents that affect an
   > [!IMPORTANT]
   > Even if you use the same Azure Cosmos DB, Azure AI Search, or Azure Storage accounts, lingering data from the previous project's agents isn't reused and is unreachable. There's no supported method to migrate orphaned data to the new project's new capability host.
 
-## Azure AI Foundry Agent Service
+## Agent Service
 
-The following sections describe recovery strategies for incidents that are localized to the Azure AI Foundry Agent Service, such as specific agents. These recovery steps assume that you [configured your resources](./agent-service-disaster-recovery.md#resource-configuration-to-support-recovery) to enable recovery and that prevention measures failed.
+The following sections describe recovery strategies for incidents that are localized to the Agent Service, such as specific agents. These recovery steps assume that you [configured your resources](./agent-service-disaster-recovery.md#resource-configuration-to-support-recovery) to enable recovery and that prevention measures failed.
 
 ### A production agent is deleted
 
@@ -151,15 +159,15 @@ Cosmos DB's point-in-time restore lets you recover data to a different account, 
 
   Purview's copy might not be fully up to date, as there's an ingestion delay.
 
-## Azure AI Foundry Agent Service dependencies
+## Agent Service dependencies
 
-The following sections describe recovery strategies for incidents that are localized to one of the Azure AI Foundry Agent Service dependencies in the Standard deployment model, such as Azure Cosmos DB. These recovery steps assume that you [configured your resources](./agent-service-disaster-recovery.md#resource-configuration-to-support-recovery) to enable recovery and that prevention measures failed.
+The following sections describe recovery strategies for incidents that are localized to one of the Agent Service dependencies in the Standard deployment model, such as Azure Cosmos DB. These recovery steps assume that you [configured your resources](./agent-service-disaster-recovery.md#resource-configuration-to-support-recovery) to enable recovery and that prevention measures failed.
 
 ### Cosmos DB account is deleted
 
 **Scenario:** The Azure Cosmos DB account hosting the `enterprise_memory` database for one or more projects is accidentally deleted.
 
-**During the incident:** Complete outage for projects configured to use this Cosmos DB account. You can't create, delete, modify, or invoke those projects' agents. The Azure AI Foundry portal shows frequent error messages and has undefined behavior.
+**During the incident:** Complete outage for projects configured to use this Cosmos DB account. You can't create, delete, modify, or invoke those projects' agents. The Foundry portal shows frequent error messages and has undefined behavior.
 
 **Recovery steps:**
 
@@ -173,7 +181,7 @@ The following sections describe recovery strategies for incidents that are local
    > [!TIP]
    > Your account name was released to the public the moment your account was deleted, you need to be expeditious in this restoration because if your account name is taken by another customer before you restore, you'll experience complete data loss as you'll need to [perform a destructive reset of the Azure AI Agent Service capability host](#perform-a-destructive-reset-of-the-azure-ai-agent-service-capability-host).
 
-1. Apply a *delete* resource lock on the Cosmos DB account.
+1. Apply a [*delete* resource lock](/azure/azure-resource-manager/management/lock-resources) on the Cosmos DB account.
 
 1. Use your IaC to redeploy all of the associated projects' role assignments on this Cosmos DB account and its restored `enterprise_memory` database. The restoration process in the previous step doesn't restore role assignments.
 
@@ -189,7 +197,7 @@ The following sections describe recovery strategies for incidents that are local
 
 **Scenario:** The `enterprise_memory` database for one or more projects is accidentally deleted.
 
-**During the incident:** Complete outage for projects configured to use this Cosmos DB account. You can't create, delete, modify, or invoke those projects' agents. The Azure AI Foundry portal shows frequent error messages and has undefined behavior.
+**During the incident:** Complete outage for projects configured to use this Cosmos DB account. You can't create, delete, modify, or invoke those projects' agents. The Foundry portal shows frequent error messages and has undefined behavior.
 
 **Recovery steps:**
 
@@ -200,7 +208,7 @@ The following sections describe recovery strategies for incidents that are local
    - No role assignments need to be reapplied, they're preserved in this restoration.
    - Azure Cosmos DB charges a nominal fee for this restoration action.
 
-1. Apply a *delete* resource lock on the Cosmos DB account.
+1. Apply a [*delete* resource lock](/azure/azure-resource-manager/management/lock-resources) on the Cosmos DB account.
 
 **Results:**
 
@@ -214,14 +222,14 @@ The following sections describe recovery strategies for incidents that are local
 
 **Scenario:** A container in the `enterprise_memory` database is accidentally deleted.
 
-**During the incident:** Deleting the container halts availability of agents within a single Azure AI Foundry project. You can't create, delete, modify, or invoke that project's agents. The Azure AI Foundry portal shows error messages and has undefined behavior. Other projects' agents are unaffected.
+**During the incident:** Deleting the container halts availability of agents within a single Foundry project. You can't create, delete, modify, or invoke that project's agents. The Foundry portal shows error messages and has undefined behavior. Other projects' agents are unaffected.
 
 **Recovery steps:**
 
 Use the Azure portal, Azure CLI, or Azure PowerShell cmdlet to initiate a point-in-time restore to the same account.
 
    - Select the `enterprise_memory` database.
-   - Choose the latest restore point for the deleted container.
+   - Choose the [latest restore point](/azure/cosmos-db/restore-account-continuous-backup) for the deleted container.
    - No role assignments need to be reapplied, they're preserved with this restoration.
    - Azure Cosmos DB charges a nominal fee for this restoration action.
 
@@ -258,7 +266,7 @@ Generally speaking, there are no specific recovery capabilities for this scenari
 
 **Scenario:** The Azure AI Search service providing real-time indexing capabilities for agents and threads in one or more projects is accidentally deleted.
 
-This instance is not to be confused with any AI Search indexes that are connected to products and used as a durable knowledge store for workload data. Recovery of those search indexes should follow the guidelines at [Reliability in Azure AI Search](/azure/reliability/reliability-ai-search). This instance is specifically the dedicated instance supporting the Azure AI Foundry Agent Service runtime.
+This instance is not to be confused with any AI Search indexes that are connected to products and used as a durable knowledge store for workload data. Recovery of those search indexes should follow the guidelines at [Reliability in Azure AI Search](/azure/reliability/reliability-ai-search). This instance is specifically the dedicated instance supporting the Agent Service runtime.
 
 **During the incident:** Agents with file-based knowledge generate errors when they consult that knowledge. Threads that involved uploaded files return errors if the agent recalls indexed data. Attempts to add files as knowledge to agents or into threads fail. Agents that don't use file-based knowledge and workloads without file uploads likely see no change. The capability host is considered broken and future behavior is undefined.
 
@@ -279,7 +287,7 @@ This instance is not to be confused with any AI Search indexes that are connecte
 
 1. Update clients to use the new agent IDs and resume interactions on existing threads.
 
-If you've gone against the [single responsibility principle recommendation](high-availability-resiliency.md#implement-the-single-responsibility-principle) and combined both Azure AI Foundry Agent Service runtime usage and durable workload knowledge into a single AI Search instance, recovery needs to be a combination of what's was presented here and a [rehydration of your durable knowledge store](/azure/reliability/reliability-ai-search#backups).
+If you've gone against the [single responsibility principle recommendation](high-availability-resiliency.md#implement-the-single-responsibility-principle) and combined both Agent Service runtime usage and durable workload knowledge into a single AI Search instance, recovery needs to be a combination of what's was presented here and a [rehydration of your durable knowledge store](/azure/reliability/reliability-ai-search#backups).
 
 **Results:**
 
@@ -317,11 +325,11 @@ If the index was tied to knowledge uploaded as part of a thread, there's no reco
 When other recovery options aren't available, you can perform a complete reset of your project's AI Agent Service capability host. This reset is a *fresh start* that restores functionality but permanently orphans all agents, threads, and related state.
 
 > [!CAUTION]
-> Performing these steps orphans all existing agent state, making all agent data permanently unretrievable through any AI Foundry Agent Service API call. This process restores functionality but *provides no data recovery point*.
+> Performing these steps orphans all existing agent state, making all agent data permanently unretrievable through any Foundry Agent Service API call. This process restores functionality but *provides no data recovery point*.
 >
 > This is a **last resort** after you exhaust all other options. **All agents and threads are permanently lost.**
 
-1. Remove the *delete* lock from the Azure AI Foundry account.
+1. Remove the *delete* lock from the Foundry account.
 
 1. Delete the project's capability host by issuing a [Project Capability Hosts - Delete](/rest/api/aifoundry/accountmanagement/project-capability-hosts/delete) API request for the project that you're resetting.
 
@@ -334,7 +342,7 @@ When other recovery options aren't available, you can perform a complete reset o
    >
    > This data resides in the currently associated Azure Cosmos DB, Azure AI Search, and Azure Storage account resources. The data is no longer associated with this project. The data is considered permanently orphaned and *can't be recovered through any supported action*.
 
-1. Reapply the *delete* lock to the Azure AI Foundry account.
+1. Reapply the *delete* lock to the Foundry account.
 
 1. Re-create the project's capability host by using infrastructure as code or a [Project Capability Hosts - Create](/rest/api/aifoundry/accountmanagement/project-capability-hosts/create-or-update) API request.
 
@@ -347,6 +355,11 @@ When other recovery options aren't available, you can perform a complete reset o
    > Even if you reuse the same Azure Cosmos DB, Azure AI Search, or Azure Storage accounts, lingering data from the previous association isn't reused and is unreachable. No supported method exists to migrate orphaned data to the new capability host.
 
 1. Redeploy agents from source control or from application code. They function as new agents with new IDs and no access to prior threads or data. This *fresh start* restores workload functionality without any historical data.
+
+## Related content
+
+- [High availability and resiliency for Microsoft Foundry projects and Agent Services](high-availability-resiliency.md)
+- [Agent Service disaster recovery](agent-service-disaster-recovery.md)
 
 ## Next step
 

@@ -1,12 +1,12 @@
 ---
 title: Labeling tips for custom models in the Document Intelligence Studio
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Label tips and tricks for Document Intelligence Studio
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.topic: conceptual
-ms.date: 11/19/2024
+ms.topic: best-practice
+ms.date: 11/18/2025
 ms.author: vikurpad
 ms.custom:
   - references_regions

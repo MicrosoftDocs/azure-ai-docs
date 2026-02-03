@@ -1,12 +1,12 @@
 ---
 title: Custom model lifecycle- Document Intelligence 
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Document Intelligence custom model lifecycle and management guide.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.topic: conceptual
-ms.date: 06/02/2025
+ms.topic: concept-article
+ms.date: 11/18/2025
 ms.author: lajanuar
 monikerRange: '>=doc-intel-3.1.0'
 ---

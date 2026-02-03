@@ -1,13 +1,13 @@
 ---
-title: Image categorization - Azure AI Vision
-titleSuffix: Azure AI services
+title: Image categorization - Azure Vision in Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn concepts related to the image categorization feature of the Image Analysis API.
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
-ms.topic: conceptual
-ms.date: 02/21/2025
+ms.topic: concept-article
+ms.date: 09/26/2025
 ms.author: pafarley
 ---
 
@@ -17,13 +17,13 @@ In addition to tags and a description, Image Analysis 3.2 can return the taxonom
 
 ## The 86-category taxonomy
 
-Azure AI Vision can categorize an image broadly or specifically, using the list of 86 categories in the following diagram. For the full taxonomy in text format, see [Category Taxonomy](category-taxonomy.md).
+Azure Vision in Foundry Tools can categorize an image broadly or specifically, using the list of 86 categories in the following diagram. For the full taxonomy in text format, see [Category Taxonomy](category-taxonomy.md).
 
 ![Grouped lists of all the categories in the category taxonomy](./Images/analyze_categories-v2.png)
 
 ## Image categorization examples
 
-The following JSON response illustrates what Azure AI Vision returns when categorizing the example image based on its visual features.
+The following JSON response illustrates what Azure Vision returns when categorizing the example image based on its visual features.
 
 ![A woman on the roof of an apartment building](./Images/woman_roof.png)
 
@@ -44,7 +44,7 @@ The following JSON response illustrates what Azure AI Vision returns when catego
 }
 ```
 
-The following table illustrates a typical image set and the category returned by Azure AI Vision for each image.
+The following table illustrates a typical image set and the category returned by Azure Vision for each image.
 
 | Image | Category |
 |-------|----------|

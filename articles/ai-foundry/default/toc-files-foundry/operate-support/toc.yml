@@ -1,0 +1,32 @@
+items:
+- name: What's new in Microsoft Foundry
+  href: ../../../whats-new-foundry.md
+# Service Status and Support
+- name: Status dashboard
+  href: ../../../foundry-status-dashboard-documentation.md
+- name: Use Microsoft Foundry with a screen reader
+  href: ../../../tutorials/screen-reader.md
+- name: Known issues
+  href: ../../../reference/foundry-known-issues.md
+
+# Regional and Feature Support
+- name: Feature availability by region
+  href: ../../../reference/region-support.md
+- name: Region support
+  href: https://azure.microsoft.com/explore/global-infrastructure/products-by-region/ 
+- name: Model lifecycle and retirement
+  href: ../../../concepts/model-lifecycle-retirement.md
+
+# Legal and Compliance
+- name: Code of conduct
+  href: /legal/ai-code-of-conduct
+- name: Compliance
+  href: https://aka.ms/AzureCompliance
+- name: Service Level Agreement (SLA)
+  href: https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services
+
+# Updates and Pricing
+- name: Azure updates
+  href: https://azure.microsoft.com/updates/?filters=%5B%22Azure+AI+Foundry%22%5D#
+- name: Microsoft Foundry pricing
+  href: https://azure.microsoft.com/pricing/details/ai-foundry/

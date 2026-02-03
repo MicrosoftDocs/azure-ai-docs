@@ -1,12 +1,12 @@
 ---
 title: Background removal - Image Analysis
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about background removal, an operation of Image Analysis
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 02/21/2025
 ms.author: pafarley
 ---

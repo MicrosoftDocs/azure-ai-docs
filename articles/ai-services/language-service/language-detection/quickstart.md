@@ -1,21 +1,21 @@
 ---
-title: "Quickstart: Use the Language Detection client library"
-titleSuffix: Azure AI services
-description: Use this quickstart to start using Language Detection.
+title: "Quickstart: Use the Azure Language Detection client library"
+titleSuffix: Foundry Tools
+description: Detect the language of text with Azure Language Detection using SDKs, the REST API, or the Foundry portal.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 09/27/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python
 ms.custom: language-service-language-detection, mode-api, devx-track-extended-java, devx-track-js, devx-track-python
 keywords: text mining, language detection
 zone_pivot_groups: programming-languages-text-analytics
+ai-usage: ai-assisted
 ---
-
-# Quickstart: using the Language Detection client library and REST API
+# Quickstart: Use the Azure Language Detection client library and REST API
 
 ::: zone pivot="programming-language-csharp"
 
@@ -49,9 +49,17 @@ zone_pivot_groups: programming-languages-text-analytics
 
 ::: zone pivot="ai-foundry-portal"
 
-[!INCLUDE [Azure AI Foundry quickstart](includes/quickstarts/azure-ai-foundry.md)]
+[!INCLUDE [Microsoft Foundry quickstart](includes/quickstarts/azure-ai-foundry.md)]
 
 ::: zone-end
+
+## Troubleshooting
+
+| Issue | Resolution |
+|---|---|
+| You get a `401` or `403` error when calling the API. | Confirm your key and endpoint are correct for the same Azure AI resource. If you recently changed role assignments, wait a few minutes and try again. |
+| You get an error about missing environment variables. | Confirm `LANGUAGE_KEY` and `LANGUAGE_ENDPOINT` are set in your environment before you run the sample. |
+| The Foundry experience doesn't match the steps. | In the Foundry portal, use the version toggle to switch between Foundry (classic) and Foundry (new), then follow the matching tab in the Foundry section. |
 
 ## Clean up resources
 
@@ -63,3 +71,6 @@ To clean up and remove an Azure AI resource, you can delete either the individua
 ## Next steps
 
 * [Language detection overview](overview.md)
+* [Call the Language Detection API](how-to/call-api.md)
+* [Language support](language-support.md)
+* [Use containers](how-to/use-containers.md)

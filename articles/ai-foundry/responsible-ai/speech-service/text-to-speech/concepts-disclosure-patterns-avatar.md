@@ -1,12 +1,12 @@
 ---
 title: Disclosure design patterns for text to speech avatar
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Design patterns and best practices for avatar disclosure.
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: article
+ms.topic: concept-article
 ms.date: 11/16/2023
 ---
 

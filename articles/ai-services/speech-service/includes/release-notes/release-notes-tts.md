@@ -1,17 +1,48 @@
 ---
-author: goergenj
+author: PatrickFarley
 reviewer: patrickfarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 10/21/2025
-ms.author: jagoerge
+ms.author: pafarley
 ms.reviewer: pafarley
 ms.custom: references_regions
 ---
 
+### December 2025 release
+#### Public preview of new voice type Dragon HD Omni
+
+Dragon HD Omni unifies a broad range of prebuilt voices into one advanced voice model, improving contextual adaptation, prosody, expressiveness, and maintaining each voice’s unique character. It delivers more accurate, flexible, and lifelike speech for scenarios such as customer service, accessibility, and creative production.
+
+| **Locale (BCP‑47)** | **Voice name**                                     |
+| ------------------- | -------------------------------------------------- |
+| `en-US`             | `en-US-Ava-DragonHDOmniLatestNeural` (Female)     |
+| `en-US`             | `en-US-Andrew-DragonHDOmniLatestNeural` (Male)    |
+| `en-US`             | `en-US-Dana-DragonHDOmniLatestNeural` (Female)    |
+| `en-US`             | `en-US-Caleb-DragonHDOmniLatestNeural` (Male)     |
+| `en-US`             | `en-US-Phoebe-DragonHDOmniLatestNeural` (Female)  |
+| `en-US`             | `en-US-Lewis-DragonHDOmniLatestNeural` (Male)     |
+| `zh-CN`             | `zh-CN-Xiaoyue-DragonHDOmniLatestNeural` (Female) |
+| `zh-CN`             | `zh-CN-Yunqi-DragonHDOmniLatestNeural` (Female)   |
+
+You also can use this voice name format by adding the suffix `:DragonHDOmniLatestNeural` to try the Omni version of the given voice via direct SSML call
+
+For example:
+
+| **Previous neural voice** | **Omni version voice name**                        |
+| ------------------------- | -------------------------------------------------- |
+| `de-DE-ConradNeural`      | `de-DE-Conrad:DragonHDOmniLatestNeural`            |
+
+#### Neural text to speech 4.1.0
+- Resolved vulnerabilities
+
 ### November 2025 release
 
 #### Public preview of new HD voices
+
+Azure speech high definition (HD) voices are available in public preview. The HD voices can understand the content, automatically detect emotions in the input text, and adjust the speaking tone in real-time to match the sentiment. For more information, see [What are Azure Speech high definition (HD) voices?](../../high-definition-voices.md).
+
+
 | **Locale (BCP-47)** | **Voice name**                                      |
 | -------------------- | ---------------------------------------------------- |
 | `en-GB`             | `en-GB-Ada:DragonHDLatestNeural` (Female)           |
@@ -24,6 +55,7 @@ ms.custom: references_regions
 | `ko-KR`             | `ko-KR-SunHi:DragonHDLatestNeural` (Female)         |
 
 #### 33 previous HD voices have been updated to v2.0 with quality improved and bugs fixed
+
 | **Locale (BCP-47)** | **Voice name**                                      |
 | ------------------- | ----------------------------------------------------|
 | `de-DE`             | `de-DE-Florian:DragonHDLatestNeural` (Male)         |
@@ -62,6 +94,17 @@ ms.custom: references_regions
 
 > [!NOTE]
 > After this update, if you encounter issue when calling `en-US-MultiTalker-Ava-Andrew:DragonHDLatestNeural` & `en-US-MultiTalker-Ava-Steffan:DragonHDLatestNeural`, please update your voice name to `en-US-MultiTalker-Ava-Andrew:DragonHDv1.2Neural` & `en-US-MultiTalker-Ava-Steffan:DragonHDv1.2Neural`
+
+#### Neural text to speech 4.0.0-preview
+- Updated OS to Azure Linux 3
+- Resolved vulnerabilities
+
+### October 2025 release
+
+#### Neural text to speech 3.14.0
+- Added support for new neural voices: `nl-nl-maartenneural`, `nl-be-arnaudneural`, `nl-be-denaneural`, `de-de-elkeneural`
+- Resolved vulnerabilities
+
 
 ### August 2025 release
 
@@ -125,7 +168,7 @@ The following voices are now available for the feature:
 ### May 2025 release
 
 #### Public preview for VoiceLive API
-Azure AI Speech feature offering a single, unified API for building voice agents. This new API, available in public preview starting today, supports low-latency, scalable speech-to-speech interactions using foundation models of your choice.
+Azure Speech in Foundry Tools feature offering a single, unified API for building voice agents. This new API, available in public preview starting today, supports low-latency, scalable speech-to-speech interactions using foundation models of your choice.
 
 ### April 2025 release
 
@@ -244,7 +287,7 @@ Added 4 more multilingual voices in `en-US` with emotions support.
 | `en-US`           | `DavisMultilingualNeural` (Male)  | `empathetic`, `funny`, `relieved` |
 | `en-US`           | `NancyMultilingualNeural` (Female) | `excited`, `friendly`, `funny`, `relieved`, `shy` |
 
-#### Azure OpenAI in Azure AI Foundry Models turbo voices (Generally Available)
+#### Azure OpenAI in Microsoft Foundry Models turbo voices (Generally Available)
 
 These 6 turbo voices are now generally available:
 
@@ -296,7 +339,7 @@ For more details about how to create a custom avatar, see [create a custom text 
 
 #### Standard voice
 
-Introduced 4 turbo version of Azure OpenAI voices in public preview: `en-US-EchoTurboMultilingualNeural`, `en-US-FableTurboMultilingualNeural`, `en-US-OnyxTurboMultilingualNeural`, and `en-US-ShimmerTurboMultilingualNeural`. Turbo version of Azure OpenAI voices has the similar voice persona as Azure OpenAI voices but supports extra features. Turbo voices support the full set of SSML elements and more features like word boundary, just like other Azure AI Speech voices. See the [full language and voice list](../../language-support.md?tabs=tts) for more information.
+Introduced 4 turbo version of Azure OpenAI voices in public preview: `en-US-EchoTurboMultilingualNeural`, `en-US-FableTurboMultilingualNeural`, `en-US-OnyxTurboMultilingualNeural`, and `en-US-ShimmerTurboMultilingualNeural`. Turbo version of Azure OpenAI voices has the similar voice persona as Azure OpenAI voices but supports extra features. Turbo voices support the full set of SSML elements and more features like word boundary, just like other Azure Speech voices. See the [full language and voice list](../../language-support.md?tabs=tts) for more information.
 
 These voices are now generally available:
 
@@ -328,7 +371,7 @@ These voices are now generally available:
 
 #### Standard high definition (HD) voice
 
-Azure AI speech high definition (HD) voices are available in public preview. The HD voices can understand the content, automatically detect emotions in the input text, and adjust the speaking tone in real-time to match the sentiment. HD voices maintain a consistent voice persona from their neural (and non HD) counterparts, and deliver even more value through enhanced features. For more information, see [What are Azure AI Speech high definition (HD) voices?](../../high-definition-voices.md).
+Azure Speech high definition (HD) voices are available in public preview. The HD voices can understand the content, automatically detect emotions in the input text, and adjust the speaking tone in real-time to match the sentiment. HD voices maintain a consistent voice persona from their neural (and non HD) counterparts, and deliver even more value through enhanced features. For more information, see [What are Azure Speech high definition (HD) voices?](../../high-definition-voices.md).
 
 #### Custom neural voice
 
@@ -548,7 +591,7 @@ Text to speech avatar is now generally available. For more information, see [tex
 
 #### Standard voice
 
-- Introduce 2 turbo version of Azure OpenAI voices in public preview: `en-US-AlloyTurboMultilingualNeural` and `en-US-NovaTurboMultilingualNeural`. Turbo version of Azure OpenAI voices has the similar voice persona as Azure OpenAI voices but supports extra features. Turbo voices support the full set of SSML elements and more features like word boundary, just like other Azure AI Speech voices. See the [full language and voice list](../../language-support.md?tabs=tts) for more information.
+- Introduce 2 turbo version of Azure OpenAI voices in public preview: `en-US-AlloyTurboMultilingualNeural` and `en-US-NovaTurboMultilingualNeural`. Turbo version of Azure OpenAI voices has the similar voice persona as Azure OpenAI voices but supports extra features. Turbo voices support the full set of SSML elements and more features like word boundary, just like other Azure Speech voices. See the [full language and voice list](../../language-support.md?tabs=tts) for more information.
   
 - Introduce 2 new multilingual voices in public preview: `zh-CN-YunfanMultilingualNeural` and `zh-CN-YunxiaoMultilingualNeural`. See the [full language and voice list](../../language-support.md?tabs=tts) for more information.
 
@@ -645,12 +688,12 @@ Personal voice is now generally available. With personal voice, you can get AI g
 
 #### OpenAI voices
 
-- The Azure AI Speech service supports OpenAI text to speech voices in the following regions: North Central US and Sweden Central. Like Azure AI Speech voices, OpenAI text to speech voices deliver high-quality speech synthesis to convert written text into natural sounding spoken audio. This unlocks a wide range of possibilities for immersive and interactive user experiences. For more information, see [What are OpenAI text to speech voices?](../../openai-voices.md).
+- The Azure Speech service supports OpenAI text to speech voices in the following regions: North Central US and Sweden Central. Like Azure Speech voices, OpenAI text to speech voices deliver high-quality speech synthesis to convert written text into natural sounding spoken audio. This unlocks a wide range of possibilities for immersive and interactive user experiences. For more information, see [What are OpenAI text to speech voices?](../../openai-voices.md).
 
   > [!NOTE]
   > OpenAI text to speech voices are also available in [Azure OpenAI](../../../openai/reference.md#text-to-speech-preview). 
   
-- With this update, we have adjusted the pricing of standard voices with Azure AI Speech. Check the updated pricing [here](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services).
+- With this update, we have adjusted the pricing of standard voices with Azure Speech. Check the updated pricing [here](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services).
 
 #### Personal voice
 

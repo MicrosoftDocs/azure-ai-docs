@@ -6,8 +6,8 @@ manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
-ms.topic: conceptual
-ms.date: 08/21/2025
+ms.topic: concept-article
+ms.date: 10/21/2025
 ms.update-cycle: 365-days
 ms.custom:
   - ignite-2023
@@ -17,7 +17,7 @@ ms.custom:
 # Define projections in a knowledge store
 
 > [!NOTE]
-> Knowledge stores exist in Azure Storage and contain the outputs of Azure AI Search skillsets. They're separate from knowledge sources and knowledge agents, which are used in [agentic retrieval](agentic-retrieval-overview.md) workflows.
+> *Knowledge stores* are secondary storage that exists in Azure Storage and contain the outputs of Azure AI Search skillsets. They're separate from knowledge sources and knowledge bases, which are used in [agentic retrieval](agentic-retrieval-overview.md) workflows.
 
 [Projections](knowledge-store-projection-overview.md) are the component of a [knowledge store definition](knowledge-store-concept-intro.md) that determines how AI enriched content is stored in Azure Storage. Projections determine the type, quantity, and composition of the data structures containing your content.
 

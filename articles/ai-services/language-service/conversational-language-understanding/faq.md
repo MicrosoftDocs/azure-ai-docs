@@ -1,34 +1,33 @@
 ---
 title: Frequently Asked Questions
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Use this article to quickly get the answers to FAQ about conversational language understanding
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: faq
-ms.date: 06/04/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: mode-other
 ---
-
 # Frequently asked questions for conversational language understanding
 
-Use this article to quickly get the answers to common questions about conversational language understanding
+This article provides quick answers to essential FAQs about conversational language understanding.
 
 ## How do I create a project?
 
-See the [quickstart](./quickstart.md) to quickly create your first project, or the [how-to article](./how-to/create-project.md) for more details. 
+Use the [quickstart](./quickstart.md) to get started creating your first project, or the [how-to article](./how-to/create-project.md) for more details. 
 
 
 ## Can I use more than one conversational language understanding project together?
 
-Yes, using orchestration workflow. See the [orchestration workflow documentation](../orchestration-workflow/overview.md) for more information.
+Yes, using orchestration workflow. For more information, *see* the [orchestration workflow documentation](../orchestration-workflow/overview.md).
 
-## What is the difference between LUIS and conversational language understanding?
+## What is the difference between language understanding and conversational language understanding?
 
 Conversational language understanding is the next generation of LUIS.
 
-## Training is taking a long time, is this expected?
+## Training is taking a long time, is this behavior expected?
 
 For conversation projects, long training times are expected. Based on the number of examples you have your training times may vary from 5 minutes to 1 hour or more. 
 
@@ -52,17 +51,17 @@ When you train and deploy a conversation project in any language, you can immedi
 
 See the [service limits](./service-limits.md) article. 
 
-## Can I label the same word as 2 different entities?
+## Can I label the same word as two different entities?
 
-Unlike LUIS, you cannot label the same text as 2 different entities. Learned components across different entities are mutually exclusive, and only one learned span is predicted for each set of characters.
+Unlike LUIS, you can't label the same text as two different entities. Learned components across different entities are mutually exclusive, and only one learned span is predicted for each set of characters.
 
 ## Can I import a LUIS JSON file into conversational language understanding?
 
-Yes, you can [import any LUIS application](./how-to/migrate-from-luis.md) JSON file from the latest version in the service.
+Yes, you can [import any LUIS application](/previous-versions/azure/ai-services/qnamaker/overview/overview) JSON file from the latest version in the service.
 
 ## Can I import a LUIS `.LU` file into conversational language understanding?
 
-No, the service only supports JSON format. You can go to LUIS, import the `.LU` file and export it as a JSON file. 
+No, the service only supports JSON format. You can go to LUIS, import the `.LU` file, and export it as a JSON file. 
 
 ## Can I use conversational language understanding with custom question answering?
 
@@ -78,7 +77,7 @@ You can control the none intent threshold from UI through the project settings, 
 
 ## Is there any SDK support?
 
-Yes, only for predictions, and samples are available for [Python](https://aka.ms/sdk-samples-conversation-python) and [C#](https://aka.ms/sdk-sample-conversation-dot-net). There is currently no authoring support for the SDK.
+Yes, only for predictions, and samples are available for [Python](https://aka.ms/sdk-samples-conversation-python) and [C#](https://aka.ms/sdk-sample-conversation-dot-net). There's currently no authoring support for the SDK.
 
 ## What are the training modes?
 
@@ -86,9 +85,9 @@ Yes, only for predictions, and samples are available for [Python](https://aka.ms
 |Training mode  | Description | Language availability  | Pricing  |
 |---------|---------|---------|---------|
 |Standard training     | Faster training times for quicker model iteration.        | Can only train projects in English.        | Included in your [pricing tier](https://azure.microsoft.com/pricing/details/cognitive-services/language-service/).        |
-|Advanced training     | Slower training times using fine-tuned neural network transformer models.        | Can train [multilingual projects](language-support.md#multi-lingual-option).         | May incur [additional charges](https://azure.microsoft.com/pricing/details/cognitive-services/language-service/).
+|Advanced training     | Slower training times using fine-tuned neural network transformer models.        | Can train [multilingual projects](language-support.md#multi-lingual-option).         | May incur [added charges](https://azure.microsoft.com/pricing/details/cognitive-services/language-service/).
 
-See [training modes](how-to/train-model.md#training-modes) for more information.
+For more information, *see* [training modes](how-to/train-model.md#training-modes).
 
 ## Are there APIs for this feature?
 

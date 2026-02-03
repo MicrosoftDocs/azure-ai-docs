@@ -8,7 +8,7 @@ ms.subservice: mlops
 ms.topic: how-to
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: truptiparkar
+ms.reviewer: jturuk
 ms.date: 03/06/2025
 monikerRange: 'azureml-api-2 || azureml-api-1'
 ms.custom:

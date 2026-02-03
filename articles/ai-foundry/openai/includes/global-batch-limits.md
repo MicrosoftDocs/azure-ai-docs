@@ -1,21 +1,26 @@
 ---
 title: Azure OpenAI Global Batch Limits
-titleSuffix: Azure OpenAI in Azure AI Foundry Models
+titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Global batch limits for Azure OpenAI models.
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
-ms.date: 02/12/2025
+ms.date: 01/27/2025
 ---
 
 ## Batch limits
 
 | Limit name | Limit value |
 |--|--|
-| Maximum files per resource | 500 |
+| Maximum Batch input files - (no expiration)  | 500 |
+| Maximum Batch input files - (expiration set) | 10,000 |
 | Maximum input file size | 200 MB |
+| Maximum input file size - [Bring your own storage (BYOS)](../how-to/batch-blob-storage.md) | 1 GB |
 | Maximum requests per file | 100,000 |
+
+> [!NOTE]
+> Batch file limits don't apply to output files (for example, `result.jsonl`, and `error.jsonl`). To remove batch input file limits, use [Batch with Azure Blob Storage](../../openai/how-to/batch-blob-storage.md).
 
 ## Batch quota
 
@@ -32,10 +37,10 @@ The table shows the batch quota limit. Quota values for global batch are represe
 | `gpt-4o-mini` | 15B | 1B | 50M | 90K | N/A |
 | `gpt-4-turbo` | 300M | 80M | 40M | 90K | N/A |
 | `gpt-4` | 150M | 30M | 5M | 100K | N/A |
-| `gpt-35-turbo` | 10B | 1B | 100M | 2M | 50K |
 | `o3-mini`| 15B | 1B | 50M | 90K | N/A |
 | `o4-mini` | 15B | 1B | 50M | 90K | N/A |
 | `gpt-5`| 5B | 200M | 50M | 90K | N/A |
+| `gpt-5.1`| 5B | 200M | 50M | 90K | N/A |
 
 B = billion | M = million | K = thousand
 
@@ -49,3 +54,4 @@ B = billion | M = million | K = thousand
 | `gpt-4o-mini` | 1.5B | 100M | 50M | 90K | N/A |
 | `o3-mini` | 1.5B | 100M | 50M | 90K | N/A |
 | `gpt-5`| 5B | 200M | 50M | 90K | N/A |
+| `gpt-5.1`| 5B | 200M | 50M | 90K | N/A |

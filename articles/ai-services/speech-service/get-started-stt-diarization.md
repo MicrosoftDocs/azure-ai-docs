@@ -1,13 +1,13 @@
 ---
 title: "Real-time diarization quickstart - Speech service"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: In this quickstart, you convert speech to text continuously from a file. The Speech service transcribes the speech and identifies one or more speakers.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python
 ms.topic: quickstart
-ms.date: 7/16/2025
+ms.date: 01/30/2026
 ms.author: pafarley
 zone_pivot_groups: programming-languages-speech-diarization
 keywords: speech to text, speech to text software

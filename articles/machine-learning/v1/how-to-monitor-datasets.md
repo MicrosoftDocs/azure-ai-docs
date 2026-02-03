@@ -5,10 +5,10 @@ description: Learn how to set up data drift detection in Azure Learning. Create 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mldata
-ms.reviewer: franksolomon
-ms.author: xunwan
-author: SturgeonMi
-ms.date: 02/04/2025
+ms.reviewer: soumyapatro 
+ms.author: scottpolly
+author: s-polly
+ms.date: 01/28/2026
 ms.topic: how-to
 ms.custom:
   - UpdateFrequency5
@@ -24,9 +24,8 @@ ms.custom:
 
 [!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
-Data drift(preview) will be retired at 09/01/2025, and you can start to use [Model Monitor](../how-to-monitor-model-performance.md) for your data drift tasks.
-Please check the content below to understand the replacement, feature gaps and manual change steps.
-
+> [!IMPORTANT]
+> Data drift (preview) was retired on September 1, 2025. Migrate to [Model Monitor](../how-to-monitor-model-performance.md) for your data drift tasks. The content below explains the replacement, feature gaps, and migration steps.
 
 Learn how to monitor data drift and set alerts when drift is high.
 
@@ -118,8 +117,8 @@ The monitor compares the baseline and target datasets.
 
 ### Migrate to Model Monitor
 In Model Monitor, you can find corresponding concepts as following, and you can find more details in this article [Set up model monitoring by bringing in your production data to Azure Machine Learning](../how-to-monitor-model-performance.md#set-up-out-of-box-model-monitoring):
-*	Reference dataset: similar to your baseline dataset for data drift detection, it is set as the recent past production inference dataset.
-*	Production inference data: similar to your target dataset in data drift detection, the production inference data can be collected automatically from models deployed in production. It can also be inference data you store.
+*    Reference dataset: similar to your baseline dataset for data drift detection, it is set as the recent past production inference dataset.
+*    Production inference data: similar to your target dataset in data drift detection, the production inference data can be collected automatically from models deployed in production. It can also be inference data you store.
 
 ## Create target dataset
 

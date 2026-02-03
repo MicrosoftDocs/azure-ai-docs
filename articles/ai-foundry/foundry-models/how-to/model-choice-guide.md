@@ -1,13 +1,15 @@
 ---
 title: GPT-5 vs GPT-4.1 - choosing the right model for your use case
-titleSuffix: Azure OpenAI in Azure AI Foundry Models
+titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Compare GPT-5 and GPT-4.1 to choose the best Azure OpenAI model for your use case, covering reasoning depth, latency, cost, and ideal scenarios for each
 manager: nitinme
 author: mrbullwinkle
 ms.author: mbullwin
-ms.service: azure-ai-openai
-ms.topic: include
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
+ms.topic: product-comparison
 ms.date: 09/15/2025
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # GPT-5 vs GPT-4.1: choosing the right model for your use case
@@ -22,7 +24,7 @@ In contrast, a customer service assistant that is answering customer questions l
 
 Choosing the right model for your use case can be a challenging endeavor, so we’ve created this simple guide to help you pick between the two latest flagship models from OpenAI – GPT-5 and GPT-4.1.
 
-Azure AI Foundry offers multiple variants of generative AI models to meet diverse customer needs. Two of the most widely used models—**GPT-5** and **GPT-4.1**—serve different purposes depending on your workload, latency sensitivity, and reasoning requirements.
+Microsoft Foundry offers multiple variants of generative AI models to meet diverse customer needs. Two of the most widely used models—**GPT-5** and **GPT-4.1**—serve different purposes depending on your workload, latency sensitivity, and reasoning requirements.
 
 - **GPT-5** is optimized for advanced enterprise use cases such as code generation and review, agentic tool calling, and business research. It excels in structured reasoning, multi-step logic, and planning tasks, making it ideal for Copilot-style applications that require deep understanding and orchestration. While it delivers significantly improved accuracy and contextual awareness, it may introduce higher latency due to its reasoning depth and model complexity.
 - **GPT-4.1** is optimized for high-speed, high-throughput enterprise applications such as real-time chat, customer support, and lightweight summarization. It delivers fast, concise responses with low latency, making it ideal for latency-sensitive workloads and high-volume deployments. While it does not offer the deep reasoning capabilities of GPT-5, GPT-4.1 excels in responsiveness, cost efficiency, and predictable performance across a wide range of general-purpose tasks.
@@ -88,7 +90,7 @@ _Example Use Cases:_
 - High-volume summarization pipelines
 - Lightweight assistants for internal tools
 
-If you're unsure which model to choose, try [Model Router](https://ai.azure.com/catalog/models/model-router) in Azure AI Foundry for a ready-to-use solution. Developers can use the model router in Foundry Models to maximize the capabilities of the GPT-5 family models (and other models in Foundry Models) while saving up to 60% on inferencing cost with comparable quality. [How to use model router for Azure AI Foundry (preview) – Microsoft Learn](/azure/ai-foundry/openai/how-to/model-router)
+If you're unsure which model to choose, try [Model Router](https://ai.azure.com/catalog/models/model-router) in Foundry for a ready-to-use solution. Developers can use the model router in Foundry Models to maximize the capabilities of the GPT-5 family models (and other models in Foundry Models) while saving up to 60% on inferencing cost with comparable quality. [How to use model router for Foundry (preview) – Microsoft Learn](/azure/ai-foundry/openai/how-to/model-router)
 
 
 

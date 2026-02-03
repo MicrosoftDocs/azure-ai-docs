@@ -1,6 +1,6 @@
 ---
 title: How to specify a detection model - Face
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This article shows you how to choose which face detection model to use with your Azure AI Face application.
 author: PatrickFarley
 manager: nitinme
@@ -9,7 +9,7 @@ ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
 ms.update-cycle: 90-days
 ms.topic: how-to
-ms.date: 09/02/2025
+ms.date: 01/30/2026
 ms.author: pafarley
 ms.devlang: csharp
 ms.custom: devx-track-csharp

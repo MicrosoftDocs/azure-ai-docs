@@ -1,6 +1,6 @@
 ---
 title: Azure OpenAI Global Batch Python
-titleSuffix: Azure OpenAI in Azure AI Foundry Models
+titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Azure OpenAI model global batch Python
 manager: nitinme
 ms.date: 10/15/2024
@@ -120,7 +120,7 @@ For this article we'll create a file named `test.jsonl` and will copy the conten
 
 ## Upload batch file
 
-Once your input file is prepared, you first need to upload the file to then be able to initiate a batch job. File upload can be done both programmatically or via the Azure AI Foundry portal. This example demonstrates uploading a file directly to your Azure OpenAI resource. Alternatively, you can [configure Azure Blob Storage for Azure OpenAI Batch](../../how-to/batch-blob-storage.md). 
+Once your input file is prepared, you first need to upload the file to then be able to initiate a batch job. File upload can be done both programmatically or via the Microsoft Foundry portal. This example demonstrates uploading a file directly to your Azure OpenAI resource. Alternatively, you can [configure Azure Blob Storage for Azure OpenAI Batch](../../how-to/batch-blob-storage.md). 
 
 # [Python (Microsoft Entra ID)](#tab/python-secure)
 
@@ -185,7 +185,7 @@ file_id = file.id
 
 ---
 
-By uncommenting and adding `extra_body={"expires_after":{"seconds": 1209600, "anchor": "created_at"}}` you're setting our upload file to expire in 14 days. There's a max limit of 500 batch files per resource when no expiration is set. By setting a value for expiration the number of batch files per resource is increased to 10,000 files per resource. 
+By uncommenting and adding `extra_body={"expires_after":{"seconds": 1209600, "anchor": "created_at"}}` you're setting our upload file to expire in 14 days. There's a max limit of 500 input batch files per resource when no expiration is set. By setting a value for expiration the number of input batch files per resource is increased to 10,000 files per resource. To remove batch input file limits use [Batch with Azure Blob Storage](../../how-to/batch-blob-storage.md).
 
 **Output:**
 
@@ -216,7 +216,7 @@ batch_response = client.batches.create(
     input_file_id=file_id,
     endpoint="/chat/completions", # While passing this parameter is required, the system will read your input file to determine if the chat completions or responses API is needed.  
     completion_window="24h",
-    extra_body={"output_expires_after":{"seconds": 1209600, "anchor": "created_at"}} # Optional you can set to a number between 1209600-2592000. This is equivalent to 14-30 days
+    # extra_body={"output_expires_after":{"seconds": 1209600, "anchor": "created_at"}} # Optional you can set to a number between 1209600-2592000. This is equivalent to 14-30 days
 )
 
 
@@ -226,8 +226,6 @@ batch_id = batch_response.id
 print(batch_response.model_dump_json(indent=2))
 
 ```
-
-The default 500 max file limit per resource also applies to output files. Here you can uncomment this line to add  `extra_body={"output_expires_after":{"seconds": 1209600, "anchor": "created_at"}}` so that your output files expire in 14 days. By setting a value for expiration the number of batch files per resource is increased to 10,000 files per resource. 
 
 > [!NOTE]
 > Currently the completion window must be set to `24h`. If you set any other value than `24h` your job will fail. Jobs taking longer than 24 hours will continue to execute until canceled.

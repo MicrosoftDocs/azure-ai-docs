@@ -8,7 +8,7 @@ ms.topic: how-to
 ms.date: 5/21/2024
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: haelhamm
+ms.reviewer: jturuk
 reviewer: hazemelh
 ms.custom: [references_regions]
 ms.collection: ce-skilling-ai-copilot
@@ -283,5 +283,5 @@ Quota is managed per deployment. Each deployment has a rate limit of 200,000 tok
 
 - [Model Catalog and Collections](concept-model-catalog.md)
 - [Deploy and score a machine learning model by using an online endpoint](how-to-deploy-online-endpoints.md)
-- [Plan and manage costs for Azure AI Foundry](/azure/ai-studio/how-to/costs-plan-manage)
+- [Plan and manage costs for Microsoft Foundry](/azure/ai-studio/how-to/costs-plan-manage)
 - [Region availability for models in standard deployment](concept-endpoint-serverless-availability.md)

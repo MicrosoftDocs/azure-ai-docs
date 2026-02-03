@@ -2,8 +2,9 @@
 author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 7/17/2025
+ms.date: 1/29/2026
 ms.author: pafarley
+ai-usage: ai-assisted
 ---
 
 [!INCLUDE [Header](../../common/java.md)]
@@ -71,6 +72,8 @@ Follow these steps to create a console application for speech recognition.
    import com.microsoft.cognitiveservices.speech.*;
    import com.microsoft.cognitiveservices.speech.audio.*;
 
+   import java.net.URI;
+   import java.net.URISyntaxException;
    import java.util.Scanner;
    import java.util.concurrent.ExecutionException;
     
@@ -79,8 +82,8 @@ Follow these steps to create a console application for speech recognition.
        private static String speechKey = System.getenv("SPEECH_KEY");
        private static String endpoint = System.getenv("ENDPOINT");
     
-       public static void main(String[] args) throws InterruptedException, ExecutionException {
-           SpeechConfig speechConfig = SpeechConfig.fromEndpoint(speechKey, endpoint);
+       public static void main(String[] args) throws InterruptedException, ExecutionException, URISyntaxException {
+           SpeechConfig speechConfig = SpeechConfig.fromEndpoint(new URI(endpoint), speechKey);
            
            speechConfig.setSpeechSynthesisVoiceName("en-US-Ava:DragonHDLatestNeural"); 
     
@@ -145,9 +148,9 @@ This quickstart uses the `SpeakTextAsync` operation to synthesize a short block 
 - See [how to synthesize speech](~/articles/ai-services/speech-service/how-to-speech-synthesis.md) and [Speech Synthesis Markup Language (SSML) overview](~/articles/ai-services/speech-service/speech-synthesis-markup.md) for information about speech synthesis from a file and finer control over voice styles, prosody, and other settings.
 - See [batch synthesis API for text to speech](~/articles/ai-services/speech-service/batch-synthesis.md) for information about synthesizing long-form text to speech.
 
-### OpenAI text to speech voices in Azure AI Speech
+### OpenAI text to speech voices in Azure Speech in Foundry Tools
 
-OpenAI text to speech voices are also supported. See [OpenAI text to speech voices in Azure AI Speech](../../../openai-voices.md) and [multilingual voices](../../../language-support.md?tabs=tts#multilingual-voices). You can replace `en-US-Ava:DragonHDLatestNeural` with a supported OpenAI voice name such as `en-US-FableMultilingualNeural`.
+OpenAI text to speech voices are also supported. See [OpenAI text to speech voices in Azure Speech](../../../openai-voices.md) and [multilingual voices](../../../language-support.md?tabs=tts#multilingual-voices). You can replace `en-US-Ava:DragonHDLatestNeural` with a supported OpenAI voice name such as `en-US-FableMultilingualNeural`.
 
 ## Clean up resources
 

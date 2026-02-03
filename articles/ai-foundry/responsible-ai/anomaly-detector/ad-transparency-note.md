@@ -1,12 +1,12 @@
 ---
 title: Anomaly Detector Transparency Note
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Understanding the use cases of Anomaly Detector
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
 ms.service: azure-ai-anomaly-detector
-ms.topic: article
+ms.topic: concept-article
 ms.date: 02/21/2024
 recommendations: false
 ---
@@ -181,7 +181,7 @@ Anomaly Detector's performance will vary depending on the real-world uses that c
 
 * [Anomaly Detector - Anomaly Detection System | Microsoft Azure](https://azure.microsoft.com/products/cognitive-services/anomaly-detector/#overview)
 * [Identify abnormal time-series data with Anomaly Detector - Training | Microsoft Learn](/training/modules/identify-abnormal-time-series-data-anomaly-detector/)
-* [What is Anomaly Detector? - Azure AI services | Microsoft Learn](/azure/ai-services/anomaly-detector/overview)
+* [What is Anomaly Detector? - Foundry Tools | Microsoft Learn](/azure/ai-services/anomaly-detector/overview)
 
 ## Contact us
 

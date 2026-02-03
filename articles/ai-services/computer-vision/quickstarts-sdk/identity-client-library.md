@@ -1,6 +1,6 @@
 ---
 title: 'Quickstart: Use the Face service'
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: The Face API offers client libraries that make it easy to detect, find similar, identify, verify, and more.
 author: PatrickFarley
 manager: nitinme
@@ -9,7 +9,7 @@ ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
 ms.update-cycle: 90-days
 ms.topic: quickstart
-ms.date: 09/02/2025
+ms.date: 01/30/2026
 ms.author: pafarley
 ms.devlang: csharp
 # ms.devlang: csharp, golang, javascript, python

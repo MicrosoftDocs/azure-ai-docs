@@ -1,26 +1,25 @@
 ---
-title: Regional support for Azure AI Language
-titleSuffix: Azure AI services
-description: Learn which Azure regions support by the Language service features and capabilities.
+title: Regional support for Azure Language in Foundry Tools
+titleSuffix: Foundry Tools
+description: Learn which Azure regions support by Azure Language service features and capabilities.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
-ms.date: 09/17/2025
+ms.topic: concept-article
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: references_regions
 ---
+# Language supported regions
 
-# Language service supported regions
-
-The Language service is available for use in several Azure regions. Use this article to learn about the regional support and limitations.
+The Language is available for use in several Azure regions. Use this article to learn about the regional support and limitations.
 
 ## Region support overview
 
-Typically you can refer to the [region support](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=cognitive-services) for details, and most Language service capabilities are available in all supported regions. Some Language service capabilities, however, are only available in select regions.
+Typically you can refer to the [region support](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=cognitive-services) for details, and most Language capabilities are available in all supported regions. Some Language capabilities, however, are only available in select regions.
 
 > [!NOTE]
-> Language service doesn't store or process customer data outside the region you deploy the service instance in.
+> Language doesn't store or process customer data outside the region you deploy the service instance in.
 
 ## Conversational language understanding and orchestration workflow
 

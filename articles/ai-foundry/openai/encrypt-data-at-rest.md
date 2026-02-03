@@ -1,16 +1,18 @@
 ---
-title: Azure OpenAI in Azure AI Foundry Models encryption of data at rest
+title: Azure OpenAI in Microsoft Foundry Models encryption of data at rest
 description: Learn how Azure OpenAI encrypts your data when it's persisted to the cloud.
 author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: conceptual
-ms.date: 07/31/2025
+ms.topic: how-to
+ms.date: 11/26/2025
 ms.author: mbullwin
 ---
 
-# Azure OpenAI in Azure AI Foundry Models encryption of data at rest
+# Azure OpenAI in Microsoft Foundry Models encryption of data at rest
+
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 Azure OpenAI automatically encrypts your data when it's persisted to the cloud. The encryption protects your data and helps you meet your organizational security and compliance commitments. This article covers how Azure OpenAI handles encryption of data at rest, specifically training data and fine-tuned models. For information on how data provided by you to the service is processed, used, and stored, consult the [data, privacy, and security article](/azure/ai-foundry/responsible-ai/openai/data-privacy).
 
@@ -32,37 +34,28 @@ To enable customer-managed keys, the key vault containing your keys must meet th
 
 - You must enable both the **Soft Delete** and **Do Not Purge** properties on the key vault.
 - If you use the [Key Vault firewall](/azure/key-vault/general/access-behind-firewall), you must allow trusted Microsoft services to access the key vault.
-- The key vault must use [legacy access policies](/azure/key-vault/general/assign-access-policy).
-- You must grant the Azure OpenAI resource's system-assigned managed identity the following permissions on your key vault: *get key*, *wrap key*, *unwrap key*.
+- **Key Vault Permissions**:
+    - If you're using **Azure RBAC**, assign Key Vault Crypto Service Encryption User role to the managed identity.
+    - If you're using **Vault Access Policies**, grant key-specific permissions, **get**, **unwrap key** and **wrap key**, to the system-assigned or user-assigned managed identity of Azure OpenAI resource.
 
 Only RSA and RSA-HSM keys of size 2048 are supported with Azure OpenAI encryption. For more information about keys, see **Key Vault keys** in [About Azure Key Vault keys, secrets and certificates](/azure/key-vault/general/about-keys-secrets-certificates).
 
 ### Enable your Azure OpenAI resource's managed identity
 
-> [!NOTE]
-> Azure OpenAI only supports customer-managed keys (CMK) with system-assigned managed identities. User-assigned managed identities are not supported with Azure OpenAI and customer-managed keys (CMK).
-
 1. Go to your Azure OpenAI resource.
 1. On the left, under **Resource Management**, select **Identity**.
-1. Switch the system-assigned managed identity status to **On**.
-1. Save your changes, and confirm that you want to enable the system-assigned managed identity.
+1. Switch the system-assigned managed identity status to **On** or add a user-assigned managed identity.
+1. Save your changes.
 
-### Configure your key vault's access permissions
+### Grant Key Vault permissions to managed identity
 
-1. In the Azure portal, go to your key vault.
-1. On the left, select **Access policies**.
+Configure appropriate permissions for the **system-assigned** or **user-assigned managed identity** to access the Key Vault.
+
+1. Go to the Key Vault in the Azure portal.
+1. Select **Access Control (IAM)**.
+1. Select **+ Add role assignment**.
+1. Assign the Key Vault Crypto Service Encryption User role to the system-assigned or user-assigned managed identity of Azure OpenAI resource.
    
-   If you see a message advising you that access policies aren't available, [reconfigure your key vault to use legacy access policies](/azure/key-vault/general/assign-access-policy) before continuing.
-1. Select **Create**.
-1. Under **Key permissions**, select **Get**, **Wrap Key**, and **Unwrap Key**. Leave the remaining checkboxes unselected.
-
-   :::image type="content" source="../../ai-services/media/cognitive-services-encryption/key-vault-access-policy.png" alt-text="Screenshot of the Azure portal page for a key vault access policy. The permissions selected are Get Key, Wrap Key, and Unwrap Key.":::
-
-1. Select **Next**.
-1. Search for the name of your Azure OpenAI resource and select its managed identity.
-1. Select **Next**.
-1. Select **Next** to skip configuring any application settings.
-1. Select **Create**.
 
 ### Enable customer-managed keys on your Azure OpenAI resource
 

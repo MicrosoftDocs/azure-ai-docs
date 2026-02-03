@@ -11,4 +11,4 @@ ms.custom: include
 ---
 
 > [!NOTE]
-> The information in this article is specific to a **[!INCLUDE [fdp](fdp-project-name.md)]**, and doesn't apply to a **[!INCLUDE [hub](hub-project-name.md)]**. See [How do I know which type of project I have?](../what-is-azure-ai-foundry.md#how-do-i-know) and [Create a Foundry project](../how-to/create-projects.md?pivots="fdp-project"). To migrate your [!INCLUDE [hub-project-name](hub-project-name.md)] to a [!INCLUDE [fdp-project-name](fdp-project-name.md)], see [Migrate from hub-based to Foundry projects](../how-to/migrate-project.md).
+> The information in this article is specific to a **[!INCLUDE [fdp](fdp-project-name.md)]**, and doesn't apply to a **[!INCLUDE [hub](hub-project-name.md)]**. See [How do I know which type of project I have?](../what-is-foundry.md#how-do-i-know-which-type-of-project-i-have) and [Create a Foundry project](../how-to/create-projects.md?pivots="fdp-project"). To migrate your [!INCLUDE [hub-project-name](hub-project-name.md)] to a [!INCLUDE [fdp-project-name](fdp-project-name.md)], see [Migrate from hub-based to Foundry projects](../how-to/migrate-project.md).

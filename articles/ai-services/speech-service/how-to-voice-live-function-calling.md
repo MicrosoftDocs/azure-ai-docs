@@ -33,7 +33,7 @@ The code sample below does these basic steps to set up function calling.
 
 Below is an example of async function calling with the Voice Live API - Python SDK. To run this code, start by implementing the setup steps in the [Quickstart](/azure/ai-services/speech-service/voice-live-quickstart?tabs=linux%2Ckeyless&pivots=programming-language-python). 
 
-For more information see the sample on [GitHub](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-voicelive/samples/function_calling_sample_async.py). 
+For more information see the sample on [GitHub](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-voicelive/samples/async_function_calling_sample.py). 
 
 
 ```python
@@ -791,6 +791,6 @@ if __name__ == "__main__":
 
 ## Related content
 
-- Try the [Voice live agents quickstart](./voice-live-agents-quickstart.md)
-- Learn more about [How to use the Voice live API](./voice-live-how-to.md)
-- See the [Voice live API reference](./voice-live-api-reference.md)
+- Try the [Voice Live agents quickstart](./voice-live-agents-quickstart.md)
+- Learn more about [How to use the Voice Live API](./voice-live-how-to.md)
+- See the [Voice Live API reference](./voice-live-api-reference.md)

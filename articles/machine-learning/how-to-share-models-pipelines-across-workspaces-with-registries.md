@@ -7,7 +7,7 @@ ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: soumyapatro
+ms.reviewer: jturuk
 ms.date: 04/07/2025
 ms.topic: how-to
 ms.custom: devx-track-azurecli, build-2023
@@ -616,6 +616,9 @@ ENDPOINT_KEY=$(az ml online-endpoint get-credentials -n reg-ep-1234 -o tsv --que
 SCORING_URI=$(az ml online-endpoint show -n reg-ep-1234 -o tsv --query scoring_uri)
 curl --request POST "$SCORING_URI" --header "Authorization: Bearer $ENDPOINT_KEY" --header 'Content-Type: application/json' --data @./scoring-data.json
 ```
+
+> [!Important]
+> * For endpoints created with a User Assigned Identity, manual role assignment is required. The identity needs to have `ACRPull` and `Storage Blob Data Reader` roles on the subscription level. 
 
 > [!TIP]
 > * `curl` command works only on Linux.

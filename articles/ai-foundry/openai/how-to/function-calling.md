@@ -1,20 +1,21 @@
 ---
-title: How to use function calling with Azure OpenAI in Azure AI Foundry Models
+title: How to use function calling with Azure OpenAI in Microsoft Foundry Models
 titleSuffix: Azure OpenAI
-description: Learn how to use function calling with the GPT-35-Turbo and GPT-4 models 
+description: Learn how to use function calling with OpenAI models 
 author: mrbullwinkle #dereklegenzoff
 ms.author: mbullwin #delegenz
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.custom: devx-track-python
 ms.topic: how-to
-ms.date: 11/14/2025
+ms.date: 01/14/2026
 manager: nitinme
+monikerRange: 'foundry-classic || foundry'
 ---
 
-# How to use function calling with Azure OpenAI in Azure AI Foundry Models
+# How to use function calling with Azure OpenAI in Microsoft Foundry Models
 
-The latest versions of gpt-35-turbo and gpt-4 are fine-tuned to work with functions and are able to both determine when and how a function should be called. If one or more functions are included in your request, the model determines if any of the functions should be called based on the context of the prompt. When the model determines that a function should be called, it responds with a JSON object including the arguments for the function. 
+If one or more functions are included in your request, the model determines if any of the functions should be called based on the context of the prompt. When the model determines that a function should be called, it responds with a JSON object including the arguments for the function.
 
 The models formulate API calls and structure data outputs, all based on the functions you specify. It's important to note that while the models can generate these calls, it's up to you to execute them, ensuring you remain in control.
 
@@ -774,8 +775,6 @@ To learn more about our recommendations on how to use Azure OpenAI models respon
 
 ### Parallel function calling
 
-* `gpt-35-turbo` (`1106`)
-* `gpt-35-turbo` (`0125`)
 * `gpt-4` (`2024-04-09`)
 * `gpt-4o` (`2024-05-13`)
 * `gpt-4o` (`2024-08-06`)
@@ -790,7 +789,11 @@ To learn more about our recommendations on how to use Azure OpenAI models respon
 * `gpt-5.1` (`2025-11-13`)
 * `gpt-5.1-chat` (`2025-11-13`)
 * `gpt-5.1-codex` (`2025-11-13`)
-* `gpt-5.1-codex mini` (`2025-11-13`)
+* `gpt-5.1-codex-mini` (`2025-11-13`)
+* `gpt-5.1-codex-max` (`2025-12-04`)
+* `gpt-5.2` (`2025-12-11`)
+* `gpt-5.2-chat` (`2025-12-11`)
+* `gpt-5.2-codex` (`2026-01-14`)
 
 Support for parallel function was first added in API version [`2023-12-01-preview`](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2023-12-01-preview/inference.json)
 
@@ -817,4 +820,4 @@ Support for parallel function was first added in API version [`2023-12-01-previe
 
 * [Learn more about Azure OpenAI](../overview.md).
 * For more examples on working with functions, check out the [Azure OpenAI Samples GitHub repository](https://aka.ms/oai/functions-samples)
-* Get started with the GPT-35-Turbo model with [the GPT-35-Turbo quickstart](../chatgpt-quickstart.md).
+

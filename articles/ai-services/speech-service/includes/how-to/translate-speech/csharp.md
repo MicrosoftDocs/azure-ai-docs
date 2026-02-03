@@ -1,10 +1,10 @@
 ---
-author: goergenj
+author: PatrickFarley
 reviewer: patrickfarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 10/21/2025
-ms.author: jagoerge
+ms.author: pafarley
 ms.reviewer: pafarley
 ms.custom: devx-track-csharp, references_regions
 ---
@@ -386,12 +386,12 @@ For a complete code sample, see [language identification](../../../language-iden
 
 Multi-lingual speech translation implements a new level of speech translation technology that unlocks various capabilities, including having no specified input language, and handling language switches within the same session. These features enable a new level of speech translation powers that can be implemented into your products.
 
-Currently when you use Language ID with speech translation, you must create the `SpeechTranslationConfig` object from the v2 endpoint. Replace the string "YourServiceRegion" with your Speech resource region (such as "westus"). Replace "YourSpeechResoureKey" with your Speech resource key.
+Currently when you use Language ID with speech translation, you must create the `SpeechTranslationConfig` object from the v2 endpoint. Replace the string "YourServiceRegion" with your Speech resource region (such as "westus"). Replace "YourSpeechResourceKey" with your Speech resource key.
 
 ```csharp
 var v2EndpointInString = String.Format("wss://{0}.stt.speech.microsoft.com/speech/universal/v2", "YourServiceRegion");
 var v2EndpointUrl = new Uri(v2EndpointInString);
-var speechTranslationConfig = SpeechTranslationConfig.FromEndpoint(v2EndpointUrl, "YourSpeechResoureKey");
+var speechTranslationConfig = SpeechTranslationConfig.FromEndpoint(v2EndpointUrl, "YourSpeechResourceKey");
 ```
 
 Specify the translation target languages. Replace with languages of your choice. You can add more lines.
@@ -409,7 +409,7 @@ var translationRecognizer = new TranslationRecognizer(speechTranslationConfig, a
 
 For a complete code sample with the Speech SDK, see [speech translation samples on GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/csharp/sharedcontent/console/translation_samples.cs#L714).
 
-## Using live interpreter (preview) for real-time speech-to-speech translation with personal voice
+## Using live interpreter for real-time speech-to-speech translation with personal voice
 
 Live Interpreter continuously identifies the language being spoken without requiring you to set an input language and delivers low latency speech-to-speech translation in a natural voice that preserves the speaker's style and tone. 
 
@@ -592,7 +592,7 @@ namespace LiveInterpreterDemo
 
 
 ## Using custom translation in speech translation
-The custom translation feature in speech translation seamlessly integrates with the Azure Custom Translation service, allowing you to achieve more accurate and tailored translations. As the integration directly harnesses the capabilities of the Azure custom translation service, you need to use a multi-service resource to ensure the correct functioning of the complete set of features. For detailed instructions, please consult the guide on [Create a multi-service resource for Azure AI services](/azure/ai-services/multi-service-resource?tabs=windows&pivots=azportal).
+The custom translation feature in speech translation seamlessly integrates with the Azure Custom Translation service, allowing you to achieve more accurate and tailored translations. As the integration directly harnesses the capabilities of the Azure custom translation service, you need to use a multi-service resource to ensure the correct functioning of the complete set of features. For detailed instructions, please consult the guide on [Create a multi-service resource for Foundry Tools](/azure/ai-services/multi-service-resource?tabs=windows&pivots=azportal).
 
 Additionally, for offline training of a custom translator and obtaining a "Category ID," please refer to the step-by-step script provided in the [Quickstart: Build, deploy, and use a custom model - Custom Translator](/azure/ai-services/translator/custom-translator/quickstart).
 

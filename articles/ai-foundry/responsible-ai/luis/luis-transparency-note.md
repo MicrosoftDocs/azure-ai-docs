@@ -1,12 +1,12 @@
 ---
 title: Transparency note for LUIS
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Transparency Note for Language Understanding
 author: laujan
 ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: article
+ms.topic: concept-article
 ms.subservice: azure-ai-luis
 ms.date: 02/08/2024
 ---

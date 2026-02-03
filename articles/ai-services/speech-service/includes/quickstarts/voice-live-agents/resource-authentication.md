@@ -1,6 +1,6 @@
 ---
-author: goergenj 
-ms.author: jagoerge
+author: PatrickFarley
+ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 11/06/2025
@@ -24,8 +24,8 @@ Replace the default values with your actual project name, agent ID, API version,
 |Variable name | Value |
 |--------------------------|-------------|
 | `AZURE_VOICELIVE_ENDPOINT` | This value can be found in the **Keys and Endpoint** section when examining your resource from the Azure portal. |
-| `AZURE_VOICELIVE_PROJECT_NAME` | The name of your Azure AI Foundry project. |
-| `AZURE_VOICELIVE_AGENT_ID` | The ID of your Azure AI Foundry agent. |
+| `AZURE_VOICELIVE_PROJECT_NAME` | The name of your Microsoft Foundry project. |
+| `AZURE_VOICELIVE_AGENT_ID` | The ID of your Microsoft Foundry agent. |
 | `AZURE_VOICELIVE_API_VERSION`| The API version you want to use. For example, `2025-10-01`. |
 
 Learn more about [keyless authentication](/azure/ai-services/authentication) and [setting environment variables](/azure/ai-services/cognitive-services-environment-variables).
@@ -49,8 +49,8 @@ Replace the default values with your actual project name, agent ID, API version,
 |Variable name | Value |
 |--------------------------|-------------|
 | `AZURE_VOICELIVE_ENDPOINT` | This value can be found in the **Keys and Endpoint** section when examining your resource from the Azure portal. |
-| `AZURE_VOICELIVE_PROJECT_NAME` | The name of your Azure AI Foundry project. |
-| `AZURE_VOICELIVE_AGENT_ID` | The ID of your Azure AI Foundry agent. |
+| `AZURE_VOICELIVE_PROJECT_NAME` | The name of your Microsoft Foundry project. |
+| `AZURE_VOICELIVE_AGENT_ID` | The ID of your Microsoft Foundry agent. |
 | `AZURE_VOICELIVE_API_VERSION`| The API version you want to use. For example, `2025-10-01`. |
 | `AZURE_VOICELIVE_API_KEY` | This value can be found in the **Keys and Endpoint** section when examining your resource from the Azure portal. You can use either `KEY1` or `KEY2`.|
 

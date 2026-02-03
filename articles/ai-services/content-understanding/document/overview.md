@@ -1,21 +1,18 @@
 ---
-title: Azure AI Content Understanding Document Overview
-titleSuffix: Azure AI services
-description: Learn about Azure AI Content Understanding document solutions.
+title: Azure Content Understanding in Foundry Tools Document Overview
+titleSuffix: Foundry Tools
+description: Learn about Azure Content Understanding in Foundry Tools document solutions.
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
-ms.date: 09/16/2025
+ms.date: 12/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: overview
 ms.custom:
   - build-2025
 ---
 
-# Azure AI Content Understanding document solutions (preview)
-
-> [!IMPORTANT]
-> Azure AI Content Understanding is available in preview. Public preview releases provide early access to features that are in active development. Features, approaches, and processes can change or have limited capabilities before general availability. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
+# Azure Content Understanding in Foundry Tools document solutions
 
 Content Understanding offers sophisticated document analysis capabilities. Organizations can use these capabilities to convert unstructured content into actionable and organized data. Content Understanding can use [customizable analyzers](../concepts/prebuilt-analyzers.md) to expertly extract essential information, fields, and relationships from a diverse range of documents and forms.
 
@@ -54,7 +51,10 @@ Content extraction forms the foundation of Content Understanding document analys
   - **Selection marks**: Identifies and extracts selection indicators such as checkboxes, buttons, and similar markers.
   - **Barcode detection**: Scans and decodes information from over a dozen types of linear and two-dimensional barcodes.
   - **Mathematical formulas**: Captures and preserves complex mathematical expressions in LaTeX format.
-  - **Image elements**: Locates and extracts images, diagrams, and charts along with their related captions and annotations.
+  - **Image elements**: Locates and extracts images, figures, diagrams, and charts along with their related captions and annotations.
+  - **Hyperlink elements**: Detects hyperlinks embedded within the document.
+  - **Annotation elements**: Associates contents with its annotations such as strikethrough, underline, highlight.
+  - **Figure elements**: Detects and extracts figure elements into structured output.
 - Structure analysis
   - **Paragraphs**: Detects and categorizes text segments based on their document context and role.
   - **Tabular data**: Recognizes and extracts table structures, including complex formats with spanning cells and multipage layouts.
@@ -68,7 +68,7 @@ With field extraction, you can extract, classify, and generate structured data f
 
 For instance, you can seamlessly extract customer details, billing addresses, and itemized charges from invoices. You can also identify contractual parties, renewal dates, and payment terms in legal agreements. To maximize efficiency, you can use prebuilt analyzer templates, such as templates that are tailored for invoices. You can also design bespoke analyzers from scratch to enhance precision through the labeling of more sample documents.
 
-The confidence and grounding API is an opt-in feature. To opt in for confidence and grounding for field extraction, set `estimateFieldSourceAndConfidence` as `true`.
+The confidence and grounding API is an opt-in feature. To opt in for confidence and grounding for field extraction, set `estimateFieldSourceAndConfidence = true` in the analyzer config or `estimateSourceAndConfidence = true` for a specific field. 
 
 #### Field extraction methods
 
@@ -93,6 +93,7 @@ Developers who use Content Understanding should review the Microsoft policies on
 
 ## Related content
 
-* Try processing your document content by using Content Understanding in [Azure AI Foundry](https://aka.ms/cu-landing).
-* Learn to analyze document content [analyzer templates](../quickstart/use-ai-foundry.md).
+* Try processing your document content by using [Content Understanding Studio](https://aka.ms/cu-studio).
+* Check out the [Content Understanding Studio quickstart](../quickstart/content-understanding-studio.md).
+* Learn to analyze document content using [analyzer templates](../concepts/analyzer-templates.md).
 * Review code samples with [visual document search](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python/blob/main/notebooks/search_with_visual_document.ipynb).

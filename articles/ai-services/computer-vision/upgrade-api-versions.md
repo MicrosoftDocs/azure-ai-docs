@@ -1,13 +1,13 @@
 ---
-title: Upgrade to Read v3.0 of the Azure AI Vision API
-titleSuffix: Azure AI services
-description: Learn how to upgrade to Azure AI Vision v3.0 Read API from v2.0/v2.1.
+title: Upgrade to Read v3.0 of Azure Vision in Foundry Tools API
+titleSuffix: Foundry Tools
+description: Learn how to upgrade to Azure Vision in Foundry Tools v3.0 Read API from v2.0/v2.1.
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
-ms.topic: conceptual
-ms.date: 07/28/2025
+ms.topic: upgrade-and-migration-article
+ms.date: 09/26/2025
 ms.author: pafarley
 ROBOTS: NOINDEX
 ms.custom: cogserv-non-critical-vision
@@ -169,7 +169,7 @@ In v3.0, it has been adjusted:
 ## Cloud service only
 
 ### `Recognize Text`
-`Recognize Text` is a *preview* operation that is *deprecated in all versions of Azure AI Vision API*. You must migrate from `Recognize Text` to `Read` (v3.0) or `Batch Read File` (v2.0, v2.1). Version 3.0 of `Read` includes newer, better models for text recognition and other features, so we recommend it. To upgrade from `Recognize Text` to `Read`:
+`Recognize Text` is a *preview* operation that is *deprecated in all versions of Azure Vision API*. You must migrate from `Recognize Text` to `Read` (v3.0) or `Batch Read File` (v2.0, v2.1). Version 3.0 of `Read` includes newer, better models for text recognition and other features, so we recommend it. To upgrade from `Recognize Text` to `Read`:
 
 |Recognize Text 2.x |Read 3.x  |
 |----------|-----------|

@@ -1,13 +1,13 @@
 ---
 title: Shared responsibility for Face liveness detection 
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Azure and customers share responsibility for liveness detection solutions, covering connections, client apps, devices, and abuse monitoring.
-author: JinyuID
-ms.author: lijiny
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-vision
-ms.date: 01/15/2025
-ms.topic: conceptual
+ms.date: 01/30/2026
+ms.topic: concept-article
 ---
 
 # Shared responsibility for Face liveness detection
@@ -88,10 +88,10 @@ Facial recognition technology, when used for access authorization, can be a targ
 
 ### Azure Support for abuse monitoring
 
-Azure provides the following mechanisms for monitoring liveness detection sessions:
-- Monitoring traffic across multiple sessions on same correlation ID; respond when suspicious activity is monitored.
-- API support for auditing to download liveness images during the liveness session lifespan.
-- Azure keeps sufficient logs to further prevent [repudiation attacks](/azure/security/develop/threat-modeling-tool-threats).
+Azure provides several mechanisms to monitor liveness detection sessions and mitigate abuse:
+- Traffic Monitoring: Observes activity across multiple sessions when labeled by the developer with different correlation IDs, and triggers alerts when suspicious patterns are detected.
+- Auditing via API: Offers API capabilities to audit and download liveness images when the session is active.
+- Comprehensive Logging: Maintains detailed logs to help prevent [repudiation attacks](/azure/security/develop/threat-modeling-tool-threats).
 
 ## Report abuse
 

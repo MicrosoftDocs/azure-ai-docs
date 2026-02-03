@@ -1,12 +1,12 @@
 ---
 title: "Text to speech quickstart - Speech service"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to create an app that converts text to speech, and explore supported audio formats and custom configuration options.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: quickstart
-ms.date: 7/17/2025
+ms.date: 01/30/2026
 ms.author: pafarley
 ms.devlang: cpp
 # ms.devlang: cpp, csharp, golang, java, javascript, objective-c, python
@@ -17,6 +17,10 @@ keywords: text to speech
 ---
 
 # Quickstart: Convert text to speech
+
+::: zone pivot="ai-foundry"
+[!INCLUDE [Foundry portal include](./includes/quickstarts/text-to-speech-basics/ai-foundry.md)]
+::: zone-end
 
 ::: zone pivot="programming-language-csharp"
 [!INCLUDE [C# include](includes/quickstarts/text-to-speech-basics/csharp.md)]
@@ -38,9 +42,6 @@ keywords: text to speech
 [!INCLUDE [JavaScript include](includes/quickstarts/text-to-speech-basics/javascript.md)]
 ::: zone-end
 
-::: zone pivot="programming-language-objectivec"
-[!INCLUDE [ObjectiveC include](includes/quickstarts/text-to-speech-basics/objectivec.md)]
-::: zone-end
 
 ::: zone pivot="programming-language-swift"
 [!INCLUDE [Swift include](includes/quickstarts/text-to-speech-basics/swift.md)]

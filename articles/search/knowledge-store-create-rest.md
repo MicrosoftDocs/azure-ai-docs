@@ -7,7 +7,7 @@ manager: nitinme
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 08/21/2025
+ms.date: 10/21/2025
 ms.custom:
   - ignite-2023
   - sfi-image-nochange
@@ -17,7 +17,7 @@ ms.custom:
 # Create a knowledge store using REST
 
 > [!NOTE]
-> Knowledge stores exist in Azure Storage and contain the outputs of Azure AI Search skillsets. They're separate from knowledge sources and knowledge agents, which are used in [agentic retrieval](agentic-retrieval-overview.md) workflows.
+> *Knowledge stores* are secondary storage that exists in Azure Storage and contain the outputs of Azure AI Search skillsets. They're separate from knowledge sources and knowledge bases, which are used in [agentic retrieval](agentic-retrieval-overview.md) workflows.
 
 In Azure AI Search, a [knowledge store](knowledge-store-concept-intro.md) is a repository of [AI-generated content](cognitive-search-concept-intro.md) that's used for non-search scenarios. You create the knowledge store using an indexer and skillset, and specify Azure Storage to store the output. After the knowledge store is populated, use tools like [Storage Explorer](/azure/vs-azure-tools-storage-manage-with-storage-explorer) or [Power BI](knowledge-store-connect-power-bi.md) to explore the content.
 
@@ -36,7 +36,7 @@ To make the initial data set available, the hotel reviews are first imported int
 
 + Azure Storage. [Create an account](/azure/storage/common/storage-account-create) or [find an existing one](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Storage%2storageAccounts/). The account type must be **StorageV2 (general purpose V2)**.
 
-The skillset in this example uses Azure AI Services for enrichments. Because the workload is so small, Azure AI services is tapped behind the scenes to provide free processing for up to 20 transactions daily. A small workload means that you can skip creating or attaching an Azure AI services multi-service resource.
+The skillset in this example uses Foundry Tools for enrichments. Because the workload is so small, Foundry Tools is tapped behind the scenes to provide free processing for up to 20 transactions daily. A small workload means that you can skip creating or attaching a Microsoft Foundry resource.
 
 ## Upload data to Azure Storage and get a connection string
 
@@ -417,7 +417,7 @@ You can find and manage resources in the Azure portal, using the **All resources
 
 ## Next steps
 
-Now that you've enriched your data by using Azure AI services and projected the results to a knowledge store, you can use Storage Explorer or other apps to explore your enriched data set.
+Now that you've enriched your data by using Foundry Tools and projected the results to a knowledge store, you can use Storage Explorer or other apps to explore your enriched data set.
 
 > [!div class="nextstepaction"]
 > [Get started with Storage Explorer](/azure/vs-azure-tools-storage-manage-with-storage-explorer)

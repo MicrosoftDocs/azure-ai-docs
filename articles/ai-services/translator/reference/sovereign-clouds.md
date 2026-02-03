@@ -1,16 +1,16 @@
 ---
 title: "Translator: sovereign clouds"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Using Translator in sovereign clouds
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 04/14/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
-# Translator in sovereign (national) clouds
+# Azure Translator in Foundry Tools in sovereign (national) clouds
 
  Azure sovereign clouds are isolated in-country/region platforms with independent authentication, storage, and compliance requirements. Sovereign clouds are often used within geographical boundaries where there's a strict data residency requirement. Translator is currently deployed in the following sovereign clouds:
 
@@ -30,7 +30,7 @@ The following table lists the base URLs for Azure sovereign cloud endpoints:
 
 <!-- markdownlint-disable MD033 -->
 
-## Translator: sovereign clouds
+## Azure Translator in Foundry Tools: sovereign clouds
 
 ### [Azure US Government](#tab/us)
 

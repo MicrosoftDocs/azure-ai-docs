@@ -1,26 +1,33 @@
 ---
-title: Develop Applications with Semantic Kernel and Azure AI Foundry
-titleSuffix: Azure AI Foundry
-description: Learn how to Develop applications with Semantic Kernel and Azure AI Foundry with models deployed from the Azure AI model catalog.
+title: Develop Applications with Semantic Kernel and Microsoft Foundry
+titleSuffix: Microsoft Foundry
+ai-usage: ai-assisted
+description: Learn how to Develop applications with Semantic Kernel and Microsoft Foundry with models deployed from the Foundry model catalog.
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: taochen
-ms.date: 10/20/2025
+ms.date: 01/30/2026
 ms.topic: how-to
 ms.service: azure-ai-foundry
 ---
 
-# Develop applications with Semantic Kernel and Azure AI Foundry
+# Develop applications with Semantic Kernel and Microsoft Foundry
 
-In this article, you learn how to use [Semantic Kernel](/semantic-kernel/overview/) with models deployed from the Azure AI model catalog in Azure AI Foundry portal.
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
+In this article, you learn how to use [Semantic Kernel](/semantic-kernel/overview/) with models deployed from the Foundry model catalog in Microsoft Foundry portal.
+
+[!INCLUDE [migrate-model-inference-to-v1-openai](../../includes/migrate-model-inference-to-v1-openai.md)]
 
 ## Prerequisites
 
 - [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
-- An Azure AI project as explained at [Create a project for Azure AI Foundry](../create-projects.md).
-- A model that supports the [Azure AI Model Inference API](../../../ai-foundry/model-inference/reference/reference-model-inference-api.md?tabs=python) deployed. This article uses a `Mistral-Large` deployment. You can use any model. For using embeddings capabilities in LlamaIndex, you need an embedding model like `cohere-embed-v3-multilingual`.
 
-  - You can follow the instructions at [Deploy models as serverless API deployments](../deploy-models-serverless.md).
+- A Foundry project as explained at [Create a project in Foundry portal](../create-projects.md).
+
+- A deployed model that supports the [Azure AI Model Inference API](../../../ai-foundry/model-inference/reference/reference-model-inference-api.md?tabs=python). This article uses a `Mistral-Large` deployment. You can use any model. To use embeddings capabilities in LlamaIndex, you need an embedding model like `cohere-embed-v3-multilingual`.
+
+  - Follow the instructions at [Deploy models as serverless API deployments](../deploy-models-serverless.md).
 
 - Python **3.10** or later installed, including pip.
 - Semantic Kernel installed. You can use the following command:
@@ -37,17 +44,17 @@ In this article, you learn how to use [Semantic Kernel](/semantic-kernel/overvie
 
 ## Configure the environment
 
-To use language models deployed in Azure AI Foundry portal, you need the endpoint and credentials to connect to your project. Follow these steps to get the information you need from the model:
+To use language models deployed in Foundry portal, you need the endpoint and credentials to connect to your project. Follow these steps to get the information you need from the model:
 
 [!INCLUDE [tip-left-pane](../../includes/tip-left-pane.md)]
 
-1. Go to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+1. Sign in to [!INCLUDE [classic-link](../../includes/classic-link.md)].
 1. Open the project where the model is deployed, if it isn't already open.
 1. Go to **Models + endpoints** and select the model you deployed as indicated in the prerequisites.
 1. Copy the endpoint URL and the key.
 
     > [!TIP]
-    > If your model was deployed with Microsoft Entra ID support, you don't need a key.
+    > If you deployed your model with Microsoft Entra ID support, you don't need a key.
 
 This example uses environment variables for both the endpoint URL and key:
 
@@ -65,9 +72,9 @@ chat_completion_service = AzureAIInferenceChatCompletion(ai_model_id="<deploymen
 ```
 
 > [!TIP]
-> The client automatically reads the environment variables `AZURE_AI_INFERENCE_ENDPOINT` and `AZURE_AI_INFERENCE_API_KEY` to connect to the model. You could instead pass the endpoint and key directly to the client by using the `endpoint` and `api_key` parameters on the constructor.
+> The client automatically reads the environment variables `AZURE_AI_INFERENCE_ENDPOINT` and `AZURE_AI_INFERENCE_API_KEY` to connect to the model. You can instead pass the endpoint and key directly to the client by using the `endpoint` and `api_key` parameters on the constructor.
 
-Alternatively, if your endpoint support Microsoft Entra ID, you can use the following code to create the client:
+Alternatively, if your endpoint supports Microsoft Entra ID, you can use the following code to create the client:
 
 ```bash
 export AZURE_AI_INFERENCE_ENDPOINT="<your-model-endpoint-goes-here>"
@@ -84,7 +91,7 @@ chat_completion_service = AzureAIInferenceChatCompletion(ai_model_id="<deploymen
 
 ### Azure OpenAI models
 
-If you're using an Azure OpenAI model, you can use the following code to create the client:
+If you're using an Azure OpenAI model, use the following code to create the client:
 
 ```python
 from azure.ai.inference.aio import ChatCompletionsClient

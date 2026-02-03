@@ -1,12 +1,12 @@
 ---
 title: Custom Vision encryption of data at rest
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to enable and manage customer-managed keys (CMK) for data encryption at rest in Azure AI Custom Vision.
 author: erindormier
 manager: venkyv
 
 ms.service: azure-ai-custom-vision
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 01/29/2025
 ms.author: egeaney
 ms.custom: cogserv-non-critical-vision
@@ -27,6 +27,6 @@ Azure AI Custom Vision automatically encrypts your data when persisting it to th
 ## Related content
 
 
-* For a full list of services that support CMK, see [Customer-Managed Keys for Azure AI services](../encryption/cognitive-services-encryption-keys-portal.md)
+* For a full list of services that support CMK, see [Customer-Managed Keys for Foundry Tools](../encryption/cognitive-services-encryption-keys-portal.md)
 * [What is Azure Key Vault](/azure/key-vault/general/overview)?
 

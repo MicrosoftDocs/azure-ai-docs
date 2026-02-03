@@ -1,22 +1,21 @@
 ---
-title: Custom text classification - Azure AI services
-titleSuffix: Azure AI services
-description: Customize an AI model to classify documents and other content using Azure AI services.
+title: Custom text classification
+titleSuffix: Foundry Tools
+description: Customize an AI model to classify documents and other content using Foundry Tools.
 #services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 09/27/2025
+ms.date: 12/15/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-classification
 ---
-
 # What is custom text classification?
 
-Custom text classification is one of the custom features offered by [Azure AI Language](../overview.md). It's a cloud-based API service that applies machine-learning intelligence to enable you to build custom models for text classification tasks. 
+Custom text classification is one of the custom features offered by [Azure Language in Foundry Tools](../overview.md). It's a cloud-based API service that applies machine-learning intelligence to enable you to build custom models for text classification tasks. 
 
-Custom text classification enables users to build custom AI models to classify text into custom classes predefined by the user. By creating a custom text classification project, developers can iteratively label data, train, evaluate, and improve model performance before making it available for consumption. The quality of the labeled data greatly impacts model performance. To simplify building and customizing your model, the service offers a custom web portal that can be accessed through the [Language studio](https://aka.ms/languageStudio). You can easily get started with the service by following the steps in this [quickstart](quickstart.md). 
+Custom text classification enables users to build custom AI models to classify text into custom classes predefined by the user. By creating a custom text classification project, developers can iteratively label data, train, evaluate, and improve model performance before making it available for consumption. The quality of the labeled data greatly impacts model performance. To simplify building and customizing your model, the service offers a unified platform for building, managing, and deploying AI solutions that can be accessed through the [Microsoft Foundry](https://ai.azure.com/). You can easily get started with the service by following the steps in this [quickstart](quickstart.md). 
 
 Custom text classification supports two types of projects: 
 
@@ -63,7 +62,7 @@ Follow these steps to get the most out of your model:
 
 ## Reference documentation and code samples
 
-As you use custom text classification, see the following reference documentation and samples for Azure AI Language:
+As you use custom text classification, see the following reference documentation and samples for Azure Language in Foundry Tools:
 
 | Development option / language | Reference documentation | Samples |
 |--|--|--|

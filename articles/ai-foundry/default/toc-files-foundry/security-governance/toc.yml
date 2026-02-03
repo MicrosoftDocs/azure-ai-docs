@@ -1,0 +1,72 @@
+items:
+- name: Identity
+  items:
+  # Access Control
+  - name: Authentication and authorization
+    href: ../../../concepts/authentication-authorization-foundry.md
+  - name: Disable preview features with role-based access control
+    href: ../../../concepts/disable-preview-features-with-rbac.md
+  - name: Role-based access control
+    displayName: RBAC, roles, permissions
+    href: ../../../concepts/rbac-foundry.md
+  - name: Configure keyless authentication
+    href: ../../../foundry-models/how-to/configure-entra-id.md
+
+# Network Security
+- name: Network security
+  items:
+  - name: Configure private link
+    displayName: custom dns
+    href: ../../../how-to/configure-private-link.md
+  - name: Managed virtual network
+    href: ../../../how-to/managed-virtual-network.md
+  - name: Network security perimeter
+    href: ../../../how-to/add-foundry-to-network-security-perimeter.md    
+
+# Data Protection
+- name: Data protection & encryption
+  items:
+  - name: Configure customer-managed keys
+    href: ../../../concepts/encryption-keys-portal.md
+  - name: Store secrets in your Azure Key Vault
+    href: ../../../how-to/set-up-key-vault-connection.md
+  - name: Rotate API access keys
+    href: /azure/ai-services/rotate-keys?context=/azure/ai-foundry/context/context
+
+# Governance and Compliance
+- name: Policy management
+  items:
+  - name: Built-in policy definitions
+    displayName: samples, policies, definitions, Azure Policy
+    href: ../../../../ai-services/policy-reference.md?context=/azure/ai-foundry/context/context
+  - name: Built-in policy for model deployment
+    href: ../../../how-to/model-deployment-policy.md
+  - name: Create custom policy definitions
+    href: ../../../how-to/custom-policy-definition.md
+
+# Reliability and Recovery
+- name: High availability and disaster recovery
+  items:
+  - name: High availability and resiliency
+    href: ../../../how-to/high-availability-resiliency.md
+  - name: Disaster recovery for agent services
+    href: ../../../how-to/agent-service-disaster-recovery.md
+  - name: Disaster recovery from a platform outage
+    href: ../../../how-to/agent-service-platform-disaster-recovery.md
+  - name: Disaster recovery from resource and data loss
+    href: ../../../how-to/agent-service-operator-disaster-recovery.md
+
+# Cost Management
+- name: Plan and manage costs
+  href: ../../../concepts/manage-costs.md
+
+# Architecture and Standards
+- name: Security baseline
+  href: /security/benchmark/azure/baselines/azure-ai-foundry-security-baseline
+- name: Service architecture
+  href: ../../../concepts/architecture.md
+
+- name: Data, privacy, and security for Foundry Models sold directly by Azure
+  href: ../../../responsible-ai/openai/data-privacy.md
+- name: Data, privacy, and security for Claude models in Microsoft Foundry
+  href: ../../../responsible-ai/claude-models/data-privacy.md

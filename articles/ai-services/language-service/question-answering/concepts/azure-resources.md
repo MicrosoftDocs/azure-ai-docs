@@ -2,13 +2,12 @@
 title: Azure resources - custom question answering
 description: Question answering uses several Azure sources, each with a different purpose. Understanding how they're used individually allows you to plan for and select the correct pricing tier or know when to change your pricing tier. Understanding how they're used in combination allows you to find and fix problems when they occur.
 ms.service: azure-ai-language
-ms.topic: conceptual
+ms.topic: get-started
 author: laujan
 ms.author: lajanuar
-ms.date: 07/22/2025
+ms.date: 12/11/2025
 ms.custom: language-service-question-answering
 ---
-
 # Azure resources for custom question answering
 
 Custom question answering uses several Azure sources, each with a different purpose. Understanding how they're used individually allows you to plan for and select the correct pricing tier or know when to change your pricing tier. Understanding how resources are used _in combination_ allows you to find and fix problems when they occur.
@@ -38,7 +37,7 @@ Typically there are three parameters you need to consider:
 
 * **Size and the number of projects**: Choose the appropriate [Azure search SKU](https://azure.microsoft.com/pricing/details/search/) for your scenario. Typically, you decide the number of projects you need based on number of different subject domains. One subject domain (for a single language) should be in one project.
 
-    With custom question answering, you have a choice to set up your language resource in a single language or multiple languages. You can make this selection when you create your first project in the [Language Studio](https://language.azure.com/).
+    With custom question answering, you have a choice to set up your language resource in a single language or multiple languages.
 
     > [!IMPORTANT]
     > You can publish N-1 projects  with a single language resource or N-2 projects with multiple language resources in a single tier. The `N` notation is the maximum indexes allowed in the tier.
@@ -70,22 +69,22 @@ Use these keys when making requests to the service through APIs.
 
 |Name|Location|Purpose|
 |--|--|--|
-|Authoring/Subscription key|[Azure portal](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)|These keys are used to access the Language service APIs). These APIs let you edit the questions and answers in your project, and publish your project. These keys are created when you create a new resource.<br><br>Find these keys on the **Azure AI services** resource on the **Keys and Endpoint** page.|
+|Authoring/Subscription key|[Azure portal](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)|These keys are used to access Azure Language APIs). These APIs let you edit the questions and answers in your project, and publish your project. These keys are created when you create a new resource.<br><br>Find these keys on the **Foundry Tools** resource on the **Keys and Endpoint** page.|
 |Azure AI Search Admin Key|[Azure portal](/azure/search/search-security-api-keys)|These keys are used to communicate with the Azure AI Search service deployed in the user's Azure subscription. When you associate an Azure AI Search resource with the custom question answering feature, the admin key is automatically passed to custom question answering. <br><br>You can find these keys on the **Azure AI Search** resource on the **Keys** page.|
 
 ### Find authoring keys in the Azure portal
 
 You can view and reset your authoring keys from the Azure portal, where you added the custom question answering feature in your language resource.
 
-1. Go to the language resource in the Azure portal and select the resource that has the *Azure AI services* type:
+1. Go to the language resource in the Azure portal and select the resource that has the *Foundry Tools* type:
 
     > [!div class="mx-imgBorder"]
-    > ![Screenshot of custom question answering resource list.](../../../qnamaker/media/qnamaker-how-to-setup-service/resources-created-question-answering.png)
+    > ![Screenshot of custom question answering resource list.](../media/qnamaker-how-to-setup-service/resources-created-question-answering.png)
 
 2. Go to **Keys and Endpoint**:
 
     > [!div class="mx-imgBorder"]
-    > ![Screenshot of subscription key.](../../../qnamaker/media/qnamaker-how-to-key-management/custom-qna-keys-and-endpoint.png)
+    > ![Screenshot of subscription key.](../media/qnamaker-how-to-key-management/custom-qna-keys-and-endpoint.png)
 
 ### Management service region
 

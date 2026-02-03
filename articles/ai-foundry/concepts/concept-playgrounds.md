@@ -1,45 +1,59 @@
 ---
-title: Azure AI Foundry Playgrounds
-titleSuffix: Azure AI Foundry
-description: Learn how to use Azure AI Foundry playgrounds for rapid prototyping, experimentation, and validation with AI models before production deployment.
+title: Microsoft Foundry Playgrounds
+titleSuffix: Microsoft Foundry
+description: Learn how to use Microsoft Foundry playgrounds for rapid prototyping, experimentation, and validation with AI models before production deployment.
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: concept-article
-ms.date: 09/22/2025
+ms.date: 11/06/2025
 ms.author: mopeakande
 author: msakande
 ms.reviewer: tgokal
 manager: nitinme
 reviewer: tgokal
-ms.custom: build-2025 ai-assisted
-#CustomerIntent: As a developer, I want to use Azure AI Foundry playgrounds for rapid prototyping and experimentation with AI models and agents so that I can validate ideas, test API behavior, and optimize prompts before writing production code.
+ms.custom: build-2025
+#CustomerIntent: As a developer, I want to use Microsoft Foundry playgrounds for rapid prototyping and experimentation with AI models and agents so that I can validate ideas, test API behavior, and optimize prompts before writing production code.
 ---
 
-# Azure AI Foundry Playgrounds
+# Microsoft Foundry Playgrounds
+
+[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-As you build with state-of-the-art models and create agents and apps with them, Azure AI Foundry playgrounds provide an on-demand, zero-setup environment designed for rapid prototyping, API exploration, and technical validation before you commit a single line of code to your production codebase.
+As you build with state-of-the-art models and create agents and apps with them, Microsoft Foundry playgrounds provide an on-demand, zero-setup environment designed for rapid prototyping, API exploration, and technical validation before you commit a single line of code to your production codebase.
 
-## Highlights of the Azure AI Foundry playgrounds experience
+## Highlights of the Foundry playgrounds experience
 
-Some highlights of the Azure AI Foundry playgrounds experience include:
+Some highlights of the Foundry playgrounds experience include:
 
-- **AgentOps support** for Evaluations and Tracing in the **Agents playground.**
-- **Open in VS Code** for Chat and Agents playground. This feature saves you time by automatically importing your endpoint and key from Azure AI Foundry to VS Code for multilingual code samples.
-- **Images Playground 2.0** for models such as [gpt-image-1](https://ai.azure.com/explore/models/gpt-image-1/version/2025-04-15/registry/azure-openai/?cid=learnDocs), [Stable Diffusion 3.5 Large](https://ai.azure.com/explore/models/Stable-Diffusion-3.5-Large/version/1/registry/azureml-stabilityai/?cid=learnDocs), and [FLUX.1-Kontext-pro](https://ai.azure.com/resource/models/Flux.1-Kontext-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs) models.
+- **AgentOps support** for evaluations and tracing in the **Agents playground.**
+- **Open in VS Code** for Chat and Agents playground. This feature saves you time by automatically importing your endpoint and key from Foundry to VS Code for multilingual code samples.
+- **Images playground 2.0** for models such as [gpt-image-1](https://ai.azure.com/explore/models/gpt-image-1/version/2025-04-15/registry/azure-openai/?cid=learnDocs), [Stable Diffusion 3.5 Large](https://ai.azure.com/explore/models/Stable-Diffusion-3.5-Large/version/1/registry/azureml-stabilityai/?cid=learnDocs), and [FLUX.1-Kontext-pro](https://ai.azure.com/resource/models/Flux.1-Kontext-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs) models.
+- **Video playground** for Azure OpenAI Sora-2.
+
+::: moniker range="foundry-classic"
+
 - **Audio playground** for models such as [gpt-4o-audio-preview](https://ai.azure.com/resource/models/gpt-4o-audio-preview/version/2024-12-17/registry/azure-openai/?cid=learnDocs), [gpt-4o-transcribe](https://ai.azure.com/explore/models/gpt-4o-transcribe/version/2025-03-20/registry/azure-openai/?cid=learnDocs), and [gpt-4o-mini-tts](https://ai.azure.com/explore/models/gpt-4o-mini-tts/version/2025-03-20/registry/azure-openai/?cid=learnDocs) models.
-- **Video playground** for [Azure OpenAI Sora](https://ai.azure.com/resource/models/sora/version/2025-05-02/registry/azure-openai/?cid=learnDocs).
 
-:::image type="content" source="../media/concept-playgrounds/playground-landing-page.png" alt-text="Screenshot of the Azure AI Foundry playground landing page showcasing features for rapid prototyping and experimentation. The left pane of the portal has been customized to show the Playgrounds tab." lightbox="../media/concept-playgrounds/playground-landing-page.png":::
+::: moniker-end
+
+::: moniker range="foundry-classic"
+
+:::image type="content" source="../media/concept-playgrounds/playground-landing-page.png" alt-text="Screenshot of the Foundry playground landing page showcasing features for rapid prototyping and experimentation. The left pane of the portal has been customized to show the Playgrounds tab." lightbox="../media/concept-playgrounds/playground-landing-page.png":::
 
 > [!TIP]
-> In the screenshot of the playground landing page, the left pane of the portal is customized to show the Playgrounds tab. To learn more about seeing the other items in the left pane, see [Customize the left pane](../what-is-azure-ai-foundry.md#left-pane).
+> In the screenshot of the playground landing page, the left pane of the portal is customized to show the playgrounds tab. To learn more about seeing the other items in the left pane, see [Customize the left pane](../what-is-foundry.md#customize-the-left-pane).
+
+::: moniker-end
 
 ## Playgrounds as the prelude to production
 
 Modern development involves working across multiple systems—APIs, services, SDKs, and data models—often before you're ready to fully commit to a framework, write tests, or spin up infrastructure. As the complexity of software ecosystems increases, the need for safe, lightweight environments to validate ideas becomes critical. The playgrounds are built to meet this need.
 
-The Azure AI Foundry playgrounds provide ready-to-use environments with all the necessary tools and features preinstalled, so you don't need to set up projects, manage dependencies, or solve compatibility issues. The playgrounds can *accelerate developer velocity* by validating API behavior, going quicker to code, reducing cost of experimentation and time to ship, accelerating integration, optimizing prompts, and more.
+The Foundry playgrounds provide ready-to-use environments with all the necessary tools and features preinstalled, so you don't need to set up projects, manage dependencies, or solve compatibility issues. The playgrounds can *accelerate developer velocity* by validating API behavior, going quicker to code, reducing cost of experimentation and time to ship, accelerating integration, optimizing prompts, and more.
 
 Playgrounds also *provide clarity quickly* when you have questions, by providing answers in seconds—rather than hours—and allowing you to test and validate ideas before you commit to building at scale. For example, the playgrounds are ideal for quickly answering questions like:
 
@@ -50,9 +64,11 @@ Playgrounds also *provide clarity quickly* when you have questions, by providing
 
 ## Open in VS Code capability
 
-The **Chat playground** and **Agents playground** let you work in VS Code by using the **Open in VS Code** button. You can find this button through the Azure AI Foundry extension in VS Code. 
+::: moniker range="foundry-classic"
 
-Available on the multilingual sample code samples, **Open in VS Code** automatically imports your code sample, API endpoint, and key to a VS Code workspace in an `/azure` environment. This functionality makes it easy to work in the VS Code IDE from the Azure AI Foundry portal.
+The **Chat playground** and **Agents playground** let you work in VS Code by using the **Open in VS Code** button. You can find this button through the Foundry extension in VS Code. 
+
+Available on the multilingual sample code samples, **Open in VS Code** automatically imports your code sample, API endpoint, and key to a VS Code workspace in an `/azure` environment. This functionality makes it easy to work in the VS Code IDE from the Foundry portal.
 
 To use the **Open in VS Code** functionality from the chat and agents playgrounds, follow these steps:
 
@@ -66,7 +82,7 @@ To use the **Open in VS Code** functionality from the chat and agents playground
 
 1. Select **Open in VS Code** to open VS Code in a new tab of your browser window.
 
-1. You're redirected to the `/azure` environment of VS Code where your code sample, API endpoint, and key are already imported from the Azure AI Foundry playground.
+1. You're redirected to the `/azure` environment of VS Code where your code sample, API endpoint, and key are already imported from the Foundry playground.
 
 1. Browse the `INSTRUCTIONS.md` file for instructions to run your model.
 
@@ -74,18 +90,89 @@ To use the **Open in VS Code** functionality from the chat and agents playground
 
 1. View relevant dependencies in the `requirements.txt` file.
 
+::: moniker-end
+
+::: moniker range="foundry"
+
+The **Model playground** and **Agents playground** let you work in VS Code by using the **Open in VS Code for the Web** button. You can find this button from the **Code** tab in the chat pane of the model playground.
+
+Available on the multilingual sample code samples, **Open in VS Code for the Web** automatically imports your code sample, API endpoint, and key to a VS Code workspace in an `/azure` environment. This functionality makes it easy to work in the VS Code IDE from the Foundry portal.
+
+::: moniker-end
+
 
 ## Agents playground
 
-The agents playground lets you explore, prototype, and test agents without running any code. From this page, you can quickly iterate and experiment with new ideas. To get started with the agents playground, see the [Quickstart: Create a new agent](../../ai-services/agents/quickstart.md).
+The agents playground lets you explore, prototype, and test agents without running any code. From this page, you can quickly iterate and experiment with new ideas. 
 
+::: moniker range="foundry-classic"
+
+To get started with the agents playground, see the [Quickstart: Create a new agent](../../ai-services/agents/quickstart.md).
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+To get started with the agents playground, see [Understanding the agent development lifecycle](../default/agents/concepts/development-lifecycle.md).
+
+::: moniker-end
+
+::: moniker range="foundry-classic"
 
 ## Chat playground
 
-The chat playground is the place to test the latest reasoning models from Azure OpenAI, DeepSeek, and Meta. To learn more about the chat playground, see the [Quickstart: Get answers in the chat playground](../quickstarts/get-started-playground.md).
+The chat playground is the place to test the latest reasoning models from models including Azure OpenAI, DeepSeek, and Meta. For all reasoning models, the chat playground provides a chain-of-thought summary drop-down that lets you see how the model thinks through its response before sharing the output.
 
-For all reasoning models, the chat playground provides a chain-of-thought summary drop-down that lets you see how the model thinks through its response before sharing the output.
+To learn more about the chat playground, see the [Quickstart: Get answers in the chat playground](../quickstarts/get-started-playground.md).
 
+::: moniker-end
+
+::: moniker range="foundry"
+
+## Model playground
+
+When you deploy a model in the [!INCLUDE [foundry-link](../default/includes/foundry-link.md)] portal, you immediately land on its playground. The model playground is an interactive experience designed for developers to test and experiment with the latest models from providers like Azure Open AI, DeepSeek, xAI, and Meta. The playground gives you full control over model behavior, safety, and deployment so that you can tune system prompts, compare model outputs in real time, or integrate tools like web search and code execution.
+
+The playground is designed for fast iteration and production readiness. It supports everything from prototyping to performance benchmarking. The playground prepares you to use your model in a production workflow, easily upgrade your model as an agent, and continue to prototype in the agent playground with additional tools, knowledge, and memory before deploying as an agentic web application. 
+
+### Benefits of using the model playground
+
+- **Full-stack experimentation and control**: Configure parameters (such as temperature, top_p, max_tokens), inject system prompts, and enable advanced tools like web search, file search, and code interpreter, all within a single environment. This setup allows you to precisely tune model behavior and rapidly iterate on prompt engineering, grounding, and RAG workflows, upgrading your model into an agent.
+
+- **Built-in safety and governance**: Assign or create guardrails to protect against jailbreaks, indirect prompt injections, and unsafe outputs. This integrated safety layer ensures you can validate compliance and responsible AI behaviors in a controlled, testable sandbox, without needing to wire external moderation logic.
+
+- **Comparative and deployable by design**: Compare up to three models in parallel with synced input/output to benchmark response quality. Export multilingual code samples, grab endpoints and keys, and open in VS Code for immediate integration, bridging experimentation to production in one streamlined developer workflow.
+
+### Compare models
+
+Compare mode enables developers to run controlled, parallel evaluations across up to three models simultaneously, using a synchronized input stream. Each model receives the exact same prompt context, system message, and parameter configuration, ensuring consistent test conditions for output benchmarking. Responses stream in real time, allowing developers to measure and visualize differences in latency, token throughput, and response fidelity side-by-side.
+
+To use compare mode from the playground of a deployed model:
+
+1. Select **Compare models** in the upper-right corner.
+1. Select up to two more models from existing or new deployments. Chat windows for the selected models open up side-by-side in the playground with synced prompt bars and setup. You can switch off sync from the **Setup** pane for each model, if needed.
+1. Enter your prompt in any of the prompt bars and see the prompt simultaneously appear in the others.
+1. Submit the prompt to see the output from each model simultaneously and compare the quality of the responses.
+1. Switch to the **Code** tab in the chat pane of each model to see multilingual code samples.
+1. For your preferred model, select either **Open in VS Code for the Web** from the code tab to continue development work or **Save as agent** to continue prototyping in the agent playground.
+
+### Generate and interpret code
+
+With code interpreter, you can extend model capabilities beyond text generation by enabling in-line code execution within the playground. When activated, supported models can write, run, and debug code directly in a secure, sandboxed environment. This environment is ideal for performing calculations, data transformations, plotting visualizations, or validating logic.
+
+To use code interpreter from the playground of a deployed model:
+
+1. Expand the **Tools** section in the deployed model's playground. 
+
+    > [!TIP]
+    > The **Tools** section isn't visible in the playground if you use compare mode to run parallel evaluations on models. You first have to close the other models that you're using for comparison before you can see the detailed playground that includes tools and other options for your deployed model.
+
+1. Select **Add** > **Code interpreter**, and attach your code files for the code interpreter.
+1. Use the playground to ask questions, interpret, or streamline your code. For example, "How should I make the attached code files more efficient?"
+
+::: moniker-end
+
+::: moniker range="foundry-classic"
 
 ## Audio playground
 
@@ -119,6 +206,93 @@ To try the transcription capability, follow these steps:
 
 1. Select **Generate transcription** to send the audio input to the model and receive a transcribed output in both text and JSON formats.
 
+## Language playground
+
+The [Language playground](https://ai.azure.com/build/playground/language) provides a code-free environment for testing and validating Azure Language in Foundry Tools capabilities. Use it to experiment with natural language processing (NLP) features such as **key data extraction**, **information summarization**, **text classification**, and **custom model fine-tuning**.
+
+The Language playground consists of four primary sections:
+
+- **Top banner**: Select from the available Language capabilities including language detection, entity recognition, sentiment analysis, PII detection, summarization, and conversational language understanding.
+- **Left pane**: Configure service options such as API version, model version, and capability-specific parameters.
+- **Center pane**: Enter or upload text for processing. Results display here after you execute the operation.
+- **Right pane**: View detailed operation results including entity categories, confidence scores, offsets, and JSON-formatted responses.
+
+To use the Language playground:
+
+1. Select **playgrounds** from the left pane.
+
+1. Select **Try Azure Language Playground**.
+
+1. Choose a Language capability from the top banner, such as:
+
+   - [**Analyze sentiment**](/azure/ai-services/language-service/sentiment-opinion-mining/overview)
+   - [**Conversational language understanding**](/azure/ai-services/language-service/conversational-language-understanding/overview)
+   - [**Custom named entity recognition**](/azure/ai-services/language-service/custom-named-entity-recognition/overview)
+   - [**Custom question answering**](/azure/ai-services/language-service/question-answering/overview)
+   - [**Detect language**](/azure/ai-services/language-service/language-detection/overview)
+   - [**Extract health information**](/azure/ai-services/language-service/text-analytics-for-health/overview)
+   - [**Extract key phrases**](/azure/ai-services/language-service/key-phrase-extraction/overview)
+   - [**Extract named entities**](/azure/ai-services/language-service/named-entity-recognition/overview)
+   - [**Extract PII from conversation or text**](/azure/ai-services/language-service/personally-identifiable-information/overview)
+   - [**Summarize conversation, call center transcripts, or text**](/azure/ai-services/language-service/summarization/overview)
+
+1. Select **Configure** to specify API version, model version, and capability-specific options such as language selection, entity types to include, or redaction policies for PII.
+
+1. Enter text directly in the sample window, select a pre-loaded text sample from the drop-down menu, or upload your own text file using the paperclip icon.
+
+1. Select the appropriate action button (for example, **Detect**, **Extract**, **Analyze**, or **Summarize**) to process the text.
+
+1. Review the results that display in the center pane and examine detailed output information in the **Details** section on the right pane, including confidence scores, entity categories, character offsets, and lengths.
+
+1. Select **View code** to access multilingual code samples in Python, C#, JavaScript, and other languages for integration into your applications.
+
+The Language playground accelerates development and enables rapid prototyping and validation of NLP capabilities before production implementation. It also supports training, deployment, testing, and fine-tuning of custom named entity recognition (NER) models with real-time debugging.
+
+## Translator playground
+
+The [Translator playground](https://ai.azure.com/build/playground/translator) provides a code-free environment for testing and validating Azure Translator capabilities. It supports both text translation and document translation workflows and enables developers to experiment with neural machine translation (NMT) and large language model (LLM)-based translation using GPT-4o and GPT-4o-mini.
+
+To use the Translator playground:
+
+1. Select **Playgrounds** from the left pane.
+
+1. Select **Try the Translator playground**.
+
+1. **For text translation:**
+
+   1. Enter or paste the text you want to translate in the input field.
+
+   1. Select the source language or enable automatic language detection.
+
+   1. Select one or more target languages for translation output.
+
+   1. Choose the translation model: Azure-MT (neural machine translation), GPT-4o, or GPT-4o-mini. LLM models enable translation with specific gender or tone adjustments and can be refined using domain-specific terminology.
+
+   1. (Optional) Configure advanced options such as profanity handling, text type, or custom glossaries.
+
+   1. Select **Translate** to generate the translation.
+
+   1. Review the translated output and compare results across different model selections.
+
+1. **For document translation:**
+
+   1. Select the **Document translation** option.
+
+   1. Upload your source document or select a pre-loaded document sample.
+
+   1. Specify the target language for translation.
+
+   1. (Optional) Apply custom translation models or custom glossaries to maintain domain-specific terminology consistency.
+
+   1. Select **Translate** to process the document. This preserves the original layout and formatting.
+
+   1. Download the translated document to your local computer.
+
+1. Select **View code** to access REST API examples and SDK code samples in multiple programming languages for integrating Translator capabilities into your applications.
+
+The Translator playground enables real-time validation of translation quality, prompt structures, and custom glossary effectiveness before production implementation. Use it to compare model outputs and optimize translation configurations for your specific use cases.
+
+::: moniker-end
 
 ## Video playground
 
@@ -126,10 +300,12 @@ The video playground (preview) is your rapid iteration environment for exploring
 
 All model endpoints are integrated with **Azure AI Content Safety**. As a result, the video playground filters out harmful and unsafe images before they appear. If content moderation policies flag your text prompt or video generation, you get a warning notification.
 
-You can use the video playground with the **Azure OpenAI Sora** model.
+You can use the video playground with the **Azure OpenAI Sora-2** model.
+
+::: moniker range="foundry-classic"
 
 > [!TIP]  
-> See the DevBlog for [Sora and video playground in Azure AI Foundry](https://devblogs.microsoft.com/foundry/sora-in-video-playground/).
+> See the DevBlog for [Sora and video playground in Foundry](https://devblogs.microsoft.com/foundry/sora-in-video-playground/).
 
 Follow these steps to use the video playground:
 
@@ -138,7 +314,7 @@ Follow these steps to use the video playground:
 
 1. Select **Try the Video playground** to open it.
 
-1. If you don't have a deployment already, select **Deploy now** from the top right side of the homepage and deploy the `sora` model.
+1. If you don't have a deployment already, select **Deploy now** from the top right side of the homepage and deploy the `sora-2` model.
 
 1. On the homepage of the video playground, get inspired by **pre-built prompts** sorted by the **industry** filter. From here, you can view the videos in full display and copy the prompt from the bottom right corner of a video to build from it.
 
@@ -162,6 +338,25 @@ Follow these steps to use the video playground:
 
 1. Port the code samples to production by copying them into VS Code.
 
+::: moniker-end
+
+::: moniker range="foundry"
+
+Follow these steps to use the video playground:
+
+> [!CAUTION]
+> Videos you generate are retained for 24 hours due to data privacy. Download videos to your local computer for longer retention.
+
+1. Select **Build** from the upper-right navigation.
+1. Select **Models** from the left pane.
+1. Select a video generation model, such as **sora-2** from your list of deployed models. If you don't have a deployment already, select **Deploy base model** from the top right side of the page and deploy the `sora-2` model.
+1. **Enter your text prompt**: Start with any text prompt for the video you want to generate. For models that enable image-to-video generation, upload an image attachment to the prompt bar and generate the video.
+1. **Explore the model API-specific generation controls**: Adjust key controls (for example, aspect ratio and duration) for a deeper understanding of specific model responsiveness and constraints.
+1. **Side-by-side observations in grid view**: Visually observe outputs across prompt tweaks or parameter changes.
+1. **Port to production with multi-lingual code samples**: Use multi-language code samples with **View Code**. Video playground is your launchpad to development work in VS Code.
+
+::: moniker-end
+
    
 ### What to validate when experimenting in video playground
 
@@ -170,9 +365,11 @@ When you use the video playground to plan your production workload, explore and 
 - **Prompt-to-Motion Translation**
     - Does the video model interpret your prompt in a way that makes logical and temporal sense?
     - Is motion coherent with the described action or scene?
+
 - **Frame Consistency**
     - Do characters, objects, and styles remain consistent across frames?
     - Are there visual artifacts, jitter, or unnatural transitions?
+
 - **Scene Control**
     - How well can you control scene composition, subject behavior, or camera angles?
     - Can you guide scene transitions or background environments?
@@ -198,24 +395,26 @@ When you use the video playground to plan your production workload, explore and 
 
 The images playground is ideal for developers who build image generation flows. This playground is a full-featured, controlled environment for high-fidelity experiments designed for model-specific APIs to generate and edit images.
 
+::: moniker range="foundry-classic"
+
 > [!TIP]  
-> See the [60-second reel of the Images playground for gpt-image-1](https://youtu.be/btA8njJjLXY) and our DevBlog for [Images Playground in Azure AI Foundry.](https://devblogs.microsoft.com/foundry/images-playground-may-2025/)
+> See the [60-second reel of the Images playground for gpt-image-1](https://youtu.be/btA8njJjLXY) and our DevBlog for [Images playground in Foundry.](https://devblogs.microsoft.com/foundry/images-playground-may-2025/)
 
 You can use the images playground with these models:
 
-- [gpt-image-1](https://ai.azure.com/explore/models/gpt-image-1/version/2025-04-15/registry/azure-openai) and [dall-e-3](https://ai.azure.com/resource/models/dall-e-3/version/3.0/registry/azure-openai/?cid=learnDocs) from Azure OpenAI.
-- [Stable Diffusion 3.5 Large](https://ai.azure.com/explore/models/Stable-Diffusion-3.5-Large/version/1/registry/azureml-stabilityai), [Stable Image Core](https://ai.azure.com/explore/models/Stable-Image-Core/version/1/registry/azureml-stabilityai), [Stable Image Ultra](https://ai.azure.com/explore/models/Stable-Image-Ultra/version/1/registry/azureml-stabilityai) from Stability AI.
+- [gpt-image-1](https://ai.azure.com/explore/models/gpt-image-1/version/2025-04-15/registry/azure-openai/?cid=learnDocs) and [dall-e-3](https://ai.azure.com/resource/models/dall-e-3/version/3.0/registry/azure-openai/?cid=learnDocs) from Azure OpenAI.
+- [Stable Diffusion 3.5 Large](https://ai.azure.com/explore/models/Stable-Diffusion-3.5-Large/version/1/registry/azureml-stabilityai/?cid=learnDocs), [Stable Image Core](https://ai.azure.com/explore/models/Stable-Image-Core/version/1/registry/azureml-stabilityai/?cid=learnDocs), [Stable Image Ultra](https://ai.azure.com/explore/models/Stable-Image-Ultra/version/1/registry/azureml-stabilityai/?cid=learnDocs) from Stability AI.
 - [FLUX.1-Kontext-pro](https://ai.azure.com/explore/models/FLUX.1-Kontext-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs) and [FLUX-1.1-pro](https://ai.azure.com/explore/models/FLUX-1.1-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs) from Black Forest Labs.
 
 Follow these steps to use the images playground:
 
 1. Select **Try the Images playground** to open it.
 
-1. If you don't have a deployment already, select **Create new deployment** and deploy a model such as `gpt-image-1`.
+1. If you don't have a deployment already, select **Create a deployment** and deploy a model such as `gpt-image-1`.
 
-1. **Start with a sample text prompt**: Select an option to get started with a prebuilt text prompt that automatically fills the prompt bar.
+1. **Enter your text prompt**: Start with any text prompt for the image you want to generate. For models that enable image-to-image generation, upload an image attachment to the prompt bar.
 
-1. **Explore the model API-specific generation controls after model deployment:** Adjust key controls (for example, number of variants, quality, strength) to deeply understand specific model responsiveness and constraints.
+1. **Explore the model API-specific generation controls after model deployment:** Adjust key controls (for example, number of variations, quality, size, image format) to deeply understand specific model responsiveness and constraints.
 
 1. Select **Generate**.
 
@@ -223,7 +422,32 @@ Follow these steps to use the images playground:
 
 1. **Transform with API tooling:** Inpainting with text transformation is available for gpt-image-1. Alter parts of your original image with inpainting selection. Use text prompts to specify the change.
 
-1. **Port to production with multi-lingual code samples:** Use Python, Java, JavaScript, C# code samples with "View Code". Images playground is your launchpad to development work in VS Code.
+1. **Port to production with multi-lingual code samples:** Use Python, Java, JavaScript, C# code samples with **View Code**. Images playground is your launchpad to development work in VS Code.
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+You can use the images playground with these models:
+
+- [gpt-image-1](https://ai.azure.com/explore/models/gpt-image-1/version/2025-04-15/registry/azure-openai/?cid=learnDocs) and [dall-e-3](https://ai.azure.com/resource/models/dall-e-3/version/3.0/registry/azure-openai/?cid=learnDocs) from Azure OpenAI.
+- [Stable Diffusion 3.5 Large](https://ai.azure.com/explore/models/Stable-Diffusion-3.5-Large/version/1/registry/azureml-stabilityai/?cid=learnDocs), [Stable Image Core](https://ai.azure.com/explore/models/Stable-Image-Core/version/1/registry/azureml-stabilityai/?cid=learnDocs), [Stable Image Ultra](https://ai.azure.com/explore/models/Stable-Image-Ultra/version/1/registry/azureml-stabilityai/?cid=learnDocs) from Stability AI.
+- [FLUX.1-Kontext-pro](https://ai.azure.com/explore/models/FLUX.1-Kontext-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs) and [FLUX-1.1-pro](https://ai.azure.com/explore/models/FLUX-1.1-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs) from Black Forest Labs.
+
+Follow these steps to use the images playground:
+
+1. Select **Build** from the upper-right navigation.
+1. Select **Models** from the left pane.
+1. Select an image generation model, such as **gpt-image-1** from your list of deployed models. If you don't have a deployment already, select **Deploy base model** from the top right side of the page and deploy the `gpt-image-1` model.
+1. **Enter your text prompt**: Start with any text prompt for the image you want to generate. For models that enable image-to-image generation, upload an image attachment to the prompt bar and generate the image.
+1. **Explore the model API-specific generation controls**: Adjust key controls (for example, number of variations and aspect ratio) for a deeper understanding of specific model responsiveness and constraints.
+1. **Side-by-side observations in grid view**: Visually observe outputs across prompt tweaks or parameter changes.
+1. **Transform with API tooling**: Inpainting with text transformation is available for gpt-image-1. Alter parts of your original image with inpainting selection. Use text prompts to specify the change. 
+1. **Port to production with multi-lingual code samples**: Use multi-language code samples with **View Code**. Images playground is your launchpad to development work in VS Code.
+
+
+
+::: moniker-end
 
 ### What to validate when experimenting in images playground
 
@@ -261,6 +485,6 @@ By using the images playground, you can explore and validate the following aspec
 
 ## Related content
 
-- [Use the chat playground in Azure AI Foundry portal](../quickstarts/get-started-playground.md)
+- [Use the chat playground in Foundry portal](../quickstarts/get-started-playground.md)
 - [Quickstart: Create a new agent (Preview)](../../ai-services/agents/quickstart.md)
-- [Basic Azure AI Foundry chat reference architecture](/azure/architecture/ai-ml/architecture/basic-azure-ai-foundry-chat)
+- [Basic Foundry chat reference architecture](/azure/architecture/ai-ml/architecture/basic-azure-ai-foundry-chat)

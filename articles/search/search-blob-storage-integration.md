@@ -6,7 +6,7 @@ manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 10/06/2025
 ms.update-cycle: 365-days
 ms.custom:
@@ -45,7 +45,7 @@ You can start directly in your Storage Account portal page.
 
 1. In the left navigation page under **Data management**, select **Azure AI Search** to select or create a search service. 
 
-1. Use an [import wizard](search-get-started-skillset.md) to extract and optionally create searchable content from your blobs. The workflow creates an indexer, data source, index, and option skillset on your Azure AI Search service.
+1. Use an [import wizard](search-get-started-skillset.md) to extract and optionally create searchable content from your blobs. The workflow creates an indexer, data source, index, and optional skillset on your Azure AI Search service.
 
    :::image type="content" source="media/search-blob-storage-integration/blob-blade.png" alt-text="Screenshot of the Azure AI Search wizard in the Azure Storage portal page." border="true":::
 
@@ -118,7 +118,7 @@ Add the following metadata properties and values to blobs in Blob Storage. When 
 | Property name | Property value | Explanation |
 | ------------- | -------------- | ----------- |
 | "AzureSearch_Skip" |`"true"` |Instructs the blob indexer to completely skip the blob. Neither metadata nor content extraction is attempted. This is useful when a particular blob fails repeatedly and interrupts the indexing process. |
-| "AzureSearch_SkipContent" |`"true"` |This is equivalent to the `"dataToExtract" : "allMetadata"` setting described [above](#PartsOfBlobToIndex) scoped to a particular blob. | 
+| "AzureSearch_SkipContent" |`"true"` |This is equivalent to the `"dataToExtract": "allMetadata"` setting described [here](/rest/api/searchservice/indexers/create?#blobindexerdatatoextract) but just scoped to a particular blob. | 
 
 ### Indexing blob metadata
 
@@ -137,7 +137,7 @@ The output of an indexer is a search index, used for interactive exploration usi
 + [Full query syntax](query-lucene-syntax.md)
 + [Filter expression syntax](query-odata-filter-orderby-syntax.md)
 
-A more permanent solution is to gather query inputs and present the response as search results in a client application. The following C# tutorial explains how to build a search application: [Add search to an ASP.NET Core (MVC) application](tutorial-csharp-create-mvc-app.md).
+A more permanent solution is to gather query inputs and present the response as search results in a client application.
 
 ## Next steps
 

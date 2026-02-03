@@ -6,7 +6,7 @@ items:
       - name: What is Azure Machine Learning?
         href: overview-what-is-azure-machine-learning.md
         displayName: AML, services, overview, introduction
-      - name: "Azure AI Foundry or Azure Machine Learning studio: Which should I choose?"
+      - name: "Microsoft Foundry or Azure Machine Learning studio: Which should I choose?"
         href: /ai/ai-studio-experiences-overview?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
       - name: Azure Machine Learning CLI and Python SDK
         href: concept-v2.md
@@ -556,7 +556,7 @@ items:
         href: how-to-schedule-pipeline-job.md
   - name: Explore AI model capabilities
     items:
-      - name: Explore Azure AI Foundry Models
+      - name: Explore Microsoft Foundry Models
         href: foundry-models-overview.md
       - name: Data, privacy, and security for Model Catalog
         href: concept-data-privacy.md
@@ -1523,6 +1523,8 @@ items:
                 href: reference-yaml-deployment-kubernetes-online.md
               - name: Batch
                 href: reference-yaml-deployment-batch.md
+              - name: Deployment template
+                href: reference-yaml-deployment-template.md
           - name: Component
             items:
               - name: Spark
@@ -1533,13 +1535,13 @@ items:
                 href: reference-yaml-component-pipeline.md
           - name: Connection
             items:
-              - name: Azure AI Services
+              - name: Foundry Tools
                 href: reference-yaml-connection-ai-services.md
               - name: Azure OpenAI
                 href: reference-yaml-connection-azure-openai.md
               - name: Azure AI Content Safety
                 href: reference-yaml-connection-ai-content-safety.md
-              - name: Azure AI Speech
+              - name: Azure Speech in Foundry Tools
                 href: reference-yaml-connection-speech.md
               - name: Azure AI Search
                 href: reference-yaml-connection-ai-search.md
@@ -1691,7 +1693,7 @@ items:
       - name: Azure roadmap
         href: https://azure.microsoft.com/roadmap/
       - name: Pricing
-        href: https://azure.microsoft.com/pricing/details/machine-learning-services/
+        href: https://azure.microsoft.com/pricing/details/machine-learning/%5C
       - name: Conda licensing
         href: /legal/machine-learning/conda-licensing
       - name: Regional availability

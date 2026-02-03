@@ -10,7 +10,7 @@ ms.date: 3/20/2025
 
 ## Prerequisites
 
-- An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>
+- An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 - <a href="https://nodejs.org/" target="_blank">Node.js LTS or ESM support.</a>
 - [TypeScript](https://www.typescriptlang.org/download/) installed globally.
 - An Azure OpenAI resource created in one of the supported regions. For more information about region availability, see the [models and versions documentation](../concepts/models.md#global-standard-model-availability).
@@ -94,14 +94,14 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     async function main(): Promise<void> {
         // The endpoint of your Azure OpenAI resource is required. You can set it in the AZURE_OPENAI_ENDPOINT
         // environment variable or replace the default value below.
-        // You can find it in the Azure AI Foundry portal in the Overview page of your Azure OpenAI resource.
+        // You can find it in the Microsoft Foundry portal in the Overview page of your Azure OpenAI resource.
         // Example: https://{your-resource}.openai.azure.com
         const endpoint = process.env.AZURE_OPENAI_ENDPOINT || 'AZURE_OPENAI_ENDPOINT';
         const baseUrl = endpoint.replace(/\/$/, "") + '/openai/v1';
     
         // The deployment name of your Azure OpenAI model is required. You can set it in the AZURE_OPENAI_DEPLOYMENT_NAME
         // environment variable or replace the default value below.
-        // You can find it in the Azure AI Foundry portal in the "Models + endpoints" page of your Azure OpenAI resource.
+        // You can find it in the Foundry portal in the "Models + endpoints" page of your Azure OpenAI resource.
         // Example: gpt-realtime
         const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'gpt-realtime';
     
@@ -301,20 +301,20 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     async function main(): Promise<void> {
         // The endpoint of your Azure OpenAI resource is required. You can set it in the AZURE_OPENAI_ENDPOINT
         // environment variable or replace the default value below.
-        // You can find it in the Azure AI Foundry portal in the Overview page of your Azure OpenAI resource.
+        // You can find it in the Foundry portal in the Overview page of your Azure OpenAI resource.
         // Example: https://{your-resource}.openai.azure.com
         const endpoint = process.env.AZURE_OPENAI_ENDPOINT || 'AZURE_OPENAI_ENDPOINT';
         const baseUrl = endpoint.replace(/\/$/, "") + '/openai/v1';
     
         // The deployment name of your Azure OpenAI model is required. You can set it in the AZURE_OPENAI_DEPLOYMENT_NAME
         // environment variable or replace the default value below.
-        // You can find it in the Azure AI Foundry portal in the "Models + endpoints" page of your Azure OpenAI resource.
+        // You can find it in the Foundry portal in the "Models + endpoints" page of your Azure OpenAI resource.
         // Example: gpt-realtime
         const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'gpt-realtime';
     
         // API Key of your Azure OpenAI resource is required. You can set it in the AZURE_OPENAI_API_KEY
         // environment variable or replace the default value below.
-        // You can find it in the Azure AI Foundry portal in the Overview page of your Azure OpenAI resource.
+        // You can find it in the Foundry portal in the Overview page of your Azure OpenAI resource.
         const token = process.env.AZURE_OPENAI_API_KEY || '<Your API Key>';
     
         // The APIs are compatible with the OpenAI client library.

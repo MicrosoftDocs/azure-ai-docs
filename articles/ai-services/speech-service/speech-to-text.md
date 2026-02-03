@@ -1,7 +1,7 @@
 ---
-title: Speech to text overview - Speech service
-titleSuffix: Azure AI services
-description: Get an overview of the benefits and capabilities of the speech to text feature of the Speech service.
+title: Speech to Text Overview - Speech Service
+titleSuffix: Foundry Tools
+description: Learn about speech to text benefits and capabilities, including real-time, fast, and batch transcription options for your applications.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
@@ -13,9 +13,9 @@ ms.author: pafarley
 
 # What is speech to text?
 
-Azure AI Speech service offers advanced speech to text capabilities. This feature supports both real-time and batch transcription, providing versatile solutions for converting audio streams into text. 
+Azure Speech in Foundry Tools service offers advanced speech to text capabilities. This feature supports both real-time and batch transcription, providing versatile solutions for converting audio streams into text. 
 
-## Core Features 
+## Core features of speech to text
 
 The speech to text service offers the following core features: 
 - [Real-time transcription](#real-time-transcription): Instant transcription with intermediate results for live audio inputs. 
@@ -37,13 +37,13 @@ Real-time speech to text is available via the [Speech SDK](speech-sdk.md), the [
 
 ## Fast transcription
 
-Fast transcription API is used to transcribe audio files with returning results synchronously and faster than real-time audio. Use fast transcription in the scenarios that you need the transcript of an audio recording as quickly as possible with predictable latency, such as: 
+Use the fast transcription API to transcribe audio files and return results synchronously and faster than real-time audio. Use fast transcription in scenarios where you need the transcript of an audio recording as quickly as possible with predictable latency, such as: 
 
 - Quick audio file transcription, captions, and edit
 - Meeting notes
 - Voicemail
 
-To get started with fast transcription, see [use the fast transcription API](fast-transcription-create.md).
+For more information, see [use the fast transcription API](fast-transcription-create.md).
 
 ## Batch transcription
 
@@ -51,7 +51,7 @@ To get started with fast transcription, see [use the fast transcription API](fas
 - Transcriptions, captions, or subtitles for large volumes of audio files
 - Analyzing call center recorded calls to extract valuable insights.
 
-Batch transcription is available via:
+You can access batch transcription through:
 - [Speech to text REST API](rest-speech-to-text.md): Facilitates batch processing with the flexibility of RESTful calls. To get started, see [How to use batch transcription](batch-transcription.md) and [Batch transcription samples](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/batch).
 - [Speech CLI](spx-overview.md): Supports both real-time and batch transcription, making it easy to manage transcription tasks. For Speech CLI help with batch transcriptions, run the following command:
 
@@ -61,14 +61,14 @@ Batch transcription is available via:
 
 ## Custom speech
 
-With [custom speech](./custom-speech-overview.md), you can evaluate and improve the accuracy of speech recognition for your applications and products. A custom speech model can be used for [real-time speech to text](speech-to-text.md), [speech translation](speech-translation.md), and [batch transcription](batch-transcription.md).
+By using [custom speech](./custom-speech-overview.md), you can evaluate and improve the accuracy of speech recognition for your applications and products. Use a custom speech model for [real-time speech to text](speech-to-text.md), [speech translation](speech-translation.md), and [batch transcription](batch-transcription.md).
 
 > [!TIP]
-> A [hosted deployment endpoint](how-to-custom-speech-deploy-model.md) isn't required to use custom speech with the [Batch transcription API](batch-transcription.md). You can conserve resources if the [custom speech model](how-to-custom-speech-train-model.md) is only used for batch transcription. For more information, see [Speech service pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).
+> To use custom speech with the [Batch transcription API](batch-transcription.md), you don't need a [hosted deployment endpoint](how-to-custom-speech-deploy-model.md). If you only use the [custom speech model](how-to-custom-speech-train-model.md) for batch transcription, you can conserve resources. For more information, see [Speech service pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).
 
-Out of the box, speech recognition utilizes a Universal Language Model as a base model that is trained with Microsoft-owned data and reflects commonly used spoken language. The base model is pretrained with dialects and phonetics representing various common domains. When you make a speech recognition request, the most recent base model for each [supported language](language-support.md?tabs=stt) is used by default. The base model works well in most speech recognition scenarios.
+Out of the box, speech recognition uses a Universal Language Model as a base model. Microsoft trains the base model with data it owns, so it reflects commonly used spoken language. The base model is pretrained with dialects and phonetics that represent various common domains. When you make a speech recognition request, the most recent base model for each [supported language](language-support.md?tabs=stt) is used by default. The base model works well in most speech recognition scenarios.
 
-Custom speech allows you to tailor the speech recognition model to better suit your application's specific needs. This can be particularly useful for: 
+By using custom speech, you can tailor the speech recognition model to better suit your application's specific needs. This tailoring is particularly useful for: 
 - **Improving recognition of domain-specific vocabulary**: Train the model with text data relevant to your field. 
 - **Enhancing accuracy for specific audio conditions**: Use audio data with reference transcriptions to refine the model. 
 
@@ -76,9 +76,9 @@ For more information about custom speech, see the [custom speech overview](./cus
 
 For details about customization options per language and locale, see the [language and voice support for the Speech service](./language-support.md?tabs=stt) documentation.
 
-## Usage Examples 
+## Usage examples 
 
-Here are some practical examples of how you can utilize Azure AI speech to text: 
+Here are some practical examples of how you can utilize Azure Speech to text: 
 
 | Use case | Scenario | Solution |
 | --- | --- | --- |
@@ -92,7 +92,7 @@ Here are some practical examples of how you can utilize Azure AI speech to text:
 
 ## Responsible AI 
 
-An AI system includes not only the technology, but also the people who use it, the people who are affected by it, and the environment in which it's deployed. Read the transparency notes to learn about responsible AI use and deployment in your systems. 
+An AI system includes not only the technology, but also the people who use it, the people who are affected by it, and the environment where it's deployed. Read the transparency notes to learn about responsible AI use and deployment in your systems. 
 
 * [Transparency note and use cases](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note)
 * [Characteristics and limitations](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note)

@@ -5,7 +5,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: include
-ms.date: 07/03/2025
+ms.date: 11/20/2025
 ---
 
 [!INCLUDE [Semantic ranker introduction](semantic-ranker-intro.md)]
@@ -17,11 +17,11 @@ In this quickstart, you use an IDE and the [**Azure.Search.Documents**](/dotnet/
 We recommend [Visual Studio](https://visualstudio.microsoft.com/vs/community/) for this quickstart.
 
 > [!TIP]
-> You can [download the source code](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-semantic-search) to start with a finished project or follow these steps to create your own. 
+> You can download the [source code](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-semantic-ranking) to start with a finished project or follow these steps to create your own.
 
 ### Install libraries
 
-1. Start Visual Studio and open the [quickstart-semantic-search.sln](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-semantic-search) or create a new project using a console application template.
+1. Start Visual Studio and open the [quickstart-semantic-ranking.sln](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-semantic-ranking) or create a new project using a console application template.
 
 1. In **Tools** > **NuGet Package Manager**, select **Manage NuGet Packages for Solution...**.
 
@@ -41,7 +41,7 @@ If you signed in to the [Azure portal](https://portal.azure.com), you're signed 
 
 In this section, you update a search index to include a semantic configuration. The code gets the index definition from the search service and adds a semantic configuration.
 
-1. Open the [BuildIndex project](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-semantic-search/BuildIndex) in Visual Studio. The program consists of the following code.
+1. Open the [BuildIndex project](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-semantic-ranking/BuildIndex) in Visual Studio. The program consists of the following code.
 
    This code uses a SearchIndexClient to update an index on your search service.
 
@@ -167,7 +167,7 @@ In this section, you update a search index to include a semantic configuration. 
 
 In this section, the program runs several semantic queries in sequence.
 
-1. Open the [QueryIndex project](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-semantic-search/QueryIndex) in Visual Studio. The program consists of the following code.
+1. Open the [QueryIndex project](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-semantic-ranking/QueryIndex) in Visual Studio. The program consists of the following code.
 
    This code uses a SearchClient for sending queries to an index.
 

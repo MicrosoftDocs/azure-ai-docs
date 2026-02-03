@@ -9,9 +9,22 @@ ms.topic: include
 zone_pivot_groups: azure-ai-models-deployment
 ---
 
-[!INCLUDE [Header](intro.md)]
+You can decide and configure which models are available for inference in your Microsoft Foundry resource. When you configure a model, you can generate predictions from it by specifying its model name or deployment name in your requests. You don't need to make any other changes in your code to use the model.
 
-* Install the [Azure CLI](/cli/azure/) and the `cognitiveservices` extension for Azure AI Services.
+In this article, you learn how to add a new model to a Foundry Models endpoint.
+
+## Prerequisites
+
+To complete this article, you need:
+
+* An Azure subscription. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Foundry Models](../../how-to/quickstart-github-models.md) if that's your case.
+
+* A Foundry project. This kind of project is managed under a Foundry resource (formerly known as Azure AI Services resource). If you don't have a Foundry project, see [Create a project for Microsoft Foundry](../../../how-to/create-projects.md).
+
+
+* [Foundry Models from partners and community](../../concepts/models-from-partners.md) require access to **Azure Marketplace**. Ensure you have the [permissions required to subscribe to model offerings](../../how-to/configure-marketplace.md). [Foundry Models sold directly by Azure](../../concepts/models-sold-directly-by-azure.md) don't have this requirement.
+
+* Install the [Azure CLI](/cli/azure/) and the `cognitiveservices` extension for Foundry Tools.
 
     ```azurecli
     az extension add -n cognitiveservices
@@ -23,9 +36,9 @@ zone_pivot_groups: azure-ai-models-deployment
 
   * Your Azure subscription ID.
 
-  * Your Azure AI Services resource name.
+  * Your Foundry Tools resource name.
 
-  * The resource group where you deployed the Azure AI Services resource.
+  * The resource group where you deployed the Foundry Tools resource.
     
     
 ## Add models
@@ -44,7 +57,7 @@ To add a model, first identify the model that you want to deploy. You can query 
     az account set --subscription $subscriptionId
     ```
 
-1. Set the following environment variables with the name of the Azure AI Services resource you plan to use and resource group.
+1. Set the following environment variables with the name of the Foundry Tools resource you plan to use and resource group.
 
     ```azurecli
     accountName="<ai-services-resource-name>"
@@ -52,7 +65,7 @@ To add a model, first identify the model that you want to deploy. You can query 
     location="eastus2"
     ```
 
-1. If you didn't create an Azure AI Services account yet, create one.
+1. If you didn't create a Foundry Tools account yet, create one.
 
     ```azurecli
     az cognitiveservices account create -n $accountName -g $resourceGroupName --custom-domain $accountName --location $location --kind AIServices --sku S0
@@ -109,7 +122,7 @@ __Inference endpoint__
 az cognitiveservices account show  -n $accountName -g $resourceGroupName | jq '.properties.endpoints["Azure AI Model Inference API"]'
 ```
 
-To make requests to the Azure AI Foundry Models endpoint, append the route `models`, for example `https://<resource>.services.ai.azure.com/models`. You can see the API reference for the endpoint at [Azure AI Model Inference API reference page](https://aka.ms/azureai/modelinference).
+To make requests to the Microsoft Foundry Models endpoint, append the route `models`, for example `https://<resource>.services.ai.azure.com/models`. You can see the API reference for the endpoint at [Azure AI Model Inference API reference page](https://aka.ms/azureai/modelinference).
 
 __Inference keys__
 

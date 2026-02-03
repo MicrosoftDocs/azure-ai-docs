@@ -1,14 +1,14 @@
 ---
 title: Set up the Bring your own storage (BYOS) Speech resource
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to set up Bring your own storage (BYOS) Speech resource.
 manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-azurepowershell
 ms.topic: how-to
 ms.date: 10/31/2025
-author: goergenj
-ms.author: jagoerge
+author: PatrickFarley
+ms.author: pafarley
 ---
 
 # Set up the Bring your own storage (BYOS) Speech resource
@@ -19,7 +19,7 @@ In BYOS scenarios, all traffic between the Speech resource and the Storage accou
 
 There's one exception: if you use Text to speech, and your Speech resource and the associated Storage account are located in different Azure regions, then public internet is used for the operations, involving [User delegation SAS](/azure/storage/common/storage-sas-overview#user-delegation-sas). See details in [this section](#configure-storage-account-security-settings-for-text-to-speech).
 
-BYOS can be used with several Azure AI services. For Speech, it can be used in the following scenarios:
+BYOS can be used with several Foundry Tools. For Speech, it can be used in the following scenarios:
 
 **Speech to text**
 
@@ -37,7 +37,7 @@ One Speech / AI Services resource – Storage account combination can be used fo
 This article describes how to create and maintain BYOS-enabled Speech resource and is applicable to all mentioned scenarios. See the scenario-specific information in the [corresponding articles](#next-steps).
 
 > [!NOTE]
-> For instruction on how to set up a BYOS-enabled AI Services resource go to **[Connect your own storage for Speech and Language services](../../ai-foundry/how-to/bring-your-own-azure-storage-speech-language-services.md)** in AI Foundry.
+> For instruction on how to set up a BYOS-enabled AI Services resource go to **[Connect your own storage for Speech and Language services](../../ai-foundry/how-to/bring-your-own-azure-storage-speech-language-services.md)** in Foundry.
 
 ## BYOS-enabled Speech resource: Basic rules
 
@@ -199,7 +199,7 @@ You can always check, whether any given Speech resource is BYOS enabled, and wha
 
 # [Azure portal](#tab/portal)
 
-To check BYOS configuration of an AI Foundry resource for Speech with Azure portal, you need to access some portal preview features. Perform the following steps:
+To check BYOS configuration of a Foundry resource for Speech with Azure portal, you need to access some portal preview features. Perform the following steps:
 
 1. Navigate to *Create Speech* page using [this link](https://ms.portal.azure.com/?feature.enablecsumi=true&feature.enablecsstoragemenu=true&microsoft_azure_marketplace_ItemHideKey=microsoft_azure_cognitiveservices_byospreview#create/Microsoft.CognitiveServicesSpeechServices).
 1.  Close *Create Speech* screen by pressing *X* in the right upper corner.
@@ -389,5 +389,5 @@ You need to allow access for the machine, where you run the browser using Speech
 ## Next steps
 
 - [Use the Bring your own storage (BYOS) Speech resource for Speech to text](bring-your-own-storage-speech-resource-speech-to-text.md)
-- AI Foundry [Connect to your own storage](../../ai-foundry/how-to/bring-your-own-azure-storage-foundry.md)
-- AI Foundry [Connect your own storage for Speech and Language services](../../ai-foundry/how-to/bring-your-own-azure-storage-speech-language-services.md)**
+- Foundry [Connect to your own storage](../../ai-foundry/how-to/bring-your-own-azure-storage-foundry.md)
+- Foundry [Connect your own storage for Speech and Language services](../../ai-foundry/how-to/bring-your-own-azure-storage-speech-language-services.md)**

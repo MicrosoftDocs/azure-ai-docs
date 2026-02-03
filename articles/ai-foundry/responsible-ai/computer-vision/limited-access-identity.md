@@ -1,13 +1,14 @@
 ---
 title: Limited Access features of Face
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about Face features that are in limited access.
+ai-usage: ai-assisted
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-vision
-ms.topic: article
-ms.date: 07/28/2025
+ms.topic: concept-article
+ms.date: 10/15/2025
 ---
 
 # Limited Access to Face API
@@ -16,7 +17,7 @@ ms.date: 07/28/2025
 
 Our vision is to empower developers and organizations to leverage AI to transform society in positive ways. We encourage responsible AI practices to protect the rights and safety of individuals. Microsoft facial recognition services are Limited Access in order to help prevent the misuse of the services in accordance with our [AI Principles](https://www.microsoft.com/ai/responsible-ai?SilentAuth=1&wa=wsignin1.0) and [facial recognition principles](https://blogs.microsoft.com/on-the-issues/2018/12/17/six-principles-to-guide-microsofts-facial-recognition-work/).
 
-Since the announcement on June 11th, 2020, Azure AI Face recognition services are strictly prohibited for use by or for U.S. police departments.
+Since the announcement on June 11th, 2020, Azure Face recognition in Foundry Tools is strictly prohibited for use by or for U.S. police departments.
 
 
 ## Registration process

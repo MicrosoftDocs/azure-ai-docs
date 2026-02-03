@@ -1,7 +1,7 @@
 ---
 title: Develop an evaluation flow
-titleSuffix: Azure AI Foundry
-description: Learn how to customize or create your own evaluation flow tailored to your tasks and objectives, and then use in a batch run as an evaluation method in prompt flow with Azure AI Foundry.
+titleSuffix: Microsoft Foundry
+description: Learn how to customize or create your own evaluation flow tailored to your tasks and objectives, and then use in a batch run as an evaluation method in prompt flow with Microsoft Foundry.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-prompt-flow
 ms.custom:
@@ -17,7 +17,9 @@ ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ms.update-cycle: 180-days
 ---
 
-# Develop an evaluation flow in Azure AI Foundry portal
+# Develop an evaluation flow in Microsoft Foundry portal
+
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 

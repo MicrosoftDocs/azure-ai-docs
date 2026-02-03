@@ -1,19 +1,18 @@
 ---
 title: How to label your data for Custom Named Entity Recognition (NER)
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to label your data for use with Custom Named Entity Recognition (NER).
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 09/24/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-ner
 ---
+# Label your data in Azure Language in Foundry Tools Studio
 
-# Label your data in Azure Language Studio
-
-Before training your model, you need to label your documents with the custom entities you want to extract. Data labeling is a crucial step in development lifecycle. You can create the entity types you want to extract from your data and label these entities within your documents. This data will be used in the next step when training your model so that your model can learn from the labeled data. If you already labeled data, you can directly [import](create-project.md#import-project) it into your project, but you need to make sure that your data follows the [accepted data format](../concepts/data-formats.md). See [create project](create-project.md#import-project) to learn more about importing labeled data into your project.
+Before training your model, you need to label your documents with the custom entities you want to extract. Data labeling is a crucial step in development lifecycle. You can create the entity types you want to extract from your data and label these entities within your documents. This data is used in the next step when training your model so that your model can learn from the labeled data. If you already labeled data, you can directly [import](create-project.md#import-project-rest-api) it into your project, but you need to make sure that your data follows the [accepted data format](../concepts/data-formats.md). See [create project](create-project.md#import-project-rest-api) to learn more about importing labeled data into your project.
 
 Before creating a custom NER model, you first need to label your data. If your data isn't labeled already, you can label it in the [Language Studio](https://aka.ms/languageStudio). Labeled data informs the model how to interpret text, and is used for training and evaluation.
 
@@ -51,7 +50,7 @@ Use the following steps to label your data:
 
 2. From the left side menu, select **Data labeling**. You can find a list of all documents in your storage container.
 
-    <!--:::image type="content" source="../media/tagging-files-view.png" alt-text="A screenshot showing the Language Studio screen for labeling data." lightbox="../media/tagging-files-view.png":::-->
+    <!--:::image type="content" source="../media/tagging-files-view.png" alt-text="A screenshot showing Azure Language Studio screen for labeling data." lightbox="../media/tagging-files-view.png":::-->
 
     >[!TIP]
     > You can use the filters in top menu to view the unlabeled documents so that you can start labeling them.

@@ -1,13 +1,13 @@
 ---
 title: Understand liveness client-side SDK versions 
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Explains the importance of updating the Liveness SDK for security and reliability, detailing versioning and update policies
-author: JinyuID
-ms.author: lijiny
+author: PatrickFarley
+ms.author: pafarley
 manager: qingflin
 ms.service: azure-ai-vision
-ms.date: 01/15/2025
-ms.topic: conceptual
+ms.date: 09/26/2025
+ms.topic: concept-article
 ---
 
 # Understand the liveness versions

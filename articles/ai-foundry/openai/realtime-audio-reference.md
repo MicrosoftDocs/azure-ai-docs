@@ -5,20 +5,24 @@ description: Learn how to use events with the Realtime API and Voice Live API.
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: conceptual
-ms.date: 09/16/2025
+ms.topic: reference
+ms.date: 01/29/2026
 author: PatrickFarley
 ms.author: pafarley
+monikerRange: 'foundry-classic || foundry'
 recommendations: false
+ai-usage: ai-assisted
 ---
 
 # Audio events reference
 
+[!INCLUDE [version-banner](../includes/version-banner.md)]
+
 Realtime events are used to communicate between the client and server in real-time audio applications. The events are sent as JSON objects over various endpoints, such as WebSockets or WebRTC. The events are used to manage the conversation, audio buffers, and responses in real-time.
 
 You can use audio client and server events with these APIs:
-- [Azure OpenAI Realtime API](/azure/ai-foundry/openai/realtime-audio-quickstart)
-- [Azure AI Voice Live API](/azure/ai-services/speech-service/voice-live)
+- [Azure OpenAI Realtime API](./realtime-audio-quickstart.md)
+- [Azure AI Voice Live API](../../ai-services/speech-service/voice-live.md)
 
 Unless otherwise specified, the events described in this document are applicable to both APIs.
 
@@ -1199,6 +1203,7 @@ The server `session.updated` event is returned when a session is updated by the 
 * `gpt-4o-transcribe`
 * `gpt-4o-mini-transcribe`
 * `gpt-4o-transcribe-diarize`
+* `gpt-4o-mini-transcribe-2025-12-15`
 
 
 ### RealtimeAudioInputTranscriptionSettings
@@ -1207,7 +1212,7 @@ The server `session.updated` event is returned when a session is updated by the 
 |-------|------|-------------|
 | language | string | The language of the input audio. Supplying the input language in ISO-639-1 format (such as `en`) will improve accuracy and latency. |
 | model | [RealtimeAudioInputTranscriptionModel](#realtimeaudioinputtranscriptionmodel) | The model for audio input transcription. For example, `whisper-1`. |
-| prompt | string | The prompt for the audio input transcription. Optional text to guide the model's style or continue a previous audio segment. For the `whisper-1` model, the prompt is a list of keywords. For the `gpt-4o-transcribe`, `gpt-4o-transcribe-diarize`, and `gpt-4o-mini-transcribe` models, the prompt is a free text string such as "expect words related to technology."|
+| prompt | string | The prompt for the audio input transcription. Optional text to guide the model's style or continue a previous audio segment. For the `whisper-1` model, the prompt is a list of keywords. For the `gpt-4o-transcribe`-series models and `gpt-4o-transcribe-diarize` model, the prompt is a free text string such as "expect words related to technology."|
 
 ### RealtimeAudioInputAudioNoiseReductionSettings
 
@@ -1397,7 +1402,7 @@ You use the `RealtimeRequestSession` object when you want to update the session 
 | turn_detection | [RealtimeTurnDetection](#realtimeturndetection) | The turn detection settings for the session.<br><br>This property is nullable. |
 | tools | array of [RealtimeTool](#realtimetool) | The tools available to the model for the session. |
 | tool_choice | [RealtimeToolChoice](#realtimetoolchoice) | The tool choice for the session.<br><br>Allowed values: `auto`, `none`, and `required`. Otherwise, you can specify the name of the function to use. |
-| temperature | number | The sampling temperature for the model. The allowed temperature values are limited to [0.6, 1.2]. Defaults to 0.8. |
+| temperature | number | The sampling temperature for the model. The allowed temperature values are limited to `0.6` through `1.2`. Defaults to `0.8`. |
 | max_response_output_tokens | integer or "inf" | The maximum number of output tokens per assistant response, inclusive of tool calls.<br><br>Specify an integer between 1 and 4096 to limit the output tokens. Otherwise, set the value to "inf" to allow the maximum number of tokens.<br><br>For example, to limit the output tokens to 1000, set `"max_response_output_tokens": 1000`. To allow the maximum number of tokens, set `"max_response_output_tokens": "inf"`.<br><br>Defaults to `"inf"`. |
 
 ### RealtimeRequestSystemMessageItem
@@ -1491,7 +1496,7 @@ The response resource.
 | output_audio_format | [RealtimeAudioFormat](#realtimeaudioformat) | The format for the output audio. | 
 | tools | array of [RealtimeTool](#realtimetool) | The tools available to the model for the session. |
 | tool_choice | [RealtimeToolChoice](#realtimetoolchoice) | The tool choice for the session. |
-| temperature | number | The sampling temperature for the model. The allowed temperature values are limited to [0.6, 1.2]. Defaults to 0.8. |
+| temperature | number | The sampling temperature for the model. The allowed temperature values are limited to `0.6` through `1.2`. Defaults to `0.8`. |
 | max__output_tokens | integer or "inf" | The maximum number of output tokens per assistant response, inclusive of tool calls.<br><br>Specify an integer between 1 and 4096 to limit the output tokens. Otherwise, set the value to "inf" to allow the maximum number of tokens.<br><br>For example, to limit the output tokens to 1000, set `"max_response_output_tokens": 1000`. To allow the maximum number of tokens, set `"max_response_output_tokens": "inf"`.<br><br>Defaults to `"inf"`. |
 | conversation | string | Controls which conversation the response is added to. The supported values are `auto` and `none`.<br><br>The `auto` value (or not setting this property) ensures that the contents of the response are added to the session's default conversation.<br><br>Set this property to `none` to create an out-of-band response where items won't be added to the default conversation. For more information, see the [how-to guide](./how-to/realtime-audio.md#out-of-band-responses).<br><br>Defaults to `"auto"` |
 | metadata | map | Set of up to 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.<br/><br/>For example: `metadata: { topic: "classification" }` |
@@ -1517,7 +1522,7 @@ The `RealtimeResponseSession` object represents a session in the Realtime API. I
 | turn_detection | [RealtimeTurnDetection](#realtimeturndetection) | The turn detection settings for the session.<br><br>This property is nullable. |
 | tools | array of [RealtimeTool](#realtimetool) | The tools available to the model for the session. |
 | tool_choice | [RealtimeToolChoice](#realtimetoolchoice) | The tool choice for the session. |
-| temperature | number | The sampling temperature for the model. The allowed temperature values are limited to [0.6, 1.2]. Defaults to 0.8. |
+| temperature | number | The sampling temperature for the model. The allowed temperature values are limited to `0.6` through `1.2`. Defaults to `0.8`. |
 | max_response_output_tokens | integer or "inf" | The maximum number of output tokens per assistant response, inclusive of tool calls.<br><br>Specify an integer between 1 and 4096 to limit the output tokens. Otherwise, set the value to "inf" to allow the maximum number of tokens.<br><br>For example, to limit the output tokens to 1000, set `"max_response_output_tokens": 1000`. To allow the maximum number of tokens, set `"max_response_output_tokens": "inf"`. |
 
 ### RealtimeResponseStatus

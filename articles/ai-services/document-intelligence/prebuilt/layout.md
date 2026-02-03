@@ -1,12 +1,12 @@
 ---
 title: Document layout analysis - Document Intelligence
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Extract text, tables, selections, titles, section headings, page headers, page footers, and more with the layout analysis model from Document Intelligence.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.topic: conceptual
-ms.date: 05/05/2025
+ms.topic: concept-article
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
@@ -21,7 +21,7 @@ ms.author: lajanuar
 
 [!INCLUDE [applies to v4.0](../includes/applies-to-v40.md)]
 
-The Azure AI Document Intelligence layout model is an advanced document-analysis API based on machine learning. The model is available in the Document Intelligence cloud. You can use it to take documents in various formats and return structured data representations of the documents. The model combines an enhanced version of the powerful [optical character recognition (OCR)](../../../ai-services/computer-vision/overview-ocr.md) capabilities with deep learning models to extract text, tables, selection marks, and document structure.
+The Azure Document Intelligence in Foundry Tools layout model is an advanced document-analysis API based on machine learning. The model is available in the Document Intelligence cloud. You can use it to take documents in various formats and return structured data representations of the documents. The model combines an enhanced version of the powerful [optical character recognition (OCR)](../../../ai-services/computer-vision/overview-ocr.md) capabilities with deep learning models to extract text, tables, selection marks, and document structure.
 
 ## Document structure layout analysis
 

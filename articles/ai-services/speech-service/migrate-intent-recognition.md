@@ -1,22 +1,22 @@
 ---
-title: Migrate from retired intent recognition in Azure AI Speech
-description: Learn about the retirement of intent recognition in Azure AI Speech and how to migrate to Azure AI Language Service or Azure OpenAI.
+title: Migrate from retired intent recognition in Azure Speech in Foundry Tools
+description: Learn about the retirement of intent recognition in Azure Speech in Foundry Tools and how to migrate to Azure Language in Foundry Tools Service or Azure OpenAI.
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 10/31/2025
 ai-usage: ai-assisted
-author: goergenj
-ms.author: jagoerge
+author: PatrickFarley
+ms.author: pafarley
 #Customer intent: As a developer, I want to migrate from Speech IntentRecognizer to an alternative.
 ---
 
 # Migrate from retired intent recognition
 
-Intent recognition in Azure AI Speech was retired on September 30, 2025. Applications can no longer use intent recognition via Azure AI Speech. However, you can still perform intent recognition using Azure AI Language Service or Azure OpenAI.
+Intent recognition in Azure Speech in Foundry Tools was retired on September 30, 2025. Applications can no longer use intent recognition via Speech. However, you can still perform intent recognition using Azure Language in Foundry Tools Service or Azure OpenAI.
 
-This change doesn't affect other Azure AI Speech capabilities such as [speech to text](./speech-to-text.md) (including no change to speaker diarization), [text to speech](./text-to-speech.md), and [speech translation](./speech-translation.md).
+This change doesn't affect other Speech capabilities such as [speech to text](./speech-to-text.md) (including no change to speaker diarization), [text to speech](./text-to-speech.md), and [speech translation](./speech-translation.md).
 
-Azure AI Speech previously exposed the `IntentRecognizer` object family in the Speech SDK. These APIs depended on a Language Understanding Intelligent Service (LUIS) application or simple pattern matching constructs. With the retirement:
+Speech previously exposed the `IntentRecognizer` object family in the Speech SDK. These APIs depended on a Language Understanding Intelligent Service (LUIS) application or simple pattern matching constructs. With the retirement:
 
 * `IntentRecognizer`, pattern matching intents/entities, and related parameters are no longer available.
 * Existing applications must remove direct Speech SDK intent logic and adopt a two-step approach (speech to text, then intent classification) or a single prompt-based approach.
@@ -25,7 +25,7 @@ Azure AI Speech previously exposed the `IntentRecognizer` object family in the S
 
 | Requirement | Recommended service | Why |
 |-------------|---------------------|-----|
-| Structured intent and entity extraction with labeled training data | Azure AI Language Service Conversational Language Understanding (CLU) | Purpose-built for multi-intent classification and entity extraction; supports versions, testing, and analytics. |
+| Structured intent and entity extraction with labeled training data | Language Service Conversational Language Understanding (CLU) | Purpose-built for multi-intent classification and entity extraction; supports versions, testing, and analytics. |
 | Few-shot or zero-shot dynamic intent determination | Azure OpenAI | Use GPT models with example prompts; rapidly adapt without schema changes. |
 | Combine transcription with generative reasoning (summaries + intents) | Azure OpenAI + Speech | Transcribe audio then enrich with GPT outputs for complex reasoning. |
 | Multilingual speech input flowed into consistent intent schema | Speech (STT) + CLU | Speech handles transcription; CLU handles normalization and classification. |

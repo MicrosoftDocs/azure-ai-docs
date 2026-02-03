@@ -1,12 +1,12 @@
 ---
 title: Captioning with speech to text - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: An overview of key concepts for captioning with speech to text.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 08/07/2025
 ms.author: pafarley
 zone_pivot_groups: programming-languages-speech-sdk-cli

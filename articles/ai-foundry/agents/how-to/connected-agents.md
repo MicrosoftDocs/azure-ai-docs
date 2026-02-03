@@ -1,12 +1,12 @@
 ---
 title: 'How to use connected agents'
-titleSuffix: Azure AI Foundry
-description: Learn how to create multi-agentic systems using connected agents in the Azure AI Foundry Agent Service.
+titleSuffix: Microsoft Foundry
+description: Learn how to create multi-agentic systems using connected agents in the Foundry Agent Service.
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 11/04/2025
+ms.date: 12/17/2025
 author: aahill
 ms.author: aahi
 recommendations: false
@@ -16,7 +16,12 @@ zone_pivot_groups: selection-connected-agents
 
 # Build collaborative, multi-agent systems with Connected Agents
 
-Connected agents in Azure AI Foundry Agent Service let you break down complex tasks into coordinated, specialized roles—without the need for a custom orchestrator or hand-coded routing logic. With this capability, you can design systems where a primary agent intelligently delegates to purpose-built subagents, streamlining workflows like customer support, market research, legal summarization, and financial analysis.
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
+> [!NOTE]
+> This tool is only available in `2025-05-15-preview` API. We highly recommend you to migrate to use the `2025-11-15-preview` API version [workflows](../../default/agents/concepts/workflow.md) for multi-agent orchestration.
+
+Connected agents in Foundry Agent Service let you break down complex tasks into coordinated, specialized roles—without the need for a custom orchestrator or hand-coded routing logic. With this capability, you can design systems where a primary agent intelligently delegates to purpose-built subagents, streamlining workflows like customer support, market research, legal summarization, and financial analysis.
 
 Rather than overloading one agent with too many skills, you can build focused, reusable agents that collaborate seamlessly—scaling both performance and maintainability.
 
@@ -86,7 +91,7 @@ Checks the contract against internal standards or uploaded guidelines to identif
 2. Select an existing agent from the list or create a new one.
 3. Scroll down to the **Connected agents** section in the agent's set up panel and select **Add +**.
 
-:::image type="content" source="../media\connected-agents\connected-agents-foundry.png" alt-text="A screenshot of the agents page in the Azure AI Foundry." lightbox="../media\connected-agents\connected-agents-foundry.png":::
+:::image type="content" source="../media\connected-agents\connected-agents-foundry.png" alt-text="A screenshot of the agents page in the Microsoft Foundry." lightbox="../media\connected-agents\connected-agents-foundry.png":::
 
 4. In the dialog that appears, choose an agent for the main agent to delegate tasks to, and describe:
    - Select an **existing agent** from the dropdown. This is the connected agent that the main agent will delegate tasks to.
@@ -324,3 +329,21 @@ To create a multi-agent setup, follow these steps:
     ```
 
 ::: zone-end
+
+## Publish connected agents to Azure
+
+After testing your connected agents, you can publish them to Azure for production use. The publishing process for connected agents has one key difference from publishing individual agents: **both the main agent and all connected agents must be published separately** as Agent Applications.
+
+### Connected agents-specific considerations
+
+* **Publish each agent individually**: Publish the connected agents first, then the main agent. Each receives its own stable endpoint and Agent Identity.
+* **Routing continues to work**: After publishing, the main agent automatically routes to the published connected agents using their Agent IDs in the `ConnectedAgentToolDefinition`. No code changes are needed.
+* **Identity management**: Published connected agents receive their own Agent Identity. Reconfigure permissions for any Azure resources that your connected agents access, as the shared development identity permissions don't transfer.
+
+For complete publishing instructions, including how to publish agents through the portal or REST API, authentication configuration, and consuming published agents, see [Publish and share agents in Microsoft Foundry](../../default/agents/how-to/publish-agent.md).
+
+## Related content
+
+* [Publish and share agents in Microsoft Foundry](../../default/agents/how-to/publish-agent.md)
+* [Agent identity concepts](../../default/agents/concepts/agent-identity.md)
+* [Role-based access control for Microsoft Foundry](../../concepts/rbac-foundry.md)

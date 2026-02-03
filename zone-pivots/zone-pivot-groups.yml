@@ -314,22 +314,6 @@ groups:
     title: REST
   - id: programming-language-typescript
     title: TypeScript
-- id: programming-languages-ai-search-rag-qs
-  title: Programming languages
-  prompt: Choose a programming language
-  pivots:
-  - id: csharp
-    title: C#
-  - id: java
-    title: Java
-  - id: javascript
-    title: JavaScript
-  - id: python
-    title: Python
-  - id: rest
-    title: REST
-  - id: typescript
-    title: TypeScript
 # Owner: diberry
 - id: programming-languages-rest-ps-py-js
   title: Programming languages
@@ -505,6 +489,8 @@ groups:
   title: Programming languages
   prompt: Choose a programming language or tool
   pivots:
+  - id: ai-foundry
+    title: Foundry portal
   - id: programming-language-csharp
     title: C#
   - id: programming-language-cpp
@@ -515,14 +501,21 @@ groups:
     title: Java
   - id: programming-language-javascript
     title: JavaScript
-  - id: programming-language-objectivec
-    title: Objective-C
   - id: programming-language-python
     title: Python
   - id: programming-language-swift
     title: Swift
   - id: programming-language-typescript
     title: TypeScript
+  - id: programming-language-rest
+    title: REST
+- id: programming-languages-text-to-speech-avatar
+# Owner: eur
+  title: Programming languages
+  prompt: Choose a programming language or tool
+  pivots:
+  - id: ai-foundry
+    title: Foundry portal
   - id: programming-language-rest
     title: REST
 - id: programming-languages-set-thirteen
@@ -789,6 +782,15 @@ groups:
       title: C#
     - id: programming-language-rest
       title: REST
+- id: azure-ai-create-deployment
+# Owner: mopeakande
+  title: Programming languages
+  prompt: Choose a tool or API
+  pivots:
+    - id: programming-language-cli
+      title: Azure CLI
+    - id: programming-language-bicep
+      title: Bicep
 - id: azure-ai-models-deployment
 # Owner: santiagxf
   title: Prograaming languages
@@ -806,7 +808,7 @@ groups:
   prompt: Choose a tool or API
   pivots:
     - id: ai-foundry-portal
-      title: Azure AI Foundry portal
+      title: Foundry portal
     - id: python-sdk
       title: Python SDK
 - id: azure-ai-serverless-deployment
@@ -815,7 +817,7 @@ groups:
   prompt: Choose a tool or API
   pivots:
     - id: ai-foundry-portal
-      title: Azure AI Foundry portal
+      title: Foundry portal
     - id: programming-language-cli
       title: Azure CLI
     - id: python-sdk
@@ -1151,7 +1153,7 @@ groups:
   prompt: Choose a programming language
   pivots:
   - id: foundry
-    title: Azure AI Foundry
+    title: Foundry portal
   - id: programming-language-csharp
     title: C#
   - id: programming-language-python
@@ -1227,16 +1229,14 @@ groups:
   prompt: What would you like to see?
   pivots:
   - id: portal
-    title: Azure AI Foundry portal
+    title: Foundry portal
   - id: python
     title: Python
-# owner: aahi
+# owner: aashcraft
 - id: selection-code-interpreter
   title: Selections
   prompt: What would you like to see?
   pivots:
-  - id: portal
-    title: Azure AI Foundry portal
   - id: python
     title: Python
   - id: csharp
@@ -1247,6 +1247,86 @@ groups:
     title: Java 
   - id: rest-api
     title: REST API
+- id: selection-code-interpreter-new
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python
+  - id: csharp
+    title: C#
+- id: selection-ai-search-tool
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python
+  - id: csharp
+    title: C#
+  - id: rest
+    title: REST API
+  - id: typescript
+    title: TypeScript
+- id: selection-fabric-tool
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python
+  - id: csharp
+    title: C#
+  - id: rest
+    title: REST API
+  - id: typescript
+    title: TypeScript
+- id: selection-browser-tool
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python
+  - id: csharp
+    title: C#
+  - id: rest
+    title: REST API
+  - id: typescript
+    title: TypeScript
+- id: selection-computer-use
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python
+  - id: csharp
+    title: C#
+  - id: typescript
+    title: TypeScript
+# owner: aashcraft
+- id: selection-web-search
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python
+  - id: csharp
+    title: C#
+  - id: rest-api
+    title: REST API
+  - id: typescript
+    title: TypeScript
+# owner: aahi
+- id: selection-image-generation
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python
+  - id: csharp
+    title: C#
+  - id: rest-api
+    title: REST API
+  - id: typescript
+    title: TypeScript
 - id: selection-deep-research
   title: Selections
   prompt: What would you like to see?
@@ -1263,7 +1343,7 @@ groups:
   prompt: What would you like to see?
   pivots:
   - id: portal
-    title: Azure AI Foundry portal
+    title: Foundry portal
   - id: python
     title: Python
   - id: rest
@@ -1278,6 +1358,18 @@ groups:
     title: Python
   - id: rest
     title: REST API
+- id: selection-mcp-code-new
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python
+  - id: csharp
+    title: C#
+  - id: typescript
+    title: TypeScript
+  - id: rest
+    title: REST API
 - id: selection-agent-sharepoint
   title: Selections
   prompt: What would you like to see?
@@ -1286,12 +1378,24 @@ groups:
     title: Python
   - id: rest
     title: REST API
+- id: selection-agent-sharepoint-new
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python 
+  - id: csharp
+    title: C#
+  - id: rest
+    title: REST API
+  - id: typescript
+    title: TypeScript
 - id: selection-file-search-upload
   title: Selections
   prompt: What would you like to see?
   pivots:
   - id: portal
-    title: Azure AI Foundry portal
+    title: Foundry portal
   - id: python  
     title: Python
   - id: csharp
@@ -1302,13 +1406,25 @@ groups:
     title: Java
   - id: rest
     title: REST API
+- id: selection-file-search-upload-new
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python  
+    title: Python
+  - id: csharp
+    title: C#
+  - id: rest
+    title: REST API
+  - id: typescript
+    title: TypeScript
 # owner: fosteramanda
 - id: selection-azure-ai-search
   title: Selections
   prompt: What would you like to see?
   pivots:
   - id: portal
-    title: Azure AI Foundry portal
+    title: Foundry portal
   - id: python
     title: Python
   - id: csharp
@@ -1324,7 +1440,7 @@ groups:
   prompt: What would you like to see?
   pivots:
   - id: portal
-    title: Azure AI Foundry portal
+    title: Foundry portal
   - id: csharp
     title: C# 
   - id: python
@@ -1335,7 +1451,7 @@ groups:
   prompt: What would you like to see?
   pivots:
   - id: portal
-    title: Azure AI Foundry portal
+    title: Foundry portal
   - id: python
     title: Python
   - id: csharp
@@ -1346,12 +1462,24 @@ groups:
     title: Java
   - id: rest
     title: REST API
+- id: selection-bing-grounding-new
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python
+  - id: csharp
+    title: C#
+  - id: rest
+    title: REST API
+  - id: typescript
+    title: TypeScript
 - id: selection-bing-custom-grounding
   title: Selections
   prompt: What would you like to see?
   pivots:
   - id: portal
-    title: Azure AI Foundry portal
+    title: Foundry portal
   - id: python
     title: Python
   - id: rest
@@ -1361,7 +1489,7 @@ groups:
   prompt: What would you like to see?
   pivots:
   - id: portal
-    title: Azure AI Foundry portal
+    title: Foundry portal
   - id: python
     title: Python 
   - id: csharp
@@ -1372,6 +1500,18 @@ groups:
     title: Java
   - id: rest-api
     title: REST API
+- id: selection-openapi-function-new
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python 
+  - id: csharp
+    title: C#
+  - id: rest
+    title: REST API
+  - id: typescript
+    title: TypeScript
 - id: selection-azure-functions-samples
   title: Selections
   prompt: What would you like to see?
@@ -1398,6 +1538,28 @@ groups:
     title: Java
   - id: rest
     title: REST API
+- id: selection-function-calling-new
+  title: Selections
+  prompt: Choose a usage method
+  pivots:
+  - id: python
+    title: Python
+  - id: csharp
+    title: C#
+  - id: rest
+    title: REST API
+- id: selection-agent-to-agent
+  title: Selections
+  prompt: Choose a usage method
+  pivots:
+  - id: python
+    title: Python
+  - id: csharp
+    title: C#
+  - id: rest-api
+    title: REST API
+  - id: typescript
+    title: TypeScript
 # owner: sgilley
 - id: programming-languages-sdk-overview
   title: Programming languages
@@ -1433,6 +1595,8 @@ groups:
     title: Python
   - id: programming-language-csharp
     title: C#
+  - id: programming-language-java
+    title: Java
 - id: voice-live-quickstart-agents
 # Owner: eur
   title: Programming languages
@@ -1634,33 +1798,24 @@ groups:
     title: C#
   - id: rest
     title: REST
- # Owner: laujan
+ # Owner: laujan/lajanuar
 - id: foundry-rest-api
   title: API methods and platforms
-  prompt: Choose an API
+  prompt: Select the Foundry platform or REST API 
   pivots:
-  - id: azure-ai-foundry
-    title: Azure AI Foundry
+  - id: microsoft-foundry
+    title: Microsoft Foundry
   - id: rest-api
-    title: REST API
+    title: Azure Language REST API
 # Owner: jburchel/jonburchel
 - id: set-up-key-vault
   title: Set up Key Vault
   prompt: Choose a method to set up Key Vault
   pivots:
   - id: ai-foundry-portal
-    title: Azure AI Foundry portal
+    title: Foundry portal
   - id: bicep
     title: Bicep
-# Owner: haileytapia
-- id: azure-portal-wizards
-  title: Azure portal wizards
-  prompt: Choose a wizard
-  pivots:
-  - id: import-data-new
-    title: Import data (new)
-  - id: import-data
-    title: Import data
 # Owner: johalexander / ms-johnalex
 - id: ai-foundry-vsc-extension-languages
   title: Programming languages
@@ -1668,5 +1823,16 @@ groups:
   pivots:
   - id: python
     title: Python
+  - id: csharp
+    title: C#
+# Owner: haileytapia
+- id: agentic-retrieval-pivots
+  title: Agentic retrieval pivots
+  prompt: Choose a usage method
+  pivots:
+  - id: python
+    title: Python
+  - id: rest
+    title: REST
   - id: csharp
     title: C#

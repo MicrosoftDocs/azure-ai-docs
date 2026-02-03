@@ -1,28 +1,43 @@
 ---
-title: Azure AI Foundry known issues
-titlesuffix: Azure AI Foundry
-description: Known and common issues with Azure AI Foundry.
+title: Microsoft Foundry known issues
+titlesuffix: Microsoft Foundry
+description: Known and common issues with Microsoft Foundry.
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ms.service: azure-ai-foundry
-ms.topic: reference
+ms.topic: troubleshooting-known-issue
 ms.date: 11/07/2025
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: bgilmore
 ---
 
-# Azure AI Foundry known issues
+# Microsoft Foundry known issues
 
-Azure AI Foundry is updated regularly and we're continually improving and enhancing its features and capabilities. This page details known issues related to Azure AI Foundry and provides steps to resolve them. Before submitting a support request, review the following list to see if your problem is already being addressed and to find a possible solution.
+[!INCLUDE [version-banner](../includes/version-banner.md)]
+
+Microsoft Foundry is updated regularly and we're continually improving and enhancing its features and capabilities. This page details known issues related to Foundry and provides steps to resolve them. Before submitting a support request, review the following list to see if your problem is already being addressed and to find a possible solution.
 
 * For more information regarding service-level outages, *see* the [Azure status page](https://azure.status.microsoft/en-us/status). 
 * To set up outage notifications and alerts, *see* the [Azure Service Health Portal](/azure/service-health/service-health-portal-update).
 
+:::moniker range="foundry"
 
+## General Foundry known issues 
+
+Issue ID|Category|Title|Description|Workaround|Issues publish date|
+|--------|--------|----|-----------|----------|-------------------|
+| 0001   | Foundry Portal |Network isolation in new Foundry  | End-to-end network isolation is not supported in the new Foundry portal experience. | When you have configured network isolation (disabled public network access, enabled private endpoints, and virtual network-injected Agents), you must use the classic Foundry portal experience, the SDK, or CLI to securely access your Foundry projects.  |December 5, 2025 |
+| 0002   | Foundry Portal | Multiple projects per Foundry resource  | The new Foundry portal experience does not support multiple projects per Foundry resource. Each Foundry resource supports only 1 default project. | None  | December 5, 2025 |
+
+:::moniker-end
+
+<!---
 ## Agent Service
 
 No current active known issues
 
-## AI Services
+## Foundry Tools
 
 ### AI Content Safety
 
@@ -39,6 +54,7 @@ No current active known issues
 ### AI Language
 
 No current active known issues
+--->
 
 ### AI Speech
 
@@ -84,7 +100,7 @@ This table lists the current known issues for the Speech SDK/Runtime feature.
 
 ### AI Translator
 
-The following tables describe the current known issues for Azure AI Translator. 
+The following tables describe the current known issues for Azure Translator in Foundry Tools. 
 
 #### Text Translation active known issues
 

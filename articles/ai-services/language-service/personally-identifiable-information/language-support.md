@@ -1,16 +1,15 @@
 ---
 title: Personally Identifiable Information (PII) detection language support
-titleSuffix: Azure AI services
-description: This article explains which natural languages the PII detection feature supports of Azure AI Language.
+titleSuffix: Foundry Tools
+description: This article explains which natural languages the PII detection feature supports of Azure Language in Foundry Tools.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
-ms.date: 06/04/2025
+ms.topic: concept-article
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-pii, build-2024
 ---
-
 # Personally Identifiable Information (PII) detection language support
 
 Use this article to learn which natural languages text PII, document PII, and conversation PII features support.

@@ -6,7 +6,7 @@ ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: how-to
 ms.date: 08/07/2025
-ms.reviewer: fasantia
+ms.reviewer: jturuk
 reviewer: santiagxf
 ms.author: scottpolly
 author: s-polly
@@ -435,7 +435,7 @@ In this section, you create an endpoint with the name **Bria-2.3-Fast**.
 
 ## Use the standard deployment
 
-Models deployed in Azure Machine Learning and Azure AI Foundry in standard deployments support the [Azure AI Model Inference API](reference-model-inference-api.md) that exposes a common set of capabilities for foundational models and that can be used by developers to consume predictions from a diverse set of models in a uniform and consistent way. 
+Models deployed in Azure Machine Learning and Microsoft Foundry in standard deployments support the [Azure AI Model Inference API](reference-model-inference-api.md) that exposes a common set of capabilities for foundational models and that can be used by developers to consume predictions from a diverse set of models in a uniform and consistent way. 
 
 Read more about the [capabilities of this API](reference-model-inference-api.md#capabilities) and how [you can use it when building applications](reference-model-inference-api.md#getting-started). 
 
@@ -520,7 +520,7 @@ You can find the pricing information on the __Pricing and terms__ tab of the dep
 
 #### Cost for non-Microsoft models
 
-Non-Microsoft models deployed as standard deployments are offered through Azure Marketplace and integrated with Azure AI Foundry for use. You can find Azure Marketplace pricing when deploying or fine-tuning these models.
+Non-Microsoft models deployed as standard deployments are offered through Azure Marketplace and integrated with Foundry for use. You can find Azure Marketplace pricing when deploying or fine-tuning these models.
 
 Each time a workspace subscribes to a given offer from Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference and fine-tuning; however, multiple meters are available to track each scenario independently.
 

@@ -9,8 +9,8 @@ ms.topic: how-to
 author: s-polly
 ms.author: scottpolly
 ms.date: 03/18/2024
-ms.reviewer: cacrest
-ms.custom: devplatv2, update-code
+ms.reviewer: jturuk
+ms.custom: devplatv2, update-code3
 ---
 
 # Customize outputs in batch deployments

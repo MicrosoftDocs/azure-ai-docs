@@ -1,17 +1,17 @@
 ---
-title: "What is a workspace and project? - Azure AI Custom Translator"
-titleSuffix: Azure AI services
-description: In This article, learn the differences between a workspace and a project as well as project categories and labels for the Azure AI Custom Translator service.
+title: "What is a workspace and project? - Custom Translator"
+titleSuffix: Foundry Tools
+description: In This article, learn the differences between a workspace and a project as well as project categories and labels for the Custom Translator service.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 05/19/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom: cogserv-non-critical-translator
 #Customer intent: As a Custom Translator user, I want to concept of a project, so that I can use it efficiently.
 ---
-# What is an Azure AI Custom Translator workspace?
+# What is a Custom Translator workspace?
 
 A workspace is a work area for composing and building your custom translation system. A workspace can contain multiple projects, models, and documents. All the work you do in Custom Translator is inside a specific workspace.
 
@@ -21,7 +21,7 @@ Workspace is private to you and the people you invite into your workspace. Uninv
 
 A project is a wrapper for a model, documents, and tests. Each project automatically includes all documents that are uploaded into that workspace that
 have the correct language pair. For example, if you have both an English-to-Spanish project and a Spanish-to-English project, the same documents are
-included in both projects. Each project has a CategoryID associated with it that is used when querying the [v3 API](../../text-translation/reference/v3/translate.md?tabs=curl) for translations. CategoryID is parameter used to get translations from a customized system built with Custom Translator.
+included in both projects. Each project has a CategoryID associated with it used when querying the [v3 API](../../text-translation/reference/v3/translate.md?tabs=curl) for translations. CategoryID is parameter used to get translations from a customized system built with Custom Translator.
 
 ## Project categories
 
@@ -34,7 +34,7 @@ In the same workspace, you can create projects for the same language pair in dif
 Custom Translator allows you to assign a project label to your project. The project label distinguishes between multiple projects with the same language
 pair and category. As a best practice, avoid using project labels unless necessary.
 
-The project label is used as part of the `CategoryID`. If the project label is left unset or is set identically across projects, then projects with the same category and *different* language pairs share the same CategoryID. This approach is advantageous because it allows you to switch between languages when using the  Translator API without worrying about a CategoryID that is unique to each project.
+The project label is used as part of the `CategoryID`. If the project label is left unset or is set identically across projects, then projects with the same category and *different* language pairs share the same CategoryID. This approach is advantageous because it allows you to switch between languages when using the  Translator API without worrying about a CategoryID that's unique to each project.
 
 For example, if I wanted to enable translations in the Technology domain from English-to-French and from French-to-English, I would create two
 projects: one for English -\> French, and one for French -\> English. I would specify the same category (Technology) for both and leave the project label

@@ -1,23 +1,26 @@
 ---
-title: 'Quickstart: Use vision-enabled chats with the Azure OpenAI in Azure AI Foundry Models'
+title: 'Quickstart: Use vision-enabled chats with the Azure OpenAI in Microsoft Foundry Models'
 titleSuffix: Azure OpenAI
 description: Use this article to get started using Azure OpenAI to deploy and use the GPT-4 Turbo with Vision model or other vision-enabled models. 
-services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.custom: devx-track-python, devx-track-js, devx-track-ts
+ms.custom: devx-track-python, devx-track-js, devx-track-ts, dev-focus
 ms.topic: quickstart
 author: PatrickFarley
 ms.author: pafarley
-ms.date: 09/16/2025
+ms.date: 01/29/2026
 zone_pivot_groups: openai-quickstart-gpt-v
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
+
 ---
 
 # Quickstart: Use images in your AI chats
 
-Get started using images in your chats with Azure OpenAI in Azure AI Foundry Models.
+Get started using images in your chats with Azure OpenAI in Microsoft Foundry Models.
 
+[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 > [!IMPORTANT]
 > Extra usage fees might apply when using chat completion models with vision functionality.
@@ -25,7 +28,7 @@ Get started using images in your chats with Azure OpenAI in Azure AI Foundry Mod
 
 ::: zone pivot="ai-foundry-portal"
 
-[!INCLUDE [Azure AI Foundry portal quickstart](includes/gpt-v-studio.md)]
+[!INCLUDE [Foundry portal quickstart](includes/gpt-v-studio.md)]
 
 ::: zone-end
 
@@ -62,6 +65,6 @@ Get started using images in your chats with Azure OpenAI in Azure AI Foundry Mod
 ## Related content
 
 * [Get started with multimodal vision chat apps using Azure OpenAI AI App template](/azure/developer/ai/get-started-app-chat-vision?tabs=github-codespaces)
-* Learn more about these APIs in the [Vision-enabled models how-to guide](./gpt-v-quickstart.md)
+* Learn more about these APIs in the [Vision-enabled models how-to guide](./how-to/gpt-with-vision.md)
 * [GPT-4 Turbo with Vision frequently asked questions](./faq.yml#gpt-4-turbo-with-vision)
 * [GPT-4 Turbo with Vision API reference](https://aka.ms/gpt-v-api-ref)

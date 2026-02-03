@@ -1,12 +1,12 @@
 ---
 title: Service encryption of data at rest - Document Intelligence 
-titleSuffix: Azure AI services
-description: Microsoft offers Microsoft-managed encryption keys, and also lets you manage your Azure AI services subscriptions with your own keys, called customer-managed keys (CMK). This article covers data encryption at rest for Document Intelligence, and how to enable and manage CMK.
+titleSuffix: Foundry Tools
+description: Microsoft offers Microsoft-managed encryption keys, and also lets you manage your Foundry Tools subscriptions with your own keys, called customer-managed keys (CMK). This article covers data encryption at rest for Document Intelligence, and how to enable and manage CMK.
 author: erindormier
 manager: venkyv
 ms.service: azure-ai-document-intelligence
-ms.topic: conceptual
-ms.date: 03/19/2025
+ms.topic: how-to
+ms.date: 11/18/2025
 monikerRange: '<=doc-intel-4.0.0'
 ---
 
@@ -22,7 +22,7 @@ monikerRange: '<=doc-intel-4.0.0'
 > * [Delete analyze response](/rest/api/aiservices/document-models/delete-analyze-result?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true&tabs=HTTP). the `analyze response` is stored for 24 hours from when the operation completes for retrieval. For scenarios where you want to delete the response sooner, use the delete analyze response API to delete the response.  
 > * To upgrade an existing service to encrypt both the models and the data, disable and reenable the customer managed key.
 
-Azure AI Document Intelligence automatically encrypts your data when persisting it to the cloud. Document Intelligence encryption protects your data to help you to meet your organizational security and compliance commitments.  
+Azure Document Intelligence in Foundry Tools automatically encrypts your data when persisting it to the cloud. Document Intelligence encryption protects your data to help you to meet your organizational security and compliance commitments.  
 
 [!INCLUDE [cognitive-services-about-encryption](../../../ai-services/includes/cognitive-services-about-encryption.md)]
 

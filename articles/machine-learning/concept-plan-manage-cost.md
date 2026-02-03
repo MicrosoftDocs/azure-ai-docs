@@ -5,7 +5,7 @@ description: Plan to manage costs for Azure Machine Learning with cost analysis 
 author: s-polly
 ms.author: scottpolly
 ms.custom: subject-cost-optimization, build-2023
-ms.reviewer: nigup
+ms.reviewer: jturuk
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.topic: concept-article

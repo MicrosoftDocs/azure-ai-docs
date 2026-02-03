@@ -5,7 +5,7 @@ description: Use an Azure Logic Apps workflow for automated indexing in Azure AI
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 09/28/2025
+ms.date: 01/23/2026
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.custom:
@@ -96,7 +96,7 @@ The following connectors are useful for indexing unstructured data, as a complem
 
 ### Supported actions
 
-Logic apps integration includes the following indexing actions. For more information, see [Connect to Azure AI services from workflows in Azure Logic Apps](/azure/logic-apps/connectors/azure-ai#ingest-data-workflow).
+Logic apps integration includes the following indexing actions. For more information, see [Connect to Foundry Tools from workflows in Azure Logic Apps](/azure/logic-apps/connectors/azure-ai#ingest-data-workflow).
 
 + Check for new data.
 + Get the data. An HTTP action that retrieves the uploaded document using the file URL from the trigger output.
@@ -127,10 +127,9 @@ It also supports the following query actions:
 
 + The search index is generated using a fixed schema (document ID, content, and vectorized content), with text extraction only. You can [modify the index](#modify-existing-objects) as long as the update doesn't affect existing fields.
 + Vectorization supports text embedding only.
-+ Deletion detection isn't supported. You must manually [delete orphaned documents](search-howto-reindex.md#delete-orphan-documents) from the index.
++ Deletion detection isn't supported. You must manually [delete orphaned documents](search-how-to-delete-documents.md#delete-a-single-document) from the index.
 + Duplicate documents in the search index are a known issue in this preview. Consider deleting objects and starting over if this becomes an issue.
 + No support for private endpoints in the logic app workflow created by the portal wizard. The workflow is hosted using the [**Consumption** hosting option](/azure/logic-apps/single-tenant-overview-compare) and is subject to its constraints. To use the **Standard** hosting option, use a programmatic approach to creating the workflow.
-+ All actions are generally available except for 
 
 ## Create a logic app workflow
 
@@ -189,6 +188,6 @@ The wizard creates templates and workflows when you specify a Logic Apps indexer
 
 + [Indexers](search-indexer-overview.md)
 
-+ [Connect to Azure AI services from workflows in Azure Logic Apps](/azure/logic-apps/connectors/azure-ai)
++ [Connect to Foundry Tools from workflows in Azure Logic Apps](/azure/logic-apps/connectors/azure-ai)
 
 + [Manage logic apps](/azure/logic-apps/manage-logic-apps-with-azure-portal)

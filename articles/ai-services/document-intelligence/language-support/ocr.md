@@ -1,12 +1,12 @@
 ---
 title: Language and locale support for Read and Layout document analysis - Document Intelligence
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Document Intelligence Read and Layout OCR document analysis model language extraction and detection support
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.topic: conceptual
-ms.date: 11/19/2024
+ms.topic: concept-article
+ms.date: 11/18/2025
 ---
 <!-- markdownlint-disable MD055 -->
 <!-- markdownlint-disable MD056 -->
@@ -34,7 +34,7 @@ ms.date: 11/19/2024
 <!-- markdownlint-disable MD006 -->
 <!-- markdownlint-disable MD051 -->
 
-Azure AI Document Intelligence models provide multilingual document processing support. Our language support capabilities enable your users to communicate with your applications in natural ways and empower global outreach. Document analysis models enable text extraction from forms and documents and return structured business-ready content ready for your organization's action, use, or progress. The following tables list the available language and locale support by model and feature:
+Azure Document Intelligence in Foundry Tools models provide multilingual document processing support. Our language support capabilities enable your users to communicate with your applications in natural ways and empower global outreach. Document analysis models enable text extraction from forms and documents and return structured business-ready content ready for your organization's action, use, or progress. The following tables list the available language and locale support by model and feature:
 
 ::: moniker range=">=doc-intel-3.0.0"
 

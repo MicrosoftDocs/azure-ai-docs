@@ -1,12 +1,12 @@
 ---
 title: Data, privacy, and security for Document Intelligence
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This document details issues for data, privacy, and security for Document Intelligence.
 author: laujan
 ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.topic: article
+ms.topic: concept-article
 ms.date: 10/15/2025
 ---
 
@@ -21,11 +21,11 @@ This article provides details regarding how Document Intelligence processes your
 
 ### Authenticate (with subscription or API keys)
 
-The most common way to authenticate access to Document Intelligence is by using the customer's Document Intelligence API key. Each request to the service URL must include an authentication header. This header passes along an API key (or token if applicable), which is used to validate your subscription for a service or group of services. For more information, see [Authenticate requests to Azure AI services](/azure/ai-services/authentication?tabs=powershell).
+The most common way to authenticate access to Document Intelligence is by using the customer's Document Intelligence API key. Each request to the service URL must include an authentication header. This header passes along an API key (or token if applicable), which is used to validate your subscription for a service or group of services. For more information, see [Authenticate requests to Foundry Tools](/azure/ai-services/authentication?tabs=powershell).
 
 ### Secure data in transit (for scanning)
 
-All Azure AI services endpoints, including the Document Intelligence API URLs, use HTTPS URLs for encrypting data during transit. The client operating system needs to support Transport Layer Security (TLS) 1.2 for calling the endpoints. For more information, see [Azure AI services security](/azure/security/fundamentals/double-encryption).
+All Foundry Tools endpoints, including the Document Intelligence API URLs, use HTTPS URLs for encrypting data during transit. The client operating system needs to support Transport Layer Security (TLS) 1.3 for calling the endpoints. For more information, see [Foundry Tools security](/azure/security/fundamentals/double-encryption).
 
 ### Encrypts input data for processing
 

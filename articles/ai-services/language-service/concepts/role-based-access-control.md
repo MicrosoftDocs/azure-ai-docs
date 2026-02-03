@@ -1,19 +1,17 @@
 ---
-title: Role-based access control for the Language service
-titleSuffix: Azure AI services
+title: Role-based access control for Azure Language service
+titleSuffix: Foundry Tools
 description: Learn how to use Azure role based access control (RBAC) for managing individual access to Azure resources.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
-ms.date: 09/22/2025
+ms.topic: concept-article
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
-
 # Language role-based access control
 
-Azure AI Language supports Azure role-based access control (Azure RBAC), an authorization system for managing individual access to Azure resources. Using Azure RBAC, you assign different team members different levels of permissions for your projects authoring resources. For more information, *see* the [Azure RBAC documentation](/azure/role-based-access-control/).
+Azure Language in Foundry Tools supports Azure role-based access control (Azure RBAC), an authorization system for managing individual access to Azure resources. Using Azure RBAC, you assign different team members different levels of permissions for your projects authoring resources. For more information, *see* the [Azure RBAC documentation](/azure/role-based-access-control/).
 
 <a name='enable-azure-active-directory-authentication'></a>
 
@@ -25,7 +23,7 @@ To use Azure RBAC, you must enable Microsoft Entra authentication. You can [crea
 
 Azure RBAC can be assigned to an Azure resource. To do so, you can add a role assignment.
 1. In the [Azure portal](https://portal.azure.com/), select **All services**. 
-1. Select **Azure AI services**, and navigate to your specific Azure resource. 
+1. Select **Foundry Tools**, and navigate to your specific Azure resource. 
    > [!NOTE]
    > You can also set up Azure RBAC for whole resource groups, subscriptions, or management groups. Complete your configuration by selecting the desired scope level and then navigating to the desired item. For example, selecting **Resource groups** and then navigating to a specific resource group.
 
@@ -51,7 +49,7 @@ These custom roles only apply to Language resources.
 
 ### Cognitive Services Language Reader
 
-A user that should only be validating and reviewing the Language apps, typically a tester to ensure the application is performing well before deploying the project. They might want to review the application's assets to notify the app developers of any changes that need to be made, but don't have direct access to make them. Readers have access to view the evaluation results.
+A user that should only be validating and reviewing Azure Language apps, typically a tester to ensure the application is performing well before deploying the project. They might want to review the application's assets to notify the app developers of any changes that need to be made, but don't have direct access to make them. Readers have access to view the evaluation results.
 
 
 :::row:::
@@ -85,7 +83,7 @@ A user that should only be validating and reviewing the Language apps, typically
 
 ### Cognitive Services Language Writer
 
-A user responsible for building and modifying an application as a collaborator in a larger team. The collaborator can modify the Language apps in any way, train those changes, and validate/test those changes in the portal. However, this user shouldn't have access to deploying this application to the runtime, as they might accidentally reflect their changes in production. They also shouldn't be able to delete the application or alter its prediction resources and endpoint settings (assigning or unassigning prediction resources, making the endpoint public). This restriction prevents the role from altering an application currently being used in production. They might also create new applications under this resource, but with the restrictions mentioned.
+A user responsible for building and modifying an application as a collaborator in a larger team. The collaborator can modify Azure Language apps in any way, train those changes, and validate/test those changes in the portal. However, this user shouldn't have access to deploying this application to the runtime, as they might accidentally reflect their changes in production. They also shouldn't be able to delete the application or alter its prediction resources and endpoint settings (assigning or unassigning prediction resources, making the endpoint public). This restriction prevents the role from altering an application currently being used in production. They might also create new applications under this resource, but with the restrictions mentioned.
 
 :::row:::
     :::column span="":::
@@ -119,10 +117,10 @@ A user responsible for building and modifying an application as a collaborator i
 ### Cognitive Services Language Owner
 
 > [!NOTE]
-> If you're assigned as an Owner and Language Owner,* you considered a *Cognitive Services Language Owner* by the Language studio portal.
+> If you're assigned as an Owner and Language Owner,* you considered a *Cognitive Services Language Owner* by Azure Language studio portal.
 
 
-These users are the gatekeepers for the Language applications in production environments. They should have full access to any of the underlying functions and thus can view everything in the application and have direct access to edit any changes for both authoring and runtime environments
+These users are the gatekeepers for Azure Language applications in production environments. They should have full access to any of the underlying functions and thus can view everything in the application and have direct access to edit any changes for both authoring and runtime environments
 
 :::row:::
     :::column span="":::

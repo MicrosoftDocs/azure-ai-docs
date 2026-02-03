@@ -7,9 +7,10 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.custom: build-2023, build-2023-dataai, devx-track-python, references_regions
 ms.topic: how-to
-ms.date: 08/29/2025
+ms.date: 11/26/2025
 author: mrbullwinkle
 ms.author: mbullwin
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Vision fine-tuning
@@ -73,10 +74,10 @@ Images containing the following will be excluded from your dataset and not used 
 - CAPTCHAs
 
 > [!IMPORTANT]
->For vision fine tuning face screening process: We screen for faces/people to skip those images from training the model. The screening capability leverages face detection **WITHOUT** Face identification which means we don't create facial templates or measure specific facial geometry, and the technology used to screen for faces is incapable of uniquely identifying the individuals. To know more about data and Privacy for face refer to - [Data and privacy for Face - Azure AI services | Microsoft Learn](/azure/ai-foundry/responsible-ai/computer-vision/image-analysis-data-privacy-security).
+>For vision fine tuning face screening process: We screen for faces/people to skip those images from training the model. The screening capability leverages face detection **WITHOUT** Face identification which means we don't create facial templates or measure specific facial geometry, and the technology used to screen for faces is incapable of uniquely identifying the individuals. To know more about data and Privacy for face refer to - [Data and privacy for Face - Foundry Tools | Microsoft Learn](/azure/ai-foundry/responsible-ai/computer-vision/image-analysis-data-privacy-security).
 
 ## Next steps
 
-- [Deploy a finetuned model](fine-tuning-deploy.md).
-- Review fine-tuning [model regional availability](../concepts/models.md#fine-tuning-models)
+- [Deploy a fine-tuned model](fine-tuning-deploy.md).
+- Review fine-tuning [model regional availability](../concepts/models.md?pivots=azure-openai#fine-tuning-models)
 - Learn more about [Azure OpenAI quotas](../quotas-limits.md)

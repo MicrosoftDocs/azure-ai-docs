@@ -1,17 +1,19 @@
 ---
 title: Image Analysis SDK Overview
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This page gives you an overview of the Azure AI Image Analysis SDK.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: overview
-ms.date: 07/28/2025
+ms.date: 09/26/2025
 ms.author: pafarley
 ms.custom: devx-track-csharp
 ---
 
 # Image Analysis SDK overview
+
+[!INCLUDE [image-analysis-deprecation](../includes/image-analysis-deprecation.md)]
 
 The Image Analysis SDK provides a convenient way to access the Image Analysis service using [version 4.0 of the REST API](https://aka.ms/vision-4-0-ref).
 

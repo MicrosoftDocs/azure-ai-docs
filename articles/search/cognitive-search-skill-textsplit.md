@@ -1,5 +1,5 @@
 ---
-title: Text split skill
+title: Text Split skill
 titleSuffix: Azure AI Search
 description: Break text into chunks or pages of text based on length in an AI enrichment pipeline in Azure AI Search.
 author: gmndrg
@@ -8,11 +8,11 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: reference
-ms.date: 09/19/2025
+ms.date: 01/07/2026
 ms.update-cycle: 365-days
 ---
 
-# Text split cognitive skill
+# Text Split cognitive skill
 
 > [!IMPORTANT] 
 > Some parameters are in public preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The [preview REST API](/rest/api/searchservice/index-preview) supports these parameters.
@@ -24,14 +24,14 @@ Several parameters are version-specific. The skills parameter table notes the AP
 The Azure portal supports most preview features and can be used to create or update a skillset. For updates to the Text Split skill, edit the skillset JSON definition to add new preview parameters. 
 
 > [!NOTE]
-> This skill isn't bound to Azure AI services. It's non-billable and has no Azure AI services key requirement.
+> This skill isn't bound to Foundry Tools. It's non-billable and has no Foundry Tools key requirement.
 
 ## @odata.type  
 Microsoft.Skills.Text.SplitSkill 
 
 ## Skill Parameters
 
-Parameters are case-sensitive. 
+Parameters are case sensitive. 
 
 | Parameter name     | Description |
 |--------------------|-------------|-------------|

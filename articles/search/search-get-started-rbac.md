@@ -6,7 +6,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 07/08/2025
+ms.date: 11/20/2025
 zone_pivot_groups: search-get-started-rbac
 ---
 
@@ -27,5 +27,5 @@ zone_pivot_groups: search-get-started-rbac
 ## Related content
 
 + [Configure a managed identity in Azure AI Search](search-how-to-managed-identities.md)
-+ [Connect your app to Azure AI Search using identities](keyless-connections.md)
++ [Connect your app to Azure AI Search using identities](search-security-rbac-client-code.md)
 + [Configure network access and firewall rules for Azure AI Search](service-configure-firewall.md)

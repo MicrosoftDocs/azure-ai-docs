@@ -1,14 +1,14 @@
 ---
 title: Document Intelligence SDK target REST API v3.1 (GA) latest
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: The Document Intelligence v3.1 (GA) software development kits (SDKs) expose Document Intelligence models, features, and capabilities that are in active development for C#, Java, JavaScript, or Python programming language.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.custom:
   - devx-track-python
-ms.topic: conceptual
-ms.date: 02/10/2025
+ms.topic: how-to
+ms.date: 11/18/2025
 ms.author: lajanuar
 monikerRange: 'doc-intel-3.1.0'
 --- 
@@ -23,7 +23,7 @@ monikerRange: 'doc-intel-3.1.0'
 
 ![Document Intelligence checkmark](../media/yes-icon.png) **REST API version 2023-07-31 (GA)**
 
-Azure AI Document Intelligence is a cloud service that uses machine learning to analyze text and structured data from documents. The Document Intelligence software development kit (SDK) is a set of libraries and tools that enable you to easily integrate Document Intelligence models and capabilities into your applications. Document Intelligence SDK is available across platforms in C#/.NET, Java, JavaScript, and Python programming languages.
+Azure Document Intelligence in Foundry Tools is a cloud service that uses machine learning to analyze text and structured data from documents. The Document Intelligence software development kit (SDK) is a set of libraries and tools that enable you to easily integrate Document Intelligence models and capabilities into your applications. Document Intelligence SDK is available across platforms in C#/.NET, Java, JavaScript, and Python programming languages.
 
 ## Supported programming languages
 
@@ -356,7 +356,7 @@ Create a client object to interact with the Document Intelligence SDK, and then 
 
 ## Help options
 
-The [Microsoft Q & A](/answers/topics/azure-form-recognizer.html) and [Stack Overflow](https://stackoverflow.com/questions/tagged/azure-form-recognizer) forums are available for the developer community to ask and answer questions about Azure AI Document Intelligence and other services. Microsoft monitors the forums and replies to questions that the community has yet to answer. To make sure that we see your question, tag it with **`azure-form-recognizer`**.
+The [Microsoft Q & A](/answers/topics/azure-form-recognizer.html) and [Stack Overflow](https://stackoverflow.com/questions/tagged/azure-form-recognizer) forums are available for the developer community to ask and answer questions about Azure Document Intelligence in Foundry Tools and other services. Microsoft monitors the forums and replies to questions that the community has yet to answer. To make sure that we see your question, tag it with **`azure-form-recognizer`**.
 
 ## Next steps
 

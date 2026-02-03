@@ -1,5 +1,5 @@
 ---
-title: 'Quickstart: Generate images with the Python SDK for Azure OpenAI in Azure AI Foundry Models'
+title: 'Quickstart: Generate images with the Python SDK for Azure OpenAI in Microsoft Foundry Models'
 titleSuffix: Azure OpenAI
 description: Learn how to generate images with Azure OpenAI by using the Python SDK and the endpoint and access keys for your Azure OpenAI resource.
 manager: nitinme
@@ -8,7 +8,8 @@ ms.subservice: azure-ai-foundry-openai
 ms.custom:
   - ignite-2023
 ms.topic: include
-ms.date: 11/06/2023
+ms.date: 01/29/2026
+ai-usage: ai-assisted
 ---
 
 Use this guide to get started generating images with the Azure OpenAI SDK for Python.
@@ -17,9 +18,10 @@ Use this guide to get started generating images with the Azure OpenAI SDK for Py
 
 ## Prerequisites
 
-- An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - <a href="https://www.python.org/" target="_blank">Python 3.8 or later version</a>.
 - An Azure OpenAI resource created in a compatible region. See [Region availability](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability).
+    - Access the Azure OpenAI resource endpoint and keys in the Azure portal.
 - Then, you need to deploy a `dalle3` model with your Azure resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 
 ## Setup
@@ -30,7 +32,7 @@ To successfully call the Azure OpenAI APIs, you need the following information a
 
 | Variable | Name | Value |
 |---|---|---|
-| **Endpoint** | `api_base` | The endpoint value is located under **Keys and Endpoint** for your resource in the Azure portal. You can also find the endpoint via the **Deployments** page in Azure AI Foundry portal. An example endpoint is: `https://docs-test-001.openai.azure.com/`. |
+| **Endpoint** | `api_base` | The endpoint value is located under **Keys and Endpoint** for your resource in the Azure portal. You can also find the endpoint via the **Deployments** page in Microsoft Foundry portal. An example endpoint is: `https://docs-test-001.openai.azure.com/`. |
 | **Key** | `api_key` | The key value is also located under **Keys and Endpoint** for your resource in the Azure portal. Azure generates two keys for your resource. You can use either value. |
 
 Go to your resource in the Azure portal. On the navigation pane, select **Keys and Endpoint** under **Resource Management**. Copy the **Endpoint** value and an access key value. You can use either the **KEY 1** or **KEY 2** value. Always having two keys allows you to securely rotate and regenerate keys without causing a service disruption.
@@ -75,7 +77,7 @@ client = AzureOpenAI(
 
 result = client.images.generate(
     model="dalle3", # the name of your DALL-E 3 deployment
-    prompt="a close-up of a bear walking throughthe forest",
+    prompt="a close-up of a bear walking through the forest",
     n=1
 )
 
@@ -102,7 +104,7 @@ image = Image.open(image_path)
 image.show()
 ```
 
-1. Enter your endpoint URL and key in the appropriate fields. 
+1. Make sure the `AZURE_OPENAI_ENDPOINT` and `AZURE_OPENAI_API_KEY` environment variables are set.
 1. Change the value of `prompt` to your preferred text.
 1. Change the value of `model` to the name of your deployed DALL-E 3 model.
 
@@ -133,5 +135,5 @@ If you want to clean up and remove an Azure OpenAI resource, you can delete the 
 ## Next steps
 
 * Explore the Image APIs in more depth with the [Image API how-to guide](../how-to/dall-e.md).
-* Try examples in the [Azure OpenAI Samples GitHub repository](https://github.com/Azure/azure-openai-samples).
+* Try examples in the [Azure OpenAI Samples GitHub repository](https://github.com/Azure-Samples/openai).
 * See the [API reference](../reference.md#image-generation)

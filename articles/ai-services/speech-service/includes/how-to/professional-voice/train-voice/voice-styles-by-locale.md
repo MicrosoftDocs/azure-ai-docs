@@ -1,9 +1,9 @@
 ---
 title: include file
 description: include file
-author: goergenj
+author: PatrickFarley
 reviewer: patrickfarley
-ms.author: jagoerge
+ms.author: pafarley
 ms.reviewer: pafarley
 ms.service: azure-ai-speech
 ms.topic: include

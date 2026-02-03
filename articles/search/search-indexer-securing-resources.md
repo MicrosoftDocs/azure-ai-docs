@@ -8,7 +8,7 @@ ms.author: arjagann
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 05/12/2025
 ms.update-cycle: 365-days
 ---
@@ -41,7 +41,7 @@ A list of all possible Azure resource types that an indexer might access in a ty
 | Azure Functions | Attached to a skillset and used to host for custom web API skills |
 
 > [!NOTE]
-> An indexer also connects to Azure AI services for built-in skills. However, that connection is made over the internal network and isn't subject to any network provisions under your control.
+> An indexer also connects to Foundry Tools for built-in skills. However, that connection is made over the internal network and isn't subject to any network provisions under your control.
 
 Indexers connect to resources using the following approaches:
 
@@ -80,7 +80,7 @@ For any given indexer run, Azure AI Search determines the best environment in wh
 |  multitenant | Managed and secured by Microsoft at no extra cost. It isn't subject to any network provisions under your control. This environment is used to offload computationally intensive processing, leaving service-specific resources available for routine operations. Examples of resource-intensive indexer jobs include skillsets, processing large documents, or processing a high volume of documents. |
 
 
-<sup>1</sup> To prevent heavy load on the private execution environment, indexers with more than 2 Azure OpenAI Embedding or Azure AI Vision multimodal embeddings skills will be restricted from running in this environment.
+<sup>1</sup> To prevent heavy load on the private execution environment, indexers with more than 2 Azure OpenAI Embedding or Azure Vision multimodal embeddings skills will be restricted from running in this environment.
 
 ### Setting up IP ranges for indexer execution
 

@@ -1,12 +1,12 @@
 ---
 title: Image captions - Image Analysis 4.0
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Concepts related to the image captioning feature of the Image Analysis 4.0 API.
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 09/16/2025
 ms.author: pafarley
 ---
@@ -20,9 +20,9 @@ The Caption feature generates a one-sentence description of all the image conten
 Image captioning is available in English only.
 
 > [!IMPORTANT]
-> Image captioning in Image Analysis 4.0 is only available in certain Azure data center regions: see [Region availability](./overview-image-analysis.md#region-availability). You must use an Azure AI Vision resource located in one of these regions to get results from Caption and Dense Captions features.
+> Image captioning in Image Analysis 4.0 is only available in certain Azure data center regions: see [Region availability](./overview-image-analysis.md#region-availability). You must use an Azure Vision in Foundry Tools resource located in one of these regions to get results from Caption and Dense Captions features.
 >
-> If you need to use a Vision resource outside these regions to generate image captions, please use [Image Analysis 3.2](concept-describing-images.md) which is available in all Azure AI Vision regions.
+> If you need to use a Vision resource outside these regions to generate image captions, please use [Image Analysis 3.2](concept-describing-images.md) which is available in all Azure Vision regions.
 
 Try out the image captioning features quickly and easily in your browser using Vision Studio.
 

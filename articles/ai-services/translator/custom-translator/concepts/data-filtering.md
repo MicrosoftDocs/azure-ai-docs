@@ -1,13 +1,13 @@
 ---
-title: "Data Filtering - Azure AI Custom Translator"
-titleSuffix: Azure AI services
+title: "Data Filtering - Custom Translator"
+titleSuffix: Foundry Tools
 description: When you submit documents to be used for training a custom system, the documents undergo a series of processing and filtering steps.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 05/19/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom: cogserv-non-critical-translator
 #Customer intent: As a Custom Translator, I want to understand how data is filtered before training a model.
 ---

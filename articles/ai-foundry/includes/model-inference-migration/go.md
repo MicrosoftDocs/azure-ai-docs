@@ -4,6 +4,7 @@ description: Include file
 author: msakande
 ms.author: mopeakande
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: include
 ms.date: 11/05/2025
 ms.custom: include
@@ -156,24 +157,22 @@ import (
     "context"
     "fmt"
     "log"
-    "os"
 
     "github.com/Azure/azure-sdk-for-go/sdk/azidentity"
-    "github.com/openai/openai-go/v2"
-    "github.com/openai/openai-go/v2/azure"
-    "github.com/openai/openai-go/v2/option"
+    "github.com/openai/openai-go/v3"
+    "github.com/openai/openai-go/v3/azure"
+    "github.com/openai/openai-go/v3/option"
 )
 
 func main() {
-    token_credential, err := azidentity.NewDefaultAzureCredential(nil)
+    tokenCredential, err := azidentity.NewDefaultAzureCredential(nil)
     if err != nil {
-        fmt.Println("Error creating credential:", err)
-        os.Exit(1)
+        log.Fatalf("Error creating credential:%s", err)
     }
     // Create a client with Azure OpenAI endpoint and Entra ID credentials
     client := openai.NewClient(
         option.WithBaseURL("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"),
-        azure.WithTokenCredential(token_credential),
+        azure.WithTokenCredential(tokenCredential),
     )
 
     inputText := "The quick brown fox jumped over the lazy dog"
@@ -186,12 +185,11 @@ func main() {
         },
     })
     if err != nil {
-        log.Fatalf("Failed to get embedding: %v", err)
+        log.Fatalf("Failed to get embedding: %s", err)
     }
 
     if len(resp.Data) == 0 {
-        fmt.Println("No embedding data returned.")
-        return
+        log.Fatalf("No embedding data returned.")
     }
 
     // Print embedding information

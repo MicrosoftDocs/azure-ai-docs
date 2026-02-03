@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.devlang: csharp
-ms.topic: conceptual
+ms.topic: upgrade-and-migration-article
 ms.date: 05/29/2025
 ms.update-cycle: 365-days
 ms.custom:
@@ -159,7 +159,7 @@ If you're using Newtonsoft.Json for JSON serialization, you can pass in global n
 
 ## Inside v11
 
-Each version of an Azure AI Search client library targets a corresponding version of the REST API. The REST API is considered foundational to the service, with individual SDKs wrapping a version of the REST API. As a .NET developer, it can be helpful to review the more verbose [REST API documentation](/rest/api/searchservice/) for more in depth coverage of specific objects or operations. Version 11 targets the [2020-06-30 search service specification](https://github.com/Azure/azure-rest-api-specs/tree/main/specification/search/data-plane/Azure.Search/stable/2020-06-30). 
+Each version of an Azure AI Search client library targets a corresponding version of the REST API. The REST API is considered foundational to the service, with individual SDKs wrapping a version of the REST API. As a .NET developer, it can be helpful to review the more verbose [REST API documentation](/rest/api/searchservice/) for more in depth coverage of specific objects or operations. Version 11 targets the [2020-06-30 search service specification](https://github.com/Azure/azure-rest-api-specs/tree/main/specification/search/data-plane/Search/stable/2020-06-30). 
 
 Version 11.0 fully supports the following objects and operations:
 

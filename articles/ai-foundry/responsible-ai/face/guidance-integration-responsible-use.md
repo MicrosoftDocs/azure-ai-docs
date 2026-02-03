@@ -1,12 +1,12 @@
 ---
 title: Guidance for integration and responsible use with Face
-titleSuffix: Azure AI services Face
+titleSuffix: Foundry Tools Face
 description: Guidance for how to deploy the Face responsibly, based on the knowledge and understanding from the team that created this product.
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-vision
-ms.topic: article
+ms.topic: best-practice
 ms.date: 06/21/2022
 ---
 

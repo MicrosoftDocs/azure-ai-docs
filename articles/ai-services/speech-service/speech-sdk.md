@@ -1,6 +1,6 @@
 ---
 title: About the Speech SDK - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: The Speech software development kit (SDK) exposes many of the Speech service capabilities, making it easier to develop speech-enabled applications.
 author: PatrickFarley
 manager: nitinme
@@ -23,7 +23,7 @@ The Speech SDK supports the following languages and platforms:
 
 | Programming language | Reference | Platform support |
 |----------------------|----------|----------|
-| [C#](quickstarts/setup-platform.md?pivots=programming-language-csharp) <sup>1</sup> | [.NET](/dotnet/api/microsoft.cognitiveservices.speech) | Windows, Linux, macOS, Mono, UWP, Unity |
+| [C#](quickstarts/setup-platform.md?pivots=programming-language-csharp) <sup>1</sup> | [.NET](/dotnet/api/microsoft.cognitiveservices.speech) | Windows, Linux, macOS, Mono, UWP |
 | [C++](quickstarts/setup-platform.md?pivots=programming-language-cpp) <sup>2</sup> | [C++](/cpp/cognitive-services/speech/) | Windows, Linux, macOS |
 | [Go](quickstarts/setup-platform.md?pivots=programming-language-go) | [Go](https://github.com/Microsoft/cognitive-services-speech-sdk-go) | Linux | 
 | [Java](quickstarts/setup-platform.md?pivots=programming-language-java) | [Java](/java/api/com.microsoft.cognitiveservices.speech) | Android, Windows, Linux, macOS |
@@ -58,18 +58,18 @@ If a sample isn't available in your preferred programming language, you can sele
 
 ### GitHub samples
 
-In depth samples are available in the [Azure-Samples/cognitive-services-speech-sdk](https://aka.ms/csspeech/samples) repository on GitHub. There are samples for C# (including UWP and Unity), C++, Java, JavaScript (including Browser and Node.js), Objective-C, Python, and Swift. Code samples for Go are available in the [Microsoft/cognitive-services-speech-sdk-go](https://github.com/Microsoft/cognitive-services-speech-sdk-go) repository on GitHub.
+In depth samples are available in the [Azure-Samples/cognitive-services-speech-sdk](https://aka.ms/csspeech/samples) repository on GitHub. There are samples for C# (including UWP), C++, Java, JavaScript (including Browser and Node.js), Objective-C, Python, and Swift. Code samples for Go are available in the [Microsoft/cognitive-services-speech-sdk-go](https://github.com/Microsoft/cognitive-services-speech-sdk-go) repository on GitHub.
 
 ## Help options
 
-The [Microsoft Q&A](/answers/topics/azure-speech.html) and [Stack Overflow](https://stackoverflow.com/questions/tagged/azure-speech) forums are available for the developer community to ask and answer questions about Azure Cognitive Speech and other services. Microsoft monitors the forums and replies to questions that the community hasn't yet answered. To make sure that we see your question, tag it with 'azure-speech'.  
+The [Stack Overflow](https://stackoverflow.com/questions/tagged/azure-speech) forums are available for the developer community to ask and answer questions about Azure Cognitive Speech and other services. Microsoft monitors the forums and replies to questions that the community hasn't yet answered. To make sure that we see your question, tag it with 'azure-speech'.  
 
 You can suggest an idea or report a bug by creating an issue on GitHub:
 - [Azure-Samples/cognitive-services-speech-sdk](https://aka.ms/GHspeechissues)
 - [Microsoft/cognitive-services-speech-sdk-go](https://github.com/microsoft/cognitive-services-speech-sdk-go/issues)
 - [Microsoft/cognitive-services-speech-sdk-js](https://github.com/microsoft/cognitive-services-speech-sdk-js/issues)
 
-See also [Azure AI services support and help options](../cognitive-services-support-options.md?context=/azure/ai-services/speech-service/context/context) to get support, stay up-to-date, give feedback, and report bugs for Azure AI services.
+See also [Foundry Tools support and help options](../cognitive-services-support-options.md?context=/azure/ai-services/speech-service/context/context) to get support, stay up-to-date, give feedback, and report bugs for Foundry Tools.
 
 ## Next steps
 

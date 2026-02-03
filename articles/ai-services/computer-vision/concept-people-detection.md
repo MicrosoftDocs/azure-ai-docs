@@ -1,13 +1,13 @@
 ---
-title: People detection - Azure AI Vision
-titleSuffix: Azure AI services
-description: Learn concepts related to the people detection feature of the Azure AI Vision API - usage and limits.
+title: People detection - Azure Vision in Foundry Tools
+titleSuffix: Foundry Tools
+description: Learn concepts related to the people detection feature of Azure Vision in Foundry Tools API - usage and limits.
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
-ms.topic: conceptual
-ms.date: 01/22/2025
+ms.topic: concept-article
+ms.date: 09/26/2025
 ms.author: pafarley
 ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 

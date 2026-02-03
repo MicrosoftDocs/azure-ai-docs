@@ -6,7 +6,7 @@ services: machine-learning
 ms.service: azure-data-science-virtual-machines
 author: s-polly 
 ms.author: scottpolly 
-ms.topic: conceptual
+ms.topic: how-to
 ms.reviewer: jcioffi
 ms.date: 06/05/2024
 ms.custom:

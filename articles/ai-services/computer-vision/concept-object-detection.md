@@ -1,13 +1,13 @@
 ---
-title: Object detection - Azure AI Vision
-titleSuffix: Azure AI services
-description: Learn concepts related to the object detection feature of the Azure AI Vision API - usage and limits.
+title: Object detection - Azure Vision in Foundry Tools
+titleSuffix: Foundry Tools
+description: Learn concepts related to the object detection feature of Azure Vision in Foundry Tools API - usage and limits.
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
-ms.topic: conceptual
-ms.date: 03/26/2025
+ms.topic: concept-article
+ms.date: 09/26/2025
 ms.author: pafarley
 ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 
@@ -21,7 +21,7 @@ You can use this functionality to process the relationships between the objects 
 
 There's no formal relationship between the tagging taxonomy and the object detection taxonomy. At a conceptual level, the object detection function only finds objects and living things, while the tag function can also include contextual terms like *indoor*, which can't be localized with bounding boxes.
 
-Try out the capabilities of object detection quickly and easily in your browser by using Azure AI Vision Studio.
+Try out the capabilities of object detection quickly and easily in your browser by using Azure Vision Studio.
 
 > [!div class="nextstepaction"]
 > [Try Vision Studio](https://portal.vision.cognitive.azure.com/)

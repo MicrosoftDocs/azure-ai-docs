@@ -1,6 +1,6 @@
 ---
 title: Select an audio input device with the Speech SDK
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: 'Learn about selecting audio input devices in the Speech SDK (C++, C#, Python, Objective-C, Java, and JavaScript) by obtaining the IDs of the audio devices connected to a system.'
 author: PatrickFarley
 ms.author: pafarley
@@ -40,6 +40,22 @@ audioConfig = AudioConfiguration.fromMicrophoneInput("<device id>");
 ```JavaScript
 audioConfig = AudioConfiguration.fromMicrophoneInput("<device id>");
 ```
+
+> [!IMPORTANT]
+> Although the device enumeration examples in this article return device IDs, the Speech SDK `AudioConfig.FromMicrophoneInput()` method does not accept a device ID.
+> It only accepts the device’s friendly name.
+>
+> Correct usage (device name)
+>
+> ```cs
+> audioConfig = AudioConfig.FromMicrophoneInput("Microphone (Realtek(R) Audio)");
+> ```
+>
+> Incorrect usage (device ID)
+>
+> ```cs
+> audioConfig = AudioConfig.FromMicrophoneInput("{0.0.1.00000000}.{5f23ab69-6181-4f4a-81a4-45414013aac8}");
+> ```
 
 > [!NOTE]
 > Microphone use isn't available for JavaScript running in Node.js.

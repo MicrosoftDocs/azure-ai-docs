@@ -1,123 +1,161 @@
 ---
-title: Customer-Managed Keys for Azure AI Foundry
-titleSuffix: Azure AI Foundry
-description: Learn how to use customer-managed keys (CMK) for enhanced encryption and data security in Azure AI Foundry. Configure Azure Key Vault integration and meet compliance requirements.
+title: Customer-managed keys (CMK) for Microsoft Foundry
+titleSuffix: Microsoft Foundry
+description: Learn how to use customer-managed keys (CMK) for enhanced encryption and data security in Microsoft Foundry. Configure Azure Key Vault integration and meet compliance requirements.
+monikerRange: 'foundry-classic || foundry'
 ms.author: jburchel 
 author: jonburchel 
 ms.reviewer: deeikele
-ms.date: 10/01/2025
+ms.date: 09/29/2025
 ms.service: azure-ai-services
 ms.topic: concept-article
 ms.custom:
   - ignite-2023
   - build-aifnd
   - build-2025
-ai-usage: ai-assisted
-# Customer intent: As an admin, I want to understand how I can use my own encryption keys with Azure AI Foundry.
+  - references-regions
+ai-usage: ai-assisted 
+# Customer intent: As an admin, I want to understand how I can use my own encryption keys with Microsoft Foundry.
 ---
 
-# Customer-managed keys for encryption with Azure AI Foundry (Foundry projects)
+# Customer-managed keys (CMK) for Microsoft Foundry
 
-Customer-managed key (CMK) encryption in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) gives you control over encryption of your data. Use CMKs to add an extra protection layer and help meet compliance requirements with Azure Key Vault integration.
+[!INCLUDE [version-banner](../includes/version-banner.md)]
 
-In this article, you learn how to:
+::: moniker range="foundry-classic"
 
-- Understand Microsoft-managed encryption versus CMK.
-- Identify data storage patterns for hub-based and project-based resources.
-- Choose a data storage architecture option for hub projects.
-- Configure required Key Vault settings and permissions.
-- Plan rotation and revocation.
+> [!TIP]
+> An alternate hub-focused CMK article is available: [Customer-managed keys for hub projects](hub-encryption-keys-portal.md).
 
-## About encryption in Azure AI Foundry
 
-Azure AI Foundry is a service in the Azure cloud. By default, Azure services use Microsoft-managed encryption keys to encrypt data in transit and at rest. Your data is always encrypted; CMKs add customer ownership and rotation control.
+Customer-managed key (CMK) encryption in [!INCLUDE [classic-link](../includes/classic-link.md)] gives you control over encryption of your data. Use CMKs to add an extra protection layer and help meet compliance requirements with Azure Key Vault integration.
 
-On your Azure AI Foundry resource, data is encrypted and decrypted by using [FIPS 140-2](https://en.wikipedia.org/wiki/FIPS_140-2)-compliant [256-bit AES](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) encryption. Encryption and decryption are transparent, which means that encryption and access are managed for you. Your data is secure by default, and you don't need to modify your code or applications to take advantage of encryption.
+::: moniker-end
 
-> [!IMPORTANT]
-> If you [connect Azure AI Foundry with other Azure tools](../how-to/connections-add.md), we recommend that you configure CMK encryption on every other Azure resource to optimize security.
+::: moniker range="foundry"
 
-## Use CMKs with Azure Key Vault
+Customer-managed key (CMK) encryption in [!INCLUDE [foundry-link](../default/includes/foundry-link.md)] gives you control over encryption of your data. Use CMKs to add an extra protection layer and help meet compliance requirements with Azure Key Vault integration.
 
-You must use Azure Key Vault to store your CMKs. You can either create your own keys and store them in a key vault or use the Key Vault APIs to generate keys. You can use different subscriptions for the resources. For more information about Key Vault, see [What is Azure Key Vault?](/azure/key-vault/general/overview).
+::: moniker-end
 
-- Enable **Soft-delete** and **Purge protection** on the key vault.
-- Allow trusted Microsoft services to access the key vault if you use the [Key Vault firewall](/azure/key-vault/general/access-behind-firewall).
-- Grant your [!INCLUDE [fdp](../includes/fdp-project-name.md)] system-assigned managed identity these key permissions: **get**, **wrapKey**, **unwrapKey**.
-- Use RSA or RSA-HSM keys of size 2048. Other key types/sizes aren't supported. See the "Key Vault keys" section in [About Azure Key Vault keys, secrets, and certificates](/azure/key-vault/general/about-keys-secrets-certificates).
+Microsoft Foundry provides robust encryption capabilities, including the ability to use **customer-managed keys (CMKs)** stored in **Azure Key Vault** to secure your sensitive data. This article explains the concept of encryption with CMKs and provides step-by-step guidance for configuring CMK using Azure Key Vault. It also discusses encryption models and access control methods like **Azure Role-Based Access Control (RBAC)** and **Vault Access Policies** and ensuring compatibility with **system-assigned managed identities** and **user-assigned managed identities (UAI)**.
 
-### Enable the managed identity for your Azure AI Foundry resource
+## Why use customer-managed keys?
 
-Managed identity must be enabled as a prerequisite for using CMKs.
+With CMK, you gain full control over encryption keys, providing enhanced protection for sensitive data and helping meet compliance requirements. The key benefits of using CMKs include:
 
-1. Go to your Azure AI Foundry resource in the Azure portal.
-1. On the left, under **Resource Management**, select **Identity**.
-1. Switch the system-assigned managed identity status to **On**.
-1. Save your changes, and confirm that you want to enable the system-assigned managed identity.
+- Using your own keys to encrypt data at rest.
 
-## Enable customer-managed keys
+- Integration with organizational security and compliance policies.
 
-CMK encryption is configured via the Azure portal (or via infrastructure-as-code) similarly for each Azure resource.
+- The ability to rotate or revoke keys for enhanced control over access to encrypted data.
 
-> [!IMPORTANT]
-> The key vault that you use for encryption must be in the same resource group as the Azure AI Foundry project. Deployment wizards or project configuration workflows don't currently support key vaults in other resource groups.
+Microsoft Foundry supports encryption with your CMKs stored in **Azure Key Vault**, leveraging industry-leading security features.
 
-1. Create a new Azure AI Foundry resource in the [Azure portal](https://portal.azure.com/).
-1. On the **Encryption** tab, select **Encrypt data using a customer-managed key** > **Select vault and key**. Then select the key vault and the key to use.
+## Prerequisites
 
-    :::image type="content" source="../media/portal/customer-managed-key.png" alt-text="Screenshot that shows the Encryption tab for an Azure AI Foundry project with the option for customer-managed key selected." lightbox="../media/portal/customer-managed-key.png":::
+To configure CMK for Microsoft Foundry, ensure the following prerequisites are met:
 
-1. Continue creating your resource as normal.
+1.  **Azure Subscription**:  
+    You need an active Azure subscription to create and manage Azure resources.
 
-## Encryption key rotation
+1.  **Azure Key Vault**:
 
-Rotate a CMK in Key Vault according to your compliance policies. When the key is rotated, update the Azure AI Foundry resource to use the new key URI. Rotating the key doesn't trigger reencryption of existing data.
+    - You need an existing Azure Key Vault to store your keys.
+    - You must deploy the Key Vault and the Microsoft Foundry resource in the same Azure region.
+    - Enable Soft Delete and Purge Protection on Key Vault to safeguard customer-managed keys from accidental or malicious deletion (required by Azure)
+    - Follow this guide to create a Key Vault: [Quickstart: Create a Key Vault using Azure portal](/azure/key-vault/general/quick-create-portal).
 
-### Rotation limitations
+1.  **Managed Identity Configuration**:
 
-* Same key vault only: rotate to another key within the same Key Vault instance.
-* Scope: new key must have required access policies.
-* Can't revert from CMKs to Microsoft-managed keys after switching.
+    - **System-assigned managed identity**: Ensure your Microsoft Foundry resource has enabled a system-assigned managed identity.
+    - **User-assigned managed identity**: You can use the following link to create a [User-Assigned Managed Identity](/entra/identity/managed-identities-azure-resources/manage-user-assigned-managed-identities-azure-portal?pivots=identity-mi-methods-azp#create-a-user-assigned-managed-identity)
 
-### Rotate encryption keys
 
-1. In your key vault, create or identify the new key.
-2. Update the resource configuration to reference the new key within the same key vault.
-3. The service begins using the new key for newly stored data; existing data remains under the previous key unless reprocessed.
+1.  **Key Vault Permissions**:
 
-## Revoke a customer-managed key
+    - If you're using **Azure RBAC**, assign Key Vault Crypto User role to the managed identity.
+    - If you're using **Vault Access Policies**, grant key-specific permissions to the managed identity, such as **unwrap key** and **wrap key**.
 
-Change the access policy, update permissions, or delete the key.
+Before configuring CMK, make sure you deploy your resources in a supported region. Refer to [Microsoft Foundry feature availability across cloud regions](../reference/region-support.md) for more details on regional support for Microsoft Foundry features.
 
-Remove access policy:
-```azurecli
-az keyvault delete-policy \
-  --resource-group <resource-group-name> \
-  --name <key-vault-name> \
-  --key_id <key-vault-key-id>
-```
 
-Delete key version:
-```azurecli
-az keyvault key delete  \
-  --vault-name <key-vault-name> \
-  --id <key-ID>
-```
+## Steps to Configure CMK
 
-Revoking access to an active CMK while CMK encryption is still enabled prevents downloading training data, fine-tuning new models, and deploying fine-tuned models. Existing deployments continue until deleted.
+### Step 1. Create or Import a Key in Azure Key Vault
 
-## Added Azure cost when you use CMKs
+You store Customer-Managed Keys (CMKs) in **Azure Key Vault**. You can either generate a new key within the Key Vault or import an existing key. Follow the steps in the following sections:
 
-Using CMKs may incur extra subline cost items due to dedicated hosting of certain encrypted back-end services.
+**Generate a Key**
 
-## Limitations
+1. Go to your Azure Key Vault in the Azure portal.
+1. Under **Settings**, select **Keys**.
+1. Select **+ Generate/Import**.
+1. Enter a key name, choose the key type (such as RSA or HSM-backed), and configure key size and expiration details.
+1. Select **Create** to save the new key.
 
 * Projects can be updated from Microsoft-managed keys to CMKs but not reverted.
 * Project CMK can be updated only to keys in the same Key Vault instance.
-* Request form required for some services: [Azure AI Foundry Customer-Managed Key Request Form](https://aka.ms/cogsvc-cmk) for Speech and Content Safety.
 * Storage-related charges for CMK encryption continue during soft-deleted retention.
+   For more information, see [Create and Manage Keys in Azure Key Vault](/azure/key-vault/keys/about-keys).
+
+**Import a Key**
+
+1. Go to the **Keys** section in your Key Vault.
+1. Select **+ Generate/Import** and choose the **Import** option.
+1. Upload the key material and provide the necessary key configuration details.
+1. Follow the prompts to complete the import process.
+
+### Step 2. Grant Key Vault permissions to managed identities
+
+Configure appropriate permissions for the **system-assigned** or **user-assigned managed identity** to access the Key Vault.
+
+**System-assigned managed identity**
+
+1. Go to the Key Vault in the Azure portal.
+1. Select **Access Control (IAM)**.
+1. Select **+ Add role assignment**.
+1. Assign the Key Vault Crypto User role to the **system-assigned managed identity** of the Microsoft Foundry resource or the **User-assigned managed identity**
+
+
+### Step 3. Enable CMK in Microsoft Foundry
+
+You can enable Customer-Managed Keys (CMK) either during the creation of a Microsoft Foundry resource or by updating an existing resource. During resource creation, the wizard will guide you to use either user-assigned or system-assigned managed identity, select a user-assigned managed identity, and select a key vault where your key is stored.
+
+You can follow the steps below if you're updating an existing Microsoft Foundry resource to enable CMK:
+
+1. Open the Microsoft Foundry resource in the Azure portal.
+1. Go to the **Encryption** under **Resource Management** section.
+1. Select **Customer-Managed Keys** as the encryption type.
+1. Enter the **Key Vault URL** and the key name.
+
+
+**Key Vault Access Design: Azure RBAC vs. Vault Access Policies**
+
+Azure Key Vault supports two models for managing access permissions:
+
+1.  **Azure RBAC (Recommended)**:
+    - Provides centralized access control using Azure AD roles.
+    - Simplifies permission management for resources across Azure.
+    - Use Key Vault Crypto User role.
+1.  **Vault Access Policies**:
+    - Allows granular access control specific to Key Vault resources.
+    - Suitable for configurations where legacy or isolated permission settings are necessary.
+
+Choose the model that aligns with your organizational requirements.
+
+**Monitoring and Rotating Keys**
+
+To maintain optimal security and compliance, implement the following practices:
+
+1.  **Enable Key Vault Diagnostics**:  
+    Monitor key usage and access activity by enabling diagnostic logging in Azure Monitor or Log Analytics.
+1.  **Rotate Keys Regularly**:  
+    Periodically create a new version of your key in Azure Key Vault.  
+    Update the Microsoft Foundry resource to reference the latest key version in its **Encryption Settings**.
 
 ## Related content
 
-* [Disable local authorization](../how-to/disable-local-auth.md)
-* [What is Azure Key Vault?](/azure/key-vault/general/overview)
+- [Azure Key Vault Documentation](/azure/key-vault/)
+- [GitHub Bicep Example: Customer-Managed Keys with UAI](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/32-customer-managed-keys-user-assigned-identity)
+- [Azure Managed Identities Overview](/azure/active-directory/managed-identities-azure-resources/overview)
