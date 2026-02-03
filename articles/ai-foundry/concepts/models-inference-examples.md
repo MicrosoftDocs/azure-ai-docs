@@ -24,7 +24,7 @@ The Foundry model catalog offers a large selection of Microsoft Foundry Models f
 
 [!INCLUDE [models-preview](../includes/models-preview.md)]
 
-To perform inferencing with the models, some models such as [Nixtla's TimeGEN-1](#nixtla) and [Cohere rerank](#cohere-rerank) require you to use custom APIs from the model providers. Others support inferencing using the [Model Inference API](../../../foundry-models/overview.md). You can find more details about individual models by reviewing their model cards in the [model catalog for Foundry portal](https://ai.azure.com/explore/models).
+To perform inferencing with the models, some models such as [Nixtla's TimeGEN-1](#nixtla) and [Cohere rerank](#cohere-rerank) require you to use custom APIs from the model providers. Others support inferencing using the [Model Inference API](../foundry-models/concepts/models-sold-directly-by-azure). You can find more details about individual models by reviewing their model cards in the [model catalog for Foundry portal](https://ai.azure.com/explore/models).
 
 
 ## Cohere
