@@ -208,7 +208,7 @@ with DefaultAzureCredential() as credential:
 
 ### Create a custom code-based evaluator
 
-This code registers a new evaluator version that scores responses by using custom Python logic. The evaluator defines how inputs are structured, what metric it produces, and how the score should be interpreted.
+This code registers a new evaluator that scores responses by using custom Python logic. The evaluator defines how inputs are structured, what metric it produces, and how the score should be interpreted.
 
 ```python
         print("Creating a single evaluator version - Code based (json style)")
