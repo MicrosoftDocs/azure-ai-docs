@@ -68,7 +68,7 @@ uv install azure-ai-projects==1.1.0b3 azure-identity
 
 ::: moniker range="foundry"
 
-```python
+```bash
 uv install azure-ai-projects>=2.0.0b1 azure-identity
 ```
 
