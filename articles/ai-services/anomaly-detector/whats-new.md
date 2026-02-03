@@ -30,7 +30,7 @@ We have also added links to some user-generated content. Those items will be mar
     | [Python](https://pypi.org/project/azure-ai-anomalydetector/3.0.0b6/)|[sample_multivariate_detect.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/anomalydetector/azure-ai-anomalydetector/samples/sample_multivariate_detect.py)|
     | [.NET](https://www.nuget.org/packages/Azure.AI.AnomalyDetector/3.0.0-preview.6) | [Sample4_MultivariateDetect.cs](https://github.com/Azure/azure-sdk-for-net/blob/40a7d122ac99a3a8a7c62afa16898b7acf82c03d/sdk/anomalydetector/Azure.AI.AnomalyDetector/tests/samples/Sample4_MultivariateDetect.cs)|
     | [JAVA](https://search.maven.org/artifact/com.azure/azure-ai-anomalydetector/3.0.0-beta.5/jar) | [MultivariateSample.java](https://github.com/Azure/azure-sdk-for-java/blob/e845677d919d47a2c4837153306b37e5f4ecd795/sdk/anomalydetector/azure-ai-anomalydetector/src/samples/java/com/azure/ai/anomalydetector/MultivariateSample.java)|
-    | [JS/TS](https://www.npmjs.com/package/@azure-rest/ai-anomaly-detector/v/1.0.0-beta.1) |[sample_multivariate_detection.ts](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/anomalydetector/ai-anomaly-detector-rest/samples-dev/sample_multivariate_detection.ts)|
+    | [JS/TS](https://www.npmjs.com/package/@azure-rest/ai-anomaly-detector/v/1.0.0-beta.1) |[sample_multivariate_detection.ts](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk)|
 
 * Check out this AI Show video to learn more about the GA version of Multivariate Anomaly Detection: [AI Show | Multivariate Anomaly Detection is Generally Available](/shows/ai-show/ep-70-the-latest-from-azure-multivariate-anomaly-detection).
 
