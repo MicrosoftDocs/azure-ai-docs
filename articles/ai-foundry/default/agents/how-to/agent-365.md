@@ -55,10 +55,14 @@ Use the FoundryA365 sample on GitHub: https://go.microsoft.com/fwlink/?linkid=23
     az login
     az login --scope https://ai.azure.com/.default
     az login --scope https://graph.microsoft.com//.default
+    az login --scope https://management.azure.com/.default
 
     # Azure Developer CLI
     azd auth login
     ```
+
+    > [!NOTE]
+    > Depending on your tenant security settings, you might not need all scopes. If authentication succeeds with fewer scopes, you can skip the others.
 
 1. Deploy the sample.
 

@@ -29,11 +29,19 @@ You can use Foundry Tools to:
 To use Foundry Tools, you need:
 
 * Access to a Foundry project in the Foundry portal.
-* Permission to view and manage tools in that project.
+* One of the following roles on the project:
+  - **Azure AI User** — View and use configured tools
+  - **Azure AI Project Manager** — Configure and manage tools
+  - **Azure AI Owner** — Full access including tool deletion
+* For tools that connect to external services, you need credentials or access to those services.
+
+**Verification**: To confirm you have access, go to the Foundry portal, open your project, and select **Build** > **Tools**. If you see the tool catalog, you have the required permissions.
 
 ## Where to find Foundry Tools
 
 In the Foundry portal, go to your project and then select **Build** > **Tools**.
+
+**Expected result**: The Foundry Tools page opens, showing three tabs: **Configured**, **Catalog**, and **Custom**.
 
 ## Key concepts
 
@@ -103,7 +111,39 @@ When you select a tool, Foundry Tools shows the setup details you need to config
 
 ## Availability and limitations
 
-Tool availability can vary by model and region.
+Tool availability can vary by model and region. Review the following considerations before configuring tools.
+
+### Model support
+
+Not all models support all tools. The following table shows general tool support by model capability:
+
+| Tool type | Required model capability |
+|-----------|---------------------------|
+| Code Interpreter | Function calling support |
+| File Search | Function calling support |
+| MCP servers | Function calling support |
+| OpenAPI tools | Function calling support |
+| Grounding with Bing | Grounding capability |
+| Computer Use | Vision and function calling |
+
+> [!NOTE]
+> Check the specific tool documentation for the latest supported models. Model support can change as new capabilities are released.
+
+### Regional availability
+
+Most built-in tools are available in all regions where Foundry Agent Service is available. However, some tools have regional restrictions:
+
+- **Grounding with Bing**: Available in regions where Bing Search is supported.
+- **Computer Use**: Check the [Computer Use documentation](../how-to/tools/computer-use.md) for regional availability.
+- **Custom Code Interpreter**: Requires Azure Container Apps, which has its own regional availability.
+
+### Preview limitations
+
+Tools marked as **(preview)** have the following limitations:
+
+- No service-level agreement (SLA) for availability or performance.
+- Features might change or be removed without notice.
+- Not recommended for production workloads.
 
 For the latest model and region support details across tools, see [Best practices for using tools in Microsoft Foundry Agent Service](tool-best-practice.md).
 
@@ -111,7 +151,32 @@ For the latest model and region support details across tools, see [Best practice
 
 In your tools list, you can find the tools you've configured, along with details such as endpoints and authentication settings. You can also add tools to agents and workflows.
 
+### View configured tools
+
+1. In the Foundry portal, go to your project.
+1. Select **Build** > **Tools** > **Configured**.
+
+**Expected result**: You see a list of all tools you've configured, including their status, endpoints, and last-used timestamps.
+
+### Add a tool to an agent
+
+1. Open the tool you want to add.
+1. Select **Add to agent**.
+1. Choose the target agent from the list.
+
+**Verification**: Open the agent and confirm the tool appears in the agent's tool list.
+
+### Delete a configured tool
+
 Before you delete a tool, check which agents or workflows use it. Deleting a tool can break runs that depend on it.
+
+1. In the **Configured** tab, find the tool you want to delete.
+1. Check the **Used by** column to see which agents use this tool.
+1. Remove the tool from those agents first, or confirm the agents no longer need it.
+1. Select the tool, then select **Delete**.
+
+> [!WARNING]
+> Deleting a tool immediately removes it from all agents. Active conversations using the tool might fail.
 
 <!--
 :::image type="content" source="../media/tool-catalog/tool-view.png" alt-text="A screenshot showing the tools list in the Foundry portal."lightbox="../media/tool-catalog/tool-view.png" :::
@@ -150,12 +215,41 @@ Foundry Tools contains three sections:
 
 ## Troubleshooting
 
-Use these checks to resolve common issues:
+Use these checks to resolve common issues.
 
-* **You can't find the tool catalog**: Confirm you're in the correct project, then go to **Build** > **Tools**.
-* **A tool is visible but you can't configure it**: Review the tool's required authentication and configuration inputs, and verify you have access to any dependent services.
-* **Your agent doesn't call a tool**: Use the validation guidance in [Best practices for using tools in Microsoft Foundry Agent Service](tool-best-practice.md).
+| Issue | Cause | Resolution |
+|-------|-------|------------|
+| You can't find the tool catalog | Wrong navigation path or missing permissions | Confirm you're in the correct project, then go to **Build** > **Tools**. Verify you have at least **Azure AI User** role on the project. |
+| A tool is visible but you can't configure it | Missing authentication or dependent service access | Review the tool's required authentication and configuration inputs. Verify you have access to any dependent services (for example, Azure AI Search index, SharePoint site). |
+| Your agent doesn't call a tool | Tool not properly attached, model doesn't support tool, or tool instructions unclear | 1. Verify the tool is attached to the agent. 2. Check that the model supports function calling. 3. Review the tool's description to ensure it clearly states when to use the tool. See [Best practices for using tools](tool-best-practice.md). |
+| MCP server connection fails | Invalid endpoint, authentication error, or server unavailable | Verify the MCP server endpoint is correct and accessible. Check authentication credentials. Test the endpoint directly if possible. |
+| Tool works in playground but fails in production | Rate limits, authentication expiration, or service changes | Check for rate limit errors in the agent logs. Refresh authentication tokens if using OAuth. Verify the external service hasn't changed its API. |
+| Custom tool returns errors | Invalid OpenAPI spec or endpoint mismatch | Validate your OpenAPI 3.0 spec. Ensure all required parameters are defined. Test the endpoint directly to confirm it works. |
+
+### Validate tool configuration
+
+To confirm a tool is configured correctly:
+
+1. In **Foundry Tools**, select the tool to open its details.
+1. Check that all required fields show valid values (no error indicators).
+1. If available, use the **Test** button to send a sample request.
+1. Review the response to confirm the tool works as expected.
+
+### Debug agent tool calls
+
+If an agent isn't calling a tool when expected:
+
+1. Open the agent in the **Agents playground**.
+1. Enable **Show tool calls** in the playground settings.
+1. Send a message that should trigger the tool.
+1. Review the tool call details to see if the agent attempted to call the tool and what response it received.
     
+## Next steps
+
+- [Create a private tool catalog](../how-to/private-tool-catalog.md) — Set up organization-specific tools.
+- [Connect to Model Context Protocol servers](../how-to/tools/model-context-protocol.md) — Add MCP servers to your agents.
+- [Best practices for using tools in Microsoft Foundry Agent Service](tool-best-practice.md) — Optimize tool configuration and usage.
+
 ## Related content
 
 * [Create a private tool catalog](../how-to/private-tool-catalog.md)
