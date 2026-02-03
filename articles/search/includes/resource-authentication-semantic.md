@@ -1,6 +1,6 @@
 ---
 title: Include File
-description: Include file for Azure AI Search authentication in semantic ranking quickstarts.
+description: Include file for Azure AI Search authentication in the semantic ranking quickstart.
 author: haileytap 
 ms.author: haileytapia 
 ms.service: azure-ai-search

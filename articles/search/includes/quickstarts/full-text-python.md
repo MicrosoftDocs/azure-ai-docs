@@ -109,7 +109,7 @@ Both clients require the service endpoint and a credential. In this quickstart, 
 
 This quickstart builds a hotels index that you load with hotel data and run queries against. In this step, you define the fields in the index. Each field definition includes a name, data type, and attributes that determine how the field is used.
 
-The notebook uses [SimpleField](/python/api/azure-search-documents/azure.search.documents.indexes.models.simplefield), [SearchableField](/python/api/azure-search-documents/azure.search.documents.indexes.models.searchablefield), and [ComplexField](/python/api/azure-search-documents/azure.search.documents.indexes.models.complexfield) to define the schema. You can read more about [supported data types](/rest/api/searchservice/supported-data-types) and index attributes described in [Create Index (REST)](/rest/api/searchservice/indexes/create).
+The notebook uses `SimpleField`, `SearchableField`, and `ComplexField` from the [models package](/python/api/azure-search-documents/azure.search.documents.indexes.models) to define the schema. You can read more about [supported data types](/rest/api/searchservice/supported-data-types) and index attributes described in [Create Index (REST)](/rest/api/searchservice/indexes/create).
 
 ```python
 # Create a search schema
