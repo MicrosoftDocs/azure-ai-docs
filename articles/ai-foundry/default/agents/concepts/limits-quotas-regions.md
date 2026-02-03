@@ -52,12 +52,6 @@ The following Foundry models are available for your agents to use.
 
 [!INCLUDE [agent-service-models-support-list](../../../agents/includes/agent-service-models-support-list.md)]
 
-## View all agent-supported models in the Foundry portal
-
-1. [!INCLUDE [version-sign-in](../../../includes/version-sign-in.md)]
-1. Select **Discover** in the upper-right navigation, then **Models** in the left pane.
-1. Open the **Capabilities** dropdown and select the **Agent supported** filter.
-
 ## Verify model support
 
 Model availability can change over time.
