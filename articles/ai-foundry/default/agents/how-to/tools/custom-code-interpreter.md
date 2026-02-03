@@ -28,6 +28,10 @@ For more information about MCP and how agents connect to MCP tools, see [Connect
 
 This article uses the Azure CLI and a runnable sample project.
 
+| Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| ✔️ | ✔️ | - | - | - | ✔️ | - | ✔️ |
+
 For the latest SDK and API support for agents tools, see [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md).
 
 ## Prerequisites
@@ -40,6 +44,17 @@ To use the preview feature, you need the following prerequisites:
   - [Azure AI Owner](/azure/role-based-access-control/built-in-roles/ai-machine-learning#azure-ai-owner)
   - [Container Apps ManagedEnvironment Contributor](/azure/role-based-access-control/built-in-roles/containers#container-apps-managedenvironments-contributor)
 - The latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true) for details.
+
+### Environment variables
+
+Set these environment variables after provisioning the infrastructure:
+
+| Variable | Description |
+| --- | --- |
+| `FOUNDRY_PROJECT_ENDPOINT` | Your Foundry project endpoint URL. |
+| `FOUNDRY_MODEL_DEPLOYMENT_NAME` | Your model deployment name (for example, `gpt-4o`). |
+| `MCP_SERVER_URL` | The MCP server endpoint from your Azure Container Apps deployment. |
+| `MCP_PROJECT_CONNECTION_ID` | Your project connection ID for the custom code interpreter. |
 
 ## Before you begin
 
@@ -83,6 +98,92 @@ Copy the `.env.sample` file from the repository to `.env` and fill in the values
 
 Install the Python dependencies by using `uv sync` or `pip install`. Finally, run `./main.py`.
 
+### Quick verification
+
+Before running the full sample, verify your authentication and project connection:
+
+```python
+import os
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from dotenv import load_dotenv
+
+load_dotenv()
+
+with (
+    DefaultAzureCredential() as credential,
+    AIProjectClient(endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"], credential=credential) as project_client,
+):
+    print("Connected to project.")
+    # List connections to verify MCP connection exists
+    connections = project_client.connections.list()
+    for conn in connections:
+        print(f"  Connection: {conn.name} (type: {conn.type})")
+```
+
+If this code runs without errors, your credentials and project endpoint are configured correctly.
+
+### Code example
+
+The following Python sample shows how to create an agent with a custom code interpreter MCP tool:
+
+```python
+import os
+from dotenv import load_dotenv
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import PromptAgentDefinition, MCPTool
+
+load_dotenv()
+
+project_client = AIProjectClient(
+    endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
+    credential=DefaultAzureCredential(),
+)
+
+with project_client:
+    openai_client = project_client.get_openai_client()
+
+    # Configure the custom code interpreter MCP tool
+    custom_code_interpreter = MCPTool(
+        server_label="custom-code-interpreter",
+        server_url=os.environ["MCP_SERVER_URL"],
+        project_connection_id=os.environ.get("MCP_PROJECT_CONNECTION_ID"),
+    )
+
+    agent = project_client.agents.create_version(
+        agent_name="CustomCodeInterpreterAgent",
+        definition=PromptAgentDefinition(
+            model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
+            instructions="You are a helpful assistant that can run Python code to analyze data and solve problems.",
+            tools=[custom_code_interpreter],
+        ),
+        description="Agent with custom code interpreter for data analysis.",
+    )
+    print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+
+    # Test the agent with a simple calculation
+    response = openai_client.responses.create(
+        input="Calculate the factorial of 10 using Python.",
+        extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+    )
+    print(f"Response: {response.output_text}")
+
+    # Clean up
+    project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
+    print("Agent deleted")
+```
+
+### Expected output
+
+When you run the sample, you see output similar to:
+
+```console
+Agent created (id: agent-xxxxxxxxxxxx, name: CustomCodeInterpreterAgent, version: 1)
+Response: The factorial of 10 is 3,628,800. I calculated this using Python's math.factorial() function.
+Agent deleted
+```
+
 ## Verify your setup
 
 After you provision the infrastructure and run the sample:
@@ -93,20 +194,15 @@ After you provision the infrastructure and run the sample:
 
 ## Troubleshooting
 
-### Feature registration is still pending
-
-If `az feature register` returns a `Registering` state, wait for the registration to complete and then run `az provider register -n Microsoft.App` again.
-
-### Deployment fails
-
-If `az deployment group create` fails:
-
-- Confirm you have the required role assignments in the target subscription and resource group.
-- Confirm the resource group exists and the selected region supports the deployed resources.
-
-### The agent doesn't call the tool
-
-Use tracing in Microsoft Foundry to confirm whether a tool call occurred. For guidance on validating tool invocation, see [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md).
+| Issue | Likely cause | Resolution |
+| --- | --- | --- |
+| Feature registration is still pending | The `az feature register` command returns `Registering` state. | Wait for registration to complete (can take 15-30 minutes). Check status with `az feature show --namespace Microsoft.App --name SessionPoolsSupportMCP`. Then run `az provider register -n Microsoft.App` again. |
+| Deployment fails with permission error | Missing required role assignments. | Confirm you have **Azure AI Owner** and **Container Apps ManagedEnvironment Contributor** roles on the subscription or resource group. |
+| Deployment fails with region error | The selected region doesn't support Azure Container Apps Dynamic Sessions. | Try a different region. See [Azure Container Apps regions](/azure/container-apps/overview#regions) for supported regions. |
+| Agent doesn't call the tool | The MCP connection isn't configured correctly, or the agent instructions don't prompt tool use. | Use tracing in Microsoft Foundry to confirm tool invocation. Verify the `MCP_SERVER_URL` matches your deployed Container Apps endpoint. See [Best practices](../../concepts/tool-best-practice.md). |
+| MCP server connection timeout | The Container Apps session pool isn't running or has no standby instances. | Check the session pool status in the Azure portal. Increase `standbyInstanceCount` in your Bicep template if needed. |
+| Code execution fails in container | Missing Python packages in the custom container. | Update your container image to include required packages. Rebuild and redeploy the container. |
+| Authentication error connecting to MCP server | The project connection credentials are invalid or expired. | Regenerate the connection credentials and update the `.env` file. Verify the `MCP_PROJECT_CONNECTION_ID` format. |
 
 ## Limitations
 
