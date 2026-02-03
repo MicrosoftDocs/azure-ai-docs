@@ -219,8 +219,8 @@ project_client = AIProjectClient(
 
 ::: moniker range="foundry-classic"
 ```python
-models = project.get_openai_client(api_version="2024-10-21")
-response = models.chat.completions.create(
+models = project_client.get_openai_client(api_version="2024-10-21")
+chat_responses = models.chat.completions.create(
     model="gpt-4o",
     messages=[
         {"role": "system", "content": "You are a helpful assistant"},
@@ -228,7 +228,7 @@ response = models.chat.completions.create(
     ],
 )
 
-print(response.choices[0].message.content)
+print(chat_responses.choices[0].message.content)
 ```
 ::: moniker-end
 ::: moniker range="foundry"
@@ -262,7 +262,7 @@ import com.azure.identity.DefaultAzureCredentialBuilder;
 String  prompt = "What best practices should I follow when asking an AI model to review Java code?";
 String endpoint = "https://<resource-name>.services.ai.azure.com/api/projects/<project-name>";
 TokenCredential credential = new DefaultAzureCredentialBuilder().build();
-client = new ChatCompletionsClientBuilder()
+ChatCompletionsClient client = new ChatCompletionsClientBuilder()
     .credential(credential)
     .endpoint(endpoint)
     .buildClient();
