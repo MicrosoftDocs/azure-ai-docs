@@ -61,7 +61,7 @@ Use the Azure portal, REST API, or an Azure SDK preview package to create a know
 
 + [How to create a search index knowledge source (wraps an existing index)](agentic-knowledge-source-how-to-search-index.md)
 + [How to create a blob knowledge source (generates an indexer pipeline)](agentic-knowledge-source-how-to-blob.md)
-+ [How to create a OneLake knowledge source (generates an indexer pipeline)](agentic-knowledge-source-how-to-onelake.md)
++ [How to create an indexed OneLake knowledge source (generates an indexer pipeline)](agentic-knowledge-source-how-to-onelake.md)
 + [How to create a SharePoint (indexed) knowledge source (generates an indexer pipeline)](agentic-knowledge-source-how-to-sharepoint-indexed.md)
 + [How to create a SharePoint (remote) knowledge source (queries SharePoint directly)](agentic-knowledge-source-how-to-sharepoint-remote.md)
 + [How to create a Web Knowledge Source resource (connects to Bing's public endpoint)](agentic-knowledge-source-how-to-web.md)
