@@ -34,7 +34,7 @@ Large language models (LLMs) introduce a new type of automation with systems tha
 *Microsoft Foundry* is designed to change that. It's a platform that combines models, tools, frameworks, and governance into a unified system for building intelligent agents. At the center of this system is *Foundry Agent Service*, which enables the operation of agents across development, deployment, and production.
     :::column-end:::
     :::column span="3":::
-![Diagram that shows Foundry Agent Service connecting models, tools, governance, and orchestration for running agents from development to production.](media\agent-service-the-glue.png)
+![Diagram that shows Foundry Agent Service as the central hub connecting four components: AI models on the left, tools and frameworks on the top, governance and compliance on the right, and orchestration at the bottom. Arrows indicate Agent Service enables agents to move from development through deployment to production.](media/agent-service-the-glue.png)
     :::column-end:::
 :::row-end:::
 
@@ -73,7 +73,7 @@ An agent has three core components:
   - Hosted: Containerized agents that are created and deployed in code and are hosted by Foundry.
 - **Tools**: Let the agent retrieve knowledge or take action.
 
-![Diagram that shows an agent turning inputs into outputs and calling tools during a run to retrieve information or take actions.](media\what-is-an-agent.png)
+![Diagram that shows an agent receiving user inputs on the left, processing them through the model and instructions in the center, and producing outputs on the right. A bidirectional arrow below the agent connects to tools, indicating the agent can call tools during processing to retrieve knowledge or take actions.](media/what-is-an-agent.png)
 
 Agents receive unstructured inputs such as user prompts, alerts, or messages from other agents. They produce outputs in the form of tool results or messages. Along the way, they might call tools to perform retrieval or trigger actions.
 
@@ -81,7 +81,7 @@ Agents receive unstructured inputs such as user prompts, alerts, or messages fro
 
 Think of Foundry as an assembly line for intelligent agents. Like any modern factory, Foundry brings together specialized stations that are each responsible for shaping part of the final product. Instead of machines and conveyor belts, the agent factory uses models, tools, policies, and orchestration to build agents that are secure, testable, and production ready. Here's how the factory works step by step:
 
-![Diagram that shows the six steps of the agent factory: model, customization, tools, orchestration, observability, and trust.](media\agent-factory.png)
+![Diagram that shows the agent factory as a six-step assembly line. Step 1 Models shows selecting an LLM. Step 2 Customizability shows fine-tuning and prompts. Step 3 Knowledge and Tools shows connecting to enterprise data and actions. Step 4 Orchestration shows coordinating agent workflows. Step 5 Observability shows logging and tracing. Step 6 Trust shows security controls. The steps flow left to right, producing a production-ready agent.](media/agent-factory.png)
 
 :::row:::
     :::column span="1":::
@@ -135,7 +135,7 @@ Agent Service provides a production-ready foundation for deploying intelligent a
 
 | Capability | Agent Service |
 | --- | --- |
-| **Visibility into conversations** | Full access to structured [conversations](../default/agents/concepts/runtime-components.md#conversation), including both user-to-agent and agent-to-agent messages. Ideal for UIs, debugging, and training. |
+| **Visibility into conversations** | Full access to structured [conversations](../default/agents/concepts/runtime-components.md#what-is-a-conversation), including both user-to-agent and agent-to-agent messages. Ideal for UIs, debugging, and training. |
 | **Multiple-agent coordination** | Built-in support for agent-to-agent messaging. |
 | **Tool orchestration** | Server-side execution and retry of tool calls with structured logging. No manual orchestration is required. |
 | **Trust and safety** | Integrated [content filters](../openai/how-to/content-filters.md) to help prevent misuse and mitigate prompt injection risks, including cross-prompt injection attacks (XPIA). All outputs are policy governed. |
@@ -207,5 +207,10 @@ If you're blocked getting started, check these common issues:
 
 ## Related content
 
-- Learn more about the [models that inform agents](concepts\model-region-support.md).
-- Learn about the [Microsoft Foundry SDKs](../how-to/develop/sdk-overview.md).
+- [Quickstart: Create your first agent](./quickstart.md)
+- [Models that inform agents](concepts/model-region-support.md)
+- [Microsoft Foundry SDKs](../how-to/develop/sdk-overview.md)
+- [Content filters for safety](../openai/how-to/content-filters.md)
+- [Trace agents with the SDK](../how-to/develop/trace-agents-sdk.md)
+- [Use your own resources](how-to/use-your-own-resources.md)
+- [Quotas and limits for Agent Service](quotas-limits.md)
