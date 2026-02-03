@@ -413,6 +413,15 @@ agent = client.agents.create_version(
         }
     )
 )
+
+# Print confirmation
+print(f"Agent created: {agent.name} (id: {agent.id}, version: {agent.version})")
+```
+
+Expected output:
+
+```output
+Agent created: my-agent (id: agent_abc123, version: 1)
 ```
 
 Here are the key parameters:
@@ -719,7 +728,8 @@ AGENT_VERSION = "1"  # Optional: specify version, or use latest
 
 # Initialize the client and retrieve the agent
 client = AIProjectClient(endpoint=PROJECT_ENDPOINT, credential=DefaultAzureCredential())
-agent = client.agents.retrieve(agent_name=AGENT_NAME)
+agent = client.agents.get(agent_name=AGENT_NAME)
+print(f"Agent retrieved: {agent.name} (version: {agent.versions.latest.version})")
 
 # Get the OpenAI client and send a message
 openai_client = client.get_openai_client()
@@ -729,9 +739,16 @@ response = openai_client.responses.create(
 )
 
 print(f"Agent response: {response.output_text}")
-
-Reference: [Azure AI Projects SDK for Python](/python/api/overview/azure/ai-projects-readme?view=azure-python-preview&preserve-view=true)
 ```
+
+Expected output:
+
+```output
+Agent retrieved: your-agent-name (version: 1)
+Agent response: Hello! I'm your hosted agent. I can help you with...
+```
+
+For more information, see [Azure AI Projects SDK for Python](/python/api/overview/azure/ai-projects-readme?view=azure-python-preview&preserve-view=true).
 
 ### Use tools with hosted agents
 
@@ -960,6 +977,25 @@ If your agent deployment fails, view error logs by selecting **View deployment l
 | `RegistryNotFound` | 400/404 | Fix registry DNS or server spelling, or network reachability. |
 | `ValidationError` | 400 | Correct invalid request fields. |
 | `UserError` (generic) | 400 | Inspect the message and fix the configuration. |
+
+### Troubleshoot runtime issues
+
+If your hosted agent deploys successfully but doesn't respond as expected, check these common issues:
+
+| Symptom | Possible cause | Solution |
+| ------- | -------------- | -------- |
+| Agent doesn't respond | Container is still starting | Wait for the agent status to show **Started**. Check the log stream for startup progress. |
+| Slow response times | Insufficient resource allocation | Increase CPU or memory allocation in the agent definition. |
+| Timeout errors | Long-running operations | Increase timeout settings in your agent code. Consider breaking operations into smaller steps. |
+| Intermittent failures | Replica scaling issues | Check that `min_replicas` is set appropriately for your workload. |
+| Tool calls failing | Missing connection configuration | Verify that tool connections are properly configured and the managed identity has access. |
+| Model errors | Invalid model deployment name | Verify that `MODEL_NAME` environment variable matches an available model deployment. |
+
+To debug runtime issues:
+
+1. Use the [log stream API](#view-container-log-stream) to view container logs in real time.
+1. Check the **Traces** tab in the Foundry portal playground for detailed request and response information.
+1. Verify environment variables are set correctly in your agent definition.
 
 ## Understand preview details
 
