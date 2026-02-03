@@ -34,6 +34,9 @@ The grounding process involves several key steps:
 > - Use of Grounding with Bing Search and Grounding with Bing Custom Search incurs costs. See pricing for [details](https://www.microsoft.com/bing/apis/grounding-pricing). 
 > - See the [manage section](#manage-grounding-with-bing-search-and-grounding-with-bing-custom-search) for information about how Azure admins can manage access to use of Grounding with Bing Search and Grounding with Bing Custom Search.
 
+>[!NOTE]
+> - We recommend customers to start with [web search tool(preview)](./web-search.md). You can learn more about the difference between web search vs Grounding with Bing (custom) search in [web grounding overview](./web-overview.md)
+
 ### Usage support
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |

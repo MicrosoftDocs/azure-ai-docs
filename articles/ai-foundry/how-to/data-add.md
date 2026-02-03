@@ -11,7 +11,7 @@ ms.custom:
   - hub-only
   - dev-focus
 ms.topic: how-to
-ms.date: 11/20/2025
+ms.date: 02/02/2026
 ms.author: jburchel 
 author: jonburchel 
 ai-usage: ai-assisted
@@ -23,7 +23,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-This article describes how to create and manage data in Microsoft Foundry hub-based projects. Use data as a source for indexing in Microsoft Foundry portal.
+This article describes how to create and manage data in Microsoft Foundry hub-based projects. You learn how to connect to your project, create data assets that reference files and folders in Azure Storage, and manage those assets through versioning, tagging, and archiving.
 
 Data can help when you need these capabilities:
 
@@ -39,7 +39,7 @@ Data can help when you need these capabilities:
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A Microsoft Foundry project. [Create a project in Microsoft Foundry portal](./create-projects.md).
-- The [Microsoft Developer](/azure/role-based-access-control/built-in-roles#azure-ai-developer) role on the project resource.
+- The [Azure AI Developer](/azure/role-based-access-control/built-in-roles/ai-machine-learning#azure-ai-developer) role assigned to you on the project resource. This role grants permissions to read, create, and manage data assets.
 - Python 3.8 or later.
 - The Microsoft ML SDK and Azure Identity package:
 
@@ -87,7 +87,7 @@ When you create your data, set the data type. Microsoft Foundry supports these d
 |**`folder`**<br>Reference a folder | Read a folder of parquet/CSV files into Pandas/Spark.<br><br>Read unstructured data (for example: images, text, or audio) located in a folder. |
 |**`table`**<br>Reference a table | Read a table on Azure Storage. |
 
-### Add data with Python SDK
+### Add data by using Python SDK
 
 You can create data assets that reference files or folders in Azure Storage.
 
@@ -137,7 +137,9 @@ created_data = ml_client.data.create_or_update(my_folder_data)
 print(f"Data asset created: {created_data.name} version {created_data.version}")
 ```
 
-### Add data with Microsoft Foundry portal
+Reference: [Data class](/python/api/azure-ai-ml/azure.ai.ml.entities.data)
+
+### Add data by using Microsoft Foundry portal
 
 Microsoft Foundry shows the supported source paths. You can create data from a folder or file:
 
@@ -176,16 +178,16 @@ These steps explain how to add an existing file, folder, or table data resource 
 
 1. Select the hub-based project where you want to add the data.
 
-1. From the collapsible **My assets** menu on the left, select **Data + indexes**, then select **New data** as shown in this screenshot:
+1. From the collapsible **My assets** menu on the left, select **Data + indexes**. Then select **New data** as shown in the following screenshot:
 
     :::image type="content" source="../media/data-add/add-data.png" alt-text="Screenshot highlighting New Data in the Data tab.":::
 
 1. Select **Get data with storage URL** as your **Data source**. 
-1. Choose the *File*, *Folder*, or *Table* as the data **Type**, and then provide a URL based on the supported URL formats listed on that page.    
+1. Choose the *File*, *Folder*, or *Table* as the data **Type**. Then provide a URL based on the supported URL formats listed on that page.    
 
 1. Select **Next** after you choose the data source.
 
-1. Enter a custom name for your data, then select **Create**.
+1. Enter a custom name for your data, and then select **Create**.
 
 :::image type="content" source="../media/data-add/data-add-finish.png" alt-text="This screenshot shows the naming step for the data source." lightbox="../media/data-connections/data-add-finish.png":::
 
@@ -195,7 +197,7 @@ After you add data to your hub-based project, you can manage it by using the Mic
 
 ### List and get data assets
 
-To list all data assets in your project:
+To list all data assets in your project, use the following code:
 
 ```python
 # List all data assets
@@ -204,7 +206,9 @@ for data in data_assets:
     print(f"Name: {data.name}, Version: {data.version}")
 ```
 
-To get details of a specific data asset:
+Reference: [DataOperations.list](/python/api/azure-ai-ml/azure.ai.ml.operations.dataoperations#azure-ai-ml-operations-dataoperations-list)
+
+To get details of a specific data asset, use the following code:
 
 ```python
 # Get a specific data asset
@@ -213,7 +217,7 @@ print(f"Data name: {data.name}")
 print(f"Data path: {data.path}")
 ```
 
-Reference: [MLClient.data operations](/python/api/azure-ai-ml/azure.ai.ml.operations.dataoperations)
+Reference: [DataOperations.get](/python/api/azure-ai-ml/azure.ai.ml.operations.dataoperations#azure-ai-ml-operations-dataoperations-get)
 
 ### Delete data
 
@@ -221,10 +225,10 @@ Reference: [MLClient.data operations](/python/api/azure-ai-ml/azure.ai.ml.operat
 > Data deletion isn't supported. Data is immutable in Microsoft Foundry portal. Once you create a data version, you can't modify or delete it. This immutability provides a level of protection when working in a team that creates production workloads.
 
 If Microsoft Foundry allowed data deletion, it would have the following adverse effects:
-- Production jobs that consume data that you later delete would fail
-- Machine learning experiment reproduction would become more difficult
-- Job lineage would break, because it would become impossible to view the deleted data version
-- You could no longer correctly track and audit, since versions could be missing
+- Production jobs that consume data that you later delete would fail.
+- Machine learning experiment reproduction would become more difficult.
+- Job lineage would break, because it would become impossible to view the deleted data version.
+- You could no longer correctly track and audit, since versions could be missing.
 
 When you erroneously create a data resource - for example, with an incorrect name, type, or path - Microsoft offers solutions to handle the situation without the negative consequences of deletion:
 
@@ -238,12 +242,12 @@ When you erroneously create a data resource - for example, with an incorrect nam
 
 ### Archive data
 
-By default, archiving a data resource hides it from both list queries (for example, in the CLI `az ml data list`) and the data listing in Microsoft Foundry portal. You can still reference and use an archived data resource in your workflows. You can either archive:
+By default, archiving a data resource hides it from both list queries, such as the CLI `az ml data list`, and the data listing in Microsoft Foundry portal. You can still reference and use an archived data resource in your workflows. You can either archive:
 
 - *all versions* of the data under a given name
 - a specific data version
 
-You can archive data by using the Python SDK:
+Use the Python SDK to archive data:
 
 ```python
 # Archive a specific version
@@ -252,6 +256,8 @@ ml_client.data.archive(name="my-file-data", version="1.0")
 # Archive all versions (container)
 ml_client.data.archive(name="my-file-data")
 ```
+
+Reference: [DataOperations.archive](/python/api/azure-ai-ml/azure.ai.ml.operations.dataoperations#azure-ai-ml-operations-dataoperations-archive)
 
 #### Archive all versions of a data
 
@@ -275,6 +281,8 @@ ml_client.data.restore(name="my-file-data", version="1.0")
 ml_client.data.restore(name="my-file-data")
 ```
 
+Reference: [DataOperations.restore](/python/api/azure-ai-ml/azure.ai.ml.operations.dataoperations#azure-ai-ml-operations-dataoperations-restore)
+
 #### Restore all versions of data
 
 Currently, the Microsoft Foundry portal doesn't support restoration of *all versions* of the data under a given name.
@@ -288,12 +296,12 @@ Currently, the Microsoft Foundry portal doesn't support restoration of a specifi
 
 ### Data tagging
 
-Data tagging is extra metadata applied to the data in the form of a key-value pair. Data tagging offers many benefits:
+Data tagging is extra metadata you apply to the data as a key-value pair. Data tagging offers many benefits:
 
 - Data quality description. For example, if your organization uses a *medallion lakehouse architecture*, you can tag assets with `medallion:bronze` (raw), `medallion:silver` (validated), and `medallion:gold` (enriched).
 - Efficient data searching and filtering, to help with data discovery.
-- Identification of sensitive personal data, to properly manage and govern data access. For example, `sensitivity:PII`/`sensitivity:nonPII`.
-- Identification of whether data is approved, from a responsible AI (RAI) audit. For example, `RAI_audit:approved`/`RAI_audit:todo`.
+- Identification of sensitive personal data, to properly manage and govern data access. For example, `sensitivity:PII` and `sensitivity:nonPII`.
+- Identification of whether data is approved, from a responsible AI (RAI) audit. For example, `RAI_audit:approved` and `RAI_audit:todo`.
 
 You can add tags to existing data by using the Python SDK:
 
@@ -310,12 +318,14 @@ ml_client.data.create_or_update(my_data)
 print(f"Tags updated for: {my_data.name}")
 ```
 
+Reference: [DataOperations.create_or_update](/python/api/azure-ai-ml/azure.ai.ml.operations.dataoperations#azure-ai-ml-operations-dataoperations-create-or-update)
+
 ### Data preview
 
 In the Data details page, you can browse the folder structure and preview the file. The portal supports data preview for these types:
-- Data file types that the preview API supports: ".tsv", ".csv", ".parquet", ".jsonl".
+- Data file types that the preview API supports: `.tsv`, `.csv`, `.parquet`, `.jsonl`.
 - For other file types, the Microsoft Foundry portal tries to natively preview the file in the browser. The supported file types might depend on the browser itself.
-For images, the portal supports these file image types: ".png", ".jpg", ".gif". For other files, the portal supports these file types: ".ipynb", ".py", ".yml", ".html".
+For images, the portal supports these file image types: `.png`, `.jpg`, `.gif`. For other files, the portal supports these file types: `.ipynb`, `.py`, `.yml`, `.html`.
 
 ## Next steps
 
