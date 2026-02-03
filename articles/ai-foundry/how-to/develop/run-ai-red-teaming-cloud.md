@@ -60,8 +60,8 @@ First, install Microsoft Foundry SDK's project client, which runs the AI Red Tea
 
 ::: moniker range="foundry-classic"
 
-```python
-uv install azure-ai-projects==1.1.0b3 azure-identity
+```bash
+pip install azure-ai-projects==1.1.0b3 azure-identity
 ```
 
 ::: moniker-end
@@ -69,7 +69,7 @@ uv install azure-ai-projects==1.1.0b3 azure-identity
 ::: moniker range="foundry"
 
 ```bash
-uv install azure-ai-projects>=2.0.0b1 azure-identity
+pip install azure-ai-projects>=2.0.0b1 azure-identity
 ```
 
 ::: moniker-end

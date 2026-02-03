@@ -60,8 +60,8 @@ When you use the Foundry SDK, it logs evaluation results in your Foundry project
 
 1. Install the Microsoft Foundry SDK project client to run evaluations in the cloud:
 
-   ```python
-   uv install azure-ai-projects azure-identity
+   ```bash
+   pip install azure-ai-projects azure-identity
    ```
 
    > [!NOTE]
@@ -105,7 +105,7 @@ When you use the Foundry SDK, it logs evaluation results in your Foundry project
 
    ```bash
 
-   uv install azure-ai-projects azure-identity 
+   pip install azure-ai-projects azure-identity 
 
    ```
 
