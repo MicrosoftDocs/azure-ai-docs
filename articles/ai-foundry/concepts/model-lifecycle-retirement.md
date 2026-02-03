@@ -7,7 +7,7 @@ ai-usage: ai-assisted
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: concept-article
-ms.date: 01/30/2026
+ms.date: 02/03/2026
 ms.author: mopeakande
 manager: nitinme
 author: msakande
@@ -83,27 +83,27 @@ To learn more about the Azure OpenAI models lifecycle, including information for
 
 ## Upcoming retirements for Foundry Models
 
-The following tables list the timelines for models that are on track for retirement. The specified dates are in UTC time.
+The following tables list the timelines for models that are on track for retirement. The lifecycle stages go into effect at 00:00:00 UTC on the specified dates.
 
 #### Cohere
 
-| Model | Legacy date (UTC) | Deprecation date (UTC) | Retirement date (UTC) | Suggested replacement model |
+| Model | Legacy date | Deprecation date | Retirement date | Suggested replacement model |
 |-------|-------------------|------------------------|-----------------------|-----------------------------|
 | [Cohere-rerank-v3.5](https://ai.azure.com/explore/models/Cohere-rerank-v3.5/version/1/registry/azureml-cohere/?cid=learnDocs) | January 14, 2026 | February 14, 2026 | May 14, 2026 | [Cohere-rerank-v4.0-pro](https://ai.azure.com/resource/models/Cohere-rerank-v4.0-pro/version/1/registry/azureml-cohere/?cid=learnDocs), [Cohere-rerank-v4.0-fast](https://ai.azure.com/resource/models/Cohere-rerank-v4.0-fast/version/2/registry/azureml-cohere/?cid=learnDocs) |
 
 #### Microsoft
 
-| Model | Legacy date (UTC) | Deprecation date (UTC) | Retirement date (UTC) | Suggested replacement model |
+| Model | Legacy date | Deprecation date | Retirement date | Suggested replacement model |
 |-------|-------------------|------------------------|-----------------------|-----------------------------|
 | [MAI-DS-R1](https://ai.azure.com/explore/models/MAI-DS-R1/version/1/registry/azureml/?cid=learnDocs) | January 16, 2026 | January 27, 2026 | February 27, 2026 | Any DeepSeek model available in the Model catalog |
 
 ## Retired Foundry Models
 
-The following models have been retired and are no longer available for new deployments or inference.
+The following models were retired at 00:00:00 UTC on the specified dates and aren't available for new deployments or inference.
 
 #### AI21 Labs
 
-| Model | Retirement date (UTC) | Suggested replacement model |
+| Model | Retirement date | Suggested replacement model |
 |-------|-----------------------|-----------------------------|
 | Jamba Instruct | March 1, 2025 | N/A |
 | AI21-Jamba-1.5-Large | August 1, 2025 | N/A |
@@ -111,13 +111,13 @@ The following models have been retired and are no longer available for new deplo
 
 #### Bria
 
-| Model | Retirement date (UTC) | Suggested replacement model |
+| Model | Retirement date | Suggested replacement model |
 |-------|-----------------------|-----------------------------|
 | Bria-2.3-Fast | October 31, 2025 | N/A |
 
 #### Cohere
 
-| Model | Retirement date (UTC) | Suggested replacement model |
+| Model | Retirement date | Suggested replacement model |
 |-------|-----------------------|-----------------------------|
 | Command R | June 30, 2025 | [Cohere Command R 08-2024](https://aka.ms/azureai/landing/Cohere-command-r-08-2024?cid=learnDocs) |
 | Command R+ | June 30, 2025 | [Cohere Command R+ 08-2024](https://aka.ms/azureai/landing/Cohere-command-r-plus-08-2024?cid=learnDocs) |
@@ -126,25 +126,25 @@ The following models have been retired and are no longer available for new deplo
 
 #### Core42
 
-| Model | Retirement date (UTC) | Suggested replacement model |
+| Model | Retirement date | Suggested replacement model |
 |-------|-----------------------|-----------------------------|
 | jais-30b-chat | January 30, 2026 | N/A |
 
 #### DeepSeek
 
-| Model | Retirement date (UTC) | Suggested replacement model |
+| Model | Retirement date | Suggested replacement model |
 |-------|-----------------------|-----------------------------|
 | DeepSeek-V3 | August 31, 2025 | [DeepSeek-V3-0324](https://aka.ms/azureai/landing/DeepSeek-V3-0324?cid=learnDocs) |
 
 #### Gretel
 
-| Model | Retirement date (UTC) | Suggested replacement model |
+| Model | Retirement date | Suggested replacement model |
 |-------|-----------------------|-----------------------------|
 | Gretel-Navigator-Tabular | September 16, 2025 | N/A |
 
 #### Meta
 
-| Model | Retirement date (UTC) | Suggested replacement model |
+| Model | Retirement date | Suggested replacement model |
 |-------|-----------------------|-----------------------------|
 | Llama-2-13b | June 30, 2025 | [Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs) |
 | Llama-2-13b-chat | June 30, 2025 | [Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs) |
@@ -158,7 +158,7 @@ The following models have been retired and are no longer available for new deplo
 
 #### Microsoft
 
-| Model | Retirement date (UTC) | Suggested replacement model |
+| Model | Retirement date | Suggested replacement model |
 |-------|-----------------------|-----------------------------|
 | Phi-3-medium-4k-instruct | August 30, 2025 | [Phi-4](https://ai.azure.com/explore/models/Phi-4/version/8/registry/azureml/?cid=learnDocs) |
 | Phi-3-medium-128k-instruct | August 30, 2025 | [Phi-4](https://ai.azure.com/explore/models/Phi-4/version/8/registry/azureml/?cid=learnDocs) |
@@ -172,7 +172,7 @@ The following models have been retired and are no longer available for new deplo
 
 #### Mistral AI
 
-| Model | Retirement date (UTC) | Suggested replacement model |
+| Model | Retirement date | Suggested replacement model |
 |-------|-----------------------|-----------------------------|
 | Mistral-Nemo | January 30, 2026 | [Mistral-small-2503](https://aka.ms/aistudio/landing/mistral-small-2503) |
 | Mistral-large-2411 | January 30, 2026 | [Mistral-medium-2505](https://ai.azure.com/explore/models/mistral-medium-2505/version/1/registry/azureml-mistral/?cid=learnDocs) |
