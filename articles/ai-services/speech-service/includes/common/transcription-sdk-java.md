@@ -30,23 +30,23 @@ ms.date: 01/31/2026
     ```xml
     <?xml version="1.0" encoding="UTF-8"?>
     <project xmlns="http://maven.apache.org/POM/4.0.0"
-             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
         <modelVersion>4.0.0</modelVersion>
-
-        <groupId>com.azure</groupId>
-        <artifactId>azure-ai-speech-transcription</artifactId>
-        <version>1.0.0-beta.1</version>
+    
+        <groupId>com.example</groupId>
+        <artifactId>transcription-quickstart</artifactId>
+        <version>1.0.0</version>
         <packaging>jar</packaging>
-
-        <name>Microsoft Azure SDK for Transcription</name>
-        <description>This package contains Microsoft Azure Transcription client library.</description>
+    
+        <name>Speech Transcription Quickstart</name>
+        <description>Quickstart sample for Azure Speech Transcription client library.</description>
         <url>https://github.com/Azure/azure-sdk-for-java</url>
-
+    
         <properties>
             <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         </properties>
-
+    
         <dependencies>
             <dependency>
                 <groupId>com.azure</groupId>
@@ -59,7 +59,7 @@ ms.date: 01/31/2026
                 <version>1.18.1</version>
             </dependency>
         </dependencies>
-
+    
         <build>
             <sourceDirectory>.</sourceDirectory>
             <plugins>
@@ -128,8 +128,8 @@ Set the API key environment variable:
 
 # [Windows](#tab/windows)
 
-```shell
-setx SPEECH_API_KEY <your-speech-key>
+```powershell
+$env:SPEECH_API_KEY="<your-speech-key>"
 ```
 
 # [Linux](#tab/linux)
@@ -237,7 +237,7 @@ Replace `<path-to-your-audio-file.wav>` with the path to your audio file.
 Run the application using Maven:
 
 ```shell
-mvn exec:java
+mvn compile exec:java
 ```
 
 ## Clean up resources

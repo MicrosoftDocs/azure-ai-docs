@@ -30,23 +30,23 @@ ms.date: 01/31/2026
     ```xml
     <?xml version="1.0" encoding="UTF-8"?>
     <project xmlns="http://maven.apache.org/POM/4.0.0"
-             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
         <modelVersion>4.0.0</modelVersion>
-
-        <groupId>com.azure</groupId>
-        <artifactId>llm-speech-quickstart</artifactId>
-        <version>1.0.0-beta.1</version>
+    
+        <groupId>com.example</groupId>
+        <artifactId>transcription-quickstart</artifactId>
+        <version>1.0.0</version>
         <packaging>jar</packaging>
-
-        <name>LLM Speech Quickstart</name>
-        <description>This package demonstrates LLM Speech transcription and translation.</description>
+    
+        <name>Speech Transcription Quickstart</name>
+        <description>Quickstart sample for Azure Speech Transcription client library.</description>
         <url>https://github.com/Azure/azure-sdk-for-java</url>
-
+    
         <properties>
             <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         </properties>
-
+    
         <dependencies>
             <dependency>
                 <groupId>com.azure</groupId>
@@ -59,7 +59,7 @@ ms.date: 01/31/2026
                 <version>1.18.1</version>
             </dependency>
         </dependencies>
-
+    
         <build>
             <sourceDirectory>.</sourceDirectory>
             <plugins>
@@ -77,7 +77,7 @@ ms.date: 01/31/2026
                     <artifactId>exec-maven-plugin</artifactId>
                     <version>3.1.0</version>
                     <configuration>
-                        <mainClass>LlmSpeechQuickstart</mainClass>
+                        <mainClass>TranscriptionQuickstart</mainClass>
                     </configuration>
                 </plugin>
             </plugins>
@@ -258,7 +258,7 @@ Replace `<path-to-your-audio-file.wav>` with the path to your audio file. The se
 Run the application using Maven:
 
 ```shell
-mvn exec:java
+mvn compile exec:java
 ```
 
 ## Translate audio by using LLM speech
