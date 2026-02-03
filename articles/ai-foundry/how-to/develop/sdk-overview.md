@@ -429,9 +429,11 @@ Use the OpenAI SDK when you want the full OpenAI API surface and maximum client 
 > Use non-OpenAI models hosted in Foundry (Foundry direct models) through the OpenAI SDK by specifying the model deployment name in your requests. For more information, see [Develop reasoning apps with DeepSeek models on Azure AI Foundry using the OpenAI SDK](/azure/developer/ai/how-to/use-reasoning-model-inference?tabs=github-codespaces).
 ::: moniker-end
 
+The following snippet shows how to use the Azure OpenAI `/openai/v1` endpoint directly.
+
 ::: zone pivot="programming-language-python"
 
-The following snippet shows how to use the Azure OpenAI `/openai/v1` endpoint directly.
+
 ::: moniker range="foundry-classic"
 ```python
 from openai import OpenAI
@@ -457,8 +459,6 @@ print(response.model_dump_json(indent=2))
 For more information, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?view=foundry-classic&tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-python&preserve-view=true).
 ::: moniker-end
 ::: moniker range="foundry"
-
-The following snippet shows how to use the Azure OpenAI `/openai/v1` endpoint directly.
 
 ```python
 from openai import OpenAI
@@ -635,7 +635,6 @@ For more information on using the OpenAI SDK, see [Azure OpenAI supported progra
    ```
 ::: moniker-end
 When it succeeds, the .NET CLI confirms that it installed the `OpenAI` package.
-1. The following code snippet demonstrates how to create the OpenAI client directly using the Azure OpenAI v1 endpoint.
 
 ::: moniker range="foundry-classic"
    This snippet configures `DefaultAzureCredential`, builds `OpenAIClientOptions`, and creates a `ChatClient` for the Azure OpenAI v1 endpoint.
