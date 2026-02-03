@@ -303,7 +303,7 @@ This code creates an OpenAI client scoped to the project, defines the input data
 
 ### Create and run the evaluation
 
-An evaluation group is created from the configuration. Then, an evaluation run is started by using inline JSONL-style data. Each item represents one evaluation example.
+An evaluation is created from the configuration. Then, an evaluation run is started by using inline JSONL-style data. Each item represents one evaluation test sample.
 
 ```python
 
