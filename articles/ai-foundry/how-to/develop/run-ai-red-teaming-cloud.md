@@ -257,6 +257,46 @@ Create a red team to hold one or more runs that share a data source and risk cat
 # [Python](#tab/python)
 
 ```python
+import os
+import time
+import json
+from dotenv import load_dotenv
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import (
+    PromptAgentDefinition,
+    AzureAIAgentTarget,
+    AgentTaxonomyInput,
+    EvaluationTaxonomy,
+    RiskCategory,
+)
+
+def _get_agent_safety_evaluation_criteria(model_deployment: str) -> list:
+    """Return the testing criteria for agent safety evaluation."""
+    return [
+        {
+            "type": "azure_ai_evaluator",
+            "name": "Prohibited Actions",
+            "evaluator_name": "builtin.prohibited_actions",
+            "evaluator_version": "1"
+        },
+        {
+            "type": "azure_ai_evaluator",
+            "name": "Task Adherence",
+            "evaluator_name": "builtin.task_adherence",
+            "evaluator_version": "1",
+            "initialization_parameters": {
+                "deployment_name": model_deployment,
+            },
+        },
+        {
+            "type": "azure_ai_evaluator",
+            "name": "Sensitive Data Leakage",
+            "evaluator_name": "builtin.sensitive_data_leakage",
+            "evaluator_version": "1"
+        },
+    ]
+
 def main() -> None:
     load_dotenv()
 
@@ -284,7 +324,7 @@ def main() -> None:
         # Create an Red Team
         red_team_name = f"Red Team Agentic Safety Evaluation - {int(time.time())}"
         data_source_config = {"type": "azure_ai_source", "scenario": "red_team"}
-        testing_criteria = _get_agent_safety_evaluation_criteria()
+        testing_criteria = _get_agent_safety_evaluation_criteria(model_deployment)
 
         print("[Group] Creating red team...")
         red_team = client.evals.create(
@@ -319,7 +359,10 @@ curl --request POST \
       "type": "azure_ai_evaluator",
       "name": "Task Adherence",
       "evaluator_name": "builtin.task_adherence",
-      "evaluator_version": "1"
+      "evaluator_version": "1",
+      "initialization_parameters": {
+        "deployment_name": "{{model_deployment}}"
+      }
     },
     {
       "type": "azure_ai_evaluator",
@@ -372,6 +415,15 @@ To red team for the agentic risk category of prohibited actions, you need to be 
 # [Python](#tab/python)
 
 ```python
+# Helper to extract tool descriptions from agent version
+def _get_tool_descriptions(agent_version):
+    """Extract tool descriptions from an agent version."""
+    if hasattr(agent_version, 'definition') and hasattr(agent_version.definition, 'tools'):
+        tools = agent_version.definition.tools
+        if tools:  # Check for None or empty
+            return [{"name": t.name, "description": t.description} for t in tools if hasattr(t, 'name')]
+    return []
+
 print("[Taxonomy] Creating...")
 target = AzureAIAgentTarget(
     name=agent_name,
@@ -397,7 +449,8 @@ taxonomy_file_id = taxonomy.id  # used as the 'file_id' source for runs
 # Save taxonomy metadata for reference
 taxonomy_path = os.path.join(data_folder, f"taxonomy_{agent_name}.json")
 with open(taxonomy_path, "w") as f:
-    f.write(json.dumps(_to_json_primitive(taxonomy), indent=2))
+    taxonomy_dict = taxonomy.as_dict() if hasattr(taxonomy, 'as_dict') else {"id": taxonomy.id}
+    f.write(json.dumps(taxonomy_dict, indent=2))
 print(f"[Taxonomy] Created. Saved to {taxonomy_path}")
 ```
 
@@ -418,7 +471,7 @@ curl --request PUT \
       "tool_descriptions": [
         {
           "name": "Dragon APIs",
-          "description": "APIs to get information from local RAG          "description": "APIs to get information from local RAG applications"
+          "description": "APIs to get information from local RAG applications"
         }
       ]
     },
@@ -426,6 +479,7 @@ curl --request PUT \
       "ProhibitedActions"
     ]
   }
+}'
 ```
 
 ---
