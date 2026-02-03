@@ -1,5 +1,5 @@
 ---
-title: Quotas and limits for Foundry Agent Service
+title: Quotas and limits for the new Foundry Agent Service
 titleSuffix: Microsoft Foundry
 description: Learn the quotas and limits for the new Foundry Agent Service, including file sizes, vector stores, threads, messages, tools, and how to handle limit errors.
 manager: nitinme
@@ -54,7 +54,9 @@ The following Foundry models are available for your agents to use.
 
 ## View all agent-supported models in the Foundry portal
 
-[!INCLUDE [agent-service-view-models-in portal](../../../agents/includes/agent-service-view-models-in-portal.md)]
+1. [!INCLUDE [version-sign-in](../../../includes/version-sign-in.md)]
+1. Select **Discover** in the upper-right navigation, then **Models** in the left pane.
+1. Open the **Capabilities** dropdown and select the **Agent supported** filter.
 
 ## Verify model support
 
@@ -78,7 +80,7 @@ Model availability can change over time.
 #### Provisioned throughput deployment fails
 
 - Confirm you have enough PTUs available in the region.
-- Review [Provisioned throughput](../../../openai/concepts/provisioned-throughput.md) and [Spillover traffic management](../openai/how-to/spillover-traffic-management.md).
+- Review [Provisioned throughput](../../../openai/concepts/provisioned-throughput.md) and [Spillover traffic management](../../../openai/how-to/spillover-traffic-management.md).
 
 ## Quotas and limits
 
@@ -147,7 +149,7 @@ For current model quotas and limits, see:
 - [Azure OpenAI quotas and limits](../../../openai/quotas-limits.md).
 - [Microsoft Foundry Models quotas and limits](../../../foundry-models/quotas-limits.md).
 
-To view or request more model quota, see [Manage and increase quotas for resources with Microsoft Foundry (Foundry projects)](../how-to/quota.md).
+To view or request more model quota, see [Manage and increase quotas for resources with Microsoft Foundry (Foundry projects)](../../../how-to/quota.md).
 
 ## Request a limit increase
 
