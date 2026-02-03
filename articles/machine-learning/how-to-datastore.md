@@ -327,7 +327,7 @@ Create this YAML file (update the values):
 $schema: https://azuremlschemas.azureedge.net/latest/azureFile.schema.json
 name: file_sas_example
 type: azure_file
-description: Datastore pointing to an Azure File Share using an SAS token.
+description: Datastore pointing to an Azure File Share using a SAS token.
 account_name: mytestfilestore
 file_share_name: my-share
 credentials:
