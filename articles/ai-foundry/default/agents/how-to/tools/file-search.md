@@ -646,12 +646,16 @@ Keep these limits in mind when you plan your file search integration:
 
 ## Troubleshooting
 
-| Issue | Cause | Resolution |
+| Issue | Likely cause | Resolution |
 | --- | --- | --- |
 | 401 Unauthorized | The access token is missing, expired, or scoped incorrectly. | Get a fresh token and retry the request. For REST calls, confirm you set `AGENT_TOKEN` correctly. |
 | 403 Forbidden | The signed-in identity doesn't have the required roles. | Confirm the roles in [Prerequisites](#prerequisites) and retry after role assignment finishes propagating. |
 | 404 Not Found | The project endpoint or resource identifiers are incorrect. | Confirm `FOUNDRY_PROJECT_ENDPOINT` and IDs such as agent name, version, vector store ID, and file ID. |
 | Responses ignore your files | The agent isn't configured with `file_search`, or the vector store isn't attached. | Confirm the agent definition includes `file_search` and the `vector_store_ids` list contains your vector store ID. |
+| File upload times out | Large file or slow network connection. | Use `upload_and_poll` to handle large files. Consider chunking very large documents. |
+| Vector store creation fails | Quota exceeded or invalid file format. | Check vector store limits (10,000 files per store). Verify file format is supported. |
+| Search returns irrelevant results | File content not properly indexed or query too broad. | Wait for indexing to complete (check `vector_store.status`). Use more specific queries. |
+| No citations in response | Model didn't use file search or content not found. | Use `tool_choice="required"` to force file search. Verify the file content matches your query topic. |
 
 ## Related content
 

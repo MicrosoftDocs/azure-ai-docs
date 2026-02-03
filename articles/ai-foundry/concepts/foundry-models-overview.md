@@ -199,9 +199,6 @@ Learn more about data processing for MaaS in the [article about data privacy](..
 
 :::image type="content" source="../media/explore/model-publisher-cycle.png" alt-text="Diagram that shows the model publisher service cycle." lightbox="../media/explore/model-publisher-cycle.png":::
 
-> [!NOTE]
-> Cloud Solution Provider (CSP) subscriptions do not have the ability to purchase serverless API deployment models.
-
 ### Billing
 
 The discovery, subscription, and consumption experience for models deployed via MaaS is in Foundry portal and Azure Machine Learning studio. Users accept license terms for use of the models. Pricing information for consumption is provided during deployment.

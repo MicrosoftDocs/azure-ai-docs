@@ -9,7 +9,7 @@ ms.custom:
   - dev-focus
 ms.topic: how-to
 #CustomerIntent: As a developer, I want to diagnose private endpoint connection issues so that I can securely access my Foundry project.
-ms.date: 11/20/2025
+ms.date: 02/02/2026
 ms.reviewer: meerakurup
 ms.author: jburchel 
 author: jonburchel 
@@ -20,24 +20,52 @@ ai-usage: ai-assisted
 
 [!INCLUDE [hub-only-alt](../includes/uses-hub-only-alt.md)]
 
-When you create a project in [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs), secure it with a private endpoint. A private endpoint lets you connect to the project over a private network and protects your data and resources. If you're having trouble connecting to a project that uses a private endpoint, this article lists steps to help you fix the issue.
-
-When you connect to a [Foundry](https://ai.azure.com/?cid=learnDocs) project that's set up with a private endpoint, you might see an HTTP 403 error or a message that says access is forbidden. Use this article to check for common configuration issues that cause this error.
+When you create a project in [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs), you can secure it by using a private endpoint to connect over a private network. If you see an HTTP 403 error or "access forbidden" message when connecting to a project with a private endpoint, use this article to diagnose and fix common configuration problems.
 
 ## Prerequisites
 
-- **Azure role-based access control (RBAC)**: You need appropriate RBAC roles to troubleshoot and resolve private endpoint issues:
+- **Azure role-based access control (RBAC)**: You need appropriate RBAC roles to troubleshoot and resolve private endpoint problems:
   - **Reader** role at the subscription level to view Azure Search services and verify DNS configuration
+  - **Network Contributor** role on the resource group or virtual network if you need to create or modify private endpoints
   - **Storage Blob Data Reader** or **Storage Blob Data Contributor** role for the storage account associated with your hub (depending on whether you need read-only or read-write access)
   - **Storage File Data Privileged Reader** or **Storage File Data Privileged Contributor** role for the storage account
+  
+  For more information, see [Azure built-in roles](/azure/role-based-access-control/built-in-roles).
 - **Network access**: Connection to the virtual network via Azure VPN Gateway, ExpressRoute, or Azure Bastion
+
+## Verify your private endpoint connectivity
+
+Before you dive into specific troubleshooting sections, run a quick connectivity test from a machine connected to your virtual network:
+
+```powershell
+# Replace with your Foundry hub's FQDN from the private endpoint DNS configuration
+$fqdn = "<your-workspace-id>.workspace.<region>.api.azureml.ms"
+
+# Test DNS resolution
+nslookup $fqdn
+
+# Test network connectivity to the resolved IP (expected: private IP like 10.x.x.x)
+Test-NetConnection -ComputerName $fqdn -Port 443
+```
+
+**Expected success output**:
+- `nslookup` returns a private IP address (for example, `10.0.0.4`)
+- `Test-NetConnection` shows `TcpTestSucceeded: True`
+
+**Signs of a problem**:
+- `nslookup` returns a public IP address or fails with "Non-existent domain"
+- `Test-NetConnection` shows `TcpTestSucceeded: False`
+
+If the test fails, continue with the troubleshooting sections in this article.
+
+Reference: [nslookup command](/windows-server/administration/windows-commands/nslookup) | [Test-NetConnection](/powershell/module/nettcpip/test-netconnection)
 
 ## Error loading Foundry hub or project
 
 If you get an error when loading your Foundry hub or project, check these two settings.
 
-- Your hub has public network access set to __Disabled__.
-- Your hub has public network access set to __Enable from selected IPs__.
+- Your hub has public network access set to **Disabled**.
+- Your hub has public network access set to **Enable from selected IPs**.
 
 Depending on the public network access setting for your Foundry hub or project, take the matching action:
 
@@ -91,9 +119,9 @@ Follow these steps to check whether your custom DNS solution resolves names to I
 
     | Azure region | URL |
     | ----- | ----- |
-    | Azure Government | https://portal.azure.us/?feature.privateendpointmanagedns=false |
-    | Microsoft Azure operated by 21Vianet | https://portal.azure.cn/?feature.privateendpointmanagedns=false |
-    | All other regions | https://portal.azure.com/?feature.privateendpointmanagedns=false |
+    | Azure Government | https://portal.azure.us/?feature.privateendpointmanageddns=false |
+    | Microsoft Azure operated by 21Vianet | https://portal.azure.cn/?feature.privateendpointmanageddns=false |
+    | All other regions | https://portal.azure.com/?feature.privateendpointmanageddns=false |
 
 1. In the portal, select the private endpoint for the project. From the __DNS configuration__ section, list the FQDNs for the private endpoint.
 
@@ -111,7 +139,7 @@ Follow these steps to check whether your custom DNS solution resolves names to I
    nslookup df33e049-7c88-4953-8939-aae374adbef9.workspace.eastus2.api.azureml.ms
    ```
 
-   Example output:
+   **Expected success output** (private IP returned):
 
    ```text
    Server: yourdnsserver
@@ -121,7 +149,13 @@ Follow these steps to check whether your custom DNS solution resolves names to I
    Address: 10.0.0.4
    ```
 
+   **Signs of a problem**:
+   - A public IP address is returned instead of a private IP (like `10.x.x.x` or `172.16.x.x`)
+   - Error message: "Non-existent domain" or "Server failed"
+
 1. If the `nslookup` command returns an error or a different IP address than the portal shows, your custom DNS solution isn't configured correctly.
+
+   For more information, see [nslookup command](/windows-server/administration/windows-commands/nslookup)
 
 ### Azure DNS troubleshooting
 
@@ -142,7 +176,7 @@ When you use Azure DNS for name resolution, follow these steps to check that Pri
 
 ## Browser configuration (DNS over HTTPS)
 
-Browser DNS settings can interfere with private endpoint resolution. If DNS over HTTPS is enabled, your browser bypasses the network DNS configuration and might fail to resolve private endpoint addresses.
+Browser DNS settings can interfere with private endpoint resolution. If you enable DNS over HTTPS, your browser bypasses the network DNS configuration and might fail to resolve private endpoint addresses.
 
 Check if DNS over HTTPS is enabled in your web browser. DNS over HTTPS can prevent Azure DNS from responding with the IP address of the private endpoint.
 
@@ -155,7 +189,7 @@ Check if DNS over HTTPS is enabled in your web browser. DNS over HTTPS can preve
 
 ## Proxy configuration
 
-Proxy servers can interfere with private endpoint connectivity by blocking or modifying network traffic. The following options help you determine if proxy settings are causing connection issues.
+Proxy servers can interfere with private endpoint connectivity by blocking or modifying network traffic. The following options help you determine if proxy settings are causing connection problems.
 
 If you're using a proxy, it might block access to a secured project. To test, try one of these options:
 
@@ -164,7 +198,7 @@ If you're using a proxy, it might block access to a secured project. To test, tr
 * Set up your proxy server to forward DNS requests to Azure DNS.
 * Make sure the proxy lets connections to Azure Machine Learning (AML) APIs, such as `*.<region>.api.azureml.ms` and `*.instances.azureml.ms`.
 
-## Troubleshoot storage connection issues
+## Troubleshoot storage connection problems
 
 Storage connectivity is critical for Foundry projects. When you disable public network access on the storage account, you need proper private endpoint configuration and managed identity permissions.
 
