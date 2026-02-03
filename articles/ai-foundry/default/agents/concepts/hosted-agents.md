@@ -957,7 +957,7 @@ Microsoft Foundry provides comprehensive evaluation and testing capabilities tha
 - Conversation coherence and context retention
 - Response time and efficiency metrics
 
-**Agent-specific evaluation**: Evaluate hosted agents by using the Azure AI Evaluation SDK with built-in evaluators that are designed for agentic workflows. The SDK provides specialized evaluators for measuring agent performance across key dimensions like intent resolution, task adherence, and tool usage accuracy.
+**Agent-specific evaluation**: Evaluate hosted agents by using the Foundry SDK with built-in evaluators that are designed for agentic workflows. The SDK provides specialized evaluators for measuring agent performance across key dimensions like intent resolution, task adherence, and tool usage accuracy.
 
 ### Testing workflows for hosted agents
 
@@ -977,7 +977,7 @@ Microsoft Foundry provides comprehensive evaluation and testing capabilities tha
 - Tool usage scenarios.
 - Performance stress tests.
 
-**Supported evaluation metrics**: The Azure AI Evaluation SDK provides the following evaluators for agent workflows:
+**Supported evaluation metrics**: The Foundry SDK provides the following evaluators for agent workflows:
 
 - **Intent Resolution**: Measures how well the agent identifies and understands user requests.
 - **Task Adherence**: Evaluates whether the agent's responses adhere to assigned tasks and system instructions.
@@ -992,7 +992,7 @@ Microsoft Foundry provides comprehensive evaluation and testing capabilities tha
 
 **Use iterative evaluation**: Regularly evaluate agent versions during development to catch problems early and measure improvements.
 
-For more information about evaluating agents, see [Evaluate your AI agents locally](../../../how-to/develop/agent-evaluate-sdk.md) and [Agent evaluators](../../../concepts/evaluation-evaluators/agent-evaluators.md).
+For more information about evaluating agents, see [Evaluate your AI agents](../../../how-to/develop/agent-evaluate-sdk.md) and [Agent evaluators](../../../concepts/evaluation-evaluators/agent-evaluators.md).
 
 ## Publish hosted agents to channels
 
