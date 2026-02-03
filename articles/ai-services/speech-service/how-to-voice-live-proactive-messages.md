@@ -1,5 +1,5 @@
 ---
-title: "How to add proactive messages to a Voice Live real-time voice agent"
+title: "Add proactive messages to a Voice Live real-time voice agent"
 description: "Learn how to make your Voice Live agent speak first by triggering proactive greetings using pregenerated assistant messages or LLM-generated messages."
 author: goergenj
 ms.author: jagoerge
