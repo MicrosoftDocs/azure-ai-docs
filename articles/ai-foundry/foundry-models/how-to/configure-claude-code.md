@@ -36,13 +36,13 @@ In this article, you learn how to:
 
 [!INCLUDE [claude-usage-restriction](../includes/claude-usage-restriction.md)]
 
-<!-- **System requirements:**
+**System requirements:**
 
 | Requirement | Details |
 | ----------- | ------- |
 | Operating system | macOS 12+, Ubuntu 20.04+/Debian 10+, Windows 11 via WSL2 |
 | RAM | 4-GB minimum (8-GB recommended) |
-| Git (optional) | 2.23+ for pull request helpers | -->
+| Git (optional) | 2.23+ for pull request helpers |
 
 ## Deploy a Claude model
 
@@ -88,6 +88,9 @@ For more installation options, see [Claude Code documentation](https://docs.anth
 ## Configure environment variables
 
 Set environment variables to connect Claude Code to your Microsoft Foundry deployment.
+
+> [!TIP]
+> Find your Foundry resource name in the Azure portal under your resource's **Overview** page, or in the Foundry portal URL: `https://ai.azure.com/resource/{your-resource-name}`.
 
 # [Bash / WSL](#tab/bash)
 
@@ -193,12 +196,25 @@ Verify that Claude Code is correctly configured to use Microsoft Foundry. Open a
 claude
 > /status
 ```
+
+The output should look similar to:
+
+```text
+Claude Code v1.0.0
+─────────────────────────────────────
+API Provider:      Microsoft Foundry
+Foundry Resource:  your-resource-name
+Model:             claude-sonnet-4-5
+Status:            Connected
+─────────────────────────────────────
+```
+
 Confirm the following in the status output:
 
 | Field | Expected value |
 | ----- | -------------- |
 | API provider | Microsoft Foundry |
-| Microsoft Foundry resource | Your Foundry project name |
+| Foundry resource | Your Foundry resource name |
 | Model | Your deployed model (for example, `claude-sonnet-4-5`) |
 
 ## Create project context with CLAUDE.md
@@ -211,8 +227,7 @@ Claude Code reads `CLAUDE.md` files for project context. Files load in order, wi
 
 Create a `CLAUDE.md` file in your project root to help Claude Code understand your codebase. Here's an example for a [Microsoft Agent Framework](https://aka.ms/agent-framework) project:
 
-
-```markdown
+````markdown
 # Project: Customer Service Agent
 
 ## Overview
@@ -252,9 +267,7 @@ async with AzureAIAgentClient(async_credential=AzureCliCredential()) as client:
 ## Current Sprint
 - Implementing RAG grounding with Foundry IQ
 - Adding Fabric connector for sales data
-```
-
-```
+````
 
 ## (Optional) Integrate Spec Kit for structured development
 
@@ -402,11 +415,12 @@ $env:ANTHROPIC_MAX_TOKENS = "100000"
 
 | Issue | Solution |
 | ----- | -------- |
-| Authorization failed | Verify that `az login` completed successfully or that the API key is set correctly. Check that your account has access to the Foundry resource. |
+| Authorization failed (HTTP 401/403) | Verify that `az login` completed successfully or that the API key is set correctly. Check that your account has access to the Foundry resource. |
 | Model not found | Verify that the deployment name in your environment variables matches the deployment name in the Foundry portal. |
-| Rate limit exceeded | Adjust `ANTHROPIC_MAX_TOKENS` or check your quotas in the Foundry portal under **Operate** > **Quotas**. |
+| Rate limit exceeded (HTTP 429) | Adjust `ANTHROPIC_MAX_TOKENS` or check your quotas in the Foundry portal under **Operate** > **Quotas**. |
 | VS Code extension not connecting | Ensure environment variables are set before launching VS Code. Try launching VS Code from the terminal after setting variables. |
 | WSL + VS Code extension issues | The extension might check for the API key on the Windows host instead of within WSL. Set the environment variable on both the Windows host and WSL, then launch a new terminal from WSL and run `code .` |
+| Region errors | Claude models are only available in East US2 and Sweden Central. |
 
 ## Related content
 
