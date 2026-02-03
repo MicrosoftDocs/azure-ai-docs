@@ -51,13 +51,14 @@ Foundry Agent Service is compatible with current Azure OpenAI models. For a comp
 The following Foundry models are available for your agents to use.
 
 [!INCLUDE [agent-service-models-support-list](../../../agents/includes/agent-service-models-support-list.md)]
-
+<!--
 ## Verify model support
 
 Model availability can change over time.
 
-- To verify what you can deploy for your project and region, use the Foundry portal model experience described in the previous section.
+- To verify what you can deploy for your project and region, use the Foundry portal model experience.
 - If you use provisioned throughput, make sure you have provisioned throughput units (PTUs) available in the target region. For background, see [Provisioned throughput](../../../openai/concepts/provisioned-throughput.md).
+-->
 
 ### Troubleshooting
 
