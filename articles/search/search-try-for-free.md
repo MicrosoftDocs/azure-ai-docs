@@ -80,7 +80,7 @@ You can access Azure AI Search through two portals, each optimized for different
 | Portal | Description | What you can do |
 |--------|-------------|-----------------|
 | [Azure portal](https://portal.azure.com/) | The primary management interface for Azure resources and your Azure AI Search service. **This portal is most useful for classic search scenarios and overall resource management.** | <ul><li>Create and configure your search service.</li><li>Build knowledge bases and knowledge sources for [agentic retrieval](search-what-is-azure-search.md#what-is-agentic-retrieval).</li><li>Build indexes, indexers, data sources, and skillsets for [classic search](search-what-is-azure-search.md#what-is-classic-search).</li><li>Query your knowledge bases and indexes.</li><li>Track credits and monitor costs.</li></ul> |
-| [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) | A unified platform for deploying models and building AI applications. **This portal is most useful for agentic retrieval (RAG) scenarios.** | <ul><li>Deploy embedding and chat models.</li><li>Use [Foundry IQ](/azure/ai-foundry/agents/how-to/tools/knowledge-retrieval) to connect your Azure AI Search knowledge base to an AI agent.</li></ul> |
+| [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) | A unified platform for deploying models and building AI applications. **This portal is most useful for agentic retrieval (RAG) scenarios.** | <ul><li>Deploy embedding and chat models.</li><li>Use [Foundry IQ](/azure/ai-foundry/agents/concepts/what-is-foundry-iq.md) to connect your Azure AI Search knowledge base to an AI agent.</li></ul> |
 
 ## Track your credit usage
 

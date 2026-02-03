@@ -9,7 +9,7 @@ ms.topic: tutorial
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: sooryar
-ms.date: 01/20/2025
+ms.date: 01/28/2026
 ms.custom: devx-track-python, automl, devx-track-azurecli, update-code, build-2023
 ---
 
@@ -77,7 +77,7 @@ You first need to set up a compute target to use for your automated ML model tra
 
 This tutorial uses the NCsv3-series (with V100 GPUs) because this type of compute target uses multiple GPUs to speed up training. Additionally, you can set up multiple nodes to take advantage of parallelism when tuning hyperparameters for your model.
 
-The following code creates a GPU compute of size Standard_NC24s_v3 with four nodes.
+The following code creates a GPU compute of size Standard_NC64as_T4_v3 with four nodes.
 
 # [Azure CLI](#tab/cli)
 
@@ -89,7 +89,7 @@ Create a .yml file with the following configuration.
 $schema: https://azuremlschemas.azureedge.net/latest/amlCompute.schema.json 
 name: gpu-cluster
 type: amlcompute
-size: Standard_NC24s_v3
+size: Standard_NC64as_T4_v3
 min_instances: 0
 max_instances: 4
 idle_time_before_scale_down: 120
@@ -113,7 +113,7 @@ compute_name = "gpu-cluster"
 cluster_basic = AmlCompute(
     name=compute_name,
     type="amlcompute",
-    size="Standard_NC24s_v3",
+    size="Standard_NC64as_T4_v3",
     min_instances=0,
     max_instances=4,
     idle_time_before_scale_down=120,
@@ -309,7 +309,7 @@ To configure automated ML jobs for image-related tasks, create a task-specific A
 > To use [serverless compute](how-to-use-serverless-compute.md), replace the line `compute: azureml:gpu-cluster` with this code:
 > ```yml
 > resources:
->  instance_type: Standard_NC24s_v3
+>  instance_type: Standard_NC64as_T4_v3
 >  instance_count: 4
 > ```
 
@@ -328,7 +328,7 @@ compute: azureml:gpu-cluster
 > [!NOTE]
 > To use [serverless compute](how-to-use-serverless-compute.md), replace the line `compute="cpu-cluster"` with this code:
 > ```python
-> image_object_detection_job.resources = ResourceConfiguration(instance_type="Standard_NC24rs_v3",instance_count =4)
+> image_object_detection_job.resources = ResourceConfiguration(instance_type="Standard_NC64as_T4_v3",instance_count =4)
 > 
 > image_object_detection_job.set_limits(
 >     max_trials=10,

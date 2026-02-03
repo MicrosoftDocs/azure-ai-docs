@@ -17,6 +17,9 @@ ai-usage: ai-assisted
 
 When you build agentic applications by using open-source frameworks, you typically manage containerization, web server setup, security integration, memory persistence, infrastructure scaling, data transmission, instrumentation, and version rollbacks. These tasks become even more challenging in heterogeneous cloud environments.
 
+> [!IMPORTANT]
+> Hosted agents are currently in **public preview**. See [Limits, pricing, and availability (preview)](#limits-pricing-and-availability-preview) for current constraints.
+
 Hosted agents in Foundry Agent Service solve these challenges for Microsoft Foundry users. By using this managed platform, you can deploy and operate AI agents securely and at scale. You can use your custom agent code or a preferred agent framework with streamlined deployment and management.
 
 ## Prerequisites
@@ -48,10 +51,39 @@ If you want to jump to a task, see:
 
 Hosted agents are currently in preview.
 
-- **Region availability**: North Central US only.
 - **Private networking support**: You can't create hosted agents by using the standard setup for network isolation within network-isolated Foundry resources. For details, see [Configure virtual networks](../../../agents/how-to/virtual-networks.md).
 - **Preview limits**: For the full list of preview limits, see [Limitations during preview](#limitations-during-preview).
 - **Pricing**: For updates on pricing, see the Foundry [pricing page](https://azure.microsoft.com/pricing/details/ai-foundry/).
+
+### Region availability
+
+Hosted Agents are supported in the following regions: 
+
+- Brazil South	
+- Canada East	
+- East US	
+- France Central	
+- Germany West Central	
+- Italy North	
+- North Central US	
+- South Africa North	
+- South Central US	
+- South India	
+- Spain Central	
+- Sweden Central	
+- Canada Central	
+- Korea Central	
+- Southeast Asia	
+- Australia East	
+- East US 2	
+- Japan East	
+- UAE North	
+- UK South	
+- West US	
+- West US 3	
+- Norway East	
+- Poland Central	
+- Switzerland North
 
 ## Security and data handling
 
@@ -275,7 +307,7 @@ To build your agent as a Docker container and upload it to Azure Container Regis
     ```bash
     docker build -t myagent:v1 .
     ```
-    Refer to sample Dockerfile for [Python](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/python/hosted-agents/agents_in_workflow/Dockerfile) and [C#](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/csharp/hosted-agents/AgentsInWorkflows/Dockerfile).
+    Refer to sample Dockerfile for [Python](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/agent-framework/agents-in-workflow/Dockerfile) and [C#](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/csharp/hosted-agents/AgentsInWorkflows/Dockerfile).
    
 1. Sign in to Azure Container Registry:
 
@@ -347,10 +379,10 @@ az rest --method put `
 
 ### Create the hosted agent version
 
-Install version>=2.0.0b2 of the Azure AI Projects SDK.
+Install version>=2.0.0b3 of the Azure AI Projects SDK. Python 3.10 or later is required.
 
 ```bash
-pip install --pre azure-ai-projects==2.0.0b2
+pip install --pre "azure-ai-projects>=2.0.0b3"
 ```
 
 Use the Azure AI Projects SDK to create and register your agent:
@@ -381,6 +413,15 @@ agent = client.agents.create_version(
         }
     )
 )
+
+# Print confirmation
+print(f"Agent created: {agent.name} (id: {agent.id}, version: {agent.version})")
+```
+
+Expected output:
+
+```output
+Agent created: my-agent (id: agent_abc123, version: 1)
 ```
 
 Here are the key parameters:
@@ -481,21 +522,27 @@ When you start an agent:
 
 ### View container Log Stream
 
-The container Logstream API for hosted agents gives you access to the system and console logs of the azure container app deployed on your behalf in Microsoft's Azure environment to enable self-serve debuggability for agent startup and runtime errors during deployment. 
+The container Logstream API for hosted agents gives you access to the system and console logs of the container deployed on your behalf in Microsoft's Azure environment to enable self-serve debugging for agent startup and runtime errors during deployment. 
 
 #### REST API Details
 
 | Item | Value |
 | --- | --- |
 | **Method** | `GET` |
-| **Route** | `/agents/v2.0/subscriptions/{subscription}/resourceGroups/{resourceGroup}/providers/Microsoft.MachineLearningServices/workspaces/{workspace}/agents/{agentName}/versions/{agentVersion}/containers/default:logstream` |
+| **Route** | `https://{endpoint}/api/projects/{projectName}/agents/{agentName}/versions/{agentVersion}/containers/default:logstream` |
 | **Description** | Streams console or system logs for a specific hosted agent replica. |
 | **Content-Type** | `text/plain` (chunked streaming) |
 
 #### Path parameters
 
-- `subscription`, `resourceGroup`, `workspace`: identify the AML workspace hosting the agent.
-- `agentName`, `agentVersion`: specify the agent deployment/version whose container logs are requested.
+| Name | Description | Example |
+| --- | --- | --- |
+|  `api-version` | Required | API version, for example: `2025-11-15-preview` |
+| `kind` | `console` | `console` returns container `stdout`/`stderr`, `system` returns container system event stream. |
+| `endpoint` | Your Foundry service endpoint | `myservice.services.ai.azure.com` |
+| `projectName` | The Foundry project name | `myproject` |
+| `agentName` | The agent deployment name | `sample1` |
+| `agentVersion` | The agent version number | `1` |
 
 #### Query parameters
 
@@ -515,7 +562,17 @@ The container Logstream API for hosted agents gives you access to the system and
 - `200 OK`: Plain-text stream of log lines, one per line.
 - `404 Not Found`: Agent version, replica, or container log endpoint was not found.
 - `401/403`: Caller lacks authorization.
-- `5xx`: Propagated from downstream Container Apps calls when details or tokens cannot be fetched.
+- `5xx`: Propagated from downstream container calls when details or tokens cannot be fetched.
+
+#### Example: Fetch logs using curl
+
+```bash
+curl -N "https://{endpoint}/api/projects/{projectName}/agents/{agentName}/versions/{agentVersion}/containers/default:logstream?kind=console&tail=500&api-version=2025-11-15-preview" \
+  -H "Authorization: Bearer $(az account get-access-token --resource https://ai.azure.com --query accessToken -o tsv)"
+```
+
+**Flags:**
+- `-N` disables output buffering (important for streaming logs in real-time)
 
 #### Response samples
 
@@ -544,6 +601,7 @@ Transfer-Encoding: chunked
 
 {"TimeStamp":"2025-12-15T16:51:33Z","Type":"Normal","ContainerAppName":null,"RevisionName":null,"ReplicaName":null,"Msg":"Connecting to the events collector...","Reason":"StartingGettingEvents","EventSource":"ContainerAppController","Count":1}
 {"TimeStamp":"2025-12-15T16:51:34Z","Type":"Normal","ContainerAppName":null,"RevisionName":null,"ReplicaName":null,"Msg":"Successfully connected to events server","Reason":"ConnectedToEventsServer","EventSource":"ContainerAppController","Count":1}
+```
 
 ### Stop an agent deployment
 
@@ -670,7 +728,8 @@ AGENT_VERSION = "1"  # Optional: specify version, or use latest
 
 # Initialize the client and retrieve the agent
 client = AIProjectClient(endpoint=PROJECT_ENDPOINT, credential=DefaultAzureCredential())
-agent = client.agents.retrieve(agent_name=AGENT_NAME)
+agent = client.agents.get(agent_name=AGENT_NAME)
+print(f"Agent retrieved: {agent.name} (version: {agent.versions.latest.version})")
 
 # Get the OpenAI client and send a message
 openai_client = client.get_openai_client()
@@ -680,9 +739,16 @@ response = openai_client.responses.create(
 )
 
 print(f"Agent response: {response.output_text}")
-
-Reference: [Azure AI Projects SDK for Python](/python/api/overview/azure/ai-projects-readme?view=azure-python-preview&preserve-view=true)
 ```
+
+Expected output:
+
+```output
+Agent retrieved: your-agent-name (version: 1)
+Agent response: Hello! I'm your hosted agent. I can help you with...
+```
+
+For more information, see [Azure AI Projects SDK for Python](/python/api/overview/azure/ai-projects-readme?view=azure-python-preview&preserve-view=true).
 
 ### Use tools with hosted agents
 
@@ -912,6 +978,25 @@ If your agent deployment fails, view error logs by selecting **View deployment l
 | `ValidationError` | 400 | Correct invalid request fields. |
 | `UserError` (generic) | 400 | Inspect the message and fix the configuration. |
 
+### Troubleshoot runtime issues
+
+If your hosted agent deploys successfully but doesn't respond as expected, check these common issues:
+
+| Symptom | Possible cause | Solution |
+| ------- | -------------- | -------- |
+| Agent doesn't respond | Container is still starting | Wait for the agent status to show **Started**. Check the log stream for startup progress. |
+| Slow response times | Insufficient resource allocation | Increase CPU or memory allocation in the agent definition. |
+| Timeout errors | Long-running operations | Increase timeout settings in your agent code. Consider breaking operations into smaller steps. |
+| Intermittent failures | Replica scaling issues | Check that `min_replicas` is set appropriately for your workload. |
+| Tool calls failing | Missing connection configuration | Verify that tool connections are properly configured and the managed identity has access. |
+| Model errors | Invalid model deployment name | Verify that `MODEL_NAME` environment variable matches an available model deployment. |
+
+To debug runtime issues:
+
+1. Use the [log stream API](#view-container-log-stream) to view container logs in real time.
+1. Check the **Traces** tab in the Foundry portal playground for detailed request and response information.
+1. Verify environment variables are set correctly in your agent definition.
+
 ## Understand preview details
 
 ### Limitations during preview
@@ -926,10 +1011,6 @@ If your agent deployment fails, view error logs by selecting **View deployment l
 ### Hosting pricing
 
 Billing for managed hosting runtime is enabled no earlier than February 1, 2026, during the preview. For updates on pricing, check the Foundry [pricing page](https://azure.microsoft.com/pricing/details/ai-foundry/).
-
-### Region availability
-
-Currently, North Central US is the only supported region for hosted agents.
 
 ### Private networking support
 

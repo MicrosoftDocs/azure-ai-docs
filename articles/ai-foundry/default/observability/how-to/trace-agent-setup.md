@@ -24,9 +24,6 @@ Tracing (preview) helps you understand how your agent works. Use traces to ident
 - An [Azure Monitor Application Insights resource](/azure/azure-monitor/app/app-insights-overview) to store traces (create a new one or connect an existing one).
 - Access to the Application Insights resource connected to your project.
 
-> [!NOTE]
-> Agent tracing availability varies by region. For current limitations, see [Availability and limitations](../concepts/trace-agent-concept.md#availability-and-limitations).
-
 ## Connect Application Insights to your Foundry project
 
 Foundry stores traces in [Azure Application Insights](/azure/azure-monitor/app/app-insights-overview) by using [OpenTelemetry semantic conventions](https://opentelemetry.io/docs/specs/semconv/gen-ai/).

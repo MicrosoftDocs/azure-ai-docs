@@ -52,7 +52,7 @@ Here's an example of how memory can improve and personalize interactions between
 > Need help deciding when to use memory? Consider these guidelines:
 >
 > - Use memory for user-specific context that persists over time.
-> - Use a [Foundry IQ knowledge base](../how-to/tools/knowledge-retrieval.md) to ground your agent on curated organizational content.
+> - Use a [Foundry IQ](../concepts/what-is-foundry-iq.md) knowledge base to ground your agent on curated organizational content.
 > - Use the [file search tool](../how-to/tools/file-search.md) to search user-provided documents during an interaction.
 
 ## Memory types

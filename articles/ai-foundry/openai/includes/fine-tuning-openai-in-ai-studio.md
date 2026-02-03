@@ -17,16 +17,16 @@ ms.custom:
 - Read the [guide on when to use Azure OpenAI fine-tuning](../concepts/fine-tuning-considerations.md).
 - You need an Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - You need a [Foundry project](../../../ai-foundry/how-to/create-projects.md) in the Microsoft Foundry portal.
-- You need an [Azure OpenAI connection](/azure/ai-foundry/how-to/connections-add?tabs=azure-openai#connection-details) to a resource in a [region where fine-tuning is supported](/azure/ai-foundry/openai/concepts/models#fine-tuning-models).
+- You need an [Azure OpenAI connection](/azure/ai-foundry/how-to/connections-add?tabs=azure-openai#connection-details) to a resource in a [region where fine-tuning is supported](/azure/ai-foundry/openai/concepts/models?pivots=azure-openai#fine-tuning-models).
 
   > [!NOTE]
   > The supported regions might vary if you use Azure OpenAI models in a Foundry project versus outside a project.
-- Fine-tuning access requires the Azure AI User role on the Azure OpenAI resource.
+- Fine-tuning requires the **Azure AI Owner** role. While Azure AI Users may train (fine tune) models, only AI Owners may deploy them.
 - If you don't already have access to view quotas and deploy models in the Foundry portal, you need [more permissions](../how-to/role-based-access-control.md).
 
 ### Supported models
 
-To check which regions currently support fine-tuning, consult the [article about models](../concepts/models.md#fine-tuning-models).
+To check which regions currently support fine-tuning, consult the [article about models](../concepts/models.md?pivots=azure-openai#fine-tuning-models).
 
 Or you can fine-tune a previously fine-tuned model, formatted as `base-model.ft-{jobid}`.
 

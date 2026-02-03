@@ -283,7 +283,7 @@ For more examples, see the following sample YAML files for each NLP task and oth
 
 # [Python SDK](#tab/python)
 
-For more examples, see the following sample notebooks for each NLP task and other examples at [https://github.com/Azure/azureml-examples/python/jobs/automl-standalone-jobs](https://github.com/Azure/azureml-examples/tree/main/python/jobs/automl-standalone-jobs).
+For more examples, see the following sample notebooks for each NLP task and other examples at [https://github.com/Azure/azureml-examples/python/jobs/automl-standalone-jobs](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/automl-standalone-jobs).
 
 * [Multiclass text classification](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/automl-standalone-jobs/automl-nlp-text-classification-multiclass-task-sentiment-analysis/automl-nlp-multiclass-sentiment.ipynb)
 * [Multilabel text classification](

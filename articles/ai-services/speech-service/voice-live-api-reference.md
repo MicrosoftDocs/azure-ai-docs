@@ -1,7 +1,7 @@
 ---
-title: Voice live API Reference
+title: Voice Live API Reference
 titleSuffix: Foundry Tools
-description: Complete reference for the Voice live API events, models, and configuration options.
+description: Complete reference for the Voice Live API events, models, and configuration options.
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: reference
@@ -10,9 +10,9 @@ author: PatrickFarley
 ms.author: pafarley
 ---
 
-# Voice live API Reference
+# Voice Live API Reference
 
-The Voice live API provides real-time, bidirectional communication for voice-enabled applications using WebSocket connections. This API supports advanced features including speech recognition, text-to-speech synthesis, avatar streaming, animation data, and comprehensive audio processing capabilities.
+The Voice Live API provides real-time, bidirectional communication for voice-enabled applications using WebSocket connections. This API supports advanced features including speech recognition, text-to-speech synthesis, avatar streaming, animation data, and comprehensive audio processing capabilities.
 
 The API uses JSON-formatted events sent over WebSocket connections to manage conversations, audio streams, avatar interactions, and real-time responses. Events are categorized into client events (sent from client to server) and server events (sent from server to client).
 
@@ -28,7 +28,7 @@ The API uses JSON-formatted events sent over WebSocket connections to manage con
 
 ## Client Events
 
-The Voice live API supports the following client events that can be sent from the client to the server:
+The Voice Live API supports the following client events that can be sent from the client to the server:
 
 | Event | Description |
 |-------|-------------|
@@ -600,7 +600,7 @@ The server responds with a `session.updated` event that contains the full effect
 
 ## Server Events
 
-The Voice live API sends the following server events to communicate status, responses, and data to the client:
+The Voice Live API sends the following server events to communicate status, responses, and data to the client:
 
 | Event | Description |
 |-------|-------------|
@@ -2896,6 +2896,6 @@ The `RealtimeResponseSession` object represents a session in the Realtime API. I
 
 ## Related Resources
 
-- Try the [Voice live quickstart](./voice-live-quickstart.md)
-- Try the [Voice live agents quickstart](./voice-live-agents-quickstart.md)
-- Learn more about [How to use the Voice live API](./voice-live-how-to.md)
+- Try the [Voice Live quickstart](./voice-live-quickstart.md)
+- Try the [Voice Live agents quickstart](./voice-live-agents-quickstart.md)
+- Learn more about [How to use the Voice Live API](./voice-live-how-to.md)

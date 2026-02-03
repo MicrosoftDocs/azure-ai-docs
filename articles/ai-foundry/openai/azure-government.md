@@ -59,7 +59,7 @@ To request quota increases for these models, submit a request at [https://aka.ms
 <br>
 
 ### Model Retirements
-In some cases, models are retired in Azure Governmen earlier or later than in the commercial cloud. General information on model retirement policies, dates, and other details can be found at [Azure OpenAI in Microsoft Foundry model deprecations and retirements](/azure/ai-foundry/openai/concepts/model-retirements). The following shows model retirement differences in Azure Government. 
+In some cases, models are retired in Azure Government earlier or later than in the commercial cloud. General information on model retirement policies, dates, and other details can be found at [Azure OpenAI in Microsoft Foundry model deprecations and retirements](/azure/ai-foundry/openai/concepts/model-retirements). The following shows model retirement differences in Azure Government. 
 
 #### Early Model Retirements
 | Model                     | Version			      | Azure Government Status	  | Public Retirement date  |
@@ -75,7 +75,7 @@ In some cases, models are retired in Azure Governmen earlier or later than in th
 <br>
 
 ### Default Model Versions 
-In some cases, new model versions are designated as default in Azure Governmen ahead of dates in the commercial cloud. General information on model upgrades can be found at [Working with Azure OpenAI models](/azure/ai-foundry/openai/how-to/working-with-models?tabs=powershell&branch=main#model-deployment-upgrade-configuration)
+In some cases, new model versions are designated as default in Azure Government ahead of dates in the commercial cloud. General information on model upgrades can be found at [Working with Azure OpenAI models](/azure/ai-foundry/openai/how-to/working-with-models?tabs=powershell&branch=main#model-deployment-upgrade-configuration)
 
 The following shows default model differences in Azure Government. 
 

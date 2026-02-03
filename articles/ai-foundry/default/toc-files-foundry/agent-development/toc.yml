@@ -25,6 +25,16 @@ items:
   - name: Create a workflow
     href: ../../agents/concepts/workflow.md
 
+# Hosted Agents
+- name: Hosted agents
+  items:
+  - name: Quickstart - Deploy your first hosted agent
+    href: ../../agents/quickstarts/quickstart-hosted-agent.md
+  - name: Deploy a hosted agent
+    href: ../../agents/how-to/deploy-hosted-agent.md
+  - name: Manage hosted agent lifecycle
+    href: ../../agents/how-to/manage-hosted-agent.md
+
 
 # System Messages
 - name: System messages

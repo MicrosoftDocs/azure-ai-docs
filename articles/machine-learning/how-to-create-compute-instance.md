@@ -515,7 +515,7 @@ You can create a compute instance with managed identity from Azure Machine Learn
 
 ---
 
-Once the managed identity is created, grant the managed identity at least Storage Blob Data Reader role on the storage account of the datastore. See [Accessing storage services](how-to-identity-based-service-authentication.md?tabs=cli#accessing-storage-services). Then, when you work on the compute instance, the managed identity is used automatically to authenticate against datastores.
+Once the managed identity is created, grant the managed identity at least Storage Blob Data Reader role on the storage account of the datastore. See [Accessing storage services](how-to-identity-based-service-authentication.md#access-storage-services). Then, when you work on the compute instance, the managed identity is used automatically to authenticate against datastores.
 
 > [!NOTE]
 > The name of the created system-managed identity will be in the format /workspace-name/computes/compute-instance-name in your Microsoft Entra ID.

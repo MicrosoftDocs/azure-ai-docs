@@ -258,19 +258,16 @@ For the current list of supported regions and models for Code Interpreter, see [
 
 ## Troubleshooting
 
-### Code Interpreter doesn't run
-
-If the response looks like it was generated without tool use, confirm Code Interpreter is enabled on the agent and that the model you deployed supports the tool in your region.
-
-For general guidance on validating tool invocation and controlling tool usage, see [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md).
-
-### No file is generated
-
-If you see `No file generated in response`, check the response message annotations for a `container_file_citation`. If there are no annotations, the agent might have returned text only.
-
-### File upload fails
-
-Confirm the file type is supported, and ensure you upload the file with `purpose="assistants"`.
+| Issue | Likely cause | Resolution |
+| --- | --- | --- |
+| Code Interpreter doesn't run. | Tool not enabled or model doesn't support it in your region. | Confirm Code Interpreter is enabled on the agent. Verify your model deployment supports the tool in your region. See [Regional and model availability](#regional-and-model-availability). |
+| No file is generated. | Agent returned text-only response without file annotation. | Check response annotations for `container_file_citation`. If none exist, the agent didn't generate a file. Rephrase the prompt to explicitly request file output. |
+| File upload fails. | Unsupported file type or wrong purpose. | Confirm the file type is in the [supported file types](#supported-file-types) list. Upload with `purpose="assistants"`. |
+| Generated file is corrupt or empty. | Code execution error or incomplete processing. | Check the agent's response for error messages. Verify the input data is valid. Try a simpler request first. |
+| Session timeout or high latency. | Code Interpreter sessions have time limits. | Sessions have a 1-hour active timeout and 30-minute idle timeout. Reduce the complexity of operations or split into smaller tasks. |
+| Unexpected billing charges. | Multiple concurrent sessions created. | Each conversation creates a separate session. Monitor session usage and consolidate operations where possible. |
+| Python package not available. | Code Interpreter has a fixed set of packages. | Code Interpreter includes common data science packages. For custom packages, use [Custom code interpreter](custom-code-interpreter.md). |
+| File download fails. | Container ID or file ID incorrect. | Verify you're using the correct `container_id` and `file_id` from the response annotations. |
 
 ## Clean up
 

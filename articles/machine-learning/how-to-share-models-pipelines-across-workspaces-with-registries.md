@@ -617,6 +617,9 @@ SCORING_URI=$(az ml online-endpoint show -n reg-ep-1234 -o tsv --query scoring_u
 curl --request POST "$SCORING_URI" --header "Authorization: Bearer $ENDPOINT_KEY" --header 'Content-Type: application/json' --data @./scoring-data.json
 ```
 
+> [!Important]
+> * For endpoints created with a User Assigned Identity, manual role assignment is required. The identity needs to have `ACRPull` and `Storage Blob Data Reader` roles on the subscription level. 
+
 > [!TIP]
 > * `curl` command works only on Linux.
 > * If you have not configured the default workspace and resource group as explained in the prerequisites section, you will need to specify the `--workspace-name` and `--resource-group` parameters for the `az ml online-endpoint` and `az ml online-deployment` commands to work.
