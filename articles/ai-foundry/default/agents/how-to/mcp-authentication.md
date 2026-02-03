@@ -150,7 +150,7 @@ The scope of OAuth is per tool(connection) name per Foundry project, which means
    :::image type="content" source="../../media/mcp/foundry-open-consent.png" alt-text="Screenshot for giving consent in Foundry NextGen Portal." lightbox="../../media/mcp/foundry-open-consent.png":::
 
 - The user will be prompted to log in and give consent after reviewing the access needed. After giving consent successfully, user should see a dialog like this: 
-   :::image type="content" source="../../media/mcp/foundry-close-me.png" alt-text="Screenshot after giving consent to OAuth in Foundry NextGen Portal" lightbox="../../media/mcp/foundry-close-me.png":::
+   :::image type="content" source="../../media/mcp/foundry-close-me.png" alt-text="Screenshot after giving consent to OAuth in Foundry NextGen Portal." lightbox="../../media/mcp/foundry-close-me.png":::
 
 - After the user has closed the dialog, you need to submit another response with the previous response id
 
