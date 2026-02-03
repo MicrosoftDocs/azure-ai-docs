@@ -112,7 +112,7 @@ curl -sS -X POST \
 
 ## Related content
 
-- [Authentication and authorization options in Foundry](../concepts/authentication-options-ai-foundry.md)
+- [Authentication and authorization options in Foundry](../concepts/rbac-foundry.md)
 - [Import a Foundry API in API Management](/azure/api-management/azure-ai-foundry-api)
 - [AI gateway capabilities in Azure API Management](/azure/api-management/genai-gateway-capabilities)
 - [Consume Fabric data agent from Foundry Services](/fabric/data-science/data-agent-foundry)

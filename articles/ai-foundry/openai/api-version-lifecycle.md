@@ -583,5 +583,5 @@ Generally Available features are supported for use in production.
 
 ## Next steps
 
-- [Learn more about Azure OpenAI](overview.md)
+- [Learn more about Azure OpenAI](../foundry-models/concepts/models-sold-directly-by-azure.md)
 - [Learn about working with Azure OpenAI models](./how-to/working-with-models.md)

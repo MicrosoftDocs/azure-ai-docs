@@ -78,7 +78,7 @@ To create a Foundry project that supports deployment for DeepSeek-R1, follow the
     | -------------- | ----------- |
     | Resource group | The main container for all the resources in Azure. This container helps you organize resources that work together. It also helps you have a scope for the costs associated with the entire project. |
     | Region     | The region of the resources that you're creating. |
-    | Foundry resource    | The resource enabling access to the flagship models in the Foundry model catalog. In this tutorial, a new account is created, but Foundry resources (formerly known as Azure AI Services resource) can be shared across multiple hubs and projects. Hubs use a connection to the resource to have access to the model deployments available there. To learn how you can create connections to Foundry resources to consume models, see [Connect your AI project](../../model-inference/how-to/configure-project-connection.md). |
+    | Foundry resource    | The resource enabling access to the flagship models in the Foundry model catalog. In this tutorial, a new account is created, but Foundry resources (formerly known as Azure AI Services resource) can be shared across multiple hubs and projects. Hubs use a connection to the resource to have access to the model deployments available there. To learn how you can create connections to Foundry resources to consume models, see [Connect your AI project](../how-to/configure-project-connection.md). |
 
 1. Select **Create** to create the Foundry project alongside the other defaults. Wait until the project creation is complete. This process takes a few minutes.
 
@@ -170,7 +170,7 @@ The following code examples demonstrate how to:
 - [Chat completions API reference](../../openai/latest.md#create-chat-completion)
 - [Azure Identity library overview](/dotnet/api/overview/azure/identity-readme)
 
-Reasoning might generate longer responses and consume a larger number of tokens. See the [rate limits](../../model-inference/quotas-limits.md) that apply to DeepSeek-R1 models. Consider having a retry strategy to handle rate limits. You can also [request increases to the default limits](../quotas-limits.md#request-increases-to-the-default-limits).
+Reasoning might generate longer responses and consume a larger number of tokens. See the [rate limits](../quotas-limits.md) that apply to DeepSeek-R1 models. Consider having a retry strategy to handle rate limits. You can also [request increases to the default limits](../quotas-limits.md#request-increases-to-the-default-limits).
 
 ## About reasoning models
 
@@ -293,7 +293,7 @@ In this tutorial, you accomplished the following:
 
 ## Related content
 
-- [How to generate chat completions with Foundry Models](../how-to/use-chat-completions.md)
-- [Use chat reasoning models](../../model-inference/how-to/use-chat-reasoning.md)
+- [How to generate chat completions with Foundry Models](../../openai/api-version-lifecycle.md)
+- [Use chat reasoning models](../how-to/use-chat-reasoning.md)
 - [Azure OpenAI supported programming languages](../../openai/supported-languages.md)
 

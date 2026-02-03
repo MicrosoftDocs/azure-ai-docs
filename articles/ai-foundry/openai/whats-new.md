@@ -145,7 +145,7 @@ Spillover is now Generally Available. Spillover manages traffic fluctuations on 
 ### GPT-5 models available
 
 - `gpt-5`, `gpt-5-mini`, `gpt-5-nano` To learn more, see the [getting started with reasoning models page](./how-to/reasoning.md).
-- `gpt-5-chat` is now available. To learn more, see the [models page](./concepts/models.md)
+- `gpt-5-chat` is now available. To learn more, see the [models page](../foundry-models/concepts/models-sold-directly-by-azure.md)
 
 - `gpt-5` is now available for [Provisioned Throughput Units (PTU)](./how-to/provisioned-throughput-onboarding.md#how-much-throughput-per-ptu-you-get-for-each-model).
 
@@ -261,7 +261,7 @@ In addition to the deployment-level content filtering configuration, we now also
 
 The latest GPT model that excels at diverse text and image tasks is now available on Azure OpenAI.
 
-For more information on model capabilities, and region availability see the [models documentation](./concepts/models.md).
+For more information on model capabilities, and region availability see the [models documentation](../foundry-models/concepts/models-sold-directly-by-azure.md).
 
 ### Stored completions API
 
@@ -352,4 +352,4 @@ For more information, see the [deployment types guide](https://aka.ms/aoai/docs/
 
 ## Next steps
 
-Learn more about the [underlying models that power Azure OpenAI](./concepts/models.md).
+Learn more about the [underlying models that power Azure OpenAI](../foundry-models/concepts/models-sold-directly-by-azure.md).
