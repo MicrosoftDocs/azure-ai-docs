@@ -673,11 +673,11 @@ speechTranslationConfig.AddTargetLanguage("de");
 speechTranslationConfig.SetProperty(PropertyId.SpeechServiceConnection_TranslationCategory, "yourCategoryId");
 ```
 
-[speechtranslationconfig]: /dotnet/api/microsoft.cognitiveservices.speech.translation.speechtranslationconfig
+[speechtranslationconfig]: /dotnet/api/microsoft.cognitiveservices.speech.speechtranslationconfig
 [audioconfig]: /dotnet/api/microsoft.cognitiveservices.speech.audio.audioconfig
 [translationrecognizer]: /dotnet/api/microsoft.cognitiveservices.speech.translation.translationrecognizer
 [recognitionlang]: /dotnet/api/microsoft.cognitiveservices.speech.speechconfig.speechrecognitionlanguage
-[addlang]: /dotnet/api/microsoft.cognitiveservices.speech.translation.speechtranslationconfig.addtargetlanguage
+[addlang]: /dotnet/api/microsoft.cognitiveservices.speech.speechtranslationconfig.addtargetlanguage
 [translations]: /dotnet/api/microsoft.cognitiveservices.speech.translation.translationrecognitionresult.translations
-[voicename]: /dotnet/api/microsoft.cognitiveservices.speech.translation.speechtranslationconfig.voicename
+[voicename]: /dotnet/api/microsoft.cognitiveservices.speech.speechtranslationconfig.voicename
 [speechsynthesisvoicename]: /dotnet/api/microsoft.cognitiveservices.speech.speechconfig.speechsynthesisvoicename
