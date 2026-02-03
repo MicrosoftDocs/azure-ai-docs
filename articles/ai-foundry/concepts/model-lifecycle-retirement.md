@@ -83,7 +83,7 @@ To learn more about the Azure OpenAI models lifecycle, including information for
 
 ## Upcoming retirements for Foundry Models
 
-The following tables list the timelines for models that are on track for retirement. The lifecycle stages go into effect at 00:00:00 UTC on the specified date.
+The following tables list the timelines for models that are on track for retirement. The lifecycle stages go into effect at 00:00:00 UTC on the specified dates.
 
 #### Cohere
 
@@ -99,7 +99,7 @@ The following tables list the timelines for models that are on track for retirem
 
 ## Retired Foundry Models
 
-The following models were retired as of 00:00:00 UTC on the specified dates and aren't available for new deployments or inference.
+The following models were retired at 00:00:00 UTC on the specified dates and aren't available for new deployments or inference.
 
 #### AI21 Labs
 
