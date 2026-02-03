@@ -522,7 +522,7 @@ This code creates an OpenAI client scoped to the project, defines the input sche
 
 ### Create and run the prompt-based evaluation
 
-This code creates an evaluation group (the reusable definition), then starts an evaluation run with inline JSONL data. Each item is a single example the prompt-based judge scores for groundedness.
+This code creates an evaluation (the reusable definition), then starts an evaluation run with inline JSONL data. Each item is a single sample the prompt-based judge scores for groundedness.
 
 ```python
 
