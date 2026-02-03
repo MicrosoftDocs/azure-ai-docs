@@ -234,7 +234,7 @@ func main() {
 
 For more information about speech to text, see [the basics of speech recognition](../../../get-started-speech-to-text.md).
 
-## Event based translation
+## Event-based translation
 
 The previous example uses single-shot translation, which translates a single utterance. You can also use event based translation for long-running sessions. Event based translation requires you to subscribe to events to receive translation results.
 
