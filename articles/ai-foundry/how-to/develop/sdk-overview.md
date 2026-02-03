@@ -387,7 +387,7 @@ if (!connection.TryGetLocatorAsUri(out Uri uri) || uri is null)
     throw new InvalidOperationException("Invalid URI.");
 }
 uri = new Uri($"https://{uri.Host}");
-
+const string modelDeploymentName = "gpt-4o";  
 AzureOpenAIClient azureOpenAIClient = new AzureOpenAIClient(uri, new DefaultAzureCredential());
 ChatClient chatClient = azureOpenAIClient.GetChatClient(deploymentName: modelDeploymentName);
 
