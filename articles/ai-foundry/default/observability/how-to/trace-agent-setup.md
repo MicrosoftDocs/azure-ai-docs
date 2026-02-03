@@ -1,8 +1,8 @@
 ---
-title: Set up tracing in Microsoft Foundry
+title: Set Up Tracing for AI Agents in Microsoft Foundry
 ms.service: azure-ai-foundry
 titleSuffix: Microsoft Foundry
-description: "Set up tracing in Microsoft Foundry to debug agent runs and monitor behavior by sending trace data to Azure Application Insights with OpenTelemetry."
+description: Learn how to set up tracing in Microsoft Foundry to debug AI agent runs and monitor behavior by sending telemetry to Application Insights with OpenTelemetry.
 ai-usage: ai-assisted
 author: yanchen-ms
 ms.author: lagayhar
@@ -16,11 +16,11 @@ ms.custom: pilot-ai-workflow-jan-2026
 
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
-Tracing (preview) helps you understand how your agent works. Use traces to identify issues like latency spikes, runtime exceptions, incorrect prompts, and retrieval problems.
+Use tracing (preview) to debug your AI agents and monitor their behavior in production. Tracing captures detailed telemetry—including latency, exceptions, prompt content, and retrieval operations—so you can identify and fix issues faster.
 
 ## Prerequisites
 
-- A Foundry project. For more information, see [Create a Foundry project](../../../how-to/create-projects.md)
+- A Foundry project. For more information, see [Create a Foundry project](../../../how-to/create-projects.md).
 - An [Azure Monitor Application Insights resource](/azure/azure-monitor/app/app-insights-overview) to store traces (create a new one or connect an existing one).
 - Access to the Application Insights resource connected to your project.
 
@@ -32,8 +32,10 @@ Foundry stores traces in [Azure Application Insights](/azure/azure-monitor/app/a
 1. Open your Foundry project.
 1. In the left navigation, select **Tracing**.
 1. Create or connect an Application Insights resource:
-       - To connect an existing resource, select the resource and then select **Connect**.
-       - To create a new resource, select **Create new** and complete the wizard.
+   - To connect an existing resource, select the resource and then select **Connect**.
+   - To create a new resource, select **Create new** and complete the wizard.
+
+   A confirmation message appears when the connection succeeds.
 
 After you connect the resource, your project is ready to use tracing.
 
@@ -112,6 +114,8 @@ You can search for a known Conversation ID, search by a Response ID, or search b
 1. Run your agent or workflow at least once (for example, by using the portal or your app).
 1. In your Foundry project, open the **Traces** view and confirm a new trace appears.
 
+   When tracing is working correctly, you see a list of recent traces with timestamps, durations, and status indicators. Select a trace to view its span details.
+
 If you don't see new traces, wait a few minutes and refresh, and then see [Troubleshooting](#troubleshooting).
 
 ## Security and privacy
@@ -137,7 +141,9 @@ Foundry stores traces in the Application Insights resource connected to your pro
 | Client-side traces don't appear | Instrumentation isn't installed or configured | Recheck your package installation and follow the SDK guidance linked in [Client-side traces with the Microsoft Foundry SDK (Python)](#client-side-traces-with-the-microsoft-foundry-sdk-python). |
 | Sensitive content appears in traces | Prompts, tool arguments, or outputs contain sensitive data | Redact sensitive data before it enters telemetry and follow the guidance in [Security and privacy](#security-and-privacy). |
 
-## Next steps
+## Related content
+
+Now that tracing is set up, explore these resources to deepen your understanding and extend your observability capabilities:
 
 - [Agent tracing overview](../concepts/trace-agent-concept.md)
 - [Tracing integrations](trace-agent-framework.md)
