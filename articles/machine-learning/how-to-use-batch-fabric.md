@@ -27,21 +27,17 @@ In this article, you learn how to use Microsoft Fabric to consume Azure Machine 
 
 ## Prerequisites
 
-- A [Microsoft Fabric subscription](/fabric/enterprise/licenses) or [free Microsoft Fabric trial](/fabric/get-started/fabric-trial).
-- A lakehouse created in Fabric. For more information, see [Create a lakehouse](/fabric/data-engineering/create-lakehouse). This article uses a lakehouse named **trusted**.
-- An Azure subscription. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- Azure role or ability to create and manage Azure resource deployments and Azure Machine Learning batch endpoints and deployments.
-- An Azure Data Lake Storage account. For more information, see [Create an Azure storage account](/azure/storage/common/storage-account-create). Fabric supports only hierarchical storage accounts like Azure Data Lake Gen2.
-- An Azure Machine Learning workspace. For more information, see [How to manage workspaces](how-to-manage-workspace.md).
-- A model deployed to a batch endpoint. For more information, see [Deploy models for scoring in batch endpoints](how-to-use-batch-model-deployments.md).
+- A [Microsoft Fabric subscription](/fabric/enterprise/licenses) or [free Microsoft Fabric trial](/fabric/get-started/fabric-trial) with a lakehouse created. For more information, see [Create a lakehouse](/fabric/data-engineering/create-lakehouse).
+- An Azure subscription with the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- An [Azure Machine Learning workspace](how-to-manage-workspace.md) that has a model deployment to an Azure Data Lake Storage Gen 2 batch endpoint. Fabric supports only hierarchical storage accounts like Azure Data Lake Gen2. For more information, see [Deploy models for scoring in batch endpoints](how-to-use-batch-model-deployments.md).
 - The [heart-unlabeled-0.csv](https://github.com/Azure/azureml-examples/blob/main/cli/endpoints/batch/deploy-models/heart-classifier-mlflow/data/heart-unlabeled-0.csv) sample dataset downloaded to use for scoring.
 
 >[!IMPORTANT]
->Although the identity that invokes the endpoint grants access to the storage account, the compute where the batch endpoint runs must also have permission to mount the storage account. For more information, see [Access storage services](how-to-identity-based-service-authentication.md#access-storage-services).
+>The identity that invokes the batch endpoint deployment can grant access to the storage account, but the compute that runs the deployment must also have permission to mount the storage account. For more information, see [Access storage services](how-to-identity-based-service-authentication.md#access-storage-services).
 
 ## Architecture
 
-Azure Machine Learning can't directly access data stored in Fabric [OneLake](/fabric/onelake/onelake-overview), but you can configure a [OneLake shortcut](/fabric/onelake/onelake-shortcuts) and an [Azure Machine Learning datastore](concept-data.md#datastore) to both access the same [Azure Data Lake storage account](/azure/storage/blobs/data-lake-storage-introduction). This process allows reading from and writing to the same underlying data without having to copy it.
+Azure Machine Learning can't directly access data stored in Fabric [OneLake](/fabric/onelake/onelake-overview), but you can configure a [OneLake shortcut](/fabric/onelake/onelake-shortcuts) and an [Azure Machine Learning datastore](concept-data.md#datastore) to both access the same [Azure Data Lake storage account](/azure/storage/blobs/data-lake-storage-introduction). This workflow allows reading from and writing to the same underlying data without having to copy it.
 
 The following diagram shows the data architecture.
 
@@ -49,12 +45,12 @@ The following diagram shows the data architecture.
 
 ## Configure data access
 
-In this section, you create or identify a connection to the storage account for the information the batch endpoint consumes that Fabric users can see in OneLake. Fabric supports only hierarchical storage accounts like Azure Data Lake Gen2.
+Create or identify a connection to the storage account that contains the batch endpoint data, so both Fabric OneLake and Azure Machine Learning can access the information. Fabric supports only hierarchical storage accounts like Azure Data Lake Gen2.
 
 ### Create a OneLake shortcut to the storage account
 
-1. In **Fabric**, select your workspace from the left navigation panel.
-1. Open the lakehouse you want to use, or [create a lakehouse](/fabric/data-engineering/create-lakehouse) to use.
+1. In **Fabric**, select your workspace from the left navigation pane.
+1. Open the lakehouse you want to use.
 1. In the **Explorer** pane, select the **More options** icon next to **Files**, and then select **New shortcut**.
 
    :::image type="content" source="./media/how-to-use-batch-fabric/fabric-lakehouse-new-shortcut.png" alt-text="A screenshot showing how to create a new shortcut in a lakehouse.":::
@@ -67,7 +63,7 @@ In this section, you create or identify a connection to the storage account for 
 
    :::image type="content" source="./media/how-to-use-batch-fabric/fabric-lakehouse-new-shortcut-url.png" alt-text="A screenshot showing how to configure the URL of the shortcut." lightbox="media/how-to-use-batch-fabric/fabric-lakehouse-new-shortcut-url.png":::
 
-1. In the **Connection credentials** section:
+1. In the **Connection credentials** section, provide the following information:
    - **Connection**: Select **Create new connection**.
    - **Connection name**: Keep the populated value.
    - **Authentication kind**: Select **Organizational account** to use the credentials of the connected user via OAuth 2.0. If you're not signed in, select **Sign in** to sign in.
@@ -75,9 +71,9 @@ In this section, you create or identify a connection to the storage account for 
 1. On the next screen, select the storage account folder or folders to point the shortcut to, if applicable, and then select **Next**.
 1. On the next screen, review the settings, and then select **Create**.
 
-### Create a datastore to access the storage account
+### Create a datastore pointing to the storage account
 
- Azure Machine Learning batch endpoints can write predictions only to blob storage accounts, so you select **Azure Blob Storage** rather than **Azure Data Lake Gen2** as the **Datastore type** for the batch endpoint. All Azure Data Lake storage accounts are also blob storage accounts.
+Create an Azure Machine Learning datastore that points to the storage account. Azure Machine Learning batch endpoints can write predictions only to blob storage accounts, so you select **Azure Blob Storage** rather than **Azure Data Lake Gen2** as the **Datastore type** for the batch endpoint. All Azure Data Lake storage accounts are also blob storage accounts.
 
 1. In your Azure Machine Learning workspace in [Azure Machine Learning studio](https://ml.azure.com), select **Data** from the left navigation menu.
 1. On the **Data** page, select the **Datastores** tab, and then select **Create**.
@@ -93,11 +89,11 @@ In this section, you create or identify a connection to the storage account for 
    - **Account key**: Enter the access key of the storage account.
 
 1. Select **Create**.
-   
+
    :::image type="content" source="./media/how-to-use-batch-fabric/azureml-store-create-blob.png" alt-text="A screenshot showing how to configure the Azure Machine Learning data store." lightbox="media/how-to-use-batch-fabric/azureml-store-create-blob.png"::: 
 
 >[!IMPORTANT]
->Ensure that the compute where the batch endpoint runs has permission to mount the data in the storage account. Although the identity that invokes the endpoint grants access, the compute must also have permission to mount the storage account. For more information, see [Access storage services](how-to-identity-based-service-authentication.md#access-storage-services).
+>Although the identity that invokes the endpoint grants access, the compute where the batch endpoint runs must also be able to mount the storage account. Ensure that the compute has permission to mount the data in the storage account. For more information, see [Access storage services](how-to-identity-based-service-authentication.md#access-storage-services).
 
 ## Upload sample dataset
 
@@ -111,7 +107,7 @@ In Fabric, upload the sample data for the batch endpoint to use as input.
 
 1. Upload the sample dataset.
 
-    :::image type="content" source="./media/how-to-use-batch-fabric/fabric-lakehouse-upload-data.png" alt-text="A screenshot showing how to upload a file to OneLake.":::
+   :::image type="content" source="./media/how-to-use-batch-fabric/fabric-lakehouse-upload-data.png" alt-text="A screenshot showing how to upload a file to OneLake.":::
 
 The sample file is ready to be consumed. Note the path to the location where you saved it.
 
@@ -177,7 +173,7 @@ Configure the **Job inputs** section as follows:
    >[!NOTE]
    >You need to use the type of input that your deployment expects. Other supported values for this field are *UriFile* for a file path or *Literal* for any literal value like a string or integer.
 1. Select the plus sign next to the property to add another property for this input.
-1. To indicate the path to the data, enter *Uri* in the **Name** field .
+1. To indicate the path to the data, enter *Uri* in the **Name** field.
    > [!TIP]
    > If your input is of type **Literal**, use **Value** in the **Name** field.
 1. In the **Value** field, enter the path to the data, *azureml://datastores/trusted_blob/datasets/uci-heart-unlabeled-0*.
@@ -196,11 +192,9 @@ Configure the **Job outputs** section as follows:
 1. Name the output *output_data*. For your model deployment, you can use any name. For pipeline deployments, you must provide the exact name of the output that your model generates.
 1. Select the caret next to the output to expand the **Name** and **Value** fields.
 1. To indicate the type of output you're creating, enter *JobOutputType* in the **Name** field.
-1. To indicate that the output is a file path, enter *UriFile* in the **Value** field.
-   >[!NOTE]
-   >The other supported values for this field is *UriFolder*, for a folder path. *Literal* isn't supported for outputs.
+1. To indicate that the output is a file path, enter *UriFile* in the **Value** field. The other supported value for this field is *UriFolder*, for a folder path. *Literal* isn't supported for outputs.
 1. Select the plus sign next to the property to add another property for this output.
-1. To indicate the path to the data, enter *Uri* in the **Name** field .
+1. To indicate the path to the data, enter *Uri* in the **Name** field.
 1. Enter *@concat(@concat('azureml://datastores/trusted_blob/paths/endpoints', pipeline().RunId, 'predictions.csv')*, the path where the output should be placed, in the **Value** field.
 
    Azure Machine Learning batch endpoints support only datastore paths as outputs. Outputs must be unique to avoid conflicts, so you use a dynamic expression to construct the path.
