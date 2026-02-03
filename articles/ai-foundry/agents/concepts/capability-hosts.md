@@ -34,11 +34,14 @@ Capability hosts are sub-resources that you configure at both the Microsoft Foun
 - If you use your own resources for agent data (standard agent setup), create the required Azure resources and connections:
   - [Use your own resources](../how-to/use-your-own-resources.md)
   - [Add a new connection to your project](../../how-to/connections-add.md)
-- Permissions to create the resources and, for standard agent setup, assign access to the required Azure resources. For details, see [Required permissions](../environment-setup.md#required-permissions) and [Role-based access control (RBAC) in Microsoft Foundry](../../concepts/rbac-foundry.md).
+- Required permissions:
+  - **Contributor** role on the Foundry account to create capability hosts
+  - **User Access Administrator** or **Owner** role to assign access to Azure resources (for standard agent setup)
+  - For details, see [Required permissions](../environment-setup.md#required-permissions) and [Role-based access control (RBAC) in Microsoft Foundry](../../concepts/rbac-foundry.md).
 
 ## Why use capability hosts?
 
-Capability hosts allow you to **bring your own Azure resources** instead of using the default Microsoft-managed platform resources. This gives you:
+Capability hosts let you **bring your own Azure resources** instead of using the default Microsoft-managed platform resources. This gives you:
 
 - **Data sovereignty** - Keep all agent data within your Azure subscription.
 - **Security control** - Use your own storage accounts, databases, and search services.
@@ -49,13 +52,13 @@ Capability hosts allow you to **bring your own Azure resources** instead of usin
 Creating capability hosts isn't required. If you want agents to use your own Azure resources, create capability hosts at both the account and project scopes.
 
 ### Default behavior (Microsoft-managed resources)
-If you don't create an account-level and project-level capability host, the Agent Service automatically uses Microsoft-managed Azure resources for:
+If you don't create capability hosts, Agent Service automatically uses Microsoft-managed Azure resources for:
 - Thread storage (conversation history, agent definitions)
 - File storage (uploaded documents) 
 - Vector search (embeddings and retrieval)
 
 ### Bring-your-own resources
-When you create capability hosts at both the account and project levels, agent data is stored and processed using your Azure resources in your subscription. This configuration is called **standard agent setup**. For network-secured standard agent setup, deploy all related resources in the same region as your virtual network (VNet). For guidance, see [Create a new network-secured environment with user-managed identity](../how-to/virtual-networks.md).
+When you create capability hosts at both the account and project levels, your Azure resources store and process agent data. This is **standard agent setup**. For network-secured standard agent setup, deploy all related resources in the same region as your virtual network (VNet). For guidance, see [Create a new network-secured environment with user-managed identity](../how-to/virtual-networks.md).
 
 To learn more about standard agent setup, see [Built-in enterprise readiness with standard agent setup](standard-agent-setup.md).
 
@@ -74,9 +77,9 @@ Capability hosts follow a hierarchy where more specific configurations override 
 
 When creating capability hosts, be aware of these important constraints to avoid conflicts:
 
-- **One capability host per scope**: Each account and each project can only have one active capability host. Attempting to create a second capability host with a different name at the same scope will result in a 409 conflict.
+- **One capability host per scope**: Each account and each project can have only one active capability host. If you try to create a second capability host with a different name at the same scope, you get a 409 conflict.
 
-- **Configuration updates are not supported**: If you need to change configuration, you must delete the existing capability host and recreate it.
+- **You can't update configurations**: If you need to change configuration, delete the existing capability host and recreate it.
 
 ## Create connections for capability hosts
 
@@ -91,6 +94,8 @@ If you want to use model deployments from your own Azure OpenAI resource, also c
 To add connections in the Foundry portal, see [Add a new connection to your project](../../how-to/connections-add.md).
 
 ## Configure capability hosts
+
+Currently, you manage capability hosts using the REST API. SDK support for capability host management isn't available.
 
 ### Required properties (project capability host)
 
@@ -164,7 +169,7 @@ PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
 
 ## Verify your configuration
 
-Use these steps to confirm that capability hosts are configured the way you expect:
+Use these steps to confirm that capability hosts are configured correctly:
 
 1. Get the account capability host and confirm it exists.
 
@@ -178,7 +183,12 @@ Use these steps to confirm that capability hosts are configured the way you expe
    GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/capabilityHosts?api-version=2025-06-01
    ```
 
-3. If you update connections or want to change where data is stored, delete and recreate the capability hosts with the updated configuration.
+3. Test your configuration by creating a test agent and running a conversation. Confirm that:
+   - Conversation threads appear in your Azure Cosmos DB
+   - Uploaded files appear in your Azure Storage account
+   - Vector data appears in your Azure AI Search index
+
+4. If you update connections or want to change where data is stored, delete and recreate the capability hosts with the updated configuration.
 
 ## Delete capability hosts
 
@@ -305,7 +315,14 @@ Since updates aren't supported, follow this sequence for configuration changes:
 3. Create a new capability host with the desired configuration
 
 
+## Common scenarios
+
+- **Development and testing**: Use Microsoft-managed resources. No capability host configuration needed.
+- **Production with compliance requirements**: Create capability hosts with your own Azure Cosmos DB, Storage, and AI Search.
+- **Shared resources across projects**: Configure account-level defaults, then override at the project level as needed.
+
 ## Next steps
-- Learn about [standard agent setup](standard-agent-setup.md).
-- Set up your account and project: [Set up your environment](../environment-setup.md).
-- Add and manage connections: [Add a new connection to your project](../../how-to/connections-add.md).
+
+- [Standard agent setup](standard-agent-setup.md)
+- [Set up your environment](../environment-setup.md)
+- [Add a new connection to your project](../../how-to/connections-add.md)
