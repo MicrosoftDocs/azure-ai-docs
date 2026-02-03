@@ -141,12 +141,9 @@ For more policy XML examples, see the [API Management policy snippets](https://g
 
 After you configure your MCP server, test it in the Microsoft Foundry portal:
 
-1. Open the [Foundry portal](https://ai.azure.com/).
-1. Select your project, then select **Build** > **Agents**.
-1. Create a new agent or select an existing one.
-1. In the agent configuration, select **Add tool** and choose the governed MCP tool.
-1. In the chat pane, send a message that triggers the tool (for example, "List my repositories" for the GitHub MCP server).
-1. Verify the response returns successfully.
+1. Open the [Foundry portal](https://ai.azure.com/) and navigate to your project.
+1. Create a new agent or open an existing one, and configure an MCP tool. For details, see [Connect to Model Context Protocol servers](model-context-protocol.md).
+1. In the agent's chat interface, send a message that triggers the tool (for example, "List my repositories" for the GitHub MCP server) and verify the response returns successfully.
 
 To confirm the request routed through AI Gateway, check APIM metrics in the Azure portal. See [Verify governance is working](#verify-governance-is-working).
 
@@ -154,10 +151,8 @@ To confirm the request routed through AI Gateway, check APIM metrics in the Azur
 
 Use these checks to confirm traffic is routed through AI Gateway and policies are applied.
 
-1. In Foundry Tools, open your MCP tool configuration.
-1. Confirm the configured tool endpoint points to the AI Gateway (not directly to your MCP server).
-1. In the Azure portal, open the API Management instance connected to your Foundry resource.
-1. Review metrics and logs to confirm requests appear when your agent calls the tool.
+1. Open your MCP tool configuration in the Foundry portal and confirm the tool endpoint points to the AI Gateway (not directly to your MCP server).
+1. In the Azure portal, open the API Management instance connected to your Foundry resource and review metrics and logs to confirm requests appear when your agent calls the tool.
 
 When reviewing APIM metrics:
 
