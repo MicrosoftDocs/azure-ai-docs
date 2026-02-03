@@ -9,7 +9,7 @@ ms.custom:
   - dev-focus
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 01/30/2026
+ms.date: 02/02/2026
 ms.reviewer: dantaylo
 ms.author: johalexander
 author: ms-johnalex
@@ -109,11 +109,11 @@ The [Azure AI Projects client library for Java (preview)](/java/api/overview/azu
 ::: moniker range="foundry-classic"
 Add these packages to your installation for Foundry classic projects.
 
-```bash
+```java
 package com.azure.ai.foundry.samples;
 import com.azure.ai.projects;
 import com.azure.ai.inference.ChatCompletionsClient;
-import com.azure.ai.inference.ChatCompletionsClientBuilder;
+import com.azure.ai.inference.ChatCompletionsCliejavantBuilder;
 import com.azure.ai.inference.models.ChatCompletions;
 import com.azure.core.credential.AzureKeyCredential;
 import com.azure.core.credential.TokenCredential;
@@ -125,7 +125,7 @@ import com.azure.identity.DefaultAzureCredentialBuilder;
 ::: moniker range="foundry"
 Add these packages to your installation for Foundry projects.
 
-```bash
+```java
 package com.azure.ai.agents;
 
 import com.azure.core.util.Configuration;
@@ -388,7 +388,7 @@ if (!connection.TryGetLocatorAsUri(out Uri uri) || uri is null)
 }
 uri = new Uri($"https://{uri.Host}");
 
-AzureOpenAIClient azureOpenAIClient = new AzureOpenAIClient(uri, credential);
+AzureOpenAIClient azureOpenAIClient = new AzureOpenAIClient(uri, new DefaultAzureCredential());
 ChatClient chatClient = azureOpenAIClient.GetChatClient(deploymentName: modelDeploymentName);
 
 Console.WriteLine("Complete a chat");
@@ -494,23 +494,77 @@ The following snippet shows how to use the Azure OpenAI `/openai/v1` endpoint di
 
 ::: moniker range="foundry-classic"
 
+```java
+import com.azure.ai.openai.OpenAIClient;
+import com.azure.ai.openai.OpenAIClientBuilder;
+import com.azure.ai.openai.models.ChatChoice;
+import com.azure.ai.openai.models.ChatCompletions;
+import com.azure.ai.openai.models.ChatCompletionsOptions;
+import com.azure.ai.openai.models.ChatRequestAssistantMessage;
+import com.azure.ai.openai.models.ChatRequestMessage;
+import com.azure.ai.openai.models.ChatRequestSystemMessage;
+import com.azure.ai.openai.models.ChatRequestUserMessage;
+import com.azure.ai.openai.models.ChatResponseMessage;
+import com.azure.core.credential.AzureKeyCredential;
+import com.azure.core.util.Configuration;
+
+import java.util.ArrayList;
+import java.util.List;
+
+String endpoint = "https://<resource-name>.openai.azure.com/openai/v1";
+String deploymentName = "gpt-5.2";
+TokenCredential defaultCredential = new DefaultAzureCredentialBuilder().build();
+OpenAIClient client = new OpenAIClientBuilder()
+    .credential(defaultCredential)
+    .endpoint("{endpoint}")
+    .buildClient();
+
+List<ChatRequestMessage> chatMessages = new ArrayList<>();
+chatMessages.add(new ChatRequestSystemMessage("You are a helpful assistant."));
+chatMessages.add(new ChatRequestUserMessage("What is the speed of light?"));
+
+ChatCompletions chatCompletions = client.getChatCompletions(deploymentName, new ChatCompletionsOptions(chatMessages));
+
+System.out.printf("Model ID=%s is created at %s.%n", chatCompletions.getId(), chatCompletions.getCreatedAt());
+for (ChatChoice choice : chatCompletions.getChoices()) {
+    ChatResponseMessage message = choice.getMessage();
+    System.out.printf("Index: %d, Chat Role: %s.%n", choice.getIndex(), message.getRole());
+    System.out.println("Message:");
+    System.out.println(message.getContent());
+```
+
+
 For more information on using the OpenAI SDK, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?view=foundry-classic&tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-java&preserve-view=true).
 ::: moniker-end
 ::: moniker range="foundry"
 ```java
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-from openai import OpenAI
+import com.azure.identity.AuthenticationUtil;
+import com.azure.identity.DefaultAzureCredential;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
 
-credential = DefaultAzureCredential()
-token_provider = get_bearer_token_provider(
-    credential,
-    "https://cognitiveservices.azure.com/.default"
-)
+import java.util.function.Supplier;
 
-client = OpenAI(
-    base_url = "https://<resource-name>.openai.azure.com/openai/v1/", 
-    api_key = token_provider,
-)
+DefaultAzureCredential tokenCredential = new DefaultAzureCredentialBuilder().build();
+String endpoint = "https://<resource-name>.openai.azure.com/openai/v1";
+String deploymentName = "gpt-5.2";
+Supplier<String> bearerTokenSupplier = AuthenticationUtil.getBearerTokenSupplier(
+        tokenCredential, "https://cognitiveservices.azure.com/.default");
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+        .baseUrl(endpoint)
+        .credential(BearerTokenCredential.create(bearerTokenSupplier))
+        .build();
+
+ResponseCreateParams responseCreateParams = ResponseCreateParams.builder()
+        .input("What is the speed of light?")
+        .model(deploymentName) 
+        .build();
+
+Response response = openAIClient.responses().create(responseCreateParams);
+
+System.out.println("Response output: " + response.getOutputText());
 ```
 For more information on using the OpenAI SDK, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?view=foundry&tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-java&preserve-view=true)
 ::: moniker-end
