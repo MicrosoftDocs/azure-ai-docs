@@ -4,7 +4,7 @@ description: Deploy and manage containerized agents on Foundry Agent Service (pr
 titleSuffix: Microsoft Foundry
 author: aahill
 ms.author: aahi
-ms.date: 01/23/2026
+ms.date: 02/03/2026
 ms.manager: nitinme
 ms.topic: concept-article
 ms.service: azure-ai-foundry
@@ -90,7 +90,6 @@ Hosted Agents are supported in the following regions:
 Treat a hosted agent like production application code.
 
 - **Don't put secrets in container images or environment variables**. Use managed identities and connections, and store secrets in a managed secret store. For guidance, see [Set up a Key Vault connection](../../../how-to/set-up-key-vault-connection.md).
-- **Use least privilege**. Grant only the permissions your agent needs. For identity concepts, see [Agent identity concepts in Microsoft Foundry](./agent-identity.md).
 - **Be careful with non-Microsoft tools and servers**. If your agent calls tools backed by non-Microsoft services, some data might flow to those services. Review data sharing, retention, and location policies for any non-Microsoft service you connect.
 
 ## Understand key concepts
@@ -153,12 +152,72 @@ Agent Service handles:
 
 Before you deploy to Microsoft Foundry, build and test your agent locally:
 
-1. **Run your agent locally**: Use the hosting adapter to start a local web server that automatically exposes your agent as a REST API.
-1. **Test by using REST calls**: The local server runs on `localhost:8088` and accepts standard HTTP requests.
-1. **Build the container image**: Create a container image from your source files by using an `azure-ai-agentserver-*` package to wrap your agent code.
-1. **Use the Azure Developer CLI**: Use `azd` to streamline the packaging and deployment process.
+1. **Run your agent locally**: Use the hosting adapter to `azure-ai-agentserver-*` package to wrap your agent code and start a local web server that automatically exposes your agent as a REST API.
+2. **Test by using REST calls**: The local server runs on `localhost:8088` and accepts standard HTTP requests.
+3. **Build the container image**: Create a container image from your source code. 
+4. **Use the Azure Developer CLI**: Use `azd` to streamline the packaging and deployment process.
 
-### Local testing by using the REST API
+### Wrap your agent code with the hosting adapter and test locally
+
+**Sample agent authored using Microsoft Agent Framework**
+
+```python
+
+import os
+from datetime import datetime
+from zoneinfo import ZoneInfo
+from dotenv import load_dotenv
+
+load_dotenv(override=True)
+
+from agent_framework import ai_function, ChatAgent
+from agent_framework.azure import AzureAIAgentClient
+from azure.ai.agentserver.agentframework import from_agent_framework
+from azure.identity import DefaultAzureCredential
+
+# Configure these for your Azure AI Foundry project
+PROJECT_ENDPOINT = os.getenv("PROJECT_ENDPOINT")  # e.g., "https://<resource>.services.ai.azure.com/api/projects/<project>"
+MODEL_DEPLOYMENT_NAME = os.getenv("MODEL_DEPLOYMENT_NAME", "gpt-4.1")  # Your model deployment name
+
+
+@ai_function
+def get_local_date_time(iana_timezone: str) -> str:
+    """
+    Get the current date and time for a given timezone.
+    
+    This is a LOCAL Python function that runs on the server - demonstrating how code-based agents
+    can execute custom logic that prompt agents cannot access.
+    
+    Args:
+        iana_timezone: The IANA timezone string (e.g., "America/Los_Angeles", "America/New_York", "Europe/London")
+    
+    Returns:
+        The current date and time in the specified timezone.
+    """
+    try:
+        tz = ZoneInfo(iana_timezone)
+        current_time = datetime.now(tz)
+        return f"The current date and time in {iana_timezone} is {current_time.strftime('%A, %B %d, %Y at %I:%M %p %Z')}"
+    except Exception as e:
+        return f"Error: Unable to get time for timezone '{iana_timezone}'. {str(e)}"
+
+
+# Create the agent with a local Python tool
+agent = ChatAgent(
+    chat_client=AzureAIAgentClient(
+        project_endpoint=PROJECT_ENDPOINT,
+        model_deployment_name=MODEL_DEPLOYMENT_NAME,
+        credential=DefaultAzureCredential(),
+    ),
+    instructions="You are a helpful assistant that can tell users the current date and time in any location. When a user asks about the time in a city or location, use the get_local_date_time tool with the appropriate IANA timezone string for that location.",
+    tools=[get_local_date_time],
+)
+
+if __name__ == "__main__":
+    from_agent_framework(agent).run()
+```
+
+Refer to the [samples repo](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agent) for code samples in LangGraph and custom code. 
 
 When you run your agent locally by using the hosting adapter, it automatically starts a web server on `localhost:8088`. You can test your agent by using any REST client.
 
@@ -189,6 +248,10 @@ This local testing approach lets you:
 
 ## Create a hosted agent
 
+### Create a hosted agent using VS Code Foundry extension
+
+You can use the [Foundry extension for Visual Studio Code](../../agents/how-to/vs-code-agents-workflow-pro-code.md?view=foundry&preserve-view=true) to create hosted agents.
+
 ### Create a hosted agent by using the Azure Developer CLI
 
 Developers can use the Azure Developer CLI `ai agent` extension for seamless and rapid provisioning and deployment of their agentic applications on Microsoft Foundry.
@@ -209,7 +272,7 @@ To get started:
 
     To upgrade to the latest version, see [Install or update the Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd).
 
-1. If you're starting with no existing Foundry resources and you want to simplify all the required infrastructure provisioning and RBAC, download the Foundry starter template. The template automatically installs the `ai agent` extension. When prompted, you can provide an environment name which creates a resource group named `rg-<name-you-provide>`.
+2. If you're starting with no existing Foundry resources and you want to simplify all the required infrastructure provisioning and RBAC, download the Foundry starter template. The template automatically installs the `ai agent` extension. When prompted, you can provide an environment name which creates a resource group named `rg-<name-you-provide>`.
 
     ```bash
     azd init -t https://github.com/Azure-Samples/azd-ai-starter-basic
@@ -229,7 +292,7 @@ To get started:
     azd ai agent init --project-id /subscriptions/[SUBSCRIPTIONID]/resourceGroups/[RESOURCEGROUPNAME]/providers/Microsoft.CognitiveServices/accounts/[ACCOUNTNAME]/projects/[PROJECTNAME]
     ```
 
-1. Initialize the template by configuring the parameters in the agent definition:
+3. Initialize the template by configuring the parameters in the agent definition:
 
     ```bash
     azd ai agent init -m <repo-path-to-agent.yaml>
@@ -237,19 +300,21 @@ To get started:
 
     The GitHub repo for an agent that you want to host on Foundry contains the application code, referenced dependencies, Dockerfile for containerization, and the `agent.yaml` file that contains your agent's definition. To configure your agent, set values for the parameters that you're prompted for. This action registers your agent under `Services` in `azure.yaml` for the downloaded template. You can get started with samples on [GitHub](https://github.com/azure-ai-foundry/foundry-samples).
 
-1. To open and view all Bicep and configuration files associated with your `azd`-based deployments, use this command:
+4. To open and view all Bicep and configuration files associated with your `azd`-based deployments, use this command:
 
     ```bash
     code .
     ```
 
-1. Package, provision, and deploy your agent code as a managed application on Foundry:
+5. Package, provision, and deploy your agent code as a managed application on Foundry:
 
     ```bash
     azd up
     ```
 
-    This command abstracts the underlying execution of the commands `azd infra generate`, `azd provision`, and `azd deploy`. It also creates a hosted agent version and deployment on Foundry Agent Service. If you already have a version of a hosted agent, `azd` creates a new version of the same agent. To learn more about how you can do non-versioned updates, along with starting, stopping, and deleting your hosted agent deployments and versions, see the [management section](#manage-hosted-agents) of this article.
+    This command abstracts the underlying execution of the commands `azd infra generate`, `azd provision`, and `azd deploy`. It also creates a hosted agent version and deployment on Foundry Agent Service. If you already have a version of a hosted agent, `azd` creates a new version of the same agent. For more information, see the [Azure CLI documentation](/azure/developer/azure-developer-cli/extensions/azure-ai-foundry-extension).
+    
+To learn more about how you can do non-versioned updates, along with starting, stopping, and deleting your hosted agent deployments and versions, see the [management section](#manage-hosted-agents) of this article. 
 
 Make sure you have RBAC enabled so that `azd` can provision the services and models for you. For Foundry role guidance, see [Role-based access control in Foundry portal](../../../concepts/rbac-foundry.md). For Azure built-in roles, see [Azure built-in roles](/azure/role-based-access-control/built-in-roles).
 
@@ -994,8 +1059,8 @@ If your hosted agent deploys successfully but doesn't respond as expected, check
 To debug runtime issues:
 
 1. Use the [log stream API](#view-container-log-stream) to view container logs in real time.
-1. Check the **Traces** tab in the Foundry portal playground for detailed request and response information.
-1. Verify environment variables are set correctly in your agent definition.
+2. Check the **Traces** tab in the Foundry portal playground for detailed request and response information.
+3. Verify environment variables are set correctly in your agent definition.
 
 ## Understand preview details
 
