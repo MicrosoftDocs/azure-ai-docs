@@ -96,12 +96,14 @@ Each Agent Application acts as a routing table to specific agent deployments. Cu
 | `minReplicas` | The minimum number of replicas that are always running. | integer | ✅ (only when deploymentType: `Hosted`) |
 | `maxReplicas` | The maximum number of replicas that can be running. | integer | ✅ (only when deploymentType: `Hosted`) |
 
-## Call agent applications
+## Invoke agent applications
+
 An Agent Application resource exposes a stable endpoint with multiple protocol and authentication options. 
 
 ### Protocols
 
-#### Responses
+#### Responses protocol
+
 Foundry agents by default expose an OpenAI-compatible protocol based around Responses for interacting with agents. 
 
 For applications this is exposed at:
@@ -122,8 +124,10 @@ For applications this is exposed at:
 `https://{accountName}.services.ai.azure.com/api/projects/{projectName}/applications/{applicationName}/protocols/activityprotocol`
 
 ### Authentication
-There are two options for inbound end-user authentication that can be configured on the application: 
-- Default: The caller must have the Azure RBAC (Role-Based Access Control) permission /applications/invoke/action on the application resource. 
+
+You can configure inbound end-user authentication on the application. The following option is available:
+
+- **Default (RBAC)**: The caller must have the Azure RBAC permission `/applications/invoke/action` on the application resource. 
 <!--
 - Channels (Azure Bot Service): Requests from a linked Azure Bot Service instance are permitted. This is used for M365 and Agent365 integration, and for scenarios where an upstream service interacts with the application through Activity Protocol. 
 -->
@@ -131,7 +135,7 @@ API key authentication is not supported for agents through projects or through a
 
 ## Publish an agent  
 
-Note that an agent does not have an intrinsic identity; its tool invocation, when using the "agentic identity" authentication option, is, in fact, using the identity of its serving entity - the project's, for unpublished agents, and the respective application's, for published ones. As a consequence, permissions assigned to a project identity do not transfer to an application upon publishing an agent; you must explicitly (re)assign the necessary privileges to the publishing application's identity.
+When you publish an agent, it receives its own Agent Identity separate from the project's shared identity. Tools that use agentic identity authentication run under the project identity before publishing and under the application identity after publishing. Because permissions don't transfer automatically, you must reassign the necessary RBAC roles to the new application identity.
 
 ### Foundry portal
 
@@ -237,7 +241,7 @@ Content-Type: application/json
 
 ## Verify publishing succeeded
 
-After you publish, verify that:
+Confirm that your agent published successfully before sharing the endpoint with consumers. After you publish, verify that:
 
 - The Agent Application resource exists.
 - The deployment is running.
@@ -304,10 +308,14 @@ Content-Type: application/json
 }
 
 ```
-To roll out an agent with a different name you must: 
-- Update the Agent Application to allow the new agent name 
-- Create/update a deployment to reference the new agent version 
-- (If new deployment created) Update the Agent Application’s traffic routing policy so 100% of traffic goes to the new deployment (note: we currently enforce 100% of traffic routed to a single deployment)  
+To roll out an agent with a different name, you must:
+
+1. Update the Agent Application to allow the new agent name.
+1. Create or update a deployment to reference the new agent version.
+1. If you created a new deployment, update the Agent Application's traffic routing policy so 100% of traffic goes to the new deployment.
+
+> [!NOTE]
+> Currently, all traffic must be routed to a single deployment.
 
 ## Consume your published Agent Application
 
