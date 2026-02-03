@@ -127,7 +127,7 @@ When you set up **custom OAuth**, provide the following information:
 - client ID: required
 - client secret: optional (depends on your OAuth app)
 - auth URL: required
-- refresh URL: required (if you don't have a separate refresh url, you can use token url instead)
+- refresh URL: required (If you don't have a separate refresh URL, you can use token URL instead.)
 - token URL: required 
 - scopes: optional
 
