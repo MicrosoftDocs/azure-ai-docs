@@ -79,18 +79,17 @@ Traces typically appear within 2–5 minutes after agent execution. For advanced
 
 > [!NOTE]
 > Tracing integration for LangChain and LangGraph is currently available only in Python.
-> LangChain 1.0 and LangGraph 1.0 are currently in preview. API surface and tracing behavior might change. Track updates at the [LangChain 1.0 release notes](https://docs.langchain.com/oss/python/releases/langchain-v1).
 
 Use the `langchain-azure-ai` package to emit OpenTelemetry-compliant spans for LangChain and LangGraph operations. These traces appear in the **Observability** > **Traces** view in the Foundry portal.
 
 - [OpenTelemetry semantic conventions for generative AI](https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/)
 - [langchain-azure-ai package on PyPI](https://pypi.org/project/langchain-azure-ai/)
 
-### Sample: LangChain 1.0 agent with Azure AI tracing
+### Sample: LangChain v1 agent with Azure AI tracing
 
-Use this end-to-end sample to instrument a LangChain 1.0 (preview) agent using the `langchain-azure-ai` tracer. This tracer implements the latest OpenTelemetry (OTel) semantic conventions, so you can view rich traces in the Foundry observability view.
+Use this end-to-end sample to instrument a LangChain v1 (preview) agent using the `langchain-azure-ai` tracer. This tracer implements the latest OpenTelemetry (OTel) semantic conventions, so you can view rich traces in the Foundry observability view.
 
-#### LangChain 1.0: Install packages
+#### LangChain v1: Install packages
 
 ```bash
 pip install \
@@ -103,7 +102,7 @@ pip install \
   rich
 ```
 
-#### LangChain 1.0: Configure environment
+#### LangChain v1: Configure environment
 
 - `APPLICATION_INSIGHTS_CONNECTION_STRING`: Azure Monitor Application Insights connection string for tracing.
 - `AZURE_OPENAI_ENDPOINT`: Your Azure OpenAI endpoint URL.
@@ -113,7 +112,7 @@ pip install \
 
 Store these values in a `.env` file for local development.
 
-#### LangChain 1.0: Tracer setup
+#### LangChain v1: Tracer setup
 
 ```python
 from dotenv import load_dotenv
@@ -132,7 +131,7 @@ azure_tracer = AzureAIOpenTelemetryTracer(
 tracers = [azure_tracer]
 ```
 
-#### LangChain 1.0: Model setup (Azure OpenAI)
+#### LangChain v1: Model setup (Azure OpenAI)
 
 ```python
 import os
@@ -152,7 +151,7 @@ model = AzureChatOpenAI(
 )
 ```
 
-#### LangChain 1.0: Define tools and prompt
+#### LangChain v1: Define tools and prompt
 
 ```python
 from dataclasses import dataclass
@@ -187,7 +186,7 @@ def get_weather(city: str) -> str:
     return f"It's always sunny in {city}!"
 ```
 
-#### LangChain 1.0: Use runtime context and define a user-info tool
+#### LangChain v1: Use runtime context and define a user-info tool
 
 ```python
 from langgraph.runtime import get_runtime
@@ -201,7 +200,7 @@ def get_user_info(config: RunnableConfig) -> str:
     return USER_LOCATION[user_id]
 ```
 
-#### LangChain 1.0: Create the agent
+#### LangChain v1: Create the agent
 
 ```python
 from langchain.agents import create_agent
@@ -226,7 +225,7 @@ agent = create_agent(
 )
 ```
 
-#### LangChain 1.0: Run the agent with tracing
+#### LangChain v1: Run the agent with tracing
 
 ```python
 from rich import print
@@ -254,12 +253,12 @@ if __name__ == "__main__":
     main()
 ```
 
-With `langchain-azure-ai` enabled, all LangChain 1.0 operations (LLM calls, tool invocations, agent steps) emit OpenTelemetry spans using the latest semantic conventions. These traces appear in the **Observability** > **Traces** view in the Foundry portal and are linked to your Application Insights resource.
+With `langchain-azure-ai` enabled, all LangChain v1 operations (LLM calls, tool invocations, agent steps) emit OpenTelemetry spans using the latest semantic conventions. These traces appear in the **Observability** > **Traces** view in the Foundry portal and are linked to your Application Insights resource.
 
 > [!TIP]
 > After running the agent, wait a few minutes for traces to appear. If you don't see traces, verify your Application Insights connection string is correct and check the [Troubleshoot common issues](#troubleshoot-common-issues) section.
 
-#### Verify your LangChain 1.0 traces
+#### Verify your LangChain v1 traces
 
 After running the agent:
 
@@ -444,7 +443,7 @@ pip install \
 - `AZURE_OPENAI_API_KEY`: Azure OpenAI API key.
 
 > [!NOTE]
-> This sample uses API key authentication for simplicity. For production workloads, use `DefaultAzureCredential` with `get_bearer_token_provider` as shown in the LangChain 1.0 and LangGraph samples.
+> This sample uses API key authentication for simplicity. For production workloads, use `DefaultAzureCredential` with `get_bearer_token_provider` as shown in the LangChain v1 and LangGraph samples.
 
 #### LangChain 0.3: Tracer and model setup
 
