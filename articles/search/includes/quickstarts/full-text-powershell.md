@@ -60,7 +60,7 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
 
 ## Run the code
 
-In the same terminal window, run the following PowerShell script to execute this quickstart.
+In the same terminal, run the following PowerShell script to execute this quickstart.
 
 ```powershell
 .\azure-search-quickstart.ps1
@@ -68,7 +68,7 @@ In the same terminal window, run the following PowerShell script to execute this
 
 ### Output
 
-The script deletes any existing index, creates a new index, uploads documents, and runs multiple full-text search queries. The output shows the full HTTP requests and responses for each operation. The following example shows the response when searching for "restaurant wifi."
+The script deletes any existing index, creates a new index, uploads documents, and runs multiple full-text search queries. The output shows the full HTTP requests and responses for each operation. The following example shows the response when searching for "restaurant wifi".
 
 ```json
 {

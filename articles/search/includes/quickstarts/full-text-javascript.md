@@ -48,7 +48,7 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
 
 1. Replace the placeholder value for `SEARCH_API_ENDPOINT` with the URL you obtained in [Get endpoint](#get-endpoint).
 
-1. Install the dependencies from the `package.json` file.
+1. Use a terminal in Visual Studio Code to install the dependencies.
 
     ```console
     npm install
@@ -62,7 +62,7 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
 
 ## Run the code
 
-Run the following command to run the application.
+Run the application.
 
 ```console
 node index.js
@@ -270,7 +270,6 @@ searchResults = await searchClient.search("sublime cliff", searchOptions);
 for await (const result of searchResults.results) {
     console.log(`${JSON.stringify(result.document)}`);
 }
-console.log();
 ```
 
 #### Query example 4

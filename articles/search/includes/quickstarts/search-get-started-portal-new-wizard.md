@@ -18,7 +18,7 @@ The wizard creates multiple objects on your search service, including a searchab
 
 + An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-+ An [Azure AI Search service](../../search-create-service-portal.md). You can use the Free tier for this quickstart.
++ An [Azure AI Search service](../../search-create-service-portal.md). You can use a free service for this quickstart.
 
 + An [Azure Storage account](/azure/storage/common/storage-account-create). Use Azure Blob Storage or Azure Data Lake Storage Gen2 (storage account with a hierarchical namespace) on a standard performance (general-purpose v2) account. To avoid bandwidth charges, use the same region as Azure AI Search.
 

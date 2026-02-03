@@ -62,7 +62,7 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
 
 ## Run the code
 
-Run the following command to build and run the application.
+Build and run the application.
 
 ```console
 dotnet run

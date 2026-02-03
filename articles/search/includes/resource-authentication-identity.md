@@ -1,4 +1,6 @@
 ---
+title: Include File
+description: Include file for Azure AI Search authentication with managed identities.
 author: haileytap 
 ms.author: haileytapia 
 ms.service: azure-ai-search

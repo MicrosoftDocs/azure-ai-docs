@@ -1385,9 +1385,9 @@ messages.add(userMessage);
 
 ## Clean up resources
 
-When working in your own subscription, it's a good idea to finish a project by determining whether you still need the resources you created. Resources that are left running can cost you money. You can delete resources individually, or you can delete the resource group to delete the entire set of resources.
+[!INCLUDE [clean up resources (paid)](../resource-cleanup-paid.md)]
 
-In the Azure portal, you can find and manage resources by selecting **All resources** or **Resource groups** from the left pane. You can also run the following code to delete the objects you created in this quickstart.
+You can also run the following code to delete the objects you created in this quickstart.
 
 ### Delete the knowledge agent
 

@@ -48,7 +48,7 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
 
 1. Replace the placeholder value for `searchServiceEndpoint` with the URL you obtained in [Get endpoint](#get-endpoint).
 
-1. Install the dependencies from the `pom.xml` file.
+1. Use a terminal in Visual Studio Code to install the dependencies.
 
    ```console
    mvn clean dependency:copy-dependencies
@@ -62,7 +62,7 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
 
 ## Run the code
 
-Run the following commands to compile and run the application.
+Compile and run the application.
 
 ```console
 javac -d target/classes -cp "target/dependency/*" src/main/java/azure/search/sample/*.java

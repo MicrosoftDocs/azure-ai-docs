@@ -149,12 +149,7 @@ Take a minute to try these example queries on your index. For more information, 
 
 ## Clean up resources
 
-When you work in your own subscription, it's a good idea at the end of a project to identify whether you still need the resources you created. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
-
-In the Azure portal, you can find and manage resources by selecting **All resources** or **Resource groups** from the left pane.
-
-> [!NOTE]
-> If you're using a free search service, remember that the limit is three indexes, three indexers, and three data sources. You can delete individual objects in the Azure portal to stay under the limit.
+[!INCLUDE [clean up resources (free)](includes/resource-cleanup-free.md)]
 
 ## Next step
 

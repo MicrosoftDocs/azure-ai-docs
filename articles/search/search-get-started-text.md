@@ -64,11 +64,7 @@ ms.date: 02/02/2026
 
 ## Clean up resources
 
-When working in your own subscription, it's a good idea to finish a project by determining whether you still need the resources you created. Resources that are left running can cost you money. You can delete resources individually, or you can delete the resource group to delete the entire set of resources.
-
-In the [Azure portal](https://portal.azure.com/), you can find and manage resources by selecting **All resources** or **Resource groups** from the left pane.
-
-If you're using a free service, remember that you're limited to three indexes, indexers, and data sources. You can [delete individual items](search-how-to-manage-index.md) in the Azure portal to stay under the limit.
+[!INCLUDE [clean up resources (free)](includes/resource-cleanup-free.md)]
 
 ## Related content
 

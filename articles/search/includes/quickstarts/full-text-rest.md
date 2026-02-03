@@ -60,17 +60,15 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
     az account get-access-token --scope https://search.azure.com/.default --query accessToken -o tsv
     ```
 
-1. Set the `@token` variable to the access token from the previous step.
+1. Replace the placeholder value for `@token` with the access token from the previous step.
 
 ## Run the code
 
 1. Under `### List existing indexes by name`, select **Send Request** to verify your connection.
 
-   A response should appear in an adjacent pane. If you have existing indexes, they're listed. Otherwise, the list is empty. If the HTTP code is `200 OK`, you're ready for the next steps.
+   A response should appear in an adjacent pane. If you have existing indexes, they're listed. Otherwise, the list is empty. If the HTTP code is `200 OK`, you're ready to proceed.
 
-   :::image type="content" source="../../media/search-get-started-rest/rest-client-request-setup.png" lightbox="../../media/search-get-started-rest/rest-client-request-setup.png" alt-text="Screenshot that shows a REST client configured for a search service request.":::
-
-1. Run the remaining requests in sequence to create an index, upload documents, and query the index.
+1. Send the remaining requests sequentially to create an index, upload documents, and query the index.
 
 ### Output
 
@@ -154,7 +152,7 @@ Newly created indexes are empty. To populate an index and make it searchable, yo
 
 In Azure AI Search, documents serve as both inputs for indexing and outputs for queries. For simplicity, this quickstart provides sample hotel documents as inline JSON. In production scenarios, however, content is often pulled from connected data sources and transformed into JSON using [indexers](../../search-indexer-overview.md).
 
-This quickstart calls [Documents - Index (REST API)](/rest/api/searchservice/documents/) to add four sample hotel documents to your index. Compared to the previous request, the URI is extended to include the `docs` collection and `index` operation.
+This quickstart calls [Documents - Index (REST API)](/rest/api/searchservice/documents/index) to add four sample hotel documents to your index. Compared to the previous request, the URI is extended to include the `docs` collection and `index` operation.
 
 Each document in the `value` array represents a hotel and contains fields that match the index schema. The `@search.action` parameter specifies the operation to perform for each document. This example uses `upload`, which adds the document if it doesn't exist or updates the document if it does exist.
 

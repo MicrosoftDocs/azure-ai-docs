@@ -1,4 +1,6 @@
 ---
+title: Include File
+description: Include file for Azure AI Search authentication and role-based access configuration.
 author: haileytap 
 ms.author: haileytapia 
 ms.service: azure-ai-search

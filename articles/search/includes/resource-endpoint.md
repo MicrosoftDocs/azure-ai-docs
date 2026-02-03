@@ -1,4 +1,6 @@
 ---
+title: Include File
+description: Include file for getting the endpoint of an Azure AI Search service.
 author: haileytap 
 ms.author: haileytapia 
 ms.service: azure-ai-search

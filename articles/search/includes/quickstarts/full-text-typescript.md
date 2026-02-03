@@ -48,7 +48,7 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
 
 1. Replace the placeholder value for `SEARCH_API_ENDPOINT` with the URL you obtained in [Get endpoint](#get-endpoint).
 
-1. Install the dependencies and initialize the project for TypeScript.
+1. Use a terminal in Visual Studio Code to install the dependencies and initialize the project for TypeScript.
 
     ```console
     npm install
@@ -81,7 +81,7 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
     }
     ```
 
-1. Rename the `index.ts` file to `index.ts`, and then replace the contents with the following code. This code converts the CommonJS syntax to ES module imports, which are required for TypeScript compilation.
+1. Rename the `index.js` file to `index.ts`, and then replace the contents with the following code. This code converts the CommonJS syntax to ES module imports, which are required for TypeScript compilation.
 
     ```typescript
     // Import from the @azure/search-documents library
@@ -255,7 +255,7 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
         console.log(`Index operations succeeded: ${JSON.stringify(indexDocumentsResult.results[0].succeeded)} `);
     
         // waiting one second for indexing to complete (for demo purposes only)
-        sleep(1000);
+        await sleep(1000);
     
         console.log('Querying the index...');
         console.log();
@@ -345,7 +345,7 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
     });
     ```
 
-1. Run the following command to transpile from TypeScript to JavaScript.
+1. Transpile from TypeScript to JavaScript.
 
     ```console
     npx tsc
@@ -359,13 +359,71 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
 
 ### Output
 
-Output includes query information and results.
+The output should be similar to the following:
+
+```
+Checking if index exists...
+Deleting index...
+Creating index...
+Index named hotels-quickstart has been created.
+Uploading documents...
+Index operations succeeded: true 
+Querying the index...
+
+Query #1 - search everything:
+{"HotelId":"3","HotelName":"Gastronomic Landscape Hotel","Rating":4.8}
+{"HotelId":"2","HotelName":"Old Century Hotel","Rating":3.6}
+{"HotelId":"4","HotelName":"Sublime Palace Hotel","Rating":4.6}
+{"HotelId":"1","HotelName":"Stay-Kay City Hotel","Rating":3.6}
+Result count: 4
+
+Query #2 - search with filter, orderBy, and select:
+{"HotelId":"2","HotelName":"Old Century Hotel","Rating":3.6}
+
+Query #3 - limit searchFields:
+{"HotelId":"4","HotelName":"Sublime Palace Hotel","Rating":4.6}
+
+Query #4 - limit searchFields and use facets:
+{"HotelId":"3","HotelName":"Gastronomic Landscape Hotel","Rating":4.8}
+{"HotelId":"2","HotelName":"Old Century Hotel","Rating":3.6}
+{"HotelId":"4","HotelName":"Sublime Palace Hotel","Rating":4.6}
+{"HotelId":"1","HotelName":"Stay-Kay City Hotel","Rating":3.6}
+
+Query #5 - Lookup document:
+HotelId: 3; HotelName: Gastronomic Landscape Hotel
+```
 
 ## Understand the code
 
-### Create the index
+Now that you've run the code, let's break down the key steps:
 
-The `indexDefinition` object defines how Azure AI Search works with the documents you load in the next step. Each field is identified by a `name` and has a specified `type`. Each field also has a series of index attributes that specify whether Azure AI Search can search, filter, sort, and facet upon the field. Most of the fields are simple data types, but some, like `Address` are complex types that allow you to create rich data structures in your index. You can read more about [supported data types](/rest/api/searchservice/supported-data-types) and index attributes described in [Create Index (REST)](/rest/api/searchservice/indexes/create).
+1. [Create a search client](#create-a-search-client)
+1. [Create a search index](#create-a-search-index)
+1. [Upload documents to the index](#upload-documents-to-the-index)
+1. [Query the index](#query-the-index)
+
+### Create a search client
+
+In `index.ts`, you create two clients:
+
+- [SearchIndexClient](/javascript/api/@azure/search-documents/searchindexclient) creates the index.
+- [SearchClient](/javascript/api/@azure/search-documents/searchclient) loads and queries an existing index.
+
+Both clients require the service endpoint and a credential for authentication. In this quickstart, you use [DefaultAzureCredential](/javascript/api/@azure/identity/defaultazurecredential) for keyless authentication with Microsoft Entra ID.
+
+```typescript
+const credential = new DefaultAzureCredential();
+const searchIndexClient: SearchIndexClient = new SearchIndexClient(
+    searchServiceEndpoint,
+    credential
+);
+```
+
+### Create a search index
+
+This quickstart builds a hotels index that you load with hotel data and execute queries against. In this step, you define the fields in the index.
+
+The `indexDefinition` object defines how Azure AI Search works with the documents you load in the next step. Each field is identified by a `name` and has a specified `type`. Each field also has a series of index attributes that specify whether Azure AI Search can search, filter, sort, and facet upon the field. Most of the fields are simple data types, but some, like `Address`, are complex types that allow you to create rich data structures in your index. You can read more about [supported data types](/rest/api/searchservice/supported-data-types) and index attributes described in [Create Index (REST)](/rest/api/searchservice/indexes/create).
 
 ```typescript
 const indexDefinition: SearchIndex = {
@@ -385,7 +443,7 @@ const indexDefinition: SearchIndex = {
             "sortable": true,
             "facetable": false
         },
-        // ... more fields
+        // REDACTED FOR BREVITY
     ],
     "suggesters": [
         {
@@ -397,17 +455,7 @@ const indexDefinition: SearchIndex = {
 };
 ```
 
-Within the main function, a `SearchIndexClient` is created, which is used to create and manage indexes for Azure AI Search.
-
-```typescript
-const credential = new DefaultAzureCredential();
-const searchIndexClient: SearchIndexClient = new SearchIndexClient(
-    searchServiceEndpoint,
-    credential
-);
-```
-
-Next, the index is deleted if it already exists. This operation is a common practice for test/demo code.
+This quickstart deletes the index if it already exists, which is a common practice for test/demo code.
 
 ```typescript
 async function deleteIndexIfExists(searchIndexClient: SearchIndexClient, indexName: string) {
@@ -426,9 +474,9 @@ After that, the index is created with the `createIndex()` method.
 let index: SearchIndex = await searchIndexClient.createIndex(indexDefinition);
 ```
 
-### Upload documents
+### Upload documents to the index
 
-In Azure AI Search, documents are data structures that are both inputs to indexing and outputs from queries. You can push such data to the index or use an [indexer](/azure/search/search-indexer-overview). In this case, the documents are programmatically pushed to the index.
+In Azure AI Search, documents are data structures that are both inputs to indexing and outputs from queries. You can push such data to the index or use an [indexer](/azure/search/search-indexer-overview). In this quickstart, you programmatically push the documents to the index.
 
 Document inputs might be rows in a database, blobs in Azure Blob Storage, or JSON documents on disk, as in this quickstart. The hotel data is imported at the top of the file:
 
@@ -436,7 +484,9 @@ Document inputs might be rows in a database, blobs in Azure Blob Storage, or JSO
 import hotelData from './hotels.json' with { type: "json" };
 ```
 
-To index data into the search index, a `SearchClient` is created. While the `SearchIndexClient` is used to create and manage an index, the `SearchClient` is used to upload documents and query the index.
+To index data into the search index, you create a [SearchClient](/javascript/api/@azure/search-documents/searchclient). While `SearchIndexClient` creates and manages an index, `SearchClient` uploads documents and queries the index.
+
+This quickstart obtains `SearchClient` from `SearchIndexClient` using [getSearchClient](/javascript/api/@azure/search-documents/searchindexclient#@azure-search-documents-searchindexclient-getsearchclient), which reuses the same credentials.
 
 ```typescript
 const searchClient: SearchClient<any> = searchIndexClient.getSearchClient(indexName);
@@ -448,17 +498,9 @@ The `mergeOrUploadDocuments()` method uploads the documents or merges them with 
 let indexDocumentsResult = await searchClient.mergeOrUploadDocuments(hotelData['value']);
 ```
 
-Before running the queries, a `sleep` function has the program wait for one second. This is done just for test/demo purposes to ensure the indexing finishes and that the documents are available in the index for queries.
-
-```typescript
-function sleep(ms: number) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-```
-
 ### Query the index
 
-With an index created and documents uploaded, you're ready to send queries to the index. In this section, five different queries are sent to the search index to demonstrate different pieces of query functionality available to you.
+With an index created and documents uploaded, you're ready to send queries to the index. This section sends five different queries to the search index to demonstrate different pieces of query functionality available to you.
 
 The queries are written in a `sendQueries()` function that is called in the main function:
 
@@ -554,6 +596,6 @@ console.log(`HotelId: ${documentResult.HotelId}; HotelName: ${documentResult.Hot
 
 #### Summary of queries
 
-The previous queries show multiple ways of matching terms in a query: full-text search, filters, and autocomplete.
+The previous queries show multiple ways of matching terms in a query: full-text search, filters, and document lookup.
 
-Full-text search and filters are performed using the `searchClient.search` method. A search query can be passed in the `searchText` string, while a filter expression can be passed in the `filter` property of the `SearchOptions` class. To filter without searching, just pass `*` for the `searchText` parameter of the `search` method. To search without filtering, leave the `filter` property unset, or don't pass in a `SearchOptions` instance at all.
+The `searchClient.search` method performs full-text search and filters. You can pass a search query in the `searchText` string, while you pass a filter expression in the `filter` property of the `SearchOptions` class. To filter without searching, just pass `"*"` for the `searchText` parameter of the `search` method. To search without filtering, leave the `filter` property unset, or don't pass in a `SearchOptions` instance at all.
