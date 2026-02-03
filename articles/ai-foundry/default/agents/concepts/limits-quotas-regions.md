@@ -1,7 +1,7 @@
 ---
 title: Quotas and limits for Foundry Agent Service
 titleSuffix: Microsoft Foundry
-description: Learn the quotas and limits for Foundry Agent Service, including file sizes, vector stores, threads, messages, tools, and how to handle limit errors.
+description: Learn the quotas and limits for the new Foundry Agent Service, including file sizes, vector stores, threads, messages, tools, and how to handle limit errors.
 manager: nitinme
 author: aahill
 ms.author: aahi
@@ -14,7 +14,7 @@ monikerRange: 'foundry'
 ai-usage: ai-assisted
 ---
 
-# Foundry Agent Service quotas and limits
+# Quotas, limits, models, and regional support
 
 This article describes the quotas, limits, and regional availability for Foundry Agent Service.
 
@@ -44,24 +44,24 @@ Foundry Agent Service is available in the following Azure regions:
 
 ## Azure OpenAI model support
 
-Foundry Agent Service is compatible with current Azure OpenAI models. For a complete list of supported models and their availability by region, see [Foundry Models sold directly by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md).
+Foundry Agent Service is compatible with current Azure OpenAI models. For a complete list of supported models and their availability by region, see [Foundry Models sold directly by Azure](../../../foundry-models/concepts/models-sold-directly-by-azure.md).
 
 ## Other model collections
 
 The following Foundry models are available for your agents to use.
 
-[!INCLUDE [agent-service-models-support-list](../agents/includes/agent-service-models-support-list.md)]
+[!INCLUDE [agent-service-models-support-list](../../../agents/includes/agent-service-models-support-list.md)]
 
 ## View all agent-supported models in the Foundry portal
 
-[!INCLUDE [agent-service-view-models-in portal](../agents/includes/agent-service-view-models-in-portal.md)]
+[!INCLUDE [agent-service-view-models-in portal](../../../agents/includes/agent-service-view-models-in-portal.md)]
 
 ## Verify model support
 
 Model availability can change over time.
 
 - To verify what you can deploy for your project and region, use the Foundry portal model experience described in the previous section.
-- If you use provisioned throughput, make sure you have provisioned throughput units (PTUs) available in the target region. For background, see [Provisioned throughput](../openai/concepts/provisioned-throughput.md).
+- If you use provisioned throughput, make sure you have provisioned throughput units (PTUs) available in the target region. For background, see [Provisioned throughput](../../../openai/concepts/provisioned-throughput.md).
 
 ### Troubleshooting
 
@@ -78,7 +78,7 @@ Model availability can change over time.
 #### Provisioned throughput deployment fails
 
 - Confirm you have enough PTUs available in the region.
-- Review [Provisioned throughput](../openai/concepts/provisioned-throughput.md) and [Spillover traffic management](../openai/how-to/spillover-traffic-management.md).
+- Review [Provisioned throughput](../../../openai/concepts/provisioned-throughput.md) and [Spillover traffic management](../openai/how-to/spillover-traffic-management.md).
 
 ## Quotas and limits
 
@@ -87,7 +87,7 @@ Foundry Agent Service enforces limits in two places:
 - **Agent Service limits**. Limits for agent and thread artifacts, such as file uploads, vector store attachments, message counts, and tool registration.
 - **Model limits**. Quotas and rate limits for the model deployments your agents call.
 
-If you're using threads and messages, see [Threads, runs, and messages in Foundry Agent Service](concepts/threads-runs-messages.md). If you're using file search, see [Vector stores for file search](../default/agents/concepts/vector-stores.md?view=foundry&preserve-view=true).
+If you're using threads and messages, see [Threads, runs, and messages in Foundry Agent Service](runtime-components.md). If you're using file search, see [Vector stores for file search](vector-stores.md).
 
 ## Default quotas and limits for the service
 
@@ -103,7 +103,7 @@ The following table lists default limits enforced by the Agent Service. These li
 | Maximum size of `text` content per message | 1,500,000 characters |
 | Maximum number of tools registered per agent | 128 |
 
-Agent Service doesn't impose separate rate limits on API calls. Rate limiting is applied at the model deployment level. See [Azure OpenAI quotas and limits](../openai/quotas-limits.md) for model-specific rate limits.
+Agent Service doesn't impose separate rate limits on API calls. Rate limiting is applied at the model deployment level. See [Azure OpenAI quotas and limits](../../../openai/quotas-limits.md) for model-specific rate limits.
 
 ## Handle limit errors
 
@@ -126,7 +126,7 @@ For example:
 - **Message content size**: Creating a message can fail if the `text` content is too large. Send smaller messages, or move large content into files and use file search.
 - **Tool registration cap**: Creating or updating an agent can fail if you register too many tools. Register only the tools you need, and prefer fewer, reusable tools.
 
-For file search scenarios, see [Vector stores for file search](../default/agents/concepts/vector-stores.md?view=foundry&preserve-view=true) for guidance on managing vector store growth.
+For file search scenarios, see [Vector stores for file search](vector-stores.md) for guidance on managing vector store growth.
 
 ## Best practices to stay within limits
 
@@ -136,7 +136,7 @@ Use the following practices to reduce limit-related failures:
 - **Avoid very large messages**. Put long content in uploaded files and query it by using file search.
 - **Plan for long conversations**. Treat threads as session state and rotate to new threads when conversations become very long.
 - **Register only required tools**. Remove unused tools from agent definitions.
-- **Monitor usage trends**. Track agent activity using [Foundry Agent Service metrics](how-to/metrics.md) to identify growth before you hit limits.
+- **Monitor usage trends**. Track agent activity using [Foundry Agent Service metrics](../../../agents/how-to/metrics.md) to identify growth before you hit limits.
 
 ## Quotas and limits for models
 
@@ -144,8 +144,8 @@ Agents follow the quotas and rate limits for the model deployments they use.
 
 For current model quotas and limits, see:
 
-- [Azure OpenAI quotas and limits](../openai/quotas-limits.md).
-- [Microsoft Foundry Models quotas and limits](../foundry-models/quotas-limits.md).
+- [Azure OpenAI quotas and limits](../../../openai/quotas-limits.md).
+- [Microsoft Foundry Models quotas and limits](../../../foundry-models/quotas-limits.md).
 
 To view or request more model quota, see [Manage and increase quotas for resources with Microsoft Foundry (Foundry projects)](../how-to/quota.md).
 
@@ -153,12 +153,11 @@ To view or request more model quota, see [Manage and increase quotas for resourc
 
 The limits in this article are default values for Foundry Agent Service. If your workload requires higher limits:
 
-- **Model quotas**: You can request increases for model deployment quotas. See [Manage and increase quotas for resources with Microsoft Foundry](../how-to/quota.md).
+- **Model quotas**: You can request increases for model deployment quotas. See [Manage and increase quotas for resources with Microsoft Foundry](../../../how-to/quota.md).
 - **Agent Service limits**: The file, message, and tool limits listed in this article are fixed service limits and can't be increased. Design your application to work within these constraints using the best practices described earlier.
 
 ## Related content
 
-- [Supported models in Foundry Agent Service](concepts/model-region-support.md)
-- [Threads, runs, and messages in Foundry Agent Service](concepts/threads-runs-messages.md)
-- [Monitor Foundry Agent Service](how-to/metrics.md)
-- [Vector stores for file search](../default/agents/concepts/vector-stores.md?view=foundry&preserve-view=true)
+- [Threads, runs, and messages in Foundry Agent Service](./runtime-components.md)
+- [Monitor Foundry Agent Service](../../../agents/how-to/metrics.md)
+- [Vector stores for file search](vector-stores.md)
