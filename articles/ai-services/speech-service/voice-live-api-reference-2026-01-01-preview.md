@@ -34,9 +34,9 @@ The Voice Live API supports the following client events that can be sent from th
 |-------|-------------|
 | [session.update](#sessionupdate) | Update the session configuration including voice, modalities, turn detection, and other settings |
 | [session.avatar.connect](#sessionavatarconnect) | Establish avatar connection by providing client SDP for WebRTC negotiation |
-| [input_audio_buffer.append](#inputaudiobufferappend) | Append audio bytes to the input audio buffer |
-| [input_audio_buffer.commit](#inputaudiobuffercommit) | Commit the input audio buffer for processing |
-| [input_audio_buffer.clear](#inputaudiobufferclear) | Clear the input audio buffer |
+| [input_audio_buffer.append](#input_audio_bufferappend) | Append audio bytes to the input audio buffer |
+| [input_audio_buffer.commit](#input_audio_buffercommit) | Commit the input audio buffer for processing |
+| [input_audio_buffer.clear](#input_audio_bufferclear) | Clear the input audio buffer |
 | [conversation.item.create](#conversationitemcreate) | Add a new item to the conversation context |
 | [conversation.item.retrieve](#conversationitemretrieve) | Retrieve a specific item from the conversation |
 | [conversation.item.truncate](#conversationitemtruncate) | Truncate an assistant audio message |
@@ -2532,7 +2532,7 @@ Session configuration object used in `session.update` events.
 | temperature | number | The sampling temperature for the model. The allowed temperature values are limited to [0.6, 1.2]. Defaults to 0.8. |
 | max_response_output_tokens | integer or "inf" | The maximum number of output tokens per assistant response, inclusive of tool calls.<br><br>Specify an integer between 1 and 4096 to limit the output tokens. Otherwise, set the value to "inf" to allow the maximum number of tokens.<br><br>For example, to limit the output tokens to 1000, set `"max_response_output_tokens": 1000`. To allow the maximum number of tokens, set `"max_response_output_tokens": "inf"`.<br><br>Defaults to `"inf"`. |
 | filler_response | [FillerResponseConfig](#fillerresponseconfig) | Optional. Configuration for filler response generation during latency or tool calls. |
-| reasoning_effort | [ReasoningEffort](#reasoningeffort) | Optional. Constrains effort on reasoning for reasoning models. Check [Azure Foundry doc](h../../../../ai-foundry/openai/how-to/reasoning?view=foundry&tabs=REST#reasoning-effort) for more details. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.  |
+| reasoning_effort | [ReasoningEffort](#reasoningeffort) | Optional. Constrains effort on reasoning for reasoning models. Check [Azure Foundry doc](../../ai-foundry/openai/how-to/reasoning#reasoning-effort) for more details. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.  |
 | avatar | [RealtimeAvatarConfig](#realtimeavatarconfig) | Optional. Avatar configuration |
 | output_audio_timestamp_types | [RealtimeAudioTimestampType](#realtimeaudiotimestamptype)[] | Optional. Timestamp types for output audio |
 
