@@ -21,7 +21,7 @@ author: PatrickFarley
 [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) includes a content filtering system that works alongside core models and image generation models.
 
 > [!IMPORTANT]
-> The content filtering system isn't applied to prompts and completions processed by the Whisper model in Foundry Models. Learn more about the [Whisper model in Azure OpenAI](../openai/concepts/models.md).
+> The content filtering system isn't applied to prompts and completions processed by the Whisper model in Foundry Models. Learn more about the [Whisper model in Azure OpenAI](../foundry-models/concepts/models-sold-directly-by-azure.md).
 
 ## How it works 
 
@@ -80,7 +80,7 @@ You can also enable the following special output filters:
 
 ## Related content
 
-- Learn more about the [underlying models that power Azure OpenAI](../openai/concepts/models.md).
+- Learn more about the [underlying models that power Azure OpenAI](../foundry-models/concepts/models-sold-directly-by-azure.md).
 - Foundry content filtering is powered by [Azure AI Content Safety](../../ai-services/content-safety/overview.md).
 - Learn more about understanding and mitigating risks associated with your application: [Overview of Responsible AI practices for Azure OpenAI models](/azure/ai-foundry/responsible-ai/openai/overview).
 - Learn more about evaluating your generative AI models and AI systems via [Azure AI Evaluation](https://aka.ms/genaiopsevals). 
