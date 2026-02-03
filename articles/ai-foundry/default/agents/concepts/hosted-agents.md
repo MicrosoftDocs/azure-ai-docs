@@ -250,7 +250,7 @@ This local testing approach lets you:
 
 ### Create a hosted agent using VS Code Foundry extension
 
-You can use the [Foundry extension for Visual Studio Code](../../agents/how-to/vs-code-agents-workflow-pro-code.md?view=foundry) to create hosted agents.
+You can use the [Foundry extension for Visual Studio Code](../../agents/how-to/vs-code-agents-workflow-pro-code.md?view=foundry&preserve-view=true) to create hosted agents.
 
 ### Create a hosted agent by using the Azure Developer CLI
 
