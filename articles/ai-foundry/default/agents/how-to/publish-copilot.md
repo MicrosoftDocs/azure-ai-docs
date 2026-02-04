@@ -58,7 +58,7 @@ Publishing creates an agent application with a stable endpoint and then prepares
 
 1. Enter the information in the window that appears.
 
-   An application ID and tenant ID are created automatically. Note these values for troubleshooting.
+   1. An application ID and tenant ID are created automatically. Note these values for troubleshooting.
 
    1. In the Azure Bot Service dropdown, select **Create an Azure Bot Service** to create the bot resource.
 
