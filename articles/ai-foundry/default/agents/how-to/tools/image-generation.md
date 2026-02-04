@@ -395,7 +395,7 @@ Customize image generation by specifying these optional parameters when you crea
 | `input_image_mask` | Optional mask for inpainting. Provide `image_url` (base64) or `file_id`. |
 
 > [!NOTE]
-> Image generation typically takes 10-30 seconds depending on the `quality` setting and prompt complexity. For time-sensitive applications, consider using `quality: "low"` or enabling `partial_images` for streaming.
+> Image generation time varies based on the `quality` setting and prompt complexity. For time-sensitive applications, consider using `quality: "low"` or enabling `partial_images` for streaming.
 
 Use the Responses API if you want to: 
 
