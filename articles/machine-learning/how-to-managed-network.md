@@ -1165,7 +1165,7 @@ Private endpoints are currently supported for the following Azure services:
 * Azure Data Factory
 * Azure Cosmos DB (all sub resource types)
 * Azure Event Hubs
-* Azure Redis Cache
+* Azure Managed Redis  
 * Azure Databricks
 * Azure Database for MariaDB
 * Azure Database for PostgreSQL Single Server
@@ -1202,7 +1202,7 @@ Here's the list of private endpoint target resource types covered by the Azure A
 * Azure Database for MySQL
 * Azure Database for PostgreSQL
 * Foundry Tools
-* Azure Cache for Redis
+* Azure Managed Redis
 * Container Registry
 * API Management
   
