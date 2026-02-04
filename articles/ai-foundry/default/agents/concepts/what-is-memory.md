@@ -110,7 +110,7 @@ To mitigate security risks, consider these actions:
 
 ## Limitations and quotas
 
-- Memory currently requires compatible chat and embedding model deployments. For the current list of supported models and providers, see [Supported models in Foundry Agent Service](../../../agents/concepts/model-region-support.md).
+- Memory currently requires compatible Azure OpenAI chat and embedding model deployments. For a list of supported models, see [Azure OpenAI models and regions for Foundry Agent Service](../../../agents/concepts/model-region-support.md).
 - You must set the `scope` value explicitly. Automatic population from the user identity specified in the request isn't currently supported.
 
 
@@ -125,12 +125,12 @@ For broader Foundry Agent Service quotas and limits, see [Foundry Agent Service 
 
 ## Pricing
 
-Memory is currently in **public preview**. Pricing and billing for Memory and the Memory Store API can change during preview.
+Memory is currently in public preview. Pricing and billing for memory and the Memory Store API can change during preview.
 
-You're billed for usage of the underlying **chat** and **embedding** models you configure. For current pricing details, see the official Azure pricing documentation for Foundry Agent Service.
+You're billed for usage of the underlying chat and embedding models you configure. For current pricing details, see [Foundry Agent Service pricing](https://azure.microsoft.com/en-us/pricing/details/foundry-agent-service/?msockid=053845effeba692426b55062faba6f36).
 
 ## Related content
 
 - Follow the end-to-end setup: [Create and use memory in Foundry Agent Service](../how-to/memory-usage.md).
-- Confirm model availability: [Supported models in Foundry Agent Service](../../../agents/concepts/model-region-support.md).
+- Confirm model availability: [Azure OpenAI models and regions for Foundry Agent Service](../../../agents/concepts/model-region-support.md).
 - Build a complete agent: [Microsoft Foundry Quickstart](../../../quickstarts/get-started-code.md).
