@@ -4,7 +4,7 @@ author: heidisteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 11/14/2025
+ms.date: 02/04/2026
 ---
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]
@@ -30,11 +30,11 @@ When you create an indexed SharePoint knowledge source, you specify a SharePoint
 
 + Completion of the [SharePoint indexer prerequisites](../../search-how-to-index-sharepoint-online.md#prerequisites).
 
-+ Completion of three SharePoint indexer configuration steps:
++ Completion of the following SharePoint indexer configuration steps:
 
-  + [Step 1: Enable a managed identity for Azure AI Search](../../search-how-to-index-sharepoint-online.md#step-1-optional-enable-system-assigned-managed-identity)
-  + [Step 2: Choose between delegated or application permissions](../../search-how-to-index-sharepoint-online.md#step-2-decide-which-permissions-the-indexer-requires)
-  + [Step 3: Application registration step for Microsoft Entra ID authentication](../../search-how-to-index-sharepoint-online.md#step-3-create-a-microsoft-entra-application-registration)
+  + [Step 1: Enable a managed identity for Azure AI Search](../../search-how-to-index-sharepoint-online.md#step-1-optional-enable-system-assigned-managed-identity) (required only for secretless authentication; skip if using a client secret)
+  + [Step 2: Choose either delegated or application permissions](../../search-how-to-index-sharepoint-online.md#step-2-decide-which-permissions-the-indexer-requires)
+  + [Step 3: Create a Microsoft Entra application registration](../../search-how-to-index-sharepoint-online.md#step-3-create-a-microsoft-entra-application-registration) (for application permissions, you also configure a [client secret](../../search-how-to-index-sharepoint-online.md#using-client-secret) or [secretless authentication](../../search-how-to-index-sharepoint-online.md#using-secretless-authentication-to-obtain-application-tokens))
 
 + The latest preview version of the [`azure-search-documents` client library](https://pypi.org/project/azure-search-documents/11.7.0b2/) for Python.
 
