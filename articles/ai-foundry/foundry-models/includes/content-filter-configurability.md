@@ -23,4 +23,4 @@ Certain models allow customers to configure content filters and create custom sa
 
 <sup>1</sup> For Azure OpenAI models, only customers who have been approved for modified content filtering have full content filtering control and can turn off content filters. Apply for modified content filters via this form: [Azure OpenAI Limited Access Review: Modified Content Filters](https://ncv.microsoft.com/uEfCgnITdR). For Azure Government customers, apply for modified content filters via this form: [Azure Government - Request Modified Content Filtering for Azure OpenAI in Foundry Models](https://aka.ms/AOAIGovModifyContentFilter).
 
-Content filtering configurations are created within a resource in Foundry portal, and can be associated with Deployments. Learn how to [configure a content filter](../../model-inference/how-to/configure-content-filters.md)
+Content filtering configurations are created within a resource in Foundry portal, and can be associated with Deployments. Learn how to [configure a content filter](../how-to/configure-content-filters.md)

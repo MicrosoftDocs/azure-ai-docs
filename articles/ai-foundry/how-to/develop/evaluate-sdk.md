@@ -558,7 +558,7 @@ result = evaluate(
 
 - [Azure AI Evaluation client library for Python](https://aka.ms/azureaieval-python-ref)
 - [Troubleshoot AI Evaluation SDK Issues](https://aka.ms/azureaieval-tsg)
-- [Observability in generative AI](../../concepts/evaluation-metrics-built-in.md)
+- [Observability in generative AI](../../concepts/observability.md)
 - [Run evaluations in the cloud by using the Microsoft Foundry SDK](./cloud-evaluation.md)
 - [Generate synthetic and simulated data for evaluation](./simulator-interaction-data.md)
 - [See evaluation results in the Foundry portal](../../how-to/evaluate-results.md)

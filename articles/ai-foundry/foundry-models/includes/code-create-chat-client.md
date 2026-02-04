@@ -107,7 +107,7 @@ Explore our [samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/
 
 # [REST](#tab/rest)
 
-Use the reference section to explore the API design and which parameters are available. For example, the reference section for [Chat completions](../../model-inference/reference/reference-model-inference-chat-completions.md) details how to use the route `/chat/completions` to generate predictions based on chat-formatted instructions. Notice that the path `/models` is included to the root of the URL:
+Use the reference section to explore the API design and which parameters are available. For example, the reference section for [Chat completions](/rest/api/aifoundry/model-inference/get-chat-completions/get-chat-completions) details how to use the route `/chat/completions` to generate predictions based on chat-formatted instructions. Notice that the path `/models` is included to the root of the URL:
 
 __Request__
 

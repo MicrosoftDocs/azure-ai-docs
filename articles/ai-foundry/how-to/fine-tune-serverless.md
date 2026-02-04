@@ -745,5 +745,5 @@ To learn more about Azure AI Content Safety, see [Content filtering in Foundry p
 ## Related content
 
 - [What is Foundry?](../what-is-foundry.md)
-- [Learn more about deploying Mistral models](./deploy-models-mistral.md)
+- [Learn more about deploying Mistral models](../concepts/models-inference-examples.md)
 - [Foundry frequently asked questions](../faq.yml)
