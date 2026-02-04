@@ -117,7 +117,7 @@ In the same [`response.create`](../realtime-audio-reference.md#realtimeclienteve
       "topic": "world_capitals"
     },
     "modalities": ["text"],
-    "prompt": "What is the capital of France?"
+    "prompt": "What is the capital/major city of France?"
   }
 }
 ```
@@ -137,7 +137,7 @@ You can also construct a custom context that the model uses outside of the sessi
   "response": {
     "conversation": "none",
     "modalities": ["text"],
-    "prompt": "What is the capital of France?",
+    "prompt": "What is the capital/major city of France?",
     "input": [
       {
         "type": "item_reference",
@@ -149,7 +149,7 @@ You can also construct a custom context that the model uses outside of the sessi
         "content": [
           {
             "type": "input_text",
-            "text": "The capital of France is Paris."
+            "text": "The capital/major city of France is Paris."
           },
         ],
       },

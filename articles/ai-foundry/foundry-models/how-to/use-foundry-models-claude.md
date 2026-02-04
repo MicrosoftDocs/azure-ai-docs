@@ -121,7 +121,7 @@ For Messages API endpoints, use your base URL with Microsoft Entra ID authentica
     message = client.messages.create(
         model=deploymentName,
         messages=[
-            {"role": "user", "content": "What is the capital of France?"}
+            {"role": "user", "content": "What is the capital/major city of France?"}
         ],
         max_tokens=1024,
     )
@@ -129,7 +129,7 @@ For Messages API endpoints, use your base URL with Microsoft Entra ID authentica
     print(message.content)
     ```
 
-    **Expected output:** A JSON response with the model's text completion in `message.content`, such as `"The capital of France is Paris."`
+    **Expected output:** A JSON response with the model's text completion in `message.content`, such as `"The capital/major city of France is Paris."`
 
     **Reference:** [Anthropic Client SDK](https://docs.claude.com/en/api/client-sdks), [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential)
 
@@ -165,7 +165,7 @@ For Messages API endpoints, use your base URL and API key to authenticate agains
     message = client.messages.create(
         model=deploymentName,
         messages=[
-            {"role": "user", "content": "What is the capital of France?"}
+            {"role": "user", "content": "What is the capital/major city of France?"}
         ],
         max_tokens=1024,
     )
@@ -173,7 +173,7 @@ For Messages API endpoints, use your base URL and API key to authenticate agains
     print(message.content)
     ```
 
-    **Expected output:** A JSON response with the model's text completion in `message.content`, such as `"The capital of France is Paris."`
+    **Expected output:** A JSON response with the model's text completion in `message.content`, such as `"The capital/major city of France is Paris."`
 
     **Reference:** [Anthropic Client SDK](https://docs.claude.com/en/api/client-sdks)
 
@@ -244,7 +244,7 @@ For Messages API endpoints, use your base URL with Microsoft Entra ID authentica
     // Send request
     const message = await client.messages.create({
         model: deploymentName,
-        messages: [{ role: "user", content: "What is the capital of France?" }],
+        messages: [{ role: "user", content: "What is the capital/major city of France?" }],
         max_tokens: 1024,
     });
     console.log(message);
@@ -299,7 +299,7 @@ For Messages API endpoints, use your base URL and API key to authenticate agains
     // Send request
     const message = await client.messages.create({
         model: deploymentName,
-        messages: [{ role: "user", content: "What is the capital of France?" }],
+        messages: [{ role: "user", content: "What is the capital/major city of France?" }],
         max_tokens: 1024,
     });
     console.log(message);
