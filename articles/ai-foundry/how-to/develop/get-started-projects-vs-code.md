@@ -44,7 +44,7 @@ Before using the Foundry for Visual Studio Code extension, you must:
 
 - Download, install, and configure Visual Studio Code. More information: [Download Visual Studio Code](https://code.visualstudio.com/Download)
 
-- Your subscription needs to be below your [quota limit](../quota.md) to [deploy a new model in this quickstart](#deploy-a-model-from-the-model-catalog). Otherwise you already need to have a [deployed chat model](../deploy-models-openai.md).
+- Your subscription needs to be below your [quota limit](../quota.md) to [deploy a new model in this quickstart](#deploy-a-model-from-the-model-catalog). Otherwise you already need to have a [deployed chat model](../../foundry-models/how-to/deploy-foundry-models.md).
 
 - Set the appropriate RBAC permissions to create and manage Foundry resources with the Visual Studio Code extension. For more information, see [Role-based access control for Foundry](/azure/ai-foundry/concepts/rbac-foundry).
 

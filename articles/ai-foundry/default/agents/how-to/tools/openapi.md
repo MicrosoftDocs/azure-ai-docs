@@ -40,9 +40,15 @@ Before you begin, make sure you have:
   - Python: `azure-ai-projects` (latest prerelease version)
   - C#: `Azure.AI.Projects.OpenAI`
   - TypeScript/JavaScript: `@azure/ai-projects`
-- Environment variables set:
-  - `AZURE_AI_PROJECT_ENDPOINT`: Your Foundry project endpoint URL.
-  - `AZURE_AI_MODEL_DEPLOYMENT_NAME`: Your deployed model name.
+
+### Environment variables
+
+| Variable | Description |
+| --- | --- |
+| `AZURE_AI_PROJECT_ENDPOINT` | Your Foundry project endpoint URL (not the external OpenAPI service endpoint). |
+| `AZURE_AI_MODEL_DEPLOYMENT_NAME` | Your deployed model name. |
+| `OPENAPI_PROJECT_CONNECTION_NAME` | (For API key auth) Your project connection name for the OpenAPI service. |
+
 - OpenAPI 3.0 specification file that meets these requirements:
   - Each function must have an `operationId` (required for the OpenAPI tool).
   - `operationId` should only contain letters, `-`, and `_`.
@@ -1123,23 +1129,16 @@ To set up authentication by using Managed Identity:
 
 ## Troubleshooting
 
-### API key isn't included in requests
-
-- Verify your OpenAPI spec includes both `components.securitySchemes` and a top-level `security` section that references the scheme.
-- Verify the scheme `name` (for example, `x-api-key`) matches the key name stored in your project connection.
-- Remove any API key parameter from the OpenAPI spec if you expect the tool to inject the key from the project connection.
-
-### The agent doesn't call the tool
-
-- Force tool usage in your client when you're validating connectivity.
-  - TypeScript: set `tool_choice: "required"`.
-  - C#: set `ToolChoice = ResponseToolChoice.CreateRequiredChoice()`.
-- Make sure your OpenAPI spec uses descriptive `operationId` values so the model can choose the right operation.
-
-### Authentication fails for managed identity
-
-- Confirm that system-assigned managed identity is enabled for your Foundry resource.
-- Confirm the managed identity has the required role on the target resource.
+| Issue | Likely cause | Resolution |
+| --- | --- | --- |
+| API key isn't included in requests. | OpenAPI spec missing `securitySchemes` or `security` sections. | Verify your OpenAPI spec includes both `components.securitySchemes` and a top-level `security` section. Ensure the scheme `name` matches the key name in your project connection. |
+| Agent doesn't call the OpenAPI tool. | Tool choice not set or `operationId` not descriptive. | Use `tool_choice="required"` to force tool invocation. Ensure `operationId` values are descriptive so the model can choose the right operation. |
+| Authentication fails for managed identity. | Managed identity not enabled or missing role assignment. | Enable system-assigned managed identity on your Foundry resource. Assign the required role (Reader or higher) on the target service. |
+| Request fails with 400 Bad Request. | OpenAPI spec doesn't match actual API. | Validate your OpenAPI spec against the actual API. Check parameter names, types, and required fields. |
+| Request fails with 401 Unauthorized. | API key or token invalid or expired. | Regenerate the API key/token and update your project connection. Verify the connection ID is correct. |
+| Tool returns unexpected response format. | Response schema not defined in OpenAPI spec. | Add response schemas to your OpenAPI spec for better model understanding. |
+| `operationId` validation error. | Invalid characters in `operationId`. | Use only letters, `-`, and `_` in `operationId` values. Remove numbers and special characters. |
+| Connection not found error. | Connection name or ID mismatch. | Verify `OPENAPI_PROJECT_CONNECTION_NAME` matches the connection name in your Foundry project. |
 
 ## Related content
 

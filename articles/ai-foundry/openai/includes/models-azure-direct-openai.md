@@ -529,5 +529,5 @@ For the latest information on model retirements, refer to the [model retirement 
 - [Foundry Models from partners and community](../../foundry-models/concepts/models-from-partners.md)
 - [Model retirement and deprecation](../concepts/model-retirements.md)
 - [Learn more about working with Azure OpenAI models](../how-to/working-with-models.md)
-- [Learn more about Azure OpenAI](../overview.md)
+- [Learn more about Azure OpenAI](../../foundry-models/concepts/models-sold-directly-by-azure.md)
 - [Learn more about fine-tuning Azure OpenAI models](../how-to/fine-tuning.md)

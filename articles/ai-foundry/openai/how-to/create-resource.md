@@ -49,5 +49,5 @@ In this article, you review examples for creating and deploying resources in the
 ## Next steps
 
 - [Get started with the Azure OpenAI security building block](/azure/developer/ai/get-started-securing-your-ai-app?tabs=github-codespaces&pivots=python)
-- Learn more about the [Azure OpenAI models](../concepts/models.md).
+- Learn more about the [Azure OpenAI models](../../foundry-models/concepts/models-sold-directly-by-azure.md).
 - For information on pricing visit the [Azure OpenAI pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/)

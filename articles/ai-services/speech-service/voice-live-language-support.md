@@ -209,4 +209,4 @@ If *Multilingual Voices* are used, the language output can optionally be control
 
 - Learn more about [How to use the Voice Live API](./voice-live-how-to.md)
 - Try out the [Voice Live API quickstart](./voice-live-quickstart.md)
-- See the [Voice Live API reference](./voice-live-api-reference.md)
+- See the [Voice Live API reference](./voice-live-api-reference-2025-10-01.md)

@@ -29,7 +29,7 @@ Quotas and limits aren't enforced at the tenant level. Instead, the highest leve
 
 Tokens per minute (TPM) and requests per minute (RPM) limits are defined *per region*, *per subscription*, and *per model or deployment type*.
 
-For example, if the `gpt-4.1` Global Standard model is listed with a quota of *5 million TPM* and *5,000 RPM*, then *each region* where that [model or deployment type is available](./concepts/models.md) has its own dedicated quota pool of that amount for *each* of your Azure subscriptions. Within a single Azure subscription, it's possible to use a larger quantity of total TPM and RPM quota for a given model and deployment type, as long as you have resources and model deployments spread across multiple regions.
+For example, if the `gpt-4.1` Global Standard model is listed with a quota of *5 million TPM* and *5,000 RPM*, then *each region* where that [model or deployment type is available](../foundry-models/concepts/models-sold-directly-by-azure.md) has its own dedicated quota pool of that amount for *each* of your Azure subscriptions. Within a single Azure subscription, it's possible to use a larger quantity of total TPM and RPM quota for a given model and deployment type, as long as you have resources and model deployments spread across multiple regions.
 
 ## Quotas and limits reference
 
@@ -46,7 +46,7 @@ The following section provides you with a quick guide to the default quotas and 
 | Default Sora quota limits | 60 requests per minute. |
 | Default Sora 2 quota limits | 2 parallel tasks | 
 | Default speech-to-text audio API quota limits | 3 requests per minute. |
-| Maximum prompt tokens per request | Varies per model. For more information, see [Azure OpenAI models](./concepts/models.md).|
+| Maximum prompt tokens per request | Varies per model. For more information, see [Azure OpenAI models](../foundry-models/concepts/models-sold-directly-by-azure.md).|
 | Maximum standard deployments per resource | 32. |
 | Maximum fine-tuned model deployments | 10. |
 | Total number of training jobs per resource | 100. |
@@ -470,4 +470,4 @@ print(json.dumps(model_capacity, indent=2))
 ## Related content
 
 - Explore how to [manage quota](./how-to/quota.md) for your Azure OpenAI deployments.
-- Learn more about the [underlying models that power Azure OpenAI](./concepts/models.md).
+- Learn more about the [underlying models that power Azure OpenAI](../foundry-models/concepts/models-sold-directly-by-azure.md).

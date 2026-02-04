@@ -87,5 +87,5 @@ Once human reviewers have completed their evaluations, agent builders can previe
 
 ## Related content
 
-- [Evaluate your AI agents locally with the Azure AI Evaluation SDK](../../..//how-to/develop/agent-evaluate-sdk.md)
+- [Evaluate your AI agents locally with the Foundry SDK](../../..//how-to/develop/agent-evaluate-sdk.md)
 - [Agent tracing overview](../concepts/trace-agent-concept.md)

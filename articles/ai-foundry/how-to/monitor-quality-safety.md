@@ -26,7 +26,7 @@ ms.update-cycle: 180-days
 Monitoring applications that you deploy to production is an essential part of the generative AI application lifecycle. Changes in data and consumer behavior can influence your application over time. These changes can result in outdated systems that negatively affect business outcomes. Such systems expose organizations to compliance, economic, and reputation risks.
 
 > [!NOTE]
-> For an improved way to perform continuous monitoring of deployed applications, other than prompt flow, consider using [Azure AI online evaluations](./online-evaluation.md).
+> For an improved way to perform continuous monitoring of deployed applications, other than prompt flow, consider using [Azure AI online evaluations](./monitor-applications.md).
 
 By using Azure AI monitoring for generative AI applications, you can monitor your applications in production for token usage, generation quality, and operational metrics.
 

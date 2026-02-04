@@ -23,7 +23,7 @@ This article highlights the differences when using Azure OpenAI in Azure Governm
 
 ## Azure OpenAI models
 
-Learn more about the different capabilities of each model in [Azure OpenAI models](./concepts/models.md). For customers with [Business Continuity and Disaster Recovery (BCDR) considerations](./how-to/business-continuity-disaster-recovery.md), take careful note of the deployment types, regions, and model availability as not all model/type combinations are available in both regions. 
+Learn more about the different capabilities of each model in [Azure OpenAI models](../foundry-models/concepts/models-sold-directly-by-azure.md). For customers with [Business Continuity and Disaster Recovery (BCDR) considerations](./how-to/business-continuity-disaster-recovery.md), take careful note of the deployment types, regions, and model availability as not all model/type combinations are available in both regions. 
 
 The following sections show model availability by region and deployment type. Models and versions not listed are not currently available in Azure Government. For general limits, quotas, and other details refer to [Azure OpenAI quotas and limits](/azure/ai-foundry/openai/quotas-limits/). 
 
@@ -59,7 +59,7 @@ To request quota increases for these models, submit a request at [https://aka.ms
 <br>
 
 ### Model Retirements
-In some cases, models are retired in Azure Governmen earlier or later than in the commercial cloud. General information on model retirement policies, dates, and other details can be found at [Azure OpenAI in Microsoft Foundry model deprecations and retirements](/azure/ai-foundry/openai/concepts/model-retirements). The following shows model retirement differences in Azure Government. 
+In some cases, models are retired in Azure Government earlier or later than in the commercial cloud. General information on model retirement policies, dates, and other details can be found at [Azure OpenAI in Microsoft Foundry model deprecations and retirements](/azure/ai-foundry/openai/concepts/model-retirements). The following shows model retirement differences in Azure Government. 
 
 #### Early Model Retirements
 | Model                     | Version			      | Azure Government Status	  | Public Retirement date  |
@@ -75,7 +75,7 @@ In some cases, models are retired in Azure Governmen earlier or later than in th
 <br>
 
 ### Default Model Versions 
-In some cases, new model versions are designated as default in Azure Governmen ahead of dates in the commercial cloud. General information on model upgrades can be found at [Working with Azure OpenAI models](/azure/ai-foundry/openai/how-to/working-with-models?tabs=powershell&branch=main#model-deployment-upgrade-configuration)
+In some cases, new model versions are designated as default in Azure Government ahead of dates in the commercial cloud. General information on model upgrades can be found at [Working with Azure OpenAI models](/azure/ai-foundry/openai/how-to/working-with-models?tabs=powershell&branch=main#model-deployment-upgrade-configuration)
 
 The following shows default model differences in Azure Government. 
 

@@ -54,4 +54,4 @@ Foundry doesn't support the Cohere SDK or the Mistral SDK.
 
 ## Next step
 
-- To see what models are currently supported, see [Foundry Models and capabilities](concepts/models.md).
+- To see what models are currently supported, see [Foundry Models and capabilities](./concepts/models-sold-directly-by-azure.md).

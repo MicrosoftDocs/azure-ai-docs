@@ -36,9 +36,41 @@ Use the computer use tool in Foundry Agent Service when you want an agent to int
 
 - A [basic or standard agent environment](../../../../agents/environment-setup.md).
 - The latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
-- Set these environment variables:
-    - `FOUNDRY_PROJECT_ENDPOINT`.
-    - `FOUNDRY_MODEL_DEPLOYMENT_NAME`.
+- Access to the `computer-use-preview` model. See [Request access](#request-access) below.
+- A virtual machine or sandboxed environment for safe testing. Don't run on machines with access to sensitive data.
+
+### Environment variables
+
+Set these environment variables before running the samples:
+
+| Variable | Description |
+| --- | --- |
+| `FOUNDRY_PROJECT_ENDPOINT` | Your Foundry project endpoint URL. |
+| `FOUNDRY_MODEL_DEPLOYMENT_NAME` | Your `computer-use-preview` model deployment name. |
+
+### Quick verification
+
+Verify your authentication and project connection before running the full samples:
+
+```python
+import os
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from dotenv import load_dotenv
+
+load_dotenv()
+
+with (
+    DefaultAzureCredential() as credential,
+    AIProjectClient(endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"], credential=credential) as project_client,
+):
+    print("Connected to project.")
+    # Verify you can access the OpenAI client
+    openai_client = project_client.get_openai_client()
+    print("OpenAI client ready.")
+```
+
+If this code runs without errors, your credentials and project endpoint are configured correctly.
 
 ## Run the maintained SDK samples (recommended)
 
@@ -764,6 +796,10 @@ In all cases where `pending_safety_checks` are returned, hand over actions to th
 | The loop stops at the iteration limit. | The task needs more turns, or the app isn't applying the actions the model requests. | Increase the iteration limit, and verify that your code executes the requested action and sends a new screenshot after each turn. |
 | You receive `pending_safety_checks`. | The service detected a potential security risk (for example, prompt injection or a sensitive domain). | Pause automation, require an end user to review the request, and only continue after you send `acknowledged_safety_checks` with the next `computer_call_output`. |
 | The model repeats "take a screenshot" without making progress. | The screenshot isn't updating, is low quality, or doesn't show the relevant UI state. | Send a fresh screenshot after each action and use a higher-detail image when needed. Ensure the screenshot includes the relevant UI. |
+| Access denied when requesting `computer-use-preview` model. | You haven't registered for access or access hasn't been granted. | Submit the [application form](https://aka.ms/oai/cuaaccess) and wait for approval. Check your email for confirmation. |
+| Screenshot encoding errors. | Image format not supported or base64 encoding issue. | Use PNG or JPEG format. Ensure proper base64 encoding without corruption. Check image dimensions match `display_width` and `display_height`. |
+| Actions execute on wrong coordinates. | Screen resolution mismatch between screenshot and actual display. | Ensure `display_width` and `display_height` in `ComputerUsePreviewTool` match your actual screen resolution. |
+| Model hallucinates UI elements. | Screenshot quality too low or UI changed between turns. | Use higher resolution screenshots. Send fresh screenshots immediately after each action. Reduce delay between action and screenshot. |
 
 ## Related content
 

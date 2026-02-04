@@ -52,7 +52,7 @@ sections:
       - question: |
           What is the billing model for serverless API deployments? 
         answer: |
-          Microsoft Foundry (classic) offers serverless API deployment models and hosted fine-tuning for [Llama 2 family models](how-to/deploy-models-llama.md). Currently, there's no extra charge for Microsoft Foundry (classic) outside of typical Foundry Tools and other Azure resource charges.
+          Microsoft Foundry (classic) offers serverless API deployment models and hosted fine-tuning for [Llama 2 family models](./concepts/models-inference-examples.md). Currently, there's no extra charge for Microsoft Foundry (classic) outside of typical Foundry Tools and other Azure resource charges.
       - question: |
           Can all models be secured with content filtering? 
         answer: |

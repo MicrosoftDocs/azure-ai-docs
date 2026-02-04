@@ -80,7 +80,45 @@ Java SDK samples aren't available yet.
 > - If you're using the Python or C# sample, you can provide the connection name and retrieve the connection ID with the SDK.
 
 :::zone pivot="python"
-## Use agents with Azure AI Search tool
+
+### Quick verification
+
+Before running the full sample, verify your Azure AI Search connection exists:
+
+```python
+import os
+
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+from dotenv import load_dotenv
+
+load_dotenv()
+
+with (
+    DefaultAzureCredential() as credential,
+    AIProjectClient(endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"], credential=credential) as project_client,
+):
+    print("Connected to project.")
+    
+    # Verify Azure AI Search connection exists
+    connection_name = os.environ.get("AZURE_AI_SEARCH_CONNECTION_NAME")
+    if connection_name:
+        try:
+            conn = project_client.connections.get(connection_name)
+            print(f"Azure AI Search connection verified: {conn.name}")
+            print(f"Connection ID: {conn.id}")
+        except Exception as e:
+            print(f"Azure AI Search connection '{connection_name}' not found: {e}")
+    else:
+        # List available connections to help find the right one
+        print("AZURE_AI_SEARCH_CONNECTION_NAME not set. Available connections:")
+        for conn in project_client.connections.list():
+            print(f"  - {conn.name}")
+```
+
+If this code runs without errors, your credentials and Azure AI Search connection are configured correctly.
+
+### Full sample
 
 ```python
 import os
@@ -181,9 +219,43 @@ The agent queries the search index and returns a response with inline citations.
 
 :::zone pivot="csharp"
 
-The following sample code shows synchronous examples of how to use the Azure AI Search tool in [Azure.AI.Projects.OpenAI](https://github.com/Azure/azure-sdk-for-net/tree/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI) to query an index. For asynchronous C# examples, see the [GitHub repo](https://github.com/Azure/azure-sdk-for-net/tree/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI).
+### Quick verification
 
-## Use agents with Azure AI Search tool
+Before running the full sample, verify your Azure AI Search connection exists:
+
+```csharp
+using Azure.AI.Projects;
+using Azure.Identity;
+
+var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
+var aiSearchConnectionName = System.Environment.GetEnvironmentVariable("AZURE_AI_SEARCH_CONNECTION_NAME");
+
+AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+
+// Verify Azure AI Search connection exists
+try
+{
+    AIProjectConnection conn = projectClient.Connections.GetConnection(connectionName: aiSearchConnectionName);
+    Console.WriteLine($"Azure AI Search connection verified: {conn.Name}");
+    Console.WriteLine($"Connection ID: {conn.Id}");
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Azure AI Search connection '{aiSearchConnectionName}' not found: {ex.Message}");
+    // List available connections
+    Console.WriteLine("Available connections:");
+    foreach (var conn in projectClient.Connections.GetConnections())
+    {
+        Console.WriteLine($"  - {conn.Name}");
+    }
+}
+```
+
+If this code runs without errors, your credentials and Azure AI Search connection are configured correctly.
+
+### Full sample
+
+The following sample code shows synchronous examples of how to use the Azure AI Search tool in [Azure.AI.Projects.OpenAI](https://github.com/Azure/azure-sdk-for-net/tree/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI) to query an index. For asynchronous C# examples, see the [GitHub repo](https://github.com/Azure/azure-sdk-for-net/tree/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI).
 
 This example shows how to use the Azure AI Search tool with agents to query an index.
 
@@ -405,7 +477,43 @@ The API returns a JSON response containing the agent's answer about mental healt
 :::zone-end
 
 :::zone pivot="typescript"
-## Use agents with Azure AI Search tool
+
+### Quick verification
+
+Before running the full sample, verify your Azure AI Search connection exists:
+
+```typescript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+import "dotenv/config";
+
+const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
+const aiSearchConnectionName = process.env["AZURE_AI_SEARCH_CONNECTION_NAME"] || "<ai search connection name>";
+
+async function verifyConnection(): Promise<void> {
+  const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
+  console.log("Connected to project.");
+
+  try {
+    const conn = await project.connections.get(aiSearchConnectionName);
+    console.log(`Azure AI Search connection verified: ${conn.name}`);
+    console.log(`Connection ID: ${conn.id}`);
+  } catch (error) {
+    console.log(`Azure AI Search connection '${aiSearchConnectionName}' not found: ${error}`);
+    // List available connections
+    console.log("Available connections:");
+    for await (const conn of project.connections.list()) {
+      console.log(`  - ${conn.name}`);
+    }
+  }
+}
+
+verifyConnection().catch(console.error);
+```
+
+If this code runs without errors, your credentials and Azure AI Search connection are configured correctly.
+
+### Full sample
 
 This sample demonstrates how to create an AI agent with Azure AI Search capabilities by using the `AzureAISearchAgentTool` and synchronous Azure AI Projects client. The agent can search indexed content and provide responses with citations from search results.
 
@@ -418,13 +526,17 @@ import "dotenv/config";
 // Load environment variables
 const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
 const deploymentName = process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
-const aiSearchConnectionId =
-  process.env["AZURE_AI_SEARCH_CONNECTION_ID"] || "<ai search project connection id>";
+const aiSearchConnectionName =
+  process.env["AZURE_AI_SEARCH_CONNECTION_NAME"] || "<ai search connection name>";
 const aiSearchIndexName = process.env["AI_SEARCH_INDEX_NAME"] || "<ai search index name>";
 
 export async function main(): Promise<void> {
   const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
   const openAIClient = await project.getOpenAIClient();
+
+  // Get connection ID from connection name
+  const aiSearchConnection = await project.connections.get(aiSearchConnectionName);
+  console.log(`Azure AI Search connection ID: ${aiSearchConnection.id}`);
 
   console.log("Creating agent with Azure AI Search tool...");
 
@@ -440,7 +552,7 @@ export async function main(): Promise<void> {
         azure_ai_search: {
           indexes: [
             {
-              project_connection_id: aiSearchConnectionId,
+              project_connection_id: aiSearchConnection.id,
               index_name: aiSearchIndexName,
               query_type: "simple",
             },
@@ -708,21 +820,16 @@ Console.WriteLine(connection.Id);
 
 ## Troubleshooting
 
-### The response has no citations
-
-- Confirm your agent instructions request citations.
-- If you're streaming, confirm you receive `url_citation` annotations.
-
-### The tool can't access the index (401/403)
-
-- If you use keyless authentication, confirm the managed identity for your Foundry project has the **Search Index Data Contributor** and **Search Service Contributor** roles on the Azure AI Search resource.
-- If you use key-based authentication, confirm the API key is correct and enabled.
-- For role guidance, see [Azure role-based access control in Foundry](../../../../concepts/rbac-foundry.md).
-
-### The tool returns "index not found"
-
-- Confirm `AI_SEARCH_INDEX_NAME` matches the index name in your Azure AI Search resource.
-- Confirm the project connection points to the Azure AI Search resource that contains the index.
+| Issue | Cause | Resolution |
+| --- | --- | --- |
+| Response has no citations | Agent instructions don't request citations | Update your agent instructions to explicitly request citations in responses. |
+| Response has no citations (streaming) | Annotations not captured | Confirm you receive `url_citation` annotations when streaming. Check your stream processing logic. |
+| Tool can't access the index (401/403) | Missing RBAC roles (keyless auth) | Assign the **Search Index Data Contributor** and **Search Service Contributor** roles to the Foundry project's managed identity. See [Azure RBAC in Foundry](../../../../concepts/rbac-foundry.md). |
+| Tool can't access the index (401/403) | Invalid or disabled API key | Confirm the API key is correct and enabled in the Azure AI Search resource. |
+| Tool returns "index not found" | Index name mismatch | Confirm `AI_SEARCH_INDEX_NAME` matches the exact index name in your Azure AI Search resource (case-sensitive). |
+| Tool returns "index not found" | Wrong connection endpoint | Confirm the project connection points to the Azure AI Search resource that contains the index. |
+| Search returns no results | Query doesn't match indexed content | Verify the index contains the expected data. Use Azure AI Search's test query feature to validate. |
+| Slow search performance | Index not optimized | Review index configuration, consider adding semantic ranking, or optimize the index schema. |
 
 ## Related content
 

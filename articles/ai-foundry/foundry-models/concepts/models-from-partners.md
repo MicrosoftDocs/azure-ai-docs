@@ -5,7 +5,7 @@ description: Learn about Microsoft Foundry Models from partners and community, t
 author: msakande
 ms.author: mopeakande
 manager: nitinme
-ms.date: 01/07/2026
+ms.date: 02/02/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: partner-tools
@@ -25,10 +25,9 @@ zone_pivot_groups: azure-ai-model-categories
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-This article lists a selection of Microsoft Foundry Models from partners and community along with their capabilities, [deployment types, and regions of availability](deployment-types.md), excluding [deprecated and legacy models](../../concepts/model-lifecycle-retirement.md#deprecated). 
-Most Foundry Models come from partners and community. Trusted third-party organizations, partners, research labs, and community contributors provide these models. 
-
-Depending on the [kind of project](../../what-is-foundry.md?view=foundry-classic&preserve-view=true#work-in-a-foundry-project) you use in Microsoft Foundry, you see a different selection of models.
+This article lists capabilities for a selection of Microsoft Foundry Models from partners and community.
+Most Foundry Model providers are trusted third-party organizations, partners, research labs, and community contributors. 
+The selection of models that you see in Foundry depends on the [kind of project](../../what-is-foundry.md?view=foundry-classic&preserve-view=true#types-of-projects) you use.
 To learn more about attributes of Foundry Models from partners and community, see [Explore Foundry Models](../../concepts/foundry-models-overview.md#models-from-partners-and-community).
 
 > [!NOTE]
@@ -51,7 +50,7 @@ To work with Claude models in Foundry, see [Deploy and use Claude models in Micr
 | [claude-haiku-4-5](https://aka.ms/claude-haiku-4-5) <br><br> **(Preview)** | Messages | - **Input:**  text and image  <br /> - **Output:** text (64,000 max tokens) <br /> - **Context window:** 200,000   <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text, JSON| Foundry, Hub-based |
 | [claude-opus-4-1](https://aka.ms/claude-opus-4-1) <br><br> **(Preview)** | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text (32,000 max tokens) <br /> - **Context window:** 200,000  <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text, JSON| Foundry, Hub-based |
 | [claude-sonnet-4-5](https://aka.ms/claude-sonnet-4-5) <br><br> **(Preview)** | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text (max 64,000 tokens) <br /> - **Context window:** 200,000  <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text, JSON| Foundry, Hub-based |
-| [claude-opus-4-5](https://aka.ms/claude-opus-4-5) <br><br> **(Preview)** | Messages | - **Input:**  text and imag, and code  <br /> - **Output:** text (64,000 max tokens) <br /> - **Context window:** 200,000   <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text, JSON| Foundry, Hub-based |
+| [claude-opus-4-5](https://aka.ms/claude-opus-4-5) <br><br> **(Preview)** | Messages | - **Input:**  text and image, and code  <br /> - **Output:** text (64,000 max tokens) <br /> - **Context window:** 200,000   <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text, JSON| Foundry, Hub-based |
 
 ::: moniker-end
 
@@ -62,7 +61,7 @@ To work with Claude models in Foundry, see [Deploy and use Claude models in Micr
 | `claude-haiku-4-5` <br><br> **(Preview)** | Messages | - **Input:**  text and image  <br /> - **Output:** text (64,000 max tokens) <br /> - **Context window:** 200,000   <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text, JSON |
 | `claude-opus-4-1` <br><br> **(Preview)** | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text (32,000 max tokens) <br /> - **Context window:** 200,000  <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text, JSON |
 | `claude-sonnet-4-5` <br><br> **(Preview)** | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text (max 64,000 tokens) <br /> - **Context window:** 200,000   <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text, JSON |
-| `claude-opus-4-5` <br><br> **(Preview)** | Messages | - **Input:**  text and imag, and code  <br /> - **Output:** text (64,000 max tokens) <br /> - **Context window:** 200,000   <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text, JSON|
+| `claude-opus-4-5` <br><br> **(Preview)** | Messages | - **Input:**  text and image, and code  <br /> - **Output:** text (64,000 max tokens) <br /> - **Context window:** 200,000   <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text, JSON|
 
 ::: moniker-end
 
