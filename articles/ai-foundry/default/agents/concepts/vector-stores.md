@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: concept-article
-ms.date: 01/20/2026
+ms.date: 02/04/2026
 author: aahill
 ms.author: aahi
 ai-usage: ai-assisted
@@ -19,9 +19,31 @@ Vector store objects give the [file search](../how-to/tools/file-search.md) tool
 
 Vector stores can be attached to both agents and conversations. Currently, you can attach at most one vector store to an agent and at most one vector store to a conversation. For a conceptual overview of conversations, see [Agent runtime components](runtime-components.md).
 
-In the current agents developer experience, response generation uses **responses** and **conversations**. Some SDKs and older samples use the term *run*. If you see both terms, treat *run* as response generation. For background and migration guidance, see [How to migrate to the new agent service](../how-to/migrate.md).
+In the current agents developer experience, response generation uses **responses** and **conversations**. Some SDKs and older samples use the term *run*. If you see both terms, treat *run* as response generation. For migration guidance, see [How to migrate to the new agent service](../how-to/migrate.md).
 
 For a list of limits for vector search (such as maximum allowable file sizes), see the [quotas and limits](../../../agents/quotas-limits.md) article.
+
+## Prerequisites
+
+- A [Microsoft Foundry project](../../../how-to/create-projects.md).
+- An agent or conversation that uses the [file search](../how-to/tools/file-search.md) tool.
+- If you use standard agent setup, connect Azure Blob Storage and Azure AI Search during setup so your files remain in your storage. See [Agent environment setup](../../../agents/environment-setup.md).
+- Roles and permissions vary by task (for example, creating projects, assigning roles for standard setup, or creating and editing agents). See the required permissions table in [Agent environment setup](../../../agents/environment-setup.md).
+- Feature availability can vary by region. For current coverage, see [Microsoft Foundry feature availability across cloud regions](../../../reference/region-support.md).
+
+## Key limits and defaults
+
+Vector stores are often the first place retrieval workflows fail in production, so it helps to know the defaults and hard limits.
+
+- **Files per vector store**: Each vector store can hold up to 10,000 files.
+- **Attachments**: You can attach at most one vector store to an agent and at most one vector store to a conversation.
+- **Default retrieval settings** (file search):
+	- Chunk size: 800 tokens
+	- Chunk overlap: 400 tokens
+	- Embedding model: text-embedding-3-large at 256 dimensions
+	- Maximum number of chunks added to context: 20
+
+For file size and token limits, see [quotas and limits](../../../agents/quotas-limits.md).
 
 ## Key concepts
 
@@ -58,11 +80,24 @@ Ensure all files in a vector store are fully processed before you create a respo
 
 To check readiness, use the SDK polling helpers (for example, *create-and-poll* and *upload-and-poll*) or poll the vector store object until its status is **completed**. For code examples, see [File search tool for agents](../how-to/tools/file-search.md).
 
+During ingestion, a vector store can be in **in_progress** status. When ingestion completes, the status changes to **completed**.
+
 As a fallback, response generation includes a 60-second maximum wait when the conversation's vector store contains files that are still being processed. This fallback wait doesn't apply to the agent's vector store.
+
+## End-to-end workflow checklist
+
+Use this checklist to validate a working vector-store workflow from ingestion to lifecycle management.
+
+1. Decide whether you use basic agent setup or standard agent setup, based on where you want your files and search resources to live. See [Where your data lives (basic vs standard agent setup)](#where-your-data-lives-basic-vs-standard-agent-setup).
+1. Upload your files and create a vector store. For a step-by-step example, see [Upload files and add them to a vector store](../how-to/tools/file-search.md#upload-files-and-add-them-to-a-vector-store).
+1. Wait for ingestion to finish before you generate responses. Use SDK polling helpers or poll the vector store until its status is **completed** and no files remain in **in_progress**. See [Ensuring vector store readiness before creating responses](../how-to/tools/file-search.md#ensuring-vector-store-readiness-before-creating-runs).
+1. Attach the vector store to the agent or conversation that you use for file search. Keep the attachment limits in mind. See [Vector stores](../how-to/tools/file-search.md#vector-stores).
+1. Create a response that uses file search and verify that the tool is retrieving from the expected sources. See [Create response with file search](../how-to/tools/file-search.md#create-response-with-file-search) and [Verify results](../how-to/tools/file-search.md#verify-results).
+1. Manage lifecycle: remove files you no longer need, and plan for expiration policies (especially for vector stores created by conversation helpers). See [Vector stores](../how-to/tools/file-search.md#vector-stores) and [Conversation vector stores have default expiration policies](../how-to/tools/file-search.md#conversation-vector-stores-have-default-expiration-policies).
 
 ## Add files and manage vector stores
 
-Adding files to vector stores is an asynchronous operation. To ensure ingestion completes, use the create-and-poll helpers in the official SDKs. If you aren't using an SDK, retrieve the vector store object and monitor its file counts to confirm ingestion.
+Adding files to vector stores is an asynchronous operation. To ensure ingestion completes, use the create-and-poll helpers in the official SDKs. If you aren't using an SDK, poll the vector store until its status is **completed** and no files remain in **in_progress**.
 
 Files can also be added to a vector store after it's created by creating vector store files. Alternatively, you can add several files to a vector store by creating batches of up to 500 files.
 
@@ -73,18 +108,18 @@ When you upload a file to create a vector store, the system automatically:
 1. **Stores these vectors** in an optimized search index.
 1. **Creates associations** between the vectors and your original content.
 
-## Basic agent setup: Deleting files from vector stores
+## Remove files from vector stores
 
-If you're using a basic agent setup, files can be removed from a vector store by either:
+You can remove files from a vector store in two different ways:
 
-- Deleting the vector store file object.
-- Deleting the underlying file object, which removes the file from all vector store configurations across all agents and conversations in your organization.
+- Delete the vector store file object.
+- Delete the underlying file object. This removes the file from all vector store configurations across all agents and conversations in your organization.
 
-### Managing costs with expiration policies
+### Manage lifecycle with expiration policies
 
-For the basic agent setup, Microsoft Foundry Agent Service uses vector store objects as a resource and you're billed based on the size of the vector store objects you create. The size of a vector store is the sum of all the parsed chunks from your files and their corresponding embeddings.
+Expiration policies help you manage vector store lifecycle. You can set these policies when creating or updating the vector store object.
 
-To help you manage the costs associated with these vector store objects, you can use expiration policies. You can set these policies when creating or updating the vector store object.
+
 
 ### Conversation vector stores have default expiration policies
 
