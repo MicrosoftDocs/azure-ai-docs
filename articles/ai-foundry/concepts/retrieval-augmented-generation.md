@@ -63,7 +63,7 @@ RAG follows a three-step flow:
 
 ## Agentic RAG: modern approach to retrieval
 
-Traditional RAG patterns often use a single query to retrieve information from your data. **Agentic retrieval** (also called agentic RAG) is an evolution in retrieval architecture that uses a model to break down complex inputs into multiple focused subqueries, run them in parallel, and return structured grounding data that works well with chat completion models.
+Traditional RAG patterns often use a single query to retrieve information from your data. *Agentic retrieval*, also known as agentic RAG, is an evolution in retrieval architecture that uses a model to break down complex inputs into multiple focused subqueries, run them in parallel, and return structured grounding data that works well with chat completion models.
 
 Agentic retrieval provides several advantages over classic RAG:
 
