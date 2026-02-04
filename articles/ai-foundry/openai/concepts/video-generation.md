@@ -46,7 +46,7 @@ Currently the Sora 2 API enforces several content restrictions:
 Make sure prompts, reference images, and transcripts respect these rules to avoid failed generations.
 
 > [!NOTE] 
-> We are allowing face uploads on a case-by-case basis for managed customers. See [Request Access to the Sora Human Uploads in the Azure OpenAI Models](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUOUxNWjBVTjRRSDZVMjVEWUdNRzFEVVFOUCQlQCN0PWcu).
+> We are allowing face uploads on a case-by-case basis for Enterprise Agreement customers. See [Request Access to the Sora Human Uploads in the Azure OpenAI Models](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUOUxNWjBVTjRRSDZVMjVEWUdNRzFEVVFOUCQlQCN0PWcu).
 
 ## Sora 1 vs. Sora 2
 
