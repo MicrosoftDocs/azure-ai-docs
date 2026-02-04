@@ -30,7 +30,9 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
 
 + The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
 
-+ [Visual Studio Code](https://code.visualstudio.com/download) and the latest version of [Python](https://www.python.org/downloads/).
++ The latest version of [Python](https://www.python.org/downloads/).
+
++ [Visual Studio Code](https://code.visualstudio.com/download) with the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python).
 
 [!INCLUDE [Setup](./agentic-retrieval-setup.md)]
 
@@ -779,9 +781,7 @@ print("references_content:\n", references_content)
 
 ## Clean up resources
 
-When you work in your own subscription, it's a good idea to finish a project by determining whether you still need the resources you created. Resources that are left running can cost you money.
-
-In the [Azure portal](https://portal.azure.com/), you can manage your Azure AI Search and Microsoft Foundry resources by selecting **All resources** or **Resource groups** from the left pane.
+[!INCLUDE [clean up resources (paid)](../resource-cleanup-paid.md)]
 
 Otherwise, the following code from `agentic-retrieval.py` deleted the objects you created in this quickstart.
 

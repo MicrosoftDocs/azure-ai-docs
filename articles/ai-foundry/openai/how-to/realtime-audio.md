@@ -30,7 +30,7 @@ You can use the Realtime API via WebRTC, SIP, or WebSocket to send audio input t
 
 ## Supported models
 
-The GPT real-time models are available for global deployments in [East US 2 and Sweden Central regions](../concepts/models.md#global-standard-model-availability).
+The GPT real-time models are available for global deployments in [East US 2 and Sweden Central regions](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability).
 - `gpt-4o-mini-realtime-preview` (`2024-12-17`)
 - `gpt-4o-realtime-preview` (`2024-12-17`)
 - `gpt-realtime` (`2025-08-28`)
@@ -39,7 +39,7 @@ The GPT real-time models are available for global deployments in [East US 2 and 
 
 You should use API version `2025-04-01-preview` in the URL for the Realtime API. 
 
-See the [models and versions documentation](../concepts/models.md#audio-models) for more information.
+See the [models and versions documentation](../../foundry-models/concepts/models-sold-directly-by-azure.md#audio-models) for more information.
 
 ## Get started
 
