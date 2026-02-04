@@ -161,11 +161,11 @@ sections:
       - question: |
           What models are available?
         answer: |
-          Consult the Azure OpenAI [model availability guide](../../foundry-models/concepts/models-sold-directly-by-azure.md).
+          Consult the Azure OpenAI [model availability guide](../foundry-models/concepts/models-sold-directly-by-azure.md).
       - question: |
           Where can I find out what region a model is available in?
         answer: |
-          Consult the Azure OpenAI [model availability guide](../../foundry-models/concepts/models-sold-directly-by-azure.md) for region availability.
+          Consult the Azure OpenAI [model availability guide](../foundry-models/concepts/models-sold-directly-by-azure.md) for region availability.
       - question: |
           What are the SLAs (Service Level Agreements) in Azure OpenAI?
         answer:
@@ -211,7 +211,7 @@ sections:
       - question: |
           How do the rate limits for GPT-4 Turbo with Vision work?
         answer: |
-          We process images at the token level, so each image we process counts towards your tokens per minute (TPM) limit. See the [Image tokens section](../../foundry-models/concepts/models-sold-directly-by-azure.md) of the Overview for details on the formula used to determine token count per image.
+          We process images at the token level, so each image we process counts towards your tokens per minute (TPM) limit. See the [Image tokens section](../foundry-models/concepts/models-sold-directly-by-azure.md) of the Overview for details on the formula used to determine token count per image.
       - question: |
           Can GPT-4 Turbo with Vision understand image metadata?
         answer: |
