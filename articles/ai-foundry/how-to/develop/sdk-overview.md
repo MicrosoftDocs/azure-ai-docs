@@ -412,7 +412,7 @@ Console.WriteLine(response.GetOutputText());
 - [Access Foundry Models](../../quickstarts/get-started-code.md), including Azure OpenAI
 - [Use the Foundry Agent Service](../../../ai-services/agents/quickstart.md?context=/azure/ai-foundry/context/context)
 - [Run cloud evaluations](cloud-evaluation.md)
-- [Enable app tracing](../../concepts/trace.md)
+- [Enable app tracing](./trace-application.md)
 - [Fine-tune a model](/azure/ai-foundry/openai/how-to/fine-tuning?view=foundry&tabs=azure-openai&pivots=programming-language-python&preserve-view=true)
 - Get endpoints and keys for Foundry Tools, local orchestration, and more
 

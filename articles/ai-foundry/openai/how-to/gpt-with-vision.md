@@ -383,7 +383,7 @@ Every response includes a `"finish_reason"` field. It has the following possible
 
 ## Related content
 
-* [Learn more about Azure OpenAI](../overview.md).
+* [Learn more about Azure OpenAI](../../foundry-models/concepts/models-sold-directly-by-azure.md).
 * [Vision-enabled chats quickstart](../gpt-v-quickstart.md)
 * [Vision chats frequently asked questions](../faq.yml#gpt-4-turbo-with-vision)
 * [Chat completions API reference](https://aka.ms/gpt-v-api-ref)

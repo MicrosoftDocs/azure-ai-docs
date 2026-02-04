@@ -2,9 +2,10 @@
 author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 1/21/2024
+ms.date: 1/29/2026
 ms.author: pafarley
 ms.custom: devx-track-js
+ai-usage: ai-assisted
 ---
 
 [!INCLUDE [Header](../../common/javascript.md)]
@@ -28,7 +29,7 @@ You can initialize `SpeechTranslationConfig` in a few ways:
 Let's look at how you create a `SpeechTranslationConfig` instance by using a key and region. Get the Speech resource key and region in the [Azure portal](https://portal.azure.com).
 
 ```javascript
-const speechTranslationConfig = SpeechTranslationConfig.fromSubscription("YourSpeechResoureKey", "YourServiceRegion");
+const speechTranslationConfig = SpeechTranslationConfig.fromSubscription("YourSpeechResourceKey", "YourServiceRegion");
 ```
 
 ## Initialize a translator
@@ -129,11 +130,14 @@ translationRecognizer.recognized = function (s, e) {
 };
 ```
 
-### Continuous translation
+### Event based translation
 
-Continuous translation is a bit more involved than single-shot recognition. It requires you to subscribe to the `recognizing`, `recognized`, and `canceled` events to get the recognition results. To stop translation, you must call [`stopContinuousRecognitionAsync`](/javascript/api/microsoft-cognitiveservices-speech-sdk/translationrecognizer#stopcontinuousrecognitionasync). 
+Event based translation is a bit more involved than single-shot recognition. It requires you to subscribe to the `recognizing`, `recognized`, and `canceled` events to get the recognition results. To stop translation, you must call [`stopContinuousRecognitionAsync`](/javascript/api/microsoft-cognitiveservices-speech-sdk/translationrecognizer#stopcontinuousrecognitionasync). 
 
-Here's an example of how continuous translation is performed on an audio input file. Let's start by defining the input and initializing [`TranslationRecognizer`](/javascript/api/microsoft-cognitiveservices-speech-sdk/translationrecognizer):
+> [!NOTE]
+> Intermediate translation results aren't available when you use [multi-lingual speech translation](#multi-lingual-translation-with-language-identification).
+
+Here's an example of how event based translation is performed on an audio input file. Let's start by defining the input and initializing [`TranslationRecognizer`](/javascript/api/microsoft-cognitiveservices-speech-sdk/translationrecognizer):
 
 ```javascript
 const translationRecognizer = new TranslationRecognizer(speechTranslationConfig);
@@ -219,3 +223,126 @@ translationRecognizer.recognized = function (s, e) {
     // show str somewhere
 };
 ```
+
+## Synthesize translations
+
+After a successful speech recognition and translation, the result contains all the translations in a dictionary. The `translations` property returns a dictionary with the key as the target translation language and the value as the translated text. Recognized speech can be translated and then synthesized in a different language (speech-to-speech).
+
+### Event-based synthesis
+
+The `TranslationRecognizer` object exposes a `synthesizing` event. The event fires several times and provides a mechanism to retrieve the synthesized audio from the translation recognition result. If you're translating to multiple languages, see [Manual synthesis](#manual-synthesis). 
+
+Specify the synthesis voice by assigning a [`voiceName`](/javascript/api/microsoft-cognitiveservices-speech-sdk/speechtranslationconfig#voicename) property, and provide an event handler for the `synthesizing` event to get the audio. The following example saves the translated audio as a .wav file.
+
+> [!IMPORTANT]
+> The event-based synthesis works only with a single translation. *Do not* add multiple target translation languages. Additionally, the `voiceName` value should be the same language as the target translation language. For example, `"de"` could map to `"de-DE-Hedda"`.
+
+```javascript
+const speechTranslationConfig = SpeechTranslationConfig.fromSubscription("YourSpeechResourceKey", "YourServiceRegion");
+
+speechTranslationConfig.speechRecognitionLanguage = "en-US";
+speechTranslationConfig.addTargetLanguage("de");
+
+// See: https://aka.ms/speech/sdkregion#standard-and-neural-voices
+speechTranslationConfig.voiceName = "de-DE-Hedda";
+
+const translationRecognizer = new TranslationRecognizer(speechTranslationConfig);
+
+translationRecognizer.synthesizing = (s, e) => {
+    const audio = e.result.audio;
+    console.log(`Audio synthesized: ${audio.byteLength} byte(s) ${audio.byteLength === 0 ? "(COMPLETE)" : ""}`);
+    
+    if (audio.byteLength > 0) {
+        // In Node.js, save to file
+        const fs = require("fs");
+        fs.writeFileSync("translation.wav", Buffer.from(audio));
+    }
+};
+
+console.log("Say something in English and we'll translate to German...");
+
+translationRecognizer.recognizeOnceAsync(result => {
+    if (result.reason === ResultReason.TranslatedSpeech) {
+        console.log(`Recognized: "${result.text}"`);
+        console.log(`Translated into German: ${result.translations.get("de")}`);
+    }
+    translationRecognizer.close();
+});
+```
+
+### Manual synthesis
+
+You can use the `translations` dictionary to synthesize audio from the translation text. Iterate through each translation and synthesize it. When you're creating a `SpeechSynthesizer` instance, the `SpeechConfig` object needs to have its `speechSynthesisVoiceName` property set to the desired voice.
+
+The following example translates to five languages. Each translation is then synthesized to an audio file in the corresponding neural language.
+
+```javascript
+const speechTranslationConfig = SpeechTranslationConfig.fromSubscription("YourSpeechResourceKey", "YourServiceRegion");
+
+speechTranslationConfig.speechRecognitionLanguage = "en-US";
+speechTranslationConfig.addTargetLanguage("de");
+speechTranslationConfig.addTargetLanguage("fr");
+speechTranslationConfig.addTargetLanguage("it");
+speechTranslationConfig.addTargetLanguage("pt");
+speechTranslationConfig.addTargetLanguage("zh-Hans");
+
+const translationRecognizer = new TranslationRecognizer(speechTranslationConfig);
+
+console.log("Say something...");
+
+translationRecognizer.recognizeOnceAsync(async result => {
+    if (result.reason === ResultReason.TranslatedSpeech) {
+        const languageToVoiceMap = {
+            "de": "de-DE-KatjaNeural",
+            "fr": "fr-FR-DeniseNeural",
+            "it": "it-IT-ElsaNeural",
+            "pt": "pt-BR-FranciscaNeural",
+            "zh-Hans": "zh-CN-XiaoxiaoNeural"
+        };
+
+        console.log(`Recognized: "${result.text}"`);
+
+        for (const [language, translation] of result.translations) {
+            console.log(`Translated into '${language}': ${translation}`);
+
+            const speechConfig = SpeechConfig.fromSubscription("YourSpeechResourceKey", "YourServiceRegion");
+            speechConfig.speechSynthesisVoiceName = languageToVoiceMap[language];
+
+            const audioConfig = AudioConfig.fromAudioFileOutput(`${language}-translation.wav`);
+            const speechSynthesizer = new SpeechSynthesizer(speechConfig, audioConfig);
+
+            await new Promise((resolve, reject) => {
+                speechSynthesizer.speakTextAsync(
+                    translation,
+                    synthesisResult => {
+                        speechSynthesizer.close();
+                        resolve();
+                    },
+                    error => {
+                        speechSynthesizer.close();
+                        reject(error);
+                    }
+                );
+            });
+        }
+    }
+    translationRecognizer.close();
+});
+```
+
+For more information about speech synthesis, see [the basics of speech synthesis](../../../get-started-text-to-speech.md).
+
+## Multi-lingual translation with language identification
+
+In many scenarios, you might not know which input languages to specify. Using [language identification](../../../language-identification.md?pivots=programming-language-javascript#run-speech-translation) you can detect up to 10 possible input languages and automatically translate to your target languages. 
+
+The following example anticipates that `en-US` or `zh-CN` should be detected because they're defined in `AutoDetectSourceLanguageConfig`. Then, the speech is translated to `de` and `fr` as specified in the calls to `addTargetLanguage()`.
+
+```javascript
+speechTranslationConfig.addTargetLanguage("de");
+speechTranslationConfig.addTargetLanguage("fr");
+const autoDetectSourceLanguageConfig = AutoDetectSourceLanguageConfig.fromLanguages(["en-US", "zh-CN"]);
+const translationRecognizer = TranslationRecognizer.FromConfig(speechTranslationConfig, autoDetectSourceLanguageConfig, audioConfig);
+```
+
+For a complete code sample, see [language identification](../../../language-identification.md?pivots=programming-language-javascript#run-speech-translation).

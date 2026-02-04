@@ -171,7 +171,7 @@ Models available for deployment to managed compute can be deployed to Azure Mach
 
 Learn more about deploying models:
 
-* [Deploy Meta Llama models](models-featured.md)
+* [Deploy Meta Llama models](./models-inference-examples.md)
 * [Deploy Foundry open models](../how-to/deploy-models-managed.md)
 
 ### Building generative AI apps with managed compute

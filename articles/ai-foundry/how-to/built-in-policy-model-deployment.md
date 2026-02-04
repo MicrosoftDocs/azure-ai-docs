@@ -120,7 +120,7 @@ Use the following Bicep template to assign the policy to a resource group. This 
 
         To get the model asset ID strings and model publishers' name, use the following steps:
 
-        1. Go to the [Foundry model catalog](model-catalog-overview.md).
+        1. Go to the [Foundry model catalog](../concepts/foundry-models-overview.md).
 
 
         1. For each model you want to allow, select the model to view the details. In the model detail information, copy the **Model ID** value. For example, the value might look like `azureml://registries/azure-openai/models/gpt-35-turbo/versions/3` for GPT-3.5-Turbo model. The provided names are also *Collections* in model catalog. For example, the publisher for "Meta-Llama-3.1-70B-Instruct" model is Meta. 
@@ -170,4 +170,4 @@ To update an existing policy assignment with new models, follow these steps:
 ## Related content
 
 - [Azure Policy overview](/azure/governance/policy/overview)
-- [Foundry model catalog](model-catalog-overview.md)
+- [Foundry model catalog](../concepts/foundry-models-overview.md)

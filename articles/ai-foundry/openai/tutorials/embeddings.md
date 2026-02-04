@@ -41,7 +41,7 @@ If you created an Azure OpenAI resource solely for completing this tutorial and 
 
 Learn more about Azure OpenAI's models:
 > [!div class="nextstepaction"]
-> [Azure OpenAI models](../concepts/models.md)
+> [Azure OpenAI models](../../foundry-models/concepts/models-sold-directly-by-azure.md)
 * Store your embeddings and perform vector (similarity) search using your choice of Azure service:
   * [Azure AI Search](/azure/search/vector-search-overview)
   * [Azure SQL Database](/azure/azure-sql/database/ai-artificial-intelligence-intelligent-applications?view=azuresql&preserve-view=true#vector-search)
