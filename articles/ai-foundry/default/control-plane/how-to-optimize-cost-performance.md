@@ -3,7 +3,6 @@ title: How to Optimize Cost and Performance in Microsoft Foundry
 titleSuffix: Foundry
 description: Learn how to use the Ask AI agent to analyze and optimize model cost and performance directly from Microsoft Foundry.
 ms.service: azure-ai-foundry
-ms.custom:
 ms.topic: how-to
 ms.date: 02/04/2026
 ms.reviewer: hanch
