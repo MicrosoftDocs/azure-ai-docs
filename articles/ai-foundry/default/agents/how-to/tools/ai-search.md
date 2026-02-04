@@ -644,9 +644,8 @@ The application creates an agent with Azure AI Search capabilities, prompts for 
 
 Keep these constraints in mind when using the Azure AI Search tool:
 
-- **Virtual network access**: To use the tool in the Foundry portal behind a virtual network, create the agent programmatically with the SDK or REST API, then access it in the portal.
+- **Virtual network access**: Azure AI Search doesn't support virtual network (vNET) configurations with agents at this time.
 - The Azure AI Search tool can only target one index.
-- A Microsoft Foundry resource with basic agent deployments doesn't support private Azure AI Search resources, nor Azure AI Search with public network access disabled and a private endpoint. To use a private Azure AI Search tool with your agents, deploy the standard agent with virtual network injection.
 - Your Azure AI Search resource and your Microsoft Foundry Agent must be in the same tenant.
 
 ## Verify results

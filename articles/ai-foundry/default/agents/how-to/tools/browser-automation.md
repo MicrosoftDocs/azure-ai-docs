@@ -79,10 +79,10 @@ Use the following format for your connection ID: `/subscriptions/{{subscriptionI
   1. Copy the workspace region endpoint from the **Workspace Details** page.
   1. Assign the Contributor role to your project's managed identity on the Playwright workspace resource. Alternatively, [configure a custom role](/azure/app-testing/playwright-workspaces/how-to-manage-workspace-access#create-a-custom-role-for-restricted-tenants).
 1. Create a connection in your Foundry project using the Playwright workspace region endpoint and Playwright workspace access token.
-   1. Go to the [Foundry portal](https://ai.azure.com/) and select your project.
+   1. Go to the [Foundry portal](https://ai.azure.com/nextgen) and select your project.
    1. Select **Operate** in the upper-right navigation, then select **Admin** in the left pane.
    1. Select your project name in the **All projects** list.
-   1. Select **Add connection**, then select **API Key** under **Other resource types**.
+   1. Select **Add connection**, then select **Serverless** connection.
    1. Enter a name for the connection (for example, `playwright-workspace`).
    1. Set **Endpoint** to the Playwright workspace region endpoint. It starts with `wss://`.
       - For more information, see the Playwright documentation for [configuring the service endpoint](/azure/app-testing/playwright-workspaces/quickstart-run-end-to-end-tests?tabs=playwrightcli&pivots=playwright-test-runner#configure-the-browser-endpoint).
