@@ -168,7 +168,7 @@ Agent Service provides the following runtime features:
 
 | Capability | Agent Service |
 | ---------- | ------------- |
-| **Visibility into conversations** | Full access to structured [conversations](concepts/runtime-components.md#what-is-a-conversation), including both user-to-agent and agent-to-agent messages. Useful for UI integration, debugging, and training. |
+| **Visibility into conversations** | Full access to structured [conversations](concepts/runtime-components.md#conversation), including both user-to-agent and agent-to-agent messages. Useful for UI integration, debugging, and training. |
 | **Multiple-agent coordination** | Built-in support for agent-to-agent messaging. |
 | **Tool orchestration** | Server-side execution and retry of tool calls with structured logging. No manual orchestration is required. |
 | **Trust and safety** | Integrated [content filters](../../openai/how-to/content-filters.md) to help prevent misuse and mitigate prompt injection risks (XPIA). All outputs are policy governed. |
@@ -186,11 +186,7 @@ Agent Service provides controls for identity, networking, data handling, and saf
 - **Bring your own resources**: Use your own Azure resources (for example, storage, Azure AI Search, and Azure Cosmos DB for conversation state) to meet compliance and operational needs. See [Use your own resources](../../agents/how-to/use-your-own-resources.md).
 - **Responsible AI guidance**: For a broader set of recommendations and governance resources, see [Responsible AI for Microsoft Foundry](../../responsible-use-of-ai-overview.md).
 
-## Get started with Foundry Agent Service
-
-To get started with Agent Service, create a Foundry project in your Azure subscription.
-
-### Choose your development path
+## Choose your development path
 
 You can build agents using the portal, code, or a combination of both:
 
@@ -221,7 +217,7 @@ If you receive authentication errors, verify that:
 
 If the model deployment isn't found:
 
-- Verify that `AZURE_AI_MODEL_DEPLOYMENT_NAME` matches the deployment name in your project (not the model name).
+- Verify that `MODEL_DEPLOYMENT_NAME` matches the deployment name in your project (not the model name).
 - Check that the model is deployed in the **Models + endpoints** section of your Foundry project.
 
 ### Quota exceeded
@@ -236,7 +232,7 @@ For more help, see the [Azure AI services support options](/azure/ai-services/co
 ## Related content
 
 - [Models that support agents](../../agents/concepts/model-region-support.md)
-- [Agent development lifecycle](concepts/limits-quotas-regions.md)
+- [Agent development lifecycle](concepts/development-lifecycle.md)
 - [Tool catalog](concepts/tool-catalog.md)
 - [Microsoft Foundry SDKs](../../how-to/develop/sdk-overview.md)
 - [Hub resources and projects](../../concepts/ai-resources.md)
