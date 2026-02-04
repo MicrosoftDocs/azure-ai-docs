@@ -41,7 +41,7 @@ File search applies retrieval best practices to help your agent find the right c
 - Run both keyword and semantic searches across agent and conversation vector stores.
 - Rerank results before adding them to the model context.
 
-For current default retrieval settings (chunk size and overlap, embedding model, and the maximum number of chunks added to context), see [How it works](../how-to/tools/file-search.md#how-it-works).
+For current default retrieval settings (chunk size and overlap, embedding model, and the maximum number of chunks added to context), see [How it works](../how-to/tools/file-search.md#how-file-search-works).
 
 ## Where your data lives (basic vs standard agent setup)
 
@@ -50,7 +50,7 @@ Where files and search resources live depends on your agent setup:
 - **Basic agent setup**: File search uses Microsoft-managed storage and search resources.
 - **Standard agent setup**: File search uses the Azure Blob Storage and Azure AI Search resources you connect during setup, so your files remain in your storage.
 
-To set up your environment, see [Agent environment setup](../../../agents/environment-setup.md). For more detail, see [Dependency on agent setup](../how-to/tools/file-search.md#dependency-on-agent-setup).
+To set up your environment, see [Agent environment setup](../../../agents/environment-setup.md). For more detail, see [Dependency on agent setup](../how-to/tools/file-search.md#file-search-behavior-by-agent-setup-type).
 
 ## Ensure vector store readiness before creating responses
 
