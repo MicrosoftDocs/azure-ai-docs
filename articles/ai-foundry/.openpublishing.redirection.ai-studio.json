@@ -1566,6 +1566,11 @@
           "source_path_from_root": "/articles/ai-foundry/default/agents/how-to/how-to-monitor-agents-dashboard.md",
           "redirect_url": "/azure/ai-foundry/observability/how-to/how-to-monitor-agents-dashboard",
           "redirect_document_id": true
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/openai/concepts/content-filter.md",
+          "redirect_url": "/azure/ai-foundry/foundry-models/concepts/content-filter",
+          "redirect_document_id": true
         }
     ]
 }
