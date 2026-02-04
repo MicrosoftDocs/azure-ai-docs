@@ -1,5 +1,5 @@
 ---
-title: "Access batch endpoints from Fabric (preview)"
+title: "Use Fabric to access model deployment batch endpoints (preview)"
 titleSuffix: Azure Machine Learning
 description: Use Fabric to consume Azure Machine Learning batch model deployments by pointing to the same Azure Data Lake storage account.
 services: machine-learning
@@ -17,7 +17,7 @@ ms.custom:
 #Customer intent: As a data science professional and Fabric user, I want to be able to configure Fabric to access Azure Machine Learning batch deployments, so I can access batch endpoints from both Azure Machine Learning and Fabric.
 ---
 
-# Access Azure Machine Learning models from Fabric using batch endpoints
+# Use Fabric to access model deployment batch endpoints
 
 [!INCLUDE [ml v2](includes/machine-learning-dev-v2.md)]
 
@@ -121,7 +121,7 @@ To configure the connection to the Azure Machine Learning workspace, complete th
 1. For **Authentication kind**, select **Organizational account** to use the credentials of the connected user, or **Service principal** to use a service principal.
    >[!NOTE]
    >A service principal is recommended for production settings. For either choice, ensure that the identity associated with the connection has permission to call the batch endpoint you deployed.
-1. For an organizational account, sign in if necessary. For a service principal connection, provide the **Tenant ID**, **Service principal client ID**, and **Service principal secret**.
+1. For an organizational account, sign in if necessary. For a service principal connection, provide the **Tenant ID**, **Service principal client ID**, and **Service principal Key**.
 1. Select **Connect**.
    :::image type="content" source="./media/how-to-use-batch-fabric/fabric-pipeline-add-connection-credentials.png" alt-text="A screenshot showing how to configure the connection.":::
 
