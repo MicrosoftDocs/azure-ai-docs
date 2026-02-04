@@ -275,8 +275,8 @@ AIProjectConnection aiSearchConnection = projectClient.Connections.GetConnection
 // Create an AzureAISearchToolIndex object that defines the index and the search parameters.
 AzureAISearchToolIndex index = new()
 {
-  ProjectConnectionId = aiSearchConnection.Id,
-  IndexName = aiSearchIndexName,
+    ProjectConnectionId = aiSearchConnection.Id,
+    IndexName = aiSearchIndexName,
     TopK = 5,
     Filter = "category eq 'sleeping bag'",
     QueryType = AzureAISearchQueryType.Simple
@@ -286,7 +286,7 @@ AzureAISearchToolIndex index = new()
 PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
 {
     Instructions = "You are a helpful assistant. You must always provide citations for answers using the tool and render them as: `\u3010message_idx:search_idx\u2020source\u3011`.",
-    Tools = { new AzureAISearchAgentTool(new AzureAISearchToolOptions(indexes: [index])) }
+    Tools = { new AzureAISearchTool(new AzureAISearchToolOptions(indexes: [index])) }
 };
 
 // Create the agent version with the agent definition.
@@ -296,36 +296,32 @@ AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
 
 // Create an OpenAIResponse object with the ProjectResponsesClient object.
 ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
-OpenAIResponse response = responseClient.CreateResponse("What is the temperature rating of the cozynights sleeping bag?");
+ResponseResult response = responseClient.CreateResponse("What is the temperature rating of the cozynights sleeping bag?");
 
 // In the search, an index containing "embedding", "token", "category", "title", and "url" fields is used.
 // The last two fields are needed to get citation title and URL, which the agent retrieves.
 // To get the reference, you need to parse the output items.
-// You can do it in this GetFormattedAnnotation helper method.
-private static string GetFormattedAnnotation(OpenAIResponse response)
+string result = "";
+foreach (ResponseItem item in response.OutputItems)
 {
-    foreach (ResponseItem item in response.OutputItems)
+    if (item is MessageResponseItem messageItem)
     {
-        if (item is MessageResponseItem messageItem)
+        foreach (ResponseContentPart content in messageItem.Content)
         {
-            foreach (ResponseContentPart content in messageItem.Content)
+            foreach (ResponseMessageAnnotation annotation in content.OutputTextAnnotations)
             {
-                foreach (ResponseMessageAnnotation annotation in content.OutputTextAnnotations)
+                if (annotation is UriCitationMessageAnnotation uriAnnotation)
                 {
-                    if (annotation is UriCitationMessageAnnotation uriAnnotation)
-                    {
-                        return $" [{uriAnnotation.Title}]({uriAnnotation.Uri})";
-                    }
+                    result = $" [{uriAnnotation.Title}]({uriAnnotation.Uri})";
                 }
             }
         }
     }
-    return "";
 }
 
 // Use the helper method to output the result.
 Assert.That(response.Status, Is.EqualTo(ResponseStatus.Completed));
-Console.WriteLine($"{response.GetOutputText()}{GetFormattedAnnotation(response)}");
+Console.WriteLine($"{response.GetOutputText()}{result}");
 
 // Finally, delete all the resources you created in this sample.
 projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
@@ -355,8 +351,8 @@ AIProjectConnection aiSearchConnection = projectClient.Connections.GetConnection
 // Create an AzureAISearchToolIndex object that defines the index and the search parameters.
 AzureAISearchToolIndex index = new()
 {
-  ProjectConnectionId = aiSearchConnection.Id,
-  IndexName = aiSearchIndexName,
+    ProjectConnectionId = aiSearchConnection.Id,
+    IndexName = aiSearchIndexName,
     TopK = 5,
     Filter = "category eq 'sleeping bag'",
     QueryType = AzureAISearchQueryType.Simple
@@ -366,34 +362,13 @@ AzureAISearchToolIndex index = new()
 PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
 {
     Instructions = "You are a helpful assistant. You must always provide citations for answers using the tool and render them as: `\u3010message_idx:search_idx\u2020source\u3011`.",
-    Tools = { new AzureAISearchAgentTool(new AzureAISearchToolOptions(indexes: [index])) }
+    Tools = { new AzureAISearchTool(new AzureAISearchToolOptions(indexes: [index])) }
 };
 
 // Create the agent version with the agent definition.
 AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
     agentName: "myAgent",
     options: new(agentDefinition));
-
-// Use an index containing "embedding", "token", "category", "title", and "url" fields.
-// The last two fields are needed to get citation title and URL, retrieved by the agent.
-// To get the reference, parse the output items. Use this GetFormattedAnnotation helper method.
-private static string GetFormattedAnnotation(ResponseItem item)
-{
-    if (item is MessageResponseItem messageItem)
-    {
-        foreach (ResponseContentPart content in messageItem.Content)
-        {
-            foreach (ResponseMessageAnnotation annotation in content.OutputTextAnnotations)
-            {
-                if (annotation is UriCitationMessageAnnotation uriAnnotation)
-                {
-                    return $" [{uriAnnotation.Title}]({uriAnnotation.Uri})";
-                }
-            }
-        }
-    }
-    return "";
-}
 
 // Create an OpenAIResponse object with the ProjectResponsesClient object.
 ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
@@ -420,7 +395,21 @@ foreach (StreamingResponseUpdate streamResponse in responseClient.CreateResponse
     {
         if (annotation.Length == 0)
         {
-            annotation = GetFormattedAnnotation(itemDoneUpdate.Item);
+            if (itemDoneUpdate.Item is MessageResponseItem messageItem)
+            {
+                // Use an index containing "embedding", "token", "category", "title", and "url" fields.
+                // The last two fields are needed to get citation title and URL, retrieved by the agent.
+                foreach (ResponseContentPart content in messageItem.Content)
+                {
+                    foreach (ResponseMessageAnnotation messageAnnotation in content.OutputTextAnnotations)
+                    {
+                        if (messageAnnotation is UriCitationMessageAnnotation uriAnnotation)
+                        {
+                            annotation = $" [{uriAnnotation.Title}]({uriAnnotation.Uri})";
+                        }
+                    }
+                }
+            }
         }
     }
     else if (streamResponse is StreamingResponseErrorUpdate errorUpdate)

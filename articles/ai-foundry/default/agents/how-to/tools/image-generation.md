@@ -143,10 +143,10 @@ AIProjectClient projectClient = new(
 // Supported image generation models include gpt-image-1.
 PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
 {
-    Instructions = "Generate images based on user prompts.",
-    Tools = {
+Instructions = "Generate images based on user prompts.",
+Tools = {
         ResponseTool.CreateImageGenerationTool(
-      model: imageGenerationDeploymentName,
+            model: imageGenerationDeploymentName,
             quality: ImageGenerationToolQuality.Low,
             size:ImageGenerationToolSize.W1024xH1024
         )
@@ -155,6 +155,24 @@ PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
 AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
     agentName: "myAgent",
     options: new(agentDefinition));
+
+ProjectOpenAIClient openAIClient = projectClient.GetProjectOpenAIClient();
+ProjectResponsesClient responseClient = openAIClient.GetProjectResponsesClientForAgent(new AgentReference(name: agentVersion.Name));
+
+ResponseResult response = responseClient.CreateResponse("Generate parody of Newton with apple.");
+
+// Parse the ResponseResult object and save the generated image.
+foreach (ResponseItem item in response.OutputItems)
+{
+    if (item is ImageGenerationCallResponseItem imageItem)
+    {
+        File.WriteAllBytes("newton.png", imageItem.ImageResultBytes.ToArray());
+        Console.WriteLine($"Image downloaded and saved to: {Path.GetFullPath("newton.png")}");
+    }
+}
+
+// Clean up resources by deleting the Agent.
+projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
 
 // To use image generation, provide the custom header to web requests,
 // which contain the model deployment name, for example:
@@ -177,27 +195,6 @@ internal class HeaderPolicy(string image_deployment) : PipelinePolicy
         await ProcessNextAsync(message, pipeline, currentIndex);
     }
 }
-
-// Use the policy to create the `OpenAIClient` object and create
-// the `ResponsesClient` by asking the Agent to generate the image.
-ProjectOpenAIClientOptions options = new();
-ProjectOpenAIClient openAIClient = projectClient.GetProjectOpenAIClient();
-ProjectResponsesClient responseClient = openAIClient.GetProjectResponsesClientForAgent(new AgentReference(name: agentVersion.Name));
-
-ResponseResult response = responseClient.CreateResponse("Generate parody of Newton with apple.");
-
-// Parse the ResponseResult object and save the generated image.
-foreach (ResponseItem item in response.OutputItems)
-{
-    if (item is ImageGenerationCallResponseItem imageItem)
-    {
-        File.WriteAllBytes("newton.png", imageItem.ImageResultBytes.ToArray());
-        Console.WriteLine($"Image downloaded and saved to: {Path.GetFullPath("newton.png")}");
-    }
-}
-
-// Clean up resources by deleting the Agent.
-projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
 ```
 
 ### Expected output

@@ -285,158 +285,157 @@ Agent deleted
 The following C# code sample demonstrates how to create an agent version with the computer use tool, send an initial request with a screenshot, and perform multiple iterations to complete a task. To enable your Agent to use the Computer Use tool, you need to use `ComputerTool` while creating `PromptAgentDefinition`. This example uses synchronous code. For asynchronous usage, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample10_ComputerUse.md) example in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
-// Create project client and read the environment variables, which will be used in the next steps.
-var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
-var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
-AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
-
-// Read image files using `ReadImageFile` method.
-private static BinaryData ReadImageFile(string name, [CallerFilePath] string pth = "")
+class ComputerUseDemo
 {
-    var dirName = Path.GetDirectoryName(pth) ?? "";
-    return new BinaryData(File.ReadAllBytes(Path.Combine(dirName, name)));
-}
+    
 
-// Read in three example screenshots and place them into a dictionary.
-Dictionary<string, BinaryData> screenshots = new() {
-    { "browser_search", ReadImageFile("Assets/cua_browser_search.png")},
-    { "search_typed", ReadImageFile("Assets/cua_search_typed.png")},
-    { "search_results", ReadImageFile("Assets/cua_search_results.png")},
-};
-
-// Create a PromptAgentDefinition with ComputerTool.
-PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
-{
-    Instructions = "You are a computer automation assistant.\n\n" +
-                   "Be direct and efficient. When you reach the search results page, read and describe the actual search result titles and descriptions you can see.",
-    Tools = {
-        ResponseTool.CreateComputerTool(
-            environment: new ComputerToolEnvironment("windows"),
-            displayWidth: 1026,
-            displayHeight: 769
-        ),
-    }
-};
-AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
-    agentName: "myAgent",
-    options: new(agentDefinition)
-);
-
-// Create a helper method to parse the ComputerTool outputs and to respond
-// to Agents queries with new screenshots. Note that throughout
-// this sample the media type for image is set. Agents support `image/jpeg`,
-// `image/png`, `image/gif` and `image/webp` media types.
-private static string ProcessComputerUseCall(ComputerCallResponseItem item, string oldScreenshot)
-{
-    string currentScreenshot = "browser_search";
-    switch (item.Action.Kind)
+    // Read image files using `ReadImageFile` method.
+    private static BinaryData ReadImageFile(string name, [CallerFilePath] string pth = "")
     {
-        case ComputerCallActionKind.Type:
-            Console.WriteLine($"  Typing text \"{item.Action.TypeText}\" - Simulating keyboard input");
-            currentScreenshot = "search_typed";
-            break;
-        case ComputerCallActionKind.KeyPress:
-            HashSet<string> codes = new(item.Action.KeyPressKeyCodes);
-            if (codes.Contains("Return") || codes.Contains("ENTER"))
-            {
-                // If we have typed the value to the search field, go to search results.
+        var dirName = Path.GetDirectoryName(pth) ?? "";
+        return new BinaryData(File.ReadAllBytes(Path.Combine(dirName, name)));
+    }
+
+    // Create a helper method to parse the ComputerTool outputs and to respond
+    // to Agents queries with new screenshots. Note that throughout
+    // this sample the media type for image is set. Agents support `image/jpeg`,
+    // `image/png`, `image/gif` and `image/webp` media types.
+    private static string ProcessComputerUseCall(ComputerCallResponseItem item, string oldScreenshot)
+    {
+        string currentScreenshot = "browser_search";
+        switch (item.Action.Kind)
+        {
+            case ComputerCallActionKind.Type:
+                Console.WriteLine($"  Typing text \"{item.Action.TypeText}\" - Simulating keyboard input");
+                currentScreenshot = "search_typed";
+                break;
+            case ComputerCallActionKind.KeyPress:
+                HashSet<string> codes = new(item.Action.KeyPressKeyCodes);
+                if (codes.Contains("Return") || codes.Contains("ENTER"))
+                {
+                    // If we have typed the value to the search field, go to search results.
+                    if (string.Equals(oldScreenshot, "search_typed"))
+                    {
+                        Console.WriteLine("  -> Detected ENTER key press, when search field was populated, displaying results.");
+                        currentScreenshot = "search_results";
+                    }
+                    else
+                    {
+                        Console.WriteLine("  -> Detected ENTER key press, on results or unpopulated search, do nothing.");
+                        currentScreenshot = oldScreenshot;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine($"  Key press: {item.Action.KeyPressKeyCodes.Aggregate("", (agg, next) => agg + "+" + next)} - Simulating key combination");
+                }
+                break;
+            case ComputerCallActionKind.Click:
+                Console.WriteLine($"  Click at ({item.Action.ClickCoordinates.Value.X}, {item.Action.ClickCoordinates.Value.Y}) - Simulating click on UI element");
                 if (string.Equals(oldScreenshot, "search_typed"))
                 {
-                    Console.WriteLine("  -> Detected ENTER key press, when search field was populated, displaying results.");
+                    Console.WriteLine("  -> Assuming click on Search button when search field was populated, displaying results.");
                     currentScreenshot = "search_results";
                 }
                 else
                 {
-                    Console.WriteLine("  -> Detected ENTER key press, on results or unpopulated search, do nothing.");
+                    Console.WriteLine("  -> Assuming click on Search on results or when search was not populated, do nothing.");
                     currentScreenshot = oldScreenshot;
                 }
-            }
-            else
-            {
-                Console.WriteLine($"  Key press: {item.Action.KeyPressKeyCodes.Aggregate("", (agg, next) => agg + "+" + next)} - Simulating key combination");
-            }
-            break;
-        case ComputerCallActionKind.Click:
-            Console.WriteLine($"  Click at ({item.Action.ClickCoordinates.Value.X}, {item.Action.ClickCoordinates.Value.Y}) - Simulating click on UI element");
-            if (string.Equals(oldScreenshot, "search_typed"))
-            {
-                Console.WriteLine("  -> Assuming click on Search button when search field was populated, displaying results.");
-                currentScreenshot = "search_results";
-            }
-            else
-            {
-                Console.WriteLine("  -> Assuming click on Search on results or when search was not populated, do nothing.");
-                currentScreenshot = oldScreenshot;
-            }
-            break;
-        case ComputerCallActionKind.Drag:
-            string pathStr = item.Action.DragPath.ToArray().Select(p => $"{p.X}, {p.Y}").Aggregate("", (agg, next) => $"{agg} -> {next}");
-            Console.WriteLine($"  Drag path: {pathStr} - Simulating drag operation");
-            break;
-        case ComputerCallActionKind.Scroll:
-            Console.WriteLine($"  Scroll at ({item.Action.ScrollCoordinates.Value.X}, {item.Action.ScrollCoordinates.Value.Y}) - Simulating scroll action");
-            break;
-        case ComputerCallActionKind.Screenshot:
-            Console.WriteLine("  Taking screenshot - Capturing current screen state");
-            break;
-        default:
-            break;
-    }
-    Console.WriteLine($"  -> Action processed: {item.Action.Kind}");
-
-    return currentScreenshot;
-}
-
-// For brevity, create the methods to get the response.
-public static ResponseResult CreateResponse(ResponsesClient responseClient, CreateResponseOptions options)
-{
-    ResponseResult response = responseClient.CreateResponse(options);
-    Assert.That(response.Status, Is.EqualTo(ResponseStatus.Completed));
-    return response;
-}
-
-// Create an `ResponseResult` using `ResponseItem`, containing two `ResponseContentPart`:
-// one with the image and another with the text. In the loop, request Agent
-// while it is continuing to browse web. Finally, print the tool output message.
-ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
-CreateResponseOptions responseOptions = new()
-{
-    TruncationMode = ResponseTruncationMode.Auto,
-    InputItems =
-    {
-        ResponseItem.CreateUserMessageItem(
-        [
-            ResponseContentPart.CreateInputTextPart("I need you to help me search for 'OpenAI news'. Please type 'OpenAI news' and submit the search. Once you see search results, the task is complete."),
-            ResponseContentPart.CreateInputImagePart(imageBytes: screenshots["browser_search"], imageBytesMediaType: "image/png", imageDetailLevel: ResponseImageDetailLevel.High)
-        ]),
-    },
-};
-bool computerUseCalled = false;
-string currentScreenshot = "browser_search";
-int limitIteration = 10;
-ResponseResult response;
-do
-{
-    response = CreateResponse(responseClient, responseOptions);
-    computerUseCalled = false;
-    responseOptions.InputItems.Clear();
-    responseOptions.PreviousResponseId = response.Id;
-    foreach (ResponseItem responseItem in response.OutputItems)
-    {
-        responseOptions.InputItems.Add(responseItem);
-        if (responseItem is ComputerCallResponseItem computerCall)
-        {
-            currentScreenshot = ProcessComputerUseCall(computerCall, currentScreenshot);
-            responseOptions.InputItems.Add(ResponseItem.CreateComputerCallOutputItem(callId: computerCall.CallId, output: ComputerCallOutput.CreateScreenshotOutput(screenshotImageBytes: screenshots[currentScreenshot], screenshotImageBytesMediaType: "image/png")));
-            computerUseCalled = true;
+                break;
+            case ComputerCallActionKind.Drag:
+                string pathStr = item.Action.DragPath.ToArray().Select(p => $"{p.X}, {p.Y}").Aggregate("", (agg, next) => $"{agg} -> {next}");
+                Console.WriteLine($"  Drag path: {pathStr} - Simulating drag operation");
+                break;
+            case ComputerCallActionKind.Scroll:
+                Console.WriteLine($"  Scroll at ({item.Action.ScrollCoordinates.Value.X}, {item.Action.ScrollCoordinates.Value.Y}) - Simulating scroll action");
+                break;
+            case ComputerCallActionKind.Screenshot:
+                Console.WriteLine("  Taking screenshot - Capturing current screen state");
+                break;
+            default:
+                break;
         }
-    }
-    limitIteration--;
-} while (computerUseCalled && limitIteration > 0);
-Console.WriteLine(response.GetOutputText());
+        Console.WriteLine($"  -> Action processed: {item.Action.Kind}");
 
-// Clean up resources by deleting Agent.
-projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+        return currentScreenshot;
+    }
+
+    public static void Main()
+    {
+        // Create project client and read the environment variables, which will be used in the next steps.
+        var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
+        var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
+        AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+
+        // Read in three example screenshots and place them into a dictionary.
+        Dictionary<string, BinaryData> screenshots = new() {
+            { "browser_search", ReadImageFile("Assets/cua_browser_search.png")},
+            { "search_typed", ReadImageFile("Assets/cua_search_typed.png")},
+            { "search_results", ReadImageFile("Assets/cua_search_results.png")},
+        };
+
+        // Create a PromptAgentDefinition with ComputerTool.
+        PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+        {
+            Instructions = "You are a computer automation assistant.\n\n" +
+                            "Be direct and efficient. When you reach the search results page, read and describe the actual search result titles and descriptions you can see.",
+            Tools = {
+                ResponseTool.CreateComputerTool(
+                    environment: new ComputerToolEnvironment("windows"),
+                    displayWidth: 1026,
+                    displayHeight: 769
+                ),
+            }
+        };
+        AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+            agentName: "myAgent",
+            options: new(agentDefinition)
+        );
+        // Create an `ResponseResult` using `ResponseItem`, containing two `ResponseContentPart`:
+        // one with the image and another with the text. In the loop, request Agent
+        // while it is continuing to browse web. Finally, print the tool output message.
+        ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+        CreateResponseOptions responseOptions = new()
+        {
+            TruncationMode = ResponseTruncationMode.Auto,
+            InputItems =
+            {
+                ResponseItem.CreateUserMessageItem(
+                [
+                    ResponseContentPart.CreateInputTextPart("I need you to help me search for 'OpenAI news'. Please type 'OpenAI news' and submit the search. Once you see search results, the task is complete."),
+                    ResponseContentPart.CreateInputImagePart(imageBytes: screenshots["browser_search"], imageBytesMediaType: "image/png", imageDetailLevel: ResponseImageDetailLevel.High)
+                ]),
+            },
+        };
+        bool computerUseCalled = false;
+        string currentScreenshot = "browser_search";
+        int limitIteration = 10;
+        ResponseResult response;
+        do
+        {
+            response = responseClient.CreateResponse(responseOptions);
+            computerUseCalled = false;
+            responseOptions.InputItems.Clear();
+            responseOptions.PreviousResponseId = response.Id;
+            foreach (ResponseItem responseItem in response.OutputItems)
+            {
+                responseOptions.InputItems.Add(responseItem);
+                if (responseItem is ComputerCallResponseItem computerCall)
+                {
+                    currentScreenshot = ProcessComputerUseCall(computerCall, currentScreenshot);
+                    responseOptions.InputItems.Add(ResponseItem.CreateComputerCallOutputItem(callId: computerCall.CallId, output: ComputerCallOutput.CreateScreenshotOutput(screenshotImageBytes: screenshots[currentScreenshot], screenshotImageBytesMediaType: "image/png")));
+                    computerUseCalled = true;
+                }
+            }
+            limitIteration--;
+        } while (computerUseCalled && limitIteration > 0);
+        Console.WriteLine(response.GetOutputText());
+
+        // Clean up resources by deleting Agent.
+        projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+    }
+}
 ```
 
 ### Expected output

@@ -86,20 +86,19 @@ Use the code in this section to make Responses API calls for Foundry Models. In 
     ```csharp
     using Azure.Identity;
     using Azure.AI.Projects; 
-    using OpenAI;
+    using Azure.AI.Projects.OpenAI;
     using OpenAI.Responses;
-    using System.ClientModel.Primitives;
 
     #pragma warning disable OPENAI001
 
-    const string deploymentName = "MAI-DS-R1"; // Replace with your deployment name, not the model ID 
+    const string deploymentName = "MAIDSR1"; // Replace with your deployment name, not the model ID 
     const string endpoint = "https://YOUR-RESOURCE-NAME.services.ai.azure.com/api/projects/YOUR_PROJECT_NAME";
     
     AIProjectClient projectClient = new(new Uri(endpoint), new DefaultAzureCredential());
     
-    OpenAIResponseClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForModel(deploymentName);
+    ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForModel(deploymentName);
     
-    OpenAIResponse response = responseClient.CreateResponse("What is the capital/major city of France?");
+    ResponseResult response = responseClient.CreateResponse("What is the capital/major city of France?");
     
     Console.WriteLine($"[ASSISTANT]: {response.GetOutputText()}");
     ```

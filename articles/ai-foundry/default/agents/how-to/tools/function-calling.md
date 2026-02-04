@@ -187,184 +187,182 @@ Final input:
 In this example, you use local functions with agents. Use the functions to give the Agent specific information in response to a user question. The code in this example is synchronous. For an asynchronous example, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample9_Function.md) example in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
-// Create project client and read the environment variables that will be used in the next steps.
-var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
-var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
-AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
-
-// Define three functions:
-//   1. GetUserFavoriteCity always returns "Seattle, WA".
-//   2. GetCityNickname handles only "Seattle, WA"
-//      and throws an exception for other city names.
-//   3. GetWeatherAtLocation returns the weather in Seattle, WA.
-
-/// Example of a function that defines no parameters but
-/// returns the user's favorite city.
-private static string GetUserFavoriteCity() => "Seattle, WA";
-
-/// <summary>
-/// Example of a function with a single required parameter
-/// </summary>
-/// <param name="location">The location to get nickname for.</param>
-/// <returns>The city nickname.</returns>
-/// <exception cref="NotImplementedException"></exception>
-private static string GetCityNickname(string location) => location switch
+class FunctionCallingDemo
 {
-    "Seattle, WA" => "The Emerald City",
-    _ => throw new NotImplementedException(),
-};
+    // Define three functions:
+    //   1. GetUserFavoriteCity always returns "Seattle, WA".
+    //   2. GetCityNickname handles only "Seattle, WA"
+    //      and throws an exception for other city names.
+    //   3. GetWeatherAtLocation returns the weather in Seattle, WA.
 
-/// <summary>
-/// Example of a function with one required and one optional, enum parameter
-/// </summary>
-/// <param name="location">Get weather for location.</param>
-/// <param name="temperatureUnit">"c" or "f"</param>
-/// <returns>The weather in selected location.</returns>
-/// <exception cref="NotImplementedException"></exception>
-public static string GetWeatherAtLocation(string location, string temperatureUnit = "f") => location switch
-{
-    "Seattle, WA" => temperatureUnit == "f" ? "70f" : "21c",
-    _ => throw new NotImplementedException()
-};
+    /// Example of a function that defines no parameters but
+    /// returns the user's favorite city.
+    private static string GetUserFavoriteCity() => "Seattle, WA";
 
-// For each function, create FunctionTool, which defines the function name, description, and parameters.
-public static readonly FunctionTool getUserFavoriteCityTool = ResponseTool.CreateFunctionTool(
-    functionName: "getUserFavoriteCity",
-    functionDescription: "Gets the user's favorite city.",
-    functionParameters: BinaryData.FromString("{}"),
-    strictModeEnabled: false
-);
+    /// <summary>
+    /// Example of a function with a single required parameter
+    /// </summary>
+    /// <param name="location">The location to get nickname for.</param>
+    /// <returns>The city nickname.</returns>
+    /// <exception cref="NotImplementedException"></exception>
+    private static string GetCityNickname(string location) => location switch
+    {
+        "Seattle, WA" => "The Emerald City",
+        _ => throw new NotImplementedException(),
+    };
 
-public static readonly FunctionTool getCityNicknameTool = ResponseTool.CreateFunctionTool(
-    functionName: "getCityNickname",
-    functionDescription: "Gets the nickname of a city, e.g. 'LA' for 'Los Angeles, CA'.",
-    functionParameters: BinaryData.FromObjectAsJson(
-        new
-        {
-            Type = "object",
-            Properties = new
+    /// <summary>
+    /// Example of a function with one required and one optional, enum parameter
+    /// </summary>
+    /// <param name="location">Get weather for location.</param>
+    /// <param name="temperatureUnit">"c" or "f"</param>
+    /// <returns>The weather in selected location.</returns>
+    /// <exception cref="NotImplementedException"></exception>
+    public static string GetWeatherAtLocation(string location, string temperatureUnit = "f") => location switch
+    {
+        "Seattle, WA" => temperatureUnit == "f" ? "70f" : "21c",
+        _ => throw new NotImplementedException()
+    };
+
+    // For each function, create FunctionTool, which defines the function name, description, and parameters.
+    public static readonly FunctionTool getUserFavoriteCityTool = ResponseTool.CreateFunctionTool(
+        functionName: "getUserFavoriteCity",
+        functionDescription: "Gets the user's favorite city.",
+        functionParameters: BinaryData.FromString("{}"),
+        strictModeEnabled: false
+    );
+
+    public static readonly FunctionTool getCityNicknameTool = ResponseTool.CreateFunctionTool(
+        functionName: "getCityNickname",
+        functionDescription: "Gets the nickname of a city, e.g. 'LA' for 'Los Angeles, CA'.",
+        functionParameters: BinaryData.FromObjectAsJson(
+            new
             {
-                Location = new
+                Type = "object",
+                Properties = new
                 {
-                    Type = "string",
-                    Description = "The city and state, e.g. San Francisco, CA",
+                    Location = new
+                    {
+                        Type = "string",
+                        Description = "The city and state, e.g. San Francisco, CA",
+                    },
                 },
+                Required = new[] { "location" },
             },
-            Required = new[] { "location" },
-        },
-        new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase }
-    ),
-    strictModeEnabled: false
-);
+            new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase }
+        ),
+        strictModeEnabled: false
+    );
 
-private static readonly FunctionTool getCurrentWeatherAtLocationTool = ResponseTool.CreateFunctionTool(
-    functionName: "getCurrentWeatherAtLocation",
-    functionDescription: "Gets the current weather at a provided location.",
-    functionParameters: BinaryData.FromObjectAsJson(
-         new
-         {
-             Type = "object",
-             Properties = new
+    private static readonly FunctionTool getCurrentWeatherAtLocationTool = ResponseTool.CreateFunctionTool(
+        functionName: "getCurrentWeatherAtLocation",
+        functionDescription: "Gets the current weather at a provided location.",
+        functionParameters: BinaryData.FromObjectAsJson(
+             new
              {
-                 Location = new
+                 Type = "object",
+                 Properties = new
                  {
-                     Type = "string",
-                     Description = "The city and state, e.g. San Francisco, CA",
+                     Location = new
+                     {
+                         Type = "string",
+                         Description = "The city and state, e.g. San Francisco, CA",
+                     },
+                     Unit = new
+                     {
+                         Type = "string",
+                         Enum = new[] { "c", "f" },
+                     },
                  },
-                 Unit = new
-                 {
-                     Type = "string",
-                     Enum = new[] { "c", "f" },
-                 },
+                 Required = new[] { "location" },
              },
-             Required = new[] { "location" },
-         },
-        new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase }
-    ),
-    strictModeEnabled: false
-);
+            new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase }
+        ),
+        strictModeEnabled: false
+    );
 
-// Create the method GetResolvedToolOutput.
-// It runs the preceding functions and wraps the output in a ResponseItem object.
-private static FunctionCallOutputResponseItem GetResolvedToolOutput(FunctionCallResponseItem item)
-{
-    if (item.FunctionName == getUserFavoriteCityTool.FunctionName)
+    // Create the method GetResolvedToolOutput.
+    // It runs the preceding functions and wraps the output in a ResponseItem object.
+    private static FunctionCallOutputResponseItem GetResolvedToolOutput(FunctionCallResponseItem item)
     {
-        return ResponseItem.CreateFunctionCallOutputItem(item.CallId, GetUserFavoriteCity());
-    }
-    using JsonDocument argumentsJson = JsonDocument.Parse(item.FunctionArguments);
-    if (item.FunctionName == getCityNicknameTool.FunctionName)
-    {
-        string locationArgument = argumentsJson.RootElement.GetProperty("location").GetString();
-        return ResponseItem.CreateFunctionCallOutputItem(item.CallId, GetCityNickname(locationArgument));
-    }
-    if (item.FunctionName == getCurrentWeatherAtLocationTool.FunctionName)
-    {
-        string locationArgument = argumentsJson.RootElement.GetProperty("location").GetString();
-        if (argumentsJson.RootElement.TryGetProperty("unit", out JsonElement unitElement))
+        if (item.FunctionName == getUserFavoriteCityTool.FunctionName)
         {
-            string unitArgument = unitElement.GetString();
-            return ResponseItem.CreateFunctionCallOutputItem(item.CallId, GetWeatherAtLocation(locationArgument, unitArgument));
+            return ResponseItem.CreateFunctionCallOutputItem(item.CallId, GetUserFavoriteCity());
         }
-        return ResponseItem.CreateFunctionCallOutputItem(item.CallId, GetWeatherAtLocation(locationArgument));
-    }
-    return null;
-}
-
-// Create an agent version with the defined functions as tools.
-PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
-{
-    Instructions = "You are a weather bot. Use the provided functions to help answer questions. "
-            + "Customize your responses to the user's preferences as much as possible and use friendly "
-            + "nicknames for cities whenever possible.",
-    Tools = { getUserFavoriteCityTool, getCityNicknameTool, getCurrentWeatherAtLocationTool }
-};
-AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
-    agentName: "myAgent",
-    options: new(agentDefinition));
-
-// Responses must be obtained multiple times to supply function outputs.
-// Method CreateAndCheckResponse is defined for brevity.
-public static ResponseResult CreateAndCheckResponse(ResponsesClient responseClient, IEnumerable<ResponseItem> items)
-{
-    ResponseResult response = responseClient.CreateResponse(
-        inputItems: items);
-    Assert.That(response.Status, Is.EqualTo(ResponseStatus.Completed));
-    return response;
-}
-
-// If the local function call is required, the response item is of type FunctionCallResponseItem.
-// It contains the function name needed by the Agent. In this case, use the helper method
-// GetResolvedToolOutput to get the FunctionCallOutputResponseItem with the function call result.
-// To provide the right answer, supply all the response items to the CreateResponse call.
-// At the end, output the function's response.
-ResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
-
-ResponseItem request = ResponseItem.CreateUserMessageItem("What's the weather like in my favorite city?");
-var inputItems = new List<ResponseItem> { request };
-bool functionCalled = false;
-ResponseResult response;
-do
-{
-    response = CreateAndCheckResponse(
-        responseClient,
-        inputItems);
-    functionCalled = false;
-    foreach (ResponseItem responseItem in response.OutputItems)
-    {
-        inputItems.Add(responseItem);
-        if (responseItem is FunctionCallResponseItem functionToolCall)
+        using JsonDocument argumentsJson = JsonDocument.Parse(item.FunctionArguments);
+        if (item.FunctionName == getCityNicknameTool.FunctionName)
         {
-            Console.WriteLine($"Calling {functionToolCall.FunctionName}...");
-            inputItems.Add(GetResolvedToolOutput(functionToolCall));
-            functionCalled = true;
+            string locationArgument = argumentsJson.RootElement.GetProperty("location").GetString();
+            return ResponseItem.CreateFunctionCallOutputItem(item.CallId, GetCityNickname(locationArgument));
         }
+        if (item.FunctionName == getCurrentWeatherAtLocationTool.FunctionName)
+        {
+            string locationArgument = argumentsJson.RootElement.GetProperty("location").GetString();
+            if (argumentsJson.RootElement.TryGetProperty("unit", out JsonElement unitElement))
+            {
+                string unitArgument = unitElement.GetString();
+                return ResponseItem.CreateFunctionCallOutputItem(item.CallId, GetWeatherAtLocation(locationArgument, unitArgument));
+            }
+            return ResponseItem.CreateFunctionCallOutputItem(item.CallId, GetWeatherAtLocation(locationArgument));
+        }
+        return null;
     }
-} while (functionCalled);
-Console.WriteLine(response.GetOutputText());
 
-// Remove all the resources created in this sample.
-projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+    public static void Main() 
+    {
+        // Create project client and read the environment variables that will be used in the next steps.
+        var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
+        var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
+        AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+        // Create an agent version with the defined functions as tools.
+        PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+        {
+            Instructions = "You are a weather bot. Use the provided functions to help answer questions. "
+                    + "Customize your responses to the user's preferences as much as possible and use friendly "
+                    + "nicknames for cities whenever possible.",
+            Tools = { getUserFavoriteCityTool, getCityNicknameTool, getCurrentWeatherAtLocationTool }
+        };
+        AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+            agentName: "myAgent",
+            options: new(agentDefinition));
+
+        // If the local function call is required, the response item is of type FunctionCallResponseItem.
+        // It contains the function name needed by the Agent. In this case, use the helper method
+        // GetResolvedToolOutput to get the FunctionCallOutputResponseItem with the function call result.
+        // To provide the right answer, supply all the response items to the CreateResponse call.
+        // At the end, output the function's response.
+        ResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+
+        ResponseItem request = ResponseItem.CreateUserMessageItem("What's the weather like in my favorite city?");
+        var inputItems = new List<ResponseItem> { request };
+        string previousResponseId = null;
+        bool functionCalled = false;
+        ResponseResult response;
+        do
+        {
+            response = responseClient.CreateResponse(
+                previousResponseId: previousResponseId,
+                inputItems: inputItems);
+            previousResponseId = response.Id;
+            inputItems.Clear();
+            functionCalled = false;
+            foreach (ResponseItem responseItem in response.OutputItems)
+            {
+                inputItems.Add(responseItem);
+                if (responseItem is FunctionCallResponseItem functionToolCall)
+                {
+                    Console.WriteLine($"Calling {functionToolCall.FunctionName}...");
+                    inputItems.Add(GetResolvedToolOutput(functionToolCall));
+                    functionCalled = true;
+                }
+            }
+        } while (functionCalled);
+        Console.WriteLine(response.GetOutputText());
+
+        // Remove all the resources created in this sample.
+        projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+    }
+}
 ```
 
 ### Expected output
