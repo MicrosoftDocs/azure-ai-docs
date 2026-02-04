@@ -65,11 +65,11 @@ Connect your existing **Conversational Language Understanding** (CLU) and **Cust
 
 1. Link your tasks by selecting the radio button next to the task you want to link, and then selecting the **Link fine-tuning task** from the top navigation bar. The **Orchestration intent name** field automatically populates with the same name as the **Fine-tuning task name** field.
 
-   :::image type="content" source="../../media/orchestration-link-tasks.png" alt-text="Screenshot of linking tasks in orchestration workflow in the Foundry.":::
+   :::image type="content" source="../../media/orchestration-link-tasks.png" alt-text="Screenshot of linking tasks in orchestration workflow in the Foundry." lightbox="../../media/orchestration-link-tasks.png":::
 
 1. Once this step is complete, the status for your linked tasks changes from **Unlinked** to **Linked** in the **Configure orchestration** section.
 
-   :::image type="content" source="../../media/orchestration-linked-tasks.png" alt-text="Screenshot of linked tasks in orchestration workflow in the Foundry.":::
+   :::image type="content" source="../../media/orchestration-linked-tasks.png" alt-text="Screenshot of linked tasks in orchestration workflow in the Foundry." lightbox="../../media/orchestration-linked-tasks.png":::
 
 1. You can add more fine-tuning tasks for your orchestration workflow by repeating steps 2 and 3 as needed.
 
