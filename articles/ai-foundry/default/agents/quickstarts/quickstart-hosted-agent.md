@@ -101,7 +101,7 @@ Initialize a new project with the Foundry starter template and configure it with
     | Model deployment | Model used by the agent | See [Foundry pricing](https://azure.microsoft.com/pricing/details/microsoft-foundry/) |
     | Foundry project | Hosts your agent and provides AI capabilities | Consumption-based; see [Foundry pricing](https://azure.microsoft.com/pricing/details/ai-foundry/) |
     | Azure Container Registry | Stores your agent container images | Basic tier; see [ACR pricing](https://azure.microsoft.com/pricing/details/container-registry/) |
-    | Log Analytics Workspace | Manage all log data in one place | No direct cost. See [Log Analytics cost]([Log Analytics workspace overview - Azure Monitor ) |
+    | Log Analytics Workspace | Manage all log data in one place | No direct cost. See [Log Analytics cost](/azure/azure-monitor/logs/log-analytics-workspace-overview) |
     | Application Insights | Monitors agent performance and logs | Pay-as-you-go; see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/) |
     | Managed identity | Authenticates your agent to Azure services | No cost |
 
