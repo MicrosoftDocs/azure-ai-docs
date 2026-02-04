@@ -196,7 +196,7 @@ Microsoft recommends assigning the _Azure AI Enterprise Network Connection Appro
 * Azure Database for MySQL
 * Azure Database for PostgreSQL
 * Foundry Tools
-* Azure Cache for Redis
+* Azure Managed Redis
 * Container Registry
 * API Management
 
