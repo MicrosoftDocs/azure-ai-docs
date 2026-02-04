@@ -33,7 +33,7 @@ Azure Speech in Foundry Tools lets your agent convert speech to text and generat
 
 This article shows how to connect the tool in Foundry portal.
 
-**Prefer code?** See [Connect to Model Context Protocol servers](./model-context-protocol.md) for SDK examples in Python, C#, and JavaScript.
+If you want to work with code, see [Connect to Model Context Protocol servers](./model-context-protocol.md) for SDK examples in Python, C#, and JavaScript.
 
 ## Security and privacy
 
