@@ -127,7 +127,7 @@ For broader Foundry Agent Service quotas and limits, see [Foundry Agent Service 
 
 Memory is currently in public preview. Pricing and billing for memory and the Memory Store API can change during preview.
 
-You're billed for usage of the underlying chat and embedding models you configure. For current pricing details, see [Foundry Agent Service pricing](https://azure.microsoft.com/en-us/pricing/details/foundry-agent-service/?msockid=053845effeba692426b55062faba6f36).
+You're billed for usage of the underlying chat and embedding models you configure. For current pricing details, see [Foundry Agent Service pricing](https://azure.microsoft.com/pricing/details/foundry-agent-service/?msockid=053845effeba692426b55062faba6f36).
 
 ## Related content
 
