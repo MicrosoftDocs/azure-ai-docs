@@ -125,7 +125,7 @@ The endpoint returns 200 OK once the SIP leg is ringing and the real-time sessio
 
 ### Reject the call
 
-Use the Reject call endpoint to decline an invite when you don't want to handle the incoming call (for example, from an unsupported country code.) To control the response sent back to the carrier, supply an optional SIP status code along with the required call_id path parameter. The example here shows a request sending 486, which indicates the system is too busy to take the call.
+Use the Reject call endpoint to decline an invite when you don't want to handle the incoming call (for example, from an unsupported country/region code.) To control the response sent back to the carrier, supply an optional SIP status code along with the required call_id path parameter. The example here shows a request sending 486, which indicates the system is too busy to take the call.
 
 ```
 curl -X POST "https://<your azure resource name>.openai.azure.com/openai/v1/realtime/calls/$CALL_ID/reject" \
