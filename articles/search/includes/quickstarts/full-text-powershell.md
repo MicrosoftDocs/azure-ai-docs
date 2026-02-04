@@ -16,15 +16,15 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
 
 ## Prerequisites
 
-+ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-+ An [Azure AI Search service](../../search-create-service-portal.md). You can use a free service for this quickstart.
+- An [Azure AI Search service](../../search-create-service-portal.md). You can use a free service for this quickstart.
 
-+ The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
+- The latest version of [PowerShell](https://github.com/PowerShell/PowerShell).
 
-+ The latest version of [PowerShell](https://github.com/PowerShell/PowerShell).
+- [Git](https://git-scm.com/downloads) to clone the sample repository.
 
-+ [Git](https://git-scm.com/downloads) to clone the sample repository.
+- The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
 
 ## Configure access
 

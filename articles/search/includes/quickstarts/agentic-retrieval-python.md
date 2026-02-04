@@ -30,7 +30,9 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
 
 + The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
 
-+ [Visual Studio Code](https://code.visualstudio.com/download) and the latest version of [Python](https://www.python.org/downloads/).
++ The latest version of [Python](https://www.python.org/downloads/).
+
++ [Visual Studio Code](https://code.visualstudio.com/download) with the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python).
 
 [!INCLUDE [Setup](./agentic-retrieval-setup.md)]
 

@@ -20,11 +20,13 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
 
 - An [Azure AI Search service](../../search-create-service-portal.md). You can use a free service for this quickstart.
 
-- The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
+- The latest LTS version of [Node.js](https://nodejs.org/en/download/).
 
-- [Visual Studio Code](https://code.visualstudio.com/download) and the latest LTS version of [Node.js](https://nodejs.org/en/download/).
+- [Visual Studio Code](https://code.visualstudio.com/download).
 
 - [Git](https://git-scm.com/downloads) to clone the sample repository.
+
+- The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
 
 ## Configure access
 

@@ -20,11 +20,11 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
 
 - An [Azure AI Search service](../../search-create-service-portal.md). You can use a free service for this quickstart.
 
-- The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
-
 - [Visual Studio Code](https://code.visualstudio.com/download) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
 - [Git](https://git-scm.com/downloads) to clone the sample repository.
+
+- The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
 
 ## Configure access
 
