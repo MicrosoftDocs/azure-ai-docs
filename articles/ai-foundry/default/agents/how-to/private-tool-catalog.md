@@ -1,22 +1,23 @@
 ---
 title: "Create a private tool catalog in Foundry Agent Service"
-description: "Create an organization-scoped private tool catalog for MCP servers using Azure API Center, then discover and configure it in Foundry Tools."
+description: "Create a private tool catalog in Foundry Agent Service using Azure API Center. Let developers discover and configure organization-scoped MCP server tools."
 author: aahill
 ms.author: aahi
-ms.date: 01/20/2026
+ms.date: 02/03/2026
 ms.manager: nitinme
 ms.topic: how-to
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.custom: pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
+#CustomerIntent: As a platform admin, I want to create a private tool catalog so that developers in my organization can discover and use approved MCP server tools.
 ---
 
 # Create a private tool catalog (preview)
 
 [!INCLUDE [preview-feature](../../../openai/includes/preview-feature.md)]
 
-Use this article to create a private tool catalog for your organization by using [Azure API Center](/azure/api-center/register-discover-mcp-server). In Foundry Agent Service, developers can discover tools from your private catalog in Foundry Tools.
+Create a private tool catalog so developers in your organization can discover, configure, and use MCP server tools through Foundry Tools. A private tool catalog uses [Azure API Center](/azure/api-center/register-discover-mcp-server) to register organization-scoped tools that only your developers can access.
 
 ## Prerequisites
 
@@ -29,9 +30,9 @@ Use this article to create a private tool catalog for your organization by using
 
 * One or more remote MCP servers that you want to share with your organization. Register them with API Center by following [Configure environments and deployments in Azure API Center](/azure/api-center/tutorials/configure-environments-deployments).
 
-## Plan access for admins and developers
+## Plan administrator and developer access
 
-Decide who manages the catalog and who consumes it.
+Before you create the catalog, decide who manages it and who consumes it.
 
 | Goal | Who | Where | What to do |
 |---|---|---|---|
@@ -39,14 +40,14 @@ Decide who manages the catalog and who consumes it.
 | Discover tools from the private catalog | Developers | Azure API Center (RBAC) | Assign access so developers can view the registered MCP servers. |
 | Configure and use tools | Developers | Foundry project | Confirm developers can access the Foundry project and can configure tools in Foundry Tools. |
 
-## Configure authentication (optional)
+## Configure MCP server authentication
 
-If your remote MCP server requires authentication, configure it in Azure API Center.
+If your remote MCP server requires authentication, configure the authentication settings in Azure API Center. This step is optional if your MCP server doesn't require authentication.
 
 1. In the [Azure portal](https://portal.azure.com), go to your API Center resource.
 1. Select **Governance** > **Authorization**.
 
-    :::image type="content" source="../media/tool-catalog/api-center-resource.png" alt-text="Screenshot of the Azure API Center resource page in the Azure portal." lightbox="../media/tool-catalog/api-center-resource.png":::
+    :::image type="content" source="../media/tool-catalog/api-center-resource.png" alt-text="Screenshot that shows the Governance menu expanded with the Authorization option selected in Azure API Center." lightbox="../media/tool-catalog/api-center-resource.png":::
 
 1. Select **Add configuration**.
 1. Under **Security scheme**, choose the scheme required by your MCP server (for example, **API Key**, **OAuth**, or **HTTP** bearer token), then provide the required values.
@@ -56,40 +57,48 @@ If your remote MCP server requires authentication, configure it in Azure API Cen
 
 1. Select the MCP server, then select **Details** > **Versions** > **Manage access (preview)**.
 
-    :::image type="content" source="../media/tool-catalog/api-center-versions.png" alt-text="Screenshot of the Versions page for an API Center entry in the Azure portal." lightbox="../media/tool-catalog/api-center-versions.png":::
+    :::image type="content" source="../media/tool-catalog/api-center-versions.png" alt-text="Screenshot that shows the Versions page with the Manage access option for configuring authorization in Azure API Center." lightbox="../media/tool-catalog/api-center-versions.png":::
 
 1. Select the authorization configuration you created.
 
-## Give access to your organization
+After you complete these steps, the MCP server is configured to use the selected authentication scheme when developers invoke it from Foundry Tools.
 
-To let developers discover MCP servers from your private tool catalog in Foundry Tools, assign them access to the API Center resource.
+## Grant developer access to the catalog
+
+Assign Azure RBAC permissions so developers can discover MCP servers from your private tool catalog in Foundry Tools.
 
 1. Decide whether to grant access to a security group or to individual users.
 1. Assign at least the [Azure API Center Data Reader](/azure/role-based-access-control/built-in-roles/integration#azure-api-center-data-reader) role (or an equivalent custom role) to those users.
 
-## Verify the private tool catalog in Foundry Tools
+> [!NOTE]
+> Role assignments can take up to 24 hours to propagate. If developers don't see the catalog immediately, wait and try again.
 
-After you grant access, confirm that developers can find the catalog in Foundry.
+## Verify catalog discovery in Foundry Tools
+
+After you grant access, confirm that developers can find and use the catalog in the Foundry portal.
 
 1. In the Foundry portal, open the project that your developers use.
 1. Go to **Build** > **Tools**.
 1. Use search and filters to find your private tool catalog by the API Center name.
 1. Select a tool from the catalog and review its setup requirements.
 
-To add an MCP server tool to an agent, see [Connect to Model Context Protocol servers](tools/model-context-protocol.md).
+If the catalog appears and displays your registered MCP servers, the configuration is complete. To add an MCP server tool to an agent, see [Connect to Model Context Protocol servers](tools/model-context-protocol.md).
 
-## Troubleshooting
+## Troubleshoot private tool catalog issues
+
+If you encounter problems setting up or using your private tool catalog, use the following table to identify and resolve common issues.
 
 | Issue | Cause | Resolution |
 |---|---|---|
-| You can't find the private tool catalog in Foundry Tools. | You don't have access to the API Center resource, or you're in the wrong Foundry project. | Confirm you have the required API Center role assignment, then confirm you're in the expected Foundry project and go to **Build** > **Tools**. |
-| You can see the catalog, but you can't configure a tool. | The tool requires authentication or configuration values you don't have. | Review the tool's setup requirements, then ask a catalog admin for the required access. For MCP authentication options, see [MCP server authentication](mcp-authentication.md). |
+| The private tool catalog doesn't appear in Foundry Tools. | You don't have access to the API Center resource, or you're in the wrong Foundry project. | Confirm you have the Azure API Center Data Reader role assignment. Then confirm you're in the expected Foundry project and go to **Build** > **Tools**. |
+| The catalog appears, but you can't configure a tool. | The tool requires authentication or configuration values you don't have. | Review the tool's setup requirements, then ask a catalog admin for the required access. For MCP authentication options, see [MCP server authentication](mcp-authentication.md). |
 | Tool calls fail after configuration. | Authentication is incorrect, expired, or not supported by the MCP server. | Re-check the authentication method required by the MCP server, and validate the credential format. For guidance, see [MCP server authentication](mcp-authentication.md). |
+| The catalog doesn't appear after role assignment. | Azure RBAC role assignments can take up to 24 hours to propagate. | Wait up to 24 hours and try again. If the issue persists, verify the role assignment in the Azure portal under **Access control (IAM)**. |
+| MCP server shows as unavailable. | The MCP server URL changed, or the server is offline. | Verify the MCP server endpoint is accessible. Update the server registration in API Center if the URL changed. |
+| OAuth authentication prompts repeatedly. | Token expiration or consent not granted. | Ensure users grant consent when prompted. For long-running sessions, tokens might expire. Re-authenticate through the tool configuration. |
 
-## Next steps
+## Related content
 
-> [!div class="nextstepaction"]
-> [Discover and manage tools in the Foundry tool catalog](../concepts/tool-catalog.md)
+[Discover and manage tools in the Foundry tool catalog](../concepts/tool-catalog.md)
 
-> [!div class="nextstepaction"]
-> [Connect to Model Context Protocol servers](tools/model-context-protocol.md)
+[Connect to Model Context Protocol servers](tools/model-context-protocol.md)
