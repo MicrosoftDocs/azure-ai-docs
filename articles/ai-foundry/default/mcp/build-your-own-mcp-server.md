@@ -8,7 +8,7 @@ author: jonburchel
 ms.author: jburchel
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 01/20/2026
+ms.date: 02/05/2026
 ai-usage: ai-assisted
 ms.custom: ai-assisted
 ---
@@ -70,6 +70,14 @@ Azure Functions is a serverless compute service that provides scale-to-zero capa
    func start
    ```
 
+   After the function host starts, verify the MCP endpoint is accessible:
+
+   ```bash
+   curl http://localhost:7071/runtime/webhooks/mcp
+   ```
+
+   You should receive an MCP server response. If you see errors, check the function app logs in the terminal output.
+
 1. Deploy your MCP server to Azure by using the Azure Developer CLI:
 
    ```bash
@@ -85,7 +93,7 @@ Azure Functions is a serverless compute service that provides scale-to-zero capa
 
    If you prefer a CLI workflow to retrieve function access keys, see [Work with access keys in Azure Functions](/azure/azure-functions/function-keys-how-to?tabs=azure-cli#get-your-function-access-keys).
 
-For detailed implementation guidance, see [Quickstart: Build a custom remote MCP server using Azure Functions](/azure/azure-functions/scenario-custom-remote-mcp-server?pivots=programming-language-python).
+For additional implementation details including advanced authentication patterns and troubleshooting, see the [Azure-Samples/remote-mcp-functions-python README](https://github.com/Azure-Samples/remote-mcp-functions-python#readme).
 
 ## Secure your MCP server endpoint
 
@@ -111,28 +119,27 @@ To register your MCP server:
    > [!TIP]
    > The API Center name becomes your private tool catalog name in the registry filter. Choose an informative name that helps users identify your organization's tool catalog.
 
-1. Register your remote MCP server by adding it as an API:
+1. In the left navigation pane, select **APIs**.
 
-   a. In the left navigation pane, select **APIs**.
-   
-   b. Select **+ Add API** and provide the required information about your MCP server.
-   
-   c. Configure environments and deployments following the tutorial: [Add environments and deployments for APIs in Azure API Center](/azure/api-center/configure-environments-deployments).
+1. Select **+ Add API** and provide the required information about your MCP server.
+
+1. Configure environments and deployments following the tutorial: [Add environments and deployments for APIs in Azure API Center](/azure/api-center/configure-environments-deployments).
 
 1. Configure authentication for your MCP server (optional):
 
-   a. In the left navigation pane of your API Center resource, select **Governance** > **Authorization**.
+   In the left navigation pane of your API Center resource, select **Governance** > **Authorization**.
 
    :::image type="content" source="../media/build-your-own-mcp-server/azure-api-center-authorization-page.png" alt-text="Screenshot showing the Azure API Center authorization configuration page with Governance menu expanded." lightbox="../media/build-your-own-mcp-server/azure-api-center-authorization-page.png":::
 
-   b. Select **Add configuration**.
-   
-   c. Choose the security scheme that matches your MCP server requirements:
-      - **API Key**: Developers provide the API key during tool configuration in Foundry
-      - **OAuth**: Configure OAuth 2.0 authentication parameters
-      - **HTTP**: Configure bearer token authorization
-   
-   d. Provide the required authentication details for your selected scheme.
+1. Select **Add configuration**.
+
+1. Choose the security scheme that matches your MCP server requirements:
+
+   - **API Key**: Developers provide the API key during tool configuration in Foundry
+   - **OAuth**: Configure OAuth 2.0 authentication parameters
+   - **HTTP**: Configure bearer token authorization
+
+1. Provide the required authentication details for your selected scheme.
 
    > [!NOTE]
    > If you choose API Key authentication, the key you store in Azure Key Vault isn't automatically used in Foundry. Developers must provide the API key when configuring the MCP server connection.
@@ -219,10 +226,13 @@ When you're done, delete Azure resources created by the template to avoid ongoin
 
 1. If you registered the server in Azure API Center, remove the API entry if you no longer need it.
 
-## Related content
+## Next steps
 
 - [Get started with Agent Service](../../agents/quickstart.md)
 - [Connect to Model Context Protocol servers (preview)](../agents/how-to/tools/model-context-protocol.md)
+
+## Related content
+
 - [MCP server authentication](../agents/how-to/mcp-authentication.md)
 - [Get started with Foundry MCP Server (preview) using Visual Studio Code](get-started.md)
 - [Foundry MCP Server best practices and security guidance](security-best-practices.md)
