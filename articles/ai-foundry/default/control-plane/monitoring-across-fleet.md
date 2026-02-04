@@ -68,7 +68,7 @@ Control Plane requires agents to log diagnostic information following OpenTeleme
 
 Follow these steps for each project where you want to configure monitoring:
 
-1. Select **Operate** > **Admin console**.
+1. Select **Operate** > **Admin**.
 
 1. Under **All projects**, use the search box to look for your project.
 
