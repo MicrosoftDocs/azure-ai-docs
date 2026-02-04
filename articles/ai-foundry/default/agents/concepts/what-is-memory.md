@@ -161,5 +161,5 @@ You're billed for usage of the underlying **chat** and **embedding** models you 
 ## Next steps
 
 - Follow the end-to-end setup: [Create and use memory in Foundry Agent Service](../how-to/memory-usage.md).
-- Confirm model availability: [Supported models in Foundry Agent Service](../../../agents/concepts/model-region-support.md).
+- Confirm model availability: [Azure OpenAI models and regions for Foundry Agent Service](../../../agents/concepts/model-region-support.md).
 - Build a complete agent: [Microsoft Foundry Quickstart](../../../quickstarts/get-started-code.md).
