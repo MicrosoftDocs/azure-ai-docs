@@ -247,9 +247,9 @@ Use the link provided in the output from the `azd up` command, or navigate to th
 
 1. Verify that the agent responds with information from web search results. The response might take a few seconds as the agent queries external sources.
 
->  [!TIP]
-> If the playground doesn't load or the agent doesn't respond, verify the agent status is `Started` using the CLI command below.
-
+  > [!TIP]
+  > If the playground doesn't load or the agent doesn't respond, verify the agent status is `Started` using the CLI command below.
+  
 ### Find your resource names
 
 To use the Azure CLI verification command, you need the following values:
