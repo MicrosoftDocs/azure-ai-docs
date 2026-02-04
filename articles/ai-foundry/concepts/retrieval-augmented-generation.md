@@ -71,7 +71,7 @@ Agentic retrieval provides several advantages over classic RAG:
 * **Parallel execution** - Runs multiple focused subqueries simultaneously for better coverage. Instead of retrieving from a single query sequentially, parallel execution reduces latency and retrieves more diverse relevant results.
 * **Structured responses** - Returns grounding data, citations, and execution metadata along with results. This structured output makes it easier for your application to cite sources accurately and trace the reasoning behind answers.
 * **Built-in semantic ranking** - Ensures optimal relevance of results. Semantic ranking filters noise and prioritizes truly relevant passages, which is especially important with large datasets.
-* **Optional answer synthesis** - Can include LLM-formulated answers directly in the query response. You can choose whether to include concise LLM summaries in results or just raw passages for your application to process.
+* **Optional answer synthesis** - Can include LLM-formulated answers directly in the query response. Alternatively, you can choose to return raw, verbatim passages for your application to process.
 
 If you're using Azure AI Search as your retrieval engine, see [Agentic retrieval](/azure/search/agentic-retrieval-overview) and [Quickstart: Agentic retrieval](../../search/search-get-started-agentic-retrieval.md).
 
