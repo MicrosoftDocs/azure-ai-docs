@@ -45,7 +45,7 @@ RAG follows a three-step flow:
 
 1. **Retrieve**: When a user asks a question, your application queries an index or data store to find relevant content.
 2. **Augment**: The app combines the user's question and the retrieved content (grounding data) into a prompt.
-3. **Generate**: The model receives the augmented prompt and generates a response grounded in the retrieved content, reducing hallucination and enabling accurate citations.
+3. **Generate**: The model receives the augmented prompt and generates a response grounded in the retrieved content, reducing inaccuracies and enabling accurate citations.
 
 :::image type="content" source="../media/index-retrieve/rag-pattern.png" alt-text="Diagram that shows a user query, retrieval from a data store, and a grounded model response." lightbox="../media/index-retrieve/rag-pattern.png":::
 
