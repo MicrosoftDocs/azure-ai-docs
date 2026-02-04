@@ -49,6 +49,14 @@ To follow the code samples in this article, you need:
 
 :::code language="python" source="~/foundry-samples-main/samples/python/quickstart/quickstart-create-agent.py":::
 
+Set these environment variables before running the samples:
+
+| Variable | Description | Where to find it |
+| -------- | ----------- | ---------------- |
+| `PROJECT_ENDPOINT` | Your Foundry project endpoint | Overview page in the Foundry portal |
+| `MODEL_DEPLOYMENT_NAME` | Your model deployment name | **Models + endpoints** tab in your project |
+| `AGENT_NAME` | The name for your new aent | You can use a name of your choice, for example `MyAgent`. |
+
 For more samples, see [Azure SDK for Python agent samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/agents).
 
 # [C#](#tab/csharp)
@@ -60,6 +68,14 @@ For more samples, see [Azure SDK for Python agent samples](https://github.com/Az
 
 :::code language="csharp" source="~/foundry-samples-main/samples/csharp/quickstart/quickstart-create-agent.cs":::
 
+Set these environment variables before running the samples:
+
+| Variable | Description | Where to find it |
+| -------- | ----------- | ---------------- |
+| `PROJECT_ENDPOINT` | Your Foundry project endpoint | Overview page in the Foundry portal |
+| `MODEL_DEPLOYMENT_NAME` | Your model deployment name | **Models + endpoints** tab in your project |
+| `AGENT_NAME` | The name for your new aent | You can use a name of your choice, for example `MyAgent`. |
+
 For more samples, see [Azure SDK for .NET agent samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Projects/samples).
 
 # [TypeScript](#tab/typescript)
@@ -70,6 +86,13 @@ For more samples, see [Azure SDK for .NET agent samples](https://github.com/Azur
 > Package: [`@azure/ai-projects`](https://www.npmjs.com/package/@azure/ai-projects) | Node.js 20+
 
 :::code language="typescript" source="~/foundry-samples-main/samples/typescript/quickstart/src/quickstart-create-agent.ts":::
+
+Set these environment variables before running the samples:
+
+| Variable | Description | Where to find it |
+| -------- | ----------- | ---------------- |
+| `PROJECT_ENDPOINT` | Your Foundry project endpoint | Overview page in the Foundry portal |
+| `MODEL_DEPLOYMENT_NAME` | Your model deployment name | **Models + endpoints** tab in your project |
 
 For more samples, see [Azure SDK for JavaScript agent samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-projects/samples).
 
@@ -89,16 +112,17 @@ For more samples, see [Azure SDK for JavaScript agent samples](https://github.co
 
 :::code language="java" source="~/foundry-samples-main/samples/java/quickstart/src/main/java/com/microsoft/foundry/samples/CreateAgent.java":::
 
-For more samples, see [Azure SDK for Java agent samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/ai/azure-ai-agents/src/samples).
-
----
-
 Set these environment variables before running the samples:
 
 | Variable | Description | Where to find it |
 | -------- | ----------- | ---------------- |
 | `PROJECT_ENDPOINT` | Your Foundry project endpoint | Overview page in the Foundry portal |
 | `MODEL_DEPLOYMENT_NAME` | Your model deployment name | **Models + endpoints** tab in your project |
+| `AGENT_NAME` | The name for your new aent | You can use a name of your choice, for example `MyAgent`. |
+
+For more samples, see [Azure SDK for Java agent samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/ai/azure-ai-agents/src/samples).
+
+---
 
 ## How agents manage conversations
 
