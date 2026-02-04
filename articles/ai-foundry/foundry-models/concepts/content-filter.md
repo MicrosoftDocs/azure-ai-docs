@@ -27,12 +27,14 @@ ai-usage: ai-assisted
 > [!IMPORTANT]
 > The content filtering system doesn't apply to prompts and completions processed by audio models such as Whisper in Azure OpenAI in Microsoft Foundry Models. For more information, see [Audio models in Azure OpenAI](../../../ai-services/openai/concepts/models.md?tabs=standard-audio#standard-deployment-regional-models-by-endpoint).
 
+The following sections provide information about the content filtering categories, the filtering severity levels and their configurability, and API scenarios to consider in application design and implementation. 
+
 In addition to the content filtering system, Azure OpenAI performs monitoring to detect content and behaviors that suggest use of the service in a manner that might violate applicable product terms. For more information about understanding and mitigating risks associated with your application, see the [Transparency Note for Azure OpenAI](/azure/ai-foundry/responsible-ai/openai/transparency-note?tabs=text). For more information about how data is processed for content filtering and abuse monitoring, see [Data, privacy, and security for Azure OpenAI](/azure/ai-foundry/responsible-ai/openai/data-privacy#preventing-abuse-and-harmful-content-generation).  
 
-The following sections provide information about the content filtering categories, the filtering severity levels and their configurability, and API scenarios to consider in application design and implementation. 
 
 > [!NOTE]
 > We don't store prompts or completions for the purposes of content filtering. We don't use prompts or completions to train, retrain, or improve the content filtering system without user consent. For more information, see [Data, privacy, and security](/azure/ai-foundry/responsible-ai/openai/data-privacy).
+
 
 ## Content filter types
 
