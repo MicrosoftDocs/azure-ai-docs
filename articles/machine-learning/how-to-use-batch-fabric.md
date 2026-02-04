@@ -121,7 +121,7 @@ To configure the connection to the Azure Machine Learning workspace, complete th
 1. For **Authentication kind**, select **Organizational account** to use the credentials of the connected user, or **Service principal** to use a service principal.
    >[!NOTE]
    >A service principal is recommended for production settings. For either choice, ensure that the identity associated with the connection has permission to call the batch endpoint you deployed.
-1. For an organizational account, sign in if necessary. For a service principal connection, provide the necessary **Tenant ID**, **Service principal client ID**, and **Service principal secret**.
+1. For an organizational account, sign in if necessary. For a service principal connection, provide the **Tenant ID**, **Service principal client ID**, and **Service principal secret**.
 1. Select **Connect**.
    :::image type="content" source="./media/how-to-use-batch-fabric/fabric-pipeline-add-connection-credentials.png" alt-text="A screenshot showing how to configure the connection.":::
 
