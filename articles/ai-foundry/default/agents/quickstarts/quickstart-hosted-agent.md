@@ -213,14 +213,14 @@ The first deployment will take longer because Docker needs to build the image.
 > [!WARNING]
 > Your hosted agent incurs charges while deployed. After you finish testing, complete [Step 5: Clean up resources](#step-5-clean-up-resources) to delete resources and stop charges.
 
-When finished, you will see a link to the Agent Playground and the endpoint for the agent which can be used to invoke the agent programatically.
+When finished, you will see a link to the Agent Playground and the endpoint for the agent which can be used to invoke the agent programmatically.
 
 ```bash
 Deploying services (azd deploy)
                                                                                                                                                                      
   (✓) Done: Deploying service af-agent-with-foundry-tools
   - Agent playground (portal): https://ai.azure.com/nextgen/.../build/agents/af-agent-with-foundry-tools/build?version=1 
-  - Agent endpoint: https://ai-account-<name>.services.ai.azure.com/api/projects/<projcet>/agents/af-agent-with-foundry-tools/versions/1
+  - Agent endpoint: https://ai-account-<name>.services.ai.azure.com/api/projects/<project>/agents/af-agent-with-foundry-tools/versions/1
 ```
 
 
