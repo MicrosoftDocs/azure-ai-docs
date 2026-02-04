@@ -28,7 +28,7 @@ File Search augments the Assistant with knowledge from outside its model, such a
 
 ### Supported regions
 
-File search is available in [regions](../concepts/models.md#assistants-preview) that support Assistants. 
+File search is available in [regions](../../foundry-models/concepts/models-sold-directly-by-azure.md#assistants-preview) that support Assistants. 
 
 ### API Version
 

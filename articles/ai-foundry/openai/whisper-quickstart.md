@@ -59,7 +59,7 @@ In this quickstart, you use the [Azure OpenAI Whisper model](../../ai-services/s
 ::: zone-end
 
 > [!NOTE]
-> For information about other audio models that you can use with Azure OpenAI, see [Audio models](./concepts/models.md?tabs=standard-audio#standard-deployment-regional-models-by-endpoint).
+> For information about other audio models that you can use with Azure OpenAI, see [Audio models](../foundry-models/concepts/models-sold-directly-by-azure.md?tabs=standard-audio).
 
 > [!TIP]
 > The file size limit for the Whisper model is 25 MB. If you need to transcribe a file larger than 25 MB, you can use the Azure Speech in Foundry Tools [batch transcription](../../ai-services/speech-service/batch-transcription-create.md#use-a-whisper-model) API.
