@@ -54,7 +54,7 @@ The Description field provides the most verbose content. You should target this 
 
 ## Use the Azure portal
 
-You can use either the **Import data** wizard or the **Import data (new)** wizard to automate indexing from an SQL database table or view. The data source configuration is similar for both wizards.
+You can use either the **Import data** wizard or the **Import data (new)** wizard to automate indexing from a SQL database table or view. The data source configuration is similar for both wizards.
 
 1. [Start the wizard](search-import-data-portal.md#starting-the-wizards).
 
@@ -143,10 +143,10 @@ Indexers can connect to a table using the following connections.
 | Container shared access signature |
 |-----------------------------------|
 | `{ "connectionString" : "ContainerSharedAccessUri=https://<your storage account>.blob.core.windows.net/<container name>?sv=2016-05-31&sr=c&sig=<the signature>&se=<the validity end time>&sp=rl;" }` |
-| The SAS should have the list and read permissions on the container. For more information, see [Using Shared Access Signatures](/azure/storage/common/storage-sas-overview). |
+| The SAS should have the list and read permissions on the container. For more information, see [Grant limited access to Azure Storage resources using shared access signatures (SAS)](/azure/storage/common/storage-sas-overview). |
 
 > [!NOTE]
-> If you use SAS credentials, you'll need to update the data source credentials periodically with renewed signatures to prevent their expiration. When SAS credentials expire, the indexer will fail with an error message similar to "Credentials provided in the connection string are invalid or have expired".  
+> If you use SAS credentials, you need to update the data source credentials periodically with renewed signatures to prevent their expiration. If SAS credentials expire, the indexer fails with an error message similar to "Credentials provided in the connection string are invalid or have expired".
 
 <a name="Performance"></a>
 

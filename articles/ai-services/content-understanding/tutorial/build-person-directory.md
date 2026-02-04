@@ -1,11 +1,12 @@
 ---
 title: Build a person directory with Azure Content Understanding in Foundry Tools Face APIs (preview)
 titleSuffix: Foundry Tools
-description: Learn to build a person directory with Content Understanding Face APIs
+description: Learn how to build a person directory with Content Understanding Face APIs.
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
-ms.date: 09/16/2025
+ms.date: 01/29/2026
+ai-usage: ai-assisted
 ms.service: azure-ai-content-understanding
 ms.topic: tutorial
 ms.custom:
@@ -20,7 +21,7 @@ A person directory provides a structured approach to storing face data for recog
 
 ## Data storage recommendation
 
-For secure and scalable access, we recommend storing all face images in Azure Blob Storage. When making API calls, ensure that the face URLs reference these stored images in Blob Storage.
+For secure and scalable access, store face images in Azure Blob Storage. When you make API calls, make sure the face URLs reference those stored images.
 
 ## Enrollment
 
@@ -28,7 +29,7 @@ Enrollment involves the following steps:
 
 1. [Create an empty person directory](#create-an-empty-person-directory)
 1. [Add persons](#add-persons)
-1. [Add faces and associate with a person](#add-faces-and-associate-with-a-person)
+1. [Add faces and associate them with a person](#add-faces-and-associate-with-a-person)
   
 ### Create an empty person directory
 

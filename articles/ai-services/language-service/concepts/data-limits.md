@@ -5,7 +5,7 @@ description: Data and service limitations for Azure Language in Foundry Tools fe
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
+ms.topic: limits-and-quotas
 ms.date: 11/18/2025
 ms.author: lajanuar
 ---

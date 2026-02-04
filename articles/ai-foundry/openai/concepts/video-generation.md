@@ -6,7 +6,7 @@ ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: article
+ms.topic: concept-article
 monikerRange: 'foundry-classic || foundry'
 ms.date: 12/1/2025
 ---
@@ -41,12 +41,12 @@ Currently the Sora 2 API enforces several content restrictions:
 - Only content suitable for audiences under 18 (a setting to bypass this restriction will be available in the future).
 - Copyrighted characters and copyrighted music will be rejected.
 - Real people—including public figures—cannot be generated.
-- Input images with faces of humans are currently rejected.
+- Input images with faces of humans are currently rejected. Apply for permission using [this form](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUOUxNWjBVTjRRSDZVMjVEWUdNRzFEVVFOUCQlQCN0PWcu).
 
 Make sure prompts, reference images, and transcripts respect these rules to avoid failed generations.
 
 > [!NOTE] 
-> We are allowing face uploads on a case-by-case basis for managed customers. 
+> We are allowing face uploads on a case-by-case basis for Enterprise Agreement customers. See [Request Access to the Sora Human Uploads in the Azure OpenAI Models](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUOUxNWjBVTjRRSDZVMjVEWUdNRzFEVVFOUCQlQCN0PWcu).
 
 ## Sora 1 vs. Sora 2
 
@@ -782,7 +782,7 @@ Sora might have difficulty with complex physics, causal relationships (for examp
 
 - Please see Sora 2 API details above 
 - Jobs are available for up to 24 hours after they're created. After that, you must create a new job to generate the video again.
-- You can have two video creation jobs running at the same time. You must wait for one of the jobs to finish before you can create another.
+- You can create two video job requests per minute. The Sora 2 quota only counts video job requests: other types of requests are not rate-limited.
 
 ### Sora 1 Technical limitations
 

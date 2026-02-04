@@ -1,32 +1,41 @@
 ---
 title: "Quickstart: Multi-turn conversational language understanding (CLU) models with entity slot filling"
 titleSuffix: Foundry Tools
-description: Get started creating a CLU model for multi-turn interactions using slot-filling
+description: Create a multi-turn conversational language understanding (CLU) model with entity slot filling in Foundry (classic).
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: how-to
-ms.date: 11/05/2025
+ms.topic: quickstart
+ms.date: 01/21/2026
 ms.author: lajanuar
-ms.custom: language-service-clu
+ai-usage: ai-assisted
+ms.custom: 
+- language-service-clu
+- pilot-ai-workflow-jan-2026
 ---
 
 # Quickstart: Multi-turn CLU models with entity slot filling
 
 In this article, get started building a CLU model that uses entity slot filling to enable multi-turn conversations. This approach allows your model to collect information progressively across multiple conversation turns, rather than requiring users to provide all details in a single interaction to complete tasks naturally and efficiently.
 
+> [!NOTE]
+> Multi-turn entity slot filling is available only in Microsoft Foundry (classic). This quickstart uses the classic portal at [https://ai.azure.com/](https://ai.azure.com/). For more information about the portals, see [What is Microsoft Foundry?](../../../../ai-foundry/what-is-foundry.md).
+
+> [!IMPORTANT]
+> Deploying and using models can incur costs in your Azure subscription.
+
 ## Prerequisites
 
 * **Azure subscription** - If you don't have one, you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-* **Required permissions** - Ensure that the person establishing the account and project has the Azure AI Account Owner role at the subscription level. Alternatively, the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, see [Role based access control (RBAC)](/azure/ai-foundry/openai/how-to/role-based-access-control#cognitive-services-contributor).
+* **Required permissions** - Ensure that the person establishing the account and project has the Azure AI Account Owner role at the subscription level. Alternatively, the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, see [Language role-based access control](../../concepts/role-based-access-control.md) and [Assign Azure roles](/azure/role-based-access-control/role-assignments-steps).
 
 * **Azure Language in Foundry Tools resource** - Create a [Language resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics) in the Azure portal.
 
      > [!NOTE]
      > You need the **owner** role assigned on the **resource group** to create a Language resource.
 
-* **Microsoft Foundry project** - Create a project in Foundry. For more information, see [Create a Foundry project](/azure/ai-foundry/how-to/create-projects).
+* **Microsoft Foundry project** - Create a project in Foundry. For more information, see [Create a Foundry project](../../../../ai-foundry/how-to/create-projects.md).
 
 * **Deployed OpenAI model** - Deploy an OpenAI model in Foundry as described in the [Deploy an OpenAI model](#deploy-an-openai-model-in-foundry-portal) section.
 
@@ -54,6 +63,8 @@ To enable secure access, create a connection between your Language resource and 
 
   > [!NOTE]
   > The multi-turn capability is currently only available in the Foundry (classic) portal.
+
+For more information about connecting resources, see [How to use Foundry Tools in the Foundry portal](../../../connect-services-foundry-portal.md).
 
 1. Navigate to [Foundry (classic)](https://ai.azure.com/).
 
@@ -97,6 +108,15 @@ Deploy an OpenAI model to provide the foundational intelligence and advanced rea
 
 1. The model deployment is now complete.
 
+## Verify your setup
+
+Before you start building your multi-turn model, verify the dependencies for this quickstart:
+
+> [!div class="checklist"]
+> * Your Language resource appears under **Management center** > **Connected resources**.
+> * Your OpenAI deployment appears under **Models + endpoints**.
+> * You can open your Foundry project in Microsoft Foundry (classic).
+
 ## Build a multi-turn model
 
 Now that your Language resource, Foundry project, and OpenAI deployment are configured, you're ready to build your CLU model.
@@ -135,7 +155,7 @@ In this section, you create a travel agent model and deploy it using Quick Deplo
 1. In the main window, select **Add Intent**.
 
 1. The **Add Intent** window contains two required fields:
-   * Intent name(Pascal case)
+   * Intent name (Pascal case)
    * Intent description (required for Quick Deploy)
 
 1. After completing these fields, select **+ Add** to create your intents.
@@ -157,7 +177,7 @@ In this section, you create a travel agent model and deploy it using Quick Deplo
 1. Select the **Entities** tab, then select **Add entity**.
 
 1. The **Add an entity** window contains two required fields:
-   * Entity name (Pascal case)|
+   * Entity name (Pascal case)
    * Entity description
 1. After completing the entity fields, select **Add an entity**.
 
@@ -213,6 +233,8 @@ Now that all entities have associations, you can proceed with Quick Deploy using
 
 1. Select **Create**. Foundry manages the configuration and deployment processes through backend operations.
 
+   After deployment completes, your CLU project has a deployment you can select in the playground.
+
 ### Test your model in the playground
 
 1. From the **Getting Started** menu, select **Deploy your model**.
@@ -251,10 +273,41 @@ Now that all entities have associations, you can proceed with Quick Deploy using
 
 You successfully created a multi-turn CLU model with entity slot filling capabilities to collect required information across multiple dialog turns.
 
-## Clean up your resources
+## Troubleshooting
 
-To clean up and remove an Azure AI resource, delete either the individual resource or the entire resource group. Deleting the resource group removes all contained resources.
+| Issue | Cause | Resolution |
+|---|---|---|
+| You don't see **Connected service** in the CLU project creation flow. | The Language resource isn't connected to your Foundry hub, or you don't have access. | Confirm the Language resource appears in **Management center** > **Connected resources**, then verify you have **Cognitive Services Language Owner** or **Cognitive Services Contributor** on the Language resource. |
+| You can't select your OpenAI deployment during **Quick deploy with LLM**. | The model isn't deployed in your Foundry project, or you don't have access to the deployment. | Go to **Models + endpoints** and confirm the deployment exists. If needed, redeploy the model and try again. |
+| You don't see the **Multi-turn** option in the playground. | You're not using Microsoft Foundry (classic), or you're not in the correct CLU playground experience. | Confirm you're in the classic portal at [https://ai.azure.com/](https://ai.azure.com/), then open the CLU playground and select the **Multi-turn** understanding option. |
+| You get an authorization error when connecting resources or deploying models. | Missing Azure role assignments. | Verify your Azure role assignments for the subscription and the Language resource, then wait a few minutes for role propagation and try again. |
 
-## Related content
+## Clean up resources
 
-[Learn how CLU handles entity slot-filling across multi-turn conversations](../concepts/multi-turn-conversations.md).
+If you no longer need the Foundry project created for this quickstart, delete it to avoid ongoing charges for any deployed models.
+
+If you created an OpenAI deployment for this quickstart, delete the deployment first:
+
+1. In Microsoft Foundry (classic), go to **Models + endpoints**.
+1. Select the deployment you created.
+1. Select **Delete deployment**.
+
+For more information, see [Deploy models in Foundry](../../../../ai-foundry/how-to/deploy-models-managed.md).
+
+1. Go to [Microsoft Foundry (classic)](https://ai.azure.com/).
+1. Select the project you want to delete.
+1. Select **Management center**.
+1. Select **Delete project**.
+
+If you want to remove Azure resources, delete either the individual resource or the entire resource group. Deleting the resource group removes all contained resources.
+
+> [!TIP]
+> If you plan to delete an Azure AI resource that has model deployments, delete deployments first.
+
+## Next steps
+
+* [Learn how CLU handles entity slot filling across multi-turn conversations](../concepts/multi-turn-conversations.md)
+* [Build a multi-turn model](build-multi-turn-model.md)
+* [Call the CLU API](call-api.md)
+* [How to use Foundry Tools in the Foundry portal](../../../connect-services-foundry-portal.md)
+* [Language role-based access control](../../concepts/role-based-access-control.md)

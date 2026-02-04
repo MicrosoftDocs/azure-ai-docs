@@ -98,9 +98,9 @@ To learn more, see [Risk and safety evaluators](./evaluation-evaluators/risk-saf
 
 | Evaluator | Purpose | Inputs |
 |--|--|--|
-| Intent Resolution | Measures how accurately the agent identifies and addresses user intentions. | Query, response |
-| Task Adherence | Measures how well the agent follows through on identified tasks. | Query, response, tool definitions (optional) |
-| Tool Call Accuracy | Measures how well the agent selects and calls the correct tools to. | Query, either response or tool calls, tool definitions |
+| Intent Resolution (preview) | Measures how accurately the agent identifies and addresses user intentions. | Query, response |
+| Task Adherence (preview)| Measures how well the agent follows through on identified tasks. | Query, response, tool definitions (optional) |
+| Tool Call Accuracy (preview) | Measures how well the agent selects and calls the correct tools to. | Query, either response or tool calls, tool definitions |
 
 ::: moniker-end
 
@@ -108,11 +108,11 @@ To learn more, see [Risk and safety evaluators](./evaluation-evaluators/risk-saf
 
 | Evaluator | Purpose | Inputs |
 |--|--|--|
-| Task Adherence  | Measures whether the agent follows through on identified tasks according to system instructions. | Query, Response, Tool definitions (Optional) |
+| Task Adherence (preview)  | Measures whether the agent follows through on identified tasks according to system instructions. | Query, Response, Tool definitions (Optional) |
 | Task Completion (preview)| Measures whether the agent successfully completed the requested task end-to-end. | Query, Response, Tool definitions (Optional) |
-| Intent Resolution | Measures how accurately the agent identifies and addresses user intentions. | Query, Response, Tool definitions (Optional)  |
+| Intent Resolution (preview) | Measures how accurately the agent identifies and addresses user intentions. | Query, Response, Tool definitions (Optional)  |
 | Task Navigation Efficiency (preview) | Determines whether the agent's sequence of steps matches an optimal or expected path to measure efficiency. | Response, Ground truth |
-| Tool Call Accuracy | Measures the overall quality of tool calls including selection, parameter correctness, and efficiency. | Query, Tool definitions, Tool calls (Optional), Response |
+| Tool Call Accuracy (preview) | Measures the overall quality of tool calls including selection, parameter correctness, and efficiency. | Query, Tool definitions, Tool calls (Optional), Response |
 | Tool Selection (preview) | Measures whether the agent selected the most appropriate and efficient tools for a task. | Query, Tool definitions, Tool calls (Optional), Response |
 | Tool Input Accuracy (preview)| Validates that all tool call parameters are correct with strict criteria including grounding, type, format, completeness, and appropriateness. | Query, Response, Tool definitions |
 | Tool Output Utilization (preview)| Measures whether the agent correctly interprets and uses tool outputs contextually in responses and subsequent calls. | Query, Response, Tool definitions (Optional) |
@@ -188,7 +188,7 @@ Alternatively, you can also use [the Foundry portal](../how-to/evaluate-generati
 
 ::: moniker range="foundry"
 
-- Bring your own data: You can evaluate your AI applications in preproduction using your own evaluation data with supported evaluators, including generation quality, safety, or custom evaluators, and view results via the Foundry portal. Use Foundry's evaluation wizard or [Azure AI Evaluation SDK's](../how-to/develop/evaluate-sdk.md) supported evaluators, including generation quality, safety, or [custom evaluators](./evaluation-evaluators/custom-evaluators.md), and [view results via the Foundry portal](../how-to/evaluate-results.md).
+- Bring your own data: You can evaluate your AI applications in preproduction using your own evaluation data with supported evaluators, including generation quality, safety, or custom evaluators, and view results via the Foundry portal. Use Foundry's evaluation wizard or [Foundry SDK's](../how-to/develop/evaluate-sdk.md) supported evaluators, including generation quality, safety, or [custom evaluators](./evaluation-evaluators/custom-evaluators.md), and [view results via the Foundry portal](../how-to/evaluate-results.md).
 
 - Simulators and AI red teaming agent: If you don't have evaluation data (test data), simulators can help by generating topic-related or adversarial queries. These simulators test the model's response to situation-appropriate or attack-like queries (edge cases).
 
@@ -282,6 +282,9 @@ Currently certain AI-assisted evaluators are available only in the following reg
 | US North Central | Supported | N/A | N/A |
 | France Central | Supported | N/A | N/A |
 | Switzerland West | Supported | N/A | N/A |
+
+> [!NOTE]
+> Red teaming agent is only available in regions where risk and safety evaluators are supported.
 
 ### Agent playground evaluation region support
 

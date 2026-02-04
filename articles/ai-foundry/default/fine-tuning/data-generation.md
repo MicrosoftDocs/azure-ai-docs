@@ -7,7 +7,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.custom: ignite-2025
 ms.topic: how-to
-ms.date: 10/08/2025
+ms.date: 01/29/2026
 author: ssalgadodev
 ms.author: ssalgado
 ms.reviewer: williamliang
@@ -81,7 +81,7 @@ Our generators require a single reference file as the basis for generating new, 
 Supported formats:
 
 * <b>Simple Q&A</b>: A PDF, Markdown, or plain text document less than 20MB containing the subject knowledge you want the model to learn from.
-* <b>Tool use</b>: A valid OpenAPI Specification (Swagger) file in JSON less than 20MB that describes the APIs you want the model to learn to call as tools.
+* <b>Tool use</b>: A valid 3.0.x or 3.1.x OpenAPI Specification (Swagger) file in JSON less than 20MB that describes the APIs you want the model to learn to call as tools.
 
 
 > [!TIP]
@@ -102,11 +102,14 @@ In this preview, only one reference file is supported. If you have multiple docu
    2. Define the generation parameters if applicable
    3. Upload your reference file
    4. Select the number of samples to generate for your dataset (between 50 and 1000)
-   5. Select the model you want to use for data generation. If a model you selected is not deployed, a new deployment will be made for you automatically. 
-   6. Select if you want to perform 80/20 train-validation split on the generated dataset automatically
-   7. (Optional) Provide a custom identifiable name to append to the end of the data generation job ID
-   8. Submit your generation job by clicking the "Generate" button in the wizard
-6. Review generated data by selecting it after the job is complete. A preview panel will open on the right side of the screen to show you sample outputs and cost metrics.
+   5. Select the model you want to use for data generation. If a model you selected is not deployed, a new deployment will be made for you automatically.
+   1. Select if you want to perform 80/20 train-validation split on the generated dataset automatically
+   1. (Optional) Provide a custom identifiable name to append to the end of the data generation job ID
+   1. Submit your generation job by clicking the "Generate" button in the wizard
+1. Review generated data by selecting it after the job is complete. A preview panel will open on the right side of the screen to show you sample outputs and cost metrics.
+
+> [!IMPROTANT]
+> If you don't have an available generator model, you need to ask your admin to deploy one or you need to be assigned as `Azure AI owner` role to deploy models.
 
 ### Use your generated synthetic data for fine-tuning
 
@@ -203,8 +206,8 @@ Example (note the inclusion of description with business policies for the path a
 }
 ```
 
-### Start with generating a smaller batch and iterate
-When generating synthetic data for the first time, start with a smaller generation batch size to evaluate the quality of the generated data. Review the outputs and make adjustments to your reference file or generation parameters as needed before scaling up to larger batches. This can help you avoid unnecessary costs and ensure that the generated data meets your requirements.
+### Start with generating a sample size and iterate
+When generating synthetic data for the first time, start with a smaller generation sample size to evaluate the quality of the generated data. Review the outputs and make adjustments to your reference file or generation parameters as needed before scaling up to larger sample sizes. This can help you avoid unnecessary costs and ensure that the generated data meets your requirements.
 
 ### Experiment with hyperparameters when fine-tuning on synthetic data
 When fine-tuning your model with the generated synthetic data, experiment with different hyperparameters such as learning rate, batch size, and number of epochs to find the optimal settings for your specific use case. You may want to use a smaller learning rate when fine-tuning on synthetic data compared to real-world data to curb overfitting. You may also want to experiment with earlier checkpoints if the resulting model underperforms or shows signs of regression on specific evaluation heuristics.

@@ -8,7 +8,7 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: article
+ms.topic: error-reference
 ms.date: 10/14/2025
 ms.update-cycle: 180-days
 ---

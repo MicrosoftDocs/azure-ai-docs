@@ -5,7 +5,7 @@ author: jcodella
 ms.author: jacodel
 ms.manager: nitinme
 ms.service: azure-ai-personalizer
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 01/19/2024
 ---
 # Where and how to use Personalizer

@@ -6,8 +6,8 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: article 
-ms.date: 09/16/2025
+ms.topic: concept-article 
+ms.date: 01/30/2026
 manager: nitinme
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
@@ -15,7 +15,7 @@ ai-usage: ai-assisted
 
 ---
 
-# What is prompt transformation?
+# Prompt transformation
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
@@ -39,11 +39,11 @@ Prompt transformation is essential for responsible and high-quality generations.
 
 Default prompt transformation contains safety enhancements that steer the model away from generating images of Copyright Studio characters and artwork, public figures, and other harmful content such as sexual, hate and unfairness, violence, and self-harm content.
 
-## How do I use prompt transformation?
+## Use prompt transformation
 
 Prompt transformation is applied by default to all Azure OpenAI DALL-E 3 requests. No extra setup is required to benefit from prompt transformation enhancements.
 
-Like image generation, prompt transformation is non-deterministic due to the nature of large language models. A single original prompt may lead to many image variants.
+Like image generation, prompt transformation is non-deterministic due to the nature of large language models. A single original prompt might lead to many image variants.
 
 ## View prompt transformations
 

@@ -1,9 +1,9 @@
 ### YamlMime:Landing
 
-title: Speech to text documentation
-summary: Speech to text from the Speech service, also known as speech recognition, enables real-time and batch transcription of audio streams into text. With additional reference text input, it also enables real-time pronunciation assessment and gives speakers feedback on the accuracy and fluency of spoken audio.
+title: Speech-to-text documentation
+summary: Speech to text from Azure Speech, also known as speech recognition, enables real-time and batch transcription of audio streams into text. With additional reference text input, it also enables real-time pronunciation assessment and gives speakers feedback on the accuracy and fluency of spoken audio.
 metadata:
-  title: Speech to text documentation - Tutorials, API Reference - Foundry Tools | Microsoft Docs
+  title: Speech-to-Text Documentation - Tutorials, API Reference - Foundry Tools
   titleSuffix: Foundry Tools
   author: PatrickFarley
   manager: nitinme
@@ -57,9 +57,9 @@ landingContent:
       links:
         - text: Language support
           url: language-support.md
-        - text: Speech to text FAQ
+        - text: Speech-to-text FAQ
           url: faq-stt.yml
-        - text: Speech to text pricing
+        - text: Speech-to-text pricing
           url: https://azure.microsoft.com/pricing/details/cognitive-services/speech-services
 - title: Help and feedback
   linkLists:

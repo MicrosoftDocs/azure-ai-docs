@@ -6,6 +6,8 @@ items:
   href: ../../../foundry-status-dashboard-documentation.md
 - name: Use Microsoft Foundry with a screen reader
   href: ../../../tutorials/screen-reader.md
+- name: Known issues
+  href: ../../../reference/foundry-known-issues.md
 
 # Regional and Feature Support
 - name: Feature availability by region

@@ -1,100 +1,115 @@
 ---
-title: Model Lifecycle of Language service models
+title: Model Lifecycle for Azure Language service models
 titleSuffix: Foundry Tools
 description: This article describes the timelines for models and model versions used by Language service features.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
-ms.date: 11/18/2025
+ms.topic: concept-article
+ms.date: 01/30/2026
 ms.author: lajanuar
 ---
+<!-- markdownlint-disable MD025 -->
 # Model lifecycle
 
-Language features utilize AI models. We update Azure Language with new model versions to improve accuracy, support, and quality. As models become older, they're retired. Use this article for information on that process, and what you can expect for your applications.
+Azure Language features are powered by machine learning models that undergo continuous improvement and refinement. New model versions are released regularly to enhance prediction accuracy, expand language support, and improve overall output quality.
+
+As part of this iterative development process, older model versions are deprecated and eventually retired according to a defined lifecycle policy. This article provides detailed information about model versioning, deprecation timelines, and retirement procedures to help you plan for updates and maintain compatibility in your production applications.
 
 ## Prebuilt features
 
-Our standard (not customized) Language features are built on AI models that we call pretrained or prebuilt models.
+Prebuilt (also referred to as pretrained) features in Azure Language are powered by models trained on large datasets and are ready to use without added customization. These models provide out-of-the-box natural language processing capabilities for common scenarios.
 
-We regularly update Azure Language with new model versions to improve model accuracy, support, and quality.
+Prebuilt models are updated continuously to improve prediction accuracy, expand language coverage, and enhance output quality. By default, all API requests are automatically routed to the latest Generally Available (GA) model version.
 
-By default, all API requests use the latest Generally Available (GA) model.
+### Choose the model version used on your data
 
-#### Choose the model-version used on your data
+We recommend using the **latest** model version to ensure optimal accuracy and access to the most recent improvements. However, as models evolve, prediction outputs may change between versions. Deprecated model versions are no longer accepted in API requests after their retirement date.
 
-We recommend using the `latest` model version to utilize the latest and highest quality models. As our models improve, it's possible that some of your model results may change. Model versions may be deprecated, so we no longer accept specified GA model versions in your implementation.
+> [!IMPORTANT]
+> Preview model versions don't maintain a minimum retirement period and may be deprecated at any time without advance notice.
 
-Preview models used for preview features don't maintain a minimum retirement period and may be deprecated at any time.
-
-By default, API and SDK requests use the latest Generally Available model. To use a model in preview, you can use an optional parameter `modelVersion` to select the preview version of the model to be used (not recommended for GA models).
+By default, API and SDK requests are processed using the latest Generally Available model version. To specify an alternative version, use the optional **modelVersion** parameter in your request. Specifying a preview model version for production workloads isn't recommended.
 
 > [!NOTE]
-> If you're using a model version that isn't listed in the table, then it was subjected to the expiration policy.
+> If you're using a model version that isn't listed in the following table, that version is retired according to the expiration policy.
 
 ## Model versions
 
-Use the following table to find which model versions support each feature:
+The following table provides a comprehensive reference of supported model versions for each prebuilt feature, including Generally Available (GA), preview, and deprecated versions:
 
-| Feature | Supported generally available (GA) version | Latest supported preview versions | Other supported verision |
-|--|--|--|--|
-| Sentiment Analysis and opinion mining | `latest` |  |  |
-| Language Detection | `latest` |  |  |
-| Entity Linking | `latest` |  |  |
-| Named Entity Recognition (NER) | `latest` | `2025-08-01-preview` | `2025-04-15-preview` |
-| Personally Identifiable Information (PII) detection | `latest` | `2025-08-01-preview` | `2025-04-15-preview` |
-| PII detection for conversations | `latest` | `2024-11-01-preview` | `2023-04-15-preview` |
-| Question answering | `latest` |  |  |
-| Text Analytics for health | `latest` | `2023-04-15-preview` |  |
-| Key phrase extraction | `latest` |  |  |
-| Summarization | `latest`. **Note**: `2025-06-10` is only available for `issue` and `resolution` aspects in conversation summarization.  | |  |
-
+| Feature | Supported generally available (GA) version | Latest supported preview versions | Other supported versions | Deprecated versions |
+| --- | --- | --- | --- | --- |
+| **Sentiment Analysis and opinion mining** | **latest** | | | |
+| **Language Detection** | **latest** | | | |
+| **Entity Linking** | **latest** | | | |
+| **Named Entity Recognition (NER)** | **2025-11-01** (latest) | **2025-11-15-preview** | &bullet; **2025-02-01**</br>&bullet; **2023-09-01** | &bullet; **2025-08-01-preview**</br>&bullet; **2024-05-01** |
+| **Personally Identifiable Information (PII) detection** | **2025-11-01** (latest) | **2025-11-15-preview** | &bullet; **2025-02-01**</br>&bullet; **2023-09-01** | &bullet; **2025-08-01-preview**</br>&bullet; **2024-05-01** |
+| **PII detection for conversations** | **2025-02-01** (latest) | **2025-11-01-preview** | &bullet; **2022-05-15**</br>&bullet; **2022-05-15-preview** | &bullet; **2024-11-01-preview**</br>&bullet; **2023-04-15-preview** |
+| **Question answering** | **latest** | | | |
+| **Text Analytics for health** | **latest** | **2023-04-15-preview** | | |
+| **Key phrase extraction** | **latest** | | | |
+| **Summarization** | **latest**. **Note**: **2025-06-10** is only available for **issue** and **resolution** aspects in conversation summarization. | | | |
 
 ## Custom features
 
+Custom features in Azure Language involve two distinct lifecycle phases: **training** and **deployment**. Each phase has its own configuration version and expiration timeline. New training configurations are released periodically to incorporate AI improvements, and older configurations are retired according to a defined schedule.
+
 ### Expiration timeline
 
-For custom features, there are two key parts of the AI implementation: training and deployment. New configurations are released regularly with regular AI improvements, so older and less accurate configurations are retired.
+The following table lists the supported training configuration versions and their corresponding expiration dates for each custom feature:
 
-Use the following table to find which model versions support each feature:
+| Feature | Supported Training Config Versions | Training Config Expiration | Deployment Expiration |
+| --- | --- | --- | --- |
+| Conversational language understanding | **2022-09-01** (latest) | August 26, 2025 | August 26, 2026 |
+| Orchestration workflow | **2022-09-01** (latest) | October 22, 2025 | October 22, 2026 |
+| Custom named entity recognition | **2022-05-01** (latest) | October 22, 2025 | October 22, 2026 |
+| Custom text classification | **2022-05-01** (latest) | October 22, 2025 | October 22, 2026 |
 
-| Feature                                     | Supported Training Config Versions         | Training Config Expiration         | Deployment Expiration  |
-|---------------------------------------------|--------------------------------------------|------------------------------------|------------------------|
-| Conversational language understanding       | `2022-09-01` (latest)**                    | August 26, 2025                    | August 26, 2026        |
-| Orchestration workflow                      | `2022-09-01` (latest)**                    | October 22, 2025                   | October 22, 2026       |
-| Custom named entity recognition             | `2022-05-01` (latest)**                    | October 22, 2025                   | October 22, 2026       |
-| Custom text classification                  | `2022-05-01` (latest)**                    | October 22, 2025                   | October 22, 2026       |
+***For the latest training configuration versions, posted expiration dates are subject to the availability of a newer model version. If no newer model versions are released, the expiration date may be extended.***
 
-** *For latest training configuration versions, the posted expiration dates are subject to availability of a newer model version. If no newer model versions are available, the expiration date may be extended.*
-
-Training configurations are typically available for **six months** after its release. If you assigned a trained configuration to a deployment, this deployment expires after **twelve months** from the training config expiration. If your models are about to expire, you can retrain and redeploy your models with the latest training configuration version.
+Training configurations are typically supported for **six months** following their release date. Deployments created using a specific training configuration remain active for **twelve months** after the training configuration expiration date. To avoid service disruption, retrain and redeploy your models using the latest training configuration version before the expiration date.
 
 > [!TIP]
-> We recommend that you use the latest supported configuration version.
+> We recommend using the latest supported training configuration version to ensure optimal model performance and extended support.
 
-After the **training config expiration** date, you have to use another supported training configuration version to submit any training or deployment jobs. After the **deployment expiration** date, your deployed model is unavailable to be used for prediction.
+**Training configuration expiration**: After the training configuration expiration date, you must use a supported configuration version to submit training or deployment jobs. Requests specifying an expired configuration version return an error.
 
-After training config version expires, API calls returns an error when called or used if called with an expired configuration version. By default, training requests use the latest available training configuration version. To change the configuration version, use the `trainingConfigVersion` parameter when submitting a training job and assign the version you want.
+**Deployment expiration**: After the deployment expiration date, the deployed model is no longer available for prediction requests.
 
+By default, training requests use the latest available training configuration version. To specify a different version, include the **trainingConfigVersion** parameter in your training job request.
 
 ## API versions
 
-When you're making API calls to the following features, you need to specify the `API-VERISON` you want to use to complete your request. We recommend that you use the latest available API version.
+For detailed information about request parameters and response schemas, see the [**Azure AI Language REST API reference**](/rest/api/language/).
 
-If you're using [Language Studio](https://aka.ms/languageStudio) for your projects, you use the latest API version available. Other API versions are only available through the REST APIs and client libraries.
+When making API calls to Azure Language features, you must specify the **API-VERSION** parameter in your request. We recommend using the latest available API version to access the most recent features and improvements.
 
-Use the following table to find which API versions support each feature:
+The following table lists the supported API versions for each feature:
 
-|Feature                               |Supported versions                                                                   |Latest Generally Available version                           |Latest preview version|
-|--------------------------------------|-------------------------------------------------------------------------------------|----------------------------------|----------------------|
-| Custom text classification           |`2022-05-01`, `2022-10-01-preview`, `2023-04-01`                                     |`2022-05-01`                      |`2022-10-01-preview`  |
-| Conversational language understanding| `2022-05-01`, `2022-10-01-preview`, `2023-04-01`                                    |`2023-04-01`                      |`2022-10-01-preview`  |
-| Custom named entity recognition      | `2022-05-01`, `2022-10-01-preview`, `2023-04-01`, `2023-04-15`, `2023-04-15-preview`|`2023-04-15`                      |`2023-04-15-preview`  |
-| Orchestration workflow               | `2022-05-01`, `2022-10-01-preview`, `2023-04-01`                                    |`2023-04-01`                      |`2022-10-01-preview`  |
-| Named Entity Recognition (NER) | `2025-05-15-preview`, `2024-11-01 (GA)`,`2024-11-15-preview` | `2024-11-01 (GA)` | `2025-05-15-preview` |
-| Personally Identifiable Information (PII) detection  | `2025-05-15-preview`,`2024-11-01 (GA)`,`2024-11-15-preview` | `2024-11-01 (GA)` | `2025-05-15-preview` |
-| PII detection for conversations  | `2025-05-15-preview`,`2024-11-01 (GA)`,`2024-11-15-preview` | `2024-11-01 (GA)` | `2025-05-15-preview` |
+| Feature | Supported versions | Latest Generally Available version | Latest preview version |
+| --- | --- | --- | --- |
+| Custom text </br>classification | &bullet; **2022-05-01**</br>&bullet; **2022-10-01-preview**</br>&bullet; **2023-04-01** | **2022-05-01** | **2022-10-01-preview** |
+| Conversational language </br>understanding | &bullet; **2022-05-01**</br>&bullet; **2022-10-01-preview**</br>&bullet; **2023-04-01** | **2023-04-01** | **2022-10-01-preview** |
+| Custom named entity </br>recognition | &bullet; **2022-05-01**</br>&bullet; **2022-10-01-preview**</br>&bullet; **2023-04-01**</br>&bullet; **2023-04-15**</br>&bullet; **2023-04-15-preview** | **2023-04-15** | **2023-04-15-preview** |
+| Orchestration </br>workflow | &bullet; **2022-05-01**</br>&bullet; **2022-10-01-preview**</br>&bullet; **2023-04-01** | **2023-04-01** | **2022-10-01-preview** |
+| Named Entity</br>Recognition | &bullet; **2025-05-15-preview**</br>&bullet; **2024-11-01 (GA)**</br>&bullet; **2024-11-15-preview** | **2024-11-01 (GA)** | **2025-05-15-preview** |
+| `PII` detection </br>for text | &bullet; **2025-05-15-preview**</br>&bullet; **2024-11-01 (GA)**</br>&bullet; **2024-11-15-preview** | **2024-11-01 (GA)** | **2025-05-15-preview** |
+| `PII` detection </br>for conversations | &bullet; **2025-05-15-preview**</br>&bullet; **2024-11-01 (GA)**</br>&bullet; **2024-11-15-preview** | **2024-11-01 (GA)** | **2025-05-15-preview** |
 
-## Next steps
+### Model version and API version comparison
 
-[Azure Language in Foundry Tools overview](../overview.md)
+Understanding the distinction between model versions and API versions is essential for managing your Azure Language implementations effectively.
+
+| Aspect | API version | Model version |
+| --- | --- | --- |
+| **Definition** | Defines the service endpoint contract, including request/response schemas and available operations. | Specifies the underlying machine learning algorithm and trained weights used for predictions. |
+| **REST call location** | Required `api-version` query parameter in the request URL. | Optional `modelVersion` parameter in the request body. |
+| **Update frequency** | Released when interface changes or new features are introduced. | Released regularly to improve prediction accuracy and language coverage. |
+| **Update impact** | Breaking changes require a new API version to maintain backward compatibility. | Updates typically enhance results without requiring API version changes. |
+| **Default behavior** | Must be explicitly specified; SDK/client libraries default to a specific supported version. | Automatically defaults to the latest GA model version if not specified. |
+
+## Related content
+
+* [Azure Language overview](../overview.md)
+* [Regional support for Azure Language](regional-support.md)

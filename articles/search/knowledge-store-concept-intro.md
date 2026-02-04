@@ -6,7 +6,7 @@ author: HeidiSteen
 manager: nitinme
 ms.author: heidist
 ms.service: azure-ai-search
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 10/21/2025
 ms.update-cycle: 180-days
 ms.custom:

@@ -35,7 +35,7 @@ Programmatically, agentic retrieval is supported through a new [Knowledge Base o
 
 ## Why use agentic retrieval
 
-There are two use cases for agentic retrieval. First, it's the basis of the [Foundry IQ experience](/azure/ai-foundry/agents/how-to/tools/knowledge-retrieval) in the Microsoft Foundry (new) portal. It provides the knowledge layer for agent solutions in Microsoft Foundry. Second, it's the basis for custom agentic solutions that you create using the Azure AI Search APIs.
+There are two use cases for agentic retrieval. First, it's the basis of the [Foundry IQ](/azure/ai-foundry/agents/concepts/what-is-foundry-iq) experience in the Microsoft Foundry (new) portal. It provides the knowledge layer for agent solutions in Microsoft Foundry. Second, it's the basis for custom agentic solutions that you create using the Azure AI Search APIs.
 
 You should use agentic retrieval when you want to provide agents and apps with the most relevant content for answering harder questions, leveraging chat context and your proprietary content.
 
@@ -106,8 +106,8 @@ Currently, the portal only supports creating search index and blob knowledge sou
 
 ### [**Quickstarts**](#tab/quickstarts)
 
-+ [Quickstart: Use agentic retrieval in the Azure portal](get-started-portal-agentic-retrieval.md)
-+ [Quickstart: Use agentic retrieval in Azure AI Search](search-get-started-agentic-retrieval.md) (C#, Java, JavaScript, Python, TypeScript, REST)
++ [Quickstart: Agentic retrieval in the Azure portal](get-started-portal-agentic-retrieval.md)
++ [Quickstart: Agentic retrieval](search-get-started-agentic-retrieval.md) (C#, Java, JavaScript, Python, TypeScript, REST)
 
 ### [**How-to guides**](#tab/how-to-guides)
 
@@ -147,7 +147,7 @@ Currently, the portal only supports creating search index and blob knowledge sou
 
 ## Availability and pricing
 
-Agentic retrieval is available in [selected regions](search-region-support.md). Knowledge sources and knowledge bases also have [maximum limits](search-limits-quotas-capacity.md#agentic-retrieval-limits) that vary by service tier.
+Agentic retrieval is available in [selected regions](search-region-support.md). Knowledge sources and knowledge bases also have [maximum limits](search-limits-quotas-capacity.md#agentic-retrieval-limits) that vary by pricing tier and retrieval reasoning effort.
 
 It has a dependency on premium features. If you disable semantic ranker for your search service, you effectively disable agentic retrieval.
 

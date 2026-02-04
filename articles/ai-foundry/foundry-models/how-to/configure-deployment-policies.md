@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
-When you deploy models in Microsoft Foundry or Azure OpenAI, you might need Azure Policy to control which [deployment types](../../model-inference/concepts/deployment-types.md) are available to users or which specific models they can deploy. This article shows you how to create a custom Azure Policy definition that denies non-approved model deployments.
+When you deploy models in Microsoft Foundry or Azure OpenAI, you might need Azure Policy to control which [deployment types](../concepts/deployment-types.md) are available to users or which specific models they can deploy. This article shows you how to create a custom Azure Policy definition that denies non-approved model deployments.
 
 > [!TIP]
 > The steps in this article apply to both a [!INCLUDE [fdp](../../includes/fdp-project-name.md)] and [!INCLUDE [hub](../../includes/hub-project-name.md)].
@@ -210,5 +210,5 @@ To update an existing policy assignment with new models, follow these steps:
 ## Related content
 
 - [Azure Policy overview](/azure/governance/policy/overview)
-- [Deployment types](../../model-inference/concepts/deployment-types.md)
+- [Deployment types](../concepts/deployment-types.md)
 

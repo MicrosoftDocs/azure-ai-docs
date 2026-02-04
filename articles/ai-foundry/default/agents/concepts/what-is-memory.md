@@ -1,29 +1,32 @@
 ---
-title: Overview of Memory
+title: What is Memory?
 titleSuffix: Microsoft Foundry
-description: Learn about memory in Foundry Agent Service, a long-term memory solution. Topics include concepts, use cases, best practices, security risks, limitations, and pricing.
+description: Learn what memory is in Microsoft Foundry Agent Service (preview), how it works, and how to use long-term memories safely.
 author: haileytap
 ms.author: haileytapia
 ms.reviewer: liulewis
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: concept-article
-ms.date: 12/17/2025
+ms.date: 01/22/2026
+ms.custom: pilot-ai-workflow-jan-2026 
+ai-usage: ai-assisted
 ---
 
-# Memory in Foundry Agent Service (preview)
+# Memory in Microsoft Foundry Agent Service (preview)
 
 > [!IMPORTANT]
 > Memory (preview) in Foundry Agent Service and the Memory Store API (preview) are licensed to you as part of your Azure subscription and are subject to terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/all) and the [Microsoft Products and Services Data Protection Addendum](https://aka.ms/DPA), as well as the Microsoft Generative AI Services Previews terms in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-Memory in Foundry Agent Service is a managed, long-term memory solution. It enables agent continuity across sessions, devices, and workflows. By creating and managing memory stores, you can build agents that retain user preferences, maintain conversation history, and deliver personalized experiences.
+Memory in Microsoft Foundry Agent Service is a managed, long-term memory solution. It enables agent continuity across sessions, devices, and workflows. By creating and managing memory stores, you can build agents that retain user preferences, maintain conversation history, and deliver personalized experiences.
 
-This article provides an overview of agent memory, including its concepts, use cases, best practices, and limitations. For usage instructions, see [Create and use memory in Foundry Agent Service](../how-to/memory-usage.md).
+This article provides an overview of agent memory, including its concepts, use cases, and limitations. For usage instructions, see [Create and use memory in Foundry Agent Service](../how-to/memory-usage.md).
 
 ## What is memory?
 
 Memory is persistent knowledge retained by an agent across sessions. Generally, agent memory falls into two categories:
 
-- **Short-term memory** tracks the current session's conversation and maintains immediate context for ongoing interactions. Agent orchestration frameworks, such as [Microsoft Agent Framework](/agent-framework/overview/agent-framework-overview), typically manage this memory as part of the session context.
+- **Short-term memory** tracks the current session's conversation and maintains immediate context for ongoing interactions. Agent orchestration frameworks typically manage this memory as part of the session context.
 
 - **Long-term memory** retains distilled knowledge across sessions. The model can recall and build on previous user interactions over time. Long-term memory requires a persistent system that extracts, consolidates, and manages knowledge.
 
@@ -43,10 +46,14 @@ Memory operates in the following phases:
 
 Here's an example of how memory can improve and personalize interactions between a recipe agent and a user who previously expressed a food allergy:
 
-:::image type="content" source="../media/memory/agent-memory-diagram.svg" alt-text="A diagram illustrating memory integration." lightbox="../media/memory/agent-memory-diagram.svg":::
+:::image type="content" source="../media/memory/agent-memory-diagram.svg" alt-text="Diagram that shows memory extraction, storage, and retrieval for an agent across sessions." lightbox="../media/memory/agent-memory-diagram.svg":::
 
 > [!TIP]
-> Memory isn't designed for general-purpose document ingestion, storage, or retrieval. To provide an agent with grounding data, consider using a [Foundry IQ knowledge base](../how-to/tools/knowledge-retrieval.md).
+> Need help deciding when to use memory? Consider these guidelines:
+>
+> - Use memory for user-specific context that persists over time.
+> - Use a [Foundry IQ](../concepts/what-is-foundry-iq.md) knowledge base to ground your agent on curated organizational content.
+> - Use the [file search tool](../how-to/tools/file-search.md) to search user-provided documents during an interaction.
 
 ## Memory types
 
@@ -54,16 +61,16 @@ Memory in Foundry Agent Service extracts and stores two types of long-term memor
 
 | Type | Description | Configuration |
 |--|--|--|
-| User profile memory | Information and preferences about the user, such as preferred name, dietary restrictions, and language preference. These memories are considered "static" with respect to a conversation because they generally don't depend on the current chat context. We recommend that you retrieve user profile memories only once at the beginning of each conversation. | Specify `user_profile_details` in a [memory store](../how-to/memory-usage.md#customize-memory). |
-| Chat summary memory | A distilled summary of each topic or thread covered in a chat session. These memories allow users to continue conversations or reference prior sessions without repeating earlier context. We recommend that you retrieve chat summary memories dynamically based on the current conversation to surface relevant threads. | Enable `chat_summaries` in a [memory store](../how-to/memory-usage.md#create-a-memory-store). |
+| User profile memory | Information and preferences about the user, such as preferred name, dietary restrictions, and language preference. These memories are considered "static" with respect to a conversation because they generally don't depend on the current chat context. Retrieve user profile memories once at the beginning of each conversation. | Specify `user_profile_details` in a [memory store](../how-to/memory-usage.md#customize-memory). |
+| Chat summary memory | A distilled summary of each topic or thread covered in a chat session. These memories allow users to continue conversations or reference prior sessions without repeating earlier context. Retrieve chat summary memories based on the current conversation to surface relevant threads. | Enable `chat_summaries` in a [memory store](../how-to/memory-usage.md#create-a-memory-store). |
 
 ## Working with memory
 
 There are two ways to use memory for agent interactions:
 
-+ **Memory search tool:** Attach the memory search tool to a prompt agent to enable reading from and writing to the memory store during conversations. This approach is ideal for most scenarios because it simplifies memory management. For more information, see [Use memories via an agent tool](../how-to/memory-usage.md#use-memories-via-an-agent-tool).
+- **Memory search tool:** Attach the memory search tool to a prompt agent to enable reading from and writing to the memory store during conversations. This approach is ideal for most scenarios because it simplifies memory management. For more information, see [Use memories via an agent tool](../how-to/memory-usage.md#use-memories-via-an-agent-tool).
 
-+ **Memory store APIs:** Interact directly with the memory store using the low-level APIs. This approach provides more control and flexibility for advanced use cases. For more information, see [Use memories via APIs](../how-to/memory-usage.md#use-memories-via-apis).
+- **Memory store APIs:** Interact directly with the memory store using the low-level APIs. This approach provides more control and flexibility for advanced use cases. For more information, see [Use memories via APIs](../how-to/memory-usage.md#use-memories-via-apis).
 
 ## Use cases
 
@@ -89,7 +96,7 @@ The following examples illustrate how memory can enhance various types of agents
 
 ## Security risks
 
-When you work with memory in Foundry Agent Service, the LLM extracts and consolidates memories based on conversations. Protect memory against threats such as prompt injection and memory corruption. These risks arise when incorrect or harmful data is stored in the agent's memory, potentially influencing agent responses and actions.
+When you work with memory in Foundry Agent Service, the large language model (LLM) extracts and consolidates memories based on conversations. Protect memory against threats such as prompt injection and memory corruption. These risks arise when incorrect or harmful data is stored in the agent's memory, potentially influencing agent responses and actions.
 
 To mitigate security risks, consider these actions:
 
@@ -99,12 +106,14 @@ To mitigate security risks, consider these actions:
 
 ## Limitations and quotas
 
-- You must use Azure OpenAI models. Other model providers aren't currently supported.
+- You must use chat and embedding models from Azure OpenAI. Other model providers aren't currently supported.
 - You must set the `scope` value explicitly. Automatic population from the user identity specified in the request isn't currently supported.
 - Maximum scopes per memory store: 100
 - Maximum memories per scope: 10,000
 - Search memories: 1,000 requests per minute
 - Update memories: 1,000 requests per minute
+
+For broader Foundry Agent Service quotas and limits, see [Foundry Agent Service quotas and limits](../../../agents/quotas-limits.md).
 
 ## Pricing
 
@@ -112,7 +121,6 @@ During the public preview, memory features are free. You're only billed for usag
 
 ## Related content
 
-- [Python code samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/memories)
 - [Create and use memory in Foundry Agent Service](../how-to/memory-usage.md)
-- [Build an agent with Microsoft Foundry](../../../agents/quickstart.md)
-- [Microsoft Agent Framework overview](/agent-framework/overview/agent-framework-overview)
+- [Supported models in Foundry Agent Service](../../../agents/concepts/model-region-support.md)
+- [Microsoft Foundry Quickstart](../../../quickstarts/get-started-code.md)

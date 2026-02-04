@@ -3,7 +3,7 @@
 - Read the [guide on when to use Foundry fine-tuning](../openai/concepts/fine-tuning-considerations.md).
 - You need an Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - You need a Foundry project resource. To create one, sign in to the [Foundry portal](https://ai.azure.com).
-- Fine-tuning access requires the Azure AI User role.
+- Fine-tuning requires the **Azure AI Owner** role. While Azure AI Users may train (fine tune) models, only AI Owners may deploy them.
 - If you don't already have access to view quotas and deploy models in the Foundry portal, you need [more permissions](../openai/how-to/role-based-access-control.md).
 
 ### Supported models
@@ -132,6 +132,9 @@ The following hyperparameters are available:
 
 #### Automatic deployment
 
+> [!IMPROTANT]
+> For automatic deployment, you need to be assigned as `Azure AI owner` role or any role with `Microsfot.CognitiveServices/accounts/deployments/write" action.
+
 To save time, you can enable automatic deployment for your resulting model. If training finishes successfully, the model is deployed according to the selected deployment type. The deployment name is based on the unique name generated for your custom model and the optional suffix that you might have provided earlier.
 
 Automatic deployment is supported only for OpenAI models.
@@ -167,6 +170,9 @@ A checkpoint is a fully functional version of a model that can be both deployed 
 > The pause operation is applicable only for jobs that are trained for at least one step and are in a **Running** state. Pausing is supported only for OpenAI models.
 
 ## Deploy the fine-tuned model
+
+> [!IMPROTANT]
+> To deploy models, you need to be assigned as `Azure AI owner` role or any role with `Microsfot.CognitiveServices/accounts/deployments/write" action.
 
 When you're satisfied with the metrics from your fine-tuning job, you can deploy the model by selecting the **Deploy** button on the details page and then configuring your deployment settings.
 

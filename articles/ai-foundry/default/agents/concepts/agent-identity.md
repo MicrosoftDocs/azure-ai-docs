@@ -1,15 +1,17 @@
 ---
-title: Manage Agent Identities with Microsoft Entra ID
-description: Explore how Microsoft Foundry automates agent identity management to streamline permissions and enhance security throughout the AI agent lifecycle.
+title: Manage agent identities with Microsoft Entra ID
+titleSuffix: Microsoft Foundry
+description: Learn how agent identities and agent identity blueprints work in Microsoft Foundry, including RBAC, authentication for tools, and governance.
 #customer intent: As a security administrator, I want to know how an agent identity eliminates the need for passwords and certificates so that I can reduce security risks in my environment.
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: fosteramanda
-ms.date: 11/03/2025
+ms.date: 01/20/2026
 ms.topic: concept-article
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ai-usage: ai-assisted
+ms.custom: pilot-ai-workflow-jan-2026
 ---
 
 # Agent identity concepts in Microsoft Foundry
@@ -18,11 +20,37 @@ An *agent identity* is a specialized identity type in [Microsoft Entra ID](/entr
 
 Microsoft Foundry automatically provisions and manages agent identities throughout the agent lifecycle. This integration simplifies permission management while maintaining security and auditability as agents move from development to production.
 
+This article explains how agent identities relate to Microsoft Entra ID objects, how Foundry uses them when an agent calls tools, and how to apply least-privilege access with Azure role-based access control (RBAC).
+
 ## Prerequisites
 
 * Understanding of [Microsoft Entra ID and OAuth](/entra/architecture/auth-sync-overview) authentication
 * Familiarity with [Azure role-based access control (RBAC)](/azure/role-based-access-control/overview)
 * Basic knowledge of AI agents and their runtime requirements
+
+For Foundry-specific RBAC roles and scopes, see [Azure role-based access control in Foundry](../../../concepts/rbac-foundry.md).
+
+## How agent identities work in Foundry
+
+Foundry uses Microsoft Entra ID agent identities to support two related needs:
+
+- **Management and governance**: Give administrators a consistent way to inventory agents, apply policies, and audit activity.
+- **Tool authentication**: Let an agent authenticate to downstream systems (for example, Azure Storage) without embedding secrets in prompts, code, or connection strings.
+
+At a high level, Foundry does the following:
+
+1. Provisions an **agent identity blueprint** and one or more **agent identities** in Microsoft Entra ID.
+2. Assigns RBAC roles (or other permission models, depending on the target system) to the agent identity.
+3. When the agent invokes a tool, Foundry requests an access token for the downstream service and uses that token to authenticate the tool call.
+
+### Terms used in this article
+
+| Term | What it means in Foundry |
+| --- | --- |
+| Agent identity | A Microsoft Entra ID service principal that represents the agent at runtime. |
+| Agent identity blueprint | A Microsoft Entra ID object that governs a class of agent identities and is used for lifecycle operations. |
+| `agentIdentityId` | The identifier you use when assigning permissions to the agent identity. |
+| Audience | The resource identifier for the downstream service the token is meant for (for example, `https://storage.azure.com`). |
 
 ## Key concepts
 
@@ -46,7 +74,7 @@ Agent identities help address specific security challenges that AI agents pose:
 Agent identities support two key authentication scenarios:
 
 * **Attended (delegated access or on-behalf-of flow)**: The agent operates on behalf of a human user. It uses delegated permissions that the user grants. The agent can then act under the user's authority to access resources or APIs as that user.
-* **Unattended**: The agent acts under its own authority. It acts as a service or an application identity by using its app-assigned roles, RBAC, or Microsoft Graph permissions. Or it acts as an *agentic user*: an autonomous identity with user-like claims that allow the agent to authenticate and operate independently.
+* **Unattended**: The agent acts under its own authority. It acts as a service or an application identity by using its app-assigned roles, RBAC, or Microsoft Graph permissions. Or it acts as an autonomous identity with user-like claims that allow the agent to authenticate and operate independently.
 
 ### Agent identity blueprint
 
@@ -117,8 +145,10 @@ When you [publish an agent](../how-to/publish-agent.md), you must reassign RBAC 
 
 Currently, the tools that support authentication with an agent identity are:
 
-* **Model Context Protocol (MCP)**: Use your agent's identity to authenticate with MCP servers that support agent identity authentication.
-* **Agent-to-Agent (A2A)**: Enable secure communication between agents by using agent identities.
+* **Model Context Protocol (MCP)**: Use your agent's identity to authenticate with MCP servers that support agent identity authentication. For details, see [Model Context Protocol (preview)](../how-to/tools/model-context-protocol.md) and [MCP server authentication](../how-to/mcp-authentication.md).
+* **Agent-to-Agent (A2A)**: Enable secure communication between agents by using agent identities. For details, see [Agent-to-Agent tool (preview)](../how-to/tools/agent-to-agent.md) and [Agent2Agent (A2A) authentication](./agent-to-agent-authentication.md).
+
+Other tools and integrations might use different authentication methods (for example, key-based authentication or OAuth identity passthrough). Use the tool documentation to confirm supported authentication.
 
 ### Configure MCP tool authentication
 
@@ -165,9 +195,8 @@ To configure an MCP tool to authenticate by using an agent identity:
         }
     }
     ```
-
+    
     #### [Foundry portal](#tab/foundry-portal)
-
     1. [!INCLUDE [foundry-sign-in](../../includes/foundry-sign-in.md)]
 
     1. Select **Build**.
@@ -193,7 +222,33 @@ To configure an MCP tool to authenticate by using an agent identity:
 
 1. Connect the tool. If you're using code, create an agent with the MCP tool. (For details, see the MCP documentation.) If you're using the Foundry portal, the MCP tool is automatically added to the agent.
 
-When the agent invokes the MCP server, it uses the available agent identity to obtain an authorization token from the scope URI. It then passes the token to the MCP server for authentication.
+When the agent invokes the MCP server, it uses the available agent identity to obtain an authorization token for the **audience** value. It then passes the token to the MCP server for authentication.
+
+## Security considerations
+
+Agent identities help you reduce risk by removing the need to embed long-lived credentials in agent configurations. Use these practices to keep access least-privilege and auditable:
+
+- Assign only the permissions the agent needs for its tool actions. Prefer narrow scopes (resource or resource group) over subscription-wide access.
+- Treat the shared project identity as a broader blast radius. If an agent needs tighter controls or separate auditing, publish it so it gets a distinct identity, and assign roles to that new identity.
+- Review and log access to non-Microsoft tools and servers. If a tool call leaves Microsoft services, your data handling and retention depend on the external provider.
+
+## Limitations
+
+- Only some tools currently support agent identity authentication. Check the tool documentation for supported authentication.
+- Publishing an agent changes which identity is used for tool calls (shared project identity versus distinct agent identity). Plan for role reassignment when you publish.
+
+## Common issues
+
+These issues commonly cause tool authentication failures when using agent identities:
+
+- **Roles assigned to the wrong identity**: Confirm you granted permissions to the current identity used by the agent (shared project identity for unpublished agents, distinct identity for published agents).
+- **Missing role assignments**: Ensure the agent identity has the required RBAC role on the target resource. For Foundry roles and scopes, see [Azure role-based access control in Foundry](../../../concepts/rbac-foundry.md).
+- **Incorrect audience**: Ensure the audience matches the downstream service you’re calling (for example, `https://storage.azure.com` for Azure Storage).
+
+For tool-specific troubleshooting, see the tool documentation:
+
+- [Model Context Protocol (preview)](../how-to/tools/model-context-protocol.md)
+- [Agent-to-Agent tool (preview)](../how-to/tools/agent-to-agent.md)
 
 ## Manage agent identities
 
@@ -208,8 +263,10 @@ In this experience, you can enable built-in security controls, including:
 * **Network access**: Control network-based access for agents.
 * **Governance**: Manage expiration, owners, and sponsors for agent identities.
 
-For more information about Microsoft Entra Agent ID features, see the [Microsoft Entra documentation](/entra/fundamentals/what-is-entra).
+For more information about Microsoft Entra Agent ID features, see [Microsoft Entra documentation](/entra/fundamentals/what-is-entra).
 
 ## Related content
 
 * [Publish and share agents in Microsoft Foundry](../how-to/publish-agent.md)
+* [Azure role-based access control in Foundry](../../../concepts/rbac-foundry.md)
+* [MCP server authentication](../how-to/mcp-authentication.md)

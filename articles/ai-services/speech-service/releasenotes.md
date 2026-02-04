@@ -36,7 +36,7 @@ Azure Speech is updated on an ongoing basis. To stay up-to-date with recent deve
 
 [!INCLUDE [speech to text](./includes/release-notes/release-notes-stt.md)]
 
-# [Voice live](#tab/voice-live)
+# [Voice Live](#tab/voice-live)
 
 [!INCLUDE [voice live](./includes/release-notes/release-notes-voice-live.md)]
 

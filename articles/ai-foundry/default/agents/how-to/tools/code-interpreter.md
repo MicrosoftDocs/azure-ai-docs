@@ -1,57 +1,69 @@
 ---
 title: Use Code Interpreter with Microsoft Foundry agents
 titleSuffix: Microsoft Foundry
-description: Learn to enable agents to execute Python code, analyze data, and generate charts using Code Interpreter in Microsoft Foundry. Get started today.
+description: Create agents that run Python code in a sandboxed environment using Code Interpreter in Microsoft Foundry. Upload files, analyze data, and download generated charts.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 12/16/2025
+ms.date: 02/03/2026
 author: alvinashcraft
 ms.author: aashcraft
-ms.custom: azure-ai-agents, references_regions, dev-focus
+ms.custom: azure-ai-agents, references_regions, dev-focus, pilot-ai-workflow-jan-2026
 zone_pivot_groups: selection-code-interpreter-new
+ai-usage: ai-assisted
+#CustomerIntent: As a developer building AI agents, I want to enable Code Interpreter so that my agent can execute Python code for data analysis and visualization.
 ---
 
 # Code Interpreter tool for Microsoft Foundry agents
 
-In this article, you create an agent that uses Code Interpreter to execute Python code in a sandboxed environment. You learn how to enable agents to solve mathematical problems, analyze data from CSV files, and generate visualizations like charts and graphs.
+Code Interpreter enables a Microsoft Foundry agent to run Python code in a sandboxed execution environment. Use this tool for data analysis, chart generation, and iterative problem-solving tasks that benefit from code execution.
 
-Code Interpreter enables agents to write and run Python code in a sandboxed execution environment. By enabling Code Interpreter, your agent can run code iteratively to solve more challenging code, math, and data analysis problems or create graphs and charts. When your agent writes code that doesn't run, it can modify and run different code until the code execution succeeds.
+In this article, you create an agent that uses Code Interpreter, upload a CSV file for analysis, and download a generated chart.
+
+When enabled, your agent can write and run Python code iteratively to solve data analysis and math tasks, and to generate charts.
 
 > [!IMPORTANT]
-> Code Interpreter has [additional charges](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) beyond the token based fees for Azure OpenAI usage. If your agent calls Code Interpreter simultaneously in two different conversations, two code interpreter sessions are created. Each session is active by default for 1 hour with an idle timeout of 30 minutes.
+> Code Interpreter has [additional charges](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) beyond the token-based fees for Azure OpenAI usage. If your agent calls Code Interpreter simultaneously in two different conversations, two Code Interpreter sessions are created. Each session is active by default for one hour with an idle timeout of 30 minutes.
 
 ### Usage support
 
-| Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
-|---------|---------|---------|---------|---------|---------|---------|---------|
-| ✔️ | ✔️ | ✔️ | - | - | - | ✔️ | ✔️ |
+|Microsoft Foundry support|Python SDK|C# SDK|JavaScript SDK|Java SDK|REST API|Basic agent setup|Standard agent setup|
+|---|---|---|---|---|---|---|---|
+|✔️|✔️|✔️|-|-|-|✔️|✔️|
+
+✔️ indicates the feature is supported. `-` indicates the feature isn't currently available for that SDK or API.
 
 ## Prerequisites
 
 - Basic or standard agent environment. See [agent environment setup](../../../../agents/environment-setup.md) for details.
-- Latest prerelease SDK package installed. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for installation steps.
+- Latest prerelease SDK package installed (`azure-ai-projects>=2.0.0b1` for Python). See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true) for installation steps.
 - Azure AI model deployment configured in your project.
 - For file operations: CSV or other supported files to upload for analysis.
 
 > [!NOTE]
-> Code Interpreter isn't available in [some regions](#regional-restrictions).
+> Code Interpreter isn't available in all regions. See [Check regional and model availability](#check-regional-and-model-availability).
 
-## Code samples
+## Create an agent with Code Interpreter
+
+The following samples demonstrate how to create an agent with Code Interpreter enabled, upload a file for analysis, and download the generated output.
 
 > [!NOTE]
-> You need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
+> You need the latest prerelease package. For more information, see the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true).
 
 :::zone pivot="python"
 ## Sample of using agent with code interpreter tool in Python SDK
 
-The following Python sample shows how to create an agent with the code interpreter tool, upload a CSV file for analysis, and request a bar chart based on the data in the CSV file. It demonstrates a complete workflow: uploading a CSV file to Azure storage, creating an agent with Code Interpreter capability, requesting data analysis and visualization, and downloading the generated chart. Replace the environment variable values (`AZURE_AI_PROJECT_ENDPOINT`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`) with your actual resource details. The code expects a CSV file at the specified path.
+The following Python sample shows how to create an agent with the code interpreter tool, upload a CSV file for analysis, and request a bar chart based on the data. It demonstrates a complete workflow: upload a file, create an agent with Code Interpreter enabled, request data visualization, and download the generated chart.
+
+Set these environment variables:
+
+- `FOUNDRY_PROJECT_ENDPOINT`
+- `FOUNDRY_MODEL_DEPLOYMENT_NAME`
 
 ```python
 import os
-import httpx
 from dotenv import load_dotenv
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
@@ -65,7 +77,7 @@ asset_file_path = os.path.abspath(
 )
 
 project_client = AIProjectClient(
-    endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
+    endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
     credential=DefaultAzureCredential(),
 )
 
@@ -73,14 +85,15 @@ with project_client:
     openai_client = project_client.get_openai_client()
 
     # Upload the CSV file for the code interpreter to use
-    file = openai_client.files.create(purpose="assistants", file=open(asset_file_path, "rb"))
+    with open(asset_file_path, "rb") as f:
+        file = openai_client.files.create(purpose="assistants", file=f)
     print(f"File uploaded (id: {file.id})")
 
     # Create agent with code interpreter tool
     agent = project_client.agents.create_version(
         agent_name="MyAgent",
         definition=PromptAgentDefinition(
-            model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+            model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
             instructions="You are a helpful assistant.",
             tools=[CodeInterpreterTool(container=CodeInterpreterToolAuto(file_ids=[file.id]))],
         ),
@@ -122,11 +135,12 @@ with project_client:
 
     # Download the generated file if available
     if file_id and filename:
+        safe_filename = os.path.basename(filename)
         file_content = openai_client.containers.files.content.retrieve(file_id=file_id, container_id=container_id)
-        with open(filename, "wb") as f:
+        with open(safe_filename, "wb") as f:
             f.write(file_content.read())
-            print(f"File {filename} downloaded successfully.")
-        print(f"File ready for download: {filename}")
+            print(f"File {safe_filename} downloaded successfully.")
+        print(f"File ready for download: {safe_filename}")
     else:
         print("No file generated in response")
     #uncomment these lines if you want to delete your agent
@@ -156,12 +170,12 @@ The agent uploads your CSV file to Azure storage, creates a sandboxed Python env
 :::zone pivot="csharp"
 ## Sample of using agent with code interpreter and file attachment in C# SDK
 
-The following C# sample shows how to create an agent with the code interpreter tool, upload a CSV file for analysis, and request a bar chart based on the data in the CSV file. It creates an agent with Code Interpreter capability and requests it to solve a mathematical equation. Replace the environment variable values (`PROJECT_ENDPOINT`, `MODEL_DEPLOYMENT_NAME`) with your actual resource details. The agent executes Python code in a sandboxed container to compute the solution. The code uses synchronous calls for simplicity. For asynchronous usage, refer to the [code sample](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample7_CodeInterpreter.md) in the Azure SDK for .NET repository on GitHub.
+The following C# sample shows how to create an agent with the code interpreter tool and ask it to solve a mathematical equation. Replace the environment variable values (`FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`) with your actual resource details. The agent executes Python code in a sandboxed container to compute the solution. The code uses synchronous calls for simplicity. For asynchronous usage, refer to the [code sample](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample7_CodeInterpreter.md) in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
 // Create project client and read the environment variables, which will be used in the next steps.
-var projectEndpoint = System.Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
-var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
+var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
 AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
 
 // Create Agent, capable to use Code Interpreter to answer questions.
@@ -209,23 +223,18 @@ The agent creates a Code Interpreter session, writes Python code to solve the eq
 
 :::zone-end
 
-## Regional restrictions
+## Check regional and model availability
 
-The code interpreter tool for the Foundry projects (new) API isn't available in the following regions:
+Tool availability varies by region and model.
 
-* Canada Central
-* Central US
-* Japan East
-* South Central US
-* Southeast Asia
-* Spain Central
+For the current list of supported regions and models for Code Interpreter, see [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md).
 
 ### Supported file types
 
-|File format|MIME Type|
+|File format|MIME type|
 |---|---|
-|`.c`| `text/x-c` |
-|`.cpp`|`text/x-c++` |
+|`.c`|`text/x-c`|
+|`.cpp`|`text/x-c++`|
 |`.csv`|`application/csv`|
 |`.docx`|`application/vnd.openxmlformats-officedocument.wordprocessingml.document`|
 |`.html`|`text/html`|
@@ -251,3 +260,31 @@ The code interpreter tool for the Foundry projects (new) API isn't available in 
 |`.xlsx`|`application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`|
 |`.xml`|`application/xml` or `text/xml`|
 |`.zip`|`application/zip`|
+
+## Troubleshooting
+
+| Issue | Likely cause | Resolution |
+| --- | --- | --- |
+| Code Interpreter doesn't run. | Tool not enabled or model doesn't support it in your region. | Confirm Code Interpreter is enabled on the agent. Verify your model deployment supports the tool in your region. See [Check regional and model availability](#check-regional-and-model-availability). |
+| No file is generated. | Agent returned text-only response without file annotation. | Check response annotations for `container_file_citation`. If none exist, the agent didn't generate a file. Rephrase the prompt to explicitly request file output. |
+| File upload fails. | Unsupported file type or wrong purpose. | Confirm the file type is in the [supported file types](#supported-file-types) list. Upload with `purpose="assistants"`. |
+| Generated file is corrupt or empty. | Code execution error or incomplete processing. | Check the agent's response for error messages. Verify the input data is valid. Try a simpler request first. |
+| Session timeout or high latency. | Code Interpreter sessions have time limits. | Sessions have a 1-hour active timeout and 30-minute idle timeout. Reduce the complexity of operations or split into smaller tasks. |
+| Unexpected billing charges. | Multiple concurrent sessions created. | Each conversation creates a separate session. Monitor session usage and consolidate operations where possible. |
+| Python package not available. | Code Interpreter has a fixed set of packages. | Code Interpreter includes common data science packages. For custom packages, use [Custom code interpreter](custom-code-interpreter.md). |
+| File download fails. | Container ID or file ID incorrect. | Verify you're using the correct `container_id` and `file_id` from the response annotations. |
+
+## Clean up resources
+
+Delete resources you created in this sample when you no longer need them to avoid ongoing costs:
+
+- Delete the agent version.
+- Delete the conversation.
+- Delete uploaded files.
+
+For examples of conversation and file cleanup patterns, see [Web search tool (preview)](web-search.md) and [File search tool for agents](file-search.md).
+
+## Related content
+
+- [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md)
+- [Custom code interpreter tool for agents (preview)](custom-code-interpreter.md)

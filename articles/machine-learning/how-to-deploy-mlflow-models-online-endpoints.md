@@ -711,14 +711,14 @@ The following scoring script, score.py, provides an example of how to perform in
 
 #### Create an environment
 
-The next step is to create an environment that you can run the scoring script in. Because the model is an MLflow model, the conda requirements are also specified in the model package. For more information about the files included in an MLflow model, see [The MLmodel format](concept-mlflow-models.md#the-mlmodel-format). You build the environment by using the conda dependencies from the file. However, you need to also include the `azureml-inference-server-http` package, which is required for online deployments in Azure Machine Learning.
+The next step is to create an environment that you can run the scoring script in. Because the model is an MLflow model, the conda requirements are also specified in the model package. For more information about the files included in an MLflow model, see [The MLmodel format](concept-mlflow-models.md#the-mlmodel-format). You build the environment by using the conda dependencies from the file. However, you need to also include the `azureml-inference-server-http` and `azureml-ai-monitoring` packages, which are required for online deployments in Azure Machine Learning.
     
 You can create a conda definition file named conda.yaml that contains the following lines:
 
 :::code language="yaml" source="~/azureml-examples-main/cli/endpoints/online/ncd/sklearn-diabetes/environment/conda.yaml":::
 
 > [!NOTE]
-> The `dependencies` section of this conda file includes the `azureml-inference-server-http` package.
+> The `dependencies` section of this conda file includes the `azureml-inference-server-http` and `azureml-ai-monitoring` packages.
 
 Use this conda dependencies file to create the environment:
 

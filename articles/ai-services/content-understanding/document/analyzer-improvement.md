@@ -1,11 +1,12 @@
 ---
 title: "Document analysis with confidence, grounding, and labeled samples"
 titleSuffix: Foundry Tools
-description: Learn about Azure Content Understanding in Foundry Tools's value add-ons that improve model extraction quality and performance
+description: Learn about Azure Content Understanding in Foundry Tools features that can improve extraction quality and performance.
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
-ms.date: 08/11/2025
+ms.date: 01/29/2026
+ai-usage: ai-assisted
 ms.service: azure-ai-content-understanding
 ms.topic: overview
 ms.custom:
@@ -13,11 +14,14 @@ ms.custom:
 ---
 
 
-# Validate document analyzer quality with confidence, grounding, and improve with labeled samples
+# Validate document analyzer quality with confidence, grounding, and labeled samples
 
-Processing unstructured documents like contracts and statements of work, or structured documents like invoices and insurance forms, is critical for accelerating business value in workflows (IDP), ingesting information for RAG and  agentic workflows. Extracting this data reliably, at scale, requires more capabilities than just text/content extraction. Intelligent document processing requires information like what was extracted, why it was extracted, did the extracted value align with the intent, and how reliably was it extracted.
+Processing unstructured documents (such as contracts and statements of work) or structured documents (such as invoices and insurance forms) is critical for intelligent document processing (IDP) workflows and retrieval-augmented generation (RAG) scenarios. Extracting data reliably at scale requires more than text extraction.
+
+For high-quality automation, you often need to know what was extracted, where it came from, whether it matches your intent, and how reliable the extraction is.
 
 Most enterprises face the following challenges when handling various documents at scale:
+
 - Need to **automate workflows**, but only when the extraction meets an accuracy threshold that is required for the business application. You need to know how confident/accurate the analyzer is in its results.
 - Need to **validate the sources** of extracted data for true reference. When seeing lower than expected confidence scores, validate the results quickly by reviewing the specific location in the document.
 - Ideally, require ways to **improve the quality of the analyzer results** (by providing a few labeled examples) when it gets something wrong or encounters a new format with lower than expected confidence scores.
@@ -31,17 +35,19 @@ Azure Content Understanding in Foundry Tools provides critical features for post
 | **Labeled samples** | Provides examples to the analyzer on new patterns using examples and correcting the predicted outputs for incorrect values, improving overall accuracy and extraction quality. | Rapidly adapts to new formats or edge cases |
 
 > [!NOTE]
-> These features are only available for the extractive field type. (Method == Extract)
+> These features are only available for extractive fields (`method: "extract"`).
 
 Learn more about these features below.
 
 ## Confidence scoring: Automate with control
 
-Every field type now can generate a confidence score between 0 and 1, indicating how certain the analyzer is about the result. This number gives you a tunable point to automate high-confidence results and flag lower-confidence outputs for human reviews. The confidence scores can be enabled for all fields on an analyzer or on specific fields using the ```estimateFieldSourceAndConfidence``` property. Learn more about [configuring confidence scores for analyzers](../concepts/analyzer-reference.md#estimatefieldsourceandconfidence).
+Every field can include a confidence score between 0 and 1 that indicates how certain the analyzer is about the result. Use this value to automate high-confidence results and route low-confidence results for human review.
 
-### Why confidence score matters
+Enable confidence scores for all fields (or specific fields) by using the `estimateFieldSourceAndConfidence` property. Learn more about [configuring confidence scores for analyzers](../concepts/analyzer-reference.md#estimatefieldsourceandconfidence).
 
-Confidence score let you design intelligent workflows, such as:
+### Why confidence scores matter
+
+Confidence scores let you design workflows such as:
 - Auto-approving extractions when confidence is above a defined threshold to intelligently automate document processing tasks.
 - Optimizing resource allocation by reducing operational costs and using human-in-the-loop review for critical aspects.
 - Rejecting or flagging extractions below a certain threshold for manual intervention, enhancing decision-making accuracy.
@@ -55,9 +61,9 @@ You're processing scanned utility bills to extract billing address and amount du
 
 In this case, your automation pipeline can post the billing address directly to your downstream application while routing the amount due to a human for verification. By using confidence scores, you reduce manual effort while maintaining accuracy.
 
-## Grounding: Trace every result to its source 
+## Grounding: Trace every result to its source
 
-Grounding ensures that every  field, answer, or classification has a reference to its original location in the document. This includes source information: page number and spatial coordinates, and spans: offset and length details. 
+Grounding ensures that every field, answer, or classification includes a reference to its original location in the document. This includes source information (page number and spatial coordinates) and spans (offset and length).
 
 ### Why grounding matters
 
@@ -65,46 +71,53 @@ In enterprise workflows, accuracy isn't enough; you also need traceability. When
 - Maintaining clear traceability and localization of extracted data for any extracted output like clauses, financial numbers, tables, insurance ID, etc.
 - Ensure transparency with internal compliance checks.
 - Use efficient human-in-the-loop validation from the actual reference source. Navigate to the page, section, and content that provided the field value.
+- Maintaining clear traceability and localization of extracted data for extracted outputs such as clauses, financial numbers, tables, and insurance IDs.
+- Ensuring transparency with internal compliance checks.
+- Supporting efficient human-in-the-loop validation. Navigate to the page, section, and content that provided the field value.
 
 ### Example
 
 You want to extract the *termination clause* from a contract. The model returns:
 
 - **Extracted text**: "Either party may terminate this agreement with 60 days’ notice."
--	"spans":  [ <br>
-              { <br>
-                "offset": 343, <br>
-                "length": 102 <br>
-              } <br>
-            ] <br>
-- **Source**: <br>
-	  Page: 3 <br>
-	  Coordinates: ({x1},{y1},{x2},{y2},{x3},{y3},{x4},{y4})
 
-Span indicates the element's logical position using character offset and length, while source gives its visual position with page number and bounding box coordinates. 
+```json
+"spans": [
+  {
+    "offset": 343,
+    "length": 102
+  }
+]
+```
+
+- **Source**: Page 3, coordinates `({x1},{y1},{x2},{y2},{x3},{y3},{x4},{y4})`
+
+Spans indicate the element's logical position using character offset and length. The source gives its visual position with page number and bounding box coordinates.
 
 With this grounding data, your legal team can verify the extraction by jumping directly to the source paragraph in the PDF. This eliminates guesswork and builds trust in the application output.
 
 
 ## Labeled samples (In-context learning): Improve with examples
 
-If the context for all the fields is clearly provided in the testing document, a zero-shot document extraction call should be sufficient. Start with following the [best practices for schema definitions](../concepts/best-practices.md), if you are still seeing field values being extracted incorrectly or confidence scores below the threshold you want to straight through process, labeled samples or in-context learning can target analyzer improvements. The analyzer uses these examples  at analyze time to adapt to new formats, naming conventions, or extraction rules by correcting itself.
+If the context for all fields is clearly present in the test document, a zero-shot extraction call might be sufficient. Start by following the [best practices for schema definitions](../concepts/best-practices.md). If you still see incorrect field values or confidence scores below your straight-through processing threshold, use labeled samples (in-context learning) to improve the analyzer.
 
-To enhance the model quality: 
+The analyzer uses these examples at analysis time to adapt to new formats, naming conventions, or extraction rules.
+
+To improve extraction quality:
 - For datasets with minimal template variations, you can add just a single labeled example. 
-- For more complex variations, where you see extraction quality issues, add a sample per templates to cover all the scenarios.
+- For more complex variations, add a sample per template to cover key scenarios.
 
 
 ### Why labeled samples matter
 
 To manage diverse layout changes across different versions, templates, languages, or regions, help the analyzer learn by adding examples.
 
-In-context learning helps: 
+In-context learning helps you:
 - Provide context for the analyzer to recognize the different ways the field could be represented in input documents and thus improve model accuracy.
 - Rapidly onboard new templates within a single analyzer.
 - Add samples only when dealing with lower confidence scores or incomplete/partial extraction.
 
-To add a label sample, go to a document extraction result page in the Azure AI Studio and select the **Label data** tab. Upload a sample, and select the **Auto label** button. Auto label, runs the existing analyzer to prepopulate the results that you can now update.
+To add a labeled sample, go to a document extraction result page in the Foundry portal and select the **Label data** tab. Upload a sample, and then select **Auto label**. Auto label runs the existing analyzer and prepopulates results that you can edit.
 
 :::image type="content" source="../media/document/in-context-learning.png" lightbox="../media/document/in-context-learning.png" alt-text="Screenshot of auto labeling an invoice sample.":::
 
@@ -113,28 +126,28 @@ Then you can edit the fields by selecting the correct values. Once you save it, 
 :::image type="content" source="../media/document/label-corrected.png" lightbox="../media/document/label-corrected.png" alt-text="Screenshot of corrected labels.":::
 
 > [!NOTE]
-> Labeled samples can be added in the Content Understanding Studio. Once samples are added, you need to build the analyzer again so that samples re available for the analyzer to use. 
+> You add labeled samples in Content Understanding Studio. After you add samples, rebuild the analyzer so the analyzer can use the samples.
 
 ### Limitations
 
-Labeled samples don't correct any text recognition issues. For instance if the letter `l` is recognized as the digit `1`, labeling the value as the letter `l` will not improve the extraction quality. OCR errors aren't currently in scope for analyzer improvement with labeling.
+Labeled samples don't correct text recognition issues. For example, if the letter `l` is recognized as the digit `1`, labeling the value as the letter `l` doesn't improve extraction quality. OCR errors aren't currently in scope for analyzer improvement with labeling.
 
 ### Example
 
-You start receiving invoices from a new vendor that produces a lower than expected confidence scores on the amount due field or incorrectly extracts the total amount value for those specific invoices. You can now add an example of the invoice with the labeled values. This improves the quality of the extracted values for the variations labeled.
+You start receiving invoices from a new vendor and see lower-than-expected confidence scores on the **Amount due** field, or the analyzer extracts an incorrect total amount. Add an example invoice with labeled values to improve extraction quality for those variations.
 
 The analyzer will now generalize better on this pattern to correctly extract the value for similar templates of documents.
 
 ## A complete workflow
 
-For building an intelligent document automation pipeline, these capabilities help you reliably extract and scale the application. For example if you want to process procurement contracts, you extract:
+When you build an intelligent document automation pipeline, these capabilities help you extract data reliably at scale. For example, if you process procurement contracts, you might extract:
 - Vendor name
 - Start and end dates
 - Cancellation clause
 
-To ensure quality and trust, which is critical for enterprise-scale document understanding:
+To ensure quality and trust for enterprise-scale document understanding:
 - **Grounding** gives your team full traceability to every field.
-- **Confidence scores** helps you automate, as human review is needed only when threshold is low.
+- **Confidence scores** help you automate, because human review is needed only when confidence is low.
 - **In-context learning** lets your model adapt to new contract templates or handling edge cases using just a few labeled examples.
 
 ## Next steps

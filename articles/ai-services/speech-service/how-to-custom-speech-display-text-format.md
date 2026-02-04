@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 5/19/2025
+ms.date: 01/30/2026
 ms.author: pafarley
 #Customer intent: As a developer, I want to learn how to prepare display text format training data for custom speech so that I can customize the display text formatting pipeline for my specific scenarios.
 ---

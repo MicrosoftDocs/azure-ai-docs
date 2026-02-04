@@ -2,8 +2,9 @@
 author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 7/17/2025
+ms.date: 1/29/2026
 ms.author: pafarley
+ai-usage: ai-assisted
 ---
 
 [!INCLUDE [Header](../../common/java.md)]
@@ -71,6 +72,8 @@ Follow these steps to create a console application for speech recognition.
    import com.microsoft.cognitiveservices.speech.*;
    import com.microsoft.cognitiveservices.speech.audio.*;
 
+   import java.net.URI;
+   import java.net.URISyntaxException;
    import java.util.Scanner;
    import java.util.concurrent.ExecutionException;
     
@@ -79,8 +82,8 @@ Follow these steps to create a console application for speech recognition.
        private static String speechKey = System.getenv("SPEECH_KEY");
        private static String endpoint = System.getenv("ENDPOINT");
     
-       public static void main(String[] args) throws InterruptedException, ExecutionException {
-           SpeechConfig speechConfig = SpeechConfig.fromEndpoint(speechKey, endpoint);
+       public static void main(String[] args) throws InterruptedException, ExecutionException, URISyntaxException {
+           SpeechConfig speechConfig = SpeechConfig.fromEndpoint(new URI(endpoint), speechKey);
            
            speechConfig.setSpeechSynthesisVoiceName("en-US-Ava:DragonHDLatestNeural"); 
     

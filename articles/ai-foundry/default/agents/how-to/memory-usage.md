@@ -2,14 +2,15 @@
 title: Create and Use Memory
 titleSuffix: Microsoft Foundry
 description: Learn how to create and manage memory in Foundry Agent Service to enable AI agents to retain context across sessions and personalize user interactions.
-#customer intent: As a developer, I want to attach a memory store to my AI agent so that it can access and update memories during interactions.
 author: haileytap
 ms.author: haileytapia
 ms.reviewer: liulewis
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 12/17/2025
+ms.date: 01/22/2026
+ms.custom: pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
+#customer intent: As a developer, I want to attach a memory store to my AI agent so that it can access and update memories during interactions.
 ---
 
 # Create and use memory in Foundry Agent Service (preview)
@@ -23,13 +24,22 @@ Memory stores act as persistent storage, defining which types of information are
 
 This article explains how to create, manage, and use memory stores. For conceptual information, see [Memory in Foundry Agent Service](../concepts/what-is-memory.md).
 
+### Usage support
+
+| Capability | Python SDK | REST API |
+|---|---|---|
+| Create, update, list, and delete memory stores | ✔️ | ✔️ |
+| Update and search memories | ✔️ | ✔️ |
+| Attach memory to a prompt agent | ✔️ | ✔️ |
+
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Microsoft Foundry project](../../../how-to/create-projects.md) with [authorization and permissions](#authorization-and-permissions) configured.
 - [Chat model deployment](../../../foundry-models/how-to/create-model-deployments.md) (for example, `gpt-4.1`) in your project.
 - [Embedding model deployment](../../../openai/tutorials/embeddings.md) (for example, `text-embedding-3-small`) in your project.
-- Python 3.8 or later with a [configured environment](../../../quickstarts/get-started-code.md?tabs=python) or REST API access.
+- For Python examples, Python 3.8 or later with a [configured environment](../../../quickstarts/get-started-code.md?tabs=python&view=foundry&preserve-view=true).
+- For REST API examples, Azure CLI authenticated to your subscription.
 
 ### Authorization and permissions
 
@@ -45,6 +55,18 @@ To configure role-based access:
     1. From the left pane, select **Access control (IAM)**.
     1. Select **Add** > **Add role assignment**.
     1. Assign **Azure AI User** to the managed identity of your project.
+
+### Set project endpoint
+
+For the Python examples in this article, set an environment variable for your project endpoint:
+
+```bash
+export FOUNDRY_PROJECT_ENDPOINT="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
+```
+
+```powershell
+$env:FOUNDRY_PROJECT_ENDPOINT = "https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
+```
 
 ## Understand scope
 
@@ -64,11 +86,12 @@ from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import MemoryStoreDefaultDefinition, MemoryStoreDefaultOptions
 from azure.identity import DefaultAzureCredential
 
-# Initialize the client
-client = AIProjectClient(
-    endpoint="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}",
-    credential=DefaultAzureCredential()
+project_client = AIProjectClient(
+    endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
+    credential=DefaultAzureCredential(),
 )
+
+memory_store_name = "my_memory_store"
 
 # Specify memory store options
 options = MemoryStoreDefaultOptions(
@@ -84,8 +107,8 @@ definition = MemoryStoreDefaultDefinition(
     options=options
 )
 
-memory_store = client.memory_stores.create(
-    name="my_memory_store",
+memory_store = project_client.memory_stores.create(
+    name=memory_store_name,
     definition=definition,
     description="Memory store for customer support agent",
 )
@@ -99,7 +122,9 @@ print(f"Created memory store: {memory_store.name}")
 # Configuration
 ENDPOINT="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
 API_VERSION="2025-11-15-preview"
-ACCESS_TOKEN="your-access-token-here"
+
+# Get a short-lived access token using Azure CLI
+ACCESS_TOKEN="$(az account get-access-token --resource https://ai.azure.com/ --query accessToken -o tsv)"
 
 curl -X POST "${ENDPOINT}/memory_stores?api-version=${API_VERSION}" \
   -H "Authorization: Bearer ${ACCESS_TOKEN}" \
@@ -138,8 +163,8 @@ Update memory store properties, such as `description` or `metadata`, to better m
 
 ```python
 # Update memory store properties
-updated_store = client.memory_stores.update(
-    name="my_memory_store",
+updated_store = project_client.memory_stores.update(
+    name=memory_store_name,
     description="Updated description"
 )
 
@@ -152,9 +177,11 @@ print(f"Updated: {updated_store.description}")
 # Configuration
 ENDPOINT="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
 API_VERSION="2025-11-15-preview"
-ACCESS_TOKEN="your-access-token-here"
+ACCESS_TOKEN="$(az account get-access-token --resource https://ai.azure.com/ --query accessToken -o tsv)"
 
-curl -X POST "${ENDPOINT}/memory_stores/my_memory_store?api-version=${API_VERSION}" \
+MEMORY_STORE_NAME="my_memory_store"
+
+curl -X POST "${ENDPOINT}/memory_stores/${MEMORY_STORE_NAME}?api-version=${API_VERSION}" \
   -H "Authorization: Bearer ${ACCESS_TOKEN}" \
   -H "Content-Type: application/json" \
   -d '{
@@ -172,7 +199,7 @@ Retrieve a list of memory stores in your project to manage and monitor your memo
 
 ```python
 # List all memory stores
-stores_list = client.memory_stores.list()
+stores_list = project_client.memory_stores.list()
 
 print(f"Found {len(stores_list.data)} memory stores")
 for store in stores_list.data:
@@ -185,7 +212,7 @@ for store in stores_list.data:
 # Configuration
 ENDPOINT="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
 API_VERSION="2025-11-15-preview"
-ACCESS_TOKEN="your-access-token-here"
+ACCESS_TOKEN="$(az account get-access-token --resource https://ai.azure.com/ --query accessToken -o tsv)"
 
 curl -X GET "${ENDPOINT}/memory_stores?api-version=${API_VERSION}" \
   -H "Authorization: Bearer ${ACCESS_TOKEN}"
@@ -200,13 +227,18 @@ After you create a memory store, you can attach the memory search tool to a prom
 # [Python](#tab/python)
 
 ```python
+# Continue from the previous Python snippets.
+from azure.ai.projects.models import MemorySearchTool, PromptAgentDefinition
+
 # Set scope to associate the memories with
 # You can also use "{{$userId}}" to take the oid of the request authentication header
 scope = "user_123"
 
+openai_client = project_client.get_openai_client()
+
 # Create memory search tool
 tool = MemorySearchTool(
-    memory_store_name=memory_store.name,
+    memory_store_name=memory_store_name,
     scope=scope,
     update_delay=1,  # Wait 1 second of inactivity before updating memories
     # In a real application, set this to a higher value like 300 (5 minutes, default)
@@ -231,7 +263,7 @@ print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.versi
 # Configuration
 ENDPOINT="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
 API_VERSION="2025-11-15-preview"
-ACCESS_TOKEN="your-access-token-here"
+ACCESS_TOKEN="$(az account get-access-token --resource https://ai.azure.com/ --query accessToken -o tsv)"
 
 curl -X POST "${ENDPOINT}/agents/MyAgent/versions?api-version=${API_VERSION}" \
   -H "Authorization: Bearer ${ACCESS_TOKEN}" \
@@ -243,10 +275,10 @@ curl -X POST "${ENDPOINT}/agents/MyAgent/versions?api-version=${API_VERSION}" \
         "instructions": "You are a helpful assistant that answers general questions",
         "tools": [
             {
-                "type": "memory_search",
-                "memory_store_name": "my_memory_store",
-                "scope": "user_123",
-                "update_delay": 1
+              "type": "memory_search",
+              "memory_store_name": "my_memory_store",
+              "scope": "user_123",
+              "update_delay": 1
             }
         ]
     }
@@ -264,6 +296,8 @@ After each agent response, the service internally calls `update_memories`. Howev
 # [Python](#tab/python)
 
 ```python
+import time
+
 # Create a conversation with the agent with memory tool enabled
 conversation = openai_client.conversations.create()
 print(f"Created conversation (id: {conversation.id})")
@@ -279,7 +313,7 @@ print(f"Response output: {response.output_text}")
 
 # After an inactivity in the conversation, memories will be extracted from the conversation and stored
 print("Waiting for memories to be stored...")
-time.sleep(60)
+time.sleep(65)
 
 # Create a new conversation
 new_conversation = openai_client.conversations.create()
@@ -301,25 +335,24 @@ print(f"Response output: {new_response.output_text}")
 # Configuration
 ENDPOINT="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
 API_VERSION="2025-11-15-preview"
-ACCESS_TOKEN="your-access-token-here"
+ACCESS_TOKEN="$(az account get-access-token --resource https://ai.azure.com/ --query accessToken -o tsv)"
 
 curl -X POST "${ENDPOINT}/openai/conversations?api-version=${API_VERSION}" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "Content-Type: application/json" \
     -d '{}'
 
-# Use the "id" from previous response
-CONVERSATION_ID="your-conversation-id"
+# Copy the "id" field from the previous response.
 curl -X POST "${ENDPOINT}/openai/responses?api-version=${API_VERSION}" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "Content-Type: application/json" \
     -d '{
-        "input": "I prefer dark roast coffee",
-        "conversation": "${CONVERSATION_ID}",
-        "agent": {
-            "name": "MyAgent",
-            "type": "agent_reference"
-        }
+      "input": "I prefer dark roast coffee",
+      "conversation": "{conversation-id}",
+      "agent": {
+        "name": "MyAgent",
+        "type": "agent_reference"
+      }
     }'
 ```
 
@@ -340,6 +373,7 @@ You can update a memory store with content from multiple conversation turns, or 
 # [Python](#tab/python)
 
 ```python
+# Continue from the previous Python snippets.
 from azure.ai.projects.models import ResponsesUserMessageItemParam
 
 # Set scope to associate the memories with
@@ -349,8 +383,8 @@ user_message = ResponsesUserMessageItemParam(
     content="I prefer dark roast coffee and usually drink it in the morning"
 )
 
-update_poller = client.memory_stores.begin_update_memories(
-    name="my_memory_store",
+update_poller = project_client.memory_stores.begin_update_memories(
+    name=memory_store_name,
     scope=scope,
     items=[user_message],  # Pass conversation items that you want to add to memory
     update_delay=0,  # Trigger update immediately without waiting for inactivity
@@ -366,8 +400,8 @@ for operation in update_result.memory_operations:
 
 # Extend the previous update with another update and more messages
 new_message = ResponsesUserMessageItemParam(content="I also like cappuccinos in the afternoon")
-new_update_poller = client.memory_stores.begin_update_memories(
-    name="my_memory_store",
+new_update_poller = project_client.memory_stores.begin_update_memories(
+    name=memory_store_name,
     scope=scope,
     items=[new_message],
     previous_update_id=update_poller.update_id,  # Extend from previous update ID
@@ -386,7 +420,7 @@ for operation in new_update_result.memory_operations:
 # Configuration
 ENDPOINT="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
 API_VERSION="2025-11-15-preview"
-ACCESS_TOKEN="your-access-token-here"
+ACCESS_TOKEN="$(az account get-access-token --resource https://ai.azure.com/ --query accessToken -o tsv)"
 
 curl -X POST "${ENDPOINT}/memory_stores/my_memory_store:update_memories?api-version=${API_VERSION}" \
   -H "Authorization: Bearer ${ACCESS_TOKEN}" \
@@ -424,13 +458,14 @@ Search memories to retrieve relevant context for agent interactions. Specify the
 # [Python](#tab/python)
 
 ```python
-from azure.ai.projects.models import MemorySearchOptions
+# Continue from the previous Python snippets.
+from azure.ai.projects.models import MemorySearchOptions, ResponsesUserMessageItemParam
 
 # Search memories by a query
 query_message = ResponsesUserMessageItemParam(content="What are my coffee preferences?")
 
-search_response = client.memory_stores.search_memories(
-    name="my_memory_store",
+search_response = project_client.memory_stores.search_memories(
+    name=memory_store_name,
     scope=scope,
     items=[query_message],
     options=MemorySearchOptions(max_memories=5)
@@ -446,7 +481,7 @@ for memory in search_response.memories:
 # Configuration
 ENDPOINT="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
 API_VERSION="2025-11-15-preview"
-ACCESS_TOKEN="your-access-token-here"
+ACCESS_TOKEN="$(az account get-access-token --resource https://ai.azure.com/ --query accessToken -o tsv)"
 
 curl -X POST "${ENDPOINT}/memory_stores/my_memory_store:search_memories?api-version=${API_VERSION}" \
   -H "Authorization: Bearer ${ACCESS_TOKEN}" \
@@ -498,8 +533,8 @@ Remove all memories associated with a particular user or group scope while prese
 
 ```python
 # Delete memories for a specific scope
-delete_scope_response = client.memory_stores.delete_scope(
-    name="my_memory_store",
+delete_scope_response = project_client.memory_stores.delete_scope(
+    name=memory_store_name,
     scope="user_123"
 )
 
@@ -512,13 +547,13 @@ print(f"Deleted memories for scope: user_123")
 # Configuration
 ENDPOINT="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
 API_VERSION="2025-11-15-preview"
-ACCESS_TOKEN="your-access-token-here"
+ACCESS_TOKEN="$(az account get-access-token --resource https://ai.azure.com/ --query accessToken -o tsv)"
 
 curl -X POST "${ENDPOINT}/memory_stores/my_memory_store:delete_scope?api-version=${API_VERSION}" \
   -H "Authorization: Bearer ${ACCESS_TOKEN}" \
   -H "Content-Type: application/json" \
   -d '{
-    "scope": "user-123"
+    "scope": "user_123"
   }'
 ```
 
@@ -532,7 +567,7 @@ Remove the entire memory store and all associated memories across all scopes. Th
 
 ```python
 # Delete the entire memory store
-delete_response = client.memory_stores.delete("my_memory_store")
+delete_response = project_client.memory_stores.delete(memory_store_name)
 print(f"Deleted memory store: {delete_response.deleted}")
 ```
 
@@ -542,7 +577,7 @@ print(f"Deleted memory store: {delete_response.deleted}")
 # Configuration
 ENDPOINT="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
 API_VERSION="2025-11-15-preview"
-ACCESS_TOKEN="your-access-token-here"
+ACCESS_TOKEN="$(az account get-access-token --resource https://ai.azure.com/ --query accessToken -o tsv)"
 
 curl -X DELETE "${ENDPOINT}/memory_stores/my_memory_store?api-version=${API_VERSION}" \
   -H "Authorization: Bearer ${ACCESS_TOKEN}"
@@ -564,9 +599,18 @@ curl -X DELETE "${ENDPOINT}/memory_stores/my_memory_store?api-version=${API_VERS
 
 - **Monitor memory usage:** Track token usage and memory operations to understand costs and optimize performance.
 
+## Troubleshooting
+
+| Issue | Cause | Resolution |
+|---|---|---|
+| Requests fail with an authentication or authorization error. | Your identity or the project managed identity doesn’t have the required roles. | Verify the roles in [Authorization and permissions](#authorization-and-permissions). For REST calls, generate a fresh access token and retry. |
+| Memories don’t appear after a conversation. | Memory updates are debounced or still processing. | Increase the wait time or call the update API with `update_delay` set to `0` to trigger processing immediately. |
+| Memory search returns no results. | The `scope` value doesn’t match the scope used when memories were stored. | Use the same scope for update and search. If you map scope to users, use a stable user identifier. |
+| The agent response doesn’t use stored memory. | The agent isn’t configured with the memory search tool, or the memory store name is incorrect. | Confirm the agent definition includes the `memory_search` tool and references the correct memory store name. |
+
 ## Related content
 
 - [Python code samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/memories)
+- [Memory store REST API reference](../../../reference/foundry-project-rest-preview.md)
 - [Memory in Foundry Agent Service](../concepts/what-is-memory.md)
 - [Build an agent with Microsoft Foundry](../../../agents/quickstart.md)
-- [Microsoft Agent Framework overview](/agent-framework/overview/agent-framework-overview)

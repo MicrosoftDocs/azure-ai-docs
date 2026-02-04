@@ -9,7 +9,7 @@ ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
-ms.topic: article
+ms.topic: reference
 ms.date: 11/04/2025
 ms.update-cycle: 365-days
 ---

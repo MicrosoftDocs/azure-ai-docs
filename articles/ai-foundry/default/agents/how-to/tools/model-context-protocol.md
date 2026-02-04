@@ -7,12 +7,12 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 12/17/2025
+ms.date: 01/20/2026
 author: alvinashcraft
 ms.author: aashcraft
-ms.custom: dev-focus
 ai-usage: ai-assisted
 zone_pivot_groups: selection-mcp-code-new
+ms.custom: dev-focus, pilot-ai-workflow-jan-2026
 ---
 
 # Connect to Model Context Protocol servers (preview)
@@ -22,14 +22,21 @@ zone_pivot_groups: selection-mcp-code-new
 > [!NOTE]
 > When you use a [Network Secured Microsoft Foundry](../../../../agents/how-to/virtual-networks.md), you can't use private MCP servers deployed in the same virtual network. You can only use publicly accessible MCP servers.
 
-Connect your Foundry agents to [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) servers to extend agent capabilities with external tools and data sources. By connecting to remote MCP server endpoints, your agents can access tools hosted by developers and organizations that MCP-compatible clients like Foundry Agent Service can use.
+Connect your Foundry agents to [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) servers by using the MCP tool. This extends agent capabilities with external tools and data sources. By connecting to remote MCP server endpoints, your agents can access tools hosted by developers and organizations that MCP-compatible clients like Foundry Agent Service can use.
 
 MCP is an open standard that defines how applications provide tools and contextual data to large language models (LLMs). It enables consistent, scalable integration of external tools into model workflows.
+
+In this article, you learn how to:
+
+- Add a remote MCP server as a tool.
+- Authenticate to an MCP server by using a project connection.
+- Review and approve MCP tool calls.
+- Troubleshoot common MCP integration issues.
 
 ### Usage support
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
-|---------|---------|---------|---------|---------|---------|---------|---------|
+| --- | --- | --- | --- | --- | --- | --- | --- |
 | ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
@@ -38,13 +45,25 @@ Before you begin, ensure you have:
 
 - An Azure subscription with an active Microsoft Foundry project.
 - Azure role-based access control (RBAC): Contributor or Owner role on the Foundry project.
-- The latest prerelease SDK package for your language. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for installation details.
+- The latest prerelease SDK package for your language. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true) for installation details.
 - Azure credentials configured for authentication (such as `DefaultAzureCredential`).
 - Environment variables configured:
   - `AZURE_AI_PROJECT_ENDPOINT` or `FOUNDRY_PROJECT_ENDPOINT`: Your project endpoint URL.
   - `AZURE_AI_MODEL_DEPLOYMENT_NAME` or `MODEL_DEPLOYMENT_NAME`: Your model deployment name.
-  - `MCP_PROJECT_CONNECTION_ID` or `MCP_PROJECT_CONNECTION_NAME` (optional): For authenticated MCP server access.
+  - `MCP_PROJECT_CONNECTION_NAME`: Your MCP project connection name.
 - Access to a remote MCP server endpoint (such as GitHub's MCP server at `https://api.githubcopilot.com/mcp`).
+
+## Authentication
+
+Many MCP servers require authentication.
+
+In Foundry Agent Service, use a project connection to store authentication details (for example, API keys or bearer tokens) instead of hard-coding credentials in your app.
+
+To learn about supported authentication options (key-based, Microsoft Entra identities, and OAuth identity passthrough), see [MCP server authentication](../mcp-authentication.md).
+
+> [!NOTE]
+> Set `project_connection_id` to the ID of your project connection.
+
 ## Considerations for using non-Microsoft services and servers
 
 You're subject to the terms between you and the service provider when you use connected non-Microsoft services. When you connect to a non-Microsoft service, you pass some of your data (such as prompt content) to the non-Microsoft service, or your application might receive data from the non-Microsoft service. You're responsible for your use of non-Microsoft services and data, along with any charges associated with that use.
@@ -55,17 +74,66 @@ Carefully review and track what MCP servers you add to Foundry Agent Service. Re
 
 The MCP tool allows you to pass custom headers, such as authentication keys or schemas, that a remote MCP server might need. Review all data that you share with remote MCP servers and log the data for auditing purposes. Be aware of non-Microsoft practices for retention and location of data.
 
+## Best practices
+
+For general guidance on tool usage, see [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md).
+
+When you use MCP servers, follow these practices:
+
+- Prefer an allow-list of tools by using `allowed_tools`.
+- Require approval for high-risk operations (especially tools that write data or change resources).
+- Review the requested tool name and arguments before you approve.
+- Log approvals and tool calls for auditing and troubleshooting.
+
 ## Code example
 
-Use the following code sample to create an agent and call the function. You need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
+Use the following code sample to create an agent and call the function. You need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true) for details.
 
 :::zone pivot="python"
-## Create an agent with the MCP tool
 
-The following example shows how to use GitHub MCP server as a tool for an Agent.
+### Quick verification
+
+Before running the full sample, verify your project connection (optional, for authenticated MCP servers):
 
 ```python
 import os
+
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+from dotenv import load_dotenv
+
+load_dotenv()
+
+with (
+    DefaultAzureCredential() as credential,
+    AIProjectClient(endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"], credential=credential) as project_client,
+):
+    print("Connected to project.")
+    
+    # Verify MCP connection exists (optional - only needed for authenticated servers)
+    connection_name = os.environ.get("MCP_PROJECT_CONNECTION_NAME")
+    if connection_name:
+        try:
+            conn = project_client.connections.get(connection_name)
+            print(f"MCP connection verified: {conn.name}")
+        except Exception as e:
+            print(f"MCP connection '{connection_name}' not found: {e}")
+    else:
+        print("MCP_PROJECT_CONNECTION_NAME not set (optional for unauthenticated servers).")
+        print("Available connections:")
+        for conn in project_client.connections.list():
+            print(f"  - {conn.name}")
+```
+
+If this code runs without errors, your credentials are configured correctly. For authenticated MCP servers, ensure your connection exists.
+
+### Full sample
+
+The following example shows how to use the GitHub MCP server as a tool for an agent.
+
+```python
+import os
+import json
 from dotenv import load_dotenv
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
@@ -87,7 +155,7 @@ with (
         server_label="api-specs",
         server_url="https://api.githubcopilot.com/mcp",
         require_approval="always",
-        project_connection_id=os.environ["MCP_PROJECT_CONNECTION_ID"],
+        project_connection_id=os.getenv("MCP_PROJECT_CONNECTION_NAME"),
     )
     # [END tool_declaration]
 
@@ -109,24 +177,33 @@ with (
     # Send initial request that will trigger the MCP tool
     response = openai_client.responses.create(
         conversation=conversation.id,
-        input="What is my username in Github profile?",
+        input="What is my username in my GitHub profile?",
         extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
     )
 
     # Process any MCP approval requests that were generated
     input_list: ResponseInputParam = []
     for item in response.output:
-        if item.type == "mcp_approval_request":
-            if item.server_label == "api-specs" and item.id:
-                # Automatically approve the MCP request to allow the agent to proceed
-                # In production, you might want to implement more sophisticated approval logic
-                input_list.append(
-                    McpApprovalResponse(
-                        type="mcp_approval_response",
-                        approve=True,
-                        approval_request_id=item.id,
-                    )
+        if item.type == "mcp_approval_request" and item.id:
+            print("MCP approval requested")
+            print(f"  Server: {item.server_label}")
+            print(f"  Tool: {getattr(item, 'name', '<unknown>')}")
+            print(
+                f"  Arguments: {json.dumps(getattr(item, 'arguments', None), indent=2, default=str)}"
+            )
+
+            # Approve only after you review the tool call.
+            # In production, implement your own approval UX and policy.
+            should_approve = (
+                input("Approve this MCP tool call? (y/N): ").strip().lower() == "y"
+            )
+            input_list.append(
+                McpApprovalResponse(
+                    type="mcp_approval_response",
+                    approve=should_approve,
+                    approval_request_id=item.id,
                 )
+            )
 
     print("Final input:")
     print(input_list)
@@ -165,7 +242,7 @@ Agent deleted
 :::zone pivot="csharp"
 ## Create an agent with MCP tool
 
-The following example shows how to use GitHub MCP server as a tool for an Agent. The example uses synchronous methods to create an agent. For asynchronous methods, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample19_MCP.md) in the Azure SDK for .NET repository on GitHub.
+The following example shows how to use the GitHub MCP server as a tool for an agent. The example uses synchronous methods to create an agent. For asynchronous methods, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample19_MCP.md) in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
 // Create project client and read the environment variables that are used in the next steps.
@@ -197,7 +274,7 @@ AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
 // the current configuration.
 ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
 
-CreateResponseOptions nextResponseOptions = new([ResponseItem.CreateUserMessageItem("Please summarize the Azure REST API specifications Readme")]);
+CreateResponseOptions nextResponseOptions = new([ResponseItem.CreateUserMessageItem("Please summarize the Azure REST API specifications README")]);
 ResponseResult latestResponse = null;
 
 while (nextResponseOptions is not null)
@@ -215,10 +292,10 @@ while (nextResponseOptions is not null)
             };
             if (string.Equals(mcpToolCall.ServerLabel, "api-specs"))
             {
-                Console.WriteLine($"Approving {mcpToolCall.ServerLabel}...");
-                // Automatically approve the MCP request to allow the agent to proceed
-                // In production, you might want to implement more sophisticated approval logic
-                nextResponseOptions.InputItems.Add(ResponseItem.CreateMcpApprovalResponseItem(approvalRequestId: mcpToolCall.Id, approved: true));
+          Console.WriteLine($"Approval requested for {mcpToolCall.ServerLabel} (tool: {mcpToolCall.Name})");
+          Console.Write("Approve this MCP tool call? (y/N): ");
+          bool approved = string.Equals(Console.ReadLine(), "y", StringComparison.OrdinalIgnoreCase);
+          nextResponseOptions.InputItems.Add(ResponseItem.CreateMcpApprovalResponseItem(approvalRequestId: mcpToolCall.Id, approved: approved));
             }
             else
             {
@@ -241,16 +318,59 @@ projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersi
 The following example shows the expected output when you run the sample:
 
 ```console
-Approving api-specs...
+Approval requested for api-specs...
 Response: The Azure REST API specifications repository contains the OpenAPI specifications for Azure services. It is
 organized by service and includes guidelines for contributing new specifications. The repository is intended for use by developers building tools and services that interact with Azure APIs.
 ```
 
 ## Create an agent with the MCP tool using project connection authentication
 
-In this example, you learn how to authenticate to the GitHub MCP server and use it as a tool for an Agent.  The example uses synchronous methods to create an agent. For asynchronous methods, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample20_MCP_Connection.md) in the Azure SDK for .NET repository on GitHub.
+### Quick verification
 
-### Set up project connection
+Before running the full sample, verify your project connection (optional, for authenticated MCP servers):
+
+```csharp
+using Azure.AI.Projects;
+using Azure.Identity;
+
+var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
+var mcpConnectionName = System.Environment.GetEnvironmentVariable("MCP_PROJECT_CONNECTION_NAME");
+
+AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+
+Console.WriteLine("Connected to project.");
+
+// Verify MCP connection exists (optional - only needed for authenticated servers)
+if (!string.IsNullOrEmpty(mcpConnectionName))
+{
+    try
+    {
+        AIProjectConnection conn = projectClient.Connections.GetConnection(connectionName: mcpConnectionName);
+        Console.WriteLine($"MCP connection verified: {conn.Name}");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"MCP connection '{mcpConnectionName}' not found: {ex.Message}");
+    }
+}
+else
+{
+    Console.WriteLine("MCP_PROJECT_CONNECTION_NAME not set (optional for unauthenticated servers).");
+    Console.WriteLine("Available connections:");
+    foreach (var conn in projectClient.Connections.GetConnections())
+    {
+        Console.WriteLine($"  - {conn.Name}");
+    }
+}
+```
+
+If this code runs without errors, your credentials are configured correctly. For authenticated MCP servers, ensure your connection exists.
+
+### Full sample
+
+In this example, you learn how to authenticate to the GitHub MCP server and use it as a tool for an agent. The example uses synchronous methods to create an agent. For asynchronous methods, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample20_MCP_Connection.md) in the Azure SDK for .NET repository on GitHub.
+
+#### Set up project connection
 
 Before running the sample:
 
@@ -272,7 +392,7 @@ Before running the sample:
 // Create project client and read the environment variables to be used in the next steps.
 var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
 var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
-var mcpProjectConnectionName = System.Environment.GetEnvironmentVariable("MCP_PROJECT_CONNECTION_NAME");
+var mcpConnectionName = System.Environment.GetEnvironmentVariable("MCP_PROJECT_CONNECTION_NAME");
 AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
 
 // Create an agent with the MCPTool. Note that, in this scenario,
@@ -285,7 +405,7 @@ McpTool tool = ResponseTool.CreateMcpTool(
         serverUri: new Uri("https://api.githubcopilot.com/mcp"),
         toolCallApprovalPolicy: new McpToolCallApprovalPolicy(GlobalMcpToolCallApprovalPolicy.AlwaysRequireApproval
     ));
-tool.ProjectConnectionId = mcpProjectConnectionName;
+tool.ProjectConnectionId = mcpConnectionName;
 PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
 {
     Instructions = "You are a helpful agent that can use MCP tools to assist users. Use the available MCP tools to answer questions and perform tasks.",
@@ -303,7 +423,7 @@ AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
 // the current configuration.
 ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
 
-CreateResponseOptions nextResponseOptions = new([ResponseItem.CreateUserMessageItem("What is my username in Github profile?")]);
+CreateResponseOptions nextResponseOptions = new([ResponseItem.CreateUserMessageItem("What is my username in my GitHub profile?")]);
 ResponseResult latestResponse = null;
 
 while (nextResponseOptions is not null)
@@ -321,10 +441,10 @@ while (nextResponseOptions is not null)
             };
             if (string.Equals(mcpToolCall.ServerLabel, "api-specs"))
             {
-                Console.WriteLine($"Approving {mcpToolCall.ServerLabel}...");
-                // Automatically approve the MCP request to allow the agent to proceed
-                // In production, you might want to implement more sophisticated approval logic
-                nextResponseOptions.InputItems.Add(ResponseItem.CreateMcpApprovalResponseItem(approvalRequestId: mcpToolCall.Id, approved: true));
+              Console.WriteLine($"Approval requested for {mcpToolCall.ServerLabel} (tool: {mcpToolCall.Name})");
+              Console.Write("Approve this MCP tool call? (y/N): ");
+              bool approved = string.Equals(Console.ReadLine(), "y", StringComparison.OrdinalIgnoreCase);
+              nextResponseOptions.InputItems.Add(ResponseItem.CreateMcpApprovalResponseItem(approvalRequestId: mcpToolCall.Id, approved: approved));
             }
             else
             {
@@ -347,7 +467,7 @@ projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersi
 The following example shows the expected output when you run the sample:
 
 ```console
-Approving api-specs...
+Approval requested for api-specs...
 Response: Your GitHub username is "example-username".
 ```
 :::zone-end
@@ -362,6 +482,10 @@ import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
 import OpenAI from "openai";
 import "dotenv/config";
+
+import * as readline from "readline";
+
+import * as readline from "readline";
 
 const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
 const deploymentName = process.env["MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
@@ -412,6 +536,9 @@ export async function main(): Promise<void> {
   // Process any MCP approval requests that were generated
   // When requireApproval="always", the agent will request permission before accessing external resources
   const inputList: OpenAI.Responses.ResponseInputItem.McpApprovalResponse[] = [];
+
+  const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+  const ask = (q: string) => new Promise<string>((resolve) => rl.question(q, resolve));
   for (const item of response.output) {
     if (item.type === "mcp_approval_request") {
       if (item.server_label === "api-specs" && item.id) {
@@ -419,16 +546,20 @@ export async function main(): Promise<void> {
         console.log(`  Server: ${item.server_label}`);
         console.log(`  Tool: ${item.name}`);
 
-        // Automatically approve the MCP request to allow the agent to proceed
-        // In production, you might want to implement more sophisticated approval logic
+        // Approve only after you review the tool call.
+        // In production, implement your own approval UX and policy.
+        const answer = (await ask("Approve this MCP tool call? (y/N): ")).trim().toLowerCase();
+        const approve = answer === "y";
         inputList.push({
           type: "mcp_approval_response",
           approval_request_id: item.id,
-          approve: true,
+          approve,
         });
       }
     }
   }
+
+  rl.close();
 
   console.log(`\nProcessing ${inputList.length} approval request(s)`);
   console.log("Final input:");
@@ -506,6 +637,46 @@ MCP sample completed!
 
 ## Create an agent with the MCP tool using project connection authentication
 
+### Quick verification
+
+Before running the full sample, verify your project connection (optional, for authenticated MCP servers):
+
+```typescript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+import "dotenv/config";
+
+const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
+const mcpConnectionName = process.env["MCP_PROJECT_CONNECTION_NAME"] || "";
+
+async function verifyConnection(): Promise<void> {
+  const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
+  console.log("Connected to project.");
+
+  // Verify MCP connection exists (optional - only needed for authenticated servers)
+  if (mcpConnectionName) {
+    try {
+      const conn = await project.connections.get(mcpConnectionName);
+      console.log(`MCP connection verified: ${conn.name}`);
+    } catch (error) {
+      console.log(`MCP connection '${mcpConnectionName}' not found: ${error}`);
+    }
+  } else {
+    console.log("MCP_PROJECT_CONNECTION_NAME not set (optional for unauthenticated servers).");
+    console.log("Available connections:");
+    for await (const conn of project.connections.list()) {
+      console.log(`  - ${conn.name}`);
+    }
+  }
+}
+
+verifyConnection().catch(console.error);
+```
+
+If this code runs without errors, your credentials are configured correctly. For authenticated MCP servers, ensure your connection exists.
+
+### Full sample
+
 The following TypeScript sample demonstrates how to create an agent with MCP tool capabilities using project connection authentication, send requests that trigger MCP approval workflows, handle approval requests, and clean up resources. For a JavaScript version, see the [sample code](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentMcpConnectionAuth.js) on the Azure SDK for JavaScript repository on GitHub.
 
 ```typescript
@@ -516,8 +687,7 @@ import "dotenv/config";
 
 const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
 const deploymentName = process.env["MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
-const mcpProjectConnectionId =
-  process.env["MCP_PROJECT_CONNECTION_ID"] || "<mcp project connection id>";
+const mcpConnectionName = process.env["MCP_PROJECT_CONNECTION_NAME"] || "";
 
 export async function main(): Promise<void> {
   // Create AI Project client
@@ -539,7 +709,7 @@ export async function main(): Promise<void> {
         server_label: "api-specs",
         server_url: "https://api.githubcopilot.com/mcp",
         require_approval: "always",
-        project_connection_id: mcpProjectConnectionId,
+        project_connection_id: mcpConnectionName,
       },
     ],
   });
@@ -555,7 +725,7 @@ export async function main(): Promise<void> {
   const response = await openAIClient.responses.create(
     {
       conversation: conversation.id,
-      input: "What is my username in Github profile?",
+      input: "What is my username in my GitHub profile?",
     },
     {
       body: { agent: { name: agent.name, type: "agent_reference" } },
@@ -564,6 +734,9 @@ export async function main(): Promise<void> {
 
   // Process any MCP approval requests that were generated
   const inputList: OpenAI.Responses.ResponseInputItem.McpApprovalResponse[] = [];
+
+  const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+  const ask = (q: string) => new Promise<string>((resolve) => rl.question(q, resolve));
   for (const item of response.output) {
     if (item.type === "mcp_approval_request") {
       if (item.server_label === "api-specs" && item.id) {
@@ -571,16 +744,20 @@ export async function main(): Promise<void> {
         console.log(`  Server: ${item.server_label}`);
         console.log(`  Tool: ${item.name}`);
 
-        // Automatically approve the MCP request to allow the agent to proceed
-        // In production, you might want to implement more sophisticated approval logic
+        // Approve only after you review the tool call.
+        // In production, implement your own approval UX and policy.
+        const answer = (await ask("Approve this MCP tool call? (y/N): ")).trim().toLowerCase();
+        const approve = answer === "y";
         inputList.push({
           type: "mcp_approval_response",
           approval_request_id: item.id,
-          approve: true,
+          approve,
         });
       }
     }
   }
+
+  rl.close();
 
   console.log(`\nProcessing ${inputList.length} approval request(s)`);
   console.log("Final input:");
@@ -649,6 +826,72 @@ MCP with project connection sample completed!
 ```
 :::zone-end
 
+:::zone pivot="rest"
+## Create a response that uses the MCP tool (REST API)
+
+The following example shows how to call an MCP tool by using the Responses API. If the response includes an output item with `type` set to `mcp_approval_request`, send a follow-up request that includes a `mcp_approval_response` item.
+
+### Prerequisites
+
+Set these environment variables:
+
+- `PROJECT_ENDPOINT`: Your project endpoint URL.
+- `API_VERSION`: The API version (for example, `2025-11-15-preview`).
+- `AGENT_TOKEN`: A bearer token for Foundry.
+- `MODEL_DEPLOYMENT_NAME`: Your model deployment name.
+- `MCP_PROJECT_CONNECTION_NAME` (optional): Your MCP project connection name.
+
+If your MCP server doesn't require authentication, omit `project_connection_id` from the request body.
+
+> [!NOTE]
+> For REST API, you need to first retrieve the connection ID from the connection name using the Connections API, then pass the ID to the MCP tool configuration.
+
+> [!TIP]
+> For details on the MCP tool schema and approval items, see [OpenAI.MCPTool](../../../../reference/foundry-project-rest-preview.md#openaimcptool) and the MCP approval item types in the REST reference.
+
+
+```bash
+curl --request POST \
+  --url "$PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+  "model": "'$MODEL_DEPLOYMENT_NAME'",
+  "input": "What is my username in my GitHub profile?",
+  "tools": [
+    {
+      "type": "mcp",
+      "server_label": "github",
+      "server_url": "https://api.githubcopilot.com/mcp",
+      "project_connection_id": "'$MCP_PROJECT_CONNECTION_NAME'"
+    }
+  ]
+}'
+```
+
+If the response includes an output item with `type` set to `mcp_approval_request`, copy the approval request item `id` as `APPROVAL_REQUEST_ID`. Also copy the top-level response `id` as `PREVIOUS_RESPONSE_ID`.
+
+### 2. Send an approval response
+
+```bash
+curl --request POST \
+  --url "$PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+  "previous_response_id": "'$PREVIOUS_RESPONSE_ID'",
+  "input": [
+    {
+      "type": "mcp_approval_response",
+      "approval_request_id": "'$APPROVAL_REQUEST_ID'",
+      "approve": true
+    }
+  ]
+}'
+```
+
+:::zone-end
+
 ## How it works
 
 You need to bring a remote MCP server (an existing MCP server endpoint) to Foundry Agent Service. You can bring multiple remote MCP servers by adding them as tools. For each tool, you need to provide a unique `server_label` value within the same agent and a `server_url` value that points to the remote MCP server. Be sure to carefully review which MCP servers you add to Foundry Agent Service.
@@ -671,7 +914,7 @@ The following steps outline how to connect to a remote MCP server from Foundry A
       - `never`: No approval is required.
       - `{"never":[<tool_name_1>, <tool_name_2>]}`: You provide a list of tools that don't require approval.
       - `{"always":[<tool_name_1>, <tool_name_2>]}`: You provide a list of tools that require approval.
-   1. `project_connection_id`: the name of your project connection
+  1. `project_connection_id`: The project connection ID that stores authentication and other connection details for the MCP server.
 1. If the model tries to invoke a tool in your MCP server with approval required, you get a response output item type as `mcp_approval_request`. In the response output item, you can get more details on which tool in the MCP server is called and arguments to be passed. Review the tool and arguments so that you can make an informed decision for approval.
 1. Submit your approval to the agent by using `response_id` and setting `approve` to `true`.
 
@@ -683,17 +926,29 @@ The following are common issues that you might encounter when using MCP tools wi
 
     An invalid tool schema usually happens if you have `anyOf` or `allOf` in your MCP server definition, or if a parameter can take multiple types of values. Update your MCP server definition and try again.
 
+- "Unauthorized" or "Forbidden" from the MCP server:
+
+    Confirm the MCP server supports your authentication method, and verify the credentials stored in your project connection. For GitHub, use least-privilege tokens and rotate them regularly.
+
+- The model never calls your MCP tool:
+
+    Confirm your agent instructions encourage tool usage, and verify `server_label`, `server_url`, and `allowed_tools` values. If you set `allowed_tools`, make sure the tool name matches what the MCP server exposes.
+
+- The agent never continues after approval:
+
+    Confirm you send a follow-up request with `previous_response_id` set to the original response ID, and that you use the approval request item ID as `approval_request_id`.
+
 ## Host a local MCP server
 
-The Agent Service runtime only accepts a remote MCP server endpoint. If you want to add tools from a local MCP server, you need to self-host it on [Azure Container Apps](/samples/azure-samples/mcp-container-ts/mcp-container-ts/) or [Azure Functions](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-python/tree/main) to get a remote MCP server endpoint. Consider the following factors when hosting local MCP servers in the cloud:
+The Agent Service runtime only accepts a remote MCP server endpoint. If you want to add tools from a local MCP server, you need to self-host it on [Azure Container Apps](https://github.com/Azure-Samples/mcp-container-ts) or [Azure Functions](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-python/tree/main) to get a remote MCP server endpoint. Consider the following factors when hosting local MCP servers in the cloud:
 
-|Local MCP server setup | Hosting in Azure Container Apps | Hosting in Azure Functions |
-|:---------:|:---------:|:---------:|
-| **Transport** | HTTP POST/GET endpoints required. | HTTP streamable required. | 
+| Local MCP server setup | Hosting in Azure Container Apps | Hosting in Azure Functions |
+| --- | --- | --- |
+| **Transport** | HTTP POST/GET endpoints required. | HTTP streamable required. |
 | **Code changes** | Container rebuild required. | Azure Functions-specific configuration files required in the root directory. |
 | **Authentication** | Custom authentication implementation required. | Key-based only. OAuth needs API Management. |
 | **Language** | Any language that runs in Linux containers (Python, Node.js, .NET, TypeScript, Go). | Python, Node.js, Java, .NET only. |
-| **Container Requirements** | Linux (linux/amd64) only. No privileged containers.| Containerized servers aren't supported. |
+| **Container requirements** | Linux (linux/amd64) only. No privileged containers. | Containerized servers aren't supported. |
 | **Dependencies** | All dependencies must be in container image. | OS-level dependencies (such as Playwright) aren't supported. |
 | **State** | Stateless only. | Stateless only. |
 | **UVX/NPX** | Supported. | Not supported. `npx` start commands not supported. |
@@ -701,5 +956,8 @@ The Agent Service runtime only accepts a remote MCP server endpoint. If you want
 ## Related content
 
 - [Get started with agents using code](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true)
+- [MCP server authentication](../mcp-authentication.md)
+- [Build and register a Model Context Protocol (MCP) server](../../../mcp/build-your-own-mcp-server.md)
+- [MCP tool REST reference](../../../../reference/foundry-project-rest-preview.md#openaimcptool)
 - [Security Best Practices for MCP](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices)
 - [Understanding and mitigating security risks in MCP implementations](https://techcommunity.microsoft.com/blog/microsoft-security-blog/understanding-and-mitigating-security-risks-in-mcp-implementations/4404667)

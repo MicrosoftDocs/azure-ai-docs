@@ -9,7 +9,7 @@ ms.custom: devx-track-azurecli
 
 author: s-polly 
 ms.author: scottpolly
-ms.topic: conceptual
+ms.topic: concept-article
 ms.reviewer: tklimmer
 ms.date: 04/19/2024
 ---

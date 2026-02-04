@@ -6,7 +6,7 @@ author: s-polly
 ms.author: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 12/16/2025
+ms.date: 01/23/2026
 ai-usage: ai-assisted
 ms.custom: dev-focus
 
@@ -37,7 +37,7 @@ Use the compliance workspace tabs to reach the right surface quickly.
   - To **view** compliance status and guardrail policies: No special permissions required beyond project access.
   - To **create or edit** guardrail policies: You must be an [**Owner**](/azure/role-based-access-control/built-in-roles#owner) or [**Resource Policy Contributor**](/azure/role-based-access-control/built-in-roles#resource-policy-contributor) at the Azure subscription or resource group level. See [Overview of Azure Policy](/azure/governance/policy/overview#azure-policy-and-azure-rbac).
   - To **enable Microsoft Defender for Cloud**: You need the **Security Admin** role or be a subscription **Owner** so you can turn on Defender plans and agentless protections.
-  - To **configure Purview integration**: The **Cognitive Services Security Integration Administrator** and **Azure AI Account Owner** roles are required.
+  - To **configure Purview integration**: The **Azure AI Account Owner** role is required.
 
 [!INCLUDE [capability-new-portal](../includes/capability-new-portal.md)]
 
@@ -179,6 +179,10 @@ This capability helps your organization manage and monitor AI-generated data in 
 > 1. Integration with Purview for the above features in Microsoft Foundry doesn't yet support Network Isolation.
 >
 > 1. Integration with Purview is currently available only for calls made on the OpenAI Completions API.
+
+### Enable Purview in Foundry
+
+**Prerequisite:** You must have the **Azure AI Account Owner** role to enable Purview integration.
 
 To enable Purview in Foundry:
 1. Go to **Operate** > **Compliance**.

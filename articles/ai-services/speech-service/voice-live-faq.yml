@@ -1,8 +1,8 @@
 ### YamlMime:FAQ
 metadata:
-  title: Voice live frequently asked questions (FAQ)
+  title: Voice Live frequently asked questions (FAQ)
   titleSuffix: Foundry Tools
-  description: Get answers to frequently asked questions about the Voice live API in Azure Speech in Foundry Tools.
+  description: Get answers to frequently asked questions about the Voice Live API in Azure Speech in Foundry Tools.
   author: PatrickFarley
   reviewers: pafarley
   manager: nitinme
@@ -11,25 +11,25 @@ metadata:
   ms.date: 09/30/2025
   ms.author: pafarley
   ms.reviewer: pafarley
-title: Voice live FAQ
+title: Voice Live FAQ
 summary: |
-  This article answers commonly asked questions about the Voice live API. If you can't find answers to your questions here, check out [other support options](../cognitive-services-support-options.md?context=%2fazure%2fcognitive-services%2fspeech-service%2fcontext%2fcontext%253fcontext%253d%2fazure%2fcognitive-services%2fspeech-service%2fcontext%2fcontext).
+  This article answers commonly asked questions about the Voice Live API. If you can't find answers to your questions here, check out [other support options](../cognitive-services-support-options.md?context=%2fazure%2fcognitive-services%2fspeech-service%2fcontext%2fcontext%253fcontext%253d%2fazure%2fcognitive-services%2fspeech-service%2fcontext%2fcontext).
 
 sections:
   - name: General
     questions:
       - question: |
-          What scenarios does Voice live support?
+          What scenarios does Voice Live support?
         answer: |
-          Voice live API supports a wide range of real-time, natural voice interaction scenarios: contact centers, automotive assistants, accessibility applications, virtual tutors and learning companions, multilingual public service agents, HR support, and training. Used by customers like eClinicalWorks and the Government of Malta.
+          Voice Live API supports a wide range of real-time, natural voice interaction scenarios: contact centers, automotive assistants, accessibility applications, virtual tutors and learning companions, multilingual public service agents, HR support, and training. Used by customers like eClinicalWorks and the Government of Malta.
       - question: |
-          How does Voice live compare to AOAI Realtime API? When should I choose which?
+          How does Voice Live compare to AOAI Realtime API? When should I choose which?
         answer: |
-          Voice live API enhances AOAI Realtime API by offering: expanded model selection (including GPT-Realtime, GPT-5, GPT-4.1, PHI), more natural voice options, more supported speech languages, avatar integration, advanced semantic voice activity detection (VAD), seamless Microsoft Foundry Agent Service integration, telephony integration via Azure Communication Services.
+          Voice Live API enhances AOAI Realtime API by offering: expanded model selection (including GPT-Realtime, GPT-5, GPT-4.1, PHI), more natural voice options, more supported speech languages, avatar integration, advanced semantic voice activity detection (VAD), seamless Microsoft Foundry Agent Service integration, telephony integration via Azure Communication Services.
       - question: |
-          What regions does Voice live support?
+          What regions does Voice Live support?
         answer: |
-          Voice live is available in 10+ Azure regions. For more information, see [Region support](./regions.md?tabs=voice-live).
+          Voice Live is available in 10+ Azure regions. For more information, see [Region support](./regions.md?tabs=voice-live).
       - question: |
           What is the tokens-per-minute threshold?
         answer: |
@@ -39,7 +39,7 @@ sections:
       - question: |
           What generative AI models are supported?
         answer: |
-          Supports OpenAI models in Microsoft Foundry, Phi-based LLMs, and SLMs. For more information, see [Voice live overview](./voice-live.md). Voice live also provides an option to bring-your-own model (PREVIEW).
+          Supports OpenAI models in Microsoft Foundry, Phi-based LLMs, and SLMs. For more information, see [Voice Live overview](./voice-live.md). Voice Live also provides an option to bring-your-own model (PREVIEW).
       - question: |
           How do I choose the LLM model for my use case?
         answer: |
@@ -55,27 +55,27 @@ sections:
   - name: Speech Input
     questions:
       - question: |
-          What languages does Voice live support?
+          What languages does Voice Live support?
         answer: |
-          Supports 146 languages/locales for input, 151 for output, 600+ neural voices. See [Voice live language support](./voice-live-language-support.md?tabs=speechinput).
+          Supports 146 languages/locales for input, 151 for output, 600+ neural voices. See [Voice Live language support](./voice-live-language-support.md?tabs=speechinput).
       - question: |
           How do I get the live transcripts from the call?
         answer: |
-          Use text output events. Details at [Voice live API reference](./voice-live-api-reference.md).
+          Use text output events. Details at [Voice live API reference](./voice-live-api-reference-2025-10-01.md).
       - question: |
           What is a phrase list?
         answer: |
-          Domain-specific terms to improve recognition. Limit to <500 words/phrases. See [How to customize Voice live](./voice-live-how-to-customize.md).
+          Domain-specific terms to improve recognition. Limit to <500 words/phrases. See [How to customize Voice Live](./voice-live-how-to-customize.md).
       - question: |
           Are there other ways to improve speech input recognition accuracy?
         answer: |
-          Use Azure AI Custom Speech models. Configure multiple custom models per language. See [How to customize Voice live](./voice-live-how-to-customize.md).
+          Use Azure AI Custom Speech models. Configure multiple custom models per language. See [How to customize Voice Live](./voice-live-how-to-customize.md).
   - name: Speech Output
     questions:
       - question: |
-          What voices does Voice live support?
+          What voices does Voice Live support?
         answer: |
-          Native audio output with preferred model, Azure Speech in Foundry Tools TTS voices (600+ voices, 150+ locales, 30+ Neural HD voices). Custom voice models via Professional Voice Fine-tuning. For more information, see [Voice live API supported languages](./voice-live-language-support.md?tabs=speechoutput).
+          Native audio output with preferred model, Azure Speech in Foundry Tools TTS voices (600+ voices, 150+ locales, 30+ Neural HD voices). Custom voice models via Professional Voice Fine-tuning. For more information, see [Voice Live API supported languages](./voice-live-language-support.md?tabs=speechoutput).
       - question: |
           How do I pick a voice?
         answer: |
@@ -91,11 +91,11 @@ sections:
       - question: |
           What is a custom lexicon?
         answer: |
-          Define pronunciation rules for specific words. See [How to customize Voice live](./voice-live-how-to-customize.md#speech-output-customization).
+          Define pronunciation rules for specific words. See [How to customize Voice Live](./voice-live-how-to-customize.md#speech-output-customization).
       - question: |
           What is Custom Voice?
         answer: |
-          Create brand-specific synthetic voices using your own audio data. See [How to customize Voice live](./voice-live-how-to-customize.md#azure-custom-voices).
+          Create brand-specific synthetic voices using your own audio data. See [How to customize Voice Live](./voice-live-how-to-customize.md#azure-custom-voices).
       - question: |
           What is Avatar support?
         answer: |
@@ -125,7 +125,7 @@ sections:
   - name: Function Calling
     questions:
       - question: |
-          Does Voice live support function calling?
+          Does Voice Live support function calling?
         answer: |
           Yes, including asynchronous function calling.
       - question: |
@@ -137,7 +137,7 @@ sections:
       - question: |
           Where is the pricing listed?
         answer: |
-          [Voice live overview](./voice-live.md#pricing)
+          [Voice Live overview](./voice-live.md#pricing)
       - question: |
           How do I estimate the cost based on my use case?
         answer: |
@@ -145,23 +145,23 @@ sections:
       - question: |
           Are there separate quota and throttling limits for voice-live?
         answer: |
-          Yes, quota applies specifically to Voice live API (default: 100k tokens/min).
+          Yes, quota applies specifically to Voice Live API (default: 100k tokens/min).
   - name: Additional
     questions:
       - question: |
           Does this service provide an SDK?
         answer: |
-          Yes, SDKs for Python and C#. See [Voice live - Reference - Voice live SDK](./voice-live.md).
+          Yes, SDKs for Python and C#. See [Voice Live - Reference - Voice Live SDK](./voice-live.md).
       - question: |
           Does this service include content filtering?
         answer: |
           Yes, content filtering is included.
       - question: |
-          Can you modify or disable the content filtering in Voice live API?
+          Can you modify or disable the content filtering in Voice Live API?
         answer: |
           No. If you need custom content filtering, you can use the bring-your-own-model (PREVIEW) feature.
       - question: |
-          Does Voice live API support WebRTC?
+          Does Voice Live API support WebRTC?
         answer: |
           WebRTC is currently not supported.
       - question: |
@@ -173,6 +173,6 @@ additionalContent: |
 
   ## Next steps
   
-  - Learn more about [How to use the Voice live API](./voice-live-how-to.md)
-  - See the [Voice live API reference](./voice-live-api-reference.md)
+  - Learn more about [How to use the Voice Live API](./voice-live-how-to.md)
+  - See the [Voice Live API reference](./voice-live-api-reference-2025-10-01.md)
   - [What's new](releasenotes.md)

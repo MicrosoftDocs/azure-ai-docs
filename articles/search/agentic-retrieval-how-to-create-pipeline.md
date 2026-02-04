@@ -2,10 +2,10 @@
 title: 'Tutorial: Create an End-to-End Retrieval Solution'
 titleSuffix: Azure AI Search
 description: Learn how to design and build a custom agentic retrieval solution where Azure AI Search handles data retrieval for your custom agents in Microsoft Foundry.
-author: HeidiSteen
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 manager: nitinme
-ms.date: 12/22/2025
+ms.date: 01/27/2026
 ms.service: azure-ai-search
 ms.topic: tutorial
 ms.custom:
@@ -413,7 +413,9 @@ print(f"AI agent '{agent_name}' created or updated successfully")
 
 #### Connect to a remote SharePoint knowledge source
 
-Optionally, if you create a [remote SharePoint knowledge source](agentic-knowledge-source-how-to-sharepoint-remote.md), you must also include the `x-ms-query-source-authorization` header in the MCP tool connection.
+[!INCLUDE [foundry-iq-limitation](../ai-foundry/default/includes/foundry-iq-limitation.md)]
+
+Optionally, if your knowledge base includes a [remote SharePoint knowledge source](agentic-knowledge-source-how-to-sharepoint-remote.md), you must also include the `x-ms-query-source-authorization` header in the MCP tool connection.
 
 ```python
 from azure.search.documents.indexes.models import RemoteSharePointKnowledgeSource, KnowledgeSourceReference

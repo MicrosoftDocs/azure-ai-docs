@@ -67,7 +67,7 @@ With Microsoft Foundry, you can explore a wide variety of models, services and c
 * **[Expanded Integration Options](default/agents/how-to/publish-copilot.md?view=foundry&preserve-view=true)** – Publish agents to Microsoft 365, Teams, and BizChat, plus leverage containerized deployments for greater portability.
 * **[Expanded Tool Access](default/agents/concepts/tool-catalog.md?view=foundry&preserve-view=true)** – Access the Foundry tool catalog (preview) with a public tool catalog and your own private catalogs, connecting over 1,400 tools in Microsoft Foundry.
 * **[Enhanced Memory Capabilities](default/agents/concepts/what-is-memory.md?view=foundry&preserve-view=true)** – Use memory to help your agent retain and recall contextual information across interactions. Memory maintains continuity, adapts to user needs, and delivers tailored experiences without requiring repeated input.
-* **[Knowledge Integration](default/agents/how-to/tools/knowledge-retrieval.md?view=foundry&preserve-view=true)** – Connect your agent to a Foundry IQ (powered by Azure AI Search) knowledge base to ground responses in enterprise or web content. This integration provides reliable, citation-backed answers for multi-turn conversations.
+* **[Knowledge Integration](default/agents/concepts/what-is-foundry-iq.md?view=foundry&preserve-view=true)** – Connect your agent to a Foundry IQ knowledge base to ground responses in enterprise or web content. This integration provides reliable, citation-backed answers for multi-turn conversations.
 * **[Real-Time Observability](how-to/continuous-evaluation-agents.md?view=foundry&preserve-view=true)** – Monitor performance and governance using built-in metrics and model tracking tools.
 * **Enhanced Enterprise Support** – Use open protocols in Foundry Agent Service with full authentication support in MCP and A2A tool, AI gateway integration, and Azure Policy integration.
 * **Centralized AI asset management** - Observe, optimize, and manage 100% of your AI assets (agents, models, tools) in one place, the **Operate** section. Register agents from other clouds, get alerts when an agent or model requires your attention, and effectively manage your AI fleet health as that fleet scales.
@@ -139,20 +139,21 @@ This table summarizes features available in the two project types:
 | Agents | ✅ (GA) | ✅ (Preview only) |
 | Models sold directly by Azure - Azure OpenAI, DeepSeek, xAI, etc. | ✅ | Available via connections |
 | Partner & Community Models sold through Marketplace - Stability, Cohere, etc. | ✅ | Available via connections |
-| Models deployed on managed compute (e.g. HuggingFace) |  | ✅ |
+| Models deployed on managed compute (e.g. HuggingFace) | | ✅ |
 | Foundry SDK and API | ✅ | Limited* |
 | OpenAI SDK and API | ✅ | Available via connections |
 | Evaluations | ✅ (preview) | ✅ |
 | Playgrounds | ✅ | ✅ |
-| Content understanding  | ✅ | ✅ |
-| Model router  | ✅ | ✅ |
-| Datasets  | ✅ | ✅ |
-| Indexes  | ✅ | ✅ |
+| Content understanding | ✅ | ✅ |
+| Azure Language resource | | ✅ |
+| Model router | ✅ | ✅ |
+| Datasets | ✅ | ✅ |
+| Indexes | ✅ | ✅ |
 | Project files API (Foundry-managed storage) | ✅ | Limited |
 | Project-level isolation of files and outputs | ✅ | Limited |
 | Bring-your-own Key Vault to store connection secrets | ✅ | ✅ |
-| Bring-your-own Storage for Agent service  | ✅ | ✅ |
-| Prompt flow |  | ✅ |
+| Bring-your-own Storage for Agent service | ✅ | ✅ |
+| Prompt flow | | ✅ |
 
 *New feature enhancements primarily land on the [Microsoft Foundry resource type](../ai-foundry/concepts/resource-types.md). 
 
@@ -226,7 +227,7 @@ Foundry is available in most regions where Foundry Tools are available. For more
 
 :::moniker range="foundry-classic"
 
-You can [explore Foundry portal (classic) (including the model catalog)](./how-to/model-catalog-overview.md) without signing in. 
+You can [explore Foundry portal (classic) (including the model catalog)](./concepts/foundry-models-overview.md) without signing in. 
 
 But for full functionality, you need an [Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). 
 
@@ -240,7 +241,12 @@ You need an [Azure account](https://azure.microsoft.com/pricing/purchase-options
 
 ## Related content
 
+:::moniker range="foundry"
+- [Quickstart: Get started with Microsoft Foundry](./default/tutorials/quickstart-create-foundry-resources.md)
+:::moniker-end
+:::moniker range="foundry-classic"
 - [Quickstart: Get started with Microsoft Foundry](quickstarts/get-started-code.md)
+:::moniker-end
 - [Create a project](./how-to/create-projects.md)
 - [Get started with an AI template](how-to/develop/ai-template-get-started.md)
 - [What's new in Microsoft Foundry documentation?](whats-new-foundry.md)

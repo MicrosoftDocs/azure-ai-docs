@@ -64,7 +64,7 @@ To get your token:
 ## Connect to Azure AI Search
 
 > [!NOTE]
-> This section illustrates the basic REST pattern for keyless connections. For comprehensive guidance, see a specific quickstart or tutorial, such as [Quickstart: Use agentic retrieval in Azure AI Search](../../search-get-started-agentic-retrieval.md).
+> This section illustrates the basic REST pattern for keyless connections. For comprehensive guidance, see a specific quickstart or tutorial, such as [Quickstart: Agentic retrieval](../../search-get-started-agentic-retrieval.md).
 
 You can use the REST Client extension in Visual Studio Code to send requests to your Azure AI Search service. For request authentication, include an `Authorization` header with the Microsoft Entra ID token you previously generated.
 

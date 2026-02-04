@@ -6,7 +6,7 @@ author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-vision
-ms.topic: article
+ms.topic: best-practice
 ms.date: 10/15/2025
 ---
 

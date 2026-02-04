@@ -6,8 +6,8 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: article 
-ms.date: 09/16/2025
+ms.topic: concept-article
+ms.date: 01/30/2026
 manager: nitinme
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted

@@ -5,7 +5,7 @@ description: Reference architecture for using the Anomaly Detector Multivariate 
 author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-anomaly-detector
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 06/12/2025
 ms.author: mbullwin
 ms.custom: cogserv-non-critical-anomaly-detector

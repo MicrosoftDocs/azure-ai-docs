@@ -101,7 +101,7 @@ public class AgentSample {
         String agentName = "my-agent"; // the name of the agent
         CreateAgentOptions createAgentOptions = new CreateAgentOptions(modelName)
             .setName(agentName)
-            .setInstructions("You are a helpful agent") // system insturctions
+            .setInstructions("You are a helpful agent") // system instructions
             .setTools(Arrays.asList(new CodeInterpreterToolDefinition()));
         PersistentAgent agent = administrationClient.createAgent(createAgentOptions);
 

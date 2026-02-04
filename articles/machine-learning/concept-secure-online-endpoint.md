@@ -197,6 +197,13 @@ For example, if you set the `egress_public_network_access` flag to `disabled` fo
 > [!IMPORTANT]
 > Azure Machine Learning doesn't support peering between a deployment's managed virtual network and your client's virtual network. For secure access to resources needed by the deployment, we use private endpoints to communicate with the resources.
 
+> [!NOTE]
+> When referencing or using a Model or Environment from an Azure Machine learning Registry, two private endpoints are also created for the following services:
+> - Azure Storage associated with the Registry
+> - Azure Container Registry associated with the Registry
+> 
+> More on [Network isolation with Azure Machine Learning registries](how-to-registry-network-isolation.md) 
+
 The following diagram shows incoming scoring requests from a client's virtual network flowing through the workspace's private endpoint to the managed online endpoint. The diagram also shows two online deployments, each in its own Azure Machine Learning managed virtual network. Each deployment's virtual network has three private endpoints for outbound communication with the Azure Machine Learning workspace, the Azure Storage blob associated with the workspace, and the Azure Container Registry for the workspace.
 
 :::image type="content" source="./media/concept-secure-online-endpoint/endpoint-network-isolation-legacy.png" alt-text="Diagram of overall network isolation with the legacy method." lightbox="media/concept-secure-online-endpoint/endpoint-network-isolation-legacy.png":::

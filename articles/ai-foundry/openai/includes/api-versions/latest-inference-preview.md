@@ -5489,7 +5489,7 @@ Parameters to use when configuring Azure OpenAI On Your Data chat extensions whe
 | fields_mapping | [mongoDBFieldMappingOptions](#mongodbfieldmappingoptions) | Optional settings to control how fields are processed when using a configured Mongo DB resource. | Yes |  |
 | in_scope | boolean | Whether queries should be restricted to use of indexed data. | No |  |
 | include_contexts | array | The included properties of the output context. If not specified, the default value is `citations` and `intent`. | No |  |
-| index_name | string | The The name of the Mongo DB index. | Yes |  |
+| index_name | string | The name of the Mongo DB index. | Yes |  |
 | max_search_queries | integer | The max number of rewritten queries should be send to search provider for one user message. If not specified, the system will decide the number of queries to send. | No |  |
 | strictness | integer | The configured strictness of the search relevance filtering. The higher of strictness, the higher of the precision but lower recall of the answer. | No |  |
 | top_n_documents | integer | The configured top number of documents to feature for the configured query. | No |  |

@@ -5,7 +5,7 @@ description: Use Azure role-based access control for granular permissions on ser
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 01/15/2026
+ms.date: 01/20/2026
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: how-to
@@ -13,6 +13,8 @@ ms.custom:
   - subject-rbac-steps
   - devx-track-azurepowershell
   - build-2025
+  - dev-focus
+ai-usage: ai-assisted
 ---
 
 # Connect to Azure AI Search using roles
@@ -32,33 +34,21 @@ Role assignments are cumulative and pervasive across all tools and client librar
 
 Role-based access is optional, but recommended. The alternative is [key-based authentication](search-security-api-keys.md), which is the default.
 
+### Quick reference: Roles by task
+
+| Task | Required role(s) |
+| ---- | ---------------- |
+| Create or manage indexes, indexers, skillsets | Search Service Contributor |
+| Load documents into an index | Search Index Data Contributor |
+| Query an index | Search Index Data Reader |
+| Full development access | Search Service Contributor + Search Index Data Contributor + Search Index Data Reader |
+| Service administration | Owner or Contributor |
+
 ## Prerequisites
 
 + A search service in any region, on any tier, [enabled for role-based access](search-security-enable-roles.md).
 
 + Owner, User Access Administrator, Role-based Access Control Administrator, or a custom role with [Microsoft.Authorization/roleAssignments/write](/azure/templates/microsoft.authorization/roleassignments) permissions.
-
-## How to assign roles in the Azure portal
-
-The following steps work for all role assignments.
-
-1. Sign in to the [Azure portal](https://portal.azure.com).
-
-1. Navigate to your search service.
-
-1. [Enable role-based access](search-security-enable-roles.md).
-
-1. Select **Access Control (IAM)** in the left pane.
-
-1. Select **+ Add** > **Add role assignment** to start the **Add role assignment** wizard.
-
-   :::image type="content" source="media/search-security-rbac/portal-access-control.png" alt-text="Screenshot of the access control page in the Azure portal.":::
-
-1. Select a role. You can assign multiple security principals, whether users or managed identities, to a role in one pass through the wizard. However, you need to repeat these steps for each role you define.
-
-1. On the **Members** tab, select the Microsoft Entra user or group identity. If you're setting up permissions for another Azure service, select a system or user-managed identity.
-
-1. On the **Review + assign** tab, select **Review + assign** to assign the role.
 
 ## Built-in roles used in search
 
@@ -84,7 +74,7 @@ Combine these roles to get sufficient permissions for your use case.
 > [!NOTE]
 > If you disable Azure role-based access, built-in roles for the control plane (Owner, Contributor, Reader) continue to be available. Disabling role-based access removes just the data-related permissions associated with those roles. If you disable data plane roles, Search Service Contributor is equivalent to control-plane Contributor.
 
-## Summary
+## Summary of permissions
 
 | Permissions | Search Index Data Reader | Search Index Data Contributor | Search Service Contributor | Owner/Contributor | Reader |
 |-------------|--------------------------|-------------------------------|----------------------------|-------------------|--------|
@@ -135,11 +125,21 @@ As a service administrator, you can create and configure a search service, and p
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
-1. Assign these roles:
+1. Select **Access Control (IAM)** in the left pane.
+
+1. Select **+ Add** > **Add role assignment** to start the **Add role assignment** wizard.
+
+   :::image type="content" source="media/search-security-rbac/portal-access-control.png" alt-text="Screenshot of the access control page in the Azure portal.":::
+
+1. Select a role.
 
    + Owner (full access to all data plane and control plane operations, except for query permissions)
    + Contributor (same as Owner, except for permissions to assign roles)
    + Reader (acceptable for monitoring and viewing metrics)
+
+1. On the **Members** tab, select the Microsoft Entra user or group identity. If you're setting up permissions for another Azure service, select a system or user-managed identity.
+
+1. On the **Review + assign** tab, select **Review + assign** to assign the role.
 
 #### [**PowerShell**](#tab/roles-powershell-admin)
 
@@ -152,6 +152,8 @@ New-AzRoleAssignment -SignInName <email> `
     -RoleDefinitionName "Reader" `
     -Scope  "/subscriptions/<subscription>/resourceGroups/<resource-group>/providers/Microsoft.Search/searchServices/<search-service>"
 ```
+
+**Reference:** [New-AzRoleAssignment](/powershell/module/az.resources/new-azroleassignment)
 
 ---
 
@@ -174,11 +176,21 @@ Another combination of roles that provides full access is Contributor or Owner, 
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
-1. Assign these roles:
+1. Select **Access Control (IAM)** in the left pane.
+
+1. Select **+ Add** > **Add role assignment** to start the **Add role assignment** wizard.
+
+   :::image type="content" source="media/search-security-rbac/portal-access-control.png" alt-text="Screenshot of the access control page in the Azure portal.":::
+
+1. Select a role.
 
    + Search Service Contributor (create, read, update, and delete operations on indexes, indexers, skillsets, and other top-level objects)
    + Search Index Data Contributor (load documents and run indexing jobs)
    + Search Index Data Reader (query an index)
+
+1. On the **Members** tab, select the Microsoft Entra user or group identity. If you're setting up permissions for another Azure service, select a system or user-managed identity.
+
+1. On the **Review + assign** tab, select **Review + assign** to assign the role.
 
 #### [**PowerShell**](#tab/roles-powershell)
 
@@ -200,6 +212,8 @@ New-AzRoleAssignment -SignInName <email> `
     -Scope  "/subscriptions/<subscription>/resourceGroups/<resource-group>/providers/Microsoft.Search/searchServices/<search-service>/indexes/<index-name>"
 ```
 
+**Reference:** [New-AzRoleAssignment](/powershell/module/az.resources/new-azroleassignment)
+
 ---
 
 ### Assign roles for read-only queries
@@ -212,7 +226,7 @@ Use the Search Index Data Reader role for apps and processes that only need read
 
 This role is very specific. It grants [GET or POST access](/rest/api/searchservice/documents) to the *documents collection of a search index* for search, autocomplete, and suggestions. It doesn't support GET or LIST operations on an index or other top-level objects, or GET service statistics.
 
-This section provides basic steps for setting up the role assignment and is here for completeness, but for comprehensive instructions on configuring your app for role-based access, see [Use Azure AI Search without keys](keyless-connections.md).
+This section provides basic steps for setting up the role assignment and is here for completeness, but for comprehensive instructions on configuring your app for role-based access, see [Use Azure AI Search without keys](search-security-rbac-client-code.md).
 
 > [!NOTE]
 > As a developer, if you need to debug queries that are predicated on a Microsoft identity, use Search Index Data Contributor or create a custom role that gives you [elevated permissions for debug purposes](search-query-access-control-rbac-enforcement.md#elevated-permissions-for-investigating-incorrect-results).
@@ -221,7 +235,17 @@ This section provides basic steps for setting up the role assignment and is here
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
-1. Assign the **Search Index Data Reader** role.
+1. Select **Access Control (IAM)** in the left pane.
+
+1. Select **+ Add** > **Add role assignment** to start the **Add role assignment** wizard.
+
+   :::image type="content" source="media/search-security-rbac/portal-access-control.png" alt-text="Screenshot of the access control page in the Azure portal.":::
+
+1. Select the **Search Index Data Reader** role.
+
+1. On the **Members** tab, select the Microsoft Entra user or group identity. If you're setting up permissions for another Azure service, select a system or user-managed identity.
+
+1. On the **Review + assign** tab, select **Review + assign** to assign the role.
 
 #### [**PowerShell**](#tab/roles-powershell-query)
 
@@ -232,8 +256,10 @@ When [using PowerShell to assign roles](/azure/role-based-access-control/role-as
 1. Get the object identifier of your Azure service, such as Azure OpenAI.
 
    ```azurepowershell
-    Get-AzADServicePrincipal -SearchString <YOUR AZURE OPENAI RESOURCE NAME>
+    Get-AzADServicePrincipal -SearchString <your-azure-openai-resource-name>
    ```
+
+   The output includes an `Id` property containing the object ID you need for the role assignment.
 
 1. Get the role definition and review the permissions to make sure this is the role you want.
 
@@ -244,16 +270,20 @@ When [using PowerShell to assign roles](/azure/role-based-access-control/role-as
 1. Create the role assignment, substituting valid values for the placeholders.
 
    ```azurepowershell
-   New-AzRoleAssignment -ObjectId YOUR-AZURE-OPENAI-OBJECT-ID -RoleDefinitionName "Search Index Data Reader" -Scope /subscriptions/YOUR-SUBSCRIPTION-ID/resourcegroups/YOUR-RESOURCE-GROUP/providers/Microsoft.Search/searchServices/YOUR-SEARCH-SERVICE-NAME
+   New-AzRoleAssignment -ObjectId <your-azure-openai-object-id> -RoleDefinitionName "Search Index Data Reader" -Scope /subscriptions/<your-subscription-id>/resourcegroups/<your-resource-group>/providers/Microsoft.Search/searchServices/<your-search-service-name>
    ```
+
+   A successful assignment returns the role assignment details including `RoleAssignmentId`.
 
 1. Here's an example of a role assignment scoped to a specific index:
 
     ```powershell
-    New-AzRoleAssignment -ObjectId YOUR-AZURE-OPENAI-OBJECT-ID `
+    New-AzRoleAssignment -ObjectId <your-azure-openai-object-id> `
         -RoleDefinitionName "Search Index Data Reader" `
-        -Scope /subscriptions/YOUR-SUBSCRIPTION-ID/resourcegroups/YOUR-RESOURCE-GROUP/providers/Microsoft.Search/searchServices/YOUR-SEARCH-SERVICE-NAME/indexes/YOUR-INDEX-NAME
+        -Scope /subscriptions/<your-subscription-id>/resourcegroups/<your-resource-group>/providers/Microsoft.Search/searchServices/<your-search-service-name>/indexes/<your-index-name>
     ```
+
+    **Reference:** [New-AzRoleAssignment](/powershell/module/az.resources/new-azroleassignment)
 
 ---
 
@@ -261,7 +291,7 @@ When [using PowerShell to assign roles](/azure/role-based-access-control/role-as
 
 Use a client to test role assignments. Remember that roles are cumulative. You can't delete or deny inherited roles that are scoped to the subscription or resource group level at the resource (search service) level. 
 
-[Configure your application for keyless connections](keyless-connections.md) and have role assignments in place before testing. 
+[Configure your application for keyless connections](search-security-rbac-client-code.md) and have role assignments in place before testing. 
 
 ### [**Azure portal**](#tab/test-portal)
 
@@ -323,11 +353,21 @@ This approach assumes Visual Studio Code with a [REST client extension](https://
         }
    ```
 
-For more information on how to acquire a token for a specific environment, see [Manage a Azure AI Search service with REST APIs](search-manage-rest.md) and [Microsoft identity platform authentication libraries](/azure/active-directory/develop/reference-v2-libraries).
+   A successful query returns search results with matching documents. If the index is empty or has no matches, `value` contains an empty array.
+
+   **Reference:** [Search Documents](/rest/api/searchservice/documents/search-post)
+
+> [!TIP]
+> For more information on how to acquire a token for a specific environment, see [Manage a Azure AI Search service with REST APIs](search-manage-rest.md) and [Microsoft identity platform authentication libraries](/azure/active-directory/develop/reference-v2-libraries).
 
 ### [**.NET**](#tab/test-csharp)
 
-1. Use the [Azure.Search.Documents](https://www.nuget.org/packages/Azure.Search.Documents) package.
+1. Install the required packages:
+
+   ```dotnetcli
+   dotnet add package Azure.Search.Documents
+   dotnet add package Azure.Identity
+   ```
 
 1. Use [Azure.Identity for .NET](/dotnet/api/overview/azure/identity-readme) for token authentication. Microsoft recommends [`DefaultAzureCredential()`](/dotnet/api/azure.identity.defaultazurecredential) for most scenarios.
 
@@ -335,11 +375,15 @@ For more information on how to acquire a token for a specific environment, see [
 
     ```csharp
     // Create a SearchIndexClient to send create/delete index commands
+    // Requires Search Service Contributor role
     SearchIndexClient adminClient = new SearchIndexClient(serviceEndpoint, new DefaultAzureCredential());
 
     // Create a SearchClient to load and query documents
+    // Requires Search Index Data Contributor (load) or Search Index Data Reader (query)
     SearchClient srchclient = new SearchClient(serviceEndpoint, indexName, new DefaultAzureCredential());
     ```
+
+    **Reference:** [SearchClient](/dotnet/api/azure.search.documents.searchclient), [SearchIndexClient](/dotnet/api/azure.search.documents.indexes.searchindexclient), [DefaultAzureCredential](/dotnet/api/azure.identity.defaultazurecredential)
 
 1. Here's another example of using [client secret credential](/dotnet/api/azure.core.tokencredential):
 
@@ -348,9 +392,25 @@ For more information on how to acquire a token for a specific environment, see [
     SearchClient srchclient = new SearchClient(serviceEndpoint, indexName, tokenCredential);
     ```
 
+1. Here's an example of running a query:
+
+    ```csharp
+    SearchResults<SearchDocument> response = srchclient.Search<SearchDocument>("motel");
+    foreach (SearchResult<SearchDocument> result in response.GetResults())
+    {
+        Console.WriteLine(result.Document["HotelName"]);
+    }
+    ```
+
+    A successful query returns search results. If no documents match, the results collection is empty.
+
 ### [**Python**](#tab/test-python)
 
-1. Use [azure.search.documents (Azure SDK for Python)](https://pypi.org/project/azure-search-documents/).
+1. Install the required packages:
+
+   ```bash
+   pip install azure-search-documents azure-identity
+   ```
 
 1. Use [Azure.Identity for Python](/python/api/overview/azure/identity-readme) for token authentication.
 
@@ -368,9 +428,15 @@ For more information on how to acquire a token for a specific environment, see [
     client = SearchClient(endpoint=endpoint, index_name=index_name, credential=credential)
     ```
 
+    **Reference:** [SearchClient](/python/api/azure-search-documents/azure.search.documents.searchclient), [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential)
+
 ### [**JavaScript**](#tab/test-javascript)
 
-1. Use [@azure/search-documents (Azure SDK for JavaScript), version 11.3](https://www.npmjs.com/package/@azure/search-documents).
+1. Install the required packages:
+
+   ```bash
+   npm install @azure/search-documents @azure/identity
+   ```
 
 1. Use [Azure.Identity for JavaScript](/javascript/api/overview/azure/identity-readme) for token authentication.
 
@@ -378,7 +444,20 @@ For more information on how to acquire a token for a specific environment, see [
 
 ### [**Java**](#tab/test-java)
 
-1. Use [azure-search-documents (Azure SDK for Java)](https://central.sonatype.com/artifact/com.azure/azure-search-documents).
+1. Add the required dependencies to your `pom.xml`:
+
+   ```xml
+   <dependency>
+     <groupId>com.azure</groupId>
+     <artifactId>azure-search-documents</artifactId>
+     <version>11.6.0</version>
+   </dependency>
+   <dependency>
+     <groupId>com.azure</groupId>
+     <artifactId>azure-identity</artifactId>
+     <version>1.10.0</version>
+   </dependency>
+   ```
 
 1. Use [Azure.Identity for Java](/java/api/overview/azure/identity-readme?view=azure-java-stable&preserve-view=true) for token authentication.
 

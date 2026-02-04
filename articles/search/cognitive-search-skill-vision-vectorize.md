@@ -1,5 +1,5 @@
 ---
-title: Azure Vision multimodal embeddings skill
+title: Azure Vision Multimodal Embeddings Skill
 titleSuffix: Azure AI Search
 description: Vectorize images or text using the Azure Vision multimodal embeddings API.
 author: gmndrg
@@ -8,8 +8,8 @@ ms.service: azure-ai-search
 ms.custom:
   - build-2024
   - references_regions
-ms.topic: article
-ms.date: 10/23/2025
+ms.topic: reference
+ms.date: 01/16/2026
 ---
 
 # Azure Vision multimodal embeddings skill
@@ -19,14 +19,19 @@ ms.date: 10/23/2025
 
 The **Azure Vision multimodal embeddings** skill uses the [multimodal embeddings API](/azure/ai-services/computer-vision/concept-image-retrieval) from Azure Vision in Foundry Tools to generate embeddings for text or image input.
 
-For transactions that exceed 20 documents per indexer per day, this skill requires that you [attach a billable Microsoft Foundry resource to your skillset](cognitive-search-attach-cognitive-services.md). Execution of built-in skills is charged at the existing [Foundry Tools Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/). Image extraction is also [billable by Azure AI Search](https://azure.microsoft.com/pricing/details/search/).
+For transactions that exceed 20 documents per indexer per day, this skill requires you to [attach a billable Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md) to your skillset. Execution of built-in skills is charged at the existing [Foundry Tools Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/). Image extraction is also [billable by Azure AI Search](https://azure.microsoft.com/pricing/details/search/).
 
-Location of resources is a consideration for billing. Because you're using a preview REST API version to create a skillset that contains preview skills, you can use a [keyless connection](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) to bypass the same-region requirement. However, for key-based connections, Azure AI Search and Foundry must be in the same region. To ensure region compatibility:
+The Microsoft Foundry resource is used for billing purposes only. Content processing occurs on separate resources managed and maintained by Azure AI Search. Your data is processed in the [Geo](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) where your resource is deployed.
 
-1. Find a [supported region for multimodal embeddings](/azure/ai-services/computer-vision/overview-image-analysis?tabs=4-0#region-availability).
-1. Verify the [region provides AI enrichment](search-region-support.md).
+## Supported regions
 
-The Foundry resource is used for billing purposes only. Content processing occurs on separate resources managed and maintained by Azure AI Search within the same geo. Your data is processed in the [Geo](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) where your resource is deployed.
+Supported regions vary by modality and how the skill connects to the Azure Vision multimodal embeddings API.
+
+| Approach | Requirement |
+|----------|-------------|
+| [**Import data (new)** wizard](search-import-data-portal.md) | <ol><li>Find a [region that supports multimodal embeddings](/azure/ai-services/computer-vision/overview-image-analysis?tabs=4-0#region-availability) in Azure Vision.</li><li>Verify the [region supports AI enrichment](search-region-support.md) in Azure AI Search.</li><li>Create an Azure AI Search service and [Azure AI multi-service account](https://portal.azure.com/#create/Microsoft.CognitiveServicesAllInOne) in the same region. </li></ol> |
+| Programmatic, using a [key-based connection](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) for billing | <ol><li>Find a [region that supports multimodal embeddings](/azure/ai-services/computer-vision/overview-image-analysis?tabs=4-0#region-availability) in Azure Vision.</li><li>Verify the [region supports AI enrichment](search-region-support.md) in Azure AI Search.</li><li>Create an Azure AI Search service and Microsoft Foundry resource in the same region. </li></ol> |
+| Programmatic, using a [keyless connection](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) for billing | No same-region requirement. Create an Azure AI Search service and Microsoft Foundry resource in any region where [each service is available](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table). |
 
 ## @odata.type  
 

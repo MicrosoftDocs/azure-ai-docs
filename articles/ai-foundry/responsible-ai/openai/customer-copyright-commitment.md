@@ -7,7 +7,7 @@ ms.author: mbullwin
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.reviewer: nitinme
-ms.topic: article
+ms.topic: concept-article
 monikerRange: 'foundry-classic || foundry'
 ms.date: 05/21/2024
 ---

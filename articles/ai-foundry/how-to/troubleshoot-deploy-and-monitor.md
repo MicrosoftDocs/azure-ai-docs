@@ -42,7 +42,7 @@ This error means that you might not have access to the particular Azure OpenAI m
 
 For more information about managing quota, see:
 
-- [Quota for deploying and inferencing a model](../how-to/deploy-models-openai.md#quota-for-deploying-and-inferencing-a-model)
+- [Quota for deploying and inferencing a model](../foundry-models/how-to/deploy-foundry-models.md)
 - [Manage Azure OpenAI in Foundry Models quota documentation](/azure/ai-foundry/openai/how-to/quota?tabs=rest)
 - [Manage and increase quotas for resources with Foundry](quota.md)
 
@@ -97,7 +97,7 @@ __Option 1: Find the build log for the Azure default blob storage.__
 __Option 2: Find the build log within Azure Machine Learning studio.__
 
 > [!NOTE]
-> This option to access the build log uses [Azure Machine Learning studio](https://ml.azure.com), which is a different portal tha [Foundry](https://ai.azure.com/?cid=learnDocs).
+> This option to access the build log uses [Azure Machine Learning studio](https://ml.azure.com), which is a different portal than [Foundry](https://ai.azure.com/?cid=learnDocs).
 
 1. Go to [Azure Machine Learning studio](https://ml.azure.com).
 1. Go to your workspace or hub.

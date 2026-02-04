@@ -7,7 +7,7 @@ ms.author: pafarley
 manager: nitinme
 ms.date: 12/19/2025
 ms.service: azure-ai-content-understanding
-ms.topic: article
+ms.topic: limits-and-quotas
 ms.custom:
   - build-2025
 ---
@@ -15,7 +15,7 @@ ms.custom:
 
 # Azure Content Understanding in Foundry Tools service quotas and limits
 
-This article offers a reference of the quotas and limits for the Azure Content Understanding in Foundry Tools service.
+This article lists the quotas and limits for the Azure Content Understanding in Foundry Tools service.
 
 ## General limits
 
@@ -34,13 +34,13 @@ This article offers a reference of the quotas and limits for the Azure Content U
 
 | Quota | Standard (S0) |
 | --- | --- |
-| Max analyzers | 100k |
-| Max analysis/min | 1000 pages/images <br> Four hours of audio <br> Four hours of video  |
-| Max operations/min | 3000 |
+| Max analyzers | 100,000 |
+| Max analysis/min | 1,000 pages/images <br> Four hours of audio <br> Four hours of video  |
+| Max operations/min | 3,000 |
 
 ## Supported generative models
 
-Content Understanding connects to Foundry Models for generative capabilities. The service is periodically updated to add support for more models. To learn more see [Connect your Content Understanding analyzer to Foundry model deployments](./concepts/models-deployments.md)  
+Content Understanding connects to Foundry Models for generative capabilities. The service is periodically updated to add support for more models. To learn more, see [Connect your Content Understanding analyzer to Foundry model deployments](./concepts/models-deployments.md).  
 
 The currently supported models are:
 
@@ -51,7 +51,7 @@ The currently supported models are:
 |Chat Completion | gpt-4o-mini | `2024-11-20` |
 |Chat Completion | gpt-4.1 | `2024-11-20` |
 |Chat Completion | gpt-4.1-mini | `2024-11-20` |
-|Chat Completion |gpt-4.1-nano | `2024-11-20` |
+|Chat Completion | gpt-4.1-nano | `2024-11-20` |
 |Embeddings | text-embedding-3-small |  |
 |Embeddings | text-embedding-3-large |  |
 |Embeddings | text-embedding-ada-002 |  |
@@ -60,7 +60,7 @@ The currently supported models are:
 
 ### Document and text
 
-| Supported File Types | File Size | Length |
+| Supported file types | File size | Length |
 | --- | --- | --- |
 | ✓ `.pdf`<br> ✓ `.tiff`<br> ✓ `.jpg`, `.jpeg`, `.jpe`, `.png`, `.bmp`, `.heif`, `.heic` | ≤ 200 MB | ≤ 300 pages |
 | ✓ `.docx`, `.xlsx`, `.pptx` | ≤ 200 MB | ≤ 1M characters |
@@ -68,21 +68,21 @@ The currently supported models are:
 
 > [!NOTE]
 > [Pro mode (preview)](./concepts/standard-pro-modes.md) currently only supports .pdf, .tiff, and image file types as input.
-> Total input may not exceed 100 MB and 150 pages.
+> Total input can't exceed 100 MB and 150 pages.
 
 ### Image
 
-| Supported File Types | File Size | Resolution |
+| Supported file types | File size | Resolution |
 | --- | --- | --- |
 | ✓ `.jpg`, `.jpeg`, `.jpe`, `.png`, `.bmp`, `.heif`, `.heic` | ≤ 200 MB | Min: 50 x 50 pixels <br> Max: 10k x 10k pixels |
 
 ### Audio
 
-| Supported File Types | File Size | Length |
+| Supported file types | File size | Length |
 | --- | --- |  --- |
-| ✓ `.wav` (`PCM`, A-law, μ-law) <br> ✓ `.mp3` <br> ✓ `.mp4` <br> ✓ `.opus`, `.ogg` (Opus)<br> ✓ `.flac` <br> ✓ `.wma` <br> ✓ `.aac` <br> ✓ `.amr` (AMR-NB, AMR-WB) <br> ✓ `.3gp` (AMR-NB, AMR-WB)<br> ✓ `.webm` (Opus, Vorbis) <br> ✓ `.m4a` (`AAC`, `ALAC`)<br> ✓ `.spx` | Max: 300 MB<sup>†</sup> | Max: 2 hours<sup>†</sup> |
+| ✓ `.wav` (PCM, A-law, μ-law) <br> ✓ `.mp3` <br> ✓ `.mp4` <br> ✓ `.opus`, `.ogg` (Opus)<br> ✓ `.flac` <br> ✓ `.wma` <br> ✓ `.aac` <br> ✓ `.amr` (AMR-NB, AMR-WB) <br> ✓ `.3gp` (AMR-NB, AMR-WB)<br> ✓ `.webm` (Opus, Vorbis) <br> ✓ `.m4a` (AAC, ALAC)<br> ✓ `.spx` | Max: 300 MB<sup>†</sup> | Max: 2 hours<sup>†</sup> |
 
-<sup>†</sup> Content Understanding supports audio files up to 1 GB and 4 hours in duration, but transcription time is substantially reduced for files ≤ 300 MB or ≤ 2 hours.
+<sup>†</sup> Content Understanding supports audio files up to 1 GB and 4 hours in duration, but transcription time is substantially reduced for files 300 MB or less or 2 hours or less.
 
 ### Video
 
@@ -96,14 +96,14 @@ The currently supported models are:
 
 | Upload Method | File Size | Length | Description |
 | --- | --- | --- | --- |
-| analyzeBinary API (direct upload) | ≤ 200 MB | ≤ 30 minutes | Uploading video files directly in the API request body using the analyzeBinary API. This method is used by the Microsoft Foundry UX and Content Understanding Studio UX.  |
-| analyze API (file reference) | Max: 4 GB | Max: 2 hours | Referencing video files via URL from Azure Blob Storage or similar storage when using the analyze API |
+| analyzeBinary API (direct upload) | ≤ 200 MB | ≤ 30 minutes | Upload video files directly in the API request body by using the analyzeBinary API. The Microsoft Foundry UX and Content Understanding Studio UX use this method.  |
+| analyze API (file reference) | Max: 4 GB | Max: 2 hours | Reference video files via URL from Azure Blob Storage or similar storage when you use the analyze API. |
 
 > [!NOTE]
 > Video analysis has the following limitations:
 > * analyzeBinary API: Maximum file size of 200 MB and maximum duration of 30 minutes when uploading video directly in the request body
-> * Frame sampling: Analyzes approximately one frame per second, which may miss quick movements or brief events
-> * Resolution: All frames are scaled to 512 x 512 pixels, which may affect visibility of small details or distant objects
+> * Frame sampling: Analyzes approximately one frame per second, which might miss quick movements or brief events
+> * Resolution: All frames are scaled to 512 x 512 pixels, which might affect visibility of small details or distant objects
 
 
 ## Field schema limits
@@ -120,7 +120,7 @@ Content Understanding supports both basic field value types and nested structure
 
 | Property | Document | Text | Image | Audio | Video |
 | --- | --- | --- | --- | --- | --- |
-| Max fields | 1000 | 1000 | 1000 | 1000 | 1000 |
+| Max fields | 1,000 | 1,000 | 1,000 | 1,000 | 1,000 |
 | Max classify field categories | 300 | 300 | 300 | 300 | 300 |
 | Supported generation methods | extract<br>generate<br>classify | generate<br>classify | generate<br>classify | generate<br>classify | generate<br>classify |
 
@@ -131,19 +131,19 @@ Content Understanding supports both basic field value types and nested structure
 
 | Type | Limits |
 | -----| ------ |
-| Training data | Documents only <br/> 1 GB total <br/> 50k pages/images total |
+| Training data | Documents only <br/> 1 GB total <br/> 50,000 pages/images total |
 
 
-## Segmentation/Classification limits
+## Segmentation and classification limits
 
 > [!NOTE]
-> This limit is for [Content Understanding segmentation/classification](concepts/classifier.md) itself, not classify fields within the extraction capability.
+> These limits apply to [Content Understanding segmentation and classification](concepts/classifier.md) itself. They don't apply to classifying fields within the extraction capability.
 
 | Property | Limit |
 | --- | --- |
-| Category name | Can't start with a dollar sign (`$`)|
-| Category name and description | Maximum 120 characters for combined name and description in each category |
-| Number of categories | 200 per analyzer for documents, 1 for videos |
+| Category name | Can't start with a dollar sign (`$`).|
+| Category name and description | Maximum 120 characters for combined name and description in each category. |
+| Number of categories | 200 per analyzer for documents, 1 for videos. |
 | Hierarchical classification | 5 layers for documents, 2 layers for videos |
 
 

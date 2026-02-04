@@ -13,7 +13,7 @@ ms.custom: include
 
 Interacting with a model is the basic building block of AI applications.  Send an input and receive a response from the model:
 
-[!INCLUDE [agent-v2-switch](agent-v2-switch.md)]
+
 
 # [Python](#tab/python)
 
@@ -44,3 +44,5 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 1. Start chatting with your model, for example, "Write me a poem about flowers."
 
 ---
+
+[!INCLUDE [agent-v2-switch](agent-v2-switch.md)]

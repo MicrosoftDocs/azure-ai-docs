@@ -5,7 +5,7 @@ description: View a list of entity types the PII feature can detect and identify
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom:

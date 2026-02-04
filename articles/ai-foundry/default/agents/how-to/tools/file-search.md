@@ -7,10 +7,10 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 12/16/2025
+ms.date: 01/20/2026
 author: alvinashcraft
 ms.author: aashcraft
-ms.custom: azure-ai-agents, references_regions, dev-focus
+ms.custom: azure-ai-agents, references_regions, dev-focus, pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 zone_pivot_groups: selection-file-search-upload-new
 ---
@@ -22,21 +22,19 @@ The file search tool augments Microsoft Foundry agents with knowledge from outsi
 > [!NOTE]
 > By using the standard agent setup, the improved file search tool ensures your files remain in your own storage. Your Azure AI Search resource ingests the files, so you maintain complete control over your data.
 
-<!-- 
 > [!IMPORTANT]
-> * File search has [additional charges](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) beyond the token based fees for model usage.
--->
+> File search has [additional charges](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) beyond the token-based fees for model usage.
 
 ### Usage support
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
-|---------|---------|---------|---------|---------|---------|---------|---------|
+| --- | --- | --- | --- | --- | --- | --- | --- |
 | ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 
 - A [basic or standard agent environment](../../../../agents/environment-setup.md)
-- The latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details
+- The latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md#get-ready-to-code) for details
 - **Storage Blob Data Contributor** role on your project's storage account (required for uploading files to your project's storage)
 - **Azure AI Owner** role on your Foundry resource (required for creating agent resources)
 - Environment variables configured: `FOUNDRY_PROJECT_ENDPOINT`, `MODEL_DEPLOYMENT_NAME`
@@ -44,7 +42,7 @@ The file search tool augments Microsoft Foundry agents with knowledge from outsi
 ## Code example
 
 > [!NOTE]
-> You need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
+> You need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md#get-ready-to-code) for details.
 
 :::zone pivot="python"
 ## Create an agent with the file search tool
@@ -52,119 +50,83 @@ The file search tool augments Microsoft Foundry agents with knowledge from outsi
 The following code sample shows how to create an agent with the file search tool enabled. You need to upload files and create a vector store before running this code. See the sections below for details.
 
 ```python
-from azure.identity import DefaultAzureCredential
+import os
+from pathlib import Path
+
+from dotenv import load_dotenv
+
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import PromptAgentDefinition, FileSearchTool
+from azure.ai.projects.models import FileSearchTool, PromptAgentDefinition
+from azure.identity import DefaultAzureCredential
 
 load_dotenv()
 
-# Load the file to be indexed for search
-asset_file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../assets/product_info.md"))
+# Load the file to be indexed for search.
+asset_file_path = (Path(__file__).parent / "../assets/product_info.md").resolve()
 
-project_client = AIProjectClient(
+with (
+  DefaultAzureCredential() as credential,
+  AIProjectClient(
     endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
-    credential=DefaultAzureCredential(),
-)
+    credential=credential,
+  ) as project_client,
+  project_client.get_openai_client() as openai_client,
+):
+  print("Creating vector store...")
+  vector_store = openai_client.vector_stores.create(name="ProductInfoStore")
+  print(f"Vector store created (id: {vector_store.id})")
 
-openai_client = project_client.get_openai_client()
-```
-
-## Create vector stores and add files
-
-Adding files to vector stores is an asynchronous operation. To ensure the operation completes, use the 'create and poll' helpers in the official SDKs. If you don't use the SDKs, you can retrieve the `vector_store` object and monitor its `file_counts` property to see the result of the file ingestion operation.
-
-You can also add files to a vector store after you create it by creating vector store files.
-
-```python
-
-# Create vector store for file search
-vector_store = openai_client.vector_stores.create(name="ProductInfoStore")
-print(f"Vector store created (id: {vector_store.id})")
-
-# Upload file to vector store
-file = openai_client.vector_stores.files.upload_and_poll(
-    vector_store_id=vector_store.id, file=open(asset_file_path, "rb")
-)
-print(f"File uploaded to vector store (id: {file.id})")
-```
-
-After running this code, you see output showing the vector store ID and uploaded file ID. The `upload_and_poll` method waits until the file is fully processed and indexed before returning, ensuring your vector store is ready for search operations.
-
-## Add the File Search tool to your prompt agent
-```python
-with project_client:
-    # Create agent with file search tool
-    agent = project_client.agents.create_version(
-        agent_name="MyAgent",
-        definition=PromptAgentDefinition(
-            model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
-            instructions="You are a helpful agent that can search through product information.",
-            tools=[FileSearchTool(vector_store_ids=[vector_store.id])],
-        ),
-        description="File search agent for product information queries.",
+  print("Uploading file to vector store...")
+  with asset_file_path.open("rb") as file_handle:
+    vector_store_file = openai_client.vector_stores.files.upload_and_poll(
+      vector_store_id=vector_store.id,
+      file=file_handle,
     )
-    print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+  print(f"File uploaded to vector store (id: {vector_store_file.id})")
 
-    # Create a conversation for the agent interaction
-    conversation = openai_client.conversations.create()
-    print(f"Created conversation (id: {conversation.id})")
+  print("Creating agent with the file search tool...")
+  agent = project_client.agents.create_version(
+    agent_name="MyAgent",
+    definition=PromptAgentDefinition(
+      model=os.environ["MODEL_DEPLOYMENT_NAME"],
+      instructions=(
+        "You are a helpful agent that can search through product information. "
+        "Use file search to answer questions from the uploaded files."
+      ),
+      tools=[FileSearchTool(vector_store_ids=[vector_store.id])],
+    ),
+    description="File search agent for product information queries.",
+  )
+  print(
+    "Agent created "
+    f"(id: {agent.id}, name: {agent.name}, version: {agent.version})"
+  )
+
+  print("Creating conversation...")
+  conversation = openai_client.conversations.create()
+  print(f"Created conversation (id: {conversation.id})")
+
+  print("Creating response...")
+  response = openai_client.responses.create(
+    conversation=conversation.id,
+    input="Tell me about Contoso products",
+    extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+  )
+  print(response.output_text)
+
+  print("Cleaning up...")
+  project_client.agents.delete_version(
+    agent_name=agent.name,
+    agent_version=agent.version,
+  )
+  openai_client.vector_stores.delete(vector_store.id)
 ```
 
-You see the agent ID, name, and version printed. This confirms your agent is created with the file search tool configured to use your vector store.
+### References
 
-### Create a conversation 
-```python
-# Create a conversation for the agent interaction
-    conversation = openai_client.conversations.create()
-    print(f"Created conversation (id: {conversation.id})")
-
-    # Send a query to search through the uploaded file
-    response = openai_client.responses.create(
-        conversation=conversation.id,
-        input="Tell me about Contoso products",
-        extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
-    )
-    print(f"Response: {response.output_text}")
-```
-
-The response contains text generated by the agent based on information retrieved from your uploaded file. The agent uses the file search tool to find relevant content in the vector store and incorporates it into the answer.
-
-### Basic agent setup: Deleting files from vector stores
-
-You can remove files from a vector store by either:
-
-* Deleting the vector store file object, or
-* Deleting the underlying file object. This action removes the file from all `vector_store` and `code_interpreter` configurations across all agents and conversations in your organization.
-
-The maximum file size is 512 MB. Each file should contain no more than 5,000,000 tokens (computed automatically when you attach a file).
-
-### Clean up
-
-```python
-    print("\nCleaning up...")
-
-openai_client.vector_stores.delete(vector_store.id)
-print("Deleted vector store")
-```
-
-## Manage costs with expiration policies
-
-For basic agent setup, the `file_search` tool uses the `vector_stores` object as its resource. You pay based on the size of the vector store objects you create. The size of the vector store object is the sum of all the parsed chunks from your files and their corresponding embeddings.
-
-To help you manage the costs associated with these vector store objects, the `vector_store` object now supports expiration policies. You can set these policies when creating or updating the `vector_store` object.
-
-```python
-vector_store = openai_client.vector_stores.create_and_poll(
-  name="Product Documentation",
-  file_ids=[file_1.id],
-  expires_after={
-      "anchor": "last_active_at",
-      "days": 7
-  }
-)
-```
-::: zone-end
-
+- Reference: [Azure SDK for Python sample: file search](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/agents/tools/sample_agent_file_search_in_stream.py)
+- Reference: [Agents REST API (preview)](../../../../reference/foundry-project-rest-preview.md)
+:::zone-end
 :::zone pivot="csharp"
 ## File search sample with agent
 
@@ -352,125 +314,6 @@ Response done with full message: Your previous question was about the documented
 'orange'.
 ```
 :::zone-end
-
-:::zone pivot="rest"
-## Upload files and add them to a vector store
-
-To access your files, the file search tool uses the vector store object. Upload your files and create a vector store. After creating the vector store, poll its status until all files are out of the `in_progress` state to ensure that all content is fully processed. The SDK provides helpers for uploading and polling.
-
-### Upload a file
-
-```bash
-curl --request POST \
-  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/files?api-version=$API_VERSION \
-  -H "Authorization: Bearer $AGENT_TOKEN" \
-  -F purpose="assistants" \
-  -F file="@c:\\path_to_file\\sample_file_for_upload.txt"
-```
-
-### Create a vector store
-
-```bash
-curl --request POST \
-  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/vector_stores?api-version=$API_VERSION \
-  -H "Authorization: Bearer $AGENT_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "name": "my_vector_store"
-    "file_ids": ["{{filesUpload.id}}"]
-  }'
-```
-
-## Create an agent version and enable file search
-
-```bash
-curl --request POST \
-  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/agents/$AGENTVERSION_NAME/versions?api-version=$API_VERSION \
-  -H "Authorization: Bearer $AGENT_TOKEN" \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "description": "Test agent version description",
-  "definition": {
-    "kind": "prompt",
-    "model": "{{model}}",
-    "tools": [
-      {
-        "type": "file_search",
-        "vector_store_ids": ["{{vectorStore.id}}"],
-        "max_num_results": 20
-      }
-    ],
-    "instructions": "You are a customer support chatbot. Use your knowledge base to best respond to customer queries. When a customer asks about a specific math problem, use Python to evaluate their query."
-  }
-}'
-```
-
-## Create response with file search
-
-```bash
-curl --request POST \
-  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION \
-  -H "Authorization: Bearer $AGENT_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{
-  "agent": {
-    "type": "agent_reference",
-    "name": "{{agentVersion.name}}",
-    "version": "{{agentVersion.version}}"
-  },
-  "metadata": {
-    "test_response": "file_search_enabled",
-    "vector_store_id": "{{vectorStore.id}}"
-  },
-  "input": [{
-    "type": "message",
-    "role": "user",
-    "content": [
-      {
-        "type": "input_text",
-        "text": "Can you search the uploaded file and tell me about Azure TV instructions?"
-      }
-    ]
-  }],
-  "stream": true
-}'
-```
-
-The response returns streaming output containing the agent's answer based on information retrieved from the vector store. The agent searches through your uploaded file to answer the query about Azure TV instructions.
-
-### Clean up
-
-Delete the agent version.
-
-```bash
-curl --request DELETE \
-  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/agents/$AGENTVERSION_NAME/versions/$AGENTVERSION_VERSION?api-version=$API_VERSION \
-  -H "Authorization: Bearer $AGENT_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{}'
-```
-
-Delete the vector store.
-
-```bash
-curl --request DELETE \
-  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/vector_stores/$VECTORSTORE_ID?api-version=$API_VERSION \
-  -H "Authorization: Bearer $AGENT_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{}'
-```
-
-Delete the file.
-
-```bash
-curl --request DELETE \
-  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/files/$FILE_ID?api-version=$API_VERSION \
-  -H "Authorization: Bearer $AGENT_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{}'
-```
-::: zone-end
-
 :::zone pivot="typescript"
 ## Sample file search with agent
 
@@ -557,7 +400,143 @@ main().catch((err) => {
 });
 ```
 
+### References
+
+- Reference: [Azure SDK for JavaScript sample: file search](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentFileSearch.js)
+- Reference: [Agents REST API (preview)](../../../../reference/foundry-project-rest-preview.md)
+
 :::zone-end
+
+:::zone pivot="rest"
+## Upload files and add them to a vector store
+
+To access your files, the file search tool uses the vector store object. Upload your files and create a vector store. Then poll the store's status until all files are out of the `in_progress` state to ensure that all content is fully processed. The SDK provides helpers for uploading and polling.
+
+### Upload a file
+
+```bash
+curl --request POST \
+  --url $FOUNDRY_PROJECT_ENDPOINT/openai/files?api-version=$API_VERSION \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -F purpose="assistants" \
+  -F file="@c:\\path_to_file\\sample_file_for_upload.txt"
+```
+
+### Create a vector store
+
+```bash
+curl --request POST \
+  --url $FOUNDRY_PROJECT_ENDPOINT/openai/vector_stores?api-version=$API_VERSION \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "my_vector_store",
+    "file_ids": ["{{filesUpload.id}}"]
+  }'
+```
+
+## Create an agent version and enable file search
+
+```bash
+curl --request POST \
+  --url $FOUNDRY_PROJECT_ENDPOINT/agents/$AGENTVERSION_NAME/versions?api-version=$API_VERSION \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "description": "Test agent version description",
+  "definition": {
+    "kind": "prompt",
+    "model": "{{model}}",
+    "tools": [
+      {
+        "type": "file_search",
+        "vector_store_ids": ["{{vectorStore.id}}"],
+        "max_num_results": 20
+      }
+    ],
+    "instructions": "You are a customer support chatbot. Use file search results from the vector store to answer questions based on the uploaded files."
+  }
+}'
+```
+
+## Create response with file search
+
+```bash
+curl --request POST \
+  --url $FOUNDRY_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+  "agent": {
+    "type": "agent_reference",
+    "name": "{{agentVersion.name}}",
+    "version": "{{agentVersion.version}}"
+  },
+  "metadata": {
+    "test_response": "file_search_enabled",
+    "vector_store_id": "{{vectorStore.id}}"
+  },
+  "input": [{
+    "type": "message",
+    "role": "user",
+    "content": [
+      {
+        "type": "input_text",
+        "text": "Can you search the uploaded file and tell me about Azure TV instructions?"
+      }
+    ]
+  }],
+  "stream": true
+}'
+```
+
+The response returns streaming output containing the agent's answer based on information retrieved from the vector store. The agent searches through your uploaded file to answer the query about Azure TV instructions.
+
+### Clean up
+
+Delete the agent version.
+
+```bash
+curl --request DELETE \
+  --url $FOUNDRY_PROJECT_ENDPOINT/agents/$AGENTVERSION_NAME/versions/$AGENTVERSION_VERSION?api-version=$API_VERSION \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{}'
+```
+
+Delete the vector store.
+
+```bash
+curl --request DELETE \
+  --url $FOUNDRY_PROJECT_ENDPOINT/openai/vector_stores/$VECTORSTORE_ID?api-version=$API_VERSION \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{}'
+```
+
+Delete the file.
+
+```bash
+curl --request DELETE \
+  --url $FOUNDRY_PROJECT_ENDPOINT/openai/files/$FILE_ID?api-version=$API_VERSION \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{}'
+```
+
+### References
+
+- Reference: [Agents REST API (preview)](../../../../reference/foundry-project-rest-preview.md)
+:::zone-end
+
+## Verify results
+
+After running a code sample in this article, verify that file search is working:
+
+- Confirm that the vector store and file are created.
+  - In the Python and TypeScript samples, the upload-and-poll helpers complete only after ingestion finishes.
+- Ask a question that you can answer only from your uploaded content.
+- Confirm that the response is grounded in your documents.
 
 ### File sources
 
@@ -570,15 +549,15 @@ main().catch((err) => {
 
 The file search tool has the same functionality as Azure OpenAI Responses API. The tool uses Microsoft managed search and storage resources. 
 
-- Uploaded files are stored in Microsoft managed storage. 
-- A vector store is created by using a Microsoft managed search resource. 
+- You store uploaded files in Microsoft managed storage. 
+- You create a vector store by using a Microsoft managed search resource. 
 
 ### Standard agent setup
 
 The file search tool uses the Azure AI Search and Azure Blob Storage resources you connect to during agent setup. 
 
-- Uploaded files are stored in your connected Azure Blob Storage account. 
-- Vector stores are created by using your connected Azure AI Search resource. 
+- You store uploaded files in your connected Azure Blob Storage account. 
+- You create vector stores by using your connected Azure AI Search resource. 
 
 For both agent setups, the service handles the entire ingestion process, which includes:
 
@@ -586,7 +565,7 @@ For both agent setups, the service handles the entire ingestion process, which i
 - Generating and storing embeddings.
 - Utilizing both vector and keyword searches to retrieve relevant content for user queries. 
 
-There's no difference in the code between the two setups. The only variation is in where your files and created vector stores are stored. 
+There's no difference in the code between the two setups. The only variation is in where you store your files and created vector stores. 
 
 ## How it works
 
@@ -606,10 +585,12 @@ The file search tool uses several retrieval best practices to help you extract t
 
 Vector store objects give the file search tool the ability to search your files. When you add a file to a vector store, the process automatically parses, chunks, embeds, and stores the file in a vector database that supports both keyword and semantic search. Each vector store can hold up to 10,000 files. You can attach vector stores to both agents and conversations. Currently, you can attach at most one vector store to an agent and at most one vector store to a conversation.
 
+For background concepts and lifecycle guidance (readiness, deletion behavior, and expiration policies), see [Vector stores for file search](../../concepts/vector-stores.md).
+
 You can remove files from a vector store by either:
 
-- Deleting the vector store file object, or
-- Deleting the underlying file object, which removes the file from all `vector_store` and `code_interpreter` configurations across all agents and conversations in your organization.
+- Delete the vector store file object.
+- Delete the underlying file object. This action removes the file from all `vector_store` and `code_interpreter` configurations across all agents and conversations in your organization.
 
 The maximum file size is 512 MB. Each file should contain no more than 5,000,000 tokens (computed automatically when you attach a file).
 
@@ -628,10 +609,10 @@ When a vector store expires, the runs on that conversation fail. To fix this pro
 ## Supported file types
 
 > [!NOTE]
-> For text/ MIME types, the encoding must be either UTF-8, UTF-16, or ASCII.
+> For text MIME types, the encoding must be UTF-8, UTF-16, or ASCII.
 
 | File format | MIME Type |
-|---|---|
+| --- | --- |
 | `.c` | `text/x-c` |
 | `.cs` | `text/x-csharp` |
 | `.cpp` | `text/x-c++` |
@@ -647,9 +628,37 @@ When a vector store expires, the runs on that conversation fail. To fix this pro
 | `.py` | `text/x-python` |
 | `.py` | `text/x-script.python` |
 | `.rb` | `text/x-ruby` |
-| `.tex` |`text/x-tex` |
+| `.tex` | `text/x-tex` |
 | `.txt` | `text/plain` |
 | `.css` | `text/css` |
 | `.js` | `text/javascript` |
 | `.sh` | `application/x-sh` |
 | `.ts` | `application/typescript` |
+
+## Limitations
+
+Keep these limits in mind when you plan your file search integration:
+
+- File search supports specific file formats and encodings. See [Supported file types](#supported-file-types).
+- Each vector store can hold up to 10,000 files.
+- You can attach at most one vector store to an agent and at most one vector store to a conversation.
+- Features and availability vary by region. See [Azure AI Foundry region support](../../../../reference/region-support.md).
+
+## Troubleshooting
+
+| Issue | Likely cause | Resolution |
+| --- | --- | --- |
+| 401 Unauthorized | The access token is missing, expired, or scoped incorrectly. | Get a fresh token and retry the request. For REST calls, confirm you set `AGENT_TOKEN` correctly. |
+| 403 Forbidden | The signed-in identity doesn't have the required roles. | Confirm the roles in [Prerequisites](#prerequisites) and retry after role assignment finishes propagating. |
+| 404 Not Found | The project endpoint or resource identifiers are incorrect. | Confirm `FOUNDRY_PROJECT_ENDPOINT` and IDs such as agent name, version, vector store ID, and file ID. |
+| Responses ignore your files | The agent isn't configured with `file_search`, or the vector store isn't attached. | Confirm the agent definition includes `file_search` and the `vector_store_ids` list contains your vector store ID. |
+| File upload times out | Large file or slow network connection. | Use `upload_and_poll` to handle large files. Consider chunking very large documents. |
+| Vector store creation fails | Quota exceeded or invalid file format. | Check vector store limits (10,000 files per store). Verify file format is supported. |
+| Search returns irrelevant results | File content not properly indexed or query too broad. | Wait for indexing to complete (check `vector_store.status`). Use more specific queries. |
+| No citations in response | Model didn't use file search or content not found. | Use `tool_choice="required"` to force file search. Verify the file content matches your query topic. |
+
+## Related content
+
+[Use the Azure AI Search tool](ai-search.md)
+
+[Use the web search tool](web-search.md)

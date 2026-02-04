@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 12/22/2025
+ms.date: 02/02/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents-code
@@ -29,6 +29,12 @@ Use this article to find step-by-step instructions and code samples for using th
 :::zone pivot="python"
 
 ## Prerequisites
+
+* The `azure-ai-agents` package version **1.2.0b1 or later**. The `SharepointTool` class is only available in beta versions of the package. Install with:
+
+    ```bash
+    pip install --pre azure-ai-agents
+    ```
 
 * Your Microsoft Foundry Project endpoint.
 

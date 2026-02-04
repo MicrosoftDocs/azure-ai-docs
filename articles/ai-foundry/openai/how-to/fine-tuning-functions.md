@@ -166,7 +166,7 @@ Fine-tuning based on function calling examples can also be used to improve the m
 {
     "messages": [
         {"role": "user", "content": "What is the weather in San Francisco?"},
-        {"role": "assistant", "function_call": {"name": "get_current_weather", "arguments": "{\"location\": \"San Francisco, USA\", \"format\": \"celcius\"}"}}
+        {"role": "assistant", "function_call": {"name": "get_current_weather", "arguments": "{\"location\": \"San Francisco, USA\", \"format\": \"celsius\"}"}}
         {"role": "function", "name": "get_current_weather", "content": "21.0"},
         {"role": "assistant", "content": "It is 21 degrees celsius in San Francisco, CA"}
     ],
@@ -177,7 +177,7 @@ Fine-tuning based on function calling examples can also be used to improve the m
 As with the example before, this example is artificially expanded for readability. The actual entry in the `.jsonl` training file would be a single line:
 
 ```jsonl
-{"messages": [{"role": "user", "content": "What is the weather in San Francisco?"}, {"role": "assistant", "function_call": {"name": "get_current_weather", "arguments": "{\"location\": \"San Francisco, USA\", \"format\": \"celcius\"}"}}, {"role": "function", "name": "get_current_weather", "content": "21.0"}, {"role": "assistant", "content": "It is 21 degrees celsius in San Francisco, CA"}], "functions": []}
+{"messages": [{"role": "user", "content": "What is the weather in San Francisco?"}, {"role": "assistant", "function_call": {"name": "get_current_weather", "arguments": "{\"location\": \"San Francisco, USA\", \"format\": \"celsius\"}"}}, {"role": "function", "name": "get_current_weather", "content": "21.0"}, {"role": "assistant", "content": "It is 21 degrees celsius in San Francisco, CA"}], "functions": []}
 ```
 
 
@@ -185,4 +185,4 @@ As with the example before, this example is artificially expanded for readabilit
 
 * [Function calling fine-tuning scenarios](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/fine-tuning-with-function-calling-on-azure-openai-service/ba-p/4065968).
 * Explore the fine-tuning capabilities in the [Azure OpenAI fine-tuning tutorial](../tutorials/fine-tune.md).
-* Review fine-tuning [model regional availability](../concepts/models.md#fine-tuning-models).
+* Review fine-tuning [model regional availability](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#fine-tuning-models).

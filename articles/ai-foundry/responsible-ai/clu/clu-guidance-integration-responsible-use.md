@@ -6,7 +6,7 @@ author: laujan
 ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: article
+ms.topic: best-practice
 ms.date: 09/15/2021
 ---
 

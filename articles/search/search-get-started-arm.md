@@ -66,6 +66,6 @@ Other Azure AI Search quickstarts and tutorials build upon this quickstart. If y
 In this quickstart, you created an Azure AI Search service using an ARM template and then validated the deployment. To learn more about Azure AI Search and Azure Resource Manager, see the following articles:
 
 - [What is Azure AI Search?](search-what-is-azure-search.md)
-- [Quickstart: Create a search index in the Azure portal](search-get-started-portal.md)
+- [Quickstart: Full-text search in the Azure portal](search-get-started-portal.md)
 - [Quickstart: Create a demo search app in the Azure portal](search-create-app-portal.md)
 - [Quickstart: Create a skillset in the Azure portal](search-get-started-skillset.md)

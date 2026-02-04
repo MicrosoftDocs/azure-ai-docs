@@ -4,9 +4,12 @@ ms.service: azure-ai-language
 ms.topic: include
 ms.date: 01/07/2026
 ms.author: lajanuar
+ai-usage: ai-assisted
 ---
 <!-- markdownlint-disable MD041 -->
-[Reference documentation](/python/api/azure-ai-textanalytics/azure.ai.textanalytics?preserve-view=true&view=azure-python) | [More samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/textanalytics/azure-ai-textanalytics/samples) | [Package (PyPi)](https://pypi.org/project/azure-ai-textanalytics/5.2.0/) | [Library source code](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/textanalytics/azure-ai-textanalytics)Use this quickstart to create a language detection application with the client library for Python. In the following example, you create a Python application that can identify the language a text sample was written in.
+[Reference documentation](/python/api/azure-ai-textanalytics/azure.ai.textanalytics?view=azure-python&preserve-view=true) | [More samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/textanalytics/azure-ai-textanalytics/samples) | [Package (PyPi)](https://pypi.org/project/azure-ai-textanalytics/5.2.0/) | [Library source code](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/textanalytics/azure-ai-textanalytics)
+
+Use this quickstart to create a language detection application with the client library for Python. In the following example, you create a Python application that can identify the language a text sample was written in.
 [!INCLUDE [Use Microsoft Foundry](../../../includes/microsoft-foundry/tip-you-can-use-foundry.md)]
 
 ## Prerequisites
@@ -36,11 +39,16 @@ Create a new Python file and copy the below code. Then run the code.
 
 ```python
 # This example requires environment variables named "LANGUAGE_KEY" and "LANGUAGE_ENDPOINT"
-language_key = os.environ.get('LANGUAGE_KEY')
-language_endpoint = os.environ.get('LANGUAGE_ENDPOINT')
+import os
 
 from azure.ai.textanalytics import TextAnalyticsClient
 from azure.core.credentials import AzureKeyCredential
+
+language_key = os.environ.get("LANGUAGE_KEY")
+language_endpoint = os.environ.get("LANGUAGE_ENDPOINT")
+
+if not language_key or not language_endpoint:
+    raise ValueError("Missing LANGUAGE_KEY or LANGUAGE_ENDPOINT environment variables")
 
 # Authenticate the client using your key and endpoint
 def authenticate_client():

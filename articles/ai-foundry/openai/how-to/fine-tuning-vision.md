@@ -78,6 +78,7 @@ Images containing the following will be excluded from your dataset and not used 
 
 ## Next steps
 
+- To modify content safety for fine-tuning refer to terms listed in the [form](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUMlBQNkZMR0lFRldORTdVQzQ0TEI5Q1ExOSQlQCN0PWcu)
 - [Deploy a fine-tuned model](fine-tuning-deploy.md).
-- Review fine-tuning [model regional availability](../concepts/models.md#fine-tuning-models)
+- Review fine-tuning [model regional availability](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#fine-tuning-models)
 - Learn more about [Azure OpenAI quotas](../quotas-limits.md)

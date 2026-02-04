@@ -8,7 +8,7 @@ ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
 ms.update-cycle: 90-days
 ms.topic: how-to
-ms.date: 09/26/2025
+ms.date: 01/30/2026
 ms.author: pafarley
 ms.devlang: csharp
 ms.custom: devx-track-csharp
@@ -21,7 +21,7 @@ feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 
 [!INCLUDE [Gate notice](../includes/identity-gate-notice.md)]
 
-This guide demonstrates how to add a large number of persons and faces to a **PersonGroup** object. The same strategy also applies to **LargePersonGroup**, **FaceList**, and **LargeFaceList** objects. This sample is written in C#.
+This guide shows how to add a large number of persons and faces to a **PersonGroup** object. The same strategy applies to **LargePersonGroup**, **FaceList**, and **LargeFaceList** objects. The code samples use C#.
 
 ## Setup
 
@@ -126,9 +126,9 @@ Parallel.For(0, PersonCount, async i =>
 
 ## Summary
 
-In this guide, you learned the process of creating a PersonGroup with a massive number of persons and faces. Key points:
+In this guide, you learned the process of creating a PersonGroup with a large number of persons and faces. Key points:
 
-- This strategy also applies to **FaceLists** and **LargePersonGroups**.
+- This strategy applies to **FaceLists** and **LargePersonGroups**.
 - Adding or deleting faces in different **FaceLists** or persons in **LargePersonGroups** are processed concurrently.
 - Adding or deleting faces in one specific **FaceList** or persons in a **LargePersonGroup** is done sequentially.
 

@@ -1,35 +1,35 @@
 ---
-title: Voice live API language support
+title: Voice Live API language support
 titleSuffix: Foundry Tools
-description: Learn about the languages supported by Voice live API and how to configure them.
+description: Learn about the languages supported by Voice Live API and how to configure them.
 manager: nitinme
 author: PatrickFarley
 ms.author: pafarley
 reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.service: azure-ai-speech
-ms.topic: article
+ms.topic: concept-article
 ms.date: 10/31/2025
 ms.custom: languages
-# Customer intent: As a developer, I want to learn about which languages are supported by the Voice live API and how to configure them.
+# Customer intent: As a developer, I want to learn about which languages are supported by the Voice Live API and how to configure them.
 ---
 
-# Voice live API supported languages
+# Voice Live API supported languages
 
 ## Introduction
 
-The Voice live API supports multiple languages and configuration options. In this document, you learn which languages the Voice live API supports and how to configure them.
+The Voice Live API supports multiple languages and configuration options. In this document, you learn which languages the Voice Live API supports and how to configure them.
 
 ## [Speech input](#tab/speechinput)
 
-Depending on which model is being used voice live speech input is processed either by one of the multimodal models (for example, `gpt-realtime`, `gpt-realtime-mini`, and `phi4-mm-realtime`) or by `azure speech to text` models.
+Depending on which model is being used Voice Live speech input is processed either by one of the multimodal models (for example, `gpt-realtime`, `gpt-realtime-mini`, and `phi4-mm-realtime`) or by `azure speech to text` models.
 
 ### Azure speech to text supported languages
 
 Azure speech to text is used for all configuration where a non-multimodal model is being used and for speech input transcriptions with `phi4-mm-realtime`.
 It supports all languages documented on the [Language and voice support for the Speech service - Speech to text](./language-support.md?tabs=stt) tab.
 
-There are three options for voice live language processing:
+There are three options for Voice Live language processing:
 - Automatic multilingual configuration using multilingual model (default)
 - Single language configuration
 - Multilingual configuration using up to 10 defined languages
@@ -175,7 +175,7 @@ Multimodal models don't require a language configuration for the general process
 
 ## [Speech output](#tab/speechoutput)
 
-Depending on which model is being used voice live speech output is processed either by one of the multimodal OpenAI voices integrated into `gpt-realtime` and `gpt-realtime-mini` or by `azure text to speech` voices.
+Depending on which model is being used Voice Live speech output is processed either by one of the multimodal OpenAI voices integrated into `gpt-realtime` and `gpt-realtime-mini` or by `azure text to speech` voices.
 
 ### Azure text to speech supported languages
 
@@ -207,6 +207,6 @@ If *Multilingual Voices* are used, the language output can optionally be control
 
 ## Related content
 
-- Learn more about [How to use the Voice live API](./voice-live-how-to.md)
-- Try out the [Voice live API quickstart](./voice-live-quickstart.md)
-- See the [Voice live API reference](./voice-live-api-reference.md)
+- Learn more about [How to use the Voice Live API](./voice-live-how-to.md)
+- Try out the [Voice Live API quickstart](./voice-live-quickstart.md)
+- See the [Voice Live API reference](./voice-live-api-reference-2025-10-01.md)

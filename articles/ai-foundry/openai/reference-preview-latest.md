@@ -5,7 +5,7 @@ description: Learn how to use Azure OpenAI's latest v1 preview REST API. In this
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: conceptual
+ms.topic: reference
 ms.date: 11/26/2025
 author: mrbullwinkle
 ms.author: mbullwin
@@ -30,4 +30,4 @@ If you're looking for documentation on the latest v1 GA API release, refer to th
 ## Next steps
 
 Learn about [Models, and fine-tuning with the REST API](/rest/api/azureopenai/fine-tuning).
-Learn more about the [underlying models that power Azure OpenAI](./concepts/models.md).
+Learn more about the [underlying models that power Azure OpenAI](../foundry-models/concepts/models-sold-directly-by-azure.md).

@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 05/31/2025
 ms.author: pafarley
 ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"

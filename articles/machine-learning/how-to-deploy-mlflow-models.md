@@ -36,6 +36,9 @@ For no-code deployment, Azure Machine Learning:
 
 Azure Machine Learning automatically generates environments to run inference on MLflow models. To build the environments, Azure Machine Learning reads the Conda dependencies that are specified in the MLflow model and adds any packages that are required to run the inferencing server. These extra packages vary depending on deployment type.
 
+> [!IMPORTANT]
+> If Conda dependencies are specified in the MLflow model, it is required to include `azureml-inference-server-http` and `azureml-ai-monitoring` packages in the dependencies as in the example below. 
+
 The following example *conda.yaml* file shows Conda dependencies specified in an MLflow model.
 
 :::code language="yaml" source="~/azureml-examples-main/sdk/python/endpoints/online/mlflow/sklearn-diabetes/model/conda.yaml":::

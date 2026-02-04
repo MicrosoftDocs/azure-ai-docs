@@ -18,6 +18,7 @@ ms.author: pafarley
 * The [Visual Studio IDE](https://visualstudio.microsoft.com/vs/) with workload .NET desktop development enabled. Or if you don't plan on using Visual Studio IDE, you need the current version of [.NET Core](https://dotnet.microsoft.com/download/dotnet-core).
 * Once you have your Azure subscription, <a href="https://aka.ms/acs-create"  title="Create a Content Safety resource"  target="_blank">create a Content Safety resource </a> in the Azure portal to get your key and endpoint. Enter a unique name for your resource, select your subscription, and select a resource group, supported region (see [Region availability](/azure/ai-services/content-safety/overview#region-availability)), and supported pricing tier. Then select **Create**.
   * The resource takes a few minutes to deploy. After it finishes, Select **go to resource**. In the left pane, under **Resource Management**, select **Subscription Key and Endpoint**. The endpoint and either of the keys are used to call APIs.
+* **Cognitive Services User** role or higher on the Content Safety resource
 
 ## Set up application
 
@@ -136,5 +137,21 @@ Build and run the application from your application directory with these command
 dotnet build
 dotnet run
 ```
+
+### Expected output
+
+The application outputs severity scores for each content category:
+
+```console
+Analyze text succeeded:
+Hate severity: 0
+SelfHarm severity: 0
+Sexual severity: 0
+Violence severity: 0
+```
+
+Severity levels range from 0 (safe) to 6 (high risk).
+
+**References**: [ContentSafetyClient](/dotnet/api/azure.ai.contentsafety.contentsafetyclient), [AnalyzeTextOptions](/dotnet/api/azure.ai.contentsafety.analyzetextoptions), [TextCategory](/dotnet/api/azure.ai.contentsafety.textcategory)
 
 ---

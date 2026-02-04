@@ -8,7 +8,7 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 04/14/2025
 ms.update-cycle: 365-days
 ---
@@ -22,7 +22,7 @@ In Azure AI Search, the [simple query syntax](query-simple-syntax.md) invokes th
 
 ## Hotels sample index
 
-The following queries are based on the hotels-sample-index, which you can create by following the instructions in [Quickstart: Create a search index in the Azure portal](search-get-started-portal.md).
+The following queries are based on the hotels-sample-index, which you can create by following the instructions in [Quickstart: Full-text search in the Azure portal](search-get-started-portal.md).
 
 Example queries are articulated using the REST API and POST requests. You can paste and run them in a [REST client](search-get-started-text.md). Or, use the JSON view of [Search explorer](search-explorer.md) in the Azure portal. In JSON view, you can paste in the query examples shown here in this article.
 

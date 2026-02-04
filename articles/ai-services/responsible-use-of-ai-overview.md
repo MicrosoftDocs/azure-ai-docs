@@ -5,7 +5,7 @@ description: Learn how to responsibly use Foundry Tools with guidelines and link
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 10/02/2025
 ms.author: pafarley
 ---

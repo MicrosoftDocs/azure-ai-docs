@@ -60,7 +60,7 @@ import os
 import jsonref
 from azure.ai.projects import AIProjectClient
 from azure.identity import DefaultAzureCredential
-# import the folloing 
+# import the following
 from azure.ai.agents.models import OpenApiTool, OpenApiAnonymousAuthDetails
 # use the following for connection auth
 # from azure.ai.agents.models import OpenApiTool, OpenApiConnectionAuthDetails, OpenApiConnectionSecurityScheme

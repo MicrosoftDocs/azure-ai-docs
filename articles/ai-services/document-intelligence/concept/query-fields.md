@@ -5,7 +5,7 @@ description: Use Document Intelligence query fields to extend model schema.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/18/2025
 ms.author: nitinme
 monikerRange: 'doc-intel-4.0.0'
@@ -18,7 +18,7 @@ monikerRange: 'doc-intel-4.0.0'
 Document Intelligence now supports query field to extend the schema of any prebuilt model to extract the specific fields you need. Query fields can also be added to layout to extract fields in addition to structure from forms or documents.
 > [!NOTE]
 >
-> Document Intelligence Studio query field extraction is currently available with layout and prebuilt models, excluding the UX.Tax prebuilt models.
+> Document Intelligence Studio query field extraction is currently available with layout and prebuilt models, excluding the Contract prebuilt model.
 
 ## Query fields or key value pairs
 

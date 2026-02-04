@@ -7,19 +7,19 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 01/07/2026
+ms.date: 01/20/2026
 author: alvinashcraft
 ms.author: aashcraft
-ms.custom: dev-focus
+ms.custom: dev-focus, pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 zone_pivot_groups: selection-openapi-function-new
 ---
 
-# Connect to OpenAPI Specification
+# Connect to an OpenAPI specification
 
 Connect your Microsoft Foundry Agent Service to external APIs by using OpenAPI 3.0 tools with support for anonymous, API key, and managed identity authentication. This integration enables scalable interoperability with existing infrastructure and web services.
 
-OpenAPI tools improve your agent's function calling capabilities by providing standardized, automated API integrations. [OpenAPI specifications](https://spec.openapis.org/oas/latest.html) provide a formal standard for describing HTTP APIs, so you can understand how APIs work together, generate client code, create tests, and apply design standards. Microsoft Foundry supports three authentication types with OpenAPI 3.0 tools: `anonymous`, `API key`, and `managed identity`.
+OpenAPI tools improve your agent's function calling capabilities by providing standardized, automated API integrations. [OpenAPI specifications](https://spec.openapis.org/oas/latest.html) define a standard way to describe HTTP APIs so you can integrate existing services with your agents. Microsoft Foundry supports three authentication types with OpenAPI 3.0 tools: `anonymous`, `API key`, and `managed identity`.
 
 ### Usage support
 
@@ -35,25 +35,41 @@ Before you begin, make sure you have:
 - Azure RBAC role: Contributor or Owner on the Foundry project.
 - A Foundry project created with an endpoint configured.
 - An AI model deployed in your project.
+- A [basic or standard agent environment](../../../../agents/environment-setup.md).
 - SDK installed for your preferred language:
   - Python: `azure-ai-projects` (latest prerelease version)
   - C#: `Azure.AI.Projects.OpenAI`
   - TypeScript/JavaScript: `@azure/ai-projects`
-- Environment variables set:
-  - `AZURE_AI_PROJECT_ENDPOINT`: Your Foundry project endpoint URL.
-  - `AZURE_AI_MODEL_DEPLOYMENT_NAME`: Your deployed model name.
+
+### Environment variables
+
+| Variable | Description |
+| --- | --- |
+| `AZURE_AI_PROJECT_ENDPOINT` | Your Foundry project endpoint URL (not the external OpenAPI service endpoint). |
+| `AZURE_AI_MODEL_DEPLOYMENT_NAME` | Your deployed model name. |
+| `OPENAPI_PROJECT_CONNECTION_NAME` | (For API key auth) Your project connection name for the OpenAPI service. |
+
 - OpenAPI 3.0 specification file that meets these requirements:
   - Each function must have an `operationId` (required for the OpenAPI tool).
   - `operationId` should only contain letters, `-`, and `_`.
   - Use descriptive names to help models efficiently decide which function to use.
   - Supported content type: "application/json", "application/json-patch+json"
 - For managed identity authentication: Reader role or higher on target service resources.
-- For API key/token authentication: A project connection configured with your API key or your auth token.
+- For API key/token authentication: a project connection configured with your API key or token. See [Add a new connection to your project](../../../../how-to/connections-add.md).
+
+> [!NOTE]
+> The `AZURE_AI_PROJECT_ENDPOINT` value refers to your Microsoft Foundry project endpoint, not the external OpenAPI service endpoint. You can find this endpoint in the Microsoft Foundry portal under your project’s Overview page. This endpoint is required to authenticate the agent service and is separate from any OpenAPI endpoints defined in your specification file.
+
+## Limitations
+
+- Your OpenAPI spec must include `operationId` for each operation, and `operationId` can include only letters, `-`, and `_`.
+- Supported content types: `application/json`, `application/json-patch+json`.
+- For API key authentication, use one API key security scheme per OpenAPI tool. If you need multiple security schemes, create multiple OpenAPI tools.
 
 ## Code example
 
 > [!NOTE]
-> - You need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
+> - You need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#get-ready-to-code) for details.
 > - If you use API key for authentication, your connection ID should be in the format of `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`.
 
 > [!IMPORTANT]
@@ -63,7 +79,7 @@ Before you begin, make sure you have:
 > 1. A project connection configured with the matching key name and value.
 > 
 > Without these configurations, the API key isn't included in requests. For detailed setup instructions, see the [Authenticate with API key](#authenticate-with-api-key) section.
-> You can also pass auth token in, such as Bearer or PAT tokens.
+> You can also use token-based authentication (for example, a Bearer token) by storing the token in a project connection.
 
 :::zone pivot="python"
 ### Quick verification
@@ -237,7 +253,7 @@ Agent deleted
 :::zone pivot="csharp"
 ## Sample of using Agents with OpenAPI tool
 
-This example demonstrates how to use services with an [OpenAPI Specification](https://en.wikipedia.org/wiki/OpenAPI_Specification) by using the Agent. It uses the [wttr.in](https://wttr.in/:help) service to get weather and its specification file [weather_openapi.json](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Agents.Persistent/tests/Samples/weather_openapi.json). This example uses synchronous methods of the Azure AI Projects client library. For an example that uses asynchronous methods, see the [sample](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample21_OpenAPI.md) in the Azure SDK for .NET repository on GitHub.
+This example demonstrates how to use services described by an [OpenAPI specification](https://spec.openapis.org/oas/latest.html) by using an agent. It uses the [wttr.in](https://wttr.in/:help) service to get weather and its specification file [weather_openapi.json](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Agents.Persistent/tests/Samples/weather_openapi.json). This example uses synchronous methods of the Azure AI Projects client library. For an example that uses asynchronous methods, see the [sample](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample21_OpenAPI.md) in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
 // Utility method to get the OpenAPI specification file from the Assets folder.
@@ -313,7 +329,7 @@ The weather in Seattle, WA today is cloudy with temperatures around 52°F...
 
 ## Sample of using Agents with OpenAPI tool on Web service, requiring authentication
 
-In this example, you use services with [OpenAPI Specification](https://en.wikipedia.org/wiki/OpenAPI_Specification) by using the Agent in a scenario that requires authentication. You use the TripAdvisor specification.
+In this example, you use services with an OpenAPI specification by using the agent in a scenario that requires authentication. You use the TripAdvisor specification.
 
 The TripAdvisor service requires key-based authentication. To create a connection in the Azure portal, open Microsoft Foundry and, at the left panel select **Management center** and then select **Connected resources**. Finally, create new connection of **Custom keys** type. Name it `tripadvisor` and add a key value pair. Add key named `key` and enter a value with your TripAdvisor key.
 
@@ -410,106 +426,229 @@ Here are 5 top hotels in Paris, France:
 :::zone-end
 
 :::zone pivot="rest"
-The following example shows how to use the REST API to call an OpenAPI specified tool by using different authentication methods.
+The following examples show how to call an OpenAPI tool by using the REST API.
+
+### Anonymous authentication
 
 ```bash
 curl --request POST \
-  --url "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
-  --H "Authorization: Bearer $AGENT_TOKEN" \
-  --H "Content-Type: application/json" \
-  --H "User-Agent: insomnia/11.6.1" \
-  --d '{
-"model": "$AZURE_AI_MODEL_DEPLOYMENT_NAME",
-"input": "Use the OpenAPI tool to print out, what is the weather in Seattle, WA today.",
-"tools": [{
+  --url "$AZURE_AI_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
+  --header "Authorization: Bearer $AGENT_TOKEN" \
+  --header "Content-Type: application/json" \
+  --data '{
+    "model": "'$AZURE_AI_MODEL_DEPLOYMENT_NAME'",
+    "input": "Use the OpenAPI tool to get the weather in Seattle, WA today.",
+    "tools": [
+      {
         "type": "openapi",
         "openapi": {
-          "name": "weatherapp",
+          "name": "weather",
           "description": "Tool to get weather data",
-          "auth": {
-            "type": "anonymous"
-          },
-        // "auth": {
-              "type": "project_connection",
-              "security_scheme": {
-                  "project_connection_id": "$WEATHER_APP_PROJECT_CONNECTION_ID"              
-              }              
-            },
-         // "auth": {
-              "type": "managed_identity",
-              "security_scheme": {
-                  "audience": ""              
-              }              
-            },                                        
+          "auth": { "type": "anonymous" },
           "spec": {
             "openapi": "3.1.0",
             "info": {
-                "title": "get weather data",
-                "description": "Retrieves current weather data for a location.",
-                "version": "v1.0.0"
+              "title": "get weather data",
+              "description": "Retrieves current weather data for a location.",
+              "version": "v1.0.0"
             },
-            "servers": [{
-                "url": "https://wttr.in"
-            }],
-            "auth": [],
+            "servers": [{ "url": "https://wttr.in" }],
             "paths": {
-                "/{location}": {
-                    "get": {
-                        "description": "Get weather information for a specific location",
-                        "operationId": "GetCurrentWeather",
-                        "parameters": [
-                        {
-                            "name": "location",
-                            "in": "path",
-                            "description": "City or location to retrieve the weather for",
-                            "required": true,
-                            "schema": {
-                            "type": "string"
-                            }
-                        },
-                        {
-                            "name": "format",
-                            "in": "query",
-                            "description": "Format in which to return data. Always use 3.",
-                            "required": true,
-                            "schema": {
-                            "type": "integer",
-                            "default": 3
-                            }
-                        }
-                        ],
-                        "responses": {
-                        "200": {
-                            "description": "Successful response",
-                            "content": {
-                            "text/plain": {
-                                "schema": {
-                                "type": "string"
-                                }
-                            }
-                            }
-                        },
-                        "404": {
-                            "description": "Location not found"
-                        }
-                        },
-                        "deprecated": false
+              "/{location}": {
+                "get": {
+                  "description": "Get weather information for a specific location",
+                  "operationId": "GetCurrentWeather",
+                  "parameters": [
+                    {
+                      "name": "location",
+                      "in": "path",
+                      "description": "City or location to retrieve the weather for",
+                      "required": true,
+                      "schema": { "type": "string" }
+                    },
+                    {
+                      "name": "format",
+                      "in": "query",
+                      "description": "Format in which to return data. Always use 3.",
+                      "required": true,
+                      "schema": { "type": "integer", "default": 3 }
                     }
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "Successful response",
+                      "content": {
+                        "text/plain": {
+                          "schema": { "type": "string" }
+                        }
+                      }
+                    },
+                    "404": { "description": "Location not found" }
+                  }
                 }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }'
+```
+
+### API key authentication (project connection)
+
+```bash
+curl --request POST \
+  --url "$AZURE_AI_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
+  --header "Authorization: Bearer $AGENT_TOKEN" \
+  --header "Content-Type: application/json" \
+  --data '{
+    "model": "'$AZURE_AI_MODEL_DEPLOYMENT_NAME'",
+    "input": "Use the OpenAPI tool to get the weather in Seattle, WA today.",
+    "tools": [
+      {
+        "type": "openapi",
+        "openapi": {
+          "name": "weather",
+          "description": "Tool to get weather data",
+          "auth": {
+            "type": "project_connection",
+            "security_scheme": {
+              "project_connection_id": "'$WEATHER_APP_PROJECT_CONNECTION_ID'"
+            }
+          },
+          "spec": {
+            "openapi": "3.1.0",
+            "info": {
+              "title": "get weather data",
+              "description": "Retrieves current weather data for a location.",
+              "version": "v1.0.0"
+            },
+            "servers": [{ "url": "https://wttr.in" }],
+            "paths": {
+              "/{location}": {
+                "get": {
+                  "description": "Get weather information for a specific location",
+                  "operationId": "GetCurrentWeather",
+                  "parameters": [
+                    {
+                      "name": "location",
+                      "in": "path",
+                      "description": "City or location to retrieve the weather for",
+                      "required": true,
+                      "schema": { "type": "string" }
+                    },
+                    {
+                      "name": "format",
+                      "in": "query",
+                      "description": "Format in which to return data. Always use 3.",
+                      "required": true,
+                      "schema": { "type": "integer", "default": 3 }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "Successful response",
+                      "content": {
+                        "text/plain": {
+                          "schema": { "type": "string" }
+                        }
+                      }
+                    },
+                    "404": { "description": "Location not found" }
+                  }
+                }
+              }
             },
             "components": {
-                "securitySchemes": {
-                    "apiKeyHeader": {
-                        "type": "apiKey",
-                        "name": "x-api-key",
-                        "in": "header"
-                    }
+              "securitySchemes": {
+                "apiKeyHeader": {
+                  "type": "apiKey",
+                  "name": "x-api-key",
+                  "in": "header"
                 }
-            }
-            }
+              }
+            },
+            "security": [
+              { "apiKeyHeader": [] }
+            ]
+          }
         }
-    }]
-    }''
+      }
+    ]
+  }'
+```
+
+### Managed identity authentication
+
+```bash
+curl --request POST \
+  --url "$AZURE_AI_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
+  --header "Authorization: Bearer $AGENT_TOKEN" \
+  --header "Content-Type: application/json" \
+  --data '{
+    "model": "'$AZURE_AI_MODEL_DEPLOYMENT_NAME'",
+    "input": "Use the OpenAPI tool to get the weather in Seattle, WA today.",
+    "tools": [
+      {
+        "type": "openapi",
+        "openapi": {
+          "name": "weather",
+          "description": "Tool to get weather data",
+          "auth": {
+            "type": "managed_identity",
+            "security_scheme": {
+              "audience": "'$MANAGED_IDENTITY_AUDIENCE'"
+            }
+          },
+          "spec": {
+            "openapi": "3.1.0",
+            "info": {
+              "title": "get weather data",
+              "description": "Retrieves current weather data for a location.",
+              "version": "v1.0.0"
+            },
+            "servers": [{ "url": "https://wttr.in" }],
+            "paths": {
+              "/{location}": {
+                "get": {
+                  "description": "Get weather information for a specific location",
+                  "operationId": "GetCurrentWeather",
+                  "parameters": [
+                    {
+                      "name": "location",
+                      "in": "path",
+                      "description": "City or location to retrieve the weather for",
+                      "required": true,
+                      "schema": { "type": "string" }
+                    },
+                    {
+                      "name": "format",
+                      "in": "query",
+                      "description": "Format in which to return data. Always use 3.",
+                      "required": true,
+                      "schema": { "type": "integer", "default": 3 }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "Successful response",
+                      "content": {
+                        "text/plain": {
+                          "schema": { "type": "string" }
+                        }
+                      }
+                    },
+                    "404": { "description": "Location not found" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }'
 ```
 
 ### What this code does
@@ -523,8 +662,9 @@ This REST API example shows how to call an OpenAPI tool with different authentic
 
 ### Required inputs
 
-- Environment variables: `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT`, `API_VERSION`, `AGENT_TOKEN`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`.
+- Environment variables: `AZURE_AI_PROJECT_ENDPOINT`, `API_VERSION`, `AGENT_TOKEN`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`.
 - For API key auth: `WEATHER_APP_PROJECT_CONNECTION_ID`.
+- For managed identity auth: `MANAGED_IDENTITY_AUDIENCE`.
 - Inline OpenAPI specification in request body.
 
 ### Expected output
@@ -549,7 +689,7 @@ This REST API example shows how to call an OpenAPI tool with different authentic
 
 ### Common errors
 
-- `401 Unauthorized`: Invalid or missing `AGENT_TOKEN`, or API key not injected because `securitySchemes` is missing in OpenAPI spec
+- `401 Unauthorized`: Invalid or missing `AGENT_TOKEN`, or API key not injected because `securitySchemes` and `security` are missing in your OpenAPI spec
 - `404 Not Found`: Incorrect endpoint or model deployment name
 - `400 Bad Request`: Malformed OpenAPI specification or invalid auth configuration
 - **API key not sent with request**: Verify the `components.securitySchemes` section in your OpenAPI spec is properly configured (not empty) and matches your project connection key name
@@ -689,7 +829,7 @@ This TypeScript example creates an agent with an OpenAPI tool for weather data b
 1. Creates an agent with the weather tool configured.
 1. Sends a streaming request asking about Seattle's weather and outfit planning.
 1. Processes the streaming response and displays deltas as they arrive.
-1. Forces tool usage by using `tool_choice: "required"` to ensure the API is called.
+1. It forces tool usage by using `tool_choice: "required"` to ensure the API is called.
 1. Cleans up by deleting the agent.
 
 ## Required inputs
@@ -865,7 +1005,7 @@ This TypeScript example demonstrates using an OpenAPI tool with API key authenti
 1. It configures authentication by using the `TRIPADVISOR_PROJECT_CONNECTION_ID` environment variable.
 1. It creates an agent with the TripAdvisor tool that uses the project connection for API key authentication.
 1. It sends a streaming request for TripAdvisor location details.
-1. Forces tool usage by using `tool_choice: "required"` to ensure the API is called.
+1. It forces tool usage by using `tool_choice: "required"` to ensure the API is called.
 1. It processes and displays the streaming response.
 1. It cleans up by deleting the agent.
 
@@ -897,12 +1037,20 @@ TripAdvisor OpenAPI agent sample completed!
 
 ### Common errors
 
-- `Error: OpenAPI specification not found`: Check file path
-- Connection not found: Verify `TRIPADVISOR_PROJECT_CONNECTION_ID` is correct and connection exists
-- `AuthenticationException`: Invalid API key in project connection
-- **API key not injected in requests**: Your OpenAPI spec must include proper `securitySchemes` (under `components`) and `security` sections. The key name in `securitySchemes` must match the key in your project connection
-- `Content type is not supported`: currently only these two are supported - "application/json", "application/json-patch+json".
+- `Error: OpenAPI specification not found`: Check the file path.
+- Connection not found: Verify `TRIPADVISOR_PROJECT_CONNECTION_ID` is correct and connection exists.
+- `AuthenticationException`: Invalid API key in project connection.
+- **API key not injected in requests**: Your OpenAPI spec must include proper `securitySchemes` (under `components`) and `security` sections. The key name in `securitySchemes` must match the key in your project connection.
+- `Content type is not supported`: Currently, only these two content types are supported: `application/json` and `application/json-patch+json`.
 :::zone-end
+
+## Security and data considerations
+
+When you connect an agent to an OpenAPI tool, the agent can send request parameters derived from user input to the target API.
+
+- Use project connections for secrets (API keys and tokens). Avoid putting secrets in an OpenAPI spec file or source code.
+- Review what data the API receives and what it returns before you use the tool in production.
+- Use least-privilege access. For managed identity, assign only the roles the target service requires.
 
 ## Authenticate with API key
 
@@ -934,8 +1082,8 @@ By using API key authentication, you can authenticate your OpenAPI spec by using
 
 1. Remove any parameter in the OpenAPI spec that needs API key, because API key is stored and passed through a connection, as described later in this article.
 1. Create a connection to store your API key.
-   1. Go to the [Foundry portal](https://ai.azure.com/nextgen?cid=learnDocs) and select the AI Project. Go to build -> agents. 
-   1. Select **OpenAPI** in tools -> custom. 
+  1. Go to the [Foundry portal](https://ai.azure.com/nextgen?cid=learnDocs) and open your project.
+  1. Create or select a connection that stores the secret. See [Add a new connection to your project](../../../../how-to/connections-add.md).
 
         >[!NOTE]
         > If you regenerate the API key at a later date, you need to update the connection with the new key.
@@ -958,7 +1106,7 @@ By using API key authentication, you can authenticate your OpenAPI spec by using
 
 ## Authenticate by using managed identity (Microsoft Entra ID)
 
-[Microsoft Entra ID](/entra/fundamentals/whatis) is a cloud-based identity and access management service that your employees can use to access external resources. By using Microsoft Entra ID, you can add extra security to your APIs without needing to use API keys. When you set up managed identity authentication, the agent authenticates through the Foundry Tool it uses. 
+[Microsoft Entra ID](/entra/fundamentals/what-is-entra) is a cloud-based identity and access management service that your employees can use to access external resources. By using Microsoft Entra ID, you can add extra security to your APIs without needing to use API keys. When you set up managed identity authentication, the agent authenticates through the Foundry tool it uses.
 
 To set up authentication by using Managed Identity:
 
@@ -978,3 +1126,22 @@ To set up authentication by using Managed Identity:
    1. In the managed identity dropdown menu, search for **Foundry Account** and then select the Foundry account of your agent.
    1. Select **Finish**.
 1. When you finish the setup, you can continue by using the tool through the Foundry portal, SDK, or REST API. Use the tabs at the top of this article to see code samples.
+
+## Troubleshooting
+
+| Issue | Likely cause | Resolution |
+| --- | --- | --- |
+| API key isn't included in requests. | OpenAPI spec missing `securitySchemes` or `security` sections. | Verify your OpenAPI spec includes both `components.securitySchemes` and a top-level `security` section. Ensure the scheme `name` matches the key name in your project connection. |
+| Agent doesn't call the OpenAPI tool. | Tool choice not set or `operationId` not descriptive. | Use `tool_choice="required"` to force tool invocation. Ensure `operationId` values are descriptive so the model can choose the right operation. |
+| Authentication fails for managed identity. | Managed identity not enabled or missing role assignment. | Enable system-assigned managed identity on your Foundry resource. Assign the required role (Reader or higher) on the target service. |
+| Request fails with 400 Bad Request. | OpenAPI spec doesn't match actual API. | Validate your OpenAPI spec against the actual API. Check parameter names, types, and required fields. |
+| Request fails with 401 Unauthorized. | API key or token invalid or expired. | Regenerate the API key/token and update your project connection. Verify the connection ID is correct. |
+| Tool returns unexpected response format. | Response schema not defined in OpenAPI spec. | Add response schemas to your OpenAPI spec for better model understanding. |
+| `operationId` validation error. | Invalid characters in `operationId`. | Use only letters, `-`, and `_` in `operationId` values. Remove numbers and special characters. |
+| Connection not found error. | Connection name or ID mismatch. | Verify `OPENAPI_PROJECT_CONNECTION_NAME` matches the connection name in your Foundry project. |
+
+## Related content
+
+- [Add a new connection to your project](../../../../how-to/connections-add.md)
+- [Set up your environment for Foundry Agent Service](../../../../agents/environment-setup.md)
+- [Agents REST API (preview)](../../../../reference/foundry-project-rest-preview.md)

@@ -85,6 +85,7 @@ Instructions for the pattern are contained in comments in the referenced file.
 - Bold: UI labels and visible button or menu text.
 - Code style (backticks): file names, folders, inline code, commands, class and method names, non-localizable tokens.
 - Use relative links for repo-local files.
+- Truncate the `https://learn.microsoft.com` part from MS Learn links. 
 - Use angle brackets around raw URLs only when the plain URL must be shown.
 - Present tense only; rewrite future tense (“will create”) to present (“creates” / “creates a resource”).
 - Prefer gender-neutral language; avoid idioms and metaphors.

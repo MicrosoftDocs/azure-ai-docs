@@ -6,7 +6,7 @@ author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
 ms.service: azure-ai-anomaly-detector
-ms.topic: article
+ms.topic: best-practice
 ms.date: 02/21/2024
 ---
 

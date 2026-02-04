@@ -7,10 +7,14 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 12/17/2025
+ms.date: 01/20/2026
 author: alvinashcraft
 ms.author: aashcraft
-ms.custom: azure-ai-agents, references_regions, dev-focus
+ms.custom: 
+    - azure-ai-agents
+    - references_regions
+    - dev-focus
+    - pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 zone_pivot_groups: selection-web-search
 ---
@@ -22,7 +26,7 @@ zone_pivot_groups: selection-web-search
 The web search tool in Foundry Agent Service enables models to retrieve and ground responses with real-time information from the public web before generating output. When enabled, the model can return up-to-date answers with inline citations, helping you build agents that provide current, factual information to users.
 
 > [!IMPORTANT]
-> - Web Search (preview) uses Grounding with Bing Search and Grounding with Bing Custom Search, which are [First Party Consumption Services](https://www.microsoft.com/licensing/terms/product/Glossary/EAEAS#:%7E:text=First-Party%20Consumption%20Services) governed by these [Grounding with Bing terms of use](https://www.microsoft.com/en-us/bing/apis/grounding-legal-enterprise) and the [Microsoft Privacy Statement](https://go.microsoft.com/fwlink/?LinkId=521839&clcid=0x409).
+> - Web Search(preview) uses Grounding with Bing Search and Grounding with Bing Custom Search, which are [First Party Consumption Services](https://www.microsoft.com/licensing/terms/product/Glossary/EAEAS#:%7E:text=First-Party%20Consumption%20Services) governed by these [Grounding with Bing terms of use](https://www.microsoft.com/bing/apis/grounding-legal-enterprise) and the [Microsoft Privacy Statement](https://go.microsoft.com/fwlink/?LinkId=521839&clcid=0x409).
 > - The Microsoft [Data Protection Addendum](https://aka.ms/dpa) doesn't apply to data sent to Grounding with Bing Search and Grounding with Bing Custom Search. When you use Grounding with Bing Search and Grounding with Bing Custom Search, data transfers occur outside compliance and geographic boundaries.
 > - Use of Grounding with Bing Search and Grounding with Bing Custom Search incurs costs. See [pricing](https://www.microsoft.com/bing/apis/grounding-pricing) for details.
 > - See the [management section](#administrator-control-for-the-web-search-tool) for information about how Azure admins can manage access to use of web search.
@@ -30,16 +34,28 @@ The web search tool in Foundry Agent Service enables models to retrieve and grou
 ### Usage support
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
-|---------|---------|---------|---------|---------|---------|---------|---------|
+| --- | --- | --- | --- | --- | --- | --- | --- |
 | ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
+
+## Prerequisites
+
+- A [basic or standard agent environment](../../../../agents/environment-setup.md)
+- The latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
+- Azure credentials configured for authentication (such as `DefaultAzureCredential`).
+- Environment variables configured:
+  - `AZURE_AI_PROJECT_ENDPOINT` (or `PROJECT_ENDPOINT`): Your Foundry project endpoint URL.
+  - `AZURE_AI_MODEL_DEPLOYMENT_NAME` (or `MODEL_DEPLOYMENT_NAME`): Your model deployment name.
+Before you begin, make sure you have:
+
 
 ## Code examples
 
 > [!NOTE]
-> See [best practices](../../concepts/tool-best-practice.md) for information on optimizing tool usage.
+> - See [best practices](../../concepts/tool-best-practice.md) for information on optimizing tool usage.
+> - You need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#get-ready-to-code) for details.
 
 :::zone pivot="python"
-### Set up the AI Project client
+### General Web Search
 
 The following example shows how to set up the AI Project client by using the Azure Identity library for authentication.
 
@@ -54,50 +70,67 @@ from azure.ai.projects.models import PromptAgentDefinition, WebSearchPreviewTool
 load_dotenv()
 
 project_client = AIProjectClient(
-    endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
+  endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
     credential=DefaultAzureCredential(),
 )
 
 openai_client = project_client.get_openai_client()
-```
 
-### Create an agent with the web search tool
+with project_client:
+    agent = project_client.agents.create_version(
+        agent_name="MyAgent",
+        definition=PromptAgentDefinition(
+        model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+            instructions="You are a helpful assistant that can search the web",
+            tools=[
+          WebSearchPreviewTool(
+            user_location=ApproximateLocation(country="GB", city="London", region="London")
+          )
+            ],
+        ),
+        description="Agent for web search.",
+    )
 
-The following example shows how to create an agent version that uses the web search tool.
+    print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
 
-```python
-from azure.ai.projects.models import PromptAgentDefinition, WebSearchPreviewTool, ApproximateLocation
+    stream_response = openai_client.responses.create(
+        stream=True,
+        tool_choice="required",
+        input="What is today's date and weather in Seattle?",
+        extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+    )
 
-agent = project_client.agents.create_version(
-    agent_name="MyAgent",
-    definition=PromptAgentDefinition(
-        model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
-        instructions="You are a helpful assistant that can search the web",
-        tools=[
-            WebSearchPreviewTool()
-        ],
-    ),
-    description="Agent for web search.",
-)
-```
-
-### Expected output
-
-The following is an example of the expected output when creating an agent with the web search tool:
-
-```console
-Agent created (id: 12345, name: MyAgent, version: 1)
+    for event in stream_response:
+        if event.type == "response.created":
+            print(f"Follow-up response created with ID: {event.response.id}")
+        elif event.type == "response.output_text.delta":
+            print(f"Delta: {event.delta}")
+        elif event.type == "response.text.done":
+            print(f"\nFollow-up response done!")
+        elif event.type == "response.output_item.done":
+            if event.item.type == "message":
+                item = event.item
+                if item.content[-1].type == "output_text":
+                    text_content = item.content[-1]
+                    for annotation in text_content.annotations:
+                        if annotation.type == "url_citation":
+                            print(f"URL Citation: {annotation.url}")
+        elif event.type == "response.completed":
+            print(f"\nFollow-up completed!")
+            print(f"Full response: {event.response.output_text}")
 ```
 :::zone-end
 
 :::zone pivot="csharp"
 
+### General Web Search
+
 In this example, you use the agent to perform the web search in the given location. The example in this section uses synchronous calls. For an asynchronous example, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample13_WebSearch.md) in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
 // Create project client and read the environment variables, which will be used in the next steps.
-var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
-var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
+var projectEndpoint = System.Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
 AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
 
 // Create an agent capable of using Web search and set the location to "London" in the WebSearchToolLocation.
@@ -130,95 +163,68 @@ Console.WriteLine(response.GetOutputText());
 projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
 ```
 
-## Expected output
+**Expected output**
 
 The following is an example of the expected output when running the C# code:
 
 ```console
 Creating agent with web search tool...
 Agent created (id: 12345, name: myAgent, version: 1)
-Response: The latest London Underground service updates are as follows: [1] "The London Underground is currently experiencing delays on the Central Line due to signal failure. [2] "Planned engineering works are scheduled for the Jubilee Line this weekend." For more details, visit https://tfl.gov.uk.uk/modes/tube/status/
+Response: The agent returns a grounded response that includes citations.
 Agent deleted
 ```
 :::zone-end
 
 :::zone pivot="rest-api"
-### Create an agent with the web search tool
+### General Web Search
 
-The following example shows how to create an agent version that uses the web search tool via the REST API.
+The following example shows how to create a response by using an agent that has the web search tool enabled.
 
 ```bash
 curl --request POST \
-  --url $FOUNDRY_PROJECT_ENDPOINT/agents/$AGENTVERSION_NAME/versions?api-version=$API_VERSION \
+  --url "$FOUNDRY_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
   -H "Authorization: Bearer $AGENT_TOKEN" \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "description": "Test agent version description",
-  "definition": {
-    "kind": "prompt",
-    "model": "{{model}}",
+  -H "Content-Type: application/json" \
+  --data '{
+    "model": "$FOUNDRY_MODEL_DEPLOYMENT_NAME",
+    "input": "Tell me about the latest news about AI",
+    "tool_choice": "required",
     "tools": [
       {
         "type": "web_search_preview"
       }
-    ],
-    "instructions": "You are a helpful assistant that can search the web for current information. When users ask questions that require up-to-date information, use the web search tool to find relevant results."
-  }
-}'
-```
-
-### Create a response by using the web search tool
-
-The following example shows how to create a response by using the web search tool via the REST API.
-
-```bash
-curl --request POST \
-  --url $FOUNDRY_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION \
-  -H "Authorization: Bearer $AGENT_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{
-  "agent": {
-    "type": "agent_reference",
-    "name": "{{agentVersion.name}}",
-    "version": "{{agentVersion.version}}"
-  },
-  "input": [{
-    "type": "message",
-    "role": "user",
-    "content": [
-      {
-        "type": "input_text",
-        "text": "how is the weather in seattle today?"
-      }
     ]
-  }],
-  "stream": true
-}'
+  }'
 ```
 
-### Expected output
+#### Expected output
 
 The following example shows the expected output when using the web search tool via the REST API:
 
 ```json
 {
-  "id": "response-id",
+  "id": "resp_abc123xyz",
   "object": "response",
-  "created": 1697059200,
-  "model": "gpt-5",
-  "choices": [
+  "created_at": 1702345678,
+  "status": "completed",
+  "output_text": "Here is a grounded response with citations.",
+  "output_items": [
     {
-      "index": 0,
-      "message": {
-        "role": "assistant",
-        "content": [
-          {
-            "type": "output_text",
-            "text": "The weather in Seattle today is mostly cloudy with a high of 65°F (18°C) and a low of 50°F (10°C). There is a chance of light rain in the afternoon. For more details, you can check [source](https://www.weather.com/weather/today/l/Seattle+WA)."
-          }
-        ]
-      },
-      "finish_reason": "stop"
+      "type": "message",
+      "content": [
+        {
+          "type": "output_text",
+          "text": "Here is a grounded response with citations.",
+          "annotations": [
+            {
+              "type": "url_citation",
+              "url": "https://contoso.com/example-source",
+              "start_index": 0,
+              "end_index": 43
+            }
+          ]
+        }
+      ]
     }
   ]
 }
@@ -235,8 +241,8 @@ import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
 import "dotenv/config";
 
-const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
-const deploymentName = process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
+const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "<project endpoint>";
+const deploymentName = process.env["MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
 
 export async function main(): Promise<void> {
   // Create AI Project client
@@ -306,7 +312,7 @@ Creating agent with web search tool...
 Agent created (id: 12345, name: agent-web-search, version: 1)
 Created conversation (id: 67890)
 Sending web search query...
-Response: The latest London Underground service updates are as follows: [1] "The London Underground is currently experiencing delays on the Central Line due to signal failure. [2] "Planned engineering works are scheduled for the Jubilee Line this weekend." For more details, visit https://tfl.gov.uk.uk/modes/tube/status/
+Response: The agent returns a grounded response that includes citations.
 Cleaning up resources...
 Conversation deleted
 Agent deleted
@@ -314,24 +320,34 @@ Web search sample completed!
 ```
 :::zone-end
 
-## Options for using the web search tool
+## Configure the web search tool
 
-Web search supports two primary modes. Choose the mode based on the depth and speed you need. 
+You can configure web search behavior when you create your agent.
 
-- Non reasoning web search
-   - The model forwards the user query directly to the web search tool and uses top-ranked sources to ground the response. There's no multistep planning. This mode is fast and best for quick lookups and timely facts.
-- Reasoning web search
-   - Use reasoning models like `gpt-5` to actively manage the search process. It uses web search results as part of the chain of thoughts.
-- Deep Research
-   - Deep Research is an agent-driven mode designed for extended investigations. The model performs multistep reasoning, might open and read many pages, and synthesizes findings into a comprehensive, citation-rich response. Use this mode with `o3-deep-research` when you need:
-      - Legal or scientific research
-      - Market and competitive analysis
-      - Reporting over large bodies of internal or public data 
+### Optional parameters for general web search
 
-Deep Research can run for several minutes and is best for background-style workloads that prioritize completeness over speed.
+- `user_location`: Helps web search return results relevant to a user’s geography. Use an approximate location when you want results localized to a country/region/city.
+- `search_context_size`: Controls how much context window space to use for the search. Supported values are `low`, `medium`, and `high`. The default is `medium`.
 
-> [!NOTE]
-> You can only use file upload with a basic agent setup. With a standard agent setup you can use file upload or bring your own blob storage.
+
+## Security and privacy considerations
+
+- Treat web search results as untrusted input. Validate and sanitize data before you use it in downstream systems.
+- Avoid sending secrets or sensitive personal data in prompts that might be forwarded to external services.
+- Review the terms, privacy, and data boundary notes in the preview section of this article before enabling web search in production.
+
+## Troubleshooting
+
+| Issue | Cause | Resolution |
+| --- | --- | --- |
+| Web search isn't used and no citations appear | Model didn't determine web search was needed | Update your instructions to explicitly allow web search for up-to-date questions, and ask a query that requires current information. |
+| Requests fail after enabling web search | Web search is disabled at the subscription level | Ask an admin to enable web search. See [Administrator control for the web search tool](#administrator-control-for-the-web-search-tool). |
+| REST requests return authentication errors | Bearer token is missing, expired, or has insufficient permissions | Refresh your token and confirm your access to the project and agent. |
+| Search returns outdated information | Web content not recently indexed | Refine your query to explicitly request the most recent information. Results depend on Bing's indexing schedule. |
+| No results for specific topics | Query too narrow or content not indexed | Broaden your search query. Some niche topics might have limited web coverage. |
+| Rate limiting errors (429) | Too many requests in a short time period | Implement exponential backoff and retry logic. Consider spacing out requests. |
+| Inconsistent citation formatting | Response format varies by query type | Standardize citation handling in your application code. Parse both inline and reference-style citations. |
+| Tool not available for deployment | Regional or model limitations | Confirm web search is available in your region and with your model deployment. Check [tool best practices](../../concepts/tool-best-practice.md). |
 
 ## Administrator control for the web search tool
 
@@ -349,7 +365,12 @@ Before running the following commands, make sure that you:
 
 To disable the web search tool for all accounts in a subscription, run the following command: 
 
-`az feature register --name OpenAI.BlockedTools.web_search --namespace Microsoft.CognitiveServices --subscription "<subscription-id>" `
+```azurecli
+az feature register \
+  --name OpenAI.BlockedTools.web_search \
+  --namespace Microsoft.CognitiveServices \
+  --subscription "<subscription-id>"
+```
 
 This command disables web search across all accounts in the specified subscription. 
 
@@ -357,6 +378,19 @@ This command disables web search across all accounts in the specified subscripti
 
 To enable the web search tool, run the following command: 
 
-`az feature unregister --name OpenAI.BlockedTools.web_search --namespace Microsoft.CognitiveServices --subscription "<subscription-id>"` 
+```azurecli
+az feature unregister \
+  --name OpenAI.BlockedTools.web_search \
+  --namespace Microsoft.CognitiveServices \
+  --subscription "<subscription-id>"
+```
 
 This command enables web search functionality for all accounts in the subscription. 
+
+## Next steps
+
+> [!div class="nextstepaction"]
+> [Review tool best practices](../../concepts/tool-best-practice.md)
+
+> [!div class="nextstepaction"]
+> [Set up an agent environment](../../../../agents/environment-setup.md)

@@ -10,7 +10,7 @@ ms.date: 11/06/2025
 ms.custom: include
 ---
 
-[!INCLUDE [agent-v2-switch](agent-v2-switch.md)]
+Make sure you install the correct preview/prerelease version of the packages as shown here.
 
 # [Python](#tab/python)
 
@@ -21,11 +21,7 @@ ms.custom: include
     pip install openai azure-identity python-dotenv
     ```
 
-1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Python scripts.
-
-Follow along below or get the code:
-> [!div class="nextstepaction"]
-> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/python/quickstart)
+1. Sign in using the CLI `az login` command to authenticate before running your Python scripts.
 
 # [C#](#tab/csharp)
 
@@ -39,11 +35,7 @@ Follow along below or get the code:
     dotnet add package Azure.Identity
     ```
 
-1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your C# scripts.
-
-> Follow along below or get the code:
-> [!div class="nextstepaction"]
-> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/csharp/quickstart)
+1. Sign in using the CLI `az login` command to authenticate before running your C# scripts.
 
 
 # [TypeScript](#tab/typescript)
@@ -54,23 +46,15 @@ Follow along below or get the code:
     npm install @azure/ai-projects@beta @azure/identity dotenv
     ```
 
-1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your TypeScript scripts.
-
-Follow along below or get the code:
-> [!div class="nextstepaction"]
-> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/typescript/quickstart/src)
+1. Sign in using the CLI `az login` command to authenticate before running your TypeScript scripts.
 
 # [Java](#tab/java)
 
-1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Java scripts.
-
-Follow along below or get the code:
-> [!div class="nextstepaction"]
-> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/java/quickstart/src/main/java/com/microsoft/foundry/samples/)
+1. Sign in using the CLI `az login` command to authenticate before running your Java scripts.
 
 # [REST API](#tab/rest)
 
-1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running the next command.
+1. Sign in using the CLI `az login` command to authenticate before running the next command.
 1. Get a temporary access token. It will expire in 60-90 minutes, you'll need to refresh after that.
 
     ```azurecli
@@ -79,13 +63,11 @@ Follow along below or get the code:
     
 1. Save the results as the environment variable `AZURE_AI_AUTH_TOKEN`.  
 
-Follow along below or get the code:
-> [!div class="nextstepaction"]
-> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/REST/mslearn-resources/quickstart).
-
 
 # [Foundry portal](#tab/portal)
 
 No installation is necessary to use the Foundry portal.
 
 ---
+
+[!INCLUDE [agent-v2-switch](agent-v2-switch.md)]

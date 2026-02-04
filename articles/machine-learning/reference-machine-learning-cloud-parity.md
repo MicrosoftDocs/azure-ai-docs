@@ -5,7 +5,7 @@ description: This article lists feature availability differences between public 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.topic: conceptual 
+ms.topic: concept-article 
 ms.reviewer: None
 ms.author: scottpolly
 author: s-polly

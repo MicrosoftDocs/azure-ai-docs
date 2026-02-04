@@ -9,24 +9,24 @@ ms.date: 7/31/2025
 ms.custom: references_regions
 ---
 
-In this article, you learn how to use voice live with generative AI and Azure Speech in Foundry Tools in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
+In this article, you learn how to use Voice Live with generative AI and Azure Speech in Foundry Tools in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 [!INCLUDE [Introduction](intro.md)]
 
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- A Foundry project. If you need to create a project, see [Create a Microsoft Foundry project](../../../../../ai-foundry/how-to/create-projects.md). For more information about region availability, see the [voice live overview documentation](../../../voice-live.md).
+- A Foundry project. If you need to create a project, see [Create a Microsoft Foundry project](../../../../../ai-foundry/how-to/create-projects.md). For more information about region availability, see the [Voice Live overview documentation](../../../voice-live.md).
 
 > [!TIP]
-> To use voice live, you don't need to deploy an audio model with your Microsoft Foundry resource. Voice live is fully managed, and the model is automatically deployed for you. For more information about models availability, see the [voice live overview documentation](../../../voice-live.md).
+> To use Voice Live, you don't need to deploy an audio model with your Microsoft Foundry resource. Voice Live is fully managed, and the model is automatically deployed for you. For more information about models availability, see the [Voice Live overview documentation](../../../voice-live.md).
 
-## Try out voice live in the Speech playground
+## Try out Voice Live in the Speech playground
 
 #### [Foundry (new) portal](#tab/foundry-new)
 
 
-To try out the voice live demo, follow these steps:
+To try out the Voice Live demo, follow these steps:
 
 1. [!INCLUDE [foundry-sign-in](../../../../../ai-foundry/default/includes/foundry-sign-in.md)]
 1. Select **Build** from the top right menu.
@@ -43,12 +43,12 @@ To try out the voice live demo, follow these steps:
 
 #### [Foundry (classic) portal](#tab/foundry-classic)
 
-To try out the voice live demo, follow these steps:
+To try out the Voice Live demo, follow these steps:
 
 1. [!INCLUDE [classic-sign-in](../../../../../ai-foundry/includes/classic-sign-in.md)]
 1. Select **Playgrounds** from the left pane.
 1. In the **Speech playground** tile, select **Try the Speech playground**.
-1. Select **Speech capabilities by scenario** > **Voice live**.
+1. Select **Speech capabilities by scenario** > **Voice Live**.
 
    :::image type="content" source="../../../media/voice-live/foundry-portal/capabilities-by-scenario.png" alt-text="Screenshot of filtering Speech service capabilities by scenario." lightbox="../../../media/voice-live/foundry-portal/capabilities-by-scenario.png":::
 
@@ -63,7 +63,7 @@ To try out the voice live demo, follow these steps:
 1. Select a new generative AI model from the drop-down list via **Configuration** > **GenAI** > **Generative AI model**. 
 
    > [!NOTE]
-   > You can also select an agent that you configured in the **Agents** playground. For more information, see the [voice live with Foundry agents quickstart](/azure/ai-services/speech-service/voice-live-agents-quickstart).
+   > You can also select an agent that you configured in the **Agents** playground. For more information, see the [Voice Live with Foundry agents quickstart](/azure/ai-services/speech-service/voice-live-agents-quickstart).
 
    :::image type="content" source="../../../media/voice-live/foundry-portal/casual-chat-generative-ai-select.png" alt-text="Screenshot of the casual chat example scenario in the Speech playground." lightbox="../../../media/voice-live/foundry-portal/casual-chat-generative-ai-select.png":::
 

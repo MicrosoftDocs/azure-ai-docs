@@ -19,19 +19,19 @@ reviewer: haakar
 
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
-This article provides a quick reference and detailed description of the quotas and limits for Microsoft Foundry Models. For quotas and limits specific to the Azure OpenAI in Foundry Models, see [Quota and limits in Azure OpenAI](../openai/quotas-limits.md).
+This article provides a quick reference and detailed description of the quotas and limits for [Foundry Models sold directly by Azure](concepts/models-sold-directly-by-azure.md). For quotas and limits specific to the Azure OpenAI in Foundry Models, see [Quota and limits in Azure OpenAI](../openai/quotas-limits.md).
 
 ## Quotas and limits reference
 
 Azure uses quotas and limits to prevent budget overruns due to fraud and to honor Azure capacity constraints. Consider these limits as you scale for production workloads. The following sections provide a quick guide to the default quotas and limits that apply to Azure AI model inference service in Foundry:
 
-### Resource limits
+### Resource limits (per Azure subscription, per region)
 
 | Limit name | Limit value |
 |--|--|
 | Foundry resources per region per Azure subscription | 100 |
 | Max projects per resource | 250 |
-| Max deployments per resource | 32 | 
+| Max deployments per resource (model deployments within a Foundry resource) | 32 | 
 
 ### Rate limits
 
@@ -73,7 +73,7 @@ The Usage Limit determines the level of usage above which customers might see la
 
 ## Request increases to the default limits
 
-[!INCLUDE [quota-increase- request](../openai/includes/quota-increase-request.md)]
+[!INCLUDE [quota-increase-request](../openai/includes/quota-increase-request.md)]
 
 ## General best practices to stay within rate limits
 
@@ -91,7 +91,7 @@ We recommend explicitly setting the client side timeout as follows.
 > [!NOTE]
 > If not explicitly set, the client side timeout exists as per the library used, and may not be the same limits as above.
 
-- Reasoning models: up to 29 minutes. 
+- Reasoning models (models that generate intermediate reasoning tokens before producing a summarized response): up to 29 minutes. 
 - Non-reasoning models: 
     - For streaming, up to 60 seconds.
     - For non-streaming requests, up to 29 minutes.
@@ -106,4 +106,4 @@ You can modify the [reasoning effort](../openai/how-to/reasoning.md) parameter t
 
 ## Next steps
 
-* Learn more about the [models available in Foundry Models](../model-inference/concepts/models.md)
+* Learn more about the [models available in Foundry Models](./concepts/models-sold-directly-by-azure.md)

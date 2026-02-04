@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 09/16/2025
+ms.date: 01/29/2026
 author: PatrickFarley
 ms.author: pafarley
 ms.custom: references_regions
@@ -31,15 +31,15 @@ In most cases, use the WebRTC API for real-time audio streaming. The WebRTC API 
 - **Peer-to-peer communication**: WebRTC allows direct communication between clients, reducing the need for a central server to relay audio data, which can further reduce latency.
 
 Use the [Realtime API via WebSockets](./realtime-audio-websockets.md) if you need to:
-* Stream audio data from a server to a client.
-* Send and receive data in real time between a client and server. 
+- Stream audio data from a server to a client.
+- Send and receive data in real time between a client and server.
 
 WebSockets aren't recommended for real-time audio streaming because they have higher latency than WebRTC.
 
 
 ## Supported models
 
-You can access the GPT real-time models for global deployments in the [East US 2 and Sweden Central regions](../concepts/models.md#global-standard-model-availability).
+You can access the GPT real-time models for global deployments in the [East US 2 and Sweden Central regions](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability).
 - `gpt-4o-mini-realtime-preview` (2024-12-17)
 - `gpt-4o-realtime-preview` (2024-12-17)
 - `gpt-realtime` (version 2025-08-28)
@@ -48,11 +48,11 @@ You can access the GPT real-time models for global deployments in the [East US 2
 
 You should use API version `2025-08-28` in the URL for the Realtime API. The API version is included in the sessions URL.
 
-For more information about supported models, see the [models and versions documentation](../concepts/models.md#audio-models).
+For more information about supported models, see the [models and versions documentation](../../foundry-models/concepts/models-sold-directly-by-azure.md#audio-models).
 
 
 > [!IMPORTANT]
-> GA Protocol for WebRTC.
+> Use the GA protocol for WebRTC.
 >
 > You can still use the beta protocol, but we recommend that you start with the GA Protocol. If you're a current customer, plan to migrate to the GA Protocol. 
 >
@@ -66,30 +66,28 @@ Before you can use GPT real-time audio, you need:
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A Microsoft Foundry resource - [Create a Microsoft Foundry resource](/azure/ai-services/multi-service-resource?pivots=azportal) in one of the [supported regions](#supported-models).
 - A deployment of the `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, `gpt-realtime`, `gpt-realtime-mini`, or `gpt-realtime-mini-2025-12-15` model in a supported region as described in the [supported models](#supported-models) section in this article.
-    - In the Microsoft Foundry portal, load your project. Select **Build** in the upper right menu, then select the **Models** tab on the left pane, and **Deploy a base model**. Search for the model you want, and select **Deploy** on the model page.
+    - In the Foundry portal, load your project. Select **Build** in the upper-right menu, then select the **Models** tab on the left pane, and select **Deploy a base model**. Search for the model you want, and select **Deploy** on the model page.
 :::moniker-end
 
 :::moniker range="foundry-classic"
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - An Azure OpenAI resource created in a [supported region](#supported-models). For more information, see [Create a resource and deploy a model with Azure OpenAI](create-resource.md).
-- A deployment of the `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, `gpt-realtime`, `gpt-realtime-mini`, or `gpt-realtime-mini-2025-12-15` model in a supported region as described in the [supported models](#supported-models) section in this article. You can deploy the model from the [Foundry model catalog](../../../ai-foundry/how-to/model-catalog-overview.md) or from your project in Microsoft Foundry portal. 
+- A deployment of the `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, `gpt-realtime`, `gpt-realtime-mini`, or `gpt-realtime-mini-2025-12-15` model in a supported region as described in the [supported models](#supported-models) section in this article. You can deploy the model from the [Foundry model catalog](../../../ai-foundry/how-to/model-catalog-overview.md) or from your project in the Foundry portal.
 :::moniker-end
 
 ## Set up WebRTC
 
-To use WebRTC, you need two pieces of code.
+To use WebRTC, you need two pieces of code:
 
-1) Your web browser application
-2) A service where your web browser can retrieve an ephemeral token
+1. A web browser application.
+1. A service where your web browser can retrieve an ephemeral token.
 
-More options: 
+Other options:
 
-* You can proxy the web browser's session negotiation via Session Description Protocol through the same service retrieving the ephemeral token. This scenario has better security since the web browser doesn't have access to the ephemeral token. 
-
-* You can filter the messages going to the web browser by using a query parameter. 
-
-* You can create an observer websocket connection to listen or record the session.
+- Proxy the web browser's session negotiation via Session Description Protocol through the same service retrieving the ephemeral token. This scenario is more secure because the web browser doesn't have access to the ephemeral token.
+- Filter the messages going to the web browser by using a query parameter.
+- Create an observer WebSocket connection to listen to or record the session.
 
 ## Steps
 

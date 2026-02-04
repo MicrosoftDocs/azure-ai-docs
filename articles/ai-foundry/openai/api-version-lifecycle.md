@@ -5,8 +5,8 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: conceptual 
-ms.date: 10/06/2025
+ms.topic: concept-article 
+ms.date: 01/31/2026
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -396,7 +396,7 @@ func main() {
 
 	// Create a client with Azure OpenAI endpoint and token credential
 	client := openai.NewClient(
-		option.WithBaseURL("https://YOUR-RESOURCE_NAME.openai.azure.com/openai/v1/"),
+		option.WithBaseURL("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"),
 		azure.WithTokenCredential(tokenCredential),
 	)
 
@@ -583,5 +583,5 @@ Generally Available features are supported for use in production.
 
 ## Next steps
 
-- [Learn more about Azure OpenAI](overview.md)
+- [Learn more about Azure OpenAI](../foundry-models/concepts/models-sold-directly-by-azure.md)
 - [Learn about working with Azure OpenAI models](./how-to/working-with-models.md)

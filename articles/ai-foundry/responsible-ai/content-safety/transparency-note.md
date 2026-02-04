@@ -6,7 +6,7 @@ author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-content-safety
-ms.topic: article
+ms.topic: concept-article
 ms.date: 05/15/2023
 ---
 

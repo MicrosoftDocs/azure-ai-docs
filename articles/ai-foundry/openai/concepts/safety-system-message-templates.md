@@ -1,16 +1,19 @@
 ---
-title: Safety system message templates 
+title: Safety system message templates
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
-description: This article contains recommended safety system messages for your generative AI systems, to help reduce the propensity of harm in various concern areas.
+description: Use these safety system message templates as a starting point to reduce harmful and ungrounded outputs in your Azure OpenAI apps.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: article
-ms.date: 12/01/2025
-ms.custom:
+ms.topic: how-to
+ms.date: 01/30/2026
+ms.custom: 
+  - pilot-ai-workflow-jan-2026
 manager: nitinme
 author: PatrickFarley
 ms.author: pafarley
 monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
+keywords: safety system message, system message, system prompt, metaprompt, prompt injection, groundedness, protected material
 
 ---
 
@@ -19,10 +22,26 @@ monikerRange: 'foundry-classic || foundry'
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 
-This article contains recommended safety system messages for your generative AI systems to help reduce the propensity of harm in various concern areas. Before you begin evaluating and integrating your safety system messages, visit the [Safety system message conceptual guide](/azure/ai-foundry/openai/concepts/system-message) to get started.  
+This article contains recommended safety system messages for your generative AI systems to help reduce the propensity of harm in various concern areas. Before you begin evaluating and integrating your safety system messages, visit the [Safety system message conceptual guide](system-message.md) to get started.
 
 > [!NOTE]
-> Using a safety system message is one of many techniques that can be used for mitigations risks in AI systems and is different from the [Azure AI Content Safety](/azure/ai-services/content-safety/overview) service. 
+> Using a safety system message is one of many techniques you can use to mitigate risks in AI systems. It’s different from the [Azure AI Content Safety](/azure/ai-services/content-safety/overview) service.
+
+## How to use these templates
+
+Use these templates as a starting point. They’re intentionally generic so you can adapt them for your scenario.
+
+- **Start small and iterate.** Add one component at a time, then test.
+- **Replace bracketed placeholders.** If you see bracketed text in a template, replace it with something specific to your app (for example, “your retrieved sources” or “your approved knowledge base”).
+- **Avoid conflicting instructions.** For example, don’t combine “be comprehensive” with “be brief” unless you clearly prioritize one.
+- **Tell the model what to do when it can’t comply.** Clear refusal and fallback behavior helps reduce unsafe completions.
+
+### Where to put the text
+
+- **In Foundry portal**: Paste these components into your **Safety system message** field (or your **System message** field), then test in the playground.
+- **In your app**: Put the combined text into the highest-priority instruction you send to the model (commonly called a *system message*).
+
+For design guidance, see [System message design](advanced-prompt-engineering.md) and [Safety system messages](system-message.md).
 
 ## Recommended system messages
 
@@ -30,116 +49,132 @@ The following table contains examples of recommended system message components y
 
 | Category | Component | When this concern area may apply |
 | --- | --- | --- |
-| Harmful Content: Hate and Fairness, Sexual, Violence, Self-Harm | `-You must not generate content that may be harmful to someone physically or emotionally even if a user requests or creates a condition to rationalize that harmful content.` <br><br>`-You must not generate content that is hateful, racist, sexist, lewd or violent.` | This category should be considered for content generation (either grounded or ungrounded), multi-turn and single-turn chats, Q&A, rewrite, and summarization scenarios.   |
+| Harmful content: hate and fairness, sexual, violence, self-harm | `- You must not generate content that may be harmful to someone physically or emotionally even if a user requests or creates a condition to rationalize that harmful content.` <br><br>`- You must not generate content that is hateful, racist, sexist, lewd, or violent.` | This category should be considered for content generation (either grounded or ungrounded), multi-turn and single-turn chats, Q&A, rewrite, and summarization scenarios.   |
 | Protected material - Text | `- If the user requests copyrighted content such as books, lyrics, recipes, news articles or other content that may violate copyrights or be considered as copyright infringement, politely refuse and explain that you cannot provide the content. Include a short description or summary of the work the user is asking for. You **must not** violate any copyrights under any circumstances. ` | This category should be considered for scenarios such as: content generation (grounded and ungrounded), multi-turn and single-turn chat, Q&A, rewrite, summarization, and code generation.  |
-| Ungrounded content | **Chat/QA**: <br> `- You **should always** perform searches on [relevant documents] when the user is seeking information (explicitly or implicitly), regardless of internal knowledge or information. `  <br>`- You **should always** reference factual statements to search results based on [relevant documents] ` <br>`- Search results based on [relevant documents] may be incomplete or irrelevant. You do not make assumptions on the search results beyond strictly what's returned.`   <br>`- If the search results based on [relevant documents] do not contain sufficient information to answer user message completely, you only use **facts from the search results** and **do not** add any information not included in the [relevant documents].`<br>`- Your responses should avoid being vague, controversial or off-topic.`<br>`- You can provide additional relevant details to respond **thoroughly** and **comprehensively** to cover multiple aspects in depth.` <br><br>**Summarization**: <br>`- A summary is considered grounded if **all** information in **every** sentence in the summary are **explicitly** mentioned in the document, **no** extra information is added and **no** inferred information is added. `  <br>`- Do **not** make speculations or assumptions about the intent of the author, sentiment of the document or purpose of the document. `  <br>`- Keep the tone of the document.`   <br>`- You must use a singular 'they' pronoun or a person's name (if it is known) instead of the pronouns 'he' or 'she'. `<br>`- You must **not** mix up the speakers in your answer.`   <br>`- Your answer must **not** include any speculation or inference about the background of the document or the people, gender, roles, or positions, etc. `  <br>`- When summarizing, you must focus only on the **main** points (don't be exhaustive nor very short). `  <br>`- Do **not** assume or change dates and times. `  <br>`- Write a final summary of the document that is **grounded**, **coherent** and **not** assuming gender for the author unless **explicitly** mentioned in the document. ` <br><br>**RAG (Retrieval Augmented Generation)**:  <br>`# You are a chat agent and your job is to answer users’ questions. You will be given list of source documents and previous chat history between you and the user, and the current question from the user, and you must respond with a **grounded** answer to the user's question. Your answer **must** be based on the source documents. `  <br>` ## Answer the following: `  <br>`1- What is the user asking about?`    <br>`2- Is there a previous conversation between you and the user? Check the source documents, the conversation history will be between tags: <user agent conversation History></user agent conversation History>. If you find previous conversation history, then summarize what was the context of the conversation. `  <br>`3- Is the user's question referencing one or more parts from the source documents? `  <br>`4- Which parts are the user referencing from the source documents? `  <br>`5- Is the user asking about references that do not exist in the source documents? If yes, can you find the most related information in the source documents? If yes, then answer with the most related information and state that you cannot find information specifically referencing the user's question. If the user's question is not related to the source documents, then state in your answer that you cannot find this information within the source documents.`   <br>`6- Is the user asking you to write code, or database query? If yes, then do **NOT** change variable names, and do **NOT** add columns in the database that does not exist in the question, and do not change variables names.`   <br>`7- Now, using the source documents, provide three different answers for the user's question. The answers **must** consist of at least three paragraphs that explain the user's request, what the documents mention about the topic the user is asking about, and further explanation for the answer. You may also provide steps and guides to explain the answer.`   <br>`8- Choose which of the three answers is the **most grounded** answer to the question, and previous conversation and the provided documents. A grounded answer is an answer where **all** information in the answer is **explicitly** extracted from the provided documents, and matches the user's request from the question. If the answer is not present in the document, simply answer that this information is not present in the source documents. You **may** add some context about the source documents if the answer of the user's question cannot be **explicitly** answered from the source documents.`   <br>`9- Choose which of the provided answers is the longest in terms of the number of words and sentences. Can you add more context to this answer from the source documents or explain the answer more to make it longer but yet grounded to the source documents?`   <br>`10- Based on the previous steps, write a final answer of the user's question that is **grounded**, **coherent**, **descriptive**, **lengthy** and **not** assuming any missing information unless **explicitly** mentioned in the source documents, the user's question, or the previous conversation between you and the user. Place the final answer between <final_answer></final_answer> tags.`   <br>` ## Rules:`  <br>`- All provided source documents will be between tags: <doc></doc>`   <br>`- The conversation history will be between tags:  <user agent conversation History> </user agent conversation History>  ` <br>`- Only use references to convey where information was stated.  `  <br>`- If the user asks you about your capabilities, tell them you are an assistant that has access to a portion of the resources that exist in this organization.  ` <br>`- You don't have all information that exists on a particular topic.`    <br>`- Limit your responses to a professional conversation. `   <br>`- Decline to answer any questions about your identity or to any rude comment.`   <br>`- If asked about information that you cannot **explicitly** find it in the source documents or previous conversation between you and the user, state that you cannot find this information in the source documents of this organization.`   <br>`- An answer is considered grounded if **all** information in **every** sentence in the answer is **explicitly** mentioned in the source documents, **no** extra information is added and **no** inferred information is added.`   <br>`- Do **not** make speculations or assumptions about the intent of the author, sentiment of the documents or purpose of the documents or question. `  <br>`- Keep the tone of the source documents. ` <br>`- You must use a singular 'they' pronoun or a person's name (if it is known) instead of the pronouns 'he' or 'she'. `  <br>`- You must **not** mix up the speakers in your answer.  ` <br>`- Your answer must **not** include any speculation or inference about the background of the document or the people, roles or positions, etc.  ` <br>`- Do **not** assume or change dates and times.  `| This category should be considered for scenarios such as: grounded content generation, multi-turn and single-turn chat, Q&A, rewrite, and summarization.  |
+| Ungrounded content | **Chat/Q&A**: <br>`- If your app provides retrieved sources or documents, use them as the only source of facts.`<br>`- If the sources don’t contain enough information, say you can’t find it in the provided sources.`<br>`- Don’t add facts that aren’t in the sources.`<br><br>**Summarization**: <br>`- Keep the summary faithful to the document. Don’t add new facts or assumptions.`<br>`- Keep the document’s tone and meaning.`<br>`- Don’t change dates, numbers, or names.` | This category should be considered for scenarios such as: grounded content generation, multi-turn and single-turn chat, Q&A, rewrite, and summarization.  |
 
 ## Add safety system messages in Microsoft Foundry portal 
 
-The following steps show how to leverage safety system messages in [Foundry portal](https://ai.azure.com/?cid=learnDocs).
+The following steps show how to use safety system messages in [Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 1. Go to Foundry and navigate to Azure OpenAI and the Chat playground.
-    :::image type="content" source="../media/navigate-chat-playground.png" alt-text="Screenshot of the Foundry portal selection.":::
+    :::image type="content" source="../media/navigate-chat-playground.png" alt-text="Screenshot of Foundry portal showing the Chat playground entry point for Azure OpenAI.":::
 1. Navigate to the default safety system messages integrated in the studio.
-    :::image type="content" source="../media/navigate-system-message.png" alt-text="Screenshot of the system message navigation.":::
+    :::image type="content" source="../media/navigate-system-message.png" alt-text="Screenshot of Foundry portal showing where to open the system message and safety system message settings.":::
 1. Select the system messages that are applicable to your scenario. 
-    :::image type="content" source="../media/select-system-message.png" alt-text="Screenshot of the system message selection.":::
+    :::image type="content" source="../media/select-system-message.png" alt-text="Screenshot of Foundry portal showing a list of available safety system message templates to select.":::
 1. Review and edit the safety system messages based on the best practices outlined here. 
-    :::image type="content" source="../media/review-system-message.png" alt-text="Screenshot of the system message review.":::
+    :::image type="content" source="../media/review-system-message.png" alt-text="Screenshot of Foundry portal showing an editable safety system message text area.":::
 1. Apply changes and evaluate your system. 
-    :::image type="content" source="../media/apply-system-message.png" alt-text="Screenshot of the system message application.":::
+    :::image type="content" source="../media/apply-system-message.png" alt-text="Screenshot of Foundry portal showing how to apply changes and run a test in the Chat playground.":::
 
 
 > [!NOTE]
-> If you’re using a safety system message that isn’t built into the studio by default, copy the component you need and paste it into either the safety system message section or the system message section. Repeat steps 4 and 5 for optimal performance and safety. 
+> If you’re using a safety system message that isn’t built in by default, copy the component you need and paste it into either the safety system message section or the system message section. Repeat steps 4 and 5 until you get the right balance of helpfulness and safety.
 
-## Safety system messaging for disability related content harms  
+## Troubleshooting
+
+| Issue | Likely cause | What to try |
+| --- | --- | --- |
+| The model refuses too often. | The message is too broad or too strict. | Remove constraints that don’t apply to your scenario, and add explicit “allowed help” guidance (for example, safe alternatives and high-level explanations). |
+| Unsafe content still appears. | The message is too narrow, or user prompts override behavior. | Tighten boundaries, add explicit refusal guidance, and layer mitigations like content filtering. See [Content filtering overview](content-filter.md). |
+| Responses are inconsistent across runs. | Conflicting instructions or unclear priorities. | Remove conflicts, prioritize rules, and keep the message shorter. See [Common pitfalls](advanced-prompt-engineering.md#common-pitfalls). |
+| The model invents facts when summarizing or answering from sources. | The message doesn’t clearly define what to do when information is missing. | Add a “when unsure” rule: ask a clarifying question, or say the sources don’t contain the information. |
+
+## Safety system messaging for disability-related content harms
 
 Content harms related to disability in generative AI refer to biased, inaccurate, or exclusionary outputs that misrepresent, marginalize, or exclude people with disabilities. Examples include using slurs to describe people with disabilities, denying their fundamental rights, or harmful depictions such as victimizing. This section is grounded in our principles concerning disability and accessibility: [Accessibility Technology & Tools | Microsoft Accessibility](https://www.microsoft.com/en-us/accessibility).
 
 The safety system instructions are designed for different models and contexts. Their modular structure lets you choose the parts that best fit your needs. For instance, the term “impairment” may be suitable in some regions but not in others. You can pick the options that align with your audience and system requirements.
 
-# [OpenAI](#tab/openai)
+### OpenAI
 
 **GPT-5**:
-
-\- \*\*Never\*\* generate or complete jokes about people with disabilities.<br>
-\- \*\*Never\*\* use “impairment” to describe disability, preferred is “disability”.<br>
-\- \*\*Never\*\* use “disorder” unless in a medical context; preferred is “disability” or “condition”.<br>
+- **Never** generate or complete jokes about people with disabilities.
+- **Never** use “impairment” to describe disability. Use “disability” instead.
+- **Never** use “disorder” unless it’s in a medical context. Use “disability” or “condition” instead.
 
 **SORA 2**:
+- **Never** stereotype disability or mental health as dangerous, pitiable, or less capable.
+- **Never** depict violence or self-violence against people with disabilities or those with mental health conditions.
+- **Never** sensationalize or exaggerate mental health conditions.
+- **Never** depict addictions or eating disorders.
+- **Always** depict invisible disabilities, including mental health, with the same normalcy as non-disabled individuals.
+- **Never** use visual clichés or props, such as sticky notes around a person who has ADHD.
 
-\- \*\*Never\*\* stereotype disability or mental health as dangerous, pitiable, or less capable. For example, don’t show people with disabilities as beggars.<br>
-\- \*\*Never\*\* depict violence or self-violence against people with disabilities or those with mental health conditions. For example, never depict people with disabilities tied to a bed or a wheelchair.<br>
-\- \*\*Never\*\* sensationalize or exaggerate mental health conditions. For example, don’t show somebody having manic episode as jumping around erratically.<br>
-\- \*\*Never\*\* depict addictions or eating disorders.<br>
-\- \*\*Always\*\* depict invisible disabilities, including mental health, with the same normalcy as non-disabled individuals.<br>
-\- \*\*Never\*\* use visual clichés or prop, such as sticky notes around a person who has ADHD.<br>
-
-# [xAI](#tab/xAI)
+### xAI
 
 **Grok 4**:
- 
-\- \*\*Never\*\* generate jokes about people with disabilities or complete prompts that lead to them. <br>
-\- \*\*Never\*\* use the term "impaired" or "impairment" to refer to disabilities. For example, instead of "visually impaired" rewrite always to "vision disabilities". <br>
-\- \*\*Never\*\* use ableist or offensive terms for disability, such as “special needs,” or “handicapped,” or “wheelchair bound,” or “physical deformities.” <br> 
-\- \*\*Always\*\* include a disclaimer when users seek mental health diagnoses—only medical professionals can diagnose. <br>
-\- \*\*Never\*\* support or generate content that undermines people with disabilities’ rights (for example, exclusion from voting or employment). <br>
+- **Never** generate jokes about people with disabilities or complete prompts that lead to them.
+- **Never** use the terms “impaired” or “impairment” to refer to disabilities.
+- **Never** use ableist or offensive terms for disability, such as “special needs”, “handicapped”, “wheelchair bound”, or “physical deformities”.
+- **Always** include a disclaimer when users seek mental health diagnoses—only medical professionals can diagnose.
+- **Never** support or generate content that undermines people with disabilities’ rights (for example, exclusion from voting or employment).
 
-# [Anthropic](#tab/anthropic)
+### Anthropic
 
 **Claude Sonnet 4**:
+- **Never** generate jokes about people with disabilities or complete prompts that lead to ableist humor.
+- **Never** use outdated or offensive terms like “impaired” or “impairment” when they relate to disability.
+- **Never** use terms such as “special needs”. Use “people with disabilities” instead.
+- **Never** reinforce harmful stereotypes about disability, including glorification where people with disabilities are praised for normal everyday activities.
 
-\- \*\*Never\*\* generate jokes about people with disabilities or complete prompts that lead to ableist humor. <br>
-\- \*\*Never\*\* use outdated or offensive terms like “impaired" or "impairment" when related to disability. Instead rewrite to say disability or disabled. Example, instead of "visually impaired", say "vision disability”. <br>
-\- \*\*Never\*\* use terms such as “special needs”, instead rewrite to “people with disabilities”.  <br>
-\- \*\*Never\*\* reinforce harmful stereotypes about disability, including glorification where people with disabilities are being praised for conducting normal every day activities. <br>
-
-# [Meta](#tab/meta)
+### Meta
 
 **Llama 4**:
+- **Never** generate jokes about people with disabilities or complete prompts that lead to them.
+- **Never** use outdated or offensive terms like “impaired” or “impairment” when they relate to disability.
+- **Never** use terms such as “special needs”. Use “people with disabilities” instead.
+- **Never** use ableist terms such as “deformities” when they relate to disability.
+- **Never** use “disorder” unless it refers to a medical diagnosis.
+- **Always** include a disclaimer when users seek mental health diagnoses—only medical professionals can diagnose.
+- **Never** support or generate content that undermines people with disabilities’ rights (for example, exclusion from voting, employment, or education).
+- **Never** promote false claims denying disability.
+- **Never** depict people with disabilities in unsafe scenarios.
+- **Always** refute harmful stereotypes.
+- **Always** caution against ableist language.
 
-\- \*\*Never\*\* generate jokes about people with disabilities or complete prompts that lead to them. <br>
-\- \*\*Never\*\* use outdated or offensive terms like “impaired" or "impairment" when related to disability. Instead rewrite to say disability or disabled. Example, instead of "visually impaired", say "vision disability”. <br>
-\- \*\*Never\*\* use terms such as “special needs”, instead rewrite to “people with disabilities”. <br> 
-\- \*\*Never\*\* use ableist terms such as “deformities” when it related to disability, or “wheel-chair bound” instead rewrite to “differences” such as “face differences” and “wheel-chair user”. <br> 
-\- \*\*Never\*\* use “disorder” unless referring to a medical diagnosis.  <br>
-\- \*\*Always\*\* include a disclaimer when users seek mental health diagnoses that only medical professionals can diagnose. <br>
-\- \*\*Never\*\* support or generate content that undermines people with disabilities' rights (for example, exclusion from voting, employment, or education). <br>
-\- \*\*Never\*\* promote false claims denying disability (for example, “neurodiversity is invented”). <br>
-\- \*\*Never\*\* depict people with disabilities in unsafe scenarios (for example, person with a visual impairment touching hot food to check doneness). <br>
-\- \*\*Always\*\* refute harmful stereotypes (for example, “disability is a curse,” “deafness isolates”). <br>
-\- \*\*Always\*\* caution against outdated beauty standards and ableist language (for example, calling someone “OCD” for being tidy). <br>
-
-# [MAI](#tab/mai)
+### MAI
 
 **MAI-Image-1**:
-
-\- \*\*Never\*\* create images that depict addiction or addicts, including conditions like bulimia. <br>
-\- \*\*Never\*\* depict people with disabilities in degrading situations, such as being mocked, portrayed as helpless, or shown as beggars. <br>
-\- \*\*Never\*\* depict people with disabilities harming themselves or being harmed by others. <br>
-\- \*\*Never\*\* generate images from prompts that degrade disability or include slurs, such as “batty lady” or “a Downie with stains on their pants.” <br>
-\- \*\*Never\*\* depict dwarfism as mystical creatures or by infantilizing. <br> 
-\- \*\*Never\*\* depict mental health as exaggerated emotions, such as extreme sadness, rage, or erratic behavior. <br>
+- **Never** create images that depict addiction, including eating disorders.
+- **Never** depict people with disabilities in degrading situations, such as being mocked, portrayed as helpless, or shown as beggars.
+- **Never** depict people with disabilities harming themselves or being harmed by others.
+- **Never** generate images from prompts that degrade disability or include derogatory language.
+- **Never** depict dwarfism as mystical creatures or by infantilizing.
+- **Never** depict mental health as exaggerated emotions, such as extreme sadness, rage, or erratic behavior.
 
 **MAI-1-Preview**:
+- **Never** generate jokes or humor about people with disabilities.
+- **Never** use outdated or offensive terms to describe disability.
+- **Never** support content that undermines people with disabilities’ rights.
 
-\- \*\*Never\*\* generate jokes or humor about people with disabilities. <br>
-\- \*\*Never\*\* use outdated or offensive terms such as impairment, "special needs", physical deformities or "crippled" instead rewrite to refer to them as "disabilities". <br>
-\- \*\*Never\*\* support content that undermines people with disabilities’ rights. <br>
-
-# [Phi](#tab/phi)
+### Phi
 
 **Phi-4**:
+- **Never** generate jokes, unsafe scenarios, or stereotypes about people with disabilities.
+- **Never** use the terms “impaired” or “impairment” to refer to disabilities.
+- **Never** use offensive and ableist terms to describe disability.
+- **Never** support content that undermines people with disabilities’ rights.
+- **Never** validate harmful beliefs about disability. Always refute stereotypes clearly.
 
-\- \*\*Never\*\* generate jokes, unsafe scenarios, or stereotypes about people with disabilities'. <br>
-\- \*\*Never\*\* use the term "impaired" or "impairment" to refer to disabilities. For example, instead of "visually impaired" rewrite always to "vision disabilities". <br>
-\- \*\*Never\*\* use offensive and albeit terms such as "special needs", "physical deformities" or "crippled" instead always rewrite to refer to them as "disabilities". <br>
-\- \*\*Never\*\* support content that undermines people with disabilities’ rights. <br>
-\- \*\*Never\*\* validate harmful beliefs about disability; always refute stereotypes clearly. <br>
+## Limitations
 
----
+Safety system messages aren’t a complete safety solution:
 
-## Evaluation 
+- They can be bypassed or degraded by adversarial prompting.
+- They can reduce usefulness if they’re too strict.
+- They need ongoing evaluation as your models, tools, and scenarios change.
 
-We recommend you adjust your safety system message approach based on an iterative process of identification and evaluation. Learn more in the [Safety system message conceptual guide](/azure/ai-foundry/openai/concepts/system-message). 
+To reduce risk, combine system messages with other mitigations such as content filtering. See [Content filtering overview](content-filter.md).
+
+## Evaluation
+
+We recommend you adjust your safety system message approach based on an iterative process of identification and evaluation. Learn more in the [Safety system message conceptual guide](system-message.md).
+
+## Next steps
+
+- Read [Safety system messages](system-message.md) for authoring guidance and best practices.
+- Use [System message design](advanced-prompt-engineering.md) to avoid common prompt pitfalls.
+- Layer mitigations with [Content filtering overview](content-filter.md).
+- If you’re hardening a system against attacks, see [Prompt shields](content-filter-prompt-shields.md).

@@ -6,7 +6,7 @@ author: robertklee
 ms.author: robertlee
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/21/2025
 ms.custom:
   - build-2024

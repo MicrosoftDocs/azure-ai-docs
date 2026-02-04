@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 01/08/2025
+ms.date: 1/31/2026
 ms.author: mbullwin
 recommendations: false
 ---
@@ -149,7 +149,7 @@ All the capabilities of Cognitive Services Contributor plus the ability to:
 |Create or edit model deployments|❌|✅|✅| ➖ |
 |Create or deploy custom fine-tuned models|❌|✅|✅| ➖ |
 |Upload datasets for fine-tuning|❌|✅|✅| ➖ |
-|View, query, filter Stored competions data|❌|✅|✅| ➖ |
+|View, query, filter Stored completions data|❌|✅|✅| ➖ |
 |Create new Azure OpenAI resources|❌|❌|✅| ➖ |
 |View/Copy/Regenerate keys under “Keys and Endpoint”|❌|❌|✅| ➖ |
 |Create customized guardrails|❌|❌|✅| ➖ |
@@ -193,7 +193,7 @@ Insufficient subscription-level access for the user attempting to access the blo
 Public access to the blob storage is disabled by the owner of the Azure subscription for security reasons.
 
 Permissions needed for the API call:
-`**Microsoft.Storage/storageAccounts/listAccountSas/action:**` This permission allows the user to list the Shared Access Signature (SAS) tokens for the specified storage account.
+**`Microsoft.Storage/storageAccounts/listAccountSas/action`:** This permission allows the user to list the Shared Access Signature (SAS) tokens for the specified storage account.
 
 Possible reasons why the user may **not** have permissions:
 

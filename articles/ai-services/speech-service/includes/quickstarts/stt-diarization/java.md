@@ -2,8 +2,9 @@
 author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 7/16/2025
+ms.date: 1/29/2026
 ms.author: pafarley
+ai-usage: ai-assisted
 ---
 
 [!INCLUDE [Header](../../common/java.md)]
@@ -74,6 +75,8 @@ Follow these steps to create a console application for conversation transcriptio
     import com.microsoft.cognitiveservices.speech.audio.AudioConfig;
     import com.microsoft.cognitiveservices.speech.transcription.*;
     
+    import java.net.URI;
+    import java.net.URISyntaxException;
     import java.util.concurrent.Semaphore;
     import java.util.concurrent.ExecutionException;
     import java.util.concurrent.Future;
@@ -83,9 +86,9 @@ Follow these steps to create a console application for conversation transcriptio
         private static String speechKey = System.getenv("SPEECH_KEY");
         private static String endpoint = System.getenv("ENDPOINT");
     
-        public static void main(String[] args) throws InterruptedException, ExecutionException {
+        public static void main(String[] args) throws InterruptedException, ExecutionException, URISyntaxException {
             
-            SpeechConfig speechConfig = SpeechConfig.fromEndpoint(speechKey, endpoint);
+            SpeechConfig speechConfig = SpeechConfig.fromEndpoint(new URI(endpoint), speechKey);
             speechConfig.setSpeechRecognitionLanguage("en-US");
             AudioConfig audioInput = AudioConfig.fromWavFileInput("katiesteve.wav");
             speechConfig.setProperty(PropertyId.SpeechServiceResponse_DiarizeIntermediateResults, "true");

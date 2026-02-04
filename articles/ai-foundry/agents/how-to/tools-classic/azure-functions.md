@@ -143,7 +143,7 @@ Post-provision scripts also create a `local.settings.json` file, which Functions
     "AzureWebJobsStorage": "UseDevelopmentStorage=true",
     "FUNCTIONS_WORKER_RUNTIME": "python",
     "STORAGE_CONNECTION__queueServiceUri": "https://<storageaccount>.queue.core.windows.net",
-    "PROJECT_CONNECTION_STRING": "<project connnection for AI Project>"
+    "PROJECT_CONNECTION_STRING": "<project connection for AI Project>"
     }
 }
 ```

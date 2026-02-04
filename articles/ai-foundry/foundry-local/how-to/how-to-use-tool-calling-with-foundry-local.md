@@ -67,7 +67,7 @@ IList<AITool> tools = [
 ```csharp
 var messages = new ChatMessage[]
 {
-    new ChatMessage(ChatRole.System, "You are a helpful assistant with some tools. When you are mapping cities to timezones, esnure the timezone string is standard"),
+    new ChatMessage(ChatRole.System, "You are a helpful assistant with some tools. When you are mapping cities to timezones, ensure the timezone string is standard"),
     new ChatMessage(ChatRole.User, userPrompt)
 };
 ```
@@ -131,7 +131,7 @@ IList<AITool> tools = [
 
 var messages = new ChatMessage[]
 {
-    new ChatMessage(ChatRole.System, "You are a helpful assistant with some tools. When you are mapping cities to timezones, esnure the timezone string is standard"),
+    new ChatMessage(ChatRole.System, "You are a helpful assistant with some tools. When you are mapping cities to timezones, ensure the timezone string is standard"),
     new ChatMessage(ChatRole.User, userPrompt)
 };
 
@@ -302,7 +302,7 @@ class ToolCall:
 
         # Create a running input list we will add to over time
         input_list = [
-            {"role": "system", "content": "You are a helpful assistant with some tools. When you are mapping cities to timezones, esnure the timezone string is standard."},
+            {"role": "system", "content": "You are a helpful assistant with some tools. When you are mapping cities to timezones, ensure the timezone string is standard."},
             {"role": "user", "content": "What is the time and weather in Dubai?"},
         ]
 

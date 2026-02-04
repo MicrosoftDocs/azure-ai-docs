@@ -48,7 +48,7 @@ Use the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculato
 
 ## Costs associated with Foundry
 
-When you create a Foundry resource, you pay for the Azure services you use, such as Azure OpenAI, Azure Speech in Foundry, Content Safety, Azure Vision in Foundry, Azure Document Intelligence, and Azure Language in Foundry. Costs vary by service and feature. For details, see the [Azure AI services pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/).
+When you create a Foundry resource, you pay for the Azure services you use, such as Azure OpenAI, Azure Speech in Foundry, Content Safety, Azure Vision in Foundry, Azure Document Intelligence, and Azure Language in Foundry. Costs vary by service and feature. For details, see the [Foundry Tools pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/).
 
 ## Understand billing models for Foundry
 
@@ -321,10 +321,6 @@ If you try to add a filter by service, you can't find Azure OpenAI in the list. 
 Azure Marketplace offers serverless API deployments. Model publishers might apply different costs depending on the offering. Each project in the Foundry portal has its own subscription with the offering, which you can use to monitor the costs and consumption happening on that project. Use [Microsoft Cost Management](https://azure.microsoft.com/products/cost-management) to monitor the costs:
 
 1. Sign in to the [Azure portal](https://portal.azure.com/)
-
-1. Select the portal menu icon to open the left pane.
-
-   :::image type="content" source="../media/manage-costs/azure-portal-menu-icon.png" alt-text="Screenshot of the portal menu icon.":::
 
 1. On the left pane, select **Cost Management + Billing** and then select **Cost Management**.
 

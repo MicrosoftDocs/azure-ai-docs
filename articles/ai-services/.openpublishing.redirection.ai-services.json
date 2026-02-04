@@ -181,6 +181,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/ai-services/speech-service/voice-live-api-reference.md",
+      "redirect_url": "/azure/ai-services/speech-service/voice-live-api-reference-2025-10-01",
+      "redirect_document_id": false
+    },    
+    {
       "source_path_from_root": "/articles/ai-services/containers/index.yml",
       "redirect_url": "/azure/ai-services/cognitive-services-container-support",
       "redirect_document_id": false
@@ -2998,6 +3003,16 @@
     {
       "source_path_from_root": "/articles/ai-services/language-service/conversational-language-understanding/how-to/migrate-from-luis.md",
       "redirect_url": "/azure/ai-services/luis/how-to/migrate-from-luis",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/concepts/migrate-language-service-latest.md ",
+      "redirect_url": "/azure/ai-services/language-service/reference/migrate-language-service-latest",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/concepts/migrate.md",
+      "redirect_url": "/azure/ai-services/language-service/reference/migrate",
       "redirect_document_id": true
     }
 

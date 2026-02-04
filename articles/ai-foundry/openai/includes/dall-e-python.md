@@ -8,7 +8,8 @@ ms.subservice: azure-ai-foundry-openai
 ms.custom:
   - ignite-2023
 ms.topic: include
-ms.date: 11/06/2023
+ms.date: 01/29/2026
+ai-usage: ai-assisted
 ---
 
 Use this guide to get started generating images with the Azure OpenAI SDK for Python.
@@ -20,6 +21,7 @@ Use this guide to get started generating images with the Azure OpenAI SDK for Py
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - <a href="https://www.python.org/" target="_blank">Python 3.8 or later version</a>.
 - An Azure OpenAI resource created in a compatible region. See [Region availability](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability).
+    - Access the Azure OpenAI resource endpoint and keys in the Azure portal.
 - Then, you need to deploy a `dalle3` model with your Azure resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 
 ## Setup
@@ -75,7 +77,7 @@ client = AzureOpenAI(
 
 result = client.images.generate(
     model="dalle3", # the name of your DALL-E 3 deployment
-    prompt="a close-up of a bear walking throughthe forest",
+    prompt="a close-up of a bear walking through the forest",
     n=1
 )
 
@@ -102,7 +104,7 @@ image = Image.open(image_path)
 image.show()
 ```
 
-1. Enter your endpoint URL and key in the appropriate fields. 
+1. Make sure the `AZURE_OPENAI_ENDPOINT` and `AZURE_OPENAI_API_KEY` environment variables are set.
 1. Change the value of `prompt` to your preferred text.
 1. Change the value of `model` to the name of your deployed DALL-E 3 model.
 

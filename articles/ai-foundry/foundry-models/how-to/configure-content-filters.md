@@ -37,5 +37,5 @@ ai-usage: ai-assisted
 ::: zone-end
 
 ## Related content
-- [Content filtering for Microsoft Foundry Models](../../model-inference/concepts/content-filter.md)
+- [Content filtering for Microsoft Foundry Models](../concepts/content-filter.md)
 - [Introduction to red teaming large language models (LLMs)](../../openai/concepts/red-teaming.md)

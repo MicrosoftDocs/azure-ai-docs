@@ -58,5 +58,5 @@ As with data evaluation, the model is evaluated automatically within your fine-t
 - To modify content safety for fine-tuning refer to terms listed in the [form](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUMlBQNkZMR0lFRldORTdVQzQ0TEI5Q1ExOSQlQCN0PWcu)
 
 - Explore the fine-tuning capabilities in the [Foundry fine-tuning tutorial](../tutorials/fine-tune.md).
-- Review fine-tuning [model regional availability](../concepts/models.md#fine-tuning-models)
+- Review fine-tuning [model regional availability](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#fine-tuning-models)
 - Learn more about [Foundry quotas](../quotas-limits.md)

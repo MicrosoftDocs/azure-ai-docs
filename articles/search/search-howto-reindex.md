@@ -8,18 +8,38 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
+  - dev-focus
 ms.topic: how-to
-ms.date: 01/13/2026
+ms.date: 01/20/2026
+ai-usage: ai-assisted
 ms.update-cycle: 180-days
 ---
 
 # Update or rebuild an index in Azure AI Search
 
-This article explains how to update an existing index in Azure AI Search with schema changes or content changes through incremental indexing. It explains the circumstances under which rebuilds are required, and provides recommendations for mitigating the effects of rebuilds on ongoing query requests.
+This article explains how to update an existing index in Azure AI Search with schema changes or content changes through incremental indexing.
 
-During active development, it's common to drop and rebuild indexes when you're iterating over index design. Most developers work with a small representative sample of their data so that reindexing goes faster.
+> [!TIP]
+> To update documents immediately, skip to [Update content](#update-content). For schema changes, see [Update an index schema](#update-an-index-schema).
 
-For schema changes on applications already in production, we recommend creating and testing a new index that runs side by side an existing index. Use an [index alias](search-how-to-alias.md) to swap in the new index so that you can avoid changes your application code.
+## Prerequisites
+
++ An Azure AI Search service (any tier). [Create a service](search-create-service-portal.md) or [find an existing one](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
+
++ An existing search index with documents. This article assumes you already [created an index](search-how-to-create-search-index.md) and [loaded documents](search-how-to-load-search-index.md).
+
++ Permissions to update or rebuild indexes:
+  + **Key-based authentication**: An [admin API key](search-security-api-keys.md) for your search service.
+  + **Role-based authentication**: [Search Index Data Contributor](search-security-rbac.md) role for document updates, or [Search Service Contributor](search-security-rbac.md) for schema changes.
+
++ For SDK development, install the Azure Search client library:
+  + Python: [azure-search-documents](https://pypi.org/project/azure-search-documents/)
+  + .NET: [Azure.Search.Documents](https://www.nuget.org/packages/Azure.Search.Documents/)
+  + JavaScript: [@azure/search-documents](https://www.npmjs.com/package/@azure/search-documents)
+  + Java: [azure-search-documents](https://central.sonatype.com/artifact/com.azure/azure-search-documents)
+
+> [!TIP]
+> During active development, it's common to drop and rebuild indexes when iterating over index design. Work with a small representative sample of data so that reindexing goes faster. For production schema changes, create and test a new index side by side, then use an [index alias](search-how-to-alias.md) to swap indexes without changing application code.
 
 ## Update content
 
@@ -45,11 +65,13 @@ The body of the request contains one or more documents to be indexed. Within the
 }
 ```
 
+**Reference:** [Documents - Index](/rest/api/searchservice/documents)
+
 + First, use the APIs for loading documents, such as [Documents - Index (REST)](/rest/api/searchservice/documents) or an equivalent API in the Azure SDKs. For more information about indexing techniques, see [Load documents](search-how-to-load-search-index.md).
 
 + For a large update, batching (up to 1,000 documents per batch, or about 16 MB per batch, whichever limit comes first) is recommended and significantly improves indexing performance.
 
-+ Set the `@search.action` parameter on the API to determine the effect on existing documents.
++ Set the `@search.action` parameter on the API to determine the effect on existing documents. Use `mergeOrUpload` for incremental updates (most common), `delete` to remove documents, or `merge` for partial field updates on existing documents.
 
    | Action | Effect |
    |--------|--------|
@@ -190,6 +212,73 @@ GET  {{baseUrl}}/indexes/hotels-vector-quickstart/docs('1')?api-version=2025-09-
     api-key: {{apiKey}}
 ```
 
+**Reference:** [Documents - Index](/rest/api/searchservice/documents), [Lookup Document](/rest/api/searchservice/documents/get)
+
+### SDK examples
+
+The following examples show how to update documents using the Azure SDKs.
+
+### [**Python**](#tab/sdk-python)
+
+```python
+from azure.core.credentials import AzureKeyCredential
+from azure.search.documents import SearchClient
+
+# Set up the client
+service_name = "<your-search-service-name>"
+index_name = "hotels-sample-index"
+api_key = "<your-admin-api-key>"
+
+endpoint = f"https://{service_name}.search.windows.net"
+credential = AzureKeyCredential(api_key)
+client = SearchClient(endpoint=endpoint, index_name=index_name, credential=credential)
+
+# Update documents using merge_or_upload
+documents = [
+    {
+        "HotelId": "1",
+        "Description": "Updated description for the hotel.",
+        "Tags": ["updated", "renovated"]
+    }
+]
+
+result = client.merge_or_upload_documents(documents=documents)
+print(f"Updated {len(result)} document(s)")
+```
+
+**Reference:** [SearchClient](/python/api/azure-search-documents/azure.search.documents.searchclient), [merge_or_upload_documents](/python/api/azure-search-documents/azure.search.documents.searchclient#azure-search-documents-searchclient-merge-or-upload-documents)
+
+### [**C#**](#tab/sdk-csharp)
+
+```csharp
+using Azure;
+using Azure.Search.Documents;
+using Azure.Search.Documents.Models;
+
+// Set up the client
+string serviceName = "<your-search-service-name>";
+string indexName = "hotels-sample-index";
+string apiKey = "<your-admin-api-key>";
+
+Uri endpoint = new Uri($"https://{serviceName}.search.windows.net");
+AzureKeyCredential credential = new AzureKeyCredential(apiKey);
+SearchClient searchClient = new SearchClient(endpoint, indexName, credential);
+
+// Update documents using MergeOrUpload
+var batch = IndexDocumentsBatch.MergeOrUpload(
+    new[]
+    {
+        new Hotel { HotelId = "1", Description = "Updated description.", Tags = new[] { "updated", "renovated" } }
+    });
+
+IndexDocumentsResult result = await searchClient.IndexDocumentsAsync(batch);
+Console.WriteLine($"Updated {result.Results.Count} document(s)");
+```
+
+**Reference:** [SearchClient](/dotnet/api/azure.search.documents.searchclient), [IndexDocumentsAsync](/dotnet/api/azure.search.documents.searchclient.indexdocumentsasync), [IndexDocumentsBatch](/dotnet/api/azure.search.documents.models.indexdocumentsbatch)
+
+---
+
 ## Update an index schema
 
 The index schema defines the physical data structures created on the search service, so there aren't many schema changes that you can make without incurring a full rebuild.
@@ -316,9 +405,24 @@ If you added or renamed a field, use [select](search-query-odata-select.md) to r
 
 The Azure portal provides index size and vector index size. You can check these values after updating an index, but remember to expect a small delay as the service processes the change and to account for portal refresh rates, which can be a few minutes.
 
+## Troubleshoot reindexing
+
+The following table lists common issues when updating or rebuilding indexes and how to resolve them.
+
+| Issue | Cause | Resolution |
+| ----- | ----- | ---------- |
+| 207 response with mixed results | Some documents succeeded, others failed. | Check `statusCode` for each document in response. If 503, throttle requests and retry. |
+| 409 Version conflict | Concurrent updates to same document. | Serialize updates to the same document or implement retry with exponential backoff. |
+| 429 Too Many Requests | Storage quota exceeded or too many concurrent requests. | Delete documents to free space, or upgrade service tier for more capacity. |
+| 503 Service unavailable | Service under heavy load. | Wait and retry with exponential backoff. Consider reducing batch size. |
+| Document count unchanged after delete | Deletion is asynchronous. | Wait 2-3 minutes for background process to complete physical deletion. |
+| New field returns null | Field added to schema but documents not reindexed. | Run indexer or push updated documents to populate the new field. |
+| Schema change rejected | Attempted incompatible change (rename, type change). | Drop and rebuild the index. Use index alias to minimize downtime. |
+
 ## See also
 
 + [Indexer overview](search-indexer-overview.md)
++ [Delete documents from a search index](search-how-to-delete-documents.md)
 + [Index large data sets at scale](search-howto-large-index.md)
 + [Indexing in the Azure portal](search-import-data-portal.md)
 + [Azure SQL Database indexer](search-how-to-index-sql-database.md)

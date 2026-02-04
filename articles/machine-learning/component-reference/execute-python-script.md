@@ -28,7 +28,7 @@ With Python, you can perform tasks that existing components don't support, such 
 ## Supported Python packages
 
 Azure Machine Learning uses the Anaconda distribution of Python, which includes many common utilities for data processing. We will update the Anaconda version automatically. The current version is:
- -  Anaconda 4.5+ distribution for Python 3.6 
+ -  Anaconda distribution for Python 3.10 
 
 For a complete list, see the section [Preinstalled Python packages](#preinstalled-python-packages).
 

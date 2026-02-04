@@ -106,7 +106,7 @@ To deploy a model, follow these steps:
 
 1. Select **Deployments** from **Shared resources** section in the left pane. (In case you upgraded to Foundry in the previous step, select **Models + endpoints** from **My assets** section in the left pane.)
 1. Select **+ Deploy model** > **Deploy base model** to open the deployment window. 
-1. Select the desired model and then select **Confirm**. For a list of available models per region, see [Model summary table and region availability](../concepts/models.md#model-summary-table-and-region-availability).
+1. Select the desired model and then select **Confirm**. For a list of available models per region, see [Model summary table and region availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#model-summary-table-and-region-availability).
 1. In the next window configure the following fields:
 
    | Field | Description |
@@ -119,4 +119,4 @@ To deploy a model, follow these steps:
     > When you access the model via the API, you need to refer to the deployment name rather than the underlying model name in API calls, which is one of the [key differences](../how-to/switching-endpoints.yml) between OpenAI and Azure OpenAI. OpenAI only requires the model name. Azure OpenAI always requires deployment name, even when using the model parameter. In our documentation, we often have examples where deployment names are represented as identical to model names to help indicate which model works with a particular API endpoint. Ultimately your deployment names can follow whatever naming convention is best for your use case.
 
 1. Select **Deploy**.
-1. Deployment **Details** shows all the information of your new deployment. hen the deployment completes, your model **Provisioning** state changes to _Succeeded_.
+1. Deployment **Details** shows all the information of your new deployment. When the deployment completes, your model **Provisioning** state changes to _Succeeded_.

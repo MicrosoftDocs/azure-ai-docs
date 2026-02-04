@@ -24,7 +24,7 @@ ai-usage: ai-assisted
 
 All models deployed to Microsoft Foundry Models support the [Azure AI Model Inference API](https://aka.ms/azureai/modelinference) and its associated family of SDKs.
 
-To use these SDKs, connect them to the [Azure AI model inference URI](how-to/inference.md#azure-openai-inference-endpoint) (usually in the form `https://<resource-name>.services.ai.azure.com/models`).
+To use these SDKs, connect them to the [Azure AI model inference URI](./concepts/endpoints.md) (usually in the form `https://<resource-name>.services.ai.azure.com/models`).
 
 ## Azure AI Inference package
 
@@ -54,4 +54,4 @@ Foundry doesn't support the Cohere SDK or the Mistral SDK.
 
 ## Next step
 
-- To see what models are currently supported, see [Foundry Models and capabilities](concepts/models.md).
+- To see what models are currently supported, see [Foundry Models and capabilities](./concepts/models-sold-directly-by-azure.md).

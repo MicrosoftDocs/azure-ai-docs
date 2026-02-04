@@ -6,7 +6,7 @@ ms.author: ssalgado
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 10/13/2025
+ms.date: 01/29/2026
 monikerRange: 'foundry-classic || foundry'
 ms.reviewer: fasantia
 reviewer: santiagxf
@@ -31,10 +31,10 @@ This article explains how you can use metrics and logs to monitor model deployme
 
 To use monitoring capabilities for model deployments in Foundry Models, you need the following:
 
-* A [Microsoft Foundry resource](../../model-inference/how-to/quickstart-create-resources.md).
+* A [Microsoft Foundry resource](./quickstart-create-resources.md).
 
     > [!TIP]
-    > If you're using serverless API endpoints and you want to take advantage of monitoring capabilities explained in this article, [migrate your serverless API endpoints to Foundry Models](../../model-inference/how-to/quickstart-ai-project.md).
+    > If you're using serverless API endpoints and you want to take advantage of monitoring capabilities explained in this article, [migrate your serverless API endpoints to Foundry Models](./quickstart-ai-project.md).
 
 * At least one model deployment.
 
@@ -188,7 +188,7 @@ Resource logs provide insight into operations that were done by an Azure resourc
 
 ## Configure diagnostic settings
 
-All of the metrics are exportable with diagnostic settings in Azure Monitor. To analyze logs and metrics data with Azure Monitor Log Analytics queries, you need to configure diagnostic settings for your Foundry Tools resource. You need to perform this operation on each resource.
+All of the metrics are exportable with diagnostic settings in Azure Monitor. To analyze logs and metrics data with Azure Monitor Log Analytics queries, you can configure diagnostic settings for your Foundry Tools resource. Perform this operation on each resource.
 
 :::image type="content" source="../media/monitor-models/azmon-diagnostic.png" alt-text="Screenshot showing how to configure diagnostic logging in a resource.png":::
 

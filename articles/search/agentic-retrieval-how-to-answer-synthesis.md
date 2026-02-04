@@ -1,7 +1,7 @@
 ---
 title: Enable Answer Synthesis
 titleSuffix: Azure AI Search
-description: Learn how to enable answer synthesis on a knowledge base or retrieval request in Azure AI Search. At query time, the knowledge base uses your deployed LLM to produce natural-language answers with citations to your knowledge sources.
+description: Learn how to enable answer synthesis in a knowledge base or retrieve request in Azure AI Search. At query time, the knowledge base uses your deployed LLM to produce natural-language answers with citations to your knowledge sources.
 manager: nitinme
 author: haileytap
 ms.author: haileytapia
@@ -34,11 +34,11 @@ You can enable answer synthesis in two ways:
 
 + [Visual Studio Code](https://code.visualstudio.com/) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) or a preview Azure SDK package that provides the knowledge base REST APIs.
 
-## Enable answer synthesis on a knowledge base
+## Enable answer synthesis in a knowledge base
 
-This section explains how to enable answer synthesis on an existing knowledge base. Although you can use this configuration for new knowledge bases, knowledge base creation is beyond the scope of this article.
+This section explains how to enable answer synthesis in an existing knowledge base. Although you can use this configuration for new knowledge bases, knowledge base creation is beyond the scope of this article.
 
-To enable answer synthesis on a knowledge base:
+To enable answer synthesis in a knowledge base:
 
 1. Use the 2025-11-01-preview of [Knowledge Base - Create or Update (REST API)](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to formulate the request.
 
@@ -51,7 +51,7 @@ To enable answer synthesis on a knowledge base:
 @api-key = <YOUR API KEY>
 @knowledge-base-name = <YOUR KNOWLEDGE BASE NAME>
 
-### Enable answer synthesis on a knowledge base
+### Enable answer synthesis in a knowledge base
 PUT {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version=2025-11-01-preview  HTTP/1.1
 Content-Type: application/json
 api-key: {{api-key}}
@@ -68,11 +68,11 @@ api-key: {{api-key}}
 > [!NOTE]
 > This example assumes that you're using key-based authentication for local proof-of-concept testing. We recommend role-based access control for production workloads. For more information, see [Connect to Azure AI Search using roles](search-security-rbac.md).
 
-## Enable answer synthesis on a retrieval request
+## Enable answer synthesis in a retrieve request
 
 For per-query control over the response format, you can enable answer synthesis at query time. This approach overrides the default output mode specified in the knowledge base.
 
-To enable answer synthesis on a retrieval request:
+To enable answer synthesis in a retrieve request:
 
 1. Use the 2025-11-01-preview of [Knowledge Retrieval - Retrieve (REST API)](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to formulate the request.
 
@@ -83,7 +83,7 @@ To enable answer synthesis on a retrieval request:
 @api-key = <YOUR API KEY>
 @knowledge-base-name = <YOUR KNOWLEDGE BASE NAME>
 
-### Enable answer synthesis on a retrieval request
+### Enable answer synthesis in a retrieve request
 POST {{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=2025-11-01-preview  HTTP/1.1
 Content-Type: application/json
 api-key: {{api-key}}

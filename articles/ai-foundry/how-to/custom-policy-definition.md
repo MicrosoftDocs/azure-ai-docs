@@ -29,7 +29,7 @@ By using custom policies, you can:
 ## Prerequisites
 
 - [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
-- Permissions to create and assign policies. You must be an [Owner](/azure/role-based-access-control/built-in-roles#owner) or [Resource Policy Contributor](/azure/role-based-access-control/built-in-roles#resource-policy-contributor) at the subscription or resource group level.
+- [!INCLUDE [rbac-assign-roles](../includes/rbac-assign-roles.md)]
 
 For more information, see [What is Azure Policy?](/azure/governance/policy/overview)
 

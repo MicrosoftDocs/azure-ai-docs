@@ -7,51 +7,28 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 09/23/2025
+ms.date: 01/29/2026
 ms.custom:
   - ignite-2023
   - sfi-image-nochange
+  - dev-focus
+ai-usage: ai-assisted
 ---
 
 # Configure network access and firewall rules for Azure AI Search
 
-This article explains how to restrict network access to a search service's public endpoint. To block *all* data plane access to the public endpoint, use [private endpoints](service-create-private-endpoint.md) and connect from within an Azure virtual network.
+This article explains how to restrict network access to a search service's public endpoint. You can configure IP firewall rules to allow only specific IP addresses, ranges, or subnets, and optionally enable exceptions for trusted Azure services.
 
-This article assumes the Azure portal for configuring network access options. You can also use the [Management REST API](/rest/api/searchmanagement/), [Azure PowerShell](/powershell/module/az.search), or the [Azure CLI](/cli/azure/search).
+To block *all* data plane access to the public endpoint, use [private endpoints](service-create-private-endpoint.md) instead.
 
 ## Prerequisites
 
-+ A search service, any region, at the Basic tier or higher
++ + [Azure AI Search service](search-create-service-portal.md) (Basic tier or higher). Firewall configuration isn't supported on the Free tier.
 
-+ Owner or Contributor permissions
++ **Owner** or **Contributor** role on the search service resource.
++ You can also use the [Management REST API](/rest/api/searchmanagement/), [Azure PowerShell](/powershell/module/az.search), or the [Azure CLI](/cli/azure/search) instead of the Azure portal.
 
-## Limitations
-
-There are drawbacks to locking down the public endpoint:
-
-+ It takes time to fully identify IP ranges and set up firewalls, and if you're in early stages of proof-of-concept testing and investigation and using sample data, you might want to defer network access controls until you actually need them.
-
-+ Some workflows require access to a public endpoint. Specifically, the [**indexing wizards**](search-import-data-portal.md) in the Azure portal connect to built-in (hosted) sample data and embedding models over the public endpoint. You can switch to code or script to complete the same tasks when firewall rules in place, but if you want to run the wizards, the public endpoint must be available. For more information, see [Secure connections in the import wizards](search-import-data-portal.md#secure-connections).
-
-## When to configure network access
-
-By default, Azure AI Search is configured to allow connections over a public endpoint. Access to a search service *through* the public endpoint is protected by authentication and authorization protocols, but the endpoint itself is open to the internet at the network layer for data plane requests.
-
-If you aren't hosting a public web site, you might want to configure network access to automatically refuse requests unless they originate from an approved set of devices and cloud services. 
-
-There are two mechanisms for restricting access to the public endpoint:
-
-+ Inbound rules listing the IP addresses, ranges, or subnets from which requests are admitted
-
-+ Exceptions to network rules, where requests are admitted with no checks, as long as the request originates from a [trusted service](#grant-access-to-trusted-azure-services)
-
-Network rules aren't required, but it's a security best practice to add them if you use Azure AI Search for surfacing private or internal corporate content.
-
-Network rules are scoped to data plane operations against the search service's public endpoint. Data plane operations include creating or querying indexes, and all other actions described by the [Search REST APIs](/rest/api/searchservice/). Control plane operations target service administration. Those operations specify resource provider endpoints, which are subject to the [network protections supported by Azure Resource Manager](/security/benchmark/azure/baselines/azure-resource-manager-security-baseline).
-
-<a id="configure-ip-policy"></a> 
-
-## Configure network access in Azure portal
+## Configure network access in the Azure portal
 
 1. Sign in to Azure portal and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 
@@ -91,20 +68,24 @@ When requests originate from IP addresses that aren't in the allowed list, a gen
 > [!IMPORTANT]
 > It can take several minutes for changes to take effect. Wait at least 15 minutes before troubleshooting any problems related to network configuration.
 
-<a id="allow-access-from-your-client-and-portal-ip"></a>
-
 ## Allow access from the Azure portal IP address
 
-The Azure portal has its own connection to Azure AI Search, separate from your local device and browser. If you use the Azure portal to manage your search service, you need to add the portal IP address as described in this section, and your client IP address as described in the previous section.
+The Azure portal uses your client IP address for a direct connection to Azure AI Search. If your client is in the allowed IP list, you can use almost all portal capabilities with no extra configuration required. However, there's an exception for the legacy Import data wizard when you *import from either Azure Cosmos DB or Azure SQL*. 
 
-When IP rules are configured, some features of the Azure portal are disabled. For example, you can view and manage service level information, but portal access to the import wizards, indexes, indexers, and other top-level resources are restricted. 
+This scenario requires a separate IP address for the connection:
 
-You can restore the Azure portal's access to the full range of search service operations by adding the Azure portal IP address to the restricted address range. 
++ Identify the IP address used by the legacy wizard for this connection.
 
-To get the Azure portal's IP address, perform `nslookup` (or `ping`) on:
++ Add a firewall rule on [Azure Cosmos DB](/azure/cosmos-db/how-to-configure-firewall) or [Azure SQL](/azure/azure-sql/database/firewall-configure) to accept connections from the IP address.
 
-+ `stamp2.ext.search.windows.net`, which is the domain of the traffic manager for the Azure public cloud.
-+ `stamp2.ext.search.azure.us` for Azure Government cloud.
+This section explains how to get the IP address used by the wizard.
+
+1. Open a command line tool
+
+1. Perform `nslookup` (or `ping`) on:
+
+   + `stamp2.ext.search.windows.net`, which is the domain of the traffic manager for the Azure public cloud.
+   + `stamp2.ext.search.azure.us` for Azure Government cloud.
 
 For nslookup, the IP address is visible in the "Non-authoritative answer" portion of the response. In the following example, the IP address that you should copy is `52.252.175.48`.
 
@@ -121,13 +102,14 @@ Aliases:  stamp2.ext.search.windows.net
           azspncuux.management.search.windows.net
 ```
 
-When services run in different regions, they connect to different traffic managers. Regardless of the domain name, the IP address returned from the ping is the correct one to use when defining an inbound firewall rule for the Azure portal in your region.
+The IP address in the `Address` field (52.252.175.48 in this example) is the value to add to your firewall rules for legacy wizard connections.
 
-For ping, the request times out, but the IP address is visible in the response. For example, in the message `"Pinging azsyrie.northcentralus.cloudapp.azure.com [52.252.175.48]"`, the IP address is `52.252.175.48`.
+**Reference:** [nslookup command](/windows-server/administration/windows-commands/nslookup)
 
-A banner informs you that IP rules affect the Azure portal experience. This banner remains visible even after you add the Azure portal's IP address. Remember to wait several minutes for network rules to take effect before testing.
-
-:::image type="content" source="media/service-configure-firewall/restricted-access.png" alt-text="Screenshot showing the restricted access banner." lightbox="media/service-configure-firewall/restricted-access.png" :::
+> [!NOTE]
+> You can use [ping](/windows-server/administration/windows-commands/ping) instead of nslookup for this task. For ping, the request times out, but the IP address is visible in the response. For example, in the message `"Pinging azsyrie.northcentralus.cloudapp.azure.com [52.252.175.48]"`, the IP address is `52.252.175.48`.
+>
+> If services run in different regions, they connect to different traffic managers. Regardless of the domain name, the IP address returned from the ping is the correct one to use when defining an inbound firewall rule for the Azure portal in your region.
 
 ## Grant access to trusted Azure services
 
@@ -157,7 +139,7 @@ To set up a managed identity for a Foundry resource:
 
 ### Trusted resources must have a role assignment
 
-Once your Azure resource has a managed identity, [assign roles on Azure AI Search](keyless-connections.md) to grant permissions to data and operations. 
+Once your Azure resource has a managed identity, [assign roles on Azure AI Search](search-security-rbac-client-code.md) to grant permissions to data and operations. 
 
 The trusted services are used for vectorization workloads: generating vectors from text and image content, and sending payloads back to the search service for query execution or indexing. Connections from a trusted service are used to deliver payloads to Azure AI search.
 
@@ -175,6 +157,18 @@ The trusted services are used for vectorization workloads: generating vectors fr
 
 > [!NOTE]
 > This article covers the trusted exception for admitting requests to your search service, but Azure AI Search is itself on the trusted services list of other Azure resources. Specifically, you can use the trusted service exception for [connections from Azure AI Search to Azure Storage](search-indexer-howto-access-trusted-service-exception.md).
+
+## Limitations and considerations
+
+Consider the following when configuring network access:
+
++ Some workflows require access to a public endpoint. Specifically, the [**Import data wizard**](search-import-data-portal.md) in the Azure portal connects to built-in (hosted) sample data and embedding models over a public endpoint. For more information, see [Secure connections in the import wizards](search-import-data-portal.md#secure-connections).
+
++ If you're in early stages of proof-of-concept testing with sample data, you might want to defer network access controls until you actually need them.
+
++ Network rules are scoped to data plane operations against the search service's public endpoint (creating or querying indexes, and all other actions described by the [Search REST APIs](/rest/api/searchservice/)).
+
++ For control plane operations that target service administration, refer to the [network protections supported by Azure Resource Manager](/security/benchmark/azure/baselines/azure-resource-manager-security-baseline).
 
 ## Next steps
 

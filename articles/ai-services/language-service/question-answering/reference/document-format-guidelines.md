@@ -36,7 +36,7 @@ A manual is typically guidance material that accompanies a product. It helps the
 To follow is an example of a manual with an index page, and hierarchical content
 
 > [!div class="mx-imgBorder"]
-> ![Product Manual example for a project](../../../qnamaker/media/qnamaker-concepts-datasources/product-manual.png)
+> ![Product Manual example for a project](../media/qnamaker-concepts-datasources/product-manual.png)
 
 > [!NOTE]
 > Extraction works best on manuals that have a table of contents and/or an index page, and a clear structure with hierarchical headings.
@@ -48,7 +48,7 @@ Many other types of documents can also be processed to generate question answer 
 To follow is an example of a semi-structured doc, without an index:
 
 > [!div class="mx-imgBorder"]
-> ![Azure Blob storage semi-structured Doc](../../../qnamaker/media/qnamaker-concepts-datasources/semi-structured-doc.png)
+> ![Azure Blob storage semi-structured Doc](../media/qnamaker-concepts-datasources/semi-structured-doc.png)
 
 ### Unstructured document support
 
@@ -57,7 +57,7 @@ Custom question answering now supports unstructured documents. A  document that 
 To follow is an example of an unstructured PDF document:
 
 > [!div class="mx-imgBorder"]
-> ![Unstructured  document example for a project](../../../qnamaker/media/qnamaker-concepts-datasources/unstructured-qna-pdf.png)
+> ![Unstructured  document example for a project](../media/qnamaker-concepts-datasources/unstructured-qna-pdf.png)
 
 > [!NOTE]
 > QnA pairs aren't extracted in the "Edit sources" tab for unstructured sources.
@@ -82,7 +82,7 @@ Answer2
 To follow is an example of a structured custom question answering word document:
 
 > [!div class="mx-imgBorder"]
-> ![Structured custom question answering document example for a project](../../../qnamaker/media/qnamaker-concepts-datasources/structured-qna-doc.png)
+> ![Structured custom question answering document example for a project](../media/qnamaker-concepts-datasources/structured-qna-doc.png)
 
 ### Structured *TXT*, *TSV* and *XLS* Files
 
@@ -133,7 +133,7 @@ In this type of FAQ page, questions are aggregated together and are linked to an
 To follow is an example of an FAQ page with links in sections that are on the same page:
 
 > [!div class="mx-imgBorder"]
-> ![Section Link FAQ page example for a project](../../../qnamaker/media/qnamaker-concepts-datasources/sectionlink-faq.png)
+> ![Section Link FAQ page example for a project](../media/qnamaker-concepts-datasources/sectionlink-faq.png)
 
 ### Parent `Topics` page links to child answers pages
 
@@ -142,7 +142,7 @@ This type of FAQ has a `Topics` page where each subject is linked to a correspon
 To follow is an example of a `Topics` page with links to FAQ sections in different pages.
 
 > [!div class="mx-imgBorder"]
-> ![Deep link FAQ page example for a project](../../../qnamaker/media/qnamaker-concepts-datasources/topics-faq.png)
+> ![Deep link FAQ page example for a project](../media/qnamaker-concepts-datasources/topics-faq.png)
 
 ### Support URLs
 

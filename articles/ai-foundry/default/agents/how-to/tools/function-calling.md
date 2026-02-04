@@ -1,23 +1,23 @@
 ---
-title: Use function calling with agent API
+title: Use function calling with Microsoft Foundry agents
 titleSuffix: Microsoft Foundry
-description: Learn how to use function calling with Microsoft Foundry agent API. Includes code examples in Python, C#, and REST API to define and execute functions.
+description: Learn how to use function calling with Microsoft Foundry agents. Includes Python, C#, and REST examples to define functions and return tool outputs.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 12/16/2025
+ms.date: 01/20/2026
 author: alvinashcraft
 ms.author: aashcraft
-ms.custom: azure-ai-agents, dev-focus
+ms.custom: azure-ai-agents, dev-focus, pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 zone_pivot_groups: selection-function-calling-new
 ---
 
 # Function calling for agents
 
-Microsoft Foundry agents support function calling. By using function calling, you can describe the structure of functions to an agent. The agent can then return the functions that need to be called along with their arguments.
+Microsoft Foundry agents support function calling. You describe a function (name, parameters, and a description) so the agent can request that your app call it. Your app runs the function, then returns the function output to the agent so it can continue the conversation.
 
 > [!NOTE]
 > - Runs expire 10 minutes after creation. Be sure to submit your tool outputs before the expiration.
@@ -26,17 +26,58 @@ Microsoft Foundry agents support function calling. By using function calling, yo
 ### Usage support
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
-|---------|---------|---------|---------|---------|---------|---------|---------|
+| --- | --- | --- | --- | --- | --- | --- | --- |
 | ✔️ | ✔️ | ✔️ | - | - | ✔️ | ✔️ | ✔️ |
 
-## Example agent code
+## Prerequisites
+
+Before you start, make sure you have:
+
+- A [basic or standard agent environment](../../../../agents/environment-setup.md).
+- A Foundry project and a deployed model.
+- The latest prerelease SDK package for your language. For installation and authentication steps, see the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#get-ready-to-code).
+
+### Environment variables
+
+The examples in this article use different environment variable names for each language. Pick one set of names and use it consistently.
+
+| Language | Project endpoint | Model deployment name |
+| --- | --- | --- |
+| Python | `AZURE_AI_PROJECT_ENDPOINT` | `AZURE_AI_MODEL_DEPLOYMENT_NAME` |
+| C# | `FOUNDRY_PROJECT_ENDPOINT` | `MODEL_DEPLOYMENT_NAME` |
+| REST API | `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` | (use the request body field) |
+
+> [!TIP]
+> If you use `DefaultAzureCredential`, sign in by using `az login` before running the samples.
+
+### Quick verification
+
+If you're not sure your authentication and endpoint are set up correctly, run the following snippet first.
+
+```python
+import os
+
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+from dotenv import load_dotenv
+
+load_dotenv()
+
+with (
+    DefaultAzureCredential() as credential,
+    AIProjectClient(endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"], credential=credential) as project_client,
+):
+    print("Connected to project.")
+```
+
+## Code examples
 
 > [!NOTE]
-> You need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
+> You need the latest prerelease package. For more information, see the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#get-ready-to-code).
 
 :::zone pivot="python"
 
-Use the following code sample to create an agent and call the function. You need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
+Use the following code sample to create an agent, handle a function call, and return tool output back to the agent.
 
 ```python
 import os
@@ -341,8 +382,8 @@ Your favorite city, Seattle, WA, is also known as The Emerald City. The current 
 :::zone pivot="rest"
 There are two ways to use function calling in Foundry Agent Service.
 
-1. You can create just `response` and when you need the agent to call this function again, you can create another `response`.
-1. You can create on `conversation` and within this conversation, you can create multiple `conversation items`. Each conversation item corresponds to one `response`. You can organize your responses and function calling more consistently.
+1. Create a `response`. When you need the agent to call functions again, create another `response`.
+1. Create a `conversation`, then create multiple conversation items. Each conversation item corresponds to one `response`.
 
 ## Define a function for your agent to call
 
@@ -356,7 +397,7 @@ curl --request POST \
   -H "Authorization: Bearer $AGENT_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
-    "description": "Test agent version with code interpreter tool",
+        "description": "Test agent version with function calling",
     "metadata": { "env": "test", "owner": "user" },
     "definition": {
       "kind": "prompt",
@@ -451,3 +492,46 @@ The response contains a function call item that you need to process:
 After you process the function call and provide the output back to the agent, the final response includes the weather information in natural language.
 
 ::: zone-end
+
+## Verify results
+
+Use the following checks to confirm function calling is working:
+
+1. Your first response contains an output item with `type` set to `function_call`.
+1. Your app executes the requested function by using the returned arguments.
+1. Your app submits a follow-up response that includes a `function_call_output` item and references the previous response, and the agent returns a natural-language answer.
+
+If you use tracing in Microsoft Foundry, confirm the tool invocation occurred. For guidance on validating tool invocation and controlling tool usage, see [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md).
+
+## Security and data considerations
+
+- Treat tool arguments and tool outputs as untrusted input. Validate and sanitize values before using them.
+- Don't pass secrets (API keys, tokens, connection strings) in tool output. Return only the data the model needs.
+- Apply least privilege to the identity used by `DefaultAzureCredential`.
+- Avoid side effects unless you explicitly intend them. For example, restrict function tools to safe operations, or require explicit user confirmation for actions that change data.
+
+## Troubleshooting
+
+| Issue | Likely cause | Resolution |
+| --- | --- | --- |
+| Agent returns function call but no final answer. | Tool output not returned to model. | Execute the function, then call `responses.create` with the tool output and `previous_response_id` to continue. |
+| No function call occurs. | Function not in agent definition or poor naming. | Confirm the function tool is added to the agent. Use clear, descriptive names and parameter descriptions. |
+| Arguments aren't valid JSON. | Schema mismatch or model hallucination. | Verify JSON schema uses correct types and required properties. Handle parsing errors gracefully in your app. |
+| Required fields are missing. | Schema doesn't enforce required properties. | Add `"required": [...]` array to your parameter schema. Set `strict: true` for stricter validation. |
+| Tool outputs fail due to expiration. | Run expired (10-minute limit). | Return tool outputs promptly. For slow operations, return a status and poll separately. |
+| Function called with wrong parameters. | Ambiguous function description. | Improve the function `description` field. Add detailed parameter descriptions with examples. |
+| Multiple function calls in one response. | Model determined multiple functions needed. | Handle each function call in the output array. Return all results in a single `responses.create` call. |
+| Function not visible in Foundry portal. | Portal doesn't execute function calls. | Test function calling via SDK or REST API. The portal shows agents but doesn't invoke functions. |
+
+## Clean up
+
+To avoid clutter and ongoing costs, delete any resources you created when you're done:
+
+- Delete the agent version.
+- Delete conversations created for testing.
+
+## Related content
+
+- [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md)
+- [Connect OpenAPI tools to Microsoft Foundry agents](openapi.md)
+- [Microsoft Foundry Quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true)

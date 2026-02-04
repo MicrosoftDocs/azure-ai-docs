@@ -12,7 +12,7 @@ author: santiagxf
 
 ```python
 response = client.chat.completions.create(
-    model="deepseek-v3-0324", # Replace with your model dpeloyment name.
+    model="deepseek-v3-0324", # Replace with your model deployment name.
     messages=[
         {"role": "system", "content": "You are a helpful assistant."},
         {"role": "user", "content": "Explain Riemann's conjecture in 1 paragraph"}

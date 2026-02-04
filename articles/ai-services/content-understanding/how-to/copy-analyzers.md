@@ -1,11 +1,12 @@
 ---
-title: Copy custom analyzers 
+title: Copy custom analyzers
 titleSuffix: Foundry Tools
-description: Copy custom analyzers within a resource and across Azure resources
+description: Copy custom analyzers within a resource and across Azure resources.
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
-ms.date: 09/16/2025
+ms.date: 01/29/2026
+ai-usage: ai-assisted
 ms.service: azure-ai-content-understanding
 ms.topic: how-to
 ms.custom:
@@ -19,8 +20,8 @@ ms.custom:
 Every Content Understanding resource provides access to all prebuilt analyzers by default. For a complete list, see [prebuilt analyzers](../concepts/prebuilt-analyzers.md). Custom analyzers are analyzers you define to process specific content where you can define the content type, schema, and any other processing logic. For more information on defining a custom analyzer, see [defining a custom analyzer](./customize-analyzer-content-understanding-studio.md).
 
 The copy operation on analyzers supports a few different scenarios:
-* **Copy within resource** to create a copy of an existing analyzer in the same resource as a backup or a version you can iteratively make changes from. 
-* **Copy across resources** copy an analyzer from one Foundry resource to another. This supports failover scenarios and sharing of analyzers across teams.
+* **Copy within a resource** to create a copy of an existing analyzer in the same resource as a backup or a version you can iterate on.
+* **Copy across resources** to copy an analyzer from one Foundry resource to another. This supports failover scenarios and sharing analyzers across teams.
 
 > [!IMPORTANT]
 >
@@ -28,9 +29,9 @@ The copy operation on analyzers supports a few different scenarios:
 
 ## Copy within a Foundry resource
 
-The copy operation within a Foundry resource is a simple, single step operation. Specify the analyzer you want to copy to as the resource you want to create and provide the analyzer you want to copy from in the request body. 
+The copy operation within a Foundry resource is a single-step operation. Specify the target analyzer ID in the request URL and provide the source analyzer ID in the request body.
 
-```
+```http
 POST https://{resource}.ai.azure.com/contentunderstanding/analyzers/{targetAnalyzer}:copy?api-version=2025-11-01
 Content-Type: application/json
 Ocp-Apim-Subscription-Key: {Auth key}
@@ -43,13 +44,13 @@ Ocp-Apim-Subscription-Key: {Auth key}
 
 ## Copy across Foundry resources
 
-Copying the analyzer across Foundry resources is a multi-step process because a service principal likely doesn't have permissions on both resources:
+Copying an analyzer across Foundry resources is a multi-step process because a service principal might not have permissions on both resources:
 
 1. Get a copy authorization on the source analyzer by providing the fully qualified resource ID for the copy target and the target region. 
 1. Copy the resulting response and use it as the body of the next request.
 1. Issue a copy request on the target resource by providing the fully qualified source resource, the source analyzer ID, and the region.
 
-```
+```http
 POST https://{source resource}.services.ai.azure.com/contentunderstanding/analyzers/{source analyzer id}:grantCopyAuthorization?api-version=2025-11-01
 Content-Type: application/json
 Ocp-Apim-Subscription-Key: {Auth key}
@@ -77,7 +78,7 @@ Ocp-Apim-Subscription-Key: {Auth key}
 
 You can then validate that the analyzer was copied by calling the GET analyzer on the resource if this copy was within the resource, or on the target resource if this copy was across resources.
 
-```
+```http
 GET https://{target resource}.services.ai.azure.com/contentunderstanding/analyzers/{target analyzer id}?api-version=2025-11-01
 Ocp-Apim-Subscription-Key: {Auth key}
 

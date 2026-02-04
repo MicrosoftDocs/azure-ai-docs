@@ -16,6 +16,6 @@ If you no longer need any of the resources you created, delete the resource grou
 In the Microsoft Foundry portal, select your project name in the top right corner. Then select the link for the resource group to open it in the Azure portal. Select the resource group, and then select **Delete**. Confirm that you want to delete the resource group.
 ::: moniker-end
 
-::: moniker range="foundry"
+<!-- ::: moniker range="foundry"
 In the [Azure portal](https://portal.azure.com), find and select your resource group.  Select **Delete** and confirm to delete the resource group and all its associated resources.
-::: moniker-end
+::: moniker-end -->

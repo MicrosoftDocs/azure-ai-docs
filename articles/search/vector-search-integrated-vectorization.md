@@ -2,28 +2,28 @@
 title: Integrated vectorization
 titleSuffix: Azure AI Search
 description: Add a vector embedding step in an Azure AI Search skillset to vectorize content during indexing or queries.
-author: heidisteen
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
-ms.date: 06/11/2025
+ms.topic: concept-article
+ms.date: 01/23/2026
 ---
 
 # Integrated vector embedding in Azure AI Search
 
 Integrated vectorization is an extension of the indexing and query pipelines in Azure AI Search. It adds the following capabilities:
 
-+ Vector encoding during indexing
++ Vector encoding during indexer-driven indexing
 + Vector encoding during queries
 
 [Data chunking](vector-search-how-to-chunk-documents.md) isn't a hard requirement, but unless your raw documents are small, chunking is necessary for meeting the token input requirements of embedding models.
 
 Vector conversions are one-way: nonvector-to-vector. For example, there's no vector-to-text conversion for queries or results, such as converting a vector result to a human-readable string, which is why indexes contain both vector and nonvector fields.
 
-Integrated vectorization speeds up the development and minimizes maintenance tasks during data ingestion and query time because there are fewer operations that you have to implement manually. This capability is now generally available.
+Integrated vectorization speeds up the development and minimizes maintenance tasks during data ingestion and query time because there are fewer operations that you have to implement manually. 
 
 ## Using integrated vectorization during indexing
 
@@ -35,7 +35,7 @@ For integrated data chunking and vector conversions, you're taking a dependency 
 
 + [A skillset](cognitive-search-working-with-skillsets.md) configured for:
 
-  + [Text Split skill](cognitive-search-skill-textsplit.md), used to chunk the data.
+  + A chunking strategy: [Text Split skill](cognitive-search-skill-textsplit.md), [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md), [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md), or one of the [document parsing modes](vector-search-how-to-chunk-documents.md#common-chunking-techniques). 
   
   + An embedding skill, used to generate vector arrays, which can be any of the following:
 
