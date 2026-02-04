@@ -23,7 +23,7 @@ ai-usage: ai-assisted
 
 ::: moniker range="foundry-classic"
 
-Model leaderboards (preview) in Microsoft Foundry portal help you compare models in the Foundry [model catalog](../how-to/model-catalog-overview.md) using industry-standard benchmarks. From the model leaderboards section of the model catalog, you can [browse leaderboards](https://aka.ms/model-leaderboards) to compare available models by:
+Model leaderboards (preview) in Microsoft Foundry portal help you compare models in the Foundry [model catalog](foundry-models-overview.md) using industry-standard benchmarks. From the model leaderboards section of the model catalog, you can [browse leaderboards](https://aka.ms/model-leaderboards) to compare available models by:
 
 - [Quality, safety, cost, and performance leaderboards](../how-to/benchmark-model-in-catalog.md#access-model-leaderboards) to identify leading models on a single metric (quality, safety, cost, or throughput)
 - [Trade-off charts](../how-to/benchmark-model-in-catalog.md#trade-off-charts) to compare performance across two metrics, such as quality versus cost
@@ -33,7 +33,7 @@ Model leaderboards (preview) in Microsoft Foundry portal help you compare models
 
 ::: moniker range="foundry"
 
-Model leaderboards (preview) in Foundry portal help you compare models in the Foundry [model catalog](../how-to/model-catalog-overview.md) using industry-standard benchmarks.
+Model leaderboards (preview) in Foundry portal help you compare models in the Foundry [model catalog](foundry-models-overview.md) using industry-standard benchmarks.
 
 You can review detailed benchmarking methodology for each leaderboard category:
 
@@ -235,4 +235,4 @@ Prompt construction follows best practices for each dataset, as specified by the
 ## Related content
 
 - [Compare and select models using the model leaderboard in Foundry portal](../how-to/benchmark-model-in-catalog.md)
-- [Model catalog and collections in Foundry portal](../how-to/model-catalog-overview.md)
+- [Model catalog and collections in Foundry portal](foundry-models-overview.md)

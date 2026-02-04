@@ -76,7 +76,7 @@ pip install azure-ai-evaluation
 
 Install the package from the Azure AI evaluation SDK:
 
-```python
+```bash
 pip install "azure-ai-projects>=2.0.0b1" azure-identity python-dotenv
 ```
 
