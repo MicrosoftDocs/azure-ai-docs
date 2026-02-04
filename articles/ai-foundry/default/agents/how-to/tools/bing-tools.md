@@ -78,7 +78,7 @@ If you already have a project connection ID for the Bing resource you want to us
    For step-by-step instructions, see [Add a new connection to your project](../../../../how-to/connections-add.md?view=foundry&preserve-view=true).
    >[!IMPORTANT]
    > - You will need **Contributor** or **Owner** role at the subscription or resource group level to create Bing resources and get resource keys.
-   > - If you want to find the resource keys yourself, you can go to your Grounding with Bing resource in [Azure Portal](https://portal.azure.com) -> Resource Management -> Keys and get your keys manually.
+   > - If you want to find the resource keys yourself, you can go to your Grounding with Bing resource in [Azure portal](https://portal.azure.com) -> Resource Management -> Keys and get your keys manually.
 
 1. Get the project connection ID from the connection details and set it as an environment variable.
 
