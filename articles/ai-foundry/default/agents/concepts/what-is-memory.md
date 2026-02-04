@@ -119,7 +119,7 @@ To mitigate security risks, consider these actions:
 
 ## Limitations and quotas
 
-- Memory currently requires compatible chat and embedding model deployments. For the current list of supported models and providers, see [Supported models in Foundry Agent Service](../../../agents/concepts/model-region-support.md).
+- Memory currently requires compatible Azure OpenAI chat and embedding model deployments. For a list of supported models, see [Azure OpenAI models and regions for Foundry Agent Service](../../../agents/concepts/model-region-support.md).
 - You must set the `scope` value explicitly. Automatic population from the user identity specified in the request isn't currently supported.
 
 ### Scope guidance
