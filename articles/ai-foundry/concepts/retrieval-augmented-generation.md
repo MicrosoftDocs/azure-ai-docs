@@ -67,7 +67,7 @@ Traditional RAG patterns often use a single query to retrieve information from y
 
 Agentic retrieval provides several advantages over classic RAG:
 
-* **Context-aware query planning** - Uses conversation history to understand context and intent. This means follow-up questions don't lose the context of earlier exchanges, making multi-turn conversations more natural.
+* **Context-aware query planning** - Uses conversation history to understand context and intent. Follow-up questions retain the context of earlier exchanges, making multi-turn conversations more natural.
 * **Parallel execution** - Runs multiple focused subqueries simultaneously for better coverage. Instead of retrieving from a single query sequentially, parallel execution reduces latency and retrieves more diverse relevant results.
 * **Structured responses** - Returns grounding data, citations, and execution metadata along with results. This structured output makes it easier for your application to cite sources accurately and trace the reasoning behind answers.
 * **Built-in semantic ranking** - Ensures optimal relevance of results. Semantic ranking filters noise and prioritizes truly relevant passages, which is especially important with large datasets.
