@@ -12,6 +12,7 @@ ms.date: 02/02/2026
 ms.custom: azure-ai-agents, pilot-ai-workflow-jan-2026
 monikerRange: 'foundry'
 ai-usage: ai-assisted
+ms.custom: references_regions
 ---
 
 # Quotas, limits, models, and regional support
