@@ -161,6 +161,7 @@ tools:
     imageSrc: /media/logos/logo_python.svg
     url: /python/api/azure-cognitiveservices-speech/
   - title: About the Speech SDK
+    imageSrc: /media/logos/code-sample.svg
     url: speech-sdk.md
 
 additionalContent:
