@@ -107,7 +107,7 @@ Implementing RAG in Foundry typically follows this workflow:
 
 To get started, choose one of these paths based on your needs:
 
-- **Guided experience**: Start with [Azure OpenAI On Your Data](../openai/concepts/use-your-data.md), which provides a managed setup for connecting data and chatting over it. See the [Quickstart: Chat with Azure OpenAI models using your own data](../openai/use-your-data-quickstart.md).
+- **Guided experience**: Start with [Azure OpenAI On Your Data](../openai/concepts/use-your-data.md), which provides a managed setup for connecting data and chatting over it. See [Quickstart: Chat with Azure OpenAI models using your own data](../openai/use-your-data-quickstart.md).
 - **Agent with retrieval**: If you're building an agent, use retrieval as a tool. See [File search tool for agents](../default/agents/how-to/tools/file-search.md).
 - **Custom RAG application**: Build a full RAG app with the Foundry SDK for complete control.
 
