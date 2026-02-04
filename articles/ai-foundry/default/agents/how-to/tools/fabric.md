@@ -256,12 +256,12 @@ AIProjectConnection fabricConnection = projectClient.Connections.GetConnection(c
 
 FabricDataAgentToolOptions fabricToolOption = new()
 {
-  ProjectConnections = { new ToolProjectConnection(projectConnectionId: fabricConnection.Id) }
+    ProjectConnections = { new ToolProjectConnection(projectConnectionId: fabricConnection.Id) }
 };
 PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
 {
     Instructions = "You are a helpful assistant.",
-    Tools = { new MicrosoftFabricAgentTool(fabricToolOption), }
+    Tools = { new MicrosoftFabricPreviewTool(fabricToolOption), }
 };
 AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
     agentName: "myAgent",
@@ -269,11 +269,12 @@ AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
 
 // Create the response and make sure we are always using tool.
 ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
-ResponseCreationOptions responseOptions = new()
+CreateResponseOptions responseOptions = new()
 {
-    ToolChoice = ResponseToolChoice.CreateRequiredChoice()
+    ToolChoice = ResponseToolChoice.CreateRequiredChoice(),
+    InputItems = { ResponseItem.CreateUserMessageItem("What was the number of public holidays in Norway in 2024?") },
 };
-OpenAIResponse response = responseClient.CreateResponse("What was the number of public holidays in Norway in 2024?", options: responseOptions);
+ResponseResult response = responseClient.CreateResponse(options: responseOptions);
 
 // Print the Agent output.
 Assert.That(response.Status, Is.EqualTo(ResponseStatus.Completed));

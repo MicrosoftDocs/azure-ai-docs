@@ -194,108 +194,112 @@ The code for 'banana' is 673457. I couldn't find any documented code for 'orange
 In this example, you create a local file, upload it to Azure, and use it in the newly created `VectorStore` for file search. The code in this example is synchronous and streaming. For asynchronous usage, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample11_FileSearch_Streaming.md) in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
-// Create project client and read the environment variables, which will be used in the next steps.
-var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
-var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
-AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
-
-// Create a toy example file and upload it using OpenAI mechanism.
-string filePath = "sample_file_for_upload.txt";
-File.WriteAllText(
-    path: filePath,
-    contents: "The word 'apple' uses the code 442345, while the word 'banana' uses the code 673457.");
-OpenAIFile uploadedFile = projectClient.OpenAI.Files.UploadFile(filePath: filePath, purpose: FileUploadPurpose.Assistants);
-File.Delete(filePath);
-
-// Create the `VectorStore` and provide it with uploaded file ID.
-VectorStoreCreationOptions options = new()
+class FileSearchStreamingDemo
 {
-    Name = "MySampleStore",
-    FileIds = { uploadedFile.Id }
-};
-VectorStore vectorStore = projectClient.OpenAI.VectorStores.CreateVectorStore(options);
-
-// Create an agent capable of using File search.
-PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
-{
-    Instructions = "You are a helpful agent that can help fetch data from files you know about.",
-    Tools = { ResponseTool.CreateFileSearchTool(vectorStoreIds: new[] { vectorStore.Id }), }
-};
-AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
-    agentName: "myAgent",
-    options: new(agentDefinition)
-);
-
-// Create the conversation to store responses.
-ProjectConversation conversation = projectClient.OpenAI.Conversations.CreateProjectConversation();
-CreateResponseOptions responseOptions = new()
-{
-    Agent = agentVersion,
-    AgentConversationId = conversation.Id,
-    StreamingEnabled = true,
-};
-
-// Create a helper method ParseResponse to format streaming response output.
-// If the stream ends up in error state, it will throw an error. 
-private static void ParseResponse(StreamingResponseUpdate streamResponse)
-{
-    if (streamResponse is StreamingResponseCreatedUpdate createUpdate)
+    // Create a helper method ParseResponse to format streaming response output.
+    // If the stream ends up in error state, it will throw an error. 
+    private static void ParseResponse(StreamingResponseUpdate streamResponse)
     {
-        Console.WriteLine($"Stream response created with ID: {createUpdate.Response.Id}");
-    }
-    else if (streamResponse is StreamingResponseOutputTextDeltaUpdate textDelta)
-    {
-        Console.WriteLine($"Delta: {textDelta.Delta}");
-    }
-    else if (streamResponse is StreamingResponseOutputTextDoneUpdate textDoneUpdate)
-    {
-        Console.WriteLine($"Response done with full message: {textDoneUpdate.Text}");
-    }
-    else if (streamResponse is StreamingResponseOutputItemDoneUpdate itemDoneUpdate)
-    {
-        if (itemDoneUpdate.Item is MessageResponseItem messageItem)
+        if (streamResponse is StreamingResponseCreatedUpdate createUpdate)
         {
-            foreach (ResponseContentPart part in messageItem.Content)
+            Console.WriteLine($"Stream response created with ID: {createUpdate.Response.Id}");
+        }
+        else if (streamResponse is StreamingResponseOutputTextDeltaUpdate textDelta)
+        {
+            Console.WriteLine($"Delta: {textDelta.Delta}");
+        }
+        else if (streamResponse is StreamingResponseOutputTextDoneUpdate textDoneUpdate)
+        {
+            Console.WriteLine($"Response done with full message: {textDoneUpdate.Text}");
+        }
+        else if (streamResponse is StreamingResponseOutputItemDoneUpdate itemDoneUpdate)
+        {
+            if (itemDoneUpdate.Item is MessageResponseItem messageItem)
             {
-                foreach (ResponseMessageAnnotation annotation in part.OutputTextAnnotations)
+                foreach (ResponseContentPart part in messageItem.Content)
                 {
-                    if (annotation is FileCitationMessageAnnotation fileAnnotation)
+                    foreach (ResponseMessageAnnotation annotation in part.OutputTextAnnotations)
                     {
-                        // Note fileAnnotation.Filename will be available in OpenAI package versions
-                        // greater then 2.6.0.
-                        Console.WriteLine($"File Citation - File ID: {fileAnnotation.FileId}");
+                        if (annotation is FileCitationMessageAnnotation fileAnnotation)
+                        {
+                            // Note fileAnnotation.Filename will be available in OpenAI package versions
+                            // greater then 2.6.0.
+                            Console.WriteLine($"File Citation - File ID: {fileAnnotation.FileId}");
+                        }
                     }
                 }
             }
         }
+        else if (streamResponse is StreamingResponseErrorUpdate errorUpdate)
+        {
+            throw new InvalidOperationException($"The stream has failed with the error: {errorUpdate.Message}");
+        }
     }
-    else if (streamResponse is StreamingResponseErrorUpdate errorUpdate)
+    public static void Main()
     {
-        throw new InvalidOperationException($"The stream has failed with the error: {errorUpdate.Message}");
+        // Create project client and read the environment variables, which will be used in the next steps.
+        var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
+        var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
+        AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+
+        // Create a toy example file and upload it using OpenAI mechanism.
+        string filePath = "sample_file_for_upload.txt";
+        File.WriteAllText(
+            path: filePath,
+            contents: "The word 'apple' uses the code 442345, while the word 'banana' uses the code 673457.");
+        OpenAIFile uploadedFile = projectClient.OpenAI.Files.UploadFile(filePath: filePath, purpose: FileUploadPurpose.Assistants);
+        File.Delete(filePath);
+
+        // Create the `VectorStore` and provide it with uploaded file ID.
+        VectorStoreCreationOptions options = new()
+        {
+            Name = "MySampleStore",
+            FileIds = { uploadedFile.Id }
+        };
+        VectorStore vectorStore = projectClient.OpenAI.VectorStores.CreateVectorStore(options);
+
+        // Create an agent capable of using File search.
+        PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+        {
+            Instructions = "You are a helpful agent that can help fetch data from files you know about.",
+            Tools = { ResponseTool.CreateFileSearchTool(vectorStoreIds: new[] { vectorStore.Id }), }
+        };
+        AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+            agentName: "myAgent",
+            options: new(agentDefinition)
+        );
+
+        // Create the conversation to store responses.
+        ProjectConversation conversation = projectClient.OpenAI.Conversations.CreateProjectConversation();
+        CreateResponseOptions responseOptions = new()
+        {
+            Agent = agentVersion,
+            AgentConversationId = conversation.Id,
+            StreamingEnabled = true,
+        };
+        // Wait for the stream to complete.
+        responseOptions.InputItems.Clear();
+        responseOptions.InputItems.Add(ResponseItem.CreateUserMessageItem("Can you give me the documented codes for 'banana' and 'orange'?"));
+        foreach (StreamingResponseUpdate streamResponse in projectClient.OpenAI.Responses.CreateResponseStreaming(responseOptions))
+        {
+            ParseResponse(streamResponse);
+        }
+
+        // Ask follow up question and start a new stream.
+        Console.WriteLine("Demonstrating follow-up query with streaming...");
+        responseOptions.InputItems.Clear();
+        responseOptions.InputItems.Add(ResponseItem.CreateUserMessageItem("What was my previous question about?"));
+        foreach (StreamingResponseUpdate streamResponse in projectClient.OpenAI.Responses.CreateResponseStreaming(responseOptions))
+        {
+            ParseResponse(streamResponse);
+        }
+
+        // Remove all the resources created in this sample.
+        projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+        projectClient.OpenAI.VectorStores.DeleteVectorStore(vectorStoreId: vectorStore.Id);
+        projectClient.OpenAI.Files.DeleteFile(uploadedFile.Id);
     }
 }
-
-// Wait for the stream to complete.
-responseOptions.InputItems.Clear();
-responseOptions.InputItems.Add(ResponseItem.CreateUserMessageItem("Can you give me the documented codes for 'banana' and 'orange'?"));
-foreach (StreamingResponseUpdate streamResponse in projectClient.OpenAI.Responses.CreateResponseStreaming(responseOptions))
-{
-    ParseResponse(streamResponse);
-}
-
-// Ask follow up question and start a new stream.
-Console.WriteLine("Demonstrating follow-up query with streaming...");
-responseOptions.InputItems.Clear();
-responseOptions.InputItems.Add(ResponseItem.CreateUserMessageItem("What was my previous question about?"));
-foreach (StreamingResponseUpdate streamResponse in projectClient.OpenAI.Responses.CreateResponseStreaming(responseOptions))
-{
-    ParseResponse(streamResponse);
-}
-
-// Remove all the resources created in this sample.
-projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
-projectClient.OpenAI.VectorStores.DeleteVectorStore(vectorStoreId: vectorStore.Id);
-projectClient.OpenAI.Files.DeleteFile(uploadedFile.Id);
 ```
 
 ### Expected output

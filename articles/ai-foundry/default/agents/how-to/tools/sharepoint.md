@@ -40,7 +40,7 @@ This integration uses identity passthrough (On-Behalf-Of) so SharePoint permissi
 
 - Eligible license or Pay-as-you-go model:
   - Developers and end users have Microsoft 365 Copilot license, as required by [Microsoft 365 Copilot API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview).
-  - If developers and end users don't have Microsoft 365 Copilot license, you can enable the [pay-as-you-go moodel](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/paygo-retrieval).
+  - If developers and end users don't have Microsoft 365 Copilot license, you can enable the [pay-as-you-go model](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/paygo-retrieval).
 - Developers and end users have at least `Azure AI User` RBAC role assigned on the Foundry project. For more information about Azure role-based access control, see [Azure role-based access control in Foundry](../../../../concepts/rbac-foundry.md?view=foundry&preserve-view=true).
 - Developers and end users have at least `READ` access to the SharePoint site.
 - The latest prerelease package installed:
@@ -283,12 +283,12 @@ AIProjectConnection sharepointConnection = projectClient.Connections.GetConnecti
 // which will be used to create SharepointAgentTool. Use this tool to create an Agent.
 SharePointGroundingToolOptions sharepointToolOption = new()
 {
-  ProjectConnections = { new ToolProjectConnection(projectConnectionId: sharepointConnection.Id) }
+    ProjectConnections = { new ToolProjectConnection(projectConnectionId: sharepointConnection.Id) }
 };
 PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
 {
     Instructions = "You are a helpful assistant.",
-    Tools = { new SharepointAgentTool(sharepointToolOption), }
+    Tools = { new SharepointPreviewTool(sharepointToolOption), }
 };
 AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
     agentName: "myAgent",
@@ -296,38 +296,36 @@ AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
 
 // Create the response and make sure we are always using tool.
 ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
-ResponseCreationOptions responseOptions = new()
+CreateResponseOptions responseOptions = new()
 {
-    ToolChoice = ResponseToolChoice.CreateRequiredChoice()
+    ToolChoice = ResponseToolChoice.CreateRequiredChoice(),
+    InputItems = { ResponseItem.CreateUserMessageItem("What is Contoso whistleblower policy") }
 };
-OpenAIResponse response = responseClient.CreateResponse("What is Contoso whistleblower policy", options: responseOptions);
+ResponseResult response = responseClient.CreateResponse(options: responseOptions);
 
 // SharePoint tool can create the reference to the page, grounding the data.
 // Create the GetFormattedAnnotation method to get the URI annotation.
-private static string GetFormattedAnnotation(OpenAIResponse response)
+string annotation = "";
+foreach (ResponseItem item in response.OutputItems)
 {
-    foreach (ResponseItem item in response.OutputItems)
+    if (item is MessageResponseItem messageItem)
     {
-        if (item is MessageResponseItem messageItem)
+        foreach (ResponseContentPart content in messageItem.Content)
         {
-            foreach (ResponseContentPart content in messageItem.Content)
+            foreach (ResponseMessageAnnotation messageAnnotation in content.OutputTextAnnotations)
             {
-                foreach (ResponseMessageAnnotation annotation in content.OutputTextAnnotations)
+                if (messageAnnotation is UriCitationMessageAnnotation uriAnnotation)
                 {
-                    if (annotation is UriCitationMessageAnnotation uriAnnotation)
-                    {
-                        return $" [{uriAnnotation.Title}]({uriAnnotation.Uri})";
-                    }
+                    annotation = $" [{uriAnnotation.Title}]({uriAnnotation.Uri})";
                 }
             }
         }
     }
-    return "";
 }
 
 // Print the Agent output and add the annotation at the end.
 Assert.That(response.Status, Is.EqualTo(ResponseStatus.Completed));
-Console.WriteLine($"{response.GetOutputText()}{GetFormattedAnnotation(response)}");
+Console.WriteLine($"{response.GetOutputText()}{annotation}");
 
 // After the sample is completed, delete the Agent we have created.
 projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);

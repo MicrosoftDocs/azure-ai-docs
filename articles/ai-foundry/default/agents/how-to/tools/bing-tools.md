@@ -78,7 +78,7 @@ If you already have a project connection ID for the Bing resource you want to us
    For step-by-step instructions, see [Add a new connection to your project](../../../../how-to/connections-add.md?view=foundry&preserve-view=true).
    >[!IMPORTANT]
    > - You will need **Contributor** or **Owner** role at the subscription or resource group level to create Bing resources and get resource keys.
-   > - If you want to find the resource keys yourself, you can go to your Grounding with Bing resource in [Azure Portal](https://portal.azure.com) -> Resource Management -> Keys and get your keys manually.
+   > - If you want to find the resource keys yourself, you can go to your Grounding with Bing resource in [Azure portal](https://portal.azure.com) -> Resource Management -> Keys and get your keys manually.
 
 1. Get the project connection ID from the connection details and set it as an environment variable.
 
@@ -146,7 +146,7 @@ If this code runs without errors, your credentials and Bing connection are confi
 
 ### Full samples
 
-The following examples demonstrate how to create an agent with Grounding with Bing Search and Grounding with Bing Custom Search (preview) tools, and how to use the agent to respond to user queries.
+The following examples demonstrate how to create an agent with Grounding with Bing Search and Grounding with Bing Search tools, and how to use the agent to respond to user queries.
 
 #### Grounding with Bing Search
 
@@ -427,7 +427,7 @@ AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenPro
 AIProjectConnection bingConnection = projectClient.Connections.GetConnection(connectionName: bingConnectionName);
 
 // Create the agent version with Bing grounding tool
-BingGroundingAgentTool bingGroundingAgentTool = new(new BingGroundingSearchToolOptions(
+BingGroundingTool bingGroundingAgentTool = new(new BingGroundingSearchToolOptions(
   searchConfigurations: [new BingGroundingSearchConfiguration(projectConnectionId: bingConnection.Id)]
     )
 );
@@ -443,33 +443,30 @@ AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
 // Output the agent version info
 ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
 
-OpenAIResponse response = responseClient.CreateResponse("How does wikipedia explain Euler's Identity?");
+ResponseResult response = responseClient.CreateResponse("How does wikipedia explain Euler's Identity?");
 
-// Helper method to extract and format URL citation annotations
-private static string GetFormattedAnnotation(OpenAIResponse response)
+// Extract and format URL citation annotations
+string citation = "";
+foreach (ResponseItem item in response.OutputItems)
 {
-    foreach (ResponseItem item in response.OutputItems)
+    if (item is MessageResponseItem messageItem)
     {
-        if (item is MessageResponseItem messageItem)
+        foreach (ResponseContentPart content in messageItem.Content)
         {
-            foreach (ResponseContentPart content in messageItem.Content)
+            foreach (ResponseMessageAnnotation annotation in content.OutputTextAnnotations)
             {
-                foreach (ResponseMessageAnnotation annotation in content.OutputTextAnnotations)
+                if (annotation is UriCitationMessageAnnotation uriAnnotation)
                 {
-                    if (annotation is UriCitationMessageAnnotation uriAnnotation)
-                    {
-                        return $" [{uriAnnotation.Title}]({uriAnnotation.Uri})";
-                    }
+                    citation = $" [{uriAnnotation.Title}]({uriAnnotation.Uri})";
                 }
             }
         }
     }
-    return "";
 }
 
 // Validate and print the response
 Assert.That(response.Status, Is.EqualTo(ResponseStatus.Completed));
-Console.WriteLine($"{response.GetOutputText()}{GetFormattedAnnotation(response)}");
+Console.WriteLine($"{response.GetOutputText()}{citation}");
 
 // Clean up resources by deleting the agent version
 projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
@@ -500,7 +497,7 @@ Euler's identity is considered one of the most elegant equations in mathematics.
 ## Grounding with Bing in streaming scenarios
 
 ```csharp
-// Read the environment variables, which will be used in the next steps
+// Read the environment variables, which will be used in the next steps.
 var projectEndpoint = System.Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT");
 var modelDeploymentName = System.Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME");
 var bingConnectionName = System.Environment.GetEnvironmentVariable("BING_PROJECT_CONNECTION_NAME");
@@ -512,7 +509,7 @@ AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenPro
 AIProjectConnection bingConnection = projectClient.Connections.GetConnection(connectionName: bingConnectionName);
 
 // Create the agent version with Bing grounding tool
-BingGroundingAgentTool bingGroundingAgentTool = new(new BingGroundingSearchToolOptions(
+BingGroundingTool bingGroundingAgentTool = new(new BingGroundingSearchToolOptions(
   searchConfigurations: [new BingGroundingSearchConfiguration(projectConnectionId: bingConnection.Id)]
     )
 );
@@ -524,25 +521,6 @@ PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
 AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
     agentName: "myAgent",
     options: new(agentDefinition));
-
-// Helper method to extract and format URL citation annotations
-private static string GetFormattedAnnotation(ResponseItem item)
-{
-    if (item is MessageResponseItem messageItem)
-    {
-        foreach (ResponseContentPart content in messageItem.Content)
-        {
-            foreach (ResponseMessageAnnotation annotation in content.OutputTextAnnotations)
-            {
-                if (annotation is UriCitationMessageAnnotation uriAnnotation)
-                {
-                    return $" [{uriAnnotation.Title}]({uriAnnotation.Uri})";
-                }
-            }
-        }
-    }
-    return "";
-}
 
 // Stream the response from the agent version
 ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
@@ -569,7 +547,20 @@ foreach (StreamingResponseUpdate streamResponse in responseClient.CreateResponse
     {
         if (annotation.Length == 0)
         {
-            annotation = GetFormattedAnnotation(itemDoneUpdate.Item);
+            // Extract and format URL citation annotations
+            if (itemDoneUpdate.Item is MessageResponseItem messageItem)
+            {
+                foreach (ResponseContentPart content in messageItem.Content)
+                {
+                    foreach (ResponseMessageAnnotation messageAnnotation in content.OutputTextAnnotations)
+                    {
+                        if (messageAnnotation is UriCitationMessageAnnotation uriAnnotation)
+                        {
+                            annotation = $" [{uriAnnotation.Title}]({uriAnnotation.Uri})";
+                        }
+                    }
+                }
+            }
         }
     }
     else if (streamResponse is StreamingResponseErrorUpdate errorUpdate)
