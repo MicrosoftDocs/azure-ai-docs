@@ -75,15 +75,6 @@ There are two ways to use memory for agent interactions:
 
 - **Memory store APIs:** Interact directly with the memory store using the low-level APIs. This approach provides more control and flexibility for advanced use cases. For more information, see [Use memories via APIs](../how-to/memory-usage.md#use-memories-via-apis).
 
-## Verify memory is working
-
-After you configure a memory store and enable memory for your agent, verify:
-
-- **Memories are written**: Run a conversation that includes a durable fact (for example, "I'm allergic to dairy"), then query the memory store to confirm a memory item was created.
-- **Scope isolation**: Write a memory in one `scope`, then search in a different `scope` and confirm the memory is **not** returned.
-- **Retrieval behavior**: Start a new session and ask a question that should use memory. Confirm the agent response reflects stored memory.
-
-For code examples, see [Use memories via APIs](../how-to/memory-usage.md#use-memories-via-apis).
 
 ## Use cases
 
@@ -122,15 +113,6 @@ To mitigate security risks, consider these actions:
 - Memory currently requires compatible chat and embedding model deployments. For the current list of supported models and providers, see [Supported models in Foundry Agent Service](../../../agents/concepts/model-region-support.md).
 - You must set the `scope` value explicitly. Automatic population from the user identity specified in the request isn't currently supported.
 
-### Scope guidance
-
-The `scope` parameter partitions memory into isolated collections. Choose a strategy that matches your privacy requirements:
-
-- **Per-user scope (recommended):** Use a stable, non-PII identifier (for example, an internal user ID).
-- **Per-tenant + user scope:** For multi-tenant apps, include both tenant and user identifiers.
-
-> [!IMPORTANT]
-> Don't use raw email addresses or sensitive identifiers as scope values.
 
 ### Quotas
 
@@ -141,24 +123,13 @@ The `scope` parameter partitions memory into isolated collections. Choose a stra
 
 For broader Foundry Agent Service quotas and limits, see [Foundry Agent Service quotas and limits](../../../agents/quotas-limits.md).
 
-## Troubleshooting
-
-| Issue | Cause | Resolution |
-|-------|-------|------------|
-| No memories returned from search | Scope mismatch | Confirm you wrote memories to the same `scope` you're searching |
-| Unsupported model error | Non-Azure OpenAI model | Memory requires Azure OpenAI chat and embedding deployments |
-| Authorization error | Missing permissions | Verify permissions on the Foundry project and Azure OpenAI deployments |
-| Unexpected memories stored | Extraction too broad | Tighten `user_profile_details` to exclude sensitive categories |
-
-If problems persist, follow the end-to-end steps in [Create and use memory](../how-to/memory-usage.md).
-
 ## Pricing
 
 Memory is currently in **public preview**. Pricing and billing for Memory and the Memory Store API can change during preview.
 
 You're billed for usage of the underlying **chat** and **embedding** models you configure. For current pricing details, see the official Azure pricing documentation for Foundry Agent Service.
 
-## Next steps
+## Related content
 
 - Follow the end-to-end setup: [Create and use memory in Foundry Agent Service](../how-to/memory-usage.md).
 - Confirm model availability: [Supported models in Foundry Agent Service](../../../agents/concepts/model-region-support.md).
