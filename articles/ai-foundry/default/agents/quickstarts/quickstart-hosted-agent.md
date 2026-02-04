@@ -37,7 +37,7 @@ Before you begin, you need:
   * (Optional) An [MCP tool](../how-to/tools/model-context-protocol.md), if you have one you want to use.
 * An [Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)
 * [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) version 1.23.0 or later
-* [Azure CLI](/cli/azure/install-azure-cli) version 2.80 or later
+* (Optional) [Azure CLI](/cli/azure/install-azure-cli) version 2.80 or later
 * [Docker Desktop](https://docs.docker.com/get-docker/) installed and running
 * [Python 3.10 or later](https://www.python.org/downloads/)
 
@@ -98,7 +98,7 @@ Initialize a new project with the Foundry starter template and configure it with
     | Resource | Purpose | Cost |
     | -------- | ------- | ---- |
     | Resource group | Organizes all related resources in the same area | No cost |
-    | Model deployment | Model used by the agent | See [Foundry pricing](https://azure.microsoft.com/en-us/pricing/details/microsoft-foundry/) |
+    | Model deployment | Model used by the agent | See [Foundry pricing](https://azure.microsoft.com/pricing/details/microsoft-foundry/) |
     | Foundry project | Hosts your agent and provides AI capabilities | Consumption-based; see [Foundry pricing](https://azure.microsoft.com/pricing/details/ai-foundry/) |
     | Azure Container Registry | Stores your agent container images | Basic tier; see [ACR pricing](https://azure.microsoft.com/pricing/details/container-registry/) |
     | Log Analytics Workspace | Manage all log data in one place | No direct cost. See [Log Analytics cost]([Log Analytics workspace overview - Azure Monitor ) |
