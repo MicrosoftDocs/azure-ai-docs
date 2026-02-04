@@ -1,13 +1,13 @@
 ---
-title: Use the Computer Use Tool for Agents
+title: Use the computer use tool for agents
 titleSuffix: Microsoft Foundry
-description: Learn to use the computer use tool in Microsoft Foundry agents to automate UI interactions. Includes Python, C#, and JavaScript samples.
+description: Create agents that interpret screenshots and automate UI actions like clicking and typing. Includes Python, C#, and TypeScript SDK samples for Foundry Agent Service.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 01/19/2026
+ms.date: 02/04/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: references_regions, dev-focus, pilot-ai-workflow-jan-2026
@@ -15,16 +15,16 @@ ai-usage: ai-assisted
 zone_pivot_groups: selection-computer-use
 ---
 
-# Computer use tool for agents (Preview)
+# Use the computer use tool for agents (Preview)
 
 [!INCLUDE [feature-preview](../../../../includes/feature-preview.md)]
 
 > [!WARNING]
 > The computer use tool comes with significant security and privacy risks, including prompt injection attacks. For more information about intended uses, capabilities, limitations, risks, and considerations when choosing a use case, see the [Azure OpenAI transparency note](../../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview).
 
-This article explains how to work with the computer use tool in Foundry Agent Service. Computer use is a specialized AI tool that uses a specialized model to perform tasks by interacting with computer systems and applications through their user interfaces. By using computer use, you can create an agent that handles complex tasks and makes decisions by interpreting visual elements and taking action based on on-screen content. 
+Create agents that interpret screenshots and automate UI interactions like clicking, typing, and scrolling. The computer use tool uses the `computer-use-preview` model to propose actions based on visual content, enabling agents to interact with desktop and browser applications through their user interfaces.
 
-Use the computer use tool in Foundry Agent Service when you want an agent to interpret screenshots and propose UI actions (for example, clicking a button or typing text). This guide shows how to integrate the tool into an application loop (screenshot -> action -> screenshot) by using the Python, C#, and TypeScript SDKs.
+This guide shows how to integrate the computer use tool into an application loop (screenshot → action → screenshot) by using the latest SDKs.
 
 ### Usage support
 
@@ -34,8 +34,12 @@ Use the computer use tool in Foundry Agent Service when you want an agent to int
 
 ## Prerequisites
 
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
 - A [basic or standard agent environment](../../../../agents/environment-setup.md).
-- The latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
+- The latest prerelease SDK package:
+  - **Python**: `azure-ai-projects>=2.0.0b1`, `azure-identity`, `python-dotenv`
+  - **C#/.NET**: `Azure.AI.Agents.Persistent` (prerelease)
+  - **TypeScript**: `@azure/ai-projects` v2-beta, `@azure/identity`
 - Access to the `computer-use-preview` model. See [Request access](#request-access) below.
 - A virtual machine or sandboxed environment for safe testing. Don't run on machines with access to sensitive data.
 
@@ -77,8 +81,11 @@ If this code runs without errors, your credentials and project endpoint are conf
 The code snippets in this article focus on the agent and Responses API integration. For an end-to-end runnable sample that includes helper code and sample screenshots, use the SDK samples on GitHub.
 
 - Python: https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/agents/tools
-- JavaScript: https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentComputerUse.js
+- TypeScript: https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentComputerUse.js
 - .NET (computer use tool sample): https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Agents.Persistent/samples/Sample33_Computer_Use.md
+
+> [!TIP]
+> The SDK samples include helper utilities for screenshot capture, action execution, and image encoding. Clone the repository or copy these files to your project before running the samples.
 
 ## Request access 
 
@@ -282,7 +289,7 @@ Agent deleted
 :::zone pivot="csharp"
 ## Sample for use of an Agent with Computer Use tool
 
-The following C# code sample demonstrates how to create an agent version with the computer use tool, send an initial request with a screenshot, and perform multiple iterations to complete a task. To enable your Agent to use the Computer Use tool, you need to use `ComputerTool` while creating `PromptAgentDefinition`. This example uses synchronous code. For asynchronous usage, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample10_ComputerUse.md) example in the Azure SDK for .NET repository on GitHub.
+The following C# code sample demonstrates how to create an agent version with the computer use tool, send an initial request with a screenshot, and perform multiple iterations to complete a task. To enable your agent to use the computer use tool, use `ResponseTool.CreateComputerTool()` when configuring the agent's tools. This example uses synchronous code. For asynchronous usage, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample10_ComputerUse.md) example in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
 class ComputerUseDemo
@@ -679,12 +686,29 @@ The following table lists some of the differences between the computer use tool 
 | Interfaces                     | Browser                     | Computer and browser       |
 | Do I need to bring my own resource?    | Your own Playwright resource with the keys stored as a connection. | No additional resource required but we highly recommend running this tool in a sandboxed environment.          |
 
+### When to use each tool
+
+**Choose computer use when you need to**:
+
+- Interact with desktop applications beyond the browser
+- Visualize what the agent sees through screenshots
+- Work in environments where DOM parsing isn't available
+
+**Choose browser automation when you need to**:
+
+- Perform web-only interactions without limited access requirements
+- Use any GPT model (not limited to `computer-use-preview`)
+- Avoid managing screenshot capture and action execution loops
+
 ## Regional support 
 
-To use the computer use tool, you need a [computer use model](../../../../foundry-models/concepts/models-sold-directly-by-azure.md#computer-use-preview) deployment. The computer use model is available in the following regions: 
-* `eastus2` 
-* `swedencentral` 
-* `southindia` 
+To use the computer use tool, you need a [computer use model](../../../../foundry-models/concepts/models-sold-directly-by-azure.md#computer-use-preview) deployment. The computer use model is available in the following regions:
+
+| Region | Status |
+|--------|--------|
+| `eastus2` | Available |
+| `swedencentral` | Available |
+| `southindia` | Available |
 
 ## Understanding the computer use integration 
 
@@ -802,8 +826,8 @@ In all cases where `pending_safety_checks` are returned, hand over actions to th
 
 ## Related content
 
-[Follow tool best practices](../../concepts/tool-best-practice.md)
-
-[Compare with browser automation](browser-automation.md)
-
-[Computer use risk and limitations](../../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview)
+- [Tool best practices for agents](../../concepts/tool-best-practice.md)
+- [Browser automation tool](browser-automation.md)
+- [Set up your agent environment](../../../../agents/environment-setup.md)
+- [Get started with Foundry agents](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true)
+- [Computer use risks and limitations](../../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview)
