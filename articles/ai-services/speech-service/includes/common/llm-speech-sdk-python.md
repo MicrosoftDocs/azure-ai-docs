@@ -114,20 +114,31 @@ LLM speech uses the `EnhancedModeProperties` class to enable large-language-mode
 
     ```python
     import os
+    from dotenv import load_dotenv
     from azure.core.credentials import AzureKeyCredential
     from azure.ai.transcription import TranscriptionClient
+    
+    load_dotenv()
     from azure.ai.transcription.models import (
         TranscriptionContent,
         TranscriptionOptions,
         EnhancedModeProperties,
     )
-
+    
     # Get configuration from environment variables
     endpoint = os.environ["AZURE_SPEECH_ENDPOINT"]
+    
+    # Optional: we recommend using role based access control (RBAC) for production scenarios
     api_key = os.environ["AZURE_SPEECH_API_KEY"]
-
+    
+    if api_key:
+        credential = AzureKeyCredential(api_key)
+    else:
+        from azure.identity import DefaultAzureCredential
+        credential = DefaultAzureCredential()   
+    
     # Create the transcription client
-    client = TranscriptionClient(endpoint=endpoint, credential=AzureKeyCredential(api_key))
+    client = TranscriptionClient(endpoint=endpoint, credential=credential)
 
     # Path to your audio file (replace with your own file path)
     audio_file_path = "<path-to-your-audio-file.wav>"
@@ -135,22 +146,26 @@ LLM speech uses the `EnhancedModeProperties` class to enable large-language-mode
     # Open and read the audio file
     with open(audio_file_path, "rb") as audio_file:
         # Create enhanced mode properties for LLM speech transcription
-        enhanced_mode = EnhancedModeProperties(task="transcribe")
-
+        enhanced_mode = EnhancedModeProperties(
+            task="transcribe",
+            prompt=[],
+        )
+    
         # Create transcription options with enhanced mode
         options = TranscriptionOptions(enhanced_mode=enhanced_mode)
+    
+        # Add enabled: true to enhanced_mode in options
         options.enhanced_mode.enabled = True
-
-
+    
         # Create the request content
         request_content = TranscriptionContent(definition=options, audio=audio_file)
-
+    
         # Transcribe the audio
         result = client.transcribe(request_content)
-
+    
         # Print the transcription result
         print(f"Transcription: {result.combined_phrases[0].text}")
-
+    
         # Print detailed phrase information
         if result.phrases:
             print("\nDetailed phrases:")
@@ -194,8 +209,11 @@ You can also use LLM speech to translate audio into a target language. Set the `
 
     ```python
     import os
+    from dotenv import load_dotenv
     from azure.core.credentials import AzureKeyCredential
     from azure.ai.transcription import TranscriptionClient
+    
+    load_dotenv()
     from azure.ai.transcription.models import (
         TranscriptionContent,
         TranscriptionOptions,
@@ -204,10 +222,18 @@ You can also use LLM speech to translate audio into a target language. Set the `
     
     # Get configuration from environment variables
     endpoint = os.environ["AZURE_SPEECH_ENDPOINT"]
+    
+    # Optional: we recommend using role based access control (RBAC) for production scenarios
     api_key = os.environ["AZURE_SPEECH_API_KEY"]
     
+    if api_key:
+        credential = AzureKeyCredential(api_key)
+    else:
+        from azure.identity import DefaultAzureCredential
+        credential = DefaultAzureCredential()   
+    
     # Create the transcription client
-    client = TranscriptionClient(endpoint=endpoint, credential=AzureKeyCredential(api_key))
+    client = TranscriptionClient(endpoint=endpoint, credential=credential)
     
     # Path to your audio file (replace with your own file path)
     audio_file_path = "<path-to-your-audio-file.wav>"
@@ -219,13 +245,17 @@ You can also use LLM speech to translate audio into a target language. Set the `
         enhanced_mode = EnhancedModeProperties(
             task="translate",
             target_language="de",
-            prompt=[],
+            prompt=[
+                "Translate the following audio to German.",
+                "Convert number words to numbers."
+            ],  # Optional prompts to guide the enhanced mode
         )
     
         # Create transcription options with enhanced mode
-        options = TranscriptionOptions(locales=[], enhanced_mode=enhanced_mode)
+        options = TranscriptionOptions(locales=["en-US"], enhanced_mode=enhanced_mode)
+    
+        # Add enabled: true to enhanced_mode in options
         options.enhanced_mode.enabled = True
-
     
         # Create the request content
         request_content = TranscriptionContent(definition=options, audio=audio_file)
@@ -253,38 +283,69 @@ You can provide an optional prompt to guide the output style for transcription o
 
 ```python
 import os
+from dotenv import load_dotenv
 from azure.core.credentials import AzureKeyCredential
 from azure.ai.transcription import TranscriptionClient
+
+load_dotenv()
 from azure.ai.transcription.models import (
-    TranscriptionContent,
-    TranscriptionOptions,
-    EnhancedModeProperties,
+TranscriptionContent,
+TranscriptionOptions,
+EnhancedModeProperties,
 )
 
 # Get configuration from environment variables
 endpoint = os.environ["AZURE_SPEECH_ENDPOINT"]
+
+# Optional: we recommend using role based access control (RBAC) for production scenarios
 api_key = os.environ["AZURE_SPEECH_API_KEY"]
 
-# Create the transcription client
-client = TranscriptionClient(endpoint=endpoint, credential=AzureKeyCredential(api_key))
+if api_key:
+credential = AzureKeyCredential(api_key)
+else:
+from azure.identity import DefaultAzureCredential
+credential = DefaultAzureCredential()   
 
-# Path to your audio file
+# Create the transcription client
+client = TranscriptionClient(endpoint=endpoint, credential=credential)
+
+# Path to your audio file (replace with your own file path)
 audio_file_path = "<path-to-your-audio-file.wav>"
 
+# Open and read the audio file
 with open(audio_file_path, "rb") as audio_file:
-    # Create enhanced mode properties with prompt-tuning
+    # Create enhanced mode properties for LLM speech transcription
     enhanced_mode = EnhancedModeProperties(
         task="transcribe",
-        prompt=["Output must be in lexical format."]
+        prompt=[
+            "Create lexical output only,",
+            "Convert number words to numbers."
+        ],  # Optional prompts to guide the enhanced mode, prompt="Create lexical transcription.")
     )
 
+    # Create transcription options with enhanced mode
     options = TranscriptionOptions(enhanced_mode=enhanced_mode)
+
+    # Add enabled: true to enhanced_mode in options
     options.enhanced_mode.enabled = True
 
+    # Create the request content
     request_content = TranscriptionContent(definition=options, audio=audio_file)
+
+    # Print request content for debugging
+    print("Request Content:", request_content, "\n")
     
+    # Transcribe the audio
     result = client.transcribe(request_content)
+
+    # Print the transcription result
     print(f"Transcription: {result.combined_phrases[0].text}")
+
+    # Print detailed phrase information
+    if result.phrases:
+        print("\nDetailed phrases:")
+        for phrase in result.phrases:
+
 ```
 
 ### Best practices for prompts:
