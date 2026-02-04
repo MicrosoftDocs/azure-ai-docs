@@ -163,7 +163,7 @@ If you're using Azure AI Search, confirm service tier and pricing before product
 ### Common challenges and mitigation
 
 - **Poor retrieval quality**: If your index isn't returning relevant passages, review your data chunking strategy, embedding model quality, and search configuration (keyword vs. semantic vs. hybrid).
-- **Hallucination despite grounding**: Even with retrieved content, models can still generate inaccurate responses. Use clear system messages and prompts that instruct the model to stick to retrieved content, and enable citation.
+- **Hallucination despite grounding**: Even with retrieved content, models can still generate inaccurate responses. Enable citations and use clear system messages and prompts to instruct the model to stick to retrieved content.
 - **Latency issues**: Large indexes can slow retrieval. Consider indexing strategy, filtering, and re-ranking to reduce the volume of passages processed.
 - **Token budget exceeded**: Retrieved passages can quickly consume token limits. Implement passage filtering, ranking, or summarization to stay within budget.
 
