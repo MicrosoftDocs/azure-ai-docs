@@ -27,10 +27,10 @@ You can change this behavior and deploy both types of models to Foundry resource
 Additionally, deploying models to Foundry Models brings the extra benefits of:
 
 > [!div class="checklist"]
-> * [Routing capability](inference.md#routing)
-> * [Custom content filters](../../model-inference/concepts/content-filter.md)
+> * [Routing capability](../concepts/endpoints.md)
+> * [Custom content filters](../concepts/content-filter.md)
 > * Global capacity deployment type
-> * [Key-less authentication with Microsoft Entra ID](../../model-inference/how-to/configure-entra-id.md)
+> * [Key-less authentication with Microsoft Entra ID](./configure-entra-id.md)
 
 In this article, you learn how to configure your project to use Foundry Models deployments.
 
@@ -38,7 +38,7 @@ In this article, you learn how to configure your project to use Foundry Models d
 
 To complete this tutorial, you need:
 
-* An Azure subscription. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. To learn more, see [Upgrade from GitHub Models to Foundry Models](../../model-inference/how-to/quickstart-github-models.md).
+* An Azure subscription. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. To learn more, see [Upgrade from GitHub Models to Foundry Models](./quickstart-github-models.md).
 
 * A Foundry resource. For more information, see [Create your first Foundry resource](../../../ai-services/multi-service-resource.md).
 
@@ -69,7 +69,7 @@ To configure the project to use the Foundry Models capability in Foundry, follow
     :::image type="content" source="../media/quickstart-ai-project/overview-endpoint-and-key.png" alt-text="Screenshot of the landing page for the project, highlighting the location of the connected resource and the associated inference endpoint." lightbox="../media/quickstart-ai-project/overview-endpoint-and-key.png":::
 
     > [!TIP]
-    > Each Foundry resource has a single **Azure AI model inference endpoint** that can be used to access any model deployment on it. The same endpoint serves multiple models depending on which ones are configured. To learn how the endpoint works, see [Azure OpenAI inference endpoint](inference.md#azure-openai-inference-endpoint).
+    > Each Foundry resource has a single **Azure AI model inference endpoint** that can be used to access any model deployment on it. The same endpoint serves multiple models depending on which ones are configured. To learn how the endpoint works, see [Azure OpenAI inference endpoint](../concepts/endpoints.md).
 
 1. Take note of the endpoint URL and credentials.
 
@@ -118,7 +118,7 @@ You can use any of the supported SDKs to get predictions out from the endpoint. 
 * Azure AI Inference package
 * Azure AI Projects package
 
-For more information and examples, see [Supported programming languages for Azure AI Inference SDK](../../model-inference/supported-languages.md). The following example shows how to use the Azure AI Inference package with the newly deployed model:
+For more information and examples, see [Supported programming languages for Azure AI Inference SDK](../supported-languages.md). The following example shows how to use the Azure AI Inference package with the newly deployed model:
 
 [!INCLUDE [code-create-chat-client](../../foundry-models/includes/code-create-chat-client.md)]
 
@@ -126,7 +126,7 @@ Generate your first chat completion:
 
 [!INCLUDE [code-create-chat-completion](../../foundry-models/includes/code-create-chat-completion.md)]
 
-Use the parameter `model="<deployment-name>` to route your request to this deployment. *Deployments work as an alias of a given model under certain configurations*. To learn how Foundry Models routes deployments, see [Routing](inference.md#routing).
+Use the parameter `model="<deployment-name>` to route your request to this deployment. *Deployments work as an alias of a given model under certain configurations*. To learn how Foundry Models routes deployments, see [Routing](../concepts/endpoints.md).
 
 
 ## Move from serverless API deployments to Foundry Models
@@ -184,4 +184,4 @@ Consider the following limitations when configuring your project to use Foundry 
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Add models to your endpoint](../../model-inference/how-to/create-model-deployments.md)
+> [Add models to your endpoint](./create-model-deployments.md)

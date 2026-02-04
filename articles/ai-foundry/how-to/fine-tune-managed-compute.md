@@ -109,5 +109,5 @@ Deploy from the job summary. Use a deployment name like `faq-v1`. Record model v
 ## Related content
 
 - [Fine-tune models overview](../concepts/fine-tuning-overview.md)
-- [Generate chat completions](../model-inference/how-to/use-chat-completions.md)
-- [Featured models](../concepts/models-featured.md)
+- [Generate chat completions](../openai/api-version-lifecycle.md)
+- [Featured models](../concepts/models-inference-examples.md)

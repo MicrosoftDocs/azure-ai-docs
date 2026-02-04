@@ -23,7 +23,7 @@ Weights & Biases (W&B) is a powerful AI developer platform that enables machine 
 
 ## Prerequisites
 
-- An Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md). The resource should be in a [region that supports fine-tuning](../concepts/models.md?pivots=azure-openai#fine-tuning-models).
+- An Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md). The resource should be in a [region that supports fine-tuning](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#fine-tuning-models).
 - Ensure all team members who need to fine-tune models have **Azure AI User** access assigned for the new Azure OpenAI resource.
 - A [Weights & Biases](https://wandb.ai) account and API key.
 - [Azure Key Vault](https://portal.azure.com/#create/Microsoft.KeyVault). For more information on creating a key vault, see the [Azure Key Vault quickstart](/azure/key-vault/general/quick-create-portal).

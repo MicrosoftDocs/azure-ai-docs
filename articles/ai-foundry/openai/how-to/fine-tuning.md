@@ -88,7 +88,7 @@ In this article, you learn how to:
 ## Related content
 
 - [Fine-tuning tutorial (step-by-step)](../tutorials/fine-tune.md)
-- [Model catalog and regional availability](../concepts/models.md)
+- [Model catalog and regional availability](../../foundry-models/concepts/models-sold-directly-by-azure.md)
 - [Quotas and limits](../quotas-limits.md)
 - [View and interpret evaluation results](../../how-to/evaluate-results.md)
 - [Trace AI application usage (OpenAI SDK)](../../how-to/develop/trace-application.md)

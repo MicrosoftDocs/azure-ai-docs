@@ -60,16 +60,16 @@ First, install Microsoft Foundry SDK's project client, which runs the AI Red Tea
 
 ::: moniker range="foundry-classic"
 
-```python
-uv install azure-ai-projects==1.1.0b3 azure-identity
+```bash
+pip install azure-ai-projects==1.1.0b3 azure-identity
 ```
 
 ::: moniker-end
 
 ::: moniker range="foundry"
 
-```python
-uv install azure-ai-projects>=2.0.0b1 azure-identity
+```bash
+pip install azure-ai-projects>=2.0.0b1 azure-identity
 ```
 
 ::: moniker-end
@@ -257,42 +257,44 @@ Create a red team to hold one or more runs that share a data source and risk cat
 # [Python](#tab/python)
 
 ```python
-def main() -> None:
-    load_dotenv()
+import os
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
 
-    endpoint = os.environ.get("AZURE_AI_PROJECT_ENDPOINT", "")
-    agent_name = os.environ.get("AZURE_AI_AGENT_NAME", "")
-    model_deployment = os.environ.get("AZURE_AI_MODEL_DEPLOYMENT_NAME", "")
-    data_folder = os.environ.get("DATA_FOLDER", "./redteam_outputs")
-    os.makedirs(data_folder, exist_ok=True)
+endpoint = os.environ["AZURE_AI_PROJECT_ENDPOINT"]
+model_deployment = os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"]
 
-    with (
-        DefaultAzureCredential() as credential,
-        AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
-        project_client.get_openai_client() as client,
-    ):
-        # (Optional) Create a new agent version for this run
-        agent_version = project_client.agents.create_version(
-            agent_name=agent_name,
-            definition=PromptAgentDefinition(
-                model=model_deployment,
-                instructions="You are a helpful assistant that answers general questions."
-            ),
-        )
-        print(f"[Agent] Created: id={agent_version.id}, name={agent_version.name}, version={agent_version.version}")
+with DefaultAzureCredential() as credential:
+    with AIProjectClient(endpoint=endpoint, credential=credential) as project_client:
+        client = project_client.get_openai_client()
 
-        # Create an Red Team
-        red_team_name = f"Red Team Agentic Safety Evaluation - {int(time.time())}"
-        data_source_config = {"type": "azure_ai_source", "scenario": "red_team"}
-        testing_criteria = _get_agent_safety_evaluation_criteria()
-
-        print("[Group] Creating red team...")
+        # Create a red team with built-in safety evaluators
         red_team = client.evals.create(
-            name=red_team_name,
-            data_source_config=data_source_config,
-            testing_criteria=testing_criteria, 
+            name="Red Team Agentic Safety Evaluation",
+            data_source_config={"type": "azure_ai_source", "scenario": "red_team"},
+            testing_criteria=[
+                {
+                    "type": "azure_ai_evaluator",
+                    "name": "Prohibited Actions",
+                    "evaluator_name": "builtin.prohibited_actions",
+                    "evaluator_version": "1"
+                },
+                {
+                    "type": "azure_ai_evaluator",
+                    "name": "Task Adherence",
+                    "evaluator_name": "builtin.task_adherence",
+                    "evaluator_version": "1",
+                    "initialization_parameters": {"deployment_name": model_deployment},
+                },
+                {
+                    "type": "azure_ai_evaluator",
+                    "name": "Sensitive Data Leakage",
+                    "evaluator_name": "builtin.sensitive_data_leakage",
+                    "evaluator_version": "1"
+                },
+            ],
         )
-        print(f"[Group] Created: id={red_team.id}, name={red_team.name}")
+        print(f"Created red team: {red_team.id}")
 ```
 
 # [cURL](#tab/curl)
@@ -319,7 +321,10 @@ curl --request POST \
       "type": "azure_ai_evaluator",
       "name": "Task Adherence",
       "evaluator_name": "builtin.task_adherence",
-      "evaluator_version": "1"
+      "evaluator_version": "1",
+      "initialization_parameters": {
+        "deployment_name": "{{model_deployment}}"
+      }
     },
     {
       "type": "azure_ai_evaluator",
@@ -372,33 +377,32 @@ To red team for the agentic risk category of prohibited actions, you need to be 
 # [Python](#tab/python)
 
 ```python
-print("[Taxonomy] Creating...")
+from azure.ai.projects.models import (
+    AzureAIAgentTarget,
+    AgentTaxonomyInput,
+    EvaluationTaxonomy,
+    RiskCategory,
+)
+
+# Define the agent target for taxonomy generation
 target = AzureAIAgentTarget(
     name=agent_name,
     version=agent_version.version,
-    tool_descriptions=_get_tool_descriptions(agent_version),
-)
-taxonomy_input = AgentTaxonomyInput(
-    risk_categories=[RiskCategory.PROHIBITED_ACTIONS],  # add more risks if desired
-    target=target
-)  # type: ignore
-
-eval_taxonomy = EvaluationTaxonomy(
-    description="Taxonomy for red teaming run",
-    taxonomy_input=taxonomy_input,
 )
 
+# Create taxonomy for prohibited actions risk category
 taxonomy = project_client.evaluation_taxonomies.create(
-    name=agent_name,  # you can choose another unique taxonomy name
-    body=eval_taxonomy
+    name=agent_name,
+    body=EvaluationTaxonomy(
+        description="Taxonomy for red teaming run",
+        taxonomy_input=AgentTaxonomyInput(
+            risk_categories=[RiskCategory.PROHIBITED_ACTIONS],
+            target=target
+        ),
+    )
 )
-taxonomy_file_id = taxonomy.id  # used as the 'file_id' source for runs
-
-# Save taxonomy metadata for reference
-taxonomy_path = os.path.join(data_folder, f"taxonomy_{agent_name}.json")
-with open(taxonomy_path, "w") as f:
-    f.write(json.dumps(_to_json_primitive(taxonomy), indent=2))
-print(f"[Taxonomy] Created. Saved to {taxonomy_path}")
+taxonomy_file_id = taxonomy.id
+print(f"Created taxonomy: {taxonomy_file_id}")
 ```
 
 # [cURL](#tab/curl)
@@ -418,7 +422,7 @@ curl --request PUT \
       "tool_descriptions": [
         {
           "name": "Dragon APIs",
-          "description": "APIs to get information from local RAG          "description": "APIs to get information from local RAG applications"
+          "description": "APIs to get information from local RAG applications"
         }
       ]
     },
@@ -426,6 +430,7 @@ curl --request PUT \
       "ProhibitedActions"
     ]
   }
+}'
 ```
 
 ---
@@ -447,27 +452,22 @@ A run generates items from a source (for example, taxonomy) and red teams the ta
 # [Python](#tab/python)
 
 ```python
-eval_run_name = f"Red Team Agent Safety Eval Run for {agent_name} - {int(time.time())}"
-
-print("[Run] Creating eval run...")
+# Create a red team run with attack strategies
 eval_run = client.evals.runs.create(
     eval_id=red_team.id,
-    name=eval_run_name,
-    data_source={  
+    name="Red Team Agent Safety Eval Run",
+    data_source={
         "type": "azure_ai_red_team",
         "item_generation_params": {
             "type": "red_team_taxonomy",
             "attack_strategies": ["Flip", "Base64", "IndirectJailbreak"],
             "num_turns": 5,
-            "source": {
-                "type": "file_id",
-                "id": taxonomy_file_id,
-            },
+            "source": {"type": "file_id", "id": taxonomy_file_id},
         },
         "target": target.as_dict(),
     },
 )
-print(f"[Run] Created: id={eval_run.id}, name={eval_run.name}, status={eval_run.status}")
+print(f"Created run: {eval_run.id}, status: {eval_run.status}")
 ```
 
 # [cURL](#tab/curl)
@@ -529,10 +529,12 @@ Use this to check status of your red teaming run (for example, queued, running, 
 # [Python](#tab/python)
 
 ```python
-print("[Run] Polling for completion...")
+import time
+
+# Poll for run completion
 while True:
     run = client.evals.runs.retrieve(run_id=eval_run.id, eval_id=red_team.id)
-    print(f"    status={run.status}")
+    print(f"Status: {run.status}")
     if run.status in ("completed", "failed", "canceled"):
         break
     time.sleep(5)

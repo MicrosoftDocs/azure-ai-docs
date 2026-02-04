@@ -39,7 +39,7 @@ Azure works closely with OpenAI to release new model versions. When a new versio
 
 As a customer of Azure OpenAI models, you might notice some changes in the model behavior and compatibility after a version upgrade. These changes might affect your applications and workflows that rely on the models. Here are some tips to help you prepare for version upgrades:
 
-* Read [what’s new](../whats-new.md) and [models](../concepts/models.md) to understand the changes and new features.
+* Read [what’s new](../whats-new.md) and [models](../../foundry-models/concepts/models-sold-directly-by-azure.md) to understand the changes and new features.
 * Read the documentation on [model deployments](../how-to/create-resource.md) and [version upgrades](../how-to/working-with-models.md) to understand how to work with model versions.
 * Test your applications and workflows with the new model version after release.
 * Update your code and configuration to use the new features and capabilities of the new model version.
@@ -55,5 +55,5 @@ versions as part of the default model version upgrade process.
 ## Next Steps
 
 - [Learn more about working with Azure OpenAI models](../how-to/working-with-models.md)
-- [Learn more about Azure OpenAI model regional availability](../concepts/models.md)
-- [Learn more about Azure OpenAI](../overview.md)
+- [Learn more about Azure OpenAI model regional availability](../../foundry-models/concepts/models-sold-directly-by-azure.md)
+- [Learn more about Azure OpenAI](../../foundry-models/concepts/models-sold-directly-by-azure.md)

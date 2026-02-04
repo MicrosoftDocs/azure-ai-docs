@@ -2,8 +2,9 @@
 author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 7/17/2025
+ms.date: 1/29/2026
 ms.author: pafarley
+ai-usage: ai-assisted
 ---
 
 [!INCLUDE [Header](../../common/javascript.md)]
@@ -14,7 +15,7 @@ ms.author: pafarley
 
 [!INCLUDE [Prerequisites](../../common/azure-prerequisites.md)]
 
-## Set up
+## Set up the environment
 
 1. Create a new folder `translation-quickstart` and go to the quickstart folder with the following command:
 
@@ -70,7 +71,7 @@ To translate speech from a file:
                     if (cancellation.reason === CancellationReason.Error) {
                         console.log(`CANCELED: ErrorCode=${cancellation.ErrorCode}`);
                         console.log(`CANCELED: ErrorDetails=${cancellation.errorDetails}`);
-                        console.log("CANCELED: Did you set the speech resource key and region values?");
+                        console.log("CANCELED: Did you set the speech resource key and endpoint values?");
                     }
                     break;
             }

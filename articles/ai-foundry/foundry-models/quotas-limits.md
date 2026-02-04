@@ -106,4 +106,4 @@ You can modify the [reasoning effort](../openai/how-to/reasoning.md) parameter t
 
 ## Next steps
 
-* Learn more about the [models available in Foundry Models](../model-inference/concepts/models.md)
+* Learn more about the [models available in Foundry Models](./concepts/models-sold-directly-by-azure.md)

@@ -23,9 +23,6 @@ _repo.*/
 .github/chatmodes/*.*
 .github/*.*
 
-
-articles/ai-foundry/includes/get-started-fdp.md
-articles/ai-foundry/toc-files/setup-management/toc.yml
 # Dev-kit instructions and prompts
 
 dk-env/
@@ -42,3 +39,4 @@ specs/
 .env
 .env.example
 requirements.txt
+.roo

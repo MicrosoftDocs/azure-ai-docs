@@ -16,14 +16,12 @@ ms.custom:
 
 # Azure OpenAI and features in Azure Government
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
-
 This article highlights the differences when using Azure OpenAI in Azure Government as compared to the commercial cloud offering. Learn more about the Azure OpenAI itself in [Azure OpenAI documentation](/azure/ai-foundry/openai/).
 <br><br>
 
 ## Azure OpenAI models
 
-Learn more about the different capabilities of each model in [Azure OpenAI models](./concepts/models.md). For customers with [Business Continuity and Disaster Recovery (BCDR) considerations](./how-to/business-continuity-disaster-recovery.md), take careful note of the deployment types, regions, and model availability as not all model/type combinations are available in both regions. 
+Learn more about the different capabilities of each model in [Azure OpenAI models](../foundry-models/concepts/models-sold-directly-by-azure.md). For customers with [Business Continuity and Disaster Recovery (BCDR) considerations](./how-to/business-continuity-disaster-recovery.md), take careful note of the deployment types, regions, and model availability as not all model/type combinations are available in both regions. 
 
 The following sections show model availability by region and deployment type. Models and versions not listed are not currently available in Azure Government. For general limits, quotas, and other details refer to [Azure OpenAI quotas and limits](/azure/ai-foundry/openai/quotas-limits/). 
 
@@ -55,6 +53,16 @@ To request quota increases for these models, submit a request at [https://aka.ms
 | usgovarizona   | - | ✅ | ✅ | - | ✅ |
 | usgovvirginia  | - | ✅ | ✅ | - | ✅ |
 | USGov DataZone | ✅| ✅| -  | ✅  | -  |
+
+<br>
+
+### Model Capabilities
+Not all model capabilities are deployed to Azure Government. General information can be found at [Foundry Models sold directly by Azure](/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure). The following shows any relevant differences in Azure Government.
+
+|  Model ID  | Context window | 
+|  --- |  :--- |
+| `gpt-4.1` (2025-04-14)   | - 1,047,576 (not offered) <br> - 128,000 (standard & provisioned managed deployments) |
+| `gpt-4.1-mini` (2025-04-14) | - 1,047,576 (not offered) <br> - 128,000 (standard & provisioned managed deployments) 
 
 <br>
 

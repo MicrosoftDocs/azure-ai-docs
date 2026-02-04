@@ -86,7 +86,7 @@ There are several factors that you can control to improve per-call latency of yo
 
 ### Model selection
 
-Latency varies based on what model you're using. For an identical request, expect that different models have different latencies for the chat completions call. If your use case requires the lowest latency models with the fastest response times, we recommend the latest [GPT-4o mini model](../concepts/models.md).
+Latency varies based on what model you're using. For an identical request, expect that different models have different latencies for the chat completions call. If your use case requires the lowest latency models with the fastest response times, we recommend the latest [GPT-4o mini model](../../foundry-models/concepts/models-sold-directly-by-azure.md).
 
 ### Generation size and Max tokens
 
@@ -165,7 +165,7 @@ Time from the first token to the last token, divided by the number of generated 
 
 ## Summary
 
-* **Model latency**: If model latency is important to you, we recommend trying out the [GPT-4o mini model](../concepts/models.md).
+* **Model latency**: If model latency is important to you, we recommend trying out the [GPT-4o mini model](../../foundry-models/concepts/models-sold-directly-by-azure.md).
 
 * **Lower max tokens**: OpenAI has found that even in cases where the total number of tokens generated is similar the request with the higher value set for the max token parameter will have more latency.
 

@@ -60,8 +60,8 @@ When you use the Foundry SDK, it logs evaluation results in your Foundry project
 
 1. Install the Microsoft Foundry SDK project client to run evaluations in the cloud:
 
-   ```python
-   uv install azure-ai-projects azure-identity
+   ```bash
+   pip install azure-ai-projects azure-identity
    ```
 
    > [!NOTE]
@@ -103,9 +103,9 @@ When you use the Foundry SDK, it logs evaluation results in your Foundry project
 
 1. Install the Microsoft Foundry SDK project client that runs the evaluations in the cloud:
 
-   ```python
+   ```bash
 
-   uv install azure-ai-projects azure-identity 
+   pip install azure-ai-projects azure-identity 
 
    ```
 
@@ -114,8 +114,7 @@ When you use the Foundry SDK, it logs evaluation results in your Foundry project
 
 1. Set your environment variables for your Foundry resources:
 
-    ``` python
-    
+    ```python
     import os
     
     # Azure AI Project endpoint
@@ -129,23 +128,19 @@ When you use the Foundry SDK, it logs evaluation results in your Foundry project
     # Dataset details
     dataset_name = os.environ.get("DATASET_NAME", "")
     dataset_version = os.environ.get("DATASET_VERSION", "1")
-    
     ```
 
 1. Define a client that runs your evaluations in the cloud:
 
    ```python
-
    from azure.identity import DefaultAzureCredential 
    from azure.ai.projects import AIProjectClient 
 
    # Create the project client (Foundry project and credentials): 
-
    project_client = AIProjectClient( 
        endpoint=endpoint, 
        credential=DefaultAzureCredential(), 
    ) 
-
    ```
 
 ::: moniker-end

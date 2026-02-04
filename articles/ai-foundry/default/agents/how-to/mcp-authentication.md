@@ -127,9 +127,52 @@ When you set up **custom OAuth**, provide the following information:
 - client ID: required
 - client secret: optional (depends on your OAuth app)
 - auth URL: required
-- refresh URL: required
-- token URL: required
+- refresh URL: required (If you don't have a separate refresh URL, you can use token URL instead.)
+- token URL: required 
 - scopes: optional
+
+### Flow using OAuth Identity Passthrough
+
+The scope of OAuth is per tool(connection) name per Foundry project, which means, each new user using a new tool(connection) in this Foundry project will be prompted to provide consent. 
+- When a user is firstly trying to use a new tool in this Foundry project, the response output will share the consent link in `response.output_item`. You can find the consent link in item.type `oauth_consent_request`, under `consent_link`. You need to surface this consent link to user. 
+   ```json
+   "type":"response.output_item.done",
+   "sequence_number":7,
+   "output_index":1,
+   "item":{
+      "type":"oauth_consent_request",
+      "id":"oauthreq_10b0f026610e2b76006981547b53d48190840179e52f39a0aa",
+      "created_by":{},
+      "consent_link":"https://logic-swedencentral-001.consent.azure-apihub.net/login?data=xxxx"
+   }
+   ```
+   See an example:
+   :::image type="content" source="../../media/mcp/foundry-open-consent.png" alt-text="Screenshot for giving consent in Foundry NextGen Portal." lightbox="../../media/mcp/foundry-open-consent.png":::
+
+- The user will be prompted to log in and give consent after reviewing the access needed. After giving consent successfully, user should see a dialog like this: 
+   :::image type="content" source="../../media/mcp/foundry-close-me.png" alt-text="Screenshot after giving consent to OAuth in Foundry NextGen Portal." lightbox="../../media/mcp/foundry-close-me.png":::
+
+- After the user has closed the dialog, you need to submit another response with the previous response id
+
+   ```python
+   # Requires: azure-ai-projects >= 1.0.0
+   from azure.ai.projects import AIProjectClient
+   from azure.identity import DefaultAzureCredential
+
+   # Submit another response after user consent
+   response = client.responses.create(
+       previous_response_id="YOUR_PREVIOUS_RESPONSE_ID",
+       input=user_input,
+       extra_body={
+           "agent": {"name": agent.name, "type": "agent_reference"},
+           "tool_choice": "required",
+           "stream": True
+       },
+   )
+   ```
+
+Once the user has signed in and given consent once, they don't need to give consent in the future. 
+
 
 ### Bring your own Microsoft Entra app registration
 
@@ -220,7 +263,7 @@ The Agent Service runtime only accepts a remote MCP server endpoint. If you want
 
 | Local MCP server setup | Hosting in Azure Container Apps | Hosting in Azure Functions |
 | :---------: | :---------: | :---------: |
-| **Transport** | HTTP POST/GET endpoints required. | HTTP streamable required. |
+| **Transport** | HTTP POST/GET endpoints required. | HTTP streamable required (responses must support chunked transfer encoding for SSE-style streaming). |
 | **Code changes** | The container must rebuild. | Azure Functions-specific configuration files required in the root directory. |
 | **Authentication** | Custom authentication implementation required. | Use [built-in authentication][app-service-auth] or custom code.<br/><br/>Azure Functions requires a key by default, but you can [disable the key requirement in host.json][func-host-json]. |
 | **Language stack** | Any language that runs in Linux containers (Python, Node.js, .NET, TypeScript, Go). | Python, Node.js, TypeScript, Java, .NET only. |

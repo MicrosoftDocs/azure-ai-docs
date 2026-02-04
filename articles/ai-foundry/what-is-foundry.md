@@ -227,7 +227,7 @@ Foundry is available in most regions where Foundry Tools are available. For more
 
 :::moniker range="foundry-classic"
 
-You can [explore Foundry portal (classic) (including the model catalog)](./how-to/model-catalog-overview.md) without signing in. 
+You can [explore Foundry portal (classic) (including the model catalog)](./concepts/foundry-models-overview.md) without signing in. 
 
 But for full functionality, you need an [Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). 
 

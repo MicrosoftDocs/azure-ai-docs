@@ -33,7 +33,7 @@ The Agent Service supports the following [models](./concepts/model-region-suppor
 
 ### Computer Use tool
 
-The [Computer Use](./how-to/tools/computer-use.md) tool is now available in preview. Computer Use is a specialized AI tool that uses a specialized model that can perform tasks by interacting with computer systems and applications through their user interfaces.
+The [Computer Use](how-to/tools-classic/computer-use.md) tool is now available in preview. Computer Use is a specialized AI tool that uses a specialized model that can perform tasks by interacting with computer systems and applications through their user interfaces.
 
 ## August 2025
 
@@ -42,16 +42,16 @@ The [Computer Use](./how-to/tools/computer-use.md) tool is now available in prev
 The public preview of the Azure AI Agent Service Java SDK is available. See the following articles for code samples:
 
 * [quickstart](./quickstart.md?pivots=programming-language-java)
-* [Azure AI Search](./how-to/tools/azure-ai-search-samples.md?pivots=java)
-* [Azure Functions](./how-to/tools/azure-functions-samples.md?pivots=java) 
-* [Code interpreter](./how-to/tools/code-interpreter-samples.md?pivots=java) 
-* [File search](./how-to/tools/file-search-upload-files.md?pivots=java)
-* [Grounding with Bing Search](./how-to/tools/bing-code-samples.md?pivots=java)
-* [OpenAPI based tools](./how-to/tools/openapi-spec-samples.md?pivots=java)
+* [Azure AI Search](./how-to/tools-classic/azure-ai-search-samples.md?pivots=java)
+* [Azure Functions](./how-to/tools-classic/azure-functions-samples.md?pivots=java) 
+* [Code interpreter](./how-to/tools-classic/code-interpreter.md) 
+* [File search](./how-to/tools-classic/file-search-upload-files.md?pivots=java)
+* [Grounding with Bing Search](./how-to/tools-classic/bing-code-samples.md?pivots=java)
+* [OpenAPI based tools](./how-to/tools-classic/openapi-spec-samples.md?pivots=java)
 
 ### Browser Automation tool
 
-The [Browser Automation tool](./how-to/tools/browser-automation.md) is now available in Public Preview. This tool enables you to perform real-world browser tasks through natural language prompts in an isolated browser session using your own provisioned [Microsoft Playwright Workspaces](/azure/playwright-testing/overview-what-is-microsoft-playwright-testing).
+The [Browser Automation tool](how-to/tools-classic/browser-automation.md) is now available in Public Preview. This tool enables you to perform real-world browser tasks through natural language prompts in an isolated browser session using your own provisioned [Microsoft Playwright Workspaces](/azure/playwright-testing/overview-what-is-microsoft-playwright-testing).
 
 ### New regional availability
 
@@ -64,11 +64,11 @@ The Agent Service is now available in the following [regions](./concepts/model-r
 
 ### Deep Research tool
 
-Use the [Deep Research tool](./how-to/tools/deep-research.md) to utilize a multi-step research process built on top of the Azure OpenAI `o3-deep-research` model and uses the Grounding with Bing Search as the knowledge source.
+Use the [Deep Research tool](how-to/tools-classic/deep-research.md) to utilize a multi-step research process built on top of the Azure OpenAI `o3-deep-research` model and uses the Grounding with Bing Search as the knowledge source.
 
 ### Model Context Protocol (MCP) tool
 
-You can new extend the capabilities of your agents by connecting them to tools hosted on remote [Model Context Protocol](https://modelcontextprotocol.io/introduction) (MCP) servers by using the [MCP tool](./how-to/tools/model-context-protocol.md). 
+You can new extend the capabilities of your agents by connecting them to tools hosted on remote [Model Context Protocol](https://modelcontextprotocol.io/introduction) (MCP) servers by using the [MCP tool](how-to/tools-classic/model-context-protocol.md). 
 
 ## May 2025
 
