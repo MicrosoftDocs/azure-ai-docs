@@ -84,12 +84,7 @@ Use the following values in the code samples.
 | Model deployment name (`deployed_LLM`) | Find it in your Microsoft Foundry project model deployments. | `gpt-4.1-mini` |
 
 > [!TIP]
-> Store these values in a `.env` file for local development:
-> ```
-> PROJECT_ENDPOINT=https://your-resource.services.ai.azure.com/api/projects/your-project
-> SEARCH_ENDPOINT=https://your-search-service.search.windows.net
-> KNOWLEDGE_BASE_NAME=hr-policy-kb
-> ```
+> We recommend you store the project endpoint, search endpoint, and knowledge base name in a `.env` file for local development.
 
 ## Create a project connection
 
