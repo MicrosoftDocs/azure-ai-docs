@@ -16,8 +16,6 @@ ms.custom:
 
 # Azure OpenAI and features in Azure Government
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
-
 This article highlights the differences when using Azure OpenAI in Azure Government as compared to the commercial cloud offering. Learn more about the Azure OpenAI itself in [Azure OpenAI documentation](/azure/ai-foundry/openai/).
 <br><br>
 
@@ -55,6 +53,16 @@ To request quota increases for these models, submit a request at [https://aka.ms
 | usgovarizona   | - | ✅ | ✅ | - | ✅ |
 | usgovvirginia  | - | ✅ | ✅ | - | ✅ |
 | USGov DataZone | ✅| ✅| -  | ✅  | -  |
+
+<br>
+
+### Model Capabilities
+Not all model capabilities are deployed to Azure Government. General information can be found at [Foundry Models sold directly by Azure](/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure). The following shows any relevant differences in Azure Government.
+
+|  Model ID  | Context window | 
+|  --- |  :--- |
+| `gpt-4.1` (2025-04-14)   | - 1,047,576 (not offered) <br> - 128,000 (standard & provisioned managed deployments) |
+| `gpt-4.1-mini` (2025-04-14) | - 1,047,576 (not offered) <br> - 128,000 (standard & provisioned managed deployments) 
 
 <br>
 
