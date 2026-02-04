@@ -57,27 +57,39 @@ Let's begin:
 
 ## Configure orchestration
 
-Connect your existing language fine-tuning tasks to create a unified orchestration layer that routes user inputs to the appropriate model. Define more routing intents only when user inputs are ambiguous and need extra logic to identify the correct task.
+Connect your existing **Conversational Language Understanding** (CLU) and **Custom Question Answering** (CQA) fine-tuning tasks to create a unified orchestration layer that routes user inputs to the appropriate model. You can define more routing intents when user inputs are ambiguous and need extra logic to identify the correct task.
 
-1. To add existing **`CLU`** or **`CQA`** models to your orchestration workflow, from the **Getting started** menu select the **Configure orchestration** section  from within your project. Here, you can link your fine-tuning tasks and add intents from your existing models to the orchestration workflow.
+1. To add existing **`CLU`** or **`CQA`** models to your orchestration workflow, navigate to your fine-tuning project and select the **Configure orchestration** section from the **Getting started** menu. There, you can link your fine-tuning tasks and add intents from your existing models to the orchestration workflow.
 
    :::image type="content" source="../../media/orchestration-workflow-overview.png" alt-text="Screenshot of orchestration workflow overview in the Foundry." lightbox="../../media/orchestration-workflow-overview.png":::
 
-1. Link your tasks by selecting the **Link fine-tuning task** button and selecting the **Task type** (Conversational LanguageUnderstanding or CustomQuestionAnswering) and **Fine-tuning task name** dropdown menus. The **Intent name** field automatically populates with the same name as the **fine-tuning task name** field. Once everything is set, select **Add** to continue.
+1. Link your tasks by selecting the radio button next to the task you want to link, and then selecting the **Link fine-tuning task** from the top navigation bar. The **Orchestration intent name** field automatically populates with the same name as the **Fine-tuning task name** field.
 
    :::image type="content" source="../../media/orchestration-link-tasks.png" alt-text="Screenshot of linking tasks in orchestration workflow in the Foundry.":::
 
-1. To add routing intents, select the **+ Add intent** button. In the window that appears, provide a unique name for your intent in the **Intent name** field, then select **Add** to continue.
+1. Once this step is complete, the status for your linked tasks changes from **Unlinked** to **Linked** in the **Configure orchestration** section.
 
-   :::image type="content" source="../../media/orchestration-add-intent.png" alt-text="Screenshot of adding intents in orchestration workflow in the Foundry.":::
+   :::image type="content" source="../../media/orchestration-linked-tasks.png" alt-text="Screenshot of linked tasks in orchestration workflow in the Foundry.":::
+
+1. You can add more fine-tuning tasks for your orchestration workflow by repeating steps 2 and 3 as needed.
+
+1. You can unlink a task by selecting the task you want to unlink and then selecting the **Unlink fine-tuning task** button from the top navigation bar.
+
+1. To add routing intents, select the **Intents** tab from the top navigation bar. In the window that appears, select the **+ Add intent** button, provide a unique name for your intent in the **Intent name** field, then select **Add** to continue.
+
+   :::image type="content" source="../../media/orchestration-add-intent.png" alt-text="Screenshot of adding intents in orchestration workflow in the Foundry." lightbox="../../media/orchestration-add-intent.png":::
 
 ## Add training data
 
-1. Navigate to the Manage Data tab and add your utterances file. For this project, you can download our [**sample utterances file**](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/language-service/CLU/clu_utterances.json) which comes preconfigured with labeled utterances.
+1. Navigate to the Manage Data tab. For this project, use one of your existing **Conversational Language Understanding** (CLU) projects. If your existing project does not include labeled utterances, you can download our [**sample utterances file**](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/language-service/CLU/clu_utterances.json) which comes preconfigured with labeled utterances.
+
+1. Select the **Upload utterances** button to upload your utterances file in JSON format.
+
+   :::image type="content" source="../../media/upload-utterances.png" alt-text="Screenshot of uploading utterances in orchestration workflow in the Foundry.":::
 
 1. After uploading your utterances file, select the **unlinked intents** from the Insights pane. This action allows you to map these intents to the appropriate linked tasks within your orchestration workflow.
 
-   :::image type="content" source="../../media/select-unlinked-intents.png" alt-text="Screenshot of unlinked intents in orchestration workflow in the Foundry." lightbox="../../media/select-unlinked-intents.png":::
+   :::image type="content" source="../../media/select-unlinked-intents.png" alt-text="Screenshot of unlinked intents in orchestration workflow in the Foundry.":::
 
 ## Train your model
 
