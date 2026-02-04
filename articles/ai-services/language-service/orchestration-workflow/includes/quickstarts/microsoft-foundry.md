@@ -3,7 +3,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 01/09/2026
+ms.date: 02/03/2026
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD041 -->
@@ -11,8 +11,8 @@ ms.author: lajanuar
 
 > [!NOTE]
 >
-> * If you already have an Azure Language in Foundry Tools or multi-service resource you can continue to use those existing Language resources within the Microsoft Foundry portal via a Foundry Hub project.
-> * For more information, see [How to use Foundry Tools in the Foundry portal](/azure/ai-services/connect-services-ai-foundry-portal).
+> * If you already have an Azure Language in Foundry Tools or multi-service resource, you can continue to use those existing Language resources within the Microsoft Foundry portal via a Foundry Hub project.
+> * For more information, see [How to use Foundry Tools in the Foundry portal](../../../../connect-services-foundry-portal.md)
 > * We highly recommended that you use a Foundry resource in the Foundry; however, you can also follow these instructions using a Language resource.
 
 <!-- markdownlint-disable MD032 -->
@@ -55,15 +55,21 @@ Let's begin:
 
 1. After creating the orchestration workflow project, you'll be directed to the project overview page. Here, you can manage your project settings, monitor training progress, and access various tools to enhance your model.
 
-## Link tasks
+## Configure orchestration
 
-1. To add existing **`CLU`** or **`CQA`** models to your orchestration workflow, navigate to the **Link tasks** button within your project. Here, you can add intents and entities from your existing models to the orchestration workflow.
+Connect your existing language fine-tuning tasks to create a unified orchestration layer that routes user inputs to the appropriate model. Define more routing intents only when user inputs are ambiguous and need extra logic to identify the correct task.
+
+1. To add existing **`CLU`** or **`CQA`** models to your orchestration workflow, from the **Getting started** menu select the **Configure orchestration** section  from within your project. Here, you can link your fine-tuning tasks and add intents from your existing models to the orchestration workflow.
 
    :::image type="content" source="../../media/orchestration-workflow-overview.png" alt-text="Screenshot of orchestration workflow overview in the Foundry." lightbox="../../media/orchestration-workflow-overview.png":::
 
-1. Link your tasks by selecting from the **Task type** and **Fine-tuning task name** dropdown menus. The **Intent name** field automatically populates with the same name as the **fine-tuning task name** field. Once everything is set, select **Add** to continue.
+1. Link your tasks by selecting the **Link fine-tuning task** button and selecting the **Task type** (Conversational LanguageUnderstanding or CustomQuestionAnswering) and **Fine-tuning task name** dropdown menus. The **Intent name** field automatically populates with the same name as the **fine-tuning task name** field. Once everything is set, select **Add** to continue.
 
    :::image type="content" source="../../media/orchestration-link-tasks.png" alt-text="Screenshot of linking tasks in orchestration workflow in the Foundry.":::
+
+1. To add routing intents, select the **+ Add intent** button. In the window that appears, provide a unique name for your intent in the **Intent name** field, then select **Add** to continue.
+
+   :::image type="content" source="../../media/orchestration-add-intent.png" alt-text="Screenshot of adding intents in orchestration workflow in the Foundry.":::
 
 ## Add training data
 
