@@ -103,6 +103,9 @@ When truncation occurs:
 
 ### `appended_text_after_truncation`
 
+> [!NOTE]
+> The `appended_text_after_truncation` parameter is a server-side feature that can be set via JSON payloads. SDK support for this parameter is not yet available in the current preview versions. Use the JSON payload approach shown in the example configuration section.
+
 Sometimes developers may want to inform the LLM that the user interrupted the response, rather than simply truncating it silently. In this case, `appended_text_after_truncation` can be set to a string value.
 
 When truncation occurs, the service appends this string to the truncated response before updating the session context.
@@ -114,16 +117,17 @@ When truncation occurs, the service appends this string to the truncated respons
 - User interrupts after: `"Hello, how"`
 - Final context stored: `"Hello, how [The user interrupted me.]"`
 
-> **Note:** When using this feature, developers should update the system prompt to inform the LLM about this behavior and test carefully to avoid unexpected results.
+> [!IMPORTANT]
+> When using this feature, update your system prompt to inform the LLM about this behavior and test carefully to avoid unexpected results.
 
 ## Supported VAD Types
 
-| VAD Type                         | `auto_truncate` | `appended_text_after_truncation` |
-| -------------------------------- | --------------- | -------------------------------- |
-| `azure_semantic_vad`             | ✅               | ✅                                |
-| `azure_semantic_vad_multilingual`| ✅               | ✅                                |
-| `server_vad`                     | ✅               | ❌                                |
-| `semantic_vad` (OpenAI)          | ✅               | ❌                                |
+| VAD Type                           | `auto_truncate` | `appended_text_after_truncation` |
+|:-----------------------------------|:---------------:|:--------------------------------:|
+| `azure_semantic_vad`               | ✅              | ✅                               |
+| `azure_semantic_vad_multilingual`  | ✅              | ✅                               |
+| `server_vad`                       | ✅              | ❌                               |
+| `semantic_vad` (OpenAI)            | ✅              | ❌                               |
 
 ## Example Configuration
 
@@ -131,16 +135,15 @@ When truncation occurs, the service appends this string to the truncated respons
 ```python
 from azure.ai.voicelive.models import (
     RequestSession,
-    AzureSemanticVadTurnDetection,
+    AzureSemanticVad,
 )
 
 # Configure session with auto truncation enabled
 session_config = RequestSession(
     instructions="You are a helpful assistant.",
-    turn_detection=AzureSemanticVadTurnDetection(
+    turn_detection=AzureSemanticVad(
         interrupt_response=True,
-        auto_truncate=True,
-        appended_text_after_truncation=" [The user interrupted me.]"
+        auto_truncate=True
     )
 )
 
@@ -159,12 +162,27 @@ var sessionOptions = new VoiceLiveSessionOptions
     TurnDetection = new AzureSemanticVadTurnDetection
     {
         InterruptResponse = true,
-        AutoTruncate = true,
-        AppendedTextAfterTruncation = " [The user interrupted me.]"
+        AutoTruncate = true
     }
 };
 
-await session.ConfigureSessionAsync(sessionOptions).ConfigureAwait(false);
+// Update session configuration
+var sessionUpdatePayload = new
+{
+    type = "session.update",
+    session = new
+    {
+        instructions = sessionOptions.Instructions,
+        turn_detection = new
+        {
+            type = "azure_semantic_vad",
+            interrupt_response = true,
+            auto_truncate = true
+        }
+    }
+};
+BinaryData eventData = BinaryData.FromObjectAsJson(sessionUpdatePayload);
+await session.SendCommandAsync(eventData, cancellationToken).ConfigureAwait(false);
 ```
 ::: zone-end
 
@@ -175,27 +193,29 @@ import com.azure.ai.voicelive.models.*;
 // Configure session with auto truncation enabled
 AzureSemanticVadTurnDetection turnDetection = new AzureSemanticVadTurnDetection()
     .setInterruptResponse(true)
-    .setAutoTruncate(true)
-    .setAppendedTextAfterTruncation(" [The user interrupted me.]");
+    .setAutoTruncate(true);
 
-RequestSession sessionConfig = new RequestSession()
+VoiceLiveSessionOptions sessionOptions = new VoiceLiveSessionOptions()
     .setInstructions("You are a helpful assistant.")
     .setTurnDetection(turnDetection);
 
-session.sendEvent(new ClientEventSessionUpdate().setSession(sessionConfig)).subscribe();
+// Send session update
+session.sendEvent(new ClientEventSessionUpdate(sessionOptions)).subscribe();
 ```
 ::: zone-end
 
 ::: zone pivot="programming-language-javascript"
 ```javascript
 // Configure session with auto truncation enabled
-await session.updateSession({
-    instructions: "You are a helpful assistant.",
-    turnDetection: {
-        type: "azure_semantic_vad",
-        interruptResponse: true,
-        autoTruncate: true,
-        appendedTextAfterTruncation: " [The user interrupted me.]"
+await session.sendEvent({
+    type: "session.update",
+    session: {
+        instructions: "You are a helpful assistant.",
+        turn_detection: {
+            type: "azure_semantic_vad",
+            interrupt_response: true,
+            auto_truncate: true
+        }
     }
 });
 ```
@@ -205,14 +225,123 @@ The equivalent JSON payload for the session configuration:
 
 ```json
 {
-  "turn_detection": {
-    "type": "azure_semantic_vad",
-    "interrupt_response": true,
-    "auto_truncate": true,
-    "appended_text_after_truncation": " [The user interrupted me.]"
+  "type": "session.update",
+  "session": {
+    "instructions": "You are a helpful assistant.",
+    "turn_detection": {
+      "type": "azure_semantic_vad",
+      "interrupt_response": true,
+      "auto_truncate": true
+    }
   }
 }
 ```
+
+### Using `appended_text_after_truncation` via JSON
+
+To use the `appended_text_after_truncation` feature (which is not yet available in SDK typed classes), send the **entire** session configuration as a raw JSON payload. You don't need to call the SDK methods first—a single raw JSON `session.update` replaces any previous configuration:
+
+```json
+{
+  "type": "session.update",
+  "session": {
+    "instructions": "You are a helpful assistant.",
+    "turn_detection": {
+      "type": "azure_semantic_vad",
+      "interrupt_response": true,
+      "auto_truncate": true,
+      "appended_text_after_truncation": " [The user interrupted me.]"
+    }
+  }
+}
+```
+
+In your code, use the raw JSON approach:
+
+::: zone pivot="programming-language-python"
+```python
+# Send session update with appended_text_after_truncation via raw dict
+# Note: conn.send() accepts a dict - the SDK handles JSON serialization internally
+session_update = {
+    "type": "session.update",
+    "session": {
+        "instructions": "You are a helpful assistant.",
+        "turn_detection": {
+            "type": "azure_semantic_vad",
+            "interrupt_response": True,
+            "auto_truncate": True,
+            "appended_text_after_truncation": " [The user interrupted me.]"
+        }
+    }
+}
+await conn.send(session_update)
+```
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
+```csharp
+// Send session update with appended_text_after_truncation via JSON
+var sessionUpdatePayload = new
+{
+    type = "session.update",
+    session = new
+    {
+        instructions = "You are a helpful assistant.",
+        turn_detection = new
+        {
+            type = "azure_semantic_vad",
+            interrupt_response = true,
+            auto_truncate = true,
+            appended_text_after_truncation = " [The user interrupted me.]"
+        }
+    }
+};
+BinaryData eventData = BinaryData.FromObjectAsJson(sessionUpdatePayload);
+await session.SendCommandAsync(eventData, cancellationToken).ConfigureAwait(false);
+```
+::: zone-end
+
+::: zone pivot="programming-language-java"
+```java
+import com.azure.core.util.BinaryData;
+
+// Send session update with appended_text_after_truncation via raw JSON
+// Note: appended_text_after_truncation is not available in typed SDK classes
+String sessionUpdate = """
+    {
+        "type": "session.update",
+        "session": {
+            "instructions": "You are a helpful assistant.",
+            "turn_detection": {
+                "type": "azure_semantic_vad",
+                "interrupt_response": true,
+                "auto_truncate": true,
+                "appended_text_after_truncation": " [The user interrupted me.]"
+            }
+        }
+    }
+    """;
+session.send(BinaryData.fromString(sessionUpdate)).subscribe();
+```
+::: zone-end
+
+::: zone pivot="programming-language-javascript"
+```javascript
+// Send session update with appended_text_after_truncation via JSON
+await session.sendEvent({
+    type: "session.update",
+    session: {
+        instructions: "You are a helpful assistant.",
+        turn_detection: {
+            type: "azure_semantic_vad",
+            interrupt_response: true,
+            auto_truncate: true,
+            appended_text_after_truncation: " [The user interrupted me.]"
+        }
+    }
+});
+```
+::: zone-end
 
 ## Handling the truncation event
 
