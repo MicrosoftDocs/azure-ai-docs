@@ -154,7 +154,7 @@ If problems persist, follow the end-to-end steps in [Create and use memory](../h
 
 ## Pricing
 
-Memory is currently in **public preview**. Pricing and billing for Memory and the Memory Store API can change during preview.
+Memory is currently in public preview. Pricing and billing for memory and the Memory Store API can change during preview.
 
 You're billed for usage of the underlying **chat** and **embedding** models you configure. For current pricing details, see the official Azure pricing documentation for Foundry Agent Service.
 
