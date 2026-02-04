@@ -19,6 +19,9 @@ You need a video recording of the talent reading a consent statement acknowledgi
 
 You need video recordings of your avatar talent as training data. You upload these videos when you prepare training data. For more information, see [Add training data](#step-3-add-training-data).
 
+> [!NOTE]
+> If you upload data from Azure Blob storage, the storage account must allow public network access. The URL must be retrievable using a simple anonymous GET request. For example, use a [SAS URL](/azure/storage/common/storage-sas-overview) or a publicly accessible URL. URLs that require extra authorization or expect user interaction aren't supported.
+
 ## Step 1: Create a custom avatar project 
 
 To create a custom avatar project, follow these steps:

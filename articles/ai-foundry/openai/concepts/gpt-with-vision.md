@@ -19,7 +19,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-Vision-enabled chat models are large multimodal models (LMM) developed by OpenAI that analyze images and provide textual responses to questions about them. They incorporate both natural language processing and visual understanding. This guide provides details on their capabilities and limitations. To see which models support image input, see the [Models page](./models.md).
+Vision-enabled chat models are large multimodal models (LMM) developed by OpenAI that analyze images and provide textual responses to questions about them. They incorporate both natural language processing and visual understanding. This guide provides details on their capabilities and limitations. To see which models support image input, see the [Models page](../../foundry-models/concepts/models-sold-directly-by-azure.md).
 
 To try out vision-enabled chat models, see the [quickstart](/azure/ai-foundry/openai/gpt-v-quickstart).
 

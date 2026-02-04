@@ -872,7 +872,7 @@ Use these hosts to install Visual Studio Code packages and establish a remote co
 | `*.vscode.dev`<br>`*.vscode-unpkg.net`<br>`*.vscode-cdn.net`<br>`*.vscodeexperiments.azureedge.net`<br>`default.exp-tas.com` | Required to access VS Code for the Web (vscode.dev). |
 | `code.visualstudio.com` | Required to download and install VS Code desktop. This host isn't required for VS Code Web. |
 | `update.code.visualstudio.com`<br>`*.vo.msecnd.net` | Downloads VS Code Server components to the compute instance during setup scripts. |
-| `marketplace.visualstudio.com`<br>`vscode.blob.core.windows.net`<br>`*.gallerycdn.vsassets.io` | Required to download and install VS Code extensions. These hosts enable the remote connection to compute instances. For more information, see [Get started with Foundry projects in VS Code](./develop/vscode.md). |
+| `marketplace.visualstudio.com`<br>`vscode.blob.core.windows.net`<br>`*.gallerycdn.vsassets.io` | Required to download and install VS Code extensions. These hosts enable the remote connection to compute instances. For more information, see [Get started with Foundry projects in VS Code](./develop/get-started-projects-vs-code.md). |
 | `vscode.download.prss.microsoft.com` | Serves as the Visual Studio Code download CDN. |
 
 #### Ports

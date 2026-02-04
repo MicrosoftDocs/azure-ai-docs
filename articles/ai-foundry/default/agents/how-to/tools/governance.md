@@ -1,22 +1,23 @@
 ---
-title: 'Tools governance'
+title: 'Govern MCP tools with AI Gateway'
 titleSuffix: Microsoft Foundry
-description: Learn how to use AI Gateway and Azure API Management policies to govern MCP tools for agents in Microsoft Foundry.
+description: Govern MCP tools with AI Gateway in Microsoft Foundry. Apply rate limits, IP filters, and routing policies using Azure API Management.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 01/20/2026
+ms.date: 02/02/2026
 author: aahill
 ms.author: aahi
-ms.custom: azure-ai-agents,  pilot-ai-workflow-jan-2026
-ai-usage: ai-assisted  
+ms.custom: azure-ai-agents, pilot-ai-workflow-jan-2026
+ai-usage: ai-assisted
+#CustomerIntent: As an AI platform administrator, I want to govern MCP tools through AI Gateway so that I can enforce security policies and monitor tool usage.
 ---
 
-# Tools governance with AI Gateway (preview)
+# Govern MCP tools with AI Gateway (preview)
 
-AI Gateway in Microsoft Foundry provides a single, governed entry point for tools added to Microsoft Foundry projects. After a gateway is connected, all new MCP tools route through a secure gateway endpoint where authentication, policies, and usage limits are consistently enforced.
+Control how your agents access external tools by routing MCP traffic through AI Gateway in Microsoft Foundry. AI Gateway provides a single, governed entry point where you can enforce authentication, rate limits, IP restrictions, and audit logging—without modifying your MCP servers or agent code.
 
 > [!NOTE]
 > Only new MCP tools created in the Microsoft Foundry portal that don't use managed OAuth are routed through AI Gateway.
@@ -27,6 +28,7 @@ To enable governance for tools using AI Gateway in Microsoft Foundry:
 
 - AI Gateway must be connected to the Microsoft Foundry resource
    - Governance is activated at the Microsoft Foundry resource level. All governance functionality depends on this connection.
+- Permissions to manage API Management policies: **API Management Service Contributor** or **Owner** role on the connected APIM instance. For more information, see [Azure RBAC for API Management](/azure/api-management/api-management-role-based-access-control).
 - The MCP server must support one of the following authentication methods:
    - Managed identity (Microsoft Entra)
    - Key-based (API key or token)
@@ -56,15 +58,18 @@ To add a tool to be governed, use the Foundry portal. You can add a tool using t
 
 You can also add a custom tool by selecting **Build** > **Tools** > **Custom** > **Model Context Protocol**. Then paste your MCP server endpoint and select an authentication type.
 
+After you add the tool, verify that the **MCP server endpoint** in the tool configuration displays the AI Gateway URL (for example, `https://<your-apim>.azure-api.net/mcp/...`) rather than the direct MCP server URL.
+
 For more information about MCP tools, see [Connect to Model Context Protocol servers](model-context-protocol.md).
 
 ### Confirm routing
 
-Ensure the following information is correct for your MCP server:
-- Remote MCP server endpoint (AI gateway endpoint)
-- Redirect URL (if using custom OAuth identity passthrough)
-- Authentication method (key-based auth, OAuth identity passthrough)
-- Which agents are using this tool
+Before applying policies, confirm these settings in the Foundry portal:
+
+- **Remote MCP server endpoint**: Verify it points to the AI Gateway URL, not the original MCP server.
+- **Redirect URL**: If you use custom OAuth identity passthrough, confirm the redirect URL matches your OAuth app registration.
+- **Authentication method**: Confirm the method (key-based or OAuth) aligns with your MCP server requirements.
+- **Agent usage**: Note which agents reference this tool so you can test after applying policies.
 
 ### Apply policies
 
@@ -134,20 +139,31 @@ For more policy XML examples, see the [API Management policy snippets](https://g
 
 ### Test with an agent
 
-After you configure your MCP server, you can test it in the Microsoft Foundry portal.
+After you configure your MCP server, test it in the Microsoft Foundry portal:
+
+1. Open the [Foundry portal](https://ai.azure.com/) and navigate to your project.
+1. Create a new agent or open an existing one, and configure an MCP tool. For details, see [Connect to Model Context Protocol servers](model-context-protocol.md).
+1. In the agent's chat interface, send a message that triggers the tool (for example, "List my repositories" for the GitHub MCP server) and verify the response returns successfully.
+
+To confirm the request routed through AI Gateway, check APIM metrics in the Azure portal. See [Verify governance is working](#verify-governance-is-working).
 
 ## Verify governance is working
 
 Use these checks to confirm traffic is routed through AI Gateway and policies are applied.
 
-1. In Foundry Tools, open your MCP tool configuration.
-1. Confirm the configured tool endpoint points to the AI Gateway (not directly to your MCP server).
-1. In the Azure portal, open the API Management instance connected to your Foundry resource.
-1. Review metrics and logs to confirm requests appear when your agent calls the tool.
+1. Open your MCP tool configuration in the Foundry portal and confirm the tool endpoint points to the AI Gateway (not directly to your MCP server).
+1. In the Azure portal, open the API Management instance connected to your Foundry resource and review metrics and logs to confirm requests appear when your agent calls the tool.
+
+When reviewing APIM metrics:
+
+- Look for requests where the **API name** matches your MCP tool.
+- Check **Response codes** for successful calls (2xx) and policy-blocked calls (429 for rate limits, 403 for IP filters).
+- If you applied rate limiting, verify the **X-RateLimit-Remaining** header decreases with each call.
+- For log-level details, enable **Diagnostic settings** on your API Management instance and query Azure Monitor Logs.
 
 ## Security considerations
 
-- Treat API keys, tokens, and OAuth client secrets as secrets. Store shared credentials in a project connection when possible, and limit who can access the project.
+- Treat API keys, tokens, and OAuth client secrets as secrets. Store shared credentials in a project connection and limit project access to authorized users.
 - Apply the least-privilege principle for managed identity and Microsoft Entra access.
 - Review which headers you forward to backends. Remove only headers you don't need, and avoid stripping required authentication headers.
 
@@ -171,13 +187,10 @@ For MCP authentication options, see [Authentication support for the Model Contex
 
 For a broader list of Agent Service tool support when working with gateways, see [Bring your own AI gateway to Azure AI Agent Service (preview)](../ai-gateway.md).
 
-## Next steps
+## Related content
 
-> [!div class="nextstepaction"]
-> [Connect to Model Context Protocol servers](model-context-protocol.md)
+[Connect to Model Context Protocol servers](model-context-protocol.md)
 
-> [!div class="nextstepaction"]
-> [Authentication support for the Model Context Protocol (MCP) tool (preview)](../mcp-authentication.md)
+[Authentication support for the Model Context Protocol (MCP) tool (preview)](../mcp-authentication.md)
 
-> [!div class="nextstepaction"]
-> [Discover and manage tools in the Foundry tool catalog (preview)](../../concepts/tool-catalog.md)
+[Discover and manage tools in the Foundry tool catalog (preview)](../../concepts/tool-catalog.md)

@@ -197,4 +197,4 @@ In general, reasoning models don't support the following parameters you can find
 * Repetition penalty
 * Parameter `top_p`
 
-Some models support the use of tools or structured outputs (including JSON-schemas). Read the [Models](../../concepts/models.md) details page to understand each model's support.
+Some models support the use of tools or structured outputs (including JSON-schemas). Read the [Models](../../concepts/models-sold-directly-by-azure.md) details page to understand each model's support.

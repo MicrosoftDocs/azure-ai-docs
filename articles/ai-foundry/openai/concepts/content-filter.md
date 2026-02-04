@@ -295,7 +295,7 @@ As part of your application design, consider the following best practices to del
 ## Related content
 
 - Learn about the [content filtering categories and severity levels](./content-filter-severity-levels.md).
-- Learn more about the [underlying models that power Azure OpenAI](../concepts/models.md).
+- Learn more about the [underlying models that power Azure OpenAI](../../foundry-models/concepts/models-sold-directly-by-azure.md).
 - Apply for modified content filters via [this form](https://ncv.microsoft.com/uEfCgnITdR).
 - Azure OpenAI content filtering is powered by [Azure AI Content Safety](https://azure.microsoft.com/products/cognitive-services/ai-content-safety).
 - Learn more about understanding and mitigating risks associated with your application: [Overview of Responsible AI practices for Azure OpenAI models](/azure/ai-foundry/responsible-ai/openai/overview).
