@@ -648,7 +648,7 @@ For more information about delegated access and identity passthrough in Foundry,
 
 Instead of requiring developers to export SharePoint content, build a custom semantic index, manage governance controls, and configure refresh logic, this capability automates the entire retrieval pipeline. It dynamically indexes documents, breaks content into meaningful chunks, and applies advanced query processing to surface the most relevant information. By using the same enterprise-grade retrieval stack that powers Microsoft 365 Copilot, this capability ensures AI agent responses are grounded in the most up-to-date and contextually relevant content. 
 
-Customers rely on data security in SharePoint to access, create, and share documents with flexible document-level access control. Enterprise features such as identity passthrough and On-Behalf-Of (OBO) authentication ensure proper access control. End users receive responses generated from SharePoint documents they have permission to access. By using OBO authentication, Foundry Agent Service uses the end user's identity to authorize and retrieve relevant SharePoint documents, generating responses tailored to specific end users.
+Customers rely on data security in SharePoint to access, create, and share documents with flexible document-level access control. Enterprise features such as identity passthrough (On-Behalf-Of) authentication ensure proper access control. End users receive responses generated from SharePoint documents they have permission to access. By using OBO authentication, Foundry Agent Service uses the end user's identity to authorize and retrieve relevant SharePoint documents, generating responses tailored to specific end users.
 
 ## Troubleshooting
 

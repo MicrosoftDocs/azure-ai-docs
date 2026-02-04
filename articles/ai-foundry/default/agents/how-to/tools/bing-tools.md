@@ -69,7 +69,7 @@ Before you begin, make sure you have:
     - `API_VERSION`, `AGENT_TOKEN`.
   - For Bing Custom Search: `BING_CUSTOM_SEARCH_INSTANCE_NAME`: Your custom search instance name.
 - A Bing Grounding or Bing Custom Search resource created and connected to your Foundry project. A paid subscription is required to create a Grounding with Bing Search or Grounding with Bing Custom Search resource.
-- The Grounding with Bing Search tool works in a network-secured Foundry project, but it doesn't respect your VPN or private endpoints. It behaves like a public endpoint. Consider this behavior when you use the tool in a network-secured environment.
+- The Grounding with Bing Search tool works in a network-secured Foundry project, but it behaves like a public endpoint. Consider this behavior when you use the tool in a network-secured environment.
 
 ## Setup
 
@@ -154,7 +154,7 @@ If this code runs without errors, your credentials and Bing connection are confi
 
 ### Full samples
 
-The following examples demonstrate how to create an agent with Grounding with Bing Search and Grounding with Bing Custom Search tools, and how to use the agent to respond to user queries.
+The following examples demonstrate how to create an agent with Grounding with Bing Search tools, and how to use the agent to respond to user queries.
 
 #### Grounding with Bing Search
 
