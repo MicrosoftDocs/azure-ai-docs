@@ -1,7 +1,7 @@
 items:
 # Getting Started
 - name: Agent development overview
-  href: ../../../agents/overview.md
+  href: ../../agents/development-overview.md
 - name: FAQ
   href: ../../../agents/faq.yml
 - name: Model and region support
