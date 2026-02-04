@@ -178,7 +178,7 @@ Configure the **Job outputs** section as follows:
 
    Azure Machine Learning batch endpoints support only datastore paths as outputs. Outputs must be unique to avoid conflicts, so you use a dynamic expression to construct the path.
 
-   :::image type="content" source="./media/how-to-use-batch-fabric/fabric-pipeline-configure-outputs.png" alt-text="A screenshot showing how to configure outputs in the endpoint":::
+   :::image type="content" source="./media/how-to-use-batch-fabric/fabric-pipeline-configure-outputs.png" alt-text="A screenshot showing how to configure outputs in the endpoint.":::
 
 If your endpoint returns more outputs, repeat the previous steps for each output.
 
