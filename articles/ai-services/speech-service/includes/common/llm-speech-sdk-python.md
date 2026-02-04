@@ -139,6 +139,8 @@ LLM speech uses the `EnhancedModeProperties` class to enable large-language-mode
 
         # Create transcription options with enhanced mode
         options = TranscriptionOptions(enhanced_mode=enhanced_mode)
+        options.enhanced_mode.enabled = True
+
 
         # Create the request content
         request_content = TranscriptionContent(definition=options, audio=audio_file)
@@ -215,13 +217,15 @@ You can also use LLM speech to translate audio into a target language. Set the `
         # Create enhanced mode properties for LLM speech translation
         # Translate to another language
         enhanced_mode = EnhancedModeProperties(
-            task="translation",
-            target_language="es-ES",
-            prompt=["Translate the following English speech to Spanish."],
+            task="translate",
+            target_language="de",
+            prompt=[],
         )
     
         # Create transcription options with enhanced mode
-        options = TranscriptionOptions(locales=["en-US"], enhanced_mode=enhanced_mode)
+        options = TranscriptionOptions(locales=[], enhanced_mode=enhanced_mode)
+        options.enhanced_mode.enabled = True
+
     
         # Create the request content
         request_content = TranscriptionContent(definition=options, audio=audio_file)
@@ -275,6 +279,8 @@ with open(audio_file_path, "rb") as audio_file:
     )
 
     options = TranscriptionOptions(enhanced_mode=enhanced_mode)
+    options.enhanced_mode.enabled = True
+
     request_content = TranscriptionContent(definition=options, audio=audio_file)
     
     result = client.transcribe(request_content)
@@ -282,6 +288,7 @@ with open(audio_file_path, "rb") as audio_file:
 ```
 
 ### Best practices for prompts:
+
 - Prompts are subject to a maximum length of 4,096 characters.
 - Prompts should preferably be written in English.
 - Use `Output must be in lexical format.` to enforce lexical formatting instead of the default display format.
