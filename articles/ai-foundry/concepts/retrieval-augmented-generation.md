@@ -20,23 +20,17 @@ author: sdgilley
 
 Retrieval augmented generation (RAG) is a pattern that combines search with large language models (LLMs) so responses are grounded in your data. This article explains how RAG works in Microsoft Foundry, what role indexes play, and how agentic retrieval changes classic RAG patterns.
 
-## Overview
-
 LLMs are trained on public data available at training time. If you need answers based on your private data, or on frequently changing information, RAG helps you:
 
 - Retrieve relevant information from your data (often through an index).
 - Provide that information to the model as grounding data.
 - Generate a response that can include citations back to source content.
 
-## Prerequisites
+## What is RAG?
 
-Before implementing RAG in Foundry, ensure you have:
+Large language models (LLMs) like ChatGPT are trained on public internet data that was available when the model was trained. The public data might not be sufficient for your needs. For example, you might want answers based on private documents, or you might need up-to-date information.
 
-- An Azure subscription
-- Basic familiarity with large language models and how they work
-- Access to private or frequently updated data you want to ground responses in
-- An Azure AI Search service (if using Azure AI Search as your index store)
-- Appropriate permissions to create and configure connections in your Foundry project
+RAG addresses this by retrieving relevant content from your data and including it in the model input. The model can then generate responses grounded in the retrieved content.
 
 ## Key concepts
 
@@ -44,12 +38,6 @@ Before implementing RAG in Foundry, ensure you have:
 - **Index**: A data structure optimized for retrieval (keyword, semantic, vector, or hybrid search).
 - **Embeddings**: Numeric representations of content used for vector similarity search. See [Understand embeddings](../openai/concepts/understand-embeddings.md).
 - **System message and prompts**: Instructions that guide how the model uses retrieved content. See [Prompt engineering](../openai/concepts/prompt-engineering.md) and [Safety system messages](../openai/concepts/system-message.md).
-
-## What is RAG?
-
-Large language models (LLMs) like ChatGPT are trained on public internet data that was available when the model was trained. The public data might not be sufficient for your needs. For example, you might want answers based on private documents, or you might need up-to-date information.
-
-RAG addresses this by retrieving relevant content from your data and including it in the model input. The model can then generate responses grounded in the retrieved content.
 
 ## How does RAG work?
 
@@ -60,20 +48,6 @@ RAG follows a three-step flow:
 3. **Generate**: The model receives the augmented prompt and generates a response grounded in the retrieved content, reducing hallucination and enabling accurate citations.
 
 :::image type="content" source="../media/index-retrieve/rag-pattern.png" alt-text="Diagram that shows a user query, retrieval from a data store, and a grounded model response." lightbox="../media/index-retrieve/rag-pattern.png":::
-
-## Agentic RAG: modern approach to retrieval
-
-Traditional RAG patterns often use a single query to retrieve information from your data. *Agentic retrieval*, also known as agentic RAG, is an evolution in retrieval architecture that uses a model to break down complex inputs into multiple focused subqueries, run them in parallel, and return structured grounding data that works well with chat completion models.
-
-Agentic retrieval provides several advantages over classic RAG:
-
-* **Context-aware query planning** - Uses conversation history to understand context and intent. Follow-up questions retain the context of earlier exchanges, making multi-turn conversations more natural.
-* **Parallel execution** - Runs multiple focused subqueries simultaneously for better coverage. Instead of retrieving from a single query sequentially, parallel execution reduces latency and retrieves more diverse relevant results.
-* **Structured responses** - Returns grounding data, citations, and execution metadata along with results. This structured output makes it easier for your application to cite sources accurately and trace the reasoning behind answers.
-* **Built-in semantic ranking** - Ensures optimal relevance of results. Semantic ranking filters noise and prioritizes truly relevant passages, which is especially important with large datasets.
-* **Optional answer synthesis** - Can include LLM-formulated answers directly in the query response. Alternatively, you can choose to return raw, verbatim passages for your application to process.
-
-If you're using Azure AI Search as your retrieval engine, see [Agentic retrieval](/azure/search/agentic-retrieval-overview) and [Quickstart: Agentic retrieval](../../search/search-get-started-agentic-retrieval.md).
 
 ## What is an index and why do I need it?
 
@@ -95,6 +69,20 @@ Foundry can connect your project to an Azure AI Search service and index for ret
 For example, the Foundry Project REST API preview includes an `index_asset_id` field for Azure AI Search index resources. See [Foundry Project REST API preview](../reference/foundry-project-rest-preview.md).
 
 Azure AI Search is a recommended index store for RAG scenarios. Azure AI Search supports retrieval over vector and textual data stored in search indexes, and it can also query other targets if you use agentic retrieval. See [What is Azure AI Search?](/azure/search/search-what-is-azure-search).
+
+## Agentic RAG: modern approach to retrieval
+
+Traditional RAG patterns often use a single query to retrieve information from your data. *Agentic retrieval*, also known as agentic RAG, is an evolution in retrieval architecture that uses a model to break down complex inputs into multiple focused subqueries, run them in parallel, and return structured grounding data that works well with chat completion models.
+
+Agentic retrieval provides several advantages over classic RAG:
+
+* **Context-aware query planning** - Uses conversation history to understand context and intent. Follow-up questions retain the context of earlier exchanges, making multi-turn conversations more natural.
+* **Parallel execution** - Runs multiple focused subqueries simultaneously for better coverage. Instead of retrieving from a single query sequentially, parallel execution reduces latency and retrieves more diverse relevant results.
+* **Structured responses** - Returns grounding data, citations, and execution metadata along with results. This structured output makes it easier for your application to cite sources accurately and trace the reasoning behind answers.
+* **Built-in semantic ranking** - Ensures optimal relevance of results. Semantic ranking filters noise and prioritizes truly relevant passages, which is especially important with large datasets.
+* **Optional answer synthesis** - Can include LLM-formulated answers directly in the query response. Alternatively, you can choose to return raw, verbatim passages for your application to process.
+
+If you're using Azure AI Search as your retrieval engine, see [Agentic retrieval](/azure/search/agentic-retrieval-overview) and [Quickstart: Agentic retrieval](../../search/search-get-started-agentic-retrieval.md).
 
 ## Choose an approach in Foundry
 
