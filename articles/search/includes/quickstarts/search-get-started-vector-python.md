@@ -28,7 +28,9 @@ In Azure AI Search, a vector index has an index schema that defines vector and n
     
     + To run the semantic hybrid query, you must [enable semantic ranker](../../semantic-how-to-enable-disable.md).
 
-+ [Visual Studio Code](https://code.visualstudio.com/download) with the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and [Jupyter package](https://pypi.org/project/jupyter/).
++ The latest version of [Python](https://www.python.org/downloads/).
+
++ [Visual Studio Code](https://code.visualstudio.com/download) with the [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter) extensions.
 
 + [Git](https://git-scm.com/downloads) to clone the sample repo.
 
