@@ -131,7 +131,7 @@ Before deploying, verify the agent works locally.
 1. Install dependencies:
 
     ```bash
-    pip install -r ./src/af-agent-with-foundry-tools/requirements.tx
+    pip install -r ./src/af-agent-with-foundry-tools/requirements.txt
     ```
 
 1. Copy the required environment variables used in the agent code to a local .env file:
