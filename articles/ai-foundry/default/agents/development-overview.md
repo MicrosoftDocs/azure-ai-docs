@@ -20,15 +20,6 @@ monikerRange: 'foundry-classic || foundry'
 
 Foundry Agent Service is the runtime and orchestration layer for agents in Microsoft Foundry. It manages threads, messages, and runs; executes tool calls; applies safety controls; and integrates with identity, networking, and observability systems.
 
-In this article, you learn how to:
-
-> [!div class="checklist"]
-> - Understand the core components of an AI agent
-> - Create your first agent using Python, C#, TypeScript, or Java
-> - Choose between prompt-based, workflow, and hosted agent types
-> - Connect tools for search, code execution, and enterprise integration
-> - Apply security and compliance controls
-
 ## Core AI agent components
 
 - **Model (LLM)**: Provides reasoning and language capabilities.
