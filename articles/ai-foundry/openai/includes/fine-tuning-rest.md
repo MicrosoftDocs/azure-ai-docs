@@ -23,7 +23,7 @@ ms.custom:
 
 ### Supported models
 
-To check which regions currently support fine-tuning, consult the [article about models](../concepts/models.md?pivots=azure-openai#fine-tuning-models).
+To check which regions currently support fine-tuning, consult the [article about models](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#fine-tuning-models).
 
 Or you can fine-tune a previously fine-tuned model, formatted as `base-model.ft-{jobid}`.
 
@@ -134,7 +134,7 @@ curl -X POST $AZURE_OPENAI_ENDPOINT/openai/v1/fine_tuning/jobs \
 }'
 ```
 
-If you're fine-tuning a model that supports [global training](../concepts/models.md?pivots=azure-openai#fine-tuning-models), you can specify the training type by using the `extra_body` named argument and using `api-version=2025-04-01-preview`:
+If you're fine-tuning a model that supports [global training](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#fine-tuning-models), you can specify the training type by using the `extra_body` named argument and using `api-version=2025-04-01-preview`:
 
 ```bash
 curl -X POST $AZURE_OPENAI_ENDPOINT/openai/fine_tuning/jobs?api-version=2025-04-01-preview \

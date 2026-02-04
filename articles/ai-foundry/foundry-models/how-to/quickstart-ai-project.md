@@ -27,7 +27,7 @@ You can change this behavior and deploy both types of models to Foundry resource
 Additionally, deploying models to Foundry Models brings the extra benefits of:
 
 > [!div class="checklist"]
-> * [Routing capability](inference.md#routing)
+> * [Routing capability](../concepts/endpoints.md)
 > * [Custom content filters](../concepts/content-filter.md)
 > * Global capacity deployment type
 > * [Key-less authentication with Microsoft Entra ID](./configure-entra-id.md)
@@ -69,7 +69,7 @@ To configure the project to use the Foundry Models capability in Foundry, follow
     :::image type="content" source="../media/quickstart-ai-project/overview-endpoint-and-key.png" alt-text="Screenshot of the landing page for the project, highlighting the location of the connected resource and the associated inference endpoint." lightbox="../media/quickstart-ai-project/overview-endpoint-and-key.png":::
 
     > [!TIP]
-    > Each Foundry resource has a single **Azure AI model inference endpoint** that can be used to access any model deployment on it. The same endpoint serves multiple models depending on which ones are configured. To learn how the endpoint works, see [Azure OpenAI inference endpoint](inference.md#azure-openai-inference-endpoint).
+    > Each Foundry resource has a single **Azure AI model inference endpoint** that can be used to access any model deployment on it. The same endpoint serves multiple models depending on which ones are configured. To learn how the endpoint works, see [Azure OpenAI inference endpoint](../concepts/endpoints.md).
 
 1. Take note of the endpoint URL and credentials.
 
@@ -126,7 +126,7 @@ Generate your first chat completion:
 
 [!INCLUDE [code-create-chat-completion](../../foundry-models/includes/code-create-chat-completion.md)]
 
-Use the parameter `model="<deployment-name>` to route your request to this deployment. *Deployments work as an alias of a given model under certain configurations*. To learn how Foundry Models routes deployments, see [Routing](inference.md#routing).
+Use the parameter `model="<deployment-name>` to route your request to this deployment. *Deployments work as an alias of a given model under certain configurations*. To learn how Foundry Models routes deployments, see [Routing](../concepts/endpoints.md).
 
 
 ## Move from serverless API deployments to Foundry Models
