@@ -30,7 +30,7 @@ Foundry Agent Service is the runtime and orchestration layer for agents in Micro
 
 ## Create your first agent
 
-The following code samples show how to create an agent, start a conversation, and get a response. If it's your first time using Microsoft Foundry, see the [quickstart](../../quickstarts/get-started-code.md) to set up your project first. 
+The following code samples show how to create an agent, start a conversation, and get a response. If it's your first time using Microsoft Foundry, see the [quickstart](../tutorials/quickstart-create-foundry-resources.md) to set up your project first. 
 
 # [Python](#tab/python)
 
@@ -41,6 +41,8 @@ The following code samples show how to create an agent, start a conversation, an
 
 :::code language="python" source="~/foundry-samples-main/samples/python/quickstart/quickstart-create-agent.py":::
 
+For more samples, see [Azure SDK for Python agent samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/agents).
+
 # [C#](#tab/csharp)
 
 > [!NOTE]
@@ -50,6 +52,8 @@ The following code samples show how to create an agent, start a conversation, an
 
 :::code language="csharp" source="~/foundry-samples-main/samples/csharp/quickstart/quickstart-create-agent.cs":::
 
+For more samples, see [Azure SDK for .NET agent samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Projects/samples).
+
 # [TypeScript](#tab/typescript)
 
 > [!NOTE]
@@ -58,6 +62,8 @@ The following code samples show how to create an agent, start a conversation, an
 > Package: [`@azure/ai-projects`](https://www.npmjs.com/package/@azure/ai-projects) | Node.js 20+
 
 :::code language="typescript" source="~/foundry-samples-main/samples/typescript/quickstart/src/quickstart-create-agent.ts":::
+
+For more samples, see [Azure SDK for JavaScript agent samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-projects/samples).
 
 # [Java](#tab/java)
 
@@ -74,6 +80,8 @@ The following code samples show how to create an agent, start a conversation, an
 > Package: [`com.azure:azure-ai-agents`](https://central.sonatype.com/artifact/com.azure/azure-ai-agents) | Java 17+
 
 :::code language="java" source="~/foundry-samples-main/samples/java/quickstart/src/main/java/com/microsoft/foundry/samples/CreateAgent.java":::
+
+For more samples, see [Azure SDK for Java agent samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/ai/azure-ai-agents/src/samples).
 
 ---
 
@@ -118,7 +126,7 @@ Foundry organizes agent development into six runtime stages:
 
 ![Diagram that shows six stages of agent execution: model selection, customization, tools, orchestration, observability, and trust.](../../agents/media/agent-factory.png)
 
-1. **Models** - Select a model (GPT-4o, GPT-4, Llama) that provides reasoning and language capabilities for your agent.
+1. **Models** - Select a model (GPT-4.1, GPT-4, Llama) that provides reasoning and language capabilities for your agent.
 2. **Customizability** - Configure the model with fine-tuning, distillation, or domain-specific prompts.
 3. **Knowledge and tools** - Connect tools for data retrieval (Bing, SharePoint, Azure AI Search) and external actions (Azure Functions, OpenAPI).
 4. **Orchestration** - Use [workflows](concepts/workflow.md) to coordinate tool calls, conversation state, retries, and multi-agent processes.
@@ -198,15 +206,6 @@ For SDK details, see [Microsoft Foundry SDKs](../../how-to/develop/sdk-overview.
 
 > [!NOTE]
 > Foundry Agent Service is available in regions that support Microsoft Foundry. For the current list, see [Regional availability](../../agents/concepts/model-region-support.md).
-
-If it's your first time using the service, follow these steps:
-
-1. **Set up your environment**: Complete the [environment setup](../../agents/environment-setup.md) to install the SDK and configure authentication.
-1. **Create a project**: If you don't have one, [create a Foundry project](../../how-to/create-projects.md) in the Azure portal.
-1. **Deploy a model**: Deploy a compatible model (such as GPT-4o) from the model catalog.
-1. **Run the quickstart**: Follow the [quickstart](../../quickstarts/get-started-code.md) to create your first agent.
-
-You can find a list of official samples with the new Python agent SDK on [GitHub](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects).
 
 ## Troubleshooting
 
