@@ -40,7 +40,7 @@ This integration uses identity passthrough (On-Behalf-Of) so SharePoint permissi
 
 - Eligible license or Pay-as-you-go model:
   - Developers and end users have Microsoft 365 Copilot license, as required by [Microsoft 365 Copilot API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview).
-  - If developers and end users don't have Microsoft 365 Copilot license, you can enable the [pay-as-you-go moodel](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/paygo-retrieval).
+  - If developers and end users don't have Microsoft 365 Copilot license, you can enable the [pay-as-you-go model](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/paygo-retrieval).
 - Developers and end users have at least `Azure AI User` RBAC role assigned on the Foundry project. For more information about Azure role-based access control, see [Azure role-based access control in Foundry](../../../../concepts/rbac-foundry.md?view=foundry&preserve-view=true).
 - Developers and end users have at least `READ` access to the SharePoint site.
 - The latest prerelease package installed:
