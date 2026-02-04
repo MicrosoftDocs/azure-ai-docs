@@ -54,13 +54,13 @@ For information on using assistants, see the following reference documentation.
 
 ## Available models
 
-To see a list of Azure OpenAI models that you can use with assistants, see the [Models](./models.md#assistants-preview) article.
+To see a list of Azure OpenAI models that you can use with assistants, see the [Models](../../foundry-models/concepts/models-sold-directly-by-azure.md#assistants-preview) article.
 
 ## Assistants playground
 
 Before using assistants, you need:
 
-- A [compatible model](../concepts/models.md#assistants-preview) deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
+- A [compatible model](../../foundry-models/concepts/models-sold-directly-by-azure.md#assistants-preview) deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
 - A [Foundry project](../../../ai-foundry/how-to/create-projects.md) in Foundry portal.
 
 ## Assistants components

@@ -42,7 +42,7 @@ This error means that you might not have access to the particular Azure OpenAI m
 
 For more information about managing quota, see:
 
-- [Quota for deploying and inferencing a model](../how-to/deploy-models-openai.md#quota-for-deploying-and-inferencing-a-model)
+- [Quota for deploying and inferencing a model](../foundry-models/how-to/deploy-foundry-models.md)
 - [Manage Azure OpenAI in Foundry Models quota documentation](/azure/ai-foundry/openai/how-to/quota?tabs=rest)
 - [Manage and increase quotas for resources with Foundry](quota.md)
 

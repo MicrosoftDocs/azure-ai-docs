@@ -17,13 +17,13 @@ ms.custom:
 
 - Read the [guide on when to use Azure OpenAI fine-tuning](../concepts/fine-tuning-considerations.md).
 - You need an Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- You need an Azure OpenAI resource that's located in a region that supports fine-tuning of the Azure OpenAI model. For the list of available models by region and supported functionality, check the [model summary table and region availability](../concepts/models.md?pivots=azure-openai#fine-tuning-models). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
+- You need an Azure OpenAI resource that's located in a region that supports fine-tuning of the Azure OpenAI model. For the list of available models by region and supported functionality, check the [model summary table and region availability](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#fine-tuning-models). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 - Fine-tuning requires the **Azure AI Owner** role. While Azure AI Users may train (fine tune) models, only AI Owners may deploy them.
 - If you don't already have access to view quotas and deploy models in the Foundry portal, you need [more permissions](../how-to/role-based-access-control.md).
 
 ### Supported models
 
-To check which regions currently support fine-tuning, consult the [article about models](../concepts/models.md?pivots=azure-openai#fine-tuning-models).
+To check which regions currently support fine-tuning, consult the [article about models](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#fine-tuning-models).
 
 Or you can fine-tune a previously fine-tuned model, formatted as `base-model.ft-{jobid}`.
 
@@ -131,7 +131,7 @@ The Standard tier provides dedicated capacity for fine-tuning with predictable p
 
 #### Global Standard training tier
 
-The Global Training tier expands the reach of model customization with the [more affordable](https://aka.ms/aoai-pricing) pricing of other Global offerings. It doesn't offer [data residency](https://aka.ms/data-residency). If you need data residency, see the [list of available regions](../concepts/models.md?pivots=azure-openai#fine-tuning-models) for your chosen model.
+The Global Training tier expands the reach of model customization with the [more affordable](https://aka.ms/aoai-pricing) pricing of other Global offerings. It doesn't offer [data residency](https://aka.ms/data-residency). If you need data residency, see the [list of available regions](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#fine-tuning-models) for your chosen model.
 
 Your training data and the resulting model weights might be copied to another Azure region.
 

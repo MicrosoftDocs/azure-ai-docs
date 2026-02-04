@@ -27,7 +27,7 @@ This article explains how to use an existing search index with the [Azure AI Sea
 
 ## Prerequisites
 
-+ Completion of the [Azure AI Search tool setup](../../how-to/tools/azure-ai-search.md?pivot=overview-azure-ai-search).
++ Completion of the [Azure AI Search tool setup](./azure-ai-search.md?pivot=overview-azure-ai-search).
 
 :::zone pivot="portal"
 

@@ -28,7 +28,7 @@ Azure OpenAI Assistants (Preview) allows you to create AI assistants tailored to
 
 ### Region, model, and API support
 
-The [models page](../concepts/models.md#assistants-preview) contains the most up-to-date information on regions/models where Assistants are currently supported. Assistants can be used in version `2024-02-15-preview` and later of the Azure OpenAI inference [preview API](../reference-preview.md#api-specs). A full list of previous API versions can be found on [GitHub](https://github.com/Azure/azure-rest-api-specs/tree/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview).
+The [models page](../../foundry-models/concepts/models-sold-directly-by-azure.md#assistants-preview) contains the most up-to-date information on regions/models where Assistants are currently supported. Assistants can be used in version `2024-02-15-preview` and later of the Azure OpenAI inference [preview API](../reference-preview.md#api-specs). A full list of previous API versions can be found on [GitHub](https://github.com/Azure/azure-rest-api-specs/tree/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview).
 
 ### Supported file types
 

@@ -45,7 +45,7 @@ For more information, see the [models and versions documentation](/azure/ai-foun
 
 :::moniker range="foundry-classic"
 
-For more information, see the [models and versions documentation](./concepts/models.md#audio-models).
+For more information, see the [models and versions documentation](../foundry-models/concepts/models-sold-directly-by-azure.md#audio-models).
 :::moniker-end
 
 

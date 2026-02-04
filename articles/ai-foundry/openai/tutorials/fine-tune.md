@@ -788,4 +788,4 @@ In order to successfully access fine-tuning you need **Azure AI User** role assi
 ## Next steps
 
 - Learn more about [fine-tuning in Azure OpenAI](../how-to/fine-tuning.md)
-- Learn more about the [underlying models that power Azure OpenAI](../concepts/models.md#fine-tuning-models).
+- Learn more about the [underlying models that power Azure OpenAI](../../foundry-models/concepts/models-sold-directly-by-azure.md#fine-tuning-models).

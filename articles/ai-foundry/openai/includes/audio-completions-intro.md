@@ -26,7 +26,7 @@ By using audio generation capabilities, you can achieve more dynamic and interac
 
 Currently only `gpt-4o-audio-preview` and `gpt-4o-mini-audio-preview` version: `2024-12-17` supports audio generation.
 
-For more information about region availability, see the [models and versions documentation](../concepts/models.md#global-standard-model-availability).
+For more information about region availability, see the [models and versions documentation](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability).
 
 Currently the following voices are supported for audio out: Alloy, Echo, and Shimmer.
 
