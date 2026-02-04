@@ -113,7 +113,7 @@ To use keyless authentication, [configure your resource and grant access to user
 
 ## Related content
 
-- [Foundry Models and capabilities](models.md)
+- [Foundry Models and capabilities](./models-sold-directly-by-azure.md)
 - [Deployment types in Foundry Models](deployment-types.md)
 - [What is Azure OpenAI in Foundry Models?](models-sold-directly-by-azure.md)
 

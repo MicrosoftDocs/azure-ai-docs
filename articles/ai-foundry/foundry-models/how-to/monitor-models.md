@@ -31,10 +31,10 @@ This article explains how you can use metrics and logs to monitor model deployme
 
 To use monitoring capabilities for model deployments in Foundry Models, you need the following:
 
-* A [Microsoft Foundry resource](../../model-inference/how-to/quickstart-create-resources.md).
+* A [Microsoft Foundry resource](./quickstart-create-resources.md).
 
     > [!TIP]
-    > If you're using serverless API endpoints and you want to take advantage of monitoring capabilities explained in this article, [migrate your serverless API endpoints to Foundry Models](../../model-inference/how-to/quickstart-ai-project.md).
+    > If you're using serverless API endpoints and you want to take advantage of monitoring capabilities explained in this article, [migrate your serverless API endpoints to Foundry Models](./quickstart-ai-project.md).
 
 * At least one model deployment.
 

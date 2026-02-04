@@ -74,7 +74,7 @@ sections:
       - question: |
           I asked the model when its knowledge cutoff is and it gave me a different answer than what is on the Azure OpenAI model's page. Why does this happen?
         answer:
-          This is expected behavior. The models aren't able to answer questions about themselves. If you want to know when the knowledge cutoff for the model's training data is, consult the [models page](./concepts/models.md).
+          This is expected behavior. The models aren't able to answer questions about themselves. If you want to know when the knowledge cutoff for the model's training data is, consult the [models page](../foundry-models/concepts/models-sold-directly-by-azure.md).
       - question: |
           I asked the model a question about something that happened recently before the knowledge cutoff and it got the answer wrong. Why does this happen?
         answer: |
@@ -84,7 +84,7 @@ sections:
 
           Asking the model about something that changed more recently like "Who is the prime minister of New Zealand?", is likely to result in the fabricated response `Jacinda Ardern`. However, asking the model "When did `Jacinda Ardern` step down as prime minister?" Tends to yield an accurate response which demonstrates training data knowledge going to at least January of 2023.   
                     
-          So while it is possible to probe the model with questions to guess its training data knowledge cutoff, the [model's page](./concepts/models.md) is the best place to check a model's knowledge cutoff.       
+          So while it is possible to probe the model with questions to guess its training data knowledge cutoff, the [model's page](../foundry-models/concepts/models-sold-directly-by-azure.md) is the best place to check a model's knowledge cutoff.       
       - question: |
           Where do I access pricing information for legacy models, which are no longer available for new deployments? 
         answer: | 
@@ -193,7 +193,7 @@ sections:
       - question: |
           Can I use quota to increase the max token limit of a model?
         answer:
-          No, quota Tokens-Per-Minute (TPM) allocation isn't related to the max input token limit of a model. Model input token limits are defined in the [models table](./concepts/models.md) and aren't impacted by changes made to TPM. 
+          No, quota Tokens-Per-Minute (TPM) allocation isn't related to the max input token limit of a model. Model input token limits are defined in the [models table](../foundry-models/concepts/models-sold-directly-by-azure.md) and aren't impacted by changes made to TPM. 
   - name: GPT-4 Turbo with Vision
     questions:
       - question: |
@@ -328,7 +328,7 @@ sections:
       - question: |
           Is responsible AI supported by Azure OpenAI on your data?
         answer:
-          Yes, [Azure OpenAI on your data](./concepts/use-your-data.md) is part of Azure OpenAI and works with the [models](./concepts/models.md) available in Azure OpenAI. The [content filtering](./concepts/content-filter.md) and abuse monitoring features of Azure OpenAI still apply. For more information, see the [overview of Responsible AI practices for Azure OpenAI models](/azure/ai-foundry/responsible-ai/openai/overview) for extra guidance on using Azure OpenAI on your data responsibly. 
+          Yes, [Azure OpenAI on your data](./concepts/use-your-data.md) is part of Azure OpenAI and works with the [models](../foundry-models/concepts/models-sold-directly-by-azure.md) available in Azure OpenAI. The [content filtering](./concepts/content-filter.md) and abuse monitoring features of Azure OpenAI still apply. For more information, see the [overview of Responsible AI practices for Azure OpenAI models](/azure/ai-foundry/responsible-ai/openai/overview) for extra guidance on using Azure OpenAI on your data responsibly. 
       - question: |
           Is there a token limit on the system message? 
         answer: 
@@ -365,4 +365,4 @@ additionalContent: |
   ## Next steps
   - [Azure OpenAI quotas and limits](quotas-limits.md)
   - [Azure OpenAI what's new](whats-new.md)
-  - [Azure OpenAI quickstarts](quickstart.md)
+  - [Azure OpenAI quickstarts](./how-to/responses.md)

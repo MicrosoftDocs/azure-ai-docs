@@ -1261,7 +1261,7 @@ Try a sample for each of these evaluators in the [sample repository](https://git
 
 - [Azure AI Evaluation Python SDK client reference documentation](https://aka.ms/azureaieval-python-ref)
 - [Azure AI Evaluation SDK client troubleshooting guide](https://aka.ms/azureaieval-tsg)
-- [Learn about the evaluation metrics](../../concepts/evaluation-metrics-built-in.md)
+- [Learn about the evaluation metrics](../../concepts/observability.md)
 - [Evaluate Generative AI applications remotely on the cloud](./cloud-evaluation.md)
 - [Learn about simulating test datasets for evaluation](./simulator-interaction-data.md)
 - [View evaluation results in a Foundry project](../../how-to/evaluate-results.md)

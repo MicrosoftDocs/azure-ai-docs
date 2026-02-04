@@ -26,7 +26,7 @@ After you deploy a generative AI application in production, you might want to en
 In this article, you learn to enable tracing, collect aggregated metrics, and collect user feedback during the inference time of your flow deployment.
 
 > [!NOTE]
-> For an improved way to perform continuous monitoring of deployed applications (other than prompt flow), consider using [Azure AI online evaluation](../online-evaluation.md).
+> For an improved way to perform continuous monitoring of deployed applications (other than prompt flow), consider using [Azure AI online evaluation](../monitor-applications.md).
 
 ## Prerequisites
 
