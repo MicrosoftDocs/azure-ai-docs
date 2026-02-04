@@ -2,7 +2,7 @@
 title: What is the Microsoft Foundry Control Plane?
 ms.service: azure-ai-foundry
 ms.topic: concept-article
-ms.date: 11/05/2025
+ms.date: 02/04/2026
 ms.reviewer: mesameki
 ms.author: scottpolly
 author: mesameki
@@ -15,11 +15,11 @@ ai-usage: ai-assisted
 
 The **Microsoft Foundry Control Plane** is a unified management interface that provides visibility, governance, and control for AI agents, models, and tools across your Foundry enterprise. The Foundry Control Plane serves as your central location for managing every aspect of your AI fleet, from build to production.
 
-As organizations evolve from isolated copilots to autonomous multi-agent fleets, they need unified oversight. The Foundry Control Plane provides the visibility, governance, and control needed to scale with confidence.
+As organizations evolve from isolated copilots to autonomous mult-agent fleets, they need unified oversight. The Foundry Control Plane provides the visibility, governance, and control needed to scale with confidence.
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-## Core Functionalities
+## Core functionalities
 
 The Foundry Control Plane consolidates **inventory, observability, compliance, and security** into one role-aware interface. It integrates seamlessly with Microsoft security and governance systems (Defender, Purview, Microsoft Entra) to deliver **trust at scale**. 
 
@@ -37,7 +37,7 @@ The Foundry Control Plane allows you to:
 
 ### Observe, protect, and improve
 
-- Correlate alerts, evaluation results, and trace data to pinpoint issues instantly.
+- Correlate alerts, evaluation results, and trace data to pinpoint problems instantly.
 
 - [Continuously evaluate](../../how-to/continuous-evaluation-agents.md) agent performance, quality, and risk dimensions such as **[Task Adherence, Intent Resolution, Tool Call Success](../../concepts/evaluation-evaluators/agent-evaluators.md), [Groundedness](../../concepts/evaluation-evaluators/rag-evaluators.md), Sensitive Data Leakage, and Jailbreak/XPIA exposure.**
 
@@ -116,7 +116,7 @@ Use this tab to view, adjust, and request quotas.
 
 :::image type="content" source="media/overview/quota-view.png" alt-text="Screenshot of the Quota tab showing model deployments, their quota usage, and usage patterns with options to adjust or request additional quotas." lightbox="media/overview/quota-view.png":::
 
-The **Quota** tab allows customers to easily see their model deployments and how much quota each deployment is consuming. It gives insights into usage patterns and helps manage resources effectively. 
+The **Quota** tab shows your model deployments and how much quota each deployment is consuming. It gives insights into usage patterns and helps you manage resources effectively. 
 
 ### Admin
 
@@ -148,5 +148,5 @@ The Foundry Control Plane is a feature available in the Foundry (new) portal. To
 ## Related content
 
 - **[Ensure Compliance and Security](how-to-manage-compliance-security.md)** - Learn how to enforce Responsible AI policies, integrate Defender and Purview signals, and respond to compliance alerts.
-- **[Optimize model cost and performance](how-to-optimize-cost-performance.md)** - Analyze cost drivers, token usage, and resource consumption to achieve higher ROI from your agent fleet.
+- **[Optimize model cost and performance](how-to-optimize-cost-performance.md)** - Analyze cost drivers, token usage, and resource consumption to get a higher ROI from your agent fleet.
 
