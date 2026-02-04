@@ -89,7 +89,7 @@ Follow these steps to create a new console application for speech recognition.
 
             } catch (URISyntaxException e) { 
                 throw new IllegalArgumentException("ENDPOINT is not a valid URI: " + endpoint, e); 
-        } 
+            } 
     
             
             speechTranslationConfig.setSpeechRecognitionLanguage("en-US");
