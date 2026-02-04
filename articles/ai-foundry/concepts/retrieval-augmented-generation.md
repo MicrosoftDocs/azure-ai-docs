@@ -32,7 +32,7 @@ Large language models (LLMs) like ChatGPT are trained on public internet data th
 
 RAG addresses this by retrieving relevant content from your data and including it in the model input. The model can then generate responses grounded in the retrieved content.
 
-## Key concepts
+### Key concepts
 
 - **Grounding data**: Retrieved content you provide to the model to reduce guessing.
 - **Index**: A data structure optimized for retrieval (keyword, semantic, vector, or hybrid search).
