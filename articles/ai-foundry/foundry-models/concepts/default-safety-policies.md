@@ -21,12 +21,12 @@ ai-usage: ai-assisted
 
 Microsoft Foundry Models applies default safety to all models, excluding audio models such as Whisper in Azure OpenAI in Foundry Models. These configurations provide you with a responsible experience by default.
 
-Default safety aims to mitigate risks such as hate and fairness, sexual, violence, self-harm, protected material content, and user prompt injection attacks. To learn more about content filtering, read about [risk categories and severity levels](../../model-inference/concepts/content-filter.md).
+Default safety aims to mitigate risks such as hate and fairness, sexual, violence, self-harm, protected material content, and user prompt injection attacks. To learn more about content filtering, read about [risk categories and severity levels](content-filter.md).
 
 This article describes the default safety configuration.
 
 > [!TIP]
-> The default configuration applies to all models. However, you can configure content filtering per model deployment as explained in [How to configure content filters](../../model-inference/how-to/configure-content-filters.md).
+> The default configuration applies to all models. However, you can configure content filtering per model deployment as explained in [How to configure content filters](../how-to/configure-content-filters.md).
 
 ## Text models
 
@@ -81,4 +81,4 @@ Content filters apply only to text prompts and completions. Content moderation d
 
 ## Next step
 
-* [Configure content filters in Foundry Models](../../model-inference/how-to/configure-content-filters.md)
+* [Configure content filters in Foundry Models](../how-to/configure-content-filters.md)

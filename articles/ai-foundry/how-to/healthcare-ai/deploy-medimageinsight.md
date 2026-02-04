@@ -37,7 +37,7 @@ To learn more about MedImageInsight, see [Learn more about the model](#learn-mor
 
 - If you don't have one, [create a [!INCLUDE [hub](../../includes/hub-project-name.md)]](../hub-create-projects.md)
 
-- Azure role-based access controls (Azure RBAC) grant access to operations in Microsoft Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. Deploying models and invoking endpoints requires this role. For more information, see [Role-based access control in Foundry portal](../../concepts/rbac-ai-foundry.md).
+- Azure role-based access controls (Azure RBAC) grant access to operations in Microsoft Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. Deploying models and invoking endpoints requires this role. For more information, see [Role-based access control in Foundry portal](../../concepts/rbac-foundry.md).
 
 - Python 3.8 or later
 

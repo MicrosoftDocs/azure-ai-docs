@@ -41,7 +41,7 @@ A deployment includes:
 
 A Foundry resource can have many model deployments. You only pay for inference performed on model deployments. Deployments are Azure resources, so they're subject to Azure policies.
 
-For more information about creating deployments, see [Add and configure model deployments](../../model-inference/how-to/create-model-deployments.md).
+For more information about creating deployments, see [Add and configure model deployments](../how-to/create-model-deployments.md).
 
 ::: moniker range="foundry-classic"
 ## Endpoints
@@ -54,7 +54,7 @@ Foundry services provide multiple endpoints depending on the type of work you wa
 
 ## Azure AI inference endpoint
 
-The **Azure AI inference endpoint**, usually of the form `https://<resource-name>.services.ai.azure.com/models`, enables you to use a single endpoint with the same authentication and schema to generate inference for the deployed models in the resource. All Foundry Models support this capability. This endpoint follows the [Azure AI Model Inference API](../../model-inference/reference/reference-model-inference-api.md), which supports the following modalities:
+The **Azure AI inference endpoint**, usually of the form `https://<resource-name>.services.ai.azure.com/models`, enables you to use a single endpoint with the same authentication and schema to generate inference for the deployed models in the resource. All Foundry Models support this capability. This endpoint follows the [Azure AI Model Inference API](/rest/api/aifoundry/modelinference), which supports the following modalities:
 
 * Text embeddings
 * Image embeddings
@@ -75,7 +75,7 @@ For a chat model, you can create a request as follows:
 
 [!INCLUDE [code-create-chat-completion](../../foundry-models/includes/code-create-chat-completion.md)]
 
-If you specify a model name that doesn't match any model deployment, you get an error that the model doesn't exist. You control which models are available to users by creating model deployments. For more information, see [add and configure model deployments](../../model-inference/how-to/create-model-deployments.md).
+If you specify a model name that doesn't match any model deployment, you get an error that the model doesn't exist. You control which models are available to users by creating model deployments. For more information, see [add and configure model deployments](../how-to/create-model-deployments.md).
 
 ::: moniker-end
 
@@ -93,13 +93,13 @@ Each deployment has a URL that's formed by concatenating the **Azure OpenAI** ba
 
 [!INCLUDE [code-create-openai-chat-completion](../includes/code-create-openai-chat-completion.md)]
 
-For more information about how to use the **Azure OpenAI endpoint**, see [Azure OpenAI in Foundry Models documentation](../../openai/overview.md).
+For more information about how to use the **Azure OpenAI endpoint**, see [Azure OpenAI in Foundry Models documentation](models-sold-directly-by-azure.md).
 
 ## Keyless authentication
 
 Models deployed to Foundry Models in Foundry Tools support keyless authorization by using Microsoft Entra ID. Keyless authorization enhances security, simplifies the user experience, reduces operational complexity, and provides robust compliance support for modern development. It makes keyless authorization a strong choice for organizations adopting secure and scalable identity management solutions.
 
-To use keyless authentication, [configure your resource and grant access to users](../../model-inference/how-to/configure-entra-id.md) to perform inference. After you configure the resource and grant access, authenticate as follows:
+To use keyless authentication, [configure your resource and grant access to users](../how-to/configure-entra-id.md) to perform inference. After you configure the resource and grant access, authenticate as follows:
 
 [!INCLUDE [code-create-chat-client-entra](../../foundry-models/includes/code-create-chat-client-entra.md)]
 
@@ -113,7 +113,7 @@ To use keyless authentication, [configure your resource and grant access to user
 
 ## Related content
 
-- [Foundry Models and capabilities](models.md)
+- [Foundry Models and capabilities](./models-sold-directly-by-azure.md)
 - [Deployment types in Foundry Models](deployment-types.md)
-- [What is Azure OpenAI in Foundry Models?](../../openai/overview.md)
+- [What is Azure OpenAI in Foundry Models?](models-sold-directly-by-azure.md)
 

@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: quickstart
-ms.date: 7/12/2025
+ms.date: 01/30/2026
 ms.reviewer: ralphe
 ms.author: pafarley
 zone_pivot_groups: programming-languages-set-nine

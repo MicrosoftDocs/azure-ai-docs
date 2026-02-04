@@ -9,11 +9,12 @@ ms.custom:
   - ignite-2024
   - hub-only
 ms.topic: how-to
-ms.date: 10/18/2025
+ms.date: 01/30/2026
 ms.reviewer: alehughes
 reviewer: ahughes-msft
 ms.author: lagayhar  
 author: lgayhardt
+ms.update-cycle: 180-days
 ---
 
 # Monitor quality and token usage of deployed prompt flow applications
@@ -22,10 +23,10 @@ author: lgayhardt
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-Monitoring applications that are deployed to production is an essential part of the generative AI application lifecycle. Changes in data and consumer behavior can influence your application over time. The changes can result in outdated systems that negatively affect business outcomes. Such systems expose organizations to compliance, economic, and reputation risks.
+Monitoring applications that you deploy to production is an essential part of the generative AI application lifecycle. Changes in data and consumer behavior can influence your application over time. These changes can result in outdated systems that negatively affect business outcomes. Such systems expose organizations to compliance, economic, and reputation risks.
 
 > [!NOTE]
-> For an improved way to perform continuous monitoring of deployed applications, other than prompt flow, consider using [Azure AI online evaluations](./online-evaluation.md).
+> For an improved way to perform continuous monitoring of deployed applications, other than prompt flow, consider using [Azure AI online evaluations](./monitor-applications.md).
 
 By using Azure AI monitoring for generative AI applications, you can monitor your applications in production for token usage, generation quality, and operational metrics.
 
@@ -44,7 +45,7 @@ Integrations for monitoring a prompt flow deployment allow you to:
 
 [!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
 - A prompt flow ready for deployment. If you don't have one, see [Develop a prompt flow](flow-develop.md).
-- Azure role-based access controls are used to grant access to operations in the Foundry portal. For this article, your user account must be assigned the Azure AI Developer role on the resource group. For more information, see [Role-based access control for Foundry](../concepts/rbac-foundry.md).
+- Azure role-based access controls to grant access to operations in the Foundry portal. For this article, your user account must be assigned the Azure AI Developer role on the resource group. For more information, see [Role-based access control for Foundry](../concepts/rbac-foundry.md).
 
 # [Python SDK](#tab/python)
 
@@ -58,7 +59,7 @@ pip install -U azure-ai-ml
 
 ## Requirements for monitoring metrics
 
-Generative pretrained transformer (GPT) language models generate monitoring metrics that are configured with specific evaluation instructions, or *prompt templates*. These models act as evaluator models for sequence-to-sequence tasks.
+Generative pretrained transformer (GPT) language models generate monitoring metrics when you configure them with specific evaluation instructions, or *prompt templates*. These models act as evaluator models for sequence-to-sequence tasks.
 
 Using this technique to generate monitoring metrics shows strong empirical results and high correlation with human judgment when compared to standard generative AI evaluation metrics. For more information about prompt flow evaluation, see [Submit a batch test and evaluate a flow](./flow-bulk-test-evaluation.md) and [Observability in generative AI](../concepts/observability.md).
 
@@ -74,24 +75,24 @@ The following metrics are supported for monitoring.
 
 | Metric       | Description |
 |--------------|-------------|
-| Groundedness | Measures how well the model's generated answers align with information from the source data (user-defined context.) |
+| Groundedness | Measures how well the model's generated answers align with information from the source data (user-defined context). |
 | Relevance    | Measures the extent to which the model's generated responses are pertinent and directly related to the given questions. |
 | Coherence    | Measures the extent to which the model's generated responses are logically consistent and connected. |
 | Fluency      | Measures the grammatical proficiency of a generative AI's predicted answer. |
 
 ### Column name mapping
 
-When you create your flow, ensure that your column names are mapped. The following input data column names are used to measure generation safety and quality.
+When you create your flow, make sure you map your column names. The following input data column names are used to measure generation safety and quality.
 
 | Input column name | Definition | Required/Optional |
 |------|------------|----------|
 | Question | The original prompt given, also known as *inputs* or *question*. | Required |
 | Answer | The final completion from the API call that's returned, also known as *outputs* or *answer*. | Required |
-| Context | Any context data that's sent to the API call, together with the original prompt. For example, if you hope to get search results only from certain certified information sources or websites, you can define this context in the evaluation steps. | Optional |
+| Context | Any context data that's sent to the API call, together with the original prompt. For example, if you want to get search results only from certain certified information sources or websites, you can define this context in the evaluation steps. | Optional |
 
 ### Parameters required for metrics
 
-The parameters that are configured in your data asset dictate what metrics you can produce, according to this table.
+The parameters that you configure in your data asset dictate what metrics you can produce, according to this table.
 
 | Metric       | Question | Answer   | Context |
 |--------------|----------|----------|---------|
@@ -104,7 +105,7 @@ For information on the specific data mapping requirements for each metric, see [
 
 ## Set up monitoring for a prompt flow
 
-To set up monitoring for your prompt flow application, deploy your prompt flow application with inferencing data collection. Then configure monitoring for the deployed application.
+To set up monitoring for your prompt flow application, deploy your prompt flow application with inferencing data collection. Then, configure monitoring for the deployed application.
 
 ### Deploy your prompt flow application with inferencing data collection
 
@@ -144,7 +145,7 @@ In this section, you learn how to deploy your prompt flow with inferencing data 
 
     :::image type="content" source="../media/deploy-monitor/monitor/test-deploy.png" alt-text="Screenshot that shows the deployment test page." lightbox = "../media/deploy-monitor/monitor/test-deploy.png":::
 
-    Monitoring requires that at least one data point comes from a source other than the **Test** tab in the deployment. We recommend using the REST API available on the **Consume** tab to send sample requests to your deployment. For more information on how to send sample requests to your deployment, see [Create an online deployment](flow-deploy.md#create-an-online-deployment).
+    Monitoring requires that at least one data point comes from a source other than the **Test** tab in the deployment. Use the REST API available on the **Consume** tab to send sample requests to your deployment. For more information on how to send sample requests to your deployment, see [Create an online deployment](flow-deploy.md#create-an-online-deployment).
 
 ### Configure monitoring
 
@@ -156,18 +157,18 @@ In this section, you learn how to configure monitoring for your deployed prompt 
 1. Select the prompt flow deployment that you created.
 1. In the **Enable generation quality monitoring** box, select **Enable**.
 
-    :::image type="content" source="../media/deploy-monitor/monitor/deployment-page-highlight-monitoring.png" alt-text="Screenshot that shows the deployment page highlighting generation quality monitoring." lightbox = "../media/deploy-monitor/monitor/deployment-page-highlight-monitoring.png":::
+    :::image type="content" source="../media/deploy-monitor/monitor/deployment-page-highlight-monitoring.png" alt-text="Screenshot that shows the deployment page highlighting generation quality monitoring." lightbox="../media/deploy-monitor/monitor/deployment-page-highlight-monitoring.png":::
 
 1. Begin to configure monitoring by selecting the metrics that you want.
 1. Confirm that your column names are mapped from your flow as defined in [Column name mapping](#column-name-mapping).
 1. Select the **Azure OpenAI Connection** and **Deployment** values that you want to use to perform monitoring for your prompt flow application.
 1. Select **Advanced options** to see more options to configure.
 
-    :::image type="content" source="../media/deploy-monitor/monitor/column-map.png" alt-text="Screenshot that shows columns mapped for monitoring metrics." lightbox = "../media/deploy-monitor/monitor/column-map.png":::
+    :::image type="content" source="../media/deploy-monitor/monitor/column-map.png" alt-text="Screenshot that shows columns mapped for monitoring metrics." lightbox="../media/deploy-monitor/monitor/column-map.png":::
 
 1. Adjust the sampling rate and the thresholds for your configured metrics. Specify the email addresses that should receive alerts when the average score for a given metric falls below the threshold.
 
-   :::image type="content" source="../media/deploy-monitor/monitor/column-map-advanced-options.png" alt-text="Screenshot that shows advanced options when you map columns for monitoring metrics." lightbox = "../media/deploy-monitor/monitor/column-map-advanced-options.png":::
+   :::image type="content" source="../media/deploy-monitor/monitor/column-map-advanced-options.png" alt-text="Screenshot that shows advanced options when you map columns for monitoring metrics." lightbox="../media/deploy-monitor/monitor/column-map-advanced-options.png":::
 
    If data collection isn't enabled for your deployment, creation of a monitor enables collection of inferencing data to your blob storage. This task takes the deployment offline for a few minutes.
 
@@ -312,8 +313,8 @@ After you create your monitor, it runs daily to compute the token usage and gene
 
 1. Select the **Generation quality** tab to monitor the quality of your application over time. The following metrics are shown in the time chart:
 
-    - **Violation count**: The violation count for a given metric, for example, fluency, is the sum of violations over the selected time window. A *violation* occurs for a metric when the metrics are computed if the computed value for the metric falls below the set threshold value. By default, metrics are computed daily.
-    - **Average score**: The average score for a given metric, for example, fluency, is the sum of the scores for all instances, or requests, divided by the number of instances, or requests, over the selected time window.
+    - **Violation count**: The violation count for a given metric, such as fluency, is the sum of violations over the selected time window. A *violation* occurs for a metric when the metrics are computed if the computed value for the metric falls below the set threshold value. By default, metrics are computed daily.
+    - **Average score**: The average score for a given metric, such as fluency, is the sum of the scores for all instances, or requests, divided by the number of instances, or requests, over the selected time window.
 
     **Generation quality violations** shows the violation rate over the selected time window. The violation rate is the number of violations divided by the total number of possible violations. You can adjust the thresholds for metrics in the settings. By default, metrics are computed daily. You can also adjust this frequency in the settings.
 
@@ -342,11 +343,11 @@ The results on the **Monitoring (preview)** tab of your deployment provide insig
 
 ## Advanced monitoring configuration with SDK v2
 
-Monitoring also supports advanced configuration options with the SDK v2. The following scenarios are supported.
+Monitoring supports advanced configuration options with the SDK v2. The following scenarios are supported.
 
 ### Enable monitoring for token usage
 
-If you want to enable only token usage monitoring for your deployed prompt flow application, adapt the following script to your scenario:
+To enable only token usage monitoring for your deployed prompt flow application, adapt the following script to your scenario:
 
 ```python
 from azure.ai.ml import MLClient
@@ -420,7 +421,7 @@ ml_client.schedules.begin_create_or_update(model_monitor)
 
 ### Enable monitoring for generation quality
 
-If you want to enable only generation quality monitoring for your deployed prompt flow application, adapt the following script to your scenario:
+To enable only generation quality monitoring for your deployed prompt flow application, adapt the following script to your scenario:
 
 ```python
 from azure.ai.ml import MLClient

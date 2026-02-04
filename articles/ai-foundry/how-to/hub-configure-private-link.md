@@ -11,8 +11,9 @@ ms.custom:
     - build-2024
     - ignite-2024
     - hub-only
+    - dev-focus
 ms.topic: how-to
-ms.date: 09/22/2025
+ms.date: 02/02/2026
 ms.reviewer: meerakurup
 ms.author: jburchel 
 author: jonburchel 
@@ -27,14 +28,14 @@ ai-usage: ai-assisted
 > [!TIP]
 > An alternate Foundry project-focused version is available: [How to configure a private link for Microsoft Foundry projects](configure-private-link.md).
 
-When using a [!INCLUDE [hub-projects](../includes/hub-project-name.md)], there are two network isolation aspects to consider:
+When you use a [!INCLUDE [hub-projects](../includes/hub-project-name.md)], consider two network isolation aspects:
 
-- **Network isolation to access a Foundry hub**: This is the focus of this article. It describes how to establish a private connection to your hub and its default resources using a private link.
-- **Network isolation of computing resources in your hub and projects**: This includes compute instances, serverless, and managed online endpoints. For more information, see the [Configure managed networks for Foundry hubs](configure-managed-network.md) article.
+- **Network isolation to access a Foundry hub**: This article focuses on this aspect. It describes how to establish a private connection to your hub and its default resources by using a private link.
+- **Network isolation of computing resources in your hub and projects**: This aspect includes compute instances, serverless, and managed online endpoints. For more information, see the [Configure managed networks for Foundry hubs](configure-managed-network.md) article.
 
 :::image type="content" source="../media/how-to/network/azure-ai-network-inbound.svg" alt-text="Diagram of Foundry hub network isolation." lightbox="../media/how-to/network/azure-ai-network-inbound.png":::
 
-You get several hub default resources in your resource group. You need to configure following network isolation configurations:
+You get several hub default resources in your resource group. You need to configure the following network isolation configurations:
 
 - Disable public network access of hub default resources such as Azure Storage, Azure Key Vault, and Azure Container Registry.
 - Establish private endpoint connection to hub default resources. You need to have both a blob and file private endpoint for the default storage account.
@@ -42,10 +43,16 @@ You get several hub default resources in your resource group. You need to config
 
 ## Prerequisites
 
-* You must have an existing Azure Virtual Network to create the private endpoint in. 
+- An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).
+- An existing Azure Virtual Network with a subnet for the private endpoint.
+- Azure CLI with the `ml` extension installed. To install the extension, run `az extension add --name ml`.
+- The following Azure RBAC roles on your subscription or resource group:
+  - **Contributor** on the Foundry hub resource
+  - **Network Contributor** on the virtual network (or equivalent permissions to create private endpoints)
+- For custom DNS configuration, see [DNS configuration](#dns-configuration).
 
-    > [!IMPORTANT]
-    > We don't recommend using the 172.17.0.0/16 IP address range for your VNet. This is the default subnet range used by the Docker bridge network on-premises.
+> [!IMPORTANT]
+> Don't use the 172.17.0.0/16 IP address range for your VNet. This range is the default subnet range used by the Docker bridge network on-premises.
 
 ## Securely connect to Foundry
 
@@ -66,7 +73,7 @@ If you're creating a new hub, use the following methods to create the hub (Azure
 # [Azure portal](#tab/azure-portal)
 
 > [!NOTE]
-> The information in this document is only about configuring a private link. For a walkthrough of creating a secure hub in the portal, see [Create a secure hub in the Azure portal](create-secure-ai-hub.md).
+> This article only covers configuring a private link. For a walkthrough of creating a secure hub in the portal, see [Create a secure hub in the Azure portal](create-secure-ai-hub.md).
 
 1. From the Azure portal, search for `Foundry`. From the left menu, select **AI Hubs**, and then select **+ Create** and **Hub**.
 
@@ -83,9 +90,9 @@ If you're creating a new hub, use the following methods to create the hub (Azure
 # [Azure CLI](#tab/cli)
 
 > [!NOTE]
-> The information in this section doesn't cover basic hub configuration. For more information, see [Create a hub using the Azure CLI](./develop/create-hub-project-sdk.md?tabs=azurecli).
+> This section doesn't cover basic hub configuration. For more information, see [Create a hub using the Azure CLI](./develop/create-hub-project-sdk.md?tabs=azurecli).
 
-After creating the hub, use the [Azure networking CLI commands](/cli/azure/network/private-endpoint#az-network-private-endpoint-create) to create a private link endpoint for the hub.
+After creating the hub, use the Azure CLI to create a private link endpoint for the hub. Replace the placeholder values with your resource names.
 
 ```azurecli-interactive
 az network private-endpoint create \
@@ -99,7 +106,11 @@ az network private-endpoint create \
     --resource-group <resource-group-name>
 ```
 
-To create the private DNS zone entries for the workspace, use the following commands:
+When successful, the command returns JSON output with `"provisioningState": "Succeeded"`.
+
+**Reference:** [az network private-endpoint create](/cli/azure/network/private-endpoint#az-network-private-endpoint-create)
+
+Next, create the private DNS zone entries for the workspace. These DNS zones enable name resolution for the private endpoint:
 
 ```azurecli-interactive
 # Add privatelink.api.azureml.ms
@@ -135,13 +146,13 @@ Use one of the following methods to add a private endpoint to an existing hub:
 
     :::image type="content" source="../media/how-to/network/add-private-endpoint.png" alt-text="Screenshot of the private endpoint connections tab.":::
 
-1. When going through the forms to create a private endpoint, be sure to:
+1. When you create a private endpoint, be sure to:
 
     - From __Basics__, select the same __Region__ as your virtual network.
     - From __Resource__, select `amlworkspace` as the __target sub-resource__.
     - From the __Virtual Network__ form, select the virtual network and subnet that you want to connect to.
  
-1. After populating the forms with any other network configurations you require, use the __Review + create__ tab to review your settings and select __Create__ to create the private endpoint.
+1. After entering any other network configurations you require, use the __Review + create__ tab to review your settings and select __Create__ to create the private endpoint.
 
 # [Azure CLI](#tab/cli)
 
@@ -201,6 +212,21 @@ az network private-endpoint dns-zone-group add \
     --zone-name privatelink.notebooks.azure.net
 ```
 
+**Reference:** [az network private-dns zone create](/cli/azure/network/private-dns/zone#az-network-private-dns-zone-create) | [az network private-dns link vnet create](/cli/azure/network/private-dns/link/vnet#az-network-private-dns-link-vnet-create)
+
+### Verify the private endpoint
+
+After creating the private endpoint, verify it's provisioned correctly:
+
+```azurecli-interactive
+az network private-endpoint show \
+    --name <private-endpoint-name> \
+    --resource-group <resource-group-name> \
+    --query "{name:name, provisioningState:provisioningState, privateLinkServiceConnections:privateLinkServiceConnections[0].privateLinkServiceConnectionState.status}"
+```
+
+Expected output shows `provisioningState: Succeeded` and connection status `Approved`.
+
 ---
 
 ## Remove a private endpoint
@@ -222,13 +248,17 @@ To remove a private endpoint, use the following information:
 
 # [Azure CLI](#tab/cli)
 
-When using the Azure CLI, use the following command to remove the private endpoint:
+When you use the Azure CLI, use the following command to remove the private endpoint:
 
 ```azurecli
 az network private-endpoint delete \
     --name <private-endpoint-name> \
     --resource-group <resource-group-name>
 ```
+
+The command returns no output on success. To verify deletion, run `az network private-endpoint show` and confirm a `ResourceNotFound` error.
+
+**Reference:** [az network private-endpoint delete](/cli/azure/network/private-endpoint#az-network-private-endpoint-delete)
 
 ---
 
@@ -237,7 +267,7 @@ az network private-endpoint delete \
 In some situations, you might want to allow someone to connect to your secured hub over a public endpoint, instead of through the virtual network. Or you might want to remove the workspace from the virtual network and re-enable public access.
 
 > [!IMPORTANT]
-> Enabling public access doesn't remove any private endpoints that exist. All communications between components behind the virtual network that the private endpoint(s) connect to are still secured. It enables public access only to the hub, in addition to the private access through any private endpoints.
+> Enabling public access doesn't remove any private endpoints that exist. All communications between components behind the virtual network that the private endpoints connect to are still secured. It enables public access only to the hub, in addition to the private access through any private endpoints.
 
 To enable public access, use the following steps:
 
@@ -249,34 +279,35 @@ To enable public access, use the following steps:
 
 # [Azure CLI](#tab/cli)
 
-Use the following Azure CLI command to enable public access:
+Use the following Azure CLI command to enable public access. Replace `<workspace-name>` with your hub name and `<resource-group-name>` with your resource group.
 
 ```azurecli
 az ml workspace update --set public_network_access=Enabled -n <workspace-name> -g <resource-group-name>
 ```
 
-If you receive an error that the `ml` command isn't found, use the following commands to install the Azure Machine Learning CLI extension:
+The command returns JSON output showing the updated workspace configuration with `"publicNetworkAccess": "Enabled"`.
 
-```azurecli
-az extension add --name ml
-```
+**Reference:** [az ml workspace update](/cli/azure/ml/workspace#az-ml-workspace-update)
+
+> [!TIP]
+> If you receive an error that the `ml` command isn't found, install the extension: `az extension add --name ml`
 
 ---
 
-## Enable Public Access only from internet IP ranges (preview)
+## Enable public access only from internet IP ranges (preview)
 
 You can use IP network rules to allow access to your secured hub from specific public internet IP address ranges by creating IP network rules. Each Foundry hub supports up to 200 rules. These rules grant access to specific internet-based services and on-premises networks and block general internet traffic. This feature is currently in preview.
 
 > [!WARNING]
 > * Enable your endpoint's public network access flag if you want to allow access to your endpoint from specific public internet IP address ranges.
 > * You can only use IPv4 addresses.
-> * If the workspace goes from __Enable from selected IPs__ to __Disabled__ or __Enabled__, the IP ranges are reset.
+> * If the workspace goes from __Enable from selected IPs__ to __Disabled__ or __Enabled__, the IP ranges reset.
 
 # [Portal](#tab/azure-portal)
 
-1. From the [Azure portal](https://portal.azure.com), select your Azure Machine Foundry hub.
+1. From the [Azure portal](https://portal.azure.com), select your Foundry hub.
 1. From the left side of the page, select __Networking__ and then select the __Public access__ tab.
-1. Select __Enabled from selected IP addresses__, input address ranges and then select __Save__.
+1. Select __Enabled from selected IP addresses__, input address ranges, and then select __Save__.
 
 # [Azure CLI](#tab/cli)
 
@@ -328,28 +359,28 @@ class Workspace(Resource):
 
 The following restrictions apply to IP address ranges:
 
-- IP network rules are allowed only for _public internet_ IP addresses.
+- You can only use _public internet_ IP addresses for IP network rules.
 
-  [Reserved IP address ranges](https://en.wikipedia.org/wiki/Reserved_IP_addresses) aren't allowed in IP rules such as private addresses that start with 10, 172.16 to 172.31, and 192.168.
+  [Reserved IP address ranges](https://en.wikipedia.org/wiki/Reserved_IP_addresses) aren't allowed in IP rules. These reserved ranges include private addresses that start with 10, 172.16 to 172.31, and 192.168.
 
 - You must provide allowed internet address ranges by using [CIDR notation](https://tools.ietf.org/html/rfc4632) in the form 16.17.18.0/24 or as individual IP addresses like 16.17.18.19.
 
 - Only IPv4 addresses are supported for configuration of storage firewall rules.
 
-- When this feature is enabled, you can test public endpoints using any client tool such as Curl, but the Endpoint Test tool in the portal isn't supported.
+- When you enable this feature, you can test public endpoints by using any client tool such as Curl, but the Endpoint Test tool in the portal isn't supported.
 
-- You can only set the IP addresses for the Foundry hub after the hub is created.
+- You can set the IP addresses for the Foundry hub only after you create the hub.
 
 ## Private storage configuration
 
-If your storage account is private (uses a private endpoint to communicate with your project), you perform the following steps:
+If your storage account is private (uses a private endpoint to communicate with your project), complete the following steps:
 
-1. Our services need to read/write data in your private storage account using [Allow Azure services on the trusted services list to access this storage account](/azure/storage/common/storage-network-security#grant-access-to-trusted-azure-services) with following managed identity configurations. Enable the system assigned managed identity of Foundry Tool and Azure AI Search, then configure role-based access control for each managed identity.
+1. Our services need to read and write data in your private storage account by using [Allow Azure services on the trusted services list to access this storage account](/azure/storage/common/storage-network-security#grant-access-to-trusted-azure-services) with the following managed identity configurations. Enable the system assigned managed identity of Foundry Tool and Azure AI Search, and then configure role-based access control for each managed identity.
 
     | Role | Managed Identity | Resource | Purpose | Reference |
     |--|--|--|--|--|
     | `Reader` | Foundry project | Private endpoint of the storage account | Read data from the private storage account. | 
-    | `Storage File Data Privileged Contributor` | Foundry project | Storage Account | Read/Write prompt flow data. | [Prompt flow doc](/azure/machine-learning/prompt-flow/how-to-secure-prompt-flow#secure-prompt-flow-with-workspace-managed-virtual-network) |
+    | `Storage File Data Privileged Contributor` | Foundry project | Storage Account | Read and write prompt flow data. | [Prompt flow doc](/azure/machine-learning/prompt-flow/how-to-secure-prompt-flow#secure-prompt-flow-with-workspace-managed-virtual-network) |
     | `Storage Blob Data Contributor` | Foundry Tool | Storage Account | Read from input container, write to preprocess result to output container. | [Azure OpenAI Doc](../openai/how-to/managed-identity.md) |
     | `Storage Blob Data Contributor` | Azure AI Search | Storage Account | Read blob and write knowledge store | [Search doc](/azure/search/search-howto-managed-identities-data-sources). |
 
@@ -364,9 +395,9 @@ For information on securing playground chat, see [Securely use playground chat](
 
 ## DNS configuration
 
-See [Azure Machine Learning custom DNS](/azure/machine-learning/how-to-custom-dns#example-custom-dns-server-hosted-in-vnet) article for the DNS forwarding configurations.
+For DNS forwarding configurations, see [Azure Machine Learning custom DNS](/azure/machine-learning/how-to-custom-dns#example-custom-dns-server-hosted-in-vnet).
 
-If you need to configure custom DNS server without DNS forwarding, use the following patterns for the required A records.
+If you need to configure a custom DNS server without DNS forwarding, use the following patterns for the required A records.
 
 * `<AI-HUB-GUID>.workspace.<region>.cert.api.azureml.ms`
 * `<AI-HUB-GUID>.workspace.<region>.api.azureml.ms`
@@ -377,13 +408,13 @@ If you need to configure custom DNS server without DNS forwarding, use the follo
 * `<instance-name>.<region>.instances.azureml.ms`
 
     > [!NOTE]
-    > * Compute instances can be accessed only from within the virtual network.
-    > * The IP address for this FQDN is **not** the IP of the compute instance. Instead, use the private IP address of the workspace private endpoint (the IP of the `*.api.azureml.ms` entries.)
+    > * You can access compute instances only from within the virtual network.
+    > * The IP address for this FQDN isn't the IP of the compute instance. Instead, use the private IP address of the workspace private endpoint (the IP of the `*.api.azureml.ms` entries).
 
-* `<instance-name>-22.<region>.instances.azureml.ms` - Only used by the `az ml compute connect-ssh` command to connect to computers in a managed virtual network. Not needed if you aren't using a managed network or SSH connections.
+* `<instance-name>-22.<region>.instances.azureml.ms` - Only used by the `az ml compute connect-ssh` command to connect to computers in a managed virtual network. You don't need it if you aren't using a managed network or SSH connections.
 
-* `<managed online endpoint name>.<region>.inference.ml.azure.com` - Used by managed online endpoints
-* `models.ai.azure.com` - Used for serverless API deployment
+* `<managed online endpoint name>.<region>.inference.ml.azure.com` - Used by managed online endpoints.
+* `models.ai.azure.com` - Used for serverless API deployment.
 
 To find the private IP addresses for your A records, see the [Azure Machine Learning custom DNS](/azure/machine-learning/how-to-custom-dns#find-the-ip-addresses) article.
 
@@ -392,7 +423,7 @@ To find the private IP addresses for your A records, see the [Azure Machine Lear
 
 ## Limitations
 
-* You might encounter problems trying to access the private endpoint for your hub if you're using Mozilla Firefox. This problem might be related to DNS over HTTPS in Mozilla Firefox. We recommend using Microsoft Edge or Google Chrome.
+* If you use Mozilla Firefox, you might encounter problems when trying to access the private endpoint for your hub. This problem might be related to DNS over HTTPS in Mozilla Firefox. Use Microsoft Edge or Google Chrome.
 
 ## Next steps
 

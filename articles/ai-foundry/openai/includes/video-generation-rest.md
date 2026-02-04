@@ -5,7 +5,8 @@ ms.author: pafarley
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
-ms.date: 5/29/2025
+ms.date: 01/29/2026
+ai-usage: ai-assisted
 ---
 
 
@@ -32,41 +33,47 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     ```
     
 1. Create a virtual environment. If you already have Python 3.10 or higher installed, you can create a virtual environment using the following commands:
-    
-    # [Windows](#tab/windows)
-    
+
+    **Windows**
+
     ```bash
     py -3 -m venv .venv
     .venv\scripts\activate
     ```
-    
-    # [Linux](#tab/linux)
-    
+
+    **Linux**
+
     ```bash
     python3 -m venv .venv
     source .venv/bin/activate
     ```
-    
-    # [macOS](#tab/macos)
-    
+
+    **macOS**
+
     ```bash
     python3 -m venv .venv
     source .venv/bin/activate
     ```
-    
-    ---
-    
+
     Activating the Python environment means that when you run ```python``` or ```pip``` from the command line, you then use the Python interpreter contained in the ```.venv``` folder of your application. You can use the ```deactivate``` command to exit the python virtual environment, and can later reactivate it when needed.
 
     > [!TIP]
     > We recommend that you create and activate a new Python environment to use to install the packages you need for this tutorial. Don't install packages into your global python installation. You should always use a virtual or conda environment when installing python packages, otherwise you can break your global installation of Python.
 
-1. For the **recommended** keyless authentication with Microsoft Entra ID, install the `azure-identity` package with:
+1. Install the required packages.
+
+    **Microsoft Entra ID**
 
     ```console
-    pip install azure-identity
+    pip install requests azure-identity
     ```
 
+
+    **API key**
+
+    ```console
+    pip install requests
+    ```
 
 ## Retrieve resource information
 
@@ -78,16 +85,20 @@ You can generate a video with the Sora model by creating a video generation job,
 
 1. Create the `sora-quickstart.py` file and add the following code to authenticate your resource:
 
-    ## [Microsoft Entra ID](#tab/keyless)
+    **Microsoft Entra ID**
 
     ```python
+    import json
     import requests
-    import base64 
+    import time
     import os
     from azure.identity import DefaultAzureCredential
     
     # Set environment variables or edit the corresponding values here.
-    endpoint = os.environ['AZURE_OPENAI_ENDPOINT']
+    endpoint = os.environ.get('AZURE_OPENAI_ENDPOINT')
+    deployment_name = os.environ.get('AZURE_OPENAI_DEPLOYMENT_NAME')
+    if not endpoint or not deployment_name:
+        raise ValueError("Set AZURE_OPENAI_ENDPOINT and AZURE_OPENAI_DEPLOYMENT_NAME.")
     
     # Keyless authentication
     credential = DefaultAzureCredential()
@@ -97,26 +108,30 @@ You can generate a video with the Sora model by creating a video generation job,
     headers= { "Authorization": f"Bearer {token.token}", "Content-Type": "application/json" }
     ```
 
-    ## [API key](#tab/api-key)
+
+    **API key**
 
     ```python
+    import json
     import requests
-    import base64 
+    import time
     import os
-    from azure.identity import DefaultAzureCredential
     
     # Set environment variables or edit the corresponding values here.
-    endpoint = os.environ['AZURE_OPENAI_ENDPOINT']
-    api_key = os.environ['AZURE_OPENAI_API_KEY']
+    endpoint = os.environ.get('AZURE_OPENAI_ENDPOINT')
+    deployment_name = os.environ.get('AZURE_OPENAI_DEPLOYMENT_NAME')
+    api_key = os.environ.get('AZURE_OPENAI_API_KEY')
+    if not endpoint or not deployment_name or not api_key:
+        raise ValueError(
+            "Set AZURE_OPENAI_ENDPOINT, AZURE_OPENAI_DEPLOYMENT_NAME, and AZURE_OPENAI_API_KEY."
+        )
 
     api_version = 'preview'
     headers= { "api-key": api_key, "Content-Type": "application/json" }
     ```
-    ---
-
 1. Create the video generation job. You can create it from a text prompt only, or from an input image and text prompt.
 
-    ## [Text prompt](#tab/text-prompt)
+    **Text prompt**
 
     ```python
     # 1. Create a video generation job
@@ -126,7 +141,7 @@ You can generate a video with the Sora model by creating a video generation job,
         "width": 480,
         "height": 480,
         "n_seconds": 5,
-        "model": "sora"
+        "model": deployment_name
     }
     response = requests.post(create_url, headers=headers, json=body)
     response.raise_for_status()
@@ -162,7 +177,8 @@ You can generate a video with the Sora model by creating a video generation job,
         raise Exception(f"Job didn't succeed. Status: {status}")
     ```
 
-    ## [Image prompt](#tab/image-prompt)
+
+    **Image prompt**
 
     Replace the `"file_name"` field in `"inpaint_items"` with the name of your input image file. Also replace the construction of the `files` array, which associates the path to the actual file with the filename that the API uses.
 
@@ -173,7 +189,7 @@ You can generate a video with the Sora model by creating a video generation job,
 
     ```python
     # 1. Create a video generation job with image inpainting (multipart upload)
-    create_url = f"{endpoint}/openai/v1/video/generations/jobs?api-version=preview"
+    create_url = f"{endpoint}/openai/v1/video/generations/jobs?api-version={api_version}"
     
     # Flatten the body for multipart/form-data
     data = {
@@ -182,7 +198,7 @@ You can generate a video with the Sora model by creating a video generation job,
         "width": str(1920),
         "n_seconds": str(10),
         "n_variants": str(1),
-        "model": "sora",
+        "model": deployment_name,
         # inpaint_items must be JSON string
         "inpaint_items": json.dumps([
             {
@@ -220,7 +236,7 @@ You can generate a video with the Sora model by creating a video generation job,
     print(f"Job created: {job_id}")
     
     # 2. Poll for job status
-    status_url = f"{endpoint}/openai/v1/video/generations/jobs/{job_id}?api-version=preview"
+    status_url = f"{endpoint}/openai/v1/video/generations/jobs/{job_id}?api-version={api_version}"
     status = None
     while status not in ("succeeded", "failed", "cancelled"):
         time.sleep(5)
@@ -233,7 +249,7 @@ You can generate a video with the Sora model by creating a video generation job,
         generations = status_response.get("generations", [])
         if generations:
             generation_id = generations[0].get("id")
-            video_url = f"{endpoint}/openai/v1/video/generations/{generation_id}/content/video?api-version=preview"
+            video_url = f"{endpoint}/openai/v1/video/generations/{generation_id}/content/video?api-version={api_version}"
             video_response = requests.get(video_url, headers=headers)
             if video_response.ok:
                 output_filename = "output.mp4"
@@ -248,7 +264,8 @@ You can generate a video with the Sora model by creating a video generation job,
 
 
 
-    ## [Video prompt](#tab/video-prompt)
+
+    **Video prompt**
 
     Replace the `"file_name"` field in `"inpaint_items"` with the name of your input video file. Also replace the construction of the `files` array, which associates the path to the actual file with the filename that the API uses.
 
@@ -259,7 +276,7 @@ You can generate a video with the Sora model by creating a video generation job,
 
     ```python
     # 1. Create a video generation job with video inpainting (multipart upload)
-    create_url = f"{endpoint}/openai/v1/video/generations/jobs?api-version=preview"
+    create_url = f"{endpoint}/openai/v1/video/generations/jobs?api-version={api_version}"
     
     # Flatten the body for multipart/form-data
     data = {
@@ -268,7 +285,7 @@ You can generate a video with the Sora model by creating a video generation job,
         "width": str(1920),
         "n_seconds": str(10),
         "n_variants": str(1),
-        "model": "sora",
+        "model": deployment_name,
         # inpaint_items must be JSON string
         "inpaint_items": json.dumps([
             {
@@ -306,7 +323,7 @@ You can generate a video with the Sora model by creating a video generation job,
     print(f"Job created: {job_id}")
     
     # 2. Poll for job status
-    status_url = f"{endpoint}/openai/v1/video/generations/jobs/{job_id}?api-version=preview"
+    status_url = f"{endpoint}/openai/v1/video/generations/jobs/{job_id}?api-version={api_version}"
     status = None
     while status not in ("succeeded", "failed", "cancelled"):
         time.sleep(5)
@@ -319,7 +336,7 @@ You can generate a video with the Sora model by creating a video generation job,
         generations = status_response.get("generations", [])
         if generations:
             generation_id = generations[0].get("id")
-            video_url = f"{endpoint}/openai/v1/video/generations/{generation_id}/content/video?api-version=preview"
+            video_url = f"{endpoint}/openai/v1/video/generations/{generation_id}/content/video?api-version={api_version}"
             video_response = requests.get(video_url, headers=headers)
             if video_response.ok:
                 output_filename = "output.mp4"
@@ -331,9 +348,6 @@ You can generate a video with the Sora model by creating a video generation job,
     else:
         raise Exception(f"Job didn't succeed. Status: {status}")
     ```
-    ---
-
-
 1. Run the Python file.
 
     ```shell
@@ -356,7 +370,7 @@ The output will show the full response JSON from the video generation job creati
     "expires_at": null,
     "generations": [],
     "prompt": "A cat playing piano in a jazz bar.",
-    "model": "sora",
+    "model": "<your-deployment-name>",
     "n_variants": 1,
     "n_seconds": 5,
     "height": 480,

@@ -35,7 +35,7 @@ In this tutorial you learn how to:
 - Python 3.8 or later version
 - The following Python libraries: `json`, `requests`, `os`, `tiktoken`, `time`, `openai`, `numpy`.
 - [Jupyter Notebooks](https://jupyter.org/)
-- An Azure OpenAI resource in a [region where `gpt-4o-mini-2024-07-18` fine-tuning is available](../concepts/models.md). If you don't have a resource the process of creating one is documented in our resource [deployment guide](../how-to/create-resource.md).
+- An Azure OpenAI resource in a [region where `gpt-4o-mini-2024-07-18` fine-tuning is available](../../foundry-models/concepts/models-sold-directly-by-azure.md). If you don't have a resource the process of creating one is documented in our resource [deployment guide](../how-to/create-resource.md).
 - Fine-tuning access requires **Azure AI User** role.
 - If you don't already have access to view quota and deploy models in [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs), then you need [more permissions](../how-to/role-based-access-control.md).
 

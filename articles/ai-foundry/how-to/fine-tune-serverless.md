@@ -5,7 +5,7 @@ description: Deploy fine-tuned models using serverless API in Microsoft Foundry.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 09/25/2025
+ms.date: 01/28/2026
 ms.reviewer: rasavage
 reviewer: RSavage2
 ms.author: ssalgado
@@ -55,7 +55,7 @@ The Foundry model catalog offers fine-tuning support for multiple types of model
 
 Fine-tuning tasks are available only to users whose Azure subscription belongs to a billing account in a region where the model provider makes the offer available. If the offer is available in the relevant region, the user then must have a project resource in the Azure region where the model is available for deployment or fine-tuning, as applicable.
 
-You can also go to the Foundry portal to view all models that contain fine-tuning support:
+Go to the Foundry portal to view all models that contain fine-tuning support:
 
 1. [!INCLUDE [classic-sign-in](../includes/classic-sign-in.md)]
 
@@ -102,7 +102,7 @@ The training and validation data you use *must* be formatted as a JSON Lines (JS
 {"prompt": "<prompt text>", "completion": "<ideal generated text>"}
 ```
 
-Here are some example datasets on Hugging Face that you can use to fine-tune your model:
+Here are some example datasets on Hugging Face to use to fine-tune your model:
 
 - [dair-ai/emotion](https://huggingface.co/datasets/dair-ai/emotion)
 
@@ -120,7 +120,7 @@ The supported file type is JSON Lines. Files are uploaded to the default datasto
 
 ## Use the fine-tune model wizard
 
-Foundry portal provides a custom model wizard, so you can interactively create and train a fine-tuned model for your Azure resource.
+Foundry portal provides a custom model wizard, to interactively create and train a fine-tuned model for your Azure resource.
 
 ### Select the base model
 
@@ -144,7 +144,7 @@ For large data files, we recommend that you import from an Azure Blob store. For
 
 ### Choose your validation data
 
-The next step provides options to configure the model to use validation data in the training process. If you don't want to use validation data, you can choose **Submit** to continue to the advanced options for the model. Otherwise, if you have a validation dataset, you can either choose existing prepared validation data or upload new prepared validation data to use when customizing your model.
+The next step provides options to configure the model to use validation data in the training process. If you don't want to use validation data, choose **Submit** to continue to the advanced options for the model. Otherwise, if you have a validation dataset, either choose existing prepared validation data or upload new prepared validation data to use when customizing your model.
 
 Select **+ Add validation data**. The **Validation data** pane displays any existing, previously uploaded training and validation datasets and provides options by which you can upload new validation data.
 
@@ -157,7 +157,7 @@ Select **+ Add validation data**. The **Validation data** pane displays any exis
 For large data files, we recommend that you import from an Azure Blob store. Large files can become unstable when uploaded through multipart forms because the requests are atomic and can't be retried or resumed.
 
 > [!Note]
->- Similar to training data files, validation data files must be formatted as JSONL files, encoded in UTF-8 with a byte-order mark (BOM). The file must be less than 512 MB in size.
+>- Similar to training data files, validation data files must be formatted as JSONL files, encoded in UTF-8 with a byte-order mark (BOM). The file must be smaller than 512 MB.
 
 ### Configure task parameters
 
@@ -180,7 +180,7 @@ The **Fine-tuning tab** displays information about your custom model. The tab in
 :::image type="content" source="../media/how-to/fine-tune/fine-tune-serverless/project-running.png" alt-text="Screenshot of the running projects dashboard." lightbox="../media/how-to/fine-tune/fine-tune-serverless/project-running.png":::
 
 After you start a fine-tuning job, it can take some time to complete. Your job might be queued behind other jobs on the system. Training your model can take minutes or hours depending on the model and dataset size.
-Here are some of the tasks you can do on the **Models** tab:
+Here are some of the tasks to do on the **Models** tab:
 
 - Check the status of the fine-tuning job for your custom model in the **Status** column of the **Customized models** tab.
 - In the model name column, select the model’s name to view more information about the custom model. You can see the status of the fine-tuning job, training results, training events, and hyperparameters used in the job.
@@ -217,7 +217,7 @@ Issues fine-tuning with unique network setups on the workspace and storage usual
 
 ## Deploy a fine-tuned model
 
-After the fine-tuning job succeeds, you can deploy the custom model from the **Fine-tuning** tab. You must deploy your custom model to make it available for use with completion calls.
+After the fine-tuning job succeeds, deploy the custom model from the **Fine-tuning** tab. You must deploy your custom model to make it available for use with completion calls.
 
 > [!IMPORTANT]
 > After you deploy a customized model and finish with the endpoint, remember to clean up any inactive endpoints. The deletion of an inactive deployment doesn't delete or affect the underlying customized model, and the customized model can be redeployed at any time. As described in Foundry pricing, each customized (fine-tuned) model that's deployed incurs an hourly hosting cost regardless of whether completions or chat completions calls are being made to the model.
@@ -406,7 +406,7 @@ except:
 
 ### Create validation data
 
-The next step provides options to configure the model to use validation data in the training process. If you don't want to use validation data, you can choose to skip this step to continue to the next section. Otherwise, if you have a validation dataset, you can either choose existing prepared validation data or upload new prepared validation data to use when customizing your model.
+The next step provides options to configure the model to use validation data in the training process. If you don't want to use validation data, you can skip this step and continue to the next section. Otherwise, if you have a validation dataset, you can either choose existing prepared validation data or upload new prepared validation data to use when customizing your model.
 
 ```python
 from azure.ai.ml.entities import Data
@@ -558,7 +558,7 @@ model_id = f"azureml://locations/{workspace.location}/workspaces/{workspace._wor
 Several enterprise scenarios are supported for serverless API deployment fine-tuning. The following table outlines the supported configurations for user storage networking and authentication to ensure smooth operation within enterprise scenarios:
 
 >[!Note]  
->- Data connections authentication can be changed via Foundry by clicking on the datastore connection where your dataset is stored, and navigating to the **Access details** > **Authentication Method** setting.
+>- Data connections authentication can be changed via Foundry by selecting the datastore connection where your dataset is stored, and navigating to the **Access details** > **Authentication Method** setting.
 >- Storage authentication can be changed in Azure Storage > **Settings** > **Configurations** page > **Allow storage account key access**.  
 >- Storage networking can be changed in Azure Storage > **Networking** page.
 
@@ -695,7 +695,7 @@ For more information on how to track costs, see [Monitor costs for models offere
 
 You can use this [sample notebook](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/finetuning/standalone/model-as-a-service/chat-completion/chat_completion_with_model_as_service.ipynb) to create a standalone fine-tuning job to enhance a model's ability to summarize dialogues between two people using the Samsum dataset.
 
-The training data utilized is the ultrachat_200k dataset, which is divided into four splits suitable for supervised fine-tuning (sft) and generation ranking (gen). The notebook employs the available Azure AI models for the chat-completion task (If you would like to use a different model than what's used in the notebook, you can replace the model name).
+The training data is the ultrachat_200k dataset, which is divided into four splits suitable for supervised fine-tuning (sft) and generation ranking (gen). The notebook employs the available Azure AI models for the chat-completion task (If you would like to use a different model than what's used in the notebook, you can replace the model name).
 
 The notebook includes setting up prerequisites, selecting a model to fine-tune, creating training and validation datasets, configuring and submitting the fine-tuning job, and finally, creating a serverless deployment using the fine-tuned model for sample inference.
 
@@ -745,5 +745,5 @@ To learn more about Azure AI Content Safety, see [Content filtering in Foundry p
 ## Related content
 
 - [What is Foundry?](../what-is-foundry.md)
-- [Learn more about deploying Mistral models](./deploy-models-mistral.md)
+- [Learn more about deploying Mistral models](../concepts/models-inference-examples.md)
 - [Foundry frequently asked questions](../faq.yml)

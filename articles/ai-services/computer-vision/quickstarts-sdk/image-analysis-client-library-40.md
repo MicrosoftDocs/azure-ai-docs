@@ -15,6 +15,8 @@ keywords: Azure Vision in Foundry Tools, Azure Vision in Foundry Tools
 
 # Quickstart: Image Analysis 4.0
 
+[!INCLUDE [image-analysis-deprecation](../includes/image-analysis-deprecation.md)]
+
 Get started with the Image Analysis 4.0 REST API or client SDK to set up a basic image analysis application. The Image Analysis service provides you with AI algorithms for processing images and returning information on their visual features. Follow these steps to install a package to your application and try out the sample code.
 
 ::: zone pivot="programming-language-csharp"

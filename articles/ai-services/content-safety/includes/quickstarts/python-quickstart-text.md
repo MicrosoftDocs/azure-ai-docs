@@ -17,6 +17,7 @@ ms.author: pafarley
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) 
 * Once you have your Azure subscription, <a href="https://aka.ms/acs-create"  title="Create a Content Safety resource"  target="_blank">create a Content Safety resource </a> in the Azure portal to get your key and endpoint. Enter a unique name for your resource, select your subscription, and select a resource group, supported region (see [Region availability](/azure/ai-services/content-safety/overview#region-availability)), and supported pricing tier. Then select **Create**.
   * The resource takes a few minutes to deploy. After it finishes, Select **go to resource**. In the left pane, under **Resource Management**, select **Subscription Key and Endpoint**. The endpoint and either of the keys are used to call APIs.
+* **Cognitive Services User** role or higher on the Content Safety resource
 * [Python 3.x](https://www.python.org/)
   * Your Python installation should include [pip](https://pip.pypa.io/en/stable/). You can check if you have pip installed by running `pip --version` on the command line. Get pip by installing the latest version of Python.
 
@@ -93,3 +94,18 @@ The following section walks through a sample request with the Python SDK.
     ```console
     python quickstart.py
     ```
+
+### Expected output
+
+The script will output severity scores for each content category:
+
+```console
+Hate severity: 0
+SelfHarm severity: 0
+Sexual severity: 0
+Violence severity: 0
+```
+
+Severity levels range from 0 (safe) to 6 (high risk).
+
+**References**: [ContentSafetyClient](/python/api/azure-ai-contentsafety/azure.ai.contentsafety.contentsafetyclient), [AnalyzeTextOptions](/python/api/azure-ai-contentsafety/azure.ai.contentsafety.models.analyzetextoptions), [TextCategory](/python/api/azure-ai-contentsafety/azure.ai.contentsafety.models.textcategory)

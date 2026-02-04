@@ -22,11 +22,25 @@ ai-usage: ai-assisted
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
+::: moniker range="foundry-classic"
+
 In this article, you learn how to run evaluations in the cloud (preview) for predeployment testing on a test dataset. The Azure AI Evaluation SDK lets you run evaluations locally on your machine and in the cloud. For example, run local evaluations on small test data to assess your generative AI application prototypes, and then move into predeployment testing to run evaluations on a large dataset.
 
 Use cloud evaluations for most scenarios—especially when testing at scale, integrating evaluations into continuous integration and continuous delivery (CI/CD) pipelines, or performing predeployment testing. Running evaluations in the cloud eliminates the need to manage local compute infrastructure and supports large scale, automated testing workflows. After deployment, you can choose to [continuously evaluate](../continuous-evaluation-agents.md) your agents for post-deployment monitoring.
 
 When you use the Foundry SDK, it logs evaluation results in your Foundry project for better observability. This feature supports all Microsoft-curated [built-in evaluators](../../concepts/observability.md#what-are-evaluators) and your own [custom evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md). Your evaluators can be located in the [evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) and have the same project-scope, role-based access control.
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+In this article, you learn how to run evaluations in the cloud (preview) for predeployment testing on a test dataset. 
+
+Use cloud evaluations for most scenarios—especially when testing at scale, integrating evaluations into continuous integration and continuous delivery (CI/CD) pipelines, or performing predeployment testing. Running evaluations in the cloud eliminates the need to manage local compute infrastructure and supports large scale, automated testing workflows. After deployment, you can choose to [continuously evaluate](../../default/observability/how-to/how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation-python-sdk) your agents for post-deployment monitoring.
+
+When you use the Foundry SDK, it logs evaluation results in your Foundry project for better observability. This feature supports all Microsoft-curated [built-in evaluators](../../concepts/observability.md#what-are-evaluators) and your own [custom evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md). Your evaluators can be located in the [evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) and have the same project-scope, role-based access control.
+::: moniker-end
+
 
 ## Prerequisites
 
@@ -46,8 +60,8 @@ When you use the Foundry SDK, it logs evaluation results in your Foundry project
 
 1. Install the Microsoft Foundry SDK project client to run evaluations in the cloud:
 
-   ```python
-   uv install azure-ai-projects azure-identity
+   ```bash
+   pip install azure-ai-projects azure-identity
    ```
 
    > [!NOTE]
@@ -89,9 +103,9 @@ When you use the Foundry SDK, it logs evaluation results in your Foundry project
 
 1. Install the Microsoft Foundry SDK project client that runs the evaluations in the cloud:
 
-   ```python
+   ```bash
 
-   uv install azure-ai-projects azure-identity 
+   pip install azure-ai-projects azure-identity 
 
    ```
 
@@ -100,8 +114,7 @@ When you use the Foundry SDK, it logs evaluation results in your Foundry project
 
 1. Set your environment variables for your Foundry resources:
 
-    ``` python
-    
+    ```python
     import os
     
     # Azure AI Project endpoint
@@ -115,23 +128,19 @@ When you use the Foundry SDK, it logs evaluation results in your Foundry project
     # Dataset details
     dataset_name = os.environ.get("DATASET_NAME", "")
     dataset_version = os.environ.get("DATASET_VERSION", "1")
-    
     ```
 
 1. Define a client that runs your evaluations in the cloud:
 
    ```python
-
    from azure.identity import DefaultAzureCredential 
    from azure.ai.projects import AIProjectClient 
 
    # Create the project client (Foundry project and credentials): 
-
    project_client = AIProjectClient( 
        endpoint=endpoint, 
        credential=DefaultAzureCredential(), 
    ) 
-
    ```
 
 ::: moniker-end

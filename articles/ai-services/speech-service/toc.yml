@@ -23,6 +23,8 @@ items:
     displayName: get started
 - name: Speech tools
   items:
+  - name: Speech tools documentation
+    href: index-speech-tools.yml
   - name: Speech MCP server
     href: /azure/ai-foundry/agents/how-to/tools-classic/azure-ai-speech?view=foundry&context=/azure/ai-services/speech-service/context/context
   - name: Speech Studio

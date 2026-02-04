@@ -2,8 +2,9 @@
 author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 1/21/2024
+ms.date: 1/29/2026
 ms.author: pafarley
+ai-usage: ai-assisted
 ---
 
 [!INCLUDE [Header](../../common/cpp.md)]
@@ -107,7 +108,7 @@ void translateSpeech() {
         speechTranslationConfig->AddTargetLanguage(language);
     }
 
-    auto translationRecognizer = TranslationRecognizer::FromConfig(translationConfig);
+    auto translationRecognizer = TranslationRecognizer::FromConfig(speechTranslationConfig);
 }
 ```
 
@@ -131,7 +132,7 @@ void translateSpeech() {
     }
 
     auto audioConfig = AudioConfig::FromDefaultMicrophoneInput();
-    auto translationRecognizer = TranslationRecognizer::FromConfig(translationConfig, audioConfig);
+    auto translationRecognizer = TranslationRecognizer::FromConfig(speechTranslationConfig, audioConfig);
 }
 ```
 
@@ -150,7 +151,7 @@ void translateSpeech() {
     }
 
     auto audioConfig = AudioConfig::FromWavFileInput("YourAudioFile.wav");
-    auto translationRecognizer = TranslationRecognizer::FromConfig(translationConfig, audioConfig);
+    auto translationRecognizer = TranslationRecognizer::FromConfig(speechTranslationConfig, audioConfig);
 }
 ```
 
@@ -170,7 +171,7 @@ void translateSpeech() {
         speechTranslationConfig->AddTargetLanguage(language);
     }
 
-    auto translationRecognizer = TranslationRecognizer::FromConfig(translationConfig);
+    auto translationRecognizer = TranslationRecognizer::FromConfig(speechTranslationConfig);
     cout << "Say something in '" << fromLanguage << "' and we'll translate...\n";
 
     auto result = translationRecognizer->RecognizeOnceAsync().get();
@@ -188,6 +189,80 @@ void translateSpeech() {
 ```
 
 For more information about speech to text, see [the basics of speech recognition](../../../get-started-speech-to-text.md).
+
+## Event based translation
+
+The `TranslationRecognizer` object exposes a `Recognizing` event. The event fires several times and provides a mechanism to retrieve the intermediate translation results. 
+
+> [!NOTE]
+> Intermediate translation results aren't available when you use [multi-lingual speech translation](#multilingual-translation-with-language-identification).
+
+The following example prints the intermediate translation results to the console:
+
+```cpp
+void translateSpeechContinuous() {
+    auto speechTranslationConfig =
+        SpeechTranslationConfig::FromSubscription(SPEECH__SUBSCRIPTION__KEY, SPEECH__SERVICE__REGION);
+
+    auto fromLanguage = "en-US";
+    auto toLanguage = "de";
+    speechTranslationConfig->SetSpeechRecognitionLanguage(fromLanguage);
+    speechTranslationConfig->AddTargetLanguage(toLanguage);
+
+    auto audioConfig = AudioConfig::FromWavFileInput("whatstheweatherlike.wav");
+    auto translationRecognizer = TranslationRecognizer::FromConfig(speechTranslationConfig, audioConfig);
+
+    // Promise for synchronization of recognition end.
+    promise<void> recognitionEnd;
+
+    // Subscribes to events.
+    translationRecognizer->Recognizing.Connect([&fromLanguage](const TranslationRecognitionEventArgs& e) {
+        cout << "RECOGNIZING in '" << fromLanguage << "': Text=" << e.Result->Text << std::endl;
+        for (const auto& pair : e.Result->Translations) {
+            cout << "    TRANSLATING into '" << pair.first << "': " << pair.second << std::endl;
+        }
+    });
+
+    translationRecognizer->Recognized.Connect([&fromLanguage](const TranslationRecognitionEventArgs& e) {
+        if (e.Result->Reason == ResultReason::TranslatedSpeech) {
+            cout << "RECOGNIZED in '" << fromLanguage << "': Text=" << e.Result->Text << std::endl;
+            for (const auto& pair : e.Result->Translations) {
+                cout << "    TRANSLATED into '" << pair.first << "': " << pair.second << std::endl;
+            }
+        }
+        else if (e.Result->Reason == ResultReason::RecognizedSpeech) {
+            cout << "RECOGNIZED: Text=" << e.Result->Text << std::endl;
+            cout << "    Speech not translated." << std::endl;
+        }
+        else if (e.Result->Reason == ResultReason::NoMatch) {
+            cout << "NOMATCH: Speech could not be recognized." << std::endl;
+        }
+    });
+
+    translationRecognizer->Canceled.Connect([&recognitionEnd](const TranslationRecognitionCanceledEventArgs& e) {
+        cout << "CANCELED: Reason=" << (int)e.Reason << std::endl;
+        if (e.Reason == CancellationReason::Error) {
+            cout << "CANCELED: ErrorDetails=" << e.ErrorDetails << std::endl;
+        }
+        recognitionEnd.set_value();
+    });
+
+    translationRecognizer->SessionStopped.Connect([&recognitionEnd](const SessionEventArgs& e) {
+        cout << "SESSION STOPPED" << std::endl;
+        recognitionEnd.set_value();
+    });
+
+    // Start continuous recognition
+    cout << "Start translation..." << std::endl;
+    translationRecognizer->StartContinuousRecognitionAsync().get();
+
+    // Wait for completion
+    recognitionEnd.get_future().get();
+
+    // Stop recognition
+    translationRecognizer->StopContinuousRecognitionAsync().get();
+}
+```
 
 ## Synthesize translations
 
@@ -214,7 +289,7 @@ void translateSpeech() {
 
     speechTranslationConfig->SetVoiceName("de-DE-Hedda");
 
-    auto translationRecognizer = TranslationRecognizer::FromConfig(translationConfig);
+    auto translationRecognizer = TranslationRecognizer::FromConfig(speechTranslationConfig);
     translationRecognizer->Synthesizing.Connect([](const TranslationSynthesisEventArgs& e)
         {
             auto audio = e.Result->Audio;
@@ -263,7 +338,7 @@ void translateSpeech() {
         speechTranslationConfig->AddTargetLanguage(language);
     }
 
-    auto translationRecognizer = TranslationRecognizer::FromConfig(translationConfig);
+    auto translationRecognizer = TranslationRecognizer::FromConfig(speechTranslationConfig);
 
     cout << "Say something in '" << fromLanguage << "' and we'll translate...\n";
 
