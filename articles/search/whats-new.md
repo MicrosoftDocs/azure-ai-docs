@@ -4,7 +4,7 @@ description: Announcements of new and enhanced features, including a service ren
 author: haileytap
 ms.author: haileytapia
 manager: nitinme
-ms.date: 12/18/2025
+ms.date: 02/02/2026
 ms.service: azure-ai-search
 ms.topic: overview
 ms.custom:
@@ -19,6 +19,12 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 
 > [!NOTE]
 > Preview features are announced here, but we also maintain a [preview features list](search-api-preview.md) so you can find them in one place.
+
+## February 2026
+
+| Item | Description |
+|--|--|
+| [Expanded 2025-11-01-preview portal support for agentic retrieval](get-started-portal-agentic-retrieval.md) | The Azure portal now supports the following 2025-11-01-preview knowledge sources:<p><ul><li>[Indexed OneLake](agentic-knowledge-source-how-to-onelake.md)</li><li>[Indexed SharePoint](agentic-knowledge-source-how-to-sharepoint-indexed.md)</li><li>[Remote SharePoint](agentic-knowledge-source-how-to-sharepoint-remote.md)</li><li>[Web](agentic-knowledge-source-how-to-web.md)</li></ul><p>For [search index knowledge sources](agentic-knowledge-source-how-to-search-index.md), the portal adds optional configurations for specifying search fields and a semantic configuration. For [blob knowledge sources](agentic-knowledge-source-how-to-blob.md), the portal now supports Azure Data Lake Storage (ADLS) Gen2 accounts. Blob, indexed OneLake, and indexed SharePoint knowledge sources also support the content extraction mode for optional use of the [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md).<p>New retrieval options in the knowledge base playground provide settings for maximum runtime, maximum output size, and inclusion of query activity.<p>If you previously created knowledge bases or knowledge sources in the portal, those objects still use the 2025-08-01-preview schema. For help with breaking changes, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md). |
 
 ## December 2025
 
