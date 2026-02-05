@@ -11,7 +11,6 @@ ms.subservice: azure-ai-foundry-model-inference
 ms.topic: concept-article
 ms.date: 02/04/2026
 ms.custom: ignite-2024, github-universe-2024, template-concept, devx-track-python
-monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 
 #CustomerIntent: As a developer building applications with Microsoft Foundry Models, I want to understand how the content filtering system works, including the risk categories, severity levels, and API response behaviors so that I can properly handle content moderation in my application and ensure compliance with safety requirements.
@@ -20,7 +19,7 @@ ai-usage: ai-assisted
 
 # Content filtering for Microsoft Foundry Models
 
-[!INCLUDE [version-banner](../../includes/version-banner.md)]
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) includes a content filtering system that works alongside core models and image generation models and is powered by [Azure AI Content Safety](https://azure.microsoft.com/products/cognitive-services/ai-content-safety). This system runs both the prompt and completion through an ensemble of classification models designed to detect and prevent the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions. Variations in API configurations and application design might affect completions and thus filtering behavior.
 
