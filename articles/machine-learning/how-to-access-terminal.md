@@ -28,11 +28,11 @@ You can use the terminal of a compute instance in your Azure Machine Learning wo
 To access the terminal from your workspace in [Azure Machine Learning studio](https://ml.azure.com):
 
 1. Select **Notebooks** from the left menu.
-1. Select the **Terminal** icon.
+1. Select the **Terminal** icon at the top of the screen.
 
    :::image type="content" source="media/how-to-use-terminal/open-terminal-window.png" alt-text="Screenshot that shows how to open the terminal window.":::
 
-1. If a compute instance is running, the terminal window for that instance opens. If no compute instance is running, select the **Start** or **Create** icons next to **Compute** to start or create a compute instance.
+1. If a compute instance is running, the terminal window for that instance opens. If no compute instance is running, select the **Start** or **Create** icon next to **Compute** to start or create a compute instance.
 
    :::image type="content" source="media/how-to-use-terminal/start-or-create-compute.png" alt-text="Screenshot that shows how to start or create a compute instance.":::
 
@@ -48,7 +48,7 @@ You can also access a compute instance terminal in the following ways:
 
 ### Copy and paste in the terminal 
 
-, You can copy and paste text between the terminal and Azure Machine Learning studio notebook cells. For Windows, use **Ctrl**+**C** to copy and **Ctrl**+**V**, **Ctrl**+**Shift**+**V**, or **Shift**+**Insert** to paste. For MacOS, use **Cmd**+**C** to copy and **Cmd**+**V** to paste.
+You can copy and paste text between the terminal and Azure Machine Learning studio notebook cells. For Windows, use **Ctrl**+**C** to copy and **Ctrl**+**V**, **Ctrl**+**Shift**+**V**, or **Shift**+**Insert** to paste. For MacOS, use **Cmd**+**C** to copy and **Cmd**+**V** to paste.
 
 <a name=git></a>
 ## Access Git operations and files
@@ -56,13 +56,13 @@ You can also access a compute instance terminal in the following ways:
 You can access all Git operations from the terminal. All Git files and folders are stored in your workspace file system so you can use them from any compute instance in your workspace.
 
 > [!NOTE]
-> Add your files and folders anywhere under `~/cloudfiles/code/Users/<your_user_name>` to ensure they're visible in all your notebook environments.
+> To ensure your files and folders are visible in all your notebook environments, save them anywhere under `~/cloudfiles/code/Users/<your_user_name>`.
 
 To integrate Git with your Azure Machine Learning workspace, see [Git integration for Azure Machine Learning](concept-train-model-git-integration.md).
 
 ## Install packages
 
-You can use a terminal window.to install packages into the kernel you want to use for your notebook. The default kernel is `python310-sdkv2`.
+You can use a terminal window to install packages into the kernel you want to use for your notebook. The default kernel is `python310-sdkv2`.
 
 For Python, you can add and execute package install code in a notebook cell. For package management within a Python notebook, use `%pip` or `%conda` magic functions to automatically install packages into the current running kernel. Don't use `!pip` or `!conda`, which refer to all packages including packages outside the currently running kernel.
 
@@ -70,9 +70,9 @@ You can also install packages directly in Jupyter Notebooks, RStudio, or Posit W
 
 ## Add new kernels
 
-Run the following code examples in a terminal window to add new kernels to the compute instance.
+You can run code in the terminal window to add new kernels to the compute instance.
 
-To install a new Jupyter kernel, run the following code. You can install any of the [available Jupyter kernels](https://github.com/jupyter/jupyter/wiki/Jupyter-kernels).
+The following code examples install a new Jupyter kernel. You can install any of the [available Jupyter kernels](https://github.com/jupyter/jupyter/wiki/Jupyter-kernels).
 
 1. Run the following command to create a new environment named `newenv`.
 
@@ -140,7 +140,7 @@ To remove an added Jupyter kernel from the compute instance, you must remove the
 
 To remove the `kernelspec`:
 
-1. Use the terminal window to list and find the `kernelspec`:
+1. Use the terminal window to list and find the `kernelspec`.
 
    ```console
    jupyter kernelspec list
@@ -154,7 +154,7 @@ To remove the `kernelspec`:
 
 To also remove the Conda environment:
 
-1. Use the terminal window to list and find the Conda environment:
+1. Use the terminal window to list and find the Conda environment.
 
    ```console
    conda env list
