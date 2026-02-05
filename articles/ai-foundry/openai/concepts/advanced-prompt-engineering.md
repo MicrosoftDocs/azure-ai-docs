@@ -28,7 +28,7 @@ If you want broader prompt guidance (few-shot examples, ordering, and token effi
 
 ## Prerequisites
 
-To use system messages, you need access to an Azure OpenAI resource with a chat completion model deployment (such as GPT-4 or GPT-4o). For setup instructions, see [Create and deploy an Azure OpenAI resource](../how-to/create-resource.md).
+To use system messages, you need access to an Azure OpenAI resource with a chat completion model deployment. For setup instructions, see [Create and deploy an Azure OpenAI resource](../how-to/create-resource.md).
 
 ## What is a system message?
 
