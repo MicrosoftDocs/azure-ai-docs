@@ -93,7 +93,7 @@ Azure Functions is a serverless compute service that provides scale-to-zero capa
 
    If you prefer a CLI workflow to retrieve function access keys, see [Work with access keys in Azure Functions](/azure/azure-functions/function-keys-how-to?tabs=azure-cli#get-your-function-access-keys).
 
-For additional implementation details including advanced authentication patterns and troubleshooting, see the [Azure-Samples/remote-mcp-functions-python README](https://github.com/Azure-Samples/remote-mcp-functions-python#readme).
+For additional implementation details including advanced authentication patterns and troubleshooting, refer to the tutorial [Host an MCP server on Azure Functions](/azure/azure-functions/functions-mcp-tutorial?tabs=mcp-extension&pivots=programming-language-python).
 
 ## Secure your MCP server endpoint
 
@@ -119,9 +119,11 @@ To register your MCP server:
    > [!TIP]
    > The API Center name becomes your private tool catalog name in the registry filter. Choose an informative name that helps users identify your organization's tool catalog.
 
-1. In the left navigation pane, select **APIs**.
+1. In the left navigation pane, expand **Inventory** and select **Assets**.
 
-1. Select **+ Add API** and provide the required information about your MCP server.
+1. Select **Register an asset** and choose **MCP server**.
+
+1. Provide the required information about your MCP server.
 
 1. Configure environments and deployments following the tutorial: [Add environments and deployments for APIs in Azure API Center](/azure/api-center/configure-environments-deployments).
 
