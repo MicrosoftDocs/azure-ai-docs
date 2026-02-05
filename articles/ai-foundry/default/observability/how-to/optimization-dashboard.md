@@ -22,7 +22,7 @@ This article describes the integrated user experience and system behavior for ge
 
 ## Prerequisites
 
-- A [Foundry project](../../../how-to/create-projects.md) with one or more [published agents](../../agents/how-to/deploy-hosted-agent.md).
+- A [Foundry project](../../../how-to/create-projects.md) with one or more [published agents](../../../agents/overview.md).
 - Access to **Ask AI** (the chat assistant) in the Foundry portal.
 
 ## Start a chat with Ask AI

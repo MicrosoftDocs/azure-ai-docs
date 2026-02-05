@@ -22,7 +22,7 @@ This article covers two approaches: viewing metrics in the Foundry portal and se
 
 ## Prerequisites
 
-- A [Foundry project](../../../how-to/create-projects.md) with at least one [deployed agent](../../agents/how-to/deploy-hosted-agent.md).
+- A [Foundry project](../../../how-to/create-projects.md) with at least one [agent](../../../agents/overview.md).
 - An [Application Insights resource](/azure/azure-monitor/app/app-insights-overview) connected to your project.
 - Azure role-based access control (RBAC) access to the Application Insights resource. For log-based views, you also need access to the associated Log Analytics workspace. To verify access, open the Application Insights resource in the Azure portal, select **Access control (IAM)**, and confirm your account has an appropriate role. For log access, assign the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader).
 

@@ -17,7 +17,7 @@ In this article, you’ll learn how to set up human evaluation for your Foundry 
 
 ## Prerequisites
 
-- A [Foundry project](../../../how-to/create-projects.md) with one or more [agents built](../../agents/how-to/deploy-hosted-agent.md).
+- A [Foundry project](../../../how-to/create-projects.md) with one or more [agents](../../../agents/overview.md).
 - [Application Insights configured](trace-agent-setup.md) for your project.
 
 ## Create a human evaluation template
