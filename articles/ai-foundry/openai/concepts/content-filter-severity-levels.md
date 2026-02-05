@@ -5,7 +5,7 @@ description: Learn about the harm categories and severity levels used by the con
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.topic: concept-article
-ms.date: 10/30/2025
+ms.date: 02/05/2026
 author: ssalgadodev
 ms.author: ssalgado
 recommendations: false

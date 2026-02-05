@@ -1676,6 +1676,11 @@
       "redirect_document_id": true
     },
     {
+      "source_path_from_root": "/articles/ai-services/openai/concepts/content-filter-severity-levels.md",
+      "redirect_url": "/azure/ai-foundry/openai/concepts/content-filter-severity-levels",
+      "redirect_document_id": true
+    },
+    {
       "source_path_from_root": "/articles/ai-services/openai/concepts/content-filter.md",
       "redirect_url": "/azure/ai-foundry/openai/concepts/content-filter",
       "redirect_document_id": true
@@ -2279,11 +2284,6 @@
       "source_path_from_root": "/articles/ai-services/openai/includes/content-filter-configurability.md",
       "redirect_url": "/azure/ai-foundry/openai/includes/content-filter-configurability",
       "redirect_document_id": true
-    },
-    {
-      "source_path_from_root": "/articles/ai-services/openai/concepts/content-filter-severity-levels.md",
-      "redirect_url": "/azure/ai-foundry/default/guardrails/severity-levels",
-      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/includes/create-resource-cli.md",

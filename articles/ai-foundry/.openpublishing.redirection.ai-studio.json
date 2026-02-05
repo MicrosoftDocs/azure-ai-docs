@@ -1571,6 +1571,11 @@
           "source_path_from_root": "/articles/ai-foundry/openai/concepts/content-filter.md",
           "redirect_url": "/azure/ai-foundry/foundry-models/concepts/content-filter",
           "redirect_document_id": true
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/default/guardrails/severity-levels.md",
+          "redirect_url": "/azure/ai-foundry/openai/concepts/content-filter-severity-levels",
+          "redirect_document_id": true
         }
     ]
 }
