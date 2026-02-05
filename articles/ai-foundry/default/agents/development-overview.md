@@ -51,6 +51,10 @@ To follow the code samples in this article, you need:
 
 :::code language="python" source="~/foundry-samples-main/samples/python/quickstart/quickstart-create-agent.py":::
 
+### Chat with agent
+
+:::code language="python" source="~/foundry-samples-main/samples/python/quickstart/quickstart-chat-with-agent.py":::
+
 Set these environment variables before running the samples:
 
 | Variable | Description | Where to find it |
@@ -72,6 +76,10 @@ For more samples, see [Azure SDK for Python agent samples](https://github.com/Az
 
 :::code language="csharp" source="~/foundry-samples-main/samples/csharp/quickstart/quickstart-create-agent.cs":::
 
+### Chat with agent
+
+:::code language="csharp" source="~/foundry-samples-main/samples/csharp/quickstart/quickstart-chat-with-agent.cs":::
+
 Set these environment variables before running the samples:
 
 | Variable | Description | Where to find it |
@@ -92,6 +100,10 @@ For more samples, see [Azure SDK for .NET agent samples](https://github.com/Azur
 ### Create agent
 
 :::code language="typescript" source="~/foundry-samples-main/samples/typescript/quickstart/src/quickstart-create-agent.ts":::
+
+### Chat with agent
+
+:::code language="typescript" source="~/foundry-samples-main/samples/typescript/quickstart/src/quickstart-chat-with-agent.ts":::
 
 Set these environment variables before running the samples:
 
@@ -120,6 +132,10 @@ For more samples, see [Azure SDK for JavaScript agent samples](https://github.co
 
 :::code language="java" source="~/foundry-samples-main/samples/java/quickstart/src/main/java/com/microsoft/foundry/samples/CreateAgent.java":::
 
+### Chat with agent
+
+:::code language="java" source="~/foundry-samples-main/samples/java/quickstart/src/main/java/com/microsoft/foundry/samples/ChatWithAgent.java":::
+
 Set these environment variables before running the samples:
 
 | Variable | Description | Where to find it |
@@ -129,28 +145,6 @@ Set these environment variables before running the samples:
 | `AGENT_NAME` | The name for your new aent | You can use a name of your choice, for example `MyAgent`. |
 
 For more samples, see [Azure SDK for Java agent samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/ai/azure-ai-agents/src/samples).
-
----
-
-### Chat with agent
-
-After you create an agent, you can start a conversation by creating a thread, adding a message, and running the agent. The following code shows how to chat with the agent you created.
-
-# [Python](#tab/python)
-
-:::code language="python" source="~/foundry-samples-main/samples/python/quickstart/quickstart-chat-with-agent.py":::
-
-# [C#](#tab/csharp)
-
-:::code language="csharp" source="~/foundry-samples-main/samples/csharp/quickstart/quickstart-chat-with-agent.cs":::
-
-# [TypeScript](#tab/typescript)
-
-:::code language="typescript" source="~/foundry-samples-main/samples/typescript/quickstart/src/quickstart-chat-with-agent.ts":::
-
-# [Java](#tab/java)
-
-:::code language="java" source="~/foundry-samples-main/samples/java/quickstart/src/main/java/com/microsoft/foundry/samples/ChatWithAgent.java":::
 
 ---
 
