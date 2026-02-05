@@ -16,7 +16,7 @@ items:
     - name: Content filters
       items:
       - name: Content filtering severity levels
-        href: ../../openai/concepts/content-filter-severity-levels.md
+        href: ../../default/guardrails/severity-levels.md
       - name: Prompt shields
         href: ../../openai/concepts/content-filter-prompt-shields.md
       - name: Groundedness detection

@@ -15,9 +15,10 @@ ms.custom: azure-ai-content-safety
 
 # Harm categories and severity levels in Microsoft Foundry
 
-The content safety system integrated in Microsoft Foundry contains neural multiclass classification models aimed at detecting and filtering harmful content. The models cover four categories (hate, sexual, violence, and self-harm) across four severity levels (safe, low, medium, and high). Content detected at the 'safe' severity level is labeled in annotations but isn't subject to filtering and isn't configurable.
+Content filtering in Microsoft Foundry ensures that AI-generated outputs align with ethical guidelines and safety standards. Azure OpenAI provides content filtering capabilities to help identify and mitigate risks associated with various categories of harmful or inappropriate content.
 
-The system also includes other optional classification models aimed at detecting jailbreak risk and known content for text and code. These models are binary classifiers that flag whether user or model behavior qualifies as a jailbreak attack or match to known text or source code. The use of these models is optional, but use of protected material code model may be required for Customer Copyright Commitment coverage.
+The content safety system contains neural multiclass classification models aimed at detecting and filtering harmful content. The models cover four categories (hate, sexual, violence, and self-harm) across four severity levels (safe, low, medium, and high) for both text and image content. Content detected at the 'safe' severity level is labeled in annotations but isn't subject to filtering and isn't configurable.
+
 
 > [!NOTE]
 > The text content safety models for the hate, sexual, violence, and self-harm categories are specifically trained and tested on the following languages: English, German, Japanese, Spanish, French, Italian, Portuguese, and Chinese. However, the service can work in many other languages, but the quality might vary. In all cases, you should do your own testing to ensure that it works for your application.
@@ -32,6 +33,12 @@ The following table summarizes the harm categories supported by Foundry guardrai
 | **Sexual** | Sexual describes language related to anatomical organs and genitals, romantic relationships and sexual acts, acts portrayed in erotic or affectionate terms, including those portrayed as an assault or a forced sexual violent act against one's will.<br><br>This includes but is not limited to:<br>• Vulgar content<br>• Prostitution<br>• Nudity and pornography<br>• Abuse<br>• Child exploitation, child abuse, child grooming |
 | **Violence** | Violence describes language related to physical actions intended to hurt, injure, damage, or kill someone or something; describes weapons, guns and related entities.<br><br>This includes, but isn't limited to:<br>• Weapons<br>• Bullying and intimidation<br>• Terrorist and violent extremism<br>• Stalking |
 | **Self-Harm** | Self-harm describes language related to physical actions intended to purposely hurt, injure, damage one's body or kill oneself.<br><br>This includes, but isn't limited to:<br>• Eating disorders<br>• Bullying and intimidation |
+
+## Severity levels
+
+[!INCLUDE [severity-levels-text-four](../../../ai-services/content-safety/includes/severity-levels-text-four.md)]
+
+[!INCLUDE [severity-levels-image](../../../ai-services/content-safety/includes/severity-levels-image.md)]
 
 ## Content filtering scenarios
 
