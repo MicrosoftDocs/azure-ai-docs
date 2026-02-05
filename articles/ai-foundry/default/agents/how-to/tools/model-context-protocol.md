@@ -93,7 +93,7 @@ When you use MCP servers, follow these practices:
 - Review the requested tool name and arguments before you approve.
 - Log approvals and tool calls for auditing and troubleshooting.
 
-## Create an agent with the MCP tool
+## Create an agent in Python with the MCP tool
 
 Use the following code sample to create an agent and call the function. You need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true) for details.
 
@@ -481,7 +481,7 @@ Response: Your GitHub username is "example-username".
 :::zone-end
 
 :::zone pivot="typescript"
-## Create an agent with the MCP tool
+## Create an agent in TypeScript with the MCP tool
 
 The following TypeScript sample demonstrates how to create an agent with MCP tool capabilities, send requests that trigger MCP approval workflows, handle approval requests, and clean up resources. For a JavaScript version, see the [sample code](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentMcp.js) on the Azure SDK for JavaScript repository on GitHub.
 
