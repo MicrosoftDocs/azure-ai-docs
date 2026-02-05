@@ -54,12 +54,15 @@ export SSL_CERT_FILE=/etc/pki/tls/certs/ca-bundle.crt
 
 ## Certificate revocation checks
 
-When the Speech SDK connects to the Speech service, it checks the Transport Layer Security (TLS/SSL) certificate. The Speech SDK verifies that the certificate reported by the remote endpoint is trusted and isn't revoked. This verification provides a layer of protection against attacks involving spoofing and other related vectors. The check is accomplished by retrieving a certificate revocation list (CRL) from a certificate authority (CA) used by Azure. A list of Azure CA download locations for updated TLS CRLs can be found in [this document](/azure/security/fundamentals/tls-certificate-changes).
+When the Speech SDK connects to the Speech service, it can check the Transport Layer Security (TLS/SSL) certificate. The Speech SDK verifies that the certificate reported by the remote endpoint is trusted and isn't revoked. This verification provides a layer of protection against attacks involving spoofing and other related vectors. The check is accomplished by retrieving a certificate revocation list (CRL) from a certificate authority (CA) used by Azure. A list of Azure CA download locations for updated TLS CRLs can be found in [this document](/azure/security/fundamentals/tls-certificate-changes).
+
+> [!NOTE]
+> CRL checks are disabled by default in the Speech SDK 1.48 and newer releases due to changes in Microsoft CA infrastructure.
 
 If a destination posing as the Speech service reports a revoked certificate in a retrieved CRL, the SDK terminates the connection and reports an error via a `Canceled` event. The authenticity of a reported certificate can't be checked without an updated CRL. Therefore, the Speech SDK also treats a failure to download a CRL from an Azure CA location as an error.
 
 > [!WARNING]
-> If your solution uses proxy or firewall it should be configured to allow access to all certificate revocation list URLs used by Azure. Note that many of these URLs are outside of `microsoft.com` domain, so allowing access to `*.microsoft.com` is not enough. See [this document](/azure/security/fundamentals/tls-certificate-changes) for details. In exceptional cases you may ignore CRL failures (see [the correspondent section](#bypassing-or-ignoring-crl-failures)), but such configuration is strongly not recommended, especially for production scenarios.
+> If your solution uses proxy or firewall it should be configured to allow access to all certificate revocation list URLs used by Azure. Note that many of these URLs are outside of `microsoft.com` domain, so allowing access to `*.microsoft.com` is not enough. See [this document](/azure/security/fundamentals/tls-certificate-changes) for details.
 
 ### Large CRL files
 
@@ -110,9 +113,6 @@ speechConfig.properties.SetPropertyByString("CONFIG_MAX_CRL_SIZE_KB", "150000")
 ### Bypassing or ignoring CRL failures
 
 If an environment can't be configured to access an Azure CA location, the Speech SDK can't retrieve an updated CRL. You can configure the SDK either to continue and log download failures or to bypass all CRL checks.
-
-> [!WARNING]
-> CRL checks are a security measure and bypassing them increases susceptibility to attacks. They should not be bypassed without thorough consideration of the security implications and alternative mechanisms for protecting against the attack vectors that CRL checks mitigate.
 
 To continue with the connection when a CRL can't be retrieved, set the property `"OPENSSL_CONTINUE_ON_CRL_DOWNLOAD_FAILURE"` to `"true"`. An attempt is still made to retrieve a CRL and failures is still emitted in logs, but connection attempts are allowed to continue.
 
