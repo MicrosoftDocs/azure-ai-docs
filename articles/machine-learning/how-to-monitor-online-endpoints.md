@@ -9,7 +9,7 @@ reviewer: Jagatjeet
 author: s-polly
 ms.author: scottpolly
 ms.subservice: mlops
-ms.date: 01/31/2025
+ms.date: 02/05/2026
 ms.topic: how-to
 ms.custom: how-to, devplatv2
 # customer intent: As a developer, I want to see how to use metrics, logs, and Application Insights to monitor my Azure Machine Learning online endpoints so that I can track and analyze endpoint behavior.
@@ -25,7 +25,7 @@ Azure Machine Learning uses integration with Azure Monitor to track and monitor 
 
 * **Application Insights**: Curated environments include integration with Application Insights. You can turn this integration on or off when you create an online deployment. When you turn it on, built-in metrics and logs are sent to Application Insights. You can then use the built-in features of Application Insights for further analysis. Examples of those features include live metrics, the transaction search, the failures view, and the performance view.
 
-In this article you see how to:
+In this article, you learn how to:
 
 * Choose the right method to view and track metrics and logs.
 * View metrics for your online endpoint.
@@ -59,17 +59,17 @@ To access the metrics pages through links that are available in the studio, take
 
    :::image type="content" source="media/how-to-monitor-online-endpoints/online-endpoints-access-metrics-studio.png" alt-text="Screenshot of an endpoint page in the studio that shows endpoint attributes. Assets, Endpoints, Endpoint attributes, and View metrics are highlighted." lightbox="media/how-to-monitor-online-endpoints/online-endpoints-access-metrics-studio.png":::
 
-   The endpoint's metrics page opens in the Azure portal.
+   The portal opens to the endpoint's metrics page.
 
 1. In Azure Machine Learning studio, on an endpoint page, go to the section for a deployment, and then select **View metrics**.
 
    :::image type="content" source="media/how-to-monitor-online-endpoints/deployment-metrics-studio.png" alt-text="Screenshot of an endpoint page in the studio that shows deployment information. Deployment blue and View metrics are highlighted." lightbox="media/how-to-monitor-online-endpoints/deployment-metrics-studio.png":::
 
-   The deployment's metrics page opens in the Azure portal.
+   The portal opens to the deployment's metrics page.
 
 ### Access metrics from the Azure portal
 
-Another way to view the metrics page for an endpoint or deployment is to go directly to the Azure portal:
+You can view the metrics for an endpoint or deployment in the Azure portal. Follow these steps:
 
 1. Go to the [Azure portal](https://portal.azure.com).
 
@@ -118,19 +118,19 @@ You can also create custom alerts so that you receive notifications about import
 
    :::image type="content" source="media/how-to-monitor-online-endpoints/online-endpoints-new-alert-rule.png" alt-text="Screenshot of the Azure portal that shows the Metrics page for a deployment. New alert rule is highlighted."  lightbox="media/how-to-monitor-online-endpoints/online-endpoints-new-alert-rule.png" :::
 
-1. In the Select a signal window, select the signal that you want to create an alert for, and then select **Apply**.
+1. In the **Select a signal** window, select the signal that you want to create an alert for, and then select **Apply**.
 
-1. In the Create an alert rule page, enter a threshold, and edit any other settings that you want to adjust. For more information about alert rule settings, see [Configure the alert rule conditions](/azure/azure-monitor/alerts/alerts-create-metric-alert-rule#configure-the-alert-rule-conditions). Then select **Next: Actions**.
+1. In the **Create an alert rule** page, enter a threshold, and edit any other settings that you want to adjust. For more information about alert rule settings, see [Configure the alert rule conditions](/azure/azure-monitor/alerts/alerts-create-metric-alert-rule#configure-the-alert-rule-conditions). Then select **Next: Actions**.
 
    :::image type="content" source="media/how-to-monitor-online-endpoints/configure-alert-rule.png" alt-text="Screenshot of the Create an alert rule page in the Azure portal. The Threshold box and Next Actions are highlighted."  lightbox="media/how-to-monitor-online-endpoints/configure-alert-rule.png" :::
 
-1. In the Select action groups window, create or select an action group to specify what happens when your alert is triggered. For more information, see [Configure the alert rule details](/azure/azure-monitor/alerts/alerts-create-metric-alert-rule#configure-the-alert-rule-details).
+1. In the **Select action groups** window, create or select an action group to specify what happens when your alert is triggered. For more information, see [Configure the alert rule details](/azure/azure-monitor/alerts/alerts-create-metric-alert-rule#configure-the-alert-rule-details).
 
 1. Select **Review + Create** to finish creating your alert.
 
 ### Scale automatically based on metrics
 
-You can configure deployments to scale automatically based on metrics. To turn on the autoscale feature, you can use the UI or code.
+You can configure deployments to scale automatically based on metrics. To turn on the autoscale feature, use the UI or code.
 
 The options for code are the Azure Machine Learning CLI and the Azure Machine Learning SDK for Python. When you use code, you configure the conditions for triggering automatic scaling by providing the REST API name of metrics.
 
@@ -141,7 +141,7 @@ For more information, see [Autoscale online endpoints in Azure Machine Learning]
 
 ## Use logs
 
-There are three logs that you can turn on for online endpoints:
+Turn on three logs for online endpoints:
 
 * **AmlOnlineEndpointTrafficLog**: This traffic log provides a way for you to check the information of requests to the endpoint. This log is useful in the following cases:
   * A request response isn't 200, and you want more information. The `ResponseCodeReason` column in the log lists the reason. For descriptions of status codes and reasons, see [HTTPS status codes](how-to-troubleshoot-online-endpoints.md#http-status-codes) in the article about troubleshooting online endpoints.
@@ -212,9 +212,9 @@ There are three logs that you can turn on for online endpoints:
 
 ### Example queries
 
-Example queries are available for you to use. To view the queries, take the following steps:
+You can use the following example queries. To view the queries, take the following steps:
 
-1. On the Logs page, select **Queries**.
+1. On the **Logs** page, select **Queries**.
 
 1. In the search box, enter **Online endpoint**.
 
