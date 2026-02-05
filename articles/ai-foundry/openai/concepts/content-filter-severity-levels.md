@@ -10,10 +10,14 @@ author: ssalgadodev
 ms.author: ssalgado
 recommendations: false
 ms.custom: azure-ai-content-safety
+monikerRange: 'foundry-classic || foundry'
+
 # customer intent: As a developer, I want to understand the harm categories and severity levels in Microsoft Foundry so that I can properly handle content filtering in my applications.
 ---
 
 # Harm categories and severity levels in Microsoft Foundry
+
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 Content filtering in Microsoft Foundry ensures that AI-generated outputs align with ethical guidelines and safety standards. Azure OpenAI provides content filtering capabilities to help identify and mitigate risks associated with various categories of harmful or inappropriate content.
 
