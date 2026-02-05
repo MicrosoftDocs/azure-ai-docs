@@ -30,8 +30,7 @@ Microsoft Foundry provides tracing integrations for popular agent frameworks tha
 
 ## Prerequisites
 
-- A Foundry project. For more information, see [Create a Foundry project](../../../how-to/create-projects.md).
-- Tracing connected to an Azure Monitor Application Insights resource. To set it up, see [Set up tracing in Microsoft Foundry](trace-agent-setup.md).
+- A [Foundry project](../../../how-to/create-projects.md) with [tracing connected](trace-agent-setup.md) to Application Insights.
 - Contributor or higher role on the Application Insights resource for trace ingestion.
 - Access to the connected Application Insights resource for viewing traces. For log-based queries, you might also need access to the associated Log Analytics workspace.
 - Python 3.10 or later (required for all code samples in this article).
