@@ -69,18 +69,16 @@ To learn about supported authentication options (key-based, Microsoft Entra iden
 > [!NOTE]
 > Set `project_connection_id` to the ID of your project connection.
 
+<!-- The verbiage in the following section was provided by Foundry CELA. Do not modify. -->
 ## Considerations for using non-Microsoft services and servers
 
-When you connect to a non-Microsoft MCP server, you pass some of your data (such as prompt content) to that service and might receive data from it. You're subject to the terms between you and the service provider and are responsible for your use and any associated charges.
+You're subject to the terms between you and the service provider when you use connected non-Microsoft services. When you connect to a non-Microsoft service, you pass some of your data (such as prompt content) to the non-Microsoft service, or your application might receive data from the non-Microsoft service. You're responsible for your use of non-Microsoft services and data, along with any charges associated with that use.
 
-Third parties create the remote MCP servers you use with Foundry Agent Service. Microsoft doesn't test or verify these servers and has no responsibility for your use of them.
+Third parties, not Microsoft, create the remote MCP servers that you decide to use with the MCP tool described in this article. Microsoft doesn't test or verify these servers. Microsoft has no responsibility to you or others in relation to your use of any remote MCP servers.
 
-Follow these practices when using non-Microsoft MCP servers:
+Carefully review and track what MCP servers you add to Foundry Agent Service. Rely on servers hosted by trusted service providers themselves rather than proxies.
 
-- Carefully review and track what MCP servers you add to Foundry Agent Service.
-- Rely on servers hosted by trusted service providers rather than proxies.
-- Review all data you share with remote MCP servers and log it for auditing.
-- Be aware of non-Microsoft practices for data retention and location.
+The MCP tool allows you to pass custom headers, such as authentication keys or schemas, that a remote MCP server might need. Review all data that you share with remote MCP servers and log the data for auditing purposes. Be aware of non-Microsoft practices for retention and location of data.
 
 ## Best practices
 

@@ -581,14 +581,16 @@ The console displays streamed response text as the A2A agent processes the reque
 | Connection timeout | Remote agent slow to respond | Increase timeout settings or verify the remote agent's performance. Consider implementing retry logic with exponential backoff. |
 | Missing A2A tool in response | Tool not enabled for the agent | Recreate the agent with the A2A tool explicitly enabled, and verify the connection is active and properly configured. |
 
+<!-- The verbiage in the following section was provided by Foundry CELA. Do not modify. -->
 ## Considerations for using non-Microsoft services
 
-When you connect to A2A endpoints that third parties host, keep these points in mind:
+You're subject to the terms between you and the service provider when you use connected non-Microsoft services and servers ("non-Microsoft services"). Under your agreement governing use of Microsoft Online services, non-Microsoft services are non-Microsoft Products. When you connect to a non-Microsoft service, you pass some of your data (such as prompt content) to the non-Microsoft services, or your application might receive data from the non-Microsoft services. You're responsible for your use of non-Microsoft services and data, along with any charges associated with that use. 
 
-- **Your agreement applies**: You're subject to the terms between you and the service provider for non-Microsoft services.
-- **Data sharing**: When you connect to a non-Microsoft endpoint, you might send data (such as prompt content) to that service or receive data from it. You're responsible for this data and any associated charges.
-- **Microsoft doesn't verify third-party endpoints**: Microsoft doesn't test or verify A2A agent endpoints that third parties create. Use endpoints from trusted providers.
-- **Security practices**: The A2A tool can pass custom headers like authentication keys. Log all data you share with non-Microsoft services for auditing. Review the provider's data retention and location practices. 
+Third parties, not Microsoft, create the non-Microsoft services, including A2A agent endpoints, that you decide to use with the A2A tool described in this article. Microsoft didn't test or verify these A2A agent endpoints. Microsoft has no responsibility to you or others in relation to your use of any non-Microsoft services.  
+
+Carefully review and track the A2A agent endpoints you add to Foundry Agent Service. Rely on endpoints hosted by trusted service providers themselves rather than proxies. 
+
+The A2A tool allows you to pass custom headers, such as authentication keys or schemas, that an A2A agent endpoint might need. Review all data that you share with non-Microsoft services, including A2A agent endpoints, and log the data for auditing purposes. Be aware of non-Microsoft practices for retention and location of data. 
 
 ## Related content
 

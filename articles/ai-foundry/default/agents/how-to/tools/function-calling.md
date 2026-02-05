@@ -22,7 +22,7 @@ Microsoft Foundry agents support function calling, which lets you extend agents 
 > [!IMPORTANT]
 > Runs expire 10 minutes after creation. Submit your tool outputs before they expire.
 
-Function calling works through the SDK and REST API. Although agents appear in the Microsoft Foundry portal after creation, the portal doesn't execute function calls. Test function calling through code.
+You can run agents with function tools in the Microsoft Foundry portal. However, the portal doesn't support adding, removing, or updating function definitions on an agent. Use the SDK or REST API to configure function tools.
 
 ## Usage support
 
@@ -398,7 +398,7 @@ Set the following environment variables before running the examples:
 
 ```bash
 export AGENT_TOKEN=$(az account get-access-token --resource https://cognitiveservices.azure.com --query accessToken -o tsv)
-export API_VERSION="2026-01-01-preview"
+export API_VERSION="2025-11-15-preview"
 ```
 
 ## Define a function for your agent to call
