@@ -2,7 +2,7 @@
 title: What is the Microsoft Foundry Control Plane?
 ms.service: azure-ai-foundry
 ms.topic: concept-article
-ms.date: 02/04/2026
+ms.date: 02/05/2026
 ms.reviewer: mesameki
 ms.author: scottpolly
 author: mesameki
@@ -13,15 +13,19 @@ ai-usage: ai-assisted
 
 # What is the Microsoft Foundry Control Plane?
 
-The **Microsoft Foundry Control Plane** is a unified management interface that provides visibility, governance, and control for AI agents, models, and tools across your Foundry enterprise. The Foundry Control Plane serves as your central location for managing every aspect of your AI fleet, from build to production.
+The **Microsoft Foundry Control Plane** is a unified management interface that provides visibility, governance, and control for AI agents, models, and tools across your Foundry enterprise. Use the Foundry Control Plane as your central location for managing every aspect of your AI fleet, from build to production.
 
-As organizations evolve from isolated copilots to autonomous mult-agent fleets, they need unified oversight. The Foundry Control Plane provides the visibility, governance, and control needed to scale with confidence.
+As your organization evolves from isolated copilots to autonomous multi-agent fleets, you need unified oversight. The Foundry Control Plane provides the visibility, governance, and control you need to scale with confidence.
+
+In this article, you learn what the Foundry Control Plane offers, including fleet management, observability, compliance enforcement, and security capabilities.
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 ## Core functionalities
 
-The Foundry Control Plane consolidates **inventory, observability, compliance, and security** into one role-aware interface. It integrates seamlessly with Microsoft security and governance systems (Defender, Purview, Microsoft Entra) to deliver **trust at scale**. 
+The Foundry Control Plane consolidates **inventory, observability, compliance, and security** into one role-aware interface. It integrates seamlessly with Microsoft security and governance systems (Defender, Purview, Microsoft Entra) to deliver **trust at scale**.
+
+The following diagram shows how the Foundry Control Plane provides unified fleet visibility with agents, models, and tools listed across projects in a subscription:
 
 :::image type="content" source="media/overview/control-plane-overall.png" alt-text="A diagram depicting the Foundry Control Plane unified fleet visibility with agents, models, and tools listed across projects in a subscription." lightbox="media/overview/control-plane-overall.png":::
 
@@ -138,15 +142,19 @@ Together, these capabilities make **Admin** the Control Plane's administrative b
 
 ## Get started
 
-The Foundry Control Plane is a feature available in the Foundry (new) portal. To get started:
+The Foundry Control Plane is a feature available in the Foundry (new) portal. To get started, complete these steps:
 
-- **[Configure AI Gateway](../configuration/enable-ai-api-management-gateway-portal.md)** - Configure AI Gateway in your Foundry projects to enable advanced governance features.
-- **[Configure monitoring for your agents fleet](monitoring-across-fleet.md)** - Configure observability features in your project to enable metrics and diagnostic information.
-- **[Discover agents in your subscription](how-to-manage-agents.md)** - See which agents are available in your subscription and manage them in a centralized location.
-- **[Register custom Agents](register-custom-agent.md)** - Extend your governance surface by bringing third-party or external agents into the Foundry Control Plane registry.
+| Step | Description |
+|------|-------------|
+| 1. [Configure AI Gateway](../configuration/enable-ai-api-management-gateway-portal.md) | Enable advanced governance features in your Foundry projects. |
+| 2. [Configure monitoring for your agents fleet](monitoring-across-fleet.md) | Enable metrics and diagnostic information with observability features. |
+| 3. [Discover agents in your subscription](how-to-manage-agents.md) | See which agents are available and manage them centrally. |
+| 4. [Register custom agents](register-custom-agent.md) | Bring third-party or external agents into the Foundry Control Plane registry. |
 
 ## Related content
 
-- **[Ensure Compliance and Security](how-to-manage-compliance-security.md)** - Learn how to enforce Responsible AI policies, integrate Defender and Purview signals, and respond to compliance alerts.
-- **[Optimize model cost and performance](how-to-optimize-cost-performance.md)** - Analyze cost drivers, token usage, and resource consumption to get a higher ROI from your agent fleet.
+- [Ensure compliance and security](how-to-manage-compliance-security.md) - Enforce Responsible AI policies, integrate Defender and Purview signals, and respond to compliance alerts.
+- [Optimize model cost and performance](how-to-optimize-cost-performance.md) - Analyze cost drivers, token usage, and resource consumption to maximize ROI from your agent fleet.
+- [Manage agents across platforms](how-to-manage-agents.md) - Track and manage agents from supported platforms in one unified view.
+- [Set up continuous evaluation](../../how-to/continuous-evaluation-agents.md) - Monitor agent performance, quality, and risk dimensions automatically.
 
