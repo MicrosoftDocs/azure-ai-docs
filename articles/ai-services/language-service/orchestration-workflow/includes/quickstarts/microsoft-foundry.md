@@ -63,14 +63,13 @@ Let's begin:
 
    :::image type="content" source="../../media/select-fine-tuning.png" alt-text="Screenshot of create fine-tuning button in the Foundry.":::
 
-1. From the window that appears, select **Conversational Orchestration Workflow** as the task type, then select **Next**.
+1. From the window that appears, select **Conversational Orchestration Workflow** as the task type, then select **Next**. 
 
-   :::image type="content" source="../../media/select-orchestration-workflow.png" alt-text="Screenshot of selecting orchestration workflow in the Foundry.":::
+* If you don't have a CLU or CQA fine-tuning task in this Foundry resource, a warning appears indicating that no tasks are available to link. 
 
-   > [!NOTE]
-   > If you don't have a CLU or CQA fine-tuning task in this Foundry resource, a warning appears indicating that no tasks are available to link. Create a [Conversational Language Understanding](../../../conversational-language-understanding/quickstart.md) or [Custom Question Answering](../../../question-answering/quickstart/sdk.md) task first, then return to create your orchestration workflow.
-   >
-   > :::image type="content" source="../../media/orchestration-no-tasks-warning.png" alt-text="Screenshot of warning when no CLU or CQA tasks exist in the Foundry resource.":::
+     :::image type="content" source="../../media/select-orchestration-workflow.png" alt-text="Screenshot of selecting orchestration workflow in the Foundry.":::
+
+* Create a [Conversational Language Understanding](../../../conversational-language-understanding/quickstart.md) or [Custom Question Answering](../../../question-answering/quickstart/sdk.md) task first, then return to create your orchestration workflow.
 
 1. In the **Create service fine-tuning window**, you can choose to create a new task or import an existing one. Complete all required fields, then select **Create**:
 
