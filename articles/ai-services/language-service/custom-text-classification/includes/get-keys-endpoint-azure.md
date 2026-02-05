@@ -10,4 +10,4 @@ ms.author: lajanuar
 
 * From the menu on the left side, select **Keys and Endpoint**. The endpoint and key are used for API requests.
 
-:::image type="content" source="../media/get-endpoint-azure.png" alt-text="A screenshot showing the key and endpoint page in the Azure portal." lightbox="../media/get-endpoint-azure.png":::
+:::image type="content" source="../media/get-endpoint-azure.png" alt-text="Screenshot that shows the key and endpoint page in the Azure portal." lightbox="../media/get-endpoint-azure.png":::
