@@ -174,9 +174,9 @@ A successful response that used web search typically contains two parts:
 
 ### Control results by user location
 
-You can refine search results by specifying a country code.
+You can refine search results by specifying a country/region code.
 
-- `country`: a two-letter [ISO country code](https://en.wikipedia.org/wiki/ISO_3166-1) (for example, US).
+- `country`: a two-letter [ISO country/region code](https://en.wikipedia.org/wiki/ISO_3166-1) (for example, US).
 
 **REST API - Entra ID**
 
