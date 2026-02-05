@@ -54,10 +54,14 @@ export SSL_CERT_FILE=/etc/pki/tls/certs/ca-bundle.crt
 
 ## Certificate revocation checks
 
-When the Speech SDK connects to the Speech service, it can check the Transport Layer Security (TLS/SSL) certificate. The Speech SDK verifies that the certificate reported by the remote endpoint is trusted and isn't revoked. This verification provides a layer of protection against attacks involving spoofing and other related vectors. The check is accomplished by retrieving a certificate revocation list (CRL) from a certificate authority (CA) used by Azure. A list of Azure CA download locations for updated TLS CRLs can be found in [this document](/azure/security/fundamentals/tls-certificate-changes).
+In addition to the standard OpenSSL certificate validity checks, the Speech SDK can enable an additional revocation check for the Transport Layer Security (TLS/SSL) certificate.
+The Speech SDK verifies that the certificate reported by the remote endpoint is trusted and isn't revoked.
+This verification provides an added layer of protection against attacks involving compromised certificates.
+The check is accomplished by retrieving a certificate revocation list (CRL) from a certificate authority (CA) used by Azure.
+A list of Azure CA download locations for updated TLS CRLs can be found in [this document](/azure/security/fundamentals/tls-certificate-changes).
 
 > [!NOTE]
-> CRL checks are disabled by default in the Speech SDK 1.48 and newer releases due to changes in Microsoft CA infrastructure.
+> CRL checks are disabled by default in the Speech SDK 1.48 and newer releases.
 
 If a destination posing as the Speech service reports a revoked certificate in a retrieved CRL, the SDK terminates the connection and reports an error via a `Canceled` event. The authenticity of a reported certificate can't be checked without an updated CRL. Therefore, the Speech SDK also treats a failure to download a CRL from an Azure CA location as an error.
 
