@@ -26,6 +26,10 @@ This article focuses on the **system message** (sometimes called a *system promp
 
 If you want broader prompt guidance (few-shot examples, ordering, and token efficiency), see [Prompt engineering techniques](prompt-engineering.md).
 
+## Prerequisites
+
+To use system messages, you need access to an Azure OpenAI resource with a chat completion model deployment (such as GPT-4 or GPT-4o). For setup instructions, see [Create and deploy an Azure OpenAI resource](../how-to/create-resource.md).
+
 ## What is a system message?
 
 A system message is a set of instructions and context you provide to the model to guide its responses. You typically use it to:
@@ -49,6 +53,8 @@ Or it can be multiple lines with structured rules and formatting requirements.
 ## How system messages work
 
 In chat-based APIs, you send a set of messages that include roles such as **system**, **user**, and **assistant**. The system message typically appears first and acts as the highest-level set of instructions for the conversation.
+
+![Diagram that shows how a system message and a user prompt influence the model response, with a safety stack applying guardrails.](../media/concepts/system-message-flow.svg)
 
 System messages are most effective when you:
 
