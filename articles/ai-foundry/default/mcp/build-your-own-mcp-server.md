@@ -228,11 +228,6 @@ When you're done, delete Azure resources created by the template to avoid ongoin
 
 1. If you registered the server in Azure API Center, remove the API entry if you no longer need it.
 
-## Next steps
-
-- [Get started with Agent Service](../../agents/quickstart.md)
-- [Connect to Model Context Protocol servers (preview)](../agents/how-to/tools/model-context-protocol.md)
-
 ## Related content
 
 - [MCP server authentication](../agents/how-to/mcp-authentication.md)
