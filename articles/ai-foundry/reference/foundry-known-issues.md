@@ -18,8 +18,8 @@ ms.reviewer: bgilmore
 
 Microsoft Foundry is updated regularly and the product team is continually improving and enhancing its features and capabilities. This article lists known issues related to Foundry and provides steps to resolve them. Before submitting a support request, review the following list to see if your problem is already being addressed and to find a possible solution.
 
-* For more information about service-level outages, *see* the [Azure status page](https://azure.status.microsoft.com/en-us/status). 
-* To set up outage notifications and alerts, *see* the [Azure Service Health Portal](/azure/service-health/service-health-portal-update).
+* For more information about service-level outages, check the [Azure status page](https://status.azure.com/status). 
+* To set up outage notifications and alerts, visit the [Azure Service Health Portal](/azure/service-health/service-health-portal-update).
 
 :::moniker range="foundry"
 
